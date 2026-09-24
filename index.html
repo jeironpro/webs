@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>webs · Catálogo de proyectos web</title>
+        <meta
+            name="description"
+            content="Catálogo de las webs estáticas de jeironpro: 46 proyectos servidos desde el monorepo, cada uno en su subdirectorio."
+        />
+        <meta name="color-scheme" content="light" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="./css/tokens.css" />
+        <link rel="stylesheet" href="./css/styles.css" />
+    </head>
+    <body>
+        <a class="salto" href="#catalogo">Saltar al catálogo</a>
+
+        <header class="masthead">
+            <a class="masthead__marca" href="./index.html" aria-label="Inicio: catálogo de webs">
+                <span class="ms" aria-hidden="true">apps</span>
+                <span class="masthead__nombre">webs</span>
+            </a>
+            <a
+                class="btn btn--secundario btn--compacto"
+                href="https://github.com/jeironpro/webs"
+                rel="noreferrer"
+                target="_blank"
+            >
+                <span class="ms" aria-hidden="true">code</span>
+                Monorepo
+            </a>
+        </header>
+
+        <main id="principal">
+            <section class="hero" aria-labelledby="hero-titulo">
+                <p class="hero__meta">
+                    jeironpro · repositorio de proyectos · actualizado por datos
+                </p>
+                <div class="hero__cuadricula">
+                    <h1 id="hero-titulo" class="hero__titulo">Cuarenta y seis webs, una raíz.</h1>
+                    <p class="hero__lede">
+                        Ejercicios, cursos, herramientas y experimentos: todas las webs estáticas
+                        del monorepo, una por una. Sin frameworks en el catálogo; cada proyecto se
+                        sirve en su subdirectorio.
+                    </p>
+                </div>
+                <ul class="hero__stats" aria-label="Resumen del catálogo">
+                    <li>
+                        <strong id="stat-total" data-stats="total">—</strong><span>proyectos</span>
+                    </li>
+                    <li>
+                        <strong id="stat-categorias" data-stats="categorias">—</strong
+                        ><span>categorías</span>
+                    </li>
+                    <li>
+                        <strong id="stat-destacados" data-stats="destacados">—</strong
+                        ><span>destacados</span>
+                    </li>
+                </ul>
+            </section>
+
+            <section id="catalogo" class="catalogo" aria-labelledby="catalogo-titulo">
+                <h2 class="sr-only" id="catalogo-titulo">Catálogo de proyectos</h2>
+                <div class="barra-filtros" role="search">
+                    <div class="cercador">
+                        <label class="sr-only" for="cerca"
+                            >Cerca por título, descripción, etiqueta o stack</label
+                        >
+                        <span class="ms cercador__icona" aria-hidden="true">search</span>
+                        <input
+                            id="cerca"
+                            type="search"
+                            placeholder="Buscar proyectos…"
+                            autocomplete="off"
+                        />
+                    </div>
+                    <div
+                        class="filtros-categoria"
+                        id="filtros"
+                        aria-label="Filtrar por categoría"
+                    ></div>
+                    <p class="contador" id="contador" aria-live="polite"></p>
+                </div>
+
+                <ul class="graella" id="graella"></ul>
+
+                <div class="vacio" id="vacio" hidden>
+                    <p class="vacio__text" id="vacio-mensaje"></p>
+                    <button
+                        class="btn btn--secundario"
+                        type="button"
+                        id="vacio-reset"
+                        data-accion="reiniciar"
+                    >
+                        Limpiar filtros
+                    </button>
+                </div>
+            </section>
+        </main>
+
+        <footer class="pie">
+            <p class="pie__linea">
+                <span>webs · catálogo de jeironpro</span>
+                <span class="pie__medio">Proyectos servidos desde el monorepo</span>
+                <a href="https://github.com/jeironpro/webs" rel="noreferrer" target="_blank"
+                    >github.com/jeironpro/webs</a
+                >
+            </p>
+        </footer>
+
+        <script type="module" src="./js/catalog.js"></script>
+    </body>
+</html>
