@@ -1,0 +1,71 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "projects.yml"
+      - "index.html"
+      - "package.json"
+      - "package-lock.json"
+      - ".nvmrc"
+      - ".editorconfig"
+      - ".prettierignore"
+      - ".prettierrc.json"
+      - "eslint.config.js"
+      - "vitest.config.mjs"
+      - "css/**"
+      - "js/**"
+      - "scripts/**"
+      - "tests/**"
+      - ".github/workflows/ci.yml"
+  pull_request:
+    paths:
+      - "projects.yml"
+      - "index.html"
+      - "package.json"
+      - "package-lock.json"
+      - ".nvmrc"
+      - ".editorconfig"
+      - ".prettierignore"
+      - ".prettierrc.json"
+      - "eslint.config.js"
+      - "vitest.config.mjs"
+      - "css/**"
+      - "js/**"
+      - "scripts/**"
+      - "tests/**"
+      - ".github/workflows/ci.yml"
+
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Format check
+        run: npm run format:check
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Tests
+        run: npm test
+
+      - name: Data build
+        run: npm run data:build
+
+      - name: Data sincronizada
+        run: git diff --exit-code assets/projects.json
