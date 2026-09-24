@@ -1,0 +1,222 @@
+[
+    {
+        "pregunta": "¿Qué es una Vista Materializada?",
+        "opciones": [
+            "Una tabla temporal",
+            "Una vista normal",
+            "Una vista que almacena físicamente el resultado de la consulta",
+            "Un índice"
+        ],
+        "respuesta": 2,
+        "explicacion": "Mejora el rendimiento de lectura a costa de mantenimiento en escritura (refresco)."
+    },
+    {
+        "pregunta": "¿Qué ventaja principal ofrecen las vistas para la seguridad?",
+        "opciones": [
+            "Encriptan los datos",
+            "Permiten restringir el acceso a filas o columnas específicas sin dar acceso a la tabla completa",
+            "Crean copias de seguridad",
+            "Bloquean usuarios"
+        ],
+        "respuesta": 1,
+        "explicacion": "Se pueden dar permisos sobre la vista y no sobre la tabla base."
+    },
+    {
+        "pregunta": "¿Qué es un índice B-Tree?",
+        "opciones": [
+            "La estructura de índice más común, balanceada en forma de árbol",
+            "Un índice hash",
+            "Un índice de texto completo",
+            "Un índice de mapa de bits"
+        ],
+        "respuesta": 0,
+        "explicacion": "Eficiente para búsquedas de rango y exactas."
+    },
+    {
+        "pregunta": "¿Qué es un índice Clustered (Agrupado)?",
+        "opciones": [
+            "Un índice en memoria",
+            "Un índice temporal",
+            "Un índice que determina el orden físico de los datos en la tabla",
+            "Un índice secundario"
+        ],
+        "respuesta": 2,
+        "explicacion": "Solo puede haber uno por tabla (generalmente la PK)."
+    },
+    {
+        "pregunta": "¿Qué es un índice Non-Clustered?",
+        "opciones": [
+            "Una clave foránea",
+            "Una vista",
+            "Una estructura separada que apunta a los datos físicos",
+            "El orden físico de la tabla"
+        ],
+        "respuesta": 2,
+        "explicacion": "Puede haber múltiples índices no agrupados en una tabla."
+    },
+    {
+        "pregunta": "¿Qué es un Full-Table Scan?",
+        "opciones": [
+            "Leer todas las filas de la tabla secuencialmente",
+            "Leer solo la cabecera",
+            "Usar un índice",
+            "Un error de disco"
+        ],
+        "respuesta": 0,
+        "explicacion": "Ocurre cuando no hay índices útiles para la consulta, suele ser lento en tablas grandes."
+    },
+    {
+        "pregunta": "¿Qué es la cardinalidad de un índice?",
+        "opciones": [
+            "El número de niveles del árbol",
+            "El número de valores únicos en la columna indexada",
+            "El tamaño en bytes",
+            "El nombre del índice"
+        ],
+        "respuesta": 1,
+        "explicacion": "Alta cardinalidad (muchos valores únicos) es ideal para índices B-Tree."
+    },
+    {
+        "pregunta": "¿Qué es un índice compuesto?",
+        "opciones": [
+            "Un índice doble",
+            "Un índice de dos tablas",
+            "Un índice sobre múltiples columnas",
+            "Un índice roto"
+        ],
+        "respuesta": 2,
+        "explicacion": "El orden de las columnas en la definición es crítico (Leftmost Prefix Rule)."
+    },
+    {
+        "pregunta": "¿Qué es la regla del prefijo más a la izquierda (Leftmost Prefix)?",
+        "opciones": [
+            "El índice solo funciona para la última columna",
+            "El índice se lee de derecha a izquierda",
+            "El índice siempre funciona",
+            "Un índice compuesto (A, B, C) sirve para búsquedas en A, o (A, B), pero no solo en B o C"
+        ],
+        "respuesta": 3,
+        "explicacion": "Fundamental para diseñar índices compuestos efectivos."
+    },
+    {
+        "pregunta": "¿Qué es un índice cubridor (Covering Index)?",
+        "opciones": [
+            "Un índice que cubre toda la tabla",
+            "Un índice oculto",
+            "Un índice que contiene todos los campos solicitados por la consulta",
+            "Un índice de seguridad"
+        ],
+        "respuesta": 2,
+        "explicacion": "Permite responder la consulta solo leyendo el índice, sin acceder a la tabla (muy rápido)."
+    },
+    {
+        "pregunta": "¿Cuándo NO deberías crear un índice?",
+        "opciones": [
+            "En columnas de búsqueda frecuente",
+            "En claves foráneas",
+            "En claves primarias",
+            "En columnas con muy baja cardinalidad (ej. género) o tablas muy pequeñas"
+        ],
+        "respuesta": 3,
+        "explicacion": "El costo de mantenimiento supera el beneficio de lectura."
+    },
+    {
+        "pregunta": "¿Cómo afectan los índices a las operaciones DML (INSERT, UPDATE, DELETE)?",
+        "opciones": [
+            "Bloquean la tabla",
+            "Las aceleran siempre",
+            "No afectan",
+            "Las ralentizan, porque hay que actualizar los índices también"
+        ],
+        "respuesta": 3,
+        "explicacion": "Es un compromiso entre velocidad de lectura y velocidad de escritura."
+    },
+    {
+        "pregunta": "¿Qué es EXPLAIN (o EXPLAIN PLAN)?",
+        "opciones": [
+            "Un comando para explicar el código",
+            "Un comando para ver el plan de ejecución de una consulta",
+            "Un comentario",
+            "Un manual de ayuda"
+        ],
+        "respuesta": 1,
+        "explicacion": "Muestra cómo el SGBD ejecutará la consulta (índices usados, tipo de join, etc.)."
+    },
+    {
+        "pregunta": "¿Qué es una vista actualizable?",
+        "opciones": [
+            "Una vista moderna",
+            "Una vista dinámica",
+            "Una vista que se actualiza sola",
+            "Una vista a través de la cual se pueden ejecutar INSERT/UPDATE/DELETE sobre la tabla base"
+        ],
+        "respuesta": 3,
+        "explicacion": "Debe cumplir ciertas reglas (sin agregaciones, distinct, group by, etc.)."
+    },
+    {
+        "pregunta": "¿Qué es WITH CHECK OPTION en una vista?",
+        "opciones": [
+            "Verifica la sintaxis",
+            "Asegura que los datos insertados/modificados a través de la vista cumplan la condición WHERE de la vista",
+            "Comprueba errores",
+            "Verifica permisos"
+        ],
+        "respuesta": 1,
+        "explicacion": "Evita que se inserten filas que luego 'desaparecen' de la vista."
+    },
+    {
+        "pregunta": "¿Qué es un índice Hash?",
+        "opciones": [
+            "Un índice ordenado",
+            "Un índice lento",
+            "Un índice optimizado para búsquedas de igualdad exacta (=)",
+            "Un índice para rangos"
+        ],
+        "respuesta": 2,
+        "explicacion": "No sirve para rangos (<, >) ni ordenación."
+    },
+    {
+        "pregunta": "¿Qué es la fragmentación de índices?",
+        "opciones": [
+            "Cuando el orden lógico del índice no coincide con el orden físico o hay mucho espacio vacío",
+            "Cuando el índice se rompe",
+            "Cuando falta el índice",
+            "Cuando el índice es muy grande"
+        ],
+        "respuesta": 0,
+        "explicacion": "Degrada el rendimiento y requiere mantenimiento (REBUILD/REORGANIZE)."
+    },
+    {
+        "pregunta": "¿Qué es un índice parcial o filtrado?",
+        "opciones": [
+            "Un índice incompleto",
+            "Un índice de una sola columna",
+            "Un índice que solo incluye filas que cumplen una condición (WHERE)",
+            "Un índice corrupto"
+        ],
+        "respuesta": 2,
+        "explicacion": "Ahorra espacio y mejora rendimiento si solo se consulta un subconjunto de datos."
+    },
+    {
+        "pregunta": "¿Qué es una estadística en el contexto del optimizador?",
+        "opciones": [
+            "Un log de errores",
+            "Un contador de visitas",
+            "Un gráfico de uso",
+            "Información sobre la distribución de los datos en las columnas"
+        ],
+        "respuesta": 3,
+        "explicacion": "El optimizador las usa para estimar costos y elegir el mejor plan."
+    },
+    {
+        "pregunta": "¿Qué es un Hint en SQL?",
+        "opciones": [
+            "Un error",
+            "Una instrucción para forzar al optimizador a usar un índice o estrategia específica",
+            "Un comentario",
+            "Una pista para el usuario"
+        ],
+        "respuesta": 1,
+        "explicacion": "USE INDEX, FORCE INDEX, etc. Se debe usar con precaución."
+    }
+]

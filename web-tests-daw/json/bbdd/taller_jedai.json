@@ -1,0 +1,222 @@
+[
+    {
+        "pregunta": "¿Qué es JEDAI en el contexto de bases de datos?",
+        "opciones": [
+            "Un lenguaje de programación",
+            "Un motor de base de datos",
+            "Una herramienta para el diseño de diagramas Entidad-Relación (ER)",
+            "Un sistema operativo"
+        ],
+        "respuesta": 2,
+        "explicacion": "JEDAI es una herramienta utilizada para crear modelos conceptuales de bases de datos mediante diagramas ER."
+    },
+    {
+        "pregunta": "¿Qué representa un rectángulo en un diagrama ER?",
+        "opciones": [
+            "Una relación",
+            "Una clave primaria",
+            "Un atributo",
+            "Una entidad"
+        ],
+        "respuesta": 3,
+        "explicacion": "En la notación estándar de Chen (y muchas otras), los rectángulos representan entidades."
+    },
+    {
+        "pregunta": "¿Qué representa un rombo en un diagrama ER?",
+        "opciones": [
+            "Una relación",
+            "Un atributo",
+            "Una entidad",
+            "Una cardinalidad"
+        ],
+        "respuesta": 0,
+        "explicacion": "Los rombos se utilizan para representar las relaciones entre entidades."
+    },
+    {
+        "pregunta": "¿Qué representa un óvalo en un diagrama ER?",
+        "opciones": [
+            "Un atributo",
+            "Una relación",
+            "Una clave foránea",
+            "Una entidad"
+        ],
+        "respuesta": 0,
+        "explicacion": "Los óvalos o elipses representan los atributos de una entidad o relación."
+    },
+    {
+        "pregunta": "¿Qué es la cardinalidad en una relación?",
+        "opciones": [
+            "El nombre de la relación",
+            "El tipo de dato de la clave primaria",
+            "El número de atributos de una entidad",
+            "El número de instancias de una entidad que pueden asociarse con instancias de otra entidad"
+        ],
+        "respuesta": 3,
+        "explicacion": "La cardinalidad define la naturaleza numérica de la relación (1:1, 1:N, N:M)."
+    },
+    {
+        "pregunta": "¿Cómo se representa un atributo clave (identificador) en un diagrama ER?",
+        "opciones": [
+            "Con un doble óvalo",
+            "Con un rectángulo",
+            "Con una línea discontinua",
+            "Con el nombre subrayado dentro del óvalo"
+        ],
+        "respuesta": 3,
+        "explicacion": "El atributo que sirve como identificador único (clave primaria) se subraya."
+    },
+    {
+        "pregunta": "¿Qué es un atributo compuesto?",
+        "opciones": [
+            "Un atributo calculado",
+            "Un atributo que es clave foránea",
+            "Un atributo que se puede subdividir en otros atributos (ej. Dirección -> Calle, Ciudad)",
+            "Un atributo que tiene múltiples valores"
+        ],
+        "respuesta": 2,
+        "explicacion": "Los atributos compuestos tienen partes más pequeñas con significado independiente."
+    },
+    {
+        "pregunta": "¿Qué es un atributo multivaluado?",
+        "opciones": [
+            "Un atributo compuesto",
+            "Un atributo clave",
+            "Un atributo derivado",
+            "Un atributo que puede tener múltiples valores para una misma entidad (ej. Teléfonos)"
+        ],
+        "respuesta": 3,
+        "explicacion": "Se representa con un doble óvalo y permite almacenar varios valores del mismo tipo."
+    },
+    {
+        "pregunta": "¿Qué es una entidad débil?",
+        "opciones": [
+            "Una entidad que no puede existir sin una entidad fuerte de la que depende",
+            "Una entidad que no se relaciona con nada",
+            "Una entidad con pocos atributos",
+            "Una entidad sin clave primaria"
+        ],
+        "respuesta": 0,
+        "explicacion": "Las entidades débiles dependen de una entidad propietaria para su identificación y existencia."
+    },
+    {
+        "pregunta": "¿Cómo se representa una entidad débil en un diagrama ER?",
+        "opciones": [
+            "Con un doble rectángulo",
+            "Con un círculo",
+            "Con un rombo",
+            "Con un rectángulo punteado"
+        ],
+        "respuesta": 0,
+        "explicacion": "El doble rectángulo distingue a las entidades débiles de las fuertes."
+    },
+    {
+        "pregunta": "¿Qué es un atributo derivado?",
+        "opciones": [
+            "Un atributo clave",
+            "Un atributo opcional",
+            "Un atributo cuyo valor se calcula a partir de otros atributos (ej. Edad a partir de Fecha Nacimiento)",
+            "Un atributo copiado de otra tabla"
+        ],
+        "respuesta": 2,
+        "explicacion": "Se representa con un óvalo punteado y su valor no se almacena directamente, sino que se deduce."
+    },
+    {
+        "pregunta": "¿Qué es una relación recursiva?",
+        "opciones": [
+            "Una relación entre tres entidades",
+            "Una relación de una entidad consigo misma",
+            "Una relación que se repite",
+            "Una relación inválida"
+        ],
+        "respuesta": 1,
+        "explicacion": "Ocurre cuando una instancia de una entidad se relaciona con otra instancia de la misma entidad (ej. Empleado es jefe de Empleado)."
+    },
+    {
+        "pregunta": "¿Qué es el grado de una relación?",
+        "opciones": [
+            "El número de atributos de la relación",
+            "La importancia de la relación",
+            "La cardinalidad de la relación",
+            "El número de entidades que participan en la relación"
+        ],
+        "respuesta": 3,
+        "explicacion": "Binaria (2 entidades), Ternaria (3 entidades), etc."
+    },
+    {
+        "pregunta": "¿Qué significa la participación total (doble línea) en una relación?",
+        "opciones": [
+            "La relación es muchos a muchos",
+            "Todas las instancias de la entidad deben participar en la relación",
+            "La entidad es débil",
+            "La participación es opcional"
+        ],
+        "respuesta": 1,
+        "explicacion": "Indica dependencia existencial: cada instancia de la entidad DEBE estar relacionada."
+    },
+    {
+        "pregunta": "¿Qué es la generalización/especialización?",
+        "opciones": [
+            "Una forma de normalización",
+            "Un error de diseño",
+            "Un proceso de diseño para crear jerarquías de entidades (superclases y subclases)",
+            "Un tipo de consulta SQL"
+        ],
+        "respuesta": 2,
+        "explicacion": "Permite modelar relaciones 'es un' (IS-A), donde las subclases heredan atributos de la superclase."
+    },
+    {
+        "pregunta": "¿Qué es una relación ternaria?",
+        "opciones": [
+            "Una relación con cardinalidad 3",
+            "Una relación entre tres bases de datos",
+            "Una relación que involucra a tres entidades",
+            "Una relación con tres atributos"
+        ],
+        "respuesta": 2,
+        "explicacion": "Conecta tres entidades simultáneamente, por ejemplo: Proveedor suministra Pieza a Proyecto."
+    },
+    {
+        "pregunta": "¿Qué paso sigue al diseño conceptual (Diagrama ER)?",
+        "opciones": [
+            "Pruebas de usuario",
+            "Implementación SQL",
+            "Diseño Lógico (Modelo Relacional)",
+            "Diseño Físico"
+        ],
+        "respuesta": 2,
+        "explicacion": "El diagrama ER se transforma en tablas y claves foráneas en el diseño lógico."
+    },
+    {
+        "pregunta": "¿Cómo se transforma una relación N:M al modelo relacional?",
+        "opciones": [
+            "No se puede transformar",
+            "Duplicando datos",
+            "Creando una nueva tabla intermedia con las claves primarias de ambas entidades",
+            "Poniendo la clave de una en la otra"
+        ],
+        "respuesta": 2,
+        "explicacion": "Las relaciones muchos a muchos siempre requieren una tabla de unión o intermedia."
+    },
+    {
+        "pregunta": "¿Cómo se transforma una relación 1:N al modelo relacional?",
+        "opciones": [
+            "La clave primaria del lado '1' pasa como clave foránea al lado 'N'",
+            "La clave del lado 'N' pasa al lado '1'",
+            "Se crea una tabla intermedia",
+            "Se fusionan las tablas"
+        ],
+        "respuesta": 0,
+        "explicacion": "Es la regla estándar para propagar claves en relaciones uno a muchos."
+    },
+    {
+        "pregunta": "¿Qué herramienta CASE se menciona en el contexto de 'Taller Jedai'?",
+        "opciones": [
+            "JEDAI (u otra herramienta de modelado)",
+            "Photoshop",
+            "Word",
+            "Excel"
+        ],
+        "respuesta": 0,
+        "explicacion": "Las herramientas CASE (Computer Aided Software Engineering) ayudan en el diseño y modelado de sistemas."
+    }
+]

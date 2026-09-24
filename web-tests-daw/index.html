@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Pon a prueba tus conocimientos con el Test DAW. Ejercicios interactivos y resultados visuales." />
+    <meta name="theme-color" content="#0f4d3e" />
+    <meta property="og:title" content="Tests DAW" />
+    <meta property="og:description" content="Pon a prueba tus conocimientos de forma interactiva." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="icon/tests.png" />
+    <title>Tests DAW</title>
+    <link rel="shortcut icon" href="icon/tests.png" type="image/x-icon" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/tests.css" />
+</head>
+<body>
+    <!-- BARRA SUPERIOR -->
+    <header class="barra-superior" role="banner">
+        <div class="barra-superior-izquierda">
+            <button id="boton-hamburguesa" aria-label="Abrir o cerrar menú" aria-expanded="false" class="hamburguesa">
+                <svg width="20" height="14" viewBox="0 0 20 14" aria-hidden="true"><rect width="20" height="2"/><rect y="6" width="20" height="2"/><rect y="12" width="20" height="2"/></svg>
+            </button>
+            <div class="marca">
+                <img src="icon/tests.png" alt="" aria-hidden="true" class="icono-marca"/>
+                <h1>Tests DAW</h1>
+            </div>
+        </div>
+        <div class="barra-superior-derecha">
+            <nav aria-label="Acciones rápidas" class="acciones-superiores">
+                <button class="ficha" id="boton-iniciar" aria-haspopup="dialog">Iniciar</button>
+                <button class="ficha" id="boton-reiniciar">Reiniciar</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MENÚ LATERAL -->
+    <aside id="menu-examenes" class="menu-plegable" aria-label="Menú de selección de tests">
+        <div class="menu-interior">
+            <div class="menu-encabezado" aria-hidden="true">
+                <h2>Categorías</h2>
+            </div>
+            <nav>
+                <ul id="lista-examenes" class="lista-compacta" role="tree"></ul>
+            </nav>
+            <footer class="menu-pie">
+                <small>Selecciona un tema para cargar el test</small>
+            </footer>
+        </div>
+    </aside>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main id="contenedor-examen" role="main">
+        <!-- Tarjeta central con transición -->
+        <section id="introduccion" class="seccion tarjeta activa" aria-labelledby="titulo-introduccion">
+            <div class="tarjeta-contenido">
+                <div class="intro-izquierda">
+                    <h2 id="titulo-introduccion">Bienvenido a Tests DAW</h2>
+                    <p>Pon a prueba tus conocimientos de forma interactiva. Elige un tema en el menú para cargar preguntas.</p>
+                    <div class="acciones">
+                    </div>
+                </div>
+                <div class="intro-derecha">
+                    <dl class="estadisticas">
+                        <div><dt>Exámenes</dt><dd id="total-examenes">—</dd></div>
+                        <div><dt>Preguntas</dt><dd id="total-preguntas">—</dd></div>
+                        <div><dt>Progreso</dt><dd id="progreso-rapido">—</dd></div>
+                    </dl>
+                </div>
+            </div>
+        </section>
+
+        <!-- Barra de progreso -->
+        <div id="barra-progreso" class="barra tarjeta oculto" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-hidden="true">
+            <div class="barra-fondo">
+                <div id="progreso" class="barra-relleno" style="width:0%"></div>
+            </div>
+            <div class="barra-info"><span id="progreso-texto">0%</span></div>
+        </div>
+
+        <!-- Preguntas -->
+        <section id="preguntas" class="seccion oculto" aria-live="polite"></section>
+
+        <!-- Retroalimentación -->
+        <div id="panel-retroalimentacion" class="notificacion oculto" role="alert" aria-atomic="true">
+            <span id="texto-retroalimentacion"></span>
+        </div>
+
+        <!-- Resumen -->
+        <section id="resumen" class="seccion tarjeta oculto" aria-labelledby="titulo-resumen">
+            <div class="resumen-cuadricula">
+                <div class="resumen-izquierda">
+                    <h3 id="titulo-resumen">Resultados del Test</h3>
+                    <div id="puntaje" class="puntaje-grande">—</div>
+                    <div id="temas-debiles" class="temas-debiles">—</div>
+                </div>
+                <div class="resumen-derecha">
+                    <canvas id="grafico" width="260" height="260" loading="lazy" aria-hidden="false"></canvas>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <canvas id="lienzo-confeti" style="position:fixed;inset:0;pointer-events:none;"></canvas>
+
+    <script src="js/tests.js" defer></script>
+</body>
+</html>

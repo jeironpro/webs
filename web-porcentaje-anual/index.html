@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="icon/porcentaje.png" type="image/x-icon">
+    <title>Porcentaje Del Año</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Internal:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main>
+        <div class="contenedor-principal">
+            <header class="encabezado-tarjeta">
+                <div class="informacion-encabezado">
+                    <h1 class="titulo">Año <span id="anio-actual-texto"></span></h1>
+                    <span class="subtitulo">Progreso Anual</span>
+                </div>
+                <div class="etiqueta-dias">
+                    <span id="dias-restantes">0</span> días restantes
+                </div>
+            </header>
+            
+            <div class="cuerpo-tarjeta">
+                <div id="grid-dias" class="grid-dias">
+                    <!-- Los puntos se generarán con JavaScript -->
+                </div>
+            </div>
+
+            <footer class="pie-tarjeta">
+                <div class="contenedor-estadisticas">
+                    <div class="fila-estadistica">
+                        <span class="etiqueta-estadistica">Completado</span>
+                        <div class="indicador-porcentaje">
+                            <span id="valor-porcentaje">0</span><span class="simbolo-porcentaje">%</span>
+                        </div>
+                    </div>
+                    <div class="fila-progreso">
+                        <div class="contenedor-barra">
+                            <div id="barra-progreso" class="barra-progreso"></div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </main>
+    <script src="js/script.js"></script>
+</body>
+</html>

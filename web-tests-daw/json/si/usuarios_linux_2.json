@@ -1,0 +1,222 @@
+[
+    {
+        "pregunta": "¿Qué es el directorio /etc/skel?",
+        "opciones": [
+            "Contiene archivos plantilla que se copian al directorio home de un nuevo usuario al crearlo",
+            "Es el esqueleto del sistema",
+            "Es un directorio temporal",
+            "Contiene calaveras"
+        ],
+        "respuesta": 0,
+        "explicacion": "Útil para configurar .bashrc default para todos."
+    },
+    {
+        "pregunta": "¿Qué hace el comando 'su'?",
+        "opciones": [
+            "Show User",
+            "Set User",
+            "Switch User, permite cambiar a otro usuario (por defecto root) en la sesión actual",
+            "Super User"
+        ],
+        "respuesta": 2,
+        "explicacion": "Requiere la contraseña del usuario destino."
+    },
+    {
+        "pregunta": "¿Qué diferencia hay entre 'su' y 'su -'?",
+        "opciones": [
+            "Ninguna",
+            "'su -' es más rápido",
+            "'su -' no pide contraseña",
+            "'su -' carga también el entorno (variables, path) del usuario destino (login shell)"
+        ],
+        "respuesta": 3,
+        "explicacion": "Es recomendable usar 'su -' para evitar problemas de configuración."
+    },
+    {
+        "pregunta": "¿Qué archivo configura quién puede usar sudo?",
+        "opciones": [
+            "/etc/root",
+            "/etc/sudoers",
+            "/etc/admin",
+            "/etc/permissions"
+        ],
+        "respuesta": 1,
+        "explicacion": "Se debe editar con el comando visudo."
+    },
+    {
+        "pregunta": "¿Qué comando se usa para editar /etc/sudoers de forma segura?",
+        "opciones": [
+            "visudo",
+            "vim /etc/sudoers",
+            "nano /etc/sudoers",
+            "edit /etc/sudoers"
+        ],
+        "respuesta": 0,
+        "explicacion": "Verifica la sintaxis antes de guardar para evitar romper sudo."
+    },
+    {
+        "pregunta": "¿Qué es el Sticky Bit en un directorio?",
+        "opciones": [
+            "Permite que solo el propietario de un archivo pueda borrarlo, aunque otros tengan permiso de escritura en el directorio",
+            "Hace que los archivos se peguen",
+            "Impide escribir",
+            "Da permisos totales"
+        ],
+        "respuesta": 0,
+        "explicacion": "Se usa en /tmp (chmod +t)."
+    },
+    {
+        "pregunta": "¿Qué es el SUID (Set User ID)?",
+        "opciones": [
+            "Permite ejecutar un archivo con los permisos del propietario del archivo en lugar del usuario que lo ejecuta",
+            "Permiso de lectura",
+            "Permiso de ejecución",
+            "Permiso de escritura"
+        ],
+        "respuesta": 0,
+        "explicacion": "Ejemplo: comando passwd (necesita ser root para escribir en shadow)."
+    },
+    {
+        "pregunta": "¿Qué es el SGID (Set Group ID) en un directorio?",
+        "opciones": [
+            "No hace nada",
+            "Heredan el usuario",
+            "Los archivos creados dentro heredan el grupo del directorio en lugar del grupo principal del usuario",
+            "Borra archivos"
+        ],
+        "respuesta": 2,
+        "explicacion": "Útil para carpetas compartidas por un grupo."
+    },
+    {
+        "pregunta": "¿Qué comando muestra quién está conectado al sistema?",
+        "opciones": [
+            "users",
+            "w o who",
+            "online",
+            "connected"
+        ],
+        "respuesta": 1,
+        "explicacion": "Muestra usuario, terminal, tiempo, etc."
+    },
+    {
+        "pregunta": "¿Qué comando muestra el historial de accesos al sistema?",
+        "opciones": [
+            "last",
+            "history",
+            "past",
+            "log"
+        ],
+        "respuesta": 0,
+        "explicacion": "Lee /var/log/wtmp."
+    },
+    {
+        "pregunta": "¿Qué es umask?",
+        "opciones": [
+            "Un usuario",
+            "Una máscara que determina los permisos por defecto de los archivos y directorios nuevos",
+            "Un grupo",
+            "Un permiso"
+        ],
+        "respuesta": 1,
+        "explicacion": "Resta permisos a 666 (archivos) o 777 (directorios)."
+    },
+    {
+        "pregunta": "¿Cómo añadir un usuario al grupo sudo?",
+        "opciones": [
+            "useradd sudo",
+            "usermod -aG sudo usuario",
+            "sudo add usuario",
+            "add sudo usuario"
+        ],
+        "respuesta": 1,
+        "explicacion": "-a (append) es crucial para no borrar los otros grupos."
+    },
+    {
+        "pregunta": "¿Qué es /etc/login.defs?",
+        "opciones": [
+            "Script de inicio",
+            "Log de errores",
+            "Definiciones de login",
+            "Archivo de configuración para definir políticas de contraseñas y creación de usuarios (ej. rango UID)"
+        ],
+        "respuesta": 3,
+        "explicacion": "Configura useradd por defecto."
+    },
+    {
+        "pregunta": "¿Qué comando fuerza al usuario a cambiar la contraseña en el próximo inicio?",
+        "opciones": [
+            "expire usuario",
+            "forcepass usuario",
+            "chage -d 0 usuario",
+            "passwd -e usuario"
+        ],
+        "respuesta": 2,
+        "explicacion": "Establece la fecha de último cambio a 0."
+    },
+    {
+        "pregunta": "¿Qué comando gestiona la expiración de contraseñas?",
+        "opciones": [
+            "expire",
+            "passwdtime",
+            "usertime",
+            "chage"
+        ],
+        "respuesta": 3,
+        "explicacion": "chage -l usuario (lista info)."
+    },
+    {
+        "pregunta": "¿Qué es /var/log/auth.log (o secure)?",
+        "opciones": [
+            "Log del sistema que registra intentos de autenticación (sudo, ssh, su)",
+            "Log de apache",
+            "Log de correo",
+            "Log de kernel"
+        ],
+        "respuesta": 0,
+        "explicacion": "Fundamental para auditar seguridad."
+    },
+    {
+        "pregunta": "¿Qué shell se asigna a usuarios de sistema para que no puedan loguearse?",
+        "opciones": [
+            "/bin/bash",
+            "/bin/false o /sbin/nologin",
+            "/bin/sh",
+            "/bin/null"
+        ],
+        "respuesta": 1,
+        "explicacion": "Evita acceso interactivo."
+    },
+    {
+        "pregunta": "¿Cómo eliminar un usuario y su directorio home?",
+        "opciones": [
+            "userdel usuario",
+            "userdel -r usuario",
+            "deluser --remove-home usuario",
+            "rm -rf /home/usuario"
+        ],
+        "respuesta": 1,
+        "explicacion": "Sin -r, la carpeta home queda huérfana."
+    },
+    {
+        "pregunta": "¿Qué es un usuario 'nobody'?",
+        "opciones": [
+            "Un usuario sin privilegios usado por demonios para minimizar riesgos de seguridad",
+            "Nadie",
+            "Un admin",
+            "Un error"
+        ],
+        "respuesta": 0,
+        "explicacion": "Si el servicio es comprometido, el atacante tiene acceso mínimo."
+    },
+    {
+        "pregunta": "¿Qué comando permite enviar mensajes a todos los usuarios conectados?",
+        "opciones": [
+            "broadcast",
+            "wall",
+            "say",
+            "shout"
+        ],
+        "respuesta": 1,
+        "explicacion": "Write All."
+    }
+]

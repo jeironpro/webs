@@ -1,0 +1,222 @@
+[
+    {
+        "pregunta": "¿Qué es el desajuste de impedancia (Impedance Mismatch)?",
+        "opciones": [
+            "Un error eléctrico",
+            "La dificultad de mapear objetos (grafos, herencia) a tablas relacionales (filas, columnas)",
+            "Un error de red",
+            "Un error de disco"
+        ],
+        "respuesta": 1,
+        "explicacion": "Paradigmas diferentes."
+    },
+    {
+        "pregunta": "¿Qué es un ORM (Object-Relational Mapping)?",
+        "opciones": [
+            "Un objeto",
+            "Técnica/Herramienta que convierte datos entre el sistema de tipos de un lenguaje OO y una base de datos relacional",
+            "Un mapa",
+            "Una base de datos"
+        ],
+        "respuesta": 1,
+        "explicacion": "Hibernate, JPA, Entity Framework."
+    },
+    {
+        "pregunta": "¿Cómo se representa una Clase en el modelo relacional?",
+        "opciones": [
+            "Como una clave",
+            "Como una fila",
+            "Generalmente como una Tabla",
+            "Como una columna"
+        ],
+        "respuesta": 2,
+        "explicacion": "Clase Persona -> Tabla Personas."
+    },
+    {
+        "pregunta": "¿Cómo se representa un Objeto (instancia) en el modelo relacional?",
+        "opciones": [
+            "Como una tabla",
+            "Como una Fila (registro) en la tabla",
+            "Como una columna",
+            "Como un índice"
+        ],
+        "respuesta": 1,
+        "explicacion": "new Persona() -> INSERT INTO Personas."
+    },
+    {
+        "pregunta": "¿Cómo se representa un Atributo simple en el modelo relacional?",
+        "opciones": [
+            "Como una tabla",
+            "Como una clave",
+            "Como una fila",
+            "Como una Columna en la tabla"
+        ],
+        "respuesta": 3,
+        "explicacion": "String nombre -> VARCHAR nombre."
+    },
+    {
+        "pregunta": "¿Qué es una Clave Primaria (PK) en términos de objetos?",
+        "opciones": [
+            "El identificador único del objeto (ID) que permite distinguirlo de otros",
+            "El hash",
+            "La referencia en memoria",
+            "El nombre"
+        ],
+        "respuesta": 0,
+        "explicacion": "Identidad de base de datos."
+    },
+    {
+        "pregunta": "¿Cómo se representa una relación 1:1 (Uno a Uno)?",
+        "opciones": [
+            "Tabla intermedia",
+            "No se puede",
+            "FK en una de las tablas (o ambas) apuntando a la otra, o tabla compartida",
+            "Array"
+        ],
+        "respuesta": 2,
+        "explicacion": "Usuario - Perfil."
+    },
+    {
+        "pregunta": "¿Cómo se representa una relación 1:N (Uno a Muchos)?",
+        "opciones": [
+            "FK en la tabla del lado 'Muchos' apuntando al lado 'Uno'",
+            "Array",
+            "FK en el lado Uno",
+            "Tabla intermedia"
+        ],
+        "respuesta": 0,
+        "explicacion": "Cliente (1) - Pedidos (N)."
+    },
+    {
+        "pregunta": "¿Cómo se representa una relación N:M (Muchos a Muchos)?",
+        "opciones": [
+            "Array",
+            "Dos FKs",
+            "Tabla intermedia (Join Table) con FKs a ambas tablas",
+            "No se puede"
+        ],
+        "respuesta": 2,
+        "explicacion": "Estudiante - Curso."
+    },
+    {
+        "pregunta": "¿Qué es JPA (Java Persistence API)?",
+        "opciones": [
+            "Un servidor",
+            "Especificación estándar de Java para ORM",
+            "Una base de datos",
+            "Una implementación"
+        ],
+        "respuesta": 1,
+        "explicacion": "Define las interfaces (EntityManager)."
+    },
+    {
+        "pregunta": "¿Qué es Hibernate?",
+        "opciones": [
+            "Una base de datos",
+            "Un lenguaje",
+            "La implementación más popular de JPA (y framework ORM)",
+            "Un IDE"
+        ],
+        "respuesta": 2,
+        "explicacion": "Hace el trabajo sucio."
+    },
+    {
+        "pregunta": "¿Qué es una Entidad (Entity) en JPA?",
+        "opciones": [
+            "Un error",
+            "Un fantasma",
+            "Una clase ligera (POJO) mapeada a una tabla de base de datos",
+            "Un archivo"
+        ],
+        "respuesta": 2,
+        "explicacion": "@Entity."
+    },
+    {
+        "pregunta": "¿Qué es Lazy Loading (Carga perezosa)?",
+        "opciones": [
+            "Carga lenta",
+            "Patrón donde los datos relacionados (ej. lista de pedidos) se cargan solo cuando se acceden, no al cargar el padre",
+            "Carga rápida",
+            "No cargar"
+        ],
+        "respuesta": 1,
+        "explicacion": "Evita traer toda la DB a memoria."
+    },
+    {
+        "pregunta": "¿Qué es Eager Loading (Carga ansiosa)?",
+        "opciones": [
+            "Cargar después",
+            "Cargar rápido",
+            "Cargar los datos relacionados inmediatamente junto con el objeto principal (JOIN)",
+            "Cargar lento"
+        ],
+        "respuesta": 2,
+        "explicacion": "Evita el problema N+1 selects."
+    },
+    {
+        "pregunta": "¿Qué es el problema N+1 Selects?",
+        "opciones": [
+            "Ineficiencia donde se hace 1 query para el padre y N queries para sus hijos (en vez de 1 JOIN)",
+            "Un error de sintaxis",
+            "Un error de suma",
+            "Un buen diseño"
+        ],
+        "respuesta": 0,
+        "explicacion": "Matador de rendimiento en ORMs."
+    },
+    {
+        "pregunta": "¿Qué es JPQL / HQL?",
+        "opciones": [
+            "SQL",
+            "Java",
+            "Python",
+            "Lenguajes de consulta orientados a objetos (consultan Entidades, no tablas)"
+        ],
+        "respuesta": 3,
+        "explicacion": "Select p from Persona p."
+    },
+    {
+        "pregunta": "¿Qué es un DAO (Data Access Object)?",
+        "opciones": [
+            "Un objeto de datos",
+            "Una base de datos",
+            "Patrón que abstrae y encapsula el acceso a los datos (CRUD) ocultando la fuente",
+            "Un error"
+        ],
+        "respuesta": 2,
+        "explicacion": "Interfaz limpia para la lógica de negocio."
+    },
+    {
+        "pregunta": "¿Qué es DTO (Data Transfer Object)?",
+        "opciones": [
+            "Objeto simple para transportar datos entre procesos/capas (sin lógica)",
+            "Un error",
+            "Un DAO",
+            "Una entidad"
+        ],
+        "respuesta": 0,
+        "explicacion": "Evita exponer el modelo de dominio."
+    },
+    {
+        "pregunta": "¿Cómo se mapea la herencia en SQL?",
+        "opciones": [
+            "Estrategias: Single Table (una tabla gigante), Joined (tablas por clase), Table per Class",
+            "Solo una tabla",
+            "No se puede",
+            "Solo muchas tablas"
+        ],
+        "respuesta": 0,
+        "explicacion": "Complejo en relacional."
+    },
+    {
+        "pregunta": "¿Qué es una transacción?",
+        "opciones": [
+            "Un error",
+            "Un envío",
+            "Unidad de trabajo atómica (todo o nada) que garantiza la integridad de los datos (ACID)",
+            "Una compra"
+        ],
+        "respuesta": 2,
+        "explicacion": "Commit o Rollback."
+    }
+]

@@ -1,0 +1,22 @@
+{
+    "name": "cv-generator-cli",
+    "version": "1.0.0",
+    "private": true,
+    "type": "module",
+    "description": "Generador de CV en PDF desde línea de comandos (PDFKit)",
+    "main": "index.js",
+    "engines": {
+        "node": ">=18"
+    },
+    "scripts": {
+        "build": "node index.js",
+        "build:es": "node index.js es",
+        "build:ca": "node index.js ca",
+        "build:en": "node index.js en",
+        "build:all": "node index.js es ca en"
+    },
+    "dependencies": {
+        "lucide-static": "^1.16.0",
+        "pdfkit": "^0.15.0"
+    }
+}

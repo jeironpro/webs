@@ -1,0 +1,222 @@
+[
+    {
+        "pregunta": "¿Qué hace el operador UNION?",
+        "opciones": [
+            "Une columnas horizontalmente",
+            "Crea una tabla nueva",
+            "Filtra duplicados solamente",
+            "Combina el conjunto de resultados de dos o más SELECTs"
+        ],
+        "respuesta": 3,
+        "explicacion": "Apila los resultados verticalmente."
+    },
+    {
+        "pregunta": "¿Cuál es la diferencia entre UNION y UNION ALL?",
+        "opciones": [
+            "UNION elimina duplicados, UNION ALL los mantiene",
+            "No hay diferencia",
+            "UNION ALL ordena los resultados",
+            "UNION es más rápido"
+        ],
+        "respuesta": 0,
+        "explicacion": "UNION ALL es más rápido porque no necesita verificar duplicados."
+    },
+    {
+        "pregunta": "¿Qué requisitos deben cumplir las consultas para usar UNION?",
+        "opciones": [
+            "Deben ser de la misma tabla",
+            "Deben tener el mismo número de columnas y tipos de datos compatibles en el mismo orden",
+            "Deben tener la misma clave primaria",
+            "Deben tener los mismos nombres de columnas"
+        ],
+        "respuesta": 1,
+        "explicacion": "La estructura de los resultados debe coincidir."
+    },
+    {
+        "pregunta": "¿Qué hace el operador INTERSECT?",
+        "opciones": [
+            "Devuelve lo que está en el primero pero no en el segundo",
+            "Devuelve todo",
+            "Une tablas",
+            "Devuelve solo las filas que aparecen en AMBOS conjuntos de resultados"
+        ],
+        "respuesta": 3,
+        "explicacion": "Es la intersección matemática de conjuntos."
+    },
+    {
+        "pregunta": "¿Qué hace el operador EXCEPT (o MINUS en Oracle)?",
+        "opciones": [
+            "Resta valores numéricos",
+            "Devuelve la intersección",
+            "Devuelve todo menos los nulos",
+            "Devuelve las filas del primer conjunto que NO están en el segundo"
+        ],
+        "respuesta": 3,
+        "explicacion": "Es la diferencia de conjuntos (A - B)."
+    },
+    {
+        "pregunta": "¿Cómo se simula INTERSECT en MySQL (si no está soportado)?",
+        "opciones": [
+            "No se puede",
+            "Usando INNER JOIN o IN",
+            "Usando UNION",
+            "Usando LEFT JOIN"
+        ],
+        "respuesta": 1,
+        "explicacion": "SELECT * FROM t1 WHERE id IN (SELECT id FROM t2)"
+    },
+    {
+        "pregunta": "¿Cómo se simula EXCEPT en MySQL?",
+        "opciones": [
+            "Usando INNER JOIN",
+            "No se puede",
+            "Usando UNION",
+            "Usando LEFT JOIN ... WHERE ... IS NULL o NOT IN"
+        ],
+        "respuesta": 3,
+        "explicacion": "SELECT * FROM t1 WHERE id NOT IN (SELECT id FROM t2)"
+    },
+    {
+        "pregunta": "¿Cómo se ordenan los resultados de una UNION?",
+        "opciones": [
+            "Con un ORDER BY en cada consulta",
+            "Se ordenan automáticamente",
+            "Con un solo ORDER BY al final de la última consulta",
+            "No se pueden ordenar"
+        ],
+        "respuesta": 2,
+        "explicacion": "El ORDER BY aplica al resultado final combinado."
+    },
+    {
+        "pregunta": "¿Qué nombres de columna tendrá el resultado de una UNION?",
+        "opciones": [
+            "Los nombres de ambas concatenados",
+            "Los nombres de la última consulta",
+            "Los nombres de la primera consulta SELECT",
+            "Nombres genéricos (col1, col2)"
+        ],
+        "respuesta": 2,
+        "explicacion": "Por eso es buena práctica usar alias para igualar nombres si son diferentes."
+    },
+    {
+        "pregunta": "¿Se pueden usar diferentes tablas en una UNION?",
+        "opciones": [
+            "No, deben ser la misma tabla",
+            "Sí, siempre que las columnas seleccionadas sean compatibles",
+            "Solo si tienen FK",
+            "Solo si están en la misma BD"
+        ],
+        "respuesta": 1,
+        "explicacion": "Ejemplo: Unir lista de Clientes y lista de Proveedores."
+    },
+    {
+        "pregunta": "¿Qué prioridad tienen los operadores de conjuntos?",
+        "opciones": [
+            "Generalmente INTERSECT tiene mayor precedencia que UNION/EXCEPT",
+            "Todos igual, de izquierda a derecha",
+            "UNION primero",
+            "EXCEPT primero"
+        ],
+        "respuesta": 0,
+        "explicacion": "Se pueden usar paréntesis para controlar el orden de evaluación."
+    },
+    {
+        "pregunta": "¿Qué pasa con los tipos de datos en UNION?",
+        "opciones": [
+            "Se convierten a texto",
+            "Da error si no son idénticos",
+            "Se convierten a número",
+            "El SGBD intenta convertirlos implícitamente al tipo más general"
+        ],
+        "respuesta": 3,
+        "explicacion": "Ej: INT y FLOAT resultarán en FLOAT."
+    },
+    {
+        "pregunta": "¿Puede una UNION tener más de dos consultas?",
+        "opciones": [
+            "Sí, se pueden encadenar tantas como se quiera",
+            "No, máximo 2",
+            "Depende de la memoria RAM",
+            "Máximo 10"
+        ],
+        "respuesta": 0,
+        "explicacion": "SELECT ... UNION SELECT ... UNION SELECT ..."
+    },
+    {
+        "pregunta": "¿Qué es más eficiente para paginación, UNION o una sola consulta compleja?",
+        "opciones": [
+            "Son iguales",
+            "Consulta compleja siempre",
+            "UNION siempre",
+            "Depende, pero UNION puede impedir el uso óptimo de índices para ordenación global"
+        ],
+        "respuesta": 3,
+        "explicacion": "El ORDER BY final requiere ordenar todo el conjunto combinado."
+    },
+    {
+        "pregunta": "¿Para qué sirve UNION en inyecciones SQL?",
+        "opciones": [
+            "Para optimizar",
+            "Para encriptar",
+            "Para borrar tablas",
+            "Para extraer datos de otras tablas añadiendo resultados a la consulta original"
+        ],
+        "respuesta": 3,
+        "explicacion": "Es una técnica clásica de ataque (UNION-Based SQL Injection)."
+    },
+    {
+        "pregunta": "¿Se pueden mezclar UNION y UNION ALL?",
+        "opciones": [
+            "Solo con paréntesis",
+            "No",
+            "Solo en PostgreSQL",
+            "Sí, en la misma sentencia"
+        ],
+        "respuesta": 3,
+        "explicacion": "Se evalúan en orden o según paréntesis."
+    },
+    {
+        "pregunta": "¿Qué pasa si una columna es NULL en una parte del UNION y tiene valor en otra?",
+        "opciones": [
+            "Se omite la fila",
+            "Da error",
+            "Se convierte a 0",
+            "Es válido, el resultado tendrá NULLs y valores"
+        ],
+        "respuesta": 3,
+        "explicacion": "NULL es un valor válido para compatibilidad de tipos."
+    },
+    {
+        "pregunta": "¿Cómo contar filas totales de varias tablas?",
+        "opciones": [
+            "SELECT COUNT(t1+t2)",
+            "No se puede",
+            "SELECT SUM(c) FROM (SELECT COUNT(*) c FROM t1 UNION ALL SELECT COUNT(*) c FROM t2) as sub",
+            "SELECT COUNT(*) FROM t1, t2"
+        ],
+        "respuesta": 2,
+        "explicacion": "Sumando los conteos individuales."
+    },
+    {
+        "pregunta": "¿Qué es la compatibilidad de tipos en operaciones de conjuntos?",
+        "opciones": [
+            "Que no sean nulos",
+            "Que sean claves primarias",
+            "Que tengan el mismo nombre",
+            "La capacidad de convertir los tipos de columnas correspondientes a un tipo común"
+        ],
+        "respuesta": 3,
+        "explicacion": "Ej: VARCHAR(10) y VARCHAR(20) son compatibles."
+    },
+    {
+        "pregunta": "¿Cuándo usar UNION en lugar de OR en el WHERE?",
+        "opciones": [
+            "Siempre",
+            "Cuando son tablas diferentes",
+            "Nunca",
+            "Cuando OR impide el uso de índices en diferentes columnas, UNION puede ser más rápido"
+        ],
+        "respuesta": 3,
+        "explicacion": "El optimizador puede usar índices separados para cada parte del UNION."
+    }
+]

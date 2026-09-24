@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generador de Contraseñas Seguras</title>
+    <link rel="icon" href="icon/generador_contrasena.png" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+    <main class="principal">
+        <section class="tarjeta-generador">
+            <header class="encabezado">
+                <h1>Generador de Contraseñas</h1>
+                <p>Crea contraseñas seguras y aleatorias al instante.</p>
+            </header>
+            <div class="contenedor-resultado">
+                <input type="text" id="campo-contrasena" readonly placeholder="Tu contraseña aparecerá aquí" />
+                <button id="boton-generar" class="boton-primario">
+                    <span>Generar</span>
+                </button>
+            </div>
+            <div id="mensaje-estado" class="mensaje-estado"></div>
+        </section>
+    </main>
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,222 @@
+[
+    {
+        "pregunta": "¿Qué sublenguaje de SQL gestiona los permisos?",
+        "opciones": [
+            "TCL",
+            "DCL (Data Control Language)",
+            "DML",
+            "DDL"
+        ],
+        "respuesta": 1,
+        "explicacion": "DCL incluye comandos como GRANT y REVOKE."
+    },
+    {
+        "pregunta": "¿Qué comando se usa para crear un nuevo usuario?",
+        "opciones": [
+            "ADD USER",
+            "NEW USER",
+            "CREATE USER",
+            "MAKE USER"
+        ],
+        "respuesta": 2,
+        "explicacion": "CREATE USER 'nombre'@'host' IDENTIFIED BY 'password';"
+    },
+    {
+        "pregunta": "¿Qué comando otorga permisos a un usuario?",
+        "opciones": [
+            "GIVE",
+            "GRANT",
+            "PERMIT",
+            "ALLOW"
+        ],
+        "respuesta": 1,
+        "explicacion": "GRANT permiso ON objeto TO usuario;"
+    },
+    {
+        "pregunta": "¿Qué comando quita permisos a un usuario?",
+        "opciones": [
+            "REVOKE",
+            "DENY",
+            "TAKE",
+            "REMOVE"
+        ],
+        "respuesta": 0,
+        "explicacion": "REVOKE permiso ON objeto FROM usuario;"
+    },
+    {
+        "pregunta": "¿Qué permiso permite leer datos de una tabla?",
+        "opciones": [
+            "GET",
+            "SELECT",
+            "VIEW",
+            "READ"
+        ],
+        "respuesta": 1,
+        "explicacion": "GRANT SELECT ON tabla TO usuario;"
+    },
+    {
+        "pregunta": "¿Qué permiso permite modificar la estructura de una tabla?",
+        "opciones": [
+            "MODIFY",
+            "ALTER",
+            "CHANGE",
+            "UPDATE"
+        ],
+        "respuesta": 1,
+        "explicacion": "GRANT ALTER ON tabla TO usuario;"
+    },
+    {
+        "pregunta": "¿Qué significa GRANT ALL PRIVILEGES?",
+        "opciones": [
+            "Otorga permiso de lectura",
+            "Otorga todos los permisos disponibles al usuario",
+            "Otorga permiso de escritura",
+            "Hace al usuario administrador del sistema"
+        ],
+        "respuesta": 1,
+        "explicacion": "Da control total sobre el objeto o base de datos especificada."
+    },
+    {
+        "pregunta": "¿Qué comando elimina un usuario?",
+        "opciones": [
+            "REMOVE USER",
+            "DROP USER",
+            "KILL USER",
+            "DELETE USER"
+        ],
+        "respuesta": 1,
+        "explicacion": "DROP USER 'usuario'@'host';"
+    },
+    {
+        "pregunta": "¿Qué comando se usa para cambiar la contraseña de un usuario?",
+        "opciones": [
+            "CHANGE PASSWORD",
+            "ALTER USER ... IDENTIFIED BY ...",
+            "UPDATE USER",
+            "SET PASSWORD"
+        ],
+        "respuesta": 1,
+        "explicacion": "ALTER USER 'user'@'host' IDENTIFIED BY 'new_pass'; (en versiones modernas)."
+    },
+    {
+        "pregunta": "¿Qué es un ROL en bases de datos?",
+        "opciones": [
+            "Una tabla de sistema",
+            "Un conjunto de permisos con nombre que se puede asignar a usuarios",
+            "Una función",
+            "Un tipo de usuario"
+        ],
+        "respuesta": 1,
+        "explicacion": "Los roles simplifican la gestión de permisos asignando grupos de privilegios."
+    },
+    {
+        "pregunta": "¿Cómo se asigna un rol a un usuario?",
+        "opciones": [
+            "SET ROLE rol USER usuario",
+            "ASSIGN rol TO usuario",
+            "GRANT nombre_rol TO usuario",
+            "GIVE rol TO usuario"
+        ],
+        "respuesta": 2,
+        "explicacion": "Se usa el mismo comando GRANT que para los permisos individuales."
+    },
+    {
+        "pregunta": "¿Qué es el host en la definición de un usuario ('user'@'host')?",
+        "opciones": [
+            "El nombre del servidor",
+            "La dirección desde la cual el usuario puede conectarse",
+            "El sistema operativo",
+            "El nombre de la base de datos"
+        ],
+        "respuesta": 1,
+        "explicacion": "'localhost' permite conexión local, '%' permite desde cualquier IP."
+    },
+    {
+        "pregunta": "¿Qué permiso se necesita para crear tablas?",
+        "opciones": [
+            "MAKE",
+            "BUILD",
+            "CREATE",
+            "NEW"
+        ],
+        "respuesta": 2,
+        "explicacion": "GRANT CREATE ON base_datos.* TO usuario;"
+    },
+    {
+        "pregunta": "¿Qué permiso se necesita para borrar registros?",
+        "opciones": [
+            "DELETE",
+            "ERASE",
+            "DROP",
+            "REMOVE"
+        ],
+        "respuesta": 0,
+        "explicacion": "GRANT DELETE permite ejecutar sentencias DELETE."
+    },
+    {
+        "pregunta": "¿Qué comando recarga los privilegios en MySQL?",
+        "opciones": [
+            "RELOAD PRIVILEGES",
+            "FLUSH PRIVILEGES",
+            "UPDATE PRIVILEGES",
+            "REFRESH PRIVILEGES"
+        ],
+        "respuesta": 1,
+        "explicacion": "Obliga al servidor a releer las tablas de permisos (útil si se modificaron directamente)."
+    },
+    {
+        "pregunta": "¿Qué es el principio de menor privilegio?",
+        "opciones": [
+            "Dar todos los permisos a todos",
+            "Dar permisos temporales",
+            "Dar a los usuarios solo los permisos necesarios para su trabajo",
+            "No dar permisos a nadie"
+        ],
+        "respuesta": 2,
+        "explicacion": "Es una buena práctica de seguridad para minimizar riesgos."
+    },
+    {
+        "pregunta": "¿Qué permiso permite usar procedimientos almacenados?",
+        "opciones": [
+            "RUN",
+            "START",
+            "EXECUTE",
+            "CALL"
+        ],
+        "respuesta": 2,
+        "explicacion": "GRANT EXECUTE ON procedure TO usuario;"
+    },
+    {
+        "pregunta": "¿Qué significa WITH GRANT OPTION?",
+        "opciones": [
+            "Permite al usuario ver logs",
+            "Permite al usuario borrar la base de datos",
+            "Permite al usuario otorgar sus permisos a otros usuarios",
+            "Permite al usuario cambiar su contraseña"
+        ],
+        "respuesta": 2,
+        "explicacion": "Delega la capacidad de administrar permisos."
+    },
+    {
+        "pregunta": "¿Qué tabla del sistema almacena los usuarios en MySQL?",
+        "opciones": [
+            "mysql.user",
+            "master.logins",
+            "admin.accounts",
+            "system.users"
+        ],
+        "respuesta": 0,
+        "explicacion": "La tabla 'user' en la base de datos 'mysql' contiene las cuentas y privilegios globales."
+    },
+    {
+        "pregunta": "¿Qué sucede si revocas un permiso que un usuario no tiene?",
+        "opciones": [
+            "Se borra el usuario",
+            "Se bloquea la base de datos",
+            "Generalmente no pasa nada o da una advertencia, pero no un error fatal",
+            "Se otorgan todos los permisos"
+        ],
+        "respuesta": 2,
+        "explicacion": "El comando REVOKE simplemente asegura que el permiso no esté presente."
+    }
+]

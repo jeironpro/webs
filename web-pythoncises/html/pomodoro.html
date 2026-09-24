@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="es" data-theme="hum">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Programa que simula un pomodoro método de gestión del tiempo desarrollado por Francesco cirillo. El programa pide al usuario una lista de tareas separadas por espacios y inicia un temporizador de 25 minutos por cada tarea y un descanso de 5 minutos a cada tarea y en cada 4 tareas el tiempo de descanso aumenta a 15 minutos">
+  <meta name="theme-color" content="#faf6ee">
+  <title>Pythoncises · Pomodoro</title>
+  <link rel="icon" type="image/svg+xml" href="../icons/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../icons/favicon-32.png">
+  <link rel="apple-touch-icon" href="../icons/favicon-180.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <script>document.documentElement.classList.add("js");</script>
+  <script src="../js/app.js" defer></script>
+</head>
+<body>
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a class="nav__brand" href="../index.html" aria-label="Pythoncises — inicio">
+        <span class="snake-mark" aria-hidden="true"><svg viewBox="0 0 64 64">
+      <path class="snake__cuerpo" d="M14 22 C 26 22, 26 32, 32 32 C 38 32, 38 42, 50 42"
+            fill="none" stroke-width="6.5" stroke-linecap="round"/>
+      <circle class="snake__cabeza" cx="50" cy="42" r="4.8"/>
+      <path class="snake__lengua" d="M54.5 42 L 58.5 40.5 M54.5 42 L 58.5 43.5"
+            fill="none" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="48.6" cy="40.2" r="1.1" fill="var(--color-paper)"/>
+    </svg></span>
+        Pythoncises
+      </a>
+    </div>
+  </header>
+  <main class="detalle" data-accent="cyan">
+    <a class="btn btn--outline btn--pear btn--sm detalle-volver" href="../index.html#indice">← Índice</a>
+    <p class="detalle-meta">
+      <span class="eyebrow__dot eyebrow__dot--cyan" style="display:inline-block;margin-right:0.45em;vertical-align:middle"></span>
+      Tiempo y hábitos · 25 · pomodoro.py
+    </p>
+    <h1 class="detalle-titulo">Pomodoro</h1>
+    <p class="detalle-desc">Programa que simula un pomodoro método de gestión del tiempo desarrollado por Francesco cirillo. El programa pide al usuario una lista de tareas separadas por espacios y inicia un temporizador de 25 minutos por cada tarea y un descanso de 5 minutos a cada tarea y en cada 4 tareas el tiempo de descanso aumenta a 15 minutos</p>
+    <div class="detalle-acciones">
+      <button class="btn btn--pear" type="button" data-accion="copiar" data-burst>Copiar</button>
+      <button class="btn btn--outline btn--pear" type="button" data-accion="descargar" data-nombre="pomodoro.py">Descargar</button>
+    </div>
+    <div class="codigo-tarjeta">
+      <div class="codigo-barra">
+        <span class="codigo-punto" aria-hidden="true"></span>
+        <span class="codigo-punto" aria-hidden="true"></span>
+        <span class="codigo-punto" aria-hidden="true"></span>
+        <span class="codigo-archivo">exercises/pomodoro/pomodoro.py</span>
+      </div>
+      <pre><code><span class="tok-cadena">&quot;&quot;&quot;
+    Programa que simula un pomodoro método de gestión del tiempo desarrollado por Francesco cirillo. El programa pide al usuario una lista de tareas separadas por espacios y inicia un temporizador de 25 minutos por cada tarea y un descanso de 5 minutos a cada tarea y en cada 4 tareas el tiempo de descanso aumenta a 15 minutos
+&quot;&quot;&quot;</span>
+<span class="tok-palabra">import</span> os
+<span class="tok-palabra">import</span> time
+
+<span class="tok-palabra">def</span> <span class="tok-funcion">limpiar_pantalla</span>():
+    os.system(<span class="tok-cadena">'cls'</span> <span class="tok-palabra">if</span> os.name == <span class="tok-cadena">'nt'</span> <span class="tok-palabra">else</span> <span class="tok-cadena">'clear'</span>)
+
+<span class="tok-palabra">def</span> <span class="tok-funcion">temporizador</span>(minutos, mensaje):
+    <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;¡Inicia el tiempo regresivo!&quot;</span>)
+    <span class="tok-palabra">for</span> minuto <span class="tok-palabra">in</span> <span class="tok-builtin">range</span>(minutos, <span class="tok-numero">0</span>, -<span class="tok-numero">1</span>):
+        <span class="tok-palabra">for</span> segundo <span class="tok-palabra">in</span> <span class="tok-builtin">range</span>(<span class="tok-numero">59</span>, -<span class="tok-numero">1</span>, -<span class="tok-numero">1</span>):
+            <span class="tok-builtin">print</span>(<span class="tok-cadena">f&quot;{mensaje} - {minuto-1:02d}:{segundo:02d}&quot;</span>, end=<span class="tok-cadena">&quot;\r&quot;</span>)
+            time.sleep(<span class="tok-numero">1</span>)
+    <span class="tok-builtin">print</span>()
+
+<span class="tok-palabra">def</span> <span class="tok-funcion">pomodoro</span>(tareas):
+    contador = <span class="tok-numero">0</span>
+
+    <span class="tok-palabra">for</span> tarea <span class="tok-palabra">in</span> tareas:
+        contador+= <span class="tok-numero">1</span>
+        limpiar_pantalla()
+        <span class="tok-builtin">print</span>(<span class="tok-cadena">f&quot;Pomodoro {contador} - Tarea: {tarea}&quot;</span>)
+        temporizador(<span class="tok-numero">25</span>, <span class="tok-cadena">&quot;Trabajando&quot;</span>)
+        <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;¡Pomodoro terminado!&quot;</span>)
+
+        <span class="tok-palabra">if</span> contador % <span class="tok-numero">4</span> != <span class="tok-numero">0</span>:
+            temporizador(<span class="tok-numero">5</span>, <span class="tok-cadena">&quot;Descansando&quot;</span>)
+        <span class="tok-palabra">else</span>:
+            temporizador(<span class="tok-numero">15</span>, <span class="tok-cadena">&quot;Descansando&quot;</span>)
+
+tareas_usuario = <span class="tok-builtin">input</span>(<span class="tok-cadena">&quot;Introduce una lista de taras separadas por espacios: &quot;</span>)
+lista_tareas = tareas_usuario.split()
+
+pomodoro(lista_tareas)
+<span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;¡Todos los Pomodoros completados!&quot;</span>)</code></pre>
+    </div>
+    <nav class="detalle-nav" aria-label="Navegación entre ejercicios">
+      <a class="nav-ej nav-previo" href="cuenta-tiempo-atras.html">← Cuenta atrás</a>
+      <a class="nav-ej nav-siguiente" href="reloj-alarma.html">Reloj alarma →</a>
+    </nav>
+  </main>
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__meta">
+        <a class="footer__brand" href="../index.html"><span class="snake-mark" aria-hidden="true"><svg viewBox="0 0 64 64">
+      <path class="snake__cuerpo" d="M14 22 C 26 22, 26 32, 32 32 C 38 32, 38 42, 50 42"
+            fill="none" stroke-width="6.5" stroke-linecap="round"/>
+      <circle class="snake__cabeza" cx="50" cy="42" r="4.8"/>
+      <path class="snake__lengua" d="M54.5 42 L 58.5 40.5 M54.5 42 L 58.5 43.5"
+            fill="none" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="48.6" cy="40.2" r="1.1" fill="var(--color-paper)"/>
+    </svg></span> Pythoncises</a>
+        <p class="footer__copy">© Pythoncises - 2026<br><span class="footer__hash">ver · copiar · descargar</span></p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,222 @@
+[
+    {
+        "pregunta": "¿Qué comando se usa para cambiar permisos en Linux?",
+        "opciones": [
+            "chmod",
+            "setperm",
+            "chown",
+            "chperm"
+        ],
+        "respuesta": 0,
+        "explicacion": "Change Mode."
+    },
+    {
+        "pregunta": "¿Qué significa el permiso 'r'?",
+        "opciones": [
+            "Root",
+            "Run (Ejecutar)",
+            "Remove (Borrar)",
+            "Read (Lectura)"
+        ],
+        "respuesta": 3,
+        "explicacion": "Valor numérico 4."
+    },
+    {
+        "pregunta": "¿Qué significa el permiso 'w'?",
+        "opciones": [
+            "Write (Escritura)",
+            "Wait",
+            "Work",
+            "Web"
+        ],
+        "respuesta": 0,
+        "explicacion": "Valor numérico 2."
+    },
+    {
+        "pregunta": "¿Qué significa el permiso 'x'?",
+        "opciones": [
+            "Xylophone",
+            "Execute (Ejecución)",
+            "Extra",
+            "Exit"
+        ],
+        "respuesta": 1,
+        "explicacion": "Valor numérico 1. En directorios permite entrar (cd)."
+    },
+    {
+        "pregunta": "¿A qué equivale el permiso numérico 7?",
+        "opciones": [
+            "rw-",
+            "---",
+            "rwx (Lectura, Escritura y Ejecución)",
+            "r--"
+        ],
+        "respuesta": 2,
+        "explicacion": "4 + 2 + 1 = 7."
+    },
+    {
+        "pregunta": "¿A qué equivale el permiso numérico 5?",
+        "opciones": [
+            "r-x (Lectura y Ejecución)",
+            "-wx",
+            "r--",
+            "rw-"
+        ],
+        "respuesta": 0,
+        "explicacion": "4 + 0 + 1 = 5."
+    },
+    {
+        "pregunta": "¿A qué equivale el permiso numérico 6?",
+        "opciones": [
+            "r-x",
+            "rw- (Lectura y Escritura)",
+            "rwx",
+            "-wx"
+        ],
+        "respuesta": 1,
+        "explicacion": "4 + 2 + 0 = 6."
+    },
+    {
+        "pregunta": "¿Qué significa 'chmod 755 archivo'?",
+        "opciones": [
+            "Propietario rwx, resto nada",
+            "Propietario: rwx, Grupo: r-x, Otros: r-x",
+            "Nadie tiene permisos",
+            "Todos rwx"
+        ],
+        "respuesta": 1,
+        "explicacion": "Permiso estándar para ejecutables/scripts."
+    },
+    {
+        "pregunta": "¿Qué significa 'chmod 644 archivo'?",
+        "opciones": [
+            "Todos rw-",
+            "Propietario rwx",
+            "Todos rwx",
+            "Propietario: rw-, Grupo: r--, Otros: r--"
+        ],
+        "respuesta": 3,
+        "explicacion": "Permiso estándar para archivos de texto/configuración."
+    },
+    {
+        "pregunta": "¿Qué significa 'chmod 777 archivo'?",
+        "opciones": [
+            "Solo propietario",
+            "Solo root",
+            "Nadie tiene acceso",
+            "Todos (Propietario, Grupo, Otros) tienen control total (rwx)"
+        ],
+        "respuesta": 3,
+        "explicacion": "Inseguro, evitar usarlo."
+    },
+    {
+        "pregunta": "¿Quiénes son las tres categorías de usuarios en permisos Linux?",
+        "opciones": [
+            "admin, user, guest",
+            "u (user/owner), g (group), o (others)",
+            "root, system, user",
+            "local, remote, network"
+        ],
+        "respuesta": 1,
+        "explicacion": "User, Group, Others."
+    },
+    {
+        "pregunta": "¿Qué hace 'chmod +x archivo'?",
+        "opciones": [
+            "Borra el archivo",
+            "Añade permiso de ejecución a todos (u, g, o)",
+            "Quita ejecución",
+            "Añade escritura"
+        ],
+        "respuesta": 1,
+        "explicacion": "Hace el script ejecutable."
+    },
+    {
+        "pregunta": "¿Qué hace 'chmod u+w archivo'?",
+        "opciones": [
+            "Añade permiso de escritura solo al propietario",
+            "Quita escritura",
+            "Añade lectura",
+            "Añade escritura a todos"
+        ],
+        "respuesta": 0,
+        "explicacion": "Modifica solo la parte 'user'."
+    },
+    {
+        "pregunta": "¿Qué comando cambia el propietario y grupo de un archivo?",
+        "opciones": [
+            "chgroup",
+            "chown usuario:grupo archivo",
+            "chuser",
+            "chmod"
+        ],
+        "respuesta": 1,
+        "explicacion": "chown (Change Owner)."
+    },
+    {
+        "pregunta": "¿Qué comando cambia solo el grupo de un archivo?",
+        "opciones": [
+            "setgroup",
+            "groupmod",
+            "chgrp",
+            "chgroup"
+        ],
+        "respuesta": 2,
+        "explicacion": "Aunque chown también puede hacerlo (:grupo)."
+    },
+    {
+        "pregunta": "¿Qué permiso se necesita en un directorio para poder listar su contenido (ls)?",
+        "opciones": [
+            "w (Escritura)",
+            "x (Ejecución)",
+            "s (Setuid)",
+            "r (Lectura)"
+        ],
+        "respuesta": 3,
+        "explicacion": "Sin 'r' no puedes ver los nombres de archivos."
+    },
+    {
+        "pregunta": "¿Qué permiso se necesita en un directorio para poder entrar en él (cd)?",
+        "opciones": [
+            "t (Sticky)",
+            "w (Escritura)",
+            "r (Lectura)",
+            "x (Ejecución)"
+        ],
+        "respuesta": 3,
+        "explicacion": "Sin 'x' no puedes acceder a los inodos dentro."
+    },
+    {
+        "pregunta": "¿Qué permiso se necesita en un directorio para crear o borrar archivos dentro?",
+        "opciones": [
+            "Solo w",
+            "Solo x",
+            "Solo r",
+            "w (Escritura) y x (Ejecución)"
+        ],
+        "respuesta": 3,
+        "explicacion": "Borrar un archivo es modificar el directorio que lo contiene."
+    },
+    {
+        "pregunta": "¿Cómo aplicar cambios de permisos recursivamente a una carpeta?",
+        "opciones": [
+            "chmod -r",
+            "chmod --all",
+            "chmod -R",
+            "chmod /s"
+        ],
+        "respuesta": 2,
+        "explicacion": "Aplica a todos los archivos y subdirectorios."
+    },
+    {
+        "pregunta": "¿Qué muestra 'ls -l' al principio de la línea (ej. -rwxr-xr--)?",
+        "opciones": [
+            "El tipo de archivo y los permisos",
+            "La fecha",
+            "El tamaño",
+            "El dueño"
+        ],
+        "respuesta": 0,
+        "explicacion": "- (archivo), d (directorio), l (link)."
+    }
+]

@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="es" data-theme="hum">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Programa que hace la funciones basica de una calculadora, pidiendole al usuario dos operando y un operador, finalmente muestra el resultado de la operación.">
+  <meta name="theme-color" content="#faf6ee">
+  <title>Pythoncises · Calculadora</title>
+  <link rel="icon" type="image/svg+xml" href="../icons/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../icons/favicon-32.png">
+  <link rel="apple-touch-icon" href="../icons/favicon-180.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <script>document.documentElement.classList.add("js");</script>
+  <script src="../js/app.js" defer></script>
+</head>
+<body>
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a class="nav__brand" href="../index.html" aria-label="Pythoncises — inicio">
+        <span class="snake-mark" aria-hidden="true"><svg viewBox="0 0 64 64">
+      <path class="snake__cuerpo" d="M14 22 C 26 22, 26 32, 32 32 C 38 32, 38 42, 50 42"
+            fill="none" stroke-width="6.5" stroke-linecap="round"/>
+      <circle class="snake__cabeza" cx="50" cy="42" r="4.8"/>
+      <path class="snake__lengua" d="M54.5 42 L 58.5 40.5 M54.5 42 L 58.5 43.5"
+            fill="none" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="48.6" cy="40.2" r="1.1" fill="var(--color-paper)"/>
+    </svg></span>
+        Pythoncises
+      </a>
+    </div>
+  </header>
+  <main class="detalle" data-accent="coral">
+    <a class="btn btn--outline btn--pear btn--sm detalle-volver" href="../index.html#indice">← Índice</a>
+    <p class="detalle-meta">
+      <span class="eyebrow__dot eyebrow__dot--coral" style="display:inline-block;margin-right:0.45em;vertical-align:middle"></span>
+      Calculadoras · 08 · calculadora.py
+    </p>
+    <h1 class="detalle-titulo">Calculadora</h1>
+    <p class="detalle-desc">Programa que hace la funciones basica de una calculadora, pidiendole al usuario dos operando y un operador, finalmente muestra el resultado de la operación.</p>
+    <div class="detalle-acciones">
+      <button class="btn btn--pear" type="button" data-accion="copiar" data-burst>Copiar</button>
+      <button class="btn btn--outline btn--pear" type="button" data-accion="descargar" data-nombre="calculadora.py">Descargar</button>
+    </div>
+    <div class="codigo-tarjeta">
+      <div class="codigo-barra">
+        <span class="codigo-punto" aria-hidden="true"></span>
+        <span class="codigo-punto" aria-hidden="true"></span>
+        <span class="codigo-punto" aria-hidden="true"></span>
+        <span class="codigo-archivo">exercises/calculadora/calculadora.py</span>
+      </div>
+      <pre><code><span class="tok-cadena">&quot;&quot;&quot;
+    Programa que hace la funciones basica de una calculadora, 
+    pidiendole al usuario dos operando y un operador,
+    finalmente muestra el resultado de la operación.
+&quot;&quot;&quot;</span>
+
+<span class="tok-palabra">def</span> <span class="tok-funcion">calculo</span>(primer_operando, operador, segundo_operando):
+    <span class="tok-palabra">if</span> operador == <span class="tok-cadena">&quot;+&quot;</span>:
+        <span class="tok-palabra">return</span>  primer_operando + segundo_operando
+    <span class="tok-palabra">elif</span> operador == <span class="tok-cadena">&quot;-&quot;</span>:
+        <span class="tok-palabra">return</span> primer_operando - segundo_operando
+    <span class="tok-palabra">elif</span> operador == <span class="tok-cadena">&quot;*&quot;</span>:
+        <span class="tok-palabra">return</span> primer_operando * segundo_operando
+    <span class="tok-palabra">elif</span> operador == <span class="tok-cadena">&quot;/&quot;</span>:
+        <span class="tok-palabra">if</span> segundo_operando != <span class="tok-numero">0</span>:
+            <span class="tok-palabra">return</span> primer_operando / segundo_operando
+        <span class="tok-palabra">return</span> ZeroDivisionError <span class="tok-comentario"># Devolver excepción cuando intenta dividir por cero</span>
+    <span class="tok-palabra">return</span> <span class="tok-palabra">None</span> <span class="tok-comentario"># Devolver None cuando el operador no es valido</span>
+
+primer_operando = <span class="tok-builtin">input</span>(<span class="tok-cadena">&quot;Introduce el primer operando: &quot;</span>)
+operador = <span class="tok-builtin">input</span>(<span class="tok-cadena">&quot;Introduce el operador (+, -, *, /): &quot;</span>)
+segundo_operando = <span class="tok-builtin">input</span>(<span class="tok-cadena">&quot;Introduce el segundo operando: &quot;</span>)
+
+<span class="tok-comentario"># Diccionario de operador como clave y su respectiva operación como valor</span>
+operador_operacion = {
+    <span class="tok-cadena">&quot;+&quot;</span>: <span class="tok-cadena">&quot;suma&quot;</span>,
+    <span class="tok-cadena">&quot;-&quot;</span>: <span class="tok-cadena">&quot;resta&quot;</span>,
+    <span class="tok-cadena">&quot;*&quot;</span>: <span class="tok-cadena">&quot;multiplicación&quot;</span>,
+    <span class="tok-cadena">&quot;/&quot;</span>: <span class="tok-cadena">&quot;división&quot;</span>
+}
+
+resultado = calculo(<span class="tok-builtin">int</span>(primer_operando), operador, <span class="tok-builtin">int</span>(segundo_operando))
+
+<span class="tok-comentario"># Verificar resultado y mostra mensaje de error o resultado de operacion</span>
+<span class="tok-palabra">if</span> resultado <span class="tok-palabra">is</span> ZeroDivisionError:
+    <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;No se puede dividir por cero&quot;</span>)
+<span class="tok-palabra">elif</span> resultado <span class="tok-palabra">is</span> <span class="tok-palabra">None</span>:
+    <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;El operador no es valido&quot;</span>)
+<span class="tok-palabra">else</span>:
+    <span class="tok-builtin">print</span>(<span class="tok-cadena">f&quot;Resultado de la {operador_operacion.get(operador)} es: {resultado}&quot;</span>)</code></pre>
+    </div>
+    <section class="salida" aria-labelledby="salida-calculadora">
+      <h2 class="salida-titulo" id="salida-calculadora">Salida de ejemplo</h2>
+      <pre class="salida-cuerpo">Introduce el primer operando: 8
+Introduce el operador (+, -, *, /): +
+Introduce el segundo operando: 2
+Resultado de la suma es: 10</pre>
+    </section>
+    <nav class="detalle-nav" aria-label="Navegación entre ejercicios">
+      <a class="nav-ej nav-previo" href="patron-rombo.html">← Patrón rombo</a>
+      <a class="nav-ej nav-siguiente" href="calculadora-indice-masa-corporal.html">Calculadora de IMC →</a>
+    </nav>
+  </main>
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__meta">
+        <a class="footer__brand" href="../index.html"><span class="snake-mark" aria-hidden="true"><svg viewBox="0 0 64 64">
+      <path class="snake__cuerpo" d="M14 22 C 26 22, 26 32, 32 32 C 38 32, 38 42, 50 42"
+            fill="none" stroke-width="6.5" stroke-linecap="round"/>
+      <circle class="snake__cabeza" cx="50" cy="42" r="4.8"/>
+      <path class="snake__lengua" d="M54.5 42 L 58.5 40.5 M54.5 42 L 58.5 43.5"
+            fill="none" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="48.6" cy="40.2" r="1.1" fill="var(--color-paper)"/>
+    </svg></span> Pythoncises</a>
+        <p class="footer__copy">© Pythoncises - 2026<br><span class="footer__hash">ver · copiar · descargar</span></p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

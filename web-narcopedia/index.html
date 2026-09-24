@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="assets/cocaina.png" type="image/x-icon">
+    <title>Imperios del Narco | Top 10</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="aplicacion" class="contenedor">
+        <!-- Vista de Inicio -->
+        <section id="vista-inicio">
+            <header>
+                <h1 class="titulo">IMPERIOS DEL NARCO</h1>
+                <p class="subtitulo">Los 10 señores de la droga más impactantes de la historia</p>
+                
+                <nav class="navegacion-principal">
+                    <button id="nav-capos" class="boton-nav activo">Capos</button>
+                    <button id="nav-organizaciones" class="boton-nav">Organizaciones</button>
+                </nav>
+            </header>
+            
+            <main id="cuadricula-capos" class="cuadricula-capos">
+                <!-- Las tarjetas de capos se inyectarán aquí mediante JS -->
+            </main>
+            
+            <main id="cuadricula-organizaciones" class="cuadricula-capos" style="display: none;">
+                <!-- Las tarjetas de organizaciones se inyectarán aquí mediante JS -->
+            </main>
+        </section>
+        <!-- Vista de Detalle (Oculta por defecto) -->
+        <section id="vista-detalle" class="vista-detalle" style="display: none;">
+            <button id="boton-volver" class="boton-volver">
+                ← Volver a la Lista
+            </button>
+            <div id="contenido-detalle">
+                <!-- El contenido de detalle se inyectará aquí mediante JS -->
+            </div>
+        </section>
+    </div>
+    <script type="module" src="js/script.js"></script>
+</body>
+</html>

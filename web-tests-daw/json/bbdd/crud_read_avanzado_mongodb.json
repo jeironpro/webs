@@ -1,0 +1,222 @@
+[
+    {
+        "pregunta": "¿Qué es el Framework de Agregación (Aggregation Framework)?",
+        "opciones": [
+            "Una herramienta de backup",
+            "Un conjunto de herramientas para procesar datos en etapas (pipeline) y devolver resultados calculados",
+            "Un plugin",
+            "Un tipo de índice"
+        ],
+        "respuesta": 1,
+        "explicacion": "Es la alternativa potente a MapReduce y GROUP BY."
+    },
+    {
+        "pregunta": "¿Qué es un Pipeline (Tubería)?",
+        "opciones": [
+            "Una serie de etapas donde la salida de una es la entrada de la siguiente",
+            "Una función",
+            "Un cable",
+            "Una conexión de red"
+        ],
+        "respuesta": 0,
+        "explicacion": "Permite transformaciones complejas paso a paso."
+    },
+    {
+        "pregunta": "¿Qué etapa filtra documentos (similar a WHERE)?",
+        "opciones": [
+            "$match",
+            "$where",
+            "$filter",
+            "$find"
+        ],
+        "respuesta": 0,
+        "explicacion": "Debe ir al principio del pipeline para aprovechar índices."
+    },
+    {
+        "pregunta": "¿Qué etapa agrupa documentos (similar a GROUP BY)?",
+        "opciones": [
+            "$collect",
+            "$group",
+            "$aggregate",
+            "$sum"
+        ],
+        "respuesta": 1,
+        "explicacion": "Requiere un campo _id que define la clave de agrupación."
+    },
+    {
+        "pregunta": "¿Qué etapa proyecta campos (similar a SELECT)?",
+        "opciones": [
+            "$project",
+            "$select",
+            "$pick",
+            "$show"
+        ],
+        "respuesta": 0,
+        "explicacion": "Permite renombrar, añadir, quitar o calcular campos."
+    },
+    {
+        "pregunta": "¿Qué etapa ordena documentos?",
+        "opciones": [
+            "$rank",
+            "$order",
+            "$arrange",
+            "$sort"
+        ],
+        "respuesta": 3,
+        "explicacion": "1 para asc, -1 para desc."
+    },
+    {
+        "pregunta": "¿Qué etapa limita el número de documentos?",
+        "opciones": [
+            "$top",
+            "$cap",
+            "$limit",
+            "$max"
+        ],
+        "respuesta": 2,
+        "explicacion": "Igual que .limit() en find."
+    },
+    {
+        "pregunta": "¿Qué etapa salta documentos?",
+        "opciones": [
+            "$jump",
+            "$pass",
+            "$skip",
+            "$offset"
+        ],
+        "respuesta": 2,
+        "explicacion": "Igual que .skip() en find."
+    },
+    {
+        "pregunta": "¿Qué etapa descompone un array en múltiples documentos (uno por elemento)?",
+        "opciones": [
+            "$break",
+            "$split",
+            "$unwind",
+            "$expand"
+        ],
+        "respuesta": 2,
+        "explicacion": "Fundamental para normalizar datos anidados."
+    },
+    {
+        "pregunta": "¿Qué etapa realiza un Left Outer Join con otra colección?",
+        "opciones": [
+            "$connect",
+            "$join",
+            "$link",
+            "$lookup"
+        ],
+        "respuesta": 3,
+        "explicacion": "Permite cruzar datos entre colecciones."
+    },
+    {
+        "pregunta": "¿Qué operador de acumulador calcula la suma?",
+        "opciones": [
+            "$add",
+            "$sum",
+            "$total",
+            "$count"
+        ],
+        "respuesta": 1,
+        "explicacion": "Se usa dentro de $group."
+    },
+    {
+        "pregunta": "¿Qué operador de acumulador calcula el promedio?",
+        "opciones": [
+            "$average",
+            "$avg",
+            "$median",
+            "$mean"
+        ],
+        "respuesta": 1,
+        "explicacion": "Calcula la media aritmética."
+    },
+    {
+        "pregunta": "¿Qué operador de acumulador crea un array con los valores de los documentos agrupados?",
+        "opciones": [
+            "$push",
+            "$collect",
+            "$list",
+            "$array"
+        ],
+        "respuesta": 0,
+        "explicacion": "Agrega valores a una lista."
+    },
+    {
+        "pregunta": "¿Qué operador de acumulador crea un array con valores únicos?",
+        "opciones": [
+            "$distinct",
+            "$addToSet",
+            "$unique",
+            "$set"
+        ],
+        "respuesta": 1,
+        "explicacion": "Evita duplicados en la lista agrupada."
+    },
+    {
+        "pregunta": "¿Qué etapa cuenta documentos?",
+        "opciones": [
+            "$total",
+            "$number",
+            "$count",
+            "$size"
+        ],
+        "respuesta": 2,
+        "explicacion": "Simplifica contar resultados del pipeline."
+    },
+    {
+        "pregunta": "¿Qué etapa escribe el resultado del pipeline en una nueva colección?",
+        "opciones": [
+            "$out",
+            "$save",
+            "$write",
+            "$export"
+        ],
+        "respuesta": 0,
+        "explicacion": "Útil para vistas materializadas o reportes."
+    },
+    {
+        "pregunta": "¿Qué etapa añade nuevos campos calculados?",
+        "opciones": [
+            "$addFields",
+            "$create",
+            "$set",
+            "$new"
+        ],
+        "respuesta": 0,
+        "explicacion": "Similar a $project pero mantiene los campos existentes."
+    },
+    {
+        "pregunta": "¿Qué operador permite lógica condicional (if-then-else)?",
+        "opciones": [
+            "$cond",
+            "$switch",
+            "$case",
+            "$if"
+        ],
+        "respuesta": 0,
+        "explicacion": "{ $cond: { if: ..., then: ..., else: ... } }"
+    },
+    {
+        "pregunta": "¿Qué variable de sistema representa la raíz del documento actual?",
+        "opciones": [
+            "$$CURRENT",
+            "$$ROOT",
+            "$$DOC",
+            "$$THIS"
+        ],
+        "respuesta": 1,
+        "explicacion": "Permite acceder al documento completo."
+    },
+    {
+        "pregunta": "¿Qué es MapReduce en MongoDB?",
+        "opciones": [
+            "Un paradigma de procesamiento de datos antiguo, ahora mayormente reemplazado por Aggregation Framework",
+            "Un índice",
+            "Lo nuevo",
+            "Un mapa"
+        ],
+        "respuesta": 0,
+        "explicacion": "Es más lento y complejo (usa JS) que el Aggregation Framework (C++)."
+    }
+]

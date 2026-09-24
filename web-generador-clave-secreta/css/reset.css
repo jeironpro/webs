@@ -1,0 +1,50 @@
+/* Normalizacion basica: elimina margenes y paddings por defecto */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navegacion suave y prevencion de ajuste de texto en movil */
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+/* Altura minima de pantalla completa y anti-aliasing */
+body {
+    min-height: 100vh;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Los inputs heredan la tipografia del body */
+input,
+button,
+textarea,
+select {
+    font: inherit;
+    color: inherit;
+}
+
+/* Reset de boton: sin borde ni fondo por defecto */
+button {
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+/* Los enlaces heredan el color del texto padre */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Las etiquetas de codigo usan fuente monospace */
+code,
+pre {
+    font-family: var(--font-mono, monospace);
+}

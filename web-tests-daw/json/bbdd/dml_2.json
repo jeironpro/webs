@@ -1,0 +1,222 @@
+[
+    {
+        "pregunta": "¿Qué es un LEFT EXCLUSIVE JOIN (o Left Anti Join)?",
+        "opciones": [
+            "Selecciona la intersección",
+            "Selecciona todo",
+            "Selecciona filas de la tabla izquierda que NO tienen coincidencia en la derecha",
+            "Selecciona todas las filas de la izquierda"
+        ],
+        "respuesta": 2,
+        "explicacion": "Se logra con LEFT JOIN ... WHERE tabla_derecha.id IS NULL."
+    },
+    {
+        "pregunta": "¿Para qué es útil un LEFT JOIN?",
+        "opciones": [
+            "Para contar filas",
+            "Para crear tablas",
+            "Para sumar valores",
+            "Para encontrar registros 'huérfanos' o sin correspondencia"
+        ],
+        "respuesta": 3,
+        "explicacion": "Ejemplo: Clientes que no han realizado ningún pedido."
+    },
+    {
+        "pregunta": "¿Qué es la integridad referencial en el contexto de JOINs?",
+        "opciones": [
+            "Garantiza que las relaciones entre tablas sean válidas",
+            "Borra datos duplicados",
+            "Crea índices automáticos",
+            "Hace que los JOINs sean más rápidos"
+        ],
+        "respuesta": 0,
+        "explicacion": "Si hay integridad referencial, es menos probable encontrar registros huérfanos inesperados."
+    },
+    {
+        "pregunta": "¿Qué impacto tienen los índices en los JOINs?",
+        "opciones": [
+            "Ocupan menos espacio",
+            "Hacen la unión más lenta",
+            "No tienen impacto",
+            "Mejoran significativamente el rendimiento de la unión"
+        ],
+        "respuesta": 3,
+        "explicacion": "Es crucial indexar las columnas usadas en las cláusulas ON."
+    },
+    {
+        "pregunta": "¿Qué es un producto cartesiano?",
+        "opciones": [
+            "Un error de base de datos",
+            "El resultado de combinar cada fila de una tabla con todas las de otra",
+            "Una operación matemática simple",
+            "Un mapa"
+        ],
+        "respuesta": 1,
+        "explicacion": "Si tabla A tiene 10 filas y B tiene 10, el producto cartesiano tiene 100 filas."
+    },
+    {
+        "pregunta": "¿Cuándo ocurre un producto cartesiano no deseado?",
+        "opciones": [
+            "Cuando las tablas son grandes",
+            "Cuando hay muchos usuarios",
+            "Cuando se usa INNER JOIN",
+            "Cuando se olvida la condición de unión (ON o WHERE)"
+        ],
+        "respuesta": 3,
+        "explicacion": "Es un error común que puede colapsar el rendimiento."
+    },
+    {
+        "pregunta": "¿Qué es una tabla derivada en un JOIN?",
+        "opciones": [
+            "Una vista materializada",
+            "Una tabla física",
+            "Un índice",
+            "Una subconsulta en la cláusula FROM que actúa como una tabla temporal"
+        ],
+        "respuesta": 3,
+        "explicacion": "SELECT * FROM t1 JOIN (SELECT ... FROM t2) AS sub ON ..."
+    },
+    {
+        "pregunta": "¿Se pueden hacer JOINs con sentencias UPDATE?",
+        "opciones": [
+            "Sí, para actualizar una tabla basándose en valores de otra",
+            "Solo en DELETE",
+            "No, solo en SELECT",
+            "Solo en INSERT"
+        ],
+        "respuesta": 0,
+        "explicacion": "UPDATE t1 JOIN t2 ON ... SET t1.col = t2.col"
+    },
+    {
+        "pregunta": "¿Se pueden hacer JOINs con sentencias DELETE?",
+        "opciones": [
+            "Solo en Oracle",
+            "No, nunca",
+            "Sí, para borrar filas de una tabla basándose en otra",
+            "Solo si son la misma tabla"
+        ],
+        "respuesta": 2,
+        "explicacion": "DELETE t1 FROM t1 JOIN t2 ON ... WHERE ..."
+    },
+    {
+        "pregunta": "¿Qué es un JOIN implícito?",
+        "opciones": [
+            "Usar subconsultas",
+            "Usar la palabra JOIN",
+            "Listar tablas en el FROM y poner la condición en el WHERE",
+            "Usar NATURAL JOIN"
+        ],
+        "respuesta": 2,
+        "explicacion": "SELECT * FROM t1, t2 WHERE t1.id = t2.id (Sintaxis antigua, no recomendada)."
+    },
+    {
+        "pregunta": "¿Por qué se prefiere la sintaxis de JOIN explícito (ANSI-92)?",
+        "opciones": [
+            "Es más rápida",
+            "Es la única que funciona",
+            "Ocupa menos caracteres",
+            "Separa la lógica de unión de la lógica de filtrado, mejorando la legibilidad"
+        ],
+        "respuesta": 3,
+        "explicacion": "Evita errores accidentales de productos cartesianos."
+    },
+    {
+        "pregunta": "¿Qué es una unión theta?",
+        "opciones": [
+            "Un JOIN circular",
+            "Un JOIN con NULL",
+            "Un JOIN con una condición de comparación arbitraria (theta)",
+            "Un JOIN con ="
+        ],
+        "respuesta": 2,
+        "explicacion": "Es el término teórico general para los JOINs condicionales."
+    },
+    {
+        "pregunta": "¿Qué problemas puede causar un JOIN en tablas muy grandes?",
+        "opciones": [
+            "Corrupción de archivos",
+            "Pérdida de datos",
+            "Bloqueo permanente",
+            "Lentitud y alto consumo de memoria/CPU"
+        ],
+        "respuesta": 3,
+        "explicacion": "Requiere optimización, índices adecuados y a veces particionamiento."
+    },
+    {
+        "pregunta": "¿Qué es el optimizador de consultas?",
+        "opciones": [
+            "Un programador",
+            "El componente del SGBD que decide la mejor manera de ejecutar el JOIN",
+            "Un manual",
+            "Una herramienta externa"
+        ],
+        "respuesta": 1,
+        "explicacion": "Analiza índices, estadísticas y costos para elegir el plan de ejecución."
+    },
+    {
+        "pregunta": "¿Qué orden de tablas importa en un INNER JOIN?",
+        "opciones": [
+            "Siempre importa",
+            "Lógicamente no importa, el optimizador suele reordenarlas para eficiencia",
+            "La tabla más pequeña debe ir primero siempre",
+            "La tabla más grande debe ir primero siempre"
+        ],
+        "respuesta": 1,
+        "explicacion": "El resultado es el mismo, aunque el rendimiento puede variar si el optimizador no es perfecto."
+    },
+    {
+        "pregunta": "¿Qué diferencia hay entre UNION y JOIN?",
+        "opciones": [
+            "JOIN combina columnas horizontalmente, UNION combina filas verticalmente",
+            "UNION es para números, JOIN para texto",
+            "Son lo mismo",
+            "JOIN elimina duplicados, UNION no"
+        ],
+        "respuesta": 0,
+        "explicacion": "Son operaciones ortogonales."
+    },
+    {
+        "pregunta": "¿Qué es un Hash Join?",
+        "opciones": [
+            "Un error",
+            "Un tipo de JOIN de usuario",
+            "Una función de encriptación",
+            "Un algoritmo interno usado por el SGBD para ejecutar JOINs eficientemente"
+        ],
+        "respuesta": 3,
+        "explicacion": "Crea una tabla hash en memoria para una de las tablas y escanea la otra."
+    },
+    {
+        "pregunta": "¿Qué es un Nested Loop Join?",
+        "opciones": [
+            "Un bucle infinito",
+            "Un algoritmo donde por cada fila de una tabla se recorre la otra",
+            "Un JOIN anidado en SQL",
+            "Una subconsulta"
+        ],
+        "respuesta": 1,
+        "explicacion": "Es eficiente para conjuntos de datos pequeños o con buenos índices."
+    },
+    {
+        "pregunta": "¿Qué significa que un JOIN sea 'determinista'?",
+        "opciones": [
+            "Que es aleatorio",
+            "Que es rápido",
+            "Que siempre devuelve el mismo resultado para los mismos datos",
+            "Que cambia con el tiempo"
+        ],
+        "respuesta": 2,
+        "explicacion": "Es una propiedad deseable para la consistencia."
+    },
+    {
+        "pregunta": "¿Cómo afecta el NULL en una columna de unión a un INNER JOIN?",
+        "opciones": [
+            "Se incluyen como 0",
+            "Da error",
+            "Las filas con NULL en la columna de unión son excluidas",
+            "Se incluyen como NULL"
+        ],
+        "respuesta": 2,
+        "explicacion": "Porque NULL != NULL."
+    }
+]

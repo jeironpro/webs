@@ -1,0 +1,101 @@
+/*
+ * Estilos especificos de la pagina principal
+ * Configura el layout de pantalla completa y la cuadricula de dados
+ */
+
+#app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: var(--spacing-xl);
+    padding-top: calc(var(--spacing-xl) + 56px);
+    background:
+        radial-gradient(
+            ellipse at 50% 0%,
+            rgba(255, 255, 255, 0.06) 0%,
+            transparent 60%
+        ),
+        linear-gradient(135deg, var(--color-bg), var(--color-bg-secondary));
+    font-family: var(--font-family);
+    color: var(--color-text);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+/* Enlace para saltar navegacion */
+.skip-link {
+    position: absolute;
+    top: -100%;
+    left: var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--color-dice-bg);
+    color: var(--color-dice-pip);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    border-radius: var(--border-radius-sm);
+    z-index: 200;
+    transition: top var(--transition-fast);
+}
+
+.skip-link:focus {
+    top: var(--spacing-sm);
+}
+
+/* Cuadricula contenedora de los dados */
+.dice-grid {
+    display: grid;
+    gap: var(--spacing-xl);
+    padding: var(--spacing-xl);
+    width: 100%;
+    max-width: 900px;
+    flex: 1;
+    align-content: center;
+    justify-items: center;
+}
+
+/* Estilos de foco visibles para teclado */
+:focus-visible {
+    outline: 2px solid var(--color-dice-bg);
+    outline-offset: 2px;
+    border-radius: var(--border-radius-sm);
+}
+
+/* Respetar preferencia de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Ajustes responsive */
+@media (max-width: 768px) {
+    #app {
+        padding: var(--spacing-md);
+        padding-top: calc(var(--spacing-md) + 52px);
+    }
+
+    .dice-grid {
+        gap: var(--spacing-lg);
+        padding: var(--spacing-md);
+    }
+}
+
+@media (max-width: 480px) {
+    #app {
+        padding-top: calc(var(--spacing-sm) + 48px);
+    }
+
+    .dice-grid {
+        gap: var(--spacing-md);
+        padding: var(--spacing-sm);
+    }
+}

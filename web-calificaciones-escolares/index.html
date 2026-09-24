@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+	<title>Expediente académico</title>
+	<meta name="description" content="Expediente académico: calificaciones de pre-primaria, primaria y secundaria.">
+	<link rel="icon" type="image/svg+xml" href="icons/favicon.svg">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+	<!-- Barra superior con el nombre del sitio y la matrícula del estudiante -->
+	<header class="topbar reveal" style="--i: 0">
+		<span class="topbar__brand">Expediente<span class="topbar__dot">.</span></span>
+		<span class="chip topbar__enrollment" id="enrollment"></span>
+	</header>
+
+	<main>
+		<!-- Encabezado principal con institución y resumen -->
+		<section class="hero reveal" style="--i: 1">
+			<p class="hero__kicker">Expediente académico</p>
+			<h1 class="hero__title" id="institution">…</h1>
+			<p class="hero__lede" id="lede">Cargando expediente…</p>
+		</section>
+
+		<!-- Cifras destacadas del expediente (índice final, promedio y período) -->
+		<section class="stats reveal" style="--i: 2" aria-label="Cifras del expediente" id="stats" hidden></section>
+
+		<noscript>
+			<p class="notice">Este expediente necesita JavaScript para leer los datos del archivo <code>qualifications.json</code>.</p>
+		</noscript>
+
+		<!-- Pestañas de niveles educativos; solo una sección visible a la vez -->
+		<nav class="tabs reveal" style="--i: 3" aria-label="Niveles educativos" id="tabs" hidden></nav>
+
+		<div id="content" hidden></div>
+
+		<p class="notice" id="notice-error" hidden></p>
+	</main>
+
+	<footer class="footer reveal" style="--i: 4">
+		<p>Expediente publicado con fines informativos.</p>
+	</footer>
+
+	<script src="js/app.js"></script>
+</body>
+</html>

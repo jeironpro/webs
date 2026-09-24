@@ -1,0 +1,222 @@
+[
+    {
+        "pregunta": "¿Qué es NFS?",
+        "opciones": [
+            "Network For Speed",
+            "No File System",
+            "New File System",
+            "Network File System, protocolo estándar en Unix/Linux para compartir archivos en red"
+        ],
+        "respuesta": 3,
+        "explicacion": "Permite montar directorios remotos como si fueran locales."
+    },
+    {
+        "pregunta": "¿Qué es Samba (SMB/CIFS)?",
+        "opciones": [
+            "Un virus",
+            "Implementación libre del protocolo SMB para interoperabilidad entre Windows y Linux/Unix",
+            "Un sistema de archivos",
+            "Un baile"
+        ],
+        "respuesta": 1,
+        "explicacion": "Permite a Linux actuar como servidor de archivos Windows o cliente."
+    },
+    {
+        "pregunta": "¿Qué archivo configura las exportaciones NFS en Linux?",
+        "opciones": [
+            "/etc/exports",
+            "/etc/nfs",
+            "/etc/network",
+            "/etc/shares"
+        ],
+        "respuesta": 0,
+        "explicacion": "Define qué carpetas se comparten y con quién."
+    },
+    {
+        "pregunta": "¿Qué archivo configura Samba en Linux?",
+        "opciones": [
+            "/etc/smb",
+            "/etc/samba/smb.conf",
+            "/etc/windows",
+            "/etc/samba.conf"
+        ],
+        "respuesta": 1,
+        "explicacion": "Contiene la configuración global y de recursos compartidos."
+    },
+    {
+        "pregunta": "¿Qué puerto usa NFS v4 habitualmente?",
+        "opciones": [
+            "80",
+            "21",
+            "2049 (TCP/UDP)",
+            "443"
+        ],
+        "respuesta": 2,
+        "explicacion": "Simplificó el uso de puertos respecto a versiones anteriores."
+    },
+    {
+        "pregunta": "¿Qué puertos usa SMB (Samba)?",
+        "opciones": [
+            "139 y 445 (TCP)",
+            "22 y 23",
+            "80 y 8080",
+            "20 y 21"
+        ],
+        "respuesta": 0,
+        "explicacion": "445 es para SMB directo sobre TCP."
+    },
+    {
+        "pregunta": "¿Qué es 'mounting' (montar) en NFS?",
+        "opciones": [
+            "El proceso de hacer accesible un sistema de archivos remoto en un directorio local",
+            "Instalar software",
+            "Copiar datos",
+            "Subir archivos"
+        ],
+        "respuesta": 0,
+        "explicacion": "mount -t nfs servidor:/ruta /mnt/local."
+    },
+    {
+        "pregunta": "¿Qué opción de NFS 'no_root_squash' hace?",
+        "opciones": [
+            "Aplasta al root",
+            "Permite que el usuario root remoto tenga privilegios de root en el servidor (peligroso)",
+            "Bloquea al root",
+            "Es segura"
+        ],
+        "respuesta": 1,
+        "explicacion": "Por defecto, root se mapea a nfsnobody por seguridad."
+    },
+    {
+        "pregunta": "¿Qué es un 'share' en Samba?",
+        "opciones": [
+            "Un grupo",
+            "Una acción",
+            "Un recurso (carpeta, impresora) compartido en la red",
+            "Un usuario"
+        ],
+        "respuesta": 2,
+        "explicacion": "[nombre_recurso] path = /ruta."
+    },
+    {
+        "pregunta": "¿Qué comando permite crear usuarios de Samba?",
+        "opciones": [
+            "addsmb",
+            "smbpasswd -a usuario",
+            "sambausers",
+            "useradd"
+        ],
+        "respuesta": 1,
+        "explicacion": "Samba mantiene su propia base de datos de contraseñas."
+    },
+    {
+        "pregunta": "¿Qué es RPC (Remote Procedure Call) en NFS?",
+        "opciones": [
+            "Un protocolo de chat",
+            "Un archivo",
+            "Mecanismo que permite a un programa ejecutar código en otra máquina (usado por NFS para portmap)",
+            "Un error"
+        ],
+        "respuesta": 2,
+        "explicacion": "rpcbind gestiona los puertos dinámicos."
+    },
+    {
+        "pregunta": "¿Qué es 'browsing' en Samba?",
+        "opciones": [
+            "Ver fotos",
+            "La capacidad de ver servidores y recursos compartidos en el 'Entorno de Red' de Windows",
+            "Buscar archivos",
+            "Navegar por internet"
+        ],
+        "respuesta": 1,
+        "explicacion": "Usa NetBIOS o WSD."
+    },
+    {
+        "pregunta": "¿Qué es un PDC (Primary Domain Controller) en Samba?",
+        "opciones": [
+            "Un PC",
+            "Samba puede actuar como un controlador de dominio estilo NT4 para autenticar usuarios Windows",
+            "Un disco",
+            "Un programa"
+        ],
+        "respuesta": 1,
+        "explicacion": "Samba 4 incluso soporta Active Directory."
+    },
+    {
+        "pregunta": "¿Qué comando muestra los montajes NFS actuales?",
+        "opciones": [
+            "listnfs",
+            "nfsstat",
+            "mount o showmount",
+            "viewmount"
+        ],
+        "respuesta": 2,
+        "explicacion": "showmount -e servidor muestra lo que exporta."
+    },
+    {
+        "pregunta": "¿Qué es 'testparm'?",
+        "opciones": [
+            "Probar parámetros",
+            "Test de disco",
+            "Test de velocidad",
+            "Comando para verificar la sintaxis del archivo smb.conf"
+        ],
+        "respuesta": 3,
+        "explicacion": "Evita reiniciar el servicio con errores."
+    },
+    {
+        "pregunta": "¿Qué es 'writable = yes' en Samba?",
+        "opciones": [
+            "Solo borrar",
+            "Permite escritura en el recurso compartido",
+            "Solo lectura",
+            "Solo ver"
+        ],
+        "respuesta": 1,
+        "explicacion": "Equivalente a read only = no."
+    },
+    {
+        "pregunta": "¿Qué es 'valid users' en Samba?",
+        "opciones": [
+            "Usuarios válidos",
+            "Lista de usuarios o grupos permitidos para acceder al recurso",
+            "Usuarios admin",
+            "Todos los usuarios"
+        ],
+        "respuesta": 1,
+        "explicacion": "Restringe el acceso."
+    },
+    {
+        "pregunta": "¿Qué diferencia principal hay entre NFS y Samba?",
+        "opciones": [
+            "Son iguales",
+            "NFS es nativo de Unix/Linux (más rápido ahí), Samba es para compatibilidad con Windows",
+            "Samba es de pago",
+            "NFS es de Windows"
+        ],
+        "respuesta": 1,
+        "explicacion": "Elegir según los clientes de la red."
+    },
+    {
+        "pregunta": "¿Qué es automount (autofs)?",
+        "opciones": [
+            "Servicio que monta sistemas de archivos automáticamente cuando se accede a ellos y los desmonta tras inactividad",
+            "Montar siempre",
+            "Montar manual",
+            "Montar coches"
+        ],
+        "respuesta": 0,
+        "explicacion": "Ahorra recursos y gestiona mejor las desconexiones."
+    },
+    {
+        "pregunta": "¿Qué es CIFS?",
+        "opciones": [
+            "Un archivo",
+            "Common Internet File System, una versión antigua/dialecto de SMB",
+            "Un sistema nuevo",
+            "Un virus"
+        ],
+        "respuesta": 1,
+        "explicacion": "A menudo se usan como sinónimos de SMB."
+    }
+]

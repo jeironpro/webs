@@ -1,0 +1,222 @@
+[
+    {
+        "pregunta": "¿Qué es MongoDB?",
+        "opciones": [
+            "Un lenguaje de programación",
+            "Un servidor web",
+            "Una base de datos relacional",
+            "Una base de datos NoSQL orientada a documentos"
+        ],
+        "respuesta": 3,
+        "explicacion": "Almacena datos en documentos flexibles tipo JSON."
+    },
+    {
+        "pregunta": "¿Qué significa NoSQL?",
+        "opciones": [
+            "New SQL",
+            "No SQL allowed",
+            "None SQL",
+            "Not Only SQL (No solo SQL)"
+        ],
+        "respuesta": 3,
+        "explicacion": "Abarca una amplia gama de tecnologías de bases de datos no relacionales."
+    },
+    {
+        "pregunta": "¿En qué formato almacena MongoDB los datos internamente?",
+        "opciones": [
+            "JSON",
+            "CSV",
+            "XML",
+            "BSON (Binary JSON)"
+        ],
+        "respuesta": 3,
+        "explicacion": "BSON es una representación binaria de JSON que incluye tipos de datos adicionales."
+    },
+    {
+        "pregunta": "¿Qué es una Colección en MongoDB?",
+        "opciones": [
+            "Un grupo de documentos (equivalente a una tabla en SQL)",
+            "Una fila",
+            "Un índice",
+            "Una base de datos"
+        ],
+        "respuesta": 0,
+        "explicacion": "Las colecciones no imponen un esquema rígido."
+    },
+    {
+        "pregunta": "¿Qué es un Documento en MongoDB?",
+        "opciones": [
+            "Un registro de datos (equivalente a una fila en SQL)",
+            "Una tabla",
+            "Un archivo de texto",
+            "Una columna"
+        ],
+        "respuesta": 0,
+        "explicacion": "Es la unidad básica de datos, compuesta por pares campo-valor."
+    },
+    {
+        "pregunta": "¿Qué campo es obligatorio en todo documento MongoDB?",
+        "opciones": [
+            "_id",
+            "id",
+            "primary_key",
+            "key"
+        ],
+        "respuesta": 0,
+        "explicacion": "Si no se proporciona, MongoDB genera uno automáticamente (ObjectId)."
+    },
+    {
+        "pregunta": "¿Qué característica define a MongoDB como 'Schemaless' (sin esquema)?",
+        "opciones": [
+            "Los documentos en una misma colección pueden tener diferentes estructuras y campos",
+            "No usa SQL",
+            "No tiene tablas",
+            "No tiene seguridad"
+        ],
+        "respuesta": 0,
+        "explicacion": "Permite flexibilidad y evolución rápida del modelo de datos."
+    },
+    {
+        "pregunta": "¿Cuál es el lenguaje de consulta principal de MongoDB?",
+        "opciones": [
+            "Java",
+            "MQL (MongoDB Query Language)",
+            "PL/SQL",
+            "SQL"
+        ],
+        "respuesta": 1,
+        "explicacion": "Usa métodos como find(), insert(), update(), etc."
+    },
+    {
+        "pregunta": "¿Qué es un ObjectId?",
+        "opciones": [
+            "Una fecha",
+            "Un string aleatorio",
+            "Un número entero",
+            "Un identificador único de 12 bytes generado automáticamente"
+        ],
+        "respuesta": 3,
+        "explicacion": "Contiene timestamp, identificador de máquina, proceso y contador."
+    },
+    {
+        "pregunta": "¿Qué es el Shell de MongoDB (mongosh)?",
+        "opciones": [
+            "Una interfaz de línea de comandos interactiva para interactuar con MongoDB",
+            "Un servidor",
+            "Una GUI",
+            "Un driver"
+        ],
+        "respuesta": 0,
+        "explicacion": "Permite ejecutar comandos y scripts JavaScript."
+    },
+    {
+        "pregunta": "¿Qué es Compass?",
+        "opciones": [
+            "Un comando",
+            "La interfaz gráfica oficial (GUI) para MongoDB",
+            "Un tipo de índice",
+            "Una base de datos"
+        ],
+        "respuesta": 1,
+        "explicacion": "Facilita la visualización y manipulación de datos sin usar comandos."
+    },
+    {
+        "pregunta": "¿Qué es Atlas?",
+        "opciones": [
+            "El servicio de base de datos en la nube totalmente gestionado de MongoDB",
+            "Una versión antigua",
+            "Un mapa",
+            "Un libro"
+        ],
+        "respuesta": 0,
+        "explicacion": "Permite desplegar clústeres en AWS, Azure o Google Cloud."
+    },
+    {
+        "pregunta": "¿Qué teorema se aplica a las bases de datos distribuidas como MongoDB?",
+        "opciones": [
+            "Teorema CAP (Consistencia, Disponibilidad, Tolerancia a Particiones)",
+            "Ley de Moore",
+            "Teorema de Pitágoras",
+            "ACID"
+        ],
+        "respuesta": 0,
+        "explicacion": "MongoDB prioriza CP (Consistencia y Tolerancia a Particiones) por defecto."
+    },
+    {
+        "pregunta": "¿Qué es la replicación en MongoDB?",
+        "opciones": [
+            "Duplicar tablas",
+            "Hacer copias de seguridad",
+            "El proceso de sincronizar datos entre múltiples servidores (Replica Set)",
+            "Copiar archivos"
+        ],
+        "respuesta": 2,
+        "explicacion": "Proporciona alta disponibilidad y redundancia."
+    },
+    {
+        "pregunta": "¿Qué es el Sharding?",
+        "opciones": [
+            "Borrar datos",
+            "Encriptar datos",
+            "Distribuir datos a través de múltiples máquinas para escalar horizontalmente",
+            "Compartir datos"
+        ],
+        "respuesta": 2,
+        "explicacion": "Permite manejar grandes volúmenes de datos y tráfico."
+    },
+    {
+        "pregunta": "¿Qué tipo de datos NO soporta JSON pero sí BSON?",
+        "opciones": [
+            "Boolean",
+            "String",
+            "Number",
+            "Date (Fecha)"
+        ],
+        "respuesta": 3,
+        "explicacion": "JSON almacena fechas como strings, BSON tiene un tipo Date nativo."
+    },
+    {
+        "pregunta": "¿Cómo se representa una relación 1:N en MongoDB generalmente?",
+        "opciones": [
+            "Siempre con referencias",
+            "No se puede",
+            "Incrustando (Embedding) los documentos hijos dentro del padre o usando referencias",
+            "Siempre incrustando"
+        ],
+        "respuesta": 2,
+        "explicacion": "La incrustación es preferida para lecturas rápidas si el documento no crece indefinidamente."
+    },
+    {
+        "pregunta": "¿Qué es un documento incrustado?",
+        "opciones": [
+            "Un enlace",
+            "Un documento JSON dentro de otro documento",
+            "Un error",
+            "Un archivo adjunto"
+        ],
+        "respuesta": 1,
+        "explicacion": "{ nombre: 'Juan', direccion: { calle: 'Falsa 123' } }"
+    },
+    {
+        "pregunta": "¿Qué puerto usa MongoDB por defecto?",
+        "opciones": [
+            "8080",
+            "27017",
+            "3306",
+            "5432"
+        ],
+        "respuesta": 1,
+        "explicacion": "Es el puerto estándar para conexiones de cliente."
+    },
+    {
+        "pregunta": "¿Qué comando muestra las bases de datos existentes?",
+        "opciones": [
+            "show databases",
+            "show dbs",
+            "list databases",
+            "display dbs"
+        ],
+        "respuesta": 1,
+        "explicacion": "Muestra las BDs que tienen al menos un documento."
+    }
+]

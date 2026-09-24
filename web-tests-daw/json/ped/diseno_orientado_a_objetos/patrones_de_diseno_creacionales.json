@@ -1,0 +1,222 @@
+[
+    {
+        "pregunta": "¿Qué son los Patrones de Diseño?",
+        "opciones": [
+            "Errores",
+            "Soluciones probadas y reutilizables a problemas comunes de diseño de software",
+            "Dibujos",
+            "Códigos"
+        ],
+        "respuesta": 1,
+        "explicacion": "Gang of Four (GoF)."
+    },
+    {
+        "pregunta": "¿Qué hacen los patrones creacionales?",
+        "opciones": [
+            "Estructura",
+            "Comportamiento",
+            "Tratan con la creación de objetos, intentando crear objetos de manera adecuada a la situación",
+            "Nada"
+        ],
+        "respuesta": 2,
+        "explicacion": "Abstraen la instanciación."
+    },
+    {
+        "pregunta": "¿Qué es el patrón Singleton?",
+        "opciones": [
+            "Garantiza que una clase tenga una única instancia y proporciona un punto de acceso global a ella",
+            "Una lista",
+            "Un error",
+            "Un soltero"
+        ],
+        "respuesta": 0,
+        "explicacion": "Database Connection."
+    },
+    {
+        "pregunta": "¿Qué es el patrón Factory Method?",
+        "opciones": [
+            "Define una interfaz para crear un objeto, pero deja que las subclases decidan qué clase instanciar",
+            "Una fábrica",
+            "Nada",
+            "Un método"
+        ],
+        "respuesta": 0,
+        "explicacion": "Desacopla creación."
+    },
+    {
+        "pregunta": "¿Qué es el patrón Abstract Factory?",
+        "opciones": [
+            "Un error",
+            "Una fábrica abstracta",
+            "Nada",
+            "Proporciona una interfaz para crear familias de objetos relacionados o dependientes sin especificar sus clases concretas"
+        ],
+        "respuesta": 3,
+        "explicacion": "Fábrica de fábricas."
+    },
+    {
+        "pregunta": "¿Qué es el patrón Builder?",
+        "opciones": [
+            "Un albañil",
+            "Nada",
+            "Un constructor",
+            "Separa la construcción de un objeto complejo de su representación (construcción paso a paso)"
+        ],
+        "respuesta": 3,
+        "explicacion": "Fluent Interface."
+    },
+    {
+        "pregunta": "¿Qué es el patrón Prototype?",
+        "opciones": [
+            "Un prototipo",
+            "Un clon",
+            "Especifica los tipos de objetos a crear usando una instancia prototípica y crea nuevos objetos copiando este prototipo",
+            "Nada"
+        ],
+        "respuesta": 2,
+        "explicacion": "Clonación."
+    },
+    {
+        "pregunta": "¿Cuándo usar Singleton?",
+        "opciones": [
+            "A veces",
+            "Cuando necesitas controlar estrictamente cuántas instancias existen (ej. Logger, Config)",
+            "Siempre",
+            "Nunca"
+        ],
+        "respuesta": 1,
+        "explicacion": "Cuidado con el estado global."
+    },
+    {
+        "pregunta": "¿Qué problema resuelve Builder?",
+        "opciones": [
+            "Nada",
+            "Constructores con demasiados parámetros (Telescoping Constructor Anti-pattern)",
+            "Lentitud",
+            "Falta de memoria"
+        ],
+        "respuesta": 1,
+        "explicacion": "new Pizza.Builder().cheese().pepperoni().build()."
+    },
+    {
+        "pregunta": "¿Qué es la Lazy Initialization en Singleton?",
+        "opciones": [
+            "Crear la instancia solo cuando se pide por primera vez, no al inicio del programa",
+            "Nada",
+            "Error",
+            "Ser vago"
+        ],
+        "respuesta": 0,
+        "explicacion": "Ahorra recursos."
+    },
+    {
+        "pregunta": "¿Qué es un Multiton?",
+        "opciones": [
+            "Nada",
+            "Un error",
+            "Muchos singletons",
+            "Variación de Singleton que gestiona un mapa de instancias nombradas (Registry)"
+        ],
+        "respuesta": 3,
+        "explicacion": "Pool de conexiones."
+    },
+    {
+        "pregunta": "¿Qué es la inyección de dependencias (como patrón)?",
+        "opciones": [
+            "Forma de Inversión de Control donde un contenedor inyecta las dependencias",
+            "Error",
+            "Un virus",
+            "Nada"
+        ],
+        "respuesta": 0,
+        "explicacion": "Spring IoC."
+    },
+    {
+        "pregunta": "¿Qué es el Object Pool?",
+        "opciones": [
+            "Una piscina",
+            "Un juego",
+            "Nada",
+            "Patrón para reutilizar objetos costosos de crear (ej. hilos, conexiones) en lugar de crearlos/destruirlos siempre"
+        ],
+        "respuesta": 3,
+        "explicacion": "Mejora rendimiento."
+    },
+    {
+        "pregunta": "¿Qué diferencia hay entre Factory Method y Abstract Factory?",
+        "opciones": [
+            "Son iguales",
+            "Al revés",
+            "Factory Method usa herencia (método), Abstract Factory usa composición (objeto)",
+            "Ninguna"
+        ],
+        "respuesta": 2,
+        "explicacion": "Nivel de abstracción."
+    },
+    {
+        "pregunta": "¿Qué es un Simple Factory?",
+        "opciones": [
+            "Una clase estática que encapsula la creación de objetos (no es un patrón GoF oficial, pero común)",
+            "Una fábrica simple",
+            "Error",
+            "Nada"
+        ],
+        "respuesta": 0,
+        "explicacion": "Switch case gigante."
+    },
+    {
+        "pregunta": "¿Qué es deep copy vs shallow copy en Prototype?",
+        "opciones": [
+            "Son iguales",
+            "Deep copia todo recursivamente, Shallow solo copia referencias del primer nivel",
+            "Error",
+            "Nada"
+        ],
+        "respuesta": 1,
+        "explicacion": "Importante en clonación."
+    },
+    {
+        "pregunta": "¿Qué es un Thread-Safe Singleton?",
+        "opciones": [
+            "Nada",
+            "Error",
+            "Singleton que funciona correctamente en entornos concurrentes (synchronized, double-checked locking)",
+            "Un singleton seguro"
+        ],
+        "respuesta": 2,
+        "explicacion": "Evita crear dos instancias."
+    },
+    {
+        "pregunta": "¿Qué es el patrón Monostate?",
+        "opciones": [
+            "Un estado",
+            "Clase donde todas las instancias comparten el mismo estado (campos estáticos), pero hay muchas instancias",
+            "Nada",
+            "Error"
+        ],
+        "respuesta": 1,
+        "explicacion": "Alternativa a Singleton."
+    },
+    {
+        "pregunta": "¿Qué es un Value Object?",
+        "opciones": [
+            "Nada",
+            "Error",
+            "Objeto inmutable definido por sus atributos, no por su identidad (ej. Dinero, Fecha)",
+            "Un valor"
+        ],
+        "respuesta": 2,
+        "explicacion": "DDD."
+    },
+    {
+        "pregunta": "¿Qué es un DTO (Data Transfer Object)?",
+        "opciones": [
+            "Objeto simple para transferir datos entre procesos, sin lógica de negocio",
+            "Error",
+            "Un dato",
+            "Nada"
+        ],
+        "respuesta": 0,
+        "explicacion": "Transporte."
+    }
+]

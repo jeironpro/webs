@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="es" data-theme="hum">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Índice de ejercicios de Python: verlos, copiarlos y descargarlos.">
+  <meta name="theme-color" content="#faf6ee">
+  <title>Pythoncises</title>
+  <link rel="icon" type="image/svg+xml" href="icons/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+  <link rel="apple-touch-icon" href="icons/favicon-180.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script>document.documentElement.classList.add("js");</script>
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a class="nav__brand" href="index.html" aria-label="Pythoncises — inicio">
+        <span class="snake-mark" aria-hidden="true"><svg viewBox="0 0 64 64">
+      <path class="snake__cuerpo" d="M14 22 C 26 22, 26 32, 32 32 C 38 32, 38 42, 50 42"
+            fill="none" stroke-width="6.5" stroke-linecap="round"/>
+      <circle class="snake__cabeza" cx="50" cy="42" r="4.8"/>
+      <path class="snake__lengua" d="M54.5 42 L 58.5 40.5 M54.5 42 L 58.5 43.5"
+            fill="none" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="48.6" cy="40.2" r="1.1" fill="var(--color-paper)"/>
+    </svg></span>
+        Pythoncises
+      </a>
+    </div>
+  </header>
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero__grid">
+        <div class="hero__lead">
+          <div class="process" aria-label="Las tres acciones del sitio">
+            <span class="process__step"><span class="process__dot" style="background:var(--color-accent)"></span><span class="num">01</span> ver</span><span class="process__link"></span><span class="process__step"><span class="process__dot" style="background:var(--color-accent-2)"></span><span class="num">02</span> copiar</span><span class="process__link"></span><span class="process__step"><span class="process__dot" style="background:var(--color-accent-3)"></span><span class="num">03</span> descargar</span>
+          </div>
+          <h1 class="hero__title" id="hero-title">Aprende Python con <em class="hl--pear">32 ejercicios</em>, uno a la vez.</h1>
+          <p class="hero__lede">Estudiantes de programación y entusiastas de Python: aquí están los ejercicios para verlos, copiarlos y descargarlos. Cada uno en su propia página, con el código coloreado y su salida de ejemplo.</p>
+          <div class="hero__cta">
+            <a class="btn btn--mint btn--lg" href="#indice" data-burst>Explorar ejercicios <span class="btn__arrow" aria-hidden="true">→</span></a>
+            <a class="btn btn--outline btn--lg btn--pear" href="#metodo">Cómo funciona</a>
+          </div>
+          <p class="hero__note">Gratis · sin registro · funciona offline</p>
+        </div>
+        <div class="hero__stage">
+          <div class="snake" id="snake" aria-hidden="true">
+            <span class="snake__pulse"></span>
+            <svg viewBox="0 0 64 64">
+      <path class="snake__cuerpo" d="M14 22 C 26 22, 26 32, 32 32 C 38 32, 38 42, 50 42"
+            fill="none" stroke-width="6.5" stroke-linecap="round"/>
+      <circle class="snake__cabeza" cx="50" cy="42" r="4.8"/>
+      <path class="snake__lengua" d="M54.5 42 L 58.5 40.5 M54.5 42 L 58.5 43.5"
+            fill="none" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="48.6" cy="40.2" r="1.1" fill="var(--color-paper)"/>
+    </svg>
+          </div>
+          <div class="remind" role="status">
+            <span class="remind__icon" aria-hidden="true"></span>
+            <div>
+              <p class="remind__head"><b>Pythoncises</b> · listo para copiar</p>
+              <p class="remind__body">El código de cada ejercicio espera en su página.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="metodo" aria-labelledby="metodo-title">
+      <header class="section__head">
+        <p class="eyebrow"><span class="eyebrow__dot eyebrow__dot--mint"></span> El método</p>
+        <h2 class="section__title" id="metodo-title">Ver, copiar, descargar. Y practicar.</h2>
+        <p class="section__lede">Tres clics, sin fricción. El sitio no te explica cómo programar: te pone el código delante y te deja hacer.</p>
+      </header>
+      <div class="stages">
+        <article class="stage stage--mint">
+          <div class="stage__rail" aria-hidden="true">
+            <div class="stage__node"><b>1</b></div>
+            <div class="stage__line"></div>
+          </div>
+          <div class="stage__panel">
+            <div class="stage__copy">
+              <p class="stage__label">1.0 · Ver · En su página</p>
+              <h3 class="stage__title">Cada ejercicio en su propia página</h3>
+              <p class="stage__text">El código abre en su página: coloreado, con la salida de ejemplo debajo si el programa es interactivo. Nada de scroll infinito: un ejercicio, una página.</p>
+              <div class="stage__chips">
+                <span class="chip"><span class="chip__dot"></span> 32 ejercicios</span><span class="chip chip--hands"><span class="chip__dot"></span> Sin registro</span>
+              </div>
+            </div>
+            <div class="stage__art" aria-hidden="true">
+              <div class="art-code"><span class="art-code__bar"><span class="art-code__dot"></span><span class="art-code__dot"></span><span class="art-code__dot"></span></span><span class="art-code__line"></span><span class="art-code__line"></span><span class="art-code__line"></span><span class="art-code__line"></span><span class="art-code__line"></span></div>
+            </div>
+          </div>
+        </article>
+        <article class="stage stage--cyan">
+          <div class="stage__rail" aria-hidden="true">
+            <div class="stage__node"><b>2</b></div>
+            <div class="stage__line"></div>
+          </div>
+          <div class="stage__panel">
+            <div class="stage__copy">
+              <p class="stage__label">2.0 · Copiar · Un clic</p>
+              <h3 class="stage__title">Copia el código con un clic</h3>
+              <p class="stage__text">El botón Copiar manda el código exacto al portapapeles, con el resaltado de sintaxis intacto. Lo pegas en tu editor y a probar.</p>
+              <div class="stage__chips">
+                <span class="chip"><span class="chip__dot"></span> Un clic</span><span class="chip chip--hands"><span class="chip__dot"></span> Sin pegatinas</span>
+              </div>
+            </div>
+            <div class="stage__art" aria-hidden="true">
+              <div class="art-clip" aria-hidden="true"></div>
+            </div>
+          </div>
+        </article>
+        <article class="stage stage--coral">
+          <div class="stage__rail" aria-hidden="true">
+            <div class="stage__node"><b>3</b></div>
+            <div class="stage__line"></div>
+          </div>
+          <div class="stage__panel">
+            <div class="stage__copy">
+              <p class="stage__label">3.0 · Descargar · El .py real</p>
+              <h3 class="stage__title">Descarga el archivo original</h3>
+              <p class="stage__text">Cada página guarda el .py tal cual vive en el repositorio, con su nombre real. Úsalo, modifícalo, rómpelo: es tuyo.</p>
+              <div class="stage__chips">
+                <span class="chip"><span class="chip__dot"></span> El .py original</span><span class="chip chip--hands"><span class="chip__dot"></span> Listo para ejecutar</span>
+              </div>
+            </div>
+            <div class="stage__art" aria-hidden="true">
+              <div class="art-dl" aria-hidden="true"><span class="art-dl__arrow"></span><span class="art-dl__tray"></span></div>
+            </div>
+          </div>
+        </article>
+        <article class="stage stage--pear">
+          <div class="stage__rail" aria-hidden="true">
+            <div class="stage__node"><b>4</b></div>
+            <div class="stage__line"></div>
+          </div>
+          <div class="stage__panel">
+            <div class="stage__copy">
+              <p class="stage__label">4.0 · Practicar · A tu ritmo</p>
+              <h3 class="stage__title">Y después, a practicar</h3>
+              <p class="stage__text">Los ejercicios van de lo básico a lo avanzado, ordenados por categoría. Empieza por el que quieras: no hay exámenes aquí.</p>
+              <div class="stage__chips">
+                <span class="chip"><span class="chip__dot"></span> 9 categorías</span><span class="chip chip--hands"><span class="chip__dot"></span> 17 con salida de ejemplo</span>
+              </div>
+            </div>
+            <div class="stage__art" aria-hidden="true">
+              <div class="art-term"><span class="art-term__bar"><span class="art-term__dot"></span><span class="art-term__dot"></span><span class="art-term__dot"></span></span><span class="prompt">python main.py</span><span class="out">▸ ejercicio listo</span><span class="ok">✓ sin errores</span></div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section--band section--mint" id="cifras" aria-labelledby="cifras-title">
+      <header class="section__head section__head--center">
+        <p class="eyebrow"><span class="eyebrow__dot eyebrow__dot--pear"></span> Las cifras</p>
+        <h2 class="section__title" id="cifras-title">Mucho material, cero humo.</h2>
+      </header>
+      <div class="numbers">
+        <div class="bignum">
+          <span class="bignum__v"><span class="count" data-to="32">0</span></span>
+          <p class="bignum__k">ejercicios de Python listos para ver, copiar y descargar.</p>
+        </div>
+        <div class="bignum">
+          <span class="bignum__v"><span class="count" data-to="9">0</span></span>
+          <p class="bignum__k">categorías: juegos, patrones, calculadoras, PDFs, visión…</p>
+        </div>
+        <div class="bignum">
+          <span class="bignum__v"><span class="count" data-to="17">0</span></span>
+          <p class="bignum__k">con salida de ejemplo capturada ejecutando el programa de verdad.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="indice" aria-labelledby="indice-title">
+      <header class="section__head">
+        <p class="eyebrow"><span class="eyebrow__dot eyebrow__dot--cyan"></span> El índice</p>
+        <h2 class="section__title" id="indice-title">Los 32 ejercicios.</h2>
+        <p class="section__lede">Filtra por categoría o busca por nombre. Cada tarjeta abre la página del ejercicio.</p>
+      </header>
+      <div class="buscar">
+        <label for="buscar">Buscar</label>
+        <input id="buscar" type="search" placeholder="ahorcado, pdf, rombo…" autocomplete="off" spellcheck="false">
+      </div>
+      <div class="chips" id="chips" aria-label="Filtrar por categoría">
+        <button class="filtro chip-activo" type="button" data-cat="todos" data-accent="pear">Todos</button><button class="filtro" type="button" data-cat="juegos" data-accent="pear">Juegos</button>
+<button class="filtro" type="button" data-cat="patrones" data-accent="cyan">Patrones</button>
+<button class="filtro" type="button" data-cat="calculadoras" data-accent="coral">Calculadoras</button>
+<button class="filtro" type="button" data-cat="web y api" data-accent="mint">Web y API</button>
+<button class="filtro" type="button" data-cat="texto y cadenas" data-accent="lavender">Texto y cadenas</button>
+<button class="filtro" type="button" data-cat="archivos y pdf" data-accent="pear">Archivos y PDF</button>
+<button class="filtro" type="button" data-cat="tiempo y hábitos" data-accent="cyan">Tiempo y hábitos</button>
+<button class="filtro" type="button" data-cat="visión por computador" data-accent="coral">Visión por computador</button>
+<button class="filtro" type="button" data-cat="correo" data-accent="mint">Correo</button>
+      </div>
+      <div class="categorias">
+    <section class="categoria" data-cat="juegos" aria-labelledby="cat-juegos">
+      <div class="categoria-cabecera" data-accent="pear">
+        <h2 class="categoria-nombre" id="cat-juegos">Juegos</h2>
+        <span class="categoria-conteo">4</span>
+      </div>
+      <div class="tarjetas">
+        <article class="tarjeta" data-accent="pear" data-cat="juegos" data-busqueda="adivina el número programa genera un numero aleatorio del 1 al 100, le permite 10 intentos al usuario para adivinarlo adivina-numero exercises/adivina-numero/adivina_numero.py">
+          <span class="tarjeta-num" aria-hidden="true">01</span>
+          <h3 class="tarjeta-titulo"><a href="html/adivina-numero.html">Adivina el número</a></h3>
+          <p class="tarjeta-desc">Programa genera un numero aleatorio del 1 al 100, le permite 10 intentos al usuario para adivinarlo</p>
+          <p class="tarjeta-archivo">exercises/adivina-numero/adivina_numero.py</p>
+        </article>
+        <article class="tarjeta" data-accent="pear" data-cat="juegos" data-busqueda="el ahorcado programa que simula el juego del ahorcado. toma una palabra aleatoria de una lista, muestra el estado inicial del juego, pide y valida una letra al usuario, muestra el estado en cada intento indicando cuando haya ganado. ahorcado exercises/ahorcado/ahorcado.py">
+          <span class="tarjeta-num" aria-hidden="true">02</span>
+          <h3 class="tarjeta-titulo"><a href="html/ahorcado.html">El ahorcado</a></h3>
+          <p class="tarjeta-desc">Programa que simula el juego del ahorcado. Toma una palabra aleatoria de una lista, muestra el estado inicial del juego, pide y valida una letra al usuario, muestra el estado en cada intento indicando cuando haya ganado.</p>
+          <p class="tarjeta-archivo">exercises/ahorcado/ahorcado.py</p>
+        </article>
+        <article class="tarjeta" data-accent="pear" data-cat="juegos" data-busqueda="piedra, papel o tijera programa que simula el juego de piedra papel o tijera, el usuario elige una de las opciones y la maquina tambien, finalmente muestra el ganador o empate. piedra-papel-tijera exercises/piedra-papel-tijera/piedra_papel_tijera.py">
+          <span class="tarjeta-num" aria-hidden="true">03</span>
+          <h3 class="tarjeta-titulo"><a href="html/piedra-papel-tijera.html">Piedra, papel o tijera</a></h3>
+          <p class="tarjeta-desc">Programa que simula el juego de piedra papel o tijera, el usuario elige una de las opciones y la maquina tambien, finalmente muestra el ganador o empate.</p>
+          <p class="tarjeta-archivo">exercises/piedra-papel-tijera/piedra_papel_tijera.py</p>
+        </article>
+        <article class="tarjeta" data-accent="pear" data-cat="juegos" data-busqueda="dados aleatorios programa que simula un lanzador de dados, pide al usuario un número de lanzamientos, lanza el número de dados indicados y muestra el valor de cada dado, la suma y el producto de todos dados-aleatorios exercises/dados-aleatorios/dados_aleatorios.py">
+          <span class="tarjeta-num" aria-hidden="true">04</span>
+          <h3 class="tarjeta-titulo"><a href="html/dados-aleatorios.html">Dados aleatorios</a></h3>
+          <p class="tarjeta-desc">Programa que simula un lanzador de dados, pide al usuario un número de lanzamientos, lanza el número de dados indicados y muestra el valor de cada dado, la suma y el producto de todos</p>
+          <p class="tarjeta-archivo">exercises/dados-aleatorios/dados_aleatorios.py</p>
+        </article>
+      </div>
+    </section>
+    <section class="categoria" data-cat="patrones" aria-labelledby="cat-patrones">
+      <div class="categoria-cabecera" data-accent="cyan">
+        <h2 class="categoria-nombre" id="cat-patrones">Patrones</h2>
+        <span class="categoria-conteo">3</span>
+      </div>
+      <div class="tarjetas">
+        <article class="tarjeta" data-accent="cyan" data-cat="patrones" data-busqueda="patrón triángulo programa que dibuja un triangulo de astericos patron-triangulo exercises/patron-triangulo/patron_triangulo.py">
+          <span class="tarjeta-num" aria-hidden="true">05</span>
+          <h3 class="tarjeta-titulo"><a href="html/patron-triangulo.html">Patrón triángulo</a></h3>
+          <p class="tarjeta-desc">Programa que dibuja un triangulo de astericos</p>
+          <p class="tarjeta-archivo">exercises/patron-triangulo/patron_triangulo.py</p>
+        </article>
+        <article class="tarjeta" data-accent="cyan" data-cat="patrones" data-busqueda="patrón triángulo invertido programa que dibuja un triangulo invertido de astericos patron-triangulo-invertido exercises/patron-triangulo-invertido/patron_triangulo_invertido.py">
+          <span class="tarjeta-num" aria-hidden="true">06</span>
+          <h3 class="tarjeta-titulo"><a href="html/patron-triangulo-invertido.html">Patrón triángulo invertido</a></h3>
+          <p class="tarjeta-desc">Programa que dibuja un triangulo invertido de astericos</p>
+          <p class="tarjeta-archivo">exercises/patron-triangulo-invertido/patron_triangulo_invertido.py</p>
+        </article>
+        <article class="tarjeta" data-accent="cyan" data-cat="patrones" data-busqueda="patrón rombo programa que dibuja un rombo de astericos patron-rombo exercises/patron-rombo/patron_rombo.py">
+          <span class="tarjeta-num" aria-hidden="true">07</span>
+          <h3 class="tarjeta-titulo"><a href="html/patron-rombo.html">Patrón rombo</a></h3>
+          <p class="tarjeta-desc">Programa que dibuja un rombo de astericos</p>
+          <p class="tarjeta-archivo">exercises/patron-rombo/patron_rombo.py</p>
+        </article>
+      </div>
+    </section>
+    <section class="categoria" data-cat="calculadoras" aria-labelledby="cat-calculadoras">
+      <div class="categoria-cabecera" data-accent="coral">
+        <h2 class="categoria-nombre" id="cat-calculadoras">Calculadoras</h2>
+        <span class="categoria-conteo">3</span>
+      </div>
+      <div class="tarjetas">
+        <article class="tarjeta" data-accent="coral" data-cat="calculadoras" data-busqueda="calculadora programa que hace la funciones basica de una calculadora, pidiendole al usuario dos operando y un operador, finalmente muestra el resultado de la operación. calculadora exercises/calculadora/calculadora.py">
+          <span class="tarjeta-num" aria-hidden="true">08</span>
+          <h3 class="tarjeta-titulo"><a href="html/calculadora.html">Calculadora</a></h3>
+          <p class="tarjeta-desc">Programa que hace la funciones basica de una calculadora, pidiendole al usuario dos operando y un operador, finalmente muestra el resultado de la operación.</p>
+          <p class="tarjeta-archivo">exercises/calculadora/calculadora.py</p>
+        </article>
+        <article class="tarjeta" data-accent="coral" data-cat="calculadoras" data-busqueda="calculadora de imc programa que pide al usuario su peso y altura, calcula su indice de masa corporal y muestra el resultado calculadora-indice-masa-corporal exercises/calculadora-indice-masa-corporal/calculadora_indice_masa_corporal.py">
+          <span class="tarjeta-num" aria-hidden="true">09</span>
+          <h3 class="tarjeta-titulo"><a href="html/calculadora-indice-masa-corporal.html">Calculadora de IMC</a></h3>
+          <p class="tarjeta-desc">Programa que pide al usuario su peso y altura, calcula su indice de masa corporal y muestra el resultado</p>
+          <p class="tarjeta-archivo">exercises/calculadora-indice-masa-corporal/calculadora_indice_masa_corporal.py</p>
+        </article>
+        <article class="tarjeta" data-accent="coral" data-cat="calculadoras" data-busqueda="calculadora de propina programa que calcula la propina y el monto total de una cuenta. pide al usuario el monto de la cuenta y el porcentaje de la propina y muestra el monto total de la cuenta y la propina a pagar calculadora-propina exercises/calculadora-propina/calculadora_propina.py">
+          <span class="tarjeta-num" aria-hidden="true">10</span>
+          <h3 class="tarjeta-titulo"><a href="html/calculadora-propina.html">Calculadora de propina</a></h3>
+          <p class="tarjeta-desc">Programa que calcula la propina y el monto total de una cuenta. Pide al usuario el monto de la cuenta y el porcentaje de la propina y muestra el monto total de la cuenta y la propina a pagar</p>
+          <p class="tarjeta-archivo">exercises/calculadora-propina/calculadora_propina.py</p>
+        </article>
+      </div>
+    </section>
+    <section class="categoria" data-cat="web y api" aria-labelledby="cat-web-y-api">
+      <div class="categoria-cabecera" data-accent="mint">
+        <h2 class="categoria-nombre" id="cat-web-y-api">Web y API</h2>
+        <span class="categoria-conteo">2</span>
+      </div>
+      <div class="tarjetas">
+        <article class="tarjeta" data-accent="mint" data-cat="web y api" data-busqueda="convertidor de moneda programa que pide una cantidad, una moneda de origen, una moneda destino al usuario, y utiliza la api de frankfurter para obtener los datos de la conversion, finalmente muestra el resultado convertidor-moneda exercises/convertidor-moneda/convertidor_moneda.py">
+          <span class="tarjeta-num" aria-hidden="true">11</span>
+          <h3 class="tarjeta-titulo"><a href="html/convertidor-moneda.html">Convertidor de moneda</a></h3>
+          <p class="tarjeta-desc">Programa que pide una cantidad, una moneda de origen, una moneda destino al usuario, y utiliza la API de frankfurter para obtener los datos de la conversion, finalmente muestra el resultado</p>
+          <p class="tarjeta-archivo">exercises/convertidor-moneda/convertidor_moneda.py</p>
+        </article>
+        <article class="tarjeta" data-accent="mint" data-cat="web y api" data-busqueda="acortador de urls programa que acorta una url larga. pide al usuario la url larga y retorna la url corta corta-url exercises/corta-url/corta_url.py">
+          <span class="tarjeta-num" aria-hidden="true">12</span>
+          <h3 class="tarjeta-titulo"><a href="html/corta-url.html">Acortador de URLs</a></h3>
+          <p class="tarjeta-desc">Programa que acorta una url larga. Pide al usuario la url larga y retorna la url corta</p>
+          <p class="tarjeta-archivo">exercises/corta-url/corta_url.py</p>
+        </article>
+      </div>
+    </section>
+    <section class="categoria" data-cat="texto y cadenas" aria-labelledby="cat-texto-y-cadenas">
+      <div class="categoria-cabecera" data-accent="lavender">
+        <h2 class="categoria-nombre" id="cat-texto-y-cadenas">Texto y cadenas</h2>
+        <span class="categoria-conteo">5</span>
+      </div>
+      <div class="tarjetas">
+        <article class="tarjeta" data-accent="lavender" data-cat="texto y cadenas" data-busqueda="generador de contraseñas programa que pide una longitud al usuario y genera una contraseña con esa longitud generador-contraseñas exercises/generador-contraseñas/generador_contrasenas.py">
+          <span class="tarjeta-num" aria-hidden="true">13</span>
+          <h3 class="tarjeta-titulo"><a href="html/generador-contraseñas.html">Generador de contraseñas</a></h3>
+          <p class="tarjeta-desc">Programa que pide una longitud al usuario y genera una contraseña con esa longitud</p>
+          <p class="tarjeta-archivo">exercises/generador-contraseñas/generador_contrasenas.py</p>
+        </article>
+        <article class="tarjeta" data-accent="lavender" data-cat="texto y cadenas" data-busqueda="generador de chistes programa que genera un chiste por petición, muestra un menu de dos opciones al usuario, permitiendo generar un chiste y salir del generador. generador-chiste-random exercises/generador-chiste-random/generador_chiste_random.py">
+          <span class="tarjeta-num" aria-hidden="true">14</span>
+          <h3 class="tarjeta-titulo"><a href="html/generador-chiste-random.html">Generador de chistes</a></h3>
+          <p class="tarjeta-desc">Programa que genera un chiste por petición, muestra un menu de dos opciones al usuario, permitiendo generar un chiste y salir del generador.</p>
+          <p class="tarjeta-archivo">exercises/generador-chiste-random/generador_chiste_random.py</p>
+        </article>
+        <article class="tarjeta" data-accent="lavender" data-cat="texto y cadenas" data-busqueda="historias divertidas programa que pide palabras al usuario y genera una historia divertida con esa palabras y se la muestra al usuario historias-divertidas exercises/historias-divertidas/historias_divertidas.py">
+          <span class="tarjeta-num" aria-hidden="true">15</span>
+          <h3 class="tarjeta-titulo"><a href="html/historias-divertidas.html">Historias divertidas</a></h3>
+          <p class="tarjeta-desc">Programa que pide palabras al usuario y genera una historia divertida con esa palabras y se la muestra al usuario</p>
+          <p class="tarjeta-archivo">exercises/historias-divertidas/historias_divertidas.py</p>
+        </article>
+        <article class="tarjeta" data-accent="lavender" data-cat="texto y cadenas" data-busqueda="partes de un correo programa que lee cualquier archivo que sea de texto y busca los correos electronicos y muestras sus partes (nombre y dominio) partes-correo exercises/partes-correo/partes_correo.py">
+          <span class="tarjeta-num" aria-hidden="true">16</span>
+          <h3 class="tarjeta-titulo"><a href="html/partes-correo.html">Partes de un correo</a></h3>
+          <p class="tarjeta-desc">Programa que lee cualquier archivo que sea de texto y busca los correos electronicos y muestras sus partes (nombre y dominio)</p>
+          <p class="tarjeta-archivo">exercises/partes-correo/partes_correo.py</p>
+        </article>
+        <article class="tarjeta" data-accent="lavender" data-cat="texto y cadenas" data-busqueda="markdown a html programa que convierte un archivo markdown a un archivo html. utiliza la libreria markdown para realizar la conversión convertir-markdown-html exercises/convertir-markdown-html/convertir_markdown_html.py">
+          <span class="tarjeta-num" aria-hidden="true">17</span>
+          <h3 class="tarjeta-titulo"><a href="html/convertir-markdown-html.html">Markdown a HTML</a></h3>
+          <p class="tarjeta-desc">Programa que convierte un archivo markdown a un archivo html. Utiliza la libreria markdown para realizar la conversión</p>
+          <p class="tarjeta-archivo">exercises/convertir-markdown-html/convertir_markdown_html.py</p>
+        </article>
+      </div>
+    </section>
+    <section class="categoria" data-cat="archivos y pdf" aria-labelledby="cat-archivos-y-pdf">
+      <div class="categoria-cabecera" data-accent="pear">
+        <h2 class="categoria-nombre" id="cat-archivos-y-pdf">Archivos y PDF</h2>
+        <span class="categoria-conteo">6</span>
+      </div>
+      <div class="tarjetas">
+        <article class="tarjeta" data-accent="pear" data-cat="archivos y pdf" data-busqueda="combinar pdfs programa que une pdfs usando la libreria pypdf2. toma los pdfs de un directorio y los une en un solo pdf. combinar-pdfs exercises/combinar-pdfs/combinar_pdfs.py">
+          <span class="tarjeta-num" aria-hidden="true">18</span>
+          <h3 class="tarjeta-titulo"><a href="html/combinar-pdfs.html">Combinar PDFs</a></h3>
+          <p class="tarjeta-desc">Programa que une pdfs usando la libreria PyPDF2. Toma los pdfs de un directorio y los une en un solo pdf.</p>
+          <p class="tarjeta-archivo">exercises/combinar-pdfs/combinar_pdfs.py</p>
+        </article>
+        <article class="tarjeta" data-accent="pear" data-cat="archivos y pdf" data-busqueda="marca de agua programa que inserta marca de agua en imagenes marca-agua exercises/marca-agua/marca_agua.py">
+          <span class="tarjeta-num" aria-hidden="true">19</span>
+          <h3 class="tarjeta-titulo"><a href="html/marca-agua.html">Marca de agua</a></h3>
+          <p class="tarjeta-desc">Programa que inserta marca de agua en imagenes</p>
+          <p class="tarjeta-archivo">exercises/marca-agua/marca_agua.py</p>
+        </article>
+        <article class="tarjeta" data-accent="pear" data-cat="archivos y pdf" data-busqueda="ocr sobre pdf programa que escanea documentos pdf usando ocr (optical character recognition o reconocimiento óptico de caracteres) que es un tecnica que se utiliza para leer texto desde imágenes o documentos y convertirlos a texto editable extraer-texto-pdf-ocr exercises/extraer-texto-pdf-ocr/extraer_texto_pdf_ocr.py">
+          <span class="tarjeta-num" aria-hidden="true">20</span>
+          <h3 class="tarjeta-titulo"><a href="html/extraer-texto-pdf-ocr.html">OCR sobre PDF</a></h3>
+          <p class="tarjeta-desc">Programa que escanea documentos pdf usando OCR (Optical Character Recognition o Reconocimiento Óptico de Caracteres) que es un tecnica que se utiliza para leer texto desde imágenes o documentos y convertirlos a texto editable</p>
+          <p class="tarjeta-archivo">exercises/extraer-texto-pdf-ocr/extraer_texto_pdf_ocr.py</p>
+        </article>
+        <article class="tarjeta" data-accent="pear" data-cat="archivos y pdf" data-busqueda="renombrador de archivos programa que renombra archivo. pide al usuario la ruta del archivo y el nuevo nombre, verifica si el archivo existe y lo renombra, de lo contrario muestra un mensaje de error herramienta-renombra-archivo exercises/herramienta-renombra-archivo/herramienta_renombra_archivo.py">
+          <span class="tarjeta-num" aria-hidden="true">21</span>
+          <h3 class="tarjeta-titulo"><a href="html/herramienta-renombra-archivo.html">Renombrador de archivos</a></h3>
+          <p class="tarjeta-desc">Programa que renombra archivo. Pide al usuario la ruta del archivo y el nuevo nombre, verifica si el archivo existe y lo renombra, de lo contrario muestra un mensaje de error</p>
+          <p class="tarjeta-archivo">exercises/herramienta-renombra-archivo/herramienta_renombra_archivo.py</p>
+        </article>
+        <article class="tarjeta" data-accent="pear" data-cat="archivos y pdf" data-busqueda="organizador de archivos programa que organiza archivos en carpetas segun su extension. en una carpeta pueden ir archivos de mas de una extensión organizador-archivos exercises/organizador-archivos/organizador_archivos.py">
+          <span class="tarjeta-num" aria-hidden="true">22</span>
+          <h3 class="tarjeta-titulo"><a href="html/organizador-archivos.html">Organizador de archivos</a></h3>
+          <p class="tarjeta-desc">Programa que organiza archivos en carpetas segun su extension. En una carpeta pueden ir archivos de mas de una extensión</p>
+          <p class="tarjeta-archivo">exercises/organizador-archivos/organizador_archivos.py</p>
+        </article>
+        <article class="tarjeta" data-accent="pear" data-cat="archivos y pdf" data-busqueda="convertidor de vídeos programa que convierte un video de un formato a otro, permtiendo opcionalmente ajustar la resolución y la calidad del video convertir-videos exercises/convertir-videos/convertir_videos.py">
+          <span class="tarjeta-num" aria-hidden="true">23</span>
+          <h3 class="tarjeta-titulo"><a href="html/convertir-videos.html">Convertidor de vídeos</a></h3>
+          <p class="tarjeta-desc">Programa que convierte un video de un formato a otro, permtiendo opcionalmente ajustar la resolución y la calidad del video</p>
+          <p class="tarjeta-archivo">exercises/convertir-videos/convertir_videos.py</p>
+        </article>
+      </div>
+    </section>
+    <section class="categoria" data-cat="tiempo y hábitos" aria-labelledby="cat-tiempo-y-hábitos">
+      <div class="categoria-cabecera" data-accent="cyan">
+        <h2 class="categoria-nombre" id="cat-tiempo-y-hábitos">Tiempo y hábitos</h2>
+        <span class="categoria-conteo">6</span>
+      </div>
+      <div class="tarjetas">
+        <article class="tarjeta" data-accent="cyan" data-cat="tiempo y hábitos" data-busqueda="cuenta atrás programa que pide al usuario un numero de tiempo inicial para iniciar un despegue, haciendo una cuentra regresiva del tiempo inicial hasta 1 y posteriormente hacer el despegue cuenta-tiempo-atras exercises/cuenta-tiempo-atras/cuenta_tiempo_atras.py">
+          <span class="tarjeta-num" aria-hidden="true">24</span>
+          <h3 class="tarjeta-titulo"><a href="html/cuenta-tiempo-atras.html">Cuenta atrás</a></h3>
+          <p class="tarjeta-desc">Programa que pide al usuario un numero de tiempo inicial para iniciar un despegue, haciendo una cuentra regresiva del tiempo inicial hasta 1 y posteriormente hacer el despegue</p>
+          <p class="tarjeta-archivo">exercises/cuenta-tiempo-atras/cuenta_tiempo_atras.py</p>
+        </article>
+        <article class="tarjeta" data-accent="cyan" data-cat="tiempo y hábitos" data-busqueda="pomodoro programa que simula un pomodoro método de gestión del tiempo desarrollado por francesco cirillo. el programa pide al usuario una lista de tareas separadas por espacios y inicia un temporizador de 25 minutos por cada tarea y un descanso de 5 minutos a cada tarea y en cada 4 tareas el tiempo de descanso aumenta a 15 minutos pomodoro exercises/pomodoro/pomodoro.py">
+          <span class="tarjeta-num" aria-hidden="true">25</span>
+          <h3 class="tarjeta-titulo"><a href="html/pomodoro.html">Pomodoro</a></h3>
+          <p class="tarjeta-desc">Programa que simula un pomodoro método de gestión del tiempo desarrollado por Francesco cirillo. El programa pide al usuario una lista de tareas separadas por espacios y inicia un temporizador de 25 minutos por cada tarea y un descanso de 5 minutos a cada tarea y en cada 4 tareas el tiempo de descanso aumenta a 15 minutos</p>
+          <p class="tarjeta-archivo">exercises/pomodoro/pomodoro.py</p>
+        </article>
+        <article class="tarjeta" data-accent="cyan" data-cat="tiempo y hábitos" data-busqueda="reloj alarma programa que simula una reloj alarma. pide al usuario configurar su alarma en un formato especifico, marca la alarma configurada y muestra el tiempo restante (horas y minutos) que faltan para sonar la alarma reloj-alarma exercises/reloj-alarma/reloj_alarma.py">
+          <span class="tarjeta-num" aria-hidden="true">26</span>
+          <h3 class="tarjeta-titulo"><a href="html/reloj-alarma.html">Reloj alarma</a></h3>
+          <p class="tarjeta-desc">Programa que simula una reloj alarma. Pide al usuario configurar su alarma en un formato especifico, marca la alarma configurada y muestra el tiempo restante (horas y minutos) que faltan para sonar la alarma</p>
+          <p class="tarjeta-archivo">exercises/reloj-alarma/reloj_alarma.py</p>
+        </article>
+        <article class="tarjeta" data-accent="cyan" data-cat="tiempo y hábitos" data-busqueda="reloj digital programa que simula un reloj digital, mostrando la hora actual cada segundo. reloj-digital exercises/reloj-digital/reloj_digital.py">
+          <span class="tarjeta-num" aria-hidden="true">27</span>
+          <h3 class="tarjeta-titulo"><a href="html/reloj-digital.html">Reloj digital</a></h3>
+          <p class="tarjeta-desc">Programa que simula un reloj digital, mostrando la hora actual cada segundo.</p>
+          <p class="tarjeta-archivo">exercises/reloj-digital/reloj_digital.py</p>
+        </article>
+        <article class="tarjeta" data-accent="cyan" data-cat="tiempo y hábitos" data-busqueda="rastreador de hábitos programa que permite al usuario agregar, registrar, marcar y mostrar hábitos diarios. además, permite ver el progreso de cada hábito registrado. rastreador-habitos-diarios exercises/rastreador-habitos-diarios/rastreador_habitos_diarios.py">
+          <span class="tarjeta-num" aria-hidden="true">28</span>
+          <h3 class="tarjeta-titulo"><a href="html/rastreador-habitos-diarios.html">Rastreador de hábitos</a></h3>
+          <p class="tarjeta-desc">Programa que permite al usuario agregar, registrar, marcar y mostrar hábitos diarios. Además, permite ver el progreso de cada hábito registrado.</p>
+          <p class="tarjeta-archivo">exercises/rastreador-habitos-diarios/rastreador_habitos_diarios.py</p>
+        </article>
+        <article class="tarjeta" data-accent="cyan" data-cat="tiempo y hábitos" data-busqueda="lista de tareas programa que permite agregar, marcar, eliminar y ver tareas, para añadir tarea se pide al usuario el nombre y se guarda con un id que incrementa automaticamente al estilo de una base de datos y además, se marca como incompleta, para permitir al usuario la opción de marcarla completada posteriormente, finalmente la eliminación de las tareas se hacen mediante eliminar el id. lista-to-do exercises/lista-to-do/lista_to_do.py">
+          <span class="tarjeta-num" aria-hidden="true">29</span>
+          <h3 class="tarjeta-titulo"><a href="html/lista-to-do.html">Lista de tareas</a></h3>
+          <p class="tarjeta-desc">Programa que permite agregar, marcar, eliminar y ver tareas, para añadir tarea se pide al usuario el nombre y se guarda con un id que incrementa automaticamente al estilo de una base de datos y además, se marca como incompleta, para permitir al usuario la opción de marcarla completada posteriormente, finalmente la eliminación de las tareas se hacen mediante eliminar el ID.</p>
+          <p class="tarjeta-archivo">exercises/lista-to-do/lista_to_do.py</p>
+        </article>
+      </div>
+    </section>
+    <section class="categoria" data-cat="visión por computador" aria-labelledby="cat-visión-por-computador">
+      <div class="categoria-cabecera" data-accent="coral">
+        <h2 class="categoria-nombre" id="cat-visión-por-computador">Visión por computador</h2>
+        <span class="categoria-conteo">2</span>
+      </div>
+      <div class="tarjetas">
+        <article class="tarjeta" data-accent="coral" data-cat="visión por computador" data-busqueda="detector de caras programa que detecta rostros que se posicionen frente a la cámara. utiliza la libreria opencv para abrir la camara y detectar los rostros. detector-cara-opencv exercises/detector-cara-opencv/detector_cara_opencv.py">
+          <span class="tarjeta-num" aria-hidden="true">30</span>
+          <h3 class="tarjeta-titulo"><a href="html/detector-cara-opencv.html">Detector de caras</a></h3>
+          <p class="tarjeta-desc">Programa que detecta rostros que se posicionen frente a la cámara. Utiliza la libreria opencv para abrir la camara y detectar los rostros.</p>
+          <p class="tarjeta-archivo">exercises/detector-cara-opencv/detector_cara_opencv.py</p>
+        </article>
+        <article class="tarjeta" data-accent="coral" data-cat="visión por computador" data-busqueda="reconocimiento facial programa de reconocimiento facial usando las librerias opencv y face_recognition, compara el rostro de una imagen con el rostro que se posicione frente a la camara y verifica si coincide o no, mostrando el resultado de la comparación en el recuadro del detector de rostros y tambien muestra un aproximado de la distancia entre la coincidencia. sistema-reconocimiento-facial exercises/sistema-reconocimiento-facial/sistema_reconocimiento_facial.py">
+          <span class="tarjeta-num" aria-hidden="true">31</span>
+          <h3 class="tarjeta-titulo"><a href="html/sistema-reconocimiento-facial.html">Reconocimiento facial</a></h3>
+          <p class="tarjeta-desc">Programa de reconocimiento facial usando las librerias opencv y face_recognition, compara el rostro de una imagen con el rostro que se posicione frente a la camara y verifica si coincide o no, mostrando el resultado de la comparación en el recuadro del detector de rostros y tambien muestra un aproximado de la distancia entre la coincidencia.</p>
+          <p class="tarjeta-archivo">exercises/sistema-reconocimiento-facial/sistema_reconocimiento_facial.py</p>
+        </article>
+      </div>
+    </section>
+    <section class="categoria" data-cat="correo" aria-labelledby="cat-correo">
+      <div class="categoria-cabecera" data-accent="mint">
+        <h2 class="categoria-nombre" id="cat-correo">Correo</h2>
+        <span class="categoria-conteo">1</span>
+      </div>
+      <div class="tarjetas">
+        <article class="tarjeta" data-accent="mint" data-cat="correo" data-busqueda="envío de correos desde csv programa que lee un archivo csv y envia un correo electronico a los correos que encuentre enviar-correo-csv exercises/enviar-correo-csv/enviar_correo_csv.py">
+          <span class="tarjeta-num" aria-hidden="true">32</span>
+          <h3 class="tarjeta-titulo"><a href="html/enviar-correo-csv.html">Envío de correos desde CSV</a></h3>
+          <p class="tarjeta-desc">Programa que lee un archivo csv y envia un correo electronico a los correos que encuentre</p>
+          <p class="tarjeta-archivo">exercises/enviar-correo-csv/enviar_correo_csv.py</p>
+        </article>
+      </div>
+    </section>
+      </div>
+      <p class="sin-resultados" id="sin-resultados" hidden>Ningún ejercicio coincide con la búsqueda.</p>
+    </section>
+
+    <section class="section closer" aria-labelledby="closer-title">
+      <h2 class="closer__title" id="closer-title">Empieza por el primero.</h2>
+      <p class="closer__lede">Abre un ejercicio, copia el código, ejecútalo en tu máquina. Veinte minutos y ya estás aprendiendo Python de verdad.</p>
+      <div class="hero__cta" style="justify-content:center">
+        <a class="btn btn--pear btn--lg" href="html/adivina-numero.html" data-burst>Empezar a practicar <span class="btn__arrow" aria-hidden="true">→</span></a>
+        <a class="btn btn--outline btn--lg btn--pear" href="#metodo">Volver al método</a>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="footer__inner">
+      <p class="footer__statement">Python se aprende haciendo.</p>
+      <div class="footer__meta">
+        <a class="footer__brand" href="index.html"><span class="snake-mark" aria-hidden="true"><svg viewBox="0 0 64 64">
+      <path class="snake__cuerpo" d="M14 22 C 26 22, 26 32, 32 32 C 38 32, 38 42, 50 42"
+            fill="none" stroke-width="6.5" stroke-linecap="round"/>
+      <circle class="snake__cabeza" cx="50" cy="42" r="4.8"/>
+      <path class="snake__lengua" d="M54.5 42 L 58.5 40.5 M54.5 42 L 58.5 43.5"
+            fill="none" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="48.6" cy="40.2" r="1.1" fill="var(--color-paper)"/>
+    </svg></span> Pythoncises</a>
+        <p class="footer__copy">© Pythoncises - 2026<br><span class="footer__hash">ver · copiar · descargar</span></p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

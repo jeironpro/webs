@@ -1,0 +1,134 @@
+comandos_sql:
+  database:
+    - CREATE DATABASE: Crea una nueva base de datos.
+    - DROP DATABASE: Elimina una base de datos existente.
+
+  tables:
+    - CREATE TABLE: Crea una nueva tabla.
+    - DROP TABLE: Elimina una tabla.
+    - ALTER TABLE ADD COLUMN: Agrega una nueva columna a una tabla.
+    - ALTER TABLE DROP COLUMN: Elimina una columna de una tabla.
+    - ALTER TABLE RENAME TO: Renombra una tabla.
+    - ALTER TABLE MODIFY COLUMN: Modifica la definición de una columna.
+
+  data_manipulation:
+    - INSERT INTO: Inserta uno o más registros en una tabla.
+    - SELECT: Consulta datos de una tabla.
+    - SELECT DISTINCT: Consulta valores únicos.
+    - UPDATE: Actualiza datos existentes.
+    - DELETE: Elimina registros de una tabla.
+
+  indexes:
+    - CREATE INDEX: Crea un índice para mejorar el rendimiento.
+    - DROP INDEX: Elimina un índice.
+    - CREATE UNIQUE INDEX: Crea un índice sin valores duplicados.
+
+  views:
+    - CREATE VIEW: Crea una vista basada en una consulta.
+    - DROP VIEW: Elimina una vista.
+
+  triggers:
+    - CREATE TRIGGER: Crea un disparador asociado a un evento.
+    - DROP TRIGGER: Elimina un disparador.
+
+  procedures_and_functions:
+    - CREATE PROCEDURE: Crea un procedimiento almacenado.
+    - CALL: Ejecuta un procedimiento almacenado.
+    - CREATE FUNCTION: Crea una función almacenada.
+    - SELECT FUNCTION: Ejecuta una función almacenada.
+
+  permissions:
+    - GRANT: Otorga privilegios a un usuario.
+    - REVOKE: Revoca privilegios de un usuario.
+
+  transactions:
+    - COMMIT: Confirma una transacción.
+    - ROLLBACK: Revierte una transacción.
+    - SAVEPOINT: Crea un punto de guardado.
+    - ROLLBACK TO SAVEPOINT: Revierte hasta un punto de guardado.
+    - SET AUTOCOMMIT: Habilita o deshabilita la confirmación automática.
+
+  information:
+    - EXPLAIN: Muestra el plan de ejecución de una consulta.
+    - DESCRIBE: Muestra la estructura de una tabla.
+    - SHOW TABLES: Lista las tablas de la base de datos.
+    - SHOW DATABASES: Lista las bases de datos.
+    - SHOW COLUMNS: Lista las columnas de una tabla.
+    - SHOW INDEX: Lista los índices de una tabla.
+    - SHOW STATUS: Muestra el estado del servidor.
+    - SHOW VARIABLES: Muestra las variables del sistema.
+    - SHOW PROCESSLIST: Muestra los procesos activos.
+    - SHOW GRANTS: Muestra los privilegios de un usuario.
+    - FLUSH PRIVILEGES: Recarga los privilegios.
+
+  maintenance:
+    - ANALYZE TABLE: Analiza y almacena estadísticas de la tabla.
+    - CHECK TABLE: Verifica una tabla en busca de errores.
+    - OPTIMIZE TABLE: Optimiza una tabla.
+    - REPAIR TABLE: Repara una tabla dañada.
+    - TRUNCATE TABLE: Vacía completamente una tabla.
+    - LOCK TABLES: Bloquea tablas en la sesión actual.
+    - UNLOCK TABLES: Desbloquea tablas en la sesión actual.
+
+functions:
+  date_time:
+    - NOW(): Devuelve la fecha y hora actuales.
+    - CURDATE(): Devuelve la fecha actual.
+    - CURTIME(): Devuelve la hora actual.
+    - DATE_FORMAT(): Da formato a una fecha.
+    - DATE_ADD(): Suma un intervalo a una fecha.
+    - DATE_SUB(): Resta un intervalo a una fecha.
+    - YEAR(): Extrae el año.
+    - MONTH(): Extrae el mes.
+    - DAY(): Extrae el día.
+    - HOUR(): Extrae la hora.
+    - MINUTE(): Extrae los minutos.
+    - SECOND(): Extrae los segundos.
+    - TIMESTAMPDIFF(): Devuelve la diferencia entre dos fechas.
+    - TIMESTAMPADD(): Agrega un intervalo a una fecha.
+
+  string:
+    - CHAR_LENGTH(): Devuelve la longitud de una cadena.
+    - CONCAT(): Concatena cadenas.
+    - LOWER(): Convierte a minúsculas.
+    - UPPER(): Convierte a mayúsculas.
+    - SUBSTRING(): Extrae parte de una cadena.
+    - TRIM(): Elimina espacios laterales.
+    - REPLACE(): Reemplaza una subcadena.
+    - INSTR(): Devuelve la posición de una subcadena.
+    - REVERSE(): Invierte una cadena.
+
+  numeric_and_aggregate:
+    - ROUND(): Redondea un número.
+    - FLOOR(): Devuelve el entero menor o igual.
+    - CEILING(): Devuelve el entero mayor o igual.
+    - ABS(): Devuelve el valor absoluto.
+    - SQRT(): Devuelve la raíz cuadrada.
+    - POW(): Devuelve la potencia.
+    - MOD(): Devuelve el resto de una división.
+    - AVG(): Devuelve el promedio.
+    - COUNT(): Devuelve el número de filas.
+    - MAX(): Devuelve el valor máximo.
+    - MIN(): Devuelve el valor mínimo.
+    - SUM(): Devuelve la suma total.
+
+joins_and_filters:
+  joins:
+    - INNER JOIN: Une registros coincidentes en ambas tablas.
+    - LEFT JOIN: Incluye todos los registros de la tabla izquierda.
+    - RIGHT JOIN: Incluye todos los registros de la tabla derecha.
+    - FULL JOIN: Une todas las filas (no soportado nativamente en MySQL).
+
+  filters:
+    - LIKE: Busca patrones específicos.
+    - IN: Verifica si un valor pertenece a un conjunto.
+    - BETWEEN: Filtra valores dentro de un rango.
+    - IS NULL: Verifica valores nulos.
+    - IS NOT NULL: Verifica valores no nulos.
+    - ORDER BY: Ordena el resultado.
+    - GROUP BY: Agrupa filas.
+    - HAVING: Filtra grupos.
+    - LIMIT: Limita el número de filas.
+    - OFFSET: Define el desplazamiento inicial.
+    - LIMIT OFFSET: Limita filas con desplazamiento.
+    - UNION: Combina resultados eliminando duplicados.

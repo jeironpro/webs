@@ -1,0 +1,46 @@
+/* Hero de portada */
+
+.hero {
+  padding: var(--space-20) 0 var(--space-16);
+  text-align: center;
+  position: relative;
+}
+
+/* Linea decorativa bajo el hero */
+.hero::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background-color: var(--color-accent);
+  margin: var(--space-8) auto 0;
+}
+
+.hero-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-5xl);
+  color: var(--color-heading);
+  margin-bottom: var(--space-4);
+  letter-spacing: -0.03em;
+}
+
+.hero-subtitle {
+  font-size: var(--text-xl);
+  color: var(--color-text-soft);
+  max-width: 640px;
+  margin: 0 auto var(--space-8);
+  line-height: 1.5;
+}
+
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-4);
+}
+
+@media (max-width: 768px) {
+  .hero { padding: var(--space-12) 0 var(--space-10); }
+  .hero-title { font-size: var(--text-3xl); }
+  .hero-subtitle { font-size: var(--text-lg); }
+  .hero-actions { flex-direction: column; align-items: center; }
+}

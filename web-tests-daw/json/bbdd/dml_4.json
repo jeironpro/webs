@@ -1,0 +1,222 @@
+[
+    {
+        "pregunta": "¿Qué es una subconsulta (Subquery)?",
+        "opciones": [
+            "Una consulta de error",
+            "Una consulta secundaria que se ejecuta después",
+            "Una consulta anidada dentro de otra consulta SQL",
+            "Una base de datos pequeña"
+        ],
+        "respuesta": 2,
+        "explicacion": "Se usa para recuperar datos que serán usados por la consulta principal."
+    },
+    {
+        "pregunta": "¿Dónde se puede usar una subconsulta?",
+        "opciones": [
+            "En las cláusulas SELECT, FROM, WHERE y HAVING",
+            "Solo en FROM",
+            "Solo en WHERE",
+            "Solo en SELECT"
+        ],
+        "respuesta": 0,
+        "explicacion": "Son muy versátiles y pueden actuar como columnas, tablas o filtros."
+    },
+    {
+        "pregunta": "¿Qué es una subconsulta escalar?",
+        "opciones": [
+            "Una subconsulta rápida",
+            "Una subconsulta que devuelve un solo valor (una fila, una columna)",
+            "Una subconsulta que no devuelve nada",
+            "Una subconsulta que devuelve una tabla"
+        ],
+        "respuesta": 1,
+        "explicacion": "Se puede usar donde sea que se espere una expresión o valor único."
+    },
+    {
+        "pregunta": "¿Qué es una subconsulta correlacionada?",
+        "opciones": [
+            "Una subconsulta lenta",
+            "Una subconsulta de error",
+            "Una subconsulta independiente",
+            "Una subconsulta que hace referencia a columnas de la consulta externa"
+        ],
+        "respuesta": 3,
+        "explicacion": "Se ejecuta una vez por cada fila procesada por la consulta externa, lo que puede ser lento."
+    },
+    {
+        "pregunta": "¿Qué operador se usa comúnmente con subconsultas que devuelven múltiples filas?",
+        "opciones": [
+            "IN",
+            "=",
+            "LIKE",
+            "IS NULL"
+        ],
+        "respuesta": 0,
+        "explicacion": "WHERE col IN (SELECT ...)"
+    },
+    {
+        "pregunta": "¿Qué hace el operador EXISTS?",
+        "opciones": [
+            "Comprueba si la tabla existe",
+            "Borra la tabla si existe",
+            "Devuelve verdadero si la subconsulta devuelve al menos una fila",
+            "Devuelve los datos de la subconsulta"
+        ],
+        "respuesta": 2,
+        "explicacion": "Se detiene en cuanto encuentra la primera coincidencia, siendo eficiente."
+    },
+    {
+        "pregunta": "¿Qué hace el operador NOT EXISTS?",
+        "opciones": [
+            "Devuelve verdadero si la subconsulta NO devuelve ninguna fila",
+            "Devuelve falso siempre",
+            "Invierte el resultado de la consulta",
+            "Borra datos"
+        ],
+        "respuesta": 0,
+        "explicacion": "Útil para encontrar registros que no tienen correspondencia en otra tabla."
+    },
+    {
+        "pregunta": "¿Qué diferencia hay entre IN y EXISTS con valores NULL?",
+        "opciones": [
+            "IN es más rápido",
+            "NOT IN falla si la subconsulta devuelve algún NULL, NOT EXISTS maneja NULLs correctamente",
+            "EXISTS no soporta NULL",
+            "Son idénticos"
+        ],
+        "respuesta": 1,
+        "explicacion": "Es una trampa común: col NOT IN (1, 2, NULL) siempre devuelve desconocido (vacío)."
+    },
+    {
+        "pregunta": "¿Qué es una subconsulta en la cláusula FROM?",
+        "opciones": [
+            "Es una vista",
+            "Es un error",
+            "No está permitido",
+            "Se trata como una tabla derivada o temporal"
+        ],
+        "respuesta": 3,
+        "explicacion": "SELECT * FROM (SELECT ...) AS alias;"
+    },
+    {
+        "pregunta": "¿Qué operadores se usan con subconsultas para comparaciones de cuantificadores?",
+        "opciones": [
+            "ANY, ALL, SOME",
+            "TOTAL",
+            "PLUS, MINUS",
+            "MAX, MIN"
+        ],
+        "respuesta": 0,
+        "explicacion": "WHERE col > ALL (SELECT ...) significa mayor que todos los valores devueltos."
+    },
+    {
+        "pregunta": "¿Qué significa > ALL (subquery)?",
+        "opciones": [
+            "Mayor que el promedio",
+            "Mayor que el mínimo",
+            "Mayor que el máximo valor devuelto por la subconsulta",
+            "Mayor que cualquiera"
+        ],
+        "respuesta": 2,
+        "explicacion": "Debe ser mayor que todos los elementos del conjunto."
+    },
+    {
+        "pregunta": "¿Qué significa > ANY (subquery)?",
+        "opciones": [
+            "Mayor que todos",
+            "Mayor que el mínimo valor devuelto por la subconsulta (mayor que alguno)",
+            "Igual a alguno",
+            "Mayor que el máximo"
+        ],
+        "respuesta": 1,
+        "explicacion": "Basta con que sea mayor que uno de los valores."
+    },
+    {
+        "pregunta": "¿Se pueden usar subconsultas en INSERT?",
+        "opciones": [
+            "No, solo VALUES",
+            "Sí, INSERT INTO tabla SELECT ...",
+            "Solo en Oracle",
+            "Solo si la tabla está vacía"
+        ],
+        "respuesta": 1,
+        "explicacion": "Permite copiar datos de una tabla a otra masivamente."
+    },
+    {
+        "pregunta": "¿Se pueden usar subconsultas en UPDATE?",
+        "opciones": [
+            "Solo en el WHERE",
+            "Solo con JOIN",
+            "Sí, SET col = (SELECT ...)",
+            "No"
+        ],
+        "respuesta": 2,
+        "explicacion": "Útil para actualizar datos basándose en cálculos de otras tablas."
+    },
+    {
+        "pregunta": "¿Qué limitación tienen las subconsultas en MySQL antiguo (antes de 5.7)?",
+        "opciones": [
+            "No existían",
+            "Eran muy rápidas",
+            "Solo permitían números",
+            "No se podía modificar la misma tabla de la que se seleccionaba en la subconsulta"
+        ],
+        "respuesta": 3,
+        "explicacion": "Error 'You can't specify target table for update in FROM clause'."
+    },
+    {
+        "pregunta": "¿Qué es más eficiente, JOIN o Subconsulta?",
+        "opciones": [
+            "Siempre JOIN",
+            "Son iguales siempre",
+            "Depende del optimizador, pero a menudo los JOINs son más eficientes que las subconsultas correlacionadas",
+            "Siempre Subconsulta"
+        ],
+        "respuesta": 2,
+        "explicacion": "Los optimizadores modernos suelen reescribir subconsultas como JOINs, pero no siempre."
+    },
+    {
+        "pregunta": "¿Qué es una Common Table Expression (CTE)?",
+        "opciones": [
+            "Una forma de definir subconsultas con nombre (WITH nombre AS ...)",
+            "Un índice",
+            "Una variable",
+            "Una tabla temporal física"
+        ],
+        "respuesta": 0,
+        "explicacion": "Mejora la legibilidad y permite recursividad."
+    },
+    {
+        "pregunta": "¿Para qué sirve una CTE Recursiva?",
+        "opciones": [
+            "Para borrar datos",
+            "Para recorrer estructuras jerárquicas (árboles, grafos)",
+            "Para contar rápido",
+            "Para bucles infinitos"
+        ],
+        "respuesta": 1,
+        "explicacion": "Permite consultas que se refieren a sí mismas hasta cumplir una condición."
+    },
+    {
+        "pregunta": "¿Qué pasa si una subconsulta escalar devuelve más de una fila?",
+        "opciones": [
+            "Error en tiempo de ejecución",
+            "Toma el primer valor",
+            "Devuelve NULL",
+            "Toma el último valor"
+        ],
+        "respuesta": 0,
+        "explicacion": "Subquery returns more than 1 row."
+    },
+    {
+        "pregunta": "¿Puede una subconsulta devolver múltiples columnas?",
+        "opciones": [
+            "No, solo una columna",
+            "Solo en el FROM",
+            "Solo si son del mismo tipo",
+            "Sí, y se pueden comparar con constructores de fila (row constructors)"
+        ],
+        "respuesta": 3,
+        "explicacion": "WHERE (col1, col2) IN (SELECT a, b FROM ...)"
+    }
+]

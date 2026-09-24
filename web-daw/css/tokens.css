@@ -1,0 +1,106 @@
+/*
+ * Tokens de diseño del portal (tema "hum").
+ * Única fuente de verdad para color, tipografía, espaciado y movimiento.
+ * portal.css solo debe consumir var(); ningún valor literal de color.
+ */
+
+/* El selector [data-theme] permite aislar el tema si algún día hay varios. */
+:root,
+[data-theme="hum"] {
+    /* ── Color: superficies de papel crema y tinta fría ── */
+    --color-paper: oklch(97% 0.012 95);
+    --color-paper-2: oklch(94% 0.016 95);
+    --color-ink: oklch(20% 0.012 250);
+    --color-ink-soft: color-mix(in oklab, var(--color-ink) 88%, transparent);
+    --color-ink-faint: color-mix(in oklab, var(--color-ink) 62%, transparent);
+
+    /* ── Color: acento primario (pera) ── */
+    --color-accent: oklch(86% 0.18 95);
+    --color-accent-deep: oklch(76% 0.19 95);
+    --color-accent-cast: oklch(76% 0.2 95 / 0.45);
+    --color-accent-tint: color-mix(in oklab, var(--color-accent) 8%, var(--color-paper));
+    --color-accent-tint-hover: color-mix(in oklab, var(--color-accent) 14%, var(--color-paper));
+
+    /* ── Color: acento secundario (cian cielo) ── */
+    --color-accent-2: oklch(66% 0.18 235);
+    --color-accent-2-deep: oklch(55% 0.17 235);
+    --color-accent-2-cast: oklch(60% 0.16 235 / 0.4);
+    --color-accent-2-tint: color-mix(in oklab, var(--color-accent-2) 10%, var(--color-paper));
+    --color-accent-2-tint-hover: color-mix(in oklab, var(--color-accent-2) 16%, var(--color-paper));
+
+    /* ── Color: menta (un único uso por página, tarjeta del horario) ── */
+    --color-mint: oklch(80% 0.16 150);
+    --color-mint-tint: color-mix(in oklab, var(--color-mint) 10%, var(--color-paper));
+    --color-mint-tint-hover: color-mix(in oklab, var(--color-mint) 16%, var(--color-paper));
+
+    /* ── Color: semánticos ── */
+    --color-focus: var(--color-accent-2);
+    --color-link: var(--color-accent-2-deep);
+
+    /* ── Tipografía ── */
+    --font-body: "Plus Jakarta Sans", ui-rounded, system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-display: var(--font-body);
+    --font-label: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+    --weight-regular: 400;
+    --weight-medium: 500;
+    --weight-semibold: 600;
+    --weight-bold: 700;
+
+    /* Escala fluida de tamaños */
+    --text-xs: 0.75rem;
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-lg: 1.125rem;
+    --text-2xl: clamp(1.5rem, 1.15rem + 2vw, 2.25rem);
+    --text-3xl: clamp(2rem, 1.4rem + 3vw, 3.25rem);
+    --text-counter: clamp(3rem, 5vw + 1rem, 5rem);
+
+    --tracking-display: -0.025em;
+    --leading-tight: 1.15;
+    --leading-body: 1.6;
+
+    /* ── Escala de espaciado ── */
+    --space-3xs: 0.25rem;
+    --space-2xs: 0.5rem;
+    --space-xs: 0.75rem;
+    --space-sm: 1rem;
+    --space-md: 1.5rem;
+    --space-lg: 2.5rem;
+    --space-xl: 4rem;
+
+    /* ── Layout: un único modelo de shell para todas las secciones ── */
+    --shell: 72rem;
+    --page-gutter: clamp(1rem, 4vw, 2.5rem);
+    --section-gap: clamp(4rem, 9vw, 7rem);
+
+    /* ── Radios (tema redondeado: nada con esquinas rectas) ── */
+    --radius-card: 20px;
+    --radius-pill: 999px;
+
+    /* ── Sombras en dos capas: contacto + ambiente ── */
+    --shadow-card: 0 12px 32px -16px oklch(20% 0.012 250 / 0.15);
+    --shadow-card-hover: 0 18px 40px -14px oklch(20% 0.012 250 / 0.22);
+
+    /* ── Movimiento: easings y duraciones ── */
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-snap: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-out: cubic-bezier(0, 0, 0.2, 1);
+    --ease-press: cubic-bezier(0.2, 0.7, 0.3, 1);
+
+    --dur-fast: 140ms;
+    --dur-med: 220ms;
+    --dur-reveal: 600ms;
+
+    --z-skip: 200;
+}
+
+/* Con movimiento reducido las transiciones colapsan a 0 ms. */
+@media (prefers-reduced-motion: reduce) {
+    :root,
+    [data-theme="hum"] {
+        --dur-fast: 0ms;
+        --dur-med: 0ms;
+        --dur-reveal: 0ms;
+    }
+}

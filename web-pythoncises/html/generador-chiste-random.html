@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="es" data-theme="hum">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Programa que genera un chiste por petición, muestra un menu de dos opciones al usuario, permitiendo generar un chiste y salir del generador.">
+  <meta name="theme-color" content="#faf6ee">
+  <title>Pythoncises · Generador de chistes</title>
+  <link rel="icon" type="image/svg+xml" href="../icons/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../icons/favicon-32.png">
+  <link rel="apple-touch-icon" href="../icons/favicon-180.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <script>document.documentElement.classList.add("js");</script>
+  <script src="../js/app.js" defer></script>
+</head>
+<body>
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a class="nav__brand" href="../index.html" aria-label="Pythoncises — inicio">
+        <span class="snake-mark" aria-hidden="true"><svg viewBox="0 0 64 64">
+      <path class="snake__cuerpo" d="M14 22 C 26 22, 26 32, 32 32 C 38 32, 38 42, 50 42"
+            fill="none" stroke-width="6.5" stroke-linecap="round"/>
+      <circle class="snake__cabeza" cx="50" cy="42" r="4.8"/>
+      <path class="snake__lengua" d="M54.5 42 L 58.5 40.5 M54.5 42 L 58.5 43.5"
+            fill="none" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="48.6" cy="40.2" r="1.1" fill="var(--color-paper)"/>
+    </svg></span>
+        Pythoncises
+      </a>
+    </div>
+  </header>
+  <main class="detalle" data-accent="lavender">
+    <a class="btn btn--outline btn--pear btn--sm detalle-volver" href="../index.html#indice">← Índice</a>
+    <p class="detalle-meta">
+      <span class="eyebrow__dot eyebrow__dot--lavender" style="display:inline-block;margin-right:0.45em;vertical-align:middle"></span>
+      Texto y cadenas · 14 · generador_chiste_random.py
+    </p>
+    <h1 class="detalle-titulo">Generador de chistes</h1>
+    <p class="detalle-desc">Programa que genera un chiste por petición, muestra un menu de dos opciones al usuario, permitiendo generar un chiste y salir del generador.</p>
+    <div class="detalle-acciones">
+      <button class="btn btn--pear" type="button" data-accion="copiar" data-burst>Copiar</button>
+      <button class="btn btn--outline btn--pear" type="button" data-accion="descargar" data-nombre="generador_chiste_random.py">Descargar</button>
+    </div>
+    <div class="codigo-tarjeta">
+      <div class="codigo-barra">
+        <span class="codigo-punto" aria-hidden="true"></span>
+        <span class="codigo-punto" aria-hidden="true"></span>
+        <span class="codigo-punto" aria-hidden="true"></span>
+        <span class="codigo-archivo">exercises/generador-chiste-random/generador_chiste_random.py</span>
+      </div>
+      <pre><code><span class="tok-cadena">&quot;&quot;&quot;
+    Programa que genera un chiste por petición, muestra un menu de dos opciones al usuario, permitiendo generar un chiste y salir del generador.
+&quot;&quot;&quot;</span>
+<span class="tok-palabra">import</span> random
+<span class="tok-palabra">import</span> os
+<span class="tok-palabra">import</span> time
+
+<span class="tok-palabra">def</span> <span class="tok-funcion">limpiar_pantalla</span>():
+    os.system(<span class="tok-cadena">'cls'</span> <span class="tok-palabra">if</span> os.name == <span class="tok-cadena">'nt'</span> <span class="tok-palabra">else</span> <span class="tok-cadena">'clear'</span>)
+
+<span class="tok-palabra">def</span> <span class="tok-funcion">obtener_chiste</span>(lista):
+    <span class="tok-palabra">return</span> random.choice(lista)
+
+lista_chistes = [
+    <span class="tok-cadena">&quot;¿Por qué el libro de matemáticas estaba triste? Porque tenía demasiados problemas.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Cómo se despiden los químicos? Ácido un placer.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Qué hace una abeja en el gimnasio? ¡Zum-ba!&quot;</span>,
+    <span class="tok-cadena">&quot;¿Por qué los pájaros no usan Facebook? Porque ya tienen Twitter.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Qué le dice un jardinero a otro? ¡Disfruta tu día, hoja!&quot;</span>,
+    <span class="tok-cadena">&quot;¿Qué hace una vaca cuando sale el sol? Sombra.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Por qué los esqueletos no pelean entre ellos? Porque no tienen agallas.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Cómo se llama un boomerang que no vuelve? Palo.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Cuál es el café más peligroso del mundo? El ex-preso.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Por qué los peces no usan computadoras? Porque les da miedo el net.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Qué hace un programador cuando tiene frío? Se pone un 'loop'.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Por qué los programadores confunden Halloween con Navidad? Porque OCT 31 = DEC 25.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Cuántos programadores hacen falta para cambiar una bombilla? Ninguno, eso es un problema de hardware.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Por qué Python es tan tranquilo? Porque no tiene punteros.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Qué le dice un bit a otro bit? Nos vemos en el bus.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Cómo llamas a un gato que sabe programar? Un purr-ogramador.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Qué hace un HTML en una fiesta? Se divierte en línea.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Por qué Java es tan optimista? Porque siempre encuentra una excepción.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Cómo se llama un programador sin novia? Soltero (null pointer).&quot;</span>,
+    <span class="tok-cadena">&quot;¿Qué le dice un array vacío a otro array vacío? '¿Nos encontramos en la memoria?'&quot;</span>,
+    <span class="tok-cadena">&quot;¿Por qué los pájaros no usan el ordenador? Porque les da miedo el ratón.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Cómo se despiden los programadores? ¡Hasta el próximo ciclo!&quot;</span>,
+    <span class="tok-cadena">&quot;¿Qué hace un electricista en la computadora? Toma un byte.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Por qué los esqueletos no pelean en línea? Porque se les cae el backbone.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Qué le dice un bug a otro bug? ¡Corre que nos van a depurar!&quot;</span>,
+    <span class="tok-cadena">&quot;¿Cuál es el colmo de un jardinero? Que siempre lo planten.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Qué hace una computadora en la playa? Surf en la web.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Por qué los programadores aman el café? Porque les da Java.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Qué hace un bit triste? Se convierte en un 0 solitario.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Cuál es el colmo de un carpintero? Que siempre lo claven.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Por qué los fantasmas aman el ascensor? Porque les sube el espíritu.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Qué le dice un diodo a otro? 'No me pases corriente.'&quot;</span>,
+    <span class="tok-cadena">&quot;¿Cuál es el animal más antiguo? La cebra, porque está en blanco y negro.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Cómo se despiden los químicos? Ácido un gusto.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Qué hace una abeja en el gimnasio? ¡Zum-ba!&quot;</span>,
+    <span class="tok-cadena">&quot;¿Por qué los peces no usan internet? Porque les da miedo la red.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Cuál es el colmo de un electricista? Que no tenga corriente.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Qué hace un programador en el desierto? Busca la función oasis().&quot;</span>,
+    <span class="tok-cadena">&quot;¿Por qué los programadores aman el teclado? Porque les da espacio.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Qué le dice un bug a un programador? 'Nos vemos en producción.'&quot;</span>,
+    <span class="tok-cadena">&quot;¿Cuál es el colmo de un astronauta? Que siempre esté en las nubes.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Qué hace un matemático en la playa? Suma arena.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Por qué los programadores odian la playa? Porque tiene demasiadas arenas de bits.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Cómo llamas a un programador dormido? Un thread inactivo.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Qué hace un router en la fiesta? Dirige el tráfico.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Por qué el ordenador fue al doctor? Porque tenía un virus.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Cuál es el colmo de un panadero? Que siempre lo amasen.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Qué hace un array en el gimnasio? Se estira.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Por qué los programadores aman los videojuegos? Porque siempre tienen loops infinitos.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Qué hace un bit en la fiesta? Se mezcla con otros bits.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Cómo se llama un gato que sabe usar Git? Un commit felino.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Qué hace un ordenador en la cocina? Procesa datos.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Por qué los programadores usan lentes? Para ver el código claro.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Cuál es el colmo de un fotógrafo? Que siempre lo enfoquen.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Qué hace un HTML triste? Se queda sin estilo.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Por qué los programadores aman Python? Porque no tiene problemas de sintaxis.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Qué hace un electricista en la fiesta? Se conecta.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Cómo se despiden los químicos? Hasta la reacción.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Qué hace un matemático en el parque? Integra.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Por qué los fantasmas no mienten? Porque se les ve a través.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Qué hace un programador en la cocina? Depura la receta.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Cuál es el colmo de un panadero? Que siempre lo amasen.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Qué hace un array feliz? Se llena de valores.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Por qué los programadores aman los loops? Porque nunca terminan.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Qué hace un bug en vacaciones? Se esconde.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Cómo se llama un dinosaurio programador? Dino-code.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Qué hace un router triste? Se desconecta.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Por qué los programadores aman el chocolate? Porque es sweet y tiene bytes.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Qué le dice un cero a un ocho? ¡Bonito cinturón!&quot;</span>,
+    <span class="tok-cadena">&quot;¿Cuál es el colmo de un carnicero? Que siempre lo corten.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Qué hace un bug en el ordenador? Se multiplica.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Por qué los programadores odian los ascensores? Porque prefieren los bucles.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Cómo se llama un ordenador lento? Tortu-PC.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Qué hace un matemático en la fiesta? Suma amigos.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Por qué los fantasmas aman los puzzles? Porque encajan perfectamente.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Qué hace un bit rebelde? Cambia su valor.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Cómo se despiden los hackers? Ctrl+Alt+Adiós.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Qué hace un array vacío? Nada.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Por qué JavaScript es travieso? Porque siempre cambia de tipo.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Qué hace un bug en la red? Intercepta paquetes.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Cuál es el colmo de un cartero? Que nunca le lleguen cartas.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Qué hace un programador en la playa? Debuggea la arena.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Por qué los ordenadores nunca tienen hambre? Porque siempre tienen bytes.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Qué hace un bit en la playa? Nada, es un 0.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Cómo se llama un programador valiente? Code-hero.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Qué hace un router feliz? Distribuye alegría.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Por qué los programadores aman Linux? Porque es libre.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Qué hace un bug en un programa? Rompe la diversión.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Cuál es el colmo de un músico? Que siempre lo desafinen.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Qué hace un array enojado? Se sale de rango.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Por qué los fantasmas aman el código? Porque es transparente.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Qué hace un programador romántico? Le declara amor al código.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Cómo se despiden los programadores? ¡Nos vemos en el próximo commit!&quot;</span>,
+    <span class="tok-cadena">&quot;¿Qué hace un bug en el servidor? Espera para atacar.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Por qué Python es feliz? Porque todo es un objeto.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Qué hace un electricista en la playa? Se conecta al sol.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Cuál es el colmo de un pintor? Que siempre lo borren.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Qué hace un array divertido? Se llena de risas.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Por qué los programadores aman los loops infinitos? Porque nunca quieren salir del código.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Qué hace un bug juguetón? Se esconde entre líneas.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Cómo se llama un programador que canta? Code-ardo.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Qué hace un router aburrido? Se desconecta.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Por qué los ordenadores aman el chocolate? Porque tienen bytes dulces.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Qué hace un bug en vacaciones? Se esconde y descansa.&quot;</span>,
+    <span class="tok-cadena">&quot;¿Cuál es el colmo de un jardinero? Que lo planten todos los días.&quot;</span>
+]
+
+<span class="tok-palabra">while</span> <span class="tok-palabra">True</span>:
+    <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;Bienvenido al generador de chistes&quot;</span>)
+    <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;1. Generar chiste&quot;</span>)
+    <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;2. Salir&quot;</span>)
+
+    opcion = <span class="tok-builtin">input</span>(<span class="tok-cadena">&quot;Elige una opcion: &quot;</span>)
+
+    <span class="tok-palabra">if</span> opcion == <span class="tok-cadena">&quot;1&quot;</span>:
+        chiste = obtener_chiste(lista_chistes)
+        <span class="tok-builtin">print</span>(<span class="tok-cadena">f&quot;Chiste: {chiste}&quot;</span>)
+        time.sleep(<span class="tok-numero">10</span>) <span class="tok-comentario"># Espera de 10 segundos</span>
+        limpiar_pantalla()
+    <span class="tok-palabra">elif</span> opcion == <span class="tok-cadena">&quot;2&quot;</span>:
+        <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;Adios&quot;</span>)
+        <span class="tok-palabra">break</span></code></pre>
+    </div>
+    <section class="salida" aria-labelledby="salida-generador-chiste-random">
+      <h2 class="salida-titulo" id="salida-generador-chiste-random">Salida de ejemplo</h2>
+      <pre class="salida-cuerpo">Bienvenido al generador de chistes
+1. Generar chiste
+2. Salir
+Elige una opcion: 1
+Chiste: ¿Por qué el libro de matemáticas estaba triste? Porque tenía demasiados problemas.
+1. Generar chiste
+2. Salir
+Elige una opcion: 2
+Adios</pre>
+    </section>
+    <nav class="detalle-nav" aria-label="Navegación entre ejercicios">
+      <a class="nav-ej nav-previo" href="generador-contraseñas.html">← Generador de contraseñas</a>
+      <a class="nav-ej nav-siguiente" href="historias-divertidas.html">Historias divertidas →</a>
+    </nav>
+  </main>
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__meta">
+        <a class="footer__brand" href="../index.html"><span class="snake-mark" aria-hidden="true"><svg viewBox="0 0 64 64">
+      <path class="snake__cuerpo" d="M14 22 C 26 22, 26 32, 32 32 C 38 32, 38 42, 50 42"
+            fill="none" stroke-width="6.5" stroke-linecap="round"/>
+      <circle class="snake__cabeza" cx="50" cy="42" r="4.8"/>
+      <path class="snake__lengua" d="M54.5 42 L 58.5 40.5 M54.5 42 L 58.5 43.5"
+            fill="none" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="48.6" cy="40.2" r="1.1" fill="var(--color-paper)"/>
+    </svg></span> Pythoncises</a>
+        <p class="footer__copy">© Pythoncises - 2026<br><span class="footer__hash">ver · copiar · descargar</span></p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

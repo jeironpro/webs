@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="description"
+		content="Color Picker interactivo. Selecciona colores y visualiza sus valores en RGB, CMYK, HSV y HSL. Copia cualquier valor con un solo clic." />
+	<meta name="robots" content="index, follow" />
+	<link rel="canonical" href="https://colorpicker.jeironpro.dev/" />
+	<link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
+	<title>Color Picker</title>
+
+	<!-- Google Fonts: DM Sans + JetBrains Mono -->
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link
+		href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;500;600&display=swap"
+		rel="stylesheet" />
+
+	<!-- Structured Data: WebApplication -->
+	<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "WebApplication",
+				"name": "Color Picker",
+				"url": "https://colorpicker.jeironpro.dev/",
+				"description": "Selector de color interactivo con visualizacion en RGB, CMYK, HSV y HSL.",
+				"applicationCategory": "DesignApplication",
+				"operatingSystem": "All"
+			}
+		</script>
+
+	<!-- Estilos principales -->
+	<link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+	<!-- Skip link para navegacion por teclado -->
+	<a href="#colorPicker" class="visually-hidden skip-link">Saltar al selector de color</a>
+	<!-- Tooltip para feedback de copiado -->
+	<div class="tooltip" id="tooltip" role="status" aria-live="polite"></div>
+
+	<!-- Layout principal: dos columnas 40/60 -->
+	<main class="main-layout">
+		<!-- Panel izquierdo (40%): muestra el color seleccionado -->
+		<section class="color-display" id="colorDisplay" aria-label="Color seleccionado">
+			<div class="color-display__info">
+				<span class="color-display__label">HEX</span>
+				<span class="color-display__hex" id="hexValue">#FF0000</span>
+			</div>
+		</section>
+
+		<!-- Panel derecho (60%): selector de color -->
+		<section class="color-picker" id="colorPicker" aria-label="Selector de color">
+			<!-- Canvas de saturacion-valor y matiz -->
+			<div class="color-picker__canvas-wrapper">
+				<canvas class="sv-canvas" id="svCanvas" aria-label="Selector de saturacion y brillo"></canvas>
+				<canvas class="hue-canvas" id="hueCanvas" aria-label="Selector de matiz"></canvas>
+			</div>
+
+			<!-- Sliders RGB -->
+			<div class="color-picker__sliders">
+				<div class="slider-group">
+					<span class="slider-group__label">R</span>
+					<input type="range" id="redSlider" min="0" max="255" value="255" aria-label="Rojo" />
+					<span class="slider-group__value" id="redValue">255</span>
+				</div>
+
+				<div class="slider-group">
+					<span class="slider-group__label">G</span>
+					<input type="range" id="greenSlider" min="0" max="255" value="0" aria-label="Verde" />
+					<span class="slider-group__value" id="greenValue">0</span>
+				</div>
+
+				<div class="slider-group">
+					<span class="slider-group__label">B</span>
+					<input type="range" id="blueSlider" min="0" max="255" value="0" aria-label="Azul" />
+					<span class="slider-group__value" id="blueValue">0</span>
+				</div>
+			</div>
+
+			<!-- Input de color con selector de formato -->
+			<div class="color-picker__hex-input">
+				<div class="hex-input-group">
+					<span class="hex-input-group__label" id="formatLabel" tabindex="0" role="button"
+						aria-label="Cambiar formato de color">HEX</span>
+					<input type="text" class="hex-input-group__input" id="formatInput" value="#FF0000"
+						placeholder="#RRGGBB" aria-label="Valor del color" />
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<!-- Barra flotante inferior con valores en distintos espacios de color -->
+	<footer class="floating-bar" aria-label="Valores del color">
+		<div class="floating-bar__group">
+			<span class="floating-bar__label">RGB</span>
+			<div class="floating-bar__row">
+				<button class="floating-bar__copy-btn" data-type="rgb" aria-label="Copiar valor RGB">
+					<svg class="floating-bar__icon" viewBox="0 0 24 24" width="14" height="14" fill="none"
+						stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<rect x="9" y="9" width="13" height="13" rx="2" />
+						<path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+					</svg>
+				</button>
+				<span class="floating-bar__value" id="rgbValues">255, 0, 0</span>
+			</div>
+		</div>
+
+		<div class="floating-bar__group">
+			<span class="floating-bar__label">CMYK</span>
+			<div class="floating-bar__row">
+				<button class="floating-bar__copy-btn" data-type="cmyk" aria-label="Copiar valor CMYK">
+					<svg class="floating-bar__icon" viewBox="0 0 24 24" width="14" height="14" fill="none"
+						stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<rect x="9" y="9" width="13" height="13" rx="2" />
+						<path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+					</svg>
+				</button>
+				<span class="floating-bar__value" id="cmykValues">0%, 100%, 100%, 0%</span>
+			</div>
+		</div>
+
+		<div class="floating-bar__group">
+			<span class="floating-bar__label">HSV</span>
+			<div class="floating-bar__row">
+				<button class="floating-bar__copy-btn" data-type="hsv" aria-label="Copiar valor HSV">
+					<svg class="floating-bar__icon" viewBox="0 0 24 24" width="14" height="14" fill="none"
+						stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<rect x="9" y="9" width="13" height="13" rx="2" />
+						<path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+					</svg>
+				</button>
+				<span class="floating-bar__value" id="hsvValues">0&deg;, 100%, 100%</span>
+			</div>
+		</div>
+
+		<div class="floating-bar__group">
+			<span class="floating-bar__label">HSL</span>
+			<div class="floating-bar__row">
+				<button class="floating-bar__copy-btn" data-type="hsl" aria-label="Copiar valor HSL">
+					<svg class="floating-bar__icon" viewBox="0 0 24 24" width="14" height="14" fill="none"
+						stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<rect x="9" y="9" width="13" height="13" rx="2" />
+						<path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+					</svg>
+				</button>
+				<span class="floating-bar__value" id="hslValues">0&deg;, 100%, 50%</span>
+			</div>
+		</div>
+	</footer>
+
+	<!-- Script principal (ES6 module) -->
+	<script type="module" src="js/app.js"></script>
+</body>
+
+</html>
