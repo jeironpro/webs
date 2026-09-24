@@ -21,12 +21,18 @@ const elFiltros = $("filtros");
 const elBusqueda = $("cerca");
 const elVacio = $("vacio");
 const elVacioMensaje = $("vacio-mensaje");
+const elFiltroDestacados = $("filtro-destacados");
+const elOrden = $("orden");
+
+const colacion = new Intl.Collator("es", { numeric: true, sensitivity: "base" });
 
 const estado = {
     webs: [],
     categorias: [],
     categoria: "todas",
     consulta: "",
+    destacados: false,
+    orden: "az",
 };
 
 function icono(nombre, titulo) {
@@ -141,6 +147,9 @@ function filtrar() {
         if (estado.categoria !== "todas" && !web.categorias.includes(estado.categoria)) {
             return false;
         }
+        if (estado.destacados && !web.destacado) {
+            return false;
+        }
         if (!consulta) return true;
         const texto = `${web.titulo} ${web.descripcion} ${web.tags.join(" ")} ${web.stack.join(
             " "
@@ -149,8 +158,18 @@ function filtrar() {
     });
 }
 
+function ordenar(lista) {
+    const porTitulo = (a, b) => colacion.compare(a.titulo, b.titulo);
+    const copia = [...lista];
+    if (estado.orden === "za") return copia.sort(porTitulo).reverse();
+    if (estado.orden === "destacados") {
+        return copia.sort((a, b) => Number(b.destacado) - Number(a.destacado) || porTitulo(a, b));
+    }
+    return copia.sort(porTitulo);
+}
+
 function renderizar() {
-    const resultados = filtrar();
+    const resultados = ordenar(filtrar());
     elGraella.replaceChildren(...resultados.map(construirTarjeta));
 
     const total = estado.webs.length;
@@ -162,7 +181,13 @@ function renderizar() {
     const mostrarVacio = resultados.length === 0;
     elVacio.hidden = !mostrarVacio;
     if (mostrarVacio) {
-        elVacioMensaje.textContent = `Sin resultados para «${estado.consulta}».`;
+        const motivos = [];
+        if (estado.consulta) motivos.push(`«${estado.consulta}»`);
+        if (estado.categoria !== "todas") motivos.push(ETIQUETAS_CATEGORIA[estado.categoria]);
+        if (estado.destacados) motivos.push("destacados");
+        elVacioMensaje.textContent = motivos.length
+            ? `Sin resultados para ${motivos.join(" y ")}.`
+            : "Sin resultados.";
     }
 }
 
@@ -217,12 +242,25 @@ async function iniciar() {
     $("vacio-reset").addEventListener("click", () => {
         estado.consulta = "";
         estado.categoria = "todas";
+        estado.destacados = false;
         elBusqueda.value = "";
+        elFiltroDestacados.setAttribute("aria-pressed", "false");
         elFiltros
             .querySelectorAll(".chip")
             .forEach((b) =>
                 b.setAttribute("aria-pressed", String(b.dataset.categoria === "todas"))
             );
+        renderizar();
+    });
+
+    elFiltroDestacados.addEventListener("click", () => {
+        estado.destacados = !estado.destacados;
+        elFiltroDestacados.setAttribute("aria-pressed", String(estado.destacados));
+        renderizar();
+    });
+
+    elOrden.addEventListener("change", () => {
+        estado.orden = elOrden.value;
         renderizar();
     });
 
