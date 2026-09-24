@@ -81,6 +81,29 @@
                             autocomplete="off"
                         />
                     </div>
+                    <div class="controles">
+                        <button
+                            class="chip chip--destacados"
+                            type="button"
+                            id="filtro-destacados"
+                            aria-pressed="false"
+                        >
+                            <span class="ms" aria-hidden="true">star</span>
+                            Destacados
+                        </button>
+                        <div class="ordenador">
+                            <label class="sr-only" for="orden">Ordenar proyectos</label>
+                            <span class="ms ordenador__icona" aria-hidden="true">swap_vert</span>
+                            <select id="orden" class="ordenador__select">
+                                <option value="az">Nombre (A-Z)</option>
+                                <option value="za">Nombre (Z-A)</option>
+                                <option value="destacados">Destacados primero</option>
+                            </select>
+                            <span class="ms ordenador__chevron" aria-hidden="true"
+                                >expand_more</span
+                            >
+                        </div>
+                    </div>
                     <div
                         class="filtros-categoria"
                         id="filtros"
