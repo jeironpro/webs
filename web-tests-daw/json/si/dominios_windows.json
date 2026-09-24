@@ -1,0 +1,222 @@
+[
+    {
+        "pregunta": "¿Qué es un Dominio en Windows?",
+        "opciones": [
+            "Un grupo de trabajo",
+            "Una red wifi",
+            "Un grupo lógico de ordenadores y usuarios que comparten una base de datos de seguridad centralizada",
+            "Una página web"
+        ],
+        "respuesta": 2,
+        "explicacion": "Permite administración centralizada."
+    },
+    {
+        "pregunta": "¿Qué es Active Directory (Directorio Activo)?",
+        "opciones": [
+            "Un servidor de correo",
+            "El servicio de directorio de Microsoft que almacena información sobre objetos en la red y facilita su búsqueda y uso",
+            "Un antivirus",
+            "Una carpeta compartida"
+        ],
+        "respuesta": 1,
+        "explicacion": "Es el corazón de un dominio Windows."
+    },
+    {
+        "pregunta": "¿Qué es un Controlador de Dominio (DC)?",
+        "opciones": [
+            "Un usuario administrador",
+            "Un PC normal",
+            "Un servidor que ejecuta Active Directory y gestiona la autenticación y autorización en el dominio",
+            "Un router"
+        ],
+        "respuesta": 2,
+        "explicacion": "Almacena la base de datos AD DS."
+    },
+    {
+        "pregunta": "¿Qué es un Grupo de Trabajo (Workgroup)?",
+        "opciones": [
+            "Un dominio pequeño",
+            "Un equipo de personas",
+            "Una oficina",
+            "Una red peer-to-peer donde cada equipo gestiona su propia seguridad localmente (sin servidor central)"
+        ],
+        "respuesta": 3,
+        "explicacion": "Es el modelo por defecto en redes domésticas."
+    },
+    {
+        "pregunta": "¿Qué es DNS en el contexto de Active Directory?",
+        "opciones": [
+            "No es necesario",
+            "Solo sirve para internet",
+            "Es un virus",
+            "Es esencial para localizar los controladores de dominio y resolver nombres en la red"
+        ],
+        "respuesta": 3,
+        "explicacion": "AD depende totalmente de DNS para funcionar."
+    },
+    {
+        "pregunta": "¿Qué es una Unidad Organizativa (OU)?",
+        "opciones": [
+            "Un usuario",
+            "Un grupo de seguridad",
+            "Un contenedor dentro de un dominio que permite organizar objetos y aplicar políticas de grupo (GPO)",
+            "Una carpeta de archivos"
+        ],
+        "respuesta": 2,
+        "explicacion": "Permite delegar administración."
+    },
+    {
+        "pregunta": "¿Qué es una GPO (Group Policy Object)?",
+        "opciones": [
+            "Un conjunto de configuraciones que controlan el entorno de trabajo de usuarios y equipos",
+            "Un grupo de usuarios",
+            "Una contraseña",
+            "Un programa"
+        ],
+        "respuesta": 0,
+        "explicacion": "Permite configurar seguridad, instalar software, mapear unidades, etc. masivamente."
+    },
+    {
+        "pregunta": "¿Qué es el Bosque (Forest) en AD?",
+        "opciones": [
+            "Un servidor",
+            "El contenedor lógico de nivel más alto que agrupa uno o más dominios que comparten esquema y configuración",
+            "Una red",
+            "Un conjunto de árboles"
+        ],
+        "respuesta": 1,
+        "explicacion": "Define el límite de seguridad."
+    },
+    {
+        "pregunta": "¿Qué es el Árbol (Tree) en AD?",
+        "opciones": [
+            "Una estructura de datos",
+            "Un diagrama",
+            "Un conjunto de dominios que comparten un espacio de nombres contiguo (ej. empresa.com, ventas.empresa.com)",
+            "Un usuario"
+        ],
+        "respuesta": 2,
+        "explicacion": "Comparten una relación de confianza transitiva."
+    },
+    {
+        "pregunta": "¿Qué es LDAP?",
+        "opciones": [
+            "Un programa",
+            "Lightweight Directory Access Protocol, el protocolo usado para consultar y modificar el directorio",
+            "Un servidor",
+            "Una base de datos"
+        ],
+        "respuesta": 1,
+        "explicacion": "Es el lenguaje estándar para hablar con AD."
+    },
+    {
+        "pregunta": "¿Qué es SYSVOL?",
+        "opciones": [
+            "Un usuario",
+            "Una carpeta compartida en los DCs que almacena scripts de inicio y políticas de grupo",
+            "Un volumen de sistema",
+            "Un disco duro"
+        ],
+        "respuesta": 1,
+        "explicacion": "Se replica entre todos los controladores de dominio."
+    },
+    {
+        "pregunta": "¿Qué es un perfil móvil (Roaming Profile)?",
+        "opciones": [
+            "Un perfil de usuario guardado en el servidor que se descarga en cualquier equipo donde el usuario inicie sesión",
+            "Un perfil en el móvil",
+            "Un perfil temporal",
+            "Un perfil local"
+        ],
+        "respuesta": 0,
+        "explicacion": "Permite tener el mismo escritorio y documentos en cualquier PC."
+    },
+    {
+        "pregunta": "¿Qué es un usuario de dominio?",
+        "opciones": [
+            "Una cuenta creada en AD que puede iniciar sesión en cualquier equipo unido al dominio",
+            "Un administrador",
+            "Un usuario local",
+            "Un invitado"
+        ],
+        "respuesta": 0,
+        "explicacion": "Se gestiona centralizadamente."
+    },
+    {
+        "pregunta": "¿Cómo se une un equipo a un dominio?",
+        "opciones": [
+            "Copiando archivos",
+            "Desde Propiedades del Sistema -> Cambiar configuración -> ID de red / Cambiar",
+            "No se puede",
+            "Instalando un programa"
+        ],
+        "respuesta": 1,
+        "explicacion": "Requiere credenciales de un usuario con permiso para unir equipos."
+    },
+    {
+        "pregunta": "¿Qué es dcpromo?",
+        "opciones": [
+            "El comando (antiguo) para promocionar un servidor a Controlador de Dominio",
+            "Un virus",
+            "Un programa de promoción",
+            "Un descuento"
+        ],
+        "respuesta": 0,
+        "explicacion": "En versiones nuevas se hace desde Server Manager, pero el concepto persiste."
+    },
+    {
+        "pregunta": "¿Qué son los FSMO Roles?",
+        "opciones": [
+            "Roles de usuario",
+            "Roles especiales que solo puede tener un DC a la vez (ej. Maestro de Esquema)",
+            "Permisos de archivo",
+            "Grupos"
+        ],
+        "respuesta": 1,
+        "explicacion": "Flexible Single Master Operations."
+    },
+    {
+        "pregunta": "¿Qué es el Catálogo Global (Global Catalog)?",
+        "opciones": [
+            "Un almacén de datos distribuido que contiene una representación parcial de todos los objetos del bosque",
+            "Un catálogo de productos",
+            "Una lista de usuarios",
+            "Un libro"
+        ],
+        "respuesta": 0,
+        "explicacion": "Esencial para búsquedas rápidas y logons universales."
+    },
+    {
+        "pregunta": "¿Qué es Kerberos?",
+        "opciones": [
+            "Un firewall",
+            "El protocolo de autenticación por defecto en dominios Windows",
+            "Un perro de tres cabezas",
+            "Un virus"
+        ],
+        "respuesta": 1,
+        "explicacion": "Usa tickets para evitar enviar contraseñas por la red."
+    },
+    {
+        "pregunta": "¿Qué es RSAT?",
+        "opciones": [
+            "Remote Server Administration Tools, permite gestionar AD desde un cliente Windows (ej. Windows 10)",
+            "Un protocolo",
+            "Un comando",
+            "Un satélite"
+        ],
+        "respuesta": 0,
+        "explicacion": "Evita tener que conectarse por RDP al servidor para todo."
+    },
+    {
+        "pregunta": "¿Qué es una relación de confianza (Trust)?",
+        "opciones": [
+            "Un vínculo que permite a usuarios de un dominio acceder a recursos en otro dominio",
+            "Unir cables",
+            "Ser amigos",
+            "Compartir wifi"
+        ],
+        "respuesta": 0,
+        "explicacion": "Puede ser unidireccional o bidireccional."
+    }
+]

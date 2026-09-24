@@ -1,0 +1,222 @@
+[
+    {
+        "pregunta": "¿Qué es la Refactorización?",
+        "opciones": [
+            "Añadir funciones",
+            "Proceso de reestructurar el código existente sin cambiar su comportamiento externo",
+            "Reescribir todo",
+            "Corregir bugs"
+        ],
+        "respuesta": 1,
+        "explicacion": "Mejora diseño, legibilidad y mantenibilidad."
+    },
+    {
+        "pregunta": "¿Cuál es el objetivo principal de refactorizar?",
+        "opciones": [
+            "Reducir la deuda técnica y facilitar cambios futuros",
+            "Hacerlo más rápido",
+            "Nada",
+            "Hacerlo más corto"
+        ],
+        "respuesta": 0,
+        "explicacion": "Código limpio."
+    },
+    {
+        "pregunta": "¿Qué es un 'Code Smell' (Olor de código)?",
+        "opciones": [
+            "Indicio superficial de que podría haber un problema más profundo en el código",
+            "Un virus",
+            "Mal olor",
+            "Un error"
+        ],
+        "respuesta": 0,
+        "explicacion": "Señal para refactorizar."
+    },
+    {
+        "pregunta": "¿Qué es 'Extract Method'?",
+        "opciones": [
+            "Mover un fragmento de código a un nuevo método con un nombre descriptivo",
+            "Nada",
+            "Copiar método",
+            "Borrar método"
+        ],
+        "respuesta": 0,
+        "explicacion": "Reduce complejidad y duplicación."
+    },
+    {
+        "pregunta": "¿Qué es 'Rename Variable/Method'?",
+        "opciones": [
+            "Nada",
+            "Error",
+            "Cambiar nombre",
+            "Cambiar el nombre para que revele mejor su intención (clave para legibilidad)"
+        ],
+        "respuesta": 3,
+        "explicacion": "Nombres significativos."
+    },
+    {
+        "pregunta": "¿Qué es 'Inline Method'?",
+        "opciones": [
+            "Nada",
+            "Borrar método",
+            "Error",
+            "Reemplazar una llamada a método con el cuerpo del método (inverso a Extract)"
+        ],
+        "respuesta": 3,
+        "explicacion": "Si el método es trivial."
+    },
+    {
+        "pregunta": "¿Qué es 'Move Method'?",
+        "opciones": [
+            "Nada",
+            "Error",
+            "Mover código",
+            "Mover un método a la clase donde se usa más o tiene más sentido (mejora cohesión)"
+        ],
+        "respuesta": 3,
+        "explicacion": "Feature Envy."
+    },
+    {
+        "pregunta": "¿Qué es 'Duplicated Code' (Código duplicado)?",
+        "opciones": [
+            "Error",
+            "El olor más común: el mismo código en varios sitios",
+            "Nada",
+            "Código doble"
+        ],
+        "respuesta": 1,
+        "explicacion": "Viola DRY."
+    },
+    {
+        "pregunta": "¿Qué es 'Long Method' (Método largo)?",
+        "opciones": [
+            "Nada",
+            "Método grande",
+            "Un método que hace demasiadas cosas (difícil de entender y mantener)",
+            "Error"
+        ],
+        "respuesta": 2,
+        "explicacion": "Aplicar Extract Method."
+    },
+    {
+        "pregunta": "¿Qué es 'Large Class' (Clase grande)?",
+        "opciones": [
+            "Clase gorda",
+            "God Class",
+            "Una clase con demasiadas responsabilidades (viola SRP)",
+            "Error"
+        ],
+        "respuesta": 2,
+        "explicacion": "Extract Class."
+    },
+    {
+        "pregunta": "¿Qué es 'Shotgun Surgery'?",
+        "opciones": [
+            "Error",
+            "Nada",
+            "Un cambio pequeño obliga a hacer muchas modificaciones pequeñas en muchas clases diferentes",
+            "Escopeta"
+        ],
+        "respuesta": 2,
+        "explicacion": "Mala cohesión."
+    },
+    {
+        "pregunta": "¿Qué es 'Feature Envy'?",
+        "opciones": [
+            "Error",
+            "Envidia",
+            "Un método que parece más interesado en los datos de otra clase que en la suya propia",
+            "Nada"
+        ],
+        "respuesta": 2,
+        "explicacion": "Move Method."
+    },
+    {
+        "pregunta": "¿Qué es 'Data Clumps'?",
+        "opciones": [
+            "Datos juntos",
+            "Grupos de datos que siempre van juntos (ej. x, y, z) y deberían ser un objeto",
+            "Nada",
+            "Error"
+        ],
+        "respuesta": 1,
+        "explicacion": "Extract Class/Struct."
+    },
+    {
+        "pregunta": "¿Qué es 'Primitive Obsession'?",
+        "opciones": [
+            "Usar tipos primitivos para conceptos de dominio complejos (ej. usar string para teléfono)",
+            "Nada",
+            "Obsesión",
+            "Error"
+        ],
+        "respuesta": 0,
+        "explicacion": "Replace Data Value with Object."
+    },
+    {
+        "pregunta": "¿Qué es 'Switch Statements' (como olor)?",
+        "opciones": [
+            "Uso excesivo de switch/if-else que indica falta de polimorfismo",
+            "Nada",
+            "Interruptor",
+            "Error"
+        ],
+        "respuesta": 0,
+        "explicacion": "Replace Conditional with Polymorphism."
+    },
+    {
+        "pregunta": "¿Cuándo se debe refactorizar?",
+        "opciones": [
+            "Al final",
+            "Continuamente (ciclo Red-Green-Refactor), antes de añadir features o al arreglar bugs",
+            "A veces",
+            "Nunca"
+        ],
+        "respuesta": 1,
+        "explicacion": "Regla del Boy Scout."
+    },
+    {
+        "pregunta": "¿Qué se necesita para refactorizar con seguridad?",
+        "opciones": [
+            "Una buena suite de pruebas automáticas (Tests)",
+            "Tiempo",
+            "Nada",
+            "Valor"
+        ],
+        "respuesta": 0,
+        "explicacion": "Si rompes algo, el test avisa."
+    },
+    {
+        "pregunta": "¿Qué es 'Dead Code'?",
+        "opciones": [
+            "Nada",
+            "Código muerto",
+            "Error",
+            "Código que nunca se ejecuta"
+        ],
+        "respuesta": 3,
+        "explicacion": "Borrarlo (Delete)."
+    },
+    {
+        "pregunta": "¿Qué es 'Speculative Generality'?",
+        "opciones": [
+            "Crear código para casos futuros que quizás nunca ocurran (YAGNI)",
+            "Error",
+            "Nada",
+            "Especulación"
+        ],
+        "respuesta": 0,
+        "explicacion": "Collapse Hierarchy."
+    },
+    {
+        "pregunta": "¿Qué es 'Refused Bequest'?",
+        "opciones": [
+            "Error",
+            "Una subclase hereda métodos que no necesita o no usa (mala herencia)",
+            "Nada",
+            "Herencia rechazada"
+        ],
+        "respuesta": 1,
+        "explicacion": "Replace Inheritance with Delegation."
+    }
+]

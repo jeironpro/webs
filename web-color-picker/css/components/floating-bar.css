@@ -1,0 +1,179 @@
+/* Barra flotante inferior con los valores del color en distintos espacios */
+.floating-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--floating-bar-height);
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 0;
+  background: rgba(230, 230, 230, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid var(--color-border);
+  z-index: 100;
+  padding: 0 var(--spacing-lg);
+}
+
+.floating-bar__group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 var(--spacing-lg);
+  min-width: 100px;
+  border-right: 1px solid var(--color-border);
+}
+
+.floating-bar__group:last-child {
+  border-right: none;
+}
+
+.floating-bar__label {
+  font-size: 0.625rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.floating-bar__row {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  width: 100%;
+}
+
+.floating-bar__copy-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 2px;
+  margin: 0;
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  color: var(--color-text);
+  transition: background var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.floating-bar__copy-btn:hover {
+  background: var(--color-border);
+}
+
+.floating-bar__copy-btn:active {
+  background: var(--color-surface-hover);
+}
+
+.floating-bar__icon {
+  display: block;
+  flex-shrink: 0;
+  opacity: 0.5;
+  transition: opacity var(--transition-fast);
+}
+
+.floating-bar__copy-btn:hover .floating-bar__icon {
+  opacity: 0.8;
+}
+
+.floating-bar__copy-btn:active .floating-bar__icon {
+  transform: scale(0.85);
+  transition: transform 0.1s ease;
+}
+
+.floating-bar__value {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--color-text);
+  text-align: center;
+  flex: 1;
+}
+
+/* Tableta: reducir espaciado */
+@media (max-width: 1024px) {
+  .floating-bar {
+    padding: 0 var(--spacing-md);
+  }
+
+  .floating-bar__group {
+    padding: 0 var(--spacing-md);
+    min-width: 90px;
+  }
+}
+
+/* Movil: distribuir los 4 valores en 2 filas x 2 columnas */
+@media (max-width: 768px) {
+  .floating-bar {
+    height: auto;
+    padding: var(--spacing-sm);
+    gap: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    overflow: visible;
+  }
+
+  .floating-bar__group {
+    flex: 0 0 50%;
+    min-width: 0;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-right: none;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .floating-bar__group:nth-last-child(-n+2) {
+    border-bottom: none;
+  }
+
+  .floating-bar__group:nth-child(odd) {
+    border-right: 1px solid var(--color-border);
+  }
+
+  .floating-bar__label {
+    font-size: 0.5625rem;
+    margin-bottom: 2px;
+  }
+
+  .floating-bar__value {
+    font-size: 0.6875rem;
+  }
+
+  .floating-bar__icon {
+    width: 12px;
+    height: 12px;
+  }
+
+  .floating-bar__copy-btn {
+    padding: 2px;
+  }
+}
+
+/* Movil muy pequeno */
+@media (max-width: 480px) {
+  .floating-bar {
+    padding: var(--spacing-xs);
+  }
+
+  .floating-bar__group {
+    padding: 2px var(--spacing-xs);
+  }
+
+  .floating-bar__value {
+    font-size: 0.625rem;
+  }
+
+  .floating-bar__icon {
+    display: none;
+  }
+
+  .floating-bar__copy-btn {
+    padding: 0;
+    min-width: 0;
+  }
+}

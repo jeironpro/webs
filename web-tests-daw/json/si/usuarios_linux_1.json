@@ -1,0 +1,222 @@
+[
+    {
+        "pregunta": "¿Qué archivo almacena la información de los usuarios en Linux?",
+        "opciones": [
+            "/etc/group",
+            "/etc/passwd",
+            "/etc/users",
+            "/etc/shadow"
+        ],
+        "respuesta": 1,
+        "explicacion": "Contiene nombre, UID, GID, home, shell, etc."
+    },
+    {
+        "pregunta": "¿Qué archivo almacena las contraseñas encriptadas?",
+        "opciones": [
+            "/etc/security",
+            "/etc/passwd",
+            "/etc/keys",
+            "/etc/shadow"
+        ],
+        "respuesta": 3,
+        "explicacion": "Solo legible por root por seguridad."
+    },
+    {
+        "pregunta": "¿Qué archivo almacena la información de los grupos?",
+        "opciones": [
+            "/etc/passwd",
+            "/etc/users",
+            "/etc/group",
+            "/etc/gshadow"
+        ],
+        "respuesta": 2,
+        "explicacion": "Define qué usuarios pertenecen a qué grupos."
+    },
+    {
+        "pregunta": "¿Qué es el UID?",
+        "opciones": [
+            "Universal ID",
+            "Unidad de Identificación",
+            "User ID, un número único que identifica al usuario",
+            "User Interface Design"
+        ],
+        "respuesta": 2,
+        "explicacion": "Root siempre tiene UID 0."
+    },
+    {
+        "pregunta": "¿Qué es el GID?",
+        "opciones": [
+            "Graphic ID",
+            "Group ID, identificador numérico del grupo",
+            "General ID",
+            "Global ID"
+        ],
+        "respuesta": 1,
+        "explicacion": "Identifica al grupo principal del usuario."
+    },
+    {
+        "pregunta": "¿Qué comando crea un nuevo usuario?",
+        "opciones": [
+            "newuser",
+            "mkuser",
+            "createuser",
+            "useradd"
+        ],
+        "respuesta": 3,
+        "explicacion": "adduser es un script más amigable sobre useradd."
+    },
+    {
+        "pregunta": "¿Qué comando elimina un usuario?",
+        "opciones": [
+            "userdel",
+            "rmuser",
+            "deluser",
+            "removeuser"
+        ],
+        "respuesta": 0,
+        "explicacion": "userdel nombre_usuario."
+    },
+    {
+        "pregunta": "¿Qué comando modifica un usuario existente?",
+        "opciones": [
+            "usermod",
+            "edituser",
+            "moduser",
+            "changeuser"
+        ],
+        "respuesta": 0,
+        "explicacion": "Permite cambiar grupos, home, shell, etc."
+    },
+    {
+        "pregunta": "¿Qué comando cambia la contraseña de un usuario?",
+        "opciones": [
+            "password",
+            "passwd",
+            "chpass",
+            "setpass"
+        ],
+        "respuesta": 1,
+        "explicacion": "passwd nombre_usuario."
+    },
+    {
+        "pregunta": "¿Qué es el directorio Home?",
+        "opciones": [
+            "El directorio personal del usuario donde guarda sus archivos (/home/usuario)",
+            "El escritorio",
+            "La papelera",
+            "El directorio raíz"
+        ],
+        "respuesta": 0,
+        "explicacion": "Es propiedad del usuario."
+    },
+    {
+        "pregunta": "¿Qué es el usuario root?",
+        "opciones": [
+            "Un virus",
+            "Un invitado",
+            "El superusuario o administrador del sistema con privilegios ilimitados",
+            "Un usuario normal"
+        ],
+        "respuesta": 2,
+        "explicacion": "UID 0."
+    },
+    {
+        "pregunta": "¿Qué comando muestra el usuario actual?",
+        "opciones": [
+            "me",
+            "who",
+            "id",
+            "whoami"
+        ],
+        "respuesta": 3,
+        "explicacion": "Devuelve el nombre del usuario logueado."
+    },
+    {
+        "pregunta": "¿Qué comando muestra información detallada del usuario (UID, GID, grupos)?",
+        "opciones": [
+            "id",
+            "finger",
+            "whoami",
+            "info"
+        ],
+        "respuesta": 0,
+        "explicacion": "id nombre_usuario."
+    },
+    {
+        "pregunta": "¿Qué es un grupo primario?",
+        "opciones": [
+            "Un grupo vacío",
+            "El grupo principal asignado al usuario al crearlo (generalmente tiene el mismo nombre)",
+            "El primer grupo del sistema",
+            "Un grupo de administradores"
+        ],
+        "respuesta": 1,
+        "explicacion": "Los archivos creados por el usuario pertenecen a este grupo por defecto."
+    },
+    {
+        "pregunta": "¿Qué es un grupo secundario?",
+        "opciones": [
+            "Grupos de invitados",
+            "Grupos menos importantes",
+            "Grupos temporales",
+            "Grupos adicionales a los que pertenece el usuario para obtener permisos extra"
+        ],
+        "respuesta": 3,
+        "explicacion": "Se añaden con usermod -aG."
+    },
+    {
+        "pregunta": "¿Qué comando añade un grupo?",
+        "opciones": [
+            "mkgroup",
+            "groupadd",
+            "newgroup",
+            "addgroup"
+        ],
+        "respuesta": 1,
+        "explicacion": "groupadd nombre_grupo."
+    },
+    {
+        "pregunta": "¿Qué comando elimina un grupo?",
+        "opciones": [
+            "rmgroup",
+            "delgroup",
+            "removegroup",
+            "groupdel"
+        ],
+        "respuesta": 3,
+        "explicacion": "groupdel nombre_grupo."
+    },
+    {
+        "pregunta": "¿Qué significa la 'x' en el campo de contraseña de /etc/passwd?",
+        "opciones": [
+            "Que no tiene contraseña",
+            "Que la contraseña está almacenada en /etc/shadow",
+            "Que es un usuario x",
+            "Que está bloqueado"
+        ],
+        "respuesta": 1,
+        "explicacion": "Mecanismo de seguridad shadow passwords."
+    },
+    {
+        "pregunta": "¿Qué shell se asigna por defecto habitualmente?",
+        "opciones": [
+            "/bin/false",
+            "/bin/sh",
+            "/bin/bash",
+            "/bin/zsh"
+        ],
+        "respuesta": 2,
+        "explicacion": "Bourne Again Shell."
+    },
+    {
+        "pregunta": "¿Cómo bloquear una cuenta de usuario?",
+        "opciones": [
+            "block user",
+            "usermod -L o passwd -l",
+            "stop user",
+            "userdel"
+        ],
+        "respuesta": 1,
+        "explicacion": "Lock. Pone un ! en el hash de la contraseña."
+    }
+]

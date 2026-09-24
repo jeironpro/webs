@@ -1,0 +1,222 @@
+[
+    {
+        "pregunta": "¿Qué hace la cláusula GROUP BY?",
+        "opciones": [
+            "Filtra los resultados",
+            "Une tablas",
+            "Ordena los resultados",
+            "Agrupa filas que tienen los mismos valores en las columnas especificadas"
+        ],
+        "respuesta": 3,
+        "explicacion": "Se usa a menudo con funciones de agregación (COUNT, MAX, MIN, SUM, AVG)."
+    },
+    {
+        "pregunta": "¿Qué es una función de agregación?",
+        "opciones": [
+            "Una función matemática simple",
+            "Una función que toma múltiples valores y devuelve un único valor resumen",
+            "Una función que devuelve muchas filas",
+            "Una función de texto"
+        ],
+        "respuesta": 1,
+        "explicacion": "Operan sobre un conjunto de filas."
+    },
+    {
+        "pregunta": "¿Cuál es la diferencia entre WHERE y HAVING?",
+        "opciones": [
+            "WHERE filtra filas antes de agrupar, HAVING filtra grupos después de agrupar",
+            "HAVING es más rápido",
+            "WHERE es para números, HAVING para texto",
+            "Son intercambiables"
+        ],
+        "respuesta": 0,
+        "explicacion": "HAVING se usa con funciones de agregación, WHERE no puede."
+    },
+    {
+        "pregunta": "¿Se puede usar GROUP BY sin funciones de agregación?",
+        "opciones": [
+            "Sí, funciona similar a DISTINCT",
+            "Sí, pero no hace nada",
+            "No, da error",
+            "Solo en Oracle"
+        ],
+        "respuesta": 0,
+        "explicacion": "Elimina duplicados de las columnas agrupadas."
+    },
+    {
+        "pregunta": "¿Qué devuelve COUNT(*)?",
+        "opciones": [
+            "El número de filas no nulas",
+            "El número total de filas, incluyendo nulos",
+            "La suma de valores",
+            "El número de columnas"
+        ],
+        "respuesta": 1,
+        "explicacion": "Cuenta la cardinalidad del conjunto."
+    },
+    {
+        "pregunta": "¿Qué devuelve COUNT(columna)?",
+        "opciones": [
+            "El número total de filas",
+            "El valor mínimo",
+            "El número de filas donde 'columna' no es NULL",
+            "El valor máximo"
+        ],
+        "respuesta": 2,
+        "explicacion": "Ignora los valores NULL."
+    },
+    {
+        "pregunta": "¿Qué hace la función SUM() con los valores NULL?",
+        "opciones": [
+            "Devuelve NULL si hay alguno",
+            "Los ignora",
+            "Los trata como 0",
+            "Da error"
+        ],
+        "respuesta": 1,
+        "explicacion": "Suma solo los valores conocidos."
+    },
+    {
+        "pregunta": "¿Se pueden agrupar por múltiples columnas?",
+        "opciones": [
+            "No, solo una a la vez",
+            "Sí, pero solo si son del mismo tipo",
+            "No, es ineficiente",
+            "Sí, GROUP BY col1, col2"
+        ],
+        "respuesta": 3,
+        "explicacion": "Crea grupos para cada combinación única de valores de las columnas listadas."
+    },
+    {
+        "pregunta": "¿Qué es el orden de ejecución lógico en una consulta con GROUP BY?",
+        "opciones": [
+            "FROM -> WHERE -> GROUP BY -> HAVING -> SELECT -> ORDER BY",
+            "ORDER BY -> GROUP BY -> SELECT",
+            "SELECT -> FROM -> WHERE -> GROUP BY",
+            "WHERE -> SELECT -> GROUP BY"
+        ],
+        "respuesta": 0,
+        "explicacion": "Es importante entender esto para saber qué alias están disponibles en cada paso."
+    },
+    {
+        "pregunta": "¿Qué pasa si seleccionas una columna que no está en el GROUP BY ni en una función de agregación?",
+        "opciones": [
+            "Funciona perfectamente",
+            "Es un error en SQL estándar (aunque MySQL antiguo lo permitía)",
+            "Devuelve un valor aleatorio",
+            "Devuelve el primer valor"
+        ],
+        "respuesta": 1,
+        "explicacion": "La regla es 'Single Value Rule': cada columna en el SELECT debe devolver un solo valor por grupo."
+    },
+    {
+        "pregunta": "¿Qué función concatena valores de un grupo en una sola cadena (en MySQL)?",
+        "opciones": [
+            "STRING_AGG()",
+            "CONCAT_GROUP()",
+            "LISTAGG()",
+            "GROUP_CONCAT()"
+        ],
+        "respuesta": 3,
+        "explicacion": "Muy útil para desnormalizar resultados agrupados."
+    },
+    {
+        "pregunta": "¿Se puede usar un alias definido en el SELECT dentro del GROUP BY?",
+        "opciones": [
+            "En MySQL sí, en SQL estándar no",
+            "Nunca",
+            "Solo si es numérico",
+            "Siempre sí"
+        ],
+        "respuesta": 0,
+        "explicacion": "MySQL extiende el estándar para permitir esto por conveniencia."
+    },
+    {
+        "pregunta": "¿Qué hace AVG()?",
+        "opciones": [
+            "Calcula la moda",
+            "Calcula la mediana",
+            "Calcula la desviación estándar",
+            "Calcula la media aritmética"
+        ],
+        "respuesta": 3,
+        "explicacion": "Suma los valores y divide por la cuenta (ignorando nulos)."
+    },
+    {
+        "pregunta": "¿Qué hace MIN() y MAX() con columnas de texto?",
+        "opciones": [
+            "Dan error",
+            "Devuelven el primero y último valor alfabéticamente",
+            "Devuelven la cadena más corta y más larga",
+            "No funcionan con texto"
+        ],
+        "respuesta": 1,
+        "explicacion": "Usan el orden de clasificación (collation) de la columna."
+    },
+    {
+        "pregunta": "¿Qué es ROLLUP en GROUP BY?",
+        "opciones": [
+            "Una función de fecha",
+            "Una extensión que añade filas de subtotales y totales generales",
+            "Un tipo de join",
+            "Una forma de ordenar"
+        ],
+        "respuesta": 1,
+        "explicacion": "GROUP BY col1, col2 WITH ROLLUP genera resúmenes jerárquicos."
+    },
+    {
+        "pregunta": "¿Se puede usar HAVING sin GROUP BY?",
+        "opciones": [
+            "No, es obligatorio GROUP BY",
+            "Sí, funciona como WHERE",
+            "No, da error",
+            "Sí, trata toda la tabla como un solo grupo"
+        ],
+        "respuesta": 3,
+        "explicacion": "Útil para aplicar filtros agregados al conjunto total (ej. HAVING COUNT(*) > 0)."
+    },
+    {
+        "pregunta": "¿Qué rendimiento tiene GROUP BY en tablas grandes?",
+        "opciones": [
+            "Puede ser costoso, requiere ordenación o hashing",
+            "No consume memoria",
+            "Es instantáneo",
+            "Es más rápido que WHERE"
+        ],
+        "respuesta": 0,
+        "explicacion": "Los índices adecuados pueden evitar la operación de ordenación (Using index)."
+    },
+    {
+        "pregunta": "¿Qué es una función de ventana (Window Function) comparada con GROUP BY?",
+        "opciones": [
+            "Es más antigua",
+            "Es lo mismo",
+            "Es solo para Oracle",
+            "Calcula agregaciones sin colapsar las filas en grupos"
+        ],
+        "respuesta": 3,
+        "explicacion": "Permite mantener el detalle de las filas mientras se muestran totales (ej. OVER(PARTITION BY))."
+    },
+    {
+        "pregunta": "¿Cómo filtrarías grupos que tienen más de 5 elementos?",
+        "opciones": [
+            "HAVING COUNT(*) > 5",
+            "WHERE COUNT(*) > 5",
+            "FILTER COUNT(*) > 5",
+            "IF COUNT(*) > 5"
+        ],
+        "respuesta": 0,
+        "explicacion": "COUNT(*) es una agregación, por lo tanto va en HAVING."
+    },
+    {
+        "pregunta": "¿Qué significa la cláusula DISTINCT dentro de una función de agregación?",
+        "opciones": [
+            "No hace nada",
+            "Es un error",
+            "Ordena los valores",
+            "Considera solo valores únicos para el cálculo (ej. COUNT(DISTINCT id))"
+        ],
+        "respuesta": 3,
+        "explicacion": "Útil para contar elementos únicos en un grupo."
+    }
+]

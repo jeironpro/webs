@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="es" data-theme="hum">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Programa que lee cualquier archivo que sea de texto y busca los correos electronicos y muestras sus partes (nombre y dominio)">
+  <meta name="theme-color" content="#faf6ee">
+  <title>Pythoncises · Partes de un correo</title>
+  <link rel="icon" type="image/svg+xml" href="../icons/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../icons/favicon-32.png">
+  <link rel="apple-touch-icon" href="../icons/favicon-180.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <script>document.documentElement.classList.add("js");</script>
+  <script src="../js/app.js" defer></script>
+</head>
+<body>
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a class="nav__brand" href="../index.html" aria-label="Pythoncises — inicio">
+        <span class="snake-mark" aria-hidden="true"><svg viewBox="0 0 64 64">
+      <path class="snake__cuerpo" d="M14 22 C 26 22, 26 32, 32 32 C 38 32, 38 42, 50 42"
+            fill="none" stroke-width="6.5" stroke-linecap="round"/>
+      <circle class="snake__cabeza" cx="50" cy="42" r="4.8"/>
+      <path class="snake__lengua" d="M54.5 42 L 58.5 40.5 M54.5 42 L 58.5 43.5"
+            fill="none" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="48.6" cy="40.2" r="1.1" fill="var(--color-paper)"/>
+    </svg></span>
+        Pythoncises
+      </a>
+    </div>
+  </header>
+  <main class="detalle" data-accent="lavender">
+    <a class="btn btn--outline btn--pear btn--sm detalle-volver" href="../index.html#indice">← Índice</a>
+    <p class="detalle-meta">
+      <span class="eyebrow__dot eyebrow__dot--lavender" style="display:inline-block;margin-right:0.45em;vertical-align:middle"></span>
+      Texto y cadenas · 16 · partes_correo.py
+    </p>
+    <h1 class="detalle-titulo">Partes de un correo</h1>
+    <p class="detalle-desc">Programa que lee cualquier archivo que sea de texto y busca los correos electronicos y muestras sus partes (nombre y dominio)</p>
+    <div class="detalle-acciones">
+      <button class="btn btn--pear" type="button" data-accion="copiar" data-burst>Copiar</button>
+      <button class="btn btn--outline btn--pear" type="button" data-accion="descargar" data-nombre="partes_correo.py">Descargar</button>
+    </div>
+    <div class="codigo-tarjeta">
+      <div class="codigo-barra">
+        <span class="codigo-punto" aria-hidden="true"></span>
+        <span class="codigo-punto" aria-hidden="true"></span>
+        <span class="codigo-punto" aria-hidden="true"></span>
+        <span class="codigo-archivo">exercises/partes-correo/partes_correo.py</span>
+      </div>
+      <pre><code><span class="tok-cadena">&quot;&quot;&quot;
+    Programa que lee cualquier archivo que sea de texto
+    y busca los correos electronicos y muestras sus partes 
+    (nombre y dominio)
+&quot;&quot;&quot;</span>
+<span class="tok-palabra">import</span> os
+
+nombre_archivo = <span class="tok-builtin">input</span>(<span class="tok-cadena">&quot;Introduce el nombre del archivo: &quot;</span>)
+
+<span class="tok-comentario"># Verificar que el archivo existe antes de leer</span>
+<span class="tok-palabra">if</span> os.path.exists(nombre_archivo):
+    <span class="tok-palabra">with</span> <span class="tok-builtin">open</span>(nombre_archivo, <span class="tok-cadena">&quot;r&quot;</span>) <span class="tok-palabra">as</span> archivo:
+        <span class="tok-palabra">for</span> linea <span class="tok-palabra">in</span> archivo:
+            linea = linea.strip()
+
+            <span class="tok-palabra">if</span> <span class="tok-cadena">&quot;@&quot;</span> <span class="tok-palabra">in</span> linea:
+                partes = linea.split(<span class="tok-cadena">&quot;@&quot;</span>)
+
+                nombre_usuario = partes[<span class="tok-numero">0</span>]
+                dominio = partes[<span class="tok-numero">1</span>]
+
+                <span class="tok-builtin">print</span>(<span class="tok-cadena">f&quot;Nombre usuario: {nombre_usuario}&quot;</span>)
+                <span class="tok-builtin">print</span>(<span class="tok-cadena">f&quot;Dominio: {dominio}&quot;</span>)
+<span class="tok-palabra">else</span>:
+    <span class="tok-builtin">print</span>(<span class="tok-cadena">f&quot;El archivo {nombre_archivo} no existe&quot;</span>)</code></pre>
+    </div>
+    <section class="salida" aria-labelledby="salida-partes-correo">
+      <h2 class="salida-titulo" id="salida-partes-correo">Salida de ejemplo</h2>
+      <pre class="salida-cuerpo">Introduce el nombre del archivo: correos.csv
+Nombre usuario: diana932
+Dominio: mail.com
+Nombre usuario: martina6475
+Dominio: gmail.com
+Nombre usuario: camila2870
+Dominio: mail.com
+Nombre usuario: maria8292
+Dominio: outlook.com
+Nombre usuario: alex2091
+Dominio: yahoo.com
+Nombre usuario: alex6643
+Dominio: icloud.com
+Nombre usuario: luis4134
+Dominio: protonmail.com
+Nombre usuario: pedro2614
+Dominio: protonmail.com
+Nombre usuario: isabel2909
+Dominio: mail.com
+Nombre usuario: valentina7622
+Dominio: mail.com
+Nombre usuario: laura9998
+Dominio: hotmail.com
+Nombre usuario: valentina8861
+Dominio: outlook.com
+Nombre usuario: ana2894
+Dominio: icloud.com
+Nombre usuario: sergio1012
+Dominio: gmail.com
+Nombre usuario: sergio2675
+Dominio: outlook.com
+Nombre usuario: maria241
+Dominio: mail.com
+Nombre usuario: luis5685
+Dominio: gmail.com
+Nombre usuario: luis9811
+Dominio: icloud.com
+Nombre usuario: sergio4695
+Dominio: icloud.com
+Nombre usuario: alex2104
+Dominio: outlook.com
+Nombre usuario: juan5578
+Dominio: mail.com
+Nombre usuario: isabel5061
+Dominio: icloud.com
+Nombre usuario: isabel6868
+Dominio: mail.com
+Nombre usuario: juan5414
+Dominio: gmail.com
+Nombre usuario: jorge7160
+Dominio: mail.com
+Nombre usuario: roberto6095
+Dominio: hotmail.com
+Nombre usuario: valentina3103
+Dominio: mail.com
+Nombre usuario: sergio3686
+Dominio: icloud.com
+Nombre usuario: pedro3105
+Dominio: outlook.com
+Nombre usuario: valentina3203
+Dominio: yahoo.com
+Nombre usuario: luis3401
+Dominio: protonmail.com
+Nombre usuario: sofia3805
+Dominio: outlook.com
+Nombre usuario: ana2013
+Dominio: protonmail.com
+Nombre usuario: elena539
+Dominio: outlook.com
+Nombre usuario: sofia1406
+Dominio: hotmail.com
+Nombre usuario: isabel7441
+Dominio: icloud.com
+Nombre usuario: maria3039
+Dominio: outlook.com
+Nombre usuario: fernando7019
+Dominio: mail.com
+Nombre usuario: sergio3184
+Dominio: outlook.com
+Nombre usuario: martina9441
+Dominio: hotmail.com
+Nombre usuario: camila8644
+Dominio: protonmail.com
+Nombre usuario: roberto4777
+Dominio: icloud.com
+Nombre usuario: luis4482
+Dominio: yahoo.com
+Nombre usuario: alex2735
+Dominio: mail.com
+Nombre usuario: jorge6756
+Dominio: gmail.com
+Nombre usuario: luis1260
+Dominio: yahoo.com
+Nombre usuario: fernando1747
+Dominio: hotmail.com
+Nombre usuario: laura7247
+Dominio: yahoo.com
+Nombre usuario: pedro3363
+Dominio: gmail.com
+Nombre usuario: valentina2198
+Dominio: outlook.com
+Nombre usuario: isabel7582
+Dominio: protonmail.com
+Nombre usuario: fernando4294
+Dominio: mail.com
+Nombre usuario: ana3768
+Dominio: outlook.com
+Nombre usuario: jorge5335
+Dominio: gmail.com
+Nombre usuario: valentina8714
+Dominio: yahoo.com
+Nombre usuario: roberto2045
+Dominio: mail.com
+Nombre usuario: pablo4911
+Dominio: yahoo.com
+Nombre usuario: valentina8195
+Dominio: icloud.com
+Nombre usuario: jorge8886
+Dominio: mail.com
+Nombre usuario: camila2232
+Dominio: mail.com
+Nombre usuario: elena5354
+Dominio: mail.com
+Nombre usuario: elena7761
+Dominio: protonmail.com
+Nombre usuario: ana4122
+Dominio: hotmail.com
+Nombre usuario: sofia4059
+Dominio: gmail.com
+Nombre usuario: roberto9747
+Dominio: gmail.com
+Nombre usuario: laura1958
+Dominio: hotmail.com
+Nombre usuario: roberto1255
+Dominio: protonmail.com
+Nombre usuario: juan3801
+Dominio: mail.com
+Nombre usuario: alex6773
+Dominio: icloud.com
+Nombre usuario: maria8852
+Dominio: icloud.com
+Nombre usuario: sergio6796
+Dominio: outlook.com
+Nombre usuario: maria4018
+Dominio: outlook.com
+Nombre usuario: ana4215
+Dominio: icloud.com
+Nombre usuario: laura7339
+Dominio: protonmail.com
+Nombre usuario: maria7778
+Dominio: mail.com
+Nombre usuario: luis7577
+Dominio: icloud.com
+Nombre usuario: laura5376
+Dominio: mail.com
+Nombre usuario: alex1080
+Dominio: icloud.com
+Nombre usuario: elena3889
+Dominio: outlook.com
+Nombre usuario: elena7698
+Dominio: yahoo.com
+Nombre usuario: jorge4508
+Dominio: mail.com
+Nombre usuario: pablo6271
+Dominio: mail.com
+Nombre usuario: carlos6261
+Dominio: gmail.com
+Nombre usuario: luis9925
+Dominio: outlook.com
+Nombre usuario: isabel8284
+Dominio: hotmail.com
+Nombre usuario: valentina1893
+Dominio: yahoo.com
+Nombre usuario: isabel9565
+Dominio: icloud.com
+Nombre usuario: elena2315
+Dominio: hotmail.com
+Nombre usuario: juan2975
+Dominio: yahoo.com
+Nombre usuario: pedro1408
+Dominio: yahoo.com
+Nombre usuario: carlos4221
+Dominio: mail.com
+Nombre usuario: sergio3879
+Dominio: outlook.com
+Nombre usuario: sofia8865
+Dominio: hotmail.com
+Nombre usuario: alex4206
+Dominio: protonmail.com
+Nombre usuario: maria718
+Dominio: hotmail.com
+Nombre usuario: camila7494
+Dominio: gmail.com
+Nombre usuario: diana3651
+Dominio: hotmail.com
+Nombre usuario: carlos949
+Dominio: protonmail.com
+Nombre usuario: luis6218
+Dominio: outlook.com
+Nombre usuario: ana7778
+Dominio: gmail.com</pre>
+    </section>
+    <nav class="detalle-nav" aria-label="Navegación entre ejercicios">
+      <a class="nav-ej nav-previo" href="historias-divertidas.html">← Historias divertidas</a>
+      <a class="nav-ej nav-siguiente" href="convertir-markdown-html.html">Markdown a HTML →</a>
+    </nav>
+  </main>
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__meta">
+        <a class="footer__brand" href="../index.html"><span class="snake-mark" aria-hidden="true"><svg viewBox="0 0 64 64">
+      <path class="snake__cuerpo" d="M14 22 C 26 22, 26 32, 32 32 C 38 32, 38 42, 50 42"
+            fill="none" stroke-width="6.5" stroke-linecap="round"/>
+      <circle class="snake__cabeza" cx="50" cy="42" r="4.8"/>
+      <path class="snake__lengua" d="M54.5 42 L 58.5 40.5 M54.5 42 L 58.5 43.5"
+            fill="none" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="48.6" cy="40.2" r="1.1" fill="var(--color-paper)"/>
+    </svg></span> Pythoncises</a>
+        <p class="footer__copy">© Pythoncises - 2026<br><span class="footer__hash">ver · copiar · descargar</span></p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

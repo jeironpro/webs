@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codi Wiki</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="icon" href="icon/codi_wiki.ico">
+</head>
+<body>
+    <div class="contenedor-app">
+        <aside class="barra-lateral">
+            <div class="marca">
+                <h1>Codi<span class="punto">.</span>Wiki</h1>
+            </div>
+            <nav class="navegacion">
+                <div class="seccion-nav">
+                    <h3 class="titulo-seccion">Lenguajes</h3>
+                    <div id="lista-lenguajes" class="lista-items">
+                        <!-- Inyectado por JS -->
+                    </div>
+                </div>
+
+                <div class="seccion-nav">
+                    <h3 class="titulo-seccion">Paradigmas</h3>
+                    <div id="lista-paradigmas" class="lista-items">
+                        <!-- Inyectado por JS -->
+                    </div>
+                </div>
+            </nav>
+            <div class="pie-lateral">
+                <p>Versión 1.0.0</p>
+            </div>
+        </aside>
+
+        <main class="contenido-principal">
+            <div class="contenedor-fluido">
+                <div id="pantalla-bienvenida" class="seccion-activa">
+                    <header class="hero-header">
+                        <div class="badge-hero">Documentación Técnica</div>
+                        <h1>El Arte de la <br><span class="texto-gradiente">Programación</span></h1>
+                        <p class="subtitulo">Una referencia exhaustiva sobre los lenguajes que construyen el mundo digital y los paradigmas que definen cómo pensamos.</p>
+                    </header>
+                    
+                    <div class="grid-tarjetas">
+                        <div class="tarjeta-info">
+                            <div class="icono-tarjeta">➜</div>
+                            <h3>Lenguajes Modernos</h3>
+                            <p>Desde los fundamentos de C hasta la seguridad de Rust y la versatilidad de Python.</p>
+                        </div>
+                        <div class="tarjeta-info">
+                            <div class="icono-tarjeta">∞</div>
+                            <h3>Paradigmas Teóricos</h3>
+                            <p>Explora la POO, la programación funcional y los modelos imperativos.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="vista-detalle" class="oculto">
+                    <!-- Contenido Dinámico -->
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="js/datos.js"></script>
+    <script src="js/logica.js"></script>
+</body>
+</html>

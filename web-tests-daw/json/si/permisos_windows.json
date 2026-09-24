@@ -1,0 +1,222 @@
+[
+    {
+        "pregunta": "¿Qué son los permisos NTFS?",
+        "opciones": [
+            "Permisos de internet",
+            "Permisos de usuario",
+            "Permisos de seguridad que se aplican a archivos y carpetas en discos formateados con NTFS, tanto localmente como en red",
+            "Permisos de red"
+        ],
+        "respuesta": 2,
+        "explicacion": "Son los más granulares y seguros."
+    },
+    {
+        "pregunta": "¿Qué son los permisos de recurso compartido (Share Permissions)?",
+        "opciones": [
+            "Permisos de archivo",
+            "Permisos de disco",
+            "Permisos que solo se aplican cuando se accede a la carpeta a través de la red",
+            "Permisos locales"
+        ],
+        "respuesta": 2,
+        "explicacion": "No protegen si el usuario inicia sesión localmente en el equipo."
+    },
+    {
+        "pregunta": "¿Qué pasa cuando se combinan permisos NTFS y de recurso compartido?",
+        "opciones": [
+            "Se suman los permisos",
+            "Se aplica la restricción MÁS restrictiva de ambas",
+            "Ganan los de red",
+            "Ganan los NTFS"
+        ],
+        "respuesta": 1,
+        "explicacion": "Regla de oro en seguridad Windows."
+    },
+    {
+        "pregunta": "¿Qué es la herencia de permisos?",
+        "opciones": [
+            "Por defecto, los archivos y subcarpetas heredan los permisos de su carpeta padre",
+            "Heredan del usuario",
+            "No heredan nada",
+            "Heredan del disco"
+        ],
+        "respuesta": 0,
+        "explicacion": "Facilita la administración."
+    },
+    {
+        "pregunta": "¿Qué significa 'Control Total' (Full Control)?",
+        "opciones": [
+            "Solo borrar",
+            "Permite leer, escribir, modificar, borrar, cambiar permisos y tomar posesión",
+            "Solo leer",
+            "Solo escribir"
+        ],
+        "respuesta": 1,
+        "explicacion": "Es el nivel máximo de acceso."
+    },
+    {
+        "pregunta": "¿Qué significa el permiso 'Modificar' (Modify)?",
+        "opciones": [
+            "Permite todo",
+            "Solo lectura",
+            "Permite leer, escribir y borrar, pero NO cambiar permisos ni tomar posesión",
+            "Solo escritura"
+        ],
+        "respuesta": 2,
+        "explicacion": "Suficiente para la mayoría de usuarios."
+    },
+    {
+        "pregunta": "¿Qué significa 'Lectura y ejecución'?",
+        "opciones": [
+            "Permite ver archivos y ejecutar programas, pero no modificarlos",
+            "Permite escribir",
+            "Permite borrar",
+            "Permite cambiar permisos"
+        ],
+        "respuesta": 0,
+        "explicacion": "Típico para archivos de programa."
+    },
+    {
+        "pregunta": "¿Qué es un permiso explícito?",
+        "opciones": [
+            "Un permiso asignado directamente a un objeto específico",
+            "Un permiso denegado",
+            "Un permiso heredado",
+            "Un permiso de grupo"
+        ],
+        "respuesta": 0,
+        "explicacion": "Tiene prioridad sobre los heredados (generalmente)."
+    },
+    {
+        "pregunta": "¿Qué tiene prioridad: Permitir o Denegar?",
+        "opciones": [
+            "Son iguales",
+            "Denegar (Deny) siempre tiene prioridad sobre Permitir (Allow)",
+            "Permitir",
+            "Depende del orden"
+        ],
+        "respuesta": 1,
+        "explicacion": "Si un usuario pertenece a un grupo con 'Denegar', no entrará aunque otro grupo diga 'Permitir'."
+    },
+    {
+        "pregunta": "¿Qué es el propietario (Owner) de un archivo?",
+        "opciones": [
+            "El sistema",
+            "El administrador",
+            "El usuario que creó el archivo (o que tomó posesión), siempre puede cambiar los permisos",
+            "Nadie"
+        ],
+        "respuesta": 2,
+        "explicacion": "Incluso si se quita a sí mismo los permisos, puede volver a dárselos."
+    },
+    {
+        "pregunta": "¿Qué es tomar posesión (Take Ownership)?",
+        "opciones": [
+            "Robar archivos",
+            "Copiar archivos",
+            "Un administrador puede forzar ser el dueño de un archivo para recuperar el acceso",
+            "Borrar archivos"
+        ],
+        "respuesta": 2,
+        "explicacion": "Necesario si un empleado se va y bloqueó sus archivos."
+    },
+    {
+        "pregunta": "¿Qué son los permisos efectivos?",
+        "opciones": [
+            "El resultado final de combinar permisos de usuario, grupos, herencia y denegaciones",
+            "Los permisos de disco",
+            "Los permisos de red",
+            "Los permisos teóricos"
+        ],
+        "respuesta": 0,
+        "explicacion": "Windows tiene una herramienta para calcularlos."
+    },
+    {
+        "pregunta": "¿Qué es el recurso compartido administrativo (C$, ADMIN$)?",
+        "opciones": [
+            "Errores",
+            "Virus",
+            "Carpetas públicas",
+            "Recursos ocultos creados por el sistema para uso de administradores"
+        ],
+        "respuesta": 3,
+        "explicacion": "El signo $ al final los oculta en la red."
+    },
+    {
+        "pregunta": "¿Qué es ICACLS?",
+        "opciones": [
+            "Un virus",
+            "Un navegador",
+            "Un programa de dibujo",
+            "Comando de línea de comandos para gestionar permisos NTFS (ACLs)"
+        ],
+        "respuesta": 3,
+        "explicacion": "El equivalente potente de chmod en Windows."
+    },
+    {
+        "pregunta": "¿Qué pasa con los permisos si mueves un archivo a otra carpeta en la misma partición NTFS?",
+        "opciones": [
+            "Se borran los permisos",
+            "Conserva sus permisos originales",
+            "Hereda los de la nueva carpeta",
+            "Se hace público"
+        ],
+        "respuesta": 1,
+        "explicacion": "Al mover en el mismo volumen, solo se actualiza el puntero, no se recrea el archivo."
+    },
+    {
+        "pregunta": "¿Qué pasa con los permisos si copias un archivo a otra carpeta?",
+        "opciones": [
+            "Hereda los permisos de la carpeta de destino (se considera un archivo nuevo)",
+            "Conserva los originales",
+            "Da error",
+            "Se encripta"
+        ],
+        "respuesta": 0,
+        "explicacion": "Regla importante para migraciones."
+    },
+    {
+        "pregunta": "¿Qué es el grupo 'Todos' (Everyone)?",
+        "opciones": [
+            "Solo administradores",
+            "Incluye a cualquier usuario, incluso invitados (cuidado con la seguridad)",
+            "Solo usuarios locales",
+            "Nadie"
+        ],
+        "respuesta": 1,
+        "explicacion": "En versiones modernas es menos peligroso, pero sigue siendo riesgo."
+    },
+    {
+        "pregunta": "¿Qué es el UAC (User Account Control)?",
+        "opciones": [
+            "Un antivirus",
+            "Sistema que pide confirmación cuando un programa intenta hacer cambios que requieren permisos de administrador",
+            "Un usuario",
+            "Un firewall"
+        ],
+        "respuesta": 1,
+        "explicacion": "Evita que el malware se instale silenciosamente."
+    },
+    {
+        "pregunta": "¿Qué es ABE (Access Based Enumeration)?",
+        "opciones": [
+            "Encripta carpetas",
+            "Muestra todo",
+            "Oculta los archivos y carpetas para los que el usuario no tiene permiso de lectura",
+            "Borra archivos"
+        ],
+        "respuesta": 2,
+        "explicacion": "Mejora la usabilidad y privacidad en servidores de archivos."
+    },
+    {
+        "pregunta": "¿Qué es una ACL (Access Control List)?",
+        "opciones": [
+            "Una lista de usuarios",
+            "La lista de entradas de control de acceso (ACE) que define quién tiene qué permiso sobre un objeto",
+            "Una lista de compra",
+            "Un grupo"
+        ],
+        "respuesta": 1,
+        "explicacion": "Es la estructura interna de los permisos."
+    }
+]

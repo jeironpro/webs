@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reproductor de Música</title>
+    <link rel="icon" href="img/reproductor_musica.png" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+</head>
+<body>
+    <main>
+        <div id="contenedor-reproductor">
+            <span class="material-icons volver">arrow_back</span>
+            <div id="reproductor">
+                <div class="contenedor-icono-listado">
+                    <img src="img/lista_reproduccion.png" alt="LISTADO" class="icono-listado" />
+                </div>
+                <div class="contenedor-cancion">
+                    <img src="img/musica.png" alt="CANCION" id="imagen-cancion" />
+                </div>
+                <div class="info-cancion">
+                    <div id="nombre-artista"></div>
+                    <div id="titulo-cancion"></div>
+                </div>
+                <div class="barra-progreso">
+                    <input type="range" id="progreso" min="0" max="100" value="0" />
+                </div>
+                <div class="contenedor-icons">
+                    <span class="material-icons" id="anterior">skip_previous</span>
+                    <div class="contenedor-reproducir-pausar">
+                        <span class="material-icons" id="reproducir">play_arrow</span>
+                        <span class="material-icons" id="pausar" style="display: none">pause</span>
+                    </div>
+                    <span class="material-icons" id="siguiente">skip_next</span>
+                </div>
+            </div>
+            <div id="listado-canciones">
+                <!-- Dinámico -->
+            </div>
+        </div>
+    </main>
+    <script src="js/app.js"></script>
+</body>
+</html>

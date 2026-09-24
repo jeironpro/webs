@@ -1,0 +1,36 @@
+/* Layout principal con grid de dos columnas 40/60 */
+.main-layout {
+  display: grid;
+  grid-template-columns: 40fr 60fr;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+/* Tableta: se mantiene en dos columnas pero con padding reducido */
+@media (max-width: 1024px) {
+  .main-layout {
+    grid-template-columns: 35fr 65fr;
+  }
+}
+
+/* Movil en horizontal: usar filas apiladas */
+@media (max-height: 500px) and (orientation: landscape) {
+  .main-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+  }
+}
+
+/* Movil en vertical: apila las secciones en vertical */
+@media (max-width: 768px) {
+  .main-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 3fr;
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+    height: auto;
+    overflow: hidden;
+  }
+}

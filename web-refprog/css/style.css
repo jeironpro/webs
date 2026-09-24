@@ -1,0 +1,73 @@
+/* RefProg - Hoja de estilos principal */
+
+@import 'variables.css';
+@import 'reset.css';
+@import 'layout/header.css';
+@import 'layout/footer.css';
+@import 'components/buttons.css';
+@import 'components/hero.css';
+@import 'pages/home.css';
+@import 'pages/diagramas.css';
+@import 'pages/info-util.css';
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  /* Patron de fondo: cuadricula sutil tipo libreta */
+  background-image:
+    linear-gradient(var(--color-border-light) 0.5px, transparent 0.5px),
+    linear-gradient(90deg, var(--color-border-light) 0.5px, transparent 0.5px);
+  background-size: 48px 48px;
+  background-position: -0.5px -0.5px;
+}
+
+::selection {
+  background-color: var(--color-highlight);
+  color: var(--color-heading);
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+.section {
+  padding: var(--space-16) 0;
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
+  color: var(--color-heading);
+  margin-bottom: var(--space-2);
+}
+
+.section-subtitle {
+  color: var(--color-text-soft);
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-10);
+  max-width: var(--content-width);
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: var(--space-10) 0;
+  }
+
+  .section-title {
+    font-size: var(--text-2xl);
+  }
+
+  .section-subtitle {
+    font-size: var(--text-base);
+    margin-bottom: var(--space-8);
+  }
+
+  .container {
+    padding: 0 var(--space-4);
+  }
+}

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Continguts DAW</title>
+    <meta name="description" content="Visor dels continguts del CFGS Desenvolupament d'Aplicacions Web (1r i 2n curs).">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,400..600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Panel lateral: marca, selector de idioma y árbol. -->
+    <div class="app">
+        <aside class="sidebar" id="sidebar">
+            <header class="brand">
+                <div class="brand-mark" aria-hidden="true">C</div>
+                <div class="brand-text">
+                    <h1 class="brand-title">Continguts DAW</h1>
+                    <p class="brand-sub" data-i18n="app.brandSub">CFGS Desenvolupament d'Aplicacions Web · 1r i 2n curs</p>
+                </div>
+            </header>
+
+            <!-- Selector de idioma de la interfaz (CA / ES / EN). -->
+            <div class="lang-switch" role="group" data-i18n-aria="lang.group" aria-label="Idioma de la interfície">
+                <button type="button" class="lang-btn" data-lang="ca" aria-pressed="true">CA</button>
+                <button type="button" class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
+                <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+            </div>
+
+            <nav class="tree" id="tree" tabindex="-1" data-i18n-aria="tree.aria" aria-label="Navegació per cursos i mòduls"></nav>
+        </aside>
+
+        <!-- Área principal: buscador, resumen, chips y cuadrícula. -->
+        <main class="main">
+            <div class="main-inner">
+                <header class="main-head">
+                    <div class="head-text">
+                        <!-- Botón de menú: abre/cierra el cajón del panel
+                             lateral en móvil (oculto en pantallas grandes). -->
+                        <button type="button" class="menu-btn" id="menuBtn"
+                                aria-controls="sidebar" aria-expanded="false"
+                                data-i18n-aria="sidebar.toggle" aria-label="Menú de navegació">
+                            <svg class="menu-ico" viewBox="0 0 20 20" aria-hidden="true">
+                                <line class="menu-line menu-line-a" x1="3" y1="6" x2="17" y2="6"/>
+                                <line class="menu-line menu-line-b" x1="3" y1="10" x2="17" y2="10"/>
+                                <line class="menu-line menu-line-c" x1="3" y1="14" x2="17" y2="14"/>
+                            </svg>
+                        </button>
+                        <div class="head-titles">
+                            <h2 class="view-title" id="viewTitle" data-i18n="tree.allFiles">Tots els fitxers</h2>
+                            <p class="view-sub" id="viewSub"></p>
+                        </div>
+                    </div>
+                    <div class="search" role="search" data-i18n-aria="search.region" aria-label="Cerca">
+                        <svg class="search-ico" viewBox="0 0 20 20" aria-hidden="true">
+                            <circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2.4"/>
+                            <line x1="12.8" y1="12.8" x2="17.5" y2="17.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+                        </svg>
+                        <label class="sr-only" for="searchInput" data-i18n="search.label">Cerca per nom, mòdul o format</label>
+                        <input id="searchInput" type="search" placeholder="Cerca per nom, mòdul o format…"
+                               autocomplete="off" spellcheck="false" data-i18n-placeholder="search.placeholder">
+                        <kbd aria-hidden="true">/</kbd>
+                        <button type="button" class="search-clear hidden" id="searchClear"
+                                data-i18n-aria="search.clear" aria-label="Neteja la cerca">✕</button>
+                    </div>
+                </header>
+
+                <section class="summary" id="summary" data-i18n-aria="summary.aria" aria-label="Resum"></section>
+
+                <div class="meta-row">
+                    <p class="view-count" id="viewCount" aria-live="polite"></p>
+                    <div class="chips" id="chips" role="group" data-i18n-aria="chips.aria" aria-label="Filtrar per format"></div>
+                </div>
+
+                <section class="grid" id="grid" aria-live="polite"></section>
+                <div class="empty hidden" id="empty">
+                    <p id="emptyMsg"></p>
+                    <button type="button" class="btn" id="emptyReset" data-i18n="empty.reset">Mostra-ho tot</button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Fondo oscuro del cajón lateral en móvil: cierra el panel
+             al hacer clic fuera de él. -->
+        <div class="sidebar-backdrop" id="sidebarBackdrop" aria-hidden="true"></div>
+    </div>
+
+    <!-- Modal del visor de ficheros. -->
+    <div class="modal hidden" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-backdrop" data-close></div>
+        <div class="modal-panel">
+            <header class="modal-head">
+                <div class="modal-titles">
+                    <span class="modal-kicker" id="modalKicker"></span>
+                    <h3 class="modal-title" id="modalTitle"></h3>
+                    <p class="modal-sub" id="modalSub"></p>
+                </div>
+                <div class="modal-nav" role="group" data-i18n-aria="modal.navAria" aria-label="Navegació entre fitxers">
+                    <button type="button" class="nav-btn" id="modalPrev" data-i18n-aria="modal.prev" aria-label="Fitxer anterior">
+                        <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M8.5 1.5 3 6l5.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                    <span class="nav-pos" id="modalPos"></span>
+                    <button type="button" class="nav-btn" id="modalNext" data-i18n-aria="modal.next" aria-label="Fitxer següent">
+                        <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 1.5 9 6l-5.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                </div>
+                <button type="button" class="modal-close" id="modalClose" data-i18n-aria="modal.close" aria-label="Tanca">✕</button>
+            </header>
+            <div class="modal-body" id="modalBody">
+                <div class="viewer" id="viewer"></div>
+            </div>
+            <footer class="modal-foot">
+                <span class="modal-path" id="modalPath"></span>
+                <div class="modal-actions">
+                    <a class="btn btn-ghost" id="modalOpen" href="#" target="_blank" rel="noopener" data-i18n="viewer.open">Obrir en pestanya nova</a>
+                    <a class="btn" id="modalDownload" href="#" data-i18n="viewer.download">Baixar</a>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>

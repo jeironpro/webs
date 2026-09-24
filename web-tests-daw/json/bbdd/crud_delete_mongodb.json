@@ -1,0 +1,222 @@
+[
+    {
+        "pregunta": "¿Qué método elimina un solo documento que cumple la condición?",
+        "opciones": [
+            "deleteOne()",
+            "dropOne()",
+            "deleteMany()",
+            "removeOne()"
+        ],
+        "respuesta": 0,
+        "explicacion": "Elimina el primer documento que encuentra que coincide con el filtro."
+    },
+    {
+        "pregunta": "¿Qué método elimina todos los documentos que cumplen la condición?",
+        "opciones": [
+            "dropAll()",
+            "deleteOne()",
+            "deleteMany()",
+            "removeAll()"
+        ],
+        "respuesta": 2,
+        "explicacion": "db.coleccion.deleteMany({ estado: 'inactivo' })"
+    },
+    {
+        "pregunta": "¿Qué pasa si ejecutas deleteMany({}) con un objeto vacío?",
+        "opciones": [
+            "Elimina TODOS los documentos de la colección",
+            "Da error",
+            "No elimina nada",
+            "Elimina la colección"
+        ],
+        "respuesta": 0,
+        "explicacion": "Es equivalente a TRUNCATE TABLE pero más lento (borra uno a uno). drop() es más rápido."
+    },
+    {
+        "pregunta": "¿Qué devuelve deleteOne()?",
+        "opciones": [
+            "El documento borrado",
+            "True",
+            "Null",
+            "Un objeto con deletedCount (0 o 1) y acknowledged"
+        ],
+        "respuesta": 3,
+        "explicacion": "No devuelve el documento eliminado."
+    },
+    {
+        "pregunta": "¿Cómo eliminar y recuperar el documento eliminado al mismo tiempo?",
+        "opciones": [
+            "getAndDelete()",
+            "findOneAndDelete()",
+            "deleteOne()",
+            "pop()"
+        ],
+        "respuesta": 1,
+        "explicacion": "Útil para colas de trabajo."
+    },
+    {
+        "pregunta": "¿El método remove() está obsoleto?",
+        "opciones": [
+            "Solo en Linux",
+            "Es el único que existe",
+            "No",
+            "Sí, se recomienda usar deleteOne o deleteMany"
+        ],
+        "respuesta": 3,
+        "explicacion": "remove() tenía un comportamiento confuso con el flag 'justOne'."
+    },
+    {
+        "pregunta": "¿Qué es un borrado lógico (Soft Delete)?",
+        "opciones": [
+            "Marcar un documento como borrado (ej. deleted: true) en lugar de eliminarlo físicamente",
+            "Borrar con lógica",
+            "Borrar índices",
+            "Borrar despacio"
+        ],
+        "respuesta": 0,
+        "explicacion": "Se hace con update, no con delete."
+    },
+    {
+        "pregunta": "¿Qué pasa con los índices cuando borras documentos?",
+        "opciones": [
+            "Hay que reconstruirlos",
+            "Se actualizan automáticamente para reflejar la eliminación",
+            "No pasa nada",
+            "Quedan corruptos"
+        ],
+        "respuesta": 1,
+        "explicacion": "MongoDB mantiene la consistencia de los índices."
+    },
+    {
+        "pregunta": "¿Qué es la atomicidad en deleteMany?",
+        "opciones": [
+            "No es atómica",
+            "Depende del día",
+            "Cada borrado individual es atómico, pero la operación global no (si falla a la mitad, los borrados previos persisten)",
+            "Es totalmente atómica"
+        ],
+        "respuesta": 2,
+        "explicacion": "Para atomicidad total se requieren transacciones."
+    },
+    {
+        "pregunta": "¿Cómo borrar una colección entera eficientemente?",
+        "opciones": [
+            "db.coleccion.deleteMany({})",
+            "db.drop()",
+            "db.coleccion.remove({})",
+            "db.coleccion.drop()"
+        ],
+        "respuesta": 3,
+        "explicacion": "drop() es mucho más rápido porque libera el espacio de disco directamente."
+    },
+    {
+        "pregunta": "¿Se pueden poner condiciones complejas en deleteMany?",
+        "opciones": [
+            "Sí, acepta cualquier filtro de consulta válido (operadores $gt, $in, etc.)",
+            "Solo por _id",
+            "No, solo igualdad",
+            "Solo condiciones simples"
+        ],
+        "respuesta": 0,
+        "explicacion": "Usa la misma sintaxis de filtro que find()."
+    },
+    {
+        "pregunta": "¿Qué hace db.coleccion.findOneAndDelete({ ... }, { sort: ... })?",
+        "opciones": [
+            "Da error",
+            "Elimina uno al azar",
+            "Encuentra el primer documento según el orden especificado y lo elimina",
+            "Elimina el último"
+        ],
+        "respuesta": 2,
+        "explicacion": "El sort es crucial para determinar cuál es el 'primero'."
+    },
+    {
+        "pregunta": "¿Qué permiso se necesita para borrar?",
+        "opciones": [
+            "remove o dbAdmin",
+            "view",
+            "read",
+            "write"
+        ],
+        "respuesta": 0,
+        "explicacion": "Roles de seguridad."
+    },
+    {
+        "pregunta": "¿Qué pasa si el filtro de deleteOne coincide con varios documentos?",
+        "opciones": [
+            "Da error",
+            "Pide permiso",
+            "Borra todos",
+            "Solo borra el primero que encuentra (orden natural o según índice)"
+        ],
+        "respuesta": 3,
+        "explicacion": "Por eso puede ser ambiguo sin un criterio de ordenación determinista."
+    },
+    {
+        "pregunta": "¿Se puede deshacer un delete (Undo)?",
+        "opciones": [
+            "No, una vez borrado se pierde (a menos que haya backup o delay en réplica)",
+            "Sí, con ctrl+z",
+            "Sí, está en la papelera",
+            "Sí, con rollback"
+        ],
+        "respuesta": 0,
+        "explicacion": "MongoDB no tiene papelera de reciclaje."
+    },
+    {
+        "pregunta": "¿Qué es TTL (Time To Live) index?",
+        "opciones": [
+            "Un índice temporal",
+            "Un índice de texto",
+            "Un índice especial que elimina automáticamente documentos después de cierto tiempo",
+            "Un índice rápido"
+        ],
+        "respuesta": 2,
+        "explicacion": "Útil para sesiones, cachés, logs."
+    },
+    {
+        "pregunta": "¿Cómo se crea un índice TTL?",
+        "opciones": [
+            "db.col.expire()",
+            "db.col.createTTL()",
+            "No se puede",
+            "db.col.createIndex({ fecha: 1 }, { expireAfterSeconds: 3600 })"
+        ],
+        "respuesta": 3,
+        "explicacion": "El campo indexado debe ser una fecha."
+    },
+    {
+        "pregunta": "¿Qué pasa si deleteMany no encuentra coincidencias?",
+        "opciones": [
+            "Da error",
+            "Borra todo",
+            "Se cuelga",
+            "No hace nada y devuelve deletedCount: 0"
+        ],
+        "respuesta": 3,
+        "explicacion": "Es una operación válida sin efectos."
+    },
+    {
+        "pregunta": "¿Se pueden usar joins en delete?",
+        "opciones": [
+            "Sí, con $lookup",
+            "Sí, automático",
+            "Sí, con JOIN",
+            "No directamente, hay que buscar los IDs primero y luego borrar"
+        ],
+        "respuesta": 3,
+        "explicacion": "Las operaciones son sobre una sola colección."
+    },
+    {
+        "pregunta": "¿Qué es Capped Collection y el borrado?",
+        "opciones": [
+            "Se borran solos",
+            "Se puede borrar normal",
+            "No se pueden borrar documentos individuales de una Capped Collection",
+            "Solo el admin puede"
+        ],
+        "respuesta": 2,
+        "explicacion": "Solo se pueden eliminar borrando la colección entera (drop)."
+    }
+]

@@ -1,0 +1,222 @@
+[
+    {
+        "pregunta": "¿Qué es un JOIN en SQL?",
+        "opciones": [
+            "Una cláusula para combinar filas de dos o más tablas",
+            "Una función de agregación",
+            "Un tipo de dato",
+            "Un comando para unir bases de datos"
+        ],
+        "respuesta": 0,
+        "explicacion": "JOIN permite relacionar datos de diferentes tablas basándose en una columna común."
+    },
+    {
+        "pregunta": "¿Cuál es el tipo de JOIN más común que devuelve solo las coincidencias?",
+        "opciones": [
+            "LEFT JOIN",
+            "INNER JOIN",
+            "RIGHT JOIN",
+            "FULL JOIN"
+        ],
+        "respuesta": 1,
+        "explicacion": "INNER JOIN devuelve filas cuando hay una coincidencia en ambas tablas."
+    },
+    {
+        "pregunta": "¿Qué devuelve un LEFT JOIN?",
+        "opciones": [
+            "Todas las filas de la tabla derecha",
+            "Todas las filas de la tabla izquierda y las coincidentes de la derecha",
+            "Todas las filas de ambas tablas",
+            "Solo las filas coincidentes"
+        ],
+        "respuesta": 1,
+        "explicacion": "Si no hay coincidencia en la derecha, el resultado es NULL para esas columnas."
+    },
+    {
+        "pregunta": "¿Qué devuelve un RIGHT JOIN?",
+        "opciones": [
+            "Todas las filas de la tabla izquierda",
+            "Solo las filas coincidentes",
+            "Todas las filas de la tabla derecha y las coincidentes de la izquierda",
+            "Ninguna fila"
+        ],
+        "respuesta": 2,
+        "explicacion": "Es el inverso del LEFT JOIN."
+    },
+    {
+        "pregunta": "¿Qué es un CROSS JOIN?",
+        "opciones": [
+            "Una unión de tablas",
+            "Un filtro de tablas",
+            "Una intersección de tablas",
+            "El producto cartesiano de dos tablas"
+        ],
+        "respuesta": 3,
+        "explicacion": "Combina cada fila de la primera tabla con cada fila de la segunda."
+    },
+    {
+        "pregunta": "¿Qué es un SELF JOIN?",
+        "opciones": [
+            "Una unión de claves primarias",
+            "Una unión sin condición",
+            "Una unión de una tabla consigo misma",
+            "Una unión automática"
+        ],
+        "respuesta": 2,
+        "explicacion": "Útil para comparar filas dentro de la misma tabla o consultar datos jerárquicos."
+    },
+    {
+        "pregunta": "¿Cuál es la sintaxis básica de un INNER JOIN?",
+        "opciones": [
+            "SELECT * FROM t1, t2",
+            "SELECT * FROM t1 JOIN t2 WHERE t1.id = t2.id",
+            "SELECT * FROM t1 CONNECT t2",
+            "SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id"
+        ],
+        "respuesta": 3,
+        "explicacion": "La cláusula ON especifica la condición de unión."
+    },
+    {
+        "pregunta": "¿Qué sucede si omites la cláusula ON en un JOIN?",
+        "opciones": [
+            "No devuelve nada",
+            "Devuelve solo la primera fila",
+            "Da un error de sintaxis",
+            "Se produce un CROSS JOIN (producto cartesiano)"
+        ],
+        "respuesta": 3,
+        "explicacion": "En muchos sistemas, JOIN sin ON actúa como CROSS JOIN."
+    },
+    {
+        "pregunta": "¿Qué es una clave foránea en el contexto de un JOIN?",
+        "opciones": [
+            "Un índice externo",
+            "La clave principal de la consulta",
+            "La columna que se usa normalmente para unir las tablas",
+            "Un permiso de usuario"
+        ],
+        "respuesta": 2,
+        "explicacion": "Los JOINS suelen conectar la FK de una tabla con la PK de otra."
+    },
+    {
+        "pregunta": "¿Se pueden unir más de dos tablas en una sola consulta?",
+        "opciones": [
+            "No, solo dos a la vez",
+            "Sí, se pueden encadenar múltiples JOINs",
+            "Sí, pero solo con INNER JOIN",
+            "No, da error"
+        ],
+        "respuesta": 1,
+        "explicacion": "SELECT * FROM t1 JOIN t2 ON ... JOIN t3 ON ..."
+    },
+    {
+        "pregunta": "¿Qué es un FULL OUTER JOIN?",
+        "opciones": [
+            "Devuelve solo las coincidencias",
+            "Devuelve solo las no coincidencias",
+            "Devuelve la mitad de las filas",
+            "Devuelve todas las filas cuando hay coincidencia en una de las tablas"
+        ],
+        "respuesta": 3,
+        "explicacion": "Combina los resultados de LEFT y RIGHT JOIN."
+    },
+    {
+        "pregunta": "¿Cómo se simula un FULL JOIN en MySQL (que no lo soporta nativamente)?",
+        "opciones": [
+            "Usando INNER JOIN",
+            "Usando UNION entre un LEFT JOIN y un RIGHT JOIN",
+            "No se puede",
+            "Usando CROSS JOIN"
+        ],
+        "respuesta": 1,
+        "explicacion": "SELECT ... LEFT JOIN ... UNION SELECT ... RIGHT JOIN ..."
+    },
+    {
+        "pregunta": "¿Qué es un NATURAL JOIN?",
+        "opciones": [
+            "Un JOIN ecológico",
+            "Un JOIN que une automáticamente por columnas con el mismo nombre",
+            "Un JOIN sin filtros",
+            "Un JOIN manual"
+        ],
+        "respuesta": 1,
+        "explicacion": "Es arriesgado usarlo porque depende de los nombres de las columnas, que pueden cambiar."
+    },
+    {
+        "pregunta": "¿Qué alias se suelen usar en los JOINs?",
+        "opciones": [
+            "Símbolos",
+            "Números",
+            "Nombres completos siempre",
+            "Alias de tabla cortos (ej. t1, t2, e, d)"
+        ],
+        "respuesta": 3,
+        "explicacion": "Facilitan la lectura y escritura de la consulta, especialmente al calificar columnas."
+    },
+    {
+        "pregunta": "¿Qué significa 'calificar' una columna en un JOIN?",
+        "opciones": [
+            "Borrarla",
+            "Darle una nota",
+            "Prefijar el nombre de la columna con el nombre de la tabla o alias (tabla.columna)",
+            "Cambiar su tipo"
+        ],
+        "respuesta": 2,
+        "explicacion": "Es necesario cuando ambas tablas tienen columnas con el mismo nombre para evitar ambigüedad."
+    },
+    {
+        "pregunta": "¿Cuál es la diferencia entre WHERE y ON en un JOIN?",
+        "opciones": [
+            "Son lo mismo",
+            "ON define cómo se unen las tablas, WHERE filtra el resultado final",
+            "ON es obsoleto",
+            "WHERE es para tablas, ON para columnas"
+        ],
+        "respuesta": 1,
+        "explicacion": "Aunque en INNER JOIN pueden parecer intercambiables, en OUTER JOINs la diferencia es crucial."
+    },
+    {
+        "pregunta": "¿Qué es un Equi-Join?",
+        "opciones": [
+            "Un JOIN desigual",
+            "Un JOIN nulo",
+            "Un JOIN que usa el operador de igualdad (=) en la condición",
+            "Un JOIN rápido"
+        ],
+        "respuesta": 2,
+        "explicacion": "Es el tipo más común de JOIN."
+    },
+    {
+        "pregunta": "¿Qué es un Non-Equi Join?",
+        "opciones": [
+            "Un JOIN de fechas",
+            "Un JOIN que usa operadores distintos a la igualdad (<, >, BETWEEN)",
+            "Un JOIN que no funciona",
+            "Un JOIN de texto"
+        ],
+        "respuesta": 1,
+        "explicacion": "Útil para rangos, por ejemplo, unir empleados con grados salariales."
+    },
+    {
+        "pregunta": "¿Qué pasa con los valores NULL en una condición de JOIN?",
+        "opciones": [
+            "Coinciden con 0",
+            "Coinciden con cadenas vacías",
+            "Coinciden con otros NULL",
+            "No coinciden con nada, ni siquiera con otro NULL"
+        ],
+        "respuesta": 3,
+        "explicacion": "NULL representa 'desconocido', por lo que NULL = NULL es falso (o desconocido)."
+    },
+    {
+        "pregunta": "¿Para qué sirve USING() en un JOIN?",
+        "opciones": [
+            "Para usar una base de datos",
+            "Es una abreviatura de ON cuando la columna tiene el mismo nombre en ambas tablas",
+            "Para definir usuarios",
+            "Para importar librerías"
+        ],
+        "respuesta": 1,
+        "explicacion": "JOIN tabla2 USING (id) equivale a JOIN tabla2 ON tabla1.id = tabla2.id."
+    }
+]

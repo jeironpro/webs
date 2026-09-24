@@ -1,0 +1,1717 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diseno y Creacion de Software - Portafolio del Curso</title>
+    <meta name="description" content="Portafolio completo del curso de Diseno y Creacion de Software - INFOTEP 2022">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232563eb'%3E%3Cpath d='M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z'/%3E%3C/svg%3E">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-gray-50 text-gray-900 antialiased">
+    <!-- Navegacion -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="index.html" class="flex items-center gap-2 font-bold text-lg text-gray-900">
+                    <span class="material-symbols-outlined text-blue-600">school</span>
+                    <span class="hidden sm:inline">DCS</span>
+                </a>
+                <div class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-600">
+                    <a href="index.html" class="hover:text-blue-600 transition-colors">Inicio</a>
+                    <a href="index.html#herramientas" class="hover:text-blue-600 transition-colors">Herramientas</a>
+                    <a href="index.html#itinerario" class="hover:text-blue-600 transition-colors">Itinerario</a>
+                    <a href="primer_cuatrimestre.html" class="hover:text-blue-600 transition-colors">I Cuatrimestre</a>
+                    <a href="segundo_cuatrimestre.html" class="hover:text-blue-600 transition-colors">II Cuatrimestre</a>
+                    <a href="tercer_cuatrimestre.html" class="hover:text-blue-600 transition-colors">III Cuatrimestre</a>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+                    aria-expanded="false" aria-label="Menu de navegacion">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden border-t border-gray-200 bg-white">
+            <div class="px-4 py-3 space-y-2 text-sm font-medium">
+                <a href="index.html" class="block px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors">Inicio</a>
+                <a href="index.html#herramientas"
+                    class="block px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors">Herramientas</a>
+                <a href="index.html#itinerario"
+                    class="block px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors">Itinerario</a>
+                <a href="primer_cuatrimestre.html" class="block px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors">I
+                    Cuatrimestre</a>
+                <a href="segundo_cuatrimestre.html"
+                    class="block px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors">II Cuatrimestre</a>
+                <a href="tercer_cuatrimestre.html"
+                    class="block px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors">III Cuatrimestre</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mini Hero - Primer Cuatrimestre -->
+  <section class="hero-gradient py-20 pt-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+      <a href="index.html" class="inline-flex items-center gap-1 text-gray-300 hover:text-white text-sm mb-4 transition-colors">
+        <span class="material-symbols-outlined text-base">arrow_back</span> Volver al inicio
+      </a>
+      <h1 class="text-3xl sm:text-4xl font-extrabold">Primer Cuatrimestre</h1>
+      <p class="text-gray-200 mt-2">Fundamentos de Programacion y Diseno</p>
+    </div>
+  </section>
+
+  <section id="primer-cuatrimestre" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 fade-in">
+        <span class="inline-block px-3 py-1 bg-blue-100 text-blue-700 text-xs font-semibold uppercase tracking-wider rounded-full mb-4">Cuatrimestre I</span>
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900">Fundamentos</h2>
+        <p class="mt-3 text-gray-500 max-w-2xl mx-auto">Los cimientos del desarrollo de software: Linux, Python, Git, diseno UI/UX</p>
+      </div>
+
+      <!-- ========== Diseno UI/UX ========== -->
+      <div class="mb-8 fade-in">
+        <button data-accordion class="w-full flex items-center justify-between p-6 bg-gradient-to-r from-blue-50 to-blue-100/50 rounded-2xl border border-blue-200 card-hover text-left" aria-expanded="false">
+          <div class="flex items-center gap-4">
+            <span class="material-symbols-outlined text-3xl text-blue-600">design_services</span>
+            <div><h3 class="text-xl font-bold text-gray-900">Diseno UI y UX</h3><p class="text-sm text-gray-500">50 horas - Principios de diseno de interfaces y experiencia de usuario</p></div>
+          </div>
+          <span class="material-symbols-outlined accordion-arrow text-2xl text-blue-600">expand_more</span>
+        </button>
+        <div class="subject-content bg-white rounded-b-2xl border-x border-b border-gray-200">
+          <div class="p-6 space-y-6">
+
+            <!-- Archivo: diseno_ui_ux_86/diseno_ui_ux.txt -->
+            <h4 class="text-lg font-bold text-gray-900 border-b pb-2">Teoria: Diseno UI/UX</h4>
+            <div class="prose max-w-none text-gray-600">
+              <p>El diseno es un proceso de prefiguracion mental, de planificacion creativa en el que se persigue la solucion para un problema en concreto. Abarca aspectos como la forma, la funcionalidad, la operatividad y vida util del producto.</p>
+              <h5 class="font-semibold text-gray-900 mt-4">Ramas del Diseno</h5>
+              <ul class="list-disc pl-5 space-y-1">
+                <li>Diseno Grafico: creacion de piezas utilizando herramientas graficas digitales o analogicas</li>
+                <li>Diseno Editorial: creacion de revistas, periodicos, libros</li>
+                <li>Diseno Tipografico: creacion de tipografias</li>
+                <li>Diseno Publicitario: creacion de piezas para medios publicitarios</li>
+                <li>Diseno de Identidad Corporativa: creacion de marca e identidad de una empresa</li>
+                <li>Diseno Multimedia: implementacion de contenidos en multiples soportes</li>
+                <li>Diseno Web: creacion de paginas web</li>
+                <li>Diseno UI (Interfaz de Usuario): es la vista que permite al usuario interactuar con un sistema</li>
+                <li>Diseno UX (Experiencia de Usuario): como se siente una persona mientras utiliza una interfaz</li>
+              </ul>
+              <h5 class="font-semibold text-gray-900 mt-4">Procesos del Diseno</h5>
+              <ol class="list-decimal pl-5 space-y-1">
+                <li>Planificacion: se crea el plan de accion para el trabajo a desarrollar</li>
+                <li>Investigacion y analisis: se analiza el mercado y los usuarios</li>
+                <li>Ideacion: se proponen ideas y conceptos</li>
+                <li>Verificacion del diseno: comprobacion de que el diseno cumple los objetivos</li>
+                <li>Prototipado y ejecucion: aplicacion final del diseno</li>
+                <li>Finalizacion: entrega del producto final</li>
+              </ol>
+              <h5 class="font-semibold text-gray-900 mt-4">Usabilidad</h5>
+              <p>Medida empirica y relativa de la utilidad, facilidad de aprendizaje, rendimiento y apreciacion de los usuarios. La usabilidad esta compuesta por caracteristicas como la eficiencia, eficacia, satisfaccion, accesibilidad, comunicacion y curva de aprendizaje.</p>
+              <h5 class="font-semibold text-gray-900 mt-4">Elementos del Diseno</h5>
+              <p>Lineas, Color, Forma, Tamano, Textura, Espacios</p>
+              <h5 class="font-semibold text-gray-900 mt-4">Leyes de UX</h5>
+              <ul class="list-disc pl-5">
+                <li>Ley de Fitts: el tiempo para alcanzar un objetivo depende del tamano y distancia</li>
+                <li>Ley de Hick: el tiempo de decision aumenta con el numero de opciones</li>
+                <li>Ley de Jakob: los usuarios prefieren sistemas familiares</li>
+                <li>Ley de la Proximidad: los elementos cercanos se perciben como relacionados</li>
+                <li>Ley de Miller: la memoria a corto plazo solo almacena 7 +/- 2 elementos</li>
+                <li>Ley de Pareto: el 80% de los efectos proviene del 20% de las causas</li>
+                <li>Efecto Estetico-Usabilidad: los disenos atractivos se perciben como mas usables</li>
+                <li>Efecto de Posicion Serial: es mas probable recordar el primer y ultimo elemento</li>
+                <li>Efecto Von Restorff: el elemento diferente es mas facil de recordar</li>
+                <li>Ley de Tesler: cada aplicacion tiene una complejidad inherente que no se puede reducir</li>
+                <li>Efecto Zeigarnik: las tareas incompletas se recuerdan mejor que las completadas</li>
+              </ul>
+            </div>
+
+            <!-- PDF: prestamos_taveras.pdf -->
+            <h5 class="font-semibold text-gray-900 mt-6">Proyecto UX: Sistema de Prestamos (PDF)</h5>
+            <embed src="assets/pdf/prestamos_taveras.pdf" type="application/pdf" class="w-full h-96 rounded-lg border border-gray-200">
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== Fundamentos de Programacion en Python ========== -->
+      <div class="mb-8 fade-in">
+        <button data-accordion class="w-full flex items-center justify-between p-6 bg-gradient-to-r from-blue-50 to-indigo-100/50 rounded-2xl border border-indigo-200 card-hover text-left" aria-expanded="false">
+          <div class="flex items-center gap-4">
+            <span class="material-symbols-outlined text-3xl text-blue-600">code</span>
+            <div><h3 class="text-xl font-bold text-gray-900">Fundamentos de Programacion en Python</h3><p class="text-sm text-gray-500">60 horas - Logica de programacion con Python</p></div>
+          </div>
+          <span class="material-symbols-outlined accordion-arrow text-2xl text-blue-600">expand_more</span>
+        </button>
+        <div class="subject-content bg-white rounded-b-2xl border-x border-b border-gray-200">
+          <div class="p-6 space-y-6">
+
+            <!-- Teoria: fundamentos_programacion_python.txt -->
+            <h4 class="text-lg font-bold text-gray-900 border-b pb-2">Teoria: Fundamentos de Python</h4>
+            <div class="prose max-w-none text-gray-600">
+              <p>Python es un lenguaje de programacion de proposito general, interpretado, orientado a objetos, dinamico y multiplataforma. Creado por Guido van Rossum a finales de los ochenta. Se caracteriza por su sintaxis clara y legible. Es un lenguaje de alto nivel que permite desarrollar todo tipo de aplicaciones: web, escritorio, cientificas, inteligencia artificial, etc.</p>
+              <p>Para programar se necesita tener conocimientos del lenguaje y logica de programacion. La logica de programacion es un conjunto de tecnicas para resolver problemas de manera ordenada siguiendo pasos logicos y estructurados.</p>
+              <h5 class="font-semibold text-gray-900 mt-4">Palabras Reservadas</h5>
+              <p>False, None, True, and, as, assert, async, await, break, class, continue, def, del, elif, else, except, finally, for, from, global, if, import, in, is, lambda, nonlocal, not, or, pass, raise, return, try, while, with, yield</p>
+              <h5 class="font-semibold text-gray-900 mt-4">Implementaciones de Python</h5>
+              <ul class="list-disc pl-5">
+                <li><strong>CPython:</strong> implementacion predeterminada escrita en C</li>
+                <li><strong>Jython:</strong> se ejecuta en la plataforma Java</li>
+                <li><strong>IronPython:</strong> usa librerias .NET Framework</li>
+                <li><strong>PyPy:</strong> escrita en Python, mas rapida</li>
+              </ul>
+              <h5 class="font-semibold text-gray-900 mt-4">Variables</h5>
+              <p>Se utilizan para almacenar datos. Las variables no necesitan declaracion de tipo explicita, Python infiere el tipo automaticamente. Los nombres de variables son case-sensitive y deben comenzar con letra o guion bajo.</p>
+              <h5 class="font-semibold text-gray-900 mt-4">Tipos de Datos</h5>
+              <ul class="list-disc pl-5">
+                <li><strong>Numericos:</strong> int (enteros), float (decimales), complex (complejos)</li>
+                <li><strong>Booleanos:</strong> bool (True / False)</li>
+                <li><strong>Cadenas:</strong> str (cadenas de caracteres)</li>
+                <li><strong>Secuencias:</strong> list, tuple, range</li>
+                <li><strong>Conjuntos:</strong> set, frozenset</li>
+                <li><strong>Diccionarios:</strong> dict (pares clave-valor)</li>
+              </ul>
+              <h5 class="font-semibold text-gray-900 mt-4">Operadores</h5>
+              <p><strong>Aritmeticos:</strong> +, -, *, /, %, //, **</p>
+              <p><strong>Relacionales:</strong> ==, !=, &lt;, &gt;, &lt;=, &gt;=</p>
+              <p><strong>Logicos:</strong> and, or, not</p>
+              <p><strong>Bitwise:</strong> &lt;&lt;, &gt;&gt;, &amp;, |, ^, ~</p>
+              <p><strong>Asignacion:</strong> =, +=, -=, *=, /=</p>
+            </div>
+
+            <!-- Archivo: variables.py -->
+            <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">variables.py</h4>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Variable de tipo string
+nombre = "Jeiron"
+print(nombre)
+
+# Variable de tipo entero
+edad = 25
+print(edad)
+
+# Variable de tipo float
+altura = 1.75
+print(altura)
+
+# Variable booleana
+es_estudiante = True
+print(es_estudiante)
+
+# Asignacion multiple
+x, y, z = 10, 20, 30
+print(x, y, z)</code></pre>
+
+            <!-- Archivo: entrada_datos.py -->
+            <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">entrada_datos.py</h4>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Entrada de datos con input()
+nombre = input("Introduce tu nombre: ")
+print(f"Hola, {nombre}!")
+
+edad = int(input("Introduce tu edad: "))
+print(f"Tienes {edad} anos.")
+
+altura = float(input("Introduce tu altura: "))
+print(f"Mides {altura} metros.")</code></pre>
+
+            <!-- Archivo: salida_datos.py -->
+            <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">salida_datos.py</h4>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Salida de datos con print()
+print("Hola Mundo")
+
+# print con formato
+nombre = "Jeiron"
+edad = 25
+print(f"Me llamo {nombre} y tengo {edad} anos.")
+
+# print con separador
+print("Manzana", "Pera", "Naranja", sep=", ")
+
+# print con final personalizado
+print("Hola", end=" ")
+print("Mundo")</code></pre>
+
+            <!-- Archivo: operadores_aritmeticos.py -->
+            <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">operadores_aritmeticos.py</h4>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Operadores aritmeticos
+a = 10
+b = 3
+
+suma = a + b
+resta = a - b
+multiplicacion = a * b
+division = a / b
+division_entera = a // b
+modulo = a % b
+potencia = a ** b
+
+print(f"Suma: {suma}")
+print(f"Resta: {resta}")
+print(f"Multiplicacion: {multiplicacion}")
+print(f"Division: {division}")
+print(f"Division entera: {division_entera}")
+print(f"Modulo: {modulo}")
+print(f"Potencia: {potencia}")</code></pre>
+
+            <!-- Archivo: operadores_logicos.py -->
+            <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">operadores_logicos.py</h4>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Operadores logicos: and, or, not
+a = True
+b = False
+
+print(f"a and b: {a and b}")
+print(f"a or b: {a or b}")
+print(f"not a: {not a}")
+
+# Uso practico
+edad = 20
+tiene_licencia = True
+
+if edad >= 18 and tiene_licencia:
+    print("Puede conducir")
+else:
+    print("No puede conducir")</code></pre>
+
+            <!-- Archivo: operadores_relacionales.py -->
+            <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">operadores_relacionales.py</h4>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Operadores relacionales
+a = 10
+b = 5
+
+print(f"{a} == {b}: {a == b}")
+print(f"{a} != {b}: {a != b}")
+print(f"{a} > {b}: {a > b}")
+print(f"{a} < {b}: {a < b}")
+print(f"{a} >= {b}: {a >= b}")
+print(f"{a} <= {b}: {a <= b}")</code></pre>
+
+            <!-- Archivo: condicional_if.py -->
+            <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">condicional_if.py</h4>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Condicional if
+edad = 18
+
+if edad >= 18:
+    print("Eres mayor de edad")
+else:
+    print("Eres menor de edad")</code></pre>
+
+            <!-- Archivo: condicional_anidada.py -->
+            <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">condicional_anidada.py</h4>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Condicional anidada
+nota = 85
+
+if nota >= 90:
+    print("Excelente")
+elif nota >= 80:
+    print("Muy bueno")
+elif nota >= 70:
+    print("Bueno")
+elif nota >= 60:
+    print("Suficiente")
+else:
+    print("Reprobado")</code></pre>
+
+            <!-- Archivo: bucle_for.py -->
+            <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">bucle_for.py</h4>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Bucle for
+# Iterar sobre una lista
+frutas = ["manzana", "pera", "naranja"]
+for fruta in frutas:
+    print(fruta)
+
+# Iterar usando range
+for i in range(5):
+    print(i)
+
+# Iterar sobre un string
+for letra in "Python":
+    print(letra)
+
+# range con inicio, fin y paso
+for i in range(0, 10, 2):
+    print(i)</code></pre>
+
+            <!-- Archivo: bucle_while.py -->
+            <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">bucle_while.py</h4>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Bucle while
+contador = 0
+while contador < 5:
+    print(f"Contador: {contador}")
+    contador += 1
+
+# break y continue
+i = 0
+while True:
+    i += 1
+    if i == 3:
+        continue
+    if i > 5:
+        break
+    print(i)</code></pre>
+
+            <!-- Archivo: funciones.py -->
+            <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">funciones.py</h4>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Funciones
+def saludar(nombre):
+    return f"Hola, {nombre}!"
+
+def sumar(a, b):
+    return a + b
+
+def presentar(nombre, edad):
+    print(f"Me llamo {nombre} y tengo {edad} anos.")
+
+# Llamadas
+print(saludar("Jeiron"))
+print(sumar(10, 5))
+presentar("Jeiron", 25)</code></pre>
+
+            <!-- Archivo: funcion_lambda.py -->
+            <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">funcion_lambda.py</h4>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Funcion lambda
+sumar = lambda a, b: a + b
+print(sumar(5, 3))
+
+doble = lambda x: x * 2
+print(doble(10))
+
+# Lambda con sorted
+personas = [("Juan", 25), ("Ana", 30), ("Luis", 20)]
+personas_ordenadas = sorted(personas, key=lambda p: p[1])
+print(personas_ordenadas)</code></pre>
+
+            <!-- Archivo: funcion_map.py -->
+            <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">funcion_map.py</h4>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Funcion map
+numeros = [1, 2, 3, 4, 5]
+cuadrados = list(map(lambda x: x ** 2, numeros))
+print(cuadrados)
+
+# Map con funcion definida
+def convertir_a_mayuscula(texto):
+    return texto.upper()
+
+nombres = ["juan", "ana", "luis"]
+mayusculas = list(map(convertir_a_mayuscula, nombres))
+print(mayusculas)</code></pre>
+
+            <!-- Archivo: funcion_filter.py -->
+            <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">funcion_filter.py</h4>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Funcion filter
+numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+pares = list(filter(lambda x: x % 2 == 0, numeros))
+print(pares)
+
+# Filter con funcion definida
+def es_mayor_de_edad(edad):
+    return edad >= 18
+
+edades = [15, 22, 17, 30, 12, 18]
+mayores = list(filter(es_mayor_de_edad, edades))
+print(mayores)</code></pre>
+
+            <!-- Archivo: funcion_zip.py -->
+            <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">funcion_zip.py</h4>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Funcion zip
+nombres = ["Juan", "Ana", "Luis"]
+edades = [25, 30, 20]
+ciudades = ["Madrid", "Barcelona", "Valencia"]
+
+combinado = list(zip(nombres, edades, ciudades))
+print(combinado)
+
+# zip con diccionario
+diccionario = dict(zip(nombres, edades))
+print(diccionario)</code></pre>
+
+            <!-- Archivo: listas.py -->
+            <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">listas.py</h4>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Listas
+lista = [1, 2, 3, 4, 5]
+print(lista)
+
+# Metodos de listas
+lista.append(6)
+lista.insert(0, 0)
+lista.remove(3)
+lista.pop()
+lista.sort()
+lista.reverse()
+print(lista)
+
+# Slicing
+print(lista[1:3])
+print(lista[:3])
+print(lista[2:])</code></pre>
+
+            <!-- Archivo: tuplas.py -->
+            <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">tuplas.py</h4>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Tuplas - inmutables
+tupla = (1, 2, 3, 4, 5)
+print(tupla)
+
+# Acceder a elementos
+print(tupla[0])
+print(tupla[1:3])
+
+# Desempaquetado
+a, b, c, d, e = tupla
+print(a, b, c, d, e)
+
+# Metodos de tuplas
+print(tupla.count(3))
+print(tupla.index(4))</code></pre>
+
+            <!-- Archivo: diccionario.py -->
+            <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">diccionario.py</h4>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Diccionarios
+persona = {
+    "nombre": "Jeiron",
+    "edad": 25,
+    "ciudad": "Madrid"
+}
+print(persona)
+
+# Acceder a elementos
+print(persona["nombre"])
+print(persona.get("edad"))
+
+# Modificar diccionario
+persona["edad"] = 26
+persona["profesion"] = "Desarrollador"
+print(persona)
+
+# Iterar sobre diccionario
+for clave, valor in persona.items():
+    print(f"{clave}: {valor}")</code></pre>
+
+            <!-- Archivo: conjuntos.py -->
+            <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">conjuntos.py</h4>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Conjuntos (sets)
+conjunto_a = {1, 2, 3, 4, 5}
+conjunto_b = {4, 5, 6, 7, 8}
+
+# Operaciones con conjuntos
+print(f"Union: {conjunto_a | conjunto_b}")
+print(f"Interseccion: {conjunto_a & conjunto_b}")
+print(f"Diferencia: {conjunto_a - conjunto_b}")
+print(f"Diferencia simetrica: {conjunto_a ^ conjunto_b}")
+
+# Metodos
+conjunto_a.add(6)
+conjunto_a.remove(1)
+print(conjunto_a)</code></pre>
+
+            <!-- Archivo: args_kwargs.py -->
+            <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">args_kwargs.py</h4>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># *args y **kwargs
+def sumar_todos(*args):
+    return sum(args)
+
+def mostrar_info(**kwargs):
+    for clave, valor in kwargs.items():
+        print(f"{clave}: {valor}")
+
+print(sumar_todos(1, 2, 3, 4, 5))
+mostrar_info(nombre="Jeiron", edad=25, ciudad="Madrid")</code></pre>
+
+            <!-- Archivo: excepciones.py -->
+            <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">excepciones.py</h4>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Manejo de excepciones
+try:
+    numero = int(input("Introduce un numero: "))
+    resultado = 10 / numero
+    print(f"Resultado: {resultado}")
+except ValueError:
+    print("Error: introduce un numero valido")
+except ZeroDivisionError:
+    print("Error: no se puede dividir entre cero")
+except Exception as e:
+    print(f"Error inesperado: {e}")
+finally:
+    print("Bloque finally siempre se ejecuta")</code></pre>
+
+            <!-- Archivo: ambito_variable.py -->
+            <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">ambito_variable.py</h4>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Ambito de variables
+variable_global = "Soy global"
+
+def funcion():
+    variable_local = "Soy local"
+    print(variable_global)
+    print(variable_local)
+
+funcion()
+print(variable_global)
+
+def modificar_global():
+    global variable_global
+    variable_global = "Modificada global"
+
+modificar_global()
+print(variable_global)</code></pre>
+
+            <!-- Archivo: pilas_stacks.py -->
+            <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">pilas_stacks.py</h4>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Pilas (Stacks) - LIFO (Last In, First Out)
+pila = []
+
+# Apilar elementos
+pila.append(1)
+pila.append(2)
+pila.append(3)
+print(f"Pila: {pila}")
+
+# Desapilar elementos
+elemento = pila.pop()
+print(f"Elemento desapilado: {elemento}")
+print(f"Pila despues de pop: {pila}")
+
+# Ver tope de la pila
+print(f"Tope de la pila: {pila[-1]}")</code></pre>
+
+            <!-- Archivo: filas_colas.py -->
+            <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">filas_colas.py</h4>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Colas (Queues) - FIFO (First In, First Out)
+from collections import deque
+
+cola = deque()
+
+# Encolar elementos
+cola.append(1)
+cola.append(2)
+cola.append(3)
+print(f"Cola: {cola}")
+
+# Desencolar elementos
+elemento = cola.popleft()
+print(f"Elemento desencolado: {elemento}")
+print(f"Cola despues de popleft: {cola}")</code></pre>
+
+            <!-- Archivo: operador_ternario.py -->
+            <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">operador_ternario.py</h4>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Operador ternario
+edad = 18
+mensaje = "Mayor de edad" if edad >= 18 else "Menor de edad"
+print(mensaje)
+
+# Uso con listas por comprension
+numeros = [1, 2, 3, 4, 5, 6]
+pares_impares = ["Par" if n % 2 == 0 else "Impar" for n in numeros]
+print(pares_impares)</code></pre>
+
+            <!-- Archivo: repaso_python.py -->
+            <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">repaso_python.py</h4>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Repaso general de Python
+
+# Variables y tipos
+nombre = "Jeiron"
+edad = 25
+altura = 1.75
+
+# Listas
+lista = [1, 2, 3, 4, 5]
+
+# Diccionarios
+diccionario = {"nombre": "Jeiron", "edad": 25}
+
+# Condicionales
+if edad >= 18:
+    print("Mayor de edad")
+
+# Bucles
+for i in range(5):
+    print(i)
+
+# Funciones
+def saludar(nombre):
+    return f"Hola {nombre}"
+
+print(saludar("Jeiron"))</code></pre>
+
+            <!-- ====== EJERCICIOS ====== -->
+            <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-8">Ejercicios de Tipos de Datos Simples</h4>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 1</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Escribir un programa que muestre por pantalla la cadena "Hola Mundo!"
+print("Hola Mundo!")</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 2</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Escribir un programa que almacene la cadena "Hola Mundo!" en una variable y la muestre
+mensaje = "Hola Mundo!"
+print(mensaje)</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 3</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Escribir un programa que pregunte el nombre del usuario y lo salude
+nombre = input("Introduce tu nombre: ")
+print(f"Hola, {nombre}!")</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 4</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Mostrar el resultado de una operacion aritmetica
+resultado = ((3 + 2) / (2 * 5)) ** 2
+print(resultado)</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 5</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Pedir al usuario las horas trabajadas y el costo por hora, mostrar el pago
+horas = float(input("Horas trabajadas: "))
+costo = float(input("Costo por hora: "))
+pago = horas * costo
+print(f"El pago total es: {pago}")</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 6</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Escribir un programa que calcule el IMC
+peso = float(input("Introduce tu peso en kg: "))
+altura = float(input("Introduce tu altura en metros: "))
+imc = peso / (altura ** 2)
+print(f"Tu IMC es: {imc:.2f}")</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 7</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Calcular el numero de horas en un ano
+horas_dia = 24
+dias_ano = 365
+horas_ano = horas_dia * dias_ano
+print(f"Horas en un ano: {horas_ano}")</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 8</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Mostrar la cantidad de numeros que caben en otro
+numero1 = int(input("Introduce el primer numero: "))
+numero2 = int(input("Introduce el segundo numero: "))
+cabida = numero1 // numero2
+print(f"{numero2} cabe {cabida} veces en {numero1}")</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 9</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Suma de dos numeros ingresados por el usuario
+a = int(input("Primer numero: "))
+b = int(input("Segundo numero: "))
+print(f"Suma: {a + b}")</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 10</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Calcular el area de un rectangulo
+base = float(input("Base del rectangulo: "))
+altura = float(input("Altura del rectangulo: "))
+area = base * altura
+print(f"Area: {area}")</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 11</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Calcular el area de un circulo
+import math
+radio = float(input("Radio del circulo: "))
+area = math.pi * radio ** 2
+print(f"Area del circulo: {area:.2f}")</code></pre>
+
+            <!-- Ejercicios Condicionales -->
+            <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-8">Ejercicios de Condicionales</h4>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 1</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Determinar si un numero es positivo, negativo o cero
+numero = int(input("Introduce un numero: "))
+if numero > 0:
+    print("El numero es positivo")
+elif numero < 0:
+    print("El numero es negativo")
+else:
+    print("El numero es cero")</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 2</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Determinar si un numero es par o impar
+numero = int(input("Introduce un numero: "))
+if numero % 2 == 0:
+    print("El numero es par")
+else:
+    print("El numero es impar")</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 3</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Mayor de tres numeros
+a = int(input("Primer numero: "))
+b = int(input("Segundo numero: "))
+c = int(input("Tercer numero: "))
+if a >= b and a >= c:
+    print(f"El mayor es: {a}")
+elif b >= a and b >= c:
+    print(f"El mayor es: {b}")
+else:
+    print(f"El mayor es: {c}")</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 4</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Determinar si un ano es bisiesto
+ano = int(input("Introduce un ano: "))
+if (ano % 4 == 0 and ano % 100 != 0) or (ano % 400 == 0):
+    print(f"{ano} es bisiesto")
+else:
+    print(f"{ano} no es bisiesto")</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 5</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Calcular el precio de entrada a un cine segun la edad
+edad = int(input("Introduce tu edad: "))
+if edad < 5:
+    precio = 0
+elif edad < 18:
+    precio = 5
+elif edad < 65:
+    precio = 10
+else:
+    precio = 7
+print(f"El precio de la entrada es: {precio} euros")</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 6</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Determinar la calificacion segun la nota
+nota = float(input("Introduce la nota: "))
+if nota >= 9:
+    calif = "Sobresaliente"
+elif nota >= 7:
+    calif = "Notable"
+elif nota >= 6:
+    calif = "Bien"
+elif nota >= 5:
+    calif = "Suficiente"
+else:
+    calif = "Insuficiente"
+print(f"Calificacion: {calif}")</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 7</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Verificar si una letra es vocal o consonante
+letra = input("Introduce una letra: ").lower()
+if letra in "aeiou":
+    print("Es una vocal")
+elif letra.isalpha():
+    print("Es una consonante")
+else:
+    print("No es una letra")</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 8</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Calcular el descuento segun el monto de compra
+monto = float(input("Monto de compra: "))
+if monto >= 100:
+    descuento = monto * 0.10
+elif monto >= 50:
+    descuento = monto * 0.05
+else:
+    descuento = 0
+print(f"Descuento: {descuento}, Total: {monto - descuento}")</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 9</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Determinar el signo zodiacal
+dia = int(input("Dia de nacimiento: "))
+mes = int(input("Mes de nacimiento: "))
+if (mes == 3 and dia >= 21) or (mes == 4 and dia <= 19):
+    print("Aries")
+elif (mes == 4 and dia >= 20) or (mes == 5 and dia <= 20):
+    print("Tauro")
+elif (mes == 5 and dia >= 21) or (mes == 6 and dia <= 20):
+    print("Geminis")
+elif (mes == 6 and dia >= 21) or (mes == 7 and dia <= 22):
+    print("Cancer")
+elif (mes == 7 and dia >= 23) or (mes == 8 and dia <= 22):
+    print("Leo")
+elif (mes == 8 and dia >= 23) or (mes == 9 and dia <= 22):
+    print("Virgo")
+elif (mes == 9 and dia >= 23) or (mes == 10 and dia <= 22):
+    print("Libra")
+elif (mes == 10 and dia >= 23) or (mes == 11 and dia <= 21):
+    print("Escorpio")
+elif (mes == 11 and dia >= 22) or (mes == 12 and dia <= 21):
+    print("Sagitario")
+elif (mes == 12 and dia >= 22) or (mes == 1 and dia <= 19):
+    print("Capricornio")
+elif (mes == 1 and dia >= 20) or (mes == 2 and dia <= 18):
+    print("Acuario")
+else:
+    print("Piscis")</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 10</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Juego de piedra, papel o tijera
+jugador1 = input("Jugador 1 (piedra, papel, tijera): ").lower()
+jugador2 = input("Jugador 2 (piedra, papel, tijera): ").lower()
+if jugador1 == jugador2:
+    print("Empate")
+elif (jugador1 == "piedra" and jugador2 == "tijera") or (jugador1 == "papel" and jugador2 == "piedra") or (jugador1 == "tijera" and jugador2 == "papel"):
+    print("Gana Jugador 1")
+else:
+    print("Gana Jugador 2")</code></pre>
+
+            <!-- Ejercicios de Bucles -->
+            <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-8">Ejercicios de Bucles</h4>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 1</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Imprimir los numeros del 1 al 10
+for i in range(1, 11):
+    print(i)</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 2</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Sumar los primeros 100 numeros naturales
+suma = 0
+for i in range(1, 101):
+    suma += i
+print(f"Suma: {suma}")</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 3</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Mostrar la tabla de multiplicar de un numero
+numero = int(input("Introduce un numero: "))
+for i in range(1, 11):
+    print(f"{numero} x {i} = {numero * i}")</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 4</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Contar numeros pares e impares hasta N
+n = int(input("Introduce N: "))
+pares = 0
+impares = 0
+for i in range(1, n + 1):
+    if i % 2 == 0:
+        pares += 1
+    else:
+        impares += 1
+print(f"Pares: {pares}, Impares: {impares}")</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 5</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Calcular el factorial de un numero
+n = int(input("Introduce un numero: "))
+factorial = 1
+for i in range(1, n + 1):
+    factorial *= i
+print(f"Factorial de {n}: {factorial}")</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 6</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Serie Fibonacci hasta N terminos
+n = int(input("Cuantos terminos: "))
+a, b = 0, 1
+for i in range(n):
+    print(a)
+    a, b = b, a + b</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 7</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Determinar si un numero es primo
+n = int(input("Introduce un numero: "))
+es_primo = True
+if n < 2:
+    es_primo = False
+else:
+    for i in range(2, int(n ** 0.5) + 1):
+        if n % i == 0:
+            es_primo = False
+            break
+if es_primo:
+    print(f"{n} es primo")
+else:
+    print(f"{n} no es primo")</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 8</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Invertir un numero
+n = int(input("Introduce un numero: "))
+invertido = 0
+while n > 0:
+    digito = n % 10
+    invertido = invertido * 10 + digito
+    n = n // 10
+print(f"Invertido: {invertido}")</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 9</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Suma de digitos de un numero
+n = int(input("Introduce un numero: "))
+suma_digitos = 0
+while n > 0:
+    suma_digitos += n % 10
+    n = n // 10
+print(f"Suma de digitos: {suma_digitos}")</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 10</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Juego de adivinar el numero
+import random
+secreto = random.randint(1, 100)
+intentos = 0
+while True:
+    guess = int(input("Adivina el numero (1-100): "))
+    intentos += 1
+    if guess == secreto:
+        print(f"Correcto! Lo lograste en {intentos} intentos")
+        break
+    elif guess < secreto:
+        print("El numero es mayor")
+    else:
+        print("El numero es menor")</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 11</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Dibujar un triangulo con asteriscos
+n = int(input("Altura del triangulo: "))
+for i in range(1, n + 1):
+    print("*" * i)</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 12</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Dibujar un triangulo invertido
+n = int(input("Altura del triangulo: "))
+for i in range(n, 0, -1):
+    print("*" * i)</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 13</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Tabla de multiplicar del 1 al 10
+for i in range(1, 11):
+    print(f"Tabla del {i}:")
+    for j in range(1, 11):
+        print(f"{i} x {j} = {i * j}")
+    print()</code></pre>
+
+            <!-- Ejercicios de Cadenas -->
+            <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-8">Ejercicios de Cadenas</h4>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 1</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Contar la longitud de una cadena
+cadena = input("Introduce una cadena: ")
+print(f"Longitud: {len(cadena)}")</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 2</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Invertir una cadena
+cadena = input("Introduce una cadena: ")
+print(f"Invertida: {cadena[::-1]}")</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 3</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Contar vocales en una cadena
+cadena = input("Introduce una cadena: ").lower()
+vocales = sum(1 for letra in cadena if letra in "aeiou")
+print(f"Vocales: {vocales}")</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 4</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Verificar si una cadena es palindromo
+cadena = input("Introduce una cadena: ").replace(" ", "").lower()
+if cadena == cadena[::-1]:
+    print("Es palindromo")
+else:
+    print("No es palindromo")</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 5</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Contar palabras en una frase
+frase = input("Introduce una frase: ")
+palabras = frase.split()
+print(f"Palabras: {len(palabras)}")</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 6</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Convertir una cadena a mayusculas y minusculas
+cadena = input("Introduce una cadena: ")
+print(f"Mayusculas: {cadena.upper()}")
+print(f"Minusculas: {cadena.lower()}")</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 7</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Eliminar espacios de una cadena
+cadena = input("Introduce una cadena con espacios: ")
+print(f"Sin espacios: {cadena.replace(' ', '')}")</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 8</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Buscar una palabra en una frase
+frase = input("Introduce una frase: ")
+palabra = input("Palabra a buscar: ")
+if palabra in frase:
+    print(f"La palabra '{palabra}' esta en la frase")
+else:
+    print(f"La palabra '{palabra}' no esta en la frase")</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 9</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Reemplazar una palabra en una frase
+frase = input("Introduce una frase: ")
+vieja = input("Palabra a reemplazar: ")
+nueva = input("Nueva palabra: ")
+print(frase.replace(vieja, nueva))</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 10</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Capitalizar cada palabra de una frase
+frase = input("Introduce una frase: ")
+print(frase.title())</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 11</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Validar si un email tiene formato basico
+email = input("Introduce un email: ")
+if "@" in email and "." in email:
+    print("Email valido")
+else:
+    print("Email invalido")</code></pre>
+
+            <!-- Ejercicios Listas y Tuplas -->
+            <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-8">Ejercicios de Listas y Tuplas</h4>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 1</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Crear una lista con 5 numeros y mostrarla
+lista = [1, 2, 3, 4, 5]
+print(lista)</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 2</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Sumar los elementos de una lista
+lista = [1, 2, 3, 4, 5]
+suma = sum(lista)
+print(f"Suma: {suma}")</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 3</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Encontrar el mayor y menor de una lista
+lista = [3, 7, 1, 9, 4]
+print(f"Mayor: {max(lista)}, Menor: {min(lista)}")</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 4</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Eliminar duplicados de una lista
+lista = [1, 2, 2, 3, 4, 4, 5]
+sin_duplicados = list(set(lista))
+print(sin_duplicados)</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 5</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Ordenar una lista
+lista = [3, 1, 4, 1, 5, 9, 2]
+lista.sort()
+print(f"Ascendente: {lista}")
+lista.sort(reverse=True)
+print(f"Descendente: {lista}")</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 6</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Unir dos listas
+lista1 = [1, 2, 3]
+lista2 = [4, 5, 6]
+unida = lista1 + lista2
+print(unida)</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 7</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Buscar un elemento en una lista
+lista = [10, 20, 30, 40, 50]
+elemento = int(input("Elemento a buscar: "))
+if elemento in lista:
+    print(f"Encontrado en indice {lista.index(elemento)}")
+else:
+    print("No encontrado")</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 8</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Contar ocurrencias de un elemento
+lista = [1, 2, 2, 3, 2, 4, 2, 5]
+elemento = 2
+print(f"{elemento} aparece {lista.count(elemento)} veces")</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 9</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Crear una tupla con los dias de la semana
+dias = ("Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo")
+print(dias)
+print(dias[0])
+print(dias[-1])</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 10</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Desempaquetar una tupla
+tupla = ("Juan", 25, "Madrid")
+nombre, edad, ciudad = tupla
+print(f"Nombre: {nombre}, Edad: {edad}, Ciudad: {ciudad}")</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 11</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Convertir lista a tupla y viceversa
+lista = [1, 2, 3, 4, 5]
+tupla = tuple(lista)
+print(f"Tupla: {tupla}")
+lista2 = list(tupla)
+print(f"Lista: {lista2}")</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 12</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Lista de cuadrados con comprension
+cuadrados = [x ** 2 for x in range(1, 11)]
+print(cuadrados)</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 13</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Matriz con listas anidadas
+matriz = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+for fila in matriz:
+    print(fila)</code></pre>
+
+            <!-- Ejercicios Diccionarios -->
+            <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-8">Ejercicios de Diccionarios</h4>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 1</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Crear un diccionario con informacion personal
+persona = {
+    "nombre": "Jeiron",
+    "edad": 25,
+    "ciudad": "Madrid"
+}
+print(persona)</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 2</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Acceder a los valores de un diccionario
+persona = {"nombre": "Jeiron", "edad": 25}
+print(persona["nombre"])
+print(persona.get("edad"))
+print(persona.get("profesion", "No especificada"))</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 3</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Agregar y modificar elementos en un diccionario
+persona = {"nombre": "Jeiron"}
+persona["edad"] = 25
+persona["nombre"] = "Jeiron Pro"
+print(persona)</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 4</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Iterar sobre un diccionario
+persona = {"nombre": "Jeiron", "edad": 25, "ciudad": "Madrid"}
+for clave, valor in persona.items():
+    print(f"{clave}: {valor}")</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 5</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Verificar si una clave existe en un diccionario
+persona = {"nombre": "Jeiron", "edad": 25}
+if "nombre" in persona:
+    print("La clave 'nombre' existe")
+if "profesion" not in persona:
+    print("La clave 'profesion' no existe")</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 6</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Obtener claves y valores por separado
+persona = {"nombre": "Jeiron", "edad": 25, "ciudad": "Madrid"}
+print(f"Claves: {list(persona.keys())}")
+print(f"Valores: {list(persona.values())}")</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 7</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Eliminar elementos de un diccionario
+persona = {"nombre": "Jeiron", "edad": 25, "ciudad": "Madrid"}
+del persona["ciudad"]
+print(persona)
+edad = persona.pop("edad")
+print(f"Edad eliminada: {edad}")
+print(persona)</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 8</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Diccionario de traduccion (Espanol-Ingles)
+traducciones = {
+    "hola": "hello",
+    "adios": "goodbye",
+    "gracias": "thank you",
+    "por favor": "please"
+}
+palabra = input("Palabra a traducir: ").lower()
+if palabra in traducciones:
+    print(f"Traduccion: {traducciones[palabra]}")
+else:
+    print("Traduccion no encontrada")</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 9</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Contar frecuencia de palabras en una frase
+frase = input("Introduce una frase: ")
+palabras = frase.split()
+frecuencia = {}
+for palabra in palabras:
+    frecuencia[palabra] = frecuencia.get(palabra, 0) + 1
+for palabra, count in frecuencia.items():
+    print(f"'{palabra}': {count}")</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 10</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Diccionario de contactos
+contactos = {
+    "Juan": {"telefono": "123456789", "email": "juan@email.com"},
+    "Maria": {"telefono": "987654321", "email": "maria@email.com"}
+}
+nombre = input("Nombre del contacto: ")
+if nombre in contactos:
+    print(f"Telefono: {contactos[nombre]['telefono']}")
+    print(f"Email: {contactos[nombre]['email']}")
+else:
+    print("Contacto no encontrado")</code></pre>
+
+            <!-- Ejercicios Funciones -->
+            <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-8">Ejercicios de Funciones</h4>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 1</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Funcion que saluda
+def saludar(nombre):
+    return f"Hola {nombre}!"
+print(saludar("Jeiron"))</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 2</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Funcion que suma dos numeros
+def sumar(a, b):
+    return a + b
+print(sumar(5, 3))</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 3</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Funcion que verifica si un numero es par
+def es_par(n):
+    return n % 2 == 0
+numero = int(input("Numero: "))
+if es_par(numero):
+    print("Es par")
+else:
+    print("Es impar")</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 4</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Funcion que calcula el factorial
+def factorial(n):
+    if n == 0:
+        return 1
+    return n * factorial(n - 1)
+print(factorial(5))</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 5</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Funcion con numero variable de argumentos
+def sumar_todos(*args):
+    return sum(args)
+print(sumar_todos(1, 2, 3, 4, 5))
+print(sumar_todos(10, 20))</code></pre>
+
+            <!-- Ejercicios Tareas -->
+            <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-8">Ejercicios de Tareas</h4>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Tarea 1</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Tarea: Calculadora basica
+def calculadora():
+    a = float(input("Primer numero: "))
+    op = input("Operacion (+, -, *, /): ")
+    b = float(input("Segundo numero: "))
+    if op == "+":
+        print(f"Resultado: {a + b}")
+    elif op == "-":
+        print(f"Resultado: {a - b}")
+    elif op == "*":
+        print(f"Resultado: {a * b}")
+    elif op == "/":
+        if b != 0:
+            print(f"Resultado: {a / b}")
+        else:
+            print("Error: division entre cero")
+    else:
+        print("Operacion no valida")
+
+calculadora()</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Tarea 2</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Tarea: Gestion de notas
+notas = []
+while True:
+    nota = input("Introduce una nota (o 'fin' para terminar): ")
+    if nota.lower() == 'fin':
+        break
+    notas.append(float(nota))
+if notas:
+    print(f"Notas: {notas}")
+    print(f"Promedio: {sum(notas) / len(notas):.2f}")
+    print(f"Maxima: {max(notas)}")
+    print(f"Minima: {min(notas)}")</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Tarea 3</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Tarea: Agenda de contactos
+agenda = {}
+def agregar():
+    nombre = input("Nombre: ")
+    telefono = input("Telefono: ")
+    agenda[nombre] = telefono
+    print("Contacto agregado")
+
+def buscar():
+    nombre = input("Nombre a buscar: ")
+    if nombre in agenda:
+        print(f"Telefono: {agenda[nombre]}")
+    else:
+        print("No encontrado")
+
+def listar():
+    for nombre, telefono in agenda.items():
+        print(f"{nombre}: {telefono}")
+
+while True:
+    opcion = input("1-Agregar 2-Buscar 3-Listar 4-Salir: ")
+    if opcion == "1":
+        agregar()
+    elif opcion == "2":
+        buscar()
+    elif opcion == "3":
+        listar()
+    elif opcion == "4":
+        break</code></pre>
+
+            <!-- Evaluacion Practica Final Python -->
+            <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-8">Evaluacion Practica Final Python</h4>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Evaluacion Final</h5>
+            <div class="prose max-w-none text-gray-600">
+              <p><strong>Evaluacion Practica Final de Python</strong></p>
+              <ol class="list-decimal pl-5">
+                <li>Realizar un programa que conste de una clase llamada Alumno que tenga como atributos: Matricula, Nombre, Nota. Definir los metodos para inicializar sus atributos, imprimirlos y mostrar un mensaje con el resultado de la nota y si ha aprobado o no.</li>
+                <li>Realizar un programa que conste de una clase llamada Estudiante con atributos: nombre, edad, nota. Definir los metodos para inicializar, imprimir y mostrar si aprobo.</li>
+                <li>Realizar un programa que conste de una clase llamada Persona con atributos: nombre, edad. Definir metodos para inicializar, imprimir y clasificar por rango de edad.</li>
+                <li>Realizar un programa que calcule el factorial de un numero usando POO.</li>
+              </ol>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!-- ========== Manejo de Linux ========== -->
+      <div class="mb-8 fade-in">
+        <button data-accordion class="w-full flex items-center justify-between p-6 bg-gradient-to-r from-blue-50 to-blue-100/50 rounded-2xl border border-blue-200 card-hover text-left" aria-expanded="false">
+          <div class="flex items-center gap-4">
+            <span class="material-symbols-outlined text-3xl text-blue-600">terminal</span>
+            <div><h3 class="text-xl font-bold text-gray-900">Manejo de Linux</h3><p class="text-sm text-gray-500">50 horas - Sistema operativo Linux, comandos, shell scripts</p></div>
+          </div>
+          <span class="material-symbols-outlined accordion-arrow text-2xl text-blue-600">expand_more</span>
+        </button>
+        <div class="subject-content bg-white rounded-b-2xl border-x border-b border-gray-200">
+          <div class="p-6 space-y-6">
+            <h5 class="font-semibold text-gray-900 mt-4">Manejo Linux</h5>
+            <div class="prose max-w-none text-gray-600">
+              <p>Concepto de Linux  
+Linux es un sistema operativo compuesto por software libre y de código abierto parecido a Unix, creado por el filandes Linus Torvalds. Su software libre implica que cualquier persona puede ver el código fuente y modificarlo para crear distribuciones que derivan de Linux y usarla en computadoras, servidores, mainframes y dispositivos móviles. Linux como tal es solo un kernel y el sistema está compuesto por una gran cantidad de componentes de terceros, que van desde compiladores hasta entorno de escritorio. 
+ 
+Concepto de software libre y gestor de paquete 
+Concepto de software libre 
+Software libre es un software cuyo código fuente puede ser utilizado por cualquier persona y para sus propios fines. El software libre puede ser estudiado, modificado y redistribuido con cambios o mejoras. El software libre es creado por el activista y experto informático Richard Stallman bajo su fundación la free software fundation.</p>              <p>Concepto de gestor de paquete  
+El gestor de paquetes es una interfaz formada por una colección de herramientas que asiste al usuario automatizando los procesos de instalación, actualización, configuración y eliminación de paquete de software.</p>              <p>Tipos de formatos de los paquetes 
+tgz (archivos tar gzip): que básicamente son archivos con el código fuente. Pueden tener todo lo que el responsable del paquete considera útil. Además del formato de archivo propio, necesario para extraer los archivos, no hay nada estándar sobre el contenido de un archivo tgz. Tienen que ser compilados para poder ejecutar el software. 
+Rpm (rpm package manager): que son archivos pre-compilados. Creados por Red Hat Linux y estandarizado por el LSB, se utiliza en la actualidad por muchas distribuciones de Linux como sistema de empaquetado de su software, incluyendo openSUSE. 
+deb: (Debian) Son archivos precompilados utilizados por Debian u otros de los sistemas derivados de este (Ubuntu, Mint, etc.) 
+ 
+Núcleo o kernel 
+Núcleo o kernel es el corazón de un sistema operativo que se encargar de medir entre los procesos del usuario y el hardware disponible, es decir le concede el acceso al hardware para el software que lo solicite de manera segura. El kernel es también responsable de los controladores más importantes que pueden acceder directamente al hardware y gestionar sus recursos de la manera más eficiente. 
+ 
+El Shell 
+El Shell es un intérprete de comandos de un sistema operativo que provee una interfaz de usuario para acceder a los servicios del sistema, mediante las instrucciones que aporta el intérprete, el usuario puede comunicarse con el núcleo. 
+Shell es cualquier interprete que los usuarios usen para escribir comandos. Los comandos que aportan los intérpretes, pueden usarse a modo de guion si se escriben en ficheros ejecutables denominados Shell-scripts, de este modo, cuando el usuario necesita hacer uso de varios comandos o combinación de comandos con herramientas, escribe en un fichero de texto, marcado como ejecutable, las operaciones que posteriormente, línea por línea, el intérprete traducirá al núcleo para que las realice. 
+ 
+Sistema de archivos 
+El sistema de archivos es una estructura de directorios completa que contiene un directorio raíz y un subdirectorio que maneja los archivos y controla como se almacenan y recuperan los datos. Sin un sistema de archivos, los datos colocados en un medio de almacenamiento serían un gran cuerpo de datos sin manera de saber dónde termina un dato y comienza el siguiente. 
+El sistema de archivos le permite al usuario identificar la ubicación de los archivos y poder acceder a ellos de manera segura, también se encarga de administrar y facilitar el uso de las memorias periféricas, la asignación de espacios a los archivos, la administración del espacio libre y del acceso a los datos resguardados. Los sistemas de archivos proveen métodos para crear, mover, renombrar y eliminar tanto archivos como directorios. 
+ 
+Diferencia de Linux con otros sistemas operativos 
+La principal diferencia es que Linux es libre y gratis, mientras que los 
+demás son privativos y de pago. Linux necesita un menor mantenimiento ante los demás sistemas operativos. Linux es más seguro ya que es libre y cualquiera puede tener acceso a su código fuente y modificarlo como quiera, en cambio Windows es más atacado por los hackers. 
+Linux es multitarea real, multiusuario y posee un esquema de seguridad donde los usuarios son los que dan permiso de lectura, escritura y ejecución a los archivos y directorios. Ante Mac, Linux es más simple en cuanto a control para los usuarios. 
+ 
+Estructura de directorios 
+La estructura de directorios suele ser la de un árbol, dentro de ese árbol los directorios se ordenan de forma jerárquica. Cada directorio puede tener uno o más subdirectorios. En cada subdirectorio podemos encontrar ficheros con idéntico nombre, también en algunos sistemas está permitido que un mismo fichero este en varios directorios. 
+/dev, Contiene archivos especiales para dispositivos de E/S. 
+/etc, Contiene archivos para la inicialización del sistema y la gestión del sistema. 
+/home, Contiene directorios de inicio de sesión para los usuarios del sistema. 
+/tmp, Contiene archivos que son temporales y que se suprimen automáticamente después de un número especificado de días. 
+/usr, Contiene lpp, include y otros directorios del sistema. 
+/usr/bin, Contiene programas ejecutables de usuario. 
+  
+Interprete de comandos 
+Un intérprete de comandos es un programa informático que tiene la capacidad de traducir las órdenes que introducen los usuarios, mediante un conjunto de instrucciones facilitadas por el mismo directamente al núcleo y al conjunto de herramientas que forman el sistema operativo. El intérprete de comando permite la comunicación entre el sistema y el usuario. 
+ 
+Existen muchos intérpretes de comandos: 
+Unix: Korn Shell (ksh), C Shell (csh), Bourne Shell (sh), Bourne Again Shell (bash), Tcsh, Z Shell (zsh); Windows: command.com, cmd.exe, MSH Windows PowerShell.</p>
+            </div>
+
+            <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-8">Scripts de Linux</h4>
+            <h5 class="font-semibold text-gray-900 mt-4">Contra Ordenes</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code>#!/bin/bash
+rm -r Directorio
+rm -r Linux\ Server
+rm Server
+rm Fedora
+rm Gnome
+rm RedHat
+
+echo "jeyjey, la operacion se completo satisfactoriamente"</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">ejecucion</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code>#!/bin/bash
+clear
+echo "DIGITE EL NUMERO DE LA ACCION DESEADA:"
+read NUM
+case $NUM in
+1)
+ls -l
+;;
+2)
+top
+;;
+3)
+gedit comandos
+;;
+4)
+mkdir comandos
+;;
+5)
+reboot
+;;
+esac</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">for</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code>#!/bin/bash
+for i in {A..Z};
+do
+echo "$i" 
+done</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">mayor</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code>#!/bin/bash
+clear
+echo "INTRODUCE EL PRIMER NUMERO:"
+read a
+echo "INTRODUCE EL SEGUNDO NUMERO:"
+read b
+if [ $a -gt $b ]; then
+echo "EL NUMERO $a ES MAYOR QUE $b"
+elif  [ $a -eq $b ]; then
+echo "LOS NUMEROS SON IGUALES"
+else
+echo "EL NUMERO $b ES MAYOR QUE $a"
+fi</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Numero Par</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code>#!/bin/bash
+read -p "ESCRIBA UN NUMERO: " NUM
+if [ $(($NUM%2)) -eq 0 ]; then
+echo "EL NUMERO ES PAR"
+else
+echo "EL NUMERO ES IMPAR"
+fi</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">ordenes</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code>#!/bin/bash
+
+#Creacion de carpertas
+mkdir Directorio
+mkdir Directorio/Ubuntu
+mkdir Directorio/Linux
+mkdir Linux\ Server
+ls -l &gt; Server
+ls -l /etc &gt; Fedora
+ls -l / &gt; Gnome
+ls -la &gt; RedHat
+
+#Copia de carpetas y archivos
+cp Server Directorio
+cp -r RedHat Directorio/Ubuntu
+cp -r Fedora Directorio/Linux
+cp Gnome Linux\ Server
+
+echo "jeyjey, la operacion se completo satisfactoriamente"</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Read Login User</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code>#!/bin/bash
+clear
+echo "ESCRIBA SU USUARIO"
+read -p "USUARIO: " USER
+read -sp "BIENVENIDO $USER, ESCRIBA SU CONTRASEÑA: " PASSWORD
+clear
+echo -e "\nEl USUARIO ES $USER &amp; LA CONTRASEÑA ES $PASSWORD"</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Read Srmdro</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code>#!/bin/bash
+clear
+echo "DIGITE EL PRIMER NUMERO:"
+read n1
+echo "DIGITE EL SEGUNDO NUMERO:"
+read n2
+S=`expr $n1 + $n2`
+echo "$n1 + $n2 = $S"
+R=`expr $n1 - $n2`
+echo "$n1 - $n2 = $R"
+M=`expr $n1 \* $n2`
+echo "$n1 * $n2= $M"
+D=`expr $n1 \/ $n2`
+echo "$n1 / $n2 = $D"
+RO=`expr $n1 % $n2`
+echo "$n1 % $n2 = $RO"
+exit 0</code></pre>
+
+            <h5 class="font-semibold text-gray-900 mt-4">Read User Login</h5>
+            <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code>#!/bin/bash
+clear
+echo "ESCRIBA SU USUARIO"
+read -p "USUARIO: " User
+read -sp "BIENVENIDO $User, INTRODUCE TU CONTRASEÑA: " Password
+read $Usuario jeiron $Password jeiron
+echo "EL USUARIO &amp; LA CONTRASEÑA SON CORRECTO"
+exit 0</code></pre>
+
+            <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-8">Evaluacion Practica Final</h4>
+            <h5 class="font-semibold text-gray-900 mt-4">Evaluacion Final</h5>
+            <div class="prose max-w-none text-gray-600">
+              <p>INSTITUTO NACIONAL DE FORMACIÓN TÉCNICO PROFESIONAL
+INFOTEP
+TÉCNICO DISEÑO Y CREACIÓN DE SOFTWARE
+MANEJO DE LINUX
+EVALUACIÓN PRÁCTICA FINAL
+NOTA: TOMAR PRINTSCREEN DE TODOS Y CADA UNO DE LOS PASOS SOLICITADOS MÁS ABAJO.
+PEGARLOS EN WORD Y AL FINALIZAR, CONVERTIR A PDF. GUARDAR CON EL NOMBRE DE
+EVALUACIÓN PRÁCTICA FINAL LINUX – SU NOMBRE
+1. Realizar la instalación de Linux (Ubuntu) en una máquina virtual con las siguientes
+configuraciones:
+• Iniciar instalación Linux
+• Cambiar idioma del sistema a Español
+• Seleccionar distribución del teclado (según teclado instalado)
+• Crear las particiones principales y asignar los siguientes valores (25 gb):
+• Raíz 10gb
+• Home 12gb
+• Repartir el espacio restante entre las 3 particiones faltantes
+• Ingresa sus datos personales (crea usuario y contraseña)
+• Inicia copia de archivos
+2. Luego de instalado el sistema, entrar con el usuario y contraseña creados.
+3. Desde la terminal:
+•
+•
+Crear dos carpetas con el nombre Técnico y Cursos en la Carpeta personal
+Crear un archivo y ponerle el nombre Diseño.txt
+Mover la carpeta Técnico dentro de la
+carpeta Cursos.
+• Copiar el archivo Diseño.txt dentro de las carpetas creadas.
+• Borrar el archivo Diseño.txt de la carpeta Cursos.
+• Borrar la carpeta Cursos.
+• Borrar la carpeta Técnico.
+4. Crear un script que al introducir dos números, me realice una suma, resta, división, multiplicación y
+devuelva el residuo.</p>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== Sistemas de Control de Versiones (Git/GitHub) ========== -->
+      <div class="mb-8 fade-in">
+        <button data-accordion class="w-full flex items-center justify-between p-6 bg-gradient-to-r from-blue-50 to-blue-100/50 rounded-2xl border border-blue-200 card-hover text-left" aria-expanded="false">
+          <div class="flex items-center gap-4">
+            <span class="material-symbols-outlined text-3xl text-blue-600">commit</span>
+            <div><h3 class="text-xl font-bold text-gray-900">Sistemas de Control de Versiones (Git/GitHub)</h3><p class="text-sm text-gray-500">50 horas - Git, GitHub, control de versiones</p></div>
+          </div>
+          <span class="material-symbols-outlined accordion-arrow text-2xl text-blue-600">expand_more</span>
+        </button>
+        <div class="subject-content bg-white rounded-b-2xl border-x border-b border-gray-200">
+          <div class="p-6 space-y-6">
+            <h5 class="font-semibold text-gray-900 mt-4">Sistema Control Versiones Git Github</h5>
+            <div class="prose max-w-none text-gray-600">
+              <p>Concepto de sistema de control de versiones 
+Los sistemas de control de versiones son software que permite hacer seguimientos a cambios realizados a un código de un proyecto que mientras se edita el código, el sistema de control de versiones toma instantánea de los archivos. Estos softwares ayudan a grupos de desarrolladores a gestionar los cambios de un código fuente y que todos puedan darle seguimiento al trabajo de cada uno y así poder aportar a su propio trabajo como al de los demás.  Las versiones de los proyectos están sujetas a una revisión y edición viendo así el estado en el que se encuentran. Los sistemas de control de versiones cuentan con repositorio local y remoto. En el local los cambios no se comparten con nadie y el remoto donde el código es encontrado en un servidor.</p>              <p>Concepto de Git 
+Git es un sistema de control de versiones distribuido creado por Linus Torvalds, que se ha convertido en el control de versiones más popular y usado. Git es distribuido lo que significa que un clon local del proyecto es un repositorio de control de versiones completo.  Git fue creado para ser eficiente, confiable y compatible, su propósito es llevar registros de los cambios en archivos de un proyecto.  Git almacena y maneja la información de forma muy diferente a otros sistemas, a pesar de que su interfaz de usuario es bastante similar. Git cuenta con tres secciones principales de un proyecto: el directorio de Git (Git directory), el directorio de trabajo (working directory) y el área de preparación (staging area).</p>              <p>Concepto de GitHub 
+GitHub es una plataforma de desarrollo colaborativo para alojar proyectos utilizando el sistema de control de versiones Git. GitHub permite que los desarrolladores alojen proyectos creando repositorio de forma gratuita, pero para subir gratis los proyectos deberán ser de código abierto. GitHub ofrece una serie de herramientas propias como la opción de poder crear una wiki para cada proyecto, también tiene un sistema de seguimiento de problemas, para que otras personas puedan hacer mejoras, sugerencias y optimizaciones en los proyectos, también ofrece una herramienta de revisión de código para así dejar anotaciones para que el proyecto pueda ser revisado por ti o los demás y por último se pueden crear discusiones alrededor de las anotaciones para mejorar y optimizar el código.</p>              <p>Comandos básicos de Git  
+git add -&gt; agregar contenido de archivo al índice.
+git am -&gt; aplicar una serie de parches desde un buzón.
+git archive -&gt; crear un archivo de archivos a partir de un árbol con nombre.
+git bisect -&gt; use la búsqueda binaria para encontrar la confirmación que introdujo un error.  
+git branch -&gt; enumerar, crear o eliminar sucursales. 
+git bundle -&gt; mover objetos y referencias por archivo.  
+git checkout -&gt; cambie de rama o restaure los archivos del árbol de trabajo.  
+git cherry pick -&gt; aplicar los cambios introducidos por algunos commits existentes.  
+git citool -&gt; alternativa gráfica a git commit.  
+git clean -&gt; eliminar archivos sin seguimiento del árbol de trabajo  git clon -&gt; clonar un repositorio en un nuevo directorio.  
+git commit -&gt; registrar cambios en el repositorio.  
+git describe -&gt; dar a un objeto un nombre legible por humanos basado en una referencia disponible.  
+git diff -&gt; Mostrar cambios entre confirmaciones, confirmación y árbol de trabajo, etc.  
+git fetch -&gt; descargar objetos y referencias de otro repositorio.  
+git format patch -&gt; preparar parches para enviar por correo electrónico.  
+git gc -&gt; limpie archivos innecesarios y optimice el repositorio local.  
+git grep -&gt; imprimir líneas que coincidan con un patrón.  
+git gui -&gt; una interfaz gráfica portátil para Git.  
+git init -&gt; cree un repositorio Git vacío o reinicie uno existente.  git log -&gt; mostrar registros de confirmación.  
+git maintenance -&gt; ejecute tareas para optimizar los datos del repositorio de Git.  
+git merge -&gt; unir dos o más historias de desarrollo juntas.  
+git mv -&gt; mover o cambiar el nombre de un archivo, un directorio o un enlace simbólico.  
+git notes -&gt; agregar o inspeccionar notas de objetos.  
+git pull -&gt; obtenga e integre con otro repositorio o una sucursal local.  
+ git push -&gt; actualizar referencias remotas junto con objetos asociados.
+git range diff -&gt; compara dos rangos de confirmación (por ejemplo, dos versiones de una rama).  
+git rebase -&gt; vuelva a aplicar compromisos encima de otro consejo base.  
+git reset -&gt; restablecer HEAD actual al estado especificado.
+git restore -&gt; restaurar archivos de árbol de trabajo.  
+git rever -&gt; revertir algunas confirmaciones existentes.  
+git rm -&gt; eliminar archivos del árbol de trabajo y del índice.  
+git shortlog -&gt; resumir la salida del registro de git.  git show -&gt; mostrar varios tipos de objetos.  
+git sparse checkout -&gt; reduzca su árbol de trabajo a un subconjunto de archivos rastreados.  
+git stash -&gt; guarde los cambios en un directorio de trabajo sucio.  
+git status -&gt; mostrar el estado del árbol de trabajo.  
+git submodule -&gt; inicializar, actualizar o inspeccionar submódulos.  
+git switch -&gt; cambiar de sucursal.  
+git tag -&gt; cree, enumere, elimine o verifique un objeto de etiqueta firmado con GPG.  
+git worktree -&gt; administrar múltiples árboles de trabajo.  
+gitk -&gt; el navegador del repositorio Git.
+escalar -&gt; una herramienta para gestionar grandes repositorios Git .</p>
+            </div>
+
+            <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-8">Practica Final Git</h4>
+            <h5 class="font-semibold text-gray-900 mt-4">Practicas Git Final</h5>
+            <div class="prose max-w-none text-gray-600">
+              <p>INSTITUTO NACIONAL DE FORMACIÓN TÉCNICO PROFESIONAL 
+INFOTEP 
+TÉCNICO EN DISEÑO Y CREACIÓN DE SOFTWARE 
+PRÁCTICAS GIT &amp; GITHUB 
+ 
+Ejercicio 1: 
+    1. Configurar Git definiendo el nombre del usuario y el correo electrónico. Mostrar la configuración final. 
+    2. Crear un repositorio nuevo con el nombre menú y mostrar su contenido. 
+    3. Comprobar el estado del repositorio. 
+    4. Crear un archivo platos.txt con el siguiente contenido: 
+        ◦ Arroz con camarones 
+        ◦ Mofongo clásico 
+        ◦ Costillitas a la BBQ 
+    5. Comprobar de nuevo el estado del repositorio 
+    6. Añadir el archivo a la zona de intercambio temporal 
+    7. Volver a comprobar una vez más el estado del repositorio 
+    8. Realizar un commit de los últimos cambios con el mensaje “Agregado los platos al menú” 9. Mostrar su estado. 
+    10. Modificar el archivo platos.txt con el siguiente contenido: 
+        ◦ Arroz con camarones 
+        ◦ Mofongo clásico 
+        ◦ Yuca con Chicharrón 
+        ◦ Costillitas a la BBQ 
+    11. Mostrar los cambios con respecto a la última versión guardada en el repositorio. 
+    12. Hacer un commit de los cambios con el mensaje “Agregado Yuca con Chicharrón al menú” 13. Mostrar el historial de cambios del repositorio 
+    14. Crear la carpeta entradas y dentro de ella el archivo aperitivos.txt con el siguiente contenido:  Palitos de queso 
+        ◦ Sopa de hueso 
+    15. Añadir los cambios a la zona de intercambio temporal 
+    16. Hacer un commit de los cambios con el mensaje “Agregados aperitivos” 
+    17. Mostrar de nuevo el historial de cambios del repositorio 
+    18. Crear una nueva rama con el nombre menu2 y mostrar las ramas existentes 
+    19. Crear el archivo pizzas.txt con el siguiente contenido: 
+        ◦ Pizza con Pepperoni 
+        ◦ Pizza jamón y queso 
+    20. Añadir los cambios a la zona de intercambio temporal 
+    21. Hacer un commit con el mensaje “Pizzas agregadas” 
+    22. Mostrar el historial del repositorio incluyendo todas sus ramas. 
+    23. Cambiar a la rama menu2 
+    24. Agregar el archivo hamburguesas.txt con el siguiente contenido: 
+        ◦ Hamburguesa de pollo 
+        ◦ Cheeseburguer 
+    25. Añadir los cambios a la zona de intercambio temporal 
+    26. Hacer un commit con el mensaje “Hamburguesas agregadas” 27. Mostrar el historial del repositorio incluyendo todas las ramas 
+    28. Fusionar la rama menu2 con la rama menu. 
+    29. Mostrar el historial del repositorio incluyendo todas las ramas 
+    30. Eliminar la rama menu2 
+    31. Mostrar de nuevo el historial del repositorio incluyendo todas las ramas.</p>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================== -->
+  <!-- SEGUNDO CUATRIMESTRE                                                   -->
+  <!-- ======================================================================== -->
+
+  <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Diseno y Creacion de Software</h4>
+                    <p class="text-gray-400 text-sm">Portafolio completo del curso tecnico profesional. INFOTEP 2022.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Cuatrimestres</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="primer_cuatrimestre.html" class="hover:text-white transition-colors">Primer
+                                Cuatrimestre - Fundamentos</a></li>
+                        <li><a href="segundo_cuatrimestre.html" class="hover:text-white transition-colors">Segundo
+                                Cuatrimestre - Desarrollo Web</a></li>
+                        <li><a href="tercer_cuatrimestre.html" class="hover:text-white transition-colors">Tercer
+                                Cuatrimestre - Especializacion</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Tecnologias</h4>
+                    <p class="text-gray-400 text-sm">Python, JavaScript, Node.js, Django, Java, SQL, NoSQL, HTML, CSS,
+                        Git, Linux</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+                <p class="text-gray-400 text-sm">&copy; 2024 Diseno y Creacion de Software. Todos los derechos
+                    reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+
+</html>

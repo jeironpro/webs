@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Guías de referencia rápida de programación: Bash, Git, SQL, Python, CSS, redes y más.">
+  <title>Info Util — RefProg</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <a href="../index.html" class="header-logo">
+        <span class="header-logo-icon">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+            <rect x="2" y="2" width="32" height="32" rx="4" stroke="#b83a2a" stroke-width="3" fill="none"/>
+            <path d="M12 12h12M12 18h12M12 24h8" stroke="#b83a2a" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="header-logo-text">RefProg</span>
+      </a>
+
+      <button class="menu-toggle" aria-label="Abrir menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+
+      <nav class="header-nav">
+        <a href="../index.html">Inicio</a>
+        <a href="diagramas.html">Diagramas</a>
+        <a href="info-util.html" class="active">Info Util</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <h1 class="section-title">Info Util</h1>
+        <p class="section-subtitle">Guías de referencia rápida sobre herramientas, lenguajes y conceptos de programación. Haz clic en cada tema para ver su contenido.</p>
+        <div id="info-container" class="info-topics">
+          <div class="info-loading">Cargando guias...</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <span class="header-logo-text" style="color: #faf7f2;">RefProg</span>
+          <p>Referencia visual de programación. Un compendio de estructuras de datos y guías prácticas para desarrolladores.</p>
+        </div>
+        <div class="footer-links">
+          <h3 class="footer-heading">Secciones</h3>
+          <a href="diagramas.html">Diagramas</a>
+          <a href="info-util.html">Info Util</a>
+        </div>
+        <div class="footer-links">
+          <h3 class="footer-heading">Recursos</h3>
+          <a href="https://developer.mozilla.org/" target="_blank" rel="noopener">MDN</a>
+          <a href="https://roadmap.sh/" target="_blank" rel="noopener">Roadmap.sh</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 RefProg</p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { getTopics, fetchYaml } from '../js/services/contentService.js';
+    import { qs, delegate } from '../js/utils/dom.js';
+    import { initMobileMenu, initActiveNav } from '../js/modules/navigation.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initMobileMenu();
+      initActiveNav();
+      initInfoUtil();
+    });
+
+    function initInfoUtil() {
+      const container = qs('#info-container');
+      if (!container) return;
+
+      try {
+        const topics = getTopics();
+        if (topics.length === 0) {
+          container.innerHTML = '<div class="info-error">No se encontraron guías.</div>';
+          return;
+        }
+
+        container.innerHTML = topics.map((t) => `
+          <article class="info-topic-item" data-path="${t.path}" data-name="${t.name}">
+            <div class="info-topic-header">
+              <span class="info-topic-name">${t.displayName}</span>
+              <svg class="info-topic-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="info-topic-content">
+              <div class="info-loading" style="padding: 0;">Cargando...</div>
+            </div>
+          </article>
+        `).join('');
+
+        delegate('#info-container', '.info-topic-item', 'click', async (e, item) => {
+          e.stopPropagation();
+          const contentEl = item.querySelector('.info-topic-content');
+          if (!contentEl) return;
+
+          const wasLoading = contentEl.querySelector('.info-loading');
+          if (wasLoading) {
+            const path = item.dataset.path;
+            try {
+              const raw = await fetchYaml(path);
+              contentEl.innerHTML = highlightYaml(raw);
+            } catch (err) {
+              contentEl.innerHTML = `<div class="info-error">Error: ${escapeHtml(err.message)}</div>`;
+            }
+          }
+
+          item.classList.toggle('active');
+        });
+      } catch {
+        container.innerHTML = '<div class="info-error">Error al cargar la lista de guías.</div>';
+      }
+    }
+
+    function highlightYaml(text) {
+      const lines = text.split('\n');
+
+      const highlighted = lines.map((line) => {
+        const escaped = escapeHtml(line);
+
+        if (line.trim() === '') return '';
+
+        const trimmed = line.trim();
+
+        if (trimmed.startsWith('#')) {
+          return `<span class="yaml-comment">${escaped}</span>`;
+        }
+
+        const indent = line.match(/^\s*/)[0];
+        const indentStr = indent.replace(/ /g, '&nbsp;');
+
+        if (trimmed.startsWith('-')) {
+          const afterDash = trimmed.slice(1);
+          if (afterDash.startsWith(' ')) {
+            const rest = afterDash.slice(1);
+            const colonIdx = rest.indexOf(': ');
+            if (colonIdx > 0) {
+              const key = escapeHtml(rest.slice(0, colonIdx));
+              const val = escapeHtml(rest.slice(colonIdx + 2));
+              return `${indentStr}<span class="yaml-bullet">- </span><span class="yaml-key">${key}</span>: ${val}`;
+            }
+            if (rest.endsWith(':') && !rest.includes(' ')) {
+              return `${indentStr}<span class="yaml-bullet">- </span><span class="yaml-key">${escapeHtml(rest.slice(0, -1))}</span>:`;
+            }
+            return `${indentStr}<span class="yaml-bullet">- </span>${escapeHtml(rest)}`;
+          }
+          if (trimmed.endsWith(':') && !trimmed.includes(' ')) {
+            return `${indentStr}<span class="yaml-bullet">-</span><span class="yaml-key">${escapeHtml(trimmed.slice(1, -1))}</span>:`;
+          }
+          return `${indentStr}<span class="yaml-bullet">-</span>${escapeHtml(afterDash)}`;
+        }
+
+        const colonIdx = trimmed.indexOf(': ');
+        if (colonIdx > 0) {
+          const key = escapeHtml(trimmed.slice(0, colonIdx));
+          const rest = trimmed.slice(colonIdx + 2);
+          if (rest === '' || rest === '|') {
+            return `${indentStr}<span class="yaml-key">${key}</span>:`;
+          }
+          const val = escapeHtml(rest);
+          return `${indentStr}<span class="yaml-key">${key}</span>: ${val}`;
+        }
+
+        const colonEndIdx = trimmed.indexOf(':');
+        if (colonEndIdx > 0 && colonEndIdx === trimmed.length - 1) {
+          const key = escapeHtml(trimmed.slice(0, -1));
+          return `${indentStr}<span class="yaml-key">${key}</span>:`;
+        }
+
+        return escaped;
+      }).join('\n');
+
+      return `<pre class="yaml-highlighted">${highlighted}</pre>`;
+    }
+
+    function escapeHtml(str) {
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+  </script>
+</body>
+</html>

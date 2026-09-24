@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="es" data-theme="hum">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Programa que detecta rostros que se posicionen frente a la cámara. Utiliza la libreria opencv para abrir la camara y detectar los rostros.">
+  <meta name="theme-color" content="#faf6ee">
+  <title>Pythoncises · Detector de caras</title>
+  <link rel="icon" type="image/svg+xml" href="../icons/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../icons/favicon-32.png">
+  <link rel="apple-touch-icon" href="../icons/favicon-180.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <script>document.documentElement.classList.add("js");</script>
+  <script src="../js/app.js" defer></script>
+</head>
+<body>
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a class="nav__brand" href="../index.html" aria-label="Pythoncises — inicio">
+        <span class="snake-mark" aria-hidden="true"><svg viewBox="0 0 64 64">
+      <path class="snake__cuerpo" d="M14 22 C 26 22, 26 32, 32 32 C 38 32, 38 42, 50 42"
+            fill="none" stroke-width="6.5" stroke-linecap="round"/>
+      <circle class="snake__cabeza" cx="50" cy="42" r="4.8"/>
+      <path class="snake__lengua" d="M54.5 42 L 58.5 40.5 M54.5 42 L 58.5 43.5"
+            fill="none" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="48.6" cy="40.2" r="1.1" fill="var(--color-paper)"/>
+    </svg></span>
+        Pythoncises
+      </a>
+    </div>
+  </header>
+  <main class="detalle" data-accent="coral">
+    <a class="btn btn--outline btn--pear btn--sm detalle-volver" href="../index.html#indice">← Índice</a>
+    <p class="detalle-meta">
+      <span class="eyebrow__dot eyebrow__dot--coral" style="display:inline-block;margin-right:0.45em;vertical-align:middle"></span>
+      Visión por computador · 30 · detector_cara_opencv.py
+    </p>
+    <h1 class="detalle-titulo">Detector de caras</h1>
+    <p class="detalle-desc">Programa que detecta rostros que se posicionen frente a la cámara. Utiliza la libreria opencv para abrir la camara y detectar los rostros.</p>
+    <div class="detalle-acciones">
+      <button class="btn btn--pear" type="button" data-accion="copiar" data-burst>Copiar</button>
+      <button class="btn btn--outline btn--pear" type="button" data-accion="descargar" data-nombre="detector_cara_opencv.py">Descargar</button>
+    </div>
+    <div class="codigo-tarjeta">
+      <div class="codigo-barra">
+        <span class="codigo-punto" aria-hidden="true"></span>
+        <span class="codigo-punto" aria-hidden="true"></span>
+        <span class="codigo-punto" aria-hidden="true"></span>
+        <span class="codigo-archivo">exercises/detector-cara-opencv/detector_cara_opencv.py</span>
+      </div>
+      <pre><code><span class="tok-cadena">&quot;&quot;&quot;
+    Programa que detecta rostros que se posicionen frente a la cámara.
+    Utiliza la libreria opencv para abrir la camara y detectar los rostros.
+&quot;&quot;&quot;</span>
+<span class="tok-palabra">import</span> cv2
+<span class="tok-cadena">&quot;&quot;&quot;
+    Función	                  Descripción
+    cv2.imread()	          Cargar imagen
+    cv2.imwrite()	          Guardar imagen
+    cv2.VideoCapture()	      Leer cámara o video
+    cv2.cvtColor()	          Cambiar espacio de color
+    cv2.GaussianBlur()	      Aplicar desenfoque
+    cv2.Canny()	              Detectar bordes
+    cv2.resize()	          Redimensionar imagen
+    cv2.threshold()	          Umbralización (blanco/negro)
+    cv2.findContours()	      Detección de contornos
+    cv2.CascadeClassifier()	  Detección facial
+&quot;&quot;&quot;</span>
+
+<span class="tok-comentario"># Clasificador de rostros preentranado de OpenCV</span>
+clasificador_rostros = cv2.CascadeClassifier(cv2.data.haarcascades + <span class="tok-cadena">'haarcascade_frontalface_default.xml'</span>)
+
+<span class="tok-comentario"># Cargar la cámara</span>
+camara = cv2.VideoCapture(<span class="tok-numero">0</span>)
+
+<span class="tok-comentario"># Verificar si la camara no se abre</span>
+<span class="tok-palabra">if</span> <span class="tok-palabra">not</span> camara.isOpened():
+    <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;No se pudo acceder a la cámara&quot;</span>)
+    exit()
+
+<span class="tok-palabra">while</span> <span class="tok-palabra">True</span>:
+    <span class="tok-cadena">&quot;&quot;&quot;
+        El método .read() lee una imagen (frame) desde el objeto VideoCapture, puede ser tanto una cámara como un archivo de video.
+    &quot;&quot;&quot;</span>
+    lectura_exitosa, imagen = camara.read()
+
+    <span class="tok-comentario"># Verificar si la lectura de la imagen se realizo correctamente</span>
+    <span class="tok-palabra">if</span> <span class="tok-palabra">not</span> lectura_exitosa:
+        <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;No se leer la imagen&quot;</span>)
+        <span class="tok-palabra">break</span>
+
+    <span class="tok-cadena">&quot;&quot;&quot;
+        El método cv2.cvtColor(imagen, cv2.COLOR_BGR2GRAY) convierte una imagen (frame) de color (BGR) a escala de grises (GRAY). La imagen pasa de 3 canales de color (azul, verde, rojo) a una imagen de un solo canal (intensidad de luz). 
+    &quot;&quot;&quot;</span>
+    conversion_imagen_gray = cv2.cvtColor(imagen, cv2.COLOR_BGR2GRAY)
+
+    <span class="tok-cadena">&quot;&quot;&quot;
+        El método .detectMultiScale(imagen_en_escala_de_grises, reductor_de_escala, detenciones_vecinas, tamaño_del_rostro) busca un rostro dentro de la imagen.
+
+        Devuelve una lista de coordenadas con todos los rostros detectados.
+    &quot;&quot;&quot;</span>
+    rostros = clasificador_rostros.detectMultiScale(
+        conversion_imagen_gray, 
+        scaleFactor=<span class="tok-numero">1.1</span>, 
+        minNeighbors=<span class="tok-numero">5</span>, 
+        minSize=(<span class="tok-numero">50</span>, <span class="tok-numero">50</span>)
+    )
+
+    <span class="tok-comentario"># Iterar la tupla de coordenadas de cada rostro detectado </span>
+    <span class="tok-cadena">&quot;&quot;&quot;
+        x = posición X del rostro (esquina superior izquierda)
+        y = posición Y del rostro
+        w = ancho del rostro detectado
+        h = alto del rostro detectado
+    &quot;&quot;&quot;</span>
+    <span class="tok-palabra">for</span> (x, y, w, h) <span class="tok-palabra">in</span> rostros:
+        <span class="tok-cadena">&quot;&quot;&quot;
+            El método .rectangle(imagen, coordenadas_de_la_esquina_superior_izquierda, coordenadas_de_la_esquina_inferior_derecha_sumando_ancho_y_alto, color_del_rectangulo_en_formato_BGR_(azul_verde_rojo), grosor_de_la_linea) dibuja un rectángulo sobre la imagen en la posición donde se detectó el rostro.
+        &quot;&quot;&quot;</span>
+        cv2.rectangle(imagen, (x, y), (x + w, y + h), (<span class="tok-numero">0</span>, <span class="tok-numero">255</span>, <span class="tok-numero">0</span>), <span class="tok-numero">2</span>)
+
+    <span class="tok-comentario"># Muestra el video en una ventana con el titulo &quot;Camara&quot;</span>
+    cv2.imshow(<span class="tok-cadena">&quot;Camara&quot;</span>, imagen)
+
+    <span class="tok-cadena">&quot;&quot;&quot;
+        El método .waitKey(tiempo) espera una tecla del teclado durante un número determinado de milisegundos. Ademas, permite actualizar la ventana de la cámara evitando que se congele.
+
+        &amp; 0xFF: se asegura que el valor leido de la tecla presionada sea compatible entre sistemas operativos, tomando 8 bits bajos del código ASCII.
+
+        ord('q'): convierte el caracter q en su valor numérico ASCII.
+    &quot;&quot;&quot;</span>
+    <span class="tok-palabra">if</span> cv2.waitKey(<span class="tok-numero">1</span>) &amp; <span class="tok-numero">0xFF</span> == <span class="tok-builtin">ord</span>(<span class="tok-cadena">'q'</span>):
+        <span class="tok-palabra">break</span>
+
+<span class="tok-comentario"># Liberación de la cámara para que no se quede bloqueada o encendida después de cerrar el programa</span>
+camara.release()
+<span class="tok-comentario"># Cierre de todo lo que abrio cv2.imshow()</span>
+cv2.destroyAllWindows()</code></pre>
+    </div>
+    <nav class="detalle-nav" aria-label="Navegación entre ejercicios">
+      <a class="nav-ej nav-previo" href="lista-to-do.html">← Lista de tareas</a>
+      <a class="nav-ej nav-siguiente" href="sistema-reconocimiento-facial.html">Reconocimiento facial →</a>
+    </nav>
+  </main>
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__meta">
+        <a class="footer__brand" href="../index.html"><span class="snake-mark" aria-hidden="true"><svg viewBox="0 0 64 64">
+      <path class="snake__cuerpo" d="M14 22 C 26 22, 26 32, 32 32 C 38 32, 38 42, 50 42"
+            fill="none" stroke-width="6.5" stroke-linecap="round"/>
+      <circle class="snake__cabeza" cx="50" cy="42" r="4.8"/>
+      <path class="snake__lengua" d="M54.5 42 L 58.5 40.5 M54.5 42 L 58.5 43.5"
+            fill="none" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="48.6" cy="40.2" r="1.1" fill="var(--color-paper)"/>
+    </svg></span> Pythoncises</a>
+        <p class="footer__copy">© Pythoncises - 2026<br><span class="footer__hash">ver · copiar · descargar</span></p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

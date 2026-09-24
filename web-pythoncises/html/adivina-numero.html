@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="es" data-theme="hum">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Programa genera un numero aleatorio del 1 al 100, le permite 10 intentos al usuario para adivinarlo">
+  <meta name="theme-color" content="#faf6ee">
+  <title>Pythoncises · Adivina el número</title>
+  <link rel="icon" type="image/svg+xml" href="../icons/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../icons/favicon-32.png">
+  <link rel="apple-touch-icon" href="../icons/favicon-180.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <script>document.documentElement.classList.add("js");</script>
+  <script src="../js/app.js" defer></script>
+</head>
+<body>
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a class="nav__brand" href="../index.html" aria-label="Pythoncises — inicio">
+        <span class="snake-mark" aria-hidden="true"><svg viewBox="0 0 64 64">
+      <path class="snake__cuerpo" d="M14 22 C 26 22, 26 32, 32 32 C 38 32, 38 42, 50 42"
+            fill="none" stroke-width="6.5" stroke-linecap="round"/>
+      <circle class="snake__cabeza" cx="50" cy="42" r="4.8"/>
+      <path class="snake__lengua" d="M54.5 42 L 58.5 40.5 M54.5 42 L 58.5 43.5"
+            fill="none" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="48.6" cy="40.2" r="1.1" fill="var(--color-paper)"/>
+    </svg></span>
+        Pythoncises
+      </a>
+    </div>
+  </header>
+  <main class="detalle" data-accent="pear">
+    <a class="btn btn--outline btn--pear btn--sm detalle-volver" href="../index.html#indice">← Índice</a>
+    <p class="detalle-meta">
+      <span class="eyebrow__dot eyebrow__dot--pear" style="display:inline-block;margin-right:0.45em;vertical-align:middle"></span>
+      Juegos · 01 · adivina_numero.py
+    </p>
+    <h1 class="detalle-titulo">Adivina el número</h1>
+    <p class="detalle-desc">Programa genera un numero aleatorio del 1 al 100, le permite 10 intentos al usuario para adivinarlo</p>
+    <div class="detalle-acciones">
+      <button class="btn btn--pear" type="button" data-accion="copiar" data-burst>Copiar</button>
+      <button class="btn btn--outline btn--pear" type="button" data-accion="descargar" data-nombre="adivina_numero.py">Descargar</button>
+    </div>
+    <div class="codigo-tarjeta">
+      <div class="codigo-barra">
+        <span class="codigo-punto" aria-hidden="true"></span>
+        <span class="codigo-punto" aria-hidden="true"></span>
+        <span class="codigo-punto" aria-hidden="true"></span>
+        <span class="codigo-archivo">exercises/adivina-numero/adivina_numero.py</span>
+      </div>
+      <pre><code><span class="tok-cadena">&quot;&quot;&quot;
+    Programa genera un numero aleatorio del 1 al 100, le permite 10 intentos al usuario para adivinarlo 
+&quot;&quot;&quot;</span>
+<span class="tok-palabra">import</span> random
+
+<span class="tok-palabra">def</span> <span class="tok-funcion">genera_numero_secreto</span>():
+    <span class="tok-palabra">return</span> random.randint(<span class="tok-numero">1</span>, <span class="tok-numero">100</span>)
+
+numero_secreto = genera_numero_secreto()
+contador_intentos = <span class="tok-numero">0</span>
+gana = <span class="tok-palabra">False</span>
+
+<span class="tok-palabra">while</span> <span class="tok-palabra">True</span>:
+    numero_usuario = <span class="tok-builtin">input</span>(<span class="tok-cadena">&quot;Adivina el numero secreto (enter para salir): &quot;</span>)
+
+    <span class="tok-comentario"># Validación de salida</span>
+    <span class="tok-palabra">if</span> <span class="tok-palabra">not</span> numero_usuario:
+        <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;Adios&quot;</span>)
+        <span class="tok-palabra">break</span>
+    
+    <span class="tok-comentario"># Convertir el número a un entero</span>
+    numero_usuario = <span class="tok-builtin">int</span>(numero_usuario)
+
+    <span class="tok-comentario"># Verificación de número y aumento intentos si falla</span>
+    <span class="tok-palabra">if</span> numero_usuario &lt; numero_secreto:
+        contador_intentos += <span class="tok-numero">1</span>
+        <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;El número secreto es mayor\n&quot;</span>)
+    <span class="tok-palabra">elif</span> numero_usuario &gt; numero_secreto:
+        contador_intentos += <span class="tok-numero">1</span>
+        <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;El número secreto es menor\n&quot;</span>)
+    <span class="tok-palabra">else</span>:
+        gana = <span class="tok-palabra">True</span> <span class="tok-comentario"># marcar que gana</span>
+        <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;Has adivinado!!!&quot;</span>)
+        <span class="tok-palabra">break</span>
+    
+    <span class="tok-comentario"># Verificacion de intentos sin ganar</span>
+    <span class="tok-palabra">if</span> contador_intentos == <span class="tok-numero">10</span> <span class="tok-palabra">and</span> <span class="tok-palabra">not</span> gana:
+        <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;Se te han acabado los intentos y no has adivinado&quot;</span>)
+        <span class="tok-palabra">break</span>
+</code></pre>
+    </div>
+    <section class="salida" aria-labelledby="salida-adivina-numero">
+      <h2 class="salida-titulo" id="salida-adivina-numero">Salida de ejemplo</h2>
+      <pre class="salida-cuerpo">Adivina el numero secreto (enter para salir): 50
+El número secreto es menor
+
+Adivina el numero secreto (enter para salir): 
+Adios</pre>
+    </section>
+    <nav class="detalle-nav" aria-label="Navegación entre ejercicios">
+      
+      <a class="nav-ej nav-siguiente" href="ahorcado.html">El ahorcado →</a>
+    </nav>
+  </main>
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__meta">
+        <a class="footer__brand" href="../index.html"><span class="snake-mark" aria-hidden="true"><svg viewBox="0 0 64 64">
+      <path class="snake__cuerpo" d="M14 22 C 26 22, 26 32, 32 32 C 38 32, 38 42, 50 42"
+            fill="none" stroke-width="6.5" stroke-linecap="round"/>
+      <circle class="snake__cabeza" cx="50" cy="42" r="4.8"/>
+      <path class="snake__lengua" d="M54.5 42 L 58.5 40.5 M54.5 42 L 58.5 43.5"
+            fill="none" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="48.6" cy="40.2" r="1.1" fill="var(--color-paper)"/>
+    </svg></span> Pythoncises</a>
+        <p class="footer__copy">© Pythoncises - 2026<br><span class="footer__hash">ver · copiar · descargar</span></p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

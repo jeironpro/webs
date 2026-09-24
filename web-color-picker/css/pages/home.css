@@ -1,0 +1,90 @@
+/* Estilos especificos para la pagina principal */
+body {
+  font-family: var(--font-sans);
+  background: var(--color-bg);
+  color: var(--color-text);
+  overflow: hidden;
+}
+
+/* Skip link accesible */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--spacing-md);
+  background: #2563eb;
+  color: #ffffff;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-sm);
+  font-size: 0.875rem;
+  z-index: 300;
+  transition: top var(--transition-fast);
+}
+
+.skip-link:focus {
+  top: var(--spacing-md);
+}
+
+/* Animacion de entrada para el panel izquierdo */
+.color-display {
+  animation: fadeIn 0.5s ease both;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Efecto de pulso al cambiar el color */
+.color-display::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* Micro-interaccion: el icono de copia rota al hacer clic */
+.floating-bar__copy-btn:active .floating-bar__icon {
+  transform: scale(0.85);
+  transition: transform 0.1s ease;
+}
+
+/* Tooltip de "copiado" */
+.tooltip {
+  position: fixed;
+  bottom: calc(var(--floating-bar-height) + var(--spacing-md));
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: #ffffff;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-sm);
+  font-size: 0.8125rem;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+  z-index: 200;
+}
+
+.tooltip--visible {
+  opacity: 1;
+}
+
+/* Tableta y movil: permitir scroll en el body */
+@media (max-width: 1024px) {
+  body {
+    overflow: visible;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    overflow: hidden;
+  }
+
+  .tooltip {
+    bottom: calc(var(--floating-bar-height) + var(--spacing-sm));
+    font-size: 0.75rem;
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+}

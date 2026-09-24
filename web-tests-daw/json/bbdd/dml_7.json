@@ -1,0 +1,222 @@
+[
+    {
+        "pregunta": "¿Qué es una transacción?",
+        "opciones": [
+            "Una unidad lógica de trabajo compuesta por una o más sentencias SQL",
+            "Un error",
+            "Un pago",
+            "Una conexión"
+        ],
+        "respuesta": 0,
+        "explicacion": "Garantiza la consistencia de los datos."
+    },
+    {
+        "pregunta": "¿Qué significan las siglas ACID?",
+        "opciones": [
+            "Atomicidad, Consistencia, Aislamiento, Durabilidad",
+            "Alta, Calidad, Inteligencia, Diseño",
+            "Acceso, Control, Identidad, Datos",
+            "Asociación, Clase, Interfaz, Dependencia"
+        ],
+        "respuesta": 0,
+        "explicacion": "Son las 4 propiedades fundamentales de las transacciones fiables."
+    },
+    {
+        "pregunta": "¿Qué es la Atomicidad?",
+        "opciones": [
+            "La base de datos es pequeña",
+            "La velocidad es rápida",
+            "Todo o nada: todas las operaciones de la transacción se realizan o ninguna se realiza",
+            "Los datos son atómicos"
+        ],
+        "respuesta": 2,
+        "explicacion": "Si falla una parte, se deshace todo (Rollback)."
+    },
+    {
+        "pregunta": "¿Qué es la Consistencia?",
+        "opciones": [
+            "La transacción lleva la base de datos de un estado válido a otro válido",
+            "Los datos son consistentes con la realidad",
+            "Los datos no cambian",
+            "La base de datos no se cae"
+        ],
+        "respuesta": 0,
+        "explicacion": "Respeta todas las reglas de integridad (constraints, triggers, etc.)."
+    },
+    {
+        "pregunta": "¿Qué es el Aislamiento (Isolation)?",
+        "opciones": [
+            "La base de datos está desconectada",
+            "Las transacciones concurrentes no interfieren entre sí",
+            "El usuario está solo",
+            "Los datos están encriptados"
+        ],
+        "respuesta": 1,
+        "explicacion": "Determina la visibilidad de los cambios hechos por otras transacciones."
+    },
+    {
+        "pregunta": "¿Qué es la Durabilidad?",
+        "opciones": [
+            "La base de datos dura mucho tiempo",
+            "Las consultas son rápidas",
+            "Una vez confirmada (committed), la transacción es permanente incluso ante fallos del sistema",
+            "El hardware es resistente"
+        ],
+        "respuesta": 2,
+        "explicacion": "Los cambios se escriben en disco de forma segura."
+    },
+    {
+        "pregunta": "¿Qué comando confirma una transacción?",
+        "opciones": [
+            "CONFIRM",
+            "DONE",
+            "COMMIT",
+            "SAVE"
+        ],
+        "respuesta": 2,
+        "explicacion": "Hace permanentes los cambios de la transacción actual."
+    },
+    {
+        "pregunta": "¿Qué comando deshace una transacción?",
+        "opciones": [
+            "ROLLBACK",
+            "UNDO",
+            "BACK",
+            "CANCEL"
+        ],
+        "respuesta": 0,
+        "explicacion": "Revierte todos los cambios hechos desde el inicio de la transacción."
+    },
+    {
+        "pregunta": "¿Qué es el Auto-Commit?",
+        "opciones": [
+            "Un comando automático",
+            "Un error",
+            "Una copia de seguridad",
+            "Un modo donde cada sentencia SQL individual se trata como una transacción y se confirma automáticamente"
+        ],
+        "respuesta": 3,
+        "explicacion": "Es el comportamiento por defecto en muchos SGBD. Para transacciones multi-sentencia, hay que desactivarlo o usar START TRANSACTION."
+    },
+    {
+        "pregunta": "¿Qué es un Savepoint?",
+        "opciones": [
+            "Una copia de seguridad",
+            "Un punto intermedio dentro de una transacción al que se puede volver (hacer rollback parcial)",
+            "Un punto de guardado del juego",
+            "Un índice"
+        ],
+        "respuesta": 1,
+        "explicacion": "ROLLBACK TO SAVEPOINT nombre;"
+    },
+    {
+        "pregunta": "¿Qué es una Lectura Sucia (Dirty Read)?",
+        "opciones": [
+            "Leer datos antiguos",
+            "Leer datos que han sido modificados por otra transacción pero aún no confirmados (uncommitted)",
+            "Leer datos borrados",
+            "Leer datos corruptos"
+        ],
+        "respuesta": 1,
+        "explicacion": "Ocurre en el nivel de aislamiento READ UNCOMMITTED."
+    },
+    {
+        "pregunta": "¿Qué es una Lectura No Repetible?",
+        "opciones": [
+            "Cuando se lee basura",
+            "Cuando da error al leer",
+            "Cuando no se puede leer",
+            "Cuando una transacción lee la misma fila dos veces y obtiene datos diferentes porque otra transacción la modificó"
+        ],
+        "respuesta": 3,
+        "explicacion": "Se evita con el nivel REPEATABLE READ."
+    },
+    {
+        "pregunta": "¿Qué es una Lectura Fantasma (Phantom Read)?",
+        "opciones": [
+            "Leer datos que no existen",
+            "Una lectura mágica",
+            "Cuando una transacción ejecuta la misma consulta dos veces y aparecen filas nuevas insertadas por otra transacción",
+            "Un error del sistema"
+        ],
+        "respuesta": 2,
+        "explicacion": "Se evita con el nivel SERIALIZABLE."
+    },
+    {
+        "pregunta": "¿Cuál es el nivel de aislamiento más alto y estricto?",
+        "opciones": [
+            "REPEATABLE READ",
+            "SERIALIZABLE",
+            "READ COMMITTED",
+            "READ UNCOMMITTED"
+        ],
+        "respuesta": 1,
+        "explicacion": "Evita todos los fenómenos de concurrencia pero reduce el rendimiento."
+    },
+    {
+        "pregunta": "¿Qué es un Deadlock (Interbloqueo)?",
+        "opciones": [
+            "Un cierre de sesión",
+            "Situación donde dos transacciones se bloquean mutuamente esperando recursos que la otra tiene",
+            "Un fallo de disco",
+            "Un bloqueo de usuario"
+        ],
+        "respuesta": 1,
+        "explicacion": "El SGBD suele detectar uno y matar una de las transacciones para liberar el bloqueo."
+    },
+    {
+        "pregunta": "¿Qué es el bloqueo optimista?",
+        "opciones": [
+            "Bloquear todo al principio",
+            "Asumir que no habrá conflictos y verificar al momento de actualizar (usando versiones o timestamps)",
+            "Ser positivo",
+            "No bloquear nada nunca"
+        ],
+        "respuesta": 1,
+        "explicacion": "Mejora la concurrencia en sistemas con pocos conflictos."
+    },
+    {
+        "pregunta": "¿Qué es el bloqueo pesimista?",
+        "opciones": [
+            "Usar solo un usuario",
+            "Bloquear los recursos antes de usarlos para evitar que otros los modifiquen",
+            "Bloquear la base de datos",
+            "Pensar que todo va a fallar"
+        ],
+        "respuesta": 1,
+        "explicacion": "SELECT ... FOR UPDATE es un ejemplo."
+    },
+    {
+        "pregunta": "¿Qué es el WAL (Write-Ahead Logging)?",
+        "opciones": [
+            "Técnica donde los cambios se escriben primero en un log antes de aplicarse a los datos físicos",
+            "Escribir rápido",
+            "Una caminata",
+            "Un log de errores"
+        ],
+        "respuesta": 0,
+        "explicacion": "Fundamental para la Durabilidad y recuperación ante fallos."
+    },
+    {
+        "pregunta": "¿Qué sentencia inicia una transacción explícita?",
+        "opciones": [
+            "CREATE TRANSACTION",
+            "START TRANSACTION o BEGIN",
+            "NEW TRANSACTION",
+            "OPEN TRANSACTION"
+        ],
+        "respuesta": 1,
+        "explicacion": "Marca el punto donde comienza la unidad de trabajo."
+    },
+    {
+        "pregunta": "¿Qué sucede con una transacción abierta si se pierde la conexión?",
+        "opciones": [
+            "Se hace COMMIT automático",
+            "Se hace ROLLBACK automático",
+            "Queda pendiente para siempre",
+            "Se guarda en un archivo"
+        ],
+        "respuesta": 1,
+        "explicacion": "El sistema protege la integridad deshaciendo lo incompleto."
+    }
+]

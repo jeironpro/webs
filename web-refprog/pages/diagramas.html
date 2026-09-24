@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Diagramas de estructuras de datos: arrays, árboles, hash maps, pilas, colas y más.">
+  <title>Estructuras de Datos — RefProg</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <a href="../index.html" class="header-logo">
+        <span class="header-logo-icon">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+            <rect x="2" y="2" width="32" height="32" rx="4" stroke="#b83a2a" stroke-width="3" fill="none"/>
+            <path d="M12 12h12M12 18h12M12 24h8" stroke="#b83a2a" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="header-logo-text">RefProg</span>
+      </a>
+
+      <button class="menu-toggle" aria-label="Abrir menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+
+      <nav class="header-nav">
+        <a href="../index.html">Inicio</a>
+        <a href="diagramas.html" class="active">Diagramas</a>
+        <a href="info-util.html">Info Util</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <h1 class="section-title">Estructuras de Datos</h1>
+        <p class="section-subtitle">Diagramas visuales de las estructuras de datos fundamentales en Ciencias de la Computación. Cada diagrama muestra la organización y relaciones entre los elementos.</p>
+        <div id="diagramas-container" class="diagramas-grid">
+          <div class="info-loading">Cargando diagramas...</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <span class="header-logo-text" style="color: #faf7f2;">RefProg</span>
+          <p>Referencia visual de programación. Un compendio de estructuras de datos y guías prácticas para desarrolladores.</p>
+        </div>
+        <div class="footer-links">
+          <h3 class="footer-heading">Secciones</h3>
+          <a href="diagramas.html">Diagramas</a>
+          <a href="info-util.html">Info Util</a>
+        </div>
+        <div class="footer-links">
+          <h3 class="footer-heading">Recursos</h3>
+          <a href="https://developer.mozilla.org/" target="_blank" rel="noopener">MDN</a>
+          <a href="https://roadmap.sh/" target="_blank" rel="noopener">Roadmap.sh</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 RefProg</p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { getDiagramas, getDiagramName } from '../js/services/contentService.js';
+    import { qs } from '../js/utils/dom.js';
+    import { initMobileMenu, initActiveNav } from '../js/modules/navigation.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initMobileMenu();
+      initActiveNav();
+
+      const container = qs('#diagramas-container');
+      if (!container) return;
+
+      try {
+        const diagramas = getDiagramas();
+        if (diagramas.length === 0) {
+          container.innerHTML = '<div class="info-error">No se encontraron diagramas.</div>';
+          return;
+        }
+
+        container.innerHTML = diagramas.map((d) => {
+          const displayName = getDiagramName(d.name);
+          return `
+            <article class="diagrama-card">
+              <div class="diagrama-preview">
+                <img src="${d.path}" alt="${displayName}" loading="lazy">
+              </div>
+              <h2 class="diagrama-card-title">${displayName}</h2>
+            </article>
+          `;
+        }).join('');
+      } catch {
+        container.innerHTML = '<div class="info-error">Error al cargar los diagramas.</div>';
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,318 @@
+:root {
+    --color-fondo-gradiente-inicio: #e3f2fd;
+    --color-fondo-gradiente-fin: #f3e5f5;
+    --color-contenidor-fondo: #ffffff;
+    --color-contenidor-sombra: rgba(0, 0, 0, 0.1);
+    --color-texto-principal: #2c3e50;
+    --color-texto-secundario: #546e7a;
+    --color-boto-reset: #ff7043;
+    --color-boto-reset-hover: #ff5722;
+    --color-codigo-fondo: #f5f5f5;
+    --color-codigo-borde: #e0e0e0;
+    --color-codigo-texto: #37474f;
+    --color-icono: #64b5f6;
+    --espaciado-base: 20px;
+    --radio-borde: 16px;
+    --sombra-suave: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --transicion-suave: all 0.3s ease;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: "Poppins", sans-serif;
+    overflow-x: hidden;
+}
+
+body {
+    align-items: center;
+    background: linear-gradient(135deg,
+            var(--color-fondo-gradiente-inicio) 0%,
+            var(--color-fondo-gradiente-fin) 100%);
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaciado-base);
+    min-height: 100vh;
+    justify-content: center;
+    padding: var(--espaciado-base);
+    width: 100%;
+}
+
+.titol-arxiu {
+    color: var(--color-texto-principal);
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-align: center;
+    word-break: break-word;
+}
+
+.contenidor {
+    align-items: center;
+    background-color: var(--color-contenidor-fondo);
+    border-radius: var(--radio-borde);
+    box-shadow: var(--sombra-suave);
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 500px;
+    padding: 60px 40px;
+    transition: var(--transicion-suave);
+    width: 100%;
+}
+
+.contenidor:hover {
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+}
+
+.icono-arxiu {
+    color: var(--color-icono);
+    font-size: 80px;
+    transition: var(--transicion-suave);
+}
+
+.contenidor:hover .icono-arxiu {
+    transform: scale(1.1);
+}
+
+label {
+    color: var(--color-texto-principal);
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+}
+
+input[type="file"] {
+    border: 2px dashed var(--color-icono);
+    border-radius: 12px;
+    color: var(--color-texto-secundario);
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    max-width: 100%;
+    padding: 15px 20px;
+    transition: var(--transicion-suave);
+}
+
+input[type="file"]:hover {
+    background-color: rgba(100, 181, 246, 0.05);
+    border-color: var(--color-boto-reset);
+}
+
+input[type="file"]::file-selector-button {
+    background-color: var(--color-icono);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    margin-right: 15px;
+    padding: 10px 20px;
+    transition: var(--transicion-suave);
+}
+
+input[type="file"]::file-selector-button:hover {
+    background-color: var(--color-boto-reset);
+    transform: scale(1.05);
+}
+
+#contingut-arxiu {
+    background-color: var(--color-codigo-fondo);
+    border: 2px solid var(--color-codigo-borde);
+    border-radius: 12px;
+    box-shadow: var(--sombra-suave);
+    color: var(--color-codigo-texto);
+    display: none;
+    font-family: "Courier New", monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    max-height: 500px;
+    max-width: 900px;
+    overflow-y: auto;
+    padding: 20px;
+    white-space: pre-wrap;
+    width: 100%;
+    word-wrap: break-word;
+}
+
+#contingut-arxiu::-webkit-scrollbar {
+    width: 10px;
+}
+
+#contingut-arxiu::-webkit-scrollbar-track {
+    background: var(--color-codigo-borde);
+    border-radius: 10px;
+}
+
+#contingut-arxiu::-webkit-scrollbar-thumb {
+    background: var(--color-icono);
+    border-radius: 10px;
+}
+
+#contingut-arxiu::-webkit-scrollbar-thumb:hover {
+    background: var(--color-boto-reset);
+}
+
+.boto-reset {
+    align-items: center;
+    background-color: var(--color-boto-reset);
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(255, 112, 67, 0.3);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    gap: 8px;
+    justify-content: center;
+    max-width: 500px;
+    padding: 14px 30px;
+    transition: var(--transicion-suave);
+    width: 100%;
+}
+
+.boto-reset:hover {
+    background-color: var(--color-boto-reset-hover);
+    box-shadow: 0 6px 20px rgba(255, 87, 34, 0.4);
+    transform: translateY(-2px);
+}
+
+.boto-reset:active {
+    transform: translateY(0);
+}
+
+.boto-reset .material-icons {
+    font-size: 20px;
+}
+
+/* Responsive Design - Tablet */
+@media (max-width: 1023px) and (min-width: 768px) {
+    .titol-arxiu {
+        font-size: 28px;
+    }
+
+    .contenidor {
+        max-width: 450px;
+        padding: 50px 35px;
+    }
+
+    .icono-arxiu {
+        font-size: 70px;
+    }
+
+    label {
+        font-size: 18px;
+    }
+
+    #contingut-arxiu {
+        font-size: 13px;
+        max-height: 450px;
+        max-width: 700px;
+    }
+
+    .boto-reset {
+        font-size: 15px;
+        max-width: 450px;
+        padding: 12px 25px;
+    }
+}
+
+/* Responsive Design - Mobile */
+@media (max-width: 767px) {
+    body {
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .titol-arxiu {
+        font-size: 22px;
+        margin-bottom: 5px;
+    }
+
+    .contenidor {
+        gap: 20px;
+        max-width: 100%;
+        padding: 40px 25px;
+    }
+
+    .icono-arxiu {
+        font-size: 60px;
+    }
+
+    label {
+        font-size: 16px;
+    }
+
+    input[type="file"] {
+        font-size: 14px;
+        padding: 12px 15px;
+    }
+
+    input[type="file"]::file-selector-button {
+        font-size: 12px;
+        margin-right: 10px;
+        padding: 8px 15px;
+    }
+
+    #contingut-arxiu {
+        font-size: 12px;
+        line-height: 1.5;
+        max-height: 400px;
+        max-width: 100%;
+        padding: 15px;
+    }
+
+    .boto-reset {
+        font-size: 14px;
+        max-width: 100%;
+        padding: 12px 20px;
+    }
+
+    .boto-reset .material-icons {
+        font-size: 18px;
+    }
+}
+
+/* Extra Small Mobile */
+@media (max-width: 374px) {
+    .titol-arxiu {
+        font-size: 20px;
+    }
+
+    .contenidor {
+        padding: 30px 20px;
+    }
+
+    .icono-arxiu {
+        font-size: 50px;
+    }
+
+    label {
+        font-size: 15px;
+    }
+
+    input[type="file"] {
+        font-size: 13px;
+        padding: 10px 12px;
+    }
+
+    #contingut-arxiu {
+        font-size: 11px;
+        max-height: 350px;
+        padding: 12px;
+    }
+
+    .boto-reset {
+        font-size: 13px;
+        padding: 10px 18px;
+    }
+}

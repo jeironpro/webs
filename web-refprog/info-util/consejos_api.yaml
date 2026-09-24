@@ -1,0 +1,65 @@
+pruebas_de_api:
+  # Conceptos Básicos
+  definicion: "El API Testing comprueba si dos aplicaciones pueden intercambiar datos correctamente en segundo plano, asegurando que se devuelvan los datos correctos y se manejen los errores, incluso si la interfaz de usuario se ve bien."
+  importancia:
+    - "Asegura que la aplicación funcione correctamente entre bastidores."
+    - "Ayuda a detectar errores temprano antes de que afecten a los usuarios."
+    - "Mantiene la fiabilidad de las aplicaciones bajo alta carga."
+    - "Mejora la velocidad, el rendimiento y la experiencia del usuario."
+  tipos_comunes:
+    - "Pruebas Funcionales (Functional Testing)"
+    - "Pruebas de Rendimiento (Performance Testing)"
+    - "Pruebas de Seguridad (Security Testing)"
+    - "Pruebas de Manejo de Errores (Error Handling Testing)"
+
+  # Métodos HTTP
+  metodos_http:
+    GET: "Solicitar datos del servidor (Leer)."
+    POST: "Enviar nuevos datos al servidor (Crear)."
+    PUT: "Actualizar datos existentes completamente (Actualizar)."
+    DELETE: "Eliminar datos del servidor (Eliminar)."
+
+  # Códigos de Estado
+  codigos_estado:
+    200_OK: "La solicitud fue exitosa: todo funcionó."
+    201_Created: "Se ha creado un nuevo recurso con éxito."
+    400_Bad_Request: "Algo está mal en la solicitud (datos faltantes o incorrectos)."
+    401_Unauthorized: "No has iniciado sesión o no tienes las credenciales correctas."
+    403_Forbidden: "Has iniciado sesión, pero no tienes permiso para acceder a esto."
+    404_Not_Found: "El recurso solicitado no existe."
+    500_Internal_Server_Error: "Algo salió mal en el lado del servidor."
+
+  # Autenticación y Verificación
+  metodos_autenticacion:
+    api_key: "Una clave secreta simple enviada con cada solicitud para identificarte."
+    bearer_token: "Un token temporal otorgado tras el inicio de sesión para acceder a endpoints protegidos."
+    oauth: "Sistema de inicio de sesión seguro (ej. Google o Facebook) sin compartir contraseñas."
+  headers_a_verificar:
+    content_type: "Asegura que el formato de los datos sea correcto (ej. JSON)."
+    authorization: "Confirma que el usuario tiene permiso de acceso."
+    accept: "Indica qué formato espera el cliente en la respuesta."
+    cache_control: "Controla cómo se almacenan o guardan las respuestas en caché."
+  validaciones_comunes:
+    - "Código de Estado: Verificar que el API devuelva el código esperado."
+    - "Cuerpo de la Respuesta: Validar que los datos sean correctos y estén en el formato adecuado."
+    - "Tipos de Datos: Asegurar que los valores sean del tipo correcto (ej. número vs cadena)."
+    - "Tiempo de Respuesta: Garantizar que el API responda lo suficientemente rápido."
+    - "Mensajes de Error: Confirmar que se devuelvan errores claros cuando algo falla."
+
+  # Herramientas y Buenas Prácticas
+  herramientas:
+    postman: "Herramienta amigable para enviar solicitudes API y ver respuestas."
+    curl: "Herramienta de línea de comandos para probar APIs rápidamente en la terminal."
+    swagger: "Ayuda a visualizar la documentación de la API y probar endpoints en el navegador."
+    thunder_client: "Alternativa ligera a Postman integrada en VS Code."
+  mejores_practicas:
+    - "Probar con diferentes entradas (válidas, inválidas, vacías)."
+    - "Mantener los casos de prueba claros y organizados."
+    - "Revisar siempre las respuestas tanto de éxito como de error."
+    - "Usar variables de entorno para evitar repetir valores."
+    - "Automatizar pruebas repetitivas para ahorrar tiempo."
+  consejos_pro:
+    - "Empieza simple y luego profundiza."
+    - "Guarda y reutiliza tus solicitudes."
+    - "Usa Mock APIs si el backend aún no está listo."
+    - "Compara siempre la respuesta esperada contra la real."

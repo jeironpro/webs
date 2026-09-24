@@ -1,0 +1,115 @@
+/*
+ * Dado - componente visual que representa un dado de 6 caras
+ * Utiliza una cuadricula 3x3 para posicionar los puntos (pips)
+ * Las posiciones se numeran del 1 al 9 en orden de lectura
+ */
+
+.dice-wrapper {
+    width: 100%;
+    aspect-ratio: 1;
+    cursor: pointer;
+    transition: transform var(--transition-fast);
+}
+
+.dice-wrapper:hover {
+    transform: scale(1.05);
+}
+
+/* Cara del dado con cuadricula 3x3 para los puntos */
+.dice-face {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 4px;
+    width: 100%;
+    height: 100%;
+    padding: 16%;
+    background:
+        radial-gradient(
+            ellipse at 30% 20%,
+            rgba(255, 255, 255, 0.4) 0%,
+            transparent 50%
+        ),
+        var(--color-dice-bg);
+    border: 2px solid var(--color-dice-border);
+    border-radius: var(--border-radius);
+    box-shadow:
+        0 4px 16px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+/* Cada celda puede contener un punto */
+.dice-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dice-cell.dot::after {
+    content: '';
+    display: block;
+    width: 70%;
+    height: 70%;
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            rgba(255, 255, 255, 0.3) 0%,
+            transparent 50%
+        ),
+        var(--color-dice-pip);
+    border-radius: 50%;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Animacion de agitado durante el lanzamiento */
+@keyframes dice-shake {
+    0%,
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    10% {
+        transform: translate(-4px, -3px) rotate(-10deg);
+    }
+    20% {
+        transform: translate(4px, 2px) rotate(10deg);
+    }
+    30% {
+        transform: translate(-3px, 4px) rotate(-8deg);
+    }
+    40% {
+        transform: translate(3px, -3px) rotate(8deg);
+    }
+    50% {
+        transform: translate(-4px, 2px) rotate(-10deg);
+    }
+    60% {
+        transform: translate(4px, -4px) rotate(10deg);
+    }
+    70% {
+        transform: translate(-2px, 3px) rotate(-6deg);
+    }
+    80% {
+        transform: translate(2px, -3px) rotate(6deg);
+    }
+    90% {
+        transform: translate(-3px, 2px) rotate(-8deg);
+    }
+}
+
+.dice-wrapper.rolling {
+    animation: dice-shake 0.6s ease-in-out;
+    animation-iteration-count: 1;
+}
+
+/* Ajustes responsive para el dado */
+@media (max-width: 600px) {
+    .dice-face {
+        padding: 12%;
+        border-radius: 10px;
+    }
+
+    .dice-cell.dot::after {
+        width: 65%;
+        height: 65%;
+    }
+}

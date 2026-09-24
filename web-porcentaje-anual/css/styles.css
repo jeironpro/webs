@@ -1,0 +1,241 @@
+body {
+    background-color: #f3f4f6;
+    color: #1f2937;
+    font-family: 'Inter', sans-serif;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+}
+
+main {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+.contenedor-principal {
+    background-color: #ffffff;
+    border-radius: 24px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-height: 60vh;
+    max-width: 1100px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.encabezado-tarjeta {
+    align-items: center;
+    border-bottom: 1px solid #f3f4f6;
+    display: flex;
+    justify-content: space-between;
+    padding: 24px 32px;
+}
+
+.informacion-encabezado {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.titulo {
+    color: #111827;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: -0.02em;
+}
+
+.subtitulo {
+    color: #6b7280;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.etiqueta-dias {
+    background-color: #eff6ff;
+    border-radius: 9999px;
+    color: #3b82f6;
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 8px 16px;
+}
+
+/* --- Body / Cuerpo (Grid) --- */
+.cuerpo-tarjeta {
+    flex-grow: 1;
+    padding: 32px;
+    overflow: hidden; /* Evitar scroll si no es necesario, o auto si se prefiere */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.grid-dias {
+    display: grid;
+    gap: 8px;
+    grid-template-columns: repeat(auto-fill, minmax(12px, 1fr));
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+}
+
+@media (max-width: 768px) {
+    .contenedor-principal {
+        max-height: 70vh;
+    }
+
+    .grid-dias {
+        gap: 8px;
+        grid-template-columns: repeat(auto-fill, minmax(10px, 1fr));
+        height: 100%;
+    }
+    
+    .encabezado-tarjeta {
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+    }
+    
+    .etiqueta-dias {
+        align-self: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .contenedor-principal {
+        max-height: 80vh;
+    }
+
+    .encabezado-tarjeta {
+        padding: 16px 24px;
+    }
+
+    .grid-dias {
+        gap: 6px;
+        grid-template-columns: repeat(auto-fill, minmax(8px, 1fr));
+        height: 100%;
+    }
+}
+
+.punto-dia {
+    aspect-ratio: 1;
+    background-color: #f3f4f6;
+    border-radius: 50%;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+    width: 100%;
+    position: relative;
+    cursor: pointer;
+}
+
+.punto-dia:hover {
+    transform: scale(1.1);
+}
+
+.punto-dia.completado {
+    background-color: #3b82f6;
+}
+
+.punto-dia::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #1f2937;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    pointer-events: none;
+    margin-bottom: 4px;
+    z-index: 10;
+}
+
+.punto-dia:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+.pie-tarjeta {
+    background-color: #fafafa;
+    border-top: 1px solid #f3f4f6;
+    padding: 32px;
+}
+
+.contenedor-estadisticas {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.fila-estadistica {
+    align-items: flex-end;
+    display: flex;
+    justify-content: space-between;
+}
+
+.etiqueta-estadistica {
+    color: #6b7280;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+}
+
+.indicador-porcentaje {
+    align-items: baseline;
+    color: #1f2937;
+    display: flex;
+    line-height: 1;
+}
+
+#valor-porcentaje {
+    font-size: 3.5rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: #111827;
+}
+
+.simbolo-porcentaje {
+    color: #9ca3af;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-left: 4px;
+}
+
+.fila-progreso {
+    width: 100%;
+}
+
+.contenedor-barra {
+    background-color: #e5e7eb;
+    border-radius: 9999px;
+    height: 12px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.barra-progreso {
+    background-image: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%);
+    border-radius: 9999px;
+    height: 100%;
+    width: 0%;
+    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+

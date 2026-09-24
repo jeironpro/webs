@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antiguo testamento</title>
+    <link rel="icon" type="image/svg+xml" href="icons/biblia.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/tokens.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/libros.css">
+</head>
+<body>
+    <header class="header-testamentos">
+        <div class="enlaces">
+            <a href="index.html" aria-label="Inicio">
+                <svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M3 11.5 12 4l9 7.5"/>
+                    <path d="M5.5 10v9.5h13V10"/>
+                </svg>
+            </a>
+        </div>
+        <h1>Antiguo testamento</h1>
+    </header>
+    <main class="contenedor-testamento">
+        <div class="contenedor-libros" id="libros-at"></div>
+    </main>
+    <footer>
+        <p>&copy; Todos los derechos reservados <span id="anio"></span> - JeironPro</p>
+    </footer>
+    <script>
+        const slug = (nombre) =>
+            nombre
+                .toLowerCase()
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .replace(/\s+/g, "");
+
+        const secciones_at = [
+            { titulo: "Pentateuco", libros: ["Génesis", "Éxodo", "Levítico", "Números", "Deuteronomio"] },
+            { titulo: "Históricos", libros: ["Josué", "Jueces", "Rut", "1 Samuel", "2 Samuel", "1 Reyes", "2 Reyes", "1 Crónicas", "2 Crónicas", "Esdras", "Nehemías", "Tobías", "Judit", "Ester", "1 Macabeos", "2 Macabeos"] },
+            { titulo: "Poéticos y sapienciales", libros: ["Job", "Salmos", "Proverbios", "Eclesiastés", "Cantar de los Cantares", "Sabiduría", "Eclesiástico"] },
+            { titulo: "Proféticos", libros: ["Isaías", "Jeremías", "Lamentaciones", "Baruc", "Ezequiel", "Daniel", "Oseas", "Joel", "Amós", "Abdías", "Jonás", "Miqueas", "Nahúm", "Habacuc", "Sofonías", "Ageo", "Zacarías", "Malaquías"] }
+        ];
+
+        const contenedorLibrosAt = document.getElementById("libros-at");
+
+        secciones_at.forEach((seccion) => {
+            const titulo = document.createElement("h2");
+            titulo.className = "seccion-titulo";
+            titulo.textContent = seccion.titulo;
+            contenedorLibrosAt.appendChild(titulo);
+
+            seccion.libros.forEach((nombre) => {
+                const libro = document.createElement("div");
+                libro.classList.add("libro");
+                const enlace = document.createElement("a");
+                enlace.href = `html/antiguo_testamento/${slug(nombre)}.html`;
+                enlace.textContent = nombre;
+                libro.appendChild(enlace);
+                contenedorLibrosAt.appendChild(libro);
+            });
+        });
+    </script>
+    <script>
+        const anioFooter = document.getElementById("anio");
+        if (anioFooter) anioFooter.textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

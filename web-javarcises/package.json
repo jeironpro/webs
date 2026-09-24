@@ -1,0 +1,21 @@
+{
+    "name": "web-javarcises",
+    "version": "1.0.0",
+    "description": "Web estática con los ejercicios de programación en Java (Javarcises): listado paginado, filtros, búsqueda y vista de detalle.",
+    "type": "module",
+    "private": true,
+    "license": "MIT",
+    "scripts": {
+        "generar": "node scripts/extraer-datos.js",
+        "dev": "node scripts/servir.js",
+        "test": "node --test",
+        "lint": "eslint .",
+        "format": "prettier --write .",
+        "format:check": "prettier --check ."
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.39.1",
+        "eslint": "^9.39.1",
+        "prettier": "^3.6.2"
+    }
+}

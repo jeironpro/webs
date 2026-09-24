@@ -1,0 +1,222 @@
+[
+    {
+        "pregunta": "¿Qué es JUnit?",
+        "opciones": [
+            "Un framework de pruebas unitarias para Java",
+            "Un servidor",
+            "Un lenguaje",
+            "Un IDE"
+        ],
+        "respuesta": 0,
+        "explicacion": "Estándar de facto."
+    },
+    {
+        "pregunta": "¿Cuál es la última versión mayor de JUnit (actualmente)?",
+        "opciones": [
+            "JUnit 3",
+            "JUnit 5 (Jupiter)",
+            "JUnit 1",
+            "JUnit 4"
+        ],
+        "respuesta": 1,
+        "explicacion": "Modular y moderno."
+    },
+    {
+        "pregunta": "¿Qué método se usa para verificar igualdad en JUnit?",
+        "opciones": [
+            "verify()",
+            "checkEqual()",
+            "isEqual()",
+            "assertEquals(esperado, actual)"
+        ],
+        "respuesta": 3,
+        "explicacion": "El orden de argumentos importa para el mensaje."
+    },
+    {
+        "pregunta": "¿Qué método verifica que una condición es verdadera?",
+        "opciones": [
+            "assertNull()",
+            "assertFalse()",
+            "assertTrue(condicion)",
+            "assert()"
+        ],
+        "respuesta": 2,
+        "explicacion": "Básico."
+    },
+    {
+        "pregunta": "¿Qué método verifica que un objeto no es null?",
+        "opciones": [
+            "assertNull()",
+            "assertNotNull(objeto)",
+            "assertExist()",
+            "assert()"
+        ],
+        "respuesta": 1,
+        "explicacion": "Validación de existencia."
+    },
+    {
+        "pregunta": "¿Cómo se prueba que se lanza una excepción en JUnit 5?",
+        "opciones": [
+            "fail()",
+            "try-catch",
+            "@Test(expected = Excepcion.class)",
+            "assertThrows(Excepcion.class, () -> { codigo });"
+        ],
+        "respuesta": 3,
+        "explicacion": "Estilo lambda moderno."
+    },
+    {
+        "pregunta": "¿Qué es 'fail()'?",
+        "opciones": [
+            "Un error",
+            "Un éxito",
+            "Un método que hace fallar el test explícitamente (útil si se llega a una línea que no debería alcanzarse)",
+            "Un aviso"
+        ],
+        "respuesta": 2,
+        "explicacion": "En catch blocks inesperados."
+    },
+    {
+        "pregunta": "¿Qué es @DisplayName?",
+        "opciones": [
+            "Nombre de clase",
+            "Nada",
+            "Nombre de variable",
+            "Anotación para dar un nombre legible humano al test en los reportes"
+        ],
+        "respuesta": 3,
+        "explicacion": "Mejora la documentación."
+    },
+    {
+        "pregunta": "¿Qué es @Nested?",
+        "opciones": [
+            "Permite agrupar tests en clases internas para organizar mejor los casos",
+            "Anidar ifs",
+            "Nada",
+            "Anidar bucles"
+        ],
+        "respuesta": 0,
+        "explicacion": "Estructura jerárquica de tests."
+    },
+    {
+        "pregunta": "¿Qué es @Tag?",
+        "opciones": [
+            "Etiqueta HTML",
+            "Permite etiquetar tests para filtrar cuáles ejecutar (ej. 'lento', 'integracion')",
+            "Nada",
+            "Precio"
+        ],
+        "respuesta": 1,
+        "explicacion": "Filtrado en build tools."
+    },
+    {
+        "pregunta": "¿Qué es AssertJ o Hamcrest?",
+        "opciones": [
+            "Nada",
+            "Competencia de JUnit",
+            "Librerías de aserciones fluidas que mejoran la legibilidad de los tests (assertThat)",
+            "Virus"
+        ],
+        "respuesta": 2,
+        "explicacion": "assertThat(x).isEqualTo(y)."
+    },
+    {
+        "pregunta": "¿Qué es Mockito?",
+        "opciones": [
+            "Framework de mocking popular usado junto con JUnit",
+            "Una bebida",
+            "Un IDE",
+            "Un juego"
+        ],
+        "respuesta": 0,
+        "explicacion": "Simula comportamientos."
+    },
+    {
+        "pregunta": "¿Qué es @ExtendWith(MockitoExtension.class)?",
+        "opciones": [
+            "Nada",
+            "Error",
+            "Integra Mockito con JUnit 5 para inyectar mocks automáticamente",
+            "Extiende la clase"
+        ],
+        "respuesta": 2,
+        "explicacion": "Setup fácil."
+    },
+    {
+        "pregunta": "¿Qué es un Timeout en un test?",
+        "opciones": [
+            "Descanso",
+            "Tiempo fuera",
+            "Límite de tiempo para que el test pase; si tarda más, falla",
+            "Pausa"
+        ],
+        "respuesta": 2,
+        "explicacion": "Evita bucles infinitos en CI."
+    },
+    {
+        "pregunta": "¿Qué es @RepeatedTest?",
+        "opciones": [
+            "Repite código",
+            "Ejecuta el test un número especificado de veces",
+            "Nada",
+            "Error"
+        ],
+        "respuesta": 1,
+        "explicacion": "Para detectar flaky tests."
+    },
+    {
+        "pregunta": "¿Qué es assertAll?",
+        "opciones": [
+            "Falla al primero",
+            "Nada",
+            "Ejecuta múltiples aserciones y reporta todos los fallos juntos (soft assertions)",
+            "Aserción global"
+        ],
+        "respuesta": 2,
+        "explicacion": "JUnit 5 feature."
+    },
+    {
+        "pregunta": "¿Qué es la aserción de arrays?",
+        "opciones": [
+            "checkArrays",
+            "Nada",
+            "assertArrayEquals(esperado, actual)",
+            "assertEquals"
+        ],
+        "respuesta": 2,
+        "explicacion": "Compara contenido, no referencias."
+    },
+    {
+        "pregunta": "¿Qué es delta en assertEquals de doubles?",
+        "opciones": [
+            "La tolerancia permitida para la diferencia entre flotantes (debido a imprecisión)",
+            "Un río",
+            "Un valor",
+            "Un error"
+        ],
+        "respuesta": 0,
+        "explicacion": "0.0001."
+    },
+    {
+        "pregunta": "¿Qué es el ciclo de vida de una instancia de test en JUnit 5?",
+        "opciones": [
+            "Siempre una instancia",
+            "Por defecto es PER_METHOD (nueva instancia para cada test), configurable a PER_CLASS",
+            "Estático",
+            "Aleatorio"
+        ],
+        "respuesta": 1,
+        "explicacion": "Aislamiento vs Rendimiento."
+    },
+    {
+        "pregunta": "¿Qué archivo de configuración usa Maven para ejecutar tests?",
+        "opciones": [
+            "config.json",
+            "junit.conf",
+            "test.xml",
+            "pom.xml (Surefire plugin)"
+        ],
+        "respuesta": 3,
+        "explicacion": "Integración de build."
+    }
+]

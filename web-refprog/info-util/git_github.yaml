@@ -1,0 +1,46 @@
+COMANDOS GIT:
+  # Inicializacion
+  - git init:                             Inicializa un nuevo repositorio Git
+  - git clone <repo-url>:                 Clona un repositorio desde una URL
+
+  # Desarrollo diario
+  - git status:                           Muestra el estado de los cambios en el repositorio local
+  - git add <archivo> - <.(todos)>:       Añade cambios al área de preparación
+  - git commit -m "mensaje":              Confirma los cambios con un mensaje (crea una instancia de los cambios)
+
+  # Gestion de ramas
+  - git branch:                           Lista las ramas
+  - git branch <nombre-rama>:             Crea una nueva rama
+  - git switch <nombre-rama>:             Cambia a una rama
+  - git branch -d <nombre-rama>:          Elimina una rama
+
+  # Integracion y colaboracion
+  - git merge <rama>:                     Fusiona los cambios de una rama
+  - git remote add <nombre> <url>:        Añade un repositorio remoto
+  - git push <remote> <rama>:             Envia los cambios a un repositorio remoto
+  - git pull <remote> <rama>:             Obtiene y fusiona cambios desde un repositorio remoto
+
+  # Recuperacion y limpieza
+  - git fetch:                            Recupera cambios sin fusionar
+  - git reset --hard HEAD:                Rechaza todos los cambios locales
+  - git revert <hash-commit>:             Revierte los cambios de un commit
+  - git reset --soft HEAD~1:              Elimina el ultimo commit (sin perder los cambios)
+  - git reset --hard HEAD~1:              Elimina el ultimo commit (y tambien los cambios del commit)
+  - git reset --hard <hash del commit>:   Restaura todos los archivos y commits al estado de ese commit
+  - git push origin "rama" --force:       Sube los cambios al repositorio remoto (sobrescribiendo en el remoto)
+  - git log --<ruta/archivo>:             Para ver el historial y localizar el commit donde el archivo estaba bien
+
+  # Creacion de version
+  - git tag "version":                    Crea una etiqueta con el nombre de version
+  - git push origin "version":            Sube la etiqueta al repositorio remoto
+  - git tag -d "version":                 Elimina la etiqueta en el repositorio local
+  - git push origin --delete "version":   Elimina la etiqueta en el repositorio remoto
+
+  # Avanzado y utilidades
+  - git diff <a> <b>:                     Compara dos commits, ramas o archivos
+  - git show <hash>:                      Muestra detalles de un commit
+  - git stash:                            Guarda cambios temporales y limpia el árbol de trabajo
+  - git stash pop:                        Restaura los cambios guardados del stash
+  - git cherry-pick <hash>:               Aplica un commit especifico en la rama actual
+  - git rebase <base>:                    Reaplica commits sobre otra base
+  - git reflog:                           Para ver el historial reciente y mostrar todos los movimientos del HEAD, incluyendo commits y resets

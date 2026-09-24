@@ -1,0 +1,124 @@
+/* ── Layout de página (Workbench, una tarea) ──────── */
+.site {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.site-main {
+  flex: 1;
+  width: 100%;
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding: var(--space-xl) var(--page-gutter) var(--space-3xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+/* ── Cabecera ─────────────────────────────────────── */
+.site-header {
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.nav {
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding: var(--space-md) var(--page-gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+.nav__brand {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--color-ink);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+
+.nav__brand:hover {
+  color: var(--color-accent);
+}
+
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.nav__link {
+  font-family: var(--font-body);
+  font-weight: 600;
+  color: var(--color-ink-2);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.nav__link:hover {
+  color: var(--color-ink);
+}
+
+.nav__link--icon {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-2xs);
+  border-radius: var(--radius-input);
+}
+
+.nav__icon {
+  display: block;
+}
+
+/* ── Título de página ─────────────────────────────── */
+.page-head {
+  max-width: 62ch;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding-block: var(--space-md) 0;
+}
+
+.page-head__title {
+  font-size: var(--text-display);
+  font-weight: 600;
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+
+.page-head__lede {
+  color: var(--color-ink-2);
+  font-size: var(--text-md);
+  line-height: 1.5;
+}
+
+/* ── Bloque del formulario ────────────────────────── */
+.form-block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+/* ── Pie (colophon, Ft4) ──────────────────────────── */
+.site-footer {
+  border-top: 1px solid var(--color-rule);
+}
+
+.foot {
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding: var(--space-lg) var(--page-gutter) var(--space-xl);
+}
+
+.foot__colophon {
+  font-family: var(--font-outlier);
+  font-size: var(--text-xs);
+  line-height: 1.7;
+  color: var(--color-muted);
+  max-width: 72ch;
+  margin-inline: auto;
+  text-align: center;
+}

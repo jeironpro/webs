@@ -1,0 +1,583 @@
+:root {
+    --color-accent: #e8c4a0;
+    --color-fons-principal: #faf8f3;
+    --color-fons-secundari: #ffffff;
+    --color-primari: #d4a59a;
+    --color-secundari: #a8b5a0;
+    --color-text: #3a3a3a;
+    --color-text-secundari: #6b6b6b;
+    --color-vora: #e5e0d8;
+    --espai-lg: 2rem;
+    --espai-md: 1.5rem;
+    --espai-sm: 1rem;
+    --espai-xl: 3rem;
+    --espai-xs: 0.5rem;
+    --radi-gran: 12px;
+    --radi-mitja: 8px;
+    --radi-petit: 4px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--color-fons-principal);
+    color: var(--color-text);
+    display: flex;
+    flex-direction: column;
+    font-family: "Inter", sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+.capçalera {
+    background-color: var(--color-fons-secundari);
+    border-bottom: 2px solid var(--color-vora);
+    padding: var(--espai-lg) var(--espai-md);
+    text-align: center;
+}
+
+.capçalera h1 {
+    color: var(--color-text);
+    font-family: "Poppins", sans-serif;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.navegacio-moduls {
+    background-color: var(--color-fons-secundari);
+    border-bottom: 1px solid var(--color-vora);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--espai-xs);
+    justify-content: center;
+    padding: var(--espai-md);
+}
+
+.tab-modul {
+    background-color: transparent;
+    border: 1px solid var(--color-vora);
+    border-radius: var(--radi-petit);
+    color: var(--color-text-secundari);
+    cursor: pointer;
+    font-family: "Poppins", sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: var(--espai-xs) var(--espai-md);
+    transition: all 0.3s ease;
+}
+
+.tab-modul:hover {
+    background-color: var(--color-primari);
+    border-color: var(--color-primari);
+    color: var(--color-fons-secundari);
+    transform: translateY(-2px);
+}
+
+.tab-modul.actiu {
+    background-color: var(--color-primari);
+    border-color: var(--color-primari);
+    color: var(--color-fons-secundari);
+}
+
+.principal {
+    flex: 1;
+    padding: var(--espai-xl) var(--espai-md);
+}
+
+.contenidor-principal {
+    margin: 0 auto;
+    max-width: 1400px;
+}
+
+.titol-modul {
+    color: var(--color-text);
+    font-family: "Poppins", sans-serif;
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    font-weight: 600;
+    margin-bottom: var(--espai-lg);
+    text-align: center;
+}
+
+.contenidor-taula {
+    background-color: var(--color-fons-secundari);
+    border: 1px solid var(--color-vora);
+    border-radius: var(--radi-mitja);
+    overflow-x: auto;
+    padding: var(--espai-md);
+}
+
+.taula-ras, .taula-resum {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.taula-resum {
+    margin-top: var(--espai-md);
+}
+
+.taula-ras thead {
+    background-color: var(--color-secundari);
+    color: var(--color-fons-secundari);
+}
+
+.taula-ras th {
+    font-family: "Poppins", sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: var(--espai-md);
+    text-align: center;
+}
+
+.taula-ras tbody tr {
+    border-bottom: 1px solid var(--color-vora);
+    transition: background-color 0.2s ease;
+}
+
+.taula-ras tbody tr:hover {
+    background-color: #f5f1eb;
+}
+
+.taula-ras tbody tr:last-child {
+    border-bottom: none;
+}
+
+.resum-modul {
+    background-color: #f5f1eb;
+    border-top: 2px solid var(--color-secundari);
+}
+
+.resum-modul td {
+    font-family: "Poppins", sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    padding: var(--espai-md);
+    text-align: center;
+    color: var(--color-text);
+}
+
+.resum-capçalera th {
+    background-color: var(--color-secundari);
+    color: var(--color-fons-secundari);
+    font-family: "Poppins", sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: var(--espai-sm) var(--espai-md);
+    text-align: center;
+}
+
+.taula-ras td {
+    padding: var(--espai-md);
+}
+
+.columna-ra {
+    color: var(--color-primari);
+    font-family: "Poppins", sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: center;
+    width: 80px;
+}
+
+.columna-descripcio {
+    color: var(--color-text);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    width: 350px;
+}
+
+.columna-nota, .columna-nota-modul, .columna-nota-empresa, .columna-nota-final {
+    color: var(--color-text);
+    font-family: "Poppins", sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: center;
+    width: 100px;
+}
+
+.columna-nota.pendent {
+    color: var(--color-text-secundari);
+    font-style: italic;
+}
+
+.columna-absencies {
+    background-color: #f9f6f2;
+    border-left: 2px solid var(--color-vora);
+    color: var(--color-text);
+    font-family: "Poppins", sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    vertical-align: middle;
+    width: 80px;
+}
+
+
+.columna-absencies span {
+    display: inline-block;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.container-absencies {
+    align-items: center;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    width: 100%;
+}
+
+.columna-absencies-total {
+    font-size: 1.1rem;
+    width: 150px;
+}
+
+.columna-absencies-utilitzades {
+    width: 100px;
+}
+
+.btn-absencia {
+    align-items: center;
+    background-color: var(--color-primari);
+    border: none;
+    border-radius: var(--radi-petit);
+    color: var(--color-fons-secundari);
+    cursor: pointer;
+    display: inline-flex;
+    font-size: 1.2rem;
+    font-weight: 700;
+    height: 32px;
+    justify-content: center;
+    line-height: 1;
+    margin: 0 2px;
+    max-width: 32px;
+    transition: all 0.2s ease;
+    width: 100%;
+}
+
+.btn-absencia:hover:not(:disabled) {
+    background-color: var(--color-secundari);
+    transform: scale(1.1);
+}
+
+.btn-absencia:active:not(:disabled) {
+    transform: scale(0.95);
+}
+
+.btn-absencia:disabled {
+    background-color: var(--color-vora);
+    color: var(--color-text-secundari);
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.btn-incrementar {
+    background-color: var(--color-secundari);
+}
+
+.btn-incrementar:hover:not(:disabled) {
+    background-color: #8fa087;
+}
+
+.btn-decrementar {
+    background-color: var(--color-primari);
+}
+
+.btn-decrementar:hover:not(:disabled) {
+    background-color: #c49088;
+}
+
+.sense-dades {
+    color: var(--color-text-secundari);
+    font-style: italic;
+    padding: var(--espai-xl);
+    text-align: center;
+}
+
+.peu-pagina {
+    background-color: var(--color-secundari);
+    border-top: 2px solid var(--color-vora);
+    color: var(--color-fons-secundari);
+    font-size: 0.9rem;
+    padding: var(--espai-md);
+    text-align: center;
+}
+
+@media (max-width: 1024px) {
+    .navegacio-moduls {
+        gap: var(--espai-xs);
+        padding: var(--espai-sm);
+    }
+
+    .tab-modul {
+        font-size: 0.9rem;
+        padding: var(--espai-xs) var(--espai-sm);
+    }
+
+    .principal {
+        padding: var(--espai-lg) var(--espai-sm);
+    }
+
+    .taula-ras th,
+    .taula-ras td {
+        padding: var(--espai-sm);
+    }
+}
+
+@media (max-width: 768px) {
+    .capçalera {
+        padding: var(--espai-md) var(--espai-sm);
+    }
+
+    .capçalera h1 {
+        font-size: clamp(1.25rem, 5vw, 1.75rem);
+    }
+
+    .navegacio-moduls {
+        flex-direction: column;
+        gap: var(--espai-xs);
+        padding: var(--espai-sm);
+    }
+
+    .tab-modul {
+        font-size: 0.9rem;
+        padding: var(--espai-sm);
+        width: 100%;
+    }
+
+    .principal {
+        padding: var(--espai-md) var(--espai-sm);
+    }
+
+    .titol-modul {
+        font-size: clamp(1.1rem, 4vw, 1.4rem);
+        margin-bottom: var(--espai-md);
+    }
+
+    .contenidor-taula {
+        border: none;
+        padding: 0;
+        background: transparent;
+    }
+
+    .taula-ras, .taula-ras tbody, .taula-ras tfoot, .taula-ras tr, .taula-ras td,
+    .taula-resum, .taula-resum tfoot, .taula-resum tr, .taula-resum td {
+        display: block;
+        width: 100%;
+    }
+
+    .taula-ras thead {
+        display: none;
+    }
+
+    .taula-ras tr,
+    .taula-resum tr {
+        background-color: var(--color-fons-secundari);
+        border: 1px solid var(--color-vora);
+        border-radius: var(--radi-mitja);
+        margin-bottom: var(--espai-md);
+        padding: var(--espai-sm);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .taula-ras td,
+    .taula-resum td {
+        border-bottom: 1px solid var(--color-vora);
+        padding: var(--espai-sm) 0;
+        padding-left: 45%;
+        position: relative;
+        text-align: right;
+        min-height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    .taula-ras td:last-child,
+    .taula-resum td:last-child {
+        border-bottom: none;
+    }
+
+    .taula-ras td::before,
+    .taula-resum td::before {
+        content: attr(data-label);
+        font-family: "Poppins", sans-serif;
+        font-weight: 600;
+        left: 0;
+        position: absolute;
+        text-align: left;
+        width: 40%;
+        color: var(--color-text-secundari);
+    }
+
+    .columna-ra, .columna-descripcio, .columna-nota,
+    .columna-nota-modul, .columna-nota-empresa, .columna-nota-final,
+    .columna-absencies, .columna-absencies-total,
+    .columna-absencies-utilitzades {
+        width: 100%;
+        font-size: 0.95rem;
+    }
+
+    .columna-descripcio {
+        font-size: 0.9rem;
+        text-align: right;
+    }
+
+    .columna-absencies {
+        background-color: transparent;
+        border-left: none;
+        color: var(--color-text);
+    }
+
+    .resum-modul {
+        background-color: transparent;
+        border-top: none;
+        margin-top: var(--espai-xs);
+    }
+
+    .resum-capçalera {
+        display: none !important;
+    }
+
+    .resum-modul tr {
+        background-color: var(--color-fons-secundari);
+        border: 1px solid var(--color-secundari);
+        border-radius: var(--radi-mitja);
+        margin-bottom: var(--espai-sm);
+        padding: var(--espai-sm);
+        box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+
+    .resum-modul td {
+        border-bottom: 1px solid var(--color-vora);
+        padding: var(--espai-sm) 0;
+        padding-left: 45%;
+        position: relative;
+        text-align: right;
+        min-height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    .resum-modul td:last-child {
+        border-bottom: none;
+    }
+
+    .resum-modul td::before {
+        content: attr(data-label);
+        font-family: "Poppins", sans-serif;
+        font-weight: 600;
+        left: 0;
+        position: absolute;
+        text-align: left;
+        width: 40%;
+        color: var(--color-text-secundari);
+    }
+
+    .container-absencies {
+        justify-content: flex-end;
+        width: auto;
+    }
+
+    .peu-pagina {
+        font-size: 0.8rem;
+        padding: var(--espai-sm);
+    }
+
+    .desktop-only {
+        display: none !important;
+    }
+
+    .fila-absencies-mobil {
+        display: block;
+    }
+
+    .num-absencies {
+        font-size: 1.2rem;
+        font-weight: 700;
+    }
+
+    .btn-absencia {
+        font-size: 1.2rem;
+        height: 40px;
+        width: 40px;
+        margin: 0 4px;
+    }
+}
+
+@media (max-width: 480px) {
+    .capçalera {
+        padding: var(--espai-sm);
+    }
+
+    .navegacio-moduls {
+        padding: var(--espai-xs);
+    }
+
+    .tab-modul {
+        font-size: 0.85rem;
+        padding: var(--espai-xs) var(--espai-sm);
+    }
+
+    .principal {
+        padding: var(--espai-sm);
+    }
+
+    .titol-modul {
+        font-size: 1rem;
+        margin-bottom: var(--espai-sm);
+    }
+
+    .contenidor-taula {
+        padding: var(--espai-xs);
+    }
+
+    .taula-ras td,
+    .taula-resum td {
+        padding-left: 40%;
+        min-height: 36px;
+    }
+    
+    .taula-ras td::before,
+    .taula-resum td::before {
+        width: 35%;
+        font-size: 0.85rem;
+    }
+
+    .columna-ra, .columna-descripcio, .columna-nota,
+    .columna-nota-modul, .columna-nota-empresa, .columna-nota-final,
+    .columna-absencies, .columna-absencies-total,
+    .columna-absencies-utilitzades {
+        font-size: 0.85rem;
+    }
+    
+    .columna-ra {
+        color: var(--color-primari);
+    }
+
+    .container-absencies {
+        gap: 10px;
+    }
+
+    .columna-absencies span {
+        font-size: 1rem;
+        margin: 0;
+        display: inline-block;
+    }
+
+    .peu-pagina {
+        font-size: 0.8rem;
+        padding: var(--espai-sm);
+    }
+}
+
+@media (min-width: 769px) {
+    .fila-absencies-mobil {
+        display: none;
+    }
+}

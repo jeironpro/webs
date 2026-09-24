@@ -1,0 +1,67 @@
+/* Hallmark · designed-as-app */
+/* Índice de capítulos: numerales en caja con filete — ver design.md */
+
+#capitulos {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(auto-fill, minmax(76px, 1fr));
+    margin: 0 auto;
+    max-width: var(--ancho-maximo);
+    padding: 8px 0;
+}
+
+.capitulo {
+    background-color: var(--papel-alto);
+    border: var(--regla);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
+    height: 72px;
+    overflow: hidden;
+    transition: border-color var(--transicion), transform var(--transicion);
+}
+
+.capitulo:hover {
+    border-color: var(--linea-fuerte);
+    transform: translateY(-2px);
+}
+
+.capitulo a {
+    align-items: center;
+    color: var(--tinta);
+    display: flex;
+    font-family: var(--fuente-titulo);
+    font-size: 20px;
+    font-weight: 600;
+    height: 100%;
+    justify-content: center;
+    text-decoration: none;
+    transition: color var(--transicion);
+    width: 100%;
+}
+
+.capitulo:hover a {
+    color: var(--granate);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 480px) {
+    #capitulos {
+        gap: 10px;
+        grid-template-columns: repeat(auto-fill, minmax(56px, 1fr));
+    }
+
+    .capitulo {
+        height: 56px;
+    }
+
+    .capitulo a {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 320px) {
+    #capitulos {
+        grid-template-columns: repeat(auto-fill, minmax(48px, 1fr));
+    }
+}

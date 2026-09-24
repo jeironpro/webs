@@ -1,0 +1,158 @@
+body {
+    box-sizing: border-box;
+    font-family: "Fredoka", sans-serif;
+    margin: 0;
+}
+
+header {
+    align-items: center;
+    background-color: #007BFF;
+    color: #fff;
+    display: flex;
+    height: 80px;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+main {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+
+table {
+    border-collapse: collapse;
+    height: 100%;
+    margin: 10px;
+    width: 100%;
+}
+
+table, th, td {
+    border: 1px solid #000;
+    font-weight: 600;
+}
+
+th:not(:first-child), td:not(:first-child) {
+    width: 18%;
+}
+
+th {
+    height: 50px;
+}
+
+td {
+    height: 100px;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+td .modul-profe-aula {
+    display: flex;
+    flex-direction: column;
+}
+
+table th:nth-child(1),
+table td:nth-child(1) {
+    width: 10%;
+}
+
+table .oml {
+    background-color: #4eff66;
+}
+
+table .p {
+    background-color: #62e0ff;
+}
+
+table .css {
+    background-color: #ffffc3;
+}
+
+table .d,
+table .t {
+    background-color: #ffee00;
+}
+
+table .ii {
+    background-color: #ffb95f;
+}
+
+.contenidor-targeta {
+    perspective: 1000px;
+}
+
+.targeta {
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+    user-select: none;
+    width: 100%;
+}
+
+.targeta.gira {
+    transform: rotateY(180deg);
+}
+
+.frontal,
+.posterior {
+    align-items: center;
+    backface-visibility: hidden;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    inset: 0;
+    justify-content: center;
+    position: absolute;
+    -webkit-backface-visibility: hidden;
+}
+
+.posterior {
+    transform: rotateY(180deg);
+}
+
+@media (max-width: 1200px) {
+    table {
+        font-size: 14px;
+    }
+
+    table th:nth-child(1),
+    table td:nth-child(1) {
+        width: 100px;
+    }
+}
+
+@media (max-width: 900px) {
+    table {
+        font-size: 12px;
+    }
+
+    table th:nth-child(1),
+    table td:nth-child(1) {
+        width: 75px;
+    }
+
+    td {
+        height: 75px;
+    }
+}
+
+@media (max-width: 600px) {
+    table {
+        font-size: 6px;
+    }
+
+    table th:nth-child(1),
+    table td:nth-child(1) {
+        width: 50px;
+    }
+
+    td {
+        height: 50px;
+    }
+}

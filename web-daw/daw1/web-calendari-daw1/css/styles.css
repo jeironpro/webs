@@ -1,0 +1,85 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Fredoka', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #f0f0f0;
+}
+
+header {
+    align-items: center;
+    background-color: #005eff;
+    color: #fff;
+    display: flex;
+    height: 80px;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+main {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    width: 100%;
+}
+
+.contenidor-setmanes {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin: auto;
+}
+
+.setmana {
+    align-items: center;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    justify-content: center;
+    margin: 15px;
+    position: relative;
+    width: 220px;
+}
+
+.setmana .numero-setmana,
+.setmana .dia {
+    background-color: #e1e1e1;
+    width: 100%;
+    display: flex;
+    flex-grow: 1;
+}
+
+.setmana .numero-setmana {
+    align-items: center;
+    background-color: #90fb90;
+    font-weight: 600;
+    justify-content: center;
+}
+
+.setmana .dia {
+    align-items: center;
+    border-bottom: 1px solid #000;
+    gap: 5px;
+    padding-left: 3px;
+    position: relative;
+}
+
+.setmana .dia:last-child {
+    border-bottom: none;
+}
+
+.setmana .icona {
+    background-color: #00ff00;
+    border-radius: 50%;
+    padding: 3px;
+    position: absolute;
+    right: 5px;
+}

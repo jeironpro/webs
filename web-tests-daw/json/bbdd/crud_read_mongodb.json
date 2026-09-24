@@ -1,0 +1,222 @@
+[
+    {
+        "pregunta": "¿Qué método recupera documentos de una colección?",
+        "opciones": [
+            "find()",
+            "search()",
+            "select()",
+            "get()"
+        ],
+        "respuesta": 0,
+        "explicacion": "db.coleccion.find(filtro, proyeccion)"
+    },
+    {
+        "pregunta": "¿Qué método recupera un solo documento?",
+        "opciones": [
+            "findFirst()",
+            "getOne()",
+            "searchOne()",
+            "findOne()"
+        ],
+        "respuesta": 3,
+        "explicacion": "Devuelve el documento directamente, no un cursor."
+    },
+    {
+        "pregunta": "¿Qué devuelve find()?",
+        "opciones": [
+            "Un array de documentos",
+            "Todos los documentos de golpe",
+            "Un archivo JSON",
+            "Un cursor apuntando al conjunto de resultados"
+        ],
+        "respuesta": 3,
+        "explicacion": "El cursor permite iterar sobre los resultados eficientemente."
+    },
+    {
+        "pregunta": "¿Cómo formatear la salida en el shell para que sea legible?",
+        "opciones": [
+            ".clean()",
+            ".nice()",
+            ".format()",
+            ".pretty()"
+        ],
+        "respuesta": 3,
+        "explicacion": "db.coleccion.find().pretty()"
+    },
+    {
+        "pregunta": "¿Qué es una proyección?",
+        "opciones": [
+            "Especificar qué campos incluir o excluir en el resultado",
+            "Un filtro",
+            "Un mapa",
+            "Una predicción"
+        ],
+        "respuesta": 0,
+        "explicacion": "{ nombre: 1, edad: 1, _id: 0 }"
+    },
+    {
+        "pregunta": "¿Cómo excluir el campo _id?",
+        "opciones": [
+            "{ no_id: true }",
+            "{ _id: false }",
+            "{ _id: 0 }",
+            "{ hide_id: 1 }"
+        ],
+        "respuesta": 2,
+        "explicacion": "Es el único campo que se puede excluir explícitamente mientras se incluyen otros."
+    },
+    {
+        "pregunta": "¿Qué operador se usa para igualdad?",
+        "opciones": [
+            "$equal",
+            "$eq",
+            "Ninguno, se usa { campo: valor }",
+            "="
+        ],
+        "respuesta": 2,
+        "explicacion": "La sintaxis implícita es la más común."
+    },
+    {
+        "pregunta": "¿Qué operador significa 'mayor que'?",
+        "opciones": [
+            "$gte",
+            "$lt",
+            "$more",
+            "$gt"
+        ],
+        "respuesta": 3,
+        "explicacion": "Greater Than."
+    },
+    {
+        "pregunta": "¿Qué operador significa 'menor o igual que'?",
+        "opciones": [
+            "$lte",
+            "$min",
+            "$lt",
+            "$le"
+        ],
+        "respuesta": 0,
+        "explicacion": "Less Than or Equal."
+    },
+    {
+        "pregunta": "¿Qué operador significa 'distinto de'?",
+        "opciones": [
+            "$not",
+            "$diff",
+            "!=",
+            "$ne"
+        ],
+        "respuesta": 3,
+        "explicacion": "Not Equal."
+    },
+    {
+        "pregunta": "¿Qué operador busca valores dentro de una lista?",
+        "opciones": [
+            "$list",
+            "$in",
+            "$include",
+            "$within"
+        ],
+        "respuesta": 1,
+        "explicacion": "{ estado: { $in: ['A', 'B'] } }"
+    },
+    {
+        "pregunta": "¿Qué operador busca valores que NO están en una lista?",
+        "opciones": [
+            "$notin",
+            "$out",
+            "$exclude",
+            "$nin"
+        ],
+        "respuesta": 3,
+        "explicacion": "Not In."
+    },
+    {
+        "pregunta": "¿Cómo hacer un AND lógico?",
+        "opciones": [
+            "Solo con $and",
+            "Con &&",
+            "Implícitamente separando condiciones por comas { a: 1, b: 2 } o con $and",
+            "Con +"
+        ],
+        "respuesta": 2,
+        "explicacion": "La coma actúa como AND por defecto."
+    },
+    {
+        "pregunta": "¿Cómo hacer un OR lógico?",
+        "opciones": [
+            "Separando por comas",
+            "Usando ||",
+            "Usando el operador $or con un array de condiciones",
+            "Usando $any"
+        ],
+        "respuesta": 2,
+        "explicacion": "{ $or: [ { a: 1 }, { b: 2 } ] }"
+    },
+    {
+        "pregunta": "¿Qué operador invierte una condición?",
+        "opciones": [
+            "!",
+            "$no",
+            "$inv",
+            "$not"
+        ],
+        "respuesta": 3,
+        "explicacion": "{ edad: { $not: { $gt: 18 } } }"
+    },
+    {
+        "pregunta": "¿Cómo comprobar si un campo existe?",
+        "opciones": [
+            "{ has: 'campo' }",
+            "{ campo: { $ne: null } }",
+            "{ campo: 1 }",
+            "{ campo: { $exists: true } }"
+        ],
+        "respuesta": 3,
+        "explicacion": "Distingue entre campo nulo y campo inexistente."
+    },
+    {
+        "pregunta": "¿Cómo buscar por tipo de dato?",
+        "opciones": [
+            "{ campo: { $typeof: 'string' } }",
+            "{ campo: { $class: 'string' } }",
+            "{ campo: { $type: 'string' } } (o número de tipo)",
+            "{ campo: { $is: 'string' } }"
+        ],
+        "respuesta": 2,
+        "explicacion": "Útil en esquemas flexibles."
+    },
+    {
+        "pregunta": "¿Cómo limitar el número de resultados?",
+        "opciones": [
+            ".take(n)",
+            ".top(n)",
+            ".max(n)",
+            ".limit(n)"
+        ],
+        "respuesta": 3,
+        "explicacion": "db.col.find().limit(5)"
+    },
+    {
+        "pregunta": "¿Cómo saltar resultados (paginación)?",
+        "opciones": [
+            ".next(n)",
+            ".jump(n)",
+            ".skip(n)",
+            ".offset(n)"
+        ],
+        "respuesta": 2,
+        "explicacion": "Se usa junto con limit()."
+    },
+    {
+        "pregunta": "¿Cómo ordenar resultados?",
+        "opciones": [
+            ".order({ campo: 1 })",
+            ".orderBy({ campo: 1 })",
+            ".sort({ campo: 1 }) (asc) o -1 (desc)",
+            ".rank({ campo: 1 })"
+        ],
+        "respuesta": 2,
+        "explicacion": "1 para ascendente, -1 para descendente."
+    }
+]

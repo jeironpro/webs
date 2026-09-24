@@ -1,0 +1,211 @@
+/* Hallmark · designed-as-app */
+/* Base del sistema editorial clásico — ver design.md */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--papel);
+    color: var(--tinta);
+    display: flex;
+    flex-direction: column;
+    font-family: var(--fuente-cuerpo);
+    font-size: 18px;
+    line-height: 1.9;
+    min-height: 100vh;
+}
+
+/* ---------- Cabeceras ---------- */
+
+.header-principal,
+.header-libros-capitulos,
+.header-testamentos {
+    align-items: center;
+    background-color: var(--papel-alto);
+    border-bottom: var(--regla);
+    display: flex;
+    height: var(--alto-cabecera);
+    left: 0;
+    padding: 0 16px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.header-principal {
+    justify-content: center;
+}
+
+.header-libros-capitulos {
+    justify-content: space-between;
+}
+
+.header-testamentos {
+    justify-content: center;
+    position: relative;
+}
+
+.header-testamentos .enlaces {
+    left: 16px;
+    position: absolute;
+}
+
+.header-principal h1,
+.header-libros-capitulos h1,
+.header-testamentos h1 {
+    color: var(--tinta);
+    font-family: var(--fuente-titulo);
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+/* Iconos de navegación (SVG de trazo fino) */
+
+.header-libros-capitulos .enlaces a,
+.header-testamentos .enlaces a {
+    align-items: center;
+    color: var(--tinta-suave);
+    display: flex;
+    height: 40px;
+    justify-content: center;
+    text-decoration: none;
+    transition: color var(--transicion);
+    width: 40px;
+}
+
+.header-libros-capitulos .enlaces a:hover,
+.header-testamentos .enlaces a:hover {
+    color: var(--granate);
+}
+
+.icono {
+    height: 22px;
+    width: 22px;
+}
+
+/* Botones Anterior / Siguiente */
+
+.header-libros-capitulos .botones-titulo {
+    align-items: center;
+    display: flex;
+    gap: 24px;
+    height: 100%;
+    justify-content: center;
+}
+
+.header-libros-capitulos .botones-titulo button {
+    background-color: transparent;
+    border: var(--regla-fuerte);
+    border-radius: var(--radio);
+    color: var(--granate);
+    cursor: pointer;
+    font-family: var(--fuente-titulo);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 6px 18px;
+    text-transform: uppercase;
+    transition: background-color var(--transicion), color var(--transicion);
+}
+
+.header-libros-capitulos .botones-titulo button:hover:not(:disabled) {
+    background-color: var(--granate);
+    color: var(--papel-alto);
+}
+
+.header-libros-capitulos .botones-titulo button:disabled {
+    cursor: default;
+    opacity: 0.4;
+}
+
+/* ---------- Contenido ---------- */
+
+main {
+    flex: 1;
+    margin-top: var(--alto-cabecera);
+    padding: 24px 20px 48px;
+    width: 100%;
+}
+
+/* ---------- Pie ---------- */
+
+footer {
+    background-color: var(--papel-alto);
+    border-top: var(--regla);
+    margin-top: auto;
+    padding: 18px 15px;
+    text-align: center;
+    width: 100%;
+}
+
+footer p {
+    color: var(--tinta-suave);
+    font-size: 14px;
+    letter-spacing: 0.03em;
+    margin: 0;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 768px) {
+    :root {
+        --alto-cabecera: 56px;
+    }
+
+    .header-principal h1,
+    .header-libros-capitulos h1,
+    .header-testamentos h1 {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .header-libros-capitulos .botones-titulo {
+        flex: 1;
+        gap: 10px;
+    }
+
+    #anterior, #siguiente {
+        align-items: center;
+        display: flex;
+        font-size: 0;
+        justify-content: center;
+        padding: 6px 12px;
+    }
+
+    #anterior::before {
+        content: "‹";
+        display: block;
+        font-size: 22px;
+        line-height: 1;
+    }
+
+    #siguiente::before {
+        content: "›";
+        display: block;
+        font-size: 22px;
+        line-height: 1;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-principal h1,
+    .header-libros-capitulos h1,
+    .header-testamentos h1 {
+        font-size: 17px;
+    }
+
+    .header-libros-capitulos {
+        padding: 0 8px;
+    }
+
+    main {
+        padding: 16px 12px 36px;
+    }
+}

@@ -1,0 +1,222 @@
+[
+    {
+        "pregunta": "¿Cómo se crea una base de datos en MongoDB?",
+        "opciones": [
+            "CREATE DATABASE nombre",
+            "Usando el comando 'use nombre_bd' y luego insertando un documento",
+            "NEW DATABASE nombre",
+            "No se pueden crear"
+        ],
+        "respuesta": 1,
+        "explicacion": "MongoDB crea la BD perezosamente (lazy creation) cuando se guardan los primeros datos."
+    },
+    {
+        "pregunta": "¿Cómo se crea una colección explícitamente?",
+        "opciones": [
+            "db.createCollection('nombre')",
+            "CREATE TABLE nombre",
+            "db.newCollection('nombre')",
+            "db.add('nombre')"
+        ],
+        "respuesta": 0,
+        "explicacion": "Aunque se crean automáticamente al insertar, esto permite configurar opciones (ej. capped)."
+    },
+    {
+        "pregunta": "¿Qué es una Capped Collection?",
+        "opciones": [
+            "Una colección de solo lectura",
+            "Una colección con gorra",
+            "Una colección encriptada",
+            "Una colección de tamaño fijo que sobrescribe los documentos más antiguos cuando se llena"
+        ],
+        "respuesta": 3,
+        "explicacion": "Útil para logs o cachés circulares."
+    },
+    {
+        "pregunta": "¿Cómo se elimina una colección?",
+        "opciones": [
+            "DROP TABLE coleccion",
+            "db.coleccion.drop()",
+            "db.coleccion.delete()",
+            "db.coleccion.remove()"
+        ],
+        "respuesta": 1,
+        "explicacion": "Elimina la colección y todos sus índices."
+    },
+    {
+        "pregunta": "¿Cómo se elimina la base de datos actual?",
+        "opciones": [
+            "remove db",
+            "DROP DATABASE",
+            "db.deleteDatabase()",
+            "db.dropDatabase()"
+        ],
+        "respuesta": 3,
+        "explicacion": "Borra todos los archivos de datos asociados."
+    },
+    {
+        "pregunta": "¿Qué comando muestra las colecciones de la BD actual?",
+        "opciones": [
+            "show tables",
+            "display collections",
+            "list collections",
+            "show collections"
+        ],
+        "respuesta": 3,
+        "explicacion": "Lista los nombres de las colecciones."
+    },
+    {
+        "pregunta": "¿Qué es el namespace en MongoDB?",
+        "opciones": [
+            "Una variable",
+            "La concatenación del nombre de la base de datos y el nombre de la colección (bd.coleccion)",
+            "El nombre del servidor",
+            "El nombre del usuario"
+        ],
+        "respuesta": 1,
+        "explicacion": "Identifica unívocamente a una colección en el sistema."
+    },
+    {
+        "pregunta": "¿Cuál es el límite de tamaño de un documento BSON?",
+        "opciones": [
+            "Ilimitado",
+            "16 MB",
+            "2 GB",
+            "1 MB"
+        ],
+        "respuesta": 1,
+        "explicacion": "Para archivos más grandes se usa GridFS."
+    },
+    {
+        "pregunta": "¿Qué es GridFS?",
+        "opciones": [
+            "Un sistema de archivos",
+            "Una especificación para almacenar y recuperar archivos que exceden el límite de 16 MB",
+            "Un tipo de índice",
+            "Un backup"
+        ],
+        "respuesta": 1,
+        "explicacion": "Divide el archivo en chunks."
+    },
+    {
+        "pregunta": "¿Qué es la validación de esquema (Schema Validation)?",
+        "opciones": [
+            "No existe en MongoDB",
+            "Validación de contraseña",
+            "Validación de usuario",
+            "Reglas que se pueden aplicar a una colección para asegurar que los documentos cumplan cierta estructura"
+        ],
+        "respuesta": 3,
+        "explicacion": "Permite imponer restricciones tipo SQL en un entorno NoSQL."
+    },
+    {
+        "pregunta": "¿Qué tipo de dato se usa para almacenar dinero con precisión?",
+        "opciones": [
+            "Int",
+            "Float",
+            "Decimal128",
+            "Double"
+        ],
+        "respuesta": 2,
+        "explicacion": "Evita errores de redondeo de punto flotante."
+    },
+    {
+        "pregunta": "¿Qué es una vista (View) en MongoDB?",
+        "opciones": [
+            "Una colección virtual de solo lectura basada en una tubería de agregación",
+            "Una tabla",
+            "Un gráfico",
+            "Un índice"
+        ],
+        "respuesta": 0,
+        "explicacion": "Similar a las vistas SQL."
+    },
+    {
+        "pregunta": "¿Se pueden renombrar colecciones?",
+        "opciones": [
+            "Solo si está vacía",
+            "No",
+            "Sí, db.coleccion.renameCollection('nuevo_nombre')",
+            "Solo en Atlas"
+        ],
+        "respuesta": 2,
+        "explicacion": "Es una operación atómica."
+    },
+    {
+        "pregunta": "¿Qué es el archivo de configuración mongod.conf?",
+        "opciones": [
+            "Una base de datos",
+            "Un log",
+            "Un script",
+            "Donde se configuran opciones de inicio como puerto, rutas de datos, seguridad, etc."
+        ],
+        "respuesta": 3,
+        "explicacion": "Formato YAML."
+    },
+    {
+        "pregunta": "¿Qué es el directorio /data/db?",
+        "opciones": [
+            "La ruta de temporales",
+            "La ruta por defecto donde MongoDB almacena los archivos de datos",
+            "La ruta de instalación",
+            "La ruta de logs"
+        ],
+        "respuesta": 1,
+        "explicacion": "Se puede cambiar con --dbpath."
+    },
+    {
+        "pregunta": "¿Qué es una Time Series Collection?",
+        "opciones": [
+            "Una colección temporal",
+            "Una colección de relojes",
+            "Una colección lenta",
+            "Una colección optimizada para almacenar secuencias de mediciones a lo largo del tiempo"
+        ],
+        "respuesta": 3,
+        "explicacion": "Introducida en versiones recientes para IoT, métricas, etc."
+    },
+    {
+        "pregunta": "¿Qué hace el comando db.stats()?",
+        "opciones": [
+            "Muestra logs",
+            "Muestra el estado del servidor",
+            "Devuelve estadísticas de la base de datos actual (tamaño, objetos, etc.)",
+            "Muestra usuarios"
+        ],
+        "respuesta": 2,
+        "explicacion": "Útil para monitorización."
+    },
+    {
+        "pregunta": "¿Qué hace db.coleccion.stats()?",
+        "opciones": [
+            "Crea índices",
+            "Borra la colección",
+            "Valida datos",
+            "Devuelve estadísticas específicas de esa colección"
+        ],
+        "respuesta": 3,
+        "explicacion": "Incluye tamaño, conteo, índices, etc."
+    },
+    {
+        "pregunta": "¿Qué es el Journaling?",
+        "opciones": [
+            "Un periódico",
+            "Un blog",
+            "Un tipo de dato",
+            "Un mecanismo de registro de escritura anticipada para garantizar durabilidad ante fallos"
+        ],
+        "respuesta": 3,
+        "explicacion": "Similar al WAL en RDBMS."
+    },
+    {
+        "pregunta": "¿Qué es el Storage Engine?",
+        "opciones": [
+            "El componente responsable de gestionar cómo se almacenan los datos en disco (WiredTiger es el default)",
+            "El motor del coche",
+            "La CPU",
+            "La RAM"
+        ],
+        "respuesta": 0,
+        "explicacion": "WiredTiger ofrece compresión y concurrencia a nivel de documento."
+    }
+]

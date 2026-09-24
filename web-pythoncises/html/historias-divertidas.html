@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="es" data-theme="hum">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Programa que pide palabras al usuario y genera una historia divertida con esa palabras y se la muestra al usuario">
+  <meta name="theme-color" content="#faf6ee">
+  <title>Pythoncises · Historias divertidas</title>
+  <link rel="icon" type="image/svg+xml" href="../icons/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../icons/favicon-32.png">
+  <link rel="apple-touch-icon" href="../icons/favicon-180.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <script>document.documentElement.classList.add("js");</script>
+  <script src="../js/app.js" defer></script>
+</head>
+<body>
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a class="nav__brand" href="../index.html" aria-label="Pythoncises — inicio">
+        <span class="snake-mark" aria-hidden="true"><svg viewBox="0 0 64 64">
+      <path class="snake__cuerpo" d="M14 22 C 26 22, 26 32, 32 32 C 38 32, 38 42, 50 42"
+            fill="none" stroke-width="6.5" stroke-linecap="round"/>
+      <circle class="snake__cabeza" cx="50" cy="42" r="4.8"/>
+      <path class="snake__lengua" d="M54.5 42 L 58.5 40.5 M54.5 42 L 58.5 43.5"
+            fill="none" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="48.6" cy="40.2" r="1.1" fill="var(--color-paper)"/>
+    </svg></span>
+        Pythoncises
+      </a>
+    </div>
+  </header>
+  <main class="detalle" data-accent="lavender">
+    <a class="btn btn--outline btn--pear btn--sm detalle-volver" href="../index.html#indice">← Índice</a>
+    <p class="detalle-meta">
+      <span class="eyebrow__dot eyebrow__dot--lavender" style="display:inline-block;margin-right:0.45em;vertical-align:middle"></span>
+      Texto y cadenas · 15 · historias_divertidas.py
+    </p>
+    <h1 class="detalle-titulo">Historias divertidas</h1>
+    <p class="detalle-desc">Programa que pide palabras al usuario y genera una historia divertida con esa palabras y se la muestra al usuario</p>
+    <div class="detalle-acciones">
+      <button class="btn btn--pear" type="button" data-accion="copiar" data-burst>Copiar</button>
+      <button class="btn btn--outline btn--pear" type="button" data-accion="descargar" data-nombre="historias_divertidas.py">Descargar</button>
+    </div>
+    <div class="codigo-tarjeta">
+      <div class="codigo-barra">
+        <span class="codigo-punto" aria-hidden="true"></span>
+        <span class="codigo-punto" aria-hidden="true"></span>
+        <span class="codigo-punto" aria-hidden="true"></span>
+        <span class="codigo-archivo">exercises/historias-divertidas/historias_divertidas.py</span>
+      </div>
+      <pre><code><span class="tok-cadena">&quot;&quot;&quot;
+    Programa que pide palabras al usuario y genera una historia divertida con esa palabras y se la muestra al usuario
+&quot;&quot;&quot;</span>
+<span class="tok-palabra">import</span> random
+
+templates = [
+    <span class="tok-cadena">&quot;Hoy fui al {lugar} para {verbo1}. Allí vi un {animal} muy {adjetivo}. Me sentí tan {emocion} que decidí {verbo2} con él.&quot;</span>,
+    <span class="tok-cadena">&quot;Nunca pensé que ir al {lugar} para {verbo1} sería tan divertido. Un {animal} {adjetivo} apareció y me hizo sentir {emocion}. Al final, tuve que {verbo2}.&quot;</span>,
+    <span class="tok-cadena">&quot;En {lugar}, mientras intentaba {verbo1}, un {animal} {adjetivo} cruzó mi camino. Esto me hizo sentir {emocion} y terminé {verbo2}.&quot;</span>,
+    <span class="tok-cadena">&quot;Mi día en {lugar} empezó intentando {verbo1}, pero todo cambió cuando un {animal} {adjetivo} apareció. Me puse {emocion} y decidí {verbo2}.&quot;</span>,
+    <span class="tok-cadena">&quot;Fui al {lugar} con la intención de {verbo1}. Entonces vi un {animal} {adjetivo} que me hizo sentir {emocion}. Sin pensarlo, empecé a {verbo2}.&quot;</span>,
+    <span class="tok-cadena">&quot;Mientras estaba en {lugar}, intentando {verbo1}, un {animal} {adjetivo} apareció de la nada. Me sentí {emocion} y tuve que {verbo2}.&quot;</span>,
+    <span class="tok-cadena">&quot;El {animal} {adjetivo} en {lugar} me sorprendió mientras quería {verbo1}. Esto me hizo sentir {emocion} y no pude evitar {verbo2}.&quot;</span>,
+    <span class="tok-cadena">&quot;Fui a {lugar} para {verbo1} y encontré un {animal} {adjetivo}. Me llenó de {emocion} y terminé {verbo2}.&quot;</span>,
+    <span class="tok-cadena">&quot;Qué día en {lugar}: estaba {verbo1} cuando un {animal} {adjetivo} apareció. Me sentí {emocion} y decidí {verbo2}.&quot;</span>,
+    <span class="tok-cadena">&quot;Mientras {verbo1} en {lugar}, un {animal} {adjetivo} me hizo sentir {emocion}. Así que tuve que {verbo2} inmediatamente.&quot;</span>,
+    <span class="tok-cadena">&quot;Nunca olvidaré cuando fui a {lugar} a {verbo1}. Un {animal} {adjetivo} me vio y de repente me sentí {emocion}. Terminé {verbo2} sin pensar.&quot;</span>,
+    <span class="tok-cadena">&quot;Hoy en {lugar} decidí {verbo1}. De repente apareció un {animal} {adjetivo}, y me sentí tan {emocion} que tuve que {verbo2}.&quot;</span>,
+    <span class="tok-cadena">&quot;Estaba {verbo1} en {lugar} cuando un {animal} {adjetivo} se cruzó en mi camino. Sentí {emocion} y terminé {verbo2}.&quot;</span>,
+    <span class="tok-cadena">&quot;Fui a {lugar} solo para {verbo1}, pero un {animal} {adjetivo} apareció. Me puse {emocion} y tuve que {verbo2}.&quot;</span>,
+    <span class="tok-cadena">&quot;En {lugar}, mientras intentaba {verbo1}, un {animal} {adjetivo} hizo que me sintiera {emocion}. Sin pensarlo, empecé a {verbo2}.&quot;</span>,
+    <span class="tok-cadena">&quot;Hoy, al llegar a {lugar} para {verbo1}, un {animal} {adjetivo} me sorprendió. Me sentí {emocion} y decidí {verbo2}.&quot;</span>,
+    <span class="tok-cadena">&quot;Nunca imaginé que {verbo1} en {lugar} terminaría con un {animal} {adjetivo} y tanta {emocion}. Finalmente, tuve que {verbo2}.&quot;</span>,
+    <span class="tok-cadena">&quot;Mientras {verbo1} en {lugar}, apareció un {animal} {adjetivo}. Me llenó de {emocion} y no pude evitar {verbo2}.&quot;</span>,
+    <span class="tok-cadena">&quot;El día comenzó normal en {lugar}, intentaba {verbo1} hasta que apareció un {animal} {adjetivo}. Me sentí {emocion} y terminé {verbo2}.&quot;</span>,
+    <span class="tok-cadena">&quot;Fui a {lugar} para {verbo1}, pero un {animal} {adjetivo} hizo que todo cambiara. Me puse {emocion} y terminé {verbo2}.&quot;</span>
+]
+
+<span class="tok-comentario"># Pedir palabras al usuario</span>
+lugar = <span class="tok-builtin">input</span>(<span class="tok-cadena">&quot;Ingresa un lugar: &quot;</span>)
+verbo1 = <span class="tok-builtin">input</span>(<span class="tok-cadena">&quot;Ingresa un verbo: &quot;</span>)
+animal = <span class="tok-builtin">input</span>(<span class="tok-cadena">&quot;Ingresa un animal: &quot;</span>)
+adjetivo = <span class="tok-builtin">input</span>(<span class="tok-cadena">&quot;Ingresa un adjetivo: &quot;</span>)
+emocion = <span class="tok-builtin">input</span>(<span class="tok-cadena">&quot;Ingresa una emoción: &quot;</span>)
+verbo2 = <span class="tok-builtin">input</span>(<span class="tok-cadena">&quot;Ingresa otro verbo: &quot;</span>)
+
+<span class="tok-comentario"># Obtener un template random de la lista</span>
+template = random.choice(templates)
+
+<span class="tok-comentario"># formatear el template con las palabras del usuario</span>
+historia = template.<span class="tok-builtin">format</span>(
+    lugar=lugar,
+    verbo1=verbo1,
+    animal=animal,
+    adjetivo=adjetivo,
+    emocion=emocion,
+    verbo2=verbo2
+)
+
+<span class="tok-comentario"># Mostrar la historia</span>
+<span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;Historia generada:\n&quot;</span>)
+<span class="tok-builtin">print</span>(historia)</code></pre>
+    </div>
+    <section class="salida" aria-labelledby="salida-historias-divertidas">
+      <h2 class="salida-titulo" id="salida-historias-divertidas">Salida de ejemplo</h2>
+      <pre class="salida-cuerpo">Ingresa un lugar: playa
+Ingresa un verbo: correr
+Ingresa un animal: perro
+Ingresa un adjetivo: amigable
+Ingresa una emoción: feliz
+Ingresa otro verbo: bailar
+Historia generada:
+
+Qué día en playa: estaba correr cuando un perro amigable apareció. Me sentí feliz y decidí bailar.</pre>
+    </section>
+    <nav class="detalle-nav" aria-label="Navegación entre ejercicios">
+      <a class="nav-ej nav-previo" href="generador-chiste-random.html">← Generador de chistes</a>
+      <a class="nav-ej nav-siguiente" href="partes-correo.html">Partes de un correo →</a>
+    </nav>
+  </main>
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__meta">
+        <a class="footer__brand" href="../index.html"><span class="snake-mark" aria-hidden="true"><svg viewBox="0 0 64 64">
+      <path class="snake__cuerpo" d="M14 22 C 26 22, 26 32, 32 32 C 38 32, 38 42, 50 42"
+            fill="none" stroke-width="6.5" stroke-linecap="round"/>
+      <circle class="snake__cabeza" cx="50" cy="42" r="4.8"/>
+      <path class="snake__lengua" d="M54.5 42 L 58.5 40.5 M54.5 42 L 58.5 43.5"
+            fill="none" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="48.6" cy="40.2" r="1.1" fill="var(--color-paper)"/>
+    </svg></span> Pythoncises</a>
+        <p class="footer__copy">© Pythoncises - 2026<br><span class="footer__hash">ver · copiar · descargar</span></p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

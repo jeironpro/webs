@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <link rel="icon" href="icon/calculadora.png">
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main class="contenedor-principal">
+        <div class="calculadora">
+            <div class="contenedor-pantalla">
+                <input type="text" placeholder="0" id="calculo" class="pantalla" readonly aria-label="Pantalla de resultados">
+            </div>
+            <div class="teclado">
+                <button onclick="limpiarTodo()" class="boton boton-accion" aria-label="Limpiar todo">AC</button>
+                <button onclick="limpiar()" class="boton boton-accion" aria-label="Borrar último">C</button>
+                <button onclick="operadorSeleccionado('%')" data-operador="%" class="boton boton-operador">%</button>
+                <button onclick="operadorSeleccionado('√')" data-operador="√" class="boton boton-operador">√</button>
+
+                <button onclick="datosCalculo('7')" class="boton boton-numero">7</button>
+                <button onclick="datosCalculo('8')" class="boton boton-numero">8</button>
+                <button onclick="datosCalculo('9')" class="boton boton-numero">9</button>
+                <button onclick="operadorSeleccionado('/')" data-operador="/" class="boton boton-operador">&divide;</button>
+
+                <button onclick="datosCalculo('4')" class="boton boton-numero">4</button>
+                <button onclick="datosCalculo('5')" class="boton boton-numero">5</button>
+                <button onclick="datosCalculo('6')" class="boton boton-numero">6</button>
+                <button onclick="operadorSeleccionado('*')" data-operador="*" class="boton boton-operador">×</button>
+
+                <button onclick="datosCalculo('1')" class="boton boton-numero">1</button>
+                <button onclick="datosCalculo('2')" class="boton boton-numero">2</button>
+                <button onclick="datosCalculo('3')" class="boton boton-numero">3</button>
+                <button onclick="operadorSeleccionado('-')" data-operador="-" class="boton boton-operador">−</button>
+
+                <button onclick="datosCalculo('0')" class="boton boton-numero boton-cero">0</button>
+                <button onclick="datosCalculo('.')" class="boton boton-numero">.</button>
+                <button onclick="calcular()" class="boton boton-igual">=</button>
+                <button onclick="operadorSeleccionado('+')" data-operador="+" class="boton boton-operador">+</button>
+            </div>
+        </div>
+    </main>
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="es" data-theme="hum">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Programa que lee un archivo csv y envia un correo electronico a los correos que encuentre">
+  <meta name="theme-color" content="#faf6ee">
+  <title>Pythoncises · Envío de correos desde CSV</title>
+  <link rel="icon" type="image/svg+xml" href="../icons/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../icons/favicon-32.png">
+  <link rel="apple-touch-icon" href="../icons/favicon-180.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <script>document.documentElement.classList.add("js");</script>
+  <script src="../js/app.js" defer></script>
+</head>
+<body>
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a class="nav__brand" href="../index.html" aria-label="Pythoncises — inicio">
+        <span class="snake-mark" aria-hidden="true"><svg viewBox="0 0 64 64">
+      <path class="snake__cuerpo" d="M14 22 C 26 22, 26 32, 32 32 C 38 32, 38 42, 50 42"
+            fill="none" stroke-width="6.5" stroke-linecap="round"/>
+      <circle class="snake__cabeza" cx="50" cy="42" r="4.8"/>
+      <path class="snake__lengua" d="M54.5 42 L 58.5 40.5 M54.5 42 L 58.5 43.5"
+            fill="none" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="48.6" cy="40.2" r="1.1" fill="var(--color-paper)"/>
+    </svg></span>
+        Pythoncises
+      </a>
+    </div>
+  </header>
+  <main class="detalle" data-accent="mint">
+    <a class="btn btn--outline btn--pear btn--sm detalle-volver" href="../index.html#indice">← Índice</a>
+    <p class="detalle-meta">
+      <span class="eyebrow__dot eyebrow__dot--mint" style="display:inline-block;margin-right:0.45em;vertical-align:middle"></span>
+      Correo · 32 · enviar_correo_csv.py
+    </p>
+    <h1 class="detalle-titulo">Envío de correos desde CSV</h1>
+    <p class="detalle-desc">Programa que lee un archivo csv y envia un correo electronico a los correos que encuentre</p>
+    <div class="detalle-acciones">
+      <button class="btn btn--pear" type="button" data-accion="copiar" data-burst>Copiar</button>
+      <button class="btn btn--outline btn--pear" type="button" data-accion="descargar" data-nombre="enviar_correo_csv.py">Descargar</button>
+    </div>
+    <div class="codigo-tarjeta">
+      <div class="codigo-barra">
+        <span class="codigo-punto" aria-hidden="true"></span>
+        <span class="codigo-punto" aria-hidden="true"></span>
+        <span class="codigo-punto" aria-hidden="true"></span>
+        <span class="codigo-archivo">exercises/enviar-correo-csv/enviar_correo_csv.py</span>
+      </div>
+      <pre><code><span class="tok-cadena">&quot;&quot;&quot;
+    Programa que lee un archivo csv y 
+    envia un correo electronico a los correos que encuentre
+&quot;&quot;&quot;</span>
+
+<span class="tok-palabra">import</span> csv
+<span class="tok-palabra">import</span> smtplib
+<span class="tok-palabra">from</span> email.mime.multipart <span class="tok-palabra">import</span> MIMEMultipart
+<span class="tok-palabra">from</span> email.mime.base <span class="tok-palabra">import</span> MIMEBase
+<span class="tok-palabra">from</span> email.mime.text <span class="tok-palabra">import</span> MIMEText
+<span class="tok-palabra">from</span> email <span class="tok-palabra">import</span> encoders
+
+remitente = <span class="tok-cadena">&quot;jeironprogrammer@gmail.com&quot;</span>
+<span class="tok-cadena">&quot;&quot;&quot;
+    Es necesario crear un contraseña de aplicación en gmail para que se puedan enviar los correos. 
+    
+    Se crea aqui: https://myaccount.google.com/apppasswords
+&quot;&quot;&quot;</span>
+contrasena = <span class="tok-cadena">&quot;&quot;</span>
+asunto = <span class="tok-cadena">&quot;Correos desde csv&quot;</span>
+cuerpo = <span class="tok-cadena">&quot;&quot;&quot;&lt;html&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Hola desde python!&lt;/h1&gt;
+        &lt;p&gt;Este es un correo enviado desde python con una plantilla &lt;b&gt;HTML&lt;/b&gt;.&lt;/p&gt;
+    &lt;body&gt;
+&lt;/html&gt;
+&quot;&quot;&quot;</span>
+
+<span class="tok-palabra">with</span> <span class="tok-builtin">open</span>(<span class="tok-cadena">'usuarios.csv'</span>, newline=<span class="tok-cadena">''</span>) <span class="tok-palabra">as</span> archivo:
+    lectura = csv.DictReader(archivo)
+    correos = [columna[<span class="tok-cadena">'correo'</span>] <span class="tok-palabra">for</span> columna <span class="tok-palabra">in</span> lectura]
+
+<span class="tok-palabra">for</span> correo <span class="tok-palabra">in</span> correos:
+    mensaje = MIMEMultipart()
+    mensaje[<span class="tok-cadena">'From'</span>] = remitente
+    mensaje[<span class="tok-cadena">'To'</span>] = correo
+    mensaje[<span class="tok-cadena">'Subject'</span>] = asunto
+    mensaje.attach(MIMEText(cuerpo, <span class="tok-cadena">'html'</span>))
+
+    <span class="tok-palabra">with</span> smtplib.SMTP(<span class="tok-cadena">'smtp.gmail.com'</span>, <span class="tok-numero">587</span>) <span class="tok-palabra">as</span> servidor:
+        servidor.starttls()
+        servidor.login(remitente, contrasena)
+        servidor.send_message(mensaje)
+
+    <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;Correo enviado!&quot;</span>)</code></pre>
+    </div>
+    <nav class="detalle-nav" aria-label="Navegación entre ejercicios">
+      <a class="nav-ej nav-previo" href="sistema-reconocimiento-facial.html">← Reconocimiento facial</a>
+      
+    </nav>
+  </main>
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__meta">
+        <a class="footer__brand" href="../index.html"><span class="snake-mark" aria-hidden="true"><svg viewBox="0 0 64 64">
+      <path class="snake__cuerpo" d="M14 22 C 26 22, 26 32, 32 32 C 38 32, 38 42, 50 42"
+            fill="none" stroke-width="6.5" stroke-linecap="round"/>
+      <circle class="snake__cabeza" cx="50" cy="42" r="4.8"/>
+      <path class="snake__lengua" d="M54.5 42 L 58.5 40.5 M54.5 42 L 58.5 43.5"
+            fill="none" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="48.6" cy="40.2" r="1.1" fill="var(--color-paper)"/>
+    </svg></span> Pythoncises</a>
+        <p class="footer__copy">© Pythoncises - 2026<br><span class="footer__hash">ver · copiar · descargar</span></p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,145 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap");
+
+body {
+    background-color: #f0f2f5;
+    color: #333;
+    font-family: "Fredoka", sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    padding: 0;
+}
+
+main {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+h1 {
+    color: #333;
+    font-size: 28px;
+    margin: 0 0 20px 0;
+    text-align: center;
+}
+
+.boton-generar {
+    background-color: #4a90e2;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    font-family: "Fredoka", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 12px 24px;
+    transition: background-color 0.3s ease;
+}
+
+.boton-generar:hover {
+    background-color: #357abd;
+}
+
+.contenedor-codigo-qr {
+    align-items: center;
+    aspect-ratio: 1 / 1;
+    background-color: #fafafa;
+    border: 2px dashed #ddd;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+    max-width: 250px;
+    width: 100%;
+}
+
+.contenedor-codigo-qr img {
+    border-radius: 8px;
+    height: 100%;
+    object-fit: contain;
+    width: 100%;
+}
+
+.grupo-entrada {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+.grupo-entrada input {
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-family: "Fredoka", sans-serif;
+    font-size: 16px;
+    outline: none;
+    padding: 12px;
+    transition: border-color 0.3s ease;
+    width: 100%;
+}
+
+.grupo-entrada input:focus {
+    border-color: #4a90e2;
+}
+
+.grupo-entrada button {
+    background-color: #4a90e2;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    font-family: "Fredoka", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 12px;
+    transition: background-color 0.3s ease;
+}
+
+.grupo-entrada button:hover {
+    background-color: #357abd;
+}
+
+.tarjeta-principal {
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    padding: 30px;
+    width: 100%;
+}
+
+.mensaje-error {
+    color: #e74c3c;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.texto-vacio {
+    color: #aaa;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+@media screen and (min-width: 768px) {
+    .tarjeta-principal {
+        max-width: 450px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    h1 {
+        font-size: 24px;
+    }
+
+    .tarjeta-principal {
+        padding: 20px;
+        width: 100%;
+    }
+}

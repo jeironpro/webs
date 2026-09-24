@@ -1,0 +1,222 @@
+[
+    {
+        "pregunta": "¿Cómo buscar un valor exacto dentro de un array?",
+        "opciones": [
+            "{ tags: { $has: 'mongo' } }",
+            "{ tags: { $in: 'mongo' } }",
+            "{ tags: ['mongo'] } (busca coincidencia exacta del array)",
+            "{ tags: 'mongo' } (busca si 'mongo' es uno de los elementos)"
+        ],
+        "respuesta": 3,
+        "explicacion": "MongoDB busca automáticamente dentro de los arrays."
+    },
+    {
+        "pregunta": "¿Cómo buscar un array que coincida exactamente (orden y elementos)?",
+        "opciones": [
+            "{ tags: { $all: ['a', 'b'] } }",
+            "{ tags: 'a', tags: 'b' }",
+            "{ tags: { $eq: ['a', 'b'] } }",
+            "{ tags: ['a', 'b'] }"
+        ],
+        "respuesta": 3,
+        "explicacion": "El orden importa en la igualdad exacta de arrays."
+    },
+    {
+        "pregunta": "¿Qué operador busca documentos que contengan TODOS los elementos especificados en un array?",
+        "opciones": [
+            "$all",
+            "$every",
+            "$both",
+            "$and"
+        ],
+        "respuesta": 0,
+        "explicacion": "{ tags: { $all: ['a', 'b'] } } (sin importar orden)."
+    },
+    {
+        "pregunta": "¿Cómo buscar por el tamaño de un array?",
+        "opciones": [
+            "{ tags: { $length: 3 } }",
+            "{ tags: { $size: 3 } }",
+            "{ tags: { $count: 3 } }",
+            "No se puede"
+        ],
+        "respuesta": 1,
+        "explicacion": "Solo busca tamaño exacto, no rangos."
+    },
+    {
+        "pregunta": "¿Cómo buscar documentos donde al menos un elemento del array cumpla múltiples condiciones?",
+        "opciones": [
+            "{ 'array.campo': val1, 'array.campo2': val2 }",
+            "{ array: { $elemMatch: { campo: val1, campo2: val2 } } }",
+            "{ array: { $filter: ... } }",
+            "{ array: { $match: ... } }"
+        ],
+        "respuesta": 1,
+        "explicacion": "$elemMatch asegura que las condiciones se apliquen al MISMO elemento del array."
+    },
+    {
+        "pregunta": "¿Qué pasa si usas { 'notas': { $gt: 5, $lt: 10 } } en un array de números?",
+        "opciones": [
+            "Busca números entre 5 y 10",
+            "Busca documentos donde ALGÚN número sea > 5 Y ALGÚN número sea < 10 (pueden ser distintos)",
+            "No encuentra nada",
+            "Da error"
+        ],
+        "respuesta": 1,
+        "explicacion": "Para rangos en el mismo elemento se necesita $elemMatch."
+    },
+    {
+        "pregunta": "¿Cómo acceder a un campo de un documento incrustado?",
+        "opciones": [
+            "{ padre: { hijo: ... } }",
+            "padre->hijo",
+            "padre[hijo]",
+            "Usando notación de punto: 'padre.hijo'"
+        ],
+        "respuesta": 3,
+        "explicacion": "Siempre entre comillas."
+    },
+    {
+        "pregunta": "¿Cómo buscar en un array de documentos por un campo específico?",
+        "opciones": [
+            "{ array->campo: valor }",
+            "{ array: { campo: valor } }",
+            "{ array: [ { campo: valor } ] }",
+            "{ 'array.campo': valor }"
+        ],
+        "respuesta": 3,
+        "explicacion": "Busca si algún documento del array tiene ese campo con ese valor."
+    },
+    {
+        "pregunta": "¿Qué hace el operador $slice en proyección?",
+        "opciones": [
+            "Divide el array",
+            "Limita el número de elementos devueltos en un array (ej. los primeros 5)",
+            "Corta el documento",
+            "Borra el array"
+        ],
+        "respuesta": 1,
+        "explicacion": "{ tags: { $slice: 5 } }"
+    },
+    {
+        "pregunta": "¿Se puede usar índices en campos de arrays?",
+        "opciones": [
+            "Sí, se llaman índices Multikey",
+            "Solo en arrays de números",
+            "No",
+            "Solo en el primer elemento"
+        ],
+        "respuesta": 0,
+        "explicacion": "MongoDB crea una entrada de índice para cada elemento del array."
+    },
+    {
+        "pregunta": "¿Qué limitación tienen los índices Multikey?",
+        "opciones": [
+            "No soportan strings",
+            "Son muy lentos",
+            "No se puede indexar más de un campo array en un índice compuesto",
+            "Ocupan poco espacio"
+        ],
+        "respuesta": 2,
+        "explicacion": "Para evitar explosión combinatoria de entradas de índice."
+    },
+    {
+        "pregunta": "¿Cómo buscar documentos donde un array esté vacío?",
+        "opciones": [
+            "{ array: { $empty: true } }",
+            "{ array: null }",
+            "{ array: [] } o { array: { $size: 0 } }",
+            "{ array: '' }"
+        ],
+        "respuesta": 2,
+        "explicacion": "Ambas formas son válidas."
+    },
+    {
+        "pregunta": "¿Cómo buscar documentos donde un campo array existe y no es nulo?",
+        "opciones": [
+            "{ array: { $not: null } }",
+            "{ array: { $exists: true, $ne: null } }",
+            "{ has: 'array' }",
+            "{ array: true }"
+        ],
+        "respuesta": 1,
+        "explicacion": "Verificación estándar de existencia."
+    },
+    {
+        "pregunta": "¿Qué hace el operador $ en proyección?",
+        "opciones": [
+            "Devuelve el índice",
+            "Devuelve el último",
+            "Devuelve solo el primer elemento del array que coincidió con la consulta",
+            "Devuelve todo el array"
+        ],
+        "respuesta": 2,
+        "explicacion": "db.col.find({ tags: 'mongo' }, { 'tags.$': 1 })"
+    },
+    {
+        "pregunta": "¿Qué hace $elemMatch en proyección?",
+        "opciones": [
+            "Devuelve todos los elementos que coinciden",
+            "Filtra documentos",
+            "Borra elementos",
+            "Devuelve solo el primer elemento del array que cumple la condición $elemMatch (aunque no esté en el filtro)"
+        ],
+        "respuesta": 3,
+        "explicacion": "Permite filtrar el contenido del array en la respuesta."
+    },
+    {
+        "pregunta": "¿Se puede ordenar por un campo de un array?",
+        "opciones": [
+            "Sí, usa el primero",
+            "Sí, usa el promedio",
+            "Sí, pero usa el valor mínimo o máximo del array según el orden (asc/desc)",
+            "No"
+        ],
+        "respuesta": 2,
+        "explicacion": "Comportamiento importante a tener en cuenta."
+    },
+    {
+        "pregunta": "¿Cómo buscar un documento incrustado exacto?",
+        "opciones": [
+            "{ campo: { subcampo: 1, otro: 2 } } (el orden importa)",
+            "{ campo: { $eq: ... } }",
+            "No se puede",
+            "{ 'campo.subcampo': 1, 'campo.otro': 2 }"
+        ],
+        "respuesta": 0,
+        "explicacion": "La notación de punto es más flexible porque no requiere coincidencia exacta de todo el subdocumento."
+    },
+    {
+        "pregunta": "¿Qué es un array de documentos?",
+        "opciones": [
+            "Un error",
+            "Un array donde cada elemento es un objeto JSON",
+            "Un array de IDs",
+            "Un array de arrays"
+        ],
+        "respuesta": 1,
+        "explicacion": "[ { id: 1 }, { id: 2 } ]"
+    },
+    {
+        "pregunta": "¿Cómo actualizar un campo dentro de un objeto en un array?",
+        "opciones": [
+            "No se puede",
+            "{ $set: { 'array.$.campo': valor } }",
+            "{ $set: { 'array.campo': valor } }",
+            "{ $set: { array: { campo: valor } } }"
+        ],
+        "respuesta": 1,
+        "explicacion": "Usando el operador posicional."
+    },
+    {
+        "pregunta": "¿Qué operador permite buscar por texto (Full Text Search)?",
+        "opciones": [
+            "$find",
+            "$search",
+            "$text",
+            "$query"
+        ],
+        "respuesta": 2,
+        "explicacion": "Requiere un índice de texto."
+    }
+]

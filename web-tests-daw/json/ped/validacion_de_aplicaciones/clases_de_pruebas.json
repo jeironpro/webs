@@ -1,0 +1,222 @@
+[
+    {
+        "pregunta": "¿Qué es una clase de prueba (Test Class)?",
+        "opciones": [
+            "Una interfaz",
+            "Una clase normal",
+            "Una clase que contiene métodos de prueba para verificar otra clase o funcionalidad",
+            "Una clase abstracta"
+        ],
+        "respuesta": 2,
+        "explicacion": "En JUnit suele reflejar la estructura del código."
+    },
+    {
+        "pregunta": "¿Qué anotación marca un método como prueba en JUnit?",
+        "opciones": [
+            "@Check",
+            "@Test",
+            "@Run",
+            "@Prueba"
+        ],
+        "respuesta": 1,
+        "explicacion": "Indica al runner que debe ejecutarlo."
+    },
+    {
+        "pregunta": "¿Qué hace el método anotado con @BeforeEach / @Before?",
+        "opciones": [
+            "Se ejecuta una vez al principio",
+            "Nunca se ejecuta",
+            "Se ejecuta antes de CADA método de prueba (setup)",
+            "Se ejecuta al final"
+        ],
+        "respuesta": 2,
+        "explicacion": "Prepara el entorno (fixtures)."
+    },
+    {
+        "pregunta": "¿Qué hace el método anotado con @AfterEach / @After?",
+        "opciones": [
+            "Nunca se ejecuta",
+            "Se ejecuta después de CADA método de prueba (teardown)",
+            "Se ejecuta antes",
+            "Se ejecuta una vez al final"
+        ],
+        "respuesta": 1,
+        "explicacion": "Limpia recursos."
+    },
+    {
+        "pregunta": "¿Qué hace @BeforeAll / @BeforeClass?",
+        "opciones": [
+            "Se ejecuta UNA vez antes de todos los tests de la clase (debe ser estático)",
+            "Antes de cada test",
+            "Al final",
+            "Nunca"
+        ],
+        "respuesta": 0,
+        "explicacion": "Configuración global costosa (ej. conectar DB)."
+    },
+    {
+        "pregunta": "¿Qué es una Suite de pruebas?",
+        "opciones": [
+            "Un hotel",
+            "Un error",
+            "Un test único",
+            "Una colección de casos de prueba o clases de prueba agrupadas para ejecutarse juntas"
+        ],
+        "respuesta": 3,
+        "explicacion": "Organización de tests."
+    },
+    {
+        "pregunta": "¿Qué es un Test Runner?",
+        "opciones": [
+            "Un programador",
+            "Un corredor",
+            "Software que orquesta la ejecución de las pruebas y reporta resultados",
+            "Un compilador"
+        ],
+        "respuesta": 2,
+        "explicacion": "JUnit Core, Maven Surefire."
+    },
+    {
+        "pregunta": "¿Qué significa que los tests deben ser independientes?",
+        "opciones": [
+            "Deben ser lentos",
+            "Deben ser largos",
+            "El resultado de un test no debe depender del orden de ejecución ni del estado dejado por otro test",
+            "Deben ser manuales"
+        ],
+        "respuesta": 2,
+        "explicacion": "Aislamiento total."
+    },
+    {
+        "pregunta": "¿Qué es un Fixture?",
+        "opciones": [
+            "Un resultado",
+            "Un mueble",
+            "El estado fijo o contexto necesario para ejecutar una prueba (datos, configuración)",
+            "Un error"
+        ],
+        "respuesta": 2,
+        "explicacion": "Garantiza reproducibilidad."
+    },
+    {
+        "pregunta": "¿Qué es la convención de nombres para clases de prueba?",
+        "opciones": [
+            "Sin convención",
+            "Cualquier nombre",
+            "Suelen terminar en 'Test' (ej. CalculadoraTest)",
+            "Empiezan por Test"
+        ],
+        "respuesta": 2,
+        "explicacion": "Facilita la detección automática."
+    },
+    {
+        "pregunta": "¿Qué es un test parametrizado?",
+        "opciones": [
+            "Un test estático",
+            "Un mismo método de prueba que se ejecuta múltiples veces con diferentes conjuntos de datos",
+            "Un test manual",
+            "Un test único"
+        ],
+        "respuesta": 1,
+        "explicacion": "@ParameterizedTest."
+    },
+    {
+        "pregunta": "¿Qué es @Ignore / @Disabled?",
+        "opciones": [
+            "Borrar el test",
+            "Anotación para saltar la ejecución de un test temporalmente",
+            "Fallar el test",
+            "Pasar el test"
+        ],
+        "respuesta": 1,
+        "explicacion": "Útil si la funcionalidad está rota o en desarrollo."
+    },
+    {
+        "pregunta": "¿Qué es una aserción (Assert)?",
+        "opciones": [
+            "Método que verifica si el resultado obtenido coincide con el esperado (assertEquals, assertTrue)",
+            "Un bucle",
+            "Una variable",
+            "Una pregunta"
+        ],
+        "respuesta": 0,
+        "explicacion": "El corazón del test."
+    },
+    {
+        "pregunta": "¿Qué pasa si una aserción falla?",
+        "opciones": [
+            "Se arregla solo",
+            "El test se marca como fallido y se detiene la ejecución de ese método",
+            "No pasa nada",
+            "El programa explota"
+        ],
+        "respuesta": 1,
+        "explicacion": "AssertionError."
+    },
+    {
+        "pregunta": "¿Qué es probar excepciones esperadas?",
+        "opciones": [
+            "Causar errores",
+            "Ignorar excepciones",
+            "Evitar excepciones",
+            "Verificar que el código lanza la excepción correcta ante entradas inválidas (assertThrows)"
+        ],
+        "respuesta": 3,
+        "explicacion": "Testing de robustez."
+    },
+    {
+        "pregunta": "¿Qué es un Test Double?",
+        "opciones": [
+            "Un clon",
+            "Término genérico para objetos que reemplazan dependencias reales en tests (Mocks, Stubs, Spies)",
+            "Un test doble",
+            "Un error"
+        ],
+        "respuesta": 1,
+        "explicacion": "Gerard Meszaros."
+    },
+    {
+        "pregunta": "¿Qué es un Stub?",
+        "opciones": [
+            "Un dato real",
+            "Un error",
+            "Un mock inteligente",
+            "Un objeto que devuelve respuestas predefinidas a llamadas durante el test"
+        ],
+        "respuesta": 3,
+        "explicacion": "Estado estático."
+    },
+    {
+        "pregunta": "¿Qué es un Spy?",
+        "opciones": [
+            "Un virus",
+            "Un espía",
+            "Un error",
+            "Un objeto que envuelve al real y registra información sobre cómo fue llamado"
+        ],
+        "respuesta": 3,
+        "explicacion": "Mockito.spy()."
+    },
+    {
+        "pregunta": "¿Por qué las clases de prueba deben estar en un directorio separado (src/test)?",
+        "opciones": [
+            "No importa",
+            "Por estética",
+            "Para ocultarlas",
+            "Para no incluir el código de prueba en el entregable final de producción"
+        ],
+        "respuesta": 3,
+        "explicacion": "Separación de responsabilidades."
+    },
+    {
+        "pregunta": "¿Qué es la inyección de dependencias en tests?",
+        "opciones": [
+            "Usar new",
+            "Inyectar virus",
+            "Pasar mocks o stubs al objeto bajo prueba en lugar de dependencias reales",
+            "Nada"
+        ],
+        "respuesta": 2,
+        "explicacion": "Facilita el aislamiento."
+    }
+]

@@ -1,0 +1,39 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "node": true
+    },
+    "extends": ["eslint:recommended"],
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "rules": {
+        "indent": ["error", 4],
+        "no-eval": "error",
+        "no-implied-eval": "error",
+        "no-restricted-properties": [
+            "error",
+            {
+                "property": "innerHTML",
+                "message": "No se permite innerHTML por seguridad. Usa metodos DOM como createElement y textContent."
+            },
+            {
+                "property": "outerHTML",
+                "message": "No se permite outerHTML por seguridad. Usa metodos DOM."
+            },
+            {
+                "property": "insertAdjacentHTML",
+                "message": "No se permite insertAdjacentHTML por seguridad. Usa metodos DOM."
+            }
+        ],
+        "no-restricted-globals": [
+            "error",
+            {
+                "name": "document.write",
+                "message": "No se permite document.write."
+            }
+        ]
+    }
+}

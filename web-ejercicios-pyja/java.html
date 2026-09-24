@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/java.png" type="image/x-icon">
+    <title>Ejercicios Java</title>
+    <meta name="description" content="Colección de ejercicios de programación de Java.">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="titulo-paginacion">
+            <span class="titulo-texto">Ejercicios Java</span>
+            <div class="cabecera-ejercicios">
+                <div class="botones-navegacion">
+                    <a href="index.html" title="Inicio"><span class="material-symbols-outlined">home</span></a>
+                    <a href="python.html" title="Ver Python"><img src="img/python.png" alt="Python Logo"></a>
+                </div>
+                <div class="botones-navegacion">
+                    <button id="anterior-pagina" class="material-symbols-outlined" type="button" title="Anterior" aria-label="Anterior">chevron_left</button>
+                    <button id="siguiente-pagina" class="material-symbols-outlined" type="button" title="Siguiente" aria-label="Siguiente">chevron_right</button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div id="contenedor-ejercicios">
+            <!-- Se generaran los ejercicios desde el js con fetch -->
+        </div>
+    </main>
+    <footer>
+        <p>© Todos los derechos reservados. PyJa 2026.</p>
+    </footer>
+    <script src="js/script.js"></script>
+    <script>
+        window.CONFIG = { jsonUrl: "json/java.json", lenguaje: "java" };
+    </script>
+    <script src="js/resaltador.js"></script>
+    <script src="js/ejercicios.js"></script>
+</body>
+</html>

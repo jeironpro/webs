@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="es" data-theme="hum">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Programa que permite al usuario agregar, registrar, marcar y mostrar hábitos diarios. Además, permite ver el progreso de cada hábito registrado.">
+  <meta name="theme-color" content="#faf6ee">
+  <title>Pythoncises · Rastreador de hábitos</title>
+  <link rel="icon" type="image/svg+xml" href="../icons/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../icons/favicon-32.png">
+  <link rel="apple-touch-icon" href="../icons/favicon-180.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <script>document.documentElement.classList.add("js");</script>
+  <script src="../js/app.js" defer></script>
+</head>
+<body>
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a class="nav__brand" href="../index.html" aria-label="Pythoncises — inicio">
+        <span class="snake-mark" aria-hidden="true"><svg viewBox="0 0 64 64">
+      <path class="snake__cuerpo" d="M14 22 C 26 22, 26 32, 32 32 C 38 32, 38 42, 50 42"
+            fill="none" stroke-width="6.5" stroke-linecap="round"/>
+      <circle class="snake__cabeza" cx="50" cy="42" r="4.8"/>
+      <path class="snake__lengua" d="M54.5 42 L 58.5 40.5 M54.5 42 L 58.5 43.5"
+            fill="none" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="48.6" cy="40.2" r="1.1" fill="var(--color-paper)"/>
+    </svg></span>
+        Pythoncises
+      </a>
+    </div>
+  </header>
+  <main class="detalle" data-accent="cyan">
+    <a class="btn btn--outline btn--pear btn--sm detalle-volver" href="../index.html#indice">← Índice</a>
+    <p class="detalle-meta">
+      <span class="eyebrow__dot eyebrow__dot--cyan" style="display:inline-block;margin-right:0.45em;vertical-align:middle"></span>
+      Tiempo y hábitos · 28 · rastreador_habitos_diarios.py
+    </p>
+    <h1 class="detalle-titulo">Rastreador de hábitos</h1>
+    <p class="detalle-desc">Programa que permite al usuario agregar, registrar, marcar y mostrar hábitos diarios. Además, permite ver el progreso de cada hábito registrado.</p>
+    <div class="detalle-acciones">
+      <button class="btn btn--pear" type="button" data-accion="copiar" data-burst>Copiar</button>
+      <button class="btn btn--outline btn--pear" type="button" data-accion="descargar" data-nombre="rastreador_habitos_diarios.py">Descargar</button>
+    </div>
+    <div class="codigo-tarjeta">
+      <div class="codigo-barra">
+        <span class="codigo-punto" aria-hidden="true"></span>
+        <span class="codigo-punto" aria-hidden="true"></span>
+        <span class="codigo-punto" aria-hidden="true"></span>
+        <span class="codigo-archivo">exercises/rastreador-habitos-diarios/rastreador_habitos_diarios.py</span>
+      </div>
+      <pre><code><span class="tok-cadena">&quot;&quot;&quot;
+    Programa que permite al usuario agregar, registrar, marcar y mostrar hábitos diarios. Además, permite ver el progreso de cada hábito registrado.
+&quot;&quot;&quot;</span>
+<span class="tok-cadena">&quot;&quot;&quot;
+Estos datos no son persistentes, se debería usar un JSON o una base de datos para que los datos permanezcan guardados
+&quot;&quot;&quot;</span>
+habitos = {}
+
+<span class="tok-palabra">def</span> <span class="tok-funcion">agregar_habito</span>(nombre):
+    <span class="tok-palabra">if</span> nombre <span class="tok-palabra">not</span> <span class="tok-palabra">in</span> habitos:
+        habitos[nombre] = []
+        <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;Hábito agregado correctamente&quot;</span>)
+    <span class="tok-palabra">else</span>:
+        <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;Este hábito ya existe&quot;</span>)
+
+<span class="tok-palabra">def</span> <span class="tok-funcion">registrar_habito</span>(nombre, fecha):
+    fechas = habitos[nombre]
+    fechas.append(fecha)
+    <span class="tok-builtin">print</span>(<span class="tok-cadena">f&quot;Hábito registrado para {fecha}&quot;</span>)
+
+<span class="tok-palabra">def</span> <span class="tok-funcion">mostrar_progreso</span>(nombre):
+    <span class="tok-palabra">if</span> nombre <span class="tok-palabra">in</span> habitos:
+        fechas = habitos[nombre]
+        total_dias = <span class="tok-builtin">len</span>(fechas)
+        <span class="tok-builtin">print</span>(<span class="tok-cadena">f&quot;Has cumplido este hábito {total_dias} {&quot;</span>vez<span class="tok-cadena">&quot; if total_dias == 1 else &quot;</span>veces<span class="tok-cadena">&quot;}&quot;</span>)
+        <span class="tok-builtin">print</span>(<span class="tok-cadena">f&quot;Fechas: {', '.join(fechas)}&quot;</span>)
+    <span class="tok-palabra">else</span>:
+        <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;Este hábito no existe&quot;</span>)
+
+<span class="tok-palabra">def</span> <span class="tok-funcion">listar_habitos</span>():
+    <span class="tok-palabra">if</span> habitos:
+        <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;Tus hábitos son:&quot;</span>)
+
+        <span class="tok-palabra">for</span> habito <span class="tok-palabra">in</span> habitos.keys():
+            <span class="tok-builtin">print</span>(<span class="tok-cadena">f&quot;- {habito}&quot;</span>)
+    <span class="tok-palabra">else</span>:
+        <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;Aún no tienes hábitos registrados&quot;</span>)
+
+<span class="tok-comentario"># Función principal</span>
+<span class="tok-palabra">def</span> <span class="tok-funcion">menu</span>():
+    <span class="tok-palabra">while</span> <span class="tok-palabra">True</span>:
+        <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;Rastreador de hábitos&quot;</span>)
+        <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;1. Agregar hábito&quot;</span>)
+        <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;2. Registrar hábito cumplido&quot;</span>)
+        <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;3. Mostrar progreso&quot;</span>)
+        <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;4. Listar hábitos&quot;</span>)
+        <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;5. Salir&quot;</span>)
+
+        opcion = <span class="tok-builtin">input</span>(<span class="tok-cadena">&quot;Elige una opción: &quot;</span>)
+
+        <span class="tok-palabra">if</span> opcion == <span class="tok-cadena">&quot;1&quot;</span>:
+            nombre_habito = <span class="tok-builtin">input</span>(<span class="tok-cadena">&quot;Ingresa el nombre del habito: &quot;</span>)
+            agregar_habito(nombre_habito)
+        <span class="tok-palabra">elif</span> opcion == <span class="tok-cadena">&quot;2&quot;</span>:
+            nombre_habito = <span class="tok-builtin">input</span>(<span class="tok-cadena">&quot;Ingresa el nombre del habito: &quot;</span>)
+
+            <span class="tok-palabra">if</span> nombre_habito <span class="tok-palabra">in</span> habitos:
+                fecha = <span class="tok-builtin">input</span>(<span class="tok-cadena">&quot;Fecha (YYYY-MM-DD): &quot;</span>)
+                registrar_habito(nombre_habito, fecha)
+            <span class="tok-palabra">else</span>:
+                <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;Este hábito no existe&quot;</span>)
+        <span class="tok-palabra">elif</span> opcion == <span class="tok-cadena">&quot;3&quot;</span>:
+            nombre_habito = <span class="tok-builtin">input</span>(<span class="tok-cadena">&quot;Ingresa el nombre del habito: &quot;</span>)
+            mostrar_progreso(nombre_habito)
+        <span class="tok-palabra">elif</span> opcion == <span class="tok-cadena">&quot;4&quot;</span>:
+            listar_habitos()
+        <span class="tok-palabra">elif</span> opcion == <span class="tok-cadena">&quot;5&quot;</span>:
+            <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;Adios&quot;</span>)
+            <span class="tok-palabra">break</span>
+        <span class="tok-palabra">else</span>:
+            <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;Opción inválida&quot;</span>)
+
+menu() <span class="tok-comentario"># Iniciar el programa</span></code></pre>
+    </div>
+    <section class="salida" aria-labelledby="salida-rastreador-habitos-diarios">
+      <h2 class="salida-titulo" id="salida-rastreador-habitos-diarios">Salida de ejemplo</h2>
+      <pre class="salida-cuerpo">Rastreador de hábitos
+1. Agregar hábito
+2. Registrar hábito cumplido
+3. Mostrar progreso
+4. Listar hábitos
+5. Salir
+Elige una opción: 1
+Ingresa el nombre del habito: Leer
+Hábito agregado correctamente
+Rastreador de hábitos
+1. Agregar hábito
+2. Registrar hábito cumplido
+3. Mostrar progreso
+4. Listar hábitos
+5. Salir
+Elige una opción: 4
+Tus hábitos son:
+- Leer
+Rastreador de hábitos
+1. Agregar hábito
+2. Registrar hábito cumplido
+3. Mostrar progreso
+4. Listar hábitos
+5. Salir
+Elige una opción: 5
+Adios</pre>
+    </section>
+    <nav class="detalle-nav" aria-label="Navegación entre ejercicios">
+      <a class="nav-ej nav-previo" href="reloj-digital.html">← Reloj digital</a>
+      <a class="nav-ej nav-siguiente" href="lista-to-do.html">Lista de tareas →</a>
+    </nav>
+  </main>
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__meta">
+        <a class="footer__brand" href="../index.html"><span class="snake-mark" aria-hidden="true"><svg viewBox="0 0 64 64">
+      <path class="snake__cuerpo" d="M14 22 C 26 22, 26 32, 32 32 C 38 32, 38 42, 50 42"
+            fill="none" stroke-width="6.5" stroke-linecap="round"/>
+      <circle class="snake__cabeza" cx="50" cy="42" r="4.8"/>
+      <path class="snake__lengua" d="M54.5 42 L 58.5 40.5 M54.5 42 L 58.5 43.5"
+            fill="none" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="48.6" cy="40.2" r="1.1" fill="var(--color-paper)"/>
+    </svg></span> Pythoncises</a>
+        <p class="footer__copy">© Pythoncises - 2026<br><span class="footer__hash">ver · copiar · descargar</span></p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

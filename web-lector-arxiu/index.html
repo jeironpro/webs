@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Llegir arxius</title>
+    <link rel="icon" href="icons/arxiu.png" type="image/x-icon" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+</head>
+<body>
+    <h1 id="titol-arxiu" class="titol-arxiu"></h1>
+    <div id="contenidor" class="contenidor">
+        <span class="material-icons icono-arxiu">description</span>
+        <label for="arxiu">Seleccionar arxiu</label>
+        <input type="file" name="arxiu" id="arxiu" accept=".txt, .js, .css, .html, .json, .md, .py, .rb, .php, .sql, .csv, .ts, .jsx, .tsx, .java, .c, .pub, .rs, .go, .log, .asc, .tsv, .nfo, .xml, .yaml, .yml, .cpp, .h, .sh, .bat, .ini, .conf, .cfg" />
+    </div>
+    <pre id="contingut-arxiu"></pre>
+    <button id="boto-reset" class="boto-reset">
+        <span class="material-icons">refresh</span>
+        Reset
+    </button>
+    <script src="js/script.js"></script>
+</body>
+</html>

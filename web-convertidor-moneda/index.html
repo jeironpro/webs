@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Convertidor De Monedas</title>
+    <link rel="icon" href="icon/convertidor_moneda.png" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+</head>
+<body>
+    <main>
+        <div class="contenedor-principal">
+            <h1>Convertidor De Monedas</h1>
+            <div class="grupo-seleccion">
+                <div class="seccion-origen">
+                    <p>DESDE</p>
+                    <div class="campo-seleccion-origen">
+                        <select id="selector-origen"></select>
+                    </div>
+                </div>
+                <div id="control-intercambio" class="boton-intercambio">
+                    <span class="material-icons">sync_alt</span>
+                </div>
+                <div class="seccion-destino">
+                    <p>HASTA</p>
+                    <div class="campo-seleccion-destino">
+                        <select id="selector-destino"></select>
+                    </div>
+                </div>
+            </div>
+            <div class="grupo-entrada">
+                <input type="number" id="input-cantidad" placeholder="Escriba la cantidad" />
+            </div>
+            <div class="grupo-accion">
+                <button class="boton-convertir">Realizar conversión</button>
+            </div>
+            <div id="caja-resultado"></div>
+        </div>
+    </main>
+    <script src="js/app.js"></script>
+</body>
+</html>

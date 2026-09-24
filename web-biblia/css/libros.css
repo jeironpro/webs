@@ -1,0 +1,102 @@
+/* Hallmark · designed-as-app */
+/* Catálogo de libros: rótulos serif y secciones canónicas — ver design.md */
+
+.contenedor-testamento {
+    margin: 0 auto;
+    max-width: var(--ancho-maximo);
+    padding: 24px 20px;
+}
+
+/* Encabezado de sección canónica */
+
+.seccion-titulo {
+    align-items: center;
+    color: var(--tinta-suave);
+    display: flex;
+    font-family: var(--fuente-titulo);
+    font-size: 15px;
+    font-weight: 600;
+    gap: 16px;
+    grid-column: 1 / -1;
+    letter-spacing: 0.14em;
+    margin: 36px 0 16px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.seccion-titulo::before,
+.seccion-titulo::after {
+    background-color: var(--linea);
+    content: "";
+    flex: 1;
+    height: 1px;
+}
+
+.seccion-titulo:first-of-type {
+    margin-top: 0;
+}
+
+.contenedor-libros {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    margin: 0 auto;
+    max-width: var(--ancho-maximo);
+}
+
+.contenedor-libros .libro {
+    background-color: var(--papel-alto);
+    border: var(--regla);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
+    height: 84px;
+    overflow: hidden;
+    transition: border-color var(--transicion), transform var(--transicion);
+}
+
+.contenedor-libros .libro:hover {
+    border-color: var(--linea-fuerte);
+    transform: translateY(-2px);
+}
+
+.contenedor-libros .libro a {
+    align-items: center;
+    color: var(--tinta);
+    display: flex;
+    font-family: var(--fuente-titulo);
+    font-size: 17px;
+    font-weight: 600;
+    height: 100%;
+    justify-content: center;
+    letter-spacing: 0.02em;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    transition: color var(--transicion);
+    width: 100%;
+}
+
+.contenedor-libros .libro:hover a {
+    color: var(--granate);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 480px) {
+    .contenedor-testamento {
+        padding: 16px 12px;
+    }
+
+    .contenedor-libros {
+        gap: 10px;
+        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    }
+
+    .contenedor-libros .libro {
+        height: 72px;
+    }
+
+    .contenedor-libros .libro a {
+        font-size: 15px;
+    }
+}

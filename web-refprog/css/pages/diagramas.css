@@ -1,0 +1,52 @@
+/* Pagina de diagramas - grid de tarjetas con SVG */
+
+.diagramas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-6);
+}
+
+.diagrama-card {
+  background-color: var(--color-bg-card);
+  border: 2px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: var(--space-6);
+  text-align: center;
+  transition: border-color var(--transition-base);
+}
+
+.diagrama-card:hover { border-color: var(--color-accent); }
+
+/* Contenedor del SVG con altura fija */
+.diagrama-preview {
+  width: 100%;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-4);
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  padding: var(--space-4);
+}
+
+.diagrama-preview img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.diagrama-card-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  color: var(--color-heading);
+  margin-bottom: var(--space-2);
+}
+
+@media (max-width: 768px) {
+  .diagramas-grid { grid-template-columns: 1fr; }
+}

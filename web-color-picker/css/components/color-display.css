@@ -1,0 +1,70 @@
+/* Panel izquierdo: muestra el color seleccionado a pantalla completa */
+.color-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+  min-height: 120px;
+}
+
+.color-display__info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius-lg);
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(6px);
+  cursor: pointer;
+  user-select: none;
+  transition: transform var(--transition-fast);
+}
+
+.color-display__info:hover {
+  transform: scale(1.05);
+}
+
+.color-display__info:active {
+  transform: scale(0.95);
+}
+
+.color-display__hex {
+  font-family: var(--font-mono);
+  font-size: clamp(1.25rem, 4vw, 2rem);
+  font-weight: 600;
+  color: #ffffff;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  letter-spacing: 0.02em;
+}
+
+.color-display__label {
+  font-size: clamp(0.625rem, 1.5vw, 0.75rem);
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 768px) {
+  .color-display {
+    min-height: 160px;
+  }
+
+  .color-display__info {
+    padding: var(--spacing-md) var(--spacing-lg);
+  }
+}
+
+@media (max-width: 480px) {
+  .color-display {
+    min-height: 100px;
+  }
+
+  .color-display__info {
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: var(--border-radius-md);
+  }
+}

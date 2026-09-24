@@ -1,0 +1,133 @@
+.page {
+    display: grid;
+    gap: var(--space-16);
+    padding-block: var(--space-12) var(--space-20);
+}
+
+/* — Hero Stat-Led — */
+.hero {
+    display: grid;
+    justify-items: center;
+    gap: var(--space-8);
+    text-align: center;
+    text-wrap: balance;
+}
+
+.heroTitle {
+    max-width: 22ch;
+    font-family: var(--font-display);
+    font-size: clamp(2.25rem, 4vw + 1rem, 3.75rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    color: var(--color-ink-0);
+    overflow-wrap: anywhere;
+}
+
+.heroAccent {
+    color: var(--color-accent);
+}
+
+.toolbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-6);
+    width: 100%;
+    max-width: 46rem;
+}
+
+.qualifier {
+    max-width: 44ch;
+    font-size: var(--text-lg);
+    font-weight: 500;
+    color: var(--color-ink-1);
+    margin: 0 auto;
+}
+
+.geoError {
+    max-width: 34rem;
+    font-size: var(--text-sm);
+    color: var(--color-warning);
+}
+
+.stage {
+    display: grid;
+    justify-items: center;
+    gap: var(--space-4);
+}
+
+.figure {
+    display: flex;
+    justify-content: center;
+    min-height: 7rem;
+}
+
+.figureSkeleton {
+    width: min(58%, 21rem);
+    height: 7rem;
+    border-radius: var(--radius-lg);
+}
+
+.figurePlaceholder {
+    width: min(58%, 21rem);
+    height: 7rem;
+    border-radius: var(--radius-lg);
+    background: var(--color-paper-3);
+    opacity: 0.35;
+}
+
+/* — Sección de métricas — */
+.metrics {
+    display: grid;
+    gap: var(--space-8);
+}
+
+.metricsGrid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-4);
+    align-items: stretch;
+}
+
+.airQualityWrapper {
+    grid-column: 1 / -1;
+}
+
+.statement {
+    text-align: center;
+    padding: var(--space-8);
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: 500;
+    color: var(--color-ink-1);
+    background: var(--color-paper-2);
+    border-radius: var(--radius-lg);
+    width: 100%;
+    margin-inline: auto;
+}
+
+@media (max-width: 60rem) {
+    .metricsGrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 40rem) {
+    .page {
+        gap: var(--space-12);
+        padding-block: var(--space-8) var(--space-16);
+    }
+
+    .hero {
+        gap: var(--space-6);
+    }
+
+    .toolbar {
+        gap: var(--space-4);
+    }
+
+    .metricsGrid {
+        grid-template-columns: 1fr;
+    }
+}

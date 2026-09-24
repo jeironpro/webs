@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="es" data-theme="hum">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Programa que simula el juego del ahorcado. Toma una palabra aleatoria de una lista, muestra el estado inicial del juego, pide y valida una letra al usuario, muestra el estado en cada intento indicando cuando haya ganado.">
+  <meta name="theme-color" content="#faf6ee">
+  <title>Pythoncises · El ahorcado</title>
+  <link rel="icon" type="image/svg+xml" href="../icons/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../icons/favicon-32.png">
+  <link rel="apple-touch-icon" href="../icons/favicon-180.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <script>document.documentElement.classList.add("js");</script>
+  <script src="../js/app.js" defer></script>
+</head>
+<body>
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a class="nav__brand" href="../index.html" aria-label="Pythoncises — inicio">
+        <span class="snake-mark" aria-hidden="true"><svg viewBox="0 0 64 64">
+      <path class="snake__cuerpo" d="M14 22 C 26 22, 26 32, 32 32 C 38 32, 38 42, 50 42"
+            fill="none" stroke-width="6.5" stroke-linecap="round"/>
+      <circle class="snake__cabeza" cx="50" cy="42" r="4.8"/>
+      <path class="snake__lengua" d="M54.5 42 L 58.5 40.5 M54.5 42 L 58.5 43.5"
+            fill="none" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="48.6" cy="40.2" r="1.1" fill="var(--color-paper)"/>
+    </svg></span>
+        Pythoncises
+      </a>
+    </div>
+  </header>
+  <main class="detalle" data-accent="pear">
+    <a class="btn btn--outline btn--pear btn--sm detalle-volver" href="../index.html#indice">← Índice</a>
+    <p class="detalle-meta">
+      <span class="eyebrow__dot eyebrow__dot--pear" style="display:inline-block;margin-right:0.45em;vertical-align:middle"></span>
+      Juegos · 02 · ahorcado.py
+    </p>
+    <h1 class="detalle-titulo">El ahorcado</h1>
+    <p class="detalle-desc">Programa que simula el juego del ahorcado. Toma una palabra aleatoria de una lista, muestra el estado inicial del juego, pide y valida una letra al usuario, muestra el estado en cada intento indicando cuando haya ganado.</p>
+    <div class="detalle-acciones">
+      <button class="btn btn--pear" type="button" data-accion="copiar" data-burst>Copiar</button>
+      <button class="btn btn--outline btn--pear" type="button" data-accion="descargar" data-nombre="ahorcado.py">Descargar</button>
+    </div>
+    <div class="codigo-tarjeta">
+      <div class="codigo-barra">
+        <span class="codigo-punto" aria-hidden="true"></span>
+        <span class="codigo-punto" aria-hidden="true"></span>
+        <span class="codigo-punto" aria-hidden="true"></span>
+        <span class="codigo-archivo">exercises/ahorcado/ahorcado.py</span>
+      </div>
+      <pre><code><span class="tok-cadena">&quot;&quot;&quot;
+    Programa que simula el juego del ahorcado.
+    Toma una palabra aleatoria de una lista,
+    muestra el estado inicial del juego,
+    pide y valida una letra al usuario,
+    muestra el estado en cada intento indicando cuando haya ganado.
+&quot;&quot;&quot;</span>
+<span class="tok-palabra">import</span> random
+
+<span class="tok-comentario"># Representación del estado del ahorcado en cada intento</span>
+PARTES_AHORCADO = [
+    <span class="tok-cadena">&quot;&quot;&quot;
+    +---+
+    |   |
+        |
+        |
+        |
+        |
+    =========
+    &quot;&quot;&quot;</span>,
+    <span class="tok-cadena">&quot;&quot;&quot;
+    +---+
+    |   |
+    O   |
+        |
+        |
+        |
+    =========
+    &quot;&quot;&quot;</span>,
+    <span class="tok-cadena">&quot;&quot;&quot;
+    +---+
+    |   |
+    O   |
+    |   |
+        |
+        |
+    =========
+    &quot;&quot;&quot;</span>,
+    <span class="tok-cadena">&quot;&quot;&quot;
+     +---+
+     |   |
+     O   |
+    /|   |
+         |
+         |
+    =========
+    &quot;&quot;&quot;</span>,
+    <span class="tok-cadena">&quot;&quot;&quot;
+     +---+
+     |   |
+     O   |
+    /|\\  |
+         |
+         |
+    =========
+    &quot;&quot;&quot;</span>,
+    <span class="tok-cadena">&quot;&quot;&quot;
+     +---+
+     |   |
+     O   |
+    /|\\  |
+    /    |
+         |
+    =========
+    &quot;&quot;&quot;</span>,
+    <span class="tok-cadena">&quot;&quot;&quot;
+     +---+
+     |   |
+     O   |
+    /|\\  |
+    / \\  |
+         |
+    =========
+    &quot;&quot;&quot;</span>
+]
+
+<span class="tok-comentario"># Lista de palabras de longitud igual a 7</span>
+PALABRAS = [
+    <span class="tok-cadena">&quot;amapola&quot;</span>,<span class="tok-cadena">&quot;bandera&quot;</span>,<span class="tok-cadena">&quot;botella&quot;</span>,<span class="tok-cadena">&quot;caballo&quot;</span>,<span class="tok-cadena">&quot;caminar&quot;</span>,<span class="tok-cadena">&quot;cuchara&quot;</span>,<span class="tok-cadena">&quot;familia&quot;</span>,<span class="tok-cadena">&quot;gallina&quot;</span>,<span class="tok-cadena">&quot;glaciar&quot;</span>,
+    <span class="tok-cadena">&quot;hormiga&quot;</span>,<span class="tok-cadena">&quot;lagarto&quot;</span>,<span class="tok-cadena">&quot;lavanda&quot;</span>,<span class="tok-cadena">&quot;limones&quot;</span>,<span class="tok-cadena">&quot;manzana&quot;</span>,<span class="tok-cadena">&quot;medalla&quot;</span>,<span class="tok-cadena">&quot;mensual&quot;</span>,<span class="tok-cadena">&quot;militar&quot;</span>,<span class="tok-cadena">&quot;mirador&quot;</span>,<span class="tok-cadena">&quot;montana&quot;</span>,
+    <span class="tok-cadena">&quot;narices&quot;</span>,<span class="tok-cadena">&quot;nublado&quot;</span>,<span class="tok-cadena">&quot;palmera&quot;</span>,<span class="tok-cadena">&quot;patinar&quot;</span>,<span class="tok-cadena">&quot;peluche&quot;</span>,<span class="tok-cadena">&quot;perfume&quot;</span>,<span class="tok-cadena">&quot;pintura&quot;</span>,<span class="tok-cadena">&quot;piragua&quot;</span>,<span class="tok-cadena">&quot;plumero&quot;</span>,<span class="tok-cadena">&quot;portada&quot;</span>,
+    <span class="tok-cadena">&quot;pradera&quot;</span>,<span class="tok-cadena">&quot;ratones&quot;</span>,<span class="tok-cadena">&quot;recoger&quot;</span>,<span class="tok-cadena">&quot;regalos&quot;</span>,<span class="tok-cadena">&quot;rejilla&quot;</span>,<span class="tok-cadena">&quot;remover&quot;</span>,<span class="tok-cadena">&quot;resumen&quot;</span>,<span class="tok-cadena">&quot;rosales&quot;</span>,<span class="tok-cadena">&quot;sabores&quot;</span>,<span class="tok-cadena">&quot;sandias&quot;</span>,
+    <span class="tok-cadena">&quot;sardina&quot;</span>,<span class="tok-cadena">&quot;semilla&quot;</span>,<span class="tok-cadena">&quot;soldado&quot;</span>,<span class="tok-cadena">&quot;sombrio&quot;</span>,<span class="tok-cadena">&quot;teatral&quot;</span>,<span class="tok-cadena">&quot;temblor&quot;</span>,<span class="tok-cadena">&quot;tiburon&quot;</span>,<span class="tok-cadena">&quot;tortuga&quot;</span>,<span class="tok-cadena">&quot;trabajo&quot;</span>,<span class="tok-cadena">&quot;trenzas&quot;</span>,
+    <span class="tok-cadena">&quot;triunfo&quot;</span>,<span class="tok-cadena">&quot;trompas&quot;</span>,<span class="tok-cadena">&quot;valores&quot;</span>,<span class="tok-cadena">&quot;ventana&quot;</span>,<span class="tok-cadena">&quot;viajero&quot;</span>,<span class="tok-cadena">&quot;volador&quot;</span>,<span class="tok-cadena">&quot;zapatos&quot;</span>,<span class="tok-cadena">&quot;acechar&quot;</span>,<span class="tok-cadena">&quot;acordar&quot;</span>,<span class="tok-cadena">&quot;actuaba&quot;</span>,
+    <span class="tok-cadena">&quot;ajedrez&quot;</span>,<span class="tok-cadena">&quot;anzuelo&quot;</span>,<span class="tok-cadena">&quot;apretar&quot;</span>,<span class="tok-cadena">&quot;arenoso&quot;</span>,<span class="tok-cadena">&quot;armario&quot;</span>,<span class="tok-cadena">&quot;arrojar&quot;</span>,<span class="tok-cadena">&quot;atender&quot;</span>,<span class="tok-cadena">&quot;aventar&quot;</span>,<span class="tok-cadena">&quot;azucena&quot;</span>,<span class="tok-cadena">&quot;balanza&quot;</span>,
+    <span class="tok-cadena">&quot;barrera&quot;</span>,<span class="tok-cadena">&quot;bateria&quot;</span>,<span class="tok-cadena">&quot;bordado&quot;</span>,<span class="tok-cadena">&quot;brillar&quot;</span>,<span class="tok-cadena">&quot;buscaba&quot;</span>,<span class="tok-cadena">&quot;cabello&quot;</span>,<span class="tok-cadena">&quot;camello&quot;</span>,<span class="tok-cadena">&quot;cansado&quot;</span>,<span class="tok-cadena">&quot;caretas&quot;</span>,<span class="tok-cadena">&quot;carpeta&quot;</span>,
+    <span class="tok-cadena">&quot;cartera&quot;</span>,<span class="tok-cadena">&quot;celular&quot;</span>,<span class="tok-cadena">&quot;cenizas&quot;</span>,<span class="tok-cadena">&quot;cerdito&quot;</span>,<span class="tok-cadena">&quot;cerezas&quot;</span>,<span class="tok-cadena">&quot;charcos&quot;</span>,<span class="tok-cadena">&quot;corazon&quot;</span>,<span class="tok-cadena">&quot;cristal&quot;</span>,<span class="tok-cadena">&quot;cuadros&quot;</span>,<span class="tok-cadena">&quot;culebra&quot;</span>,
+    <span class="tok-cadena">&quot;delgado&quot;</span>,<span class="tok-cadena">&quot;dientes&quot;</span>,<span class="tok-cadena">&quot;dibujos&quot;</span>,<span class="tok-cadena">&quot;esferas&quot;</span>,<span class="tok-cadena">&quot;fragata&quot;</span>,<span class="tok-cadena">&quot;frontal&quot;</span>,<span class="tok-cadena">&quot;gigante&quot;</span>,<span class="tok-cadena">&quot;granero&quot;</span>,<span class="tok-cadena">&quot;habitos&quot;</span>,<span class="tok-cadena">&quot;heraldo&quot;</span>,
+    <span class="tok-cadena">&quot;joyeria&quot;</span>
+]
+
+<span class="tok-comentario"># Pedir y validar letra al usuario</span>
+<span class="tok-palabra">def</span> <span class="tok-funcion">pedir_letra</span>(letras_adivinadas):
+    <span class="tok-palabra">while</span> <span class="tok-palabra">True</span>:
+        letra_usuario = <span class="tok-builtin">input</span>(<span class="tok-cadena">&quot;Introduce una letra: &quot;</span>).strip().lower()
+
+        <span class="tok-palabra">if</span> <span class="tok-builtin">len</span>(letra_usuario) != <span class="tok-numero">1</span> <span class="tok-palabra">or</span> <span class="tok-palabra">not</span> letra_usuario.isalpha:
+            <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;Introduce una sola letra (a-z)&quot;</span>)
+            <span class="tok-palabra">continue</span>
+
+        <span class="tok-palabra">if</span> letra_usuario <span class="tok-palabra">in</span> letras_adivinadas:
+            <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;La letra ya ha sido adivinada&quot;</span>)
+            <span class="tok-palabra">continue</span>
+        <span class="tok-palabra">return</span> letra_usuario
+
+<span class="tok-comentario"># Muestra el estado de la palabra en cada intento</span>
+<span class="tok-palabra">def</span> <span class="tok-funcion">mostrar_intento</span>(palabra, letras_adivinadas):
+    intento = [letra.upper() <span class="tok-palabra">if</span> letra <span class="tok-palabra">in</span> letras_adivinadas <span class="tok-palabra">else</span> <span class="tok-cadena">&quot;_&quot;</span> <span class="tok-palabra">for</span> letra <span class="tok-palabra">in</span> palabra]
+    <span class="tok-builtin">print</span>(<span class="tok-cadena">' '</span>.join(intento))
+
+<span class="tok-comentario"># Logica principal del juego</span>
+<span class="tok-palabra">def</span> <span class="tok-funcion">jugar</span>(palabras):
+    <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;============================&quot;</span>)
+    <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;     JUEGO DEL AHORCADO     &quot;</span>)
+    <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;============================&quot;</span>)
+
+    palabra = random.choice(palabras)
+    letras_adivinadas = <span class="tok-builtin">set</span>()
+    intentos = <span class="tok-builtin">len</span>(palabra)-<span class="tok-numero">1</span>
+
+    <span class="tok-palabra">while</span> intentos &gt; <span class="tok-numero">0</span>:
+        <span class="tok-builtin">print</span>(PARTES_AHORCADO[<span class="tok-builtin">len</span>(PARTES_AHORCADO) - <span class="tok-numero">1</span> - intentos])
+        mostrar_intento(palabra, letras_adivinadas)
+        
+        <span class="tok-palabra">if</span> <span class="tok-builtin">all</span>(letra <span class="tok-palabra">in</span> letras_adivinadas <span class="tok-palabra">for</span> letra <span class="tok-palabra">in</span> palabra):
+            <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;Has ganado!&quot;</span>)
+
+        letra_usuario = pedir_letra(letras_adivinadas)
+        letras_adivinadas.add(letra_usuario)
+
+        <span class="tok-palabra">if</span> letra_usuario <span class="tok-palabra">not</span> <span class="tok-palabra">in</span> palabra:
+            intentos -= <span class="tok-numero">1</span>
+            <span class="tok-builtin">print</span>(<span class="tok-cadena">f&quot;La letra no esta en la palabra. Te quedan {intentos} intentos&quot;</span>)
+
+    <span class="tok-builtin">print</span>(PARTES_AHORCADO[-<span class="tok-numero">1</span>])
+    <span class="tok-builtin">print</span>(<span class="tok-cadena">f&quot;Has perdido. La palabra era: {palabra}&quot;</span>)
+
+<span class="tok-comentario"># Iniciar el juego</span>
+jugar(PALABRAS)</code></pre>
+    </div>
+    <nav class="detalle-nav" aria-label="Navegación entre ejercicios">
+      <a class="nav-ej nav-previo" href="adivina-numero.html">← Adivina el número</a>
+      <a class="nav-ej nav-siguiente" href="piedra-papel-tijera.html">Piedra, papel o tijera →</a>
+    </nav>
+  </main>
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__meta">
+        <a class="footer__brand" href="../index.html"><span class="snake-mark" aria-hidden="true"><svg viewBox="0 0 64 64">
+      <path class="snake__cuerpo" d="M14 22 C 26 22, 26 32, 32 32 C 38 32, 38 42, 50 42"
+            fill="none" stroke-width="6.5" stroke-linecap="round"/>
+      <circle class="snake__cabeza" cx="50" cy="42" r="4.8"/>
+      <path class="snake__lengua" d="M54.5 42 L 58.5 40.5 M54.5 42 L 58.5 43.5"
+            fill="none" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="48.6" cy="40.2" r="1.1" fill="var(--color-paper)"/>
+    </svg></span> Pythoncises</a>
+        <p class="footer__copy">© Pythoncises - 2026<br><span class="footer__hash">ver · copiar · descargar</span></p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

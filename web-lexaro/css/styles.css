@@ -1,0 +1,1640 @@
+/* Estilos Base y Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Paleta de colores inspirada en Jira mejorada */
+    --primary-color: #0052CC;
+    --primary-hover: #0747A6;
+    --primary-light: rgba(0, 82, 204, 0.1);
+    --secondary-color: #6554C0;
+    --secondary-light: rgba(101, 84, 192, 0.1);
+    --success-color: #36B37E;
+    --success-light: rgba(54, 179, 126, 0.1);
+    --warning-color: #FFAB00;
+    --warning-light: rgba(255, 171, 0, 0.1);
+    --danger-color: #DE350B;
+    --danger-light: rgba(222, 53, 11, 0.1);
+
+    /* Gradientes modernos */
+    --gradient-primary: linear-gradient(135deg, #0052CC 0%, #6554C0 100%);
+    --gradient-surface: linear-gradient(135deg, #FFFFFF 0%, #F8F9FA 100%);
+    --gradient-card: linear-gradient(135deg, #FFFFFF 0%, #FFFFFF 100%);
+
+    /* Colores neutros mejorados */
+    --background: #F8F9FA;
+    --surface: #FFFFFF;
+    --surface-elevated: #FFFFFF;
+    --border: #E9ECEF;
+    --border-light: #F1F3F4;
+    --text-primary: #1A1B23;
+    --text-secondary: #5F6368;
+    --text-tertiary: #9AA0A6;
+
+    /* Colores de prioridad */
+    --priority-high: #DE350B;
+    --priority-medium: #FFAB00;
+    --priority-low: #36B37E;
+
+    /* Colores de etiquetas */
+    --tag-design: #00B8D9;
+    --tag-frontend: #6554C0;
+    --tag-backend: #0052CC;
+    --tag-docs: #8993A4;
+    --tag-research: #FF5630;
+    --tag-security: #DE350B;
+    --tag-performance: #36B37E;
+    --tag-testing: #6554C0;
+    --tag-review: #FFAB00;
+    --tag-maintenance: #8993A4;
+    --tag-devops: #0052CC;
+    --tag-setup: #36B37E;
+    --tag-architecture: #6554C0;
+    --tag-meeting: #FF5630;
+
+    /* Sombras mejoradas con mayor profundidad */
+    --shadow-sm: 0 1px 2px rgba(26, 27, 35, 0.06), 0 1px 3px rgba(26, 27, 35, 0.1);
+    --shadow-md: 0 4px 6px rgba(26, 27, 35, 0.07), 0 2px 4px rgba(26, 27, 35, 0.06);
+    --shadow-lg: 0 10px 15px rgba(26, 27, 35, 0.1), 0 4px 6px rgba(26, 27, 35, 0.05);
+    --shadow-xl: 0 20px 25px rgba(26, 27, 35, 0.12), 0 10px 10px rgba(26, 27, 35, 0.08);
+    --shadow-colored: 0 4px 12px rgba(0, 82, 204, 0.15);
+    --shadow-hover: 0 8px 24px rgba(26, 27, 35, 0.12);
+
+    /* Espaciado */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+
+    /* Radio de borde */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--gradient-surface);
+    color: var(--text-primary);
+    line-height: 1.6;
+    font-size: 14px;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Estilos del Encabezado mejorados */
+.encabezado {
+    background: var(--surface);
+    background: var(--gradient-surface);
+    border-bottom: 1px solid var(--border-light);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow-sm);
+    backdrop-filter: blur(10px);
+}
+
+.contenido-encabezado {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 var(--spacing-lg);
+    height: 64px;
+    max-width: 100%;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.logo i {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 28px;
+    filter: drop-shadow(0 2px 4px rgba(0, 82, 204, 0.2));
+}
+
+.logo h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.5px;
+}
+
+.acciones-encabezado {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.menu-usuario {
+    position: relative;
+}
+
+.avatar-usuario {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid var(--border-light);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gradient-surface);
+    color: var(--text-secondary);
+    font-size: 14px;
+    position: relative;
+}
+
+.avatar-usuario::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: 50%;
+    background: var(--gradient-primary);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.avatar-usuario:hover {
+    border-color: var(--primary-color);
+    color: white;
+    transform: scale(1.1);
+}
+
+.avatar-usuario:hover::before {
+    opacity: 1;
+}
+
+/* Estilos de Botones */
+.boton {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+}
+
+.boton-primario {
+    background: var(--gradient-primary);
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.boton-primario::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.boton-primario:hover::before {
+    left: 100%;
+}
+
+.boton-primario:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-colored);
+    filter: brightness(1.05);
+}
+
+.boton-secundario {
+    background-color: var(--surface);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+}
+
+.boton-secundario:hover {
+    background-color: var(--background);
+    border-color: var(--text-secondary);
+}
+
+.boton-peligro {
+    background-color: var(--danger-color);
+    color: white;
+    border: none;
+}
+
+.boton-peligro:hover {
+    background-color: #B50A04;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Contenido Principal */
+.contenido-principal {
+    padding: var(--spacing-lg);
+    max-width: 100%;
+}
+
+.encabezado-tablero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-lg);
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+}
+
+.titulo-tablero h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.estadisticas-tablero {
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.filtros-tablero {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.boton-filtro {
+    padding: var(--spacing-xs) var(--spacing-md);
+    border: 1px solid var(--border);
+    background-color: var(--surface);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    min-width: 120px;
+    text-align: center;
+    white-space: nowrap;
+    flex: 1;
+    max-width: 150px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.boton-filtro:hover {
+    background-color: var(--background);
+    border-color: var(--text-secondary);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+
+.boton-filtro.activo {
+    background: var(--gradient-primary);
+    color: white;
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-sm);
+    transform: translateY(-1px);
+}
+
+/* Tablero Kanban */
+.tablero-kanban {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+    min-height: 600px;
+}
+
+.columna {
+    background: var(--gradient-card);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-light);
+    display: flex;
+    flex-direction: column;
+    min-height: 500px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.columna::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-primary);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.columna:hover::before {
+    opacity: 1;
+}
+
+.columna:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.encabezado-columna {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--border);
+}
+
+.titulo-columna {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.titulo-columna h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.contador-tareas {
+    background-color: var(--background);
+    color: var(--text-secondary);
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.menu-columna {
+    background: none;
+    border: none;
+    color: var(--text-tertiary);
+    cursor: pointer;
+    padding: var(--spacing-xs);
+    border-radius: var(--radius-sm);
+    transition: all 0.2s ease;
+}
+
+.menu-columna:hover {
+    background-color: var(--background);
+    color: var(--text-secondary);
+}
+
+.contenido-columna {
+    flex: 1;
+    padding: var(--spacing-sm);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+/* Tarjetas de Tarea mejoradas */
+.tarjeta-tarea {
+    background: var(--gradient-card);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    cursor: move;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.tarjeta-tarea::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--gradient-primary);
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform: scaleX(0);
+}
+
+.tarjeta-tarea:hover::before {
+    opacity: 1;
+    transform: scaleX(1);
+}
+
+.tarjeta-tarea:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-4px) scale(1.02);
+    border-color: var(--primary-color);
+}
+
+.tarjeta-tarea.arrastrando {
+    opacity: 0.7;
+    transform: rotate(3deg) scale(0.95);
+    box-shadow: var(--shadow-xl);
+    z-index: 1000;
+}
+
+.encabezado-tarea {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-sm);
+}
+
+.id-tarea {
+    color: var(--text-tertiary);
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.prioridad-tarea {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    position: relative;
+    animation: pulse 2s infinite;
+}
+
+.prioridad-tarea::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border-radius: 50%;
+    background: inherit;
+    opacity: 0.3;
+    animation: ping 2s infinite;
+}
+
+.prioridad-alta {
+    background-color: var(--priority-high);
+}
+
+.prioridad-media {
+    background-color: var(--priority-medium);
+}
+
+.prioridad-baja {
+    background-color: var(--priority-low);
+}
+
+/* Estilos especiales para filtros de prioridad */
+.boton-filtro[data-filtro="todas"]:hover {
+    background-color: var(--primary-light);
+    border-color: var(--primary-color);
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.boton-filtro[data-filtro="todas"].activo {
+    background: var(--gradient-primary);
+    border-color: var(--primary-color);
+    color: white;
+    font-weight: 600;
+}
+
+.boton-filtro[data-filtro="alta"]:hover {
+    background-color: var(--danger-light);
+    border-color: var(--danger-color);
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.boton-filtro[data-filtro="alta"].activo {
+    background: linear-gradient(135deg, var(--danger-color), #B50A04);
+    border-color: var(--danger-color);
+    color: white;
+    font-weight: 600;
+}
+
+.boton-filtro[data-filtro="media"]:hover {
+    background-color: var(--warning-light);
+    border-color: var(--warning-color);
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.boton-filtro[data-filtro="media"].activo {
+    background: linear-gradient(135deg, var(--warning-color), #E69400);
+    border-color: var(--warning-color);
+    color: white;
+    font-weight: 600;
+}
+
+.boton-filtro[data-filtro="baja"]:hover {
+    background-color: var(--success-light);
+    border-color: var(--success-color);
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.boton-filtro[data-filtro="baja"].activo {
+    background: linear-gradient(135deg, var(--success-color), #2E9B5F);
+    border-color: var(--success-color);
+    color: white;
+    font-weight: 600;
+}
+
+.titulo-tarea {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-xs);
+    line-height: 1.3;
+}
+
+.descripcion-tarea {
+    color: var(--text-secondary);
+    font-size: 13px;
+    line-height: 1.4;
+    margin-bottom: var(--spacing-md);
+}
+
+.fechas-tarea {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-md);
+}
+
+.fecha-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    font-size: 11px;
+    color: var(--text-secondary);
+    background-color: var(--background);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+}
+
+.fecha-item i {
+    font-size: 10px;
+    color: var(--text-tertiary);
+    min-width: 10px;
+}
+
+.fecha-item:has(i.fa-check-circle) {
+    border-color: var(--success-color);
+    background-color: rgba(54, 179, 126, 0.1);
+    color: var(--success-color);
+}
+
+.fecha-item:has(i.fa-check-circle) i {
+    color: var(--success-color);
+}
+
+/* Indicadores de estado  de fecha limite */
+.fechas-tarea.vencida {
+    border-left: 3px solid var(--danger-color);
+    background-color: rgba(222, 53, 11, 0.05);
+}
+
+.fechas-tarea.vence-hoy {
+    border-left: 3px solid var(--warning-color);
+    background-color: rgba(255, 171, 0, 0.05);
+}
+
+.fechas-tarea.vence-manana {
+    border-left: 3px solid var(--warning-color);
+    background-color: rgba(255, 171, 0, 0.02);
+}
+
+.fechas-tarea.vence-pronto {
+    border-left: 3px solid #FFA500;
+    background-color: rgba(255, 165, 0, 0.02);
+}
+
+.fecha-item.fecha-fin.vencida {
+    border-color: var(--danger-color);
+    background-color: rgba(222, 53, 11, 0.1);
+    color: var(--danger-color);
+    font-weight: 600;
+}
+
+.fecha-item.fecha-fin.vence-hoy {
+    border-color: var(--warning-color);
+    background-color: rgba(255, 171, 0, 0.1);
+    color: var(--warning-color);
+    font-weight: 600;
+}
+
+.fecha-item.fecha-fin.vence-manana {
+    border-color: var(--warning-color);
+    background-color: rgba(255, 171, 0, 0.05);
+    color: var(--warning-color);
+}
+
+.fecha-item.fecha-fin.vence-pronto {
+    border-color: #FFA500;
+    background-color: rgba(255, 165, 0, 0.05);
+    color: #FFA500;
+}
+
+/* Indicadores de urgencia de la tarjeta de tareas */
+.tarjeta-tarea.vencida {
+    border-color: var(--danger-color);
+    box-shadow: 0 0 0 1px rgba(222, 53, 11, 0.3);
+}
+
+.tarjeta-tarea.vence-hoy {
+    border-color: var(--warning-color);
+    box-shadow: 0 0 0 1px rgba(255, 171, 0, 0.3);
+}
+
+.tarjeta-tarea.vence-manana {
+    border-color: var(--warning-color);
+}
+
+.tarjeta-tarea.vence-pronto {
+    border-color: #FFA500;
+}
+
+.pie-tarea {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+}
+
+.etiquetas-tarea {
+    display: flex;
+    gap: var(--spacing-xs);
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.etiqueta {
+    padding: 6px 10px;
+    border-radius: var(--radius-sm);
+    font-size: 11px;
+    font-weight: 500;
+    color: white;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    box-sizing: border-box;
+}
+
+.etiqueta-design {
+    background-color: var(--tag-design);
+}
+
+.etiqueta-frontend {
+    background-color: var(--tag-frontend);
+}
+
+.etiqueta-backend {
+    background-color: var(--tag-backend);
+}
+
+.etiqueta-docs {
+    background-color: var(--tag-docs);
+}
+
+.etiqueta-research {
+    background-color: var(--tag-research);
+}
+
+.etiqueta-security {
+    background-color: var(--tag-security);
+}
+
+.etiqueta-performance {
+    background-color: var(--tag-performance);
+}
+
+.etiqueta-testing {
+    background-color: var(--tag-testing);
+}
+
+.etiqueta-review {
+    background-color: var(--tag-review);
+}
+
+.etiqueta-maintenance {
+    background-color: var(--tag-maintenance);
+}
+
+.etiqueta-devops {
+    background-color: var(--tag-devops);
+}
+
+.etiqueta-setup {
+    background-color: var(--tag-setup);
+}
+
+.etiqueta-architecture {
+    background-color: var(--tag-architecture);
+}
+
+.etiqueta-meeting {
+    background-color: var(--tag-meeting);
+}
+
+.asignado-tarea {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--background);
+    color: var(--text-tertiary);
+    font-size: 10px;
+    transition: all 0.2s ease;
+}
+
+.asignado-tarea:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+/* Estilos de Modal mejorados */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6));
+    z-index: 1000;
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal.activo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+}
+
+.contenido-modal {
+    background: var(--gradient-card);
+    border-radius: var(--radius-lg);
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-xl);
+    transform: scale(0.9) translateY(20px);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    border: 1px solid var(--border-light);
+}
+
+.modal.activo .contenido-modal {
+    transform: scale(1) translateY(0);
+}
+
+.encabezado-modal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-lg);
+    border-bottom: 1px solid var(--border);
+}
+
+.encabezado-modal h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.5px;
+}
+
+.cerrar-modal {
+    background: none;
+    border: none;
+    color: var(--text-tertiary);
+    cursor: pointer;
+    padding: var(--spacing-xs);
+    border-radius: var(--radius-sm);
+    transition: all 0.2s ease;
+}
+
+.cerrar-modal:hover {
+    background-color: var(--background);
+    color: var(--text-secondary);
+}
+
+.formulario-tarea {
+    padding: var(--spacing-lg);
+}
+
+.grupo-formulario {
+    margin-bottom: var(--spacing-md);
+}
+
+.grupo-formulario label {
+    display: block;
+    margin-bottom: var(--spacing-xs);
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.grupo-formulario input,
+.grupo-formulario textarea,
+.grupo-formulario select {
+    width: 100%;
+    padding: var(--spacing-sm);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: var(--surface);
+}
+
+.grupo-formulario input:focus,
+.grupo-formulario textarea:focus,
+.grupo-formulario select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px var(--primary-light);
+    transform: translateY(-1px);
+}
+
+.grupo-formulario input:hover,
+.grupo-formulario textarea:hover,
+.grupo-formulario select:hover {
+    border-color: var(--border);
+}
+
+.acciones-formulario {
+    display: flex;
+    gap: var(--spacing-sm);
+    justify-content: flex-end;
+    margin-top: var(--spacing-lg);
+}
+
+/* Estilos de Arrastrar y Soltar */
+.arrastrar-sobre {
+    background-color: rgba(0, 82, 204, 0.1);
+    border-color: var(--primary-color);
+}
+
+/* Diseño Responsivo mejorado */
+@media (max-width: 768px) {
+    .contenido-encabezado {
+        padding: 0 var(--spacing-md);
+    }
+
+    .contenido-principal {
+        padding: var(--spacing-md);
+    }
+
+    .tablero-kanban {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+
+    .encabezado-tablero {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .filtros-tablero {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .contenido-modal {
+        width: 95%;
+        margin: var(--spacing-md);
+    }
+
+    /* Mejoras táctiles para móviles */
+    .tarjeta-tarea {
+        cursor: grab;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: pan-y;
+    }
+
+    .tarjeta-tarea:active {
+        cursor: grabbing;
+        transform: scale(0.98);
+    }
+
+    .boton {
+        min-height: 44px;
+        padding: var(--spacing-sm) var(--spacing-md);
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .boton-primario {
+        min-height: 40px;
+        font-size: 13px;
+        padding: var(--spacing-xs) var(--spacing-sm);
+    }
+
+    /* Espaciado mejorado para touch */
+    .contenido-columna {
+        padding: var(--spacing-md);
+    }
+
+    .tarjeta-tarea {
+        margin-bottom: var(--spacing-md);
+    }
+}
+
+@media (max-width: 480px) {
+    .contenido-encabezado {
+        padding: 0 var(--spacing-sm);
+    }
+
+    .contenido-principal {
+        padding: var(--spacing-sm);
+    }
+
+    .logo h1 {
+        font-size: 18px;
+    }
+
+    .logo i {
+        font-size: 24px;
+    }
+
+    .boton {
+        padding: var(--spacing-xs) var(--spacing-sm);
+        font-size: 13px;
+        min-height: 40px;
+    }
+
+    .boton-primario {
+        min-height: 44px;
+        font-size: 14px;
+    }
+
+    .tarjeta-tarea {
+        padding: var(--spacing-md);
+    }
+
+    .etiquetas-tarea {
+        display: flex;
+        margin-bottom: var(--spacing-sm);
+        flex-wrap: wrap;
+        gap: var(--spacing-xs);
+    }
+
+    .fechas-tarea {
+        margin-bottom: var(--spacing-sm);
+        gap: 2px;
+    }
+
+    .fecha-item {
+        font-size: 10px;
+        padding: 2px 6px;
+        border-radius: 3px;
+    }
+
+    .fecha-item i {
+        font-size: 9px;
+        min-width: 9px;
+    }
+
+    .pie-tarea {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-sm);
+    }
+
+    .acciones-tarea {
+        align-self: flex-end;
+    }
+
+    /* Mejoras específicas para pantallas pequeñas */
+    .tablero-kanban {
+        gap: var(--spacing-sm);
+    }
+
+    .columna {
+        min-height: 400px;
+    }
+
+    /* Asegurar espaciado consistente en el pie de tarjeta */
+    .tarjeta-tarea .pie-tarea {
+        padding-top: var(--spacing-sm);
+        border-top: 1px solid var(--border-light);
+        margin-top: var(--spacing-sm);
+    }
+
+    .contenido-modal {
+        width: 98%;
+        margin: var(--spacing-xs);
+        max-height: 95vh;
+    }
+
+    /* Touch targets más grandes */
+    .asignado-tarea,
+    .boton-eliminar-tarea {
+        min-width: 30px;
+        min-height: 30px;
+    }
+
+    .menu-columna {
+        min-width: 36px;
+        min-height: 36px;
+    }
+
+    .cerrar-modal {
+        min-width: 36px;
+        min-height: 36px;
+    }
+
+    /* Mejoras para legibilidad */
+    .titulo-tarea {
+        font-size: 15px;
+        line-height: 1.4;
+    }
+
+    .descripcion-tarea {
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+    /* Botón de crear tarea más pequeño en móvil */
+    #boton-agregar-tarea {
+        min-height: 30px;
+        padding: 6px var(--spacing-sm);
+        font-size: 12px;
+    }
+
+    #boton-agregar-tarea i {
+        font-size: 12px;
+    }
+
+    /* Ajuste específico para pantallas muy pequeñas (< 400px) */
+    @media (max-width: 400px) {
+        .etiquetas-tarea {
+            flex-wrap: wrap;
+            gap: 2px;
+            align-items: flex-start;
+        }
+
+        .etiqueta {
+            font-size: 10px;
+            padding: 4px 8px;
+            height: 28px;
+        }
+
+        .pie-tarea {
+            gap: var(--spacing-xs);
+            align-items: flex-start;
+        }
+
+        .acciones-tarea {
+            align-self: flex-start;
+            gap: 4px;
+        }
+    }
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.tarjeta-tarea {
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+.modal.activo .contenido-modal {
+    animation: slideIn 0.3s ease;
+}
+
+/* Estilos de barra de desplazamiento */
+.contenido-columna::-webkit-scrollbar {
+    width: 6px;
+}
+
+.contenido-columna::-webkit-scrollbar-track {
+    background: var(--background);
+    border-radius: var(--radius-sm);
+}
+
+.contenido-columna::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: var(--radius-sm);
+}
+
+.contenido-columna::-webkit-scrollbar-thumb:hover {
+    background: var(--text-tertiary);
+}
+
+/* Estados de carga y vacío mejorados */
+.estado-vacio {
+    text-align: center;
+    padding: var(--spacing-xl);
+    color: var(--text-tertiary);
+    position: relative;
+}
+
+.estado-vacio::before {
+    content: '📋';
+    font-size: 64px;
+    display: block;
+    margin-bottom: var(--spacing-md);
+    opacity: 0.3;
+    filter: grayscale(100%);
+    animation: float 3s ease-in-out infinite;
+}
+
+.estado-vacio h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.estado-vacio p {
+    font-size: 14px;
+    color: var(--text-tertiary);
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.cargando {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: var(--spacing-xl);
+    gap: var(--spacing-md);
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--border-light);
+    border-top: 4px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+    position: relative;
+}
+
+.spinner::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-top-color: var(--primary-color);
+    opacity: 0.3;
+    animation: spin 1.5s linear infinite reverse;
+}
+
+.cargando .texto-carga {
+    font-size: 14px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    animation: pulse 2s infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Estilos modales de confirmación genéricos */
+.modal-confirmacion {
+    max-width: 400px;
+}
+
+.modal-confirmacion .cuerpo-modal {
+    text-align: center;
+    padding: var(--spacing-xl) var(--spacing-lg);
+}
+
+.icono-confirmacion {
+    margin-bottom: var(--spacing-lg);
+}
+
+.icono-confirmacion i {
+    font-size: 48px;
+    color: var(--warning-color);
+    animation: pulse 1.5s infinite;
+}
+
+.icono-confirmacion.danger i {
+    color: var(--danger-color);
+}
+
+.icono-confirmacion.success i {
+    color: var(--success-color);
+}
+
+.icono-confirmacion.info i {
+    color: var(--primary-color);
+}
+
+.mensaje-confirmacion {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.4;
+}
+
+.descripcion-confirmacion {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.modal-confirmacion .pie-modal {
+    display: flex;
+    gap: var(--spacing-sm);
+    justify-content: center;
+    padding: var(--spacing-lg);
+    border-top: 1px solid var(--border);
+}
+
+.modal-confirmacion .boton-peligro {
+    background-color: var(--danger-color);
+    color: white;
+    border: none;
+}
+
+.modal-confirmacion .boton-peligro:hover {
+    background-color: #B50A04;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Opciones de estilos modales */
+.modal-opciones {
+    max-width: 500px;
+}
+
+.modal-opciones .cuerpo-modal {
+    padding: 0;
+}
+
+.modal-opciones .cuerpo-modal h4 {
+    background-color: var(--background);
+    padding: var(--spacing-lg);
+    margin: 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.lista-opciones {
+    display: flex;
+    flex-direction: column;
+}
+
+.opcion-menu {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
+    border: none;
+    background: none;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    border-bottom: 1px solid var(--border);
+}
+
+.opcion-menu:last-child {
+    border-bottom: none;
+}
+
+.opcion-menu:hover {
+    background-color: var(--background);
+}
+
+.opcion-menu i {
+    font-size: 18px;
+    color: var(--text-secondary);
+    margin-top: 2px;
+    min-width: 18px;
+}
+
+.opcion-menu span {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.opcion-menu small {
+    display: block;
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.3;
+}
+
+.opcion-cancelar {
+    background-color: var(--background);
+    border-top: 1px solid var(--border);
+    margin-top: var(--spacing-sm);
+}
+
+.opcion-cancelar:hover {
+    background-color: var(--border);
+}
+
+/* Diseño Responsivo */
+@media (max-width: 768px) {
+    .contenido-encabezado {
+        padding: 0 var(--spacing-md);
+    }
+
+    .contenido-principal {
+        padding: var(--spacing-md);
+    }
+
+    .tablero-kanban {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+
+    .encabezado-tablero {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-md);
+    }
+
+    .filtros-tablero {
+        width: 100%;
+        overflow-x: auto;
+        justify-content: flex-start;
+    }
+
+    .contenido-modal {
+        width: 95%;
+        margin: var(--spacing-md);
+    }
+
+    .boton-filtro {
+        flex: 1;
+        min-width: 100px;
+        max-width: 120px;
+        font-size: 13px;
+        padding: var(--spacing-xs) var(--spacing-sm);
+        height: 36px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contenido-encabezado {
+        padding: 0 var(--spacing-sm);
+    }
+
+    .contenido-principal {
+        padding: var(--spacing-sm);
+    }
+
+    .logo h1 {
+        font-size: 16px;
+    }
+
+    .boton {
+        padding: var(--spacing-xs) var(--spacing-sm);
+        font-size: 13px;
+    }
+
+    .boton-primario {
+        font-size: 12px;
+        padding: var(--spacing-xs) var(--spacing-sm);
+        min-height: 36px;
+    }
+
+    .tarjeta-tarea {
+        padding: var(--spacing-sm);
+    }
+
+    .etiquetas-tarea {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--spacing-xs);
+        align-items: center;
+        min-width: 0;
+        flex: 1;
+        margin-bottom: 0;
+    }
+
+    .pie-tarea {
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: var(--spacing-sm);
+        flex-wrap: nowrap;
+    }
+
+    .etiquetas-tarea {
+        flex: 1;
+        margin-bottom: 0;
+        margin-right: var(--spacing-sm);
+    }
+
+    .acciones-tarea {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-sm);
+        flex-shrink: 0;
+        align-self: flex-end;
+    }
+
+        .asignado-tarea {
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+        }
+
+        .boton-eliminar-tarea {
+            flex-shrink: 0;
+            opacity: 1;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+    .titulo-tablero h2 {
+        font-size: 20px;
+    }
+
+    .estadisticas-tablero {
+        font-size: 13px;
+    }
+
+    .filtros-tablero {
+        gap: var(--spacing-xs);
+        padding-bottom: var(--spacing-sm);
+    }
+
+    .boton-filtro {
+        flex: 1;
+        min-width: 80px;
+        max-width: 100px;
+        font-size: 12px;
+        padding: var(--spacing-xs) var(--spacing-sm);
+        height: 30px;
+    }
+}
+
+/* Capacidad de respuesta móvil para opciones modales */
+@media (max-width: 480px) {
+    .modal-opciones {
+        width: 95%;
+        margin: var(--spacing-sm);
+    }
+
+    .opcion-menu {
+        padding: var(--spacing-md);
+        gap: var(--spacing-sm);
+    }
+
+    .opcion-menu i {
+        font-size: 16px;
+        min-width: 16px;
+    }
+
+    .opcion-menu span {
+        font-size: 13px;
+    }
+
+    .opcion-menu small {
+        font-size: 11px;
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+}
+
+@keyframes ping {
+    0% {
+        transform: scale(1);
+        opacity: 0.3;
+    }
+    75%, 100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+/* Acciones de tarea mejoradas */
+.acciones-tarea {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.boton-eliminar-tarea {
+    background: none;
+    border: none;
+    color: var(--text-tertiary);
+    cursor: pointer;
+    padding: 0;
+    border-radius: var(--radius-sm);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.tarjeta-tarea:hover .boton-eliminar-tarea {
+    opacity: 1;
+}
+
+.boton-eliminar-tarea:hover {
+    background-color: var(--danger-color);
+    color: white;
+    transform: scale(1.1);
+}
+
+/* En dispositivos táctiles, mostrar siempre el botón */
+@media (hover: none) and (pointer: coarse) {
+    .boton-eliminar-tarea {
+        opacity: 1;
+    }
+}
+
+/* En móviles, asegurar que el botón siempre sea visible */
+@media (max-width: 480px) {
+    .boton-eliminar-tarea {
+        opacity: 1;
+    }
+}

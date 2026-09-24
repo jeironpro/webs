@@ -1,0 +1,222 @@
+[
+    {
+        "pregunta": "¿Qué es una estructura condicional?",
+        "opciones": [
+            "Permite ejecutar bloques de código diferentes según si se cumple una condición",
+            "Define variables",
+            "Repite código",
+            "Crea funciones"
+        ],
+        "respuesta": 0,
+        "explicacion": "Toma de decisiones."
+    },
+    {
+        "pregunta": "¿Cuál es la estructura condicional más básica?",
+        "opciones": [
+            "if",
+            "while",
+            "switch",
+            "for"
+        ],
+        "respuesta": 0,
+        "explicacion": "Si (condición) entonces..."
+    },
+    {
+        "pregunta": "¿Qué hace la cláusula 'else'?",
+        "opciones": [
+            "Ejecuta siempre",
+            "Ejecuta un bloque de código si la condición del 'if' es falsa",
+            "Repite el if",
+            "Termina el programa"
+        ],
+        "respuesta": 1,
+        "explicacion": "Si no..."
+    },
+    {
+        "pregunta": "¿Qué es un 'else if' o 'elif'?",
+        "opciones": [
+            "Es un error",
+            "Permite evaluar una nueva condición si la anterior fue falsa",
+            "Termina el if",
+            "Inicia un bucle"
+        ],
+        "respuesta": 1,
+        "explicacion": "Para múltiples casos excluyentes."
+    },
+    {
+        "pregunta": "¿Qué es el anidamiento de condicionales?",
+        "opciones": [
+            "Poner un if al final",
+            "Borrar un if",
+            "Poner un if dentro de otro if",
+            "Poner un if dentro de un for"
+        ],
+        "respuesta": 2,
+        "explicacion": "Puede aumentar la complejidad ciclomática."
+    },
+    {
+        "pregunta": "¿Qué es la estructura 'switch' o 'case'?",
+        "opciones": [
+            "Un interruptor",
+            "Selecciona un bloque de código a ejecutar entre múltiples opciones basándose en el valor de una variable",
+            "Una función",
+            "Un bucle"
+        ],
+        "respuesta": 1,
+        "explicacion": "Más limpio que muchos if-else if."
+    },
+    {
+        "pregunta": "¿Qué hace la instrucción 'break' en un switch?",
+        "opciones": [
+            "Rompe el PC",
+            "Sale del bloque switch para evitar ejecutar los siguientes casos (fall-through)",
+            "Pausa el programa",
+            "Reinicia el switch"
+        ],
+        "respuesta": 1,
+        "explicacion": "Esencial en la mayoría de lenguajes tipo C."
+    },
+    {
+        "pregunta": "¿Qué es el caso 'default' en un switch?",
+        "opciones": [
+            "La configuración",
+            "El primer caso",
+            "El bloque que se ejecuta si ninguno de los casos anteriores coincide",
+            "El error"
+        ],
+        "respuesta": 2,
+        "explicacion": "Equivalente al 'else' final."
+    },
+    {
+        "pregunta": "¿Qué tipo de dato suele evaluar un switch?",
+        "opciones": [
+            "Objetos complejos",
+            "Booleanos solo",
+            "Enteros, caracteres o strings (depende del lenguaje)",
+            "Arrays"
+        ],
+        "respuesta": 2,
+        "explicacion": "No suele usarse para rangos o condiciones complejas."
+    },
+    {
+        "pregunta": "¿Cómo se evalúa la condición de un if?",
+        "opciones": [
+            "Como un texto",
+            "Como un número",
+            "Como un valor booleano (true/false)",
+            "Como sea"
+        ],
+        "respuesta": 2,
+        "explicacion": "Si no es booleano, se coerciona (truthy/falsy)."
+    },
+    {
+        "pregunta": "¿Qué es un valor 'truthy'?",
+        "opciones": [
+            "True literal",
+            "Un valor que se evalúa como true en un contexto booleano (ej. 1, 'hola', [])",
+            "Un valor falso",
+            "Un error"
+        ],
+        "respuesta": 1,
+        "explicacion": "Concepto importante en JS y Python."
+    },
+    {
+        "pregunta": "¿Qué es un valor 'falsy'?",
+        "opciones": [
+            "Un valor que se evalúa como false (ej. 0, '', null, undefined)",
+            "False literal",
+            "Un error",
+            "Un valor verdadero"
+        ],
+        "respuesta": 0,
+        "explicacion": "Cuidado con el 0."
+    },
+    {
+        "pregunta": "¿Se pueden usar operadores lógicos en un if?",
+        "opciones": [
+            "Solo OR",
+            "Solo AND",
+            "No, solo una condición",
+            "Sí, para combinar condiciones (if (a > 5 && b < 10))"
+        ],
+        "respuesta": 3,
+        "explicacion": "Permite lógica compleja."
+    },
+    {
+        "pregunta": "¿Qué es mejor: muchos if anidados o un switch/polimorfismo?",
+        "opciones": [
+            "Da igual",
+            "If anidados siempre",
+            "Switch o polimorfismo suelen ser más legibles y mantenibles",
+            "No usar condicionales"
+        ],
+        "respuesta": 2,
+        "explicacion": "Evitar el 'Arrow Anti-pattern' (código con mucha sangría)."
+    },
+    {
+        "pregunta": "¿Qué es una guarda (guard clause)?",
+        "opciones": [
+            "Un error",
+            "Un guardia",
+            "Un bucle",
+            "Un if al principio de la función que retorna temprano si no se cumplen las condiciones, evitando anidamiento"
+        ],
+        "respuesta": 3,
+        "explicacion": "if (!valido) return;"
+    },
+    {
+        "pregunta": "¿El operador ternario puede sustituir a un if-else?",
+        "opciones": [
+            "Sí, para asignaciones simples o retornos",
+            "No, nunca",
+            "Solo para else",
+            "Solo para if"
+        ],
+        "respuesta": 0,
+        "explicacion": "int max = (a > b) ? a : b;"
+    },
+    {
+        "pregunta": "¿Qué pasa si olvidas las llaves {} en un if de varias líneas?",
+        "opciones": [
+            "Da error",
+            "Funciona igual",
+            "No compila",
+            "Solo la primera línea se considera dentro del if, el resto se ejecuta siempre"
+        ],
+        "respuesta": 3,
+        "explicacion": "Error común y peligroso (Apple goto fail)."
+    },
+    {
+        "pregunta": "¿Qué es la lógica booleana?",
+        "opciones": [
+            "Lógica difusa",
+            "Matemáticas avanzadas",
+            "La base matemática de las condiciones (Álgebra de Boole)",
+            "Filosofía"
+        ],
+        "respuesta": 2,
+        "explicacion": "True/False."
+    },
+    {
+        "pregunta": "¿Cuándo usar switch en lugar de if?",
+        "opciones": [
+            "Nunca",
+            "Cuando hay rangos (x > 5)",
+            "Cuando se compara una misma variable contra muchos valores constantes específicos",
+            "Cuando hay condiciones complejas"
+        ],
+        "respuesta": 2,
+        "explicacion": "Mejora la legibilidad."
+    },
+    {
+        "pregunta": "¿Qué es una tabla de verdad?",
+        "opciones": [
+            "Una tabla de datos",
+            "Un excel",
+            "Una tabla que muestra el resultado de una operación lógica para todas las combinaciones posibles de entradas",
+            "Una base de datos"
+        ],
+        "respuesta": 2,
+        "explicacion": "Ayuda a diseñar condiciones complejas."
+    }
+]

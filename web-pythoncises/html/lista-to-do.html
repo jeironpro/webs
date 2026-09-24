@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="es" data-theme="hum">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Programa que permite agregar, marcar, eliminar y ver tareas, para añadir tarea se pide al usuario el nombre y se guarda con un id que incrementa automaticamente al estilo de una base de datos y además, se marca como incompleta, para permitir al usuario la opción de marcarla completada posteriormente, finalmente la eliminación de las tareas se hacen mediante eliminar el ID.">
+  <meta name="theme-color" content="#faf6ee">
+  <title>Pythoncises · Lista de tareas</title>
+  <link rel="icon" type="image/svg+xml" href="../icons/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../icons/favicon-32.png">
+  <link rel="apple-touch-icon" href="../icons/favicon-180.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <script>document.documentElement.classList.add("js");</script>
+  <script src="../js/app.js" defer></script>
+</head>
+<body>
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a class="nav__brand" href="../index.html" aria-label="Pythoncises — inicio">
+        <span class="snake-mark" aria-hidden="true"><svg viewBox="0 0 64 64">
+      <path class="snake__cuerpo" d="M14 22 C 26 22, 26 32, 32 32 C 38 32, 38 42, 50 42"
+            fill="none" stroke-width="6.5" stroke-linecap="round"/>
+      <circle class="snake__cabeza" cx="50" cy="42" r="4.8"/>
+      <path class="snake__lengua" d="M54.5 42 L 58.5 40.5 M54.5 42 L 58.5 43.5"
+            fill="none" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="48.6" cy="40.2" r="1.1" fill="var(--color-paper)"/>
+    </svg></span>
+        Pythoncises
+      </a>
+    </div>
+  </header>
+  <main class="detalle" data-accent="cyan">
+    <a class="btn btn--outline btn--pear btn--sm detalle-volver" href="../index.html#indice">← Índice</a>
+    <p class="detalle-meta">
+      <span class="eyebrow__dot eyebrow__dot--cyan" style="display:inline-block;margin-right:0.45em;vertical-align:middle"></span>
+      Tiempo y hábitos · 29 · lista_to_do.py
+    </p>
+    <h1 class="detalle-titulo">Lista de tareas</h1>
+    <p class="detalle-desc">Programa que permite agregar, marcar, eliminar y ver tareas, para añadir tarea se pide al usuario el nombre y se guarda con un id que incrementa automaticamente al estilo de una base de datos y además, se marca como incompleta, para permitir al usuario la opción de marcarla completada posteriormente, finalmente la eliminación de las tareas se hacen mediante eliminar el ID.</p>
+    <div class="detalle-acciones">
+      <button class="btn btn--pear" type="button" data-accion="copiar" data-burst>Copiar</button>
+      <button class="btn btn--outline btn--pear" type="button" data-accion="descargar" data-nombre="lista_to_do.py">Descargar</button>
+    </div>
+    <div class="codigo-tarjeta">
+      <div class="codigo-barra">
+        <span class="codigo-punto" aria-hidden="true"></span>
+        <span class="codigo-punto" aria-hidden="true"></span>
+        <span class="codigo-punto" aria-hidden="true"></span>
+        <span class="codigo-archivo">exercises/lista-to-do/lista_to_do.py</span>
+      </div>
+      <pre><code><span class="tok-cadena">&quot;&quot;&quot;
+    Programa que permite agregar, marcar, eliminar y ver tareas, para añadir tarea se pide al usuario el nombre y se guarda con un id que incrementa automaticamente al estilo de una base de datos y además, se marca como incompleta, para permitir al usuario la opción de marcarla completada posteriormente, finalmente la eliminación de las tareas se hacen mediante eliminar el ID. 
+&quot;&quot;&quot;</span>
+<span class="tok-palabra">import</span> json
+<span class="tok-palabra">import</span> os
+
+ruta_archivo = <span class="tok-cadena">&quot;tareas.json&quot;</span>
+
+<span class="tok-comentario"># Verificar si el archivo no existe y crearlo</span>
+<span class="tok-palabra">if</span> <span class="tok-palabra">not</span> os.path.exists(ruta_archivo):
+    <span class="tok-palabra">with</span> <span class="tok-builtin">open</span>(ruta_archivo, <span class="tok-cadena">&quot;w&quot;</span>) <span class="tok-palabra">as</span> tareas:
+        json.dump([], tareas)
+    <span class="tok-builtin">print</span>(<span class="tok-cadena">f&quot;Creando el archivo {ruta_archivo}&quot;</span>)
+
+<span class="tok-palabra">def</span> <span class="tok-funcion">cargar_tareas</span>():
+    <span class="tok-palabra">with</span> <span class="tok-builtin">open</span>(ruta_archivo, <span class="tok-cadena">&quot;r&quot;</span>) <span class="tok-palabra">as</span> tareas:
+        contenido = json.load(tareas)
+
+    <span class="tok-palabra">if</span> contenido:
+        <span class="tok-palabra">return</span> contenido
+    <span class="tok-palabra">else</span>:
+        <span class="tok-palabra">return</span> []
+
+<span class="tok-palabra">def</span> <span class="tok-funcion">guardar_tareas</span>(lista):
+    <span class="tok-palabra">with</span> <span class="tok-builtin">open</span>(ruta_archivo, <span class="tok-cadena">&quot;w&quot;</span>) <span class="tok-palabra">as</span> tareas:
+        tareas.write(json.dumps(lista, indent=<span class="tok-numero">4</span>))
+
+<span class="tok-palabra">def</span> <span class="tok-funcion">mostrar_tareas</span>(lista):
+    <span class="tok-palabra">if</span> <span class="tok-palabra">not</span> lista:
+        <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;No hay tareas&quot;</span>)
+    <span class="tok-palabra">else</span>:
+        <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;\n--- TAREAS ---&quot;</span>)
+        <span class="tok-palabra">for</span> tarea <span class="tok-palabra">in</span> lista:
+            estado = <span class="tok-cadena">&quot;✔&quot;</span> <span class="tok-palabra">if</span> tarea[<span class="tok-cadena">&quot;completada&quot;</span>] <span class="tok-palabra">else</span> <span class="tok-cadena">&quot;✖&quot;</span>
+            <span class="tok-builtin">print</span>(<span class="tok-cadena">f&quot;{tarea['id']}: {tarea['nombre']} ({estado})&quot;</span>)
+        <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;----------------\n&quot;</span>)
+
+<span class="tok-palabra">def</span> <span class="tok-funcion">agregar_tarea</span>(lista):
+    ultimo_id = <span class="tok-builtin">max</span>((tarea[<span class="tok-cadena">&quot;id&quot;</span>] <span class="tok-palabra">for</span> tarea <span class="tok-palabra">in</span> lista), default=<span class="tok-numero">0</span>)
+
+    nombre = <span class="tok-builtin">input</span>(<span class="tok-cadena">&quot;Ingrese el nombre de la tarea: &quot;</span>)
+
+    nueva_tarea = {
+        <span class="tok-cadena">&quot;id&quot;</span>: ultimo_id + <span class="tok-numero">1</span>,
+        <span class="tok-cadena">&quot;nombre&quot;</span>: nombre,
+        <span class="tok-cadena">&quot;completada&quot;</span>: <span class="tok-palabra">False</span>
+    }
+
+    lista.append(nueva_tarea)
+    guardar_tareas(lista)
+    <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;Tarea agregada correctamente&quot;</span>)
+
+<span class="tok-palabra">def</span> <span class="tok-funcion">marcar_completada</span>(lista):
+    mostrar_tareas(lista)
+
+    tarea_id = <span class="tok-builtin">int</span>(<span class="tok-builtin">input</span>(<span class="tok-cadena">&quot;Ingrese el ID de la tarea: &quot;</span>))
+
+    <span class="tok-palabra">for</span> tarea <span class="tok-palabra">in</span> lista:
+        <span class="tok-palabra">if</span> tarea[<span class="tok-cadena">&quot;id&quot;</span>] == tarea_id:
+            tarea[<span class="tok-cadena">&quot;completada&quot;</span>] = <span class="tok-palabra">True</span>
+            guardar_tareas(lista)
+            <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;Tarea marcada como completada&quot;</span>)
+        <span class="tok-palabra">else</span>:
+            <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;El ID es inválido&quot;</span>)
+
+<span class="tok-palabra">def</span> <span class="tok-funcion">eliminar_tarea</span>(lista):
+    mostrar_tareas(lista)
+
+    tarea_id = <span class="tok-builtin">int</span>(<span class="tok-builtin">input</span>(<span class="tok-cadena">&quot;Ingrese el ID de la tarea: &quot;</span>))
+
+    <span class="tok-palabra">for</span> tarea <span class="tok-palabra">in</span> lista:
+        <span class="tok-palabra">if</span> tarea[<span class="tok-cadena">&quot;id&quot;</span>] == tarea_id:
+            lista.remove(tarea)
+            guardar_tareas(lista)
+            <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;Tarea eliminada correctamente&quot;</span>)
+        <span class="tok-palabra">else</span>:
+            <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;El ID es inválido&quot;</span>)
+
+<span class="tok-palabra">def</span> <span class="tok-funcion">mostrar_menu</span>():
+    <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;--- LISTA TO-DO ---&quot;</span>)
+    <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;1. Ver tareas&quot;</span>)
+    <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;2. Agregar tarea&quot;</span>)
+    <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;3. Marcar tarea como completada&quot;</span>)
+    <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;4. Eliminar tarea&quot;</span>)
+    <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;5. Salir&quot;</span>)    
+
+LISTA_TAREAS = cargar_tareas()
+
+<span class="tok-palabra">while</span> <span class="tok-palabra">True</span>:
+    mostrar_menu()
+
+    opcion = <span class="tok-builtin">input</span>(<span class="tok-cadena">&quot;Elige una opcion: &quot;</span>)
+
+    <span class="tok-palabra">if</span> opcion == <span class="tok-cadena">&quot;1&quot;</span>:
+        mostrar_tareas(LISTA_TAREAS)
+    <span class="tok-palabra">elif</span> opcion == <span class="tok-cadena">&quot;2&quot;</span>:
+        agregar_tarea(LISTA_TAREAS)
+    <span class="tok-palabra">elif</span> opcion == <span class="tok-cadena">&quot;3&quot;</span>:
+        marcar_completada(LISTA_TAREAS)
+    <span class="tok-palabra">elif</span> opcion == <span class="tok-cadena">&quot;4&quot;</span>:
+        eliminar_tarea(LISTA_TAREAS)
+    <span class="tok-palabra">elif</span> opcion == <span class="tok-cadena">&quot;5&quot;</span>:
+        <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;Adios&quot;</span>)
+        <span class="tok-palabra">break</span>
+    <span class="tok-palabra">else</span>:
+        <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;Opción no válida&quot;</span>)</code></pre>
+    </div>
+    <section class="salida" aria-labelledby="salida-lista-to-do">
+      <h2 class="salida-titulo" id="salida-lista-to-do">Salida de ejemplo</h2>
+      <pre class="salida-cuerpo">--- LISTA TO-DO ---
+1. Ver tareas
+2. Agregar tarea
+3. Marcar tarea como completada
+4. Eliminar tarea
+5. Salir
+Elige una opcion: 2
+Ingrese el nombre de la tarea: Mi primera tarea
+Tarea agregada correctamente
+--- LISTA TO-DO ---
+1. Ver tareas
+2. Agregar tarea
+3. Marcar tarea como completada
+4. Eliminar tarea
+5. Salir
+Elige una opcion: 1
+
+--- TAREAS ---
+1: Mi primera tarea (✖)
+2: Mi primera tarea (✖)
+3: Mi primera tarea (✖)
+----------------
+
+--- LISTA TO-DO ---
+1. Ver tareas
+2. Agregar tarea
+3. Marcar tarea como completada
+4. Eliminar tarea
+5. Salir
+Elige una opcion: 5
+Adios</pre>
+    </section>
+    <nav class="detalle-nav" aria-label="Navegación entre ejercicios">
+      <a class="nav-ej nav-previo" href="rastreador-habitos-diarios.html">← Rastreador de hábitos</a>
+      <a class="nav-ej nav-siguiente" href="detector-cara-opencv.html">Detector de caras →</a>
+    </nav>
+  </main>
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__meta">
+        <a class="footer__brand" href="../index.html"><span class="snake-mark" aria-hidden="true"><svg viewBox="0 0 64 64">
+      <path class="snake__cuerpo" d="M14 22 C 26 22, 26 32, 32 32 C 38 32, 38 42, 50 42"
+            fill="none" stroke-width="6.5" stroke-linecap="round"/>
+      <circle class="snake__cabeza" cx="50" cy="42" r="4.8"/>
+      <path class="snake__lengua" d="M54.5 42 L 58.5 40.5 M54.5 42 L 58.5 43.5"
+            fill="none" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="48.6" cy="40.2" r="1.1" fill="var(--color-paper)"/>
+    </svg></span> Pythoncises</a>
+        <p class="footer__copy">© Pythoncises - 2026<br><span class="footer__hash">ver · copiar · descargar</span></p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

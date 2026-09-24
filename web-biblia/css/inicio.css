@@ -1,0 +1,152 @@
+/* Hallmark · designed-as-app */
+/* Portada: título de portada y láminas editoriales — ver design.md */
+
+.contenedor-inicio {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    padding: 24px 20px;
+}
+
+.contenedor-principal {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    justify-content: center;
+    max-width: var(--ancho-maximo);
+    width: 100%;
+}
+
+/* Título de portada */
+
+.titulo-portada {
+    color: var(--tinta);
+    font-family: var(--fuente-titulo);
+    font-size: 56px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    margin: 0 0 8px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.subtitulo-portada {
+    color: var(--tinta-suave);
+    font-family: var(--fuente-titulo);
+    font-size: 18px;
+    font-style: italic;
+    letter-spacing: 0.12em;
+    margin: 0 0 32px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.portada {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
+    width: 100%;
+}
+
+/* Láminas: dos placas tipo portada de libro */
+
+.contenedor-principal .card {
+    background-color: var(--papel-alto);
+    border: var(--regla-fuerte);
+    box-shadow: var(--sombra);
+    display: flex;
+    flex: 1 1 300px;
+    height: 180px;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    transition: border-color var(--transicion), transform var(--transicion);
+}
+
+.contenedor-principal .card:hover {
+    border-color: var(--oro);
+    transform: translateY(-3px);
+}
+
+.contenedor-principal .card::before {
+    border: 1px solid var(--linea);
+    content: "";
+    inset: 6px;
+    pointer-events: none;
+    position: absolute;
+}
+
+.contenedor-principal .card a {
+    align-items: center;
+    color: var(--tinta);
+    display: flex;
+    flex-direction: column;
+    font-family: var(--fuente-titulo);
+    font-size: 26px;
+    font-weight: 600;
+    gap: 10px;
+    height: 100%;
+    justify-content: center;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    text-transform: uppercase;
+    width: 100%;
+    z-index: 1;
+}
+
+.contenedor-principal .card .icono {
+    color: var(--granate);
+    height: 30px;
+    width: 30px;
+}
+
+.contenedor-principal .card a::after {
+    background-color: var(--granate);
+    content: "";
+    height: 2px;
+    margin-top: 6px;
+    transition: background-color var(--transicion);
+    width: 40px;
+}
+
+.contenedor-principal .card:hover a::after {
+    background-color: var(--oro);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 768px) {
+    .titulo-portada {
+        font-size: 40px;
+    }
+
+    .contenedor-principal .card {
+        height: 140px;
+    }
+
+    .contenedor-principal .card a {
+        font-size: 21px;
+    }
+}
+
+@media (max-width: 480px) {
+    .titulo-portada {
+        font-size: 32px;
+    }
+
+    .subtitulo-portada {
+        font-size: 14px;
+    }
+
+    .contenedor-principal {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 320px) {
+    .titulo-portada {
+        font-size: 27px;
+    }
+}

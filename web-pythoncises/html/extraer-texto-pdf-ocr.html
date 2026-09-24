@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="es" data-theme="hum">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Programa que escanea documentos pdf usando OCR (Optical Character Recognition o Reconocimiento Óptico de Caracteres) que es un tecnica que se utiliza para leer texto desde imágenes o documentos y convertirlos a texto editable">
+  <meta name="theme-color" content="#faf6ee">
+  <title>Pythoncises · OCR sobre PDF</title>
+  <link rel="icon" type="image/svg+xml" href="../icons/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../icons/favicon-32.png">
+  <link rel="apple-touch-icon" href="../icons/favicon-180.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <script>document.documentElement.classList.add("js");</script>
+  <script src="../js/app.js" defer></script>
+</head>
+<body>
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a class="nav__brand" href="../index.html" aria-label="Pythoncises — inicio">
+        <span class="snake-mark" aria-hidden="true"><svg viewBox="0 0 64 64">
+      <path class="snake__cuerpo" d="M14 22 C 26 22, 26 32, 32 32 C 38 32, 38 42, 50 42"
+            fill="none" stroke-width="6.5" stroke-linecap="round"/>
+      <circle class="snake__cabeza" cx="50" cy="42" r="4.8"/>
+      <path class="snake__lengua" d="M54.5 42 L 58.5 40.5 M54.5 42 L 58.5 43.5"
+            fill="none" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="48.6" cy="40.2" r="1.1" fill="var(--color-paper)"/>
+    </svg></span>
+        Pythoncises
+      </a>
+    </div>
+  </header>
+  <main class="detalle" data-accent="pear">
+    <a class="btn btn--outline btn--pear btn--sm detalle-volver" href="../index.html#indice">← Índice</a>
+    <p class="detalle-meta">
+      <span class="eyebrow__dot eyebrow__dot--pear" style="display:inline-block;margin-right:0.45em;vertical-align:middle"></span>
+      Archivos y PDF · 20 · extraer_texto_pdf_ocr.py
+    </p>
+    <h1 class="detalle-titulo">OCR sobre PDF</h1>
+    <p class="detalle-desc">Programa que escanea documentos pdf usando OCR (Optical Character Recognition o Reconocimiento Óptico de Caracteres) que es un tecnica que se utiliza para leer texto desde imágenes o documentos y convertirlos a texto editable</p>
+    <div class="detalle-acciones">
+      <button class="btn btn--pear" type="button" data-accion="copiar" data-burst>Copiar</button>
+      <button class="btn btn--outline btn--pear" type="button" data-accion="descargar" data-nombre="extraer_texto_pdf_ocr.py">Descargar</button>
+    </div>
+    <div class="codigo-tarjeta">
+      <div class="codigo-barra">
+        <span class="codigo-punto" aria-hidden="true"></span>
+        <span class="codigo-punto" aria-hidden="true"></span>
+        <span class="codigo-punto" aria-hidden="true"></span>
+        <span class="codigo-archivo">exercises/extraer-texto-pdf-ocr/extraer_texto_pdf_ocr.py</span>
+      </div>
+      <pre><code><span class="tok-cadena">&quot;&quot;&quot;
+    Programa que escanea documentos pdf usando OCR (Optical Character Recognition o Reconocimiento Óptico de Caracteres) que es un tecnica que se utiliza para leer texto desde imágenes o documentos y convertirlos a texto editable
+&quot;&quot;&quot;</span>
+<span class="tok-palabra">import</span> fitz
+<span class="tok-palabra">import</span> pytesseract
+<span class="tok-palabra">from</span> pdf2image <span class="tok-palabra">import</span> convert_from_path
+
+ruta_archivo = <span class="tok-cadena">&quot;comandos_esenciales_docker_engine.pdf&quot;</span>
+
+texto_total = <span class="tok-cadena">&quot;&quot;</span>
+
+<span class="tok-comentario"># Abrir el documento</span>
+documento_pdf = fitz.<span class="tok-builtin">open</span>(ruta_archivo)
+
+<span class="tok-comentario"># Iterar cada página del documento</span>
+<span class="tok-palabra">for</span> numero, pagina <span class="tok-palabra">in</span> <span class="tok-builtin">enumerate</span>(documento_pdf, start=<span class="tok-numero">1</span>):
+    texto = pagina.get_text().strip() <span class="tok-comentario"># Obtener el texto</span>
+
+    <span class="tok-comentario"># Si el documento no tiene texto, tratar imagenes</span>
+    <span class="tok-palabra">if</span> <span class="tok-palabra">not</span> texto:
+        <span class="tok-builtin">print</span>(<span class="tok-cadena">f&quot;Página {numero}: sin texto, aplicando OCR...&quot;</span>)
+        <span class="tok-comentario"># Tratar el documento como imagen</span>
+        imagen = convert_from_path(ruta_archivo, first_page=numero, last_page=numero)[<span class="tok-numero">0</span>]
+        <span class="tok-comentario"># Usar ocr para convertir la imagen en texto</span>
+        texto = pytesseract.image_to_string(imagen)
+    <span class="tok-palabra">else</span>:
+        <span class="tok-builtin">print</span>(<span class="tok-cadena">f&quot;Página {numero}: texto digital detectado&quot;</span>)
+    
+    <span class="tok-comentario"># Guardar el texto de cada pagina </span>
+    texto_total += <span class="tok-cadena">f&quot;\n--- Página {numero} ---\n{texto}\n&quot;</span>
+
+<span class="tok-comentario"># Mostrar el texto obtenido</span>
+<span class="tok-builtin">print</span>(texto_total)</code></pre>
+    </div>
+    <nav class="detalle-nav" aria-label="Navegación entre ejercicios">
+      <a class="nav-ej nav-previo" href="marca-agua.html">← Marca de agua</a>
+      <a class="nav-ej nav-siguiente" href="herramienta-renombra-archivo.html">Renombrador de archivos →</a>
+    </nav>
+  </main>
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__meta">
+        <a class="footer__brand" href="../index.html"><span class="snake-mark" aria-hidden="true"><svg viewBox="0 0 64 64">
+      <path class="snake__cuerpo" d="M14 22 C 26 22, 26 32, 32 32 C 38 32, 38 42, 50 42"
+            fill="none" stroke-width="6.5" stroke-linecap="round"/>
+      <circle class="snake__cabeza" cx="50" cy="42" r="4.8"/>
+      <path class="snake__lengua" d="M54.5 42 L 58.5 40.5 M54.5 42 L 58.5 43.5"
+            fill="none" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="48.6" cy="40.2" r="1.1" fill="var(--color-paper)"/>
+    </svg></span> Pythoncises</a>
+        <p class="footer__copy">© Pythoncises - 2026<br><span class="footer__hash">ver · copiar · descargar</span></p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

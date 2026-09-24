@@ -1,0 +1,30 @@
+# Hooks de calidad de código para web-javarcises.
+# Instalación: pre-commit install
+repos:
+    - repo: https://github.com/pre-commit/pre-commit-hooks
+      rev: v5.0.0
+      hooks:
+          - id: trailing-whitespace
+          - id: end-of-file-fixer
+          - id: check-yaml
+          - id: check-json
+    # Hooks locales: dependen de las herramientas instaladas vía npm install.
+    - repo: local
+      hooks:
+          - id: eslint
+            name: eslint
+            entry: npx eslint
+            language: system
+            types: [javascript]
+            exclude: ^data/ejercicios\.js$
+          - id: prettier
+            name: prettier
+            entry: npx prettier --check
+            language: system
+            types_or: [javascript, css, html, json]
+            exclude: ^(data/ejercicios\.js|package-lock\.json)$
+          - id: tests
+            name: tests (node --test)
+            entry: npm test
+            language: system
+            pass_filenames: false

@@ -1,0 +1,222 @@
+[
+    {
+        "pregunta": "¿Qué es la Primera Forma Normal (1FN)?",
+        "opciones": [
+            "Eliminar grupos repetidos y asegurar que cada columna tenga valores atómicos",
+            "Eliminar dependencias transitivas",
+            "Crear claves primarias",
+            "Tener tablas separadas"
+        ],
+        "respuesta": 0,
+        "explicacion": "No debe haber listas de valores en una sola celda."
+    },
+    {
+        "pregunta": "¿Qué es la Segunda Forma Normal (2FN)?",
+        "opciones": [
+            "Eliminar columnas calculadas",
+            "Cumplir 1FN y que todos los atributos no clave dependan de la clave primaria completa",
+            "Tener índices",
+            "Cumplir 1FN y tener claves foráneas"
+        ],
+        "respuesta": 1,
+        "explicacion": "Elimina dependencias parciales en claves compuestas."
+    },
+    {
+        "pregunta": "¿Qué es la Tercera Forma Normal (3FN)?",
+        "opciones": [
+            "Tener todo en una tabla",
+            "Cumplir 2FN y tener 3 tablas",
+            "Cumplir 2FN y no tener dependencias transitivas (atributos no clave dependiendo de otros no clave)",
+            "Usar solo números"
+        ],
+        "respuesta": 2,
+        "explicacion": "Todo atributo debe depender de la clave, toda la clave y nada más que la clave."
+    },
+    {
+        "pregunta": "¿Qué es la Desnormalización?",
+        "opciones": [
+            "Perder datos",
+            "El proceso de introducir redundancia controlada para mejorar el rendimiento de lectura",
+            "Borrar la normalización",
+            "Hacer mal la base de datos"
+        ],
+        "respuesta": 1,
+        "explicacion": "Se usa en Data Warehouses o sistemas con muchas lecturas y pocos cambios."
+    },
+    {
+        "pregunta": "¿Qué es un modelo conceptual?",
+        "opciones": [
+            "Los archivos físicos",
+            "Una representación de alto nivel independiente del SGBD (ej. Diagrama ER)",
+            "El esquema SQL",
+            "El código fuente"
+        ],
+        "respuesta": 1,
+        "explicacion": "Se centra en entidades y relaciones del negocio."
+    },
+    {
+        "pregunta": "¿Qué es un modelo lógico?",
+        "opciones": [
+            "El diagrama ER",
+            "La memoria RAM",
+            "La traducción del modelo conceptual a estructuras de datos específicas (ej. Tablas relacionales)",
+            "El disco duro"
+        ],
+        "respuesta": 2,
+        "explicacion": "Define tablas, columnas, claves y tipos de datos genéricos."
+    },
+    {
+        "pregunta": "¿Qué es un modelo físico?",
+        "opciones": [
+            "La implementación específica en un SGBD concreto (MySQL, Oracle), incluyendo índices y particiones",
+            "El servidor",
+            "El hardware",
+            "El cableado"
+        ],
+        "respuesta": 0,
+        "explicacion": "Optimizado para el motor de base de datos específico."
+    },
+    {
+        "pregunta": "¿Qué es una relación recursiva?",
+        "opciones": [
+            "Un error de diseño",
+            "Un bucle infinito",
+            "Una entidad que se relaciona consigo misma (ej. Empleado - Jefe)",
+            "Una relación circular entre 3 tablas"
+        ],
+        "respuesta": 2,
+        "explicacion": "Requiere una clave foránea que apunte a la clave primaria de la misma tabla."
+    },
+    {
+        "pregunta": "¿Qué es la integridad de dominio?",
+        "opciones": [
+            "Integridad de usuario",
+            "Asegurar que los valores de una columna cumplan con el tipo de dato y restricciones definidos",
+            "Integridad de claves",
+            "Integridad de red"
+        ],
+        "respuesta": 1,
+        "explicacion": "Ej: Una columna 'Edad' no puede tener letras."
+    },
+    {
+        "pregunta": "¿Qué es la integridad de entidad?",
+        "opciones": [
+            "Las tablas deben tener datos",
+            "No debe haber tablas vacías",
+            "Las entidades deben tener nombre",
+            "Cada tabla debe tener una clave primaria y esta no puede ser nula"
+        ],
+        "respuesta": 3,
+        "explicacion": "Garantiza que cada fila sea identificable."
+    },
+    {
+        "pregunta": "¿Qué es una clave candidata?",
+        "opciones": [
+            "Una contraseña",
+            "Cualquier columna o conjunto de columnas que podría funcionar como clave primaria",
+            "Una clave foránea",
+            "Una clave secundaria"
+        ],
+        "respuesta": 1,
+        "explicacion": "De las candidatas se elige una como Primaria, las otras pueden ser Unique."
+    },
+    {
+        "pregunta": "¿Qué es una clave subrogada (Surrogate Key)?",
+        "opciones": [
+            "Una clave compuesta",
+            "Un identificador artificial (generalmente autoincremental) sin significado de negocio",
+            "Una clave foránea",
+            "Una clave natural"
+        ],
+        "respuesta": 1,
+        "explicacion": "Útil cuando no hay una clave natural simple o esta puede cambiar."
+    },
+    {
+        "pregunta": "¿Qué es una clave natural?",
+        "opciones": [
+            "Un atributo existente en el mundo real que identifica únicamente (ej. DNI, Email)",
+            "Un hash",
+            "Un número aleatorio",
+            "Un ID autoincremental"
+        ],
+        "respuesta": 0,
+        "explicacion": "Tiene significado de negocio."
+    },
+    {
+        "pregunta": "¿Qué problema resuelve la tabla puente o de unión?",
+        "opciones": [
+            "Las relaciones 1:1",
+            "Las relaciones Muchos a Muchos (N:M)",
+            "Las relaciones 1:N",
+            "La falta de espacio"
+        ],
+        "respuesta": 1,
+        "explicacion": "Descompone N:M en dos relaciones 1:N."
+    },
+    {
+        "pregunta": "¿Qué es la cardinalidad mínima?",
+        "opciones": [
+            "El mínimo de tablas",
+            "El número mínimo de veces que una instancia debe participar en una relación (0 o 1)",
+            "El mínimo de columnas",
+            "El valor más pequeño"
+        ],
+        "respuesta": 1,
+        "explicacion": "Indica opcionalidad (0) u obligatoriedad (1)."
+    },
+    {
+        "pregunta": "¿Qué es una dependencia funcional?",
+        "opciones": [
+            "Una dependencia de software",
+            "Una relación padre-hijo",
+            "Cuando el valor de un atributo determina el valor de otro (A -> B)",
+            "Una función de código"
+        ],
+        "respuesta": 2,
+        "explicacion": "Base de la normalización."
+    },
+    {
+        "pregunta": "¿Qué es el particionamiento horizontal?",
+        "opciones": [
+            "Dividir columnas",
+            "Dividir discos",
+            "Dividir bases de datos",
+            "Dividir una tabla en múltiples tablas con las mismas columnas pero diferentes filas"
+        ],
+        "respuesta": 3,
+        "explicacion": "Sharding es una forma de esto."
+    },
+    {
+        "pregunta": "¿Qué es el particionamiento vertical?",
+        "opciones": [
+            "Dividir servidores",
+            "Dividir usuarios",
+            "Dividir una tabla en múltiples tablas con las mismas filas pero diferentes columnas",
+            "Dividir filas"
+        ],
+        "respuesta": 2,
+        "explicacion": "Útil para separar columnas de uso frecuente de las de uso raro (BLOBs, textos largos)."
+    },
+    {
+        "pregunta": "¿Qué es OLTP?",
+        "opciones": [
+            "Oracle Long Transaction Process",
+            "Online Analytical Processing",
+            "Online Transaction Processing (Sistemas transaccionales operativos)",
+            "Old Table Protocol"
+        ],
+        "respuesta": 2,
+        "explicacion": "Optimizado para muchas transacciones pequeñas y rápidas (INSERT, UPDATE)."
+    },
+    {
+        "pregunta": "¿Qué es OLAP?",
+        "opciones": [
+            "Old Laptop Protocol",
+            "Oracle Large Analytical Process",
+            "Online Analytical Processing (Sistemas para análisis y toma de decisiones)",
+            "Online Transaction Processing"
+        ],
+        "respuesta": 2,
+        "explicacion": "Optimizado para consultas complejas de lectura sobre grandes volúmenes de datos."
+    }
+]

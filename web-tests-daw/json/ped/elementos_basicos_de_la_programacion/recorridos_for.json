@@ -1,0 +1,222 @@
+[
+    {
+        "pregunta": "¿Qué es un bucle 'for'?",
+        "opciones": [
+            "Una función",
+            "Un bucle infinito",
+            "Una condición",
+            "Una estructura de control diseñada para iterar un número conocido de veces"
+        ],
+        "respuesta": 3,
+        "explicacion": "for (init; cond; step)."
+    },
+    {
+        "pregunta": "¿Cuáles son las 3 partes de la cabecera de un for estándar?",
+        "opciones": [
+            "Inicialización, Condición, Actualización (Incremento/Decremento)",
+            "Inicio, Fin, Medio",
+            "Uno, Dos, Tres",
+            "Variable, Valor, Tipo"
+        ],
+        "respuesta": 0,
+        "explicacion": "Separadas por punto y coma."
+    },
+    {
+        "pregunta": "¿Qué es un bucle 'for-each' o 'for-in'?",
+        "opciones": [
+            "Una variante del for diseñada para recorrer colecciones (arrays, listas) sin manejar índices manualmente",
+            "Un for rápido",
+            "Un for lento",
+            "Un while"
+        ],
+        "respuesta": 0,
+        "explicacion": "Más legible y seguro para lecturas."
+    },
+    {
+        "pregunta": "¿Qué hace 'continue' en un bucle for?",
+        "opciones": [
+            "Termina el programa",
+            "Reinicia el bucle",
+            "Salta el resto del cuerpo en la iteración actual y pasa a la siguiente (ejecuta el incremento)",
+            "Rompe el bucle"
+        ],
+        "respuesta": 2,
+        "explicacion": "Salta una vuelta."
+    },
+    {
+        "pregunta": "¿Qué hace 'break' en un bucle for?",
+        "opciones": [
+            "Pausa el bucle",
+            "Da error",
+            "Rompe la variable",
+            "Termina el bucle inmediatamente y salta a la instrucción siguiente al bucle"
+        ],
+        "respuesta": 3,
+        "explicacion": "Salida anticipada."
+    },
+    {
+        "pregunta": "¿Se puede omitir alguna parte de la cabecera del for?",
+        "opciones": [
+            "No, es obligatorio",
+            "Solo la primera",
+            "Solo la última",
+            "Sí, cualquiera de las 3 (ej. for(;;)), creando un bucle infinito si falta la condición"
+        ],
+        "respuesta": 3,
+        "explicacion": "Flexibilidad de C."
+    },
+    {
+        "pregunta": "¿Qué es el ámbito de la variable declarada en el for (int i=0)?",
+        "opciones": [
+            "Global",
+            "Local al bucle (no existe fuera)",
+            "Del archivo",
+            "De la función"
+        ],
+        "respuesta": 1,
+        "explicacion": "Estándar moderno (C99, Java, etc)."
+    },
+    {
+        "pregunta": "¿Cómo se recorre un array de atrás hacia adelante?",
+        "opciones": [
+            "Usando reverse()",
+            "Inicializando el índice al final y decrementando (i--)",
+            "Incrementando",
+            "No se puede"
+        ],
+        "respuesta": 1,
+        "explicacion": "for (int i = n-1; i >= 0; i--)."
+    },
+    {
+        "pregunta": "¿Qué es un bucle for anidado?",
+        "opciones": [
+            "Un for dentro de otro for (típico para recorrer matrices 2D)",
+            "Un error",
+            "Un for doble",
+            "Un for paralelo"
+        ],
+        "respuesta": 0,
+        "explicacion": "Filas y columnas."
+    },
+    {
+        "pregunta": "¿Qué complejidad tiene recorrer una matriz NxM con dos for anidados?",
+        "opciones": [
+            "O(N * M)",
+            "O(1)",
+            "O(M)",
+            "O(N)"
+        ],
+        "respuesta": 0,
+        "explicacion": "Cuadrática si N=M."
+    },
+    {
+        "pregunta": "¿Qué es la variable de control del bucle?",
+        "opciones": [
+            "El usuario",
+            "El sistema",
+            "El control remoto",
+            "La variable que se usa para contar o controlar las iteraciones (típicamente 'i')"
+        ],
+        "respuesta": 3,
+        "explicacion": "i, j, k son nombres comunes."
+    },
+    {
+        "pregunta": "¿Qué pasa si modificas la variable de control dentro del cuerpo del for?",
+        "opciones": [
+            "Puedes alterar el flujo esperado, causar bucles infinitos o saltar iteraciones (mala práctica)",
+            "Nada",
+            "Es obligatorio",
+            "Es bueno"
+        ],
+        "respuesta": 0,
+        "explicacion": "Evitarlo, dejar que el for la maneje."
+    },
+    {
+        "pregunta": "¿Qué es un rango en un bucle for (Python/Kotlin)?",
+        "opciones": [
+            "Un error",
+            "Una secuencia de números generada automáticamente (ej. range(5), 1..10)",
+            "Una lista",
+            "Un array"
+        ],
+        "respuesta": 1,
+        "explicacion": "Abstracción de alto nivel."
+    },
+    {
+        "pregunta": "¿Qué es 'step' o paso?",
+        "opciones": [
+            "Un paso de baile",
+            "La cantidad que se incrementa/decrementa la variable en cada iteración",
+            "Un error",
+            "Una instrucción"
+        ],
+        "respuesta": 1,
+        "explicacion": "i += 2."
+    },
+    {
+        "pregunta": "¿Se pueden usar tipos flotantes en un for?",
+        "opciones": [
+            "Sí, sin problemas",
+            "No compila",
+            "No, solo enteros",
+            "Sí, pero cuidado con la precisión (errores de redondeo)"
+        ],
+        "respuesta": 3,
+        "explicacion": "0.1 + 0.2 != 0.3."
+    },
+    {
+        "pregunta": "¿Qué es un bucle infinito accidental en un for?",
+        "opciones": [
+            "Ej. for(int i=0; i<10; i--) (la condición siempre es true)",
+            "Un error de sintaxis",
+            "Un for vacío",
+            "Un for correcto"
+        ],
+        "respuesta": 0,
+        "explicacion": "Decremento en vez de incremento."
+    },
+    {
+        "pregunta": "¿Qué es la optimización de bucles (loop unrolling)?",
+        "opciones": [
+            "Técnica del compilador para reducir la sobrecarga del bucle repitiendo el cuerpo varias veces",
+            "Borrar el bucle",
+            "Hacerlo más pequeño",
+            "Hacer el bucle más rápido"
+        ],
+        "respuesta": 0,
+        "explicacion": "Avanzado."
+    },
+    {
+        "pregunta": "¿Qué es un bucle for con múltiples variables?",
+        "opciones": [
+            "Solo en C++",
+            "No se puede",
+            "Es un error",
+            "for(int i=0, j=10; i<j; i++, j--)"
+        ],
+        "respuesta": 3,
+        "explicacion": "Válido en C, Java, JS."
+    },
+    {
+        "pregunta": "¿Qué diferencia hay entre for-in y for-of en JS?",
+        "opciones": [
+            "Son iguales",
+            "for-in es nuevo",
+            "for-of es viejo",
+            "for-in itera claves (índices), for-of itera valores"
+        ],
+        "respuesta": 3,
+        "explicacion": "Importante distinción."
+    },
+    {
+        "pregunta": "¿Qué es un bucle etiquetado (labeled loop)?",
+        "opciones": [
+            "Un error",
+            "Un bucle con nombre",
+            "Permite hacer break/continue a un bucle externo desde uno anidado",
+            "Un comentario"
+        ],
+        "respuesta": 2,
+        "explicacion": "outer: for(...) { break outer; }"
+    }
+]

@@ -1,0 +1,221 @@
+/* ─── Body ─── */
+body {
+    font-family: var(--font-sans);
+    background: var(--color-bg);
+    color: var(--color-text-primary);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* ─── Header ─── */
+/* Barra superior fija con efecto blur */
+.header {
+    padding: var(--space-4) 0;
+    background: rgba(245, 240, 234, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--color-border);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+/* Contenedor interno: icono + titulo centrados */
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 var(--space-4);
+}
+
+.header-icon {
+    font-size: 22px;
+    color: var(--color-accent);
+}
+
+.header-title {
+    font-size: var(--text-base);
+    font-weight: var(--font-semibold);
+}
+
+/* Badge con tecnologia usada (eliminado por peticion, clase disponible) */
+.header-badge {
+    font-size: 10px;
+    padding: 2px 8px;
+    background: var(--color-accent-muted);
+    color: var(--color-accent);
+    border-radius: var(--radius-full);
+    font-weight: var(--font-medium);
+    margin-left: auto;
+    letter-spacing: 0.3px;
+}
+
+/* ─── Grilla principal (2 columnas horizontal) ─── */
+.main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-10);
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: var(--space-10) var(--space-4) 0;
+    align-items: start;
+}
+
+/* Columna izquierda: tarjeta, botones, fortaleza, nota */
+.left-col {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+}
+
+/* Columna derecha: paneles de opciones */
+.right-col {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+}
+
+/* ─── Toolbar de botones ─── */
+.key-toolbar {
+    display: flex;
+    gap: var(--space-3);
+}
+
+.key-toolbar .btn {
+    flex: 1;
+}
+
+/* Espaciado entre paneles de opciones */
+.options-panel .surface-title {
+    margin-bottom: var(--space-3);
+}
+
+.options-panel+.options-panel {
+    margin-top: var(--space-3);
+}
+
+/* ─── Nota de seguridad ─── */
+.info-note {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-accent-muted);
+    border: 1px solid rgba(201, 160, 58, 0.15);
+    border-radius: var(--radius-lg);
+    font-size: var(--text-xs);
+    color: var(--color-text-secondary);
+}
+
+.info-note .material-symbols-outlined {
+    font-size: 14px;
+    color: var(--color-accent);
+}
+
+/* ─── Seccion informativa (3 columnas) ─── */
+.info-section {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: var(--space-4);
+    padding-bottom: var(--space-12);
+}
+
+/* Tarjetas de informacion */
+.info-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--space-5);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    transition: border-color var(--transition-normal);
+}
+
+.info-card:hover {
+    border-color: var(--color-border-hover);
+}
+
+.info-card-icon {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-accent-muted);
+    border-radius: var(--radius-md);
+    flex-shrink: 0;
+}
+
+.info-card-icon .material-symbols-outlined {
+    font-size: 18px;
+    color: var(--color-accent);
+}
+
+.info-card-body h3 {
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    margin-bottom: 2px;
+}
+
+.info-card-body p {
+    font-size: var(--text-xs);
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+}
+
+/* ─── Footer ─── */
+.footer {
+    margin-top: auto;
+    padding: var(--space-6) 0;
+    border-top: 1px solid var(--color-border);
+    text-align: center;
+}
+
+.footer p {
+    font-size: var(--text-xs);
+    color: var(--color-text-tertiary);
+}
+
+.footer a {
+    color: var(--color-accent);
+    transition: color var(--transition-fast);
+}
+
+.footer a:hover {
+    color: var(--color-accent-hover);
+}
+
+/* ─── Responsive: movil y tablet ─── */
+@media (max-width: 768px) {
+    /* Pasa de 2 columnas a 1 */
+    .main-grid {
+        grid-template-columns: 1fr;
+        padding-top: var(--space-5);
+    }
+
+    /* Info cards en una columna */
+    .info-section {
+        grid-template-columns: 1fr;
+    }
+
+    /* La tarjeta credito se adapta */
+    .card-credit {
+        min-height: 200px;
+        padding: var(--space-5);
+    }
+
+    /* Grupos de clave mas pequenos */
+    .key-group {
+        font-size: var(--text-lg);
+    }
+
+    /* Superficies con menos padding */
+    .surface {
+        padding: var(--space-5);
+    }
+}

@@ -1,0 +1,285 @@
+:root {
+    --color-balance: #3b82f6;
+    --color-boton: #6366f1;
+    --color-boton-hover: #4f46e5;
+    --color-fondo: #f1f5f9;
+    --color-gasto: #ef4444;
+    --color-ingreso: #10b981;
+    --color-texto: #334155;
+    --color-titulo: #1e293b;
+    --fuente-principal: 'Outfit', sans-serif;
+    --sombra: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+body {
+    background-color: var(--color-fondo);
+    box-sizing: border-box;
+    color: var(--color-texto);
+    display: flex;
+    font-family: var(--fuente-principal);
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    width: 100vw;
+}
+
+main {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    max-width: 1200px;
+    padding: 2rem;
+    width: 100%;
+}
+
+.contenedor-titulo {
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.contenedor-titulo h1 {
+    color: var(--color-titulo);
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.contenedor {
+    align-items: stretch;
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    margin-bottom: 3rem;
+    width: 100%;
+}
+
+.contenedor-ingresos, 
+.contenedor-gastos {
+    background-color: #ffffff;
+    border-radius: 1.5rem;
+    box-shadow: var(--sombra);
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 400px;
+    padding: 2.5rem;
+}
+
+.contenedor-ingresos h1, 
+.contenedor-gastos h1 {
+    color: var(--color-titulo);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+    text-align: center;
+}
+
+.ingresos,
+.gastos {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.contenedor input {
+    background-color: #f8fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 1rem;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 1.125rem;
+    height: 4rem;
+    outline: none;
+    padding: 0 1.5rem;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 100%;
+}
+
+.contenedor input:focus {
+    background-color: #ffffff;
+    border-color: var(--color-boton);
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+.contenedor input::placeholder {
+    color: #94a3b8;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button {
+    appearance: none;
+    margin: 0;
+}
+
+.boton {
+    display: flex;
+    width: 100%;
+}
+
+.boton button {
+    align-items: center;
+    background-color: var(--color-boton);
+    border: none;
+    border-radius: 1rem;
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    font-size: 1.125rem;
+    font-weight: 700;
+    height: 4rem;
+    justify-content: center;
+    transition: all 0.2s;
+    width: 100%;
+}
+
+.boton button:hover {
+    background-color: var(--color-boton-hover);
+    transform: translateY(-2px);
+}
+
+.boton button:active {
+    transform: translateY(0);
+}
+
+.contenedor-balances {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    width: 100%;
+}
+
+.totalIngresos,
+.totalGastos,
+.balance {
+    background-color: #ffffff;
+    border-radius: 1.5rem;
+    box-shadow: var(--sombra);
+    flex: 1;
+    max-width: 250px;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.totalIngresos p:first-child,
+.totalGastos p:first-child,
+.balance p:first-child {
+    color: #64748b;
+    font-size: 0.875rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    margin-top: 0;
+    text-transform: uppercase;
+}
+
+.totalIngresos p:last-child,
+.totalGastos p:last-child,
+.balance p:last-child {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.totalIngresos p:last-child {
+    color: var(--color-ingreso);
+}
+
+.totalGastos p:last-child {
+    color: var(--color-gasto);
+}
+
+.balance p:last-child {
+    color: var(--color-balance);
+}
+
+@media (max-width: 900px) {
+    body {
+        height: auto;
+        min-height: 100vh;
+        overflow-y: auto;
+    }
+
+    main {
+        justify-content: flex-start;
+        padding: 3rem 1.5rem;
+    }
+
+    .contenedor-titulo {
+        margin-bottom: 2.5rem;
+    }
+
+    .contenedor-titulo h1 {
+        font-size: 2.25rem;
+    }
+
+    .contenedor {
+        align-items: center;
+        flex-direction: column;
+        gap: 2rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .contenedor-ingresos, 
+    .contenedor-gastos {
+        max-width: 440px;
+        padding: 2rem;
+        width: 90%;
+    }
+
+    .contenedor-ingresos h1, 
+    .contenedor-gastos h1 {
+        font-size: 1.5rem;
+    }
+
+    .contenedor input,
+    .boton button {
+        height: 3.75rem;
+    }
+
+    .contenedor-balances {
+        align-items: center;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .totalIngresos,
+    .totalGastos,
+    .balance {
+        max-width: 440px;
+        padding: 1.5rem;
+        width: 90%;
+    }
+
+    .totalIngresos p:last-child,
+    .totalGastos p:last-child,
+    .balance p:last-child {
+        font-size: 1.875rem;
+    }
+}
+
+@media (max-width: 480px) {
+    main {
+        padding: 2.5rem 1rem;
+    }
+
+    .contenedor-titulo h1 {
+        font-size: 1.875rem;
+    }
+
+    .contenedor-ingresos, 
+    .contenedor-gastos {
+        max-width: 100%;
+        padding: 1.75rem;
+        width: 85%;
+    }
+
+    .totalIngresos,
+    .totalGastos,
+    .balance {
+        max-width: 100%;
+        width: 85%;
+    }
+}

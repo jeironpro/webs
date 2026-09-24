@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Generador de claves secretas criptograficamente seguro. Personaliza longitud, caracteres y excluye ambiguos. 100% local.">
+    <meta name="theme-color" content="#f5f0ea">
+    <!-- Favicon en SVG desde Material Symbols (icono encrypted) -->
+    <link rel="icon" type="image/svg+xml" href="icon/favicon.svg">
+    <title>Generador de Clave Secreta</title>
+    <!-- Fuentes tipograficas: Inter (sans) y JetBrains Mono (monospace) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Iconos: Material Symbols Outlined -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+    <!-- Hojas de estilo en orden de cascada: tokens, reset, componentes, layout -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Cabecera fija con efecto de desenfoque -->
+    <header class="header">
+        <div class="header-inner">
+            <span class="header-icon material-symbols-outlined">encrypted</span>
+            <span class="header-title">Clave Secreta</span>
+        </div>
+    </header>
+
+    <!-- Grilla principal de dos columnas -->
+    <main class="main-grid">
+
+        <!-- Columna izquierda: tarjeta, botones, fortaleza y nota -->
+        <div class="left-col">
+
+            <!-- Tarjeta de credito simulada con la clave visual -->
+            <div class="card-credit">
+                <div class="card-credit-top">
+                    <div class="card-credit-chip"></div>
+                    <div class="card-credit-brand">
+                        <span class="material-symbols-outlined">encrypted</span>
+                    </div>
+                </div>
+                <!-- Los grupos de 4 caracteres se renderizan aqui via JS -->
+                <div class="card-credit-number" id="keyNumber">
+                    <span class="key-group">----</span>
+                    <span class="key-group">----</span>
+                    <span class="key-group">----</span>
+                    <span class="key-group">----</span>
+                    <span class="key-group">----</span>
+                    <span class="key-group">----</span>
+                </div>
+                <div class="card-credit-footer">
+                    <div class="card-credit-holder">
+                        <span class="card-label">Titular</span>
+                        <span class="card-value">CLAVE SEGURA</span>
+                    </div>
+                    <div class="card-credit-expiry">
+                        <span class="card-label">Vence</span>
+                        <span class="card-value" id="cardExpiry">12/28</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botones de accion: copiar y regenerar -->
+            <div class="key-toolbar">
+                <button class="btn btn-gold" id="copyBtn">
+                    <span class="material-symbols-outlined" style="font-size:16px">content_copy</span>
+                    Copiar clave
+                </button>
+                <button class="btn btn-outline" id="regenBtn">
+                    <span class="material-symbols-outlined" style="font-size:16px">refresh</span>
+                    Regenerar
+                </button>
+            </div>
+
+            <!-- Indicador de fortaleza con barra de 4 segmentos -->
+            <div class="surface" style="padding: var(--space-4) var(--space-6);">
+                <div class="strength-bar">
+                    <div class="strength-segment"></div>
+                    <div class="strength-segment"></div>
+                    <div class="strength-segment"></div>
+                    <div class="strength-segment"></div>
+                </div>
+                <div class="strength-info" style="margin-top: var(--space-2);">
+                    <span class="strength-label" id="strengthLabel">—</span>
+                    <span class="strength-entropy" id="entropyValue">0 bits de entropia</span>
+                </div>
+            </div>
+
+            <!-- Nota informativa sobre la seguridad del generador -->
+            <div class="info-note">
+                <span class="material-symbols-outlined">verified</span>
+                <span>Generado con <strong>crypto.getRandomValues()</strong> + <strong>rejection sampling</strong>. Sin sesgo, 100% en tu navegador.</span>
+            </div>
+        </div>
+
+        <!-- Columna derecha: paneles de configuracion -->
+        <div class="right-col">
+
+            <!-- Panel: longitud de la clave -->
+            <div class="surface options-panel">
+                <div class="surface-title">Longitud</div>
+                <div class="form-group">
+                    <label for="length">
+                        <span>Caracteres</span>
+                        <span id="lengthValue">32</span>
+                    </label>
+                    <input type="range" id="length" min="8" max="128" value="32" step="1">
+                </div>
+            </div>
+
+            <!-- Panel: tipos de caracteres a incluir -->
+            <div class="surface options-panel">
+                <div class="surface-title">Caracteres</div>
+                <div class="checkbox-group">
+                    <label class="checkbox">
+                        <input type="checkbox" id="uppercase" checked>
+                        <span class="checkbox-box"><span class="material-symbols-outlined">check</span></span>
+                        <span>Mayusculas (A-Z)</span>
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" id="lowercase" checked>
+                        <span class="checkbox-box"><span class="material-symbols-outlined">check</span></span>
+                        <span>Minusculas (a-z)</span>
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" id="numbers" checked>
+                        <span class="checkbox-box"><span class="material-symbols-outlined">check</span></span>
+                        <span>Numeros (0-9)</span>
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" id="symbols" checked>
+                        <span class="checkbox-box"><span class="material-symbols-outlined">check</span></span>
+                        <span>Simbolos (!@#$%^&amp;*)</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Panel: opciones extra (excluir ambiguos, auto-copy) -->
+            <div class="surface options-panel">
+                <div class="surface-title">Extras</div>
+                <div class="checkbox-group">
+                    <label class="checkbox">
+                        <input type="checkbox" id="excludeAmbiguous">
+                        <span class="checkbox-box"><span class="material-symbols-outlined">check</span></span>
+                        <span>Excluir ambiguos (O0Il1)</span>
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" id="autoCopy">
+                        <span class="checkbox-box"><span class="material-symbols-outlined">check</span></span>
+                        <span>Auto-copiar al generar</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Seccion informativa a ancho completo -->
+        <div class="info-section">
+            <div class="info-card">
+                <div class="info-card-icon">
+                    <span class="material-symbols-outlined">lock</span>
+                </div>
+                <div class="info-card-body">
+                    <h3>Criptografia de navegador</h3>
+                    <p>Usa la misma fuente de aleatoriedad que los navegadores para generar claves TLS y tokens de autenticacion.</p>
+                </div>
+            </div>
+            <div class="info-card">
+                <div class="info-card-icon">
+                    <span class="material-symbols-outlined">hdd</span>
+                </div>
+                <div class="info-card-body">
+                    <h3>Sin servidor ni registro</h3>
+                    <p>Todo ocurre localmente. No se envian datos, no hay tracking, no hay cuentas. Funciona sin conexion.</p>
+                </div>
+            </div>
+            <div class="info-card">
+                <div class="info-card-icon">
+                    <span class="material-symbols-outlined">tune</span>
+                </div>
+                <div class="info-card-body">
+                    <h3>Totalmente personalizable</h3>
+                    <p>Elige la longitud (8–128), los tipos de caracteres y excluye los que se confunden al leerlos.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Pie de pagina -->
+    <footer class="footer">
+        <div class="header-inner" style="justify-content:center; gap:var(--space-1)">
+            <p>Generador de Clave Secreta &mdash; <a href="https://github.com/" target="_blank" rel="noopener">Codigo abierto en GitHub</a></p>
+        </div>
+    </footer>
+
+    <!-- Script principal (IIFE, compatible con file://) -->
+    <script src="js/app.js"></script>
+</body>
+</html>

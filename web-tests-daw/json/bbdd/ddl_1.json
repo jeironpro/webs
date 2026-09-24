@@ -1,0 +1,222 @@
+[
+    {
+        "pregunta": "¿Qué significa DDL?",
+        "opciones": [
+            "Data Definition Language",
+            "Data Distribution Language",
+            "Data Design Language",
+            "Data Description Language"
+        ],
+        "respuesta": 0,
+        "explicacion": "DDL se utiliza para definir y modificar la estructura de los objetos de la base de datos."
+    },
+    {
+        "pregunta": "¿Cuál de los siguientes es un comando DDL?",
+        "opciones": [
+            "UPDATE",
+            "CREATE",
+            "SELECT",
+            "INSERT"
+        ],
+        "respuesta": 1,
+        "explicacion": "CREATE se usa para crear nuevos objetos como tablas, vistas o índices."
+    },
+    {
+        "pregunta": "¿Qué comando se usa para modificar la estructura de una tabla existente?",
+        "opciones": [
+            "UPDATE TABLE",
+            "ALTER TABLE",
+            "MODIFY TABLE",
+            "CHANGE TABLE"
+        ],
+        "respuesta": 1,
+        "explicacion": "ALTER TABLE permite añadir, eliminar o modificar columnas y restricciones."
+    },
+    {
+        "pregunta": "¿Qué comando se usa para eliminar una base de datos completa?",
+        "opciones": [
+            "DELETE DATABASE",
+            "DROP DATABASE",
+            "REMOVE DATABASE",
+            "ERASE DATABASE"
+        ],
+        "respuesta": 1,
+        "explicacion": "DROP DATABASE elimina la base de datos y todo su contenido de forma permanente."
+    },
+    {
+        "pregunta": "¿Cómo se define una clave primaria al crear una tabla?",
+        "opciones": [
+            "UNIQUE KEY (columna)",
+            "KEY PRIMARY (columna)",
+            "PRIMARY KEY (columna)",
+            "MAIN KEY (columna)"
+        ],
+        "respuesta": 2,
+        "explicacion": "Se puede definir en la misma línea de la columna o al final como restricción de tabla."
+    },
+    {
+        "pregunta": "¿Qué restricción asegura que el valor de una columna no sea nulo?",
+        "opciones": [
+            "NOT NULL",
+            "MANDATORY",
+            "NO NULL",
+            "REQUIRED"
+        ],
+        "respuesta": 0,
+        "explicacion": "NOT NULL impide que se inserten valores nulos en esa columna."
+    },
+    {
+        "pregunta": "¿Qué restricción asegura que todos los valores de una columna sean diferentes?",
+        "opciones": [
+            "DISTINCT",
+            "UNIQUE",
+            "DIFFERENT",
+            "PRIMARY"
+        ],
+        "respuesta": 1,
+        "explicacion": "UNIQUE garantiza la unicidad de los datos en esa columna, permitiendo un solo NULL (en la mayoría de SGBD)."
+    },
+    {
+        "pregunta": "¿Qué restricción se usa para establecer un valor predeterminado?",
+        "opciones": [
+            "SET",
+            "PRESET",
+            "VALUE",
+            "DEFAULT"
+        ],
+        "respuesta": 3,
+        "explicacion": "DEFAULT asigna un valor automático si no se especifica uno al insertar."
+    },
+    {
+        "pregunta": "¿Cómo se añade una nueva columna a una tabla existente?",
+        "opciones": [
+            "ALTER TABLE tabla ADD columna tipo;",
+            "ALTER TABLE tabla INSERT columna tipo;",
+            "ALTER TABLE tabla CREATE columna tipo;",
+            "ALTER TABLE tabla NEW columna tipo;"
+        ],
+        "respuesta": 0,
+        "explicacion": "La sintaxis correcta es ALTER TABLE ... ADD ..."
+    },
+    {
+        "pregunta": "¿Cómo se elimina una columna de una tabla?",
+        "opciones": [
+            "ALTER TABLE tabla REMOVE COLUMN columna;",
+            "DELETE COLUMN columna FROM tabla;",
+            "ALTER TABLE tabla DROP COLUMN columna;",
+            "ALTER TABLE tabla DELETE COLUMN columna;"
+        ],
+        "respuesta": 2,
+        "explicacion": "Se usa DROP COLUMN dentro de un comando ALTER TABLE."
+    },
+    {
+        "pregunta": "¿Qué es una Foreign Key en DDL?",
+        "opciones": [
+            "Un tipo de dato externo",
+            "Una clave para acceso remoto",
+            "Una tabla importada",
+            "Una restricción que enlaza una columna con la clave primaria de otra tabla"
+        ],
+        "respuesta": 3,
+        "explicacion": "FOREIGN KEY asegura la integridad referencial entre tablas."
+    },
+    {
+        "pregunta": "¿Cómo se define una clave foránea al crear una tabla?",
+        "opciones": [
+            "CONNECT (col) WITH otra_tabla(col)",
+            "LINK KEY (col) TO otra_tabla(col)",
+            "REFERENCE (col) FROM otra_tabla(col)",
+            "FOREIGN KEY (col) REFERENCES otra_tabla(col)"
+        ],
+        "respuesta": 3,
+        "explicacion": "Esta es la sintaxis estándar para definir relaciones."
+    },
+    {
+        "pregunta": "¿Qué hace la opción ON DELETE CASCADE en una clave foránea?",
+        "opciones": [
+            "Si se borra el registro padre, se borran automáticamente los hijos relacionados",
+            "Pone en NULL los registros hijos",
+            "Impide borrar el registro padre",
+            "No hace nada"
+        ],
+        "respuesta": 0,
+        "explicacion": "Permite la eliminación en cascada para mantener la integridad."
+    },
+    {
+        "pregunta": "¿Qué tipo de dato se usaría para almacenar una fecha?",
+        "opciones": [
+            "VARCHAR",
+            "DATE",
+            "BOOLEAN",
+            "NUMBER"
+        ],
+        "respuesta": 1,
+        "explicacion": "DATE (o DATETIME/TIMESTAMP) es el tipo específico para fechas."
+    },
+    {
+        "pregunta": "¿Qué tipo de dato se usaría para almacenar un número entero grande?",
+        "opciones": [
+            "SMALLINT",
+            "BIGINT",
+            "INT",
+            "TINYINT"
+        ],
+        "respuesta": 1,
+        "explicacion": "BIGINT permite almacenar enteros de mayor rango que INT."
+    },
+    {
+        "pregunta": "¿Qué comando se usa para renombrar una tabla?",
+        "opciones": [
+            "CHANGE TABLE antigua TO nueva;",
+            "MOVE TABLE antigua TO nueva;",
+            "ALTER TABLE antigua NAME nueva;",
+            "RENAME TABLE antigua TO nueva;"
+        ],
+        "respuesta": 3,
+        "explicacion": "RENAME TABLE es el comando estándar (o ALTER TABLE RENAME TO en algunos dialectos)."
+    },
+    {
+        "pregunta": "¿Qué es un índice (INDEX) en DDL?",
+        "opciones": [
+            "Una lista de tablas",
+            "Una estructura que mejora la velocidad de recuperación de datos",
+            "Un usuario administrador",
+            "Una copia de seguridad"
+        ],
+        "respuesta": 1,
+        "explicacion": "CREATE INDEX crea un índice para acelerar las consultas SELECT."
+    },
+    {
+        "pregunta": "¿Qué comando crea un índice?",
+        "opciones": [
+            "ADD INDEX",
+            "NEW INDEX",
+            "CREATE INDEX",
+            "MAKE INDEX"
+        ],
+        "respuesta": 2,
+        "explicacion": "CREATE INDEX nombre_indice ON tabla(columna);"
+    },
+    {
+        "pregunta": "¿Qué restricción se usa para validar que un valor cumpla una condición?",
+        "opciones": [
+            "VALIDATE",
+            "CHECK",
+            "TEST",
+            "VERIFY"
+        ],
+        "respuesta": 1,
+        "explicacion": "CHECK (condicion) asegura que los datos insertados cumplan la regla (ej. edad > 18)."
+    },
+    {
+        "pregunta": "¿Qué sucede si intentas crear una tabla que ya existe?",
+        "opciones": [
+            "Se crea una copia",
+            "Se sobrescribe la tabla",
+            "No pasa nada",
+            "Ocurre un error"
+        ],
+        "respuesta": 3,
+        "explicacion": "Genera un error a menos que uses IF NOT EXISTS."
+    }
+]

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es" data-theme="hum">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Programa que calcula la propina y el monto total de una cuenta. Pide al usuario el monto de la cuenta y el porcentaje de la propina y muestra el monto total de la cuenta y la propina a pagar">
+  <meta name="theme-color" content="#faf6ee">
+  <title>Pythoncises · Calculadora de propina</title>
+  <link rel="icon" type="image/svg+xml" href="../icons/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../icons/favicon-32.png">
+  <link rel="apple-touch-icon" href="../icons/favicon-180.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <script>document.documentElement.classList.add("js");</script>
+  <script src="../js/app.js" defer></script>
+</head>
+<body>
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a class="nav__brand" href="../index.html" aria-label="Pythoncises — inicio">
+        <span class="snake-mark" aria-hidden="true"><svg viewBox="0 0 64 64">
+      <path class="snake__cuerpo" d="M14 22 C 26 22, 26 32, 32 32 C 38 32, 38 42, 50 42"
+            fill="none" stroke-width="6.5" stroke-linecap="round"/>
+      <circle class="snake__cabeza" cx="50" cy="42" r="4.8"/>
+      <path class="snake__lengua" d="M54.5 42 L 58.5 40.5 M54.5 42 L 58.5 43.5"
+            fill="none" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="48.6" cy="40.2" r="1.1" fill="var(--color-paper)"/>
+    </svg></span>
+        Pythoncises
+      </a>
+    </div>
+  </header>
+  <main class="detalle" data-accent="coral">
+    <a class="btn btn--outline btn--pear btn--sm detalle-volver" href="../index.html#indice">← Índice</a>
+    <p class="detalle-meta">
+      <span class="eyebrow__dot eyebrow__dot--coral" style="display:inline-block;margin-right:0.45em;vertical-align:middle"></span>
+      Calculadoras · 10 · calculadora_propina.py
+    </p>
+    <h1 class="detalle-titulo">Calculadora de propina</h1>
+    <p class="detalle-desc">Programa que calcula la propina y el monto total de una cuenta. Pide al usuario el monto de la cuenta y el porcentaje de la propina y muestra el monto total de la cuenta y la propina a pagar</p>
+    <div class="detalle-acciones">
+      <button class="btn btn--pear" type="button" data-accion="copiar" data-burst>Copiar</button>
+      <button class="btn btn--outline btn--pear" type="button" data-accion="descargar" data-nombre="calculadora_propina.py">Descargar</button>
+    </div>
+    <div class="codigo-tarjeta">
+      <div class="codigo-barra">
+        <span class="codigo-punto" aria-hidden="true"></span>
+        <span class="codigo-punto" aria-hidden="true"></span>
+        <span class="codigo-punto" aria-hidden="true"></span>
+        <span class="codigo-archivo">exercises/calculadora-propina/calculadora_propina.py</span>
+      </div>
+      <pre><code><span class="tok-cadena">&quot;&quot;&quot;
+    Programa que calcula la propina y el monto total de una cuenta.
+    Pide al usuario el monto de la cuenta y el porcentaje de la propina 
+    y muestra el monto total de la cuenta y la propina a pagar
+&quot;&quot;&quot;</span>
+monto_cuenta = <span class="tok-builtin">input</span>(<span class="tok-cadena">&quot;Introduce el monto de la cuenta: &quot;</span>)
+porcentaje_propina = <span class="tok-builtin">input</span>(<span class="tok-cadena">&quot;Introduce el porcentaje de la propina: &quot;</span>)
+
+monto_cuenta_entero = <span class="tok-builtin">float</span>(monto_cuenta)
+porcentaje_propina_entero = <span class="tok-builtin">float</span>(porcentaje_propina)
+
+propina = (porcentaje_propina_entero / <span class="tok-numero">100</span>) * monto_cuenta_entero <span class="tok-comentario"># Calculo de la propina</span>
+
+monto_total_cuenta = monto_cuenta_entero + propina
+
+<span class="tok-builtin">print</span>(<span class="tok-cadena">f&quot;Monto total: {monto_total_cuenta}&quot;</span>)
+<span class="tok-builtin">print</span>(<span class="tok-cadena">f&quot;Propina: {propina}&quot;</span>)</code></pre>
+    </div>
+    <section class="salida" aria-labelledby="salida-calculadora-propina">
+      <h2 class="salida-titulo" id="salida-calculadora-propina">Salida de ejemplo</h2>
+      <pre class="salida-cuerpo">Introduce el monto de la cuenta: 100
+Introduce el porcentaje de la propina: 15
+Monto total: 115.0
+Propina: 15.0</pre>
+    </section>
+    <nav class="detalle-nav" aria-label="Navegación entre ejercicios">
+      <a class="nav-ej nav-previo" href="calculadora-indice-masa-corporal.html">← Calculadora de IMC</a>
+      <a class="nav-ej nav-siguiente" href="convertidor-moneda.html">Convertidor de moneda →</a>
+    </nav>
+  </main>
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__meta">
+        <a class="footer__brand" href="../index.html"><span class="snake-mark" aria-hidden="true"><svg viewBox="0 0 64 64">
+      <path class="snake__cuerpo" d="M14 22 C 26 22, 26 32, 32 32 C 38 32, 38 42, 50 42"
+            fill="none" stroke-width="6.5" stroke-linecap="round"/>
+      <circle class="snake__cabeza" cx="50" cy="42" r="4.8"/>
+      <path class="snake__lengua" d="M54.5 42 L 58.5 40.5 M54.5 42 L 58.5 43.5"
+            fill="none" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="48.6" cy="40.2" r="1.1" fill="var(--color-paper)"/>
+    </svg></span> Pythoncises</a>
+        <p class="footer__copy">© Pythoncises - 2026<br><span class="footer__hash">ver · copiar · descargar</span></p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

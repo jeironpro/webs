@@ -1,0 +1,222 @@
+[
+    {
+        "pregunta": "¿Qué instrucción termina un bucle inmediatamente?",
+        "opciones": [
+            "exit",
+            "stop",
+            "break",
+            "end"
+        ],
+        "respuesta": 2,
+        "explicacion": "Sale del bucle más interno."
+    },
+    {
+        "pregunta": "¿Qué instrucción salta a la siguiente iteración del bucle?",
+        "opciones": [
+            "continue",
+            "next",
+            "skip",
+            "jump"
+        ],
+        "respuesta": 0,
+        "explicacion": "Ignora el resto del cuerpo por esta vez."
+    },
+    {
+        "pregunta": "¿Qué sucede si usas 'return' dentro de un bucle?",
+        "opciones": [
+            "Termina el bucle y también la función que lo contiene",
+            "Da error",
+            "Solo salta una iteración",
+            "Solo termina el bucle"
+        ],
+        "respuesta": 0,
+        "explicacion": "Salida más drástica que break."
+    },
+    {
+        "pregunta": "¿Qué es un bucle anidado?",
+        "opciones": [
+            "Un bucle roto",
+            "Un bucle dentro de otro",
+            "Un bucle al lado de otro",
+            "Un bucle inverso"
+        ],
+        "respuesta": 1,
+        "explicacion": "El interno se ejecuta completo por cada vuelta del externo."
+    },
+    {
+        "pregunta": "¿A qué bucle afecta un 'break' en bucles anidados?",
+        "opciones": [
+            "A ninguno",
+            "Al bucle externo",
+            "A todos los bucles",
+            "Solo al bucle más interno donde se encuentra el break"
+        ],
+        "respuesta": 3,
+        "explicacion": "Para salir de todos se necesitan etiquetas o flags."
+    },
+    {
+        "pregunta": "¿Qué es una etiqueta (label) en bucles?",
+        "opciones": [
+            "Un comentario",
+            "Un tipo",
+            "Una variable",
+            "Un identificador seguido de dos puntos que permite referenciar un bucle específico desde un break/continue"
+        ],
+        "respuesta": 3,
+        "explicacion": "loop1: for(...) { break loop1; }"
+    },
+    {
+        "pregunta": "¿Es buena práctica usar muchos break/continue?",
+        "opciones": [
+            "Sí, siempre",
+            "No, puede hacer el flujo difícil de seguir (código espagueti), usar con moderación",
+            "Es indiferente",
+            "Es obligatorio"
+        ],
+        "respuesta": 1,
+        "explicacion": "A veces simplifica, a veces complica."
+    },
+    {
+        "pregunta": "¿Qué es una bandera (flag) de control?",
+        "opciones": [
+            "Una variable booleana usada para controlar cuándo salir de un bucle (ej. encontrado = true)",
+            "Un error",
+            "Un contador",
+            "Una bandera real"
+        ],
+        "respuesta": 0,
+        "explicacion": "Alternativa estructurada al break."
+    },
+    {
+        "pregunta": "¿Qué es un bucle 'goto'?",
+        "opciones": [
+            "Un comando bueno",
+            "Un bucle moderno",
+            "Instrucción antigua para saltar a una línea específica (considerada dañina)",
+            "Una función"
+        ],
+        "respuesta": 2,
+        "explicacion": "Dijkstra: 'Go To Statement Considered Harmful'."
+    },
+    {
+        "pregunta": "¿Cómo se simula un do-while con un while?",
+        "opciones": [
+            "No se puede",
+            "Inicializando las variables para que la condición sea true la primera vez, o repitiendo el código antes del while",
+            "Usando for",
+            "Usando if"
+        ],
+        "respuesta": 1,
+        "explicacion": "Posible pero menos elegante."
+    },
+    {
+        "pregunta": "¿Qué es la complejidad ciclomática?",
+        "opciones": [
+            "El tamaño del archivo",
+            "El número de líneas",
+            "La velocidad",
+            "Una métrica que indica la complejidad del flujo de control (cuantos caminos independientes hay)"
+        ],
+        "respuesta": 3,
+        "explicacion": "Bucles y condicionales la aumentan."
+    },
+    {
+        "pregunta": "¿Qué riesgo tiene modificar el contador del for dentro del bucle?",
+        "opciones": [
+            "Es más rápido",
+            "Ninguno",
+            "Perder el control del flujo y causar bucles infinitos o saltos inesperados",
+            "Es mejor"
+        ],
+        "respuesta": 2,
+        "explicacion": "Evitarlo."
+    },
+    {
+        "pregunta": "¿Qué es un bucle 'sentinel-controlled'?",
+        "opciones": [
+            "Bucle que lee datos hasta encontrar un valor especial",
+            "Bucle vacío",
+            "Bucle for",
+            "Bucle infinito"
+        ],
+        "respuesta": 0,
+        "explicacion": "while (input != -1)."
+    },
+    {
+        "pregunta": "¿Qué hace System.exit(0) o similar dentro de un bucle?",
+        "opciones": [
+            "Pausa",
+            "Termina todo el programa inmediatamente",
+            "Termina el bucle",
+            "Termina la función"
+        ],
+        "respuesta": 1,
+        "explicacion": "Cierre abrupto."
+    },
+    {
+        "pregunta": "¿Qué es la invariante de bucle?",
+        "opciones": [
+            "Un error",
+            "Una variable",
+            "Una condición que debe ser verdadera antes, durante y después de cada iteración (usado en verificación formal)",
+            "Un contador"
+        ],
+        "respuesta": 2,
+        "explicacion": "Ayuda a probar la corrección."
+    },
+    {
+        "pregunta": "¿Qué es un bucle degenerado?",
+        "opciones": [
+            "Un bucle roto",
+            "Un bucle que no se ejecuta nunca o solo una vez por error lógico",
+            "Un bucle feo",
+            "Un bucle viejo"
+        ],
+        "respuesta": 1,
+        "explicacion": "for(int i=0; i>10; i++)."
+    },
+    {
+        "pregunta": "¿Cómo salir de un bucle infinito accidental en consola?",
+        "opciones": [
+            "Enter",
+            "Alt + F4",
+            "Ctrl + V",
+            "Ctrl + C"
+        ],
+        "respuesta": 3,
+        "explicacion": "Interrupción de señal (SIGINT)."
+    },
+    {
+        "pregunta": "¿Qué es 'throw' dentro de un bucle?",
+        "opciones": [
+            "Tira el ordenador",
+            "Lanza una excepción y sale del bucle (y posiblemente de la función) buscando un catch",
+            "Termina el programa",
+            "Salta una vuelta"
+        ],
+        "respuesta": 1,
+        "explicacion": "Manejo de errores."
+    },
+    {
+        "pregunta": "¿Qué es un iterador 'fail-fast'?",
+        "opciones": [
+            "Falla siempre",
+            "No falla",
+            "Lanza excepción si la colección se modifica mientras se recorre",
+            "Itera rápido"
+        ],
+        "respuesta": 2,
+        "explicacion": "ConcurrentModificationException."
+    },
+    {
+        "pregunta": "¿Qué es la recursividad como alternativa a bucles?",
+        "opciones": [
+            "Un virus",
+            "Un bucle for",
+            "Un error",
+            "Una función que se llama a sí misma para repetir tareas"
+        ],
+        "respuesta": 3,
+        "explicacion": "Todo bucle se puede hacer recursivo y viceversa."
+    }
+]

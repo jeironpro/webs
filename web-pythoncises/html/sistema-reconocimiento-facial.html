@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="es" data-theme="hum">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Programa de reconocimiento facial usando las librerias opencv y face_recognition, compara el rostro de una imagen con el rostro que se posicione frente a la camara y verifica si coincide o no, mostrando el resultado de la comparación en el recuadro del detector de rostros y tambien muestra un aproximado de la distancia entre la coincidencia.">
+  <meta name="theme-color" content="#faf6ee">
+  <title>Pythoncises · Reconocimiento facial</title>
+  <link rel="icon" type="image/svg+xml" href="../icons/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../icons/favicon-32.png">
+  <link rel="apple-touch-icon" href="../icons/favicon-180.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <script>document.documentElement.classList.add("js");</script>
+  <script src="../js/app.js" defer></script>
+</head>
+<body>
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a class="nav__brand" href="../index.html" aria-label="Pythoncises — inicio">
+        <span class="snake-mark" aria-hidden="true"><svg viewBox="0 0 64 64">
+      <path class="snake__cuerpo" d="M14 22 C 26 22, 26 32, 32 32 C 38 32, 38 42, 50 42"
+            fill="none" stroke-width="6.5" stroke-linecap="round"/>
+      <circle class="snake__cabeza" cx="50" cy="42" r="4.8"/>
+      <path class="snake__lengua" d="M54.5 42 L 58.5 40.5 M54.5 42 L 58.5 43.5"
+            fill="none" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="48.6" cy="40.2" r="1.1" fill="var(--color-paper)"/>
+    </svg></span>
+        Pythoncises
+      </a>
+    </div>
+  </header>
+  <main class="detalle" data-accent="coral">
+    <a class="btn btn--outline btn--pear btn--sm detalle-volver" href="../index.html#indice">← Índice</a>
+    <p class="detalle-meta">
+      <span class="eyebrow__dot eyebrow__dot--coral" style="display:inline-block;margin-right:0.45em;vertical-align:middle"></span>
+      Visión por computador · 31 · sistema_reconocimiento_facial.py
+    </p>
+    <h1 class="detalle-titulo">Reconocimiento facial</h1>
+    <p class="detalle-desc">Programa de reconocimiento facial usando las librerias opencv y face_recognition, compara el rostro de una imagen con el rostro que se posicione frente a la camara y verifica si coincide o no, mostrando el resultado de la comparación en el recuadro del detector de rostros y tambien muestra un aproximado de la distancia entre la coincidencia.</p>
+    <div class="detalle-acciones">
+      <button class="btn btn--pear" type="button" data-accion="copiar" data-burst>Copiar</button>
+      <button class="btn btn--outline btn--pear" type="button" data-accion="descargar" data-nombre="sistema_reconocimiento_facial.py">Descargar</button>
+    </div>
+    <div class="codigo-tarjeta">
+      <div class="codigo-barra">
+        <span class="codigo-punto" aria-hidden="true"></span>
+        <span class="codigo-punto" aria-hidden="true"></span>
+        <span class="codigo-punto" aria-hidden="true"></span>
+        <span class="codigo-archivo">exercises/sistema-reconocimiento-facial/sistema_reconocimiento_facial.py</span>
+      </div>
+      <pre><code><span class="tok-cadena">&quot;&quot;&quot;
+    Programa de reconocimiento facial usando las librerias opencv y face_recognition, compara el rostro de una imagen con el rostro que se posicione frente a la camara y verifica si coincide o no, mostrando el resultado de la comparación en el recuadro del detector de rostros y tambien muestra un aproximado de la distancia entre la coincidencia. 
+&quot;&quot;&quot;</span>
+<span class="tok-palabra">import</span> cv2
+<span class="tok-palabra">import</span> face_recognition
+<span class="tok-palabra">import</span> os
+
+<span class="tok-comentario"># Ruta de la imagen de la comparación</span>
+ruta_imagen = <span class="tok-cadena">&quot;rostro.jpg&quot;</span>
+
+<span class="tok-comentario"># Verificar si la imagen existe</span>
+<span class="tok-palabra">if</span> <span class="tok-palabra">not</span> os.path.exists(ruta_imagen):
+    <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;La imagen no existe&quot;</span>)
+    exit()
+
+<span class="tok-comentario"># Cargar la imagen a comparar</span>
+cargar_imagen = face_recognition.load_image_file(ruta_imagen)
+
+<span class="tok-cadena">&quot;&quot;&quot;
+    El método face_encodings(imagen_cargada) busca todos los rostros en la imagen y genera un vector numérico de 128 dimensiones que representa las características faciales únicas de cada rostro. El vector se llama &quot;encoding&quot; o codificación facial.
+&quot;&quot;&quot;</span>
+<span class="tok-comentario"># Tomar la primera codificación de la lista</span>
+codificacion_imagen = face_recognition.face_encodings(cargar_imagen)[<span class="tok-numero">0</span>]
+
+<span class="tok-comentario"># Cargar la cámara</span>
+camara = cv2.VideoCapture(<span class="tok-numero">0</span>)
+
+<span class="tok-palabra">while</span> <span class="tok-palabra">True</span>:
+    <span class="tok-cadena">&quot;&quot;&quot;
+        El método .read() lee una imagen (frame) desde el objeto VideoCapture, puede ser tanto una cámara como un archivo de video.
+    &quot;&quot;&quot;</span>
+    lectura_existosa, imagen_camara = camara.read()
+
+    <span class="tok-comentario"># Verificar si la lectura de la imagen se realizo correctamente</span>
+    <span class="tok-palabra">if</span> <span class="tok-palabra">not</span> lectura_existosa:
+        <span class="tok-builtin">print</span>(<span class="tok-cadena">&quot;No se leer la imagen&quot;</span>)
+        <span class="tok-palabra">break</span>
+    
+    <span class="tok-cadena">&quot;&quot;&quot;
+        El método cv2.cvtColor(imagen, cv2.COLOR_BGR2RGB) convierte una imagen (frame) de color (BGR) a RGB. La imagen pasa de 3 canales de color (azul, verde, rojo) a una imagen de 3 canales (rojo, verde, azul). 
+    &quot;&quot;&quot;</span>
+    conversion_imagen_rgb = cv2.cvtColor(imagen_camara, cv2.COLOR_BGR2RGB)
+
+    <span class="tok-cadena">&quot;&quot;&quot;
+        El método face_recognition.face_locations(imagen_rgb) toma una imagen en RGB y analiza dónde se encuentran los rostros y devuelve una lista de coordenadas, una por cada rostro detectado.
+
+        Formato de las coordenadas devueltas: tupla de 4 valores (top, right, bottom, left).
+
+        top: fila superior del rostro
+
+        right: columna derecha del rostro
+
+        bottom: fila inferior del rostro
+
+        left: columna izquierda del rostro
+    &quot;&quot;&quot;</span>
+    localizaciones_caras = face_recognition.face_locations(conversion_imagen_rgb)
+    
+    <span class="tok-cadena">&quot;&quot;&quot;
+        El método face_recognition.face_encodings(imagen_rgb, localizaciones_caras) toma la imagen en rgb y una lista de coordenadas de rostros para cada rostro de la lista calcula un vector de 128 dimensiones llamado encoding o codificación facial. El vector captura las características únicas del rostro, como la distancia entre ojos, forma de la nariz, contorno del rostro, y más. Devolviendo una lista de vectores uno por cada rostro detectado, cada vector tiene 128 números flotantes que representa el rosotro de manera matemática.
+    &quot;&quot;&quot;</span>
+    codificaciones_caras = face_recognition.face_encodings(conversion_imagen_rgb, localizaciones_caras)
+
+    <span class="tok-cadena">&quot;&quot;&quot;
+        Desempaqueta cada tupla de coordenadas de la cara. Estas coordenadas se usan para dibujar rectángulos o mostrar texto alrededor del rostro
+
+        zip(localizaciones_caras, codificaciones_caras) une las dos listas y devuelve pares (coordenadas, codificacion) que corresponden al mismo rostro.
+    &quot;&quot;&quot;</span>
+    <span class="tok-palabra">for</span> (arriba, derecha, abajo, izquierda), codificacion_cara <span class="tok-palabra">in</span> <span class="tok-builtin">zip</span>(localizaciones_caras, codificaciones_caras):
+        <span class="tok-cadena">&quot;&quot;&quot;
+            El método face_recognition.compare_faces(lista_codificacion_imagen, codificacion_a_comparar) compara las codificiones obtenidas de la imagen y la codificaciones del rostro en la cámara y devuelve una lista de valores boolenos (True o False), uno por cada codificación de referencia.
+        &quot;&quot;&quot;</span>
+        coincide = face_recognition.compare_faces([codificacion_imagen], codificacion_cara)
+
+        <span class="tok-cadena">&quot;&quot;&quot;
+            El método face_recognition.face_distance(lista_codificacion_imagen, codificacion_a_comparar) calcula la distancia euclidiana entre los vectores de codificación (los 128 números) de cada rostro de referencia y el rostro a comparar y devuelve una lista de distancias donde cada distancia es un número flotante. Los valores más bajos indican que los rostros son más parecidos y los valores más altos indican que los rostros son diferentes.
+        &quot;&quot;&quot;</span>
+        distancia = face_recognition.face_distance([codificacion_imagen], codificacion_cara)[<span class="tok-numero">0</span>]
+
+        <span class="tok-comentario"># Guardar color verde si los rostros coinciden y rojo de lo contrario</span>
+        color = (<span class="tok-numero">0</span>, <span class="tok-numero">255</span>, <span class="tok-numero">0</span>) <span class="tok-palabra">if</span> coincide[<span class="tok-numero">0</span>] <span class="tok-palabra">else</span> (<span class="tok-numero">0</span>, <span class="tok-numero">0</span>, <span class="tok-numero">255</span>)
+        
+        <span class="tok-cadena">&quot;&quot;&quot;
+            El método cv2.rectangle(imagen_camara, (coordenadas_de_las_esquina_superior_izquierda), (coordenadas_de_las_esquina_inferior_derecha), color, grosor_linea) dibuja un rectángulo alrededor del rostro detectado en la imagen.
+        &quot;&quot;&quot;</span>
+        cv2.rectangle(imagen_camara, (izquierda, arriba), (derecha, abajo), color, <span class="tok-numero">2</span>)
+
+        <span class="tok-comentario"># Guardar &quot;Coincide&quot; si hay coincidencias en los rostros, de lo contrario guardar &quot;No coincide&quot;</span>
+        texto = <span class="tok-cadena">&quot;Coincide&quot;</span> <span class="tok-palabra">if</span> coincide[<span class="tok-numero">0</span>] <span class="tok-palabra">else</span> <span class="tok-cadena">&quot;No coincide&quot;</span>
+        
+        <span class="tok-cadena">&quot;&quot;&quot;
+            El método cv2.putText(imagen_camara, texto, posicion_del_texto, tipo_de_fuente, tamaño_del_texto, color, grosor_del_texto) sirve para escribir el texto sobre la imagen encima del rectángulo que rodea el rostro.
+        &quot;&quot;&quot;</span>
+        cv2.putText(imagen_camara, <span class="tok-cadena">f&quot;{texto} ({distancia:.2f})&quot;</span>, (izquierda, arriba-<span class="tok-numero">10</span>), cv2.FONT_HERSHEY_SIMPLEX, <span class="tok-numero">0.6</span>, color, <span class="tok-numero">2</span>)
+
+    <span class="tok-comentario"># Muestra el video en una ventana con el titulo &quot;Reconocimiento Facial&quot;</span>
+    cv2.imshow(<span class="tok-cadena">&quot;Reconocimiento Facial&quot;</span>, imagen_camara)
+
+    <span class="tok-cadena">&quot;&quot;&quot;
+        El método .waitKey(tiempo) espera una tecla del teclado durante un número determinado de milisegundos. Ademas, permite actualizar la ventana de la cámara evitando que se congele.
+
+        &amp; 0xFF: se asegura que el valor leido de la tecla presionada sea compatible entre sistemas operativos, tomando 8 bits bajos del código ASCII.
+
+        ord('q'): convierte el caracter q en su valor numérico ASCII.
+    &quot;&quot;&quot;</span>
+    <span class="tok-palabra">if</span> cv2.waitKey(<span class="tok-numero">1</span>) &amp; <span class="tok-numero">0xFF</span> == <span class="tok-builtin">ord</span>(<span class="tok-cadena">'q'</span>):
+        <span class="tok-palabra">break</span>
+
+<span class="tok-comentario"># Liberación de la cámara para que no se quede bloqueada o encendida después de cerrar el programa</span>
+camara.release()
+<span class="tok-comentario"># Cierre de todo lo que abrio cv2.imshow()</span>
+cv2.destroyAllWindows()</code></pre>
+    </div>
+    <nav class="detalle-nav" aria-label="Navegación entre ejercicios">
+      <a class="nav-ej nav-previo" href="detector-cara-opencv.html">← Detector de caras</a>
+      <a class="nav-ej nav-siguiente" href="enviar-correo-csv.html">Envío de correos desde CSV →</a>
+    </nav>
+  </main>
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__meta">
+        <a class="footer__brand" href="../index.html"><span class="snake-mark" aria-hidden="true"><svg viewBox="0 0 64 64">
+      <path class="snake__cuerpo" d="M14 22 C 26 22, 26 32, 32 32 C 38 32, 38 42, 50 42"
+            fill="none" stroke-width="6.5" stroke-linecap="round"/>
+      <circle class="snake__cabeza" cx="50" cy="42" r="4.8"/>
+      <path class="snake__lengua" d="M54.5 42 L 58.5 40.5 M54.5 42 L 58.5 43.5"
+            fill="none" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="48.6" cy="40.2" r="1.1" fill="var(--color-paper)"/>
+    </svg></span> Pythoncises</a>
+        <p class="footer__copy">© Pythoncises - 2026<br><span class="footer__hash">ver · copiar · descargar</span></p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
