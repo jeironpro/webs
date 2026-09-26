@@ -1,0 +1,38 @@
+/* Hallmark · genre: playful · theme: Hum · design-system: design.md · designed-as-app */
+@layer base {
+  html,
+  body {
+    overflow-x: clip;
+  }
+
+  body {
+    background: oklch(var(--color-paper));
+    color: oklch(var(--color-ink));
+    font-family: var(--font-body);
+    font-feature-settings:
+      'ss01' on,
+      'cv11' on;
+    font-variant-numeric: tabular-nums;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    color: oklch(var(--color-ink));
+  }
+
+  :focus-visible {
+    outline: 3px solid oklch(var(--color-focus));
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background: oklch(var(--color-accent) / 0.35);
+  }
+}

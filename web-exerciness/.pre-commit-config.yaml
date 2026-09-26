@@ -1,0 +1,26 @@
+# Hooks de pre-commit. Espejan los comandos de calidad del repo
+# (yarn lint y yarn format:check) para que corran antes de cada commit.
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json
+      - id: check-added-large-files
+        args: ['--maxkb=2048']
+  - repo: local
+    hooks:
+      - id: eslint
+        name: eslint
+        entry: yarn eslint
+        language: system
+        files: '\.(js|jsx|mjs)$'
+      - id: prettier
+        name: prettier
+        entry: yarn prettier --check
+        language: system
+        # Excluye las rutas de .prettierignore (los archivos explícitos
+        # omiten el ignore de Prettier) y public/ (dataset sincronizado).
+        files: '^(?!\.agents/)(?!public/)(?!test/fixtures/).*\.(js|jsx|mjs|json|css|md)$'

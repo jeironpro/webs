@@ -1,0 +1,47 @@
+{
+  "name": "exerciness",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Catálogo de ejercicios de gimnasio con búsqueda, filtros, favoritos y comparador. Frontend React + Vite.",
+  "packageManager": "yarn@4.9.2",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "data:sync": "node scripts/sync-data.mjs",
+    "media:optimize": "python3 scripts/optimize-media.py",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage"
+  },
+  "dependencies": {
+    "react": "^18",
+    "react-dom": "^18",
+    "react-router-dom": "^6",
+    "zustand": "^5"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^7.0.0",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
+    "@vitejs/plugin-react": "^6.0.5",
+    "autoprefixer": "^10.5.4",
+    "eslint": "^9",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.3",
+    "globals": "^17.9.0",
+    "jsdom": "^30.0.1",
+    "postcss": "^8.5.25",
+    "prettier": "^3.9.6",
+    "tailwindcss": "^3",
+    "vite": "^8.2.0",
+    "vitest": "^4.1.10"
+  }
+}

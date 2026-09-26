@@ -1,0 +1,38 @@
+# Dependencias
+node_modules/
+.pnp.cjs
+.pnp.loader.mjs
+.yarn/install-state.gz
+.yarn/cache/
+.yarn/unplugged/
+
+# Build
+dist/
+dist-ssr/
+coverage/
+
+# Variables de entorno (nunca al remoto)
+.env
+.env.local
+.env.*.local
+
+# Dataset fuente de verdad (no debe llegar al remoto; se sincroniza con yarn data:sync)
+exercises-dataset-main/
+
+# Bitácora del skill de diseño (generada por máquina, se regenera localmente)
+.hallmark/
+
+# Skill de diseño (no versionado)
+.agents/
+skills-lock.json
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# Editor
+.vscode/
+.idea/
+.DS_Store
