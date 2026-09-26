@@ -49,8 +49,10 @@ Abre `index.html` de la raíz (o despliega el repositorio en GitHub Pages: el ca
 | [web-lexaro](./web-lexaro/)                                     | Lexaro                     | Productividad   | html, css, javascript, svg           |
 | [web-mandala](./web-mandala/)                                   | Mandala                    | Entretenimiento | html, css, javascript, svg           |
 | [web-narcopedia](./web-narcopedia/)                             | Narcopedia                 | Entretenimiento | html, css, javascript                |
+| [web-naruto](./web-naruto/)                                     | Naruto                     | Entretenimiento | react, vite, css, javascript         |
 | [web-oracle-academy-dpsql](./web-oracle-academy-dpsql/)         | Oracle Academy DPSQL       | Curricular      | html, css, javascript                |
 | [web-paises-visitados](./web-paises-visitados/)                 | Paises visitados           | Entretenimiento | html, css, javascript, svg           |
+| [web-pokemon](./web-pokemon/)                                   | Pokemon                    | Entretenimiento | react, vite, css, javascript, yarn   |
 | [web-pomodoro](./web-pomodoro/)                                 | Pomodoro                   | Productividad   | react, vite, tailwind, javascript    |
 | [web-porcentaje-anual](./web-porcentaje-anual/)                 | Porcentaje anual           | Utilidades      | html, css, javascript                |
 | [web-daw](./web-daw/)                                           | Portal DAW                 | Curricular      | html, css, javascript                |
