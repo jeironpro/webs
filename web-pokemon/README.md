@@ -6,7 +6,7 @@ Aplicación web para consultar información de Pokémon por generación.
 
 - React + Vite
 - Yarn
-- Cloudflare Pages + Functions
+- Sitio 100% estático (sin backend)
 
 ## Instalación
 
@@ -28,9 +28,9 @@ La API local se sirve mediante un middleware de Vite que transforma los datos JS
 yarn build
 ```
 
-El build copia las imágenes de `data/pokemon-images/` a `public/pokemon-images/`.
+El build copia las imágenes de `data/pokemon-images/` a `public/pokemon-images/` y genera `public/api/pokemones.json` (script `scripts/build-dataset.mjs`) con el dataset completo enriquecido: colores de tipo e `imagen_url`.
 
-El deploy se realiza en Cloudflare Pages. La Cloudflare Function en `functions/api/pokemones.js` sirve los datos combinando los archivos JSON de `data/pokemon/` y agregando colores de tipo e `imagen_url`.
+En el sitio estático, `src/services/api.js` detecta que no hay backend y filtra/pagina ese JSON en el navegador con la misma forma de respuesta que la API de desarrollo.
 
 ## Estructura de datos
 
@@ -42,7 +42,7 @@ data/
 └── pokemon-images/
     └── {generacion}_generacion/
         └── {Nombre}.png
-functions/
+public/
 └── api/
-    └── pokemones.js
+    └── pokemones.json   (generado en el build)
 ```

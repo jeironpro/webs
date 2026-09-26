@@ -29,7 +29,7 @@ jobs:
         with:
           node-version-file: .nvmrc
 
-      - name: Enable corepack (yarn)
+      - name: Enable corepack (yarn y pnpm)
         run: corepack enable
 
       # Las SPAs del monorepo se compilan en el despliegue: el repositorio
@@ -55,6 +55,12 @@ jobs:
           cd web-pokemon
           VITE_BASE=/webs/web-pokemon/ yarn install
           VITE_BASE=/webs/web-pokemon/ yarn build
+
+      - name: Build web-naruto
+        run: |
+          cd web-naruto
+          VITE_BASE=/webs/web-naruto/ pnpm install --frozen-lockfile
+          VITE_BASE=/webs/web-naruto/ pnpm run build
       # Sitio final: catalogo raiz + todas las webs tal cual + dist/ de las
       # SPAs compiladas sobre su carpeta (sin publicar codigo fuente).
       - name: Ensamblar sitio
@@ -74,10 +80,12 @@ jobs:
             --exclude web-exerciness \
             --exclude web-codelang-quiz \
             --exclude web-pokemon \
+            --exclude web-naruto \
             ./ site/
           rsync -a web-exerciness/dist/ site/web-exerciness/
           rsync -a web-codelang-quiz/dist/ site/web-codelang-quiz/
           rsync -a web-pokemon/dist/ site/web-pokemon/
+          rsync -a web-naruto/dist/ site/web-naruto/
           touch site/.nojekyll
 
       - name: Setup Pages
