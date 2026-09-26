@@ -1,0 +1,249 @@
+/* Navegación entre generaciones — botones Anterior/Siguiente con barra de progreso */
+.generacion-navegacion {
+  align-items: center;
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  padding: 16px 20px;
+  width: 100%;
+}
+
+/* Botones de navegación — fondo rojo con hover más oscuro */
+.generacion-btn {
+  align-items: center;
+  background: var(--color-rojo);
+  border: none;
+  border-radius: 8px;
+  color: var(--color-blanco);
+  cursor: pointer;
+  display: flex;
+  font-family: 'Kanit', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  gap: 6px;
+  padding: 8px 20px;
+  transition: background var(--transicion-rapida), opacity var(--transicion-rapida);
+}
+
+.generacion-btn:hover:not(:disabled) {
+  background: var(--color-rojo-oscuro);
+}
+
+/* Botón deshabilitado — sin interacción y semitransparente */
+.generacion-btn:disabled {
+  cursor: default;
+  opacity: 0.4;
+}
+
+/* Indicador de progreso — número de generación actual y barra */
+.generacion-progreso {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.generacion-progreso span {
+  color: var(--color-texto-secundario);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Barra de progresión — contenedor gris claro */
+.generacion-barra {
+  background: #e0e0e0;
+  border-radius: 4px;
+  height: 6px;
+  overflow: hidden;
+  width: 200px;
+}
+
+/* Relleno de la barra — degradado rojo con transición suave */
+.generacion-barra-inner {
+  background: linear-gradient(90deg, var(--color-rojo), #ff6b6b);
+  border-radius: 4px;
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+/* Animación de brillo para el esqueleto de carga (skeleton) */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Esqueleto de carga — grid placeholder mientras se obtienen los datos */
+.skeleton-grid {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+  max-width: 1200px;
+  padding: 10px;
+  width: 100%;
+}
+
+.skeleton-card {
+  background: var(--color-blanco);
+  border-radius: var(--borde-radio);
+  box-shadow: var(--sombra-suave);
+  height: 760px;
+  overflow: hidden;
+  width: 350px;
+}
+
+.skeleton-imagen {
+  background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+  height: 55%;
+}
+
+.skeleton-contenido {
+  height: 45%;
+  padding: 14px 16px;
+}
+
+.skeleton-line {
+  background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+  border-radius: 4px;
+  height: 16px;
+  margin-bottom: 10px;
+}
+
+/* Variantes de ancho para simular texto de distinto tamaño */
+.skeleton-line.short {
+  width: 60%;
+}
+
+.skeleton-line.medium {
+  width: 80%;
+}
+
+/* Filtros — buscador por nombre y selector de tipo */
+.filtros {
+  align-items: center;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 20px;
+  max-width: 600px;
+  width: 100%;
+}
+
+/* Input de búsqueda — borde gris que se vuelve rojo al enfocar */
+.buscador {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-family: 'Kanit', sans-serif;
+  font-size: 14px;
+  outline: none;
+  padding: 8px 14px;
+  transition: border-color var(--transicion-rapida);
+  width: 100%;
+}
+
+.buscador:focus {
+  border-color: var(--color-rojo);
+}
+
+/* Selector desplegable de tipo Pokémon */
+.filtro-tipo {
+  background: var(--color-blanco);
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Kanit', sans-serif;
+  font-size: 14px;
+  outline: none;
+  padding: 8px 14px;
+  transition: border-color var(--transicion-rapida);
+}
+
+.filtro-tipo:focus {
+  border-color: var(--color-rojo);
+}
+
+/* Mensaje cuando no hay Pokémon que coincidan con los filtros */
+.sin-resultados {
+  color: var(--color-texto-secundario);
+  font-size: 16px;
+  margin-top: 40px;
+  text-align: center;
+}
+
+/* Paginación — controles para navegar entre páginas de Pokémon */
+.paginacion {
+  align-items: center;
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 24px;
+  padding: 10px;
+  width: 100%;
+}
+
+.paginacion-info {
+  color: var(--color-texto-secundario);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Tablets — skeleton y barra de progreso más pequeños */
+@media (max-width: 768px) {
+  .skeleton-card {
+    height: 700px;
+    width: 300px;
+  }
+
+  .generacion-barra {
+    width: 140px;
+  }
+}
+
+/* Móviles — layout apilado, oculta etiquetas de botones, filtros en columna */
+@media (max-width: 600px) {
+  .skeleton-card {
+    height: 700px;
+    width: 100%;
+  }
+
+  .generacion-btn span:not(.material-icons) {
+    display: none;
+  }
+
+  .generacion-barra {
+    width: 80px;
+  }
+
+  .generacion-navegacion {
+    gap: 8px;
+    padding: 12px 0;
+    width: 100%;
+  }
+
+  .generacion-progreso span {
+    font-size: 12px;
+  }
+
+  .generacion-btn {
+    padding: 8px 12px;
+  }
+
+  .filtros {
+    flex-direction: column;
+    gap: 8px;
+    padding: 0 12px;
+  }
+
+  .filtro-tipo {
+    width: 100%;
+  }
+}

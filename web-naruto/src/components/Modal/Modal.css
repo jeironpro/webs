@@ -1,0 +1,88 @@
+/* ============================================
+   MODAL — Overlay semitransparente con contenido centrado
+   ============================================ */
+
+/* Fondo oscuro con blur, flex para centrar el contenido */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    animation: modalFadeIn 0.2s ease;
+}
+
+/* Fundido de entrada del overlay */
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Caja modal: gradiente oscuro, borde naranja tenue, sombra amplia */
+.modal-content {
+    position: relative;
+    background: linear-gradient(180deg, #0f1d3d 0%, #0a1528 100%);
+    border: 1px solid rgba(232, 131, 44, 0.15);
+    border-radius: 1.25rem;
+    padding: 2rem 1.5rem 1.5rem;
+    max-width: 720px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: modalSlideUp 0.25s ease;
+    box-shadow:
+        0 0 60px rgba(232, 131, 44, 0.06),
+        0 16px 48px rgba(0, 0, 0, 0.4);
+}
+
+/* El contenido se desliza hacia arriba al abrir */
+@keyframes modalSlideUp {
+    from {
+        transform: translateY(24px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Botón de cierre absoluto en esquina superior derecha */
+.modal-close {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5rem;
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--gray-light);
+    cursor: pointer;
+    transition: all 0.2s;
+    z-index: 2;
+}
+
+.modal-close:hover {
+    background: rgba(232, 131, 44, 0.12);
+    color: var(--orange);
+    border-color: rgba(232, 131, 44, 0.3);
+}
+
+/* Móviles: menos padding horizontal */
+@media (max-width: 480px) {
+    .modal-content {
+        padding: 1.5rem 1rem 1rem;
+    }
+}

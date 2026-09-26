@@ -18,6 +18,7 @@ const RAICES_PERMITIDAS = [
     "typescript",
     "react",
     "vite",
+    "yarn",
     "tailwind",
     "gsap",
     "three",

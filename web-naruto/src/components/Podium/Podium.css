@@ -1,0 +1,462 @@
+/* ============================================
+   PODIUM — Podio de top 3 con animaciones, partículas y coronas
+   ============================================ */
+
+/* Contenedor con brillo radial decorativo detrás */
+.podium {
+    margin: 2rem auto 2.5rem;
+    text-align: center;
+    position: relative;
+    padding: 2rem 1rem 1rem;
+    overflow: hidden;
+}
+
+.podium::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    height: 300px;
+    background: radial-gradient(ellipse, rgba(232, 131, 44, 0.04) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.podium-title {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    color: var(--orange);
+    letter-spacing: 8px;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.podium-title-bg {
+    display: inline-block;
+    position: relative;
+    text-shadow: 0 0 24px rgba(232, 131, 44, 0.25);
+}
+
+/* ─── Ascension Layout: flex con items alineados abajo ─── */
+.ascension {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 0.5rem;
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.ascension-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    max-width: 200px;
+    min-width: 0;
+    transition: transform 0.4s ease;
+}
+
+.ascension-item:hover {
+    transform: translateY(-6px);
+}
+
+.ascension-item--first {
+    transform: scale(1.08);
+    z-index: 2;
+}
+
+.ascension-item--first:hover {
+    transform: scale(1.08) translateY(-6px);
+}
+
+/* ─── Marco circular con retrato ─── */
+.ascension-frame {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid;
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
+    background: var(--navy);
+    flex-shrink: 0;
+    transition: box-shadow 0.4s ease;
+}
+
+.ascension-item--first .ascension-frame {
+    width: 96px;
+    height: 96px;
+    border-width: 3px;
+}
+
+.ascension-glow {
+    position: absolute;
+    inset: -30px;
+    border-radius: 50%;
+    opacity: 0.6;
+    z-index: -1;
+    animation: ascGlowPulse 2.5s ease-in-out infinite;
+}
+
+.ascension-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+}
+
+.ascension-img--fallback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.ascension-img--fallback span {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--orange);
+}
+
+@keyframes ascGlowPulse {
+    0%,
+    100% {
+        transform: scale(0.85);
+        opacity: 0.3;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.7;
+    }
+}
+
+/* ─── Insignia circular con el puesto (1º, 2º, 3º) ─── */
+.ascension-badge {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 700;
+    position: absolute;
+    top: 0;
+    right: 10%;
+    z-index: 3;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
+}
+
+.ascension-item--first .ascension-badge {
+    width: 30px;
+    height: 30px;
+    font-size: 0.85rem;
+    right: 8%;
+}
+
+/* ─── Barra de "chakra" animada entre retrato y nombre ─── */
+.ascension-stream {
+    width: 6px;
+    flex: 1;
+    min-height: 80px;
+    max-height: 120px;
+    border-radius: 3px;
+    margin: 0.25rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.ascension-item--first .ascension-stream {
+    width: 8px;
+    min-height: 100px;
+    max-height: 140px;
+}
+
+.ascension-stream-inner {
+    position: absolute;
+    inset: 0;
+    border-radius: 3px;
+    opacity: 0.35;
+    animation: streamFlow 2s ease-in-out infinite;
+}
+
+@keyframes streamFlow {
+    0% {
+        opacity: 0.1;
+        transform: scaleY(0.8);
+        transform-origin: top;
+    }
+    50% {
+        opacity: 0.5;
+        transform: scaleY(1.1);
+        transform-origin: top;
+    }
+    100% {
+        opacity: 0.1;
+        transform: scaleY(0.8);
+        transform-origin: top;
+    }
+}
+
+/* ─── Partículas ascendentes (oro/plata/bronce) ─── */
+.ascension-particles {
+    position: absolute;
+    width: 60px;
+    height: 200px;
+    top: 20px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.ascension-particles span {
+    position: absolute;
+    display: block;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    opacity: 0;
+    animation: particleRise 3s ease-out infinite;
+}
+
+.ascension-item--first .ascension-particles span {
+    width: 4px;
+    height: 4px;
+}
+
+.ascension-item--first .ascension-particles span {
+    background: #ffd700;
+}
+.ascension-item--second .ascension-particles span {
+    background: #94a3b8;
+}
+.ascension-item--third .ascension-particles span {
+    background: #cd7f32;
+}
+
+.ascension-particles span:nth-child(1) {
+    left: 20%;
+    animation-delay: 0s;
+}
+.ascension-particles span:nth-child(2) {
+    left: 50%;
+    animation-delay: 0.4s;
+}
+.ascension-particles span:nth-child(3) {
+    left: 75%;
+    animation-delay: 0.8s;
+}
+.ascension-particles span:nth-child(4) {
+    left: 30%;
+    animation-delay: 1.2s;
+}
+.ascension-particles span:nth-child(5) {
+    left: 65%;
+    animation-delay: 1.6s;
+}
+.ascension-particles span:nth-child(6) {
+    left: 45%;
+    animation-delay: 2s;
+}
+
+@keyframes particleRise {
+    0% {
+        transform: translateY(120px) scale(0);
+        opacity: 0;
+    }
+    20% {
+        opacity: 0.8;
+    }
+    80% {
+        opacity: 0.4;
+    }
+    100% {
+        transform: translateY(-20px) scale(1);
+        opacity: 0;
+    }
+}
+
+/* ─── Anillo orbital decorativo solo para el 1er puesto ─── */
+.ascension-halo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 134px;
+    height: 134px;
+    transform: translate(-50%, -50%);
+    border: 1.5px solid;
+    border-radius: 50%;
+    animation: orbitRing 5s linear infinite;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes orbitRing {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/* ─── Línea brillante horizontal debajo del podio ─── */
+.ascension::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 500px;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(232, 131, 44, 0.15) 30%,
+        rgba(232, 131, 44, 0.25) 50%,
+        rgba(232, 131, 44, 0.15) 70%,
+        transparent 100%
+    );
+    border-radius: 1px;
+    pointer-events: none;
+    box-shadow: 0 0 16px rgba(232, 131, 44, 0.08);
+}
+
+/* ─── Nombre y puntuación debajo del avatar ─── */
+.ascension-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15rem;
+    margin-top: 0.25rem;
+    z-index: 2;
+    position: relative;
+}
+
+.ascension-name {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.2;
+    max-width: 120px;
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+}
+
+.ascension-item--first .ascension-name {
+    font-size: 0.85rem;
+    max-width: 140px;
+}
+
+.ascension-score {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--gray);
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.1rem 0.6rem;
+    border-radius: 999px;
+    backdrop-filter: blur(4px);
+}
+
+.ascension-item--first .ascension-score {
+    font-size: 1rem;
+    padding: 0.15rem 0.75rem;
+}
+
+/* ─── Responsive: reduce tamaños y oculta partículas/halo ─── */
+@media (max-width: 600px) {
+    .podium-title {
+        font-size: 1.3rem;
+        letter-spacing: 6px;
+    }
+
+    .ascension {
+        gap: 0.25rem;
+    }
+
+    .ascension-frame {
+        width: 60px;
+        height: 60px;
+    }
+
+    .ascension-item--first .ascension-frame {
+        width: 72px;
+        height: 72px;
+    }
+
+    .ascension-stream {
+        min-height: 50px;
+        max-height: 70px;
+    }
+
+    .ascension-item--first .ascension-stream {
+        min-height: 60px;
+        max-height: 80px;
+    }
+
+    .ascension-name {
+        font-size: 0.65rem;
+        max-width: 90px;
+    }
+
+    .ascension-particles {
+        display: none;
+    }
+
+    .ascension-halo {
+        display: none;
+    }
+}
+
+@media (max-width: 400px) {
+    .podium-title {
+        font-size: 1.1rem;
+        letter-spacing: 4px;
+    }
+
+    .ascension-frame {
+        width: 48px;
+        height: 48px;
+    }
+
+    .ascension-item--first .ascension-frame {
+        width: 56px;
+        height: 56px;
+    }
+
+    .ascension-stream {
+        min-height: 36px;
+        max-height: 50px;
+    }
+
+    .ascension-item--first .ascension-stream {
+        min-height: 44px;
+        max-height: 60px;
+    }
+
+    .ascension-name {
+        font-size: 0.55rem;
+        max-width: 70px;
+    }
+
+    .ascension-badge {
+        width: 20px;
+        height: 20px;
+        font-size: 0.6rem;
+        top: -4px;
+    }
+
+    .ascension-item--first .ascension-badge {
+        width: 24px;
+        height: 24px;
+        font-size: 0.7rem;
+    }
+
+    .ascension-score {
+        font-size: 0.7rem;
+    }
+}

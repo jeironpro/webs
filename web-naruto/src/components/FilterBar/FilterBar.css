@@ -1,0 +1,160 @@
+.filter-bar {
+    background: rgba(27, 42, 85, 0.4);
+    border: 1px solid rgba(232, 131, 44, 0.12);
+    border-radius: 1rem;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    backdrop-filter: blur(8px);
+}
+
+.filter-search {
+    width: 100%;
+}
+
+.filter-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--white);
+    outline: none;
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
+}
+
+.filter-input::placeholder {
+    color: var(--gray);
+}
+
+/* Input en focus: borde naranja + anillo exterior */
+.filter-input:focus {
+    border-color: var(--orange);
+    box-shadow: 0 0 0 3px rgba(232, 131, 44, 0.15);
+}
+
+.filter-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: flex-end;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    min-width: 140px;
+}
+
+.filter-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--gray-light);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Select personalizado: se elimina el nativo (appearance:none) y se agrega flecha SVG */
+.filter-select {
+    padding: 0.5rem 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--white);
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%239CA3AF' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    padding-right: 2rem;
+}
+
+.filter-select option {
+    background: var(--navy-dark);
+    color: var(--white);
+}
+
+/* Mismo estilo de focus que el input */
+.filter-select:focus {
+    border-color: var(--orange);
+    box-shadow: 0 0 0 3px rgba(232, 131, 44, 0.15);
+}
+
+/* Botón "Reset" con gradiente naranja y escala en hover */
+.filter-reset {
+    padding: 0.5rem 1.25rem;
+    background: linear-gradient(135deg, var(--orange), #d4731e);
+    color: #fff;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition:
+        opacity 0.2s,
+        transform 0.2s;
+    white-space: nowrap;
+}
+
+/* Hover: se aclara ligeramente y crece un 3% */
+.filter-reset:hover {
+    opacity: 0.9;
+    transform: scale(1.03);
+}
+
+/* Botón "Top 3" outline con glow naranja en hover */
+.filter-top3 {
+    padding: 0.5rem 1rem;
+    background: transparent;
+    color: var(--orange);
+    border: 1px solid rgba(232, 131, 44, 0.3);
+    border-radius: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: all 0.2s;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.filter-top3:hover {
+    background: rgba(232, 131, 44, 0.1);
+    border-color: var(--orange);
+    box-shadow: 0 0 16px rgba(232, 131, 44, 0.12);
+}
+
+@media (max-width: 480px) {
+/* Móviles: filtros apilados, selects ocupan 50%, botones full-width */
+.filter-bar {
+        padding: 0.875rem;
+        gap: 0.5rem;
+    }
+
+    .filter-controls {
+        gap: 0.5rem;
+    }
+
+    .filter-group {
+        min-width: calc(50% - 0.5rem);
+        flex: 1;
+    }
+
+    .filter-select {
+        font-size: 0.8rem;
+        padding: 0.4rem 1.75rem 0.4rem 0.6rem;
+    }
+
+    .filter-reset,
+    .filter-top3 {
+        flex: 1;
+        text-align: center;
+        font-size: 0.75rem;
+        padding: 0.45rem 0.5rem;
+    }
+}

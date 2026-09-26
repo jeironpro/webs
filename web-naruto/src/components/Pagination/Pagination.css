@@ -1,0 +1,76 @@
+/* ============================================
+   PAGINATION — Navegación entre páginas
+   ============================================ */
+
+/* Barra centrada con backdrop-filter, flex-wrap para overflow */
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    margin-top: 2rem;
+    padding: 0.75rem 1rem;
+    background: rgba(13, 27, 62, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 0.75rem;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    backdrop-filter: blur(8px);
+    flex-wrap: wrap;
+}
+
+.pagination-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--gray-light);
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* Hover con brillo naranja, deshabilitados se atenúan */
+.pagination-btn:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--white);
+    border-color: rgba(232, 131, 44, 0.25);
+}
+
+/* Botón deshabilitado (primera/última página) */
+.pagination-btn:disabled {
+    opacity: 0.25;
+    cursor: not-allowed;
+}
+
+.pagination-btn--page {
+    width: 34px;
+    height: 34px;
+}
+
+/* Página activa destacada con color naranja y glow */
+.pagination-btn--active {
+    background: rgba(232, 131, 44, 0.15);
+    border-color: rgba(232, 131, 44, 0.35);
+    color: var(--orange);
+    box-shadow: 0 0 12px rgba(232, 131, 44, 0.1);
+}
+
+/* Elipsis para paginación con muchas páginas */
+.pagination-ellipsis {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 34px;
+    color: var(--gray);
+    font-size: 0.9rem;
+    user-select: none;
+}

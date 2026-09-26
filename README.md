@@ -49,8 +49,10 @@ Abre `index.html` de la raíz (o despliega el repositorio en GitHub Pages: el ca
 | [web-lexaro](./web-lexaro/)                                     | Lexaro                     | Productividad   | html, css, javascript, svg           |
 | [web-mandala](./web-mandala/)                                   | Mandala                    | Entretenimiento | html, css, javascript, svg           |
 | [web-narcopedia](./web-narcopedia/)                             | Narcopedia                 | Entretenimiento | html, css, javascript                |
+| [web-naruto](./web-naruto/)                                     | Naruto                     | Entretenimiento | react, vite, css, javascript         |
 | [web-oracle-academy-dpsql](./web-oracle-academy-dpsql/)         | Oracle Academy DPSQL       | Curricular      | html, css, javascript                |
 | [web-paises-visitados](./web-paises-visitados/)                 | Paises visitados           | Entretenimiento | html, css, javascript, svg           |
+| [web-pokemon](./web-pokemon/)                                   | Pokemon                    | Entretenimiento | react, vite, css, javascript, yarn   |
 | [web-pomodoro](./web-pomodoro/)                                 | Pomodoro                   | Productividad   | react, vite, tailwind, javascript    |
 | [web-porcentaje-anual](./web-porcentaje-anual/)                 | Porcentaje anual           | Utilidades      | html, css, javascript                |
 | [web-daw](./web-daw/)                                           | Portal DAW                 | Curricular      | html, css, javascript                |
@@ -75,20 +77,12 @@ La fuente de verdad es `projects.yml` en la raíz. Los artefactos se regeneran c
 
 1. **Crea la carpeta** en la raíz con el identificador `web-<slug>` (`web-*` es el prefijo convenido; solo minúsculas y guiones).
 
-2. **Congela la web como estática**. Toda web del catálogo se sirve desde su subdirectorio, así que el `index.html` debe funcionar con rutas relativas (`./`):
+2. **Deja la web lista para servir**. Toda web del catálogo se sirve desde su subdirectorio, así que el `index.html` debe funcionar con rutas relativas (`./`):
 
    - Si es HTML/CSS/JS plano: basta con dejar `index.html` y sus assets en `web-<slug>/`.
-   - Si usa un bundler (Vite, etc.): genera el build estático con base relativa y descarta los artefactos de instalación. Para una app React + Vite:
+   - Si usa un bundler (Vite, etc.): el repositorio guarda la **plantilla fuente** (`index.html` apuntando a `/src/main.jsx`) y el workflow de despliegue compila la app en CI (`yarn build`) y publica solo su `dist/`. Configura `base: './'` en el `vite.config` para que el build funcione en la subruta del monorepo.
 
-     ```sh
-     cd web-<slug>
-     YARN_ENABLE_SCRIPTS=true HUSKY=0 YARN_NODE_LINKER=node-modules yarn install
-     node_modules/.bin/vite build --base ./
-     cp -r dist/. .
-     rm -rf dist node_modules .yarn
-     ```
-
-   > Notas para apps SPA: el `cp -r dist/. .` sobrescribe el `index.html` raíz con el build; no la reconstruyas después desde esa carpeta, regenera desde su repositorio fuente. Si el código hace `fetch` o `<img>` con rutas absolutas (`/data/...`, `/videos/...`), deriva la base del subpath en tiempo de ejecución (p. ej. desde `document.querySelector('script[src*="assets/"]').src`) para que funcione bajo `https://jeironpro.github.io/webs/<id>/`.
+   > Notas para apps SPA con `BrowserRouter`: GitHub Pages solo sirve archivos físicos, así que las subrutas (`/quiz`, `/ejercicios`) devuelven 404. El monorepo lo resuelve con el `404.html` raíz: si la URL cae dentro de una SPA registrada, redirige a su `index.html` con la subruta en la query (`?/subruta`) y un script en el `index.html` de la app la restaura con `history.replaceState`. Para dar de alta una SPA nueva, añade su id al patrón del `404.html` y copia ese script de restauración en su `index.html`. Si el código hace `fetch` o `<img>` con rutas absolutas (`/data/...`, `/videos/...`), deriva la base del subpath en tiempo de ejecución (p. ej. desde `document.querySelector('script[src*="assets/"]').src`) para que funcione bajo `https://jeironpro.github.io/webs/<id>/`.
 
 3. **Añade la entrada en `projects.yml`** respetando el orden alfabético por `id` y el esquema de las webs existentes:
 
@@ -116,7 +110,7 @@ La fuente de verdad es `projects.yml` en la raíz. Los artefactos se regeneran c
 
    Comprueba además que la web responde en su subruta con un servidor local (`python3 -m http.server` sobre la raíz del monorepo) y que el catálogo la muestra.
 
-5. **Confirma y publica**: todo se commitea en `main`; el workflow de CI valida formato, lint, tests y la sincronización de datos, y GitHub Pages despliega el catálogo automáticamente. La web queda visible en `https://jeironpro.github.io/webs/<id>/`. Si la carpeta no tiene su entrada en `projects.yml`, las validaciones fallan: el dataset y las carpetas locales deben estar en sintonía.
+5. **Confirma y publica**: todo se commitea en `main`; el workflow de CI valida formato, lint, tests y la sincronización de datos, y el workflow de `deploy` compila las SPAs y despliega el sitio a GitHub Pages. La web queda visible en `https://jeironpro.github.io/webs/<id>/`. Si la carpeta no tiene su entrada en `projects.yml`, las validaciones fallan: el dataset y las carpetas locales deben estar en sintonía.
 
 ## Desarrollo
 
@@ -131,6 +125,8 @@ npm run format:check
 ```
 
 `pre-commit` se instala con `pre-commit install`; las carpetas `web-*`, `vendor/` y `assets/` quedan excluidas de lint y formato.
+
+Para desarrollar una SPA del monorepo (`web-exerciness`, `web-codelang-quiz`): entra en su carpeta, ejecuta `yarn install` y `yarn dev` (o `yarn build && yarn preview` para probar el build). El despliegue compila ambas apps automáticamente en cada push a `main` (`.github/workflows/deploy.yml`).
 
 ## Licencia
 
