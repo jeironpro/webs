@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 // Configuración de Vite con un middleware de desarrollo que simula el endpoint /api/pokemones.
-// En producción, este mismo endpoint lo expone Cloudflare Functions (functions/api/pokemones.js).
+// En el build estático el fallback de src/services/api.js usa public/api/pokemones.json.
 
 const GEN_FOLDERS = [
   'primera_generacion', 'segunda_generacion', 'tercera_generacion',

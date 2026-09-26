@@ -1,7 +1,7 @@
 // Capa de servicio para consumir los datos de Pokémon.
-// En producción (Cloudflare) usa el endpoint /api/pokemones; si no existe
-// backend (GitHub Pages), hace fallback a public/api/pokemones.json filtrando
-// y paginando en cliente con la misma forma de respuesta.
+// En desarrollo usa el middleware /api/pokemones de Vite; en el build estático
+// (GitHub Pages) hace fallback a public/api/pokemones.json filtrando y
+// paginando en cliente con la misma forma de respuesta.
 
 // La app vive en un subdirectorio del monorepo (p. ej. /webs/web-pokemon/).
 // El basename del router y la base de las imagenes se derivan del src del
@@ -21,7 +21,7 @@ export async function fetchPokemonData({ generacion, pagina = 1, porPagina = 24,
     if (tipo) params.set('tipo', tipo);
 
     if (!basename) {
-        // Con backend (dev con middleware de vite o Cloudflare): API real.
+        // Con backend (dev con middleware de vite): API real.
         const respuesta = await fetch(`/api/pokemones?${params}`);
         if (respuesta.status === 500) {
             throw new Error('Error interno del servidor');

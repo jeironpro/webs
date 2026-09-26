@@ -28,6 +28,15 @@ export function calcularPuntaje(stats?: CharacterStats): number {
     return Math.round(total * 10) / 10;
 }
 
+// El JSON trae rutas absolutas (/images/x.webp); se normalizan con BASE_URL
+// ('/' en desarrollo, la subruta del monorepo en el build desplegado).
+const BASE_URL = import.meta.env.BASE_URL || '/';
+
+function normalizarImagen(imagen: string): string {
+    if (!imagen) return imagen;
+    return imagen.startsWith('/') ? BASE_URL.replace(/\/$/, '') + imagen : imagen;
+}
+
 // Todos los personajes normalizados (se calcula una sola vez al cargar el módulo)
 export const personajes: CharacterWithScore[] = (rawData as unknown as RawCharacter[]).map((c) => ({
     id: c.id,
@@ -36,7 +45,7 @@ export const personajes: CharacterWithScore[] = (rawData as unknown as RawCharac
     clan: c.clan ?? '',
     equipo: c.equipo ?? '',
     rango: c.rango ?? '',
-    imagen: c.imagen,
+    imagen: normalizarImagen(c.imagen),
     habilidades: c.habilidades ?? [],
     fortalezas: c.fortalezas ?? [],
     debilidades: c.debilidades ?? [],
