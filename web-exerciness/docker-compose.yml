@@ -1,0 +1,7 @@
+services:
+  exerciness:
+    build: .
+    container_name: exerciness
+    ports:
+      - '${PORT:-8080}:80'
+    restart: unless-stopped
