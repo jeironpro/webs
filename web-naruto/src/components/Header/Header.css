@@ -1,0 +1,110 @@
+/* ============================================
+   HEADER — Gradiente, brillo inferior animado y título
+   ============================================ */
+
+/* Gradiente de navy a navy-dark, overflow oculta decoraciones */
+.header {
+    background: linear-gradient(180deg, var(--navy) 0%, var(--navy-dark) 100%);
+    padding: 2.5rem 1rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Patrón diagonal sutil de fondo tipo "lluvia de ángulos" */
+.header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 30px,
+        rgba(232, 131, 44, 0.03) 30px,
+        rgba(232, 131, 44, 0.03) 60px
+    );
+}
+
+/* Línea brillante animada en el borde inferior del header */
+.header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--orange-glow), transparent);
+    animation: pulseGlow 3s ease-in-out infinite;
+}
+
+/* Animación de pulsación para el glow inferior */
+@keyframes pulseGlow {
+    0%,
+    100% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+.header-content {
+    position: relative;
+    max-width: 1280px;
+    margin: 0 auto;
+    text-align: center;
+    padding-bottom: 1.5rem;
+}
+
+/* Título principal con borde simulado y glow. Animación fade-in al cargar */
+.header-title {
+    font-family: var(--font-heading);
+    font-size: 5rem;
+    color: var(--orange);
+    text-shadow:
+        4px 4px 0 var(--black),
+        -1px -1px 0 var(--black),
+        1px -1px 0 var(--black),
+        -1px 1px 0 var(--black),
+        0 0 30px rgba(232, 131, 44, 0.3);
+    letter-spacing: 8px;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    animation: titleFade 1s ease-out;
+}
+
+/* Título baja deslizándose desde arriba */
+@keyframes titleFade {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.header-decor {
+    position: relative;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, var(--orange), var(--orange-light), var(--orange), transparent);
+}
+
+/* Tablets y móviles grandes: se reduce el título */
+@media (max-width: 640px) {
+    .header {
+        padding: 1.5rem 1rem 0;
+    }
+    .header-title {
+        font-size: 3rem;
+        letter-spacing: 4px;
+    }
+}
+
+/* Móviles pequeños: título más compacto */
+@media (max-width: 400px) {
+    .header-title {
+        font-size: 2.25rem;
+        letter-spacing: 2px;
+    }
+}

@@ -1,0 +1,93 @@
+name: deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: Enable corepack (yarn)
+        run: corepack enable
+
+      # Las SPAs del monorepo se compilan en el despliegue: el repositorio
+      # guarda la plantilla fuente (index.html -> /src/main.jsx) y el build
+      # con base relativa genera dist/ para cada app.
+      # VITE_BASE inyecta la subruta de cada app en el sitio publicado; los
+      # assets del build quedan con rutas absolutas y los deep links resuelven
+      # siempre. Si cambia el prefijo del hosting, basta editar esta linea.
+      - name: Build web-exerciness
+        run: |
+          cd web-exerciness
+          VITE_BASE=/webs/web-exerciness/ yarn install
+          VITE_BASE=/webs/web-exerciness/ yarn build
+
+      - name: Build web-codelang-quiz
+        run: |
+          cd web-codelang-quiz
+          VITE_BASE=/webs/web-codelang-quiz/ yarn install
+          VITE_BASE=/webs/web-codelang-quiz/ yarn build
+
+      - name: Build web-pokemon
+        run: |
+          cd web-pokemon
+          VITE_BASE=/webs/web-pokemon/ yarn install
+          VITE_BASE=/webs/web-pokemon/ yarn build
+      # Sitio final: catalogo raiz + todas las webs tal cual + dist/ de las
+      # SPAs compiladas sobre su carpeta (sin publicar codigo fuente).
+      - name: Ensamblar sitio
+        run: |
+          mkdir -p site
+          rsync -a --delete \
+            --exclude .git \
+            --exclude .github \
+            --exclude site \
+            --exclude node_modules \
+            --exclude '*/node_modules' \
+            --exclude '*/dist' \
+            --exclude '*/.yarn' \
+            --exclude '*/.pnp.cjs' \
+            --exclude '*/.pnp.loader.mjs' \
+            --exclude tests \
+            --exclude web-exerciness \
+            --exclude web-codelang-quiz \
+            --exclude web-pokemon \
+            ./ site/
+          rsync -a web-exerciness/dist/ site/web-exerciness/
+          rsync -a web-codelang-quiz/dist/ site/web-codelang-quiz/
+          rsync -a web-pokemon/dist/ site/web-pokemon/
+          touch site/.nojekyll
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

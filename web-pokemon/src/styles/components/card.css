@@ -1,0 +1,266 @@
+/* Animación de entrada — las cartas aparecen desde abajo */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Contenedor principal de la página de generación */
+.generacion-contenido {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 20px;
+  width: 100%;
+}
+
+/* Título de la generación — capitalizado automáticamente */
+.generacion-contenido h2 {
+  font-size: 28px;
+  margin: 10px 0 20px;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+/* Grid de cartas — flex-wrap centrado con ancho máximo de 1200px */
+.contenedor-cartas {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+  max-width: 1200px;
+  padding: 10px;
+  width: 100%;
+}
+
+/* Tarjeta individual de Pokémon — efecto 3D con perspective en hover */
+.carta {
+  animation: fadeInUp 0.4s ease both;
+  border-radius: var(--borde-radio);
+  box-shadow: var(--sombra-suave);
+  cursor: pointer;
+  height: 760px;
+  overflow: hidden;
+  perspective: 1000px;
+  position: relative;
+  transition: transform var(--transicion-media), box-shadow var(--transicion-media);
+  user-select: none;
+  width: 350px;
+}
+
+/* Hover — levanta la carta y la inclina ligeramente en 3D */
+.carta:hover {
+  box-shadow: var(--sombra-fuerte);
+  transform: translateY(-8px) rotateY(2deg);
+}
+
+/* Contrarrotación de la imagen para mantenerla frontal */
+.carta:hover .carta-imagen img {
+  transform: scale(1.1) rotateY(-2deg);
+}
+
+/* Parte superior de la carta — fondo degradado gris con la imagen del Pokémon */
+.carta-imagen {
+  align-items: center;
+  background: linear-gradient(135deg, #e8e8e8 0%, #d0d0d0 100%);
+  display: flex;
+  height: 55%;
+  justify-content: center;
+  padding: 20px;
+  position: relative;
+  transition: height var(--transicion-media);
+}
+
+/* Imagen del Pokémon — sombra drop-shadow y escala en hover */
+.carta-imagen img {
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+  height: 100%;
+  object-fit: contain;
+  transition: transform var(--transicion-media);
+  width: 100%;
+}
+
+.carta-imagen img {
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+  height: 100%;
+  object-fit: contain;
+  transition: transform var(--transicion-media);
+  width: 100%;
+}
+
+.carta:hover .carta-imagen img {
+  transform: scale(1.1);
+}
+
+/* Parte inferior de la carta — fondo blanco con nombre, tipos, descripción y stats */
+.carta-contenido {
+  background: var(--color-blanco);
+  display: flex;
+  flex-direction: column;
+  height: 45%;
+  padding: 14px 16px;
+  position: relative;
+}
+
+/* Nombre del Pokémon + ID alineados a los extremos */
+.carta-encabezado {
+  align-items: flex-start;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.carta-nombre {
+  color: var(--color-texto);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.carta-id {
+  color: var(--color-texto-secundario);
+  font-size: 15px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Badges de tipo Pokémon — colores definidos dinámicamente en línea */
+.carta-tipos {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 6px;
+}
+
+.tipo-badge {
+  border-radius: 4px;
+  color: var(--color-blanco);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 3px 12px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  text-transform: uppercase;
+}
+
+/* Descripción corta del Pokémon */
+.carta-descripcion {
+  color: var(--color-texto-secundario);
+  font-size: 13px;
+  line-height: 1.4;
+  margin-bottom: 6px;
+}
+
+/* Estadísticas base — fila con label, barra de estrellas y valor numérico */
+.carta-estadisticas {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-top: auto;
+}
+
+.estadistica {
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  padding: 2px 6px;
+}
+
+.estadistica-label {
+  color: var(--color-texto-secundario);
+  font-size: 12px;
+  font-weight: 600;
+  min-width: 50px;
+}
+
+/* Barra visual de estrellas con puntos suspensivos si desborda */
+.estadistica-estrellas {
+  color: #000;
+  font-size: 14px;
+  letter-spacing: 1px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.estadistica-valor {
+  color: var(--color-texto-secundario);
+  font-size: 13px;
+  font-weight: 600;
+  min-width: 26px;
+  text-align: right;
+}
+
+/* Colores de fondo para cada estadística — código de colores por tipo de stat */
+.ps {
+  background-color: #baffb4;
+}
+
+.ataque {
+  background-color: #ffd09d;
+}
+
+.defensa {
+  background-color: #b3d5ff;
+}
+
+.at-esp {
+  background-color: #e1b3ff;
+}
+
+.def-esp {
+  background-color: #d1d1d1;
+}
+
+.velocidad {
+  background-color: #b3f0ff;
+}
+
+/* Tablets — cartas más angostas, gap reducido */
+@media (max-width: 768px) {
+  .contenedor-cartas {
+    gap: 18px;
+  }
+
+  .carta {
+    height: 700px;
+    width: 300px;
+  }
+
+  .carta-nombre {
+    font-size: 18px;
+  }
+}
+
+/* Móviles — cartas ocupan todo el ancho, imagen y contenido se reparten 50/50 */
+@media (max-width: 600px) {
+  .generacion-contenido {
+    padding: 20px 12px;
+  }
+
+  .contenedor-cartas {
+    gap: 16px;
+    padding: 0;
+  }
+
+  .carta {
+    height: 700px;
+    width: 100%;
+  }
+
+  .carta-imagen {
+    height: 50%;
+  }
+
+  .carta-contenido {
+    height: 50%;
+  }
+}

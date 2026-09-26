@@ -1,0 +1,44 @@
+/* Variables globales de diseño — colores, sombras, transiciones y bordes */
+:root {
+  --color-rojo: #e63946;
+  --color-rojo-oscuro: #c1121f;
+  --color-fondo: #f0f0f0;
+  --color-texto: #1d1d1d;
+  --color-texto-secundario: #555;
+  --color-blanco: #fff;
+  --sombra-suave: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --sombra-media: 0 4px 16px rgba(0, 0, 0, 0.15);
+  --sombra-fuerte: 0 8px 32px rgba(0, 0, 0, 0.2);
+  --borde-radio: 12px;
+  --transicion-rapida: 0.2s ease;
+  --transicion-media: 0.3s ease;
+}
+
+/* Reset global — fuente Kanit, sin márgenes ni paddings, box-sizing consistente */
+* {
+  font-family: 'Kanit', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body — altura dinámica con dvh, oculta desborde horizontal */
+body {
+  min-height: 100dvh;
+  overflow-x: hidden;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+}
+
+/* Root de React — hereda altura mínima del body */
+#root {
+  min-height: 100dvh;
+}
+
+/* Layout principal — columna centrada y ancho completo */
+main {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}

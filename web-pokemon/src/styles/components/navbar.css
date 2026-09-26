@@ -1,0 +1,150 @@
+/* Barra de navegación superior — sticky, degradado rojo, sombra */
+header {
+  background: linear-gradient(135deg, var(--color-rojo) 0%, var(--color-rojo-oscuro) 100%);
+  box-shadow: var(--sombra-media);
+  left: 0;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+/* Contenedor interno — centrado, ancho máximo de 1200px */
+header nav {
+  align-items: center;
+  display: flex;
+  gap: 16px;
+  height: 64px;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 0 20px;
+}
+
+/* Logo — enlace sin decoración con ícono y texto */
+header nav .contenedor-logo a {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  gap: 8px;
+  text-decoration: none;
+}
+
+header nav .contenedor-logo img {
+  height: 36px;
+  width: 36px;
+}
+
+header nav .contenedor-logo h1 {
+  color: var(--color-blanco);
+  font-size: 20px;
+}
+
+/* Botón hamburguesa — oculto en desktop, visible en móviles */
+.hamburger {
+  background: transparent;
+  border: none;
+  color: var(--color-blanco);
+  cursor: pointer;
+  display: none;
+  padding: 4px;
+}
+
+.hamburger .material-icons {
+  font-size: 28px;
+}
+
+/* Enlaces de generaciones — scroll horizontal, scrollbar oculta */
+header nav .nav-generaciones {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+header nav .nav-generaciones::-webkit-scrollbar {
+  display: none;
+}
+
+/* Cada enlace de generación — semitransparente, se ilumina en hover */
+header nav .nav-generaciones a {
+  border-radius: 6px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 12px;
+  text-decoration: none;
+  transition: background var(--transicion-rapida), color var(--transicion-rapida);
+  white-space: nowrap;
+}
+
+header nav .nav-generaciones a:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--color-blanco);
+}
+
+/* Enlace activo — fondo más marcado y texto en negrita */
+header nav .nav-generaciones a.active {
+  background: rgba(255, 255, 255, 0.25);
+  color: var(--color-blanco);
+  font-weight: 700;
+}
+
+/* Versión móvil — menú hamburguesa con panel desplegable */
+@media (max-width: 600px) {
+  /* Muestra el botón hamburguesa */
+  .hamburger {
+    display: block;
+  }
+
+  /* Panel de navegación — oculto por defecto (opacity + pointer-events) */
+  header nav .nav-generaciones {
+    background: var(--color-rojo-oscuro);
+    flex-direction: column;
+    gap: 0;
+    left: 0;
+    opacity: 0;
+    overflow-x: visible;
+    padding: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 64px;
+    transition: opacity var(--transicion-media);
+    width: 100%;
+  }
+
+  /* Clase .abierto activa el menú vía JS */
+  header nav .nav-generaciones.abierto {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Enlaces en vertical con bordes entre ellos */
+  header nav .nav-generaciones a {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0;
+    font-size: 14px;
+    padding: 12px 20px;
+  }
+
+  header nav .nav-generaciones a:last-child {
+    border-bottom: none;
+  }
+
+  /* Overlay semitransparente detrás del menú desplegado */
+  header nav .overlay {
+    background: rgba(0, 0, 0, 0.4);
+    height: 100vh;
+    left: 0;
+    position: fixed;
+    top: 64px;
+    width: 100%;
+    z-index: -1;
+  }
+
+  /* Oculta el texto del logo para ahorrar espacio */
+  header nav .contenedor-logo h1 {
+    display: none;
+  }
+}

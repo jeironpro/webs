@@ -1,0 +1,120 @@
+/* ============================================
+   GLOBAL — Variables de tema, reset y estilos base
+   ============================================ */
+
+/* Fuentes: Bangers para títulos, Inter para cuerpo */
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+    --orange: #e8832c;
+    --orange-light: #f5a623;
+    --orange-glow: rgba(232, 131, 44, 0.3);
+    --navy: #0d1b3e;
+    --navy-light: #1b2a55;
+    --navy-dark: #070e1f;
+    --black: #1a1a1a;
+    --white: #f5f5f5;
+    --gray: #6b7280;
+    --gray-light: #9ca3af;
+    --gray-dark: #374151;
+    --success: #22c55e;
+    --warning: #eab308;
+    --danger: #ef4444;
+
+    --font-heading: 'Bangers', 'Impact', sans-serif;
+    --font-body: 'Inter', 'Segoe UI', system-ui, sans-serif;
+}
+
+/* Elimina márgenes/padding por defecto y usa border-box */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Fondo oscuro, tipografía principal, ocupa toda la ventana */
+body {
+    font-family: var(--font-body);
+    background: var(--navy-dark);
+    color: var(--white);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+body::before,
+body::after {
+    content: '';
+    position: fixed;
+    pointer-events: none;
+    z-index: 0;
+}
+
+body::before {
+    inset: 0;
+    background:
+        radial-gradient(ellipse at 20% 50%, rgba(232, 131, 44, 0.04) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(13, 27, 62, 0.8) 0%, transparent 50%);
+}
+
+#root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+}
+
+/* Aplica fuente decorativa a encabezados */
+h1,
+h2,
+h3,
+h4 {
+    font-family: var(--font-heading);
+    letter-spacing: 1px;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+button {
+    cursor: pointer;
+    font-family: var(--font-body);
+}
+
+input,
+select {
+    font-family: var(--font-body);
+}
+
+/* Personalización de selección de texto y scrollbar */
+::selection {
+    background: var(--orange);
+    color: var(--white);
+}
+
+/* Firefox scrollbar */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--navy-light) var(--navy-dark);
+}
+
+/* WebKit scrollbar (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--navy-dark);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--navy-light);
+    border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--orange);
+}

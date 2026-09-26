@@ -1,0 +1,135 @@
+/* ============================================
+   APP — Layout principal, fondo animado y grid
+   ============================================ */
+
+/* Contenedor flex column de altura completa */
+.app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* Capa fija de fondo con kunais flotando (decorativa, sin interacción) */
+.background-kunai {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+/* Cada kunai tiene opacidad baja y animación lineal infinita */
+.kunai {
+    position: absolute;
+    opacity: 0.08;
+    animation: kunaiFloat linear infinite;
+}
+
+/* Entran desde arriba, rotan 720° y se desvanecen al salir por abajo */
+@keyframes kunaiFloat {
+    0% {
+        transform: translateY(-10vh) rotate(0deg) scale(1);
+        opacity: 0;
+    }
+    5% {
+        opacity: 0.1;
+    }
+    90% {
+        opacity: 0.1;
+    }
+    100% {
+        transform: translateY(110vh) rotate(720deg) scale(0.8);
+        opacity: 0;
+    }
+}
+
+.kunai:nth-child(1) {
+    left: 5%;
+    animation-duration: 18s;
+    animation-delay: 0s;
+}
+.kunai:nth-child(2) {
+    left: 15%;
+    animation-duration: 22s;
+    animation-delay: -4s;
+}
+.kunai:nth-child(3) {
+    left: 30%;
+    animation-duration: 25s;
+    animation-delay: -8s;
+}
+.kunai:nth-child(4) {
+    left: 45%;
+    animation-duration: 20s;
+    animation-delay: -2s;
+}
+.kunai:nth-child(5) {
+    left: 55%;
+    animation-duration: 24s;
+    animation-delay: -12s;
+}
+.kunai:nth-child(6) {
+    left: 70%;
+    animation-duration: 19s;
+    animation-delay: -6s;
+}
+.kunai:nth-child(7) {
+    left: 82%;
+    animation-duration: 23s;
+    animation-delay: -15s;
+}
+.kunai:nth-child(8) {
+    left: 92%;
+    animation-duration: 21s;
+    animation-delay: -10s;
+}
+
+/* Ancho máximo 1280px centrado, empuja el footer hacia abajo con flex:1 */
+.main-content {
+    flex: 1;
+    padding: 2rem 1rem 4rem;
+    max-width: 1280px;
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+.characters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+@media (max-width: 480px) {
+/* En móviles el grid pasa a una columna */
+.characters-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+
+/* Estado vacío: sin personajes filtrados */
+.empty-state {
+    text-align: center;
+    padding: 3rem;
+    color: var(--gray-light);
+    font-size: 1.125rem;
+}
+
+.loading-state,
+.error-state {
+    text-align: center;
+    padding: 3rem;
+    font-size: 1.125rem;
+}
+
+.loading-state {
+    color: var(--gray-light);
+}
+
+.error-state {
+    color: #ff6b6b;
+}
