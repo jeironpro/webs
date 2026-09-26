@@ -2,7 +2,7 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./assets/favicon-TRpXkQlC.svg" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -19,9 +19,28 @@
       property="og:description"
       content="Catálogo de ejercicios de gimnasio con búsqueda, filtros, favoritos y comparador."
     />
-    <meta property="og:image" content="./assets/og-image-D7Ckh5ta.png" />
+    <meta property="og:image" content="./og-image.png" />
     <meta property="og:type" content="website" />
     <title>exerciness</title>
+    <script>
+      ;(function () {
+        // GitHub Pages sirve el 404.html raiz en subrutas de la SPA (p. ej.
+        // /web-exerciness/ejercicios); ese fallback redirige aqui con la subruta
+        // en la query (?/ejercicios) y este script la restaura en la barra de
+        // direcciones para que el router la resuelva sin recargar.
+        var busqueda = window.location.search
+        if (busqueda.indexOf('?/') === 0) {
+          var resta = busqueda.slice(2)
+          var amp = resta.indexOf('&')
+          if (amp !== -1) resta = resta.slice(0, amp) + '?' + resta.slice(amp + 1)
+          window.history.replaceState(
+            null,
+            '',
+            window.location.pathname.replace(/index\.html$/, '') + resta + window.location.hash,
+          )
+        }
+      })()
+    </script>
     <script>
       ;(function () {
         // Aplica el tema persistido antes del primer render para evitar un flash.
@@ -32,8 +51,7 @@
         if (dark) document.documentElement.classList.add('dark')
       })()
     </script>
-    <script type="module" crossorigin src="./assets/index-BrZwzVwO.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-D26O5vFK.css">
+    <script type="module" src="/src/main.jsx"></script>
   </head>
   <body>
     <div id="root"></div>
