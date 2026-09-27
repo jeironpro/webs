@@ -1,0 +1,259 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Despliegue en producción &mdash; documentación de Lenguajes de programación - </title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/logo.svg"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=e2bb6099"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" title="Búsqueda" href="../../../search.html" />
+    <link rel="next" title="Introducción a Flask" href="introduccionflask.html" />
+    <link rel="prev" title="Bases de datos (SQLAlchemy)" href="basesdedatos-sqlalchemy.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Lenguajes de programación
+              <img src="../../../_static/logo.svg" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lenguajes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../java/index.html">Java — DAW (ITIC Barcelona)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Python — DCS (INFOTEP)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#teoria">Teoría</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#frameworks">Frameworks</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Flask</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="apirestful.html">API RESTful</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autenticacionyautorizacion.html">Autenticación y autorización</a></li>
+<li class="toctree-l4"><a class="reference internal" href="basesdedatos-sqlalchemy.html">Bases de datos (SQLAlchemy)</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Despliegue en producción</a></li>
+<li class="toctree-l4"><a class="reference internal" href="introduccionflask.html">Introducción a Flask</a></li>
+<li class="toctree-l4"><a class="reference internal" href="manejodeformularios.html">Manejo de formularios</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plantillajinja2.html">Plantillas Jinja2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plantillajinja2.html#ejemplo-basico">Ejemplo básico:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pruebas.html">Pruebas</a></li>
+<li class="toctree-l4"><a class="reference internal" href="redireccionyerrores.html">Redirección y errores</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rutasymetodos.html">rutasymetodos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sesionesycookies.html">Sesiones y cookies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="instance-proyecto.html">Instance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="templates-proyecto.html">Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../django/index.html">Django</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#ejercicios">Ejercicios</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../javascript/index.html">JavaScript — DCS (INFOTEP)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Lenguajes de programación</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Python — DCS (INFOTEP)</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Flask</a></li>
+      <li class="breadcrumb-item active">Despliegue en producción</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/python/frameworks/flask/despliegueenproduccion.md.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="despliegue-en-produccion">
+<h1>Despliegue en producción<a class="headerlink" href="#despliegue-en-produccion" title="Link to this heading"></a></h1>
+<p><strong>Despliegue en Producción con Flask</strong></p>
+<ol class="arabic simple">
+<li><p>¿Qué es un despliegue en producción?
+EL despliegue en producción consiste en preparar y alojar tu aplicación en un servidor que permita a los usuarios acceder a ella de manera estable y segura. Incluye la configuración de servidores, entornos y herramientas para manejar tráfico real.</p></li>
+</ol>
+<ul class="simple">
+<li><p><strong>2.</strong> ¿Por qué no usar el servidor de desarrollo de Flask?
+El servidor de desarrollo de Flask (ejecutado con flask run) no está diseñado para manejar tráfico real:</p></li>
+<li><p>No es seguro.</p></li>
+<li><p>No escala bien</p></li>
+<li><p>Es solo para pruebas y desarrollo.</p></li>
+</ul>
+<p>En producción, usaremos un servidor WSGI (Web Server Gateway Interface) como Gunicorn o uWSGI.</p>
+<ul class="simple">
+<li><p><strong>3.</strong> Opciones para desplegar Flask</p>
+<ol class="arabic simple">
+<li><p>En tu maquina local o un servidor físico:</p></li>
+</ol>
+</li>
+<li><p>Usar Gunicorn y un servidor como Nginx para manejar tráfico HTPP.</p></li>
+</ul>
+<ol class="arabic simple" start="2">
+<li><p>En Servicios en la nube:</p></li>
+</ol>
+<ul class="simple">
+<li><p>Heroku: sencillo para principiantes.</p></li>
+<li><p>AWS, GCP o Azure: opciones avanzadas y escalables.</p></li>
+<li><p>Railway o Render: alternativas modernas y fáciles de usar.</p></li>
+</ul>
+<ol class="arabic simple" start="3">
+<li><p>Contenedores:</p></li>
+</ol>
+<ul class="simple">
+<li><p>Usar Docker para empaquetar y ejecutar tu aplicación en cualquier entorno.</p></li>
+<li><p><strong>4.</strong> Despliegue básico con Gunircorn y Nginx</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">a</span><span class="o">.</span> <span class="n">Instalar</span> <span class="n">Gunicorn</span>
+    <span class="n">primero</span><span class="p">,</span> <span class="n">instala</span> <span class="n">Gunicorn</span> <span class="n">en</span> <span class="n">tu</span> <span class="n">entorno</span><span class="p">:</span>
+        <span class="n">pip</span> <span class="n">install</span> <span class="n">gunicorn</span>
+    <span class="n">b</span><span class="o">.</span> <span class="n">Correr</span> <span class="n">tu</span> <span class="n">aplicación</span> <span class="n">con</span> <span class="n">Gunicorn</span>
+    <span class="n">Ejecutar</span> <span class="n">tu</span> <span class="n">aplicación</span> <span class="n">Flask</span> <span class="n">con</span> <span class="n">Gunicorn</span><span class="p">:</span>
+        <span class="n">gunicorn</span> <span class="o">-</span><span class="n">w</span> <span class="mi">4</span> <span class="o">-</span><span class="n">b</span> <span class="mf">0.0.0.0</span><span class="p">:</span><span class="mi">8000</span> <span class="n">app</span><span class="p">:</span><span class="n">app</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>-w 4: usa 4 workers (procesos).</p></li>
+<li><p>-b 0.0.0.0:8000: ejecuta en el puerto 8000 accesible desde cualquier dirección.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">c</span><span class="o">.</span> <span class="n">Configurar</span> <span class="n">Nginx</span>
+    <span class="n">Usa</span> <span class="n">Nginx</span> <span class="n">como</span> <span class="n">proxy</span> <span class="n">inverso</span> <span class="n">para</span> <span class="n">manejar</span> <span class="n">tráfico</span> <span class="n">y</span> <span class="n">redirigirlo</span> <span class="n">a</span> <span class="n">Gunicorn</span><span class="p">:</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Instala Nginx:</p></li>
+</ol>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>            sudo apt update
+            sudo apt install nginx
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Configura un archivo de sitio para Nginx en /etc/nginx/sites-available/mi_sitio:</p></li>
+</ol>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>            server {
+                listen 80;
+                server_name tu-dominio.com;
+
+                location / {
+                    proxy_pass http://127.0.0.1:8000
+                    proxy_set_header Host $host;
+                    proxy_set_header X-real-IP $remote_addr;
+                    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                }
+            }
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>3.</strong> Habilitar el sitio y reinicia Nginx:</p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>            sudo ln -s /etc/nginx/sites-available/mi_sitio /etc/nginx/sites-enabled
+            sudo nginx -t
+            sudo systemctl restart nginx
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Despliegue en Heroku (sencillo y gratuito)</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">a</span><span class="o">.</span> <span class="n">Crear</span> <span class="n">el</span> <span class="n">archivo</span> <span class="n">Procfile</span>
+    <span class="n">Agregar</span> <span class="n">un</span> <span class="n">archivo</span> <span class="n">llamado</span> <span class="n">Profile</span> <span class="n">en</span> <span class="n">la</span> <span class="n">raíz</span> <span class="n">de</span> <span class="n">tu</span> <span class="n">proyecto</span> <span class="n">con</span> <span class="n">este</span> <span class="n">contenido</span><span class="p">:</span>
+        <span class="n">web</span><span class="p">:</span> <span class="n">gunicorn</span> <span class="n">app</span><span class="p">:</span><span class="n">app</span>
+
+    <span class="n">b</span><span class="o">.</span> <span class="n">Subir</span> <span class="n">tu</span> <span class="n">proyecto</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>1.</strong> Inicializar un repositorio Git:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>            <span class="n">git</span> <span class="n">init</span>
+            <span class="n">git</span> <span class="n">add</span> <span class="o">.</span>
+            <span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s2">"Primer despliegue"</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Instala Heroku CLI:</p></li>
+</ol>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>            sudo snap install --classic heroku
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Despliega tu aplicación:</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>            <span class="n">heroku</span> <span class="n">create</span>
+            <span class="n">git</span> <span class="n">push</span> <span class="n">heroku</span> <span class="n">main</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="basesdedatos-sqlalchemy.html" class="btn btn-neutral float-left" title="Bases de datos (SQLAlchemy)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="introduccionflask.html" class="btn btn-neutral float-right" title="Introducción a Flask" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+  <p>
+    © Copyright <span id="anio-copyright"></span> jeironpro.
+  </p>
+  <script>
+    document.getElementById("anio-copyright").textContent =
+      new Date().getFullYear();
+  </script>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

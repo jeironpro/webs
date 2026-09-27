@@ -1,0 +1,266 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formularios &mdash; documentación de Lenguajes de programación - </title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/logo.svg"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=e2bb6099"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="search" title="Búsqueda" href="../../search.html" />
+    <link rel="next" title="Formularios" href="formularios/index.html" />
+    <link rel="prev" title="Eventos" href="eventos.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Lenguajes de programación
+              <img src="../../_static/logo.svg" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lenguajes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../java/index.html">Java — DAW (ITIC Barcelona)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python/index.html">Python — DCS (INFOTEP)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">JavaScript — DCS (INFOTEP)</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#teoria">Teoría</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduccion.html">Introducción</a></li>
+<li class="toctree-l3"><a class="reference internal" href="variables.html">Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="operadores.html">Operadores</a></li>
+<li class="toctree-l3"><a class="reference internal" href="estructurasdecontrol.html">Estructuras de control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="arrays.html">Arrays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="funciones.html">Funciones</a></li>
+<li class="toctree-l3"><a class="reference internal" href="objetos.html">Objetos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dom.html">DOM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eventos.html">Eventos</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Formularios</a></li>
+<li class="toctree-l3"><a class="reference internal" href="formularios/index.html">Formularios</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#ejercicios">Ejercicios</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Lenguajes de programación</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">JavaScript — DCS (INFOTEP)</a></li>
+      <li class="breadcrumb-item active">Formularios</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/javascript/teoria/formularios.md.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="formularios">
+<h1>Formularios<a class="headerlink" href="#formularios" title="Link to this heading"></a></h1>
+<p><strong>Formularios en JavaScript</strong>
+Los formularios son una parte fundamental de las aplicaciones web, ya que permiten a los usuarios enviar información a un servidor. En JavaScript, puedes interactuar con formularios para obtener, validar y enviar datos de manera dinámica.</p>
+<p><strong>Acceder a los Elementos de un Formulario</strong>
+Puedes acceder a los elementos de un formulario de la misma manera que accedes a otros elementos del DOM, usando getElementById, querySelector, etc. A continuación, te muestro cómo acceder a los diferentes tipos de campos dentro de un formulario:</p>
+<p><strong>// Acceder a un formulario por su id</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">formulario</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"miFormulario"</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>// Acceder a un campo de texto dentro del formulario</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">campoTexto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">formulario</span><span class="p">.</span><span class="nx">elements</span><span class="p">[</span><span class="s2">"nombre"</span><span class="p">];</span>
+</pre></div>
+</div>
+<p><strong>// Acceder a un campo de tipo checkbox</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">checkbox</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">formulario</span><span class="p">.</span><span class="nx">elements</span><span class="p">[</span><span class="s2">"terminos"</span><span class="p">];</span>
+</pre></div>
+</div>
+<p><strong>// Acceder a un campo de tipo radio</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">radio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">formulario</span><span class="p">.</span><span class="nx">elements</span><span class="p">[</span><span class="s2">"genero"</span><span class="p">];</span>
+</pre></div>
+</div>
+<p><strong>Obtener los Valores de los Campos del Formulario</strong>
+Puedes obtener los valores de los campos de un formulario utilizando la propiedad value.</p>
+<p><strong>// Obtener el valor de un campo de texto</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">nombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">campoTexto</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><strong>// Obtener el valor de un checkbox (true o false)</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">aceptado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">checkbox</span><span class="p">.</span><span class="nx">checked</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>// Obtener el valor de un campo radio (el valor del radio seleccionado)</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">generoSeleccionado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">radio</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><strong>Envío de Formularios</strong>
+Puedes enviar un formulario con el método submit(). Sin embargo, debes tener en cuenta que si no realizas ninguna validación o personalización, el formulario se enviará al servidor y recargará la página.</p>
+<p><strong>// Enviar el formulario de manera programática</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">formulario</span><span class="p">.</span><span class="nx">submit</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Para evitar que el formulario se envíe de inmediato (por ejemplo, si quieres realizar validaciones), puedes usar el método preventDefault():</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">formulario</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"submit"</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span><span class="w">  </span><span class="c1">// Evita que el formulario se envíe</span>
+<span class="w">    </span><span class="nx">alert</span><span class="p">(</span><span class="s2">"Formulario enviado"</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p><strong>Validación de Formularios</strong>
+La validación de formularios se puede realizar de dos formas: usando las propiedades de validación HTML o realizando validación manual en JavaScript.
+Validación Automática con HTML5</p>
+<p>HTML5 proporciona una forma simple de validar campos de formulario utilizando atributos como required, minlength, maxlength, pattern, etc.</p>
+<p><strong><form id="miFormulario"></strong>
+<input type="text" name="nombre" required>
+<input type="email" name="email" required>
+<button type="submit">Enviar</button></p>
+</form>
+<p>Con solo los atributos required, el formulario no se enviará hasta que todos los campos obligatorios sean completados.
+Validación Manual con JavaScript</p>
+<p>Si necesitas realizar una validación más compleja o personalizada, puedes hacerlo con JavaScript antes de enviar el formulario:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">formulario</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"submit"</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span><span class="w">  </span><span class="c1">// Evitar el envío del formulario por defecto</span>
+</pre></div>
+</div>
+<p><strong>// Validar el campo nombre</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">nombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">formulario</span><span class="p">.</span><span class="nx">elements</span><span class="p">[</span><span class="s2">"nombre"</span><span class="p">].</span><span class="nx">value</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">nombre</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">""</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">alert</span><span class="p">(</span><span class="s2">"El nombre es obligatorio."</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</pre></div>
+</div>
+<p>// Si todo es válido, puedes enviar el formulario</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">        </span><span class="nx">formulario</span><span class="p">.</span><span class="nx">submit</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p><strong>Eventos Comunes en Formularios</strong></p>
+<ul class="simple">
+<li><p>submit: Se dispara cuando el formulario se envía.</p></li>
+<li><p>input: Se dispara cuando el valor de un campo de
+entrada cambia.</p></li>
+<li><p>change: Se dispara cuando el valor de un campo de entrada cambia y pierde el foco.</p></li>
+<li><p>focus: Se dispara cuando un campo recibe el foco.</p></li>
+<li><p>blur: Se dispara cuando un campo pierde el foco.</p></li>
+</ul>
+<p><strong>Acción del Formulario (action)</strong>
+El atributo action de un formulario determina a qué URL se enviarán los datos del formulario cuando se envíe. Si no se establece un action, el formulario se enviará a la misma URL.</p>
+<p><strong><form action="/procesarFormulario" method="POST"></strong></p>
+<!-- Campos del formulario -->
+</form>
+<p><strong>Método del Formulario (method)</strong>
+El atributo method especifica cómo se enviarán los datos del formulario. Los valores más comunes son:</p>
+<ul class="simple">
+<li><p>GET: Los datos del formulario se envían en la URL.</p></li>
+<li><p>POST: Los datos del formulario se envían en el cuerpo de la solicitud HTTP (más seguro para enviar datos sensibles).</p></li>
+</ul>
+<p><strong><form method="POST"></strong></p>
+<!-- Campos del formulario -->
+</form>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Ejemplo práctico</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">validarCajaTexto</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Obtén los elementos</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">campos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nx">elemento</span><span class="o">:</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"nombre"</span><span class="p">),</span><span class="w"> </span><span class="nx">mensaje</span><span class="o">:</span><span class="w"> </span><span class="s2">"El campo no puede estar en blanco."</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nx">elemento</span><span class="o">:</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"dir"</span><span class="p">),</span><span class="w"> </span><span class="nx">mensaje</span><span class="o">:</span><span class="w"> </span><span class="s2">"El campo no puede estar en blanco."</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nx">elemento</span><span class="o">:</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"tel"</span><span class="p">),</span><span class="w"> </span><span class="nx">mensaje</span><span class="o">:</span><span class="w"> </span><span class="s2">"El campo no puede estar en blanco."</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nx">elemento</span><span class="o">:</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"correo"</span><span class="p">),</span><span class="w"> </span><span class="nx">mensaje</span><span class="o">:</span><span class="w"> </span><span class="s2">"El campo no puede estar en blanco."</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">];</span>
+
+<span class="w">    </span><span class="c1">// Limpiar bordes antes de la validación</span>
+<span class="w">    </span><span class="nx">campos</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">campo</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">campo</span><span class="p">.</span><span class="nx">elemento</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">border</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"1px solid #ccc"</span><span class="p">;</span><span class="w"> </span><span class="c1">// Establecer el borde normal</span>
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w">    </span><span class="c1">// Validar cada campo</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">campos</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">campo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">campos</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">campo</span><span class="p">.</span><span class="nx">elemento</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">""</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">alert</span><span class="p">(</span><span class="nx">campo</span><span class="p">.</span><span class="nx">mensaje</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">campo</span><span class="p">.</span><span class="nx">elemento</span><span class="p">.</span><span class="nx">focus</span><span class="p">();</span>
+<span class="w">            </span><span class="nx">campo</span><span class="p">.</span><span class="nx">elemento</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">border</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"3px solid #f00"</span><span class="p">;</span><span class="w"> </span><span class="c1">// Bordes en rojo</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w"> </span><span class="c1">// Detener la ejecución si hay un error</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"> </span><span class="c1">// Todos los campos son válidos</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="eventos.html" class="btn btn-neutral float-left" title="Eventos" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="formularios/index.html" class="btn btn-neutral float-right" title="Formularios" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+  <p>
+    © Copyright <span id="anio-copyright"></span> jeironpro.
+  </p>
+  <script>
+    document.getElementById("anio-copyright").textContent =
+      new Date().getFullYear();
+  </script>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

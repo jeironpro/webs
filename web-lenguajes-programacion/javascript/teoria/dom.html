@@ -1,0 +1,256 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DOM &mdash; documentación de Lenguajes de programación - </title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/logo.svg"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=e2bb6099"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="search" title="Búsqueda" href="../../search.html" />
+    <link rel="next" title="Eventos" href="eventos.html" />
+    <link rel="prev" title="Objetos" href="objetos.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Lenguajes de programación
+              <img src="../../_static/logo.svg" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lenguajes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../java/index.html">Java — DAW (ITIC Barcelona)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python/index.html">Python — DCS (INFOTEP)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">JavaScript — DCS (INFOTEP)</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#teoria">Teoría</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduccion.html">Introducción</a></li>
+<li class="toctree-l3"><a class="reference internal" href="variables.html">Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="operadores.html">Operadores</a></li>
+<li class="toctree-l3"><a class="reference internal" href="estructurasdecontrol.html">Estructuras de control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="arrays.html">Arrays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="funciones.html">Funciones</a></li>
+<li class="toctree-l3"><a class="reference internal" href="objetos.html">Objetos</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">DOM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eventos.html">Eventos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="formularios.html">Formularios</a></li>
+<li class="toctree-l3"><a class="reference internal" href="formularios/index.html">Formularios</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#ejercicios">Ejercicios</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Lenguajes de programación</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">JavaScript — DCS (INFOTEP)</a></li>
+      <li class="breadcrumb-item active">DOM</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/javascript/teoria/dom.md.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="dom">
+<h1>DOM<a class="headerlink" href="#dom" title="Link to this heading"></a></h1>
+<p><strong>El DOM (Document Object Model)</strong>
+El Dom es una interfaz de programación que permite a los lenguajes de programación como JavaScript interactuar con el contenido de una página web. Representa la estructura de los documentos HTML y XML en forma de un árbol de nodos y objetos estructurados que tienen propiedades y métodos, donde cada nodo es una parte del contenido o estrucutra del documento, como elementos, atributos y texto. Facilita una representación estructurada del documento y define de qué manera los programas pueden acceder, con el fin de modificar, tanto su estructura, estilo, como contenido. Es decir, conecta las páginas web con scripts y lenguajes de programación.</p>
+<p><strong>Acceder a Elementos del DOM</strong>
+En JavaScript, puedes acceder a los elementos del DOM para manipular el contenido o la estructura de una página web. Algunos de los métodos más comunes para acceder a los elementos del DOM son:</p>
+<ul class="simple">
+<li><p>getElementById: Accede a un elemento por su atributo id.</p></li>
+<li><p>getElementsByClassName: Accede a los elementos que comparten una misma clase.</p></li>
+<li><p>getElementsByTagName: Accede a los elementos que coinciden con un nombre de etiqueta (como div, p, h1, etc.).</p></li>
+<li><p>querySelector: Accede al primer elemento que coincide con un selector CSS.</p></li>
+<li><p>querySelectorAll: Accede a todos los elementos que coinciden con un selector CSS.</p></li>
+</ul>
+<p><strong>Ejemplo de Acceso al DOM</strong>
+// Acceder a un elemento por id</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">elemento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"miElemento"</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>// Acceder a todos los elementos con una clase</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">elementos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByClassName</span><span class="p">(</span><span class="s2">"miClase"</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>// Acceder al primer elemento con una etiqueta</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">primerDiv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">"div"</span><span class="p">)[</span><span class="mf">0</span><span class="p">];</span>
+</pre></div>
+</div>
+<p>// Usar querySelector para obtener el primer elemento que coincida con el selector CSS</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">primerBoton</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">".boton"</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>// Usar querySelectorAll para obtener todos los elementos que coincidan con el selector CSS</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">todosLosBotones</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">".boton"</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Manipulación de Elementos</strong>
+Una vez que has accedido a los elementos del DOM, puedes modificarlos de diversas maneras:</p>
+<ul class="simple">
+<li><p>Cambiar el contenido de un elemento: innerHTML, textContent.</p></li>
+<li><p>Modificar atributos de un elemento: setAttribute, getAttribute.</p></li>
+<li><p>Cambiar el estilo de un elemento: style.</p></li>
+</ul>
+<p><strong>Ejemplo de Manipulación del DOM</strong>
+// Cambiar el texto de un elemento</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">titulo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"titulo"</span><span class="p">);</span>
+<span class="nx">titulo</span><span class="p">.</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Nuevo Título"</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><strong>// Cambiar el color de fondo de un elemento</strong>
+let caja = document</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Ejemplos del Dom</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">mostrarId</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">nombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"nombre"</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">edad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"edad"</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nx">alert</span><span class="p">(</span><span class="s2">"El nombre ingresado es "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">nombre</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">". Y tiene "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">edad</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">" años."</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">cambiarEstilo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">parrafos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">"p"</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Usar el bucle para cambiar el estilo de todos los párrafos</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">var</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">parrafos</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">parrafos</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">style</span><span class="p">.</span><span class="nx">fontWeight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"bold"</span><span class="p">;</span><span class="w"> </span><span class="c1">// No es necesario usar una variable adicional</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">parrafoByName</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">parrafos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByName</span><span class="p">(</span><span class="s2">"segundo"</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Usar el bucle para cambiar el estilo de los párrafos con el nombre 'segundo'</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">var</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">parrafos</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">parrafos</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">style</span><span class="p">.</span><span class="nx">fontStyle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"italic"</span><span class="p">;</span><span class="w"> </span><span class="c1">// No es necesario usar una variable adicional</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Ejemplos de carga HTML</span>
+<span class="c1">// Ejecutar esta función cuando se cargue el documento.</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">onload</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Crear dinámicamente un par de elementos HTML en una página vacía.</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1">// Crear un elemento &lt;h1&gt;</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">heading</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">"h1"</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Crear un nodo de texto con el contenido deseado</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">heading_text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createTextNode</span><span class="p">(</span><span class="s2">"Introducción a JavaScript"</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Añadir el nodo de texto al elemento &lt;h1&gt;</span>
+<span class="w">    </span><span class="nx">heading</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">heading_text</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Añadir el elemento &lt;h1&gt; al cuerpo del documento</span>
+<span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">heading</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Ejemplo de innerHTML</span>
+<span class="c1">// innerHTML: Es una propiedad que permite leer o asignar el contenido de un div u otro control. Facilita la asignación de valores a controles.</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">cambiarEstilo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Confirmar si los cambios serán permanentes.</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">confirmacion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">confirm</span><span class="p">(</span><span class="s2">"¿Los cambios serán permanentes?"</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Verificar si se realizará el cambio.</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">confirmacion</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Obtener los párrafos con la clase "parrafo".</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="nx">parrafo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByClassName</span><span class="p">(</span><span class="s2">"parrafo"</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Leer el contenido de los primeros dos párrafos.</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="nx">primerParrafo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">parrafo</span><span class="p">[</span><span class="mf">0</span><span class="p">].</span><span class="nx">innerHTML</span><span class="p">;</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="nx">segundoParrafo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">parrafo</span><span class="p">[</span><span class="mf">1</span><span class="p">].</span><span class="nx">innerHTML</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Combinar el contenido de los dos párrafos en el tercer párrafo.</span>
+<span class="w">        </span><span class="nx">parrafo</span><span class="p">[</span><span class="mf">2</span><span class="p">].</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">primerParrafo</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">segundoParrafo</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Limpiar el contenido de los dos primeros párrafos.</span>
+<span class="w">        </span><span class="nx">parrafo</span><span class="p">[</span><span class="mf">0</span><span class="p">].</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">" "</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">parrafo</span><span class="p">[</span><span class="mf">1</span><span class="p">].</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">" "</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Ocultar el botón luego de hacer clic.</span>
+<span class="w">        </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"ocultar"</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">visibility</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"hidden"</span><span class="p">;</span><span class="w"> </span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="objetos.html" class="btn btn-neutral float-left" title="Objetos" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="eventos.html" class="btn btn-neutral float-right" title="Eventos" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+  <p>
+    © Copyright <span id="anio-copyright"></span> jeironpro.
+  </p>
+  <script>
+    document.getElementById("anio-copyright").textContent =
+      new Date().getFullYear();
+  </script>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

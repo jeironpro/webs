@@ -1,0 +1,520 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Strings &mdash; documentación de Lenguajes de programación - </title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../../../_static/logo.svg"/>
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=e2bb6099"></script>
+      <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="search" title="Búsqueda" href="../../../../search.html" />
+    <link rel="next" title="Conclusions" href="../conclusions/index.html" />
+    <link rel="prev" title="Strings" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Lenguajes de programación
+              <img src="../../../../_static/logo.svg" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lenguajes</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Java — DAW (ITIC Barcelona)</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../../index.html#teoria">Teoría</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Elements basics de la programacio</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../introduccio/index.html">Introducció</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../instruccions-sequencials/index.html">Instruccions sequencials</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../variables-i-tipus-de-dades/index.html">Variables i tipus de dades</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tipus-de-operadors-i-expressions/index.html">Tipus de operadors i expressions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../condicionals/index.html">Condicionals</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../bucles-condicionals/index.html">Bucles condicionals</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../control-de-bucles/index.html">Control de bucles</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../recorreguts/index.html">Recorreguts</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="index.html">Strings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../conclusions/index.html">Conclusions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../moduls/index.html">Moduls</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../poo/index.html">POO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../biblioteques/index.html">Biblioteques</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../fitxers/index.html">Fitxers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../persistencia-amb-bases-de-dades/index.html">Persistencia amb bases de dades</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../validacio-daplicacions/index.html">Validació daplicacions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#ejercicios">Ejercicios</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../python/index.html">Python — DCS (INFOTEP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../javascript/index.html">JavaScript — DCS (INFOTEP)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Lenguajes de programación</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Java — DAW (ITIC Barcelona)</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Elements basics de la programacio</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Strings</a></li>
+      <li class="breadcrumb-item active">Strings</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/java/teoria/elements-basics-de-la-programacio/strings/strings.md.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="strings">
+<h1>Strings<a class="headerlink" href="#strings" title="Link to this heading"></a></h1>
+<p><strong>Strings</strong>
+Les cadenes de caràcteres es gestionen amb la classe String, que és una de les classes més importants i utilitzades del llenguatge. Les cadenes són objectes immutables, la qual cosa significa que, una vegada creades, no poden ser modificades. Quan parlem de «tipus de tipus» relacionats amb les cadenes, ens referim principalment a com es poden gestionar, comparar i manipular aquests objectes.</p>
+<ul class="simple">
+<li><p><strong>1.</strong> Característiques principal de String</p></li>
+<li><p>Immutabilitat: quan es modifica una cadena, en realitat es crea un nou objecte String. L’objecte original es manté sense canvis.</p></li>
+<li><p>Objecte especial: encara que és una classe, es pot tractar com un tipus primitiu en molts casos gràcies al suport del compilador (per exemple, literals com «Hola»).</p></li>
+<li><p>Literals emmagatzemats al pool de cadenes: els literals de cadena es guarden en una àrea especial de memòria per optimizar l’ús i evitar duplicats.</p></li>
+<li><p><strong>2.</strong> Declaració de cadenes
+Hi ha diverses maneres de declarar i inicialitzar una cadena:
+-Amb literals:</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">String</span><span class="w"> </span><span class="n">cadena</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Hola, món!"</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>-Amb el constructor String:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">String</span><span class="w"> </span><span class="n">Cadena</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">String</span><span class="p">(</span><span class="s">"Hola, món!"</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>3.</strong> Comparació de cadenes
+Com que les cadenes són objectes, comparar-les directament amb l’operador == compara les referències (no el contingut). Per comparar el contingut de les cadenes, s’han d’utilitzar mètodes específics.</p></li>
+<li><p>Comparació amb == (compara les referències):</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">String</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Hola"</span><span class="p">;</span>
+<span class="n">String</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Hola"</span><span class="p">;</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">b</span><span class="p">);</span><span class="w"> </span><span class="c1">// True (mateix literal al pool)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Comparació amb equals (compara el contingut):</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">String</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"hola"</span><span class="p">;</span>
+<span class="n">String</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">String</span><span class="p">(</span><span class="s">"hola"</span><span class="p">);</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">b</span><span class="p">));</span><span class="w"> </span><span class="c1">// True (mateix contingut).</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Comparació amb compareTo (ordre lexicogràfic):</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">String</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Hola"</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>String b = «Adeu»</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">b</span><span class="p">));</span><span class="w"> </span><span class="c1">// Retorna un nombre positiu, zero o negatiu</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>4.</strong> Mètodes comuns de String
+Mètode                                Descripció                                                        exemple
+length()                              Retorna la longitud de la cadena.                                 «Hola».length() // 4
+charAt(int index)                     Retorna el caràcter en la posició especificada.                   «Hola».charAt(1) // “o”
+substring(int start, int end)         Retorna una subcadena entre les posició start i end.              «Hola».substring(0, 2) // «Ho»
+equals(string another)                Compara si dues cadenes són iguals (respecta maj i min).          «hola».equals(«Hola») // false
+equalsIgnoreCase(String another)      Compara dues cadenes sense tenir en compte maj i min.             «hola».equalsIgnoreCase(«Hola») // true
+toLowerCase()                         Converteix tota la cadena a minúscules.                           «Hola».toLowerCase() // «hola»
+toUpperCase()                         Converteix tota la cadena a majúscules.                           «Hola».toUpperCase() //
+«HOLA»
+trim()                                Elimina els espais en blanc del inici i del final de la cadena.   «  Hola «.trim() // «Hola»
+replace(char oldChar, char newChar)   Substitueix totes les ocurrències d’un caràcter per un altre.     «Hola».replace(“o”, “u”) // «Hula»
+split(String regex)                   Divideix la cadena en un array, utilitzant el patró especificat.  «Hola món».split(» «) // [«Hola», «món»]
+contains(CharSequence seq)            Comprova si la cadena conté una altra seqüencia de caràcters.     «Hola món».contais(«món») // true
+indexOf(String str)                   Retorna la primera posició on es troba la subcadena str.          «Hola món».indexOf(«món») // 5</p></li>
+<li><p><strong>5.</strong> Conversions i manipulacions</p></li>
+<li><p>Convertir altres tipus a String: es pot fer servir el mètode estàtic String.valueOf() o concatenar amb «».</p></li>
+</ul>
+<p><strong>Exemples</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">42</span><span class="p">;</span>
+<span class="n">String</span><span class="w"> </span><span class="n">cadena</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">String</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">num</span><span class="p">);</span><span class="w"> </span><span class="c1">// "42"</span>
+<span class="n">String</span><span class="w"> </span><span class="n">cadena2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">""</span><span class="p">;</span><span class="w"> </span><span class="c1">// "42"</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Convertir una cadena a altres tipus: es poden utilitzar mètodes de classes com Integer, Double, etc.</p></li>
+</ul>
+<p><strong>Exemple</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">String</span><span class="w"> </span><span class="n">cadena</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"123"</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">valor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Integer</span><span class="p">.</span><span class="na">parseInt</span><span class="p">(</span><span class="n">cadena</span><span class="p">);</span><span class="w"> </span><span class="c1">// 123</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>6.</strong> Immuntabilitat de les cadenes
+Com que les cadenes són immutables, qualsevol modificació (com concatenar o reemplaçar caràcters) genera un nou objecte String. Això pot tenir un impacte en la memòria si es fan moltes modificacions.</p></li>
+</ul>
+<p>Per treballar amb cadenes modificables, es poden utilitzar les classes StringBuilder o StringBuffer.</p>
+<ul class="simple">
+<li><p>StringBuilder (no sincronitzat, més ràpid per a ús d’un sol fil):</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">StringBuilder</span><span class="w"> </span><span class="n">sb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">StringBuilder</span><span class="p">(</span><span class="s">"Hola"</span><span class="p">);</span>
+<span class="n">sb</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="s">" món"</span><span class="p">);</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">sb</span><span class="p">.</span><span class="na">toString</span><span class="p">());</span><span class="w"> </span><span class="c1">// "Hola món"</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>StringBuffer (sincronitzat, adequat per a ús amb múltiples fils):</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">StringBuffer</span><span class="w"> </span><span class="n">sb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">StringBuffer</span><span class="p">(</span><span class="s">"Hola"</span><span class="p">);</span>
+<span class="n">sb</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="s">" món"</span><span class="p">);</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">sb</span><span class="p">.</span><span class="na">toString</span><span class="p">());</span><span class="w"> </span><span class="c1">// "Hola món"</span>
+</pre></div>
+</div>
+<p><strong>7.Strings al pool de cadenes</strong>
+Quan es crea una cadena literal, Java la guarda en una àrea especial de memòria anomenada pool de cadenes. Si es crea una altra cadena literal amb el mateix valor, Java reutilitza l’objecte existent per optimitzar la memòria.</p>
+<p><strong>Exemple</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">String</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Hola"</span><span class="p">;</span>
+<span class="n">String</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Hola"</span><span class="p">;</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">b</span><span class="p">);</span><span class="w"> </span><span class="c1">// true (mateixa referència al pool)</span>
+</pre></div>
+</div>
+<p>Si ultilitzem new String(), es crea un nou objecte a la memòria, independent del pool.</p>
+<p><strong>Exemple</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">String</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">String</span><span class="p">(</span><span class="s">"Hola"</span><span class="p">);</span>
+<span class="n">String</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">String</span><span class="p">(</span><span class="s">"Hola"</span><span class="p">);</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">b</span><span class="p">);</span><span class="w"> </span><span class="c1">// false (diferents objectes)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>8.</strong> Ús de String en contextos pràctics</p></li>
+<li><p>Composició de missatges:</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">String</span><span class="w"> </span><span class="n">nom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Jeiron"</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">edat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">21</span><span class="p">;</span>
+<span class="n">String</span><span class="w"> </span><span class="n">missatge</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Hola, "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">nom</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">",  tens "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">edat</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">" anys."</span><span class="p">;</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">missatge</span><span class="p">);</span><span class="w"> </span><span class="c1">// Hola Jeiron, tens 21 anys.</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Manipulació de dades d’entrada:</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">String</span><span class="w"> </span><span class="n">entrada</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"  hola món  "</span><span class="p">;</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">entrada</span><span class="p">.</span><span class="na">trim</span><span class="p">().</span><span class="na">toUpperCase</span><span class="p">());</span><span class="w"> </span><span class="c1">// "HOLA MÓN"</span>
+</pre></div>
+</div>
+<p><strong>Nota</strong>
+La classe String és molt poderosa, però quan necessitem modificar cadenes de forma eficient (concatenar o fer moltes operacions), és millor utilitzar StringBuilder o StringBuffer.</p>
+<hr class="docutils" />
+<p>String seqüencia de lletres
+Un String és essencialment una seqüencia de lletres (o caràcters) que es representen com una cadena de text. És una clsse que permet gestionar i manipular aquesta seqüencia de caràcters de manera fàcil.</p>
+<ul class="simple">
+<li><p><strong>1.</strong> Represenció d’un String com una seqüencia de lletres
+Internament, un objecte String és una matriu (array) de caràcters.</p></li>
+</ul>
+<p><strong>Per exemple</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">String</span><span class="w"> </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Hola"</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><strong>Aquest String es pot veure com una seqüencia de caràcters</strong>
+H o l a
+0 1 2 3 (indexos)</p>
+<ul class="simple">
+<li><p><strong>2.</strong> Accedir a les lletres d’un String
+Pots accedir a les lletres o caràcters d’una cadena utilitzant el mètode charAt(int index), que retorna el caràcter en una posició específica.</p></li>
+</ul>
+<p><strong>Exemple</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">String</span><span class="w"> </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Hola món"</span><span class="p">;</span>
+<span class="kt">char</span><span class="w"> </span><span class="n">lletra</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">text</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Retorna 'H'</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">lletra</span><span class="p">);</span><span class="w"> </span><span class="c1">// Mostra: H</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Tingues en compte que els índexs comencen des de 0.</p></li>
+<li><p>Si intentes accedir a un índex fora dels límits (per exemple, text.charAt(20)), obtindràs una excepció StringIndexOutOfBoundsException.</p></li>
+<li><p><strong>3.</strong> Convensions a altres tipus de seqüencies
+En alguns casos, pot ser útil convertir un String a altres estructures de dades per manipular-lo més fàcilment.</p></li>
+</ul>
+<p><strong>Convertir un String a un array de caràcters</strong>
+El mètode toCharArray() transforma un String en un array de caràcters (char[]).</p>
+<p><strong>Exemple</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">String</span><span class="w"> </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Hola"</span><span class="p">;</span>
+<span class="kt">char</span><span class="o">[]</span><span class="w"> </span><span class="n">lletres</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">text</span><span class="p">.</span><span class="na">toCharArray</span><span class="p">();</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">lletres</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">);</span><span class="w"> </span><span class="c1">// Mostra: H</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">lletres</span><span class="o">[</span><span class="mi">3</span><span class="o">]</span><span class="p">);</span><span class="w"> </span><span class="c1">// Mostra: a</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>4.</strong> Operacions comunes amb seqüencies de lletres
+-Comprovar si una lletra existeix en un String
+Pot utilitzar el mètode indexOf per trobar la posició d’una lletra (o subcadena). Si retorna -1, vol dir que la lletra no existeix.</p></li>
+</ul>
+<p><strong>Exemple</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">String</span><span class="w"> </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Hola món"</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">posició</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">text</span><span class="p">.</span><span class="na">indexOf</span><span class="p">(</span><span class="sc">'m'</span><span class="p">);</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">posicio</span><span class="p">);</span><span class="w"> </span><span class="c1">// Mostra: 5</span>
+</pre></div>
+</div>
+<p>-Comptar el nombre de lletres
+Podem recórrer el String per comptar quantes vegades apaereix una lletra específica.</p>
+<p><strong>Exemple</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">String</span><span class="w"> </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Hola món"</span><span class="p">;</span>
+<span class="kt">char</span><span class="w"> </span><span class="n">lletraBuscada</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">'o'</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">contador</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">text</span><span class="p">.</span><span class="na">length</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">text</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">lletraBuscada</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">contador</span><span class="o">++</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"La lletra 'o' apareix "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">contador</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">" vegades."</span><span class="p">);</span><span class="w"> </span><span class="c1">// La lletra 'o' apareix 2 vegades.</span>
+</pre></div>
+</div>
+<p>-Substituir una lletra
+Pot substituir una lletra concreta utilitzant el mètode replace.</p>
+<p><strong>Exemple</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">String</span><span class="w"> </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Hola món"</span><span class="p">;</span>
+<span class="n">String</span><span class="w"> </span><span class="n">textModificat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">text</span><span class="p">.</span><span class="na">replace</span><span class="p">(</span><span class="sc">'o'</span><span class="p">,</span><span class="w"> </span><span class="sc">'u'</span><span class="p">);</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">textModificat</span><span class="p">);</span><span class="w"> </span><span class="c1">// Mostra: Hula món</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>6.</strong> Diferència entre String i char</p></li>
+<li><p>Un String és una seqüencia de caràcters i es tracta com un objecte.</p></li>
+<li><p>Un char és un sol caràcter i és un tipus primitiu.</p></li>
+</ul>
+<p><strong>Nota</strong></p>
+<ul class="simple">
+<li><p>Un String és una seqüencia ordenada de caràcters, representada com un objecte immutable.</p></li>
+<li><p>Es pot accedir a cada lletra mitjançant el mètode charAt.</p></li>
+<li><p>Es poden convertir les cadenes en arrays per manipular-les més facilment.</p></li>
+<li><p>Hi ha molts mètodes útils per analitzar, modificar i manipular aquestes seqüencies.</p></li>
+</ul>
+<hr class="docutils" />
+<p>Recorreguts de Strings
+Els recorreguts d’un String són una manera d’analitzar, modificar o utilitzar cada caràcter que el forma. En Java, un String és una seqüencia ordenada de caràcters, i per accedir a cadascun d’ells podem utilitzar diferents técniques.</p>
+<ul class="simple">
+<li><p><strong>1.</strong> Accedir als caràcters d’un String
+Per accedir a cada caràcter d’un String, podem utilitzar el mètode charAt(int index), que retorna el caràcter en la posició especificada. Els indexs comencen des de 0 i arriben fins a la longitud del String menys 1.</p></li>
+</ul>
+<p><strong>Exemple básics</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">String</span><span class="w"> </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Hola món"</span><span class="p">;</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">text</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span><span class="w"> </span><span class="c1">// Mostra: H</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">text</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="mi">4</span><span class="p">));</span><span class="w"> </span><span class="c1">// Mostra: (espai)</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">text</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="mi">7</span><span class="p">));</span><span class="w"> </span><span class="c1">// Mostra: n</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>2.</strong> Recorreguts amb bucles
+2.1 Bucle for per index
+Aquest és el mètode més habitual per recórrer un String perquè accedim directament a cada índex.</p></li>
+</ul>
+<p><strong>Exemple</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">String</span><span class="w"> </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Hola món"</span><span class="p">;</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">text</span><span class="p">.</span><span class="na">length</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"Caràcter a l'index "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">": "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">text</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Sortida</strong>
+Caràcter a l’index 0: H
+Caràcter a l’index 1: o
+Caràcter a l’index 2: l
+Caràcter a l’index 3: a
+Caràcter a l’index 4:
+Caràcter a l’index 5: m
+Caràcter a l’index 6: ó
+Caràcter a l’index 7: n</p>
+<p><strong>2.2 Bucle for-each amb toCharArray()</strong>
+El mètode toCharArray() converteix el String en un array de caràcters (char[]), permetent utilitzar un bucle for-each.</p>
+<p><strong>Exemple</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">String</span><span class="w"> </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Hola món"</span><span class="p">;</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="n">lletra</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">text</span><span class="p">.</span><span class="na">toCharArray</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">lletra</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Sortida</strong>
+H
+o
+l
+a</p>
+<p><strong>m</strong>
+ó
+m</p>
+<p><strong>2.3 Bucle while</strong>
+Un bucle while també es pot utilitzar per recórrer un String. Cal una variable que mantingui l’index actual i augmentar-la en cada iteració.</p>
+<p><strong>Exemple</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">String</span><span class="w"> </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Hola món"</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">text</span><span class="p">.</span><span class="na">length</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"Caràcter a l'index "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">": "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">text</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
+<span class="w">    </span><span class="n">i</span><span class="o">++</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>2.4 Bucle amb índex invers (de darrere cap a davant)</strong>
+Podem recórrer un String des de l’última lletra fins a la primera, utilitzant un bucle decreixent.</p>
+<p><strong>Exemple</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">String</span><span class="w"> </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Hola món"</span><span class="p">;</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">text</span><span class="p">.</span><span class="na">length</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">--</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"Caràcter a l'index "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">": "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">text</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>3.</strong> Operacions comunes durant el recorregut
+3.1 Comptar caràcters específics
+Podem comptar quantes vegades apareix un caràcter específics en un String.</p></li>
+</ul>
+<p><strong>Exemple</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">String</span><span class="w"> </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Hola món"</span><span class="p">;</span>
+<span class="kt">char</span><span class="w"> </span><span class="n">cerca</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">'o'</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">comptador</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">text</span><span class="p">.</span><span class="na">length</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">text</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">cerca</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">comptador</span><span class="o">++</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"El caràcter '"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">cerca</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">"' apareix "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">comptador</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">" vegades."</span><span class="p">);</span><span class="w"> </span><span class="c1">// El caràcter 'o' apareix 2 vegades.</span>
+</pre></div>
+</div>
+<p><strong>3.2 Substituir caràcters</strong>
+Podem recórrer el String i construir un nou String substituint determinats caràcters.</p>
+<p><strong>Exemple</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">String</span><span class="w"> </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Hola món"</span><span class="p">;</span>
+<span class="kt">char</span><span class="w"> </span><span class="n">aSubstituir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">'o'</span><span class="p">;</span>
+<span class="kt">char</span><span class="w"> </span><span class="n">substitut</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">'u'</span><span class="p">;</span>
+<span class="n">String</span><span class="w"> </span><span class="n">resultat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">""</span><span class="p">;</span>
+
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">text</span><span class="p">.</span><span class="na">length</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">text</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">aSubstituir</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">resultat</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">substitut</span><span class="p">;</span><span class="w"> </span><span class="c1">// Substitueix 'o' per 'u'</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">resultat</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">text</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">i</span><span class="p">);</span><span class="w"> </span><span class="c1">// Manté els altres caràcters</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">resultat</span><span class="p">);</span><span class="w"> </span><span class="c1">// Hula mún</span>
+</pre></div>
+</div>
+<p><strong>3.3 Invertir un String</strong>
+podem recórrer el String des del final fins al principi per invertir-lo.</p>
+<p><strong>Exemple</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">String</span><span class="w"> </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Hola món"</span><span class="p">;</span>
+<span class="n">String</span><span class="w"> </span><span class="n">invertit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">""</span><span class="p">;</span>
+
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">text</span><span class="p">.</span><span class="na">length</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">--</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">invertit</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">text</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">invertit</span><span class="p">);</span><span class="w"> </span><span class="c1">// nóm aloH</span>
+</pre></div>
+</div>
+<p><strong>3.4 Eliminar espais en blanc</strong>
+Es pot recórrer el String per eliminar els espais en blanc.</p>
+<p><strong>Exemple</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">String</span><span class="w"> </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Hola món"</span><span class="p">;</span>
+<span class="n">String</span><span class="w"> </span><span class="n">senseEspais</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">""</span><span class="p">;</span>
+
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">text</span><span class="p">.</span><span class="na">length</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">text</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="sc">' '</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">senseEspais</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">text</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">senseEspais</span><span class="p">);</span><span class="w"> </span><span class="c1">// Holamón</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>4.</strong> Recorreguts avançats amb Streams
+Java permet fer recorreguts més avançants amb l’API de Streams. Això és especialment útil per escriure codi més compacte i funcional.</p></li>
+</ul>
+<p><strong>Exemple: Filtrar només vocals</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">String</span><span class="w"> </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Hola món"</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>text.chars().filter(c -&gt; «aeiouàèéíòóú».indexOf(c) != -1) // Comprova si és una vocal</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">c</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">((</span><span class="kt">char</span><span class="p">)</span><span class="w"> </span><span class="n">c</span><span class="p">));</span><span class="w"> </span><span class="c1">// Converteix cada codi a caràcter</span>
+</pre></div>
+</div>
+<p><strong>Sortida</strong>
+oaó</p>
+<p><strong>Nota</strong></p>
+<ul class="simple">
+<li><p>Els recorreguts d’un String permeten accedir a cada lletra i realitzar operacions com comptar caràcters, substituir, invertir o filtrar.</p></li>
+<li><p>Les opcions més comunes són els bucles (for, while, for-each) i, per a casos avançants, es poden utilitzar Streams.</p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="index.html" class="btn btn-neutral float-left" title="Strings" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="../conclusions/index.html" class="btn btn-neutral float-right" title="Conclusions" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+  <p>
+    © Copyright <span id="anio-copyright"></span> jeironpro.
+  </p>
+  <script>
+    document.getElementById("anio-copyright").textContent =
+      new Date().getFullYear();
+  </script>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,292 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Templates y renderizado &mdash; documentación de Lenguajes de programación - </title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/logo.svg"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=e2bb6099"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" title="Búsqueda" href="../../../search.html" />
+    <link rel="next" title="Proyecto de introducción a Django" href="introducciondjango-proyecto.html" />
+    <link rel="prev" title="Producción con Django" href="producciondjango.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Lenguajes de programación
+              <img src="../../../_static/logo.svg" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lenguajes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../java/index.html">Java — DAW (ITIC Barcelona)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Python — DCS (INFOTEP)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#teoria">Teoría</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#frameworks">Frameworks</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../flask/index.html">Flask</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Django</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="admindjango.html">Admin de Django</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autenticacionyautorizacion.html">Autenticación y autorización</a></li>
+<li class="toctree-l4"><a class="reference internal" href="formulariosyvalidacion.html">Formularios y validación</a></li>
+<li class="toctree-l4"><a class="reference internal" href="introducciondjango.html">Introducción a Django</a></li>
+<li class="toctree-l4"><a class="reference internal" href="modelosybasesdedatos.html">Modelos y bases de datos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="producciondjango.html">Producción con Django</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Templates y renderizado</a></li>
+<li class="toctree-l4"><a class="reference internal" href="introducciondjango-proyecto.html">Proyecto de introducción a Django</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#ejercicios">Ejercicios</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../javascript/index.html">JavaScript — DCS (INFOTEP)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Lenguajes de programación</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Python — DCS (INFOTEP)</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Django</a></li>
+      <li class="breadcrumb-item active">Templates y renderizado</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/python/frameworks/django/templatesyrenderizado.md.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="templates-y-renderizado">
+<h1>Templates y renderizado<a class="headerlink" href="#templates-y-renderizado" title="Link to this heading"></a></h1>
+<p><strong>Templates y Renderizado en Django</strong>
+Django utiliza un sistema de plantillas (templates) para separar la lógica del servidor (backend) de la presentación (frontend). Los templates son archivos HTML que pueden contener etiquetas y variables de Django para mostrar datos dinámicos en las páginas web.</p>
+<ul class="simple">
+<li><p><strong>1.</strong> Configuración inicial de los Templates</p>
+<ol class="arabic simple">
+<li><p>Ubicación de los templates:</p></li>
+</ol>
+</li>
+<li><p>Por convención, los archivos de templates se almacenan en una carpeta llamada templates dentro de cada aplicación o en una carpeta de nivel superior del proyecto.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">Estructura</span> <span class="n">sugerida</span><span class="p">:</span>
+        <span class="n">mi_proyecto</span><span class="o">/</span>
+            <span class="n">mi_aplicacion</span><span class="o">/</span>
+                <span class="n">templates</span><span class="o">/</span>
+                    <span class="n">mi_aplicacion</span><span class="o">/</span>
+                        <span class="n">ejemplo</span><span class="o">.</span><span class="n">html</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>2.</strong> Configurar la carpeta de templates en el proyecto: asegúrate de que en el archivo settings.py esté definida la configuración de templates:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="n">TEMPLATES</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s1">'BACKEND'</span><span class="p">:</span> <span class="s1">'django.template.backends.django.DjangoTemplates'</span><span class="p">,</span>
+                <span class="s1">'DIRS'</span><span class="p">:</span> <span class="p">[</span><span class="n">BASE_DIR</span> <span class="o">/</span> <span class="s1">'templates'</span><span class="p">],</span>  <span class="c1"># Carpeta global de templates</span>
+                <span class="s1">'APP_DIRS'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>  <span class="c1"># Busca templates dentro de cada aplicación</span>
+                <span class="s1">'OPTIONS'</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s1">'context_processors'</span><span class="p">:</span> <span class="p">[</span>
+                        <span class="s1">'django.template.context_processors.debug'</span><span class="p">,</span>
+                        <span class="s1">'django.template.context_processors.request'</span><span class="p">,</span>
+                        <span class="s1">'django.contrib.auth.context_processors.auth'</span><span class="p">,</span>
+                        <span class="s1">'django.contrib.messages.context_processors.messages'</span><span class="p">,</span>
+                    <span class="p">],</span>
+                <span class="p">},</span>
+            <span class="p">},</span>
+        <span class="p">]</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>2.</strong> Crear un Template</p>
+<ol class="arabic simple">
+<li><p>Archivo de template básico: crea un archivo llamado ejemplo.html en la carpeta templates/mi_aplicacion:</p></li>
+</ol>
+</li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>        &lt;!DOCTYPE html&gt;
+        &lt;html lang="es"&gt;
+        &lt;head&gt;
+            &lt;meta charset="UTF-8"&gt;
+            &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+            &lt;title&gt;Ejemplo de Template&lt;/title&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+            &lt;h1&gt;Hola, {{ usuario }}!&lt;/h1&gt;
+            &lt;p&gt;Hoy es {{ fecha_actual }}&lt;/p&gt;
+        &lt;/body&gt;
+        &lt;/html&gt;
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>3.</strong> Renderizar un Template</p>
+<ol class="arabic simple">
+<li><p>Renderizar un template desde una vista: modifica tu vista en views.py para usar un template:</p></li>
+</ol>
+</li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="kn">from</span><span class="w"> </span><span class="nn">django.shortcuts</span><span class="w"> </span><span class="kn">import</span> <span class="n">render</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">ejemplo_vista</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+            <span class="n">contexto</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s1">'usuario'</span><span class="p">:</span> <span class="s1">'Jeiron'</span><span class="p">,</span>
+                <span class="s1">'fecha_actual'</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">'</span><span class="si">%d</span><span class="s1">-%m-%Y'</span><span class="p">)</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">'mi_aplicacion/ejemplo.html'</span><span class="p">,</span> <span class="n">contexto</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>2.</strong> Configurar la URL correspondiente: en urls.py, añadimos la ruta para esta vista:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="kn">from</span><span class="w"> </span><span class="nn">django.urls</span><span class="w"> </span><span class="kn">import</span> <span class="n">path</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">views</span>
+
+        <span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">path</span><span class="p">(</span><span class="s1">'ejemplo/'</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">ejemplo_vista</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">'ejemplo'</span><span class="p">),</span>
+        <span class="p">]</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>3.</strong> Acceder en el navegador: entrar en http://127.0.0.1:8000/ejemplo/ para ver el resultado.</p></li>
+<li><p><strong>4.</strong> Etiquetas y Filtros en Templates</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">Django</span> <span class="n">proporciona</span> <span class="n">un</span> <span class="n">lenguaje</span> <span class="n">propio</span> <span class="n">para</span> <span class="n">los</span> <span class="n">templates</span><span class="o">.</span> <span class="n">Algunos</span> <span class="n">conceptos</span> <span class="n">importantes</span><span class="p">:</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Variables: se representan usando {{ variable }} y muestran datos enviados de sde el contexto.</p></li>
+</ol>
+<ul class="simple">
+<li><p><strong>2.</strong> Etiquetas: se usan para lógica dentro del template. Por ejemplo:</p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>            {% if usuario %}
+                &lt;p&gt;Bienvenido, {{ usuario }}!&lt;/p&gt;
+            {% else %}
+                &lt;p&gt;¡Por favor inicia sesión!&lt;/p&gt;
+            {% endif %}
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>3.</strong> Filtros: modifican el contenido de las variables, como lower, upper, o date:</p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>            &lt;p&gt;{{ fecha_actual|date:"d-m-Y" }}&lt;/p&gt;
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>5.</strong> Extender templates
+Django soporta herencia de templates para evitar duplicación de código.</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>Template base: Crea un archivo base.html:</p></li>
+</ol>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>        &lt;!DOCTYPE html&gt;
+        &lt;html lang="es"&gt;
+        &lt;head&gt;
+            &lt;title&gt;{% block title %}Mi Proyecto{% endblock %}&lt;/title&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+            &lt;header&gt;
+                &lt;h1&gt;Cabecera del sitio&lt;/h1&gt;
+            &lt;/header&gt;
+            &lt;main&gt;
+                {% block content %}{% endblock %}
+            &lt;/main&gt;
+            &lt;footer&gt;
+                &lt;p&gt;Pie de página&lt;/p&gt;
+            &lt;/footer&gt;
+        &lt;/body&gt;
+        &lt;/html&gt;
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>2.</strong> Template hijo: usa {% extends %} para heredar la estructura de base.html:</p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>        {% extends 'base.html' %}
+
+        {% block title %}Página Ejemplo{% endblock %}
+
+        {% block content %}
+            &lt;h2&gt;Contenido de la página&lt;/h2&gt;
+            &lt;p&gt;¡Hola, este es el contenido dinámico!&lt;/p&gt;
+        {% endblock %}
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="producciondjango.html" class="btn btn-neutral float-left" title="Producción con Django" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="introducciondjango-proyecto.html" class="btn btn-neutral float-right" title="Proyecto de introducción a Django" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+  <p>
+    © Copyright <span id="anio-copyright"></span> jeironpro.
+  </p>
+  <script>
+    document.getElementById("anio-copyright").textContent =
+      new Date().getFullYear();
+  </script>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

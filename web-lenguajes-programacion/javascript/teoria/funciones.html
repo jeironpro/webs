@@ -1,0 +1,305 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Funciones &mdash; documentación de Lenguajes de programación - </title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/logo.svg"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=e2bb6099"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="search" title="Búsqueda" href="../../search.html" />
+    <link rel="next" title="Objetos" href="objetos.html" />
+    <link rel="prev" title="Arrays" href="arrays.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Lenguajes de programación
+              <img src="../../_static/logo.svg" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lenguajes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../java/index.html">Java — DAW (ITIC Barcelona)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python/index.html">Python — DCS (INFOTEP)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">JavaScript — DCS (INFOTEP)</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#teoria">Teoría</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduccion.html">Introducción</a></li>
+<li class="toctree-l3"><a class="reference internal" href="variables.html">Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="operadores.html">Operadores</a></li>
+<li class="toctree-l3"><a class="reference internal" href="estructurasdecontrol.html">Estructuras de control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="arrays.html">Arrays</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Funciones</a></li>
+<li class="toctree-l3"><a class="reference internal" href="objetos.html">Objetos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dom.html">DOM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eventos.html">Eventos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="formularios.html">Formularios</a></li>
+<li class="toctree-l3"><a class="reference internal" href="formularios/index.html">Formularios</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#ejercicios">Ejercicios</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Lenguajes de programación</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">JavaScript — DCS (INFOTEP)</a></li>
+      <li class="breadcrumb-item active">Funciones</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/javascript/teoria/funciones.md.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="funciones">
+<h1>Funciones<a class="headerlink" href="#funciones" title="Link to this heading"></a></h1>
+<p><strong>Funciones en JavaScript</strong>
+Una función es un bloque de código diseñado para realizar una tarea específica. Las funciones pueden aceptar valores de entrada (llamados parámetros) y pueden devolver un valor (el resultado de la operación). Las funciones permiten organizar el código, hacerlo más modular y reutilizable.</p>
+<p><strong>Declaración de una Función</strong>
+En JavaScript, puedes declarar una función de varias maneras. La forma más común es utilizando la palabra clave function.</p>
+<p><strong>// Sintaxis de declaración de función</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">saludar</span><span class="p">(</span><span class="nx">nombre</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Hola, "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">nombre</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>En este ejemplo, saludar es el nombre de la función, y nombre es un parámetro que la función recibe.</p>
+<p><strong>Llamar a una Función</strong>
+Para ejecutar una función, simplemente debes «llamarla», pasando los argumentos (valores para los parámetros) cuando sea necesario.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">saludar</span><span class="p">(</span><span class="s2">"Jeiron"</span><span class="p">);</span><span class="w">  </span><span class="c1">// Hola, Jeiron</span>
+</pre></div>
+</div>
+<p><strong>Funciones con Valor de Retorno</strong>
+Una función puede devolver un valor utilizando la palabra clave return. Este valor puede ser utilizado en otras partes del código.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">sumar</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">b</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">resultado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">sumar</span><span class="p">(</span><span class="mf">5</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resultado</span><span class="p">);</span><span class="w">  </span><span class="c1">// 8</span>
+</pre></div>
+</div>
+<p><strong>Expresiones de Función</strong>
+Además de declarar funciones de la forma tradicional, también puedes definir funciones como expresiones. Esto significa que la función se asigna a una variable.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">multiplicar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">b</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">multiplicar</span><span class="p">(</span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">));</span><span class="w">  </span><span class="c1">// 20</span>
+</pre></div>
+</div>
+<p><strong>Funciones Flecha (Arrow Functions)</strong>
+Las funciones flecha son una forma más corta de escribir funciones en JavaScript. Utilizan la sintaxis =&gt; y son especialmente útiles cuando se trabaja con funciones pequeñas o anónimas.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">restar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">b</span><span class="p">;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">restar</span><span class="p">(</span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">));</span><span class="w">  </span><span class="c1">// 5</span>
+</pre></div>
+</div>
+<p>Si la función tiene un solo parámetro, puedes omitir los paréntesis:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">cuadrado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">x</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">cuadrado</span><span class="p">(</span><span class="mf">4</span><span class="p">));</span><span class="w">  </span><span class="c1">// 16</span>
+</pre></div>
+</div>
+<p><strong>Parámetros por Defecto</strong>
+En JavaScript, puedes asignar valores predeterminados a los parámetros de las funciones. Si no se proporciona un valor para un parámetro, se usará el valor predeterminado.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">saludar</span><span class="p">(</span><span class="nx">nombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Amigo"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Hola, "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">nombre</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">saludar</span><span class="p">();</span><span class="w">           </span><span class="c1">// Hola, Amigo</span>
+<span class="nx">saludar</span><span class="p">(</span><span class="s2">"Jeiron"</span><span class="p">);</span><span class="w">   </span><span class="c1">// Hola, Jeiron</span>
+</pre></div>
+</div>
+<p><strong>Funciones con Número Variable de Argumentos</strong>
+A veces, no sabes cuántos argumentos va a recibir una función. Para estos casos, puedes utilizar el objeto especial arguments (en funciones tradicionales) o el operador rest (…).</p>
+<p><strong>Con arguments (solo en funciones tradicionales)</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">sumarTodo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">total</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nb">arguments</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">total</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nb">arguments</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">total</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sumarTodo</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">));</span><span class="w">  </span><span class="c1">// 10</span>
+</pre></div>
+</div>
+<p><strong>Con el operador rest (…)</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">sumarTodo</span><span class="p">(...</span><span class="nx">numeros</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">numeros</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">acc</span><span class="p">,</span><span class="w"> </span><span class="nx">num</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">acc</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">num</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sumarTodo</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">));</span><span class="w">  </span><span class="c1">// 10</span>
+</pre></div>
+</div>
+<p><strong>Funciones Anidadas</strong>
+En JavaScript, puedes declarar funciones dentro de otras funciones. Las funciones internas pueden acceder a las variables y parámetros de la función externa.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">exterior</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">interior</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">interior</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">interior</span><span class="p">(</span><span class="nx">b</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">exterior</span><span class="p">(</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">));</span><span class="w">  </span><span class="c1">// 10</span>
+</pre></div>
+</div>
+<p><strong>Funciones IIFE (Inmediatamente Invocadas)</strong>
+Una IIFE (Immediately Invoked Function Expression) es una función que se ejecuta tan pronto como se define. Se utiliza comúnmente para crear un ámbito local para evitar contaminar el espacio global.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Esta es una función IIFE"</span><span class="p">);</span>
+<span class="p">})();</span>
+
+<span class="c1">// Ejemplos</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">resultado</span><span class="p">;</span>
+
+<span class="c1">// Primer conjunto de sumas</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">num1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5</span><span class="p">;</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">num2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">6</span><span class="p">;</span>
+
+<span class="nx">resultado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">num1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">num2</span><span class="p">;</span>
+<span class="nx">alert</span><span class="p">(</span><span class="s2">"El resultado de la suma es "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">resultado</span><span class="p">);</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">num1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">8</span><span class="p">;</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">num2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">7</span><span class="p">;</span>
+
+<span class="nx">resultado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">num1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">num2</span><span class="p">;</span>
+<span class="nx">alert</span><span class="p">(</span><span class="s2">"El resultado de la suma es "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">resultado</span><span class="p">);</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">num1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10</span><span class="p">;</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">num2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">15</span><span class="p">;</span>
+
+<span class="nx">resultado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">num1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">num2</span><span class="p">;</span>
+<span class="nx">alert</span><span class="p">(</span><span class="s2">"El resultado de la suma es "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">resultado</span><span class="p">);</span>
+
+<span class="c1">// Función de suma</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">suma</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">resultado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">num1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">num2</span><span class="p">;</span>
+<span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s2">"El resultado de la suma es "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">resultado</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">"&lt;br&gt;"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">num1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">18</span><span class="p">;</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">num2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">24</span><span class="p">;</span>
+<span class="nx">suma</span><span class="p">();</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">num1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">180</span><span class="p">;</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">num2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">240</span><span class="p">;</span>
+<span class="nx">suma</span><span class="p">();</span>
+
+<span class="c1">// Función de estudiantes</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">estudiantes</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">nomCompleto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">nombre</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">" "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">apellido</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">alert</span><span class="p">(</span><span class="s2">"Su nombre es "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">nomCompleto</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">nombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Juanito"</span><span class="p">;</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">apellido</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Perez"</span><span class="p">;</span>
+<span class="nx">estudiantes</span><span class="p">();</span>
+
+<span class="nx">nombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Antonio"</span><span class="p">;</span>
+<span class="nx">apellido</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Gonzalez"</span><span class="p">;</span>
+<span class="nx">estudiantes</span><span class="p">();</span>
+
+<span class="c1">// Ámbitos de la variable</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">contenido</span><span class="p">;</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">mensaje</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// La variable contenido es global y se asigna dentro de la función</span>
+<span class="w">    </span><span class="nx">contenido</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Este es un mensaje de prueba... mmm, ¿a qué sabe?"</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">alert</span><span class="p">(</span><span class="nx">contenido</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">mensaje</span><span class="p">();</span><span class="w"> </span><span class="c1">// Llamada a la función mensaje</span>
+<span class="c1">// alert(contenido); // No es necesario aquí porque la variable ya es global</span>
+
+<span class="c1">// Suma con parámetros</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">suma</span><span class="p">(</span><span class="nx">num1</span><span class="p">,</span><span class="w"> </span><span class="nx">num2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">resultado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">num1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">num2</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">alert</span><span class="p">(</span><span class="s2">"El resultado de la suma es "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">resultado</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">suma</span><span class="p">(</span><span class="mf">250</span><span class="p">,</span><span class="w"> </span><span class="mf">750</span><span class="p">);</span><span class="w"> </span><span class="c1">// Llamada a la función suma con parámetros</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="arrays.html" class="btn btn-neutral float-left" title="Arrays" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="objetos.html" class="btn btn-neutral float-right" title="Objetos" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+  <p>
+    © Copyright <span id="anio-copyright"></span> jeironpro.
+  </p>
+  <script>
+    document.getElementById("anio-copyright").textContent =
+      new Date().getFullYear();
+  </script>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

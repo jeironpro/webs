@@ -13,7 +13,7 @@ const carpetasLocales = readdirSync(raiz, { withFileTypes: true })
 
 describe("projects.yml", () => {
     test("contiene todas las carpetas web-* locales", () => {
-        expect(proyectos.length).toBeGreaterThanOrEqual(48);
+        expect(proyectos.length).toBeGreaterThanOrEqual(52);
         expect(proyectos.length).toBe(carpetasLocales.length);
     });
 

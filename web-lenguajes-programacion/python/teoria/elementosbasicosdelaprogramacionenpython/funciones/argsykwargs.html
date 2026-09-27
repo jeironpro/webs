@@ -1,0 +1,273 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Argsykwargs &mdash; documentación de Lenguajes de programación - </title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../../../_static/logo.svg"/>
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=e2bb6099"></script>
+      <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="search" title="Búsqueda" href="../../../../search.html" />
+    <link rel="next" title="Excepciones" href="excepciones.html" />
+    <link rel="prev" title="Ámbito de las variables" href="ambitodelasvariables.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Lenguajes de programación
+              <img src="../../../../_static/logo.svg" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lenguajes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../java/index.html">Java — DAW (ITIC Barcelona)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Python — DCS (INFOTEP)</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../../index.html#teoria">Teoría</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Elementos básicos de la programación en Python</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../introduccion.html">Introducción</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../variables-y-tipos-de-datos.html">variables y tipos de datos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../entradaysalidadedatos.html">Entrada y salida de datos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../operadores.html">Operadores</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../condicionales.html">Condicionales</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../bucles/index.html">Bucles</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../colecciones/index.html">Colecciones</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="index.html">Funciones</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../introduccionalaprogramacionorientadaaobjetosenpython/index.html">Introducción a la programación orientada a objetos en Python</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#frameworks">Frameworks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#ejercicios">Ejercicios</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../javascript/index.html">JavaScript — DCS (INFOTEP)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Lenguajes de programación</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Python — DCS (INFOTEP)</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Elementos básicos de la programación en Python</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Funciones</a></li>
+      <li class="breadcrumb-item active">Argsykwargs</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/python/teoria/elementosbasicosdelaprogramacionenpython/funciones/argsykwargs.md.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="argsykwargs">
+<h1>Argsykwargs<a class="headerlink" href="#argsykwargs" title="Link to this heading"></a></h1>
+<p>*args y **kwargs
+Cuando trabajas con funciones, a veces necesitas que una función acepte un número variable de argumentos. Pythom tiene dos mecanismos que permiten esto: *args y **kwargs.</p>
+<ul class="simple">
+<li><p><strong>1.</strong> *args (Argumentos Posicionales variables)</p></li>
+<li><p>*args permite pasar un número variable de argumentos posicionales a una función.</p></li>
+<li><p>*Args: permite utilizar argumentos de manera indefinida. El asterisco indica que tendrá una cantidad indeterminada de argumentos.</p></li>
+<li><p>Dentro de la función, args se comporta como una tupla que contiene todos los argumentos adicionales que se pasen.</p></li>
+</ul>
+<p><strong>Sintaxis</strong>
+def nombre_funcion():</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>2.</strong> **kwargs (Argumentos con Palabra Clave Varibales)</p></li>
+<li><p>**kwargs permite pasar un número variable de argumentos con palabra clave (pares clave-valor).</p></li>
+<li><p>Dentro de la función, kwargs se comporta como un diccionario donde las claves son los nombres de los argumentos y los valores pasados a esos argumentos.</p></li>
+</ul>
+<p><strong>Sintaxis</strong>
+def nombre_funcion(**kwargs):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">for</span> <span class="n">clave</span><span class="p">,</span> <span class="n">valor</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">clave</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">valor</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>3.</strong> Uso combinado de *args y **kwargs</p></li>
+<li><p>Puedes combinar ambos, *args y **kwargs, en una misma función. Sin embargo, *args debe aparecer antes que **kwargs en la definición de la función.</p></li>
+<li><p><strong>4.</strong> Uso de *args y **kwargs con funciones predefinidas</p></li>
+<li><p>*args y **kwargs se usan mucho en funciones que aceptan un número variable de parámetros, como en las funciones de bibliotecas estándar o al definir clases y decoradores.</p></li>
+</ul>
+<p>**Diferencia clave entre *args y <strong>kwargs</strong></p>
+<ul class="simple">
+<li><p>*args: recibe una cantidad variable de argumentos posicionales y los convierte en un tupla.</p></li>
+<li><p>**kwargs: recibe una cantidad variable de argumentos con palabra clave y los convierte en un diccionario.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ejemplo con *args</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">imprimir_numeros</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">numero</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">numero</span><span class="p">)</span>
+
+<span class="n">imprimir_numeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> 
+<span class="c1"># Salida:</span>
+<span class="c1"># 1</span>
+<span class="c1"># 2</span>
+<span class="c1"># 3</span>
+<span class="c1"># 4</span>
+
+<span class="c1"># Ejemplo con **kwargs</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">imprimir_persona</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">clave</span><span class="p">,</span> <span class="n">valor</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">clave</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">valor</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="n">imprimir_persona</span><span class="p">(</span><span class="n">nombre</span> <span class="o">=</span> <span class="s2">"Jeiron"</span><span class="p">,</span> <span class="n">edad</span> <span class="o">=</span> <span class="mi">21</span><span class="p">)</span>
+<span class="c1"># Salida:</span>
+<span class="c1"># nombre: Jeiron</span>
+<span class="c1"># edad: 21</span>
+
+<span class="c1"># Ejemplo de uso combinado de *args y **kwargs</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">funcion_combinada</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Argumentos posicionales:"</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Argumentos con palabra clave:"</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">clave</span><span class="p">,</span> <span class="n">valor</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">clave</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">valor</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="n">funcion_combinada</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">nombre</span> <span class="o">=</span> <span class="s2">"Jeiron"</span><span class="p">,</span> <span class="n">edad</span> <span class="o">=</span> <span class="mi">21</span><span class="p">)</span>
+<span class="c1"># Salida:</span>
+<span class="c1"># Argumentos posicionales:</span>
+<span class="c1"># 1</span>
+<span class="c1"># 2</span>
+<span class="c1"># 3</span>
+
+<span class="c1"># Argumentos con palabra clave:</span>
+<span class="c1"># nombre: Jeiron</span>
+<span class="c1"># edad: 21</span>
+
+<span class="c1"># Ejemplo de uso en una función predefinada</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">sumar</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">sumar</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span> <span class="c1"># Salida: 6</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sumar</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span> <span class="c1"># Salida: 9</span>
+
+<span class="c1"># Función con parámetros fijos</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">indefinida</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">,</span> <span class="n">arg3</span><span class="p">,</span> <span class="n">arg4</span><span class="p">,</span> <span class="n">arg5</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">arg1</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">arg2</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">arg3</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">arg4</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">arg5</span><span class="p">)</span>
+
+<span class="n">indefinida</span><span class="p">(</span><span class="s2">"Santiago"</span><span class="p">,</span> <span class="s2">"i"</span><span class="p">,</span> <span class="s2">"j"</span><span class="p">,</span> <span class="s2">"f"</span><span class="p">,</span> <span class="s2">"a"</span><span class="p">)</span>
+
+<span class="c1"># Utilizar *args y agrupar como una tupla</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">indefinida</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+
+<span class="n">indefinida</span><span class="p">(</span><span class="s2">"Santiago"</span><span class="p">,</span> <span class="s2">"i"</span><span class="p">,</span> <span class="s2">"j"</span><span class="p">,</span> <span class="s2">"f"</span><span class="p">,</span> <span class="s2">"a"</span><span class="p">,</span> <span class="s2">"cibao"</span><span class="p">)</span>
+
+<span class="c1"># Utilizar *args con un bucle for</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">indefinida</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+<span class="n">indefinida</span><span class="p">(</span><span class="s2">"Santiago"</span><span class="p">,</span> <span class="s2">"i"</span><span class="p">,</span> <span class="s2">"j"</span><span class="p">,</span> <span class="s2">"f"</span><span class="p">,</span> <span class="s2">"a"</span><span class="p">,</span> <span class="s2">"cibao"</span><span class="p">)</span>
+
+<span class="c1"># Realizar cálculos con *args</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">numeros</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"El total de la suma es"</span><span class="p">,</span> <span class="n">total</span><span class="p">)</span>
+
+<span class="n">numeros</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">84</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># Función con **kwargs (Keyword Arguments)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">empleado</span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span> <span class="n">puesto</span><span class="p">,</span> <span class="n">lenguaje</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">nombre</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">puesto</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">lenguaje</span><span class="p">)</span>
+
+<span class="n">empleado</span><span class="p">(</span><span class="s2">"Juan"</span><span class="p">,</span> <span class="s2">"Programador"</span><span class="p">,</span> <span class="s2">"Python"</span><span class="p">)</span>
+
+<span class="c1"># Utilizar **kwargs para pasar argumentos como diccionario</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">empleado</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">clave</span><span class="p">,</span> <span class="n">valor</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">clave</span><span class="si">}</span><span class="s2"> : </span><span class="si">{</span><span class="n">valor</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="c1"># print("{} : {}".format(clave, valor)) # Ambas formas son válidas.</span>
+
+<span class="n">empleado</span><span class="p">(</span><span class="n">nombre</span><span class="o">=</span><span class="s2">"Juan"</span><span class="p">,</span> <span class="n">puesto</span><span class="o">=</span><span class="s2">"Programador"</span><span class="p">,</span> <span class="n">lenguaje</span><span class="o">=</span><span class="s2">"Python"</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="ambitodelasvariables.html" class="btn btn-neutral float-left" title="Ámbito de las variables" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="excepciones.html" class="btn btn-neutral float-right" title="Excepciones" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+  <p>
+    © Copyright <span id="anio-copyright"></span> jeironpro.
+  </p>
+  <script>
+    document.getElementById("anio-copyright").textContent =
+      new Date().getFullYear();
+  </script>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

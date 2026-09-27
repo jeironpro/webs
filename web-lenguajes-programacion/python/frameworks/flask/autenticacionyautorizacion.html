@@ -1,0 +1,355 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Autenticación y autorización &mdash; documentación de Lenguajes de programación - </title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/logo.svg"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=e2bb6099"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" title="Búsqueda" href="../../../search.html" />
+    <link rel="next" title="Bases de datos (SQLAlchemy)" href="basesdedatos-sqlalchemy.html" />
+    <link rel="prev" title="API RESTful" href="apirestful.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Lenguajes de programación
+              <img src="../../../_static/logo.svg" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lenguajes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../java/index.html">Java — DAW (ITIC Barcelona)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Python — DCS (INFOTEP)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#teoria">Teoría</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#frameworks">Frameworks</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Flask</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="apirestful.html">API RESTful</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Autenticación y autorización</a></li>
+<li class="toctree-l4"><a class="reference internal" href="basesdedatos-sqlalchemy.html">Bases de datos (SQLAlchemy)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="despliegueenproduccion.html">Despliegue en producción</a></li>
+<li class="toctree-l4"><a class="reference internal" href="introduccionflask.html">Introducción a Flask</a></li>
+<li class="toctree-l4"><a class="reference internal" href="manejodeformularios.html">Manejo de formularios</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plantillajinja2.html">Plantillas Jinja2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plantillajinja2.html#ejemplo-basico">Ejemplo básico:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pruebas.html">Pruebas</a></li>
+<li class="toctree-l4"><a class="reference internal" href="redireccionyerrores.html">Redirección y errores</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rutasymetodos.html">rutasymetodos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sesionesycookies.html">Sesiones y cookies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="instance-proyecto.html">Instance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="templates-proyecto.html">Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../django/index.html">Django</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#ejercicios">Ejercicios</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../javascript/index.html">JavaScript — DCS (INFOTEP)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Lenguajes de programación</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Python — DCS (INFOTEP)</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Flask</a></li>
+      <li class="breadcrumb-item active">Autenticación y autorización</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/python/frameworks/flask/autenticacionyautorizacion.md.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="autenticacion-y-autorizacion">
+<h1>Autenticación y autorización<a class="headerlink" href="#autenticacion-y-autorizacion" title="Link to this heading"></a></h1>
+<p><strong>Autenticación y Autorización</strong>
+Autenticación con Sesiones en Flask</p>
+<ol class="arabic simple">
+<li><p>Configuración básica de sesiones en Flask
+Para comenzar a usar sesiones en Flask necesitamos configurar una clave secreta que se usará para firmar la sesión y asegurarse de que los datos no puedan ser modificados por el cliente.</p></li>
+</ol>
+<p><strong>Cómo funciona la autenticación con sesiones</strong></p>
+<ol class="arabic simple">
+<li><p>Login: El usuario ingresa su correo y, si el correo coincide con uno registrado en la base de datos, se crea una sesión que almacena el id y nombre del usuario.</p></li>
+</ol>
+<ul class="simple">
+<li><p><strong>2.</strong> Protección de rutas: La ruta /bienvenida está protegida por la sesión. Si no hay sesión activa, el usuario es redirigido al login.</p></li>
+<li><p><strong>3.</strong> Logout: Al hacer logout, los datos de la sesión se eliminan, y el usuario es redirigido al login.</p></li>
+</ul>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Código básico de autenticación con sesiones</span>
+<span class="c1"># from flask import Flask, render_template, redirect, url_for, request, session</span>
+<span class="c1"># from flask_sqlalchemy import SQLAlchemy</span>
+
+<span class="c1"># app = Flask(__name__)</span>
+
+<span class="c1"># # Configuración de la base de datos y clave secreta para las sesiones</span>
+<span class="c1"># app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mi_base_datos.db'</span>
+<span class="c1"># app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False</span>
+<span class="c1"># app.secret_key = 'mi_clave_secreta' # Debes cambiar esto por una clave más segura</span>
+
+<span class="c1"># db = SQLAlchemy(app)</span>
+
+<span class="c1"># # Definir el modelo Usuario</span>
+<span class="c1"># class Usuario(db.Model):</span>
+<span class="c1">#     id = db.Column(db.Integer, primary_key=True)</span>
+<span class="c1">#     nombre = db.Column(db.String(100), nullable=False)</span>
+<span class="c1">#     correo = db.Column(db.String(100), unique=True, nullable=False)</span>
+
+<span class="c1"># # Ruta de login</span>
+<span class="c1"># @app.route('/login', methods=['GET', 'POST'])</span>
+<span class="c1"># def login():</span>
+<span class="c1">#     if request.method == 'POST':</span>
+<span class="c1">#         correo = request.form['correo']</span>
+<span class="c1">#         usuario = Usuario.query.filter_by(correo=correo).first()</span>
+
+<span class="c1">#         if usuario:</span>
+<span class="c1">#             # Autenticación existosa</span>
+<span class="c1">#             session['usuario_id'] = usuario.id # Guardar el ID del usuario en la sesión</span>
+<span class="c1">#             session['nombre'] = usuario.nombre # Guardar el nombre en la sesión</span>
+<span class="c1">#             return redirect(url_for('bienvenida'))</span>
+<span class="c1">#         else:</span>
+<span class="c1">#             return "Usuario no encontrado", 404</span>
+<span class="c1">#     return render_template('login.html')</span>
+
+<span class="c1"># # Ruta protegida - bienvenida</span>
+<span class="c1"># @app.route('/bienvenida')</span>
+<span class="c1"># def bienvenida():</span>
+<span class="c1">#     if 'usuario_id' not in session:</span>
+<span class="c1">#         return redirect(url_for('login')) # Si mo está autenticado, redirigir al login</span>
+    
+<span class="c1">#     nombre = session['nombre']</span>
+<span class="c1">#     return f"Bienvenido, {nombre}"</span>
+
+<span class="c1"># # Ruta de logout</span>
+<span class="c1"># @app.route('/logout')</span>
+<span class="c1"># def logout():</span>
+<span class="c1">#     session.pop('usuario_id', None) # Eliminar el ID de la sesión</span>
+<span class="c1">#     session.pop('nombre', None) # Eliminar el nombre de la sesión</span>
+<span class="c1">#     return redirect(url_for('login'))</span>
+
+<span class="c1"># if __name__ == '__main__':</span>
+<span class="c1">#     app.run(debug=True)</span>
+
+<span class="sd">""" Explicación del código:</span>
+<span class="sd">Configuración de Flask:</span>
+<span class="sd">    · Usamos app.secret_key para asegurar que las sesiones no puedan ser manipuladas por el cliente.</span>
+<span class="sd">    · SQLAlchemy se utiliza para gestionar la base de datos, donde almacenamos los usuarios.</span>
+
+<span class="sd">Modelo Usuario:</span>
+<span class="sd">    · Tiene los atributos id, nombre y correo. Los datos de los usuarios se almacenan en esta tabla.</span>
+
+<span class="sd">Ruta /login:</span>
+<span class="sd">    · Si el método es POST, se obtiene el correo proporcionado por el usuario, y se consulta en la base de datos si existe un usuario con ese correo.</span>
+<span class="sd">    · Si el usuario es encontrado, guardamos su id y nombre en la sesión para usarlos posteriormente.</span>
+<span class="sd">    · Si no se encuentra el usuario, se devuelve un error.</span>
+
+<span class="sd">Ruta /bienvenida:</span>
+<span class="sd">    · Si el usuario está autenticado (es decir, tiene un valor en la sesión), se muestra un mensaje de bienvenida con su nombre.</span>
+<span class="sd">    · Si el usuario no está autenticado, lo redirige a la página de login.</span>
+
+<span class="sd">Ruta /logout:</span>
+<span class="sd">    · Elimina los datos de la sesión, desconectando al usuario.</span>
+<span class="sd">"""</span>
+
+<span class="sd">""" Autenticación con JWT en Flask</span>
+<span class="sd">JWT es un estándar abierto que se utiliza para la transmisión segura de información entre un cliente y un servidor. En el contexto de la autenticación, el servidor genera un JWT cuando el usuario inicia sesión y lo envía al cliente, quien lo almacena (normalmente en cookies o almacenamiento local). Este tokem se enviará en cada solicitud subsecuente para que el servidor verifique la identidad del usuario.</span>
+
+<span class="sd">Pasos para implementar la autenticación con JWT:</span>
+<span class="sd">    1. Instalar dependencias: necesitamos instalar el paquete PyJWT para crear y verificar tokens JWT.</span>
+<span class="sd">        pip install pyjwt flask</span>
+<span class="sd">    </span>
+<span class="sd">    2. Estructura básica de la aplicación Flask con JWT:</span>
+<span class="sd">        abajo...</span>
+
+<span class="sd">Ventajas de usar JWT:</span>
+<span class="sd">    · Escalabilidad: Los tokens son independientes del servidor, por lo que es más fácil escalar tu aplicación sin necesidad de mantener sesiones en el servidor.</span>
+
+<span class="sd">    · Sin estado (Stateless): El servidor no necesita almacenar ningún dato de sesión; toda la información se transporta con cada solicitud.</span>
+
+<span class="sd">    · Seguridad: Los tokens se pueden firmar digitalmente y se pueden configurar para caducar después de un tiempo específico.</span>
+<span class="sd">"""</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">jsonify</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">jwt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">flask_sqlalchemy</span><span class="w"> </span><span class="kn">import</span> <span class="n">SQLAlchemy</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="c1"># Configuración de la base de datos y el secreto para firmar el JWT</span>
+<span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">'SQLALCHEMY_DATABASE_URI'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'sqlite:///mi_base_datos.db'</span>
+<span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">'SQLALCHEMY_TRACK_MODIFICATIONS'</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">app</span><span class="o">.</span><span class="n">secret_key</span> <span class="o">=</span> <span class="s1">'mi_clave_secreta'</span>  <span class="c1"># Cambiar por una clave secreta más segura</span>
+
+<span class="n">db</span> <span class="o">=</span> <span class="n">SQLAlchemy</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+
+<span class="c1"># Modelo de usuario</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Usuario</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">nombre</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">correo</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Función para crear el JWT</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">crear_token</span><span class="p">(</span><span class="n">usuario_id</span><span class="p">):</span>
+    <span class="c1"># Definir la expiración del token</span>
+    <span class="n">expiracion</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span> <span class="o">+</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># Crear el payload del token</span>
+    <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">'exp'</span><span class="p">:</span> <span class="n">expiracion</span><span class="p">,</span>
+        <span class="s1">'iat'</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">(),</span>
+        <span class="s1">'sub'</span><span class="p">:</span> <span class="n">usuario_id</span> <span class="c1"># 'sub' es el identificador del usuario</span>
+    <span class="p">}</span>
+    <span class="c1"># Firmar el token usando la clave secreta</span>
+    <span class="n">token</span> <span class="o">=</span> <span class="n">jwt</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">payload</span><span class="p">,</span> <span class="n">app</span><span class="o">.</span><span class="n">secret_key</span><span class="p">,</span> <span class="n">algorithm</span><span class="o">=</span><span class="s1">'HS256'</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">token</span>
+
+<span class="c1"># Ruta de login</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">'/login'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">'POST'</span><span class="p">])</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">login</span><span class="p">():</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">get_json</span><span class="p">()</span>
+    <span class="n">correo</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'correo'</span><span class="p">)</span>
+    <span class="n">usuario</span> <span class="o">=</span> <span class="n">Usuario</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">correo</span><span class="o">=</span><span class="n">correo</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">usuario</span><span class="p">:</span>
+        <span class="c1"># Crear el token de autenticación</span>
+        <span class="n">token</span> <span class="o">=</span> <span class="n">crear_token</span><span class="p">(</span><span class="n">usuario</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s1">'token'</span><span class="p">:</span> <span class="n">token</span><span class="p">}),</span> <span class="mi">200</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s1">'message'</span><span class="p">:</span> <span class="s1">'Usuario no encontrado'</span><span class="p">}),</span> <span class="mi">404</span>
+
+<span class="c1"># Ruta protegida por JWT</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">'/perfil'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">'GET'</span><span class="p">])</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">perfil</span><span class="p">():</span>
+    <span class="c1"># Obtener el token de los encabezados de la solicitud</span>
+    <span class="n">token</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'Authorization'</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">token</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s1">'message'</span><span class="p">:</span> <span class="s1">'Token no proporcionado'</span><span class="p">}),</span> <span class="mi">403</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Decodificar el token</span>
+        <span class="n">payload</span> <span class="o">=</span> <span class="n">jwt</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">app</span><span class="o">.</span><span class="n">secret_key</span><span class="p">,</span> <span class="n">algorithms</span><span class="o">=</span><span class="p">[</span><span class="s1">'HS256'</span><span class="p">])</span>
+        <span class="n">usuario_id</span> <span class="o">=</span> <span class="n">payload</span><span class="p">[</span><span class="s1">'sub'</span><span class="p">]</span>
+        <span class="n">usuario</span> <span class="o">=</span> <span class="n">Usuario</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">usuario_id</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s1">'nombre'</span><span class="p">:</span> <span class="n">usuario</span><span class="o">.</span><span class="n">nombre</span><span class="p">,</span> <span class="s1">'correo'</span><span class="p">:</span> <span class="n">usuario</span><span class="o">.</span><span class="n">correo</span><span class="p">}),</span> <span class="mi">200</span>
+    <span class="k">except</span> <span class="n">jwt</span><span class="o">.</span><span class="n">ExpiredSignatureError</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s1">'message'</span><span class="p">:</span> <span class="s1">'Token expirado'</span><span class="p">}),</span> <span class="mi">401</span>
+    <span class="k">except</span> <span class="n">jwt</span><span class="o">.</span><span class="n">InvalidTokenError</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s1">'message'</span><span class="p">:</span> <span class="s1">'Token inválido'</span><span class="p">}),</span> <span class="mi">403</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="sd">""" Explicación del código:</span>
+<span class="sd">Instalación y Configuración:</span>
+<span class="sd">    · Usamos flask_sqlalchemy para interactuar con la base de datos.</span>
+<span class="sd">    · Configuramos una clave secreta para firmar los tokens JWT.</span>
+
+<span class="sd">Modelo Usuario:</span>
+<span class="sd">    · Definimos el modelo de usuario con los campos id, nombre y correo.</span>
+
+<span class="sd">Función crear_token:</span>
+<span class="sd">    · Esta función toma el usuario_id como entrada y crea un JWT con un payload que incluye:</span>
+<span class="sd">        · iat (Issued At): el momento en que el token fue creado.</span>
+<span class="sd">        · exp (Expiration): la expiración del token (en este caso, 1 hora).</span>
+<span class="sd">        · sub (Subject): el identificador del usuario.</span>
+<span class="sd">    · El token se firma usando la clave secreta configurada en Flask.</span>
+
+<span class="sd">Ruta /login:</span>
+<span class="sd">    · Esta ruta recibe una solicitud POST con los datos del usuario (en este caso, el correo). Si el usuario existe en la base de datos, se genera un JWT y se devuelve al cliente.</span>
+<span class="sd">    · El cliente debe almacenar este token (generalmente en cookies o almacenamiento local).</span>
+
+<span class="sd">Ruta /perfil:</span>
+<span class="sd">    · Esta ruta está protegida por JWT. Para acceder a ella, el cliente debe enviar el token en los encabezados de la solicitud (Authorization).</span>
+<span class="sd">    · El servidor valida el token usando jwt.decode(). Si el token es válido y no ha expirado, se muestra la información del usuario.</span>
+
+<span class="sd">Manejo de errores de JWT:</span>
+<span class="sd">    · Si el token ha expirado, se devuelve un error 401 (No autorizado).</span>
+<span class="sd">    · Si el token es inválido, se devuelve un error 403 (Acceso denegado).</span>
+<span class="sd">    · Si el token no se proporciona, se devuelve un error 403.</span>
+<span class="sd">"""</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="apirestful.html" class="btn btn-neutral float-left" title="API RESTful" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="basesdedatos-sqlalchemy.html" class="btn btn-neutral float-right" title="Bases de datos (SQLAlchemy)" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+  <p>
+    © Copyright <span id="anio-copyright"></span> jeironpro.
+  </p>
+  <script>
+    document.getElementById("anio-copyright").textContent =
+      new Date().getFullYear();
+  </script>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

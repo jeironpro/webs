@@ -1,0 +1,384 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Condicionals &mdash; documentación de Lenguajes de programación - </title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../../../_static/logo.svg"/>
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=e2bb6099"></script>
+      <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="search" title="Búsqueda" href="../../../../search.html" />
+    <link rel="next" title="Bucles condicionals" href="../bucles-condicionals/index.html" />
+    <link rel="prev" title="Condicionals" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Lenguajes de programación
+              <img src="../../../../_static/logo.svg" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lenguajes</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Java — DAW (ITIC Barcelona)</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../../index.html#teoria">Teoría</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Elements basics de la programacio</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../introduccio/index.html">Introducció</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../instruccions-sequencials/index.html">Instruccions sequencials</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../variables-i-tipus-de-dades/index.html">Variables i tipus de dades</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tipus-de-operadors-i-expressions/index.html">Tipus de operadors i expressions</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="index.html">Condicionals</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../bucles-condicionals/index.html">Bucles condicionals</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../control-de-bucles/index.html">Control de bucles</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../recorreguts/index.html">Recorreguts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../strings/index.html">Strings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../conclusions/index.html">Conclusions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../moduls/index.html">Moduls</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../poo/index.html">POO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../biblioteques/index.html">Biblioteques</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../fitxers/index.html">Fitxers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../persistencia-amb-bases-de-dades/index.html">Persistencia amb bases de dades</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../validacio-daplicacions/index.html">Validació daplicacions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#ejercicios">Ejercicios</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../python/index.html">Python — DCS (INFOTEP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../javascript/index.html">JavaScript — DCS (INFOTEP)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Lenguajes de programación</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Java — DAW (ITIC Barcelona)</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Elements basics de la programacio</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Condicionals</a></li>
+      <li class="breadcrumb-item active">Condicionals</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/java/teoria/elements-basics-de-la-programacio/condicionals/condicionals.md.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="condicionals">
+<h1>Condicionals<a class="headerlink" href="#condicionals" title="Link to this heading"></a></h1>
+<p><strong>Condicionals</strong>
+Els condicionals en Java permeten que el programa prengui decisions en funció de certes condicions. Això ens permet controlar el flux d’execució segons els valor de les variables o els resultats de les expressions.</p>
+<p><strong>Tipus de condicionals en Java</strong></p>
+<ol class="arabic simple">
+<li><p>if</p></li>
+<li><p>if-ele</p></li>
+<li><p>if-else if-else</p></li>
+<li><p>switch</p></li>
+</ol>
+<ul class="simple">
+<li><p><strong>1.</strong> Estructura if
+L’estructura if executa un bloc de codi només si una condició és true. Si la condició és false, el codi dins del blocs no s’executa.</p></li>
+</ul>
+<p><strong>Sintaxis</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">condicio</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</pre></div>
+</div>
+<p>// Codi a executar si la condició és certa</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Exemple</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">edat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">21</span><span class="p">;</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">edat</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">18</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"Ets major d'edat."</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>En aquest exemple, només es mostrarà «Ets major d’edat.» si edat és 18 o superior.</p>
+<ul class="simple">
+<li><p><strong>2.</strong> Estructura if-else
+L’estructura if-else permet afegir una alternativa si la condició no es compleix. Si la condició és true, s’executa el primer bloc de codi. Si és false, s’executa el bloc else.</p></li>
+</ul>
+<p><strong>Sintaxi</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">condicio</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</pre></div>
+</div>
+<p>// Codi a executar si la condició és certa</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</pre></div>
+</div>
+<p>// Codi a executar si la condició és certa</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Exemple</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">edat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">16</span><span class="p">;</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">edat</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">18</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"Ets major d'edat."</span><span class="p">);</span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"Ets menor d'edat."</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>En aquest exemple, si edat és inferior a 18, es mostrarà «Ets menor d’edat.»</p>
+<ul class="simple">
+<li><p><strong>3.</strong> Estructura if-else if-else
+L’estructura if-else if-else permet avaluar múltiples condicions en seqüencia. Quan es troba una condició true, el bloc associat s’executa, i la resta de condicions s’ignoren. Si cap condició és true, s’executa el bloc else.</p></li>
+</ul>
+<p><strong>Sintaxis</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">condicio1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</pre></div>
+</div>
+<p>// Codi a executar si condicio1 és certa</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">condicio2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</pre></div>
+</div>
+<p>// Codi a executar si cap de les condicions anteriors és certa</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</pre></div>
+</div>
+<p>// Codi a executar si cap de les condicions anteriors és certa</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Exemple</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">nota</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">85</span><span class="p">;</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">nota</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">90</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"Excel·lent"</span><span class="p">);</span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">nota</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">75</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"Aprovat"</span><span class="p">);</span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"Suspés"</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>En aquest exemple, si nota és 85, es mostrarà «Aprovat»</p>
+<ul class="simple">
+<li><p><strong>4.</strong> Estructura switch
+L’estructura switch s’utilitza quan tenim múltiples valors possibles per a una variable i volem executar diferents blocs de codi segons cada valor. És especialment útil per simplificar el codi quan hi ha moltes opcions.</p></li>
+</ul>
+<p><strong>Sintaxis</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">variable</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</pre></div>
+</div>
+<p>case valor1:
+// Codi a executar si la variable és igual a valor1</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="w">        </span><span class="k">break</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>case valor2:
+// Codi a executar si la variable és igual a valor2</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="w">        </span><span class="k">break</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>default:
+// Codi a executar si cap cas és satisfet</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Exemple</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">dia</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+
+<span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">dia</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</pre></div>
+</div>
+<p><strong>case 1</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"Dilluns"</span><span class="p">);</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="mi">2</span><span class="p">:</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"Dimarts"</span><span class="p">);</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="mi">3</span><span class="p">:</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"Dimecres"</span><span class="p">);</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="mi">4</span><span class="p">:</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"Dijous"</span><span class="p">);</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="mi">5</span><span class="p">:</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"Divendres"</span><span class="p">);</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>default:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"Cap de setmana"</span><span class="p">);</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>En aquest exemple, si dia és 3, es mostrarà «Dimecres». Si el valor de dia no coincideix amb cap dels casos, s’executarà el bloc default.</p>
+<p><strong>Notes sobre els condicionals</strong></p>
+<ul class="simple">
+<li><p>Ús del break en switch: la paraula clau break evita que el codi continuï executant els següents casos. Si no es posa, s’executaran tots els casos següents fins a trobar un break o el final del switch.</p></li>
+<li><p>Condicions complexen: es poden utilitzar operadors lògics (&amp;&amp;, ||, !) dins d’un if per combinar condicions.</p></li>
+</ul>
+<p><strong>Exemple amb condicions complexos</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">edat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">21</span><span class="p">;</span>
+<span class="kt">boolean</span><span class="w"> </span><span class="n">tePermis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">edat</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">18</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">tePermis</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"Pots accedir."</span><span class="p">);</span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">edat</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">18</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">tePermis</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"No tens permís per accedir."</span><span class="p">);</span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"Ets menor d'edat i no pots accedir."</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>En aquest exemple, es combinen condicions amb &amp;&amp; i ! per determinar si una persona pot accedir segons la seva edat i permís.</p>
+<p>L’operador ternari és una forma simplificada i abreujada d’escriure un if-else en una sola línia. En lloc d’escriure diverses línies de codi per a una condició simple, podem utilitzar l’operador ternari per decidir quin valor assignar o quina acció prendre en funció d’una condició.</p>
+<p><strong>Sintaxi de l’operador ternari</strong>
+La sintaxi general de l’operador ternari és:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">variable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">condicio</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">valorSiCert</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">valorSiFals</span><span class="p">;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>(condició): és la condició que volem avaluar. Ha de ser una expressió booleana (true o false).</p></li>
+<li><p>valorSiCert: és el valor que s’assignarà o l’expressió que s’executarà si la condició és true.</p></li>
+<li><p>valorSiFals: és el valor que s’assignarà a l’expressió que s’executarà si la condició és falsa.</p></li>
+</ul>
+<p><strong>Exemple bàsic de l’operador ternari</strong>
+Suposem que volem comprovar si una persona és major d’edat. Podem utilitzar l’operador ternari per assignar un missatge segons el valor de la variable edat.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">edat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">18</span><span class="p">;</span>
+<span class="n">String</span><span class="w"> </span><span class="n">missatge</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">edat</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">18</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s">"Ets major d'edat"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">"Ets menor d'edat"</span><span class="p">;</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">missatge</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>En aquest exemple</strong></p>
+<ul class="simple">
+<li><p>Si edat és 18 o superior, missatge serà «Ets major d’edat».</p></li>
+<li><p>Si edat és inferior a 18, missatge serà «Ets menor d’edat».</p></li>
+</ul>
+<p><strong>Exemple amb càlculs</strong>
+L’operador ternari també es pot utilitzar per assignar valors numèrics en funció d’una condició.</p>
+<p><strong>Exemple</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="n">max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"El màxim és: "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">max</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>En aquest cas</strong></p>
+<ul class="simple">
+<li><p>Si a és més gran que b, max tindrà el valor de a.</p></li>
+<li><p>Si a no és més gran que b, max tindrà el valor de b.</p></li>
+</ul>
+<p><strong>Exemple de múltiples operadors ternaris</strong>
+És possible combinar diversos operadors ternaris, però s’ha de fer amb cura perquè pot compilar la llegibilitat del codi.</p>
+<p><strong>Exemple</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">nota</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">85</span><span class="p">;</span>
+<span class="n">String</span><span class="w"> </span><span class="n">qualificacio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">nota</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">90</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s">"Excel·lent"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="n">nota</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">75</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s">"Notable"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="n">nota</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">50</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s">"Aprovat"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">"Suspés"</span><span class="p">;</span>
+
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"Qualificació: "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">qualificacio</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>En aquest exemple</strong></p>
+<ul class="simple">
+<li><p>Si nota és 90 o més, qualificació serà «Excel·lent».</p></li>
+<li><p>Si nota és 75 i 89, qualificació serà «Notable».</p></li>
+<li><p>Si nota està entre 50 i 74, qualificació serà «Aprovat».</p></li>
+<li><p>Si nota és inferior a 50, qualificació serà «Suspés».</p></li>
+</ul>
+<p><strong>Avantatges i inconvenients de l’operador ternari</strong>
+Avantatges:</p>
+<ul class="simple">
+<li><p>Simplifica el codi en casos on una simple assignació o decisió if-else seria llarga.</p></li>
+<li><p>Redueix el nombre de línies de codi, fent-lo més compacte.</p></li>
+</ul>
+<p><strong>Inconvenients</strong></p>
+<ul class="simple">
+<li><p>Pot reduir la llegibilitat si s’abusa o si es combinen molts operadors ternaris en un sola expressió.</p></li>
+<li><p>No és adequat per a condicions complexes que requereixen múltiples línies o blocs de codi.</p></li>
+</ul>
+<p><strong>Bona practica</strong>
+L’operador ternari és útil per assignar un valor senzill o prendre una decisió bàsica en una sola línia. Tot i això, quan les condicions es fan massa llargues o complexos, és millor utilitzar estructures if-else tradicionals per mantenir la claredat del codi.</p>
+<p><strong>Exemple recomanable (senzill i clar)</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">String</span><span class="w"> </span><span class="n">missatge</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">edat</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">18</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s">"Adult"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">"Menor"</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><strong>Exemple no recomanable (compila la lectura)</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">String</span><span class="w"> </span><span class="n">qualificacio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">nota</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">90</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s">"Excel·lent"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="n">nota</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">75</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s">"Notable"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="n">nota</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">50</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s">"Aprovat"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">"Suspés"</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="index.html" class="btn btn-neutral float-left" title="Condicionals" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="../bucles-condicionals/index.html" class="btn btn-neutral float-right" title="Bucles condicionals" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+  <p>
+    © Copyright <span id="anio-copyright"></span> jeironpro.
+  </p>
+  <script>
+    document.getElementById("anio-copyright").textContent =
+      new Date().getFullYear();
+  </script>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,241 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modelos y bases de datos &mdash; documentación de Lenguajes de programación - </title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/logo.svg"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=e2bb6099"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" title="Búsqueda" href="../../../search.html" />
+    <link rel="next" title="Producción con Django" href="producciondjango.html" />
+    <link rel="prev" title="Introducción a Django" href="introducciondjango.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Lenguajes de programación
+              <img src="../../../_static/logo.svg" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lenguajes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../java/index.html">Java — DAW (ITIC Barcelona)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Python — DCS (INFOTEP)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#teoria">Teoría</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#frameworks">Frameworks</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../flask/index.html">Flask</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Django</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="admindjango.html">Admin de Django</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autenticacionyautorizacion.html">Autenticación y autorización</a></li>
+<li class="toctree-l4"><a class="reference internal" href="formulariosyvalidacion.html">Formularios y validación</a></li>
+<li class="toctree-l4"><a class="reference internal" href="introducciondjango.html">Introducción a Django</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Modelos y bases de datos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="producciondjango.html">Producción con Django</a></li>
+<li class="toctree-l4"><a class="reference internal" href="templatesyrenderizado.html">Templates y renderizado</a></li>
+<li class="toctree-l4"><a class="reference internal" href="introducciondjango-proyecto.html">Proyecto de introducción a Django</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#ejercicios">Ejercicios</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../javascript/index.html">JavaScript — DCS (INFOTEP)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Lenguajes de programación</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Python — DCS (INFOTEP)</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Django</a></li>
+      <li class="breadcrumb-item active">Modelos y bases de datos</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/python/frameworks/django/modelosybasesdedatos.md.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="modelos-y-bases-de-datos">
+<h1>Modelos y bases de datos<a class="headerlink" href="#modelos-y-bases-de-datos" title="Link to this heading"></a></h1>
+<p><strong>Modelos y Bases de datos en Django</strong>
+En Django, los modelos son la forma de representar la estructura de datos en el código. Cada modelo corresponde a una tabla en la base de datos, y los atributos del modelo corresponden a las columnas de esa tabla.</p>
+<ul class="simple">
+<li><p><strong>1.</strong> Configurar la base de datos
+Por defecto, Django usa SQLite como base de datos. Si prefieres usar otra (como PostgreSQL o MySQL), se puede configurar en el archivo settings.py.</p></li>
+<li><p><strong>2.</strong> Crear un modelo
+En el archivo models.py dentro de la aplicación (mi_aplicacion/models.py), define un modelo:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="kn">from</span><span class="w"> </span><span class="nn">django.db</span><span class="w"> </span><span class="kn">import</span> <span class="n">models</span>
+
+    <span class="k">class</span><span class="w"> </span><span class="nc">Usuario</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+        <span class="n">nombre</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span> <span class="c1"># Campo de texto con longitud máxima de 100</span>
+        <span class="n">email</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">EmailField</span><span class="p">(</span><span class="n">unique</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># Campo correo electrónico único</span>
+        <span class="n">edad</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">()</span> <span class="c1"># Campo para enteros</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">nombre</span> <span class="c1"># Devuelve el nombre del usaurio al representarlo como texto</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>3.</strong> Aplicar migraciones
+Las migraciones son la forma en que Django sincroniza el esquema de la base datos con los modelos definidos.</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>Crear las migraciones:</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">makemigrations</span>
+    <span class="n">Esto</span> <span class="n">genera</span> <span class="n">un</span> <span class="n">archivo</span> <span class="n">de</span> <span class="n">migración</span> <span class="n">en</span> <span class="n">la</span> <span class="n">carpeta</span> <span class="n">migrations</span><span class="o">/.</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>2.</strong> Aplicar las migraciones a la base de datos:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">migrate</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>4.</strong> Registrar el modelo en el panel de administración
+Para gestionar este modelo desde el panel de administración, editamos el archivo admin.py de la aplicación (mi_aplicacion/admin.py):</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="kn">from</span><span class="w"> </span><span class="nn">django.contrib</span><span class="w"> </span><span class="kn">import</span> <span class="n">admin</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Usuario</span>
+
+    <span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Usuario</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>4.1. Crear un usuario administrador en Django</strong></p>
+<ol class="arabic simple">
+<li><p>Ejecutar el comando para crear un superusuario: en la terminal, dentro de la carpeta del proyecto, escribimos:</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">createsuperuser</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>2.</strong> Completa la información requerida: Django te pedirá algunos datos para el usuario administrador:</p></li>
+<li><p>Username: elige un nombre de usuario (por ejemplo, «admin»).</p></li>
+<li><p>Email address: proporciona un correo electrónico válido (opcional, pero recomendado).</p></li>
+<li><p>Password: crea una contraseña segura y confirmala.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="n">Ejemplo</span> <span class="n">de</span> <span class="n">salida</span><span class="p">:</span>
+            <span class="n">Username</span><span class="p">:</span> <span class="n">admin</span>
+            <span class="n">Email</span> <span class="n">address</span><span class="p">:</span> <span class="n">admin</span><span class="nd">@example</span><span class="o">.</span><span class="n">com</span>
+            <span class="n">Password</span><span class="p">:</span> <span class="o">**********</span>
+            <span class="n">Password</span> <span class="p">(</span><span class="n">again</span><span class="p">):</span> <span class="o">**********</span>
+            <span class="n">Superuser</span> <span class="n">created</span> <span class="n">successfully</span><span class="o">.</span>
+</pre></div>
+</div>
+<p><strong>Luego, inicia el servidor</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">runserver</span>
+</pre></div>
+</div>
+<p>Accede al panel de administración en http://127.0.0.1:8000/admin/. Puedes usar el usuario administrador creado previamente.</p>
+<ul class="simple">
+<li><p><strong>5.</strong> Interactuar con la base de datos desde el shell de Django
+Abre el shell de Django:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">shell</span>
+</pre></div>
+</div>
+<p><strong>Ejemplo de operaciones con el modelo Usuario</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="kn">from</span><span class="w"> </span><span class="nn">mi_aplicacion.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Usuario</span>
+
+    <span class="c1"># Crear un nuevo usuario</span>
+    <span class="n">usuario</span> <span class="o">=</span> <span class="n">Usuario</span><span class="p">(</span><span class="n">nombre</span><span class="o">=</span><span class="s2">"Jeiron Espinal"</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="s2">"jeiron@gmail.com"</span><span class="p">,</span> <span class="n">edad</span><span class="o">=</span><span class="mi">21</span><span class="p">)</span>
+    <span class="n">usuario</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+    <span class="c1"># Consultar usuarios</span>
+    <span class="n">usuarios</span> <span class="o">=</span> <span class="n">Usuario</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">usuarios</span><span class="p">)</span>
+
+    <span class="c1"># Filtrar usuarios</span>
+    <span class="n">usuario</span> <span class="o">=</span> <span class="n">Usuario</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">nombre</span><span class="o">=</span><span class="s2">"Jeiron Espinal"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">usuario</span><span class="o">.</span><span class="n">email</span><span class="p">)</span>
+
+    <span class="c1"># Actualizar un usuario</span>
+    <span class="n">usuario</span><span class="o">.</span><span class="n">edad</span> <span class="o">=</span> <span class="mi">22</span>
+    <span class="n">usuario</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+    <span class="c1"># Eliminar un usuario</span>
+    <span class="n">usuario</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="introducciondjango.html" class="btn btn-neutral float-left" title="Introducción a Django" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="producciondjango.html" class="btn btn-neutral float-right" title="Producción con Django" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+  <p>
+    © Copyright <span id="anio-copyright"></span> jeironpro.
+  </p>
+  <script>
+    document.getElementById("anio-copyright").textContent =
+      new Date().getFullYear();
+  </script>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

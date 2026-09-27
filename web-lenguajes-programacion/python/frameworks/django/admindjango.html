@@ -1,0 +1,225 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin de Django &mdash; documentación de Lenguajes de programación - </title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/logo.svg"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=e2bb6099"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" title="Búsqueda" href="../../../search.html" />
+    <link rel="next" title="Autenticación y autorización" href="autenticacionyautorizacion.html" />
+    <link rel="prev" title="Django" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Lenguajes de programación
+              <img src="../../../_static/logo.svg" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lenguajes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../java/index.html">Java — DAW (ITIC Barcelona)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Python — DCS (INFOTEP)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#teoria">Teoría</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#frameworks">Frameworks</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../flask/index.html">Flask</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Django</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Admin de Django</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autenticacionyautorizacion.html">Autenticación y autorización</a></li>
+<li class="toctree-l4"><a class="reference internal" href="formulariosyvalidacion.html">Formularios y validación</a></li>
+<li class="toctree-l4"><a class="reference internal" href="introducciondjango.html">Introducción a Django</a></li>
+<li class="toctree-l4"><a class="reference internal" href="modelosybasesdedatos.html">Modelos y bases de datos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="producciondjango.html">Producción con Django</a></li>
+<li class="toctree-l4"><a class="reference internal" href="templatesyrenderizado.html">Templates y renderizado</a></li>
+<li class="toctree-l4"><a class="reference internal" href="introducciondjango-proyecto.html">Proyecto de introducción a Django</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#ejercicios">Ejercicios</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../javascript/index.html">JavaScript — DCS (INFOTEP)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Lenguajes de programación</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Python — DCS (INFOTEP)</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Django</a></li>
+      <li class="breadcrumb-item active">Admin de Django</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/python/frameworks/django/admindjango.md.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="admin-de-django">
+<h1>Admin de Django<a class="headerlink" href="#admin-de-django" title="Link to this heading"></a></h1>
+<p><strong>El Administrador de Django</strong>
+El admin de Django es una interfaz de administración generada automáticamente que permite realizar operaciones CRUD(Crear, Leer, Actualizar, Eliminar) sobre los modelos de tu aplicación.</p>
+<p><strong>Configuración básica del admin</strong></p>
+<ol class="arabic simple">
+<li><p>Registrar un modelo en el admin</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">En</span> <span class="n">el</span> <span class="n">archivo</span> <span class="n">admin</span><span class="o">.</span><span class="n">py</span> <span class="n">de</span> <span class="n">la</span> <span class="n">aplicación</span> <span class="p">(</span><span class="n">mi_aplicacion</span><span class="o">/</span><span class="n">admin</span><span class="o">.</span><span class="n">py</span><span class="p">),</span> <span class="n">registra</span> <span class="n">tus</span> <span class="n">modelos</span> <span class="n">para</span> <span class="n">que</span> <span class="n">aparezcan</span> <span class="n">en</span> <span class="n">el</span> <span class="n">admin</span><span class="p">:</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">django.contrib</span><span class="w"> </span><span class="kn">import</span> <span class="n">admin</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Usuario</span>
+
+        <span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Usuario</span><span class="p">)</span>
+    <span class="n">Esto</span> <span class="n">hará</span> <span class="n">que</span> <span class="n">el</span> <span class="n">modelo</span> <span class="n">Usuario</span> <span class="n">sea</span> <span class="n">visible</span> <span class="n">y</span> <span class="n">gestionable</span> <span class="n">en</span> <span class="n">el</span> <span class="n">panel</span> <span class="n">de</span> <span class="n">administración</span><span class="o">.</span>
+</pre></div>
+</div>
+<p><strong>Personalización del admin</strong>
+Puedes personalizar cómo se muestran y gestionan los modelos en el panel de adminsitración. Para ello, debes usar una clase que herede de admin.ModelAdmin.</p>
+<ul class="simple">
+<li><p><strong>1.</strong> Personalizar la lista de modelos: en el archivo admin.py puedes añadir opciones como list_display, search_fields, y list_filter:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="kn">from</span><span class="w"> </span><span class="nn">django.contrib</span><span class="w"> </span><span class="kn">import</span> <span class="n">admin</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Usuario</span>
+
+        <span class="k">class</span><span class="w"> </span><span class="nc">UsuarioAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+            <span class="n">list_display</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'nombre'</span><span class="p">,</span> <span class="s1">'email'</span><span class="p">,</span> <span class="s1">'edad'</span><span class="p">)</span> <span class="c1"># Campos que se mostrarán en la lista</span>
+            <span class="n">search_fields</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'nombre'</span><span class="p">,</span> <span class="s1">'email'</span><span class="p">)</span> <span class="c1"># Campos que se pueden buscar</span>
+            <span class="n">list_filter</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'edad'</span><span class="p">)</span> <span class="c1"># Campos para filtrar resultados</span>
+
+        <span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Usuario</span><span class="p">,</span> <span class="n">UsuarioAdmin</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>2.</strong> Añadir un formulario detallado: si quieres personalizar cómo se ve el formulario de detalle de un modelo:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="k">class</span><span class="w"> </span><span class="nc">UsuarioAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+            <span class="n">list_display</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'nombre'</span><span class="p">,</span> <span class="s1">'email'</span><span class="p">,</span> <span class="s1">'edad'</span><span class="p">)</span>
+            <span class="n">fields</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'nombre'</span><span class="p">,</span> <span class="s1">'email'</span><span class="p">)</span>  <span class="c1"># Campos visibles en el formulario de edición</span>
+
+        <span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Usuario</span><span class="p">,</span> <span class="n">UsuarioAdmin</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>3.</strong> Editar campos relacionados (Inlines): si un modelo tiene una relación ForeignKey o ManyToManyField, puedes agregar un formulario inline para editar los modelos relacionados directamente:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="kn">from</span><span class="w"> </span><span class="nn">.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Perfil</span>
+
+        <span class="k">class</span><span class="w"> </span><span class="nc">PerfilInline</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">StackedInline</span><span class="p">):</span> <span class="c1"># O usar admin.TabularInline</span>
+            <span class="n">model</span> <span class="o">=</span> <span class="n">Perfil</span>
+            <span class="n">extra</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># Número de formularios en blanco adicionales</span>
+
+        <span class="k">class</span><span class="w"> </span><span class="nc">UsuarioAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+            <span class="n">inlines</span> <span class="o">=</span> <span class="p">[</span><span class="n">PerfilInline</span><span class="p">]</span>
+
+        <span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Usuario</span><span class="p">,</span> <span class="n">UsuarioAdmin</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Cambiar el texto o logotipo del admin</strong></p>
+<ol class="arabic simple">
+<li><p>Modificar el título y encabezado: en el archivo admin.py añade:</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">site_header</span> <span class="o">=</span> <span class="s2">"Panel de Administración de Mi Proyecto"</span>
+    <span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">site_title</span> <span class="o">=</span> <span class="s2">"Admin Django"</span>
+    <span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">index_title</span> <span class="o">=</span> <span class="s2">"Gestión de la Aplicación"</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>2.</strong> Personalizar el diseño del admin: puedes modificar el diseño del admin utilizando archivos CSS o incluso instalando paquetes de terceros como django-grappelli o django-suit.</p></li>
+</ul>
+<p><strong>Funciones avanzadas del admin</strong></p>
+<ul class="simple">
+<li><p>Acciones personalizadas: define acciones que se puedan ejecutar en lotes desde la lista de modelos.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span><span class="w"> </span><span class="nf">marcar_mayores_de_edad</span><span class="p">(</span><span class="n">modeladmin</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">queryset</span><span class="p">):</span>
+        <span class="n">queryset</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">edad__get</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">edad</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+
+    <span class="n">marcar_mayores_de_edad</span><span class="o">.</span><span class="n">short_description</span> <span class="o">=</span> <span class="s2">"Marcar usuarios como mayores de edad"</span>
+
+    <span class="k">class</span><span class="w"> </span><span class="nc">UsuarioAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+        <span class="n">actions</span> <span class="o">=</span> <span class="p">[</span><span class="n">marcar_mayores_de_edad</span><span class="p">]</span>
+
+    <span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Usuario</span><span class="p">,</span> <span class="n">UsuarioAdmin</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Filtros personalizados: crear filtros más complejos para los modelos.</p></li>
+<li><p>Permisos y acceso restringido: usar el sistema de usuarios y permisos para limitar quién puede acceder y qué puede hacer en el admin.</p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="index.html" class="btn btn-neutral float-left" title="Django" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="autenticacionyautorizacion.html" class="btn btn-neutral float-right" title="Autenticación y autorización" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+  <p>
+    © Copyright <span id="anio-copyright"></span> jeironpro.
+  </p>
+  <script>
+    document.getElementById("anio-copyright").textContent =
+      new Date().getFullYear();
+  </script>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

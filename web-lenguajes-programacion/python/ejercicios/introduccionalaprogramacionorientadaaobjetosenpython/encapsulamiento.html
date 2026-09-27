@@ -1,0 +1,417 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ejercicios — Encapsulamiento &mdash; documentación de Lenguajes de programación - </title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/logo.svg"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=e2bb6099"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" title="Búsqueda" href="../../../search.html" />
+    <link rel="next" title="Ejercicios — Encapsulamiento de métodos" href="encapsulamientodemetodos.html" />
+    <link rel="prev" title="Ejercicios — Ducktyping" href="ducktyping.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Lenguajes de programación
+              <img src="../../../_static/logo.svg" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lenguajes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../java/index.html">Java — DAW (ITIC Barcelona)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Python — DCS (INFOTEP)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#teoria">Teoría</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#frameworks">Frameworks</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#ejercicios">Ejercicios</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../ejercicios.html">Ejercicios</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython.html">Ejercicios — Elementos básicos de la programación en Python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython/introduccion.html">Ejercicios — Introducción</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython/entradaysalidadedatos.html">Ejercicios — Entrada y salida de datos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython/variablesytiposdedatos.html">Ejercicios — Variables y tipos de datos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython/operadores.html">Ejercicios — Operadores</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython/condicionales.html">Ejercicios — Condicionales</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython/bucles.html">Ejercicios — Bucles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython/colecciones.html">Ejercicios — Colecciones</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython/funciones.html">Ejercicios — Funciones</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduccionalaprogramacionorientadaaobjetosenpython.html">Ejercicios — Introducción a la programación orientada a objetos en Python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="apis.html">Ejercicios — Apis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="clasesabstractas.html">Ejercicios — Clases abstractas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dataclasses.html">Ejercicios — Dataclasses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ducktyping.html">Ejercicios — Ducktyping</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Ejercicios — Encapsulamiento</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#encapsulamiento-adicionales1">encapsulamiento_adicionales1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#encapsulamiento-adicionales2">encapsulamiento_adicionales2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#encapsulamiento-adicionales3">encapsulamiento_adicionales3</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#encapsulamiento-adicionales4">encapsulamiento_adicionales4</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#encapsulamiento-adicionales5">encapsulamiento_adicionales5</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="encapsulamientodemetodos.html">Ejercicios — Encapsulamiento de métodos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="herencia.html">Ejercicios — Herencia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="herenciamultiple.html">Ejercicios — Herencia múltiple</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduccionpoo.html">Ejercicios — Introduccion POO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="metodosmagicos.html">Ejercicios — Métodos mágicos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polimorfismo.html">Ejercicios — Polimorfismo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sobrecargademetodos.html">Ejercicios — Sobrecarga de métodos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="super.html">Ejercicios — Super</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../javascript/index.html">JavaScript — DCS (INFOTEP)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Lenguajes de programación</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Python — DCS (INFOTEP)</a></li>
+          <li class="breadcrumb-item"><a href="../../ejercicios.html">Ejercicios</a></li>
+          <li class="breadcrumb-item"><a href="../introduccionalaprogramacionorientadaaobjetosenpython.html">Ejercicios — Introducción a la programación orientada a objetos en Python</a></li>
+      <li class="breadcrumb-item active">Ejercicios — Encapsulamiento</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/python/ejercicios/introduccionalaprogramacionorientadaaobjetosenpython/encapsulamiento.md.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ejercicios-encapsulamiento">
+<h1>Ejercicios — Encapsulamiento<a class="headerlink" href="#ejercicios-encapsulamiento" title="Link to this heading"></a></h1>
+<section id="encapsulamiento-adicionales1">
+<h2>encapsulamiento_adicionales1<a class="headerlink" href="#encapsulamiento-adicionales1" title="Link to this heading"></a></h2>
+<p>Atributos privados con métodos getter y setter</p>
+<ul class="simple">
+<li><p>Crea una clase Coche con los siguientes atributos privados:</p></li>
+<li><p>marca</p></li>
+<li><p>modelo</p></li>
+<li><p>año</p></li>
+<li><p>Implementa los métodos getter y setter para cada uno de estos atributos.</p></li>
+<li><p>Agrega una validación en el setter para el atributo año, asegurando que solo se pueda establecer un valor mayor que 1900.</p></li>
+</ul>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Coche</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">marca</span><span class="p">,</span> <span class="n">modelo</span><span class="p">,</span> <span class="n">anio</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__marca</span> <span class="o">=</span> <span class="n">marca</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__modelo</span> <span class="o">=</span> <span class="n">modelo</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__anio</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_anio</span><span class="p">(</span><span class="n">anio</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_marca</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__marca</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_marca</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">marca</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__marca</span> <span class="o">=</span> <span class="n">marca</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_modelo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__modelo</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_modelo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modelo</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__modelo</span> <span class="o">=</span> <span class="n">modelo</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_anio</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__anio</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_anio</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">anio</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">anio</span> <span class="o">&gt;</span> <span class="mi">1900</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__anio</span> <span class="o">=</span> <span class="n">anio</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"Error: El año debe ser mayor que 1900."</span><span class="p">)</span>
+
+<span class="n">mi_coche</span> <span class="o">=</span> <span class="n">Coche</span><span class="p">(</span><span class="s2">"Toyota"</span><span class="p">,</span> <span class="s2">"Corolla"</span><span class="p">,</span> <span class="mi">2022</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Marca: </span><span class="si">{</span><span class="n">mi_coche</span><span class="o">.</span><span class="n">get_marca</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Modelo: </span><span class="si">{</span><span class="n">mi_coche</span><span class="o">.</span><span class="n">get_modelo</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Año: </span><span class="si">{</span><span class="n">mi_coche</span><span class="o">.</span><span class="n">get_anio</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="n">mi_coche</span><span class="o">.</span><span class="n">set_anio</span><span class="p">(</span><span class="mi">1900</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Año después del intento de cambio: </span><span class="si">{</span><span class="n">mi_coche</span><span class="o">.</span><span class="n">get_anio</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="encapsulamiento-adicionales2">
+<h2>encapsulamiento_adicionales2<a class="headerlink" href="#encapsulamiento-adicionales2" title="Link to this heading"></a></h2>
+<p>Control de acceso a edad</p>
+<ul class="simple">
+<li><p>Crea una clase Empleado con los siguientes atributos privados:</p></li>
+<li><p>nombre</p></li>
+<li><p>edad</p></li>
+<li><p>salario</p></li>
+<li><p>Implementa los métodos getter y setter para cada atributo.</p></li>
+<li><p>En el setter de edad, asegúrate de que no se pueda establecer un valor menor que 18.</p></li>
+<li><p>En el setter de salario, asegúrate de que el salario no sea negativo.</p></li>
+</ul>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Empleado</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">edad</span><span class="p">,</span> <span class="n">salario</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__nombre</span> <span class="o">=</span> <span class="n">nombre</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__edad</span> <span class="o">=</span> <span class="n">edad</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__salario</span> <span class="o">=</span> <span class="n">salario</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_nombre</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__nombre</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_nombre</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__nombre</span> <span class="o">=</span> <span class="n">nombre</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_edad</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__edad</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_edad</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edad</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">edad</span> <span class="o">&gt;=</span> <span class="mi">18</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__edad</span> <span class="o">=</span> <span class="n">edad</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"Debe ser mayor de edad."</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_salario</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__salario</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_salario</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">salario</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__salario</span> <span class="o">=</span> <span class="n">salario</span>
+
+<span class="n">empleado</span> <span class="o">=</span> <span class="n">Empleado</span><span class="p">(</span><span class="s2">"Jeiron"</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">50000</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Nombre: </span><span class="si">{</span><span class="n">empleado</span><span class="o">.</span><span class="n">get_nombre</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Edad: </span><span class="si">{</span><span class="n">empleado</span><span class="o">.</span><span class="n">get_edad</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Salario: </span><span class="si">{</span><span class="n">empleado</span><span class="o">.</span><span class="n">get_salario</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="n">empleado</span><span class="o">.</span><span class="n">set_edad</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Edad después del intento de cambio: </span><span class="si">{</span><span class="n">empleado</span><span class="o">.</span><span class="n">get_edad</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="encapsulamiento-adicionales3">
+<h2>encapsulamiento_adicionales3<a class="headerlink" href="#encapsulamiento-adicionales3" title="Link to this heading"></a></h2>
+<p>Encapsulamiento en una clase de cuenta bancaria</p>
+<ul class="simple">
+<li><p>Crea una clase CuentaBancaria que tenga los siguientes atributos privados:</p></li>
+<li><p>titular (nombre del titular de la cuenta)</p></li>
+<li><p>saldo</p></li>
+<li><p>Implementa los métodos getter y setter para los atributos.</p></li>
+<li><p>Añade un método depositar() que permita añadir dinero a la cuenta, pero solo si el monto es positivo.</p></li>
+<li><p>Añade un método retirar() que permita retirar dinero de la cuenta, pero solo si el saldo es suficiente.</p></li>
+</ul>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">CuentaBancaria</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">titular</span><span class="p">,</span> <span class="n">saldo</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__titular</span> <span class="o">=</span> <span class="n">titular</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__saldo</span> <span class="o">=</span> <span class="n">saldo</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_titular</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__titular</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_titular</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">titular</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__titular</span> <span class="o">=</span> <span class="n">titular</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_saldo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__saldo</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_saldo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">saldo</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__saldo</span> <span class="o">=</span> <span class="n">saldo</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">depositar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">monto</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">monto</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__saldo</span> <span class="o">+=</span> <span class="n">monto</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Se ha depositado </span><span class="si">{</span><span class="n">monto</span><span class="si">}</span><span class="s2">. Nuevo saldo: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">__saldo</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"Error: El monto a depositar debe ser mayor a 0."</span><span class="p">)</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">retirar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">monto</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">monto</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__saldo</span> <span class="o">&gt;=</span> <span class="n">monto</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__saldo</span> <span class="o">-=</span> <span class="n">monto</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">__titular</span><span class="si">}</span><span class="s2">, usted ha retirado </span><span class="si">{</span><span class="n">monto</span><span class="si">}</span><span class="s2"> de su cuenta. Nuevo saldo: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">__saldo</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Error: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">__titular</span><span class="si">}</span><span class="s2">, usted no cuenta con saldo suficiente para realizar el retiro"</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Error: El monto a retirar deber ser mayor a 0."</span><span class="p">)</span>
+
+<span class="n">cuenta</span> <span class="o">=</span> <span class="n">CuentaBancaria</span><span class="p">(</span><span class="s2">"Jeiron Espinal"</span><span class="p">,</span> <span class="mi">50000</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Titular: </span><span class="si">{</span><span class="n">cuenta</span><span class="o">.</span><span class="n">get_titular</span><span class="p">()</span><span class="si">}</span><span class="s2">. Saldo: </span><span class="si">{</span><span class="n">cuenta</span><span class="o">.</span><span class="n">get_saldo</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="n">cuenta</span><span class="o">.</span><span class="n">depositar</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+
+<span class="n">cuenta</span><span class="o">.</span><span class="n">depositar</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">cuenta</span><span class="o">.</span><span class="n">retirar</span><span class="p">(</span><span class="mi">30000</span><span class="p">)</span>
+
+<span class="n">cuenta</span><span class="o">.</span><span class="n">retirar</span><span class="p">(</span><span class="mi">40000</span><span class="p">)</span>
+
+<span class="n">cuenta</span><span class="o">.</span><span class="n">retirar</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="encapsulamiento-adicionales4">
+<h2>encapsulamiento_adicionales4<a class="headerlink" href="#encapsulamiento-adicionales4" title="Link to this heading"></a></h2>
+<p>Clase de estudiante con validación de notas</p>
+<ul class="simple">
+<li><p>Crea una clase Estudiante con los siguientes atributos privados:</p></li>
+<li><p>nombre</p></li>
+<li><p>nota</p></li>
+<li><p>Implementa métodos getter y setter.</p></li>
+<li><p>En el setter de nota, asegúrate de que la nota esté entre 0 y 100. Si la nota está fuera de este rango, muestra un mensaje de error.</p></li>
+</ul>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Estudiante</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">nota</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__nombre</span> <span class="o">=</span> <span class="n">nombre</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__nota</span> <span class="o">=</span> <span class="n">nota</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_nombre</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__nombre</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_nombre</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__nombre</span> <span class="o">=</span> <span class="n">nombre</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_nota</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__nota</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_nota</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nota</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">nota</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">nota</span> <span class="o">&lt;=</span> <span class="mi">100</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__nota</span> <span class="o">=</span> <span class="n">nota</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"Error: La nota está fuera de rango."</span><span class="p">)</span>
+    
+<span class="n">estudiante</span> <span class="o">=</span> <span class="n">Estudiante</span><span class="p">(</span><span class="s2">"Jeiron"</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"El estudiante </span><span class="si">{</span><span class="n">estudiante</span><span class="o">.</span><span class="n">get_nombre</span><span class="p">()</span><span class="si">}</span><span class="s2"> obtuvo la nota de </span><span class="si">{</span><span class="n">estudiante</span><span class="o">.</span><span class="n">get_nota</span><span class="p">()</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+
+<span class="n">estudiante</span><span class="o">.</span><span class="n">set_nota</span><span class="p">(</span><span class="mi">101</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">F</span><span class="s2">"La nota después del intento de cambio: </span><span class="si">{</span><span class="n">estudiante</span><span class="o">.</span><span class="n">get_nota</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="encapsulamiento-adicionales5">
+<h2>encapsulamiento_adicionales5<a class="headerlink" href="#encapsulamiento-adicionales5" title="Link to this heading"></a></h2>
+<p>Empleado con un aumento de salario</p>
+<ul class="simple">
+<li><p>Crea una clase Empleado con los siguientes atributos privados:</p></li>
+<li><p>nombre</p></li>
+<li><p>salario</p></li>
+<li><p>Implementa los métodos getter y setter para estos atributos.</p></li>
+<li><p>Crea un método aumentar_salario() que aumente el salario en un porcentaje específico, pero asegúrate de que el salario no sea inferior a un valor mínimo (por ejemplo, 1000).</p></li>
+</ul>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Empleado</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">salario</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__nombre</span> <span class="o">=</span> <span class="n">nombre</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__salario</span> <span class="o">=</span> <span class="n">salario</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_nombre</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__nombre</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_nombre</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__nombre</span> <span class="o">=</span> <span class="n">nombre</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_salario</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__salario</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_salario</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">salario</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">salario</span> <span class="o">&gt;=</span> <span class="mi">1000</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__salario</span> <span class="o">=</span> <span class="n">salario</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"Error: El salario no puede ser inferior a 1000."</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">aumentar_salario</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">porcentaje</span><span class="p">):</span>
+        <span class="n">aumento</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__salario</span> <span class="o">*</span> <span class="p">(</span><span class="n">porcentaje</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span>
+        <span class="n">nuevo_salario</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__salario</span> <span class="o">+</span> <span class="n">aumento</span>
+
+        <span class="k">if</span> <span class="n">nuevo_salario</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__salario</span> <span class="o">=</span> <span class="mi">1000</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__salario</span> <span class="o">=</span> <span class="n">nuevo_salario</span>
+
+<span class="n">empleado</span> <span class="o">=</span> <span class="n">Empleado</span><span class="p">(</span><span class="s2">"Jeiron"</span><span class="p">,</span> <span class="mi">50000</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Salario de </span><span class="si">{</span><span class="n">empleado</span><span class="o">.</span><span class="n">get_nombre</span><span class="p">()</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">empleado</span><span class="o">.</span><span class="n">get_salario</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="n">empleado</span><span class="o">.</span><span class="n">aumentar_salario</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Salaraio después del aumento: </span><span class="si">{</span><span class="n">empleado</span><span class="o">.</span><span class="n">get_salario</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="n">empleado</span><span class="o">.</span><span class="n">set_salario</span><span class="p">(</span><span class="mi">800</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="ducktyping.html" class="btn btn-neutral float-left" title="Ejercicios — Ducktyping" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="encapsulamientodemetodos.html" class="btn btn-neutral float-right" title="Ejercicios — Encapsulamiento de métodos" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+  <p>
+    © Copyright <span id="anio-copyright"></span> jeironpro.
+  </p>
+  <script>
+    document.getElementById("anio-copyright").textContent =
+      new Date().getFullYear();
+  </script>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

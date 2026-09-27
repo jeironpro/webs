@@ -1,6 +1,6 @@
 # webs
 
-Monorepo que agrupa las webs estáticas de jeironpro. En la raíz vive un **catálogo** que indexa los 48 proyectos; cada proyecto ocupa su propio subdirectorio (`web-*`) y se sirve de forma independiente como página estática.
+Monorepo que agrupa las webs estáticas de jeironpro. En la raíz vive un **catálogo** que indexa los 52 proyectos; cada proyecto ocupa su propio subdirectorio (`web-*`) y se sirve de forma independiente como página estática.
 
 ## Catálogo
 
@@ -43,10 +43,12 @@ Abre `index.html` de la raíz (o despliega el repositorio en GitHub Pages: el ca
 | [web-generador-crucigramas](./web-generador-crucigramas/)       | Generador de crucigramas   | Generadores     | html, css, javascript                |
 | [web-generador-codigo-qr](./web-generador-codigo-qr/)           | Generador de QR            | Generadores     | html, css, javascript                |
 | [web-gestiona-presupuesto](./web-gestiona-presupuesto/)         | Gestiona presupuesto       | Productividad   | html, css, javascript                |
+| [web-instruccion-login-google](./web-instruccion-login-google/) | Login con Google           | Educación       | html, css, javascript                |
 | [web-javarcises](./web-javarcises/)                             | Javarcises                 | Educación       | html, css, javascript                |
 | [web-votacion](./web-votacion/)                                 | La Papeleta                | Entretenimiento | html, css, javascript                |
 | [web-lector-arxiu](./web-lector-arxiu/)                         | Lector d'arxiu             | Utilidades      | html, css, javascript                |
 | [web-lexaro](./web-lexaro/)                                     | Lexaro                     | Productividad   | html, css, javascript, svg           |
+| [web-lenguajes-programacion](./web-lenguajes-programacion/)     | Lenguajes de programacion  | Educación       | python, sphinx, myst, css            |
 | [web-mandala](./web-mandala/)                                   | Mandala                    | Entretenimiento | html, css, javascript, svg           |
 | [web-narcopedia](./web-narcopedia/)                             | Narcopedia                 | Entretenimiento | html, css, javascript                |
 | [web-naruto](./web-naruto/)                                     | Naruto                     | Entretenimiento | react, vite, css, javascript         |
@@ -70,7 +72,7 @@ Abre `index.html` de la raíz (o despliega el repositorio en GitHub Pages: el ca
 La fuente de verdad es `projects.yml` en la raíz. Los artefactos se regeneran con comandos npm:
 
 - `npm run data:build` valida el esquema y genera `assets/projects.json` (datos ordenados que consume el catálogo).
-- `npm run data:screenshots` captura las 48 webs en `assets/screenshots/*.webp` (Chrome headless sobre un servidor local).
+- `npm run data:screenshots` captura las 52 webs en `assets/screenshots/*.webp` (Chrome headless sobre un servidor local).
 - `npm test` valida integridad de datos, esquema y generador.
 
 ## Añadir una nueva web
@@ -86,19 +88,19 @@ La fuente de verdad es `projects.yml` en la raíz. Los artefactos se regeneran c
 
 3. **Añade la entrada en `projects.yml`** respetando el orden alfabético por `id` y el esquema de las webs existentes:
 
-   | Campo         | Regla                                                                                                     |
-   | ------------- | --------------------------------------------------------------------------------------------------------- |
-   | `id`          | Igual al nombre de la carpeta (`web-<slug>`).                                                             |
-   | `titulo`      | Título visible en el catálogo.                                                                            |
-   | `descripcion` | Entre 10 y 240 caracteres, descriptiva y sin acentos.                                                     |
-   | `url`         | El subpath relativo `./<id>/`.                                                                            |
-   | `repo`        | Enlace a la carpeta en `main` del monorepo.                                                               |
-   | `screenshot`  | Ruta de la captura en `assets/screenshots/<id>.webp`.                                                     |
-   | `stack`       | Raíces permitidas: html, css, javascript, typescript, react, vite, tailwind, gsap, three, svg.            |
-   | `categorias`  | Una o más de: utilidades, generadores, educacion, entretenimiento, productividad, referencia, curricular. |
-   | `tags`        | Lista de etiquetas en minúsculas y espacios (sin acentos ni guiones).                                     |
-   | `estado`      | `live`, `pendiente` o `externo`.                                                                          |
-   | `destacado`   | Booleano (`true` solo para piezas destacadas).                                                            |
+   | Campo         | Regla                                                                                                                |
+   | ------------- | -------------------------------------------------------------------------------------------------------------------- |
+   | `id`          | Igual al nombre de la carpeta (`web-<slug>`).                                                                        |
+   | `titulo`      | Título visible en el catálogo.                                                                                       |
+   | `descripcion` | Entre 10 y 240 caracteres, descriptiva y sin acentos.                                                                |
+   | `url`         | El subpath relativo `./<id>/`.                                                                                       |
+   | `repo`        | Enlace a la carpeta en `main` del monorepo.                                                                          |
+   | `screenshot`  | Ruta de la captura en `assets/screenshots/<id>.webp`.                                                                |
+   | `stack`       | Raíces permitidas: html, css, javascript, typescript, react, vite, tailwind, gsap, three, svg, python, sphinx, myst. |
+   | `categorias`  | Una o más de: utilidades, generadores, educacion, entretenimiento, productividad, referencia, curricular.            |
+   | `tags`        | Lista de etiquetas en minúsculas y espacios (sin acentos ni guiones).                                                |
+   | `estado`      | `live`, `pendiente` o `externo`.                                                                                     |
+   | `destacado`   | Booleano (`true` solo para piezas destacadas).                                                                       |
 
 4. **Regenera datos y capturas**, y verifica que todo cuadra:
 

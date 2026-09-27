@@ -1,0 +1,259 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bases de datos (SQLAlchemy) &mdash; documentación de Lenguajes de programación - </title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/logo.svg"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=e2bb6099"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" title="Búsqueda" href="../../../search.html" />
+    <link rel="next" title="Despliegue en producción" href="despliegueenproduccion.html" />
+    <link rel="prev" title="Autenticación y autorización" href="autenticacionyautorizacion.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Lenguajes de programación
+              <img src="../../../_static/logo.svg" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lenguajes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../java/index.html">Java — DAW (ITIC Barcelona)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Python — DCS (INFOTEP)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#teoria">Teoría</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#frameworks">Frameworks</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Flask</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="apirestful.html">API RESTful</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autenticacionyautorizacion.html">Autenticación y autorización</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Bases de datos (SQLAlchemy)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="despliegueenproduccion.html">Despliegue en producción</a></li>
+<li class="toctree-l4"><a class="reference internal" href="introduccionflask.html">Introducción a Flask</a></li>
+<li class="toctree-l4"><a class="reference internal" href="manejodeformularios.html">Manejo de formularios</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plantillajinja2.html">Plantillas Jinja2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plantillajinja2.html#ejemplo-basico">Ejemplo básico:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pruebas.html">Pruebas</a></li>
+<li class="toctree-l4"><a class="reference internal" href="redireccionyerrores.html">Redirección y errores</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rutasymetodos.html">rutasymetodos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sesionesycookies.html">Sesiones y cookies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="instance-proyecto.html">Instance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="templates-proyecto.html">Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../django/index.html">Django</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#ejercicios">Ejercicios</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../javascript/index.html">JavaScript — DCS (INFOTEP)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Lenguajes de programación</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Python — DCS (INFOTEP)</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Flask</a></li>
+      <li class="breadcrumb-item active">Bases de datos (SQLAlchemy)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/python/frameworks/flask/basesdedatos-sqlalchemy.md.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="bases-de-datos-sqlalchemy">
+<h1>Bases de datos (SQLAlchemy)<a class="headerlink" href="#bases-de-datos-sqlalchemy" title="Link to this heading"></a></h1>
+<p><strong>Introducción a SQLAlchemy</strong>
+SQLAlchemy es una biblioteca para trabajar con bases de datos en Python. Es compatible con Flask y permite interactuar con bases de datos relacionales de manera sencilla utilizando un enfoque de mapeo objeto-relacional (ORM).</p>
+<p><strong>Ventajas de usar SQLAlchemy en Flask</strong></p>
+<ul class="simple">
+<li><p>Simplifica la interacción con bases de datos.</p></li>
+<li><p>Permite manejar modelos como objetos Python.</p></li>
+<li><p>Admite múltiples motores de bases de datos como SQLite, MySQL, PostgreSQL, entre otros.</p></li>
+</ul>
+<p><strong>Instalación</strong>
+pip install flask-sqlalchemy</p>
+<p><strong>Configuración básica de Flask-SQLAlchemy</strong></p>
+<ol class="arabic simple">
+<li><p>Configura la base de datos en tu aplicación Flask.</p></li>
+<li><p>Define modelos que representen las tablas de tu base de datos.</p></li>
+</ol>
+<p><strong>Concepto clave</strong></p>
+<ol class="arabic simple">
+<li><p>URI de la base de datos:</p></li>
+</ol>
+<ul class="simple">
+<li><p>Define el tipo de base de datos y su ubicación.</p></li>
+<li><p>Ejemplo: sqlite:///mi_base_datos.db, mysql+pymysql://usuario:password&#64;localhost/mi_base</p></li>
+<li><p><strong>2.</strong> Modelos</p></li>
+<li><p>Cada modelo representa una tabla en la base de datos</p></li>
+<li><p>Usa db.Column para definir las columnas y sus atributos (tipo, claves primarias, restricciones).</p></li>
+<li><p><strong>3.</strong> CRUD básico</p></li>
+<li><p>Crear: usa db.session.add() y  db.session.commit().</p></li>
+<li><p>Leer: usa consultas con métodos como query.all(), query.filter_by().</p></li>
+<li><p>Actualizar: modifica atributos y guarda con db.session.commit().</p></li>
+<li><p>Eliminar: usa db.session.delete() y guarda con db.session.commit().</p></li>
+</ul>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ejemplo básico</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">jsonify</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">flask_sqlalchemy</span><span class="w"> </span><span class="kn">import</span> <span class="n">SQLAlchemy</span>
+
+<span class="c1"># Configuración de la aplicación Flask</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">'SQLALCHEMY_DATABASE_URI'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'sqlite:///mi_base_datos.db'</span> <span class="c1"># Base de datos SQLite</span>
+<span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">'SQLALCHEMY_TRACK_MODIFICATIONS'</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span> <span class="c1"># Desactiva el seguimiento para ahorrar recursos</span>
+
+<span class="c1"># Inicializa SQLAlchemy</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">SQLAlchemy</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+
+<span class="c1"># Definir un modelo (tabla)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Usuario</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># Clave primaria</span>
+    <span class="n">nombre</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="mi">80</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="c1"># Columna de tipo texto</span>
+    <span class="n">correo</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="mi">120</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="c1"># Columna única</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c1"># Representación legible del objeto</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">"&lt;Usuario </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">nombre</span><span class="si">}</span><span class="s2">&gt;"</span>
+
+<span class="c1"># Crear la tablas en la base de datos</span>
+<span class="k">with</span> <span class="n">app</span><span class="o">.</span><span class="n">app_context</span><span class="p">():</span>  <span class="c1"># Es necesario establecer el contexto de la app</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">create_all</span><span class="p">()</span> <span class="c1"># Crea las tablas si no existen</span>
+
+<span class="c1"># Ruta para agregar un usuario</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">'/agregar_usuario'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">'POST'</span><span class="p">])</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">agregar_usuario</span><span class="p">():</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">get_json</span><span class="p">()</span> <span class="c1"># Obtener datos del cuerpo de la solicitud</span>
+    <span class="n">nuevo_usuario</span> <span class="o">=</span> <span class="n">Usuario</span><span class="p">(</span><span class="n">nombre</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">'nombre'</span><span class="p">],</span> <span class="n">correo</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">'correo'</span><span class="p">])</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">nuevo_usuario</span><span class="p">)</span> <span class="c1"># Agregar usuario a la sesión</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span> <span class="c1"># Guardar cambios en la base de datos</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">"mensaje"</span><span class="p">:</span> <span class="s2">"Usuario agregado exitosamente"</span><span class="p">},</span> <span class="mi">201</span><span class="p">)</span>
+
+<span class="c1"># Ruta para obtener todos los usuarios</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">'/obtener_usuarios'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">'GET'</span><span class="p">])</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">obtener_usuarios</span><span class="p">():</span>
+    <span class="n">usuarios</span> <span class="o">=</span> <span class="n">Usuario</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">all</span><span class="p">()</span> <span class="c1"># Consultar todos los usuarios</span>
+    <span class="n">resultado</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">"id"</span><span class="p">:</span> <span class="n">u</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s2">"nombre"</span><span class="p">:</span> <span class="n">u</span><span class="o">.</span><span class="n">nombre</span><span class="p">,</span> <span class="s2">"correo"</span><span class="p">:</span> <span class="n">u</span><span class="o">.</span><span class="n">correo</span><span class="p">}</span> <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">usuarios</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">resultado</span><span class="p">),</span> <span class="mi">200</span>
+
+<span class="c1"># Ruta para actualizar un usuario</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">'/actualizar_usuario/&lt;int:id&gt;'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">'PUT'</span><span class="p">])</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">actualizar_usuario</span><span class="p">(</span><span class="nb">id</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">get_json</span><span class="p">()</span> <span class="c1"># obtener datos del cuerpo de la solicitud</span>
+    <span class="n">usuario</span> <span class="o">=</span> <span class="n">Usuario</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">get_or_404</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span> <span class="c1"># Buscar usuario por ID o devolver error 404</span>
+    <span class="n">usuario</span><span class="o">.</span><span class="n">nombre</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'nombre'</span><span class="p">]</span>
+    <span class="n">usuario</span><span class="o">.</span><span class="n">correo</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">'correo'</span><span class="p">]</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span> <span class="c1"># Guardar cambios</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">"mensaje"</span><span class="p">:</span> <span class="s2">"Usuario actualizado exitosamente"</span><span class="p">}),</span> <span class="mi">200</span>
+
+<span class="c1"># Ruta para eliminar un usuario</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">'/eliminar_usuario/&lt;int:id&gt;'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">'DELETE'</span><span class="p">])</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">eliminar_usuario</span><span class="p">(</span><span class="nb">id</span><span class="p">):</span>
+    <span class="n">usuario</span> <span class="o">=</span> <span class="n">Usuario</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">get_or_404</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span> <span class="c1"># Buscar usuario por ID o devolver error 404</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">usuario</span><span class="p">)</span> <span class="c1"># Eliminar el usuario de la sesión</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span> <span class="c1"># Guardar los cambios en la base de datos</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">"mensaje"</span><span class="p">:</span> <span class="s2">"Usuario eliminado exitosamente"</span><span class="p">}),</span> <span class="mi">200</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="sd">""" Explicación de las Secciones</span>
+<span class="sd">Definición del modelo:</span>
+<span class="sd">    Usuario es una clase que representa la tabla en la base de datos.</span>
+<span class="sd">    Sus atributos (id, nombre, correo) son las columnas de la tabla.</span>
+
+<span class="sd">Operaciones CRUD:</span>
+<span class="sd">    Crear: Se usa db.session.add() para añadir registros.</span>
+<span class="sd">    Leer: Se consulta la base de datos con query.all() o query.get().</span>
+<span class="sd">    Actualizar: Se modifican atributos del objeto y se guarda con db.session.commit().</span>
+<span class="sd">    Eliminar: Se usa db.session.delete() para eliminar un registro.</span>
+
+<span class="sd">Rutas Flask:</span>
+<span class="sd">    Cada ruta maneja una operación específica:</span>
+<span class="sd">        · POST /agregar_usuario: Crear un nuevo usuario.</span>
+<span class="sd">        · GET /obtener_usuarios: Listar todos los usuarios.</span>
+<span class="sd">        · PUT /actualizar_usuario/&lt;id&gt;: Actualizar un usuario existente.</span>
+<span class="sd">        · DELETE /eliminar_usuario/&lt;id&gt;: Eliminar un usuario.</span>
+<span class="sd">"""</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="autenticacionyautorizacion.html" class="btn btn-neutral float-left" title="Autenticación y autorización" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="despliegueenproduccion.html" class="btn btn-neutral float-right" title="Despliegue en producción" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+  <p>
+    © Copyright <span id="anio-copyright"></span> jeironpro.
+  </p>
+  <script>
+    document.getElementById("anio-copyright").textContent =
+      new Date().getFullYear();
+  </script>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

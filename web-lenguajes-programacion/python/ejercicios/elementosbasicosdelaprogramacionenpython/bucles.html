@@ -1,0 +1,479 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ejercicios — Bucles &mdash; documentación de Lenguajes de programación - </title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/logo.svg"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=e2bb6099"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" title="Búsqueda" href="../../../search.html" />
+    <link rel="next" title="Ejercicios — Colecciones" href="colecciones.html" />
+    <link rel="prev" title="Ejercicios — Condicionales" href="condicionales.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Lenguajes de programación
+              <img src="../../../_static/logo.svg" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lenguajes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../java/index.html">Java — DAW (ITIC Barcelona)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Python — DCS (INFOTEP)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#teoria">Teoría</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#frameworks">Frameworks</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#ejercicios">Ejercicios</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../ejercicios.html">Ejercicios</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython.html">Ejercicios — Elementos básicos de la programación en Python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduccion.html">Ejercicios — Introducción</a></li>
+<li class="toctree-l3"><a class="reference internal" href="entradaysalidadedatos.html">Ejercicios — Entrada y salida de datos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="variablesytiposdedatos.html">Ejercicios — Variables y tipos de datos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="operadores.html">Ejercicios — Operadores</a></li>
+<li class="toctree-l3"><a class="reference internal" href="condicionales.html">Ejercicios — Condicionales</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Ejercicios — Bucles</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bucles1">bucles1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bucles2">bucles2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bucles3">bucles3</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bucles4">bucles4</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bucles5">bucles5</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bucles6">bucles6</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bucles7">bucles7</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bucles8">bucles8</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bucles9">bucles9</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bucles10">bucles10</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bucles11">bucles11</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bucles12">bucles12</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bucles13">bucles13</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bucles-adicionales1">bucles_adicionales1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bucles-adicionales2">bucles_adicionales2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bucles-adicionales3">bucles_adicionales3</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bucles-adicionales4">bucles_adicionales4</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bucles-adicionales5">bucles_adicionales5</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bucles-adicionales6">bucles_adicionales6</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="colecciones.html">Ejercicios — Colecciones</a></li>
+<li class="toctree-l3"><a class="reference internal" href="funciones.html">Ejercicios — Funciones</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduccionalaprogramacionorientadaaobjetosenpython.html">Ejercicios — Introducción a la programación orientada a objetos en Python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduccionalaprogramacionorientadaaobjetosenpython/apis.html">Ejercicios — Apis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduccionalaprogramacionorientadaaobjetosenpython/clasesabstractas.html">Ejercicios — Clases abstractas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduccionalaprogramacionorientadaaobjetosenpython/dataclasses.html">Ejercicios — Dataclasses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduccionalaprogramacionorientadaaobjetosenpython/ducktyping.html">Ejercicios — Ducktyping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduccionalaprogramacionorientadaaobjetosenpython/encapsulamiento.html">Ejercicios — Encapsulamiento</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduccionalaprogramacionorientadaaobjetosenpython/encapsulamientodemetodos.html">Ejercicios — Encapsulamiento de métodos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduccionalaprogramacionorientadaaobjetosenpython/herencia.html">Ejercicios — Herencia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduccionalaprogramacionorientadaaobjetosenpython/herenciamultiple.html">Ejercicios — Herencia múltiple</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduccionalaprogramacionorientadaaobjetosenpython/introduccionpoo.html">Ejercicios — Introduccion POO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduccionalaprogramacionorientadaaobjetosenpython/metodosmagicos.html">Ejercicios — Métodos mágicos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduccionalaprogramacionorientadaaobjetosenpython/polimorfismo.html">Ejercicios — Polimorfismo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduccionalaprogramacionorientadaaobjetosenpython/sobrecargademetodos.html">Ejercicios — Sobrecarga de métodos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduccionalaprogramacionorientadaaobjetosenpython/super.html">Ejercicios — Super</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../javascript/index.html">JavaScript — DCS (INFOTEP)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Lenguajes de programación</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Python — DCS (INFOTEP)</a></li>
+          <li class="breadcrumb-item"><a href="../../ejercicios.html">Ejercicios</a></li>
+          <li class="breadcrumb-item"><a href="../elementosbasicosdelaprogramacionenpython.html">Ejercicios — Elementos básicos de la programación en Python</a></li>
+      <li class="breadcrumb-item active">Ejercicios — Bucles</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/python/ejercicios/elementosbasicosdelaprogramacionenpython/bucles.md.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ejercicios-bucles">
+<h1>Ejercicios — Bucles<a class="headerlink" href="#ejercicios-bucles" title="Link to this heading"></a></h1>
+<section id="bucles1">
+<h2>bucles1<a class="headerlink" href="#bucles1" title="Link to this heading"></a></h2>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Escribir un programa que pida al usuario una palabra y la muestre por pantalla 10 veces.</span>
+
+<span class="n">palabra</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"Escribe una palabra: "</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">- </span><span class="si">{</span><span class="n">palabra</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="bucles2">
+<h2>bucles2<a class="headerlink" href="#bucles2" title="Link to this heading"></a></h2>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Escribir un programa que pregunte al usuario su edad y el año actual, y luego muestre por pantalla todos los años que ha cumplido, desde el primero hasta el año actual.</span>
+
+<span class="n">edad</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Escriba su edad: "</span><span class="p">))</span>
+<span class="n">anio_actual</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Escriba el año actual: "</span><span class="p">))</span>
+<span class="n">anio_actual_tmp</span> <span class="o">=</span> <span class="n">anio_actual</span> 
+<span class="n">anio_actual</span> <span class="o">=</span> <span class="n">anio_actual</span> <span class="o">-</span> <span class="n">edad</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">edad</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Has nacido en el </span><span class="si">{</span><span class="n">anio_actual</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">anio_actual</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"En el </span><span class="si">{</span><span class="n">anio_actual</span><span class="si">}</span><span class="s2"> tenias </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">anio_actual</span> <span class="o">==</span> <span class="n">anio_actual_tmp</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"En el año actual </span><span class="si">{</span><span class="n">anio_actual_tmp</span><span class="si">}</span><span class="s2"> tienes o tendrás </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="bucles3">
+<h2>bucles3<a class="headerlink" href="#bucles3" title="Link to this heading"></a></h2>
+<p>Escribir un programa que pida al usuario un número positivo y muestre por pantalla todos los números impares desde 1 hasta ese número separados por comas.</p>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">numero</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Introduzca un número positivo: "</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numero</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">numero</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">", "</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="bucles4">
+<h2>bucles4<a class="headerlink" href="#bucles4" title="Link to this heading"></a></h2>
+<p>Escribir un programa que pida al usuario un número entero positivo y muestre por pantalla la cuenta atrás desde ese número hasta cero, separados por comas.</p>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">numero</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Introduzca un numero positivo: "</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Inicio de la cuenta regresiva: "</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numero</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="bucles5">
+<h2>bucles5<a class="headerlink" href="#bucles5" title="Link to this heading"></a></h2>
+<p>Escribir un programa que pregunte al usuario una cantidad a invertir, el interés anual y el número de años, y muestre por pantalla el capital obtenido en la inversión cada año que dura la inversión.</p>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cantidad_invertir</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Introduzca la cantidad a invertir: "</span><span class="p">))</span>
+<span class="n">interes_anual</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Introduzca el interés anual: "</span><span class="p">))</span>
+<span class="n">numero_anios</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Introduzca el número de año de la inversión: "</span><span class="p">))</span>
+
+<span class="n">contador</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">while</span> <span class="p">(</span><span class="n">contador</span> <span class="o">&lt;=</span> <span class="n">numero_anios</span><span class="p">):</span>
+    <span class="n">anio</span> <span class="o">=</span> <span class="n">contador</span>
+    <span class="n">ganancias</span> <span class="o">=</span> <span class="p">(</span><span class="n">cantidad_invertir</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span> <span class="o">*</span> <span class="n">interes_anual</span> <span class="o">*</span> <span class="n">anio</span>
+
+    <span class="k">if</span> <span class="n">contador</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"En </span><span class="si">{</span><span class="n">anio</span><span class="si">}</span><span class="s2"> año, tus ganancias seran de </span><span class="si">{</span><span class="n">ganancias</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"En </span><span class="si">{</span><span class="n">anio</span><span class="si">}</span><span class="s2"> años, tus ganancias seran de </span><span class="si">{</span><span class="n">ganancias</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+    <span class="n">contador</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</section>
+<section id="bucles6">
+<h2>bucles6<a class="headerlink" href="#bucles6" title="Link to this heading"></a></h2>
+<p>Escribir un programa que pida al usuario un número entero y muestre por pantalla un triángulo rectángulo como el de más abajo, de altura el número introducido.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">*</span>
+<span class="o">**</span>
+<span class="o">***</span>
+<span class="o">****</span>
+<span class="o">*****</span>
+</pre></div>
+</div>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">numero</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Escriba un número entero: "</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">numero</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="s2">"*"</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="bucles7">
+<h2>bucles7<a class="headerlink" href="#bucles7" title="Link to this heading"></a></h2>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Escribir un programa que muestre por pantalla la tabla de multiplicar del 1 al 10.</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> x </span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">j</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="bucles8">
+<h2>bucles8<a class="headerlink" href="#bucles8" title="Link to this heading"></a></h2>
+<p>Escribir un programa que pida al usuario un numero entero y muestre por pantalla un triangulo rectagulo
+como el de mas abajo</p>
+<p><strong>1</strong>
+3 1
+5 3 1
+7 5 3 1
+9 7 5 3 1</p>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">numero</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Introduce un número entero: "</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">numero</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">" "</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="bucles9">
+<h2>bucles9<a class="headerlink" href="#bucles9" title="Link to this heading"></a></h2>
+<p>Escribir un programa que almacene la cadena de caracteres «contraseña» en una variable, pregunte al usuario por la contraseña hasta que introduzca la contraseña correcta.</p>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">contrasena</span> <span class="o">=</span> <span class="s2">"contraseña"</span>
+<span class="n">contrasena_usuario</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"Introduzca la contraseña correcta: "</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="n">contrasena</span> <span class="o">!=</span> <span class="n">contrasena_usuario</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">contrasena</span> <span class="o">!=</span> <span class="n">contrasena_usuario</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Contraseña incorrecta."</span><span class="p">)</span>
+        <span class="n">contrasena_usuario</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"Introduzca nuevamente la contraseña: "</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"La contraseña introducida es correcta."</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="bucles10">
+<h2>bucles10<a class="headerlink" href="#bucles10" title="Link to this heading"></a></h2>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Escribir un programa que pida al usuario un número entero y muestre por pantalla si es un número primo o no. </span>
+
+<span class="n">numero</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Introduzca un número entero: "</span><span class="p">))</span>
+<span class="n">contador</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">numero</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">numero</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">numero</span><span class="si">}</span><span class="s2"> / </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">numero</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">i</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="n">contador</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="k">if</span> <span class="n">contador</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"El número es primo"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"El número no es primo"</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="bucles11">
+<h2>bucles11<a class="headerlink" href="#bucles11" title="Link to this heading"></a></h2>
+<p>Escribir un programa que pida al usuario una palabra y luego muestre por pantalla una a una las letras de la palabra introducida, empezando por la última.</p>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">palabra</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"Escriba una palabra: "</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">palabra</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">palabra</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</section>
+<section id="bucles12">
+<h2>bucles12<a class="headerlink" href="#bucles12" title="Link to this heading"></a></h2>
+<p>Escribir un programa en el que se le pregunte al usuario por una frase y una letra, y muestre por pantalla el número de veces que aparece la letra en la frase.</p>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">frase</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"Escriba una frase: "</span><span class="p">)</span>
+<span class="n">letra</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"Escriba una letra: "</span><span class="p">)</span>
+<span class="n">contador</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">frase</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="n">frase</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">letra</span><span class="p">:</span>
+        <span class="n">contador</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"La </span><span class="si">{</span><span class="n">letra</span><span class="si">}</span><span class="s2"> aparece </span><span class="si">{</span><span class="n">contador</span><span class="si">}</span><span class="s2"> en la frase."</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="bucles13">
+<h2>bucles13<a class="headerlink" href="#bucles13" title="Link to this heading"></a></h2>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Escribir un programa que muestre el eco de todo lo que el usuario introduzca hasta que el usuario escriba "salir", lo que terminará el programa. </span>
+
+<span class="n">palabra</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"El eco espera palabra (o escribe 'salir' para terminar): "</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="n">palabra</span> <span class="o">!=</span> <span class="s2">"salir"</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"El eco repite palabra"</span><span class="p">,</span> <span class="n">palabra</span><span class="p">)</span>
+    <span class="n">palabra</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"El eco espera palabra (o escribe 'salir' para terminar): "</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Ádios"</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="bucles-adicionales1">
+<h2>bucles_adicionales1<a class="headerlink" href="#bucles-adicionales1" title="Link to this heading"></a></h2>
+<p>Suma de números pares: Escribe un programa que calcule la suma de todos los números pares entre 1 y 100 usando un bucle for.</p>
+<p>Entrada esperada: Ninguna.
+Salida esperada: La suma de los números pares es: 2550.</p>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">suma</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">101</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">suma</span> <span class="o">+=</span> <span class="n">i</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"La suma de los núemros pares es:"</span><span class="p">,</span> <span class="n">suma</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="bucles-adicionales2">
+<h2>bucles_adicionales2<a class="headerlink" href="#bucles-adicionales2" title="Link to this heading"></a></h2>
+<p>Revertir un texto: Escribe un programa que, usando un bucle for, invierta un texto ingresado por el usuario.</p>
+<p>Entrada: hola.
+Salida esperada: aloh.</p>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">texto</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"Escriba un texto: "</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">texto</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">texto</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">end</span><span class="o">=</span><span class="s2">""</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="bucles-adicionales3">
+<h2>bucles_adicionales3<a class="headerlink" href="#bucles-adicionales3" title="Link to this heading"></a></h2>
+<p>Contar vocales en una palabra: Escribe un programa que pida una palabra al usuario y cuente cuántas vocales tiene.</p>
+<p>Entrada: Python.
+Salida esperada: La palabra contiene 1 vocal(es).</p>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">vocales</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"e"</span><span class="p">,</span> <span class="s2">"i"</span><span class="p">,</span> <span class="s2">"o"</span><span class="p">,</span> <span class="s2">"u"</span><span class="p">]</span>
+<span class="n">palabra</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"Ingrese una palabra: "</span><span class="p">)</span>
+
+<span class="n">contador</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">vocal</span> <span class="ow">in</span> <span class="n">vocales</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">palabra</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">palabra</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="n">vocal</span><span class="p">:</span>
+            <span class="n">contador</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"La palabra contiene </span><span class="si">{</span><span class="n">contador</span><span class="si">}</span><span class="s2"> vocal(es)."</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="bucles-adicionales4">
+<h2>bucles_adicionales4<a class="headerlink" href="#bucles-adicionales4" title="Link to this heading"></a></h2>
+<p>Adivina el número: Implementa un programa que genere un número aleatorio entre 1 y 10, y que permita al usuario adivinarlo hasta acertar. Usa while para repetir las adivinanzas.</p>
+<p>Entrada: 5 (suponiendo que el número aleatorio sea 5).
+Salida esperada: ¡Correcto! Has adivinado el número.</p>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+
+<span class="n">numero_aleatorio</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">numero_usuario</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Adivina el número pensado: "</span><span class="p">))</span>
+
+<span class="k">while</span> <span class="n">numero_usuario</span> <span class="o">!=</span> <span class="n">numero_aleatorio</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Incorrecto."</span><span class="p">)</span>
+    <span class="n">numero_usuario</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Vuelva a intentarlo: "</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"¡Correcto! Has adivinado el número."</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="bucles-adicionales5">
+<h2>bucles_adicionales5<a class="headerlink" href="#bucles-adicionales5" title="Link to this heading"></a></h2>
+<p>Sumar hasta que el usuario ingrese 0: Pide al usuario que ingrese números y suma todos los valores. Termina el programa cuando el usuario ingrese 0.</p>
+<p>Entrada: 10, 5, 0.
+Salida esperada: La suma total es: 15.</p>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">numero</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Escriba un numero: (o para acabar escriba 0): "</span><span class="p">))</span>
+
+<span class="n">suma</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">while</span> <span class="n">numero</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">suma</span> <span class="o">+=</span> <span class="n">numero</span>
+    <span class="n">numero</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Escriba un numero: (o para acabar escriba 0): "</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"La suma total es: </span><span class="si">{</span><span class="n">suma</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="bucles-adicionales6">
+<h2>bucles_adicionales6<a class="headerlink" href="#bucles-adicionales6" title="Link to this heading"></a></h2>
+<p>Imprimir números impares: Usando un bucle while, imprime todos los números impares del 1 al 20.</p>
+<p>Salida esperada: 1, 3, 5, …, 19.</p>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">impares</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">impares</span> <span class="o">&lt;</span> <span class="mi">19</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">impares</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">", "</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">impares</span><span class="p">)</span>
+    <span class="n">impares</span> <span class="o">+=</span> <span class="mi">2</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">impares</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="p">):</span>
+        <span class="k">break</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="condicionales.html" class="btn btn-neutral float-left" title="Ejercicios — Condicionales" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="colecciones.html" class="btn btn-neutral float-right" title="Ejercicios — Colecciones" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+  <p>
+    © Copyright <span id="anio-copyright"></span> jeironpro.
+  </p>
+  <script>
+    document.getElementById("anio-copyright").textContent =
+      new Date().getFullYear();
+  </script>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

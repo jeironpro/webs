@@ -1,0 +1,235 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Autenticación y autorización &mdash; documentación de Lenguajes de programación - </title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/logo.svg"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=e2bb6099"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" title="Búsqueda" href="../../../search.html" />
+    <link rel="next" title="Formularios y validación" href="formulariosyvalidacion.html" />
+    <link rel="prev" title="Admin de Django" href="admindjango.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Lenguajes de programación
+              <img src="../../../_static/logo.svg" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lenguajes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../java/index.html">Java — DAW (ITIC Barcelona)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Python — DCS (INFOTEP)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#teoria">Teoría</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#frameworks">Frameworks</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../flask/index.html">Flask</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Django</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="admindjango.html">Admin de Django</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Autenticación y autorización</a></li>
+<li class="toctree-l4"><a class="reference internal" href="formulariosyvalidacion.html">Formularios y validación</a></li>
+<li class="toctree-l4"><a class="reference internal" href="introducciondjango.html">Introducción a Django</a></li>
+<li class="toctree-l4"><a class="reference internal" href="modelosybasesdedatos.html">Modelos y bases de datos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="producciondjango.html">Producción con Django</a></li>
+<li class="toctree-l4"><a class="reference internal" href="templatesyrenderizado.html">Templates y renderizado</a></li>
+<li class="toctree-l4"><a class="reference internal" href="introducciondjango-proyecto.html">Proyecto de introducción a Django</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#ejercicios">Ejercicios</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../javascript/index.html">JavaScript — DCS (INFOTEP)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Lenguajes de programación</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Python — DCS (INFOTEP)</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Django</a></li>
+      <li class="breadcrumb-item active">Autenticación y autorización</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/python/frameworks/django/autenticacionyautorizacion.md.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="autenticacion-y-autorizacion">
+<h1>Autenticación y autorización<a class="headerlink" href="#autenticacion-y-autorizacion" title="Link to this heading"></a></h1>
+<p><strong>Autenticación y Autorización</strong></p>
+<ol class="arabic simple">
+<li><p>Introducción al sistema de usuarios de Django
+Django incluye un sistema de autenticación integrado, que permite:</p></li>
+</ol>
+<ul class="simple">
+<li><p>Crear usuarios (administradores y normales).</p></li>
+<li><p>Gestionar contraseñas.</p></li>
+<li><p>Verificar la identidad de los usuarios.</p></li>
+<li><p>Asignar permisos y roles.</p></li>
+</ul>
+<p><strong>Configuración básica</strong>
+Asegúrate de que “django.contrib.auth” y “django.contrib.contenttypes” están incluidos en INSTALLED_APPS en tu archivo settings.py. Estos son esenciales para manejar la autenticación y los permisos.</p>
+<ul class="simple">
+<li><p><strong>2.</strong> Crear usuarios desde el administrador
+Una vez configurado el admin de Django, puedes gestionar usuarios desde la interfaz web en /admin. Para crear un usuario administrador:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">createsuperuser</span>
+</pre></div>
+</div>
+<p>Sigue las instrucciones para definir el nombre, correo y contraseña. Luego accede al panel de admin para gestionarlos.</p>
+<ul class="simple">
+<li><p><strong>3.</strong> Inicio y cierre de sesión
+Django proporciona vistas predefinidas para manejar el inicio y cierre de sesión.</p></li>
+</ul>
+<p><strong>Configura las URLs</strong>
+En urls.py:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="kn">from</span><span class="w"> </span><span class="nn">django.contrib.auth</span><span class="w"> </span><span class="kn">import</span> <span class="n">views</span> <span class="k">as</span> <span class="n">auth_views</span>
+
+    <span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="c1"># Vista de inicio de sesión</span>
+        <span class="n">path</span><span class="p">(</span><span class="s1">'login/'</span><span class="p">,</span> <span class="n">auth_views</span><span class="o">.</span><span class="n">LoginView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s1">'login'</span><span class="p">),</span>
+        <span class="c1"># Vista de cierre de sesión</span>
+        <span class="n">path</span><span class="p">(</span><span class="s1">'logout/'</span><span class="p">,</span> <span class="n">auth_views</span><span class="o">.</span><span class="n">LogoutView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s1">'logout'</span><span class="p">),</span>
+    <span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Plantillas para login y logout</strong>
+Crea un archivo llamado login.html en tu directorio de plantillas:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>    &lt;h2&gt;Iniciar Sesión&lt;/h2&gt;
+    &lt;form method="post"&gt;
+        {% csrf_token %}
+        {{ form.as_p }}
+        &lt;button type="submit"&gt;Ingresar&lt;/button&gt;
+    &lt;/form&gt;
+</pre></div>
+</div>
+<p>El logout redirige automáticamente a una página de confirmación o personalizada según configuración.</p>
+<ul class="simple">
+<li><p><strong>4.</strong> Restringir acceso a vistas con &#64;login_required
+Usa este decorador para limitar el acceso a usuarios autenticados:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="kn">from</span><span class="w"> </span><span class="nn">django.contrib.auth.decorators</span><span class="w"> </span><span class="kn">import</span> <span class="n">login_required</span>
+
+    <span class="nd">@login_required</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">perfil_usuario</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="s2">"Bienvenido a tu perfil."</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Configura en settings.py la URL a la que redirigirá si el usuario no está autenticado:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">LOGIN_URL</span> <span class="o">=</span> <span class="s1">'/login/'</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>5.</strong> Gestión de grupos y permisos
+Django permite crear grupos para asignar permisos fácilmente.</p></li>
+</ul>
+<p><strong>Crear y asignar grupos</strong>
+En admin.py:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="kn">from</span><span class="w"> </span><span class="nn">django.contrib.auth.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Group</span>
+
+    <span class="c1"># Crear un grupo de ejemplo</span>
+    <span class="n">mi_grupo</span><span class="p">,</span> <span class="n">created</span> <span class="o">=</span> <span class="n">Group</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get_or_create</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'Editores'</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Los permisos pueden ser gestionados desde el admin o el código:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="kn">from</span><span class="w"> </span><span class="nn">django.contrib.auth.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Permission</span>
+    <span class="n">permiso</span> <span class="o">=</span> <span class="n">Permission</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">codename</span><span class="o">=</span><span class="s1">'add_post'</span><span class="p">)</span>
+    <span class="n">mi_grupo</span><span class="o">.</span><span class="n">permissions</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">permiso</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>6.</strong> Extender el modelo de usuario
+Puedes extender el modelo de usuario predeterminado si necesitas más campos, como avatar o fecha de nacimiento.</p></li>
+</ul>
+<p><strong>from django.contrib.auth.models import AbstractUser</strong>
+from django.db import models</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">UsuarioPersonalizado</span><span class="p">(</span><span class="n">AbstractUser</span><span class="p">):</span>
+    <span class="n">avatar</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ImageField</span><span class="p">(</span><span class="n">upload_to</span><span class="o">=</span><span class="s1">'avatars/'</span><span class="p">)</span>
+    <span class="n">fecha_nacimiento</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateField</span><span class="p">(</span><span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>En settings.py, indica que estás usando este modelo</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">AUTH_USER_MODEL</span> <span class="o">=</span> <span class="s1">'miapp.UsuarioPersonalizado'</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="admindjango.html" class="btn btn-neutral float-left" title="Admin de Django" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="formulariosyvalidacion.html" class="btn btn-neutral float-right" title="Formularios y validación" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+  <p>
+    © Copyright <span id="anio-copyright"></span> jeironpro.
+  </p>
+  <script>
+    document.getElementById("anio-copyright").textContent =
+      new Date().getFullYear();
+  </script>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

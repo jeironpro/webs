@@ -1,0 +1,324 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arrays &mdash; documentación de Lenguajes de programación - </title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/logo.svg"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=e2bb6099"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="search" title="Búsqueda" href="../../search.html" />
+    <link rel="next" title="Funciones" href="funciones.html" />
+    <link rel="prev" title="Estructuras de control" href="estructurasdecontrol.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Lenguajes de programación
+              <img src="../../_static/logo.svg" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lenguajes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../java/index.html">Java — DAW (ITIC Barcelona)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python/index.html">Python — DCS (INFOTEP)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">JavaScript — DCS (INFOTEP)</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#teoria">Teoría</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduccion.html">Introducción</a></li>
+<li class="toctree-l3"><a class="reference internal" href="variables.html">Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="operadores.html">Operadores</a></li>
+<li class="toctree-l3"><a class="reference internal" href="estructurasdecontrol.html">Estructuras de control</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Arrays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="funciones.html">Funciones</a></li>
+<li class="toctree-l3"><a class="reference internal" href="objetos.html">Objetos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dom.html">DOM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eventos.html">Eventos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="formularios.html">Formularios</a></li>
+<li class="toctree-l3"><a class="reference internal" href="formularios/index.html">Formularios</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#ejercicios">Ejercicios</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Lenguajes de programación</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">JavaScript — DCS (INFOTEP)</a></li>
+      <li class="breadcrumb-item active">Arrays</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/javascript/teoria/arrays.md.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="arrays">
+<h1>Arrays<a class="headerlink" href="#arrays" title="Link to this heading"></a></h1>
+<p><strong>Arrays en JavaScript</strong>
+Un array (o arreglo) es una estructura de datos que permite almacenar una colección de elementos en una sola variable. Los elementos dentro de un array pueden ser de cualquier tipo de dato, incluidos números, cadenas, objetos, e incluso otros arrays. Los arrays en JavaScript son dinámicos, lo que significa que su tamaño puede cambiar durante la ejecución.</p>
+<p><strong>Declaración de un Array</strong>
+Un array se puede declarar de varias maneras:</p>
+<p><strong>Usando corchetes []</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">frutas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"manzana"</span><span class="p">,</span><span class="w"> </span><span class="s2">"naranja"</span><span class="p">,</span><span class="w"> </span><span class="s2">"plátano"</span><span class="p">];</span>
+</pre></div>
+</div>
+<p><strong>Usando el constructor Array</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">numeros</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Array</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Acceso a los elementos de un Array</strong>
+Puedes acceder a los elementos de un array usando índices. Los índices en los arrays de JavaScript comienzan desde 0.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">frutas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"manzana"</span><span class="p">,</span><span class="w"> </span><span class="s2">"naranja"</span><span class="p">,</span><span class="w"> </span><span class="s2">"plátano"</span><span class="p">];</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">frutas</span><span class="p">[</span><span class="mf">0</span><span class="p">]);</span><span class="w">  </span><span class="c1">// manzana</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">frutas</span><span class="p">[</span><span class="mf">2</span><span class="p">]);</span><span class="w">  </span><span class="c1">// plátano</span>
+</pre></div>
+</div>
+<p><strong>Modificar elementos de un Array</strong>
+Puedes modificar el valor de un elemento en el array utilizando el índice:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">frutas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"manzana"</span><span class="p">,</span><span class="w"> </span><span class="s2">"naranja"</span><span class="p">,</span><span class="w"> </span><span class="s2">"plátano"</span><span class="p">];</span>
+<span class="nx">frutas</span><span class="p">[</span><span class="mf">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"kiwi"</span><span class="p">;</span><span class="w">  </span><span class="c1">// Modifica el segundo elemento</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">frutas</span><span class="p">);</span><span class="w">  </span><span class="c1">// ["manzana", "kiwi", "plátano"]</span>
+</pre></div>
+</div>
+<p><strong>Métodos comunes de Arrays</strong>
+JavaScript ofrece varios métodos para manipular arrays. Algunos de los más comunes son:</p>
+<ul class="simple">
+<li><p><strong>1.</strong> push(): Agrega un nuevo elemento al final de un array.</p></li>
+</ul>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">frutas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"manzana"</span><span class="p">,</span><span class="w"> </span><span class="s2">"naranja"</span><span class="p">];</span>
+<span class="nx">frutas</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">"plátano"</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">frutas</span><span class="p">);</span><span class="w">  </span><span class="c1">// ["manzana", "naranja", "plátano"]</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>2.</strong> pop(): Elimina el último elemento de un array y lo devuelve.</p></li>
+</ul>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">frutas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"manzana"</span><span class="p">,</span><span class="w"> </span><span class="s2">"naranja"</span><span class="p">,</span><span class="w"> </span><span class="s2">"plátano"</span><span class="p">];</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">ultimo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">frutas</span><span class="p">.</span><span class="nx">pop</span><span class="p">();</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">ultimo</span><span class="p">);</span><span class="w">  </span><span class="c1">// plátano</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">frutas</span><span class="p">);</span><span class="w">  </span><span class="c1">// ["manzana", "naranja"]</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>3.</strong> shift(): Elimina el primer elemento de un array y lo devuelve.</p></li>
+</ul>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">frutas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"manzana"</span><span class="p">,</span><span class="w"> </span><span class="s2">"naranja"</span><span class="p">,</span><span class="w"> </span><span class="s2">"plátano"</span><span class="p">];</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">primero</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">frutas</span><span class="p">.</span><span class="nx">shift</span><span class="p">();</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">primero</span><span class="p">);</span><span class="w">  </span><span class="c1">// manzana</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">frutas</span><span class="p">);</span><span class="w">   </span><span class="c1">// ["naranja", "plátano"]</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>4.</strong> unshift(): Agrega un nuevo elemento al principio de un array.</p></li>
+</ul>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">frutas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"naranja"</span><span class="p">,</span><span class="w"> </span><span class="s2">"plátano"</span><span class="p">];</span>
+<span class="nx">frutas</span><span class="p">.</span><span class="nx">unshift</span><span class="p">(</span><span class="s2">"manzana"</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">frutas</span><span class="p">);</span><span class="w">  </span><span class="c1">// ["manzana", "naranja", "plátano"]</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>5.</strong> splice(): Permite eliminar, reemplazar o agregar elementos en cualquier posición de un array.</p></li>
+</ul>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">frutas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"manzana"</span><span class="p">,</span><span class="w"> </span><span class="s2">"naranja"</span><span class="p">,</span><span class="w"> </span><span class="s2">"plátano"</span><span class="p">];</span>
+<span class="nx">frutas</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="s2">"kiwi"</span><span class="p">,</span><span class="w"> </span><span class="s2">"mango"</span><span class="p">);</span><span class="w">  </span><span class="c1">// Elimina 1 elemento en el índice 1 y agrega "kiwi" y "mango"</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">frutas</span><span class="p">);</span><span class="w">  </span><span class="c1">// ["manzana", "kiwi", "mango", "plátano"]</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>6.</strong> concat(): Une dos o más arrays y devuelve un nuevo array.</p></li>
+</ul>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">frutas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"manzana"</span><span class="p">,</span><span class="w"> </span><span class="s2">"naranja"</span><span class="p">];</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">masFrutas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"kiwi"</span><span class="p">,</span><span class="w"> </span><span class="s2">"plátano"</span><span class="p">];</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">todasLasFrutas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">frutas</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">masFrutas</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">todasLasFrutas</span><span class="p">);</span><span class="w">  </span><span class="c1">// ["manzana", "naranja", "kiwi", "plátano"]</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>7.</strong> slice(): Crea una copia superficial de una porción de un array.</p></li>
+</ul>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">frutas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"manzana"</span><span class="p">,</span><span class="w"> </span><span class="s2">"naranja"</span><span class="p">,</span><span class="w"> </span><span class="s2">"plátano"</span><span class="p">,</span><span class="w"> </span><span class="s2">"kiwi"</span><span class="p">];</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">algunasFrutas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">frutas</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">algunasFrutas</span><span class="p">);</span><span class="w">  </span><span class="c1">// ["naranja", "plátano"]</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>8.</strong> forEach(): Ejecuta una función en cada elemento de un array.</p></li>
+</ul>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">frutas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"manzana"</span><span class="p">,</span><span class="w"> </span><span class="s2">"naranja"</span><span class="p">,</span><span class="w"> </span><span class="s2">"plátano"</span><span class="p">];</span>
+
+<span class="nx">frutas</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">fruta</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">fruta</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p><strong>// manzana</strong>
+// naranja
+// plátano</p>
+<p><strong>Métodos de búsqueda</strong></p>
+<ol class="arabic simple">
+<li><p>indexOf(): Devuelve el primer índice en el que se encuentra un valor en un array, o -1 si no se encuentra.</p></li>
+</ol>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">frutas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"manzana"</span><span class="p">,</span><span class="w"> </span><span class="s2">"naranja"</span><span class="p">,</span><span class="w"> </span><span class="s2">"plátano"</span><span class="p">];</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">frutas</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">"naranja"</span><span class="p">));</span><span class="w">  </span><span class="c1">// 1</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">frutas</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">"kiwi"</span><span class="p">));</span><span class="w">     </span><span class="c1">// -1</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>2.</strong> includes(): Devuelve true si un array contiene un determinado valor, de lo contrario devuelve false.</p></li>
+</ul>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">frutas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"manzana"</span><span class="p">,</span><span class="w"> </span><span class="s2">"naranja"</span><span class="p">,</span><span class="w"> </span><span class="s2">"plátano"</span><span class="p">];</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">frutas</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s2">"plátano"</span><span class="p">));</span><span class="w">  </span><span class="c1">// true</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">frutas</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s2">"kiwi"</span><span class="p">));</span><span class="w">     </span><span class="c1">// false</span>
+</pre></div>
+</div>
+<p><strong>Longitud de un Array</strong>
+Puedes obtener la longitud de un array usando la propiedad length:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">frutas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"manzana"</span><span class="p">,</span><span class="w"> </span><span class="s2">"naranja"</span><span class="p">,</span><span class="w"> </span><span class="s2">"plátano"</span><span class="p">];</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">frutas</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span><span class="w">  </span><span class="c1">// 3</span>
+
+<span class="c1">// Ejemplos</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">alimentos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"Plátanos con salami"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Yuca con Queso Frito"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Arroz con Camarones"</span><span class="p">];</span>
+
+<span class="nx">alert</span><span class="p">(</span><span class="nx">alimentos</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span><span class="w"> </span><span class="c1">// Muestra la longitud del array</span>
+
+<span class="nx">alert</span><span class="p">(</span><span class="nx">alimentos</span><span class="p">[</span><span class="mf">1</span><span class="p">]);</span><span class="w"> </span><span class="c1">// Muestra el segundo elemento del array</span>
+
+<span class="c1">// Otra forma de definir un array</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">alimentos2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Array</span><span class="p">(</span><span class="s2">"Plátanos con salami"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Yuca con Queso Frito"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Arroz con Camarones"</span><span class="p">);</span>
+
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s2">"Hoy vamos a comer"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">"&lt;br&gt;"</span><span class="p">);</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">alimentos</span><span class="p">[</span><span class="mf">1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">"&lt;br&gt;"</span><span class="p">);</span>
+
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s2">"&lt;strong&gt;El menú de hoy es:&lt;/strong&gt;&lt;br&gt;"</span><span class="p">);</span>
+
+<span class="k">for</span><span class="p">(</span><span class="nx">i</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nx">alimentos</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">alimentos</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">"&lt;br&gt;"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// El array, también conocido como vectores, matrices o arreglos, es una colección de variables que pueden ser todas del mismo tipo de datos o cada una de un tipo diferente.</span>
+<span class="c1">// Para definir un array, se utilizan los caracteres [] para delimitar su comienzo y su final, y para separar sus elementos.</span>
+<span class="c1">// La diferencia entre un array y una variable es que el array es un conjunto de variables que se almacenan dentro de una, y una variable es un espacio en memoria que puede ser utilizado luego, pero solo almacena una.</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">dias</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"Domingo"</span><span class="p">,</span><span class="s2">"Lunes"</span><span class="p">,</span><span class="s2">"Martes"</span><span class="p">,</span><span class="s2">"Miércoles"</span><span class="p">,</span><span class="s2">"Jueves"</span><span class="p">,</span><span class="s2">"Viernes"</span><span class="p">,</span><span class="s2">"Sábado"</span><span class="p">];</span>
+
+<span class="nx">alert</span><span class="p">(</span><span class="nx">dias</span><span class="p">[</span><span class="mf">3</span><span class="p">]);</span>
+
+<span class="c1">// Propiedades y métodos del Array</span>
+<span class="c1">// Propiedad length, indica la longitud o número de elementos en el array</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s2">"Hay un total de "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">alimentos</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">" elementos."</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">"&lt;br&gt;"</span><span class="p">);</span>
+
+<span class="c1">// document.write(alimentos = alimentos.length + "&lt;br&gt;"); // Esta manera no es correcta</span>
+
+<span class="c1">// Método push, permite agregar elementos al final de un array</span>
+<span class="nx">alimentos</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">"Queso"</span><span class="p">);</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">alimentos</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">"&lt;br&gt;"</span><span class="p">);</span>
+
+<span class="nx">alimentos</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">"Jamon"</span><span class="p">,</span><span class="s2">"Mortadela"</span><span class="p">,</span><span class="s2">"Salami"</span><span class="p">);</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">alimentos</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">"&lt;br&gt;"</span><span class="p">);</span>
+
+<span class="c1">// Método unshift (igual a push), agrega elementos al inicio de un array</span>
+<span class="nx">alimentos</span><span class="p">.</span><span class="nx">unshift</span><span class="p">(</span><span class="s2">"Queso"</span><span class="p">);</span>
+<span class="nx">alimentos</span><span class="p">.</span><span class="nx">unshift</span><span class="p">(</span><span class="s2">"Jamon"</span><span class="p">,</span><span class="s2">"Mortadela"</span><span class="p">,</span><span class="s2">"Salami"</span><span class="p">);</span>
+
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">alimentos</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">"&lt;br&gt;"</span><span class="p">);</span>
+
+<span class="c1">// Método shift, elimina elementos al principio de un array</span>
+<span class="nx">alimentos</span><span class="p">.</span><span class="nx">shift</span><span class="p">();</span><span class="w"> </span><span class="c1">// no acepta valores</span>
+
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">alimentos</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">"&lt;br&gt;"</span><span class="p">);</span>
+
+<span class="c1">// Método pop, elimina elementos al final de un array</span>
+<span class="nx">alimentos</span><span class="p">.</span><span class="nx">pop</span><span class="p">();</span>
+
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">alimentos</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="estructurasdecontrol.html" class="btn btn-neutral float-left" title="Estructuras de control" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="funciones.html" class="btn btn-neutral float-right" title="Funciones" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+  <p>
+    © Copyright <span id="anio-copyright"></span> jeironpro.
+  </p>
+  <script>
+    document.getElementById("anio-copyright").textContent =
+      new Date().getFullYear();
+  </script>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

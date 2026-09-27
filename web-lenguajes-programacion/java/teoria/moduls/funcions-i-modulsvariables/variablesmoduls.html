@@ -1,0 +1,315 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Variables i mòduls &mdash; documentación de Lenguajes de programación - </title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../../../_static/logo.svg"/>
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=e2bb6099"></script>
+      <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="search" title="Búsqueda" href="../../../../search.html" />
+    <link rel="next" title="Arrays" href="../arrays/index.html" />
+    <link rel="prev" title="Sobrecarrega" href="sobrecarrega.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Lenguajes de programación
+              <img src="../../../../_static/logo.svg" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lenguajes</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Java — DAW (ITIC Barcelona)</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../../index.html#teoria">Teoría</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../elements-basics-de-la-programacio/index.html">Elements basics de la programacio</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Moduls</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../primer-contacte-amb-moduls/index.html">Primer contacte amb moduls</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="index.html">Funcions, mòduls i variables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../arrays/index.html">Arrays</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../recursivitat/index.html">Recursivitat</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../poo/index.html">POO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../biblioteques/index.html">Biblioteques</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../fitxers/index.html">Fitxers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../persistencia-amb-bases-de-dades/index.html">Persistencia amb bases de dades</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../validacio-daplicacions/index.html">Validació daplicacions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#ejercicios">Ejercicios</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../python/index.html">Python — DCS (INFOTEP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../javascript/index.html">JavaScript — DCS (INFOTEP)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Lenguajes de programación</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Java — DAW (ITIC Barcelona)</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Moduls</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Funcions, mòduls i variables</a></li>
+      <li class="breadcrumb-item active">Variables i mòduls</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/java/teoria/moduls/funcions-i-modulsvariables/variablesmoduls.md.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="variables-i-moduls">
+<h1>Variables i mòduls<a class="headerlink" href="#variables-i-moduls" title="Link to this heading"></a></h1>
+<p><strong>Variables abans de mòduls</strong>
+Les vaiables són noms que fa referència a espais de memòria on es poden emmagatzemar dades. Permeten guardar, modificar i recuperar valors al llarg de l’execusió d’un programa. Cada variable té un nom, un tipus i un valor.</p>
+<p><strong>Declaració i inicialització</strong>
+Una variable es declara especificant el tipus de dada i el nom, i opcionalment es pot inicialitzar amb un valor.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">tipus</span><span class="w"> </span><span class="n">nomVariable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">valor</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><strong>Exemple</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">edat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">25</span><span class="p">;</span><span class="w"> </span><span class="c1">// Variable de tipus enter</span>
+<span class="kt">double</span><span class="w"> </span><span class="n">preu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">9.99</span><span class="p">;</span><span class="w"> </span><span class="c1">// Variable de tipus decimal</span>
+<span class="n">String</span><span class="w"> </span><span class="n">nom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Maria"</span><span class="p">;</span><span class="w"> </span><span class="c1">// Variable de tipus cadena</span>
+</pre></div>
+</div>
+<p><strong>Tipus de variables</strong>
+En java, les variables es poden classificar en funció del seu abast i ús:</p>
+<ol class="arabic simple">
+<li><p>Variable locals:</p></li>
+</ol>
+<ul class="simple">
+<li><p>Es declaren dins d’un mètode, constructor o bloc.</p></li>
+<li><p>Només són accessibles dins del bloc on es declaren.</p></li>
+<li><p>No tenen un valor per defecte i han de ser inicialitzades abans d’usar-les.</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="w">        </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">saludar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">String</span><span class="w"> </span><span class="n">missatge</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Hola!"</span><span class="p">;</span><span class="w"> </span><span class="c1">// Variable local</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">missatge</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>2.</strong> Variables d’instància (no estàtiques):</p></li>
+<li><p>Es declaren fora dels mètodes, dins d’una classe.</p></li>
+<li><p>Cada instància de la classe té la seva pròpia còpia.</p></li>
+<li><p>Tenen un valor per defecte (per exemple, 0 per enters, null per objectes).</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="w">        </span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Persona</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">String</span><span class="w"> </span><span class="n">nom</span><span class="p">;</span><span class="w"> </span><span class="c1">// Variable d'instància</span>
+<span class="w">        </span><span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>3.</strong> Variables estàtiques (de classe):</p></li>
+<li><p>Es declaren amb el modificador static.</p></li>
+<li><p>Comparteixen el mateix valor entre totes les instàncies de la classe.</p></li>
+<li><p>Es poden accedir directament utilitzant el nom de la classe.</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="w">        </span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Exemple</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">contador</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// Variable estàtica</span>
+<span class="w">        </span><span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Modificadors de les variables</strong>
+Les variables es poden modificar utilitzant paraules clau:</p>
+<ol class="arabic simple">
+<li><p>final: converteix la variable en constant. Un cop inicialitzada, el valor no es pot canviar.</p></li>
+</ol>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="w">        </span><span class="kd">final</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">PI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.14159</span><span class="p">;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>2.</strong> static: fa que la variable sigui compartida entre totes les instàncies de la classe.abstract</p></li>
+<li><p><strong>3.</strong> transient: indica que la variable no es serialitzarà.</p></li>
+<li><p><strong>4.</strong> volatile: utilitzada en programes multithread per garantir la coherència de la variable entre fils.abstract</p></li>
+</ul>
+<p><strong>Tipus de dades de les variables</strong>
+Les variables a Java es basen en dos tipus de dades:</p>
+<ol class="arabic simple">
+<li><p>Tipus primitius:</p></li>
+</ol>
+<ul class="simple">
+<li><p>byte, short, int, long (números enters).</p></li>
+<li><p>float, double (números decimals).</p></li>
+<li><p>char (caràcters).</p></li>
+<li><p>boolean (cert/fals).</p></li>
+<li><p><strong>2.</strong> Tipus de referència:</p></li>
+<li><p>Inclou objectes i arrays. El valor d’aquestes variables és una referència a un espai de memòria.</p></li>
+</ul>
+<p><strong>Inicialització per defecte</strong>
+Les variables locals no tenen un valor per defecte i han de ser inicialitzades abans d’usar-les. Les variables d’instancia i estàtiques, en canvi, tenen els valors per defecte següents:</p>
+<ul class="simple">
+<li><p>Números enters (int, long): 0</p></li>
+<li><p>Números decimals (float, double): 0.0</p></li>
+<li><p>Booleans: false</p></li>
+<li><p>Objectes: null</p></li>
+</ul>
+<p>Quan parlem de variables en el context de mòduls a Java, ens referim a com es poden gestionar, compartir i limitar les variables en una aplicació modular. Això inclou com les variables dins dels mòduls es fan accessibles o es restringeixen per millorar la seguretat i l’encapsulació.</p>
+<p><strong>Context de les variables en mòduls</strong>
+En una aplicacioó modular (introduïda a partir de Java 9), les variables es poden utilitzar dins de les classe, paquets i mòduls amb els mateixos principis generals, però amb algunes particularitats:</p>
+<ul class="simple">
+<li><p><strong>1.</strong> Encapsulació amb mòduls: podem decidir quins paquets i variables són accessibles per altres mòduls.
+2. Visibilitat limitada: els mètodes i variables d’una classe dins d’un mòdul poden ser visibles només dins del mòdul, a menys que es defineix explícitament al fitxer module-info.java.</p></li>
+</ul>
+<p><strong>Exemple pràctics</strong></p>
+<ol class="arabic simple">
+<li><p>Variables dins d’una classe són per defecte encapsulades, fins i tot en aplicacions modulars.</p></li>
+</ol>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">module</span> <span class="nc">calculadora</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">exports</span><span class="w"> </span><span class="n">com</span><span class="p">.</span><span class="na">exemple</span><span class="p">.</span><span class="na">calculadora</span><span class="p">;</span><span class="w"> </span><span class="c1">// Només exposem el paquet</span>
+<span class="p">}</span>
+
+<span class="kn">package</span><span class="w"> </span><span class="nn">com.exemple.calculadora</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Calculadora</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">resultat</span><span class="p">;</span><span class="w"> </span><span class="c1">// Només accessible dins de la classe</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">sumar</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">resultat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">resultat</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Aquí, la variable resultat no és accesible fora de la classe Calculadora, ni tan sols per altres classes del mateix mòdul.</p>
+<ul class="simple">
+<li><p><strong>2.</strong> Exposició de variables a través de mètodes públics
+Si volem permetre l’accés a una variable des d’un altre mòdul, utilitzem mètodes públics per encapsular-la i controlar-ne l’accés.</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">module</span> <span class="nc">calculadora</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">exports</span><span class="w"> </span><span class="n">com</span><span class="p">.</span><span class="na">exemple</span><span class="p">.</span><span class="na">calculadora</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kn">package</span><span class="w"> </span><span class="nn">com.exemple.calculadora</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Calculadora</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">resultat</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">getResultat</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// Mètode públic per accedir a la variable</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">resultat</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">sumar</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">resultat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">resultat</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>En aquest cas, la variable resultat pot ser llegida però no modificada directament, mantenint la integritat del mòdul.</p>
+<ul class="simple">
+<li><p><strong>3.</strong> Variables estàtiques dins d’un mòdul
+Les variables estàtiques són compartides per totes les instàncies d’una classe. Si es defineixen dins d’un mòdul, poden ser accessibles des de fora si el paquet és exportat i la variable és pública.</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">module</span> <span class="nc">calculadora</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">exports</span><span class="w"> </span><span class="n">com</span><span class="p">.</span><span class="na">exemple</span><span class="p">.</span><span class="na">utils</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kn">package</span><span class="w"> </span><span class="nn">com.exemple.utils</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Constants</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">PI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.14159</span><span class="p">;</span><span class="w"> </span><span class="c1">// Accessible des de qualsevol mòdul</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Aquesta variable PI serà accesible des d’altres mòduls sempre que el paquet com.exemple.utils estigui exportat.</p>
+<p><strong>Com afecta el fitxer module-info.java a les variables</strong>
+El fitxer module-info.java controla quins paquets i, per extensió, quines variables o classes poden ser utilitzades per altres mòduls.</p>
+<p><strong>Exemple</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">module</span> <span class="nc">calculadora</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">exports</span><span class="w"> </span><span class="n">com</span><span class="p">.</span><span class="na">exemple</span><span class="p">.</span><span class="na">utils</span><span class="p">;</span><span class="w"> </span><span class="c1">// Exposem només aquest paquet</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Si una classe dins del paquet com.exemple.utils té una variable pública o estàtica, aquesta serà accessible des d’altres mòduls.</p></li>
+<li><p>Si el paquet no està exportat, totes les seves variables quedaran encapsulades dins del mòdul, encara que siguin publiques.</p></li>
+</ul>
+<p><strong>Bones pràctiques amb variables en aplicacions modulars</strong></p>
+<ol class="arabic simple">
+<li><p>Encapsula les variables sensibles: declara-les com a private i proporciona accés només a través de mètodes públics o protegits.</p></li>
+</ol>
+<ul class="simple">
+<li><p><strong>2.</strong> Exporta només el que és necessari: limita els paquets i classes accessibles per altres mòduls al mínim indispensable.</p></li>
+<li><p><strong>3.</strong> Utilitza constants: per valors i invariables, utilitza final i static per millorar la claredat i evitar canvis inesperats.</p></li>
+<li><p><strong>4.</strong> Evita fer variables globals dins de mòduls: les variables global poden provocar problemes de coherència i depuració.</p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="sobrecarrega.html" class="btn btn-neutral float-left" title="Sobrecarrega" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="../arrays/index.html" class="btn btn-neutral float-right" title="Arrays" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+  <p>
+    © Copyright <span id="anio-copyright"></span> jeironpro.
+  </p>
+  <script>
+    document.getElementById("anio-copyright").textContent =
+      new Date().getFullYear();
+  </script>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

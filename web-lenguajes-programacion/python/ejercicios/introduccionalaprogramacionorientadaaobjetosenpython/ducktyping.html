@@ -1,0 +1,330 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ejercicios — Ducktyping &mdash; documentación de Lenguajes de programación - </title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/logo.svg"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=e2bb6099"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" title="Búsqueda" href="../../../search.html" />
+    <link rel="next" title="Ejercicios — Encapsulamiento" href="encapsulamiento.html" />
+    <link rel="prev" title="Ejercicios — Dataclasses" href="dataclasses.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Lenguajes de programación
+              <img src="../../../_static/logo.svg" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lenguajes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../java/index.html">Java — DAW (ITIC Barcelona)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Python — DCS (INFOTEP)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#teoria">Teoría</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#frameworks">Frameworks</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#ejercicios">Ejercicios</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../ejercicios.html">Ejercicios</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython.html">Ejercicios — Elementos básicos de la programación en Python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython/introduccion.html">Ejercicios — Introducción</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython/entradaysalidadedatos.html">Ejercicios — Entrada y salida de datos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython/variablesytiposdedatos.html">Ejercicios — Variables y tipos de datos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython/operadores.html">Ejercicios — Operadores</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython/condicionales.html">Ejercicios — Condicionales</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython/bucles.html">Ejercicios — Bucles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython/colecciones.html">Ejercicios — Colecciones</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython/funciones.html">Ejercicios — Funciones</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduccionalaprogramacionorientadaaobjetosenpython.html">Ejercicios — Introducción a la programación orientada a objetos en Python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="apis.html">Ejercicios — Apis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="clasesabstractas.html">Ejercicios — Clases abstractas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dataclasses.html">Ejercicios — Dataclasses</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Ejercicios — Ducktyping</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#duck-typing-adicionales1">duck_typing_adicionales1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#duck-typing-adicionales2">duck_typing_adicionales2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#duck-typing-adicionales3">duck_typing_adicionales3</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#duck-typing-adicionales4">duck_typing_adicionales4</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#duck-typing-adicionales5">duck_typing_adicionales5</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="encapsulamiento.html">Ejercicios — Encapsulamiento</a></li>
+<li class="toctree-l3"><a class="reference internal" href="encapsulamientodemetodos.html">Ejercicios — Encapsulamiento de métodos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="herencia.html">Ejercicios — Herencia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="herenciamultiple.html">Ejercicios — Herencia múltiple</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduccionpoo.html">Ejercicios — Introduccion POO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="metodosmagicos.html">Ejercicios — Métodos mágicos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polimorfismo.html">Ejercicios — Polimorfismo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sobrecargademetodos.html">Ejercicios — Sobrecarga de métodos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="super.html">Ejercicios — Super</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../javascript/index.html">JavaScript — DCS (INFOTEP)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Lenguajes de programación</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Python — DCS (INFOTEP)</a></li>
+          <li class="breadcrumb-item"><a href="../../ejercicios.html">Ejercicios</a></li>
+          <li class="breadcrumb-item"><a href="../introduccionalaprogramacionorientadaaobjetosenpython.html">Ejercicios — Introducción a la programación orientada a objetos en Python</a></li>
+      <li class="breadcrumb-item active">Ejercicios — Ducktyping</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/python/ejercicios/introduccionalaprogramacionorientadaaobjetosenpython/ducktyping.md.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ejercicios-ducktyping">
+<h1>Ejercicios — Ducktyping<a class="headerlink" href="#ejercicios-ducktyping" title="Link to this heading"></a></h1>
+<section id="duck-typing-adicionales1">
+<h2>duck_typing_adicionales1<a class="headerlink" href="#duck-typing-adicionales1" title="Link to this heading"></a></h2>
+<p>Función de saludo</p>
+<p>Crea una función llamada saludar que reciba un objeto y llame a un método saludar() del objeto. Si el objeto tiene un método saludar, la función debe imprimir «Hola, [nombre]!». Si no tiene el método, debe imprimir un mensaje de error. Crea dos clases: Persona (con el método saludar) y ObjetoGenérico (sin el método saludar), y prueba la función con ambas.</p>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">saludar</span><span class="p">(</span><span class="n">objeto</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">objeto</span><span class="p">,</span> <span class="s1">'saludar'</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Hola, </span><span class="si">{</span><span class="n">objeto</span><span class="o">.</span><span class="n">saludar</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Error: El objeto no tiene el método saludar."</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Persona</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nombre</span> <span class="o">=</span> <span class="n">nombre</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">saludar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">nombre</span>
+    
+<span class="k">class</span><span class="w"> </span><span class="nc">ObjetoGenérico</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">descripcion</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">descripcion</span> <span class="o">=</span> <span class="n">descripcion</span>
+
+<span class="n">persona</span> <span class="o">=</span> <span class="n">Persona</span><span class="p">(</span><span class="s2">"Jeiron"</span><span class="p">)</span>
+<span class="n">objeto_generico</span> <span class="o">=</span> <span class="n">ObjetoGenérico</span><span class="p">(</span><span class="s2">"Objeto sin saludo"</span><span class="p">)</span>
+
+<span class="n">saludar</span><span class="p">(</span><span class="n">persona</span><span class="p">)</span>
+<span class="n">saludar</span><span class="p">(</span><span class="n">objeto_generico</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="duck-typing-adicionales2">
+<h2>duck_typing_adicionales2<a class="headerlink" href="#duck-typing-adicionales2" title="Link to this heading"></a></h2>
+<p>Operación aritmética</p>
+<p>Crea una función llamada realizar_operacion que reciba dos objetos y realice la operación + entre ellos. Para ello, ambos objetos deben tener el método sumar(). Si uno de los objetos no tiene este método, debe imprimir un mensaje de error. Crea dos clases: Numero (con el método sumar) y Texto (sin el método sumar) para probar el código.</p>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">realizar_operacion</span><span class="p">(</span><span class="n">objeto1</span><span class="p">,</span> <span class="n">objeto2</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">objeto1</span><span class="p">,</span> <span class="s1">'sumar'</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">objeto2</span><span class="p">,</span> <span class="s1">'sumar'</span><span class="p">):</span>
+        <span class="n">resultado</span> <span class="o">=</span> <span class="n">objeto1</span><span class="o">.</span><span class="n">sumar</span><span class="p">(</span><span class="n">objeto2</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"El resultado de la operación es: </span><span class="si">{</span><span class="n">resultado</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Error: Uno o ambos objetos no tienen el método sumar."</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Numero</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">valor</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">valor</span> <span class="o">=</span> <span class="n">valor</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">sumar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">otro_objeto</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">valor</span> <span class="o">+</span> <span class="n">otro_objeto</span><span class="o">.</span><span class="n">valor</span>
+    
+<span class="k">class</span><span class="w"> </span><span class="nc">Texto</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contenido</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">contenido</span> <span class="o">=</span> <span class="n">contenido</span>
+
+<span class="n">numero1</span> <span class="o">=</span> <span class="n">Numero</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">numero2</span> <span class="o">=</span> <span class="n">Numero</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">texto</span> <span class="o">=</span> <span class="n">Texto</span><span class="p">(</span><span class="s2">"Hola"</span><span class="p">)</span>
+
+<span class="n">realizar_operacion</span><span class="p">(</span><span class="n">numero1</span><span class="p">,</span> <span class="n">numero2</span><span class="p">)</span>
+<span class="n">realizar_operacion</span><span class="p">(</span><span class="n">numero1</span><span class="p">,</span> <span class="n">texto</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="duck-typing-adicionales3">
+<h2>duck_typing_adicionales3<a class="headerlink" href="#duck-typing-adicionales3" title="Link to this heading"></a></h2>
+<p>Reproducción de sonido</p>
+<p>Crea una función llamada reproducir_sonido que reciba un objeto y lo haga «sonar». Si el objeto tiene el método hacer_sonido(), la función debe llamarlo. Crea dos clases: Guitarra (con el método hacer_sonido) y Tambor (con el método hacer_sonido), y prueba la función con ambas. También prueba con una clase Silla que no tenga el método hacer_sonido.</p>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">reproducir_sonido</span><span class="p">(</span><span class="n">objeto</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">objeto</span><span class="p">,</span> <span class="s1">'hacer_sonido'</span><span class="p">):</span>
+        <span class="n">objeto</span><span class="o">.</span><span class="n">hacer_sonido</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Error: El objeto no tiene el método hacer_sonido."</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Guitarra</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">hacer_sonido</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"La guitarra está sonando: ¡Strum strum!"</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Tambor</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">hacer_sonido</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"El tambor está sonando: ¡Boom boom!"</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Silla</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Soy una silla, no hago sonido."</span><span class="p">)</span>
+
+<span class="n">guitarra</span> <span class="o">=</span> <span class="n">Guitarra</span><span class="p">()</span>
+<span class="n">tambor</span> <span class="o">=</span> <span class="n">Tambor</span><span class="p">()</span>
+<span class="n">silla</span> <span class="o">=</span> <span class="n">Silla</span><span class="p">()</span>
+
+<span class="n">reproducir_sonido</span><span class="p">(</span><span class="n">guitarra</span><span class="p">)</span>
+<span class="n">reproducir_sonido</span><span class="p">(</span><span class="n">tambor</span><span class="p">)</span>
+<span class="n">reproducir_sonido</span><span class="p">(</span><span class="n">silla</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="duck-typing-adicionales4">
+<h2>duck_typing_adicionales4<a class="headerlink" href="#duck-typing-adicionales4" title="Link to this heading"></a></h2>
+<p>Dibujar formas</p>
+<p>Crea una función llamada dibujar_forma que reciba un objeto y lo dibuje. Si el objeto tiene un método dibujar(), debe llamarlo. Crea una clase Círculo (con el método dibujar) y una clase Cuadrado (con el método dibujar), y prueba la función con ambas. Además, prueba con una clase Triángulo que no tenga el método dibujar.</p>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">dibujar_forma</span><span class="p">(</span><span class="n">objeto</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">objeto</span><span class="p">,</span> <span class="s1">'dibujar'</span><span class="p">):</span>
+        <span class="n">objeto</span><span class="o">.</span><span class="n">dibujar</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Error: El objeto no tiene el método dibujar."</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Circulo</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">dibujar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Dibujando un círculo."</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Cuadrado</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">dibujar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Dibujando un cuadrado."</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Triangulo</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Soy un triángulo, pero no puedo dibujar."</span><span class="p">)</span>
+
+<span class="n">circulo</span> <span class="o">=</span> <span class="n">Circulo</span><span class="p">()</span>
+<span class="n">cuadrado</span> <span class="o">=</span> <span class="n">Cuadrado</span><span class="p">()</span>
+<span class="n">triangulo</span> <span class="o">=</span> <span class="n">Triangulo</span><span class="p">()</span>
+
+<span class="n">dibujar_forma</span><span class="p">(</span><span class="n">circulo</span><span class="p">)</span>
+<span class="n">dibujar_forma</span><span class="p">(</span><span class="n">cuadrado</span><span class="p">)</span>
+<span class="n">dibujar_forma</span><span class="p">(</span><span class="n">triangulo</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="duck-typing-adicionales5">
+<h2>duck_typing_adicionales5<a class="headerlink" href="#duck-typing-adicionales5" title="Link to this heading"></a></h2>
+<p>Función para medir el área</p>
+<p>Crea una función llamada calcular_area que reciba un objeto y calcule el área. El objeto debe tener un método area(). Crea dos clases: Rectángulo (con el método area) y Círculo (con el método area), y prueba la función con ambas. Luego, prueba con una clase Carro que no tenga el método area.</p>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">calcular_area</span><span class="p">(</span><span class="n">objeto</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">objeto</span><span class="p">,</span> <span class="s1">'area'</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">objeto</span><span class="o">.</span><span class="n">area</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Error: El objeto no tiene el método area."</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Rectangulo</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">largo</span><span class="p">,</span> <span class="n">ancho</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">largo</span> <span class="o">=</span> <span class="n">largo</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ancho</span> <span class="o">=</span> <span class="n">ancho</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">area</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">largo</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">ancho</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Circulo</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">radio</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">radio</span> <span class="o">=</span> <span class="n">radio</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">area</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">radio</span> <span class="o">**</span> <span class="mi">2</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Carro</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modelo</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">modelo</span> <span class="o">=</span> <span class="n">modelo</span>
+
+<span class="n">rectangulo</span> <span class="o">=</span> <span class="n">Rectangulo</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">circulo</span> <span class="o">=</span> <span class="n">Circulo</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">carro</span> <span class="o">=</span> <span class="n">Carro</span><span class="p">(</span><span class="s2">"Toyota"</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Área del rectángulo: </span><span class="si">{</span><span class="n">calcular_area</span><span class="p">(</span><span class="n">rectangulo</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Área del círculo: </span><span class="si">{</span><span class="n">calcular_area</span><span class="p">(</span><span class="n">circulo</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Área del carro: </span><span class="si">{</span><span class="n">calcular_area</span><span class="p">(</span><span class="n">carro</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="dataclasses.html" class="btn btn-neutral float-left" title="Ejercicios — Dataclasses" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="encapsulamiento.html" class="btn btn-neutral float-right" title="Ejercicios — Encapsulamiento" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+  <p>
+    © Copyright <span id="anio-copyright"></span> jeironpro.
+  </p>
+  <script>
+    document.getElementById("anio-copyright").textContent =
+      new Date().getFullYear();
+  </script>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

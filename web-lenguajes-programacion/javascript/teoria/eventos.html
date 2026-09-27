@@ -1,0 +1,243 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eventos &mdash; documentación de Lenguajes de programación - </title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/logo.svg"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=e2bb6099"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="search" title="Búsqueda" href="../../search.html" />
+    <link rel="next" title="Formularios" href="formularios.html" />
+    <link rel="prev" title="DOM" href="dom.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Lenguajes de programación
+              <img src="../../_static/logo.svg" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lenguajes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../java/index.html">Java — DAW (ITIC Barcelona)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python/index.html">Python — DCS (INFOTEP)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">JavaScript — DCS (INFOTEP)</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#teoria">Teoría</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduccion.html">Introducción</a></li>
+<li class="toctree-l3"><a class="reference internal" href="variables.html">Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="operadores.html">Operadores</a></li>
+<li class="toctree-l3"><a class="reference internal" href="estructurasdecontrol.html">Estructuras de control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="arrays.html">Arrays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="funciones.html">Funciones</a></li>
+<li class="toctree-l3"><a class="reference internal" href="objetos.html">Objetos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dom.html">DOM</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Eventos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="formularios.html">Formularios</a></li>
+<li class="toctree-l3"><a class="reference internal" href="formularios/index.html">Formularios</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#ejercicios">Ejercicios</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Lenguajes de programación</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">JavaScript — DCS (INFOTEP)</a></li>
+      <li class="breadcrumb-item active">Eventos</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/javascript/teoria/eventos.md.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="eventos">
+<h1>Eventos<a class="headerlink" href="#eventos" title="Link to this heading"></a></h1>
+<p><strong>Eventos en JavaScript</strong>
+Los eventos son acciones o sucesos que ocurren en el navegador y que pueden ser capturados y gestionados por JavaScript. Los eventos pueden ser causados por el usuario (como hacer clic en un botón o escribir en un campo de texto) o por el navegador (como la carga de una página o el cambio de un valor en un campo de formulario).</p>
+<p><strong>Tipos de Eventos Comunes</strong>
+Algunos de los eventos más comunes son:</p>
+<ul class="simple">
+<li><p>Eventos de usuario:</p></li>
+<li><p>click: Ocurre cuando el usuario hace clic en un elemento.</p></li>
+<li><p>mouseover: Ocurre cuando el usuario mueve el ratón sobre un elemento.</p></li>
+<li><p>keydown: Ocurre cuando el usuario presiona una tecla.</p></li>
+<li><p>input: Ocurre cuando el valor de un campo de entrada cambia.</p></li>
+<li><p>Eventos de la página:</p></li>
+<li><p>load: Ocurre cuando una página se ha cargado completamente.</p></li>
+<li><p>resize: Ocurre cuando el tamaño de la ventana cambia.</p></li>
+<li><p>scroll: Ocurre cuando se desplaza la página.</p></li>
+</ul>
+<p><strong>Añadir un Event Listener</strong>
+En JavaScript, puedes añadir un event listener (escucha de evento) a un elemento del DOM para que ejecute una función cuando ocurra un evento.</p>
+<p>La forma más común de añadir un event listener es con el método addEventListener.</p>
+<p><strong>Sintaxis</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">element</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"evento"</span><span class="p">,</span><span class="w"> </span><span class="nx">funcion</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Ejemplo</strong>
+// Seleccionar un botón</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">boton</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"miBoton"</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>// Añadir un event listener para el evento «click»</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">boton</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"click"</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">alert</span><span class="p">(</span><span class="s2">"¡Botón clickeado!"</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p><strong>Eventos con Funciones Anónimas</strong>
+Puedes usar funciones anónimas (es decir, funciones sin nombre) directamente dentro del addEventListener.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">boton</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"click"</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"El botón ha sido clickeado"</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p><strong>Eliminar un Event Listener</strong>
+Si en algún momento deseas eliminar un event listener que has agregado, puedes hacerlo con el método removeEventListener. Este método solo funcionará si pasas exactamente la misma función que fue añadida.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">mensaje</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">alert</span><span class="p">(</span><span class="s2">"¡Hola!"</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>// Añadir el event listener</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">boton</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"click"</span><span class="p">,</span><span class="w"> </span><span class="nx">mensaje</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>// Eliminar el event listener</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">boton</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">(</span><span class="s2">"click"</span><span class="p">,</span><span class="w"> </span><span class="nx">mensaje</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Tipos de Eventos Comunes</strong>
+Algunos eventos comunes que puedes manejar incluyen:</p>
+<ul class="simple">
+<li><p>click</p></li>
+<li><p>dblclick (doble clic)</p></li>
+<li><p>mouseenter y mouseleave</p></li>
+<li><p>keydown, keyup y keypress</p></li>
+<li><p>focus y blur</p></li>
+<li><p>submit (en formularios)</p></li>
+<li><p>change (en campos de formulario)</p></li>
+</ul>
+<p><strong>Eventos de Formulario</strong>
+Puedes usar eventos para gestionar interacciones con formularios, como cuando el usuario envía un formulario o cambia un valor de campo.</p>
+<p><strong>Ejemplo</strong>
+// Seleccionar un formulario</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">formulario</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"miFormulario"</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>// Añadir un event listener para el evento «submit»</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">formulario</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"submit"</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</pre></div>
+</div>
+<p>// Evitar que el formulario se envíe de inmediato</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Formulario enviado"</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p><strong>Evitar el Comportamiento por Defecto</strong>
+Usando event.preventDefault() puedes evitar que un evento realice su acción predeterminada. Esto es útil, por ejemplo, para evitar que un formulario se envíe automáticamente cuando el usuario hace clic en el botón de enviar.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">formulario</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"submit"</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span><span class="w">  </span><span class="c1">// Evita que el formulario se envíe</span>
+<span class="w">    </span><span class="nx">alert</span><span class="p">(</span><span class="s2">"Formulario bloqueado"</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">// Ejemplo de onmouse / overout</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">pintar</span><span class="p">(</span><span class="nx">col</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"cuadrado"</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">backgroundColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">col</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Ejemplo de onfocus / onblur</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">vaciar</span><span class="p">(</span><span class="nx">control</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">control</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">''</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">verificarEntrada</span><span class="p">(</span><span class="nx">control</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="nx">control</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">''</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">alert</span><span class="p">(</span><span class="s2">"El campo no puede estar vació."</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="dom.html" class="btn btn-neutral float-left" title="DOM" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="formularios.html" class="btn btn-neutral float-right" title="Formularios" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+  <p>
+    © Copyright <span id="anio-copyright"></span> jeironpro.
+  </p>
+  <script>
+    document.getElementById("anio-copyright").textContent =
+      new Date().getFullYear();
+  </script>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

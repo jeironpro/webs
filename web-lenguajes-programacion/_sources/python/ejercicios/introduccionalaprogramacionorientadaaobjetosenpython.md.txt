@@ -1,0 +1,23 @@
+# Ejercicios — Introducción a la programación orientada a objetos en Python
+
+
+
+## Subtemas
+
+```{toctree}
+:maxdepth: 1
+
+/python/ejercicios/introduccionalaprogramacionorientadaaobjetosenpython/apis
+/python/ejercicios/introduccionalaprogramacionorientadaaobjetosenpython/clasesabstractas
+/python/ejercicios/introduccionalaprogramacionorientadaaobjetosenpython/dataclasses
+/python/ejercicios/introduccionalaprogramacionorientadaaobjetosenpython/ducktyping
+/python/ejercicios/introduccionalaprogramacionorientadaaobjetosenpython/encapsulamiento
+/python/ejercicios/introduccionalaprogramacionorientadaaobjetosenpython/encapsulamientodemetodos
+/python/ejercicios/introduccionalaprogramacionorientadaaobjetosenpython/herencia
+/python/ejercicios/introduccionalaprogramacionorientadaaobjetosenpython/herenciamultiple
+/python/ejercicios/introduccionalaprogramacionorientadaaobjetosenpython/introduccionpoo
+/python/ejercicios/introduccionalaprogramacionorientadaaobjetosenpython/metodosmagicos
+/python/ejercicios/introduccionalaprogramacionorientadaaobjetosenpython/polimorfismo
+/python/ejercicios/introduccionalaprogramacionorientadaaobjetosenpython/sobrecargademetodos
+/python/ejercicios/introduccionalaprogramacionorientadaaobjetosenpython/super
+```

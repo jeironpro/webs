@@ -1,0 +1,454 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ejercicios — Condicionales &mdash; documentación de Lenguajes de programación - </title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/logo.svg"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=e2bb6099"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" title="Búsqueda" href="../../../search.html" />
+    <link rel="next" title="Ejercicios — Bucles" href="bucles.html" />
+    <link rel="prev" title="Ejercicios — Operadores" href="operadores.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Lenguajes de programación
+              <img src="../../../_static/logo.svg" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lenguajes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../java/index.html">Java — DAW (ITIC Barcelona)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Python — DCS (INFOTEP)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#teoria">Teoría</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#frameworks">Frameworks</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#ejercicios">Ejercicios</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../ejercicios.html">Ejercicios</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython.html">Ejercicios — Elementos básicos de la programación en Python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduccion.html">Ejercicios — Introducción</a></li>
+<li class="toctree-l3"><a class="reference internal" href="entradaysalidadedatos.html">Ejercicios — Entrada y salida de datos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="variablesytiposdedatos.html">Ejercicios — Variables y tipos de datos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="operadores.html">Ejercicios — Operadores</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Ejercicios — Condicionales</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#condicionales1">condicionales1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#condicionales2">condicionales2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#condicionales3">condicionales3</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#condicionales4">condicionales4</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#condicionales5">condicionales5</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#condicionales6">condicionales6</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#condicionales7">condicionales7</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#condicionales8">condicionales8</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#condicionales9">condicionales9</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#condicionales10">condicionales10</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#condicionales-adicional1">condicionales_adicional1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#condicionales-adicional2">condicionales_adicional2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#condicionales-adicional3">condicionales_adicional3</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#condicionales-adicional4">condicionales_adicional4</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#condicionales-adicional5">condicionales_adicional5</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="bucles.html">Ejercicios — Bucles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="colecciones.html">Ejercicios — Colecciones</a></li>
+<li class="toctree-l3"><a class="reference internal" href="funciones.html">Ejercicios — Funciones</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduccionalaprogramacionorientadaaobjetosenpython.html">Ejercicios — Introducción a la programación orientada a objetos en Python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduccionalaprogramacionorientadaaobjetosenpython/apis.html">Ejercicios — Apis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduccionalaprogramacionorientadaaobjetosenpython/clasesabstractas.html">Ejercicios — Clases abstractas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduccionalaprogramacionorientadaaobjetosenpython/dataclasses.html">Ejercicios — Dataclasses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduccionalaprogramacionorientadaaobjetosenpython/ducktyping.html">Ejercicios — Ducktyping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduccionalaprogramacionorientadaaobjetosenpython/encapsulamiento.html">Ejercicios — Encapsulamiento</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduccionalaprogramacionorientadaaobjetosenpython/encapsulamientodemetodos.html">Ejercicios — Encapsulamiento de métodos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduccionalaprogramacionorientadaaobjetosenpython/herencia.html">Ejercicios — Herencia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduccionalaprogramacionorientadaaobjetosenpython/herenciamultiple.html">Ejercicios — Herencia múltiple</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduccionalaprogramacionorientadaaobjetosenpython/introduccionpoo.html">Ejercicios — Introduccion POO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduccionalaprogramacionorientadaaobjetosenpython/metodosmagicos.html">Ejercicios — Métodos mágicos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduccionalaprogramacionorientadaaobjetosenpython/polimorfismo.html">Ejercicios — Polimorfismo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduccionalaprogramacionorientadaaobjetosenpython/sobrecargademetodos.html">Ejercicios — Sobrecarga de métodos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduccionalaprogramacionorientadaaobjetosenpython/super.html">Ejercicios — Super</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../javascript/index.html">JavaScript — DCS (INFOTEP)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Lenguajes de programación</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Python — DCS (INFOTEP)</a></li>
+          <li class="breadcrumb-item"><a href="../../ejercicios.html">Ejercicios</a></li>
+          <li class="breadcrumb-item"><a href="../elementosbasicosdelaprogramacionenpython.html">Ejercicios — Elementos básicos de la programación en Python</a></li>
+      <li class="breadcrumb-item active">Ejercicios — Condicionales</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/python/ejercicios/elementosbasicosdelaprogramacionenpython/condicionales.md.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ejercicios-condicionales">
+<h1>Ejercicios — Condicionales<a class="headerlink" href="#ejercicios-condicionales" title="Link to this heading"></a></h1>
+<section id="condicionales1">
+<h2>condicionales1<a class="headerlink" href="#condicionales1" title="Link to this heading"></a></h2>
+<p>Escribir un programa que pida al usuario su edad y muestre por pantalla:</p>
+<p>Si es menor de 18 años, imprime «Eres menor de edad».
+Si tiene 18 años o más, imprime «Eres mayor de edad».</p>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">edad</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Introduzca su edad: "</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="n">edad</span> <span class="o">&gt;=</span><span class="mi">18</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Eres mayor de edad"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Eres menor de edad"</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="condicionales2">
+<h2>condicionales2<a class="headerlink" href="#condicionales2" title="Link to this heading"></a></h2>
+<p>Escribir un programa que almacene la cadena de caracteres «contraseña» en una variable, pregunte al usuario por la contraseña e imprima por pantalla si la contraseña introducida por el usuario coincide con la guardada en la variable, sin tener en cuenta mayúsculas y minúsculas.</p>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">contrasena</span> <span class="o">=</span> <span class="s2">"contraseña"</span>
+
+<span class="n">contrasena_usuario</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"Introduce tu contraseña: "</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">contrasena</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">contrasena_usuario</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"La contraseña coincide."</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"La contraseña no coincide."</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="condicionales3">
+<h2>condicionales3<a class="headerlink" href="#condicionales3" title="Link to this heading"></a></h2>
+<p>Escribir un programa que pida al usuario dos números y muestre por pantalla su división. Si el divisor es cero, el programa debe mostrar un error.</p>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">n1</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Introduzca el primer número: "</span><span class="p">))</span>
+<span class="n">n2</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Introduzca el segundo número: "</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="n">n2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"No se puede dividir entre 0"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">n1</span> <span class="o">/</span> <span class="n">n2</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="condicionales4">
+<h2>condicionales4<a class="headerlink" href="#condicionales4" title="Link to this heading"></a></h2>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Escribir un programa que pida al usuario un número entero y muestre por pantalla si es par o impar.</span>
+
+<span class="n">numero</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Introduzca un número entero: "</span><span class="p">))</span>
+
+<span class="n">resultado</span> <span class="o">=</span> <span class="s2">"El número es par"</span> <span class="k">if</span> <span class="n">numero</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">"El número es impar"</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">resultado</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="condicionales5">
+<h2>condicionales5<a class="headerlink" href="#condicionales5" title="Link to this heading"></a></h2>
+<p>Para tributar un determinado impuesto, se debe ser mayor de 16 años y tener unos ingresos iguales o superiores a 1000 dólares mensuales. Escribir un programa que pregunte al usuario su edad y sus ingresos mensuales, y muestre por pantalla si el usuario tiene que tributar o no.</p>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">edad</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Introduzca su edad: "</span><span class="p">))</span>
+<span class="n">ingresos</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Introduzca sus ingresos mensuales en dólares: $"</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="n">edad</span> <span class="o">&gt;=</span> <span class="mi">16</span> <span class="ow">and</span> <span class="n">ingresos</span> <span class="o">&gt;=</span> <span class="mi">1000</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Tienes que tributar."</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"No tienes que tributar."</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="condicionales6">
+<h2>condicionales6<a class="headerlink" href="#condicionales6" title="Link to this heading"></a></h2>
+<p>Los alumnos de un curso se han dividido en dos grupos, A y B, de acuerdo con el sexo y el nombre. El grupo A está formado por las mujeres con un nombre anterior a la M y los hombres con un nombre posterior a la N, y el grupo B por el resto. Escribir un programa que pregunte al usuario su nombre y sexo, y muestre por pantalla el grupo correspondiente.</p>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">nombre</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"Introduce tu nombre: "</span><span class="p">)</span>
+<span class="n">sexo</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"Introduce tu sexo (M para masculino, F para femenino): "</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+
+<span class="n">primera_letra</span> <span class="o">=</span> <span class="n">nombre</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">primera_letra</span> <span class="o">&lt;</span> <span class="s2">"M"</span> <span class="ow">and</span> <span class="n">sexo</span> <span class="o">==</span> <span class="s2">"F"</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Tú eres del grupo A"</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">primera_letra</span> <span class="o">&gt;</span> <span class="s2">"N"</span> <span class="ow">and</span> <span class="n">sexo</span> <span class="o">==</span> <span class="s2">"M"</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Tú eres del grupo A"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Tú eres del grupo B"</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="condicionales7">
+<h2>condicionales7<a class="headerlink" href="#condicionales7" title="Link to this heading"></a></h2>
+<p>Los tramos impositivos para la declaración de la renta en un determinado país son los siguientes:</p>
+<ul class="simple">
+<li><p>Menos de 10 000:         5%</p></li>
+<li><p>Entre 10 000 y 20 000:   15%</p></li>
+<li><p>Entre 20 000 y 35 000:   20%</p></li>
+<li><p>Entre 35 000 y 60 000:   30%</p></li>
+<li><p>Más de 60 000:           45%</p></li>
+</ul>
+<p>Escribir un programa que pregunte al usuario su renta anual y muestre por pantalla el tipo impositivo que le corresponde.</p>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">renta</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"De cuanto es su renta anual: RD$"</span><span class="p">))</span>
+<span class="n">impositivo</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="k">if</span> <span class="n">renta</span> <span class="o">&lt;</span> <span class="mi">10000</span><span class="p">:</span>
+    <span class="n">impositivo</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="k">elif</span> <span class="n">renta</span> <span class="o">&gt;=</span> <span class="mi">10000</span> <span class="ow">and</span> <span class="n">renta</span> <span class="o">&lt;</span> <span class="mi">20000</span><span class="p">:</span>
+    <span class="n">impositivo</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="k">elif</span> <span class="n">renta</span> <span class="o">&gt;=</span> <span class="mi">20000</span> <span class="ow">and</span> <span class="n">renta</span> <span class="o">&lt;</span> <span class="mi">35000</span><span class="p">:</span>
+    <span class="n">impositivo</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="k">elif</span> <span class="n">renta</span> <span class="o">&gt;=</span> <span class="mi">35000</span> <span class="ow">and</span> <span class="n">renta</span> <span class="o">&lt;=</span> <span class="mi">60000</span><span class="p">:</span>
+    <span class="n">impositivo</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">impositivo</span> <span class="o">=</span> <span class="mi">45</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Tu impositivo es de </span><span class="si">{</span><span class="n">impositivo</span><span class="si">}</span><span class="s2">%"</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="condicionales8">
+<h2>condicionales8<a class="headerlink" href="#condicionales8" title="Link to this heading"></a></h2>
+<p>En una determinada empresa, sus empleados son evaluados al final de cada año. Los puntos que pueden obtener en la evaluación comienzan en 0.0 y pueden ir aumentando, traduciéndose en mejores beneficios. Los puntos que pueden conseguir los empleados son 0.0, 0.4, 0.6 o más, pero no valores intermedios entre las cifras mencionadas. A continuación, se muestra una tabla con los niveles correspondientes a cada puntuación. La cantidad de dinero conseguida en cada nivel es de 2,400 dólares multiplicada por la puntuación del nivel.</p>
+<ul class="simple">
+<li><p>Inaceptable: 0.0</p></li>
+<li><p>Aceptable: 0.4</p></li>
+<li><p>Meritoria: 0.6</p></li>
+</ul>
+<p>Escribir un programa que lea la puntuación del usuario e indique su nivel de rendimiento, así como la cantidad de dinero que recibirá el usuario.</p>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">puntuacion</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Ingrese su puntuacion: "</span><span class="p">))</span>
+<span class="n">dinero</span> <span class="o">=</span> <span class="mi">2400</span> <span class="o">*</span> <span class="n">puntuacion</span>
+
+<span class="k">if</span> <span class="n">puntuacion</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">:</span>
+    <span class="n">puntuacion</span> <span class="o">=</span> <span class="s2">"inaceptable"</span>
+<span class="k">elif</span> <span class="n">puntuacion</span> <span class="o">==</span> <span class="mf">0.4</span><span class="p">:</span>
+    <span class="n">puntuacion</span> <span class="o">=</span> <span class="s2">"aceptable"</span>
+<span class="k">elif</span> <span class="n">puntuacion</span> <span class="o">&gt;=</span> <span class="mf">0.6</span><span class="p">:</span>
+    <span class="n">puntuacion</span> <span class="o">=</span> <span class="s2">"meritoria"</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Tu puntuación es </span><span class="si">{</span><span class="n">puntuacion</span><span class="si">}</span><span class="se">\n</span><span class="s2">La cantidad de dinero conseguida es de RD$"</span><span class="p">,</span> <span class="n">dinero</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="condicionales9">
+<h2>condicionales9<a class="headerlink" href="#condicionales9" title="Link to this heading"></a></h2>
+<p>Escribir un programa para una empresa que tiene salas de juegos para todas las edades y quiere calcular de forma automática el precio que debe cobrar a sus clientes por entrar. El programa debe preguntar al usuario la edad del cliente y mostrar el precio de la entrada. Si el cliente es menor de 4 años, puede entrar gratis; si tiene entre 4 y 18 años, debe pagar 5 dólares; y si es mayor de 18, debe pagar 10 dólares.</p>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">edad</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"¿Cuál es la edad del cliente? "</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="n">edad</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"El cliente entra gratis"</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">edad</span> <span class="o">&gt;=</span> <span class="mi">4</span> <span class="ow">and</span> <span class="n">edad</span> <span class="o">&lt;=</span> <span class="mi">18</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"El cliente debe pagar 5$"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"El cliente debe pagar 10$"</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="condicionales10">
+<h2>condicionales10<a class="headerlink" href="#condicionales10" title="Link to this heading"></a></h2>
+<p>La pizzería Bella Napoli ofrece pizzas vegetarianas y no vegetarianas a sus clientes. Los ingredientes para cada tipo de pizza aparecen a continuación.</p>
+<p>Ingredientes vegetarianos: pimiento y tofu.
+Ingredientes no vegetarianos: peperoni, jamón y salmón.</p>
+<p>Escribir un programa que pregunte al usuario si quiere una pizza vegetariana o no, y en función de su respuesta le muestre un menú con los ingredientes disponibles para que elija. Solo se puede elegir un ingrediente, además de la mozzarella y el tomate, que están en todas las pizzas. Al final, se debe mostrar por pantalla si la pizza elegida es vegetariana o no, y todos los ingredientes que lleva.</p>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"Pizzería Bella Napoli"</span><span class="p">)</span>
+<span class="n">pizza_vegetariana</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"¿Quieres una pizza vegetariana? (sí o no): "</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">pizza_vegetariana</span> <span class="o">==</span> <span class="s2">"si"</span><span class="p">:</span>
+    <span class="n">ingrediente</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Elija el ingrediente que desea agregar:</span><span class="se">\n</span><span class="s2">1-Pimiento</span><span class="se">\n</span><span class="s2">2-Tofu</span><span class="se">\n</span><span class="s2">:"</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">ingrediente</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Tu pizza es vegetariana y sus ingredientes son Mozzarella + Tomate + Pimiento"</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">ingrediente</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Tu pizza es vegetariana y sus ingredientes son Mozzarella + Tomate + Tofu"</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"¡ERROR! El número introducido no se encuentra en el menú"</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">pizza_vegetariana</span> <span class="o">==</span> <span class="s2">"no"</span><span class="p">:</span>
+    <span class="n">ingrediente</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Elija el ingrediente que desea agregar:</span><span class="se">\n</span><span class="s2">1-Pepperoni</span><span class="se">\n</span><span class="s2">2-Jamón</span><span class="se">\n</span><span class="s2">3-Salmón</span><span class="se">\n</span><span class="s2">:"</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">ingrediente</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Tu pizza no es vegetariana y sus ingredientes son Mozzarella + Tomate + Pepperoni"</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">ingrediente</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Tu pizza no es vegetariana y sus ingredientes son Mozzarella + Tomate + Jamón"</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">ingrediente</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Tu pizza no es vegetariana y sus ingredientes son Mozzarella + Tomate + Salmón"</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"¡ERROR! El número introducido no se encuentra en el menú"</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="condicionales-adicional1">
+<h2>condicionales_adicional1<a class="headerlink" href="#condicionales-adicional1" title="Link to this heading"></a></h2>
+<p>Escribir un programa que pida al usuario su edad y lo clasifique en uno de los siguientes grupos:</p>
+<ul class="simple">
+<li><p>Menor de 18: «Niño»</p></li>
+<li><p>18 a 35: «Joven»</p></li>
+<li><p>36 a 60: «Adulto»</p></li>
+<li><p>Mayor de 60: «Adulto mayor»</p></li>
+</ul>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">edad</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"¿Cuál es tu edad? "</span><span class="p">))</span>
+<span class="n">grupo</span> <span class="o">=</span> <span class="s2">""</span>
+
+<span class="k">if</span> <span class="n">edad</span> <span class="o">&lt;</span> <span class="mi">18</span><span class="p">:</span>
+    <span class="n">grupo</span> <span class="o">=</span> <span class="s2">"niño"</span>
+<span class="k">elif</span> <span class="n">edad</span> <span class="o">&gt;=</span> <span class="mi">18</span> <span class="ow">and</span> <span class="n">edad</span> <span class="o">&lt;=</span> <span class="mi">35</span><span class="p">:</span>
+    <span class="n">grupo</span> <span class="o">=</span> <span class="s2">"joven"</span>
+<span class="k">elif</span> <span class="n">edad</span> <span class="o">&gt;=</span> <span class="mi">36</span> <span class="ow">and</span> <span class="n">edad</span> <span class="o">&lt;=</span> <span class="mi">60</span><span class="p">:</span>
+    <span class="n">grupo</span> <span class="o">=</span> <span class="s2">"adulto"</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">grupo</span> <span class="o">=</span> <span class="s2">"adulto mayor"</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Eres un"</span><span class="p">,</span> <span class="n">grupo</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="condicionales-adicional2">
+<h2>condicionales_adicional2<a class="headerlink" href="#condicionales-adicional2" title="Link to this heading"></a></h2>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Escribir un programa que pida un número al usuario y, usando el operador ternario, determine si es positivo o negativo.</span>
+
+<span class="n">numero</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Ingresa un número: "</span><span class="p">))</span>
+
+<span class="n">positivo_negativo</span> <span class="o">=</span> <span class="s2">"El número es positivo"</span> <span class="k">if</span> <span class="n">numero</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">"El número es negativo"</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">positivo_negativo</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="condicionales-adicional3">
+<h2>condicionales_adicional3<a class="headerlink" href="#condicionales-adicional3" title="Link to this heading"></a></h2>
+<p>Escribir un programa que pida la hora del día (en formato de 24 horas) y muestre el mensaje correspondiente:</p>
+<ul class="simple">
+<li><p>Si es antes de las 12: «Buenos días».</p></li>
+<li><p>Si es de 12 a 18: «Buenas tardes».</p></li>
+<li><p>Si es después de las 18: «Buenas noches».</p></li>
+</ul>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">hora_del_dia</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"¿Qué hora es? "</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="n">hora_del_dia</span> <span class="o">&lt;</span> <span class="mi">12</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Buenos días"</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">hora_del_dia</span> <span class="o">&gt;=</span> <span class="mi">12</span> <span class="ow">and</span> <span class="n">hora_del_dia</span> <span class="o">&lt;=</span> <span class="mi">18</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Buenas tardes"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Buenas noches"</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="condicionales-adicional4">
+<h2>condicionales_adicional4<a class="headerlink" href="#condicionales-adicional4" title="Link to this heading"></a></h2>
+<p>Escribir un programa que pida un número y determine si es divisible tanto por 3 como por 5, usando condicionales anidadas. Si el número es divisible por ambos, imprime «Divisible por 3 y por 5». Si es divisible solo por uno, imprime el número correspondiente, y si no es divisible por ninguno, imprime «No es divisible ni por 3 ni por 5».</p>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">numero</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Ingresa un número? "</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="n">numero</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">numero</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Divisible por 3 y 5"</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Divisible por 3"</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">numero</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Divisible por 5"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"No es divisible ni por 3 ni por 5"</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="condicionales-adicional5">
+<h2>condicionales_adicional5<a class="headerlink" href="#condicionales-adicional5" title="Link to this heading"></a></h2>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Escribir un programa que pida tres números al usuario y determine cuál es el mayor utilizando condicionales anidadas.</span>
+
+<span class="n">num1</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Ingresa el primer número: "</span><span class="p">))</span>
+<span class="n">num2</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Ingresa el segundo número: "</span><span class="p">))</span>
+<span class="n">num3</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Ingresa el tercer número: "</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="n">num1</span> <span class="o">&gt;=</span> <span class="n">num2</span><span class="p">:</span> 
+    <span class="k">if</span> <span class="n">num1</span> <span class="o">&gt;=</span> <span class="n">num3</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"El número mayor es:"</span><span class="p">,</span> <span class="n">num1</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"El número mayor es:"</span><span class="p">,</span> <span class="n">num3</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">num2</span> <span class="o">&gt;=</span> <span class="n">num3</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"El número mayor es:"</span><span class="p">,</span> <span class="n">num2</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"El número mayor es:"</span><span class="p">,</span> <span class="n">num3</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="operadores.html" class="btn btn-neutral float-left" title="Ejercicios — Operadores" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="bucles.html" class="btn btn-neutral float-right" title="Ejercicios — Bucles" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+  <p>
+    © Copyright <span id="anio-copyright"></span> jeironpro.
+  </p>
+  <script>
+    document.getElementById("anio-copyright").textContent =
+      new Date().getFullYear();
+  </script>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

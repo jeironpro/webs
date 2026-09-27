@@ -1,0 +1,416 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Estructuras de control &mdash; documentación de Lenguajes de programación - </title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/logo.svg"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=e2bb6099"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="search" title="Búsqueda" href="../../search.html" />
+    <link rel="next" title="Arrays" href="arrays.html" />
+    <link rel="prev" title="Operadores" href="operadores.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Lenguajes de programación
+              <img src="../../_static/logo.svg" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lenguajes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../java/index.html">Java — DAW (ITIC Barcelona)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python/index.html">Python — DCS (INFOTEP)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">JavaScript — DCS (INFOTEP)</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#teoria">Teoría</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduccion.html">Introducción</a></li>
+<li class="toctree-l3"><a class="reference internal" href="variables.html">Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="operadores.html">Operadores</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Estructuras de control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="arrays.html">Arrays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="funciones.html">Funciones</a></li>
+<li class="toctree-l3"><a class="reference internal" href="objetos.html">Objetos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dom.html">DOM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eventos.html">Eventos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="formularios.html">Formularios</a></li>
+<li class="toctree-l3"><a class="reference internal" href="formularios/index.html">Formularios</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#ejercicios">Ejercicios</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Lenguajes de programación</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">JavaScript — DCS (INFOTEP)</a></li>
+      <li class="breadcrumb-item active">Estructuras de control</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/javascript/teoria/estructurasdecontrol.md.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="estructuras-de-control">
+<h1>Estructuras de control<a class="headerlink" href="#estructuras-de-control" title="Link to this heading"></a></h1>
+<p><strong>Estructuras de control en JavaScript</strong>
+Las estructuras de control permiten controlar el flujo de ejecución del código según condiciones o repeticiones. En JavaScript, existen varios tipos de estructuras de control, como las condicionales y los bucles.</p>
+<ul class="simple">
+<li><p><strong>1.</strong> Estructuras condicionales
+Las estructuras condicionales permiten ejecutar bloques de código dependiendo de si se cumple o no una condición.</p></li>
+</ul>
+<p><strong>if</strong>
+La estructura if ejecuta un bloque de código solo si una condición es verdadera.</p>
+<p><strong>Ejemplo</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">edad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">18</span><span class="p">;</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">edad</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">18</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Eres mayor de edad"</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>else</strong>
+El bloque else se ejecuta si la condición del if es falsa.</p>
+<p><strong>Ejemplo</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">edad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">16</span><span class="p">;</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">edad</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">18</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Eres mayor de edad"</span><span class="p">);</span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Eres menor de edad"</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>else if</strong>
+Se utiliza para agregar múltiples condiciones a un if.</p>
+<p><strong>Ejemplo</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">edad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">20</span><span class="p">;</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">edad</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">18</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Eres menor de edad"</span><span class="p">);</span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">edad</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">18</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Justo mayor de edad"</span><span class="p">);</span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Eres mayor de edad"</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>switch</strong>
+El switch se utiliza para comparar un valor con diferentes casos, de manera más eficiente que múltiples if-else.</p>
+<p><strong>Ejemplo</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"rojo"</span><span class="p">;</span>
+
+<span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="nx">color</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</pre></div>
+</div>
+<p><strong>case «rojo»</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"El color es rojo"</span><span class="p">);</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="s2">"azul"</span><span class="o">:</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"El color es azul"</span><span class="p">);</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>default:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Color desconocido"</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>2.</strong> Estructuras de repetición (Bucles)
+Los bucles permiten ejecutar un bloque de código repetidamente mientras se cumpla una condición.</p></li>
+</ul>
+<p><strong>for</strong>
+El bucle for es ideal cuando se sabe cuántas veces se debe ejecutar un bloque de código.</p>
+<p><strong>Sintaxis</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="nx">inicialización</span><span class="p">;</span><span class="w"> </span><span class="nx">condición</span><span class="p">;</span><span class="w"> </span><span class="nx">actualización</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</pre></div>
+</div>
+<p>// Código a ejecutar</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Ejemplo</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">5</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span><span class="w">  </span><span class="c1">// Imprime 0, 1, 2, 3, 4</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>while</strong>
+El bucle while ejecuta un bloque de código mientras se cumpla una condición. Si la condición es falsa desde el principio, el código puede no ejecutarse ni una vez.</p>
+<p><strong>Sintaxis</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nx">condición</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</pre></div>
+</div>
+<p>// Código a ejecutar</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Ejemplo</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+<span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span><span class="w">  </span><span class="c1">// Imprime 0, 1, 2, 3, 4</span>
+<span class="w">    </span><span class="nx">i</span><span class="o">++</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>do…while</strong>
+El bucle do…while es similar al while, pero garantiza que el bloque de código se ejecute al menos una vez, ya que la condición se evalúa después de ejecutar el código.</p>
+<p><strong>Sintaxis</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">do</span><span class="w"> </span><span class="p">{</span>
+</pre></div>
+</div>
+<p>// Código a ejecutar</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">}</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nx">condición</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Ejemplo</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+<span class="k">do</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span><span class="w">  </span><span class="c1">// Imprime 0, 1, 2, 3, 4</span>
+<span class="w">    </span><span class="nx">i</span><span class="o">++</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">5</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>3.</strong> Control de flujo dentro de los bucles
+break
+El break se utiliza para salir de un bucle o una estructura switch antes de que termine su ejecución.</p></li>
+</ul>
+<p><strong>Ejemplo</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">10</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">i</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span><span class="w">  </span><span class="c1">// Sale del bucle cuando i es 5</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span><span class="w">  </span><span class="c1">// Imprime 0, 1, 2, 3, 4</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>continue</strong>
+El continue omite el resto del código dentro del bucle para la iteración actual y pasa a la siguiente iteración.</p>
+<p><strong>Ejemplo</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">5</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">i</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">3</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">continue</span><span class="p">;</span><span class="w">  </span><span class="c1">// Salta la iteración cuando i es 3</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span><span class="w">  </span><span class="c1">// Imprime 0, 1, 2, 4</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Ejemplo de uso combinado</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">edad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">25</span><span class="p">;</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">edad</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">18</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Eres mayor de edad"</span><span class="p">);</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">5</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">i</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">3</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">continue</span><span class="p">;</span><span class="w">  </span><span class="c1">// Salta cuando i es 3</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span><span class="w">  </span><span class="c1">// Imprime 0, 1, 2, 4</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Eres menor de edad"</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Tipo         Descripción                                                    Ejemplo</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w">           </span><span class="nx">Ejecuta</span><span class="w"> </span><span class="nx">código</span><span class="w"> </span><span class="nx">si</span><span class="w"> </span><span class="nx">la</span><span class="w"> </span><span class="nx">condición</span><span class="w"> </span><span class="nx">es</span><span class="w"> </span><span class="nx">verdadera</span><span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">edad</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">18</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+<span class="k">else</span><span class="w">         </span><span class="nx">Ejecuta</span><span class="w"> </span><span class="nx">código</span><span class="w"> </span><span class="nx">si</span><span class="w"> </span><span class="nx">la</span><span class="w"> </span><span class="nx">condición</span><span class="w"> </span><span class="nx">del</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="nx">es</span><span class="w"> </span><span class="nx">falsa</span><span class="w">                 </span><span class="k">else</span><span class="w"> </span><span class="p">{}</span>
+<span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w">      </span><span class="nx">Evalúa</span><span class="w"> </span><span class="nx">condiciones</span><span class="w"> </span><span class="nx">adicionales</span><span class="w"> </span><span class="nx">en</span><span class="w"> </span><span class="nx">una</span><span class="w"> </span><span class="nx">estructura</span><span class="w"> </span><span class="k">if</span><span class="w">            </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">edad</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">18</span><span class="p">)</span>
+<span class="k">switch</span><span class="w">       </span><span class="nx">Selecciona</span><span class="w"> </span><span class="nx">entre</span><span class="w"> </span><span class="nx">múltiples</span><span class="w"> </span><span class="nx">posibles</span><span class="w"> </span><span class="nx">valores</span><span class="w">                    </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="nx">color</span><span class="p">)</span>
+<span class="k">for</span><span class="w">          </span><span class="nx">Repite</span><span class="w"> </span><span class="nx">un</span><span class="w"> </span><span class="nx">bloque</span><span class="w"> </span><span class="nx">de</span><span class="w"> </span><span class="nx">código</span><span class="w"> </span><span class="nx">un</span><span class="w"> </span><span class="nx">número</span><span class="w"> </span><span class="nx">determinado</span><span class="w"> </span><span class="nx">de</span><span class="w"> </span><span class="nx">veces</span><span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">5</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+<span class="k">while</span><span class="w">        </span><span class="nx">Ejecuta</span><span class="w"> </span><span class="nx">un</span><span class="w"> </span><span class="nx">bloque</span><span class="w"> </span><span class="nx">de</span><span class="w"> </span><span class="nx">código</span><span class="w"> </span><span class="nx">mientras</span><span class="w"> </span><span class="nx">se</span><span class="w"> </span><span class="nx">cumpla</span><span class="w"> </span><span class="nx">una</span><span class="w"> </span><span class="nx">condición</span><span class="w">   </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">5</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+<span class="k">do</span><span class="p">...</span><span class="k">while</span><span class="w">   </span><span class="nx">Ejecuta</span><span class="w"> </span><span class="nx">un</span><span class="w"> </span><span class="nx">bloque</span><span class="w"> </span><span class="nx">de</span><span class="w"> </span><span class="nx">código</span><span class="w"> </span><span class="nx">al</span><span class="w"> </span><span class="nx">menos</span><span class="w"> </span><span class="nx">una</span><span class="w"> </span><span class="nx">vez</span><span class="w">                   </span><span class="k">do</span><span class="w"> </span><span class="p">{}</span>
+<span class="k">break</span><span class="w">        </span><span class="nx">Sale</span><span class="w"> </span><span class="nx">de</span><span class="w"> </span><span class="nx">un</span><span class="w"> </span><span class="nx">bucle</span><span class="w"> </span><span class="nx">o</span><span class="w"> </span><span class="k">switch</span><span class="w"> </span><span class="nx">anticipadamente</span><span class="w">                      </span><span class="k">break</span><span class="p">;</span>
+<span class="k">continue</span><span class="w">     </span><span class="nx">Salta</span><span class="w"> </span><span class="nx">una</span><span class="w"> </span><span class="nx">iteración</span><span class="w"> </span><span class="nx">en</span><span class="w"> </span><span class="nx">un</span><span class="w"> </span><span class="nx">bucle</span><span class="w">                                </span><span class="k">continue</span><span class="p">;</span>
+
+<span class="c1">// Ejemplos</span>
+<span class="c1">// Condicional IF (condicional simple)</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">edadIngreso</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">16</span><span class="p">;</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">edadIngreso</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">16</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">alert</span><span class="p">(</span><span class="s2">"Felicidades, tienes edad suficiente para estudiar en el INFOTEP"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Condicional IF...ELSE (Condicional doble)</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">edadIngreso</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">15</span><span class="p">;</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">edadIngreso</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">16</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">alert</span><span class="p">(</span><span class="s2">"Felicidades, tienes edad suficiente para estudiar en el INFOTEP"</span><span class="p">);</span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">alert</span><span class="p">(</span><span class="s2">"Lo sentimos, pero aún no tienes la edad suficiente para estudiar en el INFOTEP"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Condicional IF...ELSE IF...ELSE (Condicional múltiple)</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">num1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">13</span><span class="p">;</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">num2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">15</span><span class="p">;</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">num1</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nx">num2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">alert</span><span class="p">(</span><span class="s2">"El valor de la variable num1 es mayor que el valor de la variable num2."</span><span class="p">);</span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="nx">num1</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">num2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">alert</span><span class="p">(</span><span class="s2">"El valor de la variable num2 es mayor que el valor de la variable num1."</span><span class="p">);</span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">alert</span><span class="p">(</span><span class="s2">"Los valores de las variables num1 y num2 son iguales."</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Condicional IF...IF...ELSE...ELSE (Condicional anidada)</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">edadIngreso</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">16</span><span class="p">;</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">educacion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Bachiller"</span><span class="p">;</span>
+
+<span class="k">if</span><span class="p">(</span><span class="nx">edadIngreso</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">16</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// Primero se ejecuta esta condición, y si se cumple, se ejecuta la que está dentro. En caso de que esta condición no se cumpla, pasará a ejecutar el else que hace parte de ella.</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="nx">educacion</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Bachiller"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">alert</span><span class="p">(</span><span class="s2">"Felicidades, puedes estudiar en el INFOTEP."</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">alert</span><span class="p">(</span><span class="s2">"Aún no es bachiller."</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">alert</span><span class="p">(</span><span class="s2">"Espere tener la edad mínima requerida."</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Sentencia break / continue</span>
+<span class="c1">// continue</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">cadenaTexto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Estamos estudiando el Técnico en Diseño y Creación de Software en el INFOTEP"</span><span class="p">;</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">caracteres</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">cadenaTexto</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s2">""</span><span class="p">);</span><span class="w"> </span><span class="c1">// split() divide el texto en un array de caracteres.</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">resultado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">;</span>
+
+<span class="k">for</span><span class="p">(</span><span class="nx">i</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nx">caracteres</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="nx">caracteres</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"n"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">continue</span><span class="p">;</span><span class="w"> </span><span class="c1">// Continúa ejecutando el código y omite lo que se indique.</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">resultado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">resultado</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">caracteres</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">alert</span><span class="p">(</span><span class="nx">resultado</span><span class="p">);</span>
+
+<span class="c1">// break</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">cadenaTexto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Estamos estudiando el Técnico en Diseño y Creación de Software en el INFOTEP"</span><span class="p">;</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">caracteres</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">cadenaTexto</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s2">""</span><span class="p">);</span><span class="w"> </span><span class="c1">// split() divide el texto en un array de caracteres.</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">resultado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">;</span>
+
+<span class="k">for</span><span class="p">(</span><span class="nx">i</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nx">caracteres</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="nx">caracteres</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"n"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span><span class="w"> </span><span class="c1">// Detiene la ejecución del código cuando se cumple la condición.</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">resultado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">resultado</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">caracteres</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">alert</span><span class="p">(</span><span class="nx">resultado</span><span class="p">);</span>
+
+<span class="c1">// Estructura switch...case</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">combustible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Gasolina"</span><span class="p">;</span>
+<span class="k">switch</span><span class="p">(</span><span class="nx">combustible</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="s2">"Gasolina"</span><span class="o">:</span>
+<span class="w">        </span><span class="nx">alert</span><span class="p">(</span><span class="s2">"La gasolina tiene un precio abusivo."</span><span class="p">);</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="s2">"Gasoil"</span><span class="o">:</span>
+<span class="w">        </span><span class="nx">alert</span><span class="p">(</span><span class="s2">"El gasoil es más barato que la gasolina."</span><span class="p">);</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="s2">"GLP"</span><span class="o">:</span>
+<span class="w">        </span><span class="nx">alert</span><span class="p">(</span><span class="s2">"El GLP es el más barato de todos los combustibles."</span><span class="p">);</span><span class="w">    </span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="k">default</span><span class="o">:</span>
+<span class="w">        </span><span class="nx">alert</span><span class="p">(</span><span class="s2">"El valor introducido no existe. Intente de nuevo."</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// CICLOS O BÚCLES</span>
+<span class="c1">// Ciclo o Bucle For</span>
+<span class="k">for</span><span class="p">(</span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mf">100</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">"&lt;br&gt;"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Ciclo o bucle While</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">resultado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5</span><span class="p">;</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+
+<span class="k">while</span><span class="p">(</span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">num</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// resultado = resultado + i;</span>
+<span class="w">    </span><span class="nx">resultado</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">i</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">i</span><span class="o">++</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">alert</span><span class="p">(</span><span class="s2">"El resultado es "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">resultado</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="operadores.html" class="btn btn-neutral float-left" title="Operadores" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="arrays.html" class="btn btn-neutral float-right" title="Arrays" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+  <p>
+    © Copyright <span id="anio-copyright"></span> jeironpro.
+  </p>
+  <script>
+    document.getElementById("anio-copyright").textContent =
+      new Date().getFullYear();
+  </script>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

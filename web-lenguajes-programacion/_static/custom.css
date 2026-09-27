@@ -1,0 +1,54 @@
+/* Hoja de estilos propia de la web «Lenguajes de programación».
+ *
+ * Sección 1: ajustes sobre sphinx-rtd-theme (logo del sidebar).
+ * Sección 2: estilo docente replicado de la referencia introprg2526
+ * (antes _static/moistyle.css, copia literal): admoniciones de ejercicio
+ * con iconos ☼/☆/★, imágenes centradas, color de los bloques de código y
+ * banner de cookies (#cookiesbox, activable con su JS).
+ */
+
+/* ---------- 1. Logo del sidebar: contenido y centrado ---------- */
+.wy-side-nav-search > a img.logo {
+    width: auto;
+    max-width: 96px;
+    margin: 0 auto 0.6rem;
+    border-radius: 14px;
+    display: block;
+}
+
+/* ---------- 2. Estilo docente (de la referencia introprg2526) ---------- */
+
+#cookiesbox {
+    width:100%;
+    z-index:99999;
+    display:none;
+    position:fixed;
+    bottom:0px;
+    left:0px;
+    text-align:center;
+    background-color: #eae672;
+    padding: 10px 0px;
+    color: red;
+    border: 1px solid black;
+}
+
+div.admonition.exercise p.admonition-title {
+    background-color: lightblue;
+    color: darkblue;
+}
+div.admonition.exercise.optional p.admonition-title:before{
+    content: "☼";
+}
+div.admonition.exercise.stared p.admonition-title:before{
+    content: "☆";
+}
+div.admonition.exercise.blackstared p.admonition-title:before{
+    content: "★";
+}
+
+img.align-center {
+    padding-bottom: 1em;
+}
+/* Colors for code */
+.highlight { background: #e3e3e3; }
+.highlight .hll { background-color: #f3f3f3 }

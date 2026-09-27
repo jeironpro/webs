@@ -1,0 +1,244 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Control de flujo en bucles &mdash; documentación de Lenguajes de programación - </title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../../../_static/logo.svg"/>
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=e2bb6099"></script>
+      <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="search" title="Búsqueda" href="../../../../search.html" />
+    <link rel="next" title="For" href="for.html" />
+    <link rel="prev" title="Bucles" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Lenguajes de programación
+              <img src="../../../../_static/logo.svg" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lenguajes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../java/index.html">Java — DAW (ITIC Barcelona)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Python — DCS (INFOTEP)</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../../index.html#teoria">Teoría</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Elementos básicos de la programación en Python</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../introduccion.html">Introducción</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../variables-y-tipos-de-datos.html">variables y tipos de datos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../entradaysalidadedatos.html">Entrada y salida de datos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../operadores.html">Operadores</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../condicionales.html">Condicionales</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="index.html">Bucles</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../colecciones/index.html">Colecciones</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../funciones/index.html">Funciones</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../introduccionalaprogramacionorientadaaobjetosenpython/index.html">Introducción a la programación orientada a objetos en Python</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#frameworks">Frameworks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#ejercicios">Ejercicios</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../javascript/index.html">JavaScript — DCS (INFOTEP)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Lenguajes de programación</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Python — DCS (INFOTEP)</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Elementos básicos de la programación en Python</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Bucles</a></li>
+      <li class="breadcrumb-item active">Control de flujo en bucles</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/python/teoria/elementosbasicosdelaprogramacionenpython/bucles/controldeflujoenbucles.md.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="control-de-flujo-en-bucles">
+<h1>Control de flujo en bucles<a class="headerlink" href="#control-de-flujo-en-bucles" title="Link to this heading"></a></h1>
+<p><strong>Control de flujo en bucles</strong>
+El contro de flujo en bucles en Python se refiere a las herramientas y técnicas que nos permiten alterar o modificar el comportamiento predeterminado de un bucle. Esto incluye detener el bucle, omitir una iteración o ejecutar un bloque adicional al final del bucle.</p>
+<p><strong>Tipos de controles de flujo</strong></p>
+<ol class="arabic simple">
+<li><p>break: El comando break se utiliza para terminar un bucle de manera anticipada, es decir, finaliza el bucle actual aunque la condición del bucle no haya terminado.</p></li>
+</ol>
+<ul class="simple">
+<li><p><strong>2.</strong> continue: el comando continue se utiliza para saltar la iteración actual y pasar directamente a la siguente, sin ejecutarse el resto del código en esa iteración.</p></li>
+<li><p><strong>3.</strong> else: El comando else puede usarse con los bucles for o while. Se ejecuta una vez al final del bucle si este no se interrumpe con un break.</p></li>
+</ul>
+<p><strong>Flujo completo del bucle</strong></p>
+<ol class="arabic simple">
+<li><p>Se evalúa la condición inicial (en while) o se inicia la iteración (en for).</p></li>
+<li><p>En cada iteración:</p></li>
+</ol>
+<ul class="simple">
+<li><p>Si se cumple la condición para un break, el bucle termina inmediatamente.</p></li>
+<li><p>Si se encuentra un continue, se omite el resto del código de la iteración actual y pasa a la siguiente.</p></li>
+</ul>
+<ol class="arabic simple" start="3">
+<li><p>Si no se cumple la condición inicial (o la iteración finaliza), se ejecuta el bloque del else (si existe).</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Uso de break en el bucle for</span>
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">num</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="k">break</span> <span class="c1"># Detiene el bucle cuando num es 5</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+
+<span class="c1"># Uso de break en el bucle while</span>
+<span class="n">contador</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">while</span> <span class="n">contador</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">contador</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">contador</span> <span class="o">==</span> <span class="mi">7</span><span class="p">:</span>
+        <span class="k">break</span> <span class="c1"># Finaliza el bucle cuando contador llega a 7</span>
+    <span class="n">contador</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="c1"># Uso de continue en el bucle for</span>
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">num</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="k">continue</span> <span class="c1"># Salta la iteración cuando num es 3</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+
+<span class="c1"># Uso de continue en el bucle while</span>
+<span class="n">contador</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">while</span> <span class="n">contador</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">:</span>
+    <span class="n">contador</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">contador</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="k">continue</span> <span class="c1"># Salta el número 3</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">contador</span><span class="p">)</span>
+
+<span class="c1"># Uso de else en el bucle for</span>
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"El bucle ha terminado correctamente."</span><span class="p">)</span>
+
+<span class="c1"># Uso de break y else en el bucle for</span>
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">num</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="k">break</span> <span class="c1"># Detiene el bucle antes de completarse</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"El bucle ha terminado correctamente."</span><span class="p">)</span> <span class="c1"># No se ejecuta porque hubo un break</span>
+
+<span class="c1"># Uso de else en el bucle while</span>
+<span class="n">contador</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">while</span> <span class="n">contador</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">contador</span><span class="p">)</span>
+    <span class="n">contador</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"El bucle ha terminado correctamente."</span><span class="p">)</span>
+
+<span class="c1"># Uso combinado de break y continue en el bucle for</span>
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">num</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">continue</span> <span class="c1"># Salta los números pares</span>
+    <span class="k">if</span> <span class="n">num</span> <span class="o">&gt;</span> <span class="mi">7</span><span class="p">:</span>
+        <span class="k">break</span> <span class="c1"># Termina el bucle al superar 7</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+
+<span class="c1"># Bucle while infinito</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Esto se ejecutará para siempre si no hay un break"</span><span class="p">)</span>
+    <span class="k">break</span> <span class="c1"># Para detener el bucle</span>
+
+<span class="c1"># Olvidar actualizar la variable en un while</span>
+<span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="c1"># Esto se ejecutará infinitamente si no incrementamos i</span>
+    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span> <span class="c1"># Para que no sea infinito</span>
+
+<span class="c1"># Buscar un núemro si existe en una lista, usando break y else</span>
+
+<span class="n">numeros</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">]</span>
+<span class="n">buscado</span> <span class="o">=</span> <span class="mi">25</span>
+
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">numeros</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">num</span> <span class="o">==</span> <span class="n">buscado</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">buscado</span><span class="si">}</span><span class="s2"> encontrado."</span><span class="p">)</span>
+        <span class="k">break</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">buscado</span><span class="si">}</span><span class="s2"> no está en la lista."</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="index.html" class="btn btn-neutral float-left" title="Bucles" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="for.html" class="btn btn-neutral float-right" title="For" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+  <p>
+    © Copyright <span id="anio-copyright"></span> jeironpro.
+  </p>
+  <script>
+    document.getElementById("anio-copyright").textContent =
+      new Date().getFullYear();
+  </script>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

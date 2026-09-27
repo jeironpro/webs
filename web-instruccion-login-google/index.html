@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login con Google en Flask · Guía de implementación</title>
+    <meta
+        name="description"
+        content="Guía paso a paso para implementar login con Google (OAuth 2.0) en una aplicación Flask: credenciales, callback, intercambio de token, sesiones y base de datos."
+    />
+    <link rel="icon" type="image/png" href="./img/google.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body>
+    <header class="nav">
+        <a class="nav__marca" href="./index.html">
+            <img src="./img/google.png" alt="" width="20" height="20" />
+            <span>login <em>google</em></span>
+        </a>
+        <nav class="nav__enlaces" aria-label="Secciones">
+            <a href="#flujo">Flujo</a>
+            <a href="#fases">Fases</a>
+            <a href="#errores">Errores</a>
+        </nav>
+        <a class="btn btn--primario" href="./codigo.zip" download>Descargar código (.zip)</a>
+    </header>
+
+    <main>
+        <!-- HERO: título izquierda, demo de código derecha (asimétrico) -->
+        <section class="hero">
+            <div class="hero__texto">
+                <p class="eyebrow">GUÍA · OAUTH 2.0 · FLASK</p>
+                <h1>Login con Google,<br />de cero a <span class="tilde">sesión activa</span>.</h1>
+                <p class="lede">
+                    Siete fases para añadir autenticación con Google a una app Flask:
+                    credenciales en Google Cloud, callback, intercambio de código por
+                    token y usuario persistido en SQLite. Basada en una implementación
+                    que funciona — cada fase enlaza su archivo real.
+                </p>
+                <div class="hero__acciones">
+                    <a class="btn btn--primario" href="#fase-1">Empezar en la fase 1</a>
+                    <a class="btn btn--fantasma" href="#flujo">Ver el flujo completo</a>
+                </div>
+                <dl class="hero__meta">
+                    <div><dt>Stack</dt><dd>Flask · Flask-Login · oauthlib</dd></div>
+                    <div><dt>Almacenamiento</dt><dd>SQLite</dd></div>
+                    <div><dt>Flujo</dt><dd>Authorization Code</dd></div>
+                </dl>
+            </div>
+            <div class="hero__demo">
+                <div class="code-card" aria-label="Ejemplo de petición al callback">
+                    <div class="code-card__barra">
+                        <span class="punto"></span><span class="punto"></span><span class="punto"></span>
+                        <span class="code-card__nombre">GET /login/callback?code=…</span>
+                        <span class="chip chip--ok">302 → /</span>
+                    </div>
+                    <pre class="code-card__cuerpo"><code><span class="tok-com"># El navegador vuelve a tu app con un código de un solo uso</span>
+<span class="tok-pun">?</span>code<span class="tok-pun">=</span><span class="tok-str">4%2F0AQSTgQF…</span><span class="tok-pun">&</span>scope<span class="tok-pun">=</span><span class="tok-str">openid email profile</span>
+
+<span class="tok-com"># Tu servidor lo canjea por un token de acceso</span>
+<span class="tok-key">POST</span> https://oauth2.googleapis.com/token
+<span class="tok-pun">{</span> <span class="tok-key">"access_token"</span><span class="tok-pun">:</span> <span class="tok-str">"ya29.a0Af…"</span><span class="tok-pun">,</span>
+  <span class="tok-key">"expires_in"</span><span class="tok-pun">:</span> <span class="tok-num">3599</span><span class="tok-pun">,</span> <span class="tok-key">"id_token"</span><span class="tok-pun">:</span> <span class="tok-str">"eyJhbGci…"</span> <span class="tok-pun">}</span>
+
+<span class="tok-com"># Y con el token pides el perfil verificado</span>
+<span class="tok-key">GET</span> https://openidconnect.googleapis.com/v1/userinfo
+<span class="tok-pun">{</span> <span class="tok-key">"sub"</span><span class="tok-pun">:</span> <span class="tok-str">"11350384…"</span><span class="tok-pun">,</span> <span class="tok-key">"email"</span><span class="tok-pun">:</span> <span class="tok-str">"tu@correo.com"</span><span class="tok-pun">,</span>
+  <span class="tok-key">"email_verified"</span><span class="tok-pun">:</span> <span class="tok-num">true</span> <span class="tok-pun">}</span></code></pre>
+                </div>
+                <p class="hero__nota">Las tres llamadas del intercambio: código → token → perfil.</p>
+            </div>
+        </section>
+
+        <!-- FLUJO: diagrama horizontal del protocolo -->
+        <section id="flujo" class="flujo">
+            <p class="eyebrow">EL PROTOCOLO EN CUATRO SALTOS</p>
+            <ol class="flujo__pasos">
+                <li><span class="flujo__num">1</span><strong>Tu app</strong><span>redirige al navegador hacia Google con tu <code>client_id</code> y la lista de scopes.</span></li>
+                <li><span class="flujo__num">2</span><strong>Google</strong><span>autentica a la persona, pide consentimiento y devuelve un <code>code</code> a tu callback.</span></li>
+                <li><span class="flujo__num">3</span><strong>Tu servidor</strong><span>canjea el código por un <code>access_token</code> — con tu <code>client_secret</code>, sin exponerlo nunca al cliente.</span></li>
+                <li><span class="flujo__num">4</span><strong>Tu servidor</strong><span>consulta el perfil con el token, verifica el email y crea la sesión local.</span></li>
+            </ol>
+        </section>
+
+        <!-- FASES: Narrative Workflow 1.0 → 7.0 -->
+        <section id="fases" class="fases">
+            <header class="fases__cabecera">
+                <p class="eyebrow">LAS SIETE FASES</p>
+                <h2>Cada fase, un archivo del proyecto.</h2>
+            </header>
+
+            <article class="fase" id="fase-1">
+                <div class="fase__etiqueta"><span class="fase__num">1.0</span><span class="fase__nombre">CREDENCIALES</span></div>
+                <div class="fase__cuerpo">
+                    <h3>Crea las credenciales en Google Cloud</h3>
+                    <p>
+                        Necesitas un <strong>ID de cliente OAuth 2.0</strong> de tipo <em>Aplicación web</em>.
+                        Se genera en la consola de Google Cloud en unos cinco minutos; el paso que decide si el
+                        login funciona o falla es dar de alta el callback con exactitud. Ve paso a paso:
+                    </p>
+                    <ol class="detalle">
+                        <li>
+                            <strong>Crea el proyecto.</strong>
+                            Entra en <a href="https://console.cloud.google.com/" rel="noreferrer" target="_blank">console.cloud.google.com</a>
+                            con tu cuenta de Google. En la barra superior, junto al logo, abre el selector de
+                            proyectos y pulsa <em>«Proyecto nuevo»</em>. Ponle nombre (por ejemplo
+                            <code>login-flask</code>) y confirma. Las credenciales viven a nivel de proyecto:
+                            si ya tienes uno para este fin, reutilízalo.
+                        </li>
+                        <li>
+                            <strong>Configura la pantalla de consentimiento.</strong>
+                            Menú lateral → <em>«APIs y servicios» → «Pantalla de consentimiento de OAuth»</em>.
+                            Elige el tipo de usuario: <em>Externo</em> (cualquier cuenta de Google) o
+                            <em>Interno</em> (solo tu organización, si dispones de Google Workspace). Rellena el
+                            nombre de la app que verán las personas al iniciar sesión, el email de asistencia y
+                            añade tu correo en <em>«Cuentas de prueba»</em>. Los scopes que pide esta app —
+                            <code>openid email profile</code> — no son sensibles, así que no necesitas pasar la
+                            verificación de Google para desarrollar.
+                        </li>
+                        <li>
+                            <strong>Genera el ID de cliente.</strong>
+                            Ve a <em>«APIs y servicios» → «Credenciales» → «+ Crear credenciales» →
+                            «ID de cliente de OAuth 2.0»</em>. En <em>Tipo de aplicación</em> elige
+                            <strong>Aplicación web</strong> (el flujo lo completa tu servidor Flask). El nombre
+                            del cliente es solo informativo — por ejemplo <code>flask-local</code>.
+                        </li>
+                        <li>
+                            <strong>Dale de alta tus URLs.</strong>
+                            En el formulario de creación hay dos listas:
+                            <ul>
+                                <li>
+                                    <em>Orígenes JavaScript autorizados:</em> <code>http://127.0.0.1:5000</code>.
+                                    Solo lo exige si tu frontend llama a Google directamente desde el navegador;
+                                    en este flujo todo pasa por el servidor, así que es opcional (no estorba).
+                                </li>
+                                <li>
+                                    <em>URI de redirección autorizados:</em>
+                                    <code>http://127.0.0.1:5000/login/callback</code>. <strong>Imprescindible.</strong>
+                                    Debe coincidir letra a letra —protocolo, host, puerto y ruta— con el
+                                    <code>redirect_uri</code> que construya la app en la fase 3.0. Cualquier
+                                    diferencia dispara el error <code>redirect_uri_mismatch</code>.
+                                </li>
+                            </ul>
+                            Cuando despliegues en producción, añade en esta misma lista la URL pública del
+                            callback (por ejemplo <code>https://tu-dominio.com/login/callback</code>) — las URIs
+                            se pueden añadir más tarde editando el cliente.
+                        </li>
+                        <li>
+                            <strong>Guarda el secreto.</strong>
+                            Al pulsar <em>«Crear»</em>, la consola muestra el <code>client_id</code> y el
+                            <code>client_secret</code> (también puedes descargarlos como JSON). Pégalos en tu
+                            <code>.env</code> — ese fichero ya está excluido en el <code>.gitignore</code> del
+                            proyecto. Si un secreto termina en un repositorio público, Google lo detecta de forma
+                            automática y lo revoca.
+                        </li>
+                        <li>
+                            <strong>Pruebas vs publicado.</strong>
+                            Mientras la pantalla de consentimiento esté <em>«En pruebas»</em>, solo pueden
+                            iniciar sesión las cuentas que añadiste como usuarios de prueba. Con
+                            <em>«Publicar aplicación»</em> el acceso se abre a cualquiera — con scopes no
+                            sensibles, sin proceso de verificación.
+                        </li>
+                    </ol>
+                    <pre class="inline-code"><code><span class="tok-com"># .env — en la raíz del proyecto Flask, nunca en el repositorio</span>
+<span class="tok-key">GOOGLE_CLIENT_ID</span><span class="tok-pun">=</span><span class="tok-str">1234567890-abc123def456.apps.googleusercontent.com</span>
+<span class="tok-key">GOOGLE_CLIENT_SECRET</span><span class="tok-pun">=</span><span class="tok-str">GOCSPX-ejemplo_secreto</span>
+<span class="tok-key">DATABASE</span><span class="tok-pun">=</span><span class="tok-str">sqlite_db</span>
+<span class="tok-key">OAUTHLIB_INSECURE_TRANSPORT</span><span class="tok-pun">=</span><span class="tok-str">1</span></code></pre>
+                    <p class="fase__archivo">
+                        <code>OAUTHLIB_INSECURE_TRANSPORT=1</code> solo permite <code>http://</code> en desarrollo
+                        local — en producción fuera de ese fichero y todo por HTTPS.
+                    </p>
+                </div>
+            </article>
+
+            <article class="fase" id="fase-2">
+                <div class="fase__etiqueta"><span class="fase__num">2.0</span><span class="fase__nombre">CONFIGURACIÓN</span></div>
+                <div class="fase__cuerpo">
+                    <h3>Centraliza la configuración en <code>config.py</code></h3>
+                    <p>
+                        Una clase única lee las variables de entorno al arrancar y falla pronto si falta
+                        algo. La URL de descubrimiento de Google (OpenID Configuration) se mantiene aquí:
+                        con ella la app no hardcodea endpoints que Google puede mover.
+                    </p>
+                    <button class="fase__enlace fase__ver" type="button" data-codigo="config">Ver código de config.py</button>
+                </div>
+            </article>
+
+            <article class="fase" id="fase-3">
+                <div class="fase__etiqueta"><span class="fase__num">3.0</span><span class="fase__nombre">REDIRECCIÓN</span></div>
+                <div class="fase__cuerpo">
+                    <h3><code>/login</code>: construye la URL de autorización</h3>
+                    <p>
+                        La ruta consulta el endpoint de descubrimiento, toma el
+                        <code>authorization_endpoint</code> actual y delega en
+                        <code>WebApplicationClient</code> la construcción de la URI con los scopes
+                        <code>openid email profile</code> y tu callback como destino.
+                    </p>
+                    <button class="fase__enlace fase__ver" type="button" data-codigo="login">Ver código de /login</button>
+                </div>
+            </article>
+
+            <article class="fase" id="fase-4">
+                <div class="fase__etiqueta"><span class="fase__num">4.0</span><span class="fase__nombre">CALLBACK</span></div>
+                <div class="fase__cuerpo">
+                    <h3><code>/login/callback</code>: canjea el código</h3>
+                    <p>
+                        Google devuelve el <code>code</code> por query string. La ruta lo prepara con
+                        <code>prepare_token_request</code>, lo canjea contra el <code>token_endpoint</code>
+                        autenticando con <code>client_id</code> + <code>client_secret</code>, y parsea la
+                        respuesta en el cliente para reutilizar el token en la llamada siguiente.
+                    </p>
+                    <p class="fase__aviso">
+                        Sin <code>code</code> en la petición la ruta responde 400 — no intentes canjear nada.
+                    </p>
+                    <button class="fase__enlace fase__ver" type="button" data-codigo="callback">Ver código del callback</button>
+                </div>
+            </article>
+
+            <article class="fase" id="fase-5">
+                <div class="fase__etiqueta"><span class="fase__num">5.0</span><span class="fase__nombre">PERFIL</span></div>
+                <div class="fase__cuerpo">
+                    <h3>Obtén y verifica el perfil</h3>
+                    <p>
+                        Con el token en el cliente, la app llama al <code>userinfo_endpoint</code> y recibe
+                        <code>sub</code> (el identificador estable de Google), email, nombre y foto. El
+                        chequeo de <code>email_verified</code> es obligatorio: sin él, una cuenta no verificada
+                        podría suplantar a otra.
+                    </p>
+                    <pre class="inline-code"><code><span class="tok-key">if not</span> userinfo.get(<span class="tok-str">"email_verified"</span>):
+    <span class="tok-key">return</span> <span class="tok-str">"Email not verified by Google."</span>, <span class="tok-num">400</span></code></pre>
+                </div>
+            </article>
+
+            <article class="fase" id="fase-6">
+                <div class="fase__etiqueta"><span class="fase__num">6.0</span><span class="fase__nombre">PERSISTENCIA</span></div>
+                <div class="fase__cuerpo">
+                    <h3>Crea (o recupera) al usuario en SQLite</h3>
+                    <p>
+                        <code>user.py</code> modela a la persona: <code>User.get(google_id)</code> la busca y
+                        <code>User.create()</code> la registra en el primer acceso. La clave primaria es el
+                        <code>sub</code> de Google — estable entre sesiones y no reutilizable por otros
+                        proveedores. El esquema exige email único.
+                    </p>
+                    <div class="fase__archivos">
+                        <button class="fase__enlace fase__ver" type="button" data-codigo="user">Ver user.py</button>
+                        <button class="fase__enlace fase__ver" type="button" data-codigo="db">Ver db.py</button>
+                        <button class="fase__enlace fase__ver" type="button" data-codigo="schema">Ver schema.sql</button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="fase" id="fase-7">
+                <div class="fase__etiqueta"><span class="fase__num">7.0</span><span class="fase__nombre">SESIÓN</span></div>
+                <div class="fase__cuerpo">
+                    <h3>Abre la sesión con Flask-Login</h3>
+                    <p>
+                        <code>login_user(user)</code> materializa la sesión y el decorador
+                        <code>@login_required</code> protege lo que toque. El cierre
+                        (<code>/logout</code>) limpia la sesión local; el usuario seguirá existiendo en la
+                        base de datos para el siguiente acceso.
+                    </p>
+                    <button class="fase__enlace fase__ver" type="button" data-codigo="logout">Ver código de /logout</button>
+                </div>
+            </article>
+        </section>
+
+        <!-- BANDA OSCURA: errores comunes -->
+        <section id="errores" class="banda">
+            <p class="eyebrow eyebrow--claro">CUANDO ALGO FALLA</p>
+            <h2 class="banda__titulo">Tres fallos que verás seguro.</h2>
+            <div class="banda__rejilla">
+                <div class="banda__item">
+                    <p class="banda__codigo"><code>redirect_uri_mismatch</code></p>
+                    <p>El callback de la petición no coincide letra a letra con el dado de alta en Google Cloud. Incluye el puerto y la barra final tal cual.</p>
+                </div>
+                <div class="banda__item">
+                    <p class="banda__codigo"><code>invalid_grant</code></p>
+                    <p>El <code>code</code> ya se usó o expiró (viven unos minutos y son de un solo uso). Recarga la página del callback no funciona: rehaz el login.</p>
+                </div>
+                <div class="banda__item">
+                    <p class="banda__codigo"><code>OAUTHLIB_INSECURE_TRANSPORT</code></p>
+                    <p>Solo para desarrollo local con <code>http://</code>. Nunca lo actives en producción: ahí todo viaja por HTTPS y la variable ni se menciona.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CIERRA: repositorio -->
+        <section class="cierre">
+            <div class="cierre__caja">
+                <p class="eyebrow">EL PROYECTO COMPLETO</p>
+                <h2>Los nueve archivos de la implementación.</h2>
+                <p class="cierre__texto">
+                    La guía resume el qué; el código tiene el cómo. Cada archivo del proyecto de
+                    referencia está aquí, listo para leer o descargar.
+                </p>
+                <ul class="cierre__lista">
+                    <li><a href="./codigo/app.py" download>app.py <span>rutas y flujo OAuth</span></a></li>
+                    <li><a href="./codigo/config.py" download>config.py <span>configuración por entorno</span></a></li>
+                    <li><a href="./codigo/db.py" download>db.py <span>conexión SQLite</span></a></li>
+                    <li><a href="./codigo/user.py" download>user.py <span>modelo de usuario</span></a></li>
+                    <li><a href="./codigo/schema.sql" download>schema.sql <span>esquema de la tabla</span></a></li>
+                    <li><a href="./codigo/requirements.txt" download>requirements.txt <span>dependencias</span></a></li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <!-- MODAL: código de cada fase -->
+    <dialog class="modal" id="modal-codigo" aria-labelledby="modal-titulo">
+        <div class="code-card modal__tarjeta">
+            <div class="code-card__barra">
+                <span class="punto"></span><span class="punto"></span><span class="punto"></span>
+                <span class="code-card__nombre" id="modal-titulo">archivo.py</span>
+                <button class="modal__cerrar" type="button" aria-label="Cerrar" data-cerrar>✕</button>
+            </div>
+            <pre class="code-card__cuerpo modal__codigo"><code id="modal-contenido"></code></pre>
+            <div class="modal__pie">
+                <a class="btn btn--fantasma" id="modal-descarga" href="#" download>Descargar archivo</a>
+            </div>
+        </div>
+    </dialog>
+
+    <footer class="pie">
+        <p><span>login-google · guía de implementación</span><a href="https://developers.google.com/identity/openid-connect/openid-connect" rel="noreferrer" target="_blank">Documentación oficial de Google ↗</a></p>
+    </footer>
+
+        
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <script src="./js/main.js" defer></script>
+</body>
+</html>

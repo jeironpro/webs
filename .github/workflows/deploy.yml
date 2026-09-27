@@ -61,6 +61,16 @@ jobs:
           cd web-naruto
           VITE_BASE=/webs/web-naruto/ pnpm install --frozen-lockfile
           VITE_BASE=/webs/web-naruto/ pnpm run build
+
+      - name: Build web-lenguajes-programacion (Sphinx)
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Construir Sphinx de web-lenguajes-programacion
+        run: |
+          cd web-lenguajes-programacion
+          pip install -r sphinx/requirements.txt
+          python3 -m sphinx -b html material . -c sphinx -d .doctrees
       # Sitio final: catalogo raiz + todas las webs tal cual + dist/ de las
       # SPAs compiladas sobre su carpeta (sin publicar codigo fuente).
       - name: Ensamblar sitio
@@ -81,11 +91,23 @@ jobs:
             --exclude web-codelang-quiz \
             --exclude web-pokemon \
             --exclude web-naruto \
+            --exclude web-lenguajes-programacion \
             ./ site/
           rsync -a web-exerciness/dist/ site/web-exerciness/
           rsync -a web-codelang-quiz/dist/ site/web-codelang-quiz/
           rsync -a web-pokemon/dist/ site/web-pokemon/
           rsync -a web-naruto/dist/ site/web-naruto/
+          # la web se construye en su propia raiz: publicar solo lo generado
+          rsync -a \
+            --exclude material \
+            --exclude sphinx \
+            --exclude .doctrees \
+            --exclude JavaDAWITIC \
+            --exclude PythonDCSINFOTEP \
+            --exclude JavaScriptDCSINFOTEP \
+            --exclude LICENSE \
+            --exclude README.md \
+            web-lenguajes-programacion/ site/web-lenguajes-programacion/
           touch site/.nojekyll
 
       - name: Setup Pages

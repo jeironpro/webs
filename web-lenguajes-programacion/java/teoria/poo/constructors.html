@@ -1,0 +1,215 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Constructors &mdash; documentación de Lenguajes de programación - </title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/logo.svg"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=e2bb6099"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" title="Búsqueda" href="../../../search.html" />
+    <link rel="next" title="Herencia" href="herencia.html" />
+    <link rel="prev" title="Composicio" href="composicio.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Lenguajes de programación
+              <img src="../../../_static/logo.svg" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lenguajes</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Java — DAW (ITIC Barcelona)</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#teoria">Teoría</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../elements-basics-de-la-programacio/index.html">Elements basics de la programacio</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../moduls/index.html">Moduls</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">POO</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="accesextern.html">Accés extern</a></li>
+<li class="toctree-l4"><a class="reference internal" href="accionsdunobjecte.html">Accions d’un objecte</a></li>
+<li class="toctree-l4"><a class="reference internal" href="comportamentsespecifics.html">Comportaments específics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="composicio.html">Composicio</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Constructors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="herencia.html">Herencia</a></li>
+<li class="toctree-l4"><a class="reference internal" href="interfaces.html">Interfaces</a></li>
+<li class="toctree-l4"><a class="reference internal" href="membresdinstaciaideclasse.html">Membres d’instància i de classe</a></li>
+<li class="toctree-l4"><a class="reference internal" href="multiplesinstancies.html">Múltiples instàncies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="poo.html">POO</a></li>
+<li class="toctree-l4"><a class="reference internal" href="polimorfisme.html">Polimorfisme</a></li>
+<li class="toctree-l4"><a class="reference internal" href="preguntesaunobjecte.html">Preguntes a un objecte</a></li>
+<li class="toctree-l4"><a class="reference internal" href="propietats.html">Propietats</a></li>
+<li class="toctree-l4"><a class="reference internal" href="propietatsmutables.html">Propietats mutables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="propietatsprotegides.html">Propietats protegides</a></li>
+<li class="toctree-l4"><a class="reference internal" href="propietatspubliques.html">Propietats públiques</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../biblioteques/index.html">Biblioteques</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fitxers/index.html">Fitxers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../persistencia-amb-bases-de-dades/index.html">Persistencia amb bases de dades</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../validacio-daplicacions/index.html">Validació daplicacions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#ejercicios">Ejercicios</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../python/index.html">Python — DCS (INFOTEP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../javascript/index.html">JavaScript — DCS (INFOTEP)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Lenguajes de programación</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Java — DAW (ITIC Barcelona)</a></li>
+          <li class="breadcrumb-item"><a href="index.html">POO</a></li>
+      <li class="breadcrumb-item active">Constructors</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/java/teoria/poo/constructors.md.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="constructors">
+<h1>Constructors<a class="headerlink" href="#constructors" title="Link to this heading"></a></h1>
+<p><strong>Constructors</strong>
+Un constructor és un mètode especial que s’executa automaticament quan es crea una nova instància d’una classe. La seva funció principal és inicialitzar l’objecte, és a dir, donar valors inicials a les seves propietats.</p>
+<p><strong>Característiques dels constructors</strong></p>
+<ul class="simple">
+<li><p>Tenen el mateix nom que la classe.</p></li>
+<li><p>No tenen tipus de retorn, ni tan sols void.</p></li>
+<li><p>Poden tenir paràmetres o no.</p></li>
+<li><p>Si no se’n defineix cap, Java en proporciona un per defecte (constructor buit).</p></li>
+</ul>
+<p><strong>Exemple</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Persona</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">nom</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">edat</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><strong>// Constructor</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Persona</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">nom</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">edat</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">nom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nom</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">edat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">edat</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">saludar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"Hola, em dic "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">nom</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">" i tinc "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">edat</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">" anys."</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Principal</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Persona</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Persona</span><span class="p">(</span><span class="s">"Anna"</span><span class="p">,</span><span class="w"> </span><span class="mi">25</span><span class="p">);</span><span class="w">  </span><span class="c1">// Es crida el constructor</span>
+<span class="w">        </span><span class="n">p</span><span class="p">.</span><span class="na">saludar</span><span class="p">();</span><span class="w">  </span><span class="c1">// Hola, em dic Anna i tinc 25 anys.</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Constructors múltiples (Sobrecàrrega)</strong>
+Es poden definir diversos constructors amb diferents paràmetres:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Persona</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">nom</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">edat</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Persona</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">nom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Desconegut"</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">edat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Persona</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">nom</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">nom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nom</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">edat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Persona</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">nom</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">edat</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">nom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nom</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">edat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">edat</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Per què són importants</strong></p>
+<ol class="arabic simple">
+<li><p>Faciliten la creació d’objectes amb estat incial.</p></li>
+</ol>
+<ul class="simple">
+<li><p><strong>2.</strong> Permeten sobrecàrrega per oferir diferents maneres de construir un objecte.</p></li>
+<li><p><strong>3.</strong> Poden ajudar a forçar la inicialització correcta de les propietats.</p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="composicio.html" class="btn btn-neutral float-left" title="Composicio" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="herencia.html" class="btn btn-neutral float-right" title="Herencia" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+  <p>
+    © Copyright <span id="anio-copyright"></span> jeironpro.
+  </p>
+  <script>
+    document.getElementById("anio-copyright").textContent =
+      new Date().getFullYear();
+  </script>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

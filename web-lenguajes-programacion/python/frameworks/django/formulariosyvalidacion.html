@@ -1,0 +1,299 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formularios y validación &mdash; documentación de Lenguajes de programación - </title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/logo.svg"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=e2bb6099"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" title="Búsqueda" href="../../../search.html" />
+    <link rel="next" title="Introducción a Django" href="introducciondjango.html" />
+    <link rel="prev" title="Autenticación y autorización" href="autenticacionyautorizacion.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Lenguajes de programación
+              <img src="../../../_static/logo.svg" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lenguajes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../java/index.html">Java — DAW (ITIC Barcelona)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Python — DCS (INFOTEP)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#teoria">Teoría</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#frameworks">Frameworks</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../flask/index.html">Flask</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Django</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="admindjango.html">Admin de Django</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autenticacionyautorizacion.html">Autenticación y autorización</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Formularios y validación</a></li>
+<li class="toctree-l4"><a class="reference internal" href="introducciondjango.html">Introducción a Django</a></li>
+<li class="toctree-l4"><a class="reference internal" href="modelosybasesdedatos.html">Modelos y bases de datos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="producciondjango.html">Producción con Django</a></li>
+<li class="toctree-l4"><a class="reference internal" href="templatesyrenderizado.html">Templates y renderizado</a></li>
+<li class="toctree-l4"><a class="reference internal" href="introducciondjango-proyecto.html">Proyecto de introducción a Django</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#ejercicios">Ejercicios</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../javascript/index.html">JavaScript — DCS (INFOTEP)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Lenguajes de programación</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Python — DCS (INFOTEP)</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Django</a></li>
+      <li class="breadcrumb-item active">Formularios y validación</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/python/frameworks/django/formulariosyvalidacion.md.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="formularios-y-validacion">
+<h1>Formularios y validación<a class="headerlink" href="#formularios-y-validacion" title="Link to this heading"></a></h1>
+<p><strong>Formularios y Validación en Django</strong>
+Los formularios en Django son un herramienta poderosa que facilita la creación, validación y procesamiento de datos enviados por los usuarios, como datos de registro, inicio de sesión o cualquier entrada interactiva.</p>
+<ul class="simple">
+<li><p><strong>1.</strong> Creación de un formulario
+Django proporciona la clase forms.Form para definir formularios.</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>Crear un formulario simple: crear un archivo forms.py en la aplicación (si no existe):</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="kn">from</span><span class="w"> </span><span class="nn">django</span><span class="w"> </span><span class="kn">import</span> <span class="n">forms</span>
+
+        <span class="k">class</span><span class="w"> </span><span class="nc">RegistroForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+            <span class="n">nombre</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Nombre"</span><span class="p">)</span>
+            <span class="n">email</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">EmailField</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">"Correo Electrónico"</span><span class="p">)</span>
+            <span class="n">contraseña</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">PasswordInput</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Contraseña"</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>2.</strong> Definir la vista para el formulario: en views.py, renderiza el formulario y procesa los datos enviados:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="kn">from</span><span class="w"> </span><span class="nn">django.shortcuts</span><span class="w"> </span><span class="kn">import</span> <span class="n">render</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">.forms</span><span class="w"> </span><span class="kn">import</span> <span class="n">RegistroForm</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">registro</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">'POST'</span><span class="p">:</span>
+                <span class="n">form</span> <span class="o">=</span> <span class="n">RegistroForm</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">is_valid</span><span class="p">():</span>
+                    <span class="c1"># Procesar los datos del formulario</span>
+                    <span class="n">nombre</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s1">'nombre'</span><span class="p">]</span>
+                    <span class="n">email</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s1">'email'</span><span class="p">]</span>
+                    <span class="n">contraseña</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s1">'contraseña'</span><span class="p">]</span>
+                    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">'mi_aplicacion/success.html'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'nombre'</span><span class="p">:</span> <span class="n">nombre</span><span class="p">})</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">form</span> <span class="o">=</span> <span class="n">RegistroForm</span><span class="p">()</span>
+
+            <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">'mi_aplicacion/registro.html'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'form'</span><span class="p">:</span> <span class="n">form</span><span class="p">})</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>3.</strong> Crear el template del formulario: crea registro.html para mostrar el formulario:</p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>        &lt;!DOCTYPE html&gt;
+        &lt;html&gt;
+        &lt;head&gt;
+            &lt;title&gt;Registro&lt;/title&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+            &lt;h1&gt;Registro de Usuario&lt;/h1&gt;
+            &lt;form method="post"&gt;
+                {% csrf_token %}
+                {{ form.as_p }}
+                &lt;button type="submit"&gt;Registrar&lt;/button&gt;
+            &lt;/form&gt;
+        &lt;/body&gt;
+        &lt;/html&gt;
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>4.</strong> Configurar la URL: en urls.py, añade la ruta para esta vista:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="kn">from</span><span class="w"> </span><span class="nn">django.urls</span><span class="w"> </span><span class="kn">import</span> <span class="n">path</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">views</span>
+
+        <span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">path</span><span class="p">(</span><span class="s1">'registro/'</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">registro</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">'registro'</span><span class="p">),</span>
+        <span class="p">]</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>2.</strong> Validación de formularios
+Django valida automáticamente ciertos campos (como correso electrónicos o contraseñas). Además, puedes añadir validaciones personalizadas.</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>Agregar validación personalizada: modifica el formulario para incluir un método clean_<campo>:</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="k">class</span><span class="w"> </span><span class="nc">RegistroForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+            <span class="n">nombre</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Nombre"</span><span class="p">)</span>
+            <span class="n">email</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">EmailField</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">"Correo Electrónico"</span><span class="p">)</span>
+            <span class="n">contraseña</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">PasswordInput</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Contraseña"</span><span class="p">)</span>
+
+            <span class="k">def</span><span class="w"> </span><span class="nf">clean_nombre</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+                <span class="n">nombre</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s1">'nombre'</span><span class="p">]</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">nombre</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">forms</span><span class="o">.</span><span class="n">ValidationError</span><span class="p">(</span><span class="s2">"El nombre debe tener al menos 3 caracteres."</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">nombre</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>2.</strong> Validar múltiples campos: usa el método clean para validaciones que dependan de varios campos:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="k">def</span><span class="w"> </span><span class="nf">clean</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="n">cleaned_data</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">clean</span><span class="p">()</span>
+            <span class="n">email</span> <span class="o">=</span> <span class="n">cleaned_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'email'</span><span class="p">)</span>
+            <span class="n">contraseña</span> <span class="o">=</span> <span class="n">cleaned_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'contraseña'</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">email</span> <span class="ow">and</span> <span class="s2">"spam"</span> <span class="ow">in</span> <span class="n">email</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">forms</span><span class="o">.</span><span class="n">ValidationError</span><span class="p">(</span><span class="s2">"No se permite el uso de 'spam' en el correo."</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>3.</strong> Formularios basados en modelos
+Si tienes un modelo relacionado, puedes usar forms.ModelForm para crear formularios automáticamente.</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>Definir el modelo: en models.py:</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="kn">from</span><span class="w"> </span><span class="nn">django.db</span><span class="w"> </span><span class="kn">import</span> <span class="n">models</span>
+
+        <span class="k">class</span><span class="w"> </span><span class="nc">Usuario</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+            <span class="n">nombre</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+            <span class="n">email</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">EmailField</span><span class="p">()</span>
+            <span class="n">contraseña</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>2.</strong> Crear el formulario basado en el modelo: en forms.py:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="kn">from</span><span class="w"> </span><span class="nn">django</span><span class="w"> </span><span class="kn">import</span> <span class="n">forms</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Usuario</span>
+
+        <span class="k">class</span><span class="w"> </span><span class="nc">UsuarioForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">ModelForm</span><span class="p">):</span>
+            <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
+                <span class="n">model</span> <span class="o">=</span> <span class="n">Usuario</span>
+                <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'nombre'</span><span class="p">,</span> <span class="s1">'email'</span><span class="p">,</span> <span class="s1">'contraseña'</span><span class="p">]</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>3.</strong> Procesar el formulario en la vista:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="kn">from</span><span class="w"> </span><span class="nn">django.shortcuts</span><span class="w"> </span><span class="kn">import</span> <span class="n">render</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">.forms</span><span class="w"> </span><span class="kn">import</span> <span class="n">UsuarioForm</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">registro_modelo</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">'POST'</span><span class="p">:</span>
+                <span class="n">form</span> <span class="o">=</span> <span class="n">UsuarioForm</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">is_valid</span><span class="p">():</span>
+                    <span class="n">form</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>  <span class="c1"># Guarda el usuario directamente en la base de datos</span>
+                    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">'mi_aplicacion/success.html'</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">form</span> <span class="o">=</span> <span class="n">UsuarioForm</span><span class="p">()</span>
+
+            <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">'mi_aplicacion/registro_modelo.html'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'form'</span><span class="p">:</span> <span class="n">form</span><span class="p">})</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>4.</strong> Mejorar la interfaz de usuario</p>
+<ol class="arabic simple">
+<li><p>Personalizar el formulario: usa widgets para moficar cómo se ven los campos:</p></li>
+</ol>
+</li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="k">class</span><span class="w"> </span><span class="nc">RegistroForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+            <span class="n">nombre</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">'class'</span><span class="p">:</span> <span class="s1">'form-control'</span><span class="p">}))</span>
+            <span class="n">email</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">EmailField</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">EmailInput</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">'class'</span><span class="p">:</span> <span class="s1">'form-control'</span><span class="p">}))</span>
+            <span class="n">contraseña</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">PasswordInput</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">'class'</span><span class="p">:</span> <span class="s1">'form-control'</span><span class="p">}))</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>2.</strong> Estilizar con CSS: añade clases a los campos usando atributos o frameworks como Bootstrap.</p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="autenticacionyautorizacion.html" class="btn btn-neutral float-left" title="Autenticación y autorización" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="introducciondjango.html" class="btn btn-neutral float-right" title="Introducción a Django" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+  <p>
+    © Copyright <span id="anio-copyright"></span> jeironpro.
+  </p>
+  <script>
+    document.getElementById("anio-copyright").textContent =
+      new Date().getFullYear();
+  </script>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

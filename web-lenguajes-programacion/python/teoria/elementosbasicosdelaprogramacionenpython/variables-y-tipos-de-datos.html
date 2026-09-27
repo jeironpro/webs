@@ -1,0 +1,347 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>variables y tipos de datos &mdash; documentación de Lenguajes de programación - </title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/logo.svg"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=e2bb6099"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" title="Búsqueda" href="../../../search.html" />
+    <link rel="next" title="Entrada y salida de datos" href="entradaysalidadedatos.html" />
+    <link rel="prev" title="Introducción" href="introduccion.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Lenguajes de programación
+              <img src="../../../_static/logo.svg" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lenguajes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../java/index.html">Java — DAW (ITIC Barcelona)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Python — DCS (INFOTEP)</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#teoria">Teoría</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Elementos básicos de la programación en Python</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="introduccion.html">Introducción</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">variables y tipos de datos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="entradaysalidadedatos.html">Entrada y salida de datos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="operadores.html">Operadores</a></li>
+<li class="toctree-l4"><a class="reference internal" href="condicionales.html">Condicionales</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bucles/index.html">Bucles</a></li>
+<li class="toctree-l4"><a class="reference internal" href="colecciones/index.html">Colecciones</a></li>
+<li class="toctree-l4"><a class="reference internal" href="funciones/index.html">Funciones</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../introduccionalaprogramacionorientadaaobjetosenpython/index.html">Introducción a la programación orientada a objetos en Python</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#frameworks">Frameworks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#ejercicios">Ejercicios</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../javascript/index.html">JavaScript — DCS (INFOTEP)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Lenguajes de programación</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Python — DCS (INFOTEP)</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Elementos básicos de la programación en Python</a></li>
+      <li class="breadcrumb-item active">variables y tipos de datos</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/python/teoria/elementosbasicosdelaprogramacionenpython/variables-y-tipos-de-datos.md.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="variables-y-tipos-de-datos">
+<h1>variables y tipos de datos<a class="headerlink" href="#variables-y-tipos-de-datos" title="Link to this heading"></a></h1>
+<p><strong>Variables</strong>
+Una variable es un nombre que se usa para referirse a un valor o dato en el programa. Es como una «caja» donde puedes almacenar información para usarla más tarde. En python, no necesitas declarar el tipo de la variable antes de asignarle un valor, lo que hace que Python sea muy flexible y fácil de usar.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">''' Asignar valores a una variable</span>
+<span class="sd">En python, asignar un valor a una variable es muy simple. Usamos el operador de asignación =</span>
+<span class="sd">'''</span>
+<span class="n">numero</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># Variable con valor entero (int)</span>
+<span class="n">nota</span> <span class="o">=</span> <span class="mf">10.22</span> <span class="c1"># Variable con valor decimal (float)</span>
+<span class="n">nombre</span> <span class="o">=</span> <span class="s2">"jeiron"</span> <span class="c1"># Variable con cadena de carecteres (string | str)</span>
+<span class="n">es_estudiante</span> <span class="o">=</span> <span class="kc">True</span> <span class="c1"># Variable con datos booleanos (bool)</span>
+
+<span class="c1">#Imprimir Valores en pantalla</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">numero</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">nota</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">nombre</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">es_estudiante</span><span class="p">)</span>
+
+<span class="sd">''' Tipos de datos</span>
+<span class="sd">Los tipos de datos son las categorías de valores que puedes usar y manipular. Estos tipos permiten almacenar diferentes formas de información, como numero, texto o valores booleanos.</span>
+
+<span class="sd">Las varaible en Python pueden almacenar diferentes tipos de datos, como:</span>
+<span class="sd">· Enteros (int): números enteros, como 10, -3, 42.</span>
+<span class="sd">· Flotantes (float): números decimales, como 3.14, -1.5, 2.0.</span>
+<span class="sd">· Cadenas de texto (str): texto, como "Hola", "Python".</span>
+<span class="sd">· Booleanos (bool): valores True o False.</span>
+<span class="sd">'''</span>
+
+<span class="sd">''' Función type</span>
+<span class="sd">La función type() se usa para obtener el tipo de dato de una variable o de cualquier objecto en Python. Esto te permite saber qué tipo de valor está almacenado en una variable.</span>
+<span class="sd">'''</span>
+
+<span class="c1"># Mostrar el tipo de dato de una variable</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">numero</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">nota</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">nombre</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">es_estudiante</span><span class="p">))</span>
+
+<span class="sd">''' Usar variables</span>
+<span class="sd">Una vez que has asignado valores a las variables, puedes usarlas en tu programa. Por ejemplo, puedes hacer operaciones matemáticas con las variables numéricas o combinar cadenas de texto.</span>
+<span class="sd">'''</span>
+<span class="c1"># Realizar cálculos con variables</span>
+<span class="n">num1</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">num2</span> <span class="o">=</span> <span class="mf">6.7</span>
+
+<span class="n">suma</span> <span class="o">=</span> <span class="n">num1</span> <span class="o">+</span> <span class="n">num2</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"El Resultado de la suma es"</span><span class="p">,</span><span class="n">suma</span><span class="p">)</span>
+
+<span class="c1"># Combinar cadenas de textos</span>
+<span class="n">nombre</span> <span class="o">=</span> <span class="s2">"Jeiron"</span>
+
+<span class="n">mensaje</span> <span class="o">=</span> <span class="s2">"Hola, "</span> <span class="o">+</span> <span class="n">nombre</span> <span class="o">+</span> <span class="s2">"!"</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mensaje</span><span class="p">)</span>
+
+<span class="sd">''' Reglas para nombrar variables</span>
+<span class="sd">· Los nombres de las variables deben comenzar con una letra (a-z, A-Z) o un guión bajo (_).</span>
+
+<span class="sd">· Después de la primera letra, pueden ir números.</span>
+
+<span class="sd">· Los nombres de las variables son sensibles a mayúsculas y minúsculas, es decir, edad y Edad son dos variables diferentes.</span>
+
+<span class="sd">· No puedes usar palabras reservadas de Python como class, for, if, True, False, etc., como nombres de variables. </span>
+<span class="sd">'''</span>
+
+<span class="c1"># Ejemplos válidos:</span>
+<span class="n">variable1</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">_mensaje</span> <span class="o">=</span> <span class="s2">"Hola"</span>
+<span class="n">edad_usuario</span> <span class="o">=</span> <span class="mi">30</span>
+
+<span class="c1"># Ejemplos invalidos:</span>
+<span class="c1"># 1variable = 10 # No puede empezar con un número</span>
+<span class="c1"># if = 5 # 'if' es una palabra reservada</span>
+
+<span class="sd">''' Tipado dinamico</span>
+<span class="sd">En python, las variables son dinámicas, lo que permite que el tipo de dato sea cambiado en cualquier momento del programa.</span>
+<span class="sd">'''</span>
+
+<span class="n">nombre</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">nombre</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">nombre</span><span class="p">))</span>
+
+<span class="sd">''' La funcion round()</span>
+<span class="sd">En python, la función round() se utiliza para rendodear un número decimal a un número de decimales especificado. Esta función es útil cuando necesitas controlar la cantidad de decimales que se muestran o almacenan en una variable.</span>
+<span class="sd">'''</span>
+
+<span class="c1"># Redondear números decimales a decimales específicos</span>
+<span class="n">radio</span> <span class="o">=</span> <span class="mf">3.14159</span>
+<span class="n">redondeado</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">radio</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">redondeado</span><span class="p">)</span>
+
+<span class="c1"># Redondear decimales de un dígito a un número entero</span>
+<span class="n">radio</span> <span class="o">=</span> <span class="mf">3.7</span>
+<span class="n">redondeado</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">radio</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">redondeado</span><span class="p">)</span>
+
+<span class="sd">'''</span>
+<span class="sd">El redondeo hacia abajo o hacia arriba: Python usa la regla de redondeo de "redondeo hacia el par más cercano" (o "redondeo bancario"), lo que significa que si el número està justo a mitad de camino, se redondea al número par más cercano.</span>
+<span class="sd">'''</span>
+
+<span class="nb">round</span><span class="p">(</span><span class="mf">2.5</span><span class="p">)</span> <span class="c1"># Redondea hacia abajo (numero par más cercano 2)</span>
+
+<span class="nb">round</span><span class="p">(</span><span class="mf">3.5</span><span class="p">)</span> <span class="c1"># Redondea hacia arriba (numero par más cercano 4)</span>
+
+<span class="sd">''' El formato .2f</span>
+<span class="sd">El .2f es una especificación de formato utilizada en Python para controlar cómo se imprime un número decimal (de tipo float) con una cantidad específica de decimales.</span>
+
+<span class="sd">· f se refiere a "float" (número de punto flotante).</span>
+
+<span class="sd">· .2 indica que quieres mostrar dos decimales</span>
+
+<span class="sd">Esto es una forma de especificar el formato de presentación de un número flotante.</span>
+
+<span class="sd">Sintaxis de formato:</span>
+<span class="sd">"{:.2f}".format(numero)</span>
+
+<span class="sd">El número se imprimirá con dos decimales después del punto decimal.</span>
+<span class="sd">'''</span>
+
+<span class="n">numero</span> <span class="o">=</span> <span class="mf">3.14159</span>
+<span class="n">formato</span> <span class="o">=</span> <span class="s2">"</span><span class="si">{:.2f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">numero</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">formato</span><span class="p">)</span> <span class="c1"># Imprime "3.14"</span>
+
+<span class="sd">''' .format()</span>
+<span class="sd">La función .format() es un método de las cadenas de texto en Python que te permite insertar valores dentro de una cadena de manera muy flexible. puedes usarlo para formatear los valores antes de mostrarlos.</span>
+
+<span class="sd">Sintaxis de .format():</span>
+<span class="sd">cadena = "Texto con un valor: {}".format(valor)</span>
+
+<span class="sd">· El {} dentro de la cadena es un marcador de posición que será reemplazado por el valor que se pase a .format().</span>
+
+<span class="sd">· Puedes pasar uno o más valores a .format(), y estos serán insertados en el orden de aparición de los {} en la cadena.</span>
+<span class="sd">'''</span>
+
+<span class="c1"># Ejemplo sustituyendo un valor</span>
+<span class="n">nombre</span> <span class="o">=</span> <span class="s2">"Junior"</span>
+<span class="n">edad</span> <span class="o">=</span> <span class="mi">21</span>
+
+<span class="c1"># Usamos .format() para insertar los valores en la cadena</span>
+<span class="n">saludo</span> <span class="o">=</span> <span class="s2">"Hola, mi nombre es </span><span class="si">{}</span><span class="s2"> y tengo </span><span class="si">{}</span><span class="s2"> años"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span> <span class="n">edad</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">saludo</span><span class="p">)</span>
+
+<span class="c1"># Ejemplo especificando el orden de los valores</span>
+<span class="c1"># Puedes usar índices dentro de los {} para especificar el orden en el que se deben insertar los valores</span>
+<span class="n">nombre</span> <span class="o">=</span> <span class="s2">"JeyJey"</span>
+<span class="n">edad</span> <span class="o">=</span> <span class="mi">21</span>
+
+<span class="c1"># Usamos índices para dar el orden explícito</span>
+<span class="n">saludo</span> <span class="o">=</span> <span class="s2">"Hola, mi nombre es </span><span class="si">{0}</span><span class="s2"> y tengo </span><span class="si">{1}</span><span class="s2"> años. </span><span class="si">{0}</span><span class="s2"> es un buen nombre."</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span> <span class="n">edad</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">saludo</span><span class="p">)</span>
+
+<span class="c1"># Ejemplo usando nombres en lugar de índices</span>
+<span class="n">saludo</span> <span class="o">=</span> <span class="s2">"Hola, mi nombre es </span><span class="si">{nombre}</span><span class="s2"> y tengo </span><span class="si">{edad}</span><span class="s2"> años."</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nombre</span><span class="o">=</span><span class="s2">"Jeiron"</span><span class="p">,</span> <span class="n">edad</span><span class="o">=</span><span class="mi">21</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">saludo</span><span class="p">)</span>
+
+<span class="c1"># Ejemplo especificando formato de números</span>
+<span class="n">precio</span> <span class="o">=</span> <span class="mf">19.99</span>
+<span class="n">mensaje</span> <span class="o">=</span> <span class="s2">"El precio es </span><span class="si">{:.2f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">precio</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mensaje</span><span class="p">)</span>
+
+<span class="sd">''' F-strings (f"")</span>
+<span class="sd">Introducidas en Python 3.6, las f-strings son una forma más moderna y directa de formatear cadenas. Las f-strings permiten insertar expresiones dentro de una cadena de manera más sencilla y legible. Se prefieren a menudo por su simplicidad y eficiencia.</span>
+
+<span class="sd">Sintaxis de f-strings</span>
+<span class="sd">cadena = f"Texto con un valor: {valor}"</span>
+
+<span class="sd">· El prefijo f antes de las comillas indica que es una f-string.</span>
+
+<span class="sd">· Dentro de las llaves {}, puedes insertar cualquier expresión de Python, no solo variables.</span>
+<span class="sd">'''</span>
+
+<span class="c1"># Ejemplo sustituyendo valores</span>
+<span class="n">nombre</span> <span class="o">=</span> <span class="s2">"Jeiron"</span>
+<span class="n">edad</span> <span class="o">=</span> <span class="mi">21</span>
+
+<span class="c1"># Usamos f-string para insertar los valores directamente</span>
+<span class="n">saludo</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"Hola, mi nombre es </span><span class="si">{</span><span class="n">nombre</span><span class="si">}</span><span class="s2"> y tengo </span><span class="si">{</span><span class="n">edad</span><span class="si">}</span><span class="s2"> años."</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">saludo</span><span class="p">)</span>
+
+<span class="c1"># Ejemplo realizando operaciones dentro de las llaves {}</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">resultado</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"La suma de </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2"> y </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2"> es </span><span class="si">{</span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="si">}</span><span class="s2">."</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">resultado</span><span class="p">)</span>
+
+<span class="c1"># Ejemplo formateando números</span>
+<span class="n">precio</span> <span class="o">=</span> <span class="mf">19.999</span>
+<span class="n">mensaje</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"El precio es </span><span class="si">{</span><span class="n">precio</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mensaje</span><span class="p">)</span>
+
+<span class="sd">'''</span>
+<span class="sd">Comparación de .format() vs f-strings</span>
+<span class="sd">Característica	                  .format()	                                                              f-strings (f"")</span>
+<span class="sd">Sintaxis	                      "{}.format(valor)`	                                                  f"{}" con variables dentro de llaves</span>
+<span class="sd">Introducción	                  Introducido en Python 2.7 y 3.x	                                      Introducido en Python 3.6</span>
+<span class="sd">Legibilidad	                      Menos legible cuando se tienen muchos valores o expresiones complejas   Más legible y directo, especialmente con expresiones complejas</span>
+<span class="sd">Velocidad 	                      Lento en comparación con f-strings	                                  Más rápido, especialmente con muchas variables o expresiones</span>
+<span class="sd">Flexibilidad	                  Muy flexible, con formatos avanzados de alineación, relleno, etc.	      También flexible, pero más simple y directo</span>
+<span class="sd">Operaciones dentro de la cadena	  No se pueden hacer operaciones dentro de los {}	                      Se pueden hacer operaciones directamente dentro de los {}</span>
+<span class="sd">'''</span>
+
+<span class="sd">''' \n</span>
+<span class="sd">En python, \n es un carácter de escape que representa un salto de línea o una nueva línea. Esto significa que cuando se encuentra en una cadena de texto, indica al programa que debe empezar una nueva línea en ese punto.</span>
+
+<span class="sd">¿Cómo funciona?</span>
+<span class="sd">· El carácter de escape \ le dice a Python que lo que sigue tiene un significado especial.</span>
+
+<span class="sd">· La letra n significa "nueva línea" (new line).</span>
+<span class="sd">'''</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="introduccion.html" class="btn btn-neutral float-left" title="Introducción" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="entradaysalidadedatos.html" class="btn btn-neutral float-right" title="Entrada y salida de datos" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+  <p>
+    © Copyright <span id="anio-copyright"></span> jeironpro.
+  </p>
+  <script>
+    document.getElementById("anio-copyright").textContent =
+      new Date().getFullYear();
+  </script>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

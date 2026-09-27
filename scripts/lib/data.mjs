@@ -23,6 +23,9 @@ const RAICES_PERMITIDAS = [
     "gsap",
     "three",
     "svg",
+    "python",
+    "sphinx",
+    "myst",
 ];
 const CATEGORIAS_PERMITIDAS = [
     "utilidades",

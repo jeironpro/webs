@@ -1,0 +1,220 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Producción con Django &mdash; documentación de Lenguajes de programación - </title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/logo.svg"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=e2bb6099"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" title="Búsqueda" href="../../../search.html" />
+    <link rel="next" title="Templates y renderizado" href="templatesyrenderizado.html" />
+    <link rel="prev" title="Modelos y bases de datos" href="modelosybasesdedatos.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Lenguajes de programación
+              <img src="../../../_static/logo.svg" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lenguajes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../java/index.html">Java — DAW (ITIC Barcelona)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Python — DCS (INFOTEP)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#teoria">Teoría</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#frameworks">Frameworks</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../flask/index.html">Flask</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Django</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="admindjango.html">Admin de Django</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autenticacionyautorizacion.html">Autenticación y autorización</a></li>
+<li class="toctree-l4"><a class="reference internal" href="formulariosyvalidacion.html">Formularios y validación</a></li>
+<li class="toctree-l4"><a class="reference internal" href="introducciondjango.html">Introducción a Django</a></li>
+<li class="toctree-l4"><a class="reference internal" href="modelosybasesdedatos.html">Modelos y bases de datos</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Producción con Django</a></li>
+<li class="toctree-l4"><a class="reference internal" href="templatesyrenderizado.html">Templates y renderizado</a></li>
+<li class="toctree-l4"><a class="reference internal" href="introducciondjango-proyecto.html">Proyecto de introducción a Django</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#ejercicios">Ejercicios</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../javascript/index.html">JavaScript — DCS (INFOTEP)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Lenguajes de programación</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Python — DCS (INFOTEP)</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Django</a></li>
+      <li class="breadcrumb-item active">Producción con Django</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/python/frameworks/django/producciondjango.md.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="produccion-con-django">
+<h1>Producción con Django<a class="headerlink" href="#produccion-con-django" title="Link to this heading"></a></h1>
+<p><strong>Despliegue en producción con Django</strong>
+Preparar una aplicación Django para un entorno de producción implica varios pasos importantes para garantizar seguridad, rendimiento y escalabilidad.</p>
+<ul class="simple">
+<li><p><strong>1.</strong> Configuración básica para producción
+Asegúrate de revisar los siguientes puntos en settings.py:</p></li>
+<li><p>DEBUG: debe ser False en producción.</p></li>
+<li><p>ALLOWED_HOSTS: lista de dominios o direcciones IP permitidas.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="n">ALLOWED_HOSTS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'tu-dominio.com'</span><span class="p">,</span> <span class="s1">'www.tu-dominio.com'</span><span class="p">]</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>SECRET_KEY: usa una clave secreta segura y no la compartas.</p></li>
+<li><p><strong>2.</strong> Configurar servidor WSGI
+En producción, Django no utiliza su servidor de desarrollo. Usa WSGI con un servidor como Gunicorn o uWSGI.</p></li>
+<li><p>Instala Gunicorn:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="n">pip</span> <span class="n">install</span> <span class="n">gunicorn</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Ejecuta el servidor:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="n">gunicorn</span> <span class="n">mi_proyecto</span><span class="o">.</span><span class="n">wsgi</span><span class="p">:</span><span class="n">application</span> <span class="o">--</span><span class="n">bind</span> <span class="mf">0.0.0.0</span><span class="p">:</span><span class="mi">8000</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>3.</strong> Configuración de servidor web
+Es común usar un servidor web como Nginx para gestionar solicitudes.
+Ejemplo básico de configuración para Nginx:
+Archivo /etc/nginx/sites-available/mi_proyecto:</p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>    server {
+        server_name tu-dominio.com www.tu-dominio.com;
+
+        location = /favicon.ico { access_log off; log_not_found off; }
+        location /static/ {
+            root /ruta/a/tu/proyecto/;
+        }
+
+        location / {
+            proxy_pass http://127.0.0.1:8000;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+        }
+    }
+</pre></div>
+</div>
+<p><strong>Habilita el archivo</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>    sudo ln -s /etc/nginx/sites-available/mi_proyecto /etc/nginx/sites-enabled
+    sudo systemctl restart nginx
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>4.</strong> Migrar la base de datos
+Ejecuta las migraciones para asegurarte de que la base de datos esté actualizada:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">migrate</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>5.</strong> Servir archivos estáticos
+Recopila archivos estáticos para que el servidor los pueda servir:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">collectstatic</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>6.</strong> Configuración de certificados SSL
+Usa Certbot para habilitar HTTPS con certificados gratiutos de Let’s Encrypt:</p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>    sudo apt install certbot python3-certbot-nginx
+    sudo certbot --nginx
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>7.</strong> Monitoreo y logs
+Configura registros para supervisar tu aplicación en producción:</p></li>
+<li><p>Configura LOGGIN en settings.py para guardar errores en archivos.</p></li>
+<li><p>Usa herramientas como supervisord para gestionar procesos.</p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="modelosybasesdedatos.html" class="btn btn-neutral float-left" title="Modelos y bases de datos" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="templatesyrenderizado.html" class="btn btn-neutral float-right" title="Templates y renderizado" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+  <p>
+    © Copyright <span id="anio-copyright"></span> jeironpro.
+  </p>
+  <script>
+    document.getElementById("anio-copyright").textContent =
+      new Date().getFullYear();
+  </script>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

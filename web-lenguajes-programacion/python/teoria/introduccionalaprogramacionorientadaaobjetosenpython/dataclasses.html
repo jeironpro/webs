@@ -1,0 +1,274 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dataclasses &mdash; documentación de Lenguajes de programación - </title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/logo.svg"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=e2bb6099"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" title="Búsqueda" href="../../../search.html" />
+    <link rel="next" title="Duck typing" href="ducktyping.html" />
+    <link rel="prev" title="Clases abstractas" href="clasesabstractas.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Lenguajes de programación
+              <img src="../../../_static/logo.svg" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lenguajes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../java/index.html">Java — DAW (ITIC Barcelona)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Python — DCS (INFOTEP)</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#teoria">Teoría</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython/index.html">Elementos básicos de la programación en Python</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Introducción a la programación orientada a objetos en Python</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="clasesabstractas.html">Clases abstractas</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Dataclasses</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ducktyping.html">Duck typing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="encapsulamiento.html">Encapsulamiento</a></li>
+<li class="toctree-l4"><a class="reference internal" href="encapsulamientodemetodos.html">Encapsulamiento de métodos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="herencia.html">Herencia</a></li>
+<li class="toctree-l4"><a class="reference internal" href="herenciamultiple.html">Herencia múltiple</a></li>
+<li class="toctree-l4"><a class="reference internal" href="introduccionpoo.html">Introducción a la POO</a></li>
+<li class="toctree-l4"><a class="reference internal" href="metodosmagicos.html">Métodos mágicos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="polimorfismo.html">Polimorfismo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sobrecargademetodos.html">Sobrecarga de métodos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="super.html">Super</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#frameworks">Frameworks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#ejercicios">Ejercicios</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../javascript/index.html">JavaScript — DCS (INFOTEP)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Lenguajes de programación</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Python — DCS (INFOTEP)</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Introducción a la programación orientada a objetos en Python</a></li>
+      <li class="breadcrumb-item active">Dataclasses</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/python/teoria/introduccionalaprogramacionorientadaaobjetosenpython/dataclasses.md.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="dataclasses">
+<h1>Dataclasses<a class="headerlink" href="#dataclasses" title="Link to this heading"></a></h1>
+<p><strong>Dataclasses</strong>
+Las dataclasses son una forma sencilla y eficiente de crear clases en Python que principalmente contienen datos. Introducidas en Python 3.7, las dataclasses proporcionan una forma rápida de definir clases sin tener que escribir mucho código repetitivo. Python genera automáticamente varios métodos mágicos para las clases, como <strong>init</strong>, <strong>repr</strong>, <strong>eq</strong>, <strong>hash</strong>, entre otros, para hacer que trabajar con ellas sea más conveniente.</p>
+<p><strong>¿Qué hace &#64;dataclass?</strong>
+El decorador &#64;dataclass genera automáticamente:</p>
+<ul class="simple">
+<li><p>Un constructor (<strong>init</strong>) para inicializar los atributos de la clase.</p></li>
+<li><p>Un método <strong>repr</strong> para representar el objeto como una cadena.</p></li>
+<li><p>Un método <strong>eq</strong> para comparar objetos de la clase.</p></li>
+<li><p>Un método <strong>hash</strong> (si todos los atributos son inmutables).</p></li>
+<li><p>Un método <strong>post_init</strong> (opcional) que puedes usar paara realizar acciones adicionales después de la inicialización.</p></li>
+</ul>
+<p><strong>Campos con valores predeterminados</strong>
+Puedes establecer valores predeterminados para los campos, lo que permite crear objetos sin proporcionar todos los valores de manera obligatoria.</p>
+<p><strong><strong>post_init</strong> para personalización adicional</strong>
+Si necesitas realizar alguna acción después de la inicialización de los atributos, puedes definir el método <strong>post_init</strong>. Este método se llama automáticamente después del constructor generado por &#64;dataclass.</p>
+<p><strong>Ventajas de usar Dataclasses</strong></p>
+<ul class="simple">
+<li><p>Reducción de código repetitivo: el decorador &#64;dataclass genera automáticamente métodos importantes, como <strong>init</strong>, <strong>repr</strong> y <strong>eq</strong>.</p></li>
+<li><p>Claridad y simplicidad: son especialmente útiles cuando solo necesitas almacenar datos y no quieres escribir métodos adicionales.</p></li>
+<li><p>Inmutablidad opcional: puedes hacer que las dataclasses sean inmutables usando el parámetro frozen=True en el decorador, lo que las convierte en una especie de tupla con propiedades accesibles pero no modificables.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Persona</span><span class="p">:</span>
+    <span class="n">nombre</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">edad</span><span class="p">:</span> <span class="nb">int</span>
+</pre></div>
+</div>
+<p><strong>Conclusión sobre las Dataclasses</strong>
+Las dataclasses son una excelente opción cuando trabajas con clases que principalmente almacenan datos. Te permiten escribir clases más concisas y legibles sin sacrificar funcionalidad.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Uso básico de dataclass</span>
+<span class="c1"># Para usar una dataclass, simplemente tienes que decorar una clase con el decorador @dataclass. Aquí hay un ejemplo básico:</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Persona</span><span class="p">:</span>
+    <span class="n">nombre</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">edad</span><span class="p">:</span> <span class="nb">int</span>
+
+<span class="c1"># Crear un objeto de la clase Persona</span>
+<span class="n">persona</span> <span class="o">=</span> <span class="n">Persona</span><span class="p">(</span><span class="s2">"Jeiron"</span><span class="p">,</span> <span class="mi">21</span><span class="p">)</span>
+
+<span class="c1"># Acceder a los atributos</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">persona</span><span class="o">.</span><span class="n">nombre</span><span class="p">)</span> <span class="c1"># Jeiron</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">persona</span><span class="o">.</span><span class="n">edad</span><span class="p">)</span> <span class="c1"># 21</span>
+
+<span class="c1"># Ejemplo de __repr__ y __eq__ automáticos</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Persona</span><span class="p">:</span>
+    <span class="n">nombre</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">edad</span><span class="p">:</span> <span class="nb">int</span>
+
+<span class="n">persona1</span> <span class="o">=</span> <span class="n">Persona</span><span class="p">(</span><span class="s2">"Jeiron"</span><span class="p">,</span> <span class="mi">21</span><span class="p">)</span>
+<span class="n">persona2</span> <span class="o">=</span> <span class="n">Persona</span><span class="p">(</span><span class="s2">"Junior"</span><span class="p">,</span> <span class="mi">22</span><span class="p">)</span>
+<span class="n">persona3</span> <span class="o">=</span> <span class="n">Persona</span><span class="p">(</span><span class="s2">"JeyJey"</span><span class="p">,</span> <span class="mi">23</span><span class="p">)</span>
+
+<span class="c1"># Imprimir el objeto (llama a __repr__ automáticamente)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">persona1</span><span class="p">)</span> <span class="c1"># Persona(nombre = 'Jeiron', edad = 21)</span>
+
+<span class="c1"># Comparar objetos (llama a __eq__ automáticamente)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">persona1</span> <span class="o">==</span> <span class="n">persona2</span><span class="p">)</span> <span class="c1"># False</span>
+
+<span class="c1"># Campos con valores predeterminados</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Persona</span><span class="p">:</span>
+    <span class="n">nombre</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">edad</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">18</span> <span class="c1"># Edad con valor predeterminado</span>
+
+<span class="n">persona1</span> <span class="o">=</span> <span class="n">Persona</span><span class="p">(</span><span class="s2">"Jeiron"</span><span class="p">)</span>
+<span class="n">persona2</span> <span class="o">=</span> <span class="n">Persona</span><span class="p">(</span><span class="s2">"Junior"</span><span class="p">,</span> <span class="mi">22</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">persona1</span><span class="o">.</span><span class="n">edad</span><span class="p">)</span>  <span class="c1"># 18</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">persona2</span><span class="o">.</span><span class="n">edad</span><span class="p">)</span>  <span class="c1"># 22</span>
+
+<span class="c1"># __post_init__ para personalización adicional</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Persona</span><span class="p">:</span>
+    <span class="n">nombre</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">edad</span><span class="p">:</span> <span class="nb">int</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">edad</span> <span class="o">&lt;</span> <span class="mi">18</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">nombre</span><span class="si">}</span><span class="s2"> es menor de edad."</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">nombre</span><span class="si">}</span><span class="s2"> es mayor de edad."</span><span class="p">)</span>
+
+<span class="n">persona1</span> <span class="o">=</span> <span class="n">Persona</span><span class="p">(</span><span class="s2">"Jeiron"</span><span class="p">,</span> <span class="mi">17</span><span class="p">)</span> <span class="c1"># Jeiron es menor de edad.</span>
+<span class="n">persona2</span> <span class="o">=</span> <span class="n">Persona</span><span class="p">(</span><span class="s2">"Junior"</span><span class="p">,</span> <span class="mi">22</span><span class="p">)</span> <span class="c1"># Junior es mayor de edad.</span>
+
+<span class="c1"># Para utilizar las DataClasses, utilizaremos el decorador @dataclass, para lo cual lo importamos</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+
+<span class="c1"># Crearemos una clase User con el decorador @dataclass</span>
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">User</span><span class="p">:</span>
+    <span class="n">username</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">email</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="c1"># Si no se desea indicar un tipo específico de un atributo, se puede usar la clase Any, la cual importamos</span>
+    <span class="n">password</span><span class="p">:</span> <span class="n">Any</span>
+
+<span class="c1"># class User:</span>
+<span class="c1">#     def __init__(self, username, email):</span>
+<span class="c1">#         self.username = username</span>
+<span class="c1">#         self.email = email</span>
+
+<span class="c1"># Crear un método</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">saludar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Hola, Estudiantes, le saluda </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="c1"># Crear una instancia de dicha clase</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>
+    <span class="n">jeiron</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span><span class="s1">'Jeiron'</span><span class="p">,</span> <span class="s1">'jeiron1@gmail.com'</span><span class="p">,</span> <span class="s1">'password'</span><span class="p">)</span>
+
+<span class="c1"># Usar los atributos de la clase</span>
+<span class="c1"># print(jeiron.username)</span>
+<span class="c1"># print(jeiron.email)</span>
+<span class="c1"># print(jeiron.password)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Mi nombre es"</span><span class="p">,</span> <span class="n">jeiron</span><span class="o">.</span><span class="n">username</span><span class="p">,</span> <span class="s2">"y mi correo es"</span><span class="p">,</span> <span class="n">jeiron</span><span class="o">.</span><span class="n">email</span><span class="p">)</span>
+
+<span class="n">jeiron</span><span class="o">.</span><span class="n">saludar</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="clasesabstractas.html" class="btn btn-neutral float-left" title="Clases abstractas" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="ducktyping.html" class="btn btn-neutral float-right" title="Duck typing" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+  <p>
+    © Copyright <span id="anio-copyright"></span> jeironpro.
+  </p>
+  <script>
+    document.getElementById("anio-copyright").textContent =
+      new Date().getFullYear();
+  </script>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
