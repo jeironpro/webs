@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="icon" href="../ICONS/logo.png">
+    <link rel="stylesheet" href="../CSS/registro.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <script>
+        function mostrarOcultar() {
+            var icono = document.getElementById('icono-mostrar-ocultar');
+            var input = document.getElementById('contrasena');
+
+            input.type = input.type === 'password' ? 'text': 'password';
+            icono.className = input.type === 'password' ? 'fas fa-eye': 'fas fa-eye-slash';
+        }
+
+        function mostrarOcultar_() {
+            var icono_ = document.getElementById('icono-mostrar-ocultar_');
+            var input_ = document.getElementById('contrasena_');
+
+            input_.type = input_.type === 'password' ? 'text': 'password';
+            icono_.className = input_.type === 'password' ? 'fas fa-eye': 'fas fa-eye-slash';
+        }
+
+        function guionesTelefono(input) {
+            input.value = input.value.replace(/\D/g, '');
+
+            if (input.value.length > 3) {
+                input.value = input.value.slice(0, 3) + '-' + input.value.slice(3);
+            }
+
+            if (input.value.length > 7) {
+                input.value = input.value.slice(0, 7) + '-' + input.value.slice(7);
+            }
+        }
+        
+        function login() {
+            // var nombre = document.getElementById('nombre').value;
+            // var apellido = document.getElementById('apellido').value;
+            // var direccion = document.getElementById('direccion').value;
+            // var telefono = document.getElementById('telefono').value;
+            // var correoElectronico = document.getElementById('correoElectronico').value;
+            var contrasena = document.getElementById('contrasena').value;
+            var contrasena_ = document.getElementById('contrasena_').value;
+            
+            var contenedorNotificacion = document.getElementById('contenedorNotificacion');
+            var notificacion = document.getElementById('notificacion');
+            var tituloNotificacion = document.getElementById('titulo-notificacion');
+            var contenidoNotificacion = document.getElementById('contenido-notificacion');
+
+            if (contrasena !== contrasena_) {
+                tituloNotificacion.textContent = 'Error!';
+                tituloNotificacion.style.color = '#C24914';
+                contenidoNotificacion.textContent = 'Las contraseñas no coinciden.';
+                notificacion.classList.add('error');
+            }
+
+            contenedorNotificacion.classList.add('mostrar');
+
+            setTimeout(() => {
+                window.location.href = 'login.html';
+            }, 2500);
+
+        }
+    </script>
+    <main>
+        <div class="contenedor-login">
+            <h1>Registro</h1>
+            <form>
+                <div class="nomape">
+                    <div class="control">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" required autocomplete="off">
+                    </div>
+                    <div class="control">
+                        <label for="apellido">Apellido</label>
+                        <input type="text" id="apellido" required autocomplete="off">
+                    </div>
+                </div>
+                <div class="control">
+                    <div class="indicaciones-direccion">
+                        <label for="direccion">Direccion</label>
+                        <div class="indicaciones" data-tooltip="ADVERTENCIA: Asegurese de escribir bien la direccion."><i class="fa-solid fa-circle-info"></i></div>
+                    </div>
+                    <input type="text" id="direccion" required autocomplete="off">
+                </div>
+                <div class="control">
+                    <label for="telefono">Telefono</label>
+                    <input type="tel" maxlength="12" oninput="guionesTelefono(this)" id="telefono" required autocomplete="off">
+                </div>
+                <div class="control">
+                    <label for="correoElectronico">Correo Electronico</label>
+                    <input type="email" id="correoElectronico" required autocomplete="off">
+                </div>
+                <div class="control">
+                    <label for="contrasena">Contraseña</label>
+                    <input type="password" id="contrasena" required>
+                    <span class="mostrar-ocultar" onclick="mostrarOcultar()"><i class="fas fa-eye" id="icono-mostrar-ocultar"></i></span>
+                </div>
+                <div class="control">
+                    <label for="contrasena_">Confirmar Contraseña</label>
+                    <input type="password" id="contrasena_" required>
+                    <span class="mostrar-ocultar" onclick="mostrarOcultar_()"><i class="fas fa-eye" id="icono-mostrar-ocultar_"></i></span>
+                </div>
+                <div class="botones">
+                    <a href="login.html" class="enlace-regresar"><span>Regresar</span></a>
+                    <button type="button" id="botonRegistrarme" onclick="login()">Registrarme</button>
+                </div>
+            </form>
+        </div>
+        <div class="contenedor-notificacion correcto" id="contenedorNotificacion">
+            <div class="notificacion" id="notificacion">
+                <label for="correcto" class="cerrar"></label>
+                <h3 id="titulo-notificacion">Correcto!</h3>
+                <p id="contenido-notificacion">Tu cuenta se ha creado correctamente.</p>
+            </div>
+        </div>
+    </main>
+    <script src="https://kit.fontawesome.com/25da21ab57.js" crossorigin="anonymous"></script>
+</body>
+</html>
+</body>
+</html>

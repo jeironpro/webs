@@ -1,0 +1,125 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #C61B0D;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.contenedor-login {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: #FFF;
+    width: 400px;
+    height: 500px;
+    border-radius: 10px;
+    position: relative;
+}
+
+form {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+form .control {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    position: relative;
+}
+
+form .control label {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+form .control input {
+    width: 330px;
+    height: 28px;
+    background-color: #C61B0D;
+    border: 1px solid #fff;
+    color: #FFF;
+    border-radius: 5px;
+    padding-left: 5px;
+}
+
+form .control input:focus {
+    outline: none;
+}
+
+form .control .mostrar-ocultar {
+    position: absolute;
+    right: 5px;
+    top: 24px;
+    color: #FFF;
+}
+
+.validador {
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+    margin: 10px 15px;
+}
+
+.validador span {
+    margin-top: 5px;
+}
+
+.validador i {
+    color: #1ACF1A;
+    opacity: 0.5;
+}
+
+.validador .requerimiento {
+    color: #000;
+    font-size: 11px;
+    margin-left: 5px;
+}
+
+form .botones {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    gap: 20px;
+}
+
+form .botones a {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form .botones button, form .botones .enlace-regresar {
+    width: 120px;
+    height: 30px;
+    font-weight: 700;
+    font-size: 16px;
+    background-color: #000;
+    color: #FFF;
+    border-radius: 5px;
+    border: none;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+form .botones button:hover, form .botones a:hover {
+    transform: scale(0.95);
+    background-color: #C61B0D;
+}

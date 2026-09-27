@@ -318,6 +318,36 @@ h3 {
         "opsz" 24;
 }
 
+.chip--subcatalogo {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.chip--subcatalogo .ms {
+    font-size: 1rem;
+    font-variation-settings:
+        "FILL" 0,
+        "wght" 600,
+        "GRAD" 0,
+        "opsz" 24;
+}
+
+.chip--subcatalogo[aria-pressed="true"] {
+    color: var(--color-ink);
+    background: var(--color-accent-soft);
+    border-color: var(--color-accent);
+}
+
+.chip--subcatalogo[aria-pressed="true"] .ms {
+    color: var(--color-accent);
+    font-variation-settings:
+        "FILL" 1,
+        "wght" 600,
+        "GRAD" 0,
+        "opsz" 24;
+}
+
 .ordenador {
     position: relative;
     display: flex;
@@ -440,6 +470,23 @@ h3 {
         "wght" 600,
         "GRAD" 0,
         "opsz" 24;
+}
+
+.tarjeta__insignia--subcatalogo {
+    inset-block-start: var(--space-3);
+}
+
+.tarjeta__insignia--subcatalogo .ms {
+    color: var(--color-accent);
+    font-variation-settings:
+        "FILL" 1,
+        "wght" 600,
+        "GRAD" 0,
+        "opsz" 24;
+}
+
+.tarjeta__insignia--debajo {
+    inset-block-start: calc(var(--space-3) + 32px);
 }
 
 .tarjeta__cuerpo {

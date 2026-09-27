@@ -1,0 +1,32 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  /* altura del viewport en móvil sin la barra del navegador */
+  min-height: 100dvh;
+  gap: var(--spacing-xxl);
+  padding: var(--spacing-xxl) var(--spacing-lg);
+}
+
+.app__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.app__title {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-display);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+
+/* Pantallas medianas: más aire entre los bloques */
+@media (min-width: 768px) {
+  .app {
+    gap: var(--spacing-xxxl);
+  }
+}

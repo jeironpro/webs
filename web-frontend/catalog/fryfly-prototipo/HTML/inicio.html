@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    <link rel="icon" href="../ICONS/logo.png">
+    <link rel="stylesheet" href="../CSS/inicio.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo-titulo">
+                <figure>
+                    <img src="../ICONS/logo.png" alt="LOGO">
+                </figure>
+                <h1>FryFly</h1>
+                <button class="boton-menu" id="boton-menu" onclick="menu()"><i class="fas fa-burger" id="icono-burger"></i></button>
+            </div>
+            <ul class="nav-list">
+                <li class="visitado"><a href="">Inicio</li></a>
+                <li><a href="menu.html">Men&uacute;</li></a>
+                <li><a href="pedidos.html" id="pagina-pedidos">Pedidos</li></a>
+            </ul>
+            <div class="contenedor-items" id="contenedor-items">
+                <a href="login.html" id="loguearse" class="loguearse">
+                    <i class="fas fa-user"></i>
+                    <span>Iniciar Sesi&oacute;n</span>
+                </a>
+                <div id="items" class="items">
+                    <a href="#"><i class="fas fa-user"></i></a>
+                    <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+                    <a href="#"><i class="fa-solid fa-gear"></i></a>
+                    <a href="#" onclick="cerrarSesion()"><i class="fa-solid fa-right-from-bracket"></i></a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <!-- CONFIGURAR INICIO -->
+    </main>
+    <footer>
+        <div class="contenedor-footer-arriba">
+            <div class="titulo">
+                <figure>
+                    <img src="../ICONS/logo.png" alt="LOGO">
+                </figure>
+                <h3>FryFly</h3>
+            </div>
+            <div class="redes">
+                <div class="iconoredes">
+                    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                </div>
+                <div class="iconoredes">
+                    <a href="https://whatsapp.com" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+                <div class="iconoredes">
+                    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+                <div class="iconoredes">
+                    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="contenedor-footer-abajo">
+            <span>&copy;Todos Los Derechos Reservados - FryFly 2024</span>
+        </div>
+    </footer>
+    <script src="../JS/menuNavegacion.js"></script>
+    <script src="../JS/controlInicioSesion.js"></script>
+    <script src="https://kit.fontawesome.com/25da21ab57.js" crossorigin="anonymous"></script>
+</body>
+</html>

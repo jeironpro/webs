@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="icon/siete_letras.png" type="image/x-icon">
+    <title>7 Letras</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mozilla+Text:wght@200..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="css/siete_letras.css">
+</head>
+<body>
+    <header>
+        <h1>7 Letras</h1>
+    </header>
+    <main>
+        <div class="contenedor-principal">
+            <div class="botones-colmena">
+                <div class="contenedor-palabra-botones">
+                    <div class="mensaje" id="mensaje"></div>
+                    <div class="palabra" id="palabra"></div>
+                    <div class="botones">
+                        <button class="borrar" id="borrar">Borrar</button>
+                        <button class="cambiar" id="cambiar">Cambiar</button>
+                        <button class="aplicar" id="aplicar">Aplicar</button>
+                    </div>
+                </div>
+                <div class="colmena">
+                    <div class="fila">
+                        <div class="hexagono lado"></div>
+                        <div class="hexagono lado"></div>
+                    </div>
+                    <div class="fila">
+                        <div class="hexagono lado"></div>
+                        <div class="hexagono centro" id="centro"></div>
+                        <div class="hexagono lado"></div>
+                    </div>
+                    <div class="fila">
+                        <div class="hexagono lado"></div>
+                        <div class="hexagono lado"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="contenedor-estadisticas">
+                <div class="estadisticas">
+                    <h3>Estadisticas</h3>
+                    <div class="contador-palabras-validas" id="contador-palabras-validas"></div>
+                    <div class="contenedor-palabras-acertadas" id="contenedor-palabras-acertadas"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; Todos los derechos reservados - JeironPro 2025</p>
+    </footer>
+    <script src="js/siete_letras.js"></script>
+</body>
+</html>

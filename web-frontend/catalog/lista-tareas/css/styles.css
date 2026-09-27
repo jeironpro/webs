@@ -1,0 +1,168 @@
+body {
+    box-sizing: border-box;
+    font-family: 'Fredoka', Arial, Helvetica, sans-serif;
+    margin: 0;
+}
+
+.contenedor {
+    margin: 20px auto;
+    width: 600px;
+}
+
+.contenedor-tarea {
+    align-items: center;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+}
+
+.contenedor-tarea h1 {
+    text-align: center;
+}
+
+.contenedor-tarea input {
+    border: 1px solid #000;
+    border-radius: 5px;
+    height: 30px;
+    outline: none;
+    text-align: center;
+    width: 450px;
+}
+
+.contenedor-tarea input:focus {
+    border: none;
+    outline: 2px solid #000;
+}
+
+.contenedor-tarea .boton {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.contenedor-tarea button {
+    background-color: #0e9b38;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+    height: 36px;
+    width: 200px;
+}
+
+.contenedor-tarea button:hover {
+    background-color: #0cda49;
+    color: #000;
+}
+
+.contenedor-listado-tareas {
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    margin-top: 40px;
+    padding: 10px 0;
+}
+
+.titulo-lista,
+.listado {
+    margin-left: 10px;
+}
+
+.listado ul {
+    list-style-type: none;
+    padding: 0 5px;
+}
+
+.listado li {
+    border-left: 3px solid #0e9b38;
+    display: flex;
+    font-size: 18px;
+    justify-content: space-between;
+    margin-top: 10px;
+    padding: 0 5px;
+}
+
+.editar {
+    color: #587ef4;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: 50px;
+}
+
+.eliminar {
+    color: #ff0000;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+@media screen and (max-width: 625px) {
+    .contenedor {
+        width: 500px;
+    }
+
+    .contenedor-tarea h1 {
+        font-size: 27px;
+    }
+
+    .contenedor-tarea input {
+        height: 26px;
+        width: 300px;
+    }
+
+    .contenedor-tarea button {
+        height: 32px;
+        width: 180px;
+    }
+
+    .titulo-lista h2{
+        font-size: 22px;
+    }
+
+    .listado li {
+        font-size: 17px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .contenedor {
+        width: 450px;
+    }
+
+    .contenedor-tarea {
+        margin: 10px;
+        width: 350px;
+    }
+
+    .contenedor-tarea h1 {
+        font-size: 26px;
+    }
+
+    .contenedor-tarea input {
+        height: 24px;
+        width: 280px;
+    }
+
+    .contenedor-tarea button {
+        height: 30px;
+        width: 160px;
+    }
+
+    .contenedor-listado-tareas {
+        margin: 50px 10px;
+        width: 390px;
+    }
+
+    .titulo-lista h2{
+        font-size: 20px;
+    }
+
+    .listado li {
+        font-size: 16px;
+    }
+}

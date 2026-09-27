@@ -1,0 +1,205 @@
+/* Hallmark · redesign · theme: studied-DNA (tally) · genre: modern-minimal
+ * pre-emit critique: P5 H4 E5 S5 R4 V5
+ * paper: light (paper-0 98.4%) · display: geometric-sans (Geist) · accent: indigo 268
+ */
+
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+@import '@fontsource-variable/geist';
+@import '@fontsource-variable/geist-mono';
+@import '@fontsource/instrument-serif/400.css';
+@import '@fontsource/instrument-serif/400-italic.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+    --font-sans: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
+    --font-heading: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
+    --font-mono: 'Geist Mono Variable', ui-monospace, 'SF Mono', Menlo, monospace;
+    --font-serif: 'Instrument Serif', 'Times New Roman', serif;
+
+    --color-paper-0: var(--paper-0);
+    --color-paper-1: var(--paper-1);
+    --color-paper-2: var(--paper-2);
+    --color-paper-3: var(--paper-3);
+    --color-ink-0: var(--ink-0);
+    --color-ink-1: var(--ink-1);
+    --color-ink-2: var(--ink-2);
+    --color-ink-3: var(--ink-3);
+    --color-brand: var(--brand);
+    --color-brand-soft: var(--brand-soft);
+    --color-brand-tint: var(--brand-tint);
+    --color-companion: var(--companion);
+    --color-success: var(--success);
+    --color-warning: var(--warning);
+    --color-critical: var(--critical);
+
+    --color-sidebar-ring: var(--sidebar-ring);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar: var(--sidebar);
+    --color-chart-5: var(--chart-5);
+    --color-chart-4: var(--chart-4);
+    --color-chart-3: var(--chart-3);
+    --color-chart-2: var(--chart-2);
+    --color-chart-1: var(--chart-1);
+    --color-ring: var(--ring);
+    --color-input: var(--input);
+    --color-border: var(--border);
+    --color-destructive: var(--destructive);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-accent: var(--accent);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-muted: var(--muted);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-secondary: var(--secondary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-primary: var(--primary);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-popover: var(--popover);
+    --color-card-foreground: var(--card-foreground);
+    --color-card: var(--card);
+    --color-foreground: var(--foreground);
+    --color-background: var(--background);
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --radius-xl: 28px;
+    --radius-2xl: 36px;
+    --radius-3xl: 44px;
+    --radius-4xl: 56px;
+}
+
+:root {
+    --paper-0: oklch(98.4% 0.005 258);
+    --paper-1: oklch(96.2% 0.01 258);
+    --paper-2: oklch(93% 0.015 258);
+    --paper-3: oklch(89% 0.02 258);
+    --ink-0: oklch(18% 0.03 258);
+    --ink-1: oklch(35% 0.025 258);
+    --ink-2: oklch(52% 0.018 258);
+    --ink-3: oklch(70% 0.012 258);
+    --brand: oklch(54% 0.22 268);
+    --brand-soft: oklch(72% 0.14 268);
+    --brand-tint: oklch(94% 0.04 268);
+    --companion: oklch(82% 0.18 130);
+    --success: oklch(68% 0.15 145);
+    --warning: oklch(74% 0.18 50);
+    --critical: oklch(55% 0.22 27);
+    --focus: oklch(46% 0.22 268);
+
+    --background: var(--paper-0);
+    --foreground: var(--ink-1);
+    --card: var(--paper-0);
+    --card-foreground: var(--ink-1);
+    --popover: var(--paper-1);
+    --popover-foreground: var(--ink-1);
+    --primary: var(--ink-0);
+    --primary-foreground: var(--paper-0);
+    --secondary: var(--paper-1);
+    --secondary-foreground: var(--ink-1);
+    --muted: var(--paper-2);
+    --muted-foreground: var(--ink-2);
+    --accent: var(--paper-2);
+    --accent-foreground: var(--ink-0);
+    --destructive: var(--critical);
+    --border: color-mix(in oklch, var(--ink-0) 14%, transparent);
+    --input: color-mix(in oklch, var(--ink-0) 14%, transparent);
+    --ring: var(--focus);
+    --chart-1: var(--brand);
+    --chart-2: var(--success);
+    --chart-3: var(--warning);
+    --chart-4: var(--companion);
+    --chart-5: var(--brand-soft);
+    --sidebar: var(--paper-1);
+    --sidebar-foreground: var(--ink-1);
+    --sidebar-primary: var(--ink-0);
+    --sidebar-primary-foreground: var(--paper-0);
+    --sidebar-accent: var(--paper-2);
+    --sidebar-accent-foreground: var(--ink-0);
+    --sidebar-border: color-mix(in oklch, var(--ink-0) 14%, transparent);
+    --sidebar-ring: var(--focus);
+    --radius: 12px;
+
+    --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+    --ease-in: cubic-bezier(0.55, 0.06, 0.68, 0.19);
+    --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+    --dur-fast: 140ms;
+    --dur-mid: 240ms;
+    --dur-slow: 420ms;
+}
+
+@layer base {
+    * {
+        @apply border-border outline-ring/50;
+    }
+    html {
+        @apply font-sans;
+        overflow-x: clip;
+    }
+    body {
+        @apply bg-background text-foreground antialiased;
+        overflow-x: clip;
+        background-color: var(--paper-1);
+        background-image:
+            linear-gradient(var(--paper-3) 1px, transparent 1px),
+            linear-gradient(90deg, var(--paper-3) 1px, transparent 1px);
+        background-size: 48px 48px;
+        background-attachment: fixed;
+        mask-image:
+            linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%),
+            linear-gradient(to bottom, transparent 0%, black 3%, black 97%, transparent 100%);
+        mask-composite: intersect;
+        -webkit-mask-composite: source-in;
+    }
+    h1,
+    h2,
+    h3 {
+        @apply font-heading;
+    }
+    ::selection {
+        background: var(--brand);
+        color: var(--paper-0);
+    }
+}
+
+@layer components {
+    .eyebrow {
+        @apply font-mono text-[10px] font-medium tracking-[0.14em] text-ink-2 uppercase;
+    }
+    .live-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: var(--success);
+        animation: pulse-ring 1800ms var(--ease-in-out) infinite;
+    }
+}
+
+@keyframes pulse-ring {
+    0% {
+        box-shadow: 0 0 0 0 color-mix(in oklch, var(--success) 60%, transparent);
+    }
+    70% {
+        box-shadow: 0 0 0 8px transparent;
+    }
+    100% {
+        box-shadow: 0 0 0 0 transparent;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 140ms !important;
+        scroll-behavior: auto !important;
+    }
+}

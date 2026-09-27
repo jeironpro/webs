@@ -104,6 +104,9 @@ export function validarWeb(web, errores) {
     if (!ESTADOS_PERMITIDOS.includes(web.estado)) {
         push("estado", `debe ser uno de ${ESTADOS_PERMITIDOS.join(", ")}`);
     }
+    if (web.subcatalogo !== undefined && typeof web.subcatalogo !== "boolean") {
+        push("subcatalogo", "debe ser booleano si aparece");
+    }
     if (typeof web.destacado !== "boolean") {
         push("destacado", "debe ser booleano");
     }

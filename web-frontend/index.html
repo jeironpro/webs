@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Frontend · Catálogo de componentes descargables</title>
+  <meta name="description" content="Colección de componentes y prototipos de interfaz hechos con HTML, CSS y JavaScript. Descarga el código de cada pieza.">
+  <link rel="icon" type="image/svg+xml" href="icons/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+  <link rel="apple-touch-icon" href="icons/favicon-180.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400..600,0..1,0" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="nav" aria-label="Principal">
+      <a class="nav__brand" href="#top">
+        <span class="nav__brand-dot" aria-hidden="true"></span>
+        frontend
+      </a>
+      <ul class="nav__links">
+        <li><a href="#proyectos">Proyectos</a></li>
+        <li><a href="#descarga">Descarga</a></li>
+        <li><a href="#stack">Stack</a></li>
+      </ul>
+      <a class="btn btn--outline btn--sm nav__cta" href="https://github.com/jeironpro/frontend" target="_blank" rel="noopener">
+        <span class="material-symbols-rounded" aria-hidden="true">code</span>
+        GitHub
+      </a>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero__copy">
+        <p class="hero__count">
+          <span class="hero__count-num" data-count="17">0</span>
+          piezas · HTML + CSS + JS
+        </p>
+        <h1 class="hero__title" id="hero-title">Componentes listos para <span class="hl">descargar</span>.</h1>
+        <p class="hero__lede">Diecisiete piezas de interfaz hechas a mano, sin frameworks. Abre el demo, descarga el ZIP y llévate el código a tu proyecto.</p>
+        <div class="hero__actions">
+          <a class="btn" href="#proyectos">
+            Explorar proyectos
+            <span class="material-symbols-rounded" aria-hidden="true">arrow_downward</span>
+          </a>
+          <a class="btn btn--outline" href="https://github.com/jeironpro/frontend" target="_blank" rel="noopener">Ver en GitHub</a>
+        </div>
+      </div>
+      <div class="hero__mark" aria-hidden="true">
+        <div class="character">
+          <span class="character__code">&lt;/&gt;</span>
+          <span class="character__spark"></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="catalog" id="proyectos" aria-labelledby="catalog-title">
+      <header class="catalog__head">
+        <h2 class="catalog__title" id="catalog-title">Diecisiete piezas, listas para llevar.</h2>
+        <p class="catalog__sub">Haz clic en una tarjeta para verla en grande, o descarga su código en un ZIP.</p>
+      </header>
+      <div class="catalog__filters" role="group" aria-label="Filtrar proyectos"></div>
+      <div class="catalog__grid" id="catalog-grid"></div>
+    </section>
+
+    <section class="get-band" id="descarga" aria-labelledby="get-title">
+      <div class="get-band__inner">
+        <div class="get-band__copy">
+          <h2 class="get-band__title" id="get-title">El código, tuyo.</h2>
+          <p class="get-band__lede">Descarga cada pieza como ZIP con su HTML, CSS y JS. O clona el repositorio completo y explora las carpetas a tu ritmo.</p>
+        </div>
+        <div class="get-band__clone">
+          <code class="get-band__cmd" id="clone-cmd">git clone git@github.com:jeironpro/frontend.git</code>
+          <button class="btn btn--soft" id="copy-btn" type="button">
+            <span class="material-symbols-rounded" aria-hidden="true" id="copy-icon">content_copy</span>
+            <span id="copy-label">Copiar</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="stack" id="stack" aria-labelledby="stack-title">
+      <h2 class="stack__title" id="stack-title">Solo lo esencial.</h2>
+      <dl class="stack__list">
+        <div>
+          <dt>HTML5</dt>
+          <dd>Estructura semántica y accesible, en español.</dd>
+        </div>
+        <div>
+          <dt>CSS3</dt>
+          <dd>Custom properties, nomenclatura BEM y diseño mobile-first.</dd>
+        </div>
+        <div>
+          <dt>JavaScript</dt>
+          <dd>ES modules, sin dependencias ni paso de build.</dd>
+        </div>
+        <div>
+          <dt>Build</dt>
+          <dd>Ninguno. Abre el index.html y funciona.</dd>
+        </div>
+      </dl>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <ul class="marquee__group">
+          <li>HTML5</li>
+          <li>CSS3</li>
+          <li>JavaScript</li>
+          <li>Sin frameworks</li>
+          <li>Hecho a mano</li>
+          <li>Descargable</li>
+        </ul>
+        <ul class="marquee__group">
+          <li>HTML5</li>
+          <li>CSS3</li>
+          <li>JavaScript</li>
+          <li>Sin frameworks</li>
+          <li>Hecho a mano</li>
+          <li>Descargable</li>
+        </ul>
+      </div>
+    </div>
+    <div class="site-footer__meta">
+      <span class="site-footer__brand">frontend</span>
+      <a href="https://github.com/jeironpro/frontend" target="_blank" rel="noopener">GitHub</a>
+      <a href="LICENSE">MIT</a>
+      <span>© 2026</span>
+      <span class="site-footer__spacer"></span>
+      <span>Hecho con HTML, CSS y JS.</span>
+    </div>
+  </footer>
+
+  <div class="star-field" aria-hidden="true"></div>
+
+  <dialog class="preview-modal" id="preview-modal" aria-labelledby="preview-modal-title">
+    <div class="preview-modal__panel">
+      <header class="preview-modal__head">
+        <p class="preview-modal__cat" id="preview-modal-cat"></p>
+        <div class="preview-modal__headrow">
+          <h2 class="preview-modal__title" id="preview-modal-title"></h2>
+          <button class="preview-modal__close" id="preview-modal-close" type="button" aria-label="Cerrar vista previa">
+            <span class="material-symbols-rounded" aria-hidden="true">close</span>
+          </button>
+        </div>
+        <p class="preview-modal__desc" id="preview-modal-desc"></p>
+      </header>
+      <div class="preview-modal__stage">
+        <img class="preview-modal__icon" id="preview-modal-icon" alt="" loading="lazy">
+      </div>
+      <footer class="preview-modal__foot">
+        <ul class="preview-modal__tags" id="preview-modal-tags"></ul>
+        <div class="preview-modal__actions">
+          <a class="btn btn--outline btn--sm" id="preview-modal-demo" target="_blank" rel="noopener">
+            <span class="material-symbols-rounded" aria-hidden="true">open_in_new</span>
+            Abrir en pestaña
+          </a>
+          <a class="btn btn--sm" id="preview-modal-download" download>
+            <span class="material-symbols-rounded" aria-hidden="true">download</span>
+            Descargar ZIP
+          </a>
+        </div>
+      </footer>
+    </div>
+  </dialog>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

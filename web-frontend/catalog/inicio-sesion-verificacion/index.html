@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de sesión con Captcha</title>
+    <link rel="icon" href="icon/login.png">
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main>
+        <div class="contenedor">
+            <form>
+                <div class="control">
+                    <label for="email">Correo Electr&oacute;nico</label>
+                    <input type="text" id="email">
+                </div>
+                <div class="control">
+                    <label for="contrasena">Contraseña</label>
+                    <input type="password" id="contrasena">
+                    <span id="mostrar-ocultar" class="mostrar-ocultar">Mostrar</span>
+                    <span class="olv-con">Olvidaste t&uacute; contraseña?</span>
+                </div>
+                <div class="control">
+                    <span id="captcha" class="captcha"></span>
+                    <span id="reiniciar-captcha" class="reiniciar-captcha"><i class="fas fa-refresh"></i></span>
+                    <input type="text" id="captcha-usuario" class="captcha-usuario" placeholder="Introduzca el texto">
+                </div>
+                <button onclick="verificarCaptcha()">Acceder</button>
+            </form>
+        </div>
+    </main>
+    <script src="js/script.js"></script>
+    <script src="https://kit.fontawesome.com/25da21ab57.js" crossorigin="anonymous"></script>
+</body>
+</html>

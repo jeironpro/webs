@@ -1,0 +1,72 @@
+/* ── Modal de datos (localStorage) ────────────────── */
+.modal__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  display: grid;
+  place-items: center;
+  padding: var(--page-gutter);
+  background: var(--color-overlay);
+  animation: modal-fade 160ms var(--ease-out);
+}
+
+.modal__overlay[hidden] {
+  display: none;
+}
+
+.modal__dialog {
+  width: min(100%, 26rem);
+  display: grid;
+  gap: var(--space-md);
+  padding: var(--space-xl);
+  border-radius: var(--radius-card);
+  background: var(--color-paper);
+  color: var(--color-ink);
+  box-shadow: var(--shadow-card);
+  outline: none;
+  animation: modal-pop 220ms var(--ease-spring);
+}
+
+.modal__titulo {
+  font-size: var(--text-lg);
+  line-height: 1.15;
+}
+
+.modal__texto {
+  display: grid;
+  gap: var(--space-sm);
+  color: var(--color-ink-2);
+}
+
+.modal__acciones {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: var(--space-xs);
+}
+
+@keyframes modal-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modal-pop {
+  from {
+    transform: translateY(8px) scale(0.96);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .modal__overlay,
+  .modal__dialog {
+    animation: none;
+  }
+}

@@ -1,0 +1,68 @@
+body {
+    font-family: 'Quicksand', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.contenedor-principal {
+    border-radius: 10px;
+    height: auto;
+    margin: 10px auto;
+    width: max-content;
+}
+
+.contenedor-elementos {
+    background: linear-gradient(to bottom, #0b4550, #1b454d);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(27, 69, 77, 1);
+    padding: 20px;
+    position: relative;
+    width: 100%;
+}
+
+.elemento {
+    cursor: pointer;
+    margin-top: 10px;
+    padding: 20px 0 0 0;
+    position: relative;
+    width: 100%;
+}
+
+.contenedor-elementos span {
+    color: #fff;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.contenedor-elementos i {
+    left: 45px;
+    position: relative;
+}
+
+.contenedor-elementos img {
+    height: 30px;
+    margin-right: -10px;
+    position: absolute;
+    right: 0%;
+    width: 30px;
+}
+
+.otros-elementos {
+    display: none;
+}
+
+.contenedor-elementos:hover .otros-elementos {
+    display: block;
+}
+
+.contenedor-elementos:hover i {
+    transform: rotate(180deg);
+}

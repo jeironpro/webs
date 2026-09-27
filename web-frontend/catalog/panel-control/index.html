@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel De Control</title>
+    <link rel="icon" href="icon/panelControl.png">
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div id="menu-burger" class="menu-burger">
+            <i class="fas fa-x"></i>
+            <img src="icon/panelControl.png" id="logo-bar" alt="LOGO">
+            <h1 id="titulo-bar">Alpha Inventory</h1>
+        </div>
+        <nav id="menu-navegacion">
+            <div class="logo-titulo">
+                <h2>Alpha Inventory</h2>
+                <img src="icon/panelControl.png" alt="LOGO">
+            </div>
+            <ul class="menu">
+                <li class="si-submenu" onclick="menuAcordeon(0)">Registros <span class="icono"><i class="fas fa-chevron-right"></i></span>
+                    <div class="submenu">
+                        <ul>
+                            <li class="subelemento"><a href="">Articulos</a></li>
+                            <li class="subelemento"><a href="">Clientes</a></li>
+                            <li class="subelemento"><a href="">Suplidores</a></li>
+                            <li class="subelemento"><a href="">Encargado De Compras</a></li>
+                            <li class="subelemento"><a href="">Encargado De Ventas</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="si-submenu" onclick="menuAcordeon(1)">Procesos <span class="icono"><i class="fas fa-chevron-right"></i></span>
+                    <div class="submenu">
+                        <ul>
+                            <li class="subelemento"><a href="">Compras</a></li>
+                            <li class="subelemento"><a href="">Ventas</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="si-submenu" onclick="menuAcordeon(2)">Movimientos <span class="icono"><i class="fas fa-chevron-right"></i></span>
+                    <div class="submenu">
+                        <ul>
+                            <li class="subelemento"><a href="">Diarios / Compras</a></li>
+                            <li class="subelemento"><a href="">Diarios / Ventas</a></li>
+                            <li class="subelemento"><a href="">Articulo / Compras</a></li>
+                            <li class="subelemento"><a href="">Articulo / Ventas</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="si-submenu" onclick="menuAcordeon(3)">Listados <span class="icono"><i class="fas fa-chevron-right"></i></span>
+                    <div class="submenu">
+                        <ul>
+                            <li class="subelemento"><a href="">Listados Articulos</a></li>
+                            <li class="subelemento"><a href="">Listados Compras</a></li>
+                            <li class="subelemento"><a href="">Listados Ventas</a></li>
+                            <li class="subelemento"><a href="">Listados Clientes</a></li>
+                            <li class="subelemento"><a href="">Listados Suplidores</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="si-submenu" onclick="menuAcordeon(4)">Configuraciones <span class="icono"><i class="fas fa-chevron-right"></i></span>
+                    <div class="submenu">
+                        <ul>
+                            <li class="subelemento"><a href="#">Perfil</a></li>
+                            <li class="subelemento"><a href="#">Cambiar Contraseña</a></li>
+                            <li class="subelemento"><a href="#">Elminar Cuenta</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="no-submenu"><a href="#">Termino & Condiciones</a></li>
+                <li class="no-submenu"><a href="#">Cerrar Sesi&oacute;n</a></li>
+            </ul>
+        </nav>
+    </header>
+    <script src="js/script.js"></script>
+    <script src="https://kit.fontawesome.com/25da21ab57.js" crossorigin="anonymous"></script>
+</body>
+</html>

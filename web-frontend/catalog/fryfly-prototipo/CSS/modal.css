@@ -1,0 +1,238 @@
+/* MODAL OLVIDASTE TU CONTRASEÑA */
+.modalOlvCon {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #C61B0D;
+    border: 1px solid #FFF;
+    border-radius: 5px;
+    width: 350px;
+    height: 300px;
+    z-index: 1;
+}
+
+.modalOlvConOverlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 0;
+}
+
+.modalOlvCon .tituloModal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: #000;
+    color: #FFF;
+    border-radius: 5px 5px 0 0;
+    padding: 6px;
+    font-weight: 500;
+}
+
+.modalOlvCon .indicacionesModal {
+    margin-top: 40px;
+    font-size: 14px;
+    text-align: center;
+    color: #FFF;
+}
+
+.modalOlvCon .formularioModal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.modalOlvCon .formularioModal .controlModal {
+    display: flex;
+    flex-direction: column;
+}
+
+.modalOlvCon .formularioModal label {
+    color: #FFF;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.modalOlvCon .formularioModal input {
+    letter-spacing: 0.15px;
+    text-align: center;
+    margin-top: 5px;
+    width: 300px;
+    height: 28px;
+    background-color: #FFF;
+    border: none;
+    color: #000;
+    border-radius: 5px;
+    padding-left: 5px;
+    outline: none;
+    font-weight: 500;
+}
+
+.modalOlvCon .botonesModal {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.modalOlvCon .botonModal {
+    background-color:  #000;
+    border-radius: 5px;
+    border: none;
+    color: #FFF;
+    cursor: pointer;
+    height: 30px;
+    font-size: 14px;
+    font-weight: 700;
+    margin: 0px 10px;
+    letter-spacing: 1.15px;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+    width: 100px;
+}
+
+.modalOlvCon .botonModal:hover {
+    background-color: #FFF;
+    transform: scale(0.95);
+    color: #C61B0D;
+}
+
+/* MODAL MENU OPCIONES  */
+.modalOpcion {
+    display: none;
+    position: fixed;
+    top: 56%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #FFF;
+    border: 1px solid #C61B0D;
+    border-radius: 5px;
+    width: 800px;
+    height: 400px;
+    z-index: 100;
+}
+
+.modalOpcionOverlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 0;
+}
+
+.modalOpcion .presentacion-opcion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+}
+
+.modalOpcion .imagen-nombre, .modalOpcion .contenedor-ingrendientes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 40px;
+}
+
+.modalOpcion .img-card {
+    width: 300px;
+    height: 300px;
+    background-position: center;
+    background-size: cover;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
+    perspective: 500px;
+}
+
+.modalOpcion .nombre-opcion {
+    margin-top: 5px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.modalOpcion .titulo-eliminar-items {
+    font-size: 15px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.modalOpcion .ingredientes-opcion {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+    list-style: none;
+    margin: 10px 0;
+}
+
+.modalOpcion .ingredientes-opcion li {
+    background-color: #C61B0D;
+    border-radius: 5px;
+    color: #FFF;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 7px;
+    text-align: center;
+    display: block;
+}
+
+.modalOpcion .ingredientes-opcion li.seleccionado {
+    background-color: #DDD;
+    box-shadow: -5px -5px 10px #FFF, 5px 5px 10px #FFF;
+    color: #000;
+}
+
+.modalOpcion .cambios {
+    margin: 10px 0;
+    width: 100%;
+}
+
+.modalOpcion .cambios::placeholder {
+    text-align: center;
+    color: #000;
+}
+
+.modalOpcion .botones-opcion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalOpcion .botones-opcion button {
+    background-color: #C61B0D;
+    border: none;
+    border-radius: 3px;
+    color: #FFF;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 6px 20px;
+    margin: 0 10px;
+}
+
+.modalOpcion .botones-opcion button:hover {
+    background-color: #000;
+}

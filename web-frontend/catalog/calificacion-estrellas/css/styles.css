@@ -1,0 +1,47 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+}
+
+.contenedor {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+
+.estrellas {
+    display: inline-flex;
+    position: relative;
+}
+
+input {
+    cursor: pointer;
+    opacity: 0;
+}
+
+label {
+    background-image: url("../icon/estrella-vacia.png");
+    background-size: cover;
+    cursor: pointer;
+    display: inline-flex;
+    height: 40px;
+    width: 40px;
+}
+
+input:checked ~ label {
+    background-image: url("../icon/estrella-llena.png");
+}
+
+@media screen and (max-width: 500px) {
+    .contenedor {
+        margin: 250px 100px;
+    }
+}
