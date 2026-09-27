@@ -13,7 +13,7 @@ El catálogo es vanilla HTML, CSS y JavaScript (sin frameworks), con diseño def
 Abre `index.html` de la raíz (o despliega el repositorio en GitHub Pages: el catálogo queda en `https://jeironpro.github.io/webs/` y cada web en su subruta `./<id>/`).
 
 | Proyecto                                                        | Título                      | Categoría       | Stack                                |
-| --------------------------------------------------------------- | --------------------------- | --------------- | ------------------------------------ | --- | --------------------- | --------------------------- | ---------- | --------------------- |
+| --------------------------------------------------------------- | --------------------------- | --------------- | ------------------------------------ |
 | [web-algoritmos](./web-algoritmos/)                             | Algoritmos de repaso        | Educación       | html, css, javascript                |
 | [web-apis](./web-apis/)                                         | Apis _(sub-catálogo)_       | Referencia      | html, css, javascript                |
 | [web-biblia](./web-biblia/)                                     | Biblia                      | Educación       | html, css, javascript                |
@@ -60,7 +60,8 @@ Abre `index.html` de la raíz (o despliega el repositorio en GitHub Pages: el ca
 | [web-paises-visitados](./web-paises-visitados/)                 | Paises visitados            | Entretenimiento | html, css, javascript, svg           |
 | [web-pokemon](./web-pokemon/)                                   | Pokemon                     | Entretenimiento | react, vite, css, javascript, yarn   |
 | [web-pomodoro](./web-pomodoro/)                                 | Pomodoro                    | Productividad   | react, vite, tailwind, javascript    |
-| [web-porcentaje-anual](./web-porcentaje-anual/)                 | Porcentaje anual            | Utilidades      | html, css, javascript                |     | [web-daw](./web-daw/) | Portal DAW _(sub-catálogo)_ | Curricular | html, css, javascript |
+| [web-porcentaje-anual](./web-porcentaje-anual/)                 | Porcentaje anual            | Utilidades      | html, css, javascript                |
+| [web-daw](./web-daw/)                                           | Portal DAW _(sub-catálogo)_ | Curricular      | html, css, javascript                |
 | [web-programmer-day](./web-programmer-day/)                     | Programmer Day              | Entretenimiento | react, vite, typescript, gsap, three |
 | [web-pythoncises](./web-pythoncises/)                           | Pythoncises                 | Educación       | html, css, javascript                |
 | [web-redimensiona-imagen](./web-redimensiona-imagen/)           | Redimensiona imagen         | Utilidades      | html, css, javascript                |
