@@ -1,0 +1,130 @@
+.board {
+  /* aísla el contexto de apilado para que el relleno negativo de las cajas
+     quede por encima del fondo pero por debajo de aristas y puntos */
+  isolation: isolate;
+  width: min(92vw, 460px);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--spacing-lg);
+}
+
+.board__grid {
+  /* el número de celdas por lado lo define GRID_SIZE (6 puntos -> 11 celdas) */
+  display: grid;
+  grid-template-columns: repeat(var(--board-cells), 1fr);
+  grid-template-rows: repeat(var(--board-cells), 1fr);
+  aspect-ratio: 1;
+}
+
+.board__dot {
+  position: relative;
+  z-index: 1;
+  width: 36%;
+  height: 36%;
+  place-self: center;
+  background-color: var(--color-dot);
+  border-radius: var(--radius-full);
+}
+
+.edge-button {
+  position: relative;
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+
+/* La línea se dibuja con un pseudo-elemento: hairline tenue cuando está libre */
+.edge-button::before {
+  content: "";
+  position: absolute;
+  background-color: var(--color-edge-empty);
+  border-radius: 2px;
+  transition:
+    background-color 120ms ease,
+    height 120ms ease,
+    width 120ms ease;
+}
+
+/* La línea abarca de punto a punto: se extiende hasta el centro de los puntos
+   adyacentes (los puntos se dibujan por encima con z-index) */
+.edge-button--horizontal::before {
+  left: -50%;
+  right: -50%;
+  top: 50%;
+  height: 16%;
+  transform: translateY(-50%);
+}
+
+.edge-button--vertical::before {
+  top: -50%;
+  bottom: -50%;
+  left: 50%;
+  width: 16%;
+  transform: translateX(-50%);
+}
+
+/* Hover: solo las aristas libres se resaltan con el color de acento y se
+   engrosan; las colocadas conservan el color del jugador (están deshabilitadas) */
+.edge-button:not([disabled]):hover::before,
+.edge-button:not([disabled]):focus-visible::before {
+  background-color: var(--color-edge-hover);
+}
+
+.edge-button--horizontal:not([disabled]):hover::before,
+.edge-button--horizontal:not([disabled]):focus-visible::before {
+  height: 38%;
+}
+
+.edge-button--vertical:not([disabled]):hover::before,
+.edge-button--vertical:not([disabled]):focus-visible::before {
+  width: 38%;
+}
+
+/* Aristas colocadas: línea sólida con el color del jugador */
+.edge-button--horizontal.edge-button--player-1::before,
+.edge-button--horizontal.edge-button--player-2::before {
+  height: 30%;
+}
+
+.edge-button--vertical.edge-button--player-1::before,
+.edge-button--vertical.edge-button--player-2::before {
+  width: 30%;
+}
+
+.edge-button--player-1::before {
+  background-color: var(--color-player-1);
+}
+
+.edge-button--player-2::before {
+  background-color: var(--color-player-2);
+}
+
+/* Aristas que delimitan una caja completada: pasan a tinta (negra) */
+.edge-button--completed::before {
+  background-color: var(--color-dot);
+}
+
+/* Cajas: al completarse se rellenan por completo con el color del jugador.
+   El relleno abarca de punto a punto (inset negativo) y se dibuja por debajo
+   de las aristas y los puntos, que quedan siempre visibles encima. */
+.box-cell {
+  position: relative;
+}
+
+.box-cell::before {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  z-index: -1;
+  transition: background-color 150ms ease;
+}
+
+.box-cell--player-1::before {
+  background-color: var(--color-player-1);
+}
+
+.box-cell--player-2::before {
+  background-color: var(--color-player-2);
+}

@@ -1,0 +1,100 @@
+body {
+    font-family: "Montserrat", sans-serif;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+}
+
+.contenedor {
+    align-items: center;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+}
+
+.contenedor-error {
+    color: #fff;
+    height: 100%;
+    margin: auto;
+    position: relative;
+    text-align: center;
+    width: 100%;
+}
+
+.background {
+    animation: gradient 5s ease infinite;
+    background: linear-gradient(90deg, #cc2e2e, #275dae);
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+}
+
+.contenedor-texto {
+    z-index: 1;
+}
+
+h1 {
+    animation: scale 2s ease infinite;
+    color: #fff;
+    font-size: 100px;
+    margin-bottom: 10px;
+}
+
+.mensaje {
+    animation: fadeIn 1s ease 1s forwards;
+    font-size: 24px;
+    margin-bottom: 10px;
+    opacity: 0;
+}
+
+.informacion {
+    animation: fadeIn 1s ease 1s forwards;
+    font-size: 18px;
+    margin-bottom: 20px;
+    opacity: 0;
+}
+
+.boton {
+    background-color: #3498db;
+    border-radius: 5px;
+    color: #fff;
+    display: inline-block;
+    font-size: 18px;
+    padding: 10px 20px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.boton:hover {
+    background-color: #297fb8;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes scale {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tic Tac Toe</title>
+    <link rel="icon" href="icon/xo.png" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
+</head>
+<body>
+    <main>
+        <div class="contenedor-principal">
+            <h1 class="titulo">
+                <span>Tic</span>
+                <span>Tac</span>
+                <span>Toe</span>
+            </h1>
+            <div id="tablero-juego" class="tablero-juego">
+                <div class="celda-juego" onclick="marcarJugador(0)"></div>
+                <div class="celda-juego" onclick="marcarJugador(1)"></div>
+                <div class="celda-juego" onclick="marcarJugador(2)"></div>
+                <div class="celda-juego" onclick="marcarJugador(3)"></div>
+                <div class="celda-juego" onclick="marcarJugador(4)"></div>
+                <div class="celda-juego" onclick="marcarJugador(5)"></div>
+                <div class="celda-juego" onclick="marcarJugador(6)"></div>
+                <div class="celda-juego" onclick="marcarJugador(7)"></div>
+                <div class="celda-juego" onclick="marcarJugador(8)"></div>
+            </div>
+            <div id="notificacion-estado" class="notificacion-estado">
+                <div id="mensaje-estado" class="mensaje-estado">
+                    <!-- El estado se generara desde el javascript -->
+                </div>
+                <div id="barra-progreso" class="barra-progreso"></div>
+            </div>
+            <button class="boton-reiniciar" onclick="reiniciar()">Reiniciar</button>
+        </div>
+    </main>
+    <script src="js/app.js"></script>
+</body>
+</html>

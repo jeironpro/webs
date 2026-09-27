@@ -1,0 +1,97 @@
+body {
+    align-items: center;
+    animation: gradientAnimation 5s infinite alternate;
+    background: #2E7D32;
+    display: flex;
+    font-family: "Montserrat", sans-serif;
+    height: 100vh;
+    justify-content: center;
+    margin: 0;
+}
+
+.contenedor-error {
+    animation: fadeInOut 2s ease-in-out infinite;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #FFF;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    animation: slideIn 1.5s ease-out;
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 1.5em;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes FadeInOut {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@media screen and (max-width: 900px) {
+    h1 {
+        font-size: 2.7em;
+    }
+    
+    p {
+        font-size: 1.3em;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    h1 {
+        font-size: 2.3em;
+    }
+    
+    p {
+        font-size: 1em;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    h1 {
+        font-size: 2em;
+    }
+    
+    p {
+        font-size: 0.8em;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    h1 {
+        font-size: 1.5em;
+    }
+    
+    p {
+        font-size: 0.6em;
+    }
+}

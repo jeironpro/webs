@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="icon" href="../ICONS/logo.png">
+    <link rel="stylesheet" href="../CSS/login.css">
+    <link rel="stylesheet" href="../CSS/modal.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <script>
+        function mostrarOcultar() {
+            var icono = document.getElementById('icono-mostrar-ocultar');
+            var input = document.getElementById('contrasena');
+
+            input.type = input.type === 'password' ? 'text': 'password';
+            icono.className = input.type === 'password' ? 'fas fa-eye': 'fas fa-eye-slash';
+        }
+
+        function recuperarContrasena() {
+            window.location.href = 'recuperarcontrasena.html';
+        }
+
+        function mostrarModal() {
+            document.getElementById('modalOlvCon').style.display = 'block';
+            document.getElementById('modalOlvConOverlay').style.display = 'block';
+        }
+
+        function cerrarModal() {
+            var modalOlvCon = document.getElementById('modalOlvCon');
+
+            modalOlvCon.style.display = 'none';
+
+            document.getElementById('modalOlvConOverlay').style.display = 'none';
+        }
+
+        function iniciarSesion() {
+            var correo_electronico = document.getElementById('correoElectronico').value;
+            var contrasena = document.getElementById('contrasena').value;
+
+            if (correo_electronico === 'admin@admin.com' && contrasena === 'admin') {
+
+                localStorage.setItem('sesionIniciada', 'true');
+                window.location.href = 'inicio.html';
+            } else {
+                alert('El correo electronico o la contrasena son incorrectos');
+            }
+        }
+    </script>
+    <main>
+        <div class="contenedor-login">
+            <span class="registro"><a href="registro.html">Registrarme</a></span>
+            <div class="logo-titulo">
+                <h1>FryFly</h1>
+                <figure>
+                    <img src="../ICONS/logo.png" alt="LOGO">
+                </figure>
+            </div>
+            <form>
+                <div class="control">
+                    <label for="email">Correo Electronico</label>
+                    <input type="email" id="correoElectronico">
+                </div>
+                <div class="control">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="contrasena">
+                    <span onclick="mostrarModal()"><a href="#">Olvidaste tu contraseña?</a></span>
+                    <span class="mostrar-ocultar" onclick="mostrarOcultar()"><i class="fas fa-eye" id="icono-mostrar-ocultar"></i></span>
+                </div>
+                <div class="boton">
+                    <button type="button" onclick="iniciarSesion()">Entrar</button>
+                </div>
+            </form>
+            <div class="registro-sociales">
+                <div class="linea-izquierda"></div>
+                <span>Iniciar con</span>
+                <div class="linea-derecha"></div>
+            </div>
+            <div class="enlaces-registro">
+                <div class="enlace-google">
+                    <i class="fab fa-google"></i>
+                </div>
+                <div class="enlace-facebook">
+                    <i class="fab fa-facebook"></i>
+                </div>
+            </div>
+        </div>
+        <div id="modalOlvCon" class="modalOlvCon">
+            <div class="tituloModal">
+                <span>Olvidaste Tu Contraseña</span>
+            </div>
+            <div class="indicacionesModal">
+                <span>Si has olvidado tu contraseña, escribe tu correo electronico para que recibas instrucciones de como recuperarla.</span>
+            </div>
+            <form class="formularioModal">
+                <div class="controlModal">
+                    <label for="email">Correo Electronico</label>
+                    <input type="email" id="email">
+                </div>
+                <div class="botonesModal">
+                    <button type="button" id="botonModal" class="botonModal" onclick="cerrarModal()">Regresar</button>
+                    <button type="button" class="botonModal" onclick="recuperarContrasena()">Verificar</button>
+                </div>
+            </form>
+        </div>
+        <div id="modalOlvConOverlay" class="modalOlvConOverlay" onclick="cerrarModal()"></div>
+    </div>
+    </main>
+    <script src="https://kit.fontawesome.com/25da21ab57.js" crossorigin="anonymous"></script>
+</body>
+</html>

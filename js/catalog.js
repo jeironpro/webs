@@ -22,6 +22,7 @@ const elBusqueda = $("cerca");
 const elVacio = $("vacio");
 const elVacioMensaje = $("vacio-mensaje");
 const elFiltroDestacados = $("filtro-destacados");
+const elFiltroSubcatalogo = $("filtro-subcatalogo");
 const elOrden = $("orden");
 
 const colacion = new Intl.Collator("es", { numeric: true, sensitivity: "base" });
@@ -32,6 +33,7 @@ const estado = {
     categoria: "todas",
     consulta: "",
     destacados: false,
+    subcatalogo: false,
     orden: "az",
 };
 
@@ -87,9 +89,18 @@ function construirTarjeta(web) {
     img.loading = "lazy";
     media.append(img);
 
+    if (web.subcatalogo) {
+        const insignia = document.createElement("span");
+        insignia.className = "tarjeta__insignia tarjeta__insignia--subcatalogo";
+        insignia.append(icono("layers"));
+        insignia.append("Sub-catálogo");
+        media.append(insignia);
+    }
+
     if (web.destacado) {
         const insignia = document.createElement("span");
         insignia.className = "tarjeta__insignia";
+        if (web.subcatalogo) insignia.classList.add("tarjeta__insignia--debajo");
         insignia.append(icono("star"));
         insignia.append("Destacado");
         media.append(insignia);
@@ -150,6 +161,9 @@ function filtrar() {
         if (estado.destacados && !web.destacado) {
             return false;
         }
+        if (estado.subcatalogo && !web.subcatalogo) {
+            return false;
+        }
         if (!consulta) return true;
         const texto = `${web.titulo} ${web.descripcion} ${web.tags.join(" ")} ${web.stack.join(
             " "
@@ -185,6 +199,7 @@ function renderizar() {
         if (estado.consulta) motivos.push(`«${estado.consulta}»`);
         if (estado.categoria !== "todas") motivos.push(ETIQUETAS_CATEGORIA[estado.categoria]);
         if (estado.destacados) motivos.push("destacados");
+        if (estado.subcatalogo) motivos.push("sub-catálogos");
         elVacioMensaje.textContent = motivos.length
             ? `Sin resultados para ${motivos.join(" y ")}.`
             : "Sin resultados.";
@@ -219,6 +234,7 @@ function rellenarStats() {
         total: estado.webs.length,
         categorias: estado.categorias.length,
         destacados: estado.webs.filter((w) => w.destacado).length,
+        subcatalogos: estado.webs.filter((w) => w.subcatalogo).length,
     };
     document.querySelectorAll("[data-stats]").forEach((nodo) => {
         nodo.textContent = stats[nodo.dataset.stats];
@@ -243,8 +259,10 @@ async function iniciar() {
         estado.consulta = "";
         estado.categoria = "todas";
         estado.destacados = false;
+        estado.subcatalogo = false;
         elBusqueda.value = "";
         elFiltroDestacados.setAttribute("aria-pressed", "false");
+        elFiltroSubcatalogo.setAttribute("aria-pressed", "false");
         elFiltros
             .querySelectorAll(".chip")
             .forEach((b) =>
@@ -256,6 +274,12 @@ async function iniciar() {
     elFiltroDestacados.addEventListener("click", () => {
         estado.destacados = !estado.destacados;
         elFiltroDestacados.setAttribute("aria-pressed", String(estado.destacados));
+        renderizar();
+    });
+
+    elFiltroSubcatalogo.addEventListener("click", () => {
+        estado.subcatalogo = !estado.subcatalogo;
+        elFiltroSubcatalogo.setAttribute("aria-pressed", String(estado.subcatalogo));
         renderizar();
     });
 

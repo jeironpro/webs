@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="icon" href="../ICONS/logo.png">
+    <link rel="stylesheet" href="../CSS/inicio.css">
+    <link rel="stylesheet" href="../CSS/modal.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo-titulo">
+                <figure>
+                    <img src="../ICONS/logo.png" alt="LOGO">
+                </figure>
+                <h1>FryFly</h1>
+                <button class="boton-menu" id="boton-menu" onclick="menu()"><i class="fas fa-burger" id="icono-burger"></i></button>
+            </div>
+            <ul>
+                <li><a href="inicio.html">Inicio</li></a>
+                <li class="visitado"><a href="menu.html">Men&uacute;</li></a>
+                <li><a href="pedidos.html" id="pagina-pedidos">Pedidos</li></a>
+            </ul>
+            <div class="contenedor-items" id="contenedor-items">
+                <a href="login.html" id="loguearse" class="loguearse">
+                    <i class="fas fa-user"></i>
+                    <span>Iniciar Sesi&oacute;n</span>
+                </a>
+                <div id="items" class="items">
+                    <a href="#"><i class="fas fa-user"></i></a>
+                    <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+                    <a href="#"><i class="fa-solid fa-gear"></i></a>
+                    <a href="#" onclick="cerrarSesion()"><i class="fa-solid fa-right-from-bracket"></i></a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="contenedor-menu-opcion">
+            <div class="info-opcion">
+                <span id="titulo-info" class="titulo-info"></span>
+                <span id="subtitulo-info" class="titulo-info"></span>
+                <div id="contenido-info" class="contenido-info"></div>
+                <div class="enlaces-opcion">
+                    <a href="menu.html" class="enlace-opcion"><i class="fa-solid fa-circle-arrow-left"></i>Volver al men&uacute;</a>
+                    <!-- <a href="#" class="enlace-opcion" onclick="ordenar()">Ordenar ahora<i class="fa-solid fa-cart-shopping"></i></a> -->
+                </div>
+                <div class="sub-opciones">
+                    <!-- LAS CARD SON GENERADAS DINAMICAMENTE DESDE JAVASCRIPT -->
+                    <div class="indicador"></div>
+                    <i class="fas fa-chevron-left anterior"></i>
+                    <i class="fas fa-chevron-right siguiente"></i>
+                </div>
+            </div>
+            <div class="icono-opcion">
+                <figure>
+                    <img src="" alt="IMAGEN OPCION" id="imagen-opcion">
+                </figure>
+            </div>
+        </div>
+        <!-- LOS DATOS DE ESTA MODAL SE GENERARAN DINAMICAMENTE DESDE JAVASCRIPT -->
+        <div id="modalOpcion" class="modalOpcion">
+            <div class="presentacion-opcion">
+                <div class="imagen-nombre">
+                    <div class="img-card">
+                        <!-- EL BACKGROUND IMAGE SE GENERARA DESDE EL JAVASCRIPT SEGUN LA OPCION SELECCIONADA -->
+                    </div>
+                    <span class="nombre-opcion" id="nombre-opcion">
+                        <!-- SE GENERARA DESDE EL JAVASCRIPT SEGUN LA OPCION SELECCIONADA -->
+                    </span>
+                </div>
+                <div class="contenedor-ingredientes">
+                    <div class="titulo-eliminar-items">*Elimina los items que no quieras*</div>
+                    <ul class="ingredientes-opcion" id="ingredientes-opcion">
+                        <!-- SE GENERARA DESDE EL JAVASCRIPT SEGUN LA OPCION SELECCIONADA -->
+                    </ul>
+                    <textarea cols="40" rows="5" placeholder="Otras especificaciones aqui" class="cambios"></textarea>
+                    <div class="botones-opcion">
+                        <button onclick="cerrarModal()">Regresar</button>
+                        <button>Ordenar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modalOpcionOverlay" class="modalOpcionOverlay" onclick="cerrarModal()"></div>
+    </main>
+    <footer>
+        <div class="contenedor-footer-arriba">
+            <div class="titulo">
+                <figure>
+                    <img src="../ICONS/logo.png" alt="LOGO">
+                </figure>
+                <h3>FryFly</h3>
+            </div>
+            <div class="redes">
+                <div class="iconoredes">
+                    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                </div>
+                <div class="iconoredes">
+                    <a href="https://whatsapp.com" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+                <div class="iconoredes">
+                    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+                <div class="iconoredes">
+                    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="contenedor-footer-abajo">
+            <span>&copy;Todos Los Derechos Reservados - FryFly 2024</span>
+        </div>
+    </footer>
+    <script src="../JS/menuNavegacion.js"></script>
+    <script src="../JS/menuOpciones.js"></script>
+    <script src="../JS/controlInicioSesion.js"></script>
+    <script src="https://kit.fontawesome.com/25da21ab57.js" crossorigin="anonymous"></script>
+</body>
+</html>

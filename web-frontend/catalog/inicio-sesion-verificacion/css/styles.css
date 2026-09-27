@@ -1,0 +1,148 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    align-items: center;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+}
+
+.contenedor {
+    border-radius: 3px;
+    box-shadow: 0 0 10px;
+    height: 350px;
+    margin: auto;
+    width: 400px;
+}
+
+.contenedor form {
+    display: flex;
+    flex-direction: column;
+    padding: 5px 20px 20px 20px;
+}
+
+.contenedor form .control {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    position: relative;
+    width: 100%;
+}
+
+.contenedor form label {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.contenedor form input {
+    border: 1px solid #f00;
+    border-radius: 3px;
+    height: 26px;
+    outline: none;
+}
+
+.contenedor form .mostrar-ocultar {
+    background-color: #000;
+    border-radius: 0 2px 2px 0;
+    color: #fff;
+    cursor: pointer;
+    font-size: 15px;
+    height: 24px;
+    padding: 3px 5px;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    user-select: none;
+    width: 55px;
+}
+
+.contenedor form .olv-con {
+    color: #000;
+    cursor: pointer;
+    font-size: 13px;
+    margin: 2px;
+}
+
+.contenedor form .olv-con:hover {
+    text-decoration: underline #f00;
+}
+
+.contenedor form .captcha {
+    border: 1px dotted #000;
+    border-radius: 3px;
+    font-size: 15px;
+    padding: 2px;
+    text-align: center;
+}
+
+.contenedor form .reiniciar-captcha {
+    border-radius: 0 2px 2px 0;
+    color: #f00;
+    cursor: pointer;
+    font-size: 16px;
+    height: 22px;
+    padding: 5px;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 20%;
+    transform: translateY(-50%);
+    user-select: none;
+    width: 20px;
+}
+
+.contenedor form .captcha-usuario {
+    padding-left: 5px;
+    margin-top: 10px;
+}
+
+.contenedor form .captcha-usuario::placeholder {
+    color: #000;
+}
+
+.contenedor form button {
+    background-color: rgb(255, 80, 80);
+    border: none;
+    border-radius: 3px;
+    color: #000;
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: 30px;
+    padding: 7px 0;
+}
+
+.contenedor form button:hover {
+    background-color: #f00;
+}
+
+.contenedor .enlace-registro {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.contenedor .enlace-registro a {
+    color: #000;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.contenedor .enlace-registro a:hover {
+    text-decoration: underline;
+}
+
+
+@media screen and (max-width: 500px) {
+    .contenedor {
+        margin-top: 150px;
+    }
+
+    .contenedor form .mostrar-ocultar {
+        height: 27px;
+    }
+}

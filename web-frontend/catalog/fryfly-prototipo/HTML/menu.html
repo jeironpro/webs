@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Men&uacute;</title>
+    <link rel="icon" href="../ICONS/logo.png">
+    <link rel="stylesheet" href="../CSS/inicio.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo-titulo">
+                <figure>
+                    <img src="../ICONS/logo.png" alt="LOGO">
+                </figure>
+                <h1>FryFly</h1>
+                <button class="boton-menu" id="boton-menu" onclick="menu()"><i class="fas fa-burger" id="icono-burger"></i></button>
+            </div>
+            <ul>
+                <li><a href="inicio.html">Inicio</li></a>
+                <li class="visitado"><a href="">Men&uacute;</li></a>
+                <li><a href="pedidos.html" id="pagina-pedidos">Pedidos</li></a>
+            </ul>
+            <div class="contenedor-items" id="contenedor-items">
+                <a href="login.html" id="loguearse" class="loguearse">
+                    <i class="fas fa-user"></i>
+                    <span>Iniciar Sesi&oacute;n</span>
+                </a>
+                <div id="items" class="items">
+                    <a href="#"><i class="fas fa-user"></i></a>
+                    <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+                    <a href="#"><i class="fa-solid fa-gear"></i></a>
+                    <a href="#" onclick="cerrarSesion()"><i class="fa-solid fa-right-from-bracket"></i></a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="contenedor-categorias">
+            <h2>¿Qué vas a ordenar hoy?</h2>
+            <div class="contenedor-cards">
+                <div class="card">
+                    <div class="opcion" id="hamburguesas">
+                        <figure>
+                            <img src="../ICONS/hamburguesa.png" alt="OPCION">
+                        </figure>
+                        <span>Hamburguesas</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="opcion" id="hotdogs">
+                        <figure>
+                            <img src="../ICONS/hot-dog.png" alt="OPCION">
+                        </figure>
+                        <span>Hot Dogs</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="opcion" id="pizzas">
+                        <figure>
+                            <img src="../ICONS/pizza.png" alt="OPCION">
+                        </figure>
+                        <span>Pizzas</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="opcion" id="sushis">
+                        <figure>
+                            <img src="../ICONS/sushi.png" alt="OPCION">
+                        </figure>
+                        <span>Sushis</span>
+                    </div>
+                </div>
+            </div>
+            <div class="contenedor-cards contenedor-cards2">
+                <div class="card">
+                    <div class="opcion" id="carnes">
+                        <figure>
+                            <img src="../ICONS/carne.png" alt="OPCION">
+                        </figure>
+                        <span>Carnes</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="opcion" id="ensaladas">
+                        <figure>
+                            <img src="../ICONS/ensalada.png" alt="OPCION">
+                        </figure>
+                        <span>Ensaladas</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="opcion" id="postres">
+                        <figure>
+                            <img src="../ICONS/postre.png" alt="OPCION">
+                        </figure>
+                        <span>Postres</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="opcion" id="bebidas">
+                        <figure>
+                            <img src="../ICONS/bebida.png" alt="OPCION">
+                        </figure>
+                        <span>Bebidas</span>
+                    </div>
+                </div>
+            </div>
+            <div class="contenedor-ordenar">
+                <figure>
+                    <img src="../ICONS/delivery.png" alt="">
+                </figure>
+                <div class="info">
+                    <p>En nuestro establecimiento no solo nos especializamos en serviles sus antojos con deliciosos sabores. Ademas, tenemos servicio a domicilio para que puedas disfrutar de nuestra comida desde tu hogar o en cualquier lugar que te encuentres. ¡Puede verificar la gran variedad de opciones que tenemos disponible para ti!</p>
+                </div>
+                <div class="enlaces">
+                    <a href="#">Uber Eats</a>
+                    <a href="#">Pedidos Ya</a>
+                    <a href="#">DIDI</a>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="contenedor-footer-arriba">
+            <div class="titulo">
+                <figure>
+                    <img src="../ICONS/logo.png" alt="LOGO">
+                </figure>
+                <h3>FryFly</h3>
+            </div>
+            <div class="redes">
+                <div class="iconoredes">
+                    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                </div>
+                <div class="iconoredes">
+                    <a href="https://whatsapp.com" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+                <div class="iconoredes">
+                    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+                <div class="iconoredes">
+                    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="contenedor-footer-abajo">
+            <span>&copy;Todos Los Derechos Reservados - FryFly 2024</span>
+        </div>
+    </footer>
+    <script src="../JS/menuNavegacion.js"></script>
+    <script src="../JS/menuOpciones.js"></script>
+    <script src="../JS/controlInicioSesion.js"></script>
+    <script src="https://kit.fontawesome.com/25da21ab57.js" crossorigin="anonymous"></script>
+</body>
+</html>

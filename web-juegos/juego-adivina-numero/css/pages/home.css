@@ -1,0 +1,206 @@
+/* ── Cabecera / navegación (N1a) ─────────────────── */
+.site-header {
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.nav-min {
+  max-width: var(--shell);
+  margin-inline: auto;
+  padding: var(--space-md) var(--page-gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-lg);
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.wordmark:hover,
+.wordmark:active {
+  color: var(--color-accent-2);
+}
+
+.nav-min__links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.nav-min__link {
+  color: var(--color-ink-2);
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.nav-min__link:hover {
+  color: var(--color-ink);
+}
+
+.nav-min__link:active {
+  color: var(--color-accent-2);
+}
+
+.nav-min__link--icon {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-2xs);
+  border-radius: var(--radius-input);
+}
+
+.nav-min__icon {
+  display: block;
+}
+
+/* ── Héroe (el juego) ────────────────────────────── */
+.hero {
+  max-width: var(--shell);
+  margin-inline: auto;
+  padding: clamp(2.5rem, 7vw, 4.5rem) var(--page-gutter)
+    clamp(3.5rem, 9vw, 6rem);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-2xl);
+  align-items: center;
+}
+
+.hero__copy {
+  max-width: 42ch;
+}
+
+.hero h1 {
+  margin: var(--space-sm) 0 var(--space-md);
+  font-size: var(--text-display);
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+
+.hero__lede {
+  max-width: 38ch;
+  font-size: var(--text-md);
+  color: var(--color-ink-2);
+}
+
+/* ── Reglas ──────────────────────────────────────── */
+.rules {
+  background: var(--color-paper-2);
+  border-top: 1px solid var(--color-rule);
+}
+
+.rules__inner {
+  max-width: var(--shell);
+  margin-inline: auto;
+  padding: var(--space-3xl) var(--page-gutter);
+}
+
+.rules__inner h2 {
+  font-size: var(--text-2xl);
+  margin-bottom: var(--space-xl);
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+
+.steps {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: var(--space-xl);
+}
+
+.steps__item {
+  display: grid;
+  gap: var(--space-2xs);
+}
+
+.steps__num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-2xl);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  color: var(--color-accent-2);
+}
+
+.steps__item h3 {
+  font-size: var(--text-md);
+}
+
+.steps__item p {
+  max-width: 34ch;
+  color: var(--color-ink-2);
+}
+
+/* ── Pie de página (Ft8, marquee) ────────────────── */
+.foot-marquee {
+  overflow: hidden;
+  border-top: 2px solid var(--color-ink);
+  background: var(--color-accent);
+}
+
+.foot-marquee__track {
+  display: flex;
+  gap: var(--space-2xl);
+  padding-block: var(--space-md);
+  white-space: nowrap;
+  will-change: transform;
+  animation: foot-marquee 32s linear infinite;
+}
+
+.foot-marquee:hover .foot-marquee__track,
+.foot-marquee:focus-within .foot-marquee__track {
+  animation-play-state: paused;
+}
+
+.foot-marquee__track span {
+  font-family: var(--font-label);
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+}
+
+@keyframes foot-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ── Responsive (mobile-first) ───────────────────── */
+@media (min-width: 40rem) {
+  .hero {
+    gap: var(--space-3xl);
+  }
+}
+
+@media (min-width: 60rem) {
+  .hero {
+    grid-template-columns: 1.1fr 0.9fr;
+  }
+
+  .steps {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-2xl);
+  }
+
+  .steps__item {
+    border-top: 2px solid var(--color-rule);
+    padding-top: var(--space-md);
+  }
+}

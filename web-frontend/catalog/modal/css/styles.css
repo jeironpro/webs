@@ -1,0 +1,159 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    align-items: center;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+}
+
+.contenedor {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    margin: auto;
+    position: relative;
+    width: 100%;
+}
+
+.contenedor .abrir-modal {
+    background-color: #009000;
+    border: 1px solid #000;
+    border-radius: 5px;
+    box-shadow: 0 0 15px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    height: 40px;
+    width: 200px;
+}
+
+.contenedor .abrir-modal:hover {
+    background-color: #5fca78;
+    color: #000;
+}
+
+.modal {
+    background-color: #5fca78;
+    border: 1px solid #000;
+    box-shadow: 0 0 10px;
+    display: none;
+    height: 300px;
+    left: 50%;
+    padding: 20px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    width: 500px;
+    z-index: 1;
+}
+
+.titulo-modal {
+    align-items: center;
+    background-color: #fff;
+    box-shadow: 0 0 10px;
+    display: flex;
+    height: fit-content;
+    justify-content: center;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.titulo-modal h1 {
+    font-size: 20px;
+}
+
+.cerrar-modal {
+    color: #000;
+    cursor: pointer;
+    font-size: 30px;
+    font-weight: bolder;
+    position: absolute;
+    right: 2%;
+}
+
+.cerrar-modal:hover {
+    color: #f00;
+}
+
+.contenido-modal {
+    align-items: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    color: #fff;
+    display: flex;
+    height: 200px;
+    justify-content: center;
+    margin-top: 45px;
+    padding: 10px 0;
+    width: 500px;
+}
+
+.botones-modal {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+}
+
+.boton-modal {
+    background-color: #009000;
+    border-radius: 5px;
+    border: 1px solid #000;
+    color: #fff;
+    cursor: pointer;
+    height: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 10px;
+    width: auto;
+}
+
+.boton-modal:hover {
+    background-color: #02ac2a;
+    border: 1px solid #fff;
+    color: #000;
+}
+
+.modal-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 0;
+}
+
+@media screen and (max-width: 600px) {
+    .modal {
+        width: 400px;
+    }
+
+    .contenido-modal {
+        width: 400px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .contenedor {
+        margin-top: 300px;
+    }
+    
+    .modal {
+        margin-top: 50px;
+        width: 350px;
+    }
+
+    .contenido-modal {
+        width: 350px;
+    }
+}

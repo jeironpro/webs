@@ -1,0 +1,123 @@
+body {
+    background-attachment: fixed;
+    background-image: url(image/background.png);
+    background-position: center;
+    background-size: cover;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.contenedor {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    box-shadow: 0 0 10px;
+    height: 350px;
+    margin: 90px auto;
+    width: 350px;
+}
+
+.contenedor form {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px 20px 20px;
+}
+
+.contenedor form .control {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 25px;
+    position: relative;
+}
+
+.contenedor form .control label {
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.contenedor form .control input {
+    border: none;
+    border-radius: 3px;
+    height: 26px;
+    margin-top: 5px;
+    outline: 1px solid #000;
+    padding-left: 5px;
+}
+
+.contenedor form .control .mostrar-ocultar {
+    cursor: pointer;
+    padding: 5px;
+    position: absolute;
+    right: 0;
+    text-align: center;
+}
+
+.contenedor form .control .mostrar-ocultar-reg {
+    cursor: pointer;
+    padding: 5px;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 45%;
+}
+
+.contenedor form .control .olv-con {
+    color: #fff;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    margin: 3px;
+}
+
+.contenedor form .control .olv-con:hover {
+    color: #000;
+    text-decoration: underline;
+}
+
+
+.contenedor form button {
+    background: none;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 1);
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 40px;
+    padding: 8px;
+}
+
+.contenedor form button:hover {
+    box-shadow: 0 0 4px rgba(255, 255, 255, 1);
+}
+
+.contenedor .registrarse, .contenedor .iniciar-sesion {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.contenedor a {
+    border-radius: 3px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 1);
+    color: #fff;
+    padding: 3px 20px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.contenedor a:hover {
+    box-shadow: 0 0 2px rgba(255, 255, 255, 1);
+    text-decoration: underline;
+}
+
+#registro {
+    display: none;
+}
+
+@media screen and (max-width: 500px) {
+    .contenedor {
+        margin-top: 170px;
+    }
+}

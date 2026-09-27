@@ -1,0 +1,19 @@
+# Hooks de pre-commit del proyecto.
+# Instalación: `pip install pre-commit && pre-commit install`
+repos:
+    - repo: https://github.com/pre-commit/pre-commit-hooks
+      rev: v5.0.0
+      hooks:
+          - id: trailing-whitespace
+          - id: end-of-file-fixer
+          - id: check-yaml
+          - id: check-added-large-files
+
+    - repo: local
+      hooks:
+          - id: prettier
+            name: prettier
+            entry: yarn format
+            language: system
+            pass_filenames: false
+            types_or: [ts, tsx, json, css, html, markdown]

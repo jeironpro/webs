@@ -1,0 +1,325 @@
+/* ===========================
+   Reset y base
+=========================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    align-items: center;
+    background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Mozilla Text', 'Roboto', sans-serif;
+    min-height: 100vh;
+}
+
+/* ===========================
+   Header y Footer
+=========================== */
+header {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.7);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+    padding: 30px 0;
+    text-align: center;
+    width: 100%;
+}
+
+header h1 {
+    background: linear-gradient(90deg, #0044ff, #335c99);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+}
+
+footer {
+    background: rgba(255, 255, 255, 0.5);
+    color: #666;
+    font-size: 0.85rem;
+    margin-top: auto;
+    padding: 20px 0;
+    text-align: center;
+    width: 100%;
+}
+
+/* ===========================
+   Contenedor principal
+=========================== */
+.contenedor-principal {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 30px;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 600px;
+    padding: 20px;
+}
+
+/* ===========================
+   Mensajes
+=========================== */
+.mensaje {
+    animation: fadeInDown 0.5s ease;
+    backdrop-filter: blur(5px);
+    border-radius: 50px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    display: none;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 15px 25px;
+    position: relative;
+    text-align: center;
+    top: 12%;
+    z-index: 100;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.mensaje.aviso {
+    background: linear-gradient(135deg, #fff3cd, #ffecb5);
+    border: 1px solid #ffecb5;
+    color: #664d03;
+}
+
+.mensaje.error {
+    background: linear-gradient(135deg, #f8d7da, #f5c6cb);
+    border: 1px solid #f5c6cb;
+    color: #842029;
+}
+
+.mensaje.exito {
+    background: linear-gradient(135deg, #d1e7dd, #badbcc);
+    border: 1px solid #badbcc;
+    color: #0f5132;
+}
+
+/* ===========================
+   Tablero
+=========================== */
+.tablero {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.fila {
+    display: flex;
+    gap: 8px;
+}
+
+.casilla {
+    align-items: center;
+    background-color: #fff;
+    border: 2px solid #d3d6da;
+    border-radius: 8px;
+    caret-color: transparent;
+    color: #333;
+    display: flex;
+    font-size: 2rem;
+    font-weight: 700;
+    height: 60px;
+    justify-content: center;
+    text-align: center;
+    text-transform: uppercase;
+    transition: transform 0.4s, background-color 0.4s, border-color 0.4s;
+    user-select: none;
+    width: 60px;
+}
+
+.casilla:focus {
+    border-color: #888;
+    outline: none;
+}
+
+.casilla:hover {
+    border-color: #bbb;
+}
+
+.casilla-negra {
+    background: #f0f0f0;
+    border-color: #ddd;
+    opacity: 0.5;
+}
+
+@keyframes pop {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    40% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.amarillo {
+    animation: flipIn 0.6s ease forwards;
+    background: linear-gradient(145deg, #c9b458, #b59f3b);
+    background-color: #c9b458;
+    border-color: transparent;
+    box-shadow: 0 4px 10px rgba(201, 180, 88, 0.3);
+    color: white;
+}
+
+.gris {
+    animation: flipIn 0.6s ease forwards;
+    background: linear-gradient(145deg, #787c7e, #3a3a3c);
+    background-color: #787c7e;
+    border-color: transparent;
+    color: white;
+}
+
+.verde {
+    animation: flipIn 0.6s ease forwards;
+    background: linear-gradient(145deg, #6aaa64, #538d4e);
+    background-color: #6aaa64;
+    border-color: transparent;
+    box-shadow: 0 4px 10px rgba(83, 141, 78, 0.3);
+    color: white;
+}
+
+@keyframes flipIn {
+    0% {
+        transform: rotateX(0);
+    }
+
+    50% {
+        transform: rotateX(90deg);
+    }
+
+    100% {
+        transform: rotateX(0);
+    }
+}
+
+/* ===========================
+   Teclado
+=========================== */
+.teclado {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 30px;
+    max-width: 550px;
+    user-select: none;
+    width: 100%;
+}
+
+.fila-teclado {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+}
+
+.tecla {
+    align-items: center;
+    background-color: #d3d6da;
+    border: none;
+    border-radius: 6px;
+    box-shadow: 0 3px 0 rgba(0, 0, 0, 0.1);
+    color: #333;
+    cursor: pointer;
+    display: flex;
+    flex: 1;
+    font-size: 1.2rem;
+    font-weight: 600;
+    height: 65px;
+    justify-content: center;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+    width: 50px;
+}
+
+.tecla:active {
+    box-shadow: none;
+    transform: translateY(0);
+}
+
+.tecla:hover {
+    background-color: #c0c3c7;
+    box-shadow: 0 5px 0 rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.tecla.amarillo {
+    background: linear-gradient(145deg, #c9b458, #b59f3b);
+    background-color: #c9b458;
+    color: white;
+}
+
+.tecla.eliminar,
+.tecla.enviar {
+    flex: 1.5;
+    font-size: 1rem;
+}
+
+.tecla.gris {
+    background-color: #787c7e;
+    color: white;
+}
+
+.tecla.verde {
+    background: linear-gradient(145deg, #6aaa64, #538d4e);
+    background-color: #6aaa64;
+    color: white;
+}
+
+/* ===========================
+   Responsive
+=========================== */
+@media (max-width: 600px) {
+    .contenedor-principal {
+        padding: 10px;
+        gap: 15px;
+    }
+
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    .casilla {
+        width: 45px;
+        height: 45px;
+        font-size: 1.5rem;
+    }
+
+    .tecla {
+        height: 50px;
+        font-size: 1rem;
+        width: auto;
+        min-width: 30px;
+    }
+
+    .tecla.eliminar,
+    .tecla.enviar {
+        font-size: 0.8rem;
+    }
+}

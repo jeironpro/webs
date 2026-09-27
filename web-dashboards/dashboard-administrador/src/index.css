@@ -1,0 +1,164 @@
+@import "../tokens.css";
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* --- Puente shadcn/ui → tokens Hallmark --- */
+:root {
+  --radius: 0.5rem;
+
+  --background: var(--color-paper);
+  --foreground: var(--color-ink);
+
+  --card: var(--color-paper);
+  --card-foreground: var(--color-ink);
+
+  --popover: var(--color-paper);
+  --popover-foreground: var(--color-ink);
+
+  --primary: var(--color-accent);
+  --primary-foreground: var(--color-accent-ink);
+
+  --secondary: var(--color-paper-3);
+  --secondary-foreground: var(--color-ink);
+
+  --muted: var(--color-paper-2);
+  --muted-foreground: var(--color-muted);
+
+  --accent: var(--color-accent-soft);
+  --accent-foreground: var(--color-accent-2);
+
+  --destructive: var(--color-error);
+  --destructive-foreground: var(--color-accent-ink);
+
+  --border: var(--color-rule-2);
+  --input: var(--color-rule-2);
+  --ring: var(--color-focus);
+
+  --success: var(--color-success);
+  --success-foreground: var(--color-accent-ink);
+  --warning: var(--color-warning);
+  --warning-foreground: var(--color-ink);
+  --info: var(--color-info);
+  --info-foreground: var(--color-accent-ink);
+}
+
+@theme inline {
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-outlier);
+  --font-heading: var(--font-display);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html,
+  body {
+    overflow-x: clip;
+  }
+
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink-2);
+    font-family: var(--font-body);
+    font-weight: 400;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-family: var(--font-display);
+    color: var(--color-ink);
+    font-style: normal;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+    overflow-wrap: anywhere;
+    min-width: 0;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: var(--color-accent-soft);
+    color: var(--color-accent-2);
+  }
+}
+
+/* --- Cobalt utilities --- */
+
+/* Voz de "lectura de máquina" para etiquetas, metadatos y estados */
+.mono-label {
+  font-family: var(--font-outlier);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Números de tablas y métricas alineados */
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Superficie de tarjeta: hairlines, sin sombras (la profundidad es borde, no blur) */
+.surface-hairline {
+  background: var(--color-paper);
+  border: 1px solid var(--color-rule-2);
+  border-radius: var(--radius-lg);
+}
+
+/* Barra de scroll fina y discreta */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-rule-2) transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

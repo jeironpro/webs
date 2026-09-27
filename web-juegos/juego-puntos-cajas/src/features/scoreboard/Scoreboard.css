@@ -1,0 +1,94 @@
+.scoreboard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  width: min(92vw, 460px);
+  padding: var(--spacing-lg) var(--spacing-xl);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.scoreboard__badge-row {
+  display: flex;
+  justify-content: center;
+}
+
+.scoreboard__badge {
+  padding: var(--spacing-xs) var(--spacing-md);
+  background-color: var(--color-accent-subtle);
+  color: var(--color-accent);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.scoreboard__names {
+  display: flex;
+  justify-content: space-between;
+}
+
+.scoreboard__name {
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-secondary);
+  transition: color 150ms ease;
+}
+
+.scoreboard__name--player-1 {
+  color: var(--color-player-1);
+}
+
+.scoreboard__name--player-2 {
+  color: var(--color-player-2);
+}
+
+.scoreboard__counts {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-lg);
+  padding-top: var(--spacing-sm);
+  border-top: 1px solid var(--color-border);
+}
+
+.scoreboard__count {
+  min-width: 2ch;
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-display);
+  font-weight: var(--font-weight-medium);
+  text-align: center;
+  color: var(--color-text-secondary);
+  transition: color 150ms ease;
+}
+
+.scoreboard__count--player-1 {
+  color: var(--color-player-1);
+}
+
+.scoreboard__count--player-2 {
+  color: var(--color-player-2);
+}
+
+.scoreboard__vs {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.2em;
+  color: var(--color-text-secondary);
+}
+
+.scoreboard__vs::before,
+.scoreboard__vs::after {
+  content: "";
+  width: var(--spacing-xxl);
+  height: 1px;
+  background-color: var(--color-border);
+}

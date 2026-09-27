@@ -1,0 +1,266 @@
+/* ── Tarjeta del juego ───────────────────────────── */
+.game-card {
+  position: relative;
+  display: grid;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  background: var(--color-paper-2);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  transition: transform 220ms var(--ease-spring),
+    box-shadow 220ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .game-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card-hover);
+  }
+}
+
+/* ── Personaje (marca reactiva, sig. move Hum #5) ── */
+.game-mark {
+  position: absolute;
+  top: -1.1rem;
+  right: -0.75rem;
+  z-index: var(--z-raised);
+  width: 3rem;
+  height: 3rem;
+  display: grid;
+  place-items: center;
+  border: 0;
+  padding: 0;
+  border-radius: 50%;
+  background: var(--color-accent);
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-lg);
+  line-height: 1;
+  cursor: pointer;
+  appearance: none;
+  box-shadow: 0 4px 0 0 var(--color-accent-deep),
+    0 8px 16px -8px var(--shadow-btn-cast);
+  animation: mark-pulse 4s ease-in-out infinite;
+}
+
+.game-mark:hover {
+  background: var(--color-accent-2);
+}
+
+.game-mark:active {
+  box-shadow: 0 2px 0 0 var(--color-accent-deep),
+    0 4px 8px -4px var(--shadow-btn-cast);
+}
+
+.game-mark__face {
+  transform: translateY(-1px);
+}
+
+.game-mark.is-shaking {
+  animation: mark-shake 380ms var(--ease-in-out);
+}
+
+.game-mark.is-celebrating {
+  animation: mark-bounce 600ms var(--ease-spring);
+}
+
+@keyframes mark-pulse {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(0) scale(1.06);
+  }
+}
+
+@keyframes mark-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(4px);
+  }
+  75% {
+    transform: translateX(-3px);
+  }
+}
+
+@keyframes mark-bounce {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Estrella de éxito (corales, momento único) */
+.star-burst {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+  background: linear-gradient(
+      90deg,
+      transparent 47%,
+      var(--color-accent-3) 47% 53%,
+      transparent 53%
+    ),
+    linear-gradient(
+      0deg,
+      transparent 47%,
+      var(--color-accent-3) 47% 53%,
+      transparent 53%
+    );
+  animation: star-burst 420ms ease-out forwards;
+}
+
+@keyframes star-burst {
+  0% {
+    transform: translate(-50%, -50%) scale(0) rotate(0deg);
+    opacity: 1;
+  }
+  60% {
+    transform: translate(-50%, -50%) scale(1.2) rotate(35deg);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.4) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+/* ── Formulario ──────────────────────────────────── */
+.game-form__label {
+  display: block;
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-ink-2);
+  margin-bottom: var(--space-xs);
+}
+
+.game-form__row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--space-sm);
+}
+
+.game-form__input {
+  width: 100%;
+  min-height: 3rem;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-input);
+  border: 2px solid var(--color-rule);
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  transition: border-color var(--dur-short) var(--ease-out),
+    background-color var(--dur-short) var(--ease-out);
+}
+
+.game-form__input::placeholder {
+  color: var(--color-ink-2);
+  font-weight: 400;
+  font-size: var(--text-base);
+}
+
+.game-form__input:focus {
+  border-color: var(--color-accent-2);
+}
+
+.game-form__input:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+.game-form__input[aria-invalid="true"] {
+  border-color: var(--color-error);
+}
+
+.game-form__error {
+  margin-top: var(--space-2xs);
+  min-height: 1lh;
+  color: var(--color-error);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  visibility: hidden;
+}
+
+.game-form__error.is-visible {
+  visibility: visible;
+}
+
+.game-form__input[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ── Retroalimentación (aria-live) ───────────────── */
+.game-feedback {
+  min-height: 3.75rem;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-input);
+  border: 1px solid var(--color-rule);
+  background: var(--color-paper);
+  color: var(--color-ink-2);
+  font-size: var(--text-base);
+}
+
+.game-feedback[data-state="win"] {
+  color: var(--color-accent-2);
+  font-weight: 600;
+  border-color: color-mix(in oklch, var(--color-accent-2) 45%, var(--color-rule));
+}
+
+.game-feedback[data-state="lose"] {
+  color: var(--color-error);
+  font-weight: 600;
+  border-color: color-mix(in oklch, var(--color-error) 45%, var(--color-rule));
+}
+
+/* ── Estadísticas ────────────────────────────────── */
+.game-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-sm);
+}
+
+.game-stats__item {
+  display: grid;
+  gap: var(--space-3xs);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-paper);
+  border-radius: var(--radius-input);
+  border: 1px solid var(--color-rule);
+}
+
+.game-stats__num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-xl);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+.game-stats__label {
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-ink-2);
+}

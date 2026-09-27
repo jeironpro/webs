@@ -1,0 +1,28 @@
+{
+  "name": "juegos",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Catalogo entrypoint de los juegos del monorepo",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "data:build": "node scripts/build-data.mjs",
+    "data:screenshots": "node scripts/captura-screenshots.mjs",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "@eslint/js": "^9",
+    "eslint": "^9",
+    "globals": "^15",
+    "prettier": "^3",
+    "vitest": "^3",
+    "yaml": "^2"
+  }
+}
