@@ -1,0 +1,376 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ejercicios — Variables y tipos de datos &mdash; documentación de Lenguajes de programación - </title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/logo.svg"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=e2bb6099"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" title="Búsqueda" href="../../../search.html" />
+    <link rel="next" title="Ejercicios — Operadores" href="operadores.html" />
+    <link rel="prev" title="Ejercicios — Entrada y salida de datos" href="entradaysalidadedatos.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Lenguajes de programación
+              <img src="../../../_static/logo.svg" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lenguajes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../java/index.html">Java — DAW (ITIC Barcelona)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Python — DCS (INFOTEP)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#teoria">Teoría</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#frameworks">Frameworks</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#ejercicios">Ejercicios</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../ejercicios.html">Ejercicios</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython.html">Ejercicios — Elementos básicos de la programación en Python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduccion.html">Ejercicios — Introducción</a></li>
+<li class="toctree-l3"><a class="reference internal" href="entradaysalidadedatos.html">Ejercicios — Entrada y salida de datos</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Ejercicios — Variables y tipos de datos</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#variables-y-tipos-de-datos1">variables_y_tipos_de_datos1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#variables-y-tipos-de-datos2">variables_y_tipos_de_datos2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#variables-y-tipos-de-datos3">variables_y_tipos_de_datos3</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#variables-y-tipos-de-datos4">variables_y_tipos_de_datos4</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#variables-y-tipos-de-datos5">variables_y_tipos_de_datos5</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#variables-y-tipos-de-datos6">variables_y_tipos_de_datos6</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#variables-y-tipos-de-datos7">variables_y_tipos_de_datos7</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#variables-y-tipos-de-datos8">variables_y_tipos_de_datos8</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#variables-y-tipos-de-datos9">variables_y_tipos_de_datos9</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#variables-y-tipos-de-datos10">variables_y_tipos_de_datos10</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#variables-y-tipos-de-datos11">variables_y_tipos_de_datos11</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#variables-y-tipos-de-datos12">variables_y_tipos_de_datos12</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="operadores.html">Ejercicios — Operadores</a></li>
+<li class="toctree-l3"><a class="reference internal" href="condicionales.html">Ejercicios — Condicionales</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bucles.html">Ejercicios — Bucles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="colecciones.html">Ejercicios — Colecciones</a></li>
+<li class="toctree-l3"><a class="reference internal" href="funciones.html">Ejercicios — Funciones</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduccionalaprogramacionorientadaaobjetosenpython.html">Ejercicios — Introducción a la programación orientada a objetos en Python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduccionalaprogramacionorientadaaobjetosenpython/apis.html">Ejercicios — Apis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduccionalaprogramacionorientadaaobjetosenpython/clasesabstractas.html">Ejercicios — Clases abstractas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduccionalaprogramacionorientadaaobjetosenpython/dataclasses.html">Ejercicios — Dataclasses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduccionalaprogramacionorientadaaobjetosenpython/ducktyping.html">Ejercicios — Ducktyping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduccionalaprogramacionorientadaaobjetosenpython/encapsulamiento.html">Ejercicios — Encapsulamiento</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduccionalaprogramacionorientadaaobjetosenpython/encapsulamientodemetodos.html">Ejercicios — Encapsulamiento de métodos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduccionalaprogramacionorientadaaobjetosenpython/herencia.html">Ejercicios — Herencia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduccionalaprogramacionorientadaaobjetosenpython/herenciamultiple.html">Ejercicios — Herencia múltiple</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduccionalaprogramacionorientadaaobjetosenpython/introduccionpoo.html">Ejercicios — Introduccion POO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduccionalaprogramacionorientadaaobjetosenpython/metodosmagicos.html">Ejercicios — Métodos mágicos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduccionalaprogramacionorientadaaobjetosenpython/polimorfismo.html">Ejercicios — Polimorfismo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduccionalaprogramacionorientadaaobjetosenpython/sobrecargademetodos.html">Ejercicios — Sobrecarga de métodos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduccionalaprogramacionorientadaaobjetosenpython/super.html">Ejercicios — Super</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../javascript/index.html">JavaScript — DCS (INFOTEP)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Lenguajes de programación</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Python — DCS (INFOTEP)</a></li>
+          <li class="breadcrumb-item"><a href="../../ejercicios.html">Ejercicios</a></li>
+          <li class="breadcrumb-item"><a href="../elementosbasicosdelaprogramacionenpython.html">Ejercicios — Elementos básicos de la programación en Python</a></li>
+      <li class="breadcrumb-item active">Ejercicios — Variables y tipos de datos</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/python/ejercicios/elementosbasicosdelaprogramacionenpython/variablesytiposdedatos.md.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ejercicios-variables-y-tipos-de-datos">
+<h1>Ejercicios — Variables y tipos de datos<a class="headerlink" href="#ejercicios-variables-y-tipos-de-datos" title="Link to this heading"></a></h1>
+<section id="variables-y-tipos-de-datos1">
+<h2>variables_y_tipos_de_datos1<a class="headerlink" href="#variables-y-tipos-de-datos1" title="Link to this heading"></a></h2>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Escribir un programa que muestre por pantalla la cadena "¡Hola Mundo!"</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"¡Hola Mundo!"</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="variables-y-tipos-de-datos2">
+<h2>variables_y_tipos_de_datos2<a class="headerlink" href="#variables-y-tipos-de-datos2" title="Link to this heading"></a></h2>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Escribir un programa que almacena la cadena "¡Hola Mundo!" en una variable y muestre su contenido por pantalla</span>
+
+<span class="n">cadena</span> <span class="o">=</span> <span class="s2">"¡Hola Mundo!"</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">cadena</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="variables-y-tipos-de-datos3">
+<h2>variables_y_tipos_de_datos3<a class="headerlink" href="#variables-y-tipos-de-datos3" title="Link to this heading"></a></h2>
+<p>Escribir un programa que pregunte el nombre del usuario en la consola y, después de que el usuario lo introduzca, muestre por pantalla la cadena «¡Hola <nombre>!», donde <nombre> es el nombre que el usuario haya introducido.</p>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">nombre</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"Introduzca su nombre: "</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"¡Hola"</span> <span class="o">+</span> <span class="n">nombre</span> <span class="o">+</span> <span class="s2">"!"</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="variables-y-tipos-de-datos4">
+<h2>variables_y_tipos_de_datos4<a class="headerlink" href="#variables-y-tipos-de-datos4" title="Link to this heading"></a></h2>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Escribir un programa que muestre por pantalla el resultado de la siguiente operación aritmética: ((3 + 2) / (2 * 5)) ** 2</span>
+
+<span class="n">operacion</span> <span class="o">=</span> <span class="p">((</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="mi">5</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"El resultado de la operación aritmética es"</span><span class="p">,</span> <span class="n">operacion</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="variables-y-tipos-de-datos5">
+<h2>variables_y_tipos_de_datos5<a class="headerlink" href="#variables-y-tipos-de-datos5" title="Link to this heading"></a></h2>
+<p>Escribir un programa que pregunte al usuario el número de horas trabajadas y el coste por hora. Después, debe mostrar por pantalla la paga que le corresponde.</p>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">horas</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Introduzca el número de hora trabajadas: "</span><span class="p">))</span>
+<span class="n">coste_hora</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Introduzca el coste de la hora: $"</span><span class="p">))</span>
+
+<span class="n">paga</span> <span class="o">=</span> <span class="n">horas</span> <span class="o">*</span> <span class="n">coste_hora</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"RD$"</span><span class="p">,</span> <span class="n">paga</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="variables-y-tipos-de-datos6">
+<h2>variables_y_tipos_de_datos6<a class="headerlink" href="#variables-y-tipos-de-datos6" title="Link to this heading"></a></h2>
+<p>Escribir un programa que lea un entero positivo, n, introducido por el usuario y, después, muestre por pantalla la suma de todos los enteros desde 1 hasta n.</p>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">numero</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Introduzca un número entero positivo: "</span><span class="p">))</span>
+
+<span class="n">suma</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">numero</span> <span class="o">*</span> <span class="p">(</span><span class="n">numero</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>
+
+<span class="sd">'''</span>
+<span class="sd">Esta fórmula es una manera compacta de calcular la suma de los primeros n números enteros, donde n es el valor de numero en este caso.</span>
+
+<span class="sd">La fórmula general para la suma de los primeros n números naturales es:</span>
+<span class="sd">    Sn = n · (n + 1) / 2</span>
+
+<span class="sd">· n es el número hasta el que deseas sumar (en este caso, numero).</span>
+
+<span class="sd">· La multiplicación n · (n + 1) corresponde a la multiplicación de un número por su siguente número.</span>
+
+<span class="sd">· El divisor 2 es para "dividir" la cantidad total, ya que se trata de la suma de una secuencia simétrica (es una progresión aritmética con una diferencia constante de 1).</span>
+
+<span class="sd">¿Por qué funciona esta fórmula?</span>
+<span class="sd">Esta formula se deriva de la propiedad de la serie aritmética. Si tienes una secuencia de números que comienza en 1 y aumenta en 1 de forma constante, puedes agrupar el primer número con el último, el segundo con el penúltimo, y así sucesivamente. Esto siempre te dará un total de n pares, y cada par suma n + 1.</span>
+
+<span class="sd">Por ejemplo, si n = 5, la secuencia es:</span>
+<span class="sd">    1 + 2 + 3 + 4 + 5</span>
+
+<span class="sd">Agrupándolos en pares:</span>
+<span class="sd">    (1 + 5), (2 + 4), 3</span>
+
+<span class="sd">Cada uno de los pares da como resultado 6, y hay 2 pares completos, más el número 3 que queda sin pareja. Entonces la suma es 5 · 6/2 = 15, que es el resultado correcto.</span>
+
+<span class="sd">Este método es mucho más eficiente que sumar los números de uno en uno, y también es la forma estándar de obtener la suma de los primeros n números naturales.</span>
+<span class="sd">'''</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"La suma es:"</span><span class="p">,</span><span class="n">suma</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="variables-y-tipos-de-datos7">
+<h2>variables_y_tipos_de_datos7<a class="headerlink" href="#variables-y-tipos-de-datos7" title="Link to this heading"></a></h2>
+<p>Escribir un programa que pida al usuario su peso en kg y estatura en metros, calcule el índice de masa corporal (IMC), lo almacene en una variable y muestre por pantalla la frase: «Tu índice de masa corporal es <IMC>», donde <IMC> es el índice de masa corporal calculado, redondeado a dos decimales.</p>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">peso_kg</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Introduce tu peso en kg: "</span><span class="p">))</span>
+<span class="n">estatura_mt</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Introduce tu estatura en metros: "</span><span class="p">))</span>
+
+<span class="c1"># Otra forma de redondear usando la función round()</span>
+<span class="c1"># imc = round(peso_kg/estatura_mt**2)</span>
+<span class="c1"># print(f"Tu indice de masa corporal es {imc}")</span>
+
+<span class="n">imc</span> <span class="o">=</span> <span class="n">peso_kg</span><span class="o">/</span><span class="n">estatura_mt</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="sd">'''</span>
+<span class="sd">La formula estándar para calcular el Índice de Masa Corporal (IMC), que se utiliza para evaluar la cantidad de tejido corporal en una persona, en función de su peso y altura. Se expresa de la siguiente forma:</span>
+
+<span class="sd">Fórmula del IMC:</span>
+<span class="sd">    imc = peso (kg) / estatura (m)²</span>
+
+<span class="sd">¿Cómo funciona esta fórmula?</span>
+<span class="sd">· peso (kg): el peso de la persona en kilogramos.</span>
+<span class="sd">· estatura (m): la altura de la persona en metros. En esta fórmula, se debe elevar al cuadrado (esto significa multiplicar la estatura por sí misma).</span>
+
+<span class="sd">¿Qué significa el IMC?</span>
+<span class="sd">El IMC es una medida estándar que clasifica el peso de una persona en categorías, según el valor obtenido:</span>
+
+<span class="sd">· IMC &lt; 18.5: Bajo peso</span>
+<span class="sd">· IMC entre 18.5 y 24.9: peso normal</span>
+<span class="sd">· IMC entre 25 y 29.9: sobrepeso</span>
+<span class="sd">· IMC &gt;= 30: obesidad</span>
+
+<span class="sd">¿Por qué se usa esta fórmula?</span>
+<span class="sd">El IMC es útil porque proporciona una estimación general de la cantidad de tejido corporal en relación con la altura y peso. Sin embargo tener en cuenta que el IMC no distingue entre masa muscular y grasa corporal, por lo que una persona con mucha mosculatura (como un atleta) podría tener un IMC alto pero estar en buena forma física.</span>
+<span class="sd">'''</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Tu índice de masa corporal es </span><span class="si">{</span><span class="n">imc</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="variables-y-tipos-de-datos8">
+<h2>variables_y_tipos_de_datos8<a class="headerlink" href="#variables-y-tipos-de-datos8" title="Link to this heading"></a></h2>
+<p>Escribir un programa que pida al usuario dos números enteros y muestre por pantalla: «<n> entre <m> da un cociente de <c> y un resto <r>», donde <n> y <m> son los números introducidos por el usuario, y <c> y <r> son el cociente y el resto de la división entera respectivamente.</p>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Escriba el primer número: "</span><span class="p">))</span>
+<span class="n">m</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Escriba el segundo número: "</span><span class="p">))</span>
+
+<span class="n">cociente</span> <span class="o">=</span> <span class="n">n</span> <span class="o">/</span> <span class="n">m</span>
+<span class="n">resto</span> <span class="o">=</span> <span class="n">n</span> <span class="o">%</span> <span class="n">m</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="si">{0}</span><span class="s2"> entre </span><span class="si">{1}</span><span class="s2"> da un cociente de </span><span class="si">{2}</span><span class="s2"> y un resto </span><span class="si">{3}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">cociente</span><span class="p">,</span> <span class="n">resto</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="variables-y-tipos-de-datos9">
+<h2>variables_y_tipos_de_datos9<a class="headerlink" href="#variables-y-tipos-de-datos9" title="Link to this heading"></a></h2>
+<p>Escribir un programa que pregunte al usuario una cantidad a invertir, la tasa de interés anual y el número de años, y muestre por pantalla el capital obtenido en la inversión.</p>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cantidad_invertir</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Cuál és la cantidad a invertir? RD$ "</span><span class="p">))</span>
+<span class="n">interes_anual</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Cuál és el interés anual que desea? % "</span><span class="p">))</span>
+<span class="n">numero_años</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Cuál és la cantidad de años?: "</span><span class="p">))</span>
+
+<span class="n">capital_obtenido</span> <span class="o">=</span> <span class="n">cantidad_invertir</span> <span class="o">/</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">interes_anual</span>
+<span class="n">ganancia_total</span> <span class="o">=</span> <span class="n">capital_obtenido</span> <span class="o">*</span> <span class="n">numero_años</span>
+<span class="c1"># gananciaTotal = round(capital_obtenido * numero_años, 2) # Otra forma de redondear usando la función round()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"El capital obtenido es: RD$</span><span class="si">{</span><span class="n">ganancia_total</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="c1"># print(f"El capital obtenido es: RD$", gananciaTotal) # Imprimir sin decimales</span>
+</pre></div>
+</div>
+</section>
+<section id="variables-y-tipos-de-datos10">
+<h2>variables_y_tipos_de_datos10<a class="headerlink" href="#variables-y-tipos-de-datos10" title="Link to this heading"></a></h2>
+<p>Una juguetería tiene éxito en dos de sus productos: payasos y muñecas. Suele hacer ventas por correo y la empresa de logística les cobra por el peso de cada paquete, así que deben calcular el peso de los payasos y muñecas que saldrán en cada paquete a demanda. Cada payaso pesa 112g y cada muñeca 75g. Escribir un programa que lea el número de payasos y muñecas vendidos en el último pedido y calcule el peso total del paquete que será enviado.</p>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">payasos</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Número de payasos en el pedido: "</span><span class="p">))</span>
+<span class="n">muñecas</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Número de muñecas en el pedido: "</span><span class="p">))</span>
+
+<span class="n">peso_payasos</span> <span class="o">=</span> <span class="n">payasos</span> <span class="o">*</span> <span class="mi">112</span>
+<span class="n">peso_muñecas</span> <span class="o">=</span> <span class="n">muñecas</span> <span class="o">*</span> <span class="mi">75</span>
+
+<span class="n">peso_total</span> <span class="o">=</span> <span class="n">peso_payasos</span> <span class="o">+</span> <span class="n">peso_muñecas</span>
+<span class="n">peso_paquete</span> <span class="o">=</span> <span class="n">peso_total</span> <span class="o">/</span> <span class="mi">1000</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"El peso total del paquete es </span><span class="si">{</span><span class="n">peso_paquete</span><span class="si">}</span><span class="s2">kg"</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="variables-y-tipos-de-datos11">
+<h2>variables_y_tipos_de_datos11<a class="headerlink" href="#variables-y-tipos-de-datos11" title="Link to this heading"></a></h2>
+<p>Imagina que acabas de abrir una nueva cuenta de ahorros que te ofrece el 4% de interés al año. Estos ahorros, debido a intereses, que no se cobran hasta finales de año, se te añaden al balance final de tu cuenta de ahorros. Escribir un programa que comience leyendo la cantidad de dinero depositada en la cuenta de ahorros, introducida por el usuario. Después, el programa debe calcular y mostrar por pantalla la cantidad de ahorros tras el primer, segundo y tercer año. Redondear cada cantidad a dos decimales.</p>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">depositos</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Cantidad de dinero a depositar: RD$ "</span><span class="p">))</span>
+
+<span class="n">interes_anual1</span> <span class="o">=</span> <span class="n">depositos</span> <span class="o">/</span> <span class="mi">100</span> <span class="o">*</span> <span class="mi">4</span>
+<span class="c1">#interes_anual1 = round(depositos / 100 * 4, 2)</span>
+<span class="n">interes_anual2</span> <span class="o">=</span> <span class="n">interes_anual1</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="c1">#interes_anual2 = round(interes_anual1 * 2, 2)</span>
+<span class="n">interes_anual3</span> <span class="o">=</span> <span class="n">interes_anual1</span> <span class="o">*</span> <span class="mi">3</span>
+<span class="c1">#interes_anual3 = round(interes_anual1 * 3, 2)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"cantidad primer año RD$</span><span class="si">{</span><span class="n">interes_anual1</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="se">\n</span><span class="s2">Cantidad segundo año RD$</span><span class="si">{</span><span class="n">interes_anual2</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="se">\n</span><span class="s2">Cantidad tercer año RD$</span><span class="si">{</span><span class="n">interes_anual3</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="c1">#print("cantidad primer año RD$" + str(interes_anual1) + "Cantidad segundo año RD$" + str(interes_anual2) + "Cantidad tercer año RD$" + str(interes_anual3))</span>
+</pre></div>
+</div>
+</section>
+<section id="variables-y-tipos-de-datos12">
+<h2>variables_y_tipos_de_datos12<a class="headerlink" href="#variables-y-tipos-de-datos12" title="Link to this heading"></a></h2>
+<p>Una panadería vende barras de pan a 3.49$ cada una. El pan que no es del día tiene un descuento del 60%. Escribir un programa que comience leyendo el número de barras vendidas que no son del día. Después, el programa debe mostrar el precio habitual de una barra de pan, el descuento que se le hace por no ser fresca y el costo final total.</p>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pan</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Por favor, introduzca el número de barras vendidas que no son del día: "</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"precio habitual: 3.49$"</span><span class="p">)</span>
+<span class="n">descuento</span> <span class="o">=</span> <span class="mf">3.49</span> <span class="o">/</span> <span class="mi">100</span> <span class="o">*</span> <span class="mi">60</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"El descuento es:</span><span class="si">{</span><span class="n">descuento</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">precio_final</span> <span class="o">=</span> <span class="mf">3.49</span> <span class="o">-</span> <span class="n">descuento</span>
+<span class="n">total</span> <span class="o">=</span>  <span class="n">pan</span> <span class="o">*</span> <span class="n">precio_final</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"El precio total es:</span><span class="si">{</span><span class="n">total</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="entradaysalidadedatos.html" class="btn btn-neutral float-left" title="Ejercicios — Entrada y salida de datos" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="operadores.html" class="btn btn-neutral float-right" title="Ejercicios — Operadores" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+  <p>
+    © Copyright <span id="anio-copyright"></span> jeironpro.
+  </p>
+  <script>
+    document.getElementById("anio-copyright").textContent =
+      new Date().getFullYear();
+  </script>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,242 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pruebas &mdash; documentación de Lenguajes de programación - </title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/logo.svg"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=e2bb6099"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" title="Búsqueda" href="../../../search.html" />
+    <link rel="next" title="Redirección y errores" href="redireccionyerrores.html" />
+    <link rel="prev" title="Plantillas Jinja2" href="plantillajinja2.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Lenguajes de programación
+              <img src="../../../_static/logo.svg" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lenguajes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../java/index.html">Java — DAW (ITIC Barcelona)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Python — DCS (INFOTEP)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#teoria">Teoría</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#frameworks">Frameworks</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Flask</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="apirestful.html">API RESTful</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autenticacionyautorizacion.html">Autenticación y autorización</a></li>
+<li class="toctree-l4"><a class="reference internal" href="basesdedatos-sqlalchemy.html">Bases de datos (SQLAlchemy)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="despliegueenproduccion.html">Despliegue en producción</a></li>
+<li class="toctree-l4"><a class="reference internal" href="introduccionflask.html">Introducción a Flask</a></li>
+<li class="toctree-l4"><a class="reference internal" href="manejodeformularios.html">Manejo de formularios</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plantillajinja2.html">Plantillas Jinja2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plantillajinja2.html#ejemplo-basico">Ejemplo básico:</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Pruebas</a></li>
+<li class="toctree-l4"><a class="reference internal" href="redireccionyerrores.html">Redirección y errores</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rutasymetodos.html">rutasymetodos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sesionesycookies.html">Sesiones y cookies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="instance-proyecto.html">Instance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="templates-proyecto.html">Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../django/index.html">Django</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#ejercicios">Ejercicios</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../javascript/index.html">JavaScript — DCS (INFOTEP)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Lenguajes de programación</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Python — DCS (INFOTEP)</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Flask</a></li>
+      <li class="breadcrumb-item active">Pruebas</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/python/frameworks/flask/pruebas.md.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="pruebas">
+<h1>Pruebas<a class="headerlink" href="#pruebas" title="Link to this heading"></a></h1>
+<p><strong>Pruebas en Flask</strong>
+Realizar pruebas es fundamental para garantizar que tu aplicación funciona correctamente y que los cambios no introducen errores. Flask facilita la escritura de pruebas unitarias e integración mediante su cliente de pruebas integrado.</p>
+<p><strong>Tipos de pruebas en Flask</strong></p>
+<ol class="arabic simple">
+<li><p>Pruebas unitarias: verifican partes específicas de tu código, como funciones o métodos individuales.</p></li>
+</ol>
+<ul class="simple">
+<li><p><strong>2.</strong> Pruebas de integración: validan cómo interactúan diferentes partes de tu aplicación, como las ruyas y la base de datos.</p></li>
+</ul>
+<p><strong>Herramientas comunes para pruebas en Flask</strong></p>
+<ol class="arabic simple">
+<li><p>unittest: módulo estándar de Python para realizar pruebas unitarias.</p></li>
+</ol>
+<ul class="simple">
+<li><p><strong>2.</strong> pytest: biblioteca externa que simplifica la escritura de pruebas.</p></li>
+<li><p><strong>3.</strong> Flask Test Client: cliente de pruebas integrado en Flask para simular solicitudes HTTP.</p></li>
+</ul>
+<p><strong>Crear un entorno para pruebas</strong></p>
+<ol class="arabic simple">
+<li><p>Configurar tu aplicación para pruebas:</p></li>
+</ol>
+<ul class="simple">
+<li><p>Activa el modo de prueba en Flask.</p></li>
+<li><p>Usa una base de datos separada para las pruebas.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">'TESTING'</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">'SQLALCHEMY_DATABASE_URI'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'sqlite:///:memory:'</span> <span class="c1"># Base de datos en memoria</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>2.</strong> Estructura del proyecto (opcional):</p></li>
+<li><p>Organiza tus pruebas en un directorio llamado test/.</p></li>
+<li><p>Usa un archivo separado para cada módulo o componente.</p></li>
+</ul>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ejemplo básico: Pruebas de una API RESTful</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">jsonify</span><span class="p">,</span> <span class="n">request</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="n">usuarios</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">"id"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"nombre"</span><span class="p">:</span> <span class="s2">"Jeiron"</span><span class="p">},</span> <span class="p">{</span><span class="s2">"id"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"nombre"</span><span class="p">:</span> <span class="s2">"Junior"</span><span class="p">}]</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">'/usuarios'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">'GET'</span><span class="p">])</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">obtener_usuario</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">usuarios</span><span class="p">),</span> <span class="mi">200</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">'/usuarios'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">'POST'</span><span class="p">])</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">agregar_usuario</span><span class="p">():</span>
+    <span class="n">nuevo_usuario</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">get_json</span><span class="p">()</span>
+    <span class="n">usuarios</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nuevo_usuario</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">nuevo_usuario</span><span class="p">),</span> <span class="mi">201</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">unittest</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pruebas</span><span class="w"> </span><span class="kn">import</span> <span class="n">app</span>
+
+<span class="c1"># Escribiendo pruebas con unittest</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TestAPI</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Configurar la apliación para pruebas</span>
+        <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">'TESTING'</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">test_client</span><span class="p">()</span> <span class="c1"># Cliente de pruebas</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_obtener_usuarios</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Simular una solicitud GET</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'/usuarios'</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">,</span> <span class="nb">list</span><span class="p">))</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_agregar_usuario</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Simular una solicitud POST</span>
+        <span class="n">nuevo_usuario</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"id"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">"nombre"</span><span class="p">:</span> <span class="s2">"JeyJey"</span><span class="p">}</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">'/usuarios'</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">nuevo_usuario</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="mi">201</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">[</span><span class="s1">'nombre'</span><span class="p">],</span> <span class="s2">"Jeiron"</span><span class="p">)</span>
+
+<span class="c1"># Escribiendo pruebas con pytest</span>
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">client</span><span class="p">():</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">'TESTING'</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">return</span> <span class="n">app</span><span class="o">.</span><span class="n">test_client</span><span class="p">()</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_obtener_usuarios</span><span class="p">(</span><span class="n">client</span><span class="p">):</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'/usuarios'</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_agregar_usuario</span><span class="p">(</span><span class="n">client</span><span class="p">):</span>
+    <span class="n">nuevo_usuario</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"id"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">"nombre"</span><span class="p">:</span> <span class="s2">"JeyJey"</span><span class="p">}</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">'/usuarios'</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">nuevo_usuario</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">201</span>
+    <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">[</span><span class="s1">'nombre'</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"JeyJey"</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>
+    <span class="n">unittest</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="plantillajinja2.html" class="btn btn-neutral float-left" title="Plantillas Jinja2" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="redireccionyerrores.html" class="btn btn-neutral float-right" title="Redirección y errores" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+  <p>
+    © Copyright <span id="anio-copyright"></span> jeironpro.
+  </p>
+  <script>
+    document.getElementById("anio-copyright").textContent =
+      new Date().getFullYear();
+  </script>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,376 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ejercicios — Clases abstractas &mdash; documentación de Lenguajes de programación - </title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/logo.svg"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=e2bb6099"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" title="Búsqueda" href="../../../search.html" />
+    <link rel="next" title="Ejercicios — Dataclasses" href="dataclasses.html" />
+    <link rel="prev" title="Ejercicios — Apis" href="apis.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Lenguajes de programación
+              <img src="../../../_static/logo.svg" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lenguajes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../java/index.html">Java — DAW (ITIC Barcelona)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Python — DCS (INFOTEP)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#teoria">Teoría</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#frameworks">Frameworks</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#ejercicios">Ejercicios</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../ejercicios.html">Ejercicios</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython.html">Ejercicios — Elementos básicos de la programación en Python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython/introduccion.html">Ejercicios — Introducción</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython/entradaysalidadedatos.html">Ejercicios — Entrada y salida de datos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython/variablesytiposdedatos.html">Ejercicios — Variables y tipos de datos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython/operadores.html">Ejercicios — Operadores</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython/condicionales.html">Ejercicios — Condicionales</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython/bucles.html">Ejercicios — Bucles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython/colecciones.html">Ejercicios — Colecciones</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython/funciones.html">Ejercicios — Funciones</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduccionalaprogramacionorientadaaobjetosenpython.html">Ejercicios — Introducción a la programación orientada a objetos en Python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="apis.html">Ejercicios — Apis</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Ejercicios — Clases abstractas</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#clases-abstractas-adicionales1">clases_abstractas_adicionales1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#clases-abstractas-adicionales2">clases_abstractas_adicionales2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#clases-abstractas-adicionales3">clases_abstractas_adicionales3</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#clases-abstractas-adicionales4">clases_abstractas_adicionales4</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#clases-abstractas-adicionales5">clases_abstractas_adicionales5</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="dataclasses.html">Ejercicios — Dataclasses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ducktyping.html">Ejercicios — Ducktyping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="encapsulamiento.html">Ejercicios — Encapsulamiento</a></li>
+<li class="toctree-l3"><a class="reference internal" href="encapsulamientodemetodos.html">Ejercicios — Encapsulamiento de métodos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="herencia.html">Ejercicios — Herencia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="herenciamultiple.html">Ejercicios — Herencia múltiple</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduccionpoo.html">Ejercicios — Introduccion POO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="metodosmagicos.html">Ejercicios — Métodos mágicos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polimorfismo.html">Ejercicios — Polimorfismo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sobrecargademetodos.html">Ejercicios — Sobrecarga de métodos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="super.html">Ejercicios — Super</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../javascript/index.html">JavaScript — DCS (INFOTEP)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Lenguajes de programación</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Python — DCS (INFOTEP)</a></li>
+          <li class="breadcrumb-item"><a href="../../ejercicios.html">Ejercicios</a></li>
+          <li class="breadcrumb-item"><a href="../introduccionalaprogramacionorientadaaobjetosenpython.html">Ejercicios — Introducción a la programación orientada a objetos en Python</a></li>
+      <li class="breadcrumb-item active">Ejercicios — Clases abstractas</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/python/ejercicios/introduccionalaprogramacionorientadaaobjetosenpython/clasesabstractas.md.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ejercicios-clases-abstractas">
+<h1>Ejercicios — Clases abstractas<a class="headerlink" href="#ejercicios-clases-abstractas" title="Link to this heading"></a></h1>
+<section id="clases-abstractas-adicionales1">
+<h2>clases_abstractas_adicionales1<a class="headerlink" href="#clases-abstractas-adicionales1" title="Link to this heading"></a></h2>
+<p>Crear una clase abstracta Vehículo</p>
+<ul class="simple">
+<li><p>Define una clase abstracta llamada Vehículo con un método abstracto moverse() y un método no abstracto detalles().</p></li>
+<li><p>Crea dos clases hijas, Coche y Bicicleta, que implementen el método moverse() de manera diferente (el coche puede «conducir» y la bicicleta puede «pedalear»).</p></li>
+<li><p>La clase Vehículo debe tener un método detalles() que imprima la marca y el modelo del vehículo.</p></li>
+</ul>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Vehiculo</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">marca</span><span class="p">,</span> <span class="n">modelo</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">marca</span> <span class="o">=</span> <span class="n">marca</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">modelo</span> <span class="o">=</span> <span class="n">modelo</span>
+
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">moverse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">detalle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">"La marca del vehículo es </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">marca</span><span class="si">}</span><span class="s2"> y el modelo es </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">modelo</span><span class="si">}</span><span class="s2">"</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Coche</span><span class="p">(</span><span class="n">Vehiculo</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">moverse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">"El coche puede conducir"</span>
+    
+<span class="k">class</span><span class="w"> </span><span class="nc">Bicicleta</span><span class="p">(</span><span class="n">Vehiculo</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">moverse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">"La bicicleta puede pedalear"</span>
+    
+<span class="n">coche</span> <span class="o">=</span> <span class="n">Coche</span><span class="p">(</span><span class="s2">"Toyota"</span><span class="p">,</span> <span class="s2">"Corolla"</span><span class="p">)</span>
+<span class="n">bicicleta</span> <span class="o">=</span> <span class="n">Bicicleta</span><span class="p">(</span><span class="s2">"Giant"</span><span class="p">,</span> <span class="s2">"Escape 3"</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">coche</span><span class="o">.</span><span class="n">moverse</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">coche</span><span class="o">.</span><span class="n">detalle</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">bicicleta</span><span class="o">.</span><span class="n">moverse</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bicicleta</span><span class="o">.</span><span class="n">detalle</span><span class="p">())</span>
+</pre></div>
+</div>
+</section>
+<section id="clases-abstractas-adicionales2">
+<h2>clases_abstractas_adicionales2<a class="headerlink" href="#clases-abstractas-adicionales2" title="Link to this heading"></a></h2>
+<p>Animal con múltiples métodos abstractos</p>
+<ul class="simple">
+<li><p>Crea una clase abstracta llamada Animal que tenga dos métodos abstractos: hacer_sonido() y alimentarse().</p></li>
+<li><p>Crea dos clases hijas, Perro y Gato, que implementen ambos métodos (hacer_sonido() y alimentarse()) con un comportamiento específico para cada uno.</p></li>
+<li><p>Haz que las clases hijas impriman qué sonido hace el animal y qué come.</p></li>
+</ul>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Animal</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">hacer_sonido</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">alimentarse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Gato</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">hacer_sonido</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">"¡Miau!"</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">alimentarse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">"Purina"</span>
+    
+<span class="k">class</span><span class="w"> </span><span class="nc">Perro</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">hacer_sonido</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">"¡Guau!"</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">alimentarse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">"Croquetas"</span>
+    
+<span class="n">gato</span> <span class="o">=</span> <span class="n">Gato</span><span class="p">()</span>
+<span class="n">perro</span> <span class="o">=</span> <span class="n">Perro</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Mia dice </span><span class="si">{</span><span class="n">gato</span><span class="o">.</span><span class="n">hacer_sonido</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Mia come </span><span class="si">{</span><span class="n">gato</span><span class="o">.</span><span class="n">alimentarse</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Coral dice </span><span class="si">{</span><span class="n">perro</span><span class="o">.</span><span class="n">hacer_sonido</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Coral come </span><span class="si">{</span><span class="n">perro</span><span class="o">.</span><span class="n">alimentarse</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="clases-abstractas-adicionales3">
+<h2>clases_abstractas_adicionales3<a class="headerlink" href="#clases-abstractas-adicionales3" title="Link to this heading"></a></h2>
+<p>Clase Abstracta para Forma Geométrica</p>
+<ul class="simple">
+<li><p>Crea una clase abstracta llamada Forma con un método abstracto area() y un método no abstracto perimetro() que calcule el perímetro de la forma.</p></li>
+<li><p>Define dos clases hijas, Círculo y Rectángulo, que implementen el método area() de manera correspondiente.</p></li>
+<li><p>La clase Rectángulo debe tener atributos largo y ancho, y la clase Círculo debe tener un atributo radio.</p></li>
+</ul>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Forma</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">area</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">perimetro</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Circulo</span><span class="p">(</span><span class="n">Forma</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">radio</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">radio</span> <span class="o">=</span> <span class="n">radio</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">area</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">radio</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">perimetro</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">radio</span>
+    
+<span class="k">class</span><span class="w"> </span><span class="nc">Rectangulo</span><span class="p">(</span><span class="n">Forma</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">largo</span><span class="p">,</span> <span class="n">ancho</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">largo</span> <span class="o">=</span> <span class="n">largo</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ancho</span> <span class="o">=</span> <span class="n">ancho</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">area</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">largo</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">ancho</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">perimetro</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">largo</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">ancho</span><span class="p">)</span>
+    
+<span class="n">circulo</span> <span class="o">=</span> <span class="n">Circulo</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">rectangulo</span> <span class="o">=</span> <span class="n">Rectangulo</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"El área del círculo es: </span><span class="si">{</span><span class="n">circulo</span><span class="o">.</span><span class="n">area</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"El perímetro del círculo es: </span><span class="si">{</span><span class="n">circulo</span><span class="o">.</span><span class="n">perimetro</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"El área del rectángulo es: </span><span class="si">{</span><span class="n">rectangulo</span><span class="o">.</span><span class="n">area</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"El perímetro del rectángulo es: </span><span class="si">{</span><span class="n">rectangulo</span><span class="o">.</span><span class="n">perimetro</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="clases-abstractas-adicionales4">
+<h2>clases_abstractas_adicionales4<a class="headerlink" href="#clases-abstractas-adicionales4" title="Link to this heading"></a></h2>
+<p>Clase Abstracta para Producto</p>
+<ul class="simple">
+<li><p>Crea una clase abstracta llamada Producto con un método abstracto precio_final().</p></li>
+<li><p>Crea dos clases hijas, Electrodoméstico y Ropa, que implementen el método precio_final(). Los electrodomésticos deben agregar un 18% del ITBIS al precio base y la ropa debe aplicar un descuento del 5%.</p></li>
+<li><p>Define los precios base en cada clase y calcula el precio final después de aplicar los ajustes.</p></li>
+</ul>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Producto</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">precio_final</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Electrodoméstico</span><span class="p">(</span><span class="n">Producto</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">precio</span><span class="p">,</span> <span class="n">itbis</span><span class="o">=</span><span class="mi">18</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">precio</span> <span class="o">=</span> <span class="n">precio</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">itbis</span> <span class="o">=</span> <span class="n">itbis</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">precio_final</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">precio</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">precio</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">itbis</span> <span class="o">/</span> <span class="mi">100</span><span class="p">))</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Ropa</span><span class="p">(</span><span class="n">Producto</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">precio</span><span class="p">,</span> <span class="n">descuento</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">precio</span> <span class="o">=</span> <span class="n">precio</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">descuento</span> <span class="o">=</span> <span class="n">descuento</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">precio_final</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">precio</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">descuento</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span>
+    
+<span class="n">mueble</span> <span class="o">=</span> <span class="n">Electrodoméstico</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">abrigo</span> <span class="o">=</span> <span class="n">Ropa</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"EL precio final del electrodoméstico es: $</span><span class="si">{</span><span class="n">mueble</span><span class="o">.</span><span class="n">precio_final</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"El precio final de la ropa es: $</span><span class="si">{</span><span class="n">abrigo</span><span class="o">.</span><span class="n">precio_final</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="clases-abstractas-adicionales5">
+<h2>clases_abstractas_adicionales5<a class="headerlink" href="#clases-abstractas-adicionales5" title="Link to this heading"></a></h2>
+<p>Clase Abstracta y Polimorfismo</p>
+<ul class="simple">
+<li><p>Define una clase abstracta InstrumentoMusical con el método abstracto tocar().</p></li>
+<li><p>Crea dos clases hijas, Guitarra y Piano, que implementen el método tocar().</p></li>
+<li><p>Crea una función llamada interpretar() que reciba una lista de objetos de tipo InstrumentoMusical y los haga «sonar», es decir, llame al método tocar() de cada instrumento.</p></li>
+</ul>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">InstrumentoMusical</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">tocar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Guitarra</span><span class="p">(</span><span class="n">InstrumentoMusical</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">tocar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">"Sonido de guitarra"</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Piano</span><span class="p">(</span><span class="n">InstrumentoMusical</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">tocar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">"Sonido de piano"</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">interpretar</span><span class="p">(</span><span class="n">instrumentos</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">instrumento</span> <span class="ow">in</span> <span class="n">instrumentos</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">instrumento</span><span class="o">.</span><span class="n">tocar</span><span class="p">())</span>
+
+<span class="n">guitarra</span> <span class="o">=</span> <span class="n">Guitarra</span><span class="p">()</span>
+<span class="n">piano</span> <span class="o">=</span> <span class="n">Piano</span><span class="p">()</span>
+
+<span class="n">instrumentos</span> <span class="o">=</span> <span class="p">[</span><span class="n">guitarra</span><span class="p">,</span> <span class="n">piano</span><span class="p">]</span>
+
+<span class="n">interpretar</span><span class="p">(</span><span class="n">instrumentos</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="apis.html" class="btn btn-neutral float-left" title="Ejercicios — Apis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="dataclasses.html" class="btn btn-neutral float-right" title="Ejercicios — Dataclasses" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+  <p>
+    © Copyright <span id="anio-copyright"></span> jeironpro.
+  </p>
+  <script>
+    document.getElementById("anio-copyright").textContent =
+      new Date().getFullYear();
+  </script>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

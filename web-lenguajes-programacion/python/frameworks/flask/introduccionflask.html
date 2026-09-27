@@ -1,0 +1,297 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Introducción a Flask &mdash; documentación de Lenguajes de programación - </title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/logo.svg"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=e2bb6099"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" title="Búsqueda" href="../../../search.html" />
+    <link rel="next" title="Manejo de formularios" href="manejodeformularios.html" />
+    <link rel="prev" title="Despliegue en producción" href="despliegueenproduccion.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Lenguajes de programación
+              <img src="../../../_static/logo.svg" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lenguajes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../java/index.html">Java — DAW (ITIC Barcelona)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Python — DCS (INFOTEP)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#teoria">Teoría</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#frameworks">Frameworks</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Flask</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="apirestful.html">API RESTful</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autenticacionyautorizacion.html">Autenticación y autorización</a></li>
+<li class="toctree-l4"><a class="reference internal" href="basesdedatos-sqlalchemy.html">Bases de datos (SQLAlchemy)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="despliegueenproduccion.html">Despliegue en producción</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Introducción a Flask</a></li>
+<li class="toctree-l4"><a class="reference internal" href="manejodeformularios.html">Manejo de formularios</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plantillajinja2.html">Plantillas Jinja2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plantillajinja2.html#ejemplo-basico">Ejemplo básico:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pruebas.html">Pruebas</a></li>
+<li class="toctree-l4"><a class="reference internal" href="redireccionyerrores.html">Redirección y errores</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rutasymetodos.html">rutasymetodos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sesionesycookies.html">Sesiones y cookies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="instance-proyecto.html">Instance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="templates-proyecto.html">Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../django/index.html">Django</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#ejercicios">Ejercicios</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../javascript/index.html">JavaScript — DCS (INFOTEP)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Lenguajes de programación</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Python — DCS (INFOTEP)</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Flask</a></li>
+      <li class="breadcrumb-item active">Introducción a Flask</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/python/frameworks/flask/introduccionflask.md.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="introduccion-a-flask">
+<h1>Introducción a Flask<a class="headerlink" href="#introduccion-a-flask" title="Link to this heading"></a></h1>
+<p><strong>Introducción a Flask</strong>
+Flask es un framework para el desarrollo web que te permite crear aplicaciones de forma modular y ligera. Fue diseñado con la idea de ser flexible y fácil de usar, lo que lo hace perfecto tanto para principiantes como para desarrolladores avanzados.</p>
+<p><strong>Características principales Flask</strong></p>
+<ol class="arabic simple">
+<li><p>Minimalista y flexible:</p></li>
+</ol>
+<ul class="simple">
+<li><p>No impone una estructura rígida para el proyecto.</p></li>
+<li><p>Puedes usar solo las herramientas que necesitas.</p></li>
+<li><p><strong>2.</strong> Basado en Python:</p></li>
+<li><p>Todo el desarrollo se realiza en Python, aprovechando su sintaxis clara y poderosa.</p></li>
+<li><p><strong>3.</strong> Extensible:</p></li>
+<li><p>Tiene muchas extensiones que puedes añadir según las necesidades de tu proyecto (ej., autenticación, bases de datos).</p></li>
+<li><p><strong>4.</strong> Ligero:</p></li>
+<li><p>No incluye funcionalidades innecesarias, dejando al desarrollador decidir que integrar.</p></li>
+<li><p><strong>5.</strong> Comunicación directa con WSGI:</p></li>
+<li><p>Flask utiliza Werkzeug, un toolkit que permite manejar la comunicación entre el navegador y la aplicación Python.</p></li>
+<li><p><strong>6.</strong> Plantillas con Jinja2:</p></li>
+<li><p>Incluye un motor de plantillas llamado Jinja2 para generar contenido dinámico en las páginas HTML.</p></li>
+</ul>
+<p><strong>¿Como usar Flask?</strong>
+Flask es ideal cuando:</p>
+<ul class="simple">
+<li><p>Quieres construir aplicaciones web simples y rápidas.</p></li>
+<li><p>Necesitas flexibilidad para diseñar tu aplicación.</p></li>
+<li><p>Quieres aprender los fundamentos de desarrollo web con Python.</p></li>
+<li><p>Estás desarrollando APIs o microservicios.</p></li>
+</ul>
+<p><strong>¿Qué No es Flas?</strong></p>
+<ul class="simple">
+<li><p>No es un framework completo como Django.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="n">Esto</span> <span class="n">significa</span> <span class="n">que</span> <span class="n">no</span> <span class="n">incluye</span> <span class="n">por</span> <span class="n">defecto</span> <span class="n">herramientas</span> <span class="n">avanzadas</span> <span class="n">como</span> <span class="n">administración</span> <span class="n">de</span> <span class="n">bases</span> <span class="n">de</span> <span class="n">datos</span> <span class="n">o</span> <span class="n">autenticación</span><span class="o">.</span>
+</pre></div>
+</div>
+<p><strong>Comparativa básica con otros frameworks</strong>
+Característica           Flask                          Django
+Filosofía                Minimalista y flexible         Todo incluido
+Curva de aprendizaje     Baja                           Moderada
+Estructura de proyecto   No impuesta                    Estructurada
+Casos ideales            APIs y aplicaciones pequeñas   Aplicaciones grandes</p>
+<p><strong>Requisitos para empezar con Flask</strong></p>
+<ol class="arabic simple">
+<li><p>Tener Python instalado en tu máquina.</p></li>
+<li><p>Instalar Flask con:</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">pip</span> <span class="n">install</span> <span class="n">flask</span>
+</pre></div>
+</div>
+<p><strong>¿Qué más necesitas saber antes de empezar?</strong></p>
+<ol class="arabic simple">
+<li><p>Conceptos básicos de Python: funciones, clases, decoradores.</p></li>
+<li><p>Entender cómo funciona el flujo HTTP: métodos como GET, POST, etc.</p></li>
+<li><p>Familiaridad con HTML y algo de CSS (opcional, pero útil).</p></li>
+</ol>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Al ejecutar este archvio, iniciará un servidor en tu máquina en la dirección 127.0.0.1 y el puerto 5000</span>
+<span class="c1"># Abre tu navegador: Visita http://127.0.0.1:5000</span>
+
+<span class="c1"># Importamos la clase Flask desde el paquete flask</span>
+<span class="c1"># Importamos 'request' para manejar los métodos HTTP en las rutas.</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">LenguajesProgramacion.PythonDCSINFOTEP.Frameworks.Flask.introduccionflask</span><span class="w"> </span><span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span>
+
+<span class="c1"># Creamo una instancia de la clase Flask</span>
+<span class="c1"># Esta instancia será nuestra aplicación principal</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="c1"># Usamos un decorador para definir una ruta</span>
+<span class="c1"># La ruta "/" indica que esta función se ejecutará cuando accedamos a la raíz del sitio.</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">inicio</span><span class="p">():</span> <span class="c1"># Función que manejará las solicitudes a la ruta "/"</span>
+    <span class="c1"># Esta función devuelve un mensaje de texto como respuesta al navegador</span>
+    <span class="k">return</span> <span class="s2">"Esta es la página principal"</span>
+
+<span class="c1"># Definimos otra ruta para la URL "/nosotros"</span>
+<span class="c1"># Abre tu navegador: Visita http://127.0.0.1:5000/nosotros</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">"/nosotros"</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">nosotros</span><span class="p">():</span>
+    <span class="c1"># Devuelve un mensaje para esta página específica</span>
+    <span class="k">return</span> <span class="s2">"¡Bienvenido a la página sobre nosotros!"</span>
+
+<span class="c1"># Métodos HTTP básicos</span>
+<span class="c1"># Flask permite manejar diferentes métodos HTTP como GET (solicitar datos) y POST (enviar datos)</span>
+<span class="c1"># Abre tu navegador: Visita http://127.0.0.1:5000/solicitud (esto hará una solicitud GET)</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">"/solicitud"</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">"GET"</span><span class="p">,</span> <span class="s2">"POST"</span><span class="p">])</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">solicitud</span><span class="p">():</span>
+    <span class="c1"># Si la solicitud es de tipo POST</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">"POST"</span><span class="p">:</span>
+        <span class="c1"># Devuelve un mensaje indicando que fue un POST</span>
+        <span class="c1"># Para hacer una solicitud POST usa herramientas como Postman o formularios HTML para enviar un POST a esta ruta.</span>
+        <span class="k">return</span> <span class="s2">"Has enviado un POST"</span>
+    <span class="c1"># Si no es POST (por defecto será GET)</span>
+    <span class="k">return</span> <span class="s2">"Has accedido con GET"</span>
+
+<span class="c1"># Este bloque asegura que el servidor solo se ejecute si el archivo es ejecutado directamente</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+    <span class="c1"># Ejecutamos el servidor en modo desarrollo (debug=True)</span>
+    <span class="c1"># Esto mostrará mensajes de error detallados y reiniciará el servidor automáticamente si cambias el código</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="sd">""" Explicación del código</span>
+<span class="sd">app: assignamos una instancia de Flask a la variable app. Esta instancia es la representación de nuestra aplicación web. Es el objeto que gestiona las rutas, la configuración y los componentes.</span>
+
+<span class="sd">Flask: es la clase principal del framework Flask. Esta clase se utiliza para crear un instancia de la aplicación web.</span>
+
+<span class="sd">__name__: el parámetro es una variable especial de Python que contiene el nombre del módulo actual (por ejemplo, "__main__" si el código se está ejecutando como el programa principal).</span>
+
+<span class="sd">Flask utiliza esta información para localizar recursos como plantillas HTML o archivos estáticos, ya que indica dónde se encuentra el código de la aplicación.</span>
+
+<span class="sd">@app.route("/"):</span>
+<span class="sd">@app.route: este es un decorador proporcionado por Flask. Un decorador es una forma de modificar el comportamiento de una función, en este caso, asociando una URL con un función de Python.</span>
+
+<span class="sd">"/": esta es la ruta o URL específica que se va a asociar con la función. En este caso, se está indicando que la función a continuación se ejecutará cuando un usuario visite la página principal de la aplicación (es decir, cuando acceda a la URL http://localhost:5000/ si está ejecutando el servidor Flask).</span>
+
+<span class="sd">Cuando el usuario visita la URL /, Flask ejecutará la función definida justo debajo del decorador @app.route("/") y devolverá su resultado (por lo general, una respuesta HTTP).</span>
+
+<span class="sd">def inicio(): es la función que se ejecuta cuando un usuario accede a la ruta /. El return dentro de la función devuelve un texto.</span>
+
+<span class="sd">@app.route("/solicitud", methods=["GET", "POST"]):</span>
+<span class="sd">El decorador @app.route("/solicitud", methods=["GET", "POST"]) en Flask se utiliza para asociar una ruta con una función que puede manejar tanto solicitudes GET como POST</span>
+
+<span class="sd">@app.route("/solicitud"): esta parte define la URL (en este caso, /solicitud) a la cual se asociará la función que sigue a este decorador. En este caso, la ruta /solicitud será accesible a través de una solicitud HTTP (ya sea GET o POST).</span>
+
+<span class="sd">methods=["GET", "POST"]: </span>
+<span class="sd">GET: Se utiliza para obtener datos del servidor. Cuando un usuario accede a la URL /solicitud, el navegador realiza una solicitud GET para obtener una página o información.</span>
+
+<span class="sd">POST: Se utiliza para enviar datos al servidor, generalmente a través de un formulario o para realizar alguna acción en el servidor (como agregar datos a una base de datos).</span>
+
+<span class="sd">Al especificar ambos métodos, la función podrá manejar tanto las solicitudes GET como POST para esa ruta.</span>
+
+<span class="sd">El if dentro de la funcion soliciud: verifica que tipo de solicitud se le hace a la URL, si es de tipo POST, retorna un mensaje y si es de tipo GET muestra otro mensaje diferente.</span>
+
+<span class="sd">__main__: es una variable especial en Python que se utiliza para determinar si un archivo o módulo está siendo ejecutado directamente como un programa principal, o si está siendo importado en otro módulo.</span>
+
+<span class="sd">¿Qué significa "__main__"?</span>
+<span class="sd">En python, cada módulo tiene un atributo especial llamado __name__. Si un módulo se ejecuta como el programa principal (es decir, si se ejecuta directamente en la terminal o mediante un comando), el valor de __name__ es asignado a "__main__". Si el módulo es importado desde otro archivo, el valor de __name__ será el nombre del propio módulo.</span>
+
+<span class="sd">Un uso común de "__main__" es para controlar el flujo de ejecución de un archivo de Python. Se usa para que una parte del código solo se ejecute cuando el archivo se ejecuta directamente, no cuando se importa desde otro módulo.</span>
+
+<span class="sd">app.run(debug=True): es un método utilizado en Flask para iniciar el servidor de desarrollo de la aplicación web.</span>
+
+<span class="sd">app.run(): este método inicia el servidor de desarrollo de Flask. Cuando se ejecuta, Flask comienza a escuchar las solicitudes HTTP en un puerto determinado (por defecto, el puerto 5000 en http://localhost:5000/). Permite que la aplicacion web se ejecute y esté disponible para recibir solicitudes y mostrar respuestas.</span>
+
+<span class="sd">debug=True: el parámetro activa el modo de depuración (debug mode) en Flask. Esto es útil durante el desarrollo porque proporciona:</span>
+<span class="sd">    · Errores detallados: si hay un error en el código, Flask mostrará un mensaje de error detallado con el rastreo de la pila (stack trace), lo que facilita encontrar y corregir problemas.</span>
+
+<span class="sd">    · Recarga automática: cuando realizas cambios en el código (por ejemplo, editas un archivo Python), Flask recargará automáticamente la aplicación sin necesidad de detenerla y volverla a ejecutar. Esto acelera el proceso de desarrollo.</span>
+
+<span class="sd">debug=True es ideal solo para entornos de desarrollo. En un entorno de producción, no se recomienda usarlo, ya que puede exponer detalles sensibles del código y los errores.</span>
+<span class="sd">"""</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="despliegueenproduccion.html" class="btn btn-neutral float-left" title="Despliegue en producción" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="manejodeformularios.html" class="btn btn-neutral float-right" title="Manejo de formularios" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+  <p>
+    © Copyright <span id="anio-copyright"></span> jeironpro.
+  </p>
+  <script>
+    document.getElementById("anio-copyright").textContent =
+      new Date().getFullYear();
+  </script>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

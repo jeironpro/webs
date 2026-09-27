@@ -1,0 +1,368 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Variables &mdash; documentación de Lenguajes de programación - </title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/logo.svg"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=e2bb6099"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="search" title="Búsqueda" href="../../search.html" />
+    <link rel="next" title="Operadores" href="operadores.html" />
+    <link rel="prev" title="Introducción" href="introduccion.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Lenguajes de programación
+              <img src="../../_static/logo.svg" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lenguajes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../java/index.html">Java — DAW (ITIC Barcelona)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python/index.html">Python — DCS (INFOTEP)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">JavaScript — DCS (INFOTEP)</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#teoria">Teoría</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduccion.html">Introducción</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="operadores.html">Operadores</a></li>
+<li class="toctree-l3"><a class="reference internal" href="estructurasdecontrol.html">Estructuras de control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="arrays.html">Arrays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="funciones.html">Funciones</a></li>
+<li class="toctree-l3"><a class="reference internal" href="objetos.html">Objetos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dom.html">DOM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eventos.html">Eventos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="formularios.html">Formularios</a></li>
+<li class="toctree-l3"><a class="reference internal" href="formularios/index.html">Formularios</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#ejercicios">Ejercicios</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Lenguajes de programación</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">JavaScript — DCS (INFOTEP)</a></li>
+      <li class="breadcrumb-item active">Variables</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/javascript/teoria/variables.md.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="variables">
+<h1>Variables<a class="headerlink" href="#variables" title="Link to this heading"></a></h1>
+<p><strong>Variables en JavaScipt</strong>
+Una variable es un contenedor que se utiliza para almacenar datos que pueden ser usados o modificados más adelante en un programa. En JavaScript, hay tres formas principales de declarar variables: var, let y const.</p>
+<p><strong>Declaración de variables</strong>
+ara declarar una variable en JavaScript, se utilizan las siguientes palabras clave:</p>
+<ol class="arabic simple">
+<li><p>var:</p></li>
+</ol>
+<ul class="simple">
+<li><p>Forma tradicional de declarar variables.</p></li>
+<li><p>Su uso está en desuso en favor de let y const.</p></li>
+<li><p><strong>2.</strong> let:</p></li>
+<li><p>Introducido en ES6 (2015), proporciona un alcance más controlado.</p></li>
+<li><p><strong>3.</strong> const:</p></li>
+<li><p>También introducido en ES6, se utiliza para declarar constantes (valores que no cambian).</p></li>
+</ul>
+<p><strong>Reglas de nomenclatura para variables</strong>
+Al nombrar variables, debes seguir estas reglas:</p>
+<ol class="arabic simple">
+<li><p>Los nombres pueden contener letras, dígitos, el símbolo _ y $.</p></li>
+</ol>
+<ul class="simple">
+<li><p><strong>2.</strong> No pueden comenzar con un número.</p></li>
+<li><p><strong>3.</strong> No puedes usar palabras reservadas de JavaScript (como if, for, return).</p></li>
+<li><p><strong>4.</strong> Por convención, los nombres de variables suelen seguir la notación camelCase.</p></li>
+<li><p>Ejemplo: miVariable, edadUsuario.</p></li>
+</ul>
+<p><strong>Declarar y asignar valores</strong></p>
+<ol class="arabic simple">
+<li><p>Declaración simple:</p></li>
+</ol>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">edad</span><span class="p">;</span><span class="w"> </span><span class="c1">// Declarar una variable sin asignar un valor</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>2.</strong> Declaración y asignación simultánea:</p></li>
+</ul>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">nombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Juan"</span><span class="p">;</span><span class="w"> </span><span class="c1">// Declarar y asignar un valor</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>3.</strong> Reasignación de valores:
+Solo es posible con var y let, no con const.</p></li>
+</ul>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10</span><span class="p">;</span><span class="w"> </span><span class="c1">// Cambiar el valor de la variable</span>
+</pre></div>
+</div>
+<p><strong>Inicialización y valores por defecto</strong></p>
+<ul class="simple">
+<li><p>Si declaras una variable pero no le asignas un valor, su valor será undefined.</p></li>
+</ul>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">a</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span><span class="w"> </span><span class="c1">// undefined</span>
+</pre></div>
+</div>
+<p><strong>Tipos de variables</strong>
+Las variables en JavaScript no tienen un tipo fijo. Pueden almacenar diferentes tipos de datos y cambiar de tipo durante la ejecución del programa.</p>
+<p><strong>Ejemplo</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">variable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5</span><span class="p">;</span><span class="w"> </span><span class="c1">// Número</span>
+<span class="nx">variable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Hola"</span><span class="p">;</span><span class="w"> </span><span class="c1">// Ahora es un string</span>
+</pre></div>
+</div>
+<p><strong>Ámbito de las variables</strong>
+El alcance (o ámbito) determina dónde puede accederse a una variable en el código.</p>
+<ul class="simple">
+<li><p><strong>1.</strong> Global:</p></li>
+<li><p>Una variable declarada fuera de cualquier función o bloque tiene alcance global.</p></li>
+</ul>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="nb">global</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Soy global"</span><span class="p">;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>2.</strong> Funcional:</p></li>
+<li><p>Las variables declaradas con let y const tienen un alcance limitado al bloque {} donde se declaran.</p></li>
+</ul>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">20</span><span class="p">;</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">30</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">y</span><span class="p">,</span><span class="w"> </span><span class="nx">z</span><span class="p">);</span><span class="w"> </span><span class="c1">// 20, 30</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">y</span><span class="p">,</span><span class="w"> </span><span class="nx">z</span><span class="p">);</span><span class="w"> </span><span class="c1">// Error</span>
+</pre></div>
+</div>
+<p><strong>Declaración de variables en JavaScript: let, const y var</strong>
+En JavaScript, las variables se pueden declarar usando las palabras clave var, let y const. Aunque las tres permiten declarar variables, tienen diferencias importantes en cuanto a su alcance, inmutabilidad y comportamiento.</p>
+<ul class="simple">
+<li><p><strong>1.</strong> var
+var es la forma más antigua de declarar variables en JavaScript. Su uso ha disminuido debido a la introducción de let y const en ES6 (2015), que son más seguras y predecibles.</p></li>
+</ul>
+<p><strong>Características principales</strong></p>
+<ul class="simple">
+<li><p>Ámbito:</p></li>
+<li><p>El ámbito de var es funcional, lo que significa que si declaras una variable con var dentro de una función, será accesible solo dentro de esa función.</p></li>
+<li><p>Sin embargo, si declaras una variable var fuera de una función, se convierte en una variable global.</p></li>
+</ul>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">        </span><span class="kd">function</span><span class="w"> </span><span class="nx">ejemploVar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">var</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span><span class="w"> </span><span class="c1">// 10</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span><span class="w"> </span><span class="c1">// Error: x no está definida</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Re-declaración: Puedes volver a declarar una variable con var sin errores.</p></li>
+</ul>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5</span><span class="p">;</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10</span><span class="p">;</span><span class="w"> </span><span class="c1">// No genera error</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span><span class="w"> </span><span class="c1">// 10</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Hoisting:</p></li>
+<li><p>Las variables declaradas con var son elevadas (hoisted) al inicio de su ámbito. Esto significa que puedes usar una variable antes de declararla.</p></li>
+</ul>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span><span class="w"> </span><span class="c1">// undefined (hoisting)</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10</span><span class="p">;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>2.</strong> let
+Introducido en ES6, let resuelve muchos de los problemas de var. Se usa para declarar variables cuyo valor puede cambiar.</p></li>
+</ul>
+<p><strong>Características principales</strong></p>
+<ul class="simple">
+<li><p>Ámbito:</p></li>
+<li><p>El ámbito de let es de bloque, lo que significa que solo está disponible dentro del bloque {} donde se declara.</p></li>
+</ul>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">20</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">y</span><span class="p">);</span><span class="w"> </span><span class="c1">// 20</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">y</span><span class="p">);</span><span class="w"> </span><span class="c1">// Error: y no está definida</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Re-declaración: No puedes volver a declarar la misma variable dentro del mismo ámbito.</p></li>
+</ul>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">30</span><span class="p">;</span>
+<span class="w">        </span><span class="c1">// let z = 40; // Error: la variable ya está declarada</span>
+<span class="w">        </span><span class="nx">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">40</span><span class="p">;</span><span class="w"> </span><span class="c1">// Esto sí es válido</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>No hay hoisting completo:</p></li>
+<li><p>Aunque let también se eleva al inicio del ámbito, no se puede usar antes de declararla debido a la «zona muerta temporal».</p></li>
+</ul>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span><span class="w"> </span><span class="c1">// Error: Cannot access 'a' before initialization</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">50</span><span class="p">;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>3.</strong> const
+También introducido en ES6, const se usa para declarar variables que no se pueden reasignar (son constantes).</p></li>
+</ul>
+<p><strong>Características principales</strong></p>
+<ul class="simple">
+<li><p>Ámbito:</p></li>
+<li><p>Igual que let, const tiene un ámbito de bloque.</p></li>
+</ul>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">PI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.14</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">PI</span><span class="p">);</span><span class="w"> </span><span class="c1">// 3.14</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">PI</span><span class="p">);</span><span class="w"> </span><span class="c1">// Error: PI no está definida</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Inmutabilidad:</p></li>
+<li><p>La referencia de la variable no puede cambiar, pero si la variable es un objeto o un array, sus propiedades o elementos sí pueden modificarse.</p></li>
+</ul>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10</span><span class="p">;</span>
+<span class="w">        </span><span class="c1">// num = 20; // Error: no se puede reasignar</span>
+
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">arr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">];</span>
+<span class="w">        </span><span class="nx">arr</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mf">4</span><span class="p">);</span><span class="w"> </span><span class="c1">// Esto es válido</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">);</span><span class="w"> </span><span class="c1">// [1, 2, 3, 4]</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>No hay hoisting completo:</p></li>
+<li><p>Igual que con let, no puedes usar una variable declarada con const antes de declararla.</p></li>
+</ul>
+<p><strong>Diferencias clave entre var, let y const</strong>
+Característica   var                   let                          const
+Ámbito           Función o global      Bloque                       Bloque
+Re-declaración   Permitida             No permitida                 No permitida
+Reasignación     Permitida             Permitida                    No permitida
+Hoisting         Sí (como undefined)   Sí (zona muerta temporarl)   Sí (zona muerta temporarl)</p>
+<p><strong>¿Cuándo usar let, const y var?</strong></p>
+<ol class="arabic simple">
+<li><p>Usa const siempre que sea posible:</p></li>
+</ol>
+<ul class="simple">
+<li><p>Declara las variables con const si no necesitas reasignarles un nuevo valor.</p></li>
+<li><p><strong>2.</strong> Usa let para variables que cambien su valor:</p></li>
+<li><p>Ideal para bucles y valores dinámicos.</p></li>
+<li><p><strong>3.</strong> Evita usar var:</p></li>
+<li><p>Su comportamiento impredecible puede causar errores difíciles de depurar.</p></li>
+</ul>
+<p><strong>Buenas prácticas</strong></p>
+<ol class="arabic simple">
+<li><p>Usa nombres descriptivos para tus variables:</p></li>
+</ol>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">numeroDeEstudiantes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">25</span><span class="p">;</span><span class="w"> </span><span class="c1">// Claro y entendible</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>2.</strong> Declara variables en el ámbito más limitado posible:</p></li>
+<li><p>Prefiere let y const en lugar de var.</p></li>
+<li><p><strong>3.</strong> Inicializa las variables al momento de declararlas, siempre que sea posible.</p></li>
+</ul>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Ejemplos</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">num1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10</span><span class="p">;</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">num2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5</span><span class="p">;</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">resultadoSuma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">num1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">num2</span><span class="p">;</span>
+<span class="c1">// Para comentar en un archivo JavaScript, se utiliza doble barra (//).</span>
+<span class="c1">// El alert tiene más prioridad que el document.write.</span>
+<span class="c1">// Para hacer un salto de línea, concatenamos la etiqueta HTML &lt;br&gt;.</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s2">"El resultado de la suma es: "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">resultadoSuma</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">"&lt;br&gt;"</span><span class="p">);</span>
+<span class="c1">// El signo de más (+), en este caso, se usa para concatenar el mensaje con la variable.</span>
+<span class="c1">// alert("El resultado de la suma es: " + resultadoSuma);</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">nombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Jeiron"</span><span class="p">;</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">apellido</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Espinal"</span><span class="p">;</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">nombreCompleto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">nombre</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">" "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">apellido</span><span class="p">;</span>
+
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s2">"Su nombre completo es "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">nombreCompleto</span><span class="p">);</span>
+<span class="c1">// alert("Su nombre completo es " + nombreCompleto);</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="introduccion.html" class="btn btn-neutral float-left" title="Introducción" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="operadores.html" class="btn btn-neutral float-right" title="Operadores" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+  <p>
+    © Copyright <span id="anio-copyright"></span> jeironpro.
+  </p>
+  <script>
+    document.getElementById("anio-copyright").textContent =
+      new Date().getFullYear();
+  </script>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

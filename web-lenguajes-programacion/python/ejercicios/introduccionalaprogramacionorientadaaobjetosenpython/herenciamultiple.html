@@ -1,0 +1,322 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ejercicios — Herencia múltiple &mdash; documentación de Lenguajes de programación - </title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/logo.svg"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=e2bb6099"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" title="Búsqueda" href="../../../search.html" />
+    <link rel="next" title="Ejercicios — Introduccion POO" href="introduccionpoo.html" />
+    <link rel="prev" title="Ejercicios — Herencia" href="herencia.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Lenguajes de programación
+              <img src="../../../_static/logo.svg" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lenguajes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../java/index.html">Java — DAW (ITIC Barcelona)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Python — DCS (INFOTEP)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#teoria">Teoría</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#frameworks">Frameworks</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#ejercicios">Ejercicios</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../ejercicios.html">Ejercicios</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython.html">Ejercicios — Elementos básicos de la programación en Python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython/introduccion.html">Ejercicios — Introducción</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython/entradaysalidadedatos.html">Ejercicios — Entrada y salida de datos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython/variablesytiposdedatos.html">Ejercicios — Variables y tipos de datos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython/operadores.html">Ejercicios — Operadores</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython/condicionales.html">Ejercicios — Condicionales</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython/bucles.html">Ejercicios — Bucles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython/colecciones.html">Ejercicios — Colecciones</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython/funciones.html">Ejercicios — Funciones</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduccionalaprogramacionorientadaaobjetosenpython.html">Ejercicios — Introducción a la programación orientada a objetos en Python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="apis.html">Ejercicios — Apis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="clasesabstractas.html">Ejercicios — Clases abstractas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dataclasses.html">Ejercicios — Dataclasses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ducktyping.html">Ejercicios — Ducktyping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="encapsulamiento.html">Ejercicios — Encapsulamiento</a></li>
+<li class="toctree-l3"><a class="reference internal" href="encapsulamientodemetodos.html">Ejercicios — Encapsulamiento de métodos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="herencia.html">Ejercicios — Herencia</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Ejercicios — Herencia múltiple</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#herencia-multiple-adicionales1">herencia_multiple_adicionales1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#herencia-multiple-adicionales2">herencia_multiple_adicionales2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#herencia-multiple-adicionales3">herencia_multiple_adicionales3</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#herencia-multiple-adicionales4">herencia_multiple_adicionales4</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#herencia-multiple-adicionales5">herencia_multiple_adicionales5</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="introduccionpoo.html">Ejercicios — Introduccion POO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="metodosmagicos.html">Ejercicios — Métodos mágicos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polimorfismo.html">Ejercicios — Polimorfismo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sobrecargademetodos.html">Ejercicios — Sobrecarga de métodos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="super.html">Ejercicios — Super</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../javascript/index.html">JavaScript — DCS (INFOTEP)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Lenguajes de programación</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Python — DCS (INFOTEP)</a></li>
+          <li class="breadcrumb-item"><a href="../../ejercicios.html">Ejercicios</a></li>
+          <li class="breadcrumb-item"><a href="../introduccionalaprogramacionorientadaaobjetosenpython.html">Ejercicios — Introducción a la programación orientada a objetos en Python</a></li>
+      <li class="breadcrumb-item active">Ejercicios — Herencia múltiple</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/python/ejercicios/introduccionalaprogramacionorientadaaobjetosenpython/herenciamultiple.md.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ejercicios-herencia-multiple">
+<h1>Ejercicios — Herencia múltiple<a class="headerlink" href="#ejercicios-herencia-multiple" title="Link to this heading"></a></h1>
+<section id="herencia-multiple-adicionales1">
+<h2>herencia_multiple_adicionales1<a class="headerlink" href="#herencia-multiple-adicionales1" title="Link to this heading"></a></h2>
+<p>Dispositivos Electrónicos</p>
+<p>Crea tres clases:</p>
+<ul class="simple">
+<li><p>Dispositivo: tiene un método encender que imprime «Dispositivo encendido».</p></li>
+<li><p>Portátil: tiene un método transportar que imprime «Portátil transportado».</p></li>
+<li><p>Smartphone: hereda de ambas clases y agrega un método usar_red que imprime «Usando red móvil».</p></li>
+</ul>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Dispositivo</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">encender</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Dispositivo encendido"</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Portatil</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">transportar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Portátil transportado"</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Smartphone</span><span class="p">(</span><span class="n">Dispositivo</span><span class="p">,</span> <span class="n">Portatil</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">usar_red</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Usando red móvil"</span><span class="p">)</span>
+
+<span class="n">smartphone</span> <span class="o">=</span> <span class="n">Smartphone</span><span class="p">()</span>
+
+<span class="n">smartphone</span><span class="o">.</span><span class="n">encender</span><span class="p">()</span>
+
+<span class="n">smartphone</span><span class="o">.</span><span class="n">transportar</span><span class="p">()</span>
+
+<span class="n">smartphone</span><span class="o">.</span><span class="n">usar_red</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="herencia-multiple-adicionales2">
+<h2>herencia_multiple_adicionales2<a class="headerlink" href="#herencia-multiple-adicionales2" title="Link to this heading"></a></h2>
+<p>Animales con habilidades</p>
+<p>Crea tres clases:</p>
+<ul class="simple">
+<li><p>Animal: tiene un método comer que imprime «Este animal está comiendo».</p></li>
+<li><p>Volador: tiene un método volar que imprime «Este animal puede volar».</p></li>
+<li><p>PezVolador: hereda de ambas y puede comer y volar.</p></li>
+</ul>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Animal</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">comer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Este animal está comiendo"</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Volador</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">volar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Este animal puede volar"</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">PezVolador</span><span class="p">(</span><span class="n">Animal</span><span class="p">,</span> <span class="n">Volador</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="n">pez_volador</span> <span class="o">=</span> <span class="n">PezVolador</span><span class="p">()</span>
+
+<span class="n">pez_volador</span><span class="o">.</span><span class="n">comer</span><span class="p">()</span>
+
+<span class="n">pez_volador</span><span class="o">.</span><span class="n">volar</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="herencia-multiple-adicionales3">
+<h2>herencia_multiple_adicionales3<a class="headerlink" href="#herencia-multiple-adicionales3" title="Link to this heading"></a></h2>
+<p>Vehículos Terrestres y Acuáticos</p>
+<p>Crea tres clases:</p>
+<ul class="simple">
+<li><p>Vehiculo: con un método moverse que imprime «El vehículo se está moviendo».</p></li>
+<li><p>Terrestre: con un método usar_ruedas que imprime «Usando ruedas».</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">Anfibio</span><span class="p">:</span> <span class="n">hereda</span> <span class="n">de</span> <span class="n">ambas</span> <span class="n">y</span> <span class="n">puede</span> <span class="n">moverse</span> <span class="n">y</span> <span class="n">usar</span> <span class="n">ruedas</span><span class="o">.</span>
+</pre></div>
+</div>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Vehiculo</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">moverse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"El vehículo se está moviendo"</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Terrestre</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">usar_ruedas</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Usando ruedas"</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Anfibio</span><span class="p">(</span><span class="n">Vehiculo</span><span class="p">,</span> <span class="n">Terrestre</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="n">coche</span> <span class="o">=</span> <span class="n">Anfibio</span><span class="p">()</span>
+
+<span class="n">coche</span><span class="o">.</span><span class="n">moverse</span><span class="p">()</span>
+
+<span class="n">coche</span><span class="o">.</span><span class="n">usar_ruedas</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="herencia-multiple-adicionales4">
+<h2>herencia_multiple_adicionales4<a class="headerlink" href="#herencia-multiple-adicionales4" title="Link to this heading"></a></h2>
+<p>Empleados y Estudiantes</p>
+<p>Crea tres clases:</p>
+<ul class="simple">
+<li><p>Persona: tiene un atributo nombre y un método presentarse que imprime «Hola, soy {nombre}».</p></li>
+<li><p>Empleado: tiene un método trabajar que imprime «Estoy trabajando».</p></li>
+<li><p>Estudiante: hereda de ambas clases y puede presentarse, trabajar y estudiar.</p></li>
+</ul>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Persona</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nombre</span> <span class="o">=</span> <span class="n">nombre</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">presentarse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Hola, soy </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">nombre</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    
+<span class="k">class</span><span class="w"> </span><span class="nc">Empleado</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">trabajar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Estoy trabajando"</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Estudiante</span><span class="p">(</span><span class="n">Persona</span><span class="p">,</span> <span class="n">Empleado</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">estudiar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Estoy estudiando"</span><span class="p">)</span>
+
+<span class="n">estudiante</span> <span class="o">=</span> <span class="n">Estudiante</span><span class="p">(</span><span class="s2">"Jeiron"</span><span class="p">)</span>
+
+<span class="n">estudiante</span><span class="o">.</span><span class="n">presentarse</span><span class="p">()</span>
+
+<span class="n">estudiante</span><span class="o">.</span><span class="n">trabajar</span><span class="p">()</span>
+
+<span class="n">estudiante</span><span class="o">.</span><span class="n">estudiar</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="herencia-multiple-adicionales5">
+<h2>herencia_multiple_adicionales5<a class="headerlink" href="#herencia-multiple-adicionales5" title="Link to this heading"></a></h2>
+<p>Electrodomésticos</p>
+<p>Crea tres clases:</p>
+<ul class="simple">
+<li><p>Electrodomestico: tiene un método usar que imprime «Usando electrodoméstico».</p></li>
+<li><p>Refrigerador: tiene un método enfriar que imprime «Enfriando alimentos».</p></li>
+<li><p>Lavadora: tiene un método lavar que imprime «Lavando ropa».</p></li>
+<li><p>Crea una clase Combi que herede de Refrigerador y Lavadora.</p></li>
+</ul>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Electrodomestico</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">usar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Usando electrodoméstico"</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Refrigerador</span><span class="p">(</span><span class="n">Electrodomestico</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">enfriar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Enfriando alimentos"</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Lavadora</span><span class="p">(</span><span class="n">Electrodomestico</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">lavar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Lavando ropa"</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Combi</span><span class="p">(</span><span class="n">Refrigerador</span><span class="p">,</span> <span class="n">Lavadora</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="n">combi</span> <span class="o">=</span> <span class="n">Combi</span><span class="p">()</span>
+
+<span class="n">combi</span><span class="o">.</span><span class="n">usar</span><span class="p">()</span>
+
+<span class="n">combi</span><span class="o">.</span><span class="n">enfriar</span><span class="p">()</span>
+
+<span class="n">combi</span><span class="o">.</span><span class="n">lavar</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="herencia.html" class="btn btn-neutral float-left" title="Ejercicios — Herencia" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="introduccionpoo.html" class="btn btn-neutral float-right" title="Ejercicios — Introduccion POO" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+  <p>
+    © Copyright <span id="anio-copyright"></span> jeironpro.
+  </p>
+  <script>
+    document.getElementById("anio-copyright").textContent =
+      new Date().getFullYear();
+  </script>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

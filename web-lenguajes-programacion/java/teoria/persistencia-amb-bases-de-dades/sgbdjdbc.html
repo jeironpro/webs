@@ -1,0 +1,220 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SGBDJDBC &mdash; documentación de Lenguajes de programación - </title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/logo.svg"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=e2bb6099"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" title="Búsqueda" href="../../../search.html" />
+    <link rel="next" title="Validació daplicacions" href="../validacio-daplicacions/index.html" />
+    <link rel="prev" title="Persistencia" href="persistencia.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Lenguajes de programación
+              <img src="../../../_static/logo.svg" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lenguajes</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Java — DAW (ITIC Barcelona)</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#teoria">Teoría</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../elements-basics-de-la-programacio/index.html">Elements basics de la programacio</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../moduls/index.html">Moduls</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../poo/index.html">POO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../biblioteques/index.html">Biblioteques</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fitxers/index.html">Fitxers</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Persistencia amb bases de dades</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="poomodelrelacional.html">POO i model relacional</a></li>
+<li class="toctree-l4"><a class="reference internal" href="persistencia.html">Persistencia</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">SGBDJDBC</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../validacio-daplicacions/index.html">Validació daplicacions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#ejercicios">Ejercicios</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../python/index.html">Python — DCS (INFOTEP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../javascript/index.html">JavaScript — DCS (INFOTEP)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Lenguajes de programación</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Java — DAW (ITIC Barcelona)</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Persistencia amb bases de dades</a></li>
+      <li class="breadcrumb-item active">SGBDJDBC</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/java/teoria/persistencia-amb-bases-de-dades/sgbdjdbc.md.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="sgbdjdbc">
+<h1>SGBDJDBC<a class="headerlink" href="#sgbdjdbc" title="Link to this heading"></a></h1>
+<p><strong>El SGBD i el JDBC</strong>
+Un Sistema de Gestió de Bases de Dades (SGBD) és un programari que permet:</p>
+<ul class="simple">
+<li><p>Crear, consultar i modificar bases de dades</p></li>
+<li><p>Gestionar dades de forma estructurada (normalment amb SQL)</p></li>
+<li><p>Controlar l’access concurrent, la seguretat i la persistència</p></li>
+</ul>
+<p><strong>Exemples</strong></p>
+<ul class="simple">
+<li><p>MySQL</p></li>
+<li><p>PostgreSQL</p></li>
+<li><p>SQLite (lleuger i sense servidor)</p></li>
+<li><p>Oracle</p></li>
+<li><p>SQL Server</p></li>
+</ul>
+<p>JDBC (Java Database Connectivity) és l’API oficial de Java per connectar-se a base de dades relacionals.</p>
+<p><strong>Permet a Java</strong></p>
+<ul class="simple">
+<li><p>Establir una connexió amb el SGBD</p></li>
+<li><p>Executar consultes SQL (SELECT, INSERT, UPDATE…)</p></li>
+<li><p>Rebre i processar resultats</p></li>
+<li><p>Gestionar transaccions</p></li>
+</ul>
+<p><strong>Components de JDBC</strong>
+Component                       Funció principal
+DriverManager                   Carrega i gestiona els controladors JDBC
+Connection                      Representa la connexió amb la BD
+Statement / PreparedStatement   Executa consultes SQL
+ResultSet                       Conté els resultats de les consultes SELECT</p>
+<p><strong>Exemple</strong>
+Dependència (amb Maven):
+<dependency>
+<groupId>org.xerial</groupId>
+<artifactId>sqlite-jdbc</artifactId>
+<version>3.42.0.0</version>
+</dependency></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.sql.*</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ExempleJDBC</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"jdbc:sqlite:exemple.db"</span><span class="p">;</span>
+
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">Connection</span><span class="w"> </span><span class="n">conn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DriverManage</span><span class="p">.</span><span class="na">getConnection</span><span class="p">(</span><span class="n">url</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">Statement</span><span class="w"> </span><span class="n">stmt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conn</span><span class="p">.</span><span class="na">createStatement</span><span class="p">();</span>
+<span class="w">            </span><span class="n">ResultSet</span><span class="w"> </span><span class="n">rs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stmt</span><span class="p">.</span><span class="na">executeQuery</span><span class="p">(</span><span class="s">"SELECT * FROM usuaris"</span><span class="p">);</span>
+
+<span class="w">            </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="na">next</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">"Nom "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">rs</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="s">"nom"</span><span class="p">));</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>PreparedStatement per seguretat</strong>
+Millor usar PreparedStatement per evitar injeccions SQL:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">String</span><span class="w"> </span><span class="n">sql</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"SELECT * FROM usuaris WHERE email = ?"</span><span class="p">;</span>
+<span class="n">PreparedStatement</span><span class="w"> </span><span class="n">ps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conn</span><span class="p">.</span><span class="na">preparedStatment</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
+<span class="n">ps</span><span class="p">.</span><span class="na">setString</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s">"algun@domini.com"</span><span class="p">);</span>
+<span class="n">ResultSet</span><span class="w"> </span><span class="n">rs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ps</span><span class="p">.</span><span class="na">executeQuery</span><span class="p">();</span>
+</pre></div>
+</div>
+<p><strong>Exceptions i SQLException</strong>
+La majoria d’operacions JDBC poden llançar SQLException, que cal capturar o declarar amb throws.</p>
+<p><strong>Avantatges del JDBC</strong></p>
+<ul class="simple">
+<li><p>Estàndard oficial en Java</p></li>
+<li><p>Control total de les consultes SQL</p></li>
+<li><p>Compatible amb qualsevol SGBD que tingui driver JDBC</p></li>
+</ul>
+<p><strong>Inconvenients</strong></p>
+<ul class="simple">
+<li><p>Requereix molt codi repetitiu (boilerplate)</p></li>
+<li><p>La conversió entre objectes Java i resultats SQL és manual</p></li>
+</ul>
+<p>Per això es pot complementar amb biblioteques ORM com Hibernate o JPA per automatitzar aquest mapeig.</p>
+<p><strong>El SGBD s’encarrega de gestionar les dades</strong>
+El JDBC és el pont entre Java i el SGBD
+Amb JDBC podem fer CRUD (Create, Read, Update, Delete)
+És essencial per fer persistents els objectes Java en una BD</p>
+</section>
+
+
+           </div>
+          </div>
+          
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="persistencia.html" class="btn btn-neutral float-left" title="Persistencia" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="../validacio-daplicacions/index.html" class="btn btn-neutral float-right" title="Validació daplicacions" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+  <p>
+    © Copyright <span id="anio-copyright"></span> jeironpro.
+  </p>
+  <script>
+    document.getElementById("anio-copyright").textContent =
+      new Date().getFullYear();
+  </script>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

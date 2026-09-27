@@ -1,0 +1,255 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Herencia múltiple &mdash; documentación de Lenguajes de programación - </title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/logo.svg"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=e2bb6099"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" title="Búsqueda" href="../../../search.html" />
+    <link rel="next" title="Introducción a la POO" href="introduccionpoo.html" />
+    <link rel="prev" title="Herencia" href="herencia.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Lenguajes de programación
+              <img src="../../../_static/logo.svg" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lenguajes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../java/index.html">Java — DAW (ITIC Barcelona)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Python — DCS (INFOTEP)</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#teoria">Teoría</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython/index.html">Elementos básicos de la programación en Python</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Introducción a la programación orientada a objetos en Python</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="clasesabstractas.html">Clases abstractas</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dataclasses.html">Dataclasses</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ducktyping.html">Duck typing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="encapsulamiento.html">Encapsulamiento</a></li>
+<li class="toctree-l4"><a class="reference internal" href="encapsulamientodemetodos.html">Encapsulamiento de métodos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="herencia.html">Herencia</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Herencia múltiple</a></li>
+<li class="toctree-l4"><a class="reference internal" href="introduccionpoo.html">Introducción a la POO</a></li>
+<li class="toctree-l4"><a class="reference internal" href="metodosmagicos.html">Métodos mágicos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="polimorfismo.html">Polimorfismo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sobrecargademetodos.html">Sobrecarga de métodos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="super.html">Super</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#frameworks">Frameworks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#ejercicios">Ejercicios</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../javascript/index.html">JavaScript — DCS (INFOTEP)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Lenguajes de programación</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Python — DCS (INFOTEP)</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Introducción a la programación orientada a objetos en Python</a></li>
+      <li class="breadcrumb-item active">Herencia múltiple</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/python/teoria/introduccionalaprogramacionorientadaaobjetosenpython/herenciamultiple.md.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="herencia-multiple">
+<h1>Herencia múltiple<a class="headerlink" href="#herencia-multiple" title="Link to this heading"></a></h1>
+<p><strong>« Herencia múltiple</strong>
+La herencia múltiple ocurre cuando una clase hereda de más de una clase base. En Python, se permite heredar de múltiples clases, y esto se logra especificando varias clases base entre paréntesis al definir la clase derivada.</p>
+<p>Herencia múltiple: Se refiere a la posibilidad de crear una clase a partir de múltiples clases superiores.</p>
+<p><strong>Sintaxis</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Hm1</span><span class="p">:</span>
+    <span class="c1"># Métodos y atributos de la clase Hm1</span>
+    <span class="k">pass</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Hm2</span><span class="p">:</span>
+    <span class="c1"># Métodos y atributos de la clase Hm2</span>
+    <span class="k">pass</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">DerivadoMultiples</span><span class="p">(</span><span class="n">Hm1</span><span class="p">,</span> <span class="n">Hm2</span><span class="p">)</span>
+    <span class="c1"># Métodos y atributos adicionales de la ClaseDerivada</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<p>Herencia multinivel: Las características de la clase base y de las clases derivadas se heredan en una nueva clase derivada, formando una cadena de herencia.</p>
+<p><strong>Sintaxis</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Base</span><span class="p">:</span>
+    <span class="k">pass</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Derivado1</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Derivado2</span><span class="p">(</span><span class="n">Derivado1</span><span class="p">):</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<p><strong>Orden de resolución de métodos (MRO)</strong>
+Python utiliza el algoritmo C3 Linearization para determinar el orden en el que se buscan los métodos en una jerarquía de herencia múltiple. Este orden puede consultarse utilizando el atributo especial <strong>mro</strong> o el método help().</p>
+<p><strong>Ejemplo</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">Perro</span><span class="o">.</span><span class="vm">__mro__</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Ventajas de la herencia múltiple</strong></p>
+<ol class="arabic simple">
+<li><p>Reutilización de código: puedes combinar funcionalidades de diferentes clases base.</p></li>
+</ol>
+<ul class="simple">
+<li><p><strong>2.</strong> Flexibilidad: permite modelar objetos complejos que comparten comportamientos de múltiples clases.</p></li>
+</ul>
+<p><strong>Desafios de la herencia múltiple</strong></p>
+<ol class="arabic simple">
+<li><p>Confusión: puede generar conflitos si las clases base tienen métodos o atributos con el mismo nombre.</p></li>
+</ol>
+<ul class="simple">
+<li><p><strong>2.</strong> Complejidad: es más difícil de entender y mantener que la herencia simple.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ejemplo 1 de herencia múltiple</span>
+<span class="c1"># En este ejemplo, la clase Perro hereda métodos tanto de Animal como de Mascota.</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Animal</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">sonido</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">"Sonido de un animal"</span>
+    
+<span class="k">class</span><span class="w"> </span><span class="nc">Mascota</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">tipo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">"Es una mascota"</span>
+    
+<span class="k">class</span><span class="w"> </span><span class="nc">Perro</span><span class="p">(</span><span class="n">Animal</span><span class="p">,</span> <span class="n">Mascota</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">sonido</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">"Ladra"</span>
+    
+<span class="c1"># Crear un obejto de la clase Perro</span>
+<span class="n">mi_perro</span> <span class="o">=</span> <span class="n">Perro</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mi_perro</span><span class="o">.</span><span class="n">sonido</span><span class="p">())</span> <span class="c1"># Salida: Ladra</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mi_perro</span><span class="o">.</span><span class="n">tipo</span><span class="p">())</span> <span class="c1"># Salida: Es una mascota</span>
+
+<span class="c1"># Ejemplo 2 de herencia múltiple</span>
+<span class="c1"># Crear una clase</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Telefono</span><span class="p">:</span>
+    <span class="c1"># Definir constructor</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="c1"># Crear acciones o métodos</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">llamar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Llamando..."</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">ocupado</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Ocupado..."</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Camara</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">fotografia</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Tomando fotos..."</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Reproduccion</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">reproduccion_musica</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Reproduciendo música..."</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">reproduccion_video</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Reproduciendo video..."</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Smartphone</span><span class="p">(</span><span class="n">Telefono</span><span class="p">,</span> <span class="n">Camara</span><span class="p">,</span> <span class="n">Reproduccion</span><span class="p">):</span>
+    <span class="c1"># El método __del__ se utiliza para limpiar los recursos</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Teléfono apagado!"</span><span class="p">)</span>
+
+<span class="c1"># Crear un objeto</span>
+<span class="n">movil</span> <span class="o">=</span> <span class="n">Smartphone</span><span class="p">()</span>
+
+<span class="c1"># Llamar al método ocupado</span>
+<span class="n">movil</span><span class="o">.</span><span class="n">ocupado</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="herencia.html" class="btn btn-neutral float-left" title="Herencia" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="introduccionpoo.html" class="btn btn-neutral float-right" title="Introducción a la POO" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+  <p>
+    © Copyright <span id="anio-copyright"></span> jeironpro.
+  </p>
+  <script>
+    document.getElementById("anio-copyright").textContent =
+      new Date().getFullYear();
+  </script>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

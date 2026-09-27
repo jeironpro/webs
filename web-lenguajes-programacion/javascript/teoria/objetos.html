@@ -1,0 +1,394 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Objetos &mdash; documentación de Lenguajes de programación - </title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/logo.svg"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=e2bb6099"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="search" title="Búsqueda" href="../../search.html" />
+    <link rel="next" title="DOM" href="dom.html" />
+    <link rel="prev" title="Funciones" href="funciones.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Lenguajes de programación
+              <img src="../../_static/logo.svg" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lenguajes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../java/index.html">Java — DAW (ITIC Barcelona)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python/index.html">Python — DCS (INFOTEP)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">JavaScript — DCS (INFOTEP)</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#teoria">Teoría</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduccion.html">Introducción</a></li>
+<li class="toctree-l3"><a class="reference internal" href="variables.html">Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="operadores.html">Operadores</a></li>
+<li class="toctree-l3"><a class="reference internal" href="estructurasdecontrol.html">Estructuras de control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="arrays.html">Arrays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="funciones.html">Funciones</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Objetos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dom.html">DOM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eventos.html">Eventos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="formularios.html">Formularios</a></li>
+<li class="toctree-l3"><a class="reference internal" href="formularios/index.html">Formularios</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#ejercicios">Ejercicios</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Lenguajes de programación</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">JavaScript — DCS (INFOTEP)</a></li>
+      <li class="breadcrumb-item active">Objetos</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/javascript/teoria/objetos.md.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="objetos">
+<h1>Objetos<a class="headerlink" href="#objetos" title="Link to this heading"></a></h1>
+<p><strong>Objetos en JavaScript</strong>
+En JavaScript, un objeto es una colección de datos y funcionalidades relacionadas. Un objeto es una estructura de datos que almacena propiedades y métodos.</p>
+<p><strong>Crear Objetos</strong>
+Puedes crear objetos de dos maneras principales:</p>
+<ul class="simple">
+<li><p><strong>1.</strong> Usando la notación literal de objetos:</p></li>
+</ul>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">persona</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+</pre></div>
+</div>
+<p>nombre: «Juan»,
+edad: 30,</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nx">saludar</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Hola, "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">nombre</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p><strong>En este ejemplo</strong></p>
+<ul class="simple">
+<li><p>Propiedades: nombre y edad.</p></li>
+<li><p>Método: saludar, que es una función dentro del objeto.</p></li>
+<li><p><strong>2.</strong> Usando el constructor de objetos new Object():</p></li>
+</ul>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">persona</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Object</span><span class="p">();</span>
+<span class="nx">persona</span><span class="p">.</span><span class="nx">nombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Juan"</span><span class="p">;</span>
+<span class="nx">persona</span><span class="p">.</span><span class="nx">edad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">30</span><span class="p">;</span>
+<span class="nx">persona</span><span class="p">.</span><span class="nx">saludar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Hola, "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">nombre</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p><strong>Acceder a las Propiedades del Objeto</strong>
+Puedes acceder a las propiedades de un objeto de dos maneras:</p>
+<ul class="simple">
+<li><p><strong>1.</strong> Usando la notación de punto:</p></li>
+</ul>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">persona</span><span class="p">.</span><span class="nx">nombre</span><span class="p">);</span><span class="w">  </span><span class="c1">// Juan</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>2.</strong> Usando la notación de corchetes:</p></li>
+</ul>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">persona</span><span class="p">[</span><span class="s2">"edad"</span><span class="p">]);</span><span class="w">  </span><span class="c1">// 30</span>
+</pre></div>
+</div>
+<p><strong>Modificar Propiedades de un Objeto</strong>
+Puedes modificar las propiedades de un objeto directamente:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">persona</span><span class="p">.</span><span class="nx">edad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">31</span><span class="p">;</span>
+<span class="nx">persona</span><span class="p">.</span><span class="nx">nombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Carlos"</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">persona</span><span class="p">.</span><span class="nx">nombre</span><span class="p">);</span><span class="w">  </span><span class="c1">// Carlos</span>
+</pre></div>
+</div>
+<p><strong>Añadir Nuevas Propiedades</strong>
+Puedes añadir nuevas propiedades a un objeto en cualquier momento:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">persona</span><span class="p">.</span><span class="nx">direccion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Calle Falsa 123"</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">persona</span><span class="p">.</span><span class="nx">direccion</span><span class="p">);</span><span class="w">  </span><span class="c1">// Calle Falsa 123</span>
+</pre></div>
+</div>
+<p><strong>Eliminar Propiedades</strong>
+Puedes eliminar una propiedad de un objeto usando el operador delete:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="ow">delete</span><span class="w"> </span><span class="nx">persona</span><span class="p">.</span><span class="nx">direccion</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">persona</span><span class="p">.</span><span class="nx">direccion</span><span class="p">);</span><span class="w">  </span><span class="c1">// undefined</span>
+</pre></div>
+</div>
+<p><strong>Métodos en Objetos</strong>
+Un objeto puede tener métodos, que son funciones asociadas al objeto. Estos métodos pueden acceder y modificar las propiedades del objeto.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">coche</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+</pre></div>
+</div>
+<p>marca: «Toyota»,
+modelo: «Corolla»,</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nx">mostrarInformacion</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="s2">"Marca: "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">marca</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">", Modelo: "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">modelo</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">coche</span><span class="p">.</span><span class="nx">mostrarInformacion</span><span class="p">());</span><span class="w">  </span><span class="c1">// Marca: Toyota, Modelo: Corolla</span>
+</pre></div>
+</div>
+<p><strong>El Operador this</strong>
+Dentro de un objeto, el operador this se refiere al propio objeto. Es útil cuando deseas acceder a las propiedades del objeto desde dentro de sus métodos.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">persona</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+</pre></div>
+</div>
+<p>nombre: «Ana»,</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nx">saludar</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Hola, "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">nombre</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">persona</span><span class="p">.</span><span class="nx">saludar</span><span class="p">();</span><span class="w">  </span><span class="c1">// Hola, Ana</span>
+</pre></div>
+</div>
+<p><strong>Objetos Anidados</strong>
+Los objetos en JavaScript pueden contener otros objetos como propiedades. Esto se llama anidamiento de objetos.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">persona</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+</pre></div>
+</div>
+<p>nombre: «Laura»,</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nx">direccion</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+</pre></div>
+</div>
+<p>calle: «Av. Siempre Viva»,
+ciudad: «Springfield»</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">persona</span><span class="p">.</span><span class="nx">direccion</span><span class="p">.</span><span class="nx">ciudad</span><span class="p">);</span><span class="w">  </span><span class="c1">// Springfield</span>
+</pre></div>
+</div>
+<p><strong>Recorrer las Propiedades de un Objeto</strong>
+Puedes usar un bucle for…in para recorrer todas las propiedades de un objeto.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">coche</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+</pre></div>
+</div>
+<p>marca: «Honda»,
+modelo: «Civic»,
+año: 2020</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">};</span>
+
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">propiedad</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nx">coche</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">propiedad</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">": "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">coche</span><span class="p">[</span><span class="nx">propiedad</span><span class="p">]);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Métodos Object.keys(), Object.values() y Object.entries()</strong>
+Estos métodos te permiten obtener las claves, los valores o las entradas (pares clave-valor) de un objeto.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">persona</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+</pre></div>
+</div>
+<p>nombre: «Miguel»,
+edad: 25</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">};</span>
+</pre></div>
+</div>
+<p><strong>// Obtener todas las claves</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">persona</span><span class="p">));</span><span class="w">  </span><span class="c1">// ["nombre", "edad"]</span>
+</pre></div>
+</div>
+<p><strong>// Obtener todos los valores</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">values</span><span class="p">(</span><span class="nx">persona</span><span class="p">));</span><span class="w">  </span><span class="c1">// ["Miguel", 25]</span>
+</pre></div>
+</div>
+<p><strong>// Obtener las entradas (pares clave-valor)</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">entries</span><span class="p">(</span><span class="nx">persona</span><span class="p">));</span><span class="w">  </span><span class="c1">// [["nombre", "Miguel"], ["edad", 25]]</span>
+
+<span class="c1">// Ejemplos de uso de la clase Math</span>
+<span class="c1">// Exponente: Eleva 2 a la potencia de 3</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s2">"El exponente es "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">pow</span><span class="p">(</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">"&lt;br&gt;"</span><span class="p">);</span>
+
+<span class="c1">// Raíz cuadrada: Calcula la raíz cuadrada de 25</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s2">"La raíz cuadrada del número introducido es "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">sqrt</span><span class="p">(</span><span class="mf">25</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">"&lt;br&gt;"</span><span class="p">);</span>
+
+<span class="c1">// Valor aleatorio: Genera un número aleatorio entre 0 y 1</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s2">"El valor aleatorio obtenido es "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">"&lt;br&gt;"</span><span class="p">);</span>
+
+<span class="c1">// Ejemplo 1: Solicitar un número entre 1 y 10 al usuario</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">seleccion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">prompt</span><span class="p">(</span><span class="s2">"Ingrese un número entre 1 y 10"</span><span class="p">,</span><span class="w"> </span><span class="s2">""</span><span class="p">));</span>
+
+<span class="cm">/* Al multiplicar Math.random() por 10, obtenemos un valor aleatorio entre 0 y 10 (sin incluir el 10). </span>
+<span class="cm">   Luego, con Math.floor(), convertimos este valor en un número entero entre 0 y 9.</span>
+<span class="cm">   Finalmente, sumamos 1 para obtener un número entre 1 y 10. */</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">10</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+
+<span class="c1">// Comprobamos si el número seleccionado por el usuario es igual al número aleatorio</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">num</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nx">seleccion</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s2">"¡Usted ha ganado con el número "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">num</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">"!"</span><span class="p">);</span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s2">"Lo sentimos, pero el número ganador es el "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">num</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">", y usted eligió el número "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">seleccion</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">"."</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Ejemplos de fecha</span>
+<span class="c1">// Arreglos de días y meses</span>
+<span class="nx">listaDia</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Array</span><span class="p">(</span><span class="s2">"Domingo"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Lunes"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Martes"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Miércoles"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Jueves"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Viernes"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Sábado"</span><span class="p">);</span>
+<span class="nx">listaMes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Array</span><span class="p">(</span><span class="s2">"Enero"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Febrero"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Marzo"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Abril"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Mayo"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Junio"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Julio"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Agosto"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Septiembre"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Octubre"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Noviembre"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Diciembre"</span><span class="p">);</span>
+
+<span class="c1">// Obtener la fecha y hora actuales</span>
+<span class="nx">hoy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">();</span>
+<span class="nx">diaN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">hoy</span><span class="p">.</span><span class="nx">getDate</span><span class="p">();</span><span class="w"> </span><span class="c1">// Día del mes</span>
+<span class="nx">dia</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">listaDia</span><span class="p">[</span><span class="nx">hoy</span><span class="p">.</span><span class="nx">getDay</span><span class="p">()];</span><span class="w"> </span><span class="c1">// Día de la semana</span>
+<span class="nx">mes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">listaMes</span><span class="p">[</span><span class="nx">hoy</span><span class="p">.</span><span class="nx">getMonth</span><span class="p">()];</span><span class="w"> </span><span class="c1">// Mes actual</span>
+<span class="nx">año</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">hoy</span><span class="p">.</span><span class="nx">getFullYear</span><span class="p">();</span><span class="w"> </span><span class="c1">// Año actual</span>
+
+<span class="c1">// Mostrar la fecha en formato "Día, Día de mes de Año"</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">dia</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">", "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">diaN</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">" de "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">mes</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">" del "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">año</span><span class="p">);</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s2">", "</span><span class="p">);</span>
+
+<span class="c1">// Mostrar la hora en formato "hh:mm:ss", asegurando que los minutos y segundos tengan dos dígitos</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">hoy</span><span class="p">.</span><span class="nx">getHours</span><span class="p">().</span><span class="nx">toString</span><span class="p">().</span><span class="nx">padStart</span><span class="p">(</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="s1">'0'</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">":"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">hoy</span><span class="p">.</span><span class="nx">getMinutes</span><span class="p">().</span><span class="nx">toString</span><span class="p">().</span><span class="nx">padStart</span><span class="p">(</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="s1">'0'</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">":"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">hoy</span><span class="p">.</span><span class="nx">getSeconds</span><span class="p">().</span><span class="nx">toString</span><span class="p">().</span><span class="nx">padStart</span><span class="p">(</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="s1">'0'</span><span class="p">));</span>
+
+<span class="c1">// Ejemplos de setInterval</span>
+<span class="cm">/* El método setInterval llama a una función o evalúa una expresión en intervalos específicos, en milisegundos. </span>
+<span class="cm">   El método seguirá llamando a la función hasta que clearInterval() sea llamado o la ventana sea cerrada. */</span>
+
+<span class="c1">// Iniciar la ejecución del reloj</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">intervalo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">setInterval</span><span class="p">(</span><span class="nx">miReloj</span><span class="p">,</span><span class="w"> </span><span class="mf">1000</span><span class="p">);</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">miReloj</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Date</span><span class="p">();</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">d</span><span class="p">.</span><span class="nx">toLocaleTimeString</span><span class="p">();</span>
+<span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"hora"</span><span class="p">).</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">t</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span>
+
+<span class="c1">// Detener la ejecución del reloj</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">detenerFuncion</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">clearInterval</span><span class="p">(</span><span class="nx">intervalo</span><span class="p">);</span>
+<span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"ocultar"</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">visibility</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"hidden"</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Crear una barra de progreso</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">mover</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">elemento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"miBarra"</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">ancho</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1">// Iniciar el intervalo para mover la barra</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">setInterval</span><span class="p">(</span><span class="nx">cuadro</span><span class="p">,</span><span class="w"> </span><span class="mf">100</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">cuadro</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">ancho</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mf">100</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">clearInterval</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span><span class="w">  </span><span class="c1">// Detener la barra de progreso cuando llega al 100%</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">ancho</span><span class="o">++</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">elemento</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ancho</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">"%"</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Cambiar entre dos colores de fondo</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">colorFondo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">setInterval</span><span class="p">(</span><span class="nx">configurarColor</span><span class="p">,</span><span class="w"> </span><span class="mf">300</span><span class="p">);</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">configurarColor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">x</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">backgroundColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">x</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">backgroundColor</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"orange"</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s2">"yellow"</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s2">"orange"</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Detener el cambio de color</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">detenerColor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">clearInterval</span><span class="p">(</span><span class="nx">colorFondo</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Ejemplos de setTimeout</span>
+<span class="c1">// El método setTimeout llama a una función o evalúa una expresión después de un número específico de milisegundos. </span>
+
+<span class="c1">// La función se ejecuta solo una vez.</span>
+<span class="c1">// Sintaxis: setTimeout(function, milisegundos, param1, param2...)</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">miAlerta</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Llamar a la función funcionAlerta después de 3000 milisegundos (3 segundos)</span>
+<span class="w">    </span><span class="nx">setTimeout</span><span class="p">(</span><span class="nx">funcionAlerta</span><span class="p">,</span><span class="w"> </span><span class="mf">3000</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">funcionAlerta</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Mostrar la alerta después de 3 segundos</span>
+<span class="w">    </span><span class="nx">alert</span><span class="p">(</span><span class="s2">"Diseño y Creación de Software"</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="funciones.html" class="btn btn-neutral float-left" title="Funciones" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="dom.html" class="btn btn-neutral float-right" title="DOM" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+  <p>
+    © Copyright <span id="anio-copyright"></span> jeironpro.
+  </p>
+  <script>
+    document.getElementById("anio-copyright").textContent =
+      new Date().getFullYear();
+  </script>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

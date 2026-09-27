@@ -1,0 +1,325 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ejercicios — Encapsulamiento de métodos &mdash; documentación de Lenguajes de programación - </title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/logo.svg"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=e2bb6099"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" title="Búsqueda" href="../../../search.html" />
+    <link rel="next" title="Ejercicios — Herencia" href="herencia.html" />
+    <link rel="prev" title="Ejercicios — Encapsulamiento" href="encapsulamiento.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Lenguajes de programación
+              <img src="../../../_static/logo.svg" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lenguajes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../java/index.html">Java — DAW (ITIC Barcelona)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Python — DCS (INFOTEP)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#teoria">Teoría</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#frameworks">Frameworks</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#ejercicios">Ejercicios</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../ejercicios.html">Ejercicios</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython.html">Ejercicios — Elementos básicos de la programación en Python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython/introduccion.html">Ejercicios — Introducción</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython/entradaysalidadedatos.html">Ejercicios — Entrada y salida de datos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython/variablesytiposdedatos.html">Ejercicios — Variables y tipos de datos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython/operadores.html">Ejercicios — Operadores</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython/condicionales.html">Ejercicios — Condicionales</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython/bucles.html">Ejercicios — Bucles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython/colecciones.html">Ejercicios — Colecciones</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython/funciones.html">Ejercicios — Funciones</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduccionalaprogramacionorientadaaobjetosenpython.html">Ejercicios — Introducción a la programación orientada a objetos en Python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="apis.html">Ejercicios — Apis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="clasesabstractas.html">Ejercicios — Clases abstractas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dataclasses.html">Ejercicios — Dataclasses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ducktyping.html">Ejercicios — Ducktyping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="encapsulamiento.html">Ejercicios — Encapsulamiento</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Ejercicios — Encapsulamiento de métodos</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#encapsulamiento-de-metodos-adicionales1">encapsulamiento_de_metodos_adicionales1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#encapsulamiento-de-metodos-adicionales2">encapsulamiento_de_metodos_adicionales2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#encapsulamiento-de-metodos-adicionales3">encapsulamiento_de_metodos_adicionales3</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#encapsulamiento-de-metodos-adicionales4">encapsulamiento_de_metodos_adicionales4</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#encapsulamiento-de-metodos-adicionales5">encapsulamiento_de_metodos_adicionales5</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="herencia.html">Ejercicios — Herencia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="herenciamultiple.html">Ejercicios — Herencia múltiple</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduccionpoo.html">Ejercicios — Introduccion POO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="metodosmagicos.html">Ejercicios — Métodos mágicos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polimorfismo.html">Ejercicios — Polimorfismo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sobrecargademetodos.html">Ejercicios — Sobrecarga de métodos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="super.html">Ejercicios — Super</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../javascript/index.html">JavaScript — DCS (INFOTEP)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Lenguajes de programación</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Python — DCS (INFOTEP)</a></li>
+          <li class="breadcrumb-item"><a href="../../ejercicios.html">Ejercicios</a></li>
+          <li class="breadcrumb-item"><a href="../introduccionalaprogramacionorientadaaobjetosenpython.html">Ejercicios — Introducción a la programación orientada a objetos en Python</a></li>
+      <li class="breadcrumb-item active">Ejercicios — Encapsulamiento de métodos</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/python/ejercicios/introduccionalaprogramacionorientadaaobjetosenpython/encapsulamientodemetodos.md.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ejercicios-encapsulamiento-de-metodos">
+<h1>Ejercicios — Encapsulamiento de métodos<a class="headerlink" href="#ejercicios-encapsulamiento-de-metodos" title="Link to this heading"></a></h1>
+<section id="encapsulamiento-de-metodos-adicionales1">
+<h2>encapsulamiento_de_metodos_adicionales1<a class="headerlink" href="#encapsulamiento-de-metodos-adicionales1" title="Link to this heading"></a></h2>
+<p>Atributos privados y métodos getter/setter</p>
+<p>Crea una clase Coche con el atributo privado __velocidad que representa la velocidad del coche. Implementa un método getter llamado get_velocidad() para obtener el valor de __velocidad y un método setter llamado set_velocidad() para actualizar la velocidad, asegurando que no pueda ser negativa. Luego, crea una instancia de Coche y prueba los métodos getter y setter.</p>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Coche</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">velocidad</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__velocidad</span> <span class="o">=</span> <span class="n">velocidad</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_velocidad</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__velocidad</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_velocidad</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">velocidad</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">velocidad</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__velocidad</span> <span class="o">=</span> <span class="n">velocidad</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"La velocidad debe ser mayor o igual a 0"</span><span class="p">)</span>
+
+<span class="n">coche</span> <span class="o">=</span> <span class="n">Coche</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"La velocidad inicial del coche es: </span><span class="si">{</span><span class="n">coche</span><span class="o">.</span><span class="n">get_velocidad</span><span class="p">()</span><span class="si">}</span><span class="s2"> km/h"</span><span class="p">)</span>
+
+<span class="n">coche</span><span class="o">.</span><span class="n">set_velocidad</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"La nueva velocidad del coche es: </span><span class="si">{</span><span class="n">coche</span><span class="o">.</span><span class="n">get_velocidad</span><span class="p">()</span><span class="si">}</span><span class="s2"> km/h"</span><span class="p">)</span>
+
+<span class="n">coche</span><span class="o">.</span><span class="n">set_velocidad</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Después de intentar establecer una velocidad negativa, la velocidad es: </span><span class="si">{</span><span class="n">coche</span><span class="o">.</span><span class="n">get_velocidad</span><span class="p">()</span><span class="si">}</span><span class="s2"> km/h"</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="encapsulamiento-de-metodos-adicionales2">
+<h2>encapsulamiento_de_metodos_adicionales2<a class="headerlink" href="#encapsulamiento-de-metodos-adicionales2" title="Link to this heading"></a></h2>
+<p>Métodos públicos y privados</p>
+<p>Crea una clase CuentaBancaria con los siguientes atributos privados: __saldo y __titular. Implementa un método público llamado depositar() que aumente el saldo y otro método público llamado retirar() que disminuya el saldo. Además, implementa un método privado __calcular_comision() que calcule una comisión de 1% al retirar dinero. Asegúrate de que el saldo nunca se vuelva negativo.</p>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">CuentaBancaria</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">titular</span><span class="p">,</span> <span class="n">saldo</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__titular</span> <span class="o">=</span> <span class="n">titular</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__saldo</span> <span class="o">=</span> <span class="n">saldo</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">depositar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">monto</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">monto</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__saldo</span> <span class="o">+=</span> <span class="n">monto</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Se ha depositado </span><span class="si">{</span><span class="n">monto</span><span class="si">}</span><span class="s2">. Nuevo saldo: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">__saldo</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"Error: El monto a depositar debe ser mayor a 0."</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">retirar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">monto</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">monto</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">comision</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__calcular_comision</span><span class="p">(</span><span class="n">monto</span><span class="p">)</span>
+            <span class="n">total_retiro</span> <span class="o">=</span> <span class="n">monto</span> <span class="o">+</span> <span class="n">comision</span>
+            <span class="k">if</span> <span class="n">total_retiro</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__saldo</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__saldo</span> <span class="o">-=</span> <span class="n">total_retiro</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Se ha retirado </span><span class="si">{</span><span class="n">monto</span><span class="si">}</span><span class="s2"> de su cuenta. Comisión: </span><span class="si">{</span><span class="n">comision</span><span class="si">}</span><span class="s2">. Nuevo saldo: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">__saldo</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Error: Usted no cuenta con saldo suficiente para realizar el retiro"</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Error: El monto a retirar deber ser mayor a 0."</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">__calcular_comision</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">monto</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">monto</span> <span class="o">*</span> <span class="mf">0.01</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">consultar_saldo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__saldo</span>
+    
+<span class="n">cuenta</span> <span class="o">=</span> <span class="n">CuentaBancaria</span><span class="p">(</span><span class="s2">"Jeiron Espinal"</span><span class="p">,</span> <span class="mi">50000</span><span class="p">)</span>
+
+<span class="n">cuenta</span><span class="o">.</span><span class="n">depositar</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+<span class="n">cuenta</span><span class="o">.</span><span class="n">retirar</span><span class="p">(</span><span class="mi">20000</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Saldo actual: </span><span class="si">{</span><span class="n">cuenta</span><span class="o">.</span><span class="n">consultar_saldo</span><span class="p">()</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span> 
+
+<span class="n">cuenta</span><span class="o">.</span><span class="n">retirar</span><span class="p">(</span><span class="mi">50000</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="encapsulamiento-de-metodos-adicionales3">
+<h2>encapsulamiento_de_metodos_adicionales3<a class="headerlink" href="#encapsulamiento-de-metodos-adicionales3" title="Link to this heading"></a></h2>
+<p>Control de acceso con setters</p>
+<p>Crea una clase Producto con el atributo privado __precio. Implementa un método setter que verifique que el precio no sea negativo y otro getter para obtener el valor del precio. Crea una instancia de la clase y prueba los métodos setter y getter para asegurarte de que el precio no pueda ser negativo.</p>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Producto</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">precio</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__precio</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_precio</span><span class="p">(</span><span class="n">precio</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_precio</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__precio</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_precio</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">precio</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">precio</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__precio</span> <span class="o">=</span> <span class="n">precio</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"El precio se ha establecido en </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">__precio</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"Error: El precio debe ser mayor a 0"</span><span class="p">)</span>
+
+<span class="n">producto</span> <span class="o">=</span> <span class="n">Producto</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Precio: </span><span class="si">{</span><span class="n">producto</span><span class="o">.</span><span class="n">get_precio</span><span class="p">()</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+
+<span class="n">producto</span><span class="o">.</span><span class="n">set_precio</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Nuevo precio: </span><span class="si">{</span><span class="n">producto</span><span class="o">.</span><span class="n">get_precio</span><span class="p">()</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+
+<span class="n">producto</span><span class="o">.</span><span class="n">set_precio</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Precio final: </span><span class="si">{</span><span class="n">producto</span><span class="o">.</span><span class="n">get_precio</span><span class="p">()</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="encapsulamiento-de-metodos-adicionales4">
+<h2>encapsulamiento_de_metodos_adicionales4<a class="headerlink" href="#encapsulamiento-de-metodos-adicionales4" title="Link to this heading"></a></h2>
+<p>Herencia y encapsulamiento</p>
+<p>Crea una clase base Empleado con el atributo privado __nombre y un método público mostrar_nombre() que devuelva el nombre del empleado. Luego, crea una clase derivada Gerente que herede de Empleado y tenga el atributo privado __departamento. Implementa un método público mostrar_departamento() que devuelva el departamento del gerente. Asegúrate de que el atributo __nombre siga siendo privado en la clase base y no pueda ser modificado directamente desde la clase derivada.</p>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Empleado</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__nombre</span> <span class="o">=</span> <span class="n">nombre</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">mostrar_nombre</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__nombre</span>
+    
+<span class="k">class</span><span class="w"> </span><span class="nc">Gerente</span><span class="p">(</span><span class="n">Empleado</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">departamento</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">nombre</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__departamento</span> <span class="o">=</span> <span class="n">departamento</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">mostrar_departamento</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__departamento</span>
+
+<span class="n">gerente</span> <span class="o">=</span> <span class="n">Gerente</span><span class="p">(</span><span class="s2">"Jeiron"</span><span class="p">,</span> <span class="s2">"Recursos Humanos"</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Nombre del gerente: </span><span class="si">{</span><span class="n">gerente</span><span class="o">.</span><span class="n">mostrar_nombre</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Departamento del gerente: </span><span class="si">{</span><span class="n">gerente</span><span class="o">.</span><span class="n">mostrar_departamento</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="encapsulamiento-de-metodos-adicionales5">
+<h2>encapsulamiento_de_metodos_adicionales5<a class="headerlink" href="#encapsulamiento-de-metodos-adicionales5" title="Link to this heading"></a></h2>
+<p>Encapsulamiento con métodos especiales</p>
+<p>Crea una clase Producto con el atributo privado __precio. Implementa el método especial <strong>str</strong>() para que, al imprimir un objeto de tipo Producto, se muestre el precio en un formato adecuado. Asegúrate de que el precio sea privado y no se acceda directamente desde fuera de la clase.</p>
+<p><strong>Solución</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Producto</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">precio</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">precio</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"El precio no puede ser negativo."</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__precio</span> <span class="o">=</span> <span class="n">precio</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_precio</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__precio</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_precio</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">precio</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">precio</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"El precio no puede ser negativo."</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__precio</span> <span class="o">=</span> <span class="n">precio</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">"Precio del producto: $</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">__precio</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span>
+
+<span class="n">producto</span> <span class="o">=</span> <span class="n">Producto</span><span class="p">(</span><span class="mf">199.99</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">producto</span><span class="p">)</span>
+
+<span class="n">producto</span><span class="o">.</span><span class="n">set_precio</span><span class="p">(</span><span class="mf">249.99</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">producto</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="encapsulamiento.html" class="btn btn-neutral float-left" title="Ejercicios — Encapsulamiento" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="herencia.html" class="btn btn-neutral float-right" title="Ejercicios — Herencia" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+  <p>
+    © Copyright <span id="anio-copyright"></span> jeironpro.
+  </p>
+  <script>
+    document.getElementById("anio-copyright").textContent =
+      new Date().getFullYear();
+  </script>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

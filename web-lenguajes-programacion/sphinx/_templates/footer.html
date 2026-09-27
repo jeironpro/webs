@@ -1,0 +1,13 @@
+{# Pie de página propio: copyright con año dinámico (JS), sin la línea
+   «Compilado con Sphinx…» (esa se quita con html_show_sphinx = False). #}
+{% extends "!footer.html" %}
+
+{%- block contentinfo %}
+  <p>
+    © Copyright <span id="anio-copyright"></span> jeironpro.
+  </p>
+  <script>
+    document.getElementById("anio-copyright").textContent =
+      new Date().getFullYear();
+  </script>
+{%- endblock %}

@@ -1,0 +1,353 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Excepciones &mdash; documentación de Lenguajes de programación - </title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../../../_static/logo.svg"/>
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=e2bb6099"></script>
+      <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="search" title="Búsqueda" href="../../../../search.html" />
+    <link rel="next" title="Funciones" href="funciones.html" />
+    <link rel="prev" title="Argsykwargs" href="argsykwargs.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Lenguajes de programación
+              <img src="../../../../_static/logo.svg" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lenguajes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../java/index.html">Java — DAW (ITIC Barcelona)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Python — DCS (INFOTEP)</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../../index.html#teoria">Teoría</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Elementos básicos de la programación en Python</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../introduccion.html">Introducción</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../variables-y-tipos-de-datos.html">variables y tipos de datos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../entradaysalidadedatos.html">Entrada y salida de datos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../operadores.html">Operadores</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../condicionales.html">Condicionales</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../bucles/index.html">Bucles</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../colecciones/index.html">Colecciones</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="index.html">Funciones</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../introduccionalaprogramacionorientadaaobjetosenpython/index.html">Introducción a la programación orientada a objetos en Python</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#frameworks">Frameworks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#ejercicios">Ejercicios</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../javascript/index.html">JavaScript — DCS (INFOTEP)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Lenguajes de programación</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Python — DCS (INFOTEP)</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Elementos básicos de la programación en Python</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Funciones</a></li>
+      <li class="breadcrumb-item active">Excepciones</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/python/teoria/elementosbasicosdelaprogramacionenpython/funciones/excepciones.md.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="excepciones">
+<h1>Excepciones<a class="headerlink" href="#excepciones" title="Link to this heading"></a></h1>
+<p><strong>Excepciones</strong>
+Las excepciones son errores que ocurren durante la ejecución de un programa. Estos errores surgen a pesar de que la sintaxis sea correcta.</p>
+<p><strong>Ejemplos</strong></p>
+<ul class="simple">
+<li><p>Acceder a una posicion de una lista superior a la longitud de esta.</p></li>
+<li><p>Intentar abrir un archivo o fichero que no existe.</p></li>
+<li><p>Convertir string a int</p></li>
+</ul>
+<p>Gestionar las excepciones permite que el codigo continue ejecutandose a pesar de lo errores que puedan ocurrir.</p>
+<p><strong>Manejo de excepciones con try y except</strong></p>
+<ul class="simple">
+<li><p>El bloque try contiene el código que podría causar un error.</p></li>
+<li><p>El bloque except contiene el código que se ejecutará si se produce un error en el bloque try.</p></li>
+</ul>
+<p><strong>Sintaxis</strong>
+try:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># Código que podría generar una excepción</span>
+    <span class="n">resultado</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">/</span> <span class="mi">0</span> <span class="c1"># Error: división por cero</span>
+</pre></div>
+</div>
+<p>except ZeroDivisionError:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="nb">print</span><span class="p">(</span><span class="s2">"¡Error! No puedes dividir por cero."</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Bloque else</strong>
+El bloque else se ejecuta si no ocurre ninguna excepción en el bloque try.</p>
+<p><strong>Sintaxis</strong>
+try:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># Código que podría generar una excepción</span>
+    <span class="n">resultado</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">/</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<p>except ZeroDivisionError:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="nb">print</span><span class="p">(</span><span class="s2">"¡Error! No puedes dividir por cero."</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"La operación se realizó correctamente."</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Bloque finally</strong>
+El bloque finally se ejecuta siempre, independientemente de si ocurre o no una excepción. Se utiliza para liberar recursos o realizar tareas de limpieza, como cerrar archivos o conexiones.</p>
+<p><strong>Sintaxis</strong>
+try:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># Código que podría generar una excepción</span>
+    <span class="n">archivo</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"archivo.txt"</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>except FileNotFoundError:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="nb">print</span><span class="p">(</span><span class="s2">"El archivo no fue encontrado."</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>finally:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="nb">print</span><span class="p">(</span><span class="s2">"Este bloque siempre se ejecuta."</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Excepciones personalizadas</strong>
+Puedes crear tus propias excepciones en Python para casos específicos, heredando de la clase base Exception.</p>
+<p><strong>Sintaxis</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MiExcepcion</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<p><strong>try</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">raise</span> <span class="n">MiExcepcion</span><span class="p">(</span><span class="s2">"Ocurrio un error personalizado."</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>except MiExcepcion as e:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Jerarquía de Excepciones</strong>
+En Python, las excepciones son clases que heredan de la clase base Exception. Existen excepciones predefinidas para distintos errores, como ZeroDivisionError, ValueError, IndexError, etc. Puedes capturar excepciones de manera más general usando Exception.</p>
+<p><strong>Re-levantamiento de excepciones</strong>
+Puedes volver a lanzar una excepción después de haberla manejado utilizando raise:</p>
+<p><strong>Sintaxis</strong>
+try:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">numero</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Ingresa un número: "</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>except ValueError:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="nb">print</span><span class="p">(</span><span class="s2">"¡Error! No es un número."</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="c1"># Vuelve a levantar la excepción</span>
+</pre></div>
+</div>
+<p><strong>Beneficios del manejo de excepciones</strong></p>
+<ul class="simple">
+<li><p>Mejora la estabilidad de tu programa al evitar que se detenga por errores inesperados.</p></li>
+<li><p>Permite que el código sea más claro y fácil de mantener.</p></li>
+<li><p>Te da la oportunidad de realizar acciones de limpieza cuando sea necesario.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ejemplo de try y except</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">numero</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Ingresa un número: "</span><span class="p">))</span>
+    <span class="n">resultado</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">/</span> <span class="n">numero</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"El resultado es: </span><span class="si">{</span><span class="n">resultado</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"¡Error! No puedes dividir por cero."</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"¡Error! Debes ingresar un número válido."</span><span class="p">)</span>
+
+<span class="c1"># Ejemplo de try, except y else</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">numero</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Ingresa un número: "</span><span class="p">))</span>
+    <span class="n">resultado</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">/</span> <span class="n">numero</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"El resultado es: </span><span class="si">{</span><span class="n">resultado</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"¡Error! No puedes dividir por cero."</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"¡Error! Debes ingresar un número válido."</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"El resultado es: </span><span class="si">{</span><span class="n">resultado</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="c1"># Ejemplo de try, except y finally</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">archivo</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"archivo.txt"</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">)</span>
+    <span class="n">contenido</span> <span class="o">=</span> <span class="n">archivo</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"El archivo no fue encontrado."</span><span class="p">)</span>
+<span class="k">finally</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Cerrando archivo."</span><span class="p">)</span>
+    <span class="n">archivo</span><span class="o">.</span><span class="n">close</span><span class="p">()</span> <span class="c1"># Este código se ejecutará sin importar lo que ocurra arriba.</span>
+
+<span class="c1"># Ejemplo de jerarquía de excepciones</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="s2">"abc"</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Error general: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="c1"># Ejemplo 1: try, except</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">division</span><span class="p">(</span><span class="n">num1</span><span class="p">,</span> <span class="n">num2</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>  <span class="c1"># try prueba el código para comprobar si todo funciona correctamente</span>
+        <span class="n">resultado</span> <span class="o">=</span> <span class="n">num1</span> <span class="o">/</span> <span class="n">num2</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">resultado</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>  <span class="c1"># except muestra un mensaje si encuentra un error</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"No se puede dividir entre 0"</span><span class="p">)</span>
+
+<span class="n">division</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">division</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Aquí termina este programa"</span><span class="p">)</span>
+
+<span class="c1"># Ejemplo 2: Gestionar distintos tipos de excepciones</span>
+<span class="n">menu</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"0-Yuca con Chicharrón"</span><span class="p">,</span> <span class="s2">"1-Mofongo"</span><span class="p">,</span> <span class="s2">"2-Arroz con Camarones"</span><span class="p">]</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">elegirMenu</span><span class="p">(</span><span class="n">listaMenu</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">listaMenu</span><span class="p">)</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Elige un plato del menú (Escribe el número): "</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Tu comida favorita es </span><span class="si">{</span><span class="n">listaMenu</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>  <span class="c1"># Si el índice digitado no existe, está fuera del rango</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Índice incorrecto, debe estar entre 0 y </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">listaMenu</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>  <span class="c1"># Está introduciendo un número que no es entero</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Solo acepta números enteros"</span><span class="p">)</span>
+
+<span class="n">elegirMenu</span><span class="p">(</span><span class="n">menu</span><span class="p">)</span>
+<span class="n">elegirMenu</span><span class="p">(</span><span class="n">menu</span><span class="p">)</span>
+<span class="n">elegirMenu</span><span class="p">(</span><span class="n">menu</span><span class="p">)</span>
+<span class="n">elegirMenu</span><span class="p">(</span><span class="n">menu</span><span class="p">)</span>
+<span class="n">elegirMenu</span><span class="p">(</span><span class="n">menu</span><span class="p">)</span>
+
+<span class="c1"># Ejemplo 3: Excepción Exception</span>
+<span class="c1"># Las excepciones son objetos que heredan de la clase Exception</span>
+<span class="n">menu</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"0-Yuca con Chicharrón"</span><span class="p">,</span> <span class="s2">"1-Mofongo"</span><span class="p">,</span> <span class="s2">"2-Arroz con Camarones"</span><span class="p">]</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">elegirMenu</span><span class="p">(</span><span class="n">listaMenu</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">listaMenu</span><span class="p">)</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Elige un plato del menú (Escribe el número): "</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Tu comida favorita es </span><span class="si">{</span><span class="n">listaMenu</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>  <span class="c1"># Muestra el error, sin importar la razón</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Ha ocurrido un error, algo salió mal."</span><span class="p">)</span>
+
+<span class="n">elegirMenu</span><span class="p">(</span><span class="n">menu</span><span class="p">)</span>
+
+<span class="c1"># Renombrar excepción Exception</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+
+<span class="n">menu</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"0-Yuca con Chicharrón"</span><span class="p">,</span> <span class="s2">"1-Mofongo"</span><span class="p">,</span> <span class="s2">"2-Arroz con Camarones"</span><span class="p">]</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">elegirMenu</span><span class="p">(</span><span class="n">listaMenu</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">listaMenu</span><span class="p">)</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Elige un plato del menú (Escribe el número): "</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Tu comida favorita es </span><span class="si">{</span><span class="n">listaMenu</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">errorRandom</span><span class="p">:</span>  <span class="c1"># Renombramos la excepción y mostramos el error</span>
+        <span class="c1"># print(errorRandom)  # Muestra el error</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">"El error es el siguiente: "</span><span class="p">)</span>  <span class="c1"># Muestra el error más detallado</span>
+
+<span class="n">elegirMenu</span><span class="p">(</span><span class="n">menu</span><span class="p">)</span>
+
+<span class="c1"># Ejemplo 4: else, finally, raise</span>
+<span class="c1"># Sumar los números que nos pase el usuario separados por espacios</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">numeros</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"Escribe números separados por espacios: "</span><span class="p">)</span>
+        <span class="n">numeros</span> <span class="o">=</span> <span class="n">numeros</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">numeros</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">num</span><span class="o">.</span><span class="n">isnumeric</span><span class="p">():</span>
+                <span class="n">total</span> <span class="o">+=</span> <span class="nb">float</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"El valor introducido no es número."</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Los datos son incorrectos"</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Vuelva a introducir los números"</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>  <span class="c1"># Si el try se ejecuta sin errores entonces se ejecuta el else</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"El valor de la suma es"</span><span class="p">,</span> <span class="n">total</span><span class="p">)</span>
+        <span class="k">break</span>  <span class="c1"># El break se utiliza para salir del while True</span>
+    <span class="k">finally</span><span class="p">:</span>  <span class="c1"># Ejecuta este código independientemente de si ha habido una excepción o no</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Ha terminado el programa"</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="argsykwargs.html" class="btn btn-neutral float-left" title="Argsykwargs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="funciones.html" class="btn btn-neutral float-right" title="Funciones" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+  <p>
+    © Copyright <span id="anio-copyright"></span> jeironpro.
+  </p>
+  <script>
+    document.getElementById("anio-copyright").textContent =
+      new Date().getFullYear();
+  </script>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

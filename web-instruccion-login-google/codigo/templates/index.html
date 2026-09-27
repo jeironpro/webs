@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='icon/google.png') }}" type="image/x-icon">
+    <title>Login google</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        {% if current_user.is_authenticated %}
+            <img src="{{ profile_picture }}" alt="Profile picture" class="profile-pic">
+            <h1 class="username">{{ name }}</h1>
+            <p class="email">{{ email }}</p>
+            <a href="/logout" class="btn logout-btn">Logout</a>
+        {% else %}
+            <h1 class="title">Welcome</h1>
+            <p class="subtitle">Sign in with your Google account</p>
+            <a href="/login" class="btn login-btn">Login with Google</a>
+        {% endif %}
+    </div>
+</body>
+</html>

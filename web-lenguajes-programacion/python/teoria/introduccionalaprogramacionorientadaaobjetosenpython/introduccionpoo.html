@@ -1,0 +1,291 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Introducción a la POO &mdash; documentación de Lenguajes de programación - </title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/logo.svg"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=e2bb6099"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" title="Búsqueda" href="../../../search.html" />
+    <link rel="next" title="Métodos mágicos" href="metodosmagicos.html" />
+    <link rel="prev" title="Herencia múltiple" href="herenciamultiple.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Lenguajes de programación
+              <img src="../../../_static/logo.svg" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lenguajes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../java/index.html">Java — DAW (ITIC Barcelona)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Python — DCS (INFOTEP)</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#teoria">Teoría</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython/index.html">Elementos básicos de la programación en Python</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Introducción a la programación orientada a objetos en Python</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="clasesabstractas.html">Clases abstractas</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dataclasses.html">Dataclasses</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ducktyping.html">Duck typing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="encapsulamiento.html">Encapsulamiento</a></li>
+<li class="toctree-l4"><a class="reference internal" href="encapsulamientodemetodos.html">Encapsulamiento de métodos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="herencia.html">Herencia</a></li>
+<li class="toctree-l4"><a class="reference internal" href="herenciamultiple.html">Herencia múltiple</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Introducción a la POO</a></li>
+<li class="toctree-l4"><a class="reference internal" href="metodosmagicos.html">Métodos mágicos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="polimorfismo.html">Polimorfismo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sobrecargademetodos.html">Sobrecarga de métodos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="super.html">Super</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#frameworks">Frameworks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#ejercicios">Ejercicios</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../javascript/index.html">JavaScript — DCS (INFOTEP)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Lenguajes de programación</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Python — DCS (INFOTEP)</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Introducción a la programación orientada a objetos en Python</a></li>
+      <li class="breadcrumb-item active">Introducción a la POO</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/python/teoria/introduccionalaprogramacionorientadaaobjetosenpython/introduccionpoo.md.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="introduccion-a-la-poo">
+<h1>Introducción a la POO<a class="headerlink" href="#introduccion-a-la-poo" title="Link to this heading"></a></h1>
+<p><strong>Introducción a la programación orientada a objetos (POO)</strong>
+La programación orientada a objetos (POO) es un paradigma de programación basado en «objetos», que son instancias de clases. Las clases definen los atributos (propiedades) y métodos (funciones) que los objetos pueden tener.</p>
+<p>En Python, todo es un objeto, y la POO es una forma poderosa de organizar y estructurar el código, lo que facilita la reutilización y el mantenimiento.</p>
+<p>Definición de clases: Se definen usando la palabra reservada class. Por ejemplo, para crear la clase Perro:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Perro</span><span class="p">:</span>
+    <span class="k">pass</span> <span class="p">(</span><span class="n">Se</span> <span class="n">utiliza</span> <span class="n">cuando</span> <span class="n">no</span> <span class="n">incluimos</span> <span class="n">atributos</span> <span class="n">y</span> <span class="n">metodos</span><span class="p">,</span> <span class="n">para</span> <span class="n">evitar</span> <span class="n">errores</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Conceptos clave en POO</strong></p>
+<ol class="arabic simple">
+<li><p>Clases y obejtos</p></li>
+<li><p>Atributos y Métodos</p></li>
+<li><p>Herencia</p></li>
+<li><p>Polimorfismo</p></li>
+<li><p>Encapsulación</p></li>
+<li><p>abstracción</p></li>
+</ol>
+<ul class="simple">
+<li><p><strong>1.</strong> Clases y objetos</p></li>
+<li><p>Clase: es una plantilla para crear objetos. Define los atributos y métodos que sus objetos tendrán.</p></li>
+<li><p>Objeto: es una instancia de una clase. Se puede pensar en un objeto como una entidad concreta que se crea a partir de una clase.</p></li>
+<li><p><strong>2.</strong> Atributos y Métodos</p></li>
+<li><p>Atributos: son las características que un objeto tiene. Se definen dentro de la clase.</p></li>
+<li><p>Métodos: son las acciones que los objetoss pueden realizar. Se definen dentro de la clase.</p></li>
+<li><p><strong>3.</strong> Herencia
+La herencia permite crear una nueva clase a partir de una clase existente. La nueva clase (subclase) hereda los atributos y métodos de la clase base (superclase).</p></li>
+<li><p><strong>4.</strong> Polimorfismo
+El poliformismo permite que las clases hijas tengan diferentes imprementaciones de un mismo método. Es decir, un mismo método puede comportarse de diferentes formas dependiendo del objeto que lo invoque.</p></li>
+<li><p><strong>5.</strong> Encapsulación
+La encapsulación es el proceso de ocultar los detalles internos de un objeto y solo exponer lo necesario. Se logra mediante los modificadores de acceso, como public, private, y protected.</p></li>
+</ul>
+<p>En Python, los atributos privados se indican utilizando dos guiones bajos (__), lo que hace que no se puedan acceder directamente fuera de la clase.</p>
+<ul class="simple">
+<li><p><strong>6.</strong> Abstracción
+La abstracción es el proceso de ocultar la implementación interna de un objeto y mostrar solo las funcionalidades esenciales. En Python, se puede lograr mediante clases abstractas, que no pueden ser instanciadas directamente y deben ser heredadas por otras clases.</p></li>
+</ul>
+<p><strong>Notas</strong>
+El método constructor se utiliza para inicializar los valores de ciertos atributos.</p>
+<p>El método constructor <strong>init</strong>() se llama automáticamente cuando creamos un objeto de una clase. Permite inicializar los atributos del objeto.</p>
+<p>Creación de objetos (instancias): Para crear un objeto de una clase, llamamos a la clase como si fuera una función. Es decir, se crea un objeto a partir de una clase.</p>
+<p><strong>Resumen</strong>
+La POO te permite organizar tu código de manera más modular y reutilizable, permitiendo que los programas sean más fáciles de mantener y extender. En Python, los conceptos de clases, objetos, herencia, polimorfismo, encapsulación y abstracción son fundamentales para escribir programas más complejos y eficientes.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definir una clase llamada 'Perro'</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Perro</span><span class="p">:</span>
+    <span class="c1"># Atributo de clase, son características comunes en todos los objetos de la clase.</span>
+    <span class="n">especie</span> <span class="o">=</span> <span class="s2">"Canino"</span>
+
+    <span class="c1"># Método constructor (__init__) para inicializar atributos</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">edad</span><span class="p">):</span> <span class="c1"># self hace referencia al objeto sin necesidad de nombrarlo.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nombre</span> <span class="o">=</span> <span class="n">nombre</span> <span class="c1"># Atributo</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edad</span> <span class="o">=</span> <span class="n">edad</span> <span class="c1"># Atributo</span>
+
+        <span class="c1"># Comprobar si se ejecuta el método constructor</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Se ha ejecutado el constructor"</span><span class="p">)</span>
+
+    <span class="c1"># Se crea un método al definir una clase para todos los objetos y se utiliza la palabra reservada def </span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">ladrar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"¡Guau Guau!"</span><span class="p">)</span>   
+
+<span class="c1"># Crear un objeto de la clase 'Perro'</span>
+<span class="n">mi_perro</span> <span class="o">=</span> <span class="n">Perro</span><span class="p">(</span><span class="s2">"Doggy"</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+
+<span class="c1"># Para acceder a los atributos del objeto</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mi_perro</span><span class="o">.</span><span class="n">nombre</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mi_perro</span><span class="o">.</span><span class="n">edad</span><span class="p">)</span>
+
+<span class="c1"># Acceder al método ladrar</span>
+<span class="n">mi_perro</span><span class="o">.</span><span class="n">ladrar</span><span class="p">()</span>
+
+<span class="c1"># Para modificar el atributo de un objeto, se asigna un nuevo valor al atributo utilizando la notación de punto.</span>
+<span class="n">mi_perro</span><span class="o">.</span><span class="n">edad</span> <span class="o">=</span> <span class="mi">12</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mi_perro</span><span class="o">.</span><span class="n">edad</span><span class="p">)</span>
+
+<span class="c1"># Eliminación de objetos: Para eliminar un objeto en Python, se utiliza la palabra reservada/clave 'del'. Sin embargo, esto generalmente no es necesario, ya que Python maneja automáticamente la eliminación de objetos cuando no se utilizan.</span>
+<span class="k">del</span> <span class="n">mi_perro</span><span class="o">.</span><span class="n">edad</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mi_perro</span><span class="o">.</span><span class="n">edad</span><span class="p">)</span>
+
+<span class="c1"># Clase con todos los conceptos expuesto en este documento</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+
+<span class="c1"># Clase base abstracta</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Animal</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+    <span class="c1"># Método abstracto que debe ser implementado por las clases hijas</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">hablar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<span class="c1"># Clase hija que hereda de la clase Animal</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Perro</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>
+    <span class="c1"># Atributo de clase, común a todos los objetos de la clase</span>
+    <span class="n">especie</span> <span class="o">=</span> <span class="s2">"Canino"</span>
+
+    <span class="c1"># Método constructor (__init__) para inicializar los atributos del objeto</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">edad</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nombre</span> <span class="o">=</span> <span class="n">nombre</span>  <span class="c1"># Atributo de instancia</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__edad</span> <span class="o">=</span> <span class="n">edad</span>    <span class="c1"># Atributo privado (encapsulación)</span>
+
+        <span class="c1"># Imprimir para confirmar la ejecución del constructor</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Se ha creado un perro llamado </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">nombre</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+    <span class="c1"># Método para hacer hablar al perro (polimorfismo)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">hablar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">nombre</span><span class="si">}</span><span class="s2"> dice: ¡Guau! ¡Guau!"</span><span class="p">)</span>
+
+    <span class="c1"># Método para acceder a la edad de manera controlada (getter)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">obtener_edad</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__edad</span>
+
+    <span class="c1"># Método para modificar la edad (setter)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">establecer_edad</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nueva_edad</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">nueva_edad</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__edad</span> <span class="o">=</span> <span class="n">nueva_edad</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"La edad debe ser un valor positivo"</span><span class="p">)</span>
+
+<span class="c1"># Crear un objeto de la clase Perro</span>
+<span class="n">mi_perro</span> <span class="o">=</span> <span class="n">Perro</span><span class="p">(</span><span class="s2">"Doggy"</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+
+<span class="c1"># Acceder a los atributos públicos del objeto</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Nombre del perro: </span><span class="si">{</span><span class="n">mi_perro</span><span class="o">.</span><span class="n">nombre</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="c1"># Acceder al atributo privado usando un método getter</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Edad del perro: </span><span class="si">{</span><span class="n">mi_perro</span><span class="o">.</span><span class="n">obtener_edad</span><span class="p">()</span><span class="si">}</span><span class="s2"> años"</span><span class="p">)</span>
+
+<span class="c1"># Acceder al método hablar</span>
+<span class="n">mi_perro</span><span class="o">.</span><span class="n">hablar</span><span class="p">()</span>
+
+<span class="c1"># Modificar la edad del perro usando el setter</span>
+<span class="n">mi_perro</span><span class="o">.</span><span class="n">establecer_edad</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Nuevo edad del perro: </span><span class="si">{</span><span class="n">mi_perro</span><span class="o">.</span><span class="n">obtener_edad</span><span class="p">()</span><span class="si">}</span><span class="s2"> años"</span><span class="p">)</span>
+
+<span class="c1"># Acceder a un atributo de clase (especie)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Especie del perro: </span><span class="si">{</span><span class="n">mi_perro</span><span class="o">.</span><span class="n">especie</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="c1"># Demostración de polimorfismo</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Gato</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">hablar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"El gato maúlla: ¡Miau!"</span><span class="p">)</span>
+
+<span class="c1"># Crear un objeto de la clase Gato</span>
+<span class="n">mi_gato</span> <span class="o">=</span> <span class="n">Gato</span><span class="p">()</span>
+
+<span class="c1"># Llamar al método hablar de ambos objetos (demostración de polimorfismo)</span>
+<span class="n">mi_perro</span><span class="o">.</span><span class="n">hablar</span><span class="p">()</span>  <span class="c1"># Salida: Doggy dice: ¡Guau! ¡Guau!</span>
+<span class="n">mi_gato</span><span class="o">.</span><span class="n">hablar</span><span class="p">()</span>   <span class="c1"># Salida: El gato maúlla: ¡Miau!</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="herenciamultiple.html" class="btn btn-neutral float-left" title="Herencia múltiple" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="metodosmagicos.html" class="btn btn-neutral float-right" title="Métodos mágicos" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+  <p>
+    © Copyright <span id="anio-copyright"></span> jeironpro.
+  </p>
+  <script>
+    document.getElementById("anio-copyright").textContent =
+      new Date().getFullYear();
+  </script>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

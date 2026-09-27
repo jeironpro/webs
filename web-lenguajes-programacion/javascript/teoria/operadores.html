@@ -1,0 +1,341 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Operadores &mdash; documentación de Lenguajes de programación - </title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/logo.svg"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=e2bb6099"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="search" title="Búsqueda" href="../../search.html" />
+    <link rel="next" title="Estructuras de control" href="estructurasdecontrol.html" />
+    <link rel="prev" title="Variables" href="variables.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Lenguajes de programación
+              <img src="../../_static/logo.svg" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lenguajes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../java/index.html">Java — DAW (ITIC Barcelona)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python/index.html">Python — DCS (INFOTEP)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">JavaScript — DCS (INFOTEP)</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#teoria">Teoría</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduccion.html">Introducción</a></li>
+<li class="toctree-l3"><a class="reference internal" href="variables.html">Variables</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Operadores</a></li>
+<li class="toctree-l3"><a class="reference internal" href="estructurasdecontrol.html">Estructuras de control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="arrays.html">Arrays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="funciones.html">Funciones</a></li>
+<li class="toctree-l3"><a class="reference internal" href="objetos.html">Objetos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dom.html">DOM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eventos.html">Eventos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="formularios.html">Formularios</a></li>
+<li class="toctree-l3"><a class="reference internal" href="formularios/index.html">Formularios</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#ejercicios">Ejercicios</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Lenguajes de programación</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">JavaScript — DCS (INFOTEP)</a></li>
+      <li class="breadcrumb-item active">Operadores</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/javascript/teoria/operadores.md.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="operadores">
+<h1>Operadores<a class="headerlink" href="#operadores" title="Link to this heading"></a></h1>
+<p><strong>Operadores en JavaScript</strong>
+En JavaScript, los operadores son símbolos o palabras clave que se utilizan para realizar operaciones sobre valores o variables. Se dividen en varias categorías según su funcionalidad.</p>
+<ul class="simple">
+<li><p><strong>1.</strong> Operadores aritméticos
+Se usan para realizar cálculos matemáticos.</p></li>
+</ul>
+<p>Operador   Descripción                     Ejemplo   Resultado</p>
+<ul>
+<li><div class="highlight-none notranslate"><div class="highlight"><pre><span></span>     Suma                            5 + 2     7
+</pre></div>
+</div>
+</li>
+</ul>
+<ul>
+<li><div class="highlight-none notranslate"><div class="highlight"><pre><span></span>     Resta                           5 - 2     3
+</pre></div>
+</div>
+</li>
+</ul>
+<ul>
+<li><div class="highlight-none notranslate"><div class="highlight"><pre><span></span>     Multiplicación                  5 * 2     10
+</pre></div>
+</div>
+</li>
+</ul>
+<p>/          División                        5 / 2     2.5</p>
+<p>**         Exponenciación                  5 ** 2    25</p>
+<ul class="simple">
+<li><p><strong>2.</strong> Operadores de asignación
+Se usan para asignar valores a las variables.</p></li>
+</ul>
+<p>Operador   Descripción                   Ejemplo   Resultado
+=          Asignación simple             x = 5     x es 5
++=         Suma y asignación             x += 2    x = x + 2
+-=         Resta y asignación            x -= 2    x = x - 2
+*=         Multiplicación y asignación   x *= 2    x = x * 2
+/=         División y asignación         x /= 2    x = x / 2</p>
+<ul class="simple">
+<li><p><strong>3.</strong> Operadores de comparación
+Se usan para comparar valores y devuelven un valor booleano (true o false).</p></li>
+</ul>
+<p><strong>Operador   Descripción               Ejemplo     Resultado</strong>
+==         Igualdad                  5 == «5»    true
+===        Estrictamente igual       5 === «5»   false
+!=         Diferente                 5 != «5»    false
+!==        Estrictamente diferente   5 !== «5»   true</p>
+<blockquote>
+<div><div class="highlight-none notranslate"><div class="highlight"><pre><span></span>     Mayor que                 5 &gt; 2       true
+</pre></div>
+</div>
+</div></blockquote>
+<p>&lt;          Menor que                 5 &lt; 2       false</p>
+<blockquote>
+<div><p>=         Mayor o igual que         5 &gt;= 5      true
+&lt;=         Menor o igual que         5 &lt;= 4      false</p>
+</div></blockquote>
+<ul class="simple">
+<li><p><strong>4.</strong> Operadores lógicos
+Se usan para combinar expresiones lógicas.</p></li>
+</ul>
+<p><strong>Operador   Descripción   Ejemplo         Resultado</strong>
+&amp;&amp;         AND(y)        true &amp;&amp; false   false
+||         OR(o)         true || false   true
+!          NOT(no)       !true           false</p>
+<ul class="simple">
+<li><p><strong>5.</strong> Operadores de incremento y decremento
+Se usan para aumentar o disminuir el valor de una variable en 1.</p></li>
+</ul>
+<p><strong>Operador   Descripción   Ejemplo   Resultado</strong>
+++         Incremento    x++       Incrementa después de usar
+–         Decremento    x–       Decrementa después de usar</p>
+<p><strong>Ejemplo</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="o">++</span><span class="p">);</span><span class="w"> </span><span class="c1">// Imprime 5, luego x es 6</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="o">++</span><span class="nx">x</span><span class="p">);</span><span class="w"> </span><span class="c1">// Incrementa primero, luego imprime 7</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>6.</strong> Operadores de tipo
+Se usan para verificar o convertir tipos de datos.</p></li>
+</ul>
+<p>Operador     Descripción                Ejemplo               Resultado
+typeof       Devuelve el tipo de dato   typeof 5              «number»
+instanceof   Verifica si es instancia   x instanceof Object   true/false</p>
+<ul class="simple">
+<li><p><strong>7.</strong> Operador ternario
+Se utiliza como una forma abreviada de la instrucción if-else.</p></li>
+</ul>
+<p><strong>Sintaxis</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">condición</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nx">valor_si_verdadero</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="nx">valor_si_falso</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><strong>Ejemplo</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">edad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">18</span><span class="p">;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">mensaje</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">edad</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">18</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s2">"Mayor de edad"</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s2">"Menor de edad"</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mensaje</span><span class="p">);</span><span class="w"> </span><span class="c1">// "Mayor de edad"</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>8.</strong> Operadores de cadenas
+Se usan para manipular cadenas de texto.</p></li>
+</ul>
+<p>Operador   Descripción                Ejemplo              Resultado</p>
+<ul>
+<li><div class="highlight-none notranslate"><div class="highlight"><pre><span></span>     Concatenación de cadenas   "Hola" + " Mundo"    "Hola Mundo"
+</pre></div>
+</div>
+</li>
+</ul>
+<p>+=         Concatenar y asignar       mensaje += «Mundo»   mensaje = mensaje + «Mundo»</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Ejemplos</span>
+<span class="c1">// Operador de asignación (=): Se utiliza para asignar valores a las variables</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">15</span><span class="p">;</span>
+
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s2">"El valor de la variable es: "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">num</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">"&lt;br&gt;"</span><span class="p">);</span>
+
+<span class="c1">// Operadores de Incremento y Decremento</span>
+<span class="c1">// PosIncremento (variable++)</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">num2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">8</span><span class="p">;</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">num3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">9</span><span class="p">;</span>
+<span class="c1">// Los incrementos se utilizan mejor en bucles.</span>
+<span class="nx">num2</span><span class="o">++</span><span class="p">;</span>
+
+<span class="nx">resPosIncremento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">num2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">num3</span><span class="p">;</span>
+
+<span class="c1">// alert("El resultado del PosIncremento es " + resPosIncremento);</span>
+
+<span class="c1">// PreIncremento (++variable)</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">num4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">8</span><span class="p">;</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">num5</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">9</span><span class="p">;</span>
+
+<span class="nx">resPreIncremento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">++</span><span class="nx">num4</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">num5</span><span class="p">;</span>
+
+<span class="c1">// alert("El resultado del PreIncremento es " + resPreIncremento);</span>
+
+<span class="c1">// PostDecremento (variable--)</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">num6</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">8</span><span class="p">;</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">num7</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">9</span><span class="p">;</span>
+<span class="nx">num6</span><span class="o">--</span><span class="p">;</span>
+
+<span class="nx">resPostDecremento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">num6</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">num7</span><span class="p">;</span>
+
+<span class="c1">// alert("El resultado del PostDecremento es " + resPostDecremento);</span>
+
+<span class="c1">// PreDecremento (--variable)</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">num8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">8</span><span class="p">;</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">num9</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">9</span><span class="p">;</span>
+
+<span class="nx">resPreDecremento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">--</span><span class="nx">num8</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">num9</span><span class="p">;</span>
+
+<span class="c1">// alert("El resultado del PreDecremento es " + resPreDecremento);</span>
+
+<span class="cm">/* OPERADORES LÓGICOS: Se utilizan al momento de realizar operaciones complejas, pues permiten tomar decisiones acerca de las instrucciones que debe ejecutar el programa bajo ciertas condiciones. */</span>
+<span class="c1">// Operador de negación (!), se utiliza para obtener el valor contrario al valor de la variable</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">califica</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+
+<span class="c1">// alert("El resultado del operador de negación es " + !califica + ", aunque el valor anterior era " + califica);</span>
+
+<span class="cm">/* Operador AND (&amp;&amp;), es verdadero solo cuando ambas condiciones son verdaderas */</span>
+<span class="c1">// Si ambas condiciones no son verdaderas, el resultado será falso (false)</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">valor1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">valor2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="nx">resultado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">valor1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">valor2</span><span class="p">;</span>
+
+<span class="c1">// alert("El resultado del operador AND es " + resultado);</span>
+
+<span class="cm">/* Operador OR (||), es verdadero cuando una o ambas condiciones son verdaderas */</span>
+<span class="c1">// Si ambas condiciones no son verdaderas, el resultado será falso (false)</span>
+<span class="c1">// En este caso, aunque tengamos una variable con el mismo nombre, se sobreescribe.</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">valor1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">valor2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="nx">resultado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">valor1</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">valor2</span><span class="p">;</span>
+
+<span class="c1">// alert("El resultado del operador OR es " + resultado);</span>
+
+<span class="c1">// OPERADORES DE RELACIÓN</span>
+<span class="c1">// Operador Mayor que (&gt;)</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">numMayor1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">120</span><span class="p">;</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">numMayor2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">80</span><span class="p">;</span>
+<span class="nx">resMayor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">numMayor1</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nx">numMayor2</span><span class="p">;</span>
+
+<span class="nx">alert</span><span class="p">(</span><span class="s2">"El resultado del operador Mayor que es "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">resMayor</span><span class="p">);</span>
+
+<span class="c1">// Operador Menor que (&lt;)</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">numMenor1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">120</span><span class="p">;</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">numMenor2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">80</span><span class="p">;</span>
+<span class="nx">resMenor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">numMenor1</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">numMenor2</span><span class="p">;</span>
+
+<span class="nx">alert</span><span class="p">(</span><span class="s2">"El resultado del operador Menor que es "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">resMenor</span><span class="p">);</span>
+
+<span class="c1">// Operador Diferente que (!=) </span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">numDiferente1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">120</span><span class="p">;</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">numDiferente2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">80</span><span class="p">;</span>
+<span class="nx">resDiferente</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">numDiferente1</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nx">numDiferente2</span><span class="p">;</span>
+
+<span class="nx">alert</span><span class="p">(</span><span class="s2">"El resultado del operador Diferente que es "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">resDiferente</span><span class="p">);</span>
+
+<span class="c1">// Operador Idéntico que (===)</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">numIdentico1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">120</span><span class="p">;</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">numIdentico2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"120"</span><span class="p">;</span>
+<span class="nx">resIdentico</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">numIdentico1</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">numIdentico2</span><span class="p">;</span>
+
+<span class="nx">alert</span><span class="p">(</span><span class="s2">"El resultado del operador Idéntico que es "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">resIdentico</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="variables.html" class="btn btn-neutral float-left" title="Variables" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="estructurasdecontrol.html" class="btn btn-neutral float-right" title="Estructuras de control" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+  <p>
+    © Copyright <span id="anio-copyright"></span> jeironpro.
+  </p>
+  <script>
+    document.getElementById("anio-copyright").textContent =
+      new Date().getFullYear();
+  </script>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

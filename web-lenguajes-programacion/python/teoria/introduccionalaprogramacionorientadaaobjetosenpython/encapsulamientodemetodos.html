@@ -1,0 +1,247 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Encapsulamiento de métodos &mdash; documentación de Lenguajes de programación - </title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/logo.svg"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=e2bb6099"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" title="Búsqueda" href="../../../search.html" />
+    <link rel="next" title="Herencia" href="herencia.html" />
+    <link rel="prev" title="Encapsulamiento" href="encapsulamiento.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Lenguajes de programación
+              <img src="../../../_static/logo.svg" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lenguajes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../java/index.html">Java — DAW (ITIC Barcelona)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Python — DCS (INFOTEP)</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#teoria">Teoría</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython/index.html">Elementos básicos de la programación en Python</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Introducción a la programación orientada a objetos en Python</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="clasesabstractas.html">Clases abstractas</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dataclasses.html">Dataclasses</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ducktyping.html">Duck typing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="encapsulamiento.html">Encapsulamiento</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Encapsulamiento de métodos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="herencia.html">Herencia</a></li>
+<li class="toctree-l4"><a class="reference internal" href="herenciamultiple.html">Herencia múltiple</a></li>
+<li class="toctree-l4"><a class="reference internal" href="introduccionpoo.html">Introducción a la POO</a></li>
+<li class="toctree-l4"><a class="reference internal" href="metodosmagicos.html">Métodos mágicos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="polimorfismo.html">Polimorfismo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sobrecargademetodos.html">Sobrecarga de métodos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="super.html">Super</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#frameworks">Frameworks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#ejercicios">Ejercicios</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../javascript/index.html">JavaScript — DCS (INFOTEP)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Lenguajes de programación</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Python — DCS (INFOTEP)</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Introducción a la programación orientada a objetos en Python</a></li>
+      <li class="breadcrumb-item active">Encapsulamiento de métodos</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/python/teoria/introduccionalaprogramacionorientadaaobjetosenpython/encapsulamientodemetodos.md.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="encapsulamiento-de-metodos">
+<h1>Encapsulamiento de métodos<a class="headerlink" href="#encapsulamiento-de-metodos" title="Link to this heading"></a></h1>
+<p><strong>Encapsulamiento de métodos</strong>
+El encapsulamiento de métodos es un principio fundamental de la programación orientada a objetos (POO), que se refiere a la ocultación de los detalles internos de un objeto y la exposición solo de aquellos elementos necesarios para interactuar con él. En Python, esto se logra usando modificadores de acceso como privado, protegido y público.</p>
+<p>Aunque Python no tiene mecanismos estrictos de control de acceso como otros lenguajes (por ejemplo, Java), puedes seguir convenciones para hacer que ciertos atributos o métodos sean considerados «privados» o «protegidos», restringiendo su acceso.</p>
+<p><strong>Métodos Públicos, Protegidos y Privados</strong></p>
+<ol class="arabic simple">
+<li><p>Públicos: Son métodos y atributos que pueden ser accedidos desde cualquier parte del código. Son el comportamiento normal de las clases.</p></li>
+</ol>
+<ul class="simple">
+<li><p><strong>2.</strong> Protegidos: Aunque no es un mecanismo estricto, se puede indicar que un atributo o método es «protegido» usando un solo guion bajo (_). Esto indica que el atributo o método está destinado a ser usado solo dentro de la clase y sus subclases.</p></li>
+<li><p><strong>3.</strong> Privados: En Python, el concepto de atributos y métodos privados se implementa mediante un doble guion bajo (__). Esto «manglea» el nombre del atributo o método para evitar el acceso desde fuera de la clase. Sin embargo, no impide el acceso, solo lo dificulta.</p></li>
+</ul>
+<p><strong>Acceso a Atributos y Métodos Privados</strong>
+Aunque se pueden hacer privados, el acceso a estos sigue siendo posible mediante un mecanismo conocido como name mangling, donde el nombre real del atributo es modificado por Python para evitar el acceso directo.</p>
+<p><strong>Métodos de Acceso (Getters y Setters)</strong>
+Aunque puedes hacer que los atributos sean privados, a menudo se utilizan métodos getter y setter para acceder a ellos de manera controlada. Los getters permiten obtener el valor de un atributo privado, mientras que los setters permiten modificarlo de forma controlada.</p>
+<p><strong>Ventajas del encapsulamiento</strong></p>
+<ol class="arabic simple">
+<li><p>Control sobre los datos: puedes controlar cómo se acceden y modifican los atributos de un objeto.</p></li>
+</ol>
+<ul class="simple">
+<li><p><strong>2.</strong> Protección de datos: permite ocultar la complejidad y proteger los datos sensibles dentro de la clase.</p></li>
+<li><p><strong>3.</strong> Mayor flexibilidad: puedes cambiar la implementación interna de una clase sin afectar el código que la utiliza, ya que solo interactúan con los métodos públicos.</p></li>
+</ul>
+<p><strong>Conclusión sobre el encapsulamiento de métodos</strong>
+El encapsulamiento ayuda a proteger el estado interno de un objeto, asegurando que los atributos solo sena accesibles a través de métodos de acceso controlados. Es una de las características fundamentales de la POO y permite que el código sea más seguro y modular.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Métodos públicos, protegidos y privados</span>
+<span class="c1"># Públicos</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Persona</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nombre</span> <span class="o">=</span> <span class="n">nombre</span> <span class="c1"># Atributo público</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">saludar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c1"># Método público</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Hola, mi nombre es </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">nombre</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="c1"># Protegidos</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Persona</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_nombre</span> <span class="o">=</span> <span class="n">nombre</span> <span class="c1"># Atributo protegido</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_saludar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c1"># Método protegido</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Hola, mi nombre es </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_nombre</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="c1"># Privados</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Persona</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__nombre</span> <span class="o">=</span> <span class="n">nombre</span> <span class="c1"># Atributo privado</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">__saludar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c1"># Método privado</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Hola, mi nombre es </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">nombre</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="c1"># Acceso a Atributos y Métodos Privados</span>
+<span class="n">persona</span> <span class="o">=</span> <span class="n">Persona</span><span class="p">(</span><span class="s2">"Jeiron"</span><span class="p">)</span>
+
+<span class="c1"># No se puede acceder directamente al atributo privado</span>
+<span class="c1"># print(persona.__nombre) # Esto causará un error</span>
+
+<span class="c1"># Sin embargo, Python convierte __nombre en _Persona__nombre internamente</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">persona</span><span class="o">.</span><span class="n">_Persona__nombre</span><span class="p">)</span> <span class="c1"># Esto si funcionará</span>
+
+<span class="c1"># Métodos de Acceso (Getters y Setters)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Persona</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__nombre</span> <span class="o">=</span> <span class="n">nombre</span>
+
+    <span class="c1"># Getter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_nombre</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__nombre</span>
+    
+    <span class="c1"># Setter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_nombre</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">nombre</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span> <span class="c1"># Control de acceso</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__nombre</span> <span class="o">=</span> <span class="n">nombre</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"El nombre es demasiado corto"</span><span class="p">)</span>
+
+<span class="n">persona</span> <span class="o">=</span> <span class="n">Persona</span><span class="p">(</span><span class="s2">"Jeiron"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">persona</span><span class="o">.</span><span class="n">get_nombre</span><span class="p">())</span> <span class="c1"># Jeiron</span>
+<span class="n">persona</span><span class="o">.</span><span class="n">set_nombre</span><span class="p">(</span><span class="s2">"J"</span><span class="p">)</span> <span class="c1"># El nombre es demasiado corto</span>
+<span class="n">persona</span><span class="o">.</span><span class="n">set_nombre</span><span class="p">(</span><span class="s2">"Junior"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">persona</span><span class="o">.</span><span class="n">get_nombre</span><span class="p">())</span> <span class="c1"># Junior</span>
+
+<span class="c1"># Otro ejemplo</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Auto</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">marca</span><span class="p">,</span> <span class="n">modelo</span><span class="p">,</span> <span class="n">año</span><span class="p">):</span>
+        <span class="c1"># Crear dos atributos privados (con name mangling)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__marca</span> <span class="o">=</span> <span class="n">marca</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__modelo</span> <span class="o">=</span> <span class="n">modelo</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">año</span> <span class="o">=</span> <span class="n">año</span>
+
+    <span class="c1"># Crear un metodo privado (con name mangling)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__acelerar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Acelerando..."</span><span class="p">)</span>
+
+<span class="c1"># Crear una instancia de Auto</span>
+<span class="n">mi_auto</span> <span class="o">=</span> <span class="n">Auto</span><span class="p">(</span><span class="s2">"Kia"</span><span class="p">,</span> <span class="s2">"Sportage"</span><span class="p">,</span> <span class="mi">2023</span><span class="p">)</span>
+
+<span class="c1"># No se puede ejecutar directamente el método privado</span>
+<span class="c1"># mi_auto.__acelerar()  # Esto dará un error, ya que el método es privado</span>
+
+<span class="c1"># Para poder ejecutar el método privado, usamos name mangling</span>
+<span class="n">mi_auto</span><span class="o">.</span><span class="n">_Auto__acelerar</span><span class="p">()</span>  <span class="c1"># Acceso a __acelerar() a través del name mangling</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="encapsulamiento.html" class="btn btn-neutral float-left" title="Encapsulamiento" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="herencia.html" class="btn btn-neutral float-right" title="Herencia" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+  <p>
+    © Copyright <span id="anio-copyright"></span> jeironpro.
+  </p>
+  <script>
+    document.getElementById("anio-copyright").textContent =
+      new Date().getFullYear();
+  </script>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

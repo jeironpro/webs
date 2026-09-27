@@ -1,0 +1,259 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Métodos mágicos &mdash; documentación de Lenguajes de programación - </title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/logo.svg"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=e2bb6099"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" title="Búsqueda" href="../../../search.html" />
+    <link rel="next" title="Polimorfismo" href="polimorfismo.html" />
+    <link rel="prev" title="Introducción a la POO" href="introduccionpoo.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Lenguajes de programación
+              <img src="../../../_static/logo.svg" class="logo" alt="Logotipo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Lenguajes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../java/index.html">Java — DAW (ITIC Barcelona)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Python — DCS (INFOTEP)</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#teoria">Teoría</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../elementosbasicosdelaprogramacionenpython/index.html">Elementos básicos de la programación en Python</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Introducción a la programación orientada a objetos en Python</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="clasesabstractas.html">Clases abstractas</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dataclasses.html">Dataclasses</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ducktyping.html">Duck typing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="encapsulamiento.html">Encapsulamiento</a></li>
+<li class="toctree-l4"><a class="reference internal" href="encapsulamientodemetodos.html">Encapsulamiento de métodos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="herencia.html">Herencia</a></li>
+<li class="toctree-l4"><a class="reference internal" href="herenciamultiple.html">Herencia múltiple</a></li>
+<li class="toctree-l4"><a class="reference internal" href="introduccionpoo.html">Introducción a la POO</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Métodos mágicos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="polimorfismo.html">Polimorfismo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sobrecargademetodos.html">Sobrecarga de métodos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="super.html">Super</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#frameworks">Frameworks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#ejercicios">Ejercicios</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../javascript/index.html">JavaScript — DCS (INFOTEP)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Lenguajes de programación</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Python — DCS (INFOTEP)</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Introducción a la programación orientada a objetos en Python</a></li>
+      <li class="breadcrumb-item active">Métodos mágicos</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/python/teoria/introduccionalaprogramacionorientadaaobjetosenpython/metodosmagicos.md.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="metodos-magicos">
+<h1>Métodos mágicos<a class="headerlink" href="#metodos-magicos" title="Link to this heading"></a></h1>
+<p><strong>Métodos mágicos</strong>
+Los métodos mágicos son métodos especiales en Python que permiten que los objetos interactúen de manera más intuitiva con operadores y funciones del lenguaje. Estos métodos tienen un nombre que comienza y termina con dos guiones bajos (__), de ahí el termino «dunder» (de double underscore).</p>
+<p>Los métodos mágicos permiten ampliar las capacidades de las clases que definimos en Python. Inician y terminan con doble guion bajo. Son métodos que están definidos por defecto en cualquier clase, pero los podemos sobrescribir.</p>
+<p><strong>Algunos de los métodos mágicos más comunes son</strong></p>
+<ol class="arabic simple">
+<li><p><strong>init</strong>(self): constructor de la clase. Se ejecuta cuando se crea un nuevo objeto.</p></li>
+</ol>
+<ul class="simple">
+<li><p><strong>2.</strong> <strong>str</strong>(self): define el comportamiento de la función str() y la representación en cadena de un objeto.</p></li>
+<li><p><strong>3.</strong> <strong>repr</strong>(self): define la representación en cadena del objeto para el uso interno, generalmente útil para depuración.</p></li>
+<li><p><strong>4.</strong> <strong>len</strong>(self): permite usar la función len() en objetos personalizados.</p></li>
+<li><p><strong>5.</strong> <strong>add</strong>(self, other): permite usar el operador + para sumar objetos de la clase.</p></li>
+<li><p><strong>6.</strong> <strong>eq</strong>(self, other): permite usar el operador == para comparar objetos de la clase.</p></li>
+<li><p><strong>7.</strong> <strong>getitem</strong>(self, key): permite acceder a los elementos de un objeto como si fuera un diccionario o lista.</p></li>
+<li><p><strong>8.</strong> <strong>setitem</strong>(self, key, value): permite asignar valores a los elementos de un objeto.</p></li>
+<li><p><strong>9.</strong> <strong>delitem</strong>(self, key): permite eliminar elementos de un objeto como si fuera un diccionario o lista.</p></li>
+<li><p><strong>10.</strong> <strong>iter</strong>(self): permite hacer que un objeto sea iterable, por ejemplo, con un bucle for.</p></li>
+</ul>
+<p><strong>Explicación del ejemplo 1</strong></p>
+<ul class="simple">
+<li><p><strong>init</strong>: este método es el constructor de la clase y se usa para inicializar los atributos del objeto.</p></li>
+<li><p><strong>str</strong>: el método se usa para definir cómo se debe representar un objeto como cadena. En este caso, muestra el título y el autor del libro.</p></li>
+<li><p><strong>len</strong>: permite usar la función len() sobre el objeto, en este caso, devuelve la longitud del título del libro.</p></li>
+<li><p><strong>add</strong>: sobrescribe el operador + para concatenar los títulos de dos libros.</p></li>
+</ul>
+<p><strong>Beneficios de los métodos mágicos</strong></p>
+<ul class="simple">
+<li><p>Permiten que los objetos iteractúen de manera natural con las funciones y operadores de Python.</p></li>
+<li><p>Facilitan la creación de clases más intuitivas y fáciles de usar.</p></li>
+<li><p>Ayudan a controlar la representación de los objetos, su comparación, iteración entre oras funcionalidades.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ejemplo 1 de uso de algunos métodos mágicos</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Libro</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">titulo</span><span class="p">,</span> <span class="n">autor</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">titulo</span> <span class="o">=</span> <span class="n">titulo</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">autor</span> <span class="o">=</span> <span class="n">autor</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">titulo</span><span class="si">}</span><span class="s2"> por </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">autor</span><span class="si">}</span><span class="s2">"</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">titulo</span><span class="p">)</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">otro</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">titulo</span><span class="si">}</span><span class="s2"> y </span><span class="si">{</span><span class="n">otro</span><span class="o">.</span><span class="n">titulo</span><span class="si">}</span><span class="s2">"</span>
+
+<span class="c1"># Crear objetos</span>
+<span class="n">libro1</span> <span class="o">=</span> <span class="n">Libro</span><span class="p">(</span><span class="s2">"Cien años de soledad"</span><span class="p">,</span> <span class="s2">"Gabriel García Márquez"</span><span class="p">)</span>
+<span class="n">libro2</span> <span class="o">=</span> <span class="n">Libro</span><span class="p">(</span><span class="s2">"Don Quijote de la Mancha"</span><span class="p">,</span> <span class="s2">"Miguel de Cervantes"</span><span class="p">)</span>
+
+<span class="c1"># Usar el método __str__</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">libro1</span><span class="p">))</span> <span class="c1"># Imprime: Cien años de soledad por Gabriel García Marquez</span>
+
+<span class="c1"># Usar el método __len__</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">libro1</span><span class="p">))</span> <span class="c1"># Imprime: 19 (la longitud del título)</span>
+
+<span class="c1"># Usar el método __add__</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">libro1</span> <span class="o">+</span> <span class="n">libro2</span><span class="p">)</span> <span class="c1"># Imprime: Cien años de soledad y Don Quijote de la Mancha</span>
+
+<span class="c1"># Ejemplo 2 de uso de algunos métodos mágicos</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Persona</span><span class="p">:</span>
+    <span class="c1"># Método mágico __init__: define qué sucede al crear un nuevo objeto de una clase.</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">apellidos</span><span class="p">,</span> <span class="n">edad</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nombre</span> <span class="o">=</span> <span class="n">nombre</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">apellidos</span> <span class="o">=</span> <span class="n">apellidos</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edad</span> <span class="o">=</span> <span class="n">edad</span>
+
+    <span class="c1"># Método mágico __str__: permite definir qué sucede al imprimir un objeto o al llamar al método __str__. Es una representación informal de nuestro objeto (información que deseamos ver).</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">nombre</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">apellidos</span><span class="si">}</span><span class="s2">"</span>
+
+    <span class="c1"># Método mágico __repr__: es parecido a __str__, pero es una representación formal. Se utiliza para pasar información del objeto a otro método que pueda analizar todos sus datos.</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">'Persona("</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">nombre</span><span class="si">}</span><span class="s1">", "</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">apellidos</span><span class="si">}</span><span class="s1">", </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">edad</span><span class="si">}</span><span class="s1">)'</span>
+    
+    <span class="c1"># El método mágico __eq__: realiza la función de comparar (igual a).</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="c1"># El método isinstance permite verificar si el objeto es instancia de una clase.</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Persona</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">edad</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">edad</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    
+    <span class="c1"># El método mágico __bool__: devuelve False o True dependiendo de la lógica definida.</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__bool__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">edad</span> <span class="o">&gt;=</span> <span class="mi">18</span>
+
+<span class="c1"># Crear un objeto en el programa</span>
+<span class="n">amigo</span> <span class="o">=</span> <span class="n">Persona</span><span class="p">(</span><span class="s2">"Daniel"</span><span class="p">,</span> <span class="s2">"Lama"</span><span class="p">,</span> <span class="mi">26</span><span class="p">)</span>
+
+<span class="c1"># Imprimir el objeto amigo</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">amigo</span><span class="p">)</span>  <span class="c1"># Usando __str__</span>
+
+<span class="c1"># Imprimir el objeto amigo con __repr__</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">amigo</span><span class="p">))</span>
+
+<span class="c1"># Comparar dos objetos. Si comparo con otro objeto con la misma edad, mostrará True.</span>
+<span class="c1"># Crear otro objeto para la comparación</span>
+<span class="n">otro_amigo</span> <span class="o">=</span> <span class="n">Persona</span><span class="p">(</span><span class="s2">"Jho"</span><span class="p">,</span> <span class="s2">"Guzmán"</span><span class="p">,</span> <span class="mi">22</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">amigo</span> <span class="o">==</span> <span class="n">otro_amigo</span><span class="p">)</span>  <span class="c1"># False</span>
+
+<span class="c1"># Comparar con un valor que no es una instancia de Persona</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">amigo</span> <span class="o">==</span> <span class="mi">26</span><span class="p">)</span>  <span class="c1"># False</span>
+
+<span class="c1"># Evaluar el objeto con __bool__</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">bool</span><span class="p">(</span><span class="n">amigo</span><span class="p">))</span>  <span class="c1"># True</span>
+
+<span class="c1"># Crear otro objeto y evaluar con __bool__</span>
+<span class="n">amigo_del_otro_amigo</span> <span class="o">=</span> <span class="n">Persona</span><span class="p">(</span><span class="s2">"Kimberly"</span><span class="p">,</span> <span class="s2">"Turbi"</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">bool</span><span class="p">(</span><span class="n">amigo_del_otro_amigo</span><span class="p">))</span>  <span class="c1"># True</span>
+
+<span class="c1"># Mostrar los datos de la clase en forma de diccionario</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Persona</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Pie de página">
+        <a href="introduccionpoo.html" class="btn btn-neutral float-left" title="Introducción a la POO" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="polimorfismo.html" class="btn btn-neutral float-right" title="Polimorfismo" accesskey="n" rel="next">Siguiente <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+  <p>
+    © Copyright <span id="anio-copyright"></span> jeironpro.
+  </p>
+  <script>
+    document.getElementById("anio-copyright").textContent =
+      new Date().getFullYear();
+  </script>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
