@@ -1,6 +1,10 @@
 import { lazy, Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
+// Base de las rutas: el directorio del index.html actual. Sirve igual en dev
+// ("/") que en produccion bajo la subruta del monorepo (/webs/web-dashboards/...).
+const base = new URL(".", document.baseURI).pathname;
+
 import { AppShell } from "@/components/layout/AppShell";
 import { Placeholder } from "@/pages/Placeholder";
 
@@ -24,7 +28,7 @@ function PageLoader() {
 
 export default function App() {
     return (
-        <BrowserRouter basename={import.meta.env.BASE_URL}>
+        <BrowserRouter basename={base}>
             <Suspense fallback={<PageLoader />}>
                 <Routes>
                     <Route element={<AppShell />}>
