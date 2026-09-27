@@ -62,58 +62,11 @@ jobs:
           VITE_BASE=/webs/web-naruto/ pnpm install --frozen-lockfile
           VITE_BASE=/webs/web-naruto/ pnpm run build
 
-      # Subproyectos Vite de los hubs web-juegos y web-dashboards: igual que
-      # las SPAs, se compilan con --base para que assets y deep links resuelvan
-      # en la subruta del sitio.
-      - name: Build juego-4-rayas
-        run: |
-          cd web-juegos/juego-4-rayas
-          yarn install && yarn build --base=/webs/web-juegos/juego-4-rayas/
-
-      - name: Build juego-ajedrez
-        run: |
-          cd web-juegos/juego-ajedrez
-          yarn install && yarn build --base=/webs/web-juegos/juego-ajedrez/
-
-      - name: Build juego-damas
-        run: |
-          cd web-juegos/juego-damas
-          yarn install && yarn build --base=/webs/web-juegos/juego-damas/
-
-      - name: Build juego-puntos-cajas
-        run: |
-          cd web-juegos/juego-puntos-cajas
-          yarn install && yarn build --base=/webs/web-juegos/juego-puntos-cajas/
-
-      - name: Build juego-yatzy
-        run: |
-          cd web-juegos/juego-yatzy
-          yarn install && yarn build --base=/webs/web-juegos/juego-yatzy/
-
-      - name: Build dashboard-administrador
-        run: |
-          cd web-dashboards/dashboard-administrador
-          yarn install && yarn build --base=/webs/web-dashboards/dashboard-administrador/
-
-      - name: Build dashboard-financiero
-        run: |
-          cd web-dashboards/dashboard-financiero
-          yarn install && yarn build --base=/webs/web-dashboards/dashboard-financiero/
-
-      - name: Build dashboard-monitoreo
-        run: |
-          cd web-dashboards/dashboard-monitoreo
-          yarn install && yarn build --base=/webs/web-dashboards/dashboard-monitoreo/
-
-      - name: Build dashboard-operativo-analitico
-        run: |
-          cd web-dashboards/dashboard-operativo-analitico
-          yarn install && yarn build --base=/webs/web-dashboards/dashboard-operativo-analitico/
-
-      - name: Build dashboard-soporte
-        run: |
-          cd web-dashboards/dashboard-soporte
-          yarn install && yarn build --base=/webs/web-dashboards/dashboard-soporte/
+      # Subproyectos Vite de los hubs web-juegos y web-dashboards: se compilan
+      # desde su plantilla fuente (index.src.html) con base relativa y el build
+      # queda publicado en la raiz de cada subproyecto, listo para servirse.
+      - name: Compilar hubs (juegos y dashboards)
+        run: node scripts/compila-hubs.mjs --install
 
       - name: Build web-lenguajes-programacion (Sphinx)
         uses: actions/setup-python@v5
@@ -150,17 +103,8 @@ jobs:
           rsync -a web-codelang-quiz/dist/ site/web-codelang-quiz/
           rsync -a web-pokemon/dist/ site/web-pokemon/
           rsync -a web-naruto/dist/ site/web-naruto/
-          # dist/ de los subproyectos Vite de los hubs sobre su carpeta
-          rsync -a web-juegos/juego-4-rayas/dist/ site/web-juegos/juego-4-rayas/
-          rsync -a web-juegos/juego-ajedrez/dist/ site/web-juegos/juego-ajedrez/
-          rsync -a web-juegos/juego-damas/dist/ site/web-juegos/juego-damas/
-          rsync -a web-juegos/juego-puntos-cajas/dist/ site/web-juegos/juego-puntos-cajas/
-          rsync -a web-juegos/juego-yatzy/dist/ site/web-juegos/juego-yatzy/
-          rsync -a web-dashboards/dashboard-administrador/dist/ site/web-dashboards/dashboard-administrador/
-          rsync -a web-dashboards/dashboard-financiero/dist/ site/web-dashboards/dashboard-financiero/
-          rsync -a web-dashboards/dashboard-monitoreo/dist/ site/web-dashboards/dashboard-monitoreo/
-          rsync -a web-dashboards/dashboard-operativo-analitico/dist/ site/web-dashboards/dashboard-operativo-analitico/
-          rsync -a web-dashboards/dashboard-soporte/dist/ site/web-dashboards/dashboard-soporte/
+          # los hubs ya llevan su build compilado en la raiz de cada subproyecto
+          # (scripts/compila-hubs.mjs): nada extra que copiar aqui.
           # la web se construye en su propia raiz: publicar solo lo generado
           rsync -a \
             --exclude material \

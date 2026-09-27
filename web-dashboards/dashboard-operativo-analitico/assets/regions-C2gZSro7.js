@@ -1,0 +1,1 @@
+var e=[{id:`centro`,name:`Centro`},{id:`norte`,name:`Norte`},{id:`sur`,name:`Sur`},{id:`este`,name:`Este`},{id:`oeste`,name:`Oeste`}];export{e as default};

@@ -1,4 +1,8 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+
+// Base de las rutas: el directorio del index.html actual. Sirve igual en dev
+// ("/") que en produccion bajo la subruta del monorepo (/webs/web-dashboards/...).
+const base = new URL('.', document.baseURI).pathname
 import { ThemeProvider } from 'next-themes'
 
 import { Toaster } from '@/components/ui/sonner'
@@ -27,7 +31,7 @@ function Dashboard() {
 
 function App() {
     return (
-        <BrowserRouter basename={import.meta.env.BASE_URL}>
+        <BrowserRouter basename={base}>
             <ThemeProvider attribute="class" defaultTheme="light" forcedTheme="light">
                 <ScrollManager />
                 <AppShell>

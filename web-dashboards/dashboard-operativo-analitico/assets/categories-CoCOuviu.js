@@ -1,0 +1,1 @@
+var e=[{id:`electronica`,name:`Electrónica`},{id:`hogar`,name:`Hogar`},{id:`moda`,name:`Moda`},{id:`deportes`,name:`Deportes`},{id:`alimentacion`,name:`Alimentación`},{id:`juguetes`,name:`Juguetes`}];export{e as default};
