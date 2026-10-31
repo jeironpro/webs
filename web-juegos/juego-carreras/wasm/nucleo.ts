@@ -326,7 +326,7 @@ export function buscarCercana(x: f32, z: f32, desde: i32, ventana: i32): i32 {
 // ---------------------------------------------------------------------------
 
 const RIVALES: i32 = 3;
-const ESTRIDO_ESTADO: i32 = 16 + RIVALES * 6;
+const ESTRIDO_ESTADO: i32 = 16 + RIVALES * 7;
 const ANCHO_MEDIO: f32 = 6.4;
 const LIMITE_FUERA: f32 = ANCHO_MEDIO + 4.5;
 const VELOCIDAD_MAXIMA: f32 = 68.0;
@@ -413,6 +413,7 @@ function escribirEstado(): void {
         estado[base + 3] = rivalRumbo[r];
         estado[base + 4] = rivalVelocidad[r];
         estado[base + 5] = rivalProgreso[r];
+        estado[base + 6] = rivalVuelta[r];
     }
 }
 
@@ -567,8 +568,8 @@ export function paso(dt: f32, acelerar: f32, frenar: f32, giro: f32, derrape: u3
     for (let r = 0; r < RIVALES; r++) {
         const indice = indiceMuestra(i32(rivalProgreso[r] * f32(total)));
         const curvatura = curvaturaEn(indice);
-        const baseObjetivo: f32 = 40.0 + f32(dificultadCarrera) * 4.5;
-        const factorCurva: f32 = curvatura * 5.0 < 0.42 ? curvatura * 5.0 : 0.42;
+        const baseObjetivo: f32 = 51.0 + f32(dificultadCarrera) * 4.0;
+        const factorCurva: f32 = curvatura * 4.0 < 0.3 ? curvatura * 4.0 : 0.3;
         let objetivo: f32 = baseObjetivo * (1.0 - factorCurva);
 
         let diferenciaJugador: f32 = cocheProgreso - rivalProgreso[r];
@@ -594,14 +595,15 @@ export function paso(dt: f32, acelerar: f32, frenar: f32, giro: f32, derrape: u3
         const choqueX = rivalX[r] - cocheX;
         const choqueZ = rivalZ[r] - cocheZ;
         const distancia2 = choqueX * choqueX + choqueZ * choqueZ;
-        if (distancia2 < 6.8) {
+        if (distancia2 < 5.2) {
             let distancia = Mathf.sqrt(distancia2);
             if (distancia < 0.01) distancia = 0.01;
-            const empuje: f32 = (2.6 - distancia) * 0.5;
+            // Roce, no choque frontal: se separa de lado y se conserva casi toda la velocidad.
+            const empuje: f32 = (2.3 - distancia) * 0.45;
             cocheX -= (choqueX / distancia) * empuje;
             cocheZ -= (choqueZ / distancia) * empuje;
-            cocheVelocidad *= 0.92;
-            rivalVelocidad[r] *= 0.94;
+            cocheVelocidad *= 0.972;
+            rivalVelocidad[r] *= 0.97;
             if (enfriamientoChoque <= CERO) {
                 cocheChoques++;
                 enfriamientoChoque = 0.5;

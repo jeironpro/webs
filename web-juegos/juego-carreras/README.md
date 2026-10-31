@@ -18,7 +18,12 @@ persecución renderizados con Three.js sobre **WebGPU**, con un núcleo de simul
   colisiones que separan los coches y reparten el frenazo.
 - Carrera a 3 vueltas con cronómetro, mejor vuelta y contador de choques, todo calculado en el núcleo.
 - Cámara de persecución suavizada y órbita cinematográfica en el menú.
-- HUD de velocidad y vuelta, control por teclado y aviso claro cuando no hay contexto gráfico.
+- HUD con velocidad, posición, vuelta, cronómetro, mejor vuelta, toques y **minimapa** en canvas.
+- Menú con dificultad de los rivales, semilla del circuito y número de vueltas; cuenta atrás, pausa y
+  panel de resultados con récord de vuelta guardado en `localStorage`.
+- Control por teclado, **gamepad estándar** y botones táctiles que aparecen en punteros gruesos.
+- Audio sintetizado con WebAudio (motor por velocidad y derrape), sin archivos de sonido.
+- Aviso claro cuando no hay contexto gráfico ni WebAssembly disponible.
 
 ## Tecnologías
 
@@ -72,6 +77,11 @@ cada frame.
 | Derrape  | `Espacio` o `Shift` |
 | Pausa    | `P` o `Esc`        |
 | Reinicio | `R`                |
+| Pausa    | `P` o `Esc`        |
+
+También funciona un gamepad estándar: gatillo derecho acelera, izquierdo frena, stick o cruceta
+para girar, botón A para derrapar y Start para pausar. En pantallas táctiles aparecen botones
+en pantalla para acelerar, frenar, girar y derrapar.
 
 ## Estructura del proyecto
 

@@ -18,6 +18,7 @@
         />
         <link rel="stylesheet" href="css/tokens.css" />
         <link rel="stylesheet" href="css/estilos.css" />
+        <link rel="stylesheet" href="css/interfaz.css" />
         <script type="importmap">
             {
                 "imports": {
@@ -36,7 +37,7 @@
             <div class="velo__interior">
                 <p class="velo__marca">CIRCUITO NEÓN</p>
                 <p class="velo__mensaje" id="carga-mensaje">Inicializando el motor gráfico…</p>
-                <div class="velo__barra" aria-hidden="true"><span id="carga-barra"></span></div>
+                <div class="velo__barra" aria-hidden="true"><span></span></div>
             </div>
         </div>
 
@@ -47,12 +48,51 @@
                     <span id="hud-backend-texto">detectando GPU</span>
                 </span>
                 <span class="chip chip--suave">three.js r187</span>
+                <span class="chip chip--suave">wasm</span>
             </p>
             <h1 class="menu__titulo" id="menu-titulo">Circuito<br />Neón</h1>
             <p class="menu__lede">
                 Traza el circuito procedural, encadena derrapes y baja tu mejor vuelta. La pista se
                 genera con una semilla: el mismo número, el mismo trazado.
             </p>
+
+            <div class="opciones">
+                <label class="campo" for="opcion-dificultad">
+                    <span class="campo__etiqueta">Rivales</span>
+                    <select class="campo__control" id="opcion-dificultad">
+                        <option value="0">Fácil</option>
+                        <option value="1" selected>Normal</option>
+                        <option value="2">Difícil</option>
+                    </select>
+                </label>
+                <label class="campo" for="opcion-semilla">
+                    <span class="campo__etiqueta">Circuito</span>
+                    <input
+                        class="campo__control"
+                        id="opcion-semilla"
+                        type="number"
+                        min="1"
+                        max="999999"
+                        step="1"
+                        value="2026"
+                        inputmode="numeric"
+                    />
+                </label>
+                <label class="campo" for="opcion-vueltas">
+                    <span class="campo__etiqueta">Vueltas</span>
+                    <select class="campo__control" id="opcion-vueltas">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3" selected>3</option>
+                        <option value="5">5</option>
+                    </select>
+                </label>
+                <label class="interruptor" for="opcion-sonido">
+                    <input id="opcion-sonido" type="checkbox" checked />
+                    <span>Sonido del motor</span>
+                </label>
+            </div>
+
             <div class="menu__acciones">
                 <button class="btn btn--primario" type="button" id="boton-iniciar">
                     <span class="ms" aria-hidden="true">sports_score</span>
@@ -64,17 +104,162 @@
                 <li><kbd>S</kbd><kbd>↓</kbd><span>frenar</span></li>
                 <li><kbd>A</kbd><kbd>D</kbd><span>girar</span></li>
                 <li><kbd>Espacio</kbd><span>derrape</span></li>
+                <li><kbd>P</kbd><span>pausa</span></li>
             </ul>
         </section>
 
         <div class="hud" id="hud" hidden>
+            <div class="hud__izquierda">
+                <div class="hud__marcador">
+                    <div class="hud__bloque">
+                        <span class="hud__etiqueta">Posición</span>
+                        <span class="hud__valor hud__valor--pequeno" id="hud-posicion">1/4</span>
+                    </div>
+                    <div class="hud__bloque">
+                        <span class="hud__etiqueta">Vuelta</span>
+                        <span class="hud__valor hud__valor--pequeno" id="hud-vuelta">1/3</span>
+                    </div>
+                    <div class="hud__bloque">
+                        <span class="hud__etiqueta">Tiempo</span>
+                        <span class="hud__valor hud__valor--pequeno" id="hud-tiempo">0:00.0</span>
+                    </div>
+                    <div class="hud__bloque">
+                        <span class="hud__etiqueta">Mejor</span>
+                        <span class="hud__valor hud__valor--pequeno" id="hud-mejor">—</span>
+                    </div>
+                    <div class="hud__bloque">
+                        <span class="hud__etiqueta">Toques</span>
+                        <span class="hud__valor hud__valor--pequeno" id="hud-choques">0</span>
+                    </div>
+                </div>
+                <canvas
+                    class="minimapa"
+                    id="minimapa"
+                    width="160"
+                    height="160"
+                    role="img"
+                    aria-label="Minimapa del circuito con tu posición y la de los rivales"
+                ></canvas>
+            </div>
             <div class="hud__velocidad">
                 <span class="hud__valor" id="hud-velocidad">0</span>
                 <span class="hud__unidad">km/h</span>
             </div>
-            <div class="hud__vueltas">
-                <span class="hud__etiqueta">Vuelta</span>
-                <span class="hud__valor hud__valor--pequeno" id="hud-vuelta">1/3</span>
+        </div>
+
+        <div class="cuenta" id="cuenta-atras" hidden aria-hidden="true">
+            <span id="cuenta-atras-valor">3</span>
+        </div>
+
+        <div class="panel-juego" id="pausa" hidden>
+            <div class="panel-juego__caja" role="dialog" aria-modal="true" aria-labelledby="pausa-titulo">
+                <h2 class="panel-juego__titulo" id="pausa-titulo">Pausa</h2>
+                <p class="panel-juego__texto">
+                    La carrera está congelada. El cronómetro se detiene hasta que reanudes.
+                </p>
+                <div class="panel-juego__acciones">
+                    <button class="btn btn--primario" type="button" id="boton-reanudar">
+                        <span class="ms" aria-hidden="true">play_arrow</span>
+                        Reanudar
+                    </button>
+                    <button class="btn btn--secundario" type="button" id="boton-reiniciar">
+                        <span class="ms" aria-hidden="true">refresh</span>
+                        Reiniciar
+                    </button>
+                    <button class="btn btn--secundario" type="button" id="boton-menu">
+                        <span class="ms" aria-hidden="true">home</span>
+                        Menú
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-juego" id="resultados" hidden>
+            <div
+                class="panel-juego__caja"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="resultado-titulo"
+            >
+                <p class="panel-juego__meta" id="resultado-record" hidden>
+                    Nuevo récord de vuelta
+                </p>
+                <h2 class="panel-juego__titulo" id="resultado-titulo">Bandera a cuadros</h2>
+                <dl class="resultado">
+                    <div>
+                        <dt>Tiempo total</dt>
+                        <dd id="resultado-tiempo">—</dd>
+                    </div>
+                    <div>
+                        <dt>Mejor vuelta</dt>
+                        <dd id="resultado-mejor">—</dd>
+                    </div>
+                    <div>
+                        <dt>Posición</dt>
+                        <dd id="resultado-posicion">—</dd>
+                    </div>
+                    <div>
+                        <dt>Toques</dt>
+                        <dd id="resultado-choques">0</dd>
+                    </div>
+                </dl>
+                <div class="panel-juego__acciones">
+                    <button class="btn btn--primario" type="button" id="boton-otra-vez">
+                        <span class="ms" aria-hidden="true">refresh</span>
+                        Otra carrera
+                    </button>
+                    <button class="btn btn--secundario" type="button" id="boton-volver-menu">
+                        <span class="ms" aria-hidden="true">home</span>
+                        Menú
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="tactil" id="tactil" aria-label="Controles táctiles">
+            <div class="tactil__grupo">
+                <button
+                    class="tactil__boton"
+                    type="button"
+                    data-accion="izquierda"
+                    aria-label="Girar a la izquierda"
+                >
+                    <span class="ms" aria-hidden="true">turn_left</span>
+                </button>
+                <button
+                    class="tactil__boton"
+                    type="button"
+                    data-accion="derecha"
+                    aria-label="Girar a la derecha"
+                >
+                    <span class="ms" aria-hidden="true">turn_right</span>
+                </button>
+            </div>
+            <div class="tactil__grupo">
+                <button
+                    class="tactil__boton tactil__boton--alerta"
+                    type="button"
+                    data-accion="derrape"
+                    aria-label="Derrape"
+                >
+                    <span class="ms" aria-hidden="true">local_fire_department</span>
+                </button>
+                <button
+                    class="tactil__boton"
+                    type="button"
+                    data-accion="frenar"
+                    aria-label="Frenar"
+                >
+                    <span class="ms" aria-hidden="true">speed</span>
+                </button>
+                <button
+                    class="tactil__boton tactil__boton--grande"
+                    type="button"
+                    data-accion="acelerar"
+                    aria-label="Acelerar"
+                >
+                    <span class="ms" aria-hidden="true">bolt</span>
+                </button>
             </div>
         </div>
 

@@ -30,3 +30,15 @@ export function suavizar(actual, objetivo, velocidad, dt) {
 export function modulo(valor, base) {
     return ((valor % base) + base) % base;
 }
+
+/** Segundos → `m:ss.d`; con horas por delante si la carrera se alarga. */
+export function formatearTiempo(segundos) {
+    if (!Number.isFinite(segundos) || segundos < 0) return "—";
+
+    const minutos = Math.floor(segundos / 60);
+    const resto = segundos - minutos * 60;
+    const decimas = Math.floor((resto % 1) * 10);
+    const segundosEnteros = Math.floor(resto);
+
+    return `${minutos}:${String(segundosEnteros).padStart(2, "0")}.${decimas}`;
+}
