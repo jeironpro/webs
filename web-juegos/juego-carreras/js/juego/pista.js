@@ -1,0 +1,257 @@
+import {
+    BoxGeometry,
+    BufferGeometry,
+    CanvasTexture,
+    CatmullRomCurve3,
+    DoubleSide,
+    Float32BufferAttribute,
+    Group,
+    InstancedMesh,
+    Matrix4,
+    Mesh,
+    MeshBasicNodeMaterial,
+    MeshStandardNodeMaterial,
+    NearestFilter,
+    Object3D,
+    PlaneGeometry,
+    RepeatWrapping,
+    SphereGeometry,
+    SRGBColorSpace,
+    Vector3,
+} from "three/webgpu";
+import { crearAzar, limitar, modulo } from "./utilidades.js";
+
+const ARRIBA = new Vector3(0, 1, 0);
+export const ANCHO_PISTA = 14;
+const ANCHO_BORDILLO = 0.9;
+const MUESTRAS = 640;
+
+/**
+ * Circuito cerrado y determinista: la semilla mueve los puntos de control y el
+ * peralte. Devuelve la malla lista para la escena y una API de consulta por
+ * progreso (0..1) que la física y la cámara usan para colocarse.
+ */
+export function crearCircuito({ semilla = 2026 } = {}) {
+    const azar = crearAzar(semilla);
+    const puntosControl = [];
+    const totalPuntos = 12;
+
+    for (let i = 0; i < totalPuntos; i += 1) {
+        const angulo = (i / totalPuntos) * Math.PI * 2;
+        const radio = 104 + azar() * 46;
+        const altura = Math.sin(i * 0.9) * 3.2 + azar() * 2.6;
+        puntosControl.push(new Vector3(Math.cos(angulo) * radio, altura, Math.sin(angulo) * radio));
+    }
+
+    const curva = new CatmullRomCurve3(puntosControl, true, "catmullrom", 0.5);
+    curva.arcLengthDivisions = 2000;
+
+    const muestras = construirMuestras(curva);
+    const grupo = new Group();
+    grupo.name = "circuito";
+
+    const asfalto = new MeshStandardNodeMaterial({
+        color: 0x39435f,
+        metalness: 0.22,
+        roughness: 0.72,
+        side: DoubleSide,
+    });
+    const pista = new Mesh(construirCinta(muestras, 0, ANCHO_PISTA), asfalto);
+    pista.receiveShadow = true;
+    grupo.add(pista);
+
+    const centro = new MeshBasicNodeMaterial({ color: 0xa9bcf5, transparent: true, opacity: 0.85 });
+    grupo.add(new Mesh(construirCinta(muestras, 0, 0.32, 0.015), centro));
+
+    const bordilloDerecho = new MeshBasicNodeMaterial({ color: 0x35c6db });
+    const bordilloIzquierdo = new MeshBasicNodeMaterial({ color: 0xb45cff });
+    const desvioBordillo = ANCHO_PISTA / 2 + ANCHO_BORDILLO / 2;
+    grupo.add(new Mesh(construirCinta(muestras, desvioBordillo, ANCHO_BORDILLO, 0.03), bordilloDerecho));
+    grupo.add(
+        new Mesh(construirCinta(muestras, -desvioBordillo, ANCHO_BORDILLO, 0.03), bordilloIzquierdo)
+    );
+
+    grupo.add(crearLineaMeta(muestras[0]));
+    grupo.add(crearPostes(muestras, desvioBordillo + 2.4));
+
+    const total = muestras.length;
+    const indiceDe = (progreso) => Math.floor(modulo(progreso, 1) * total) % total;
+
+    return {
+        grupo,
+        curva,
+        muestras,
+        longitud: curva.getLength(),
+        ancho: ANCHO_PISTA,
+        semilla,
+        muestraEn(progreso) {
+            return muestras[indiceDe(progreso)];
+        },
+        posicionEn(progreso, desvio = 0, altura = 0) {
+            const muestra = muestras[indiceDe(progreso)];
+            return muestra.posicion
+                .clone()
+                .addScaledVector(muestra.lateral, desvio)
+                .addScaledVector(ARRIBA, altura);
+        },
+        rumboEn(progreso) {
+            const { tangente } = muestras[indiceDe(progreso)];
+            return Math.atan2(tangente.x, tangente.z);
+        },
+        inclinacionEn(progreso) {
+            return muestras[indiceDe(progreso)].tangente.y;
+        },
+        peralteEn(progreso) {
+            return muestras[indiceDe(progreso)].peralte;
+        },
+    };
+}
+
+function construirMuestras(curva) {
+    const puntos = curva.getSpacedPoints(MUESTRAS);
+    const total = puntos.length - 1;
+    const muestras = [];
+
+    for (let i = 0; i < total; i += 1) {
+        const anterior = puntos[(i - 1 + total) % total];
+        const siguiente = puntos[(i + 1) % total];
+        const tangente = new Vector3().subVectors(siguiente, anterior).normalize();
+        const lateral = new Vector3().crossVectors(tangente, ARRIBA).normalize();
+        muestras.push({ posicion: puntos[i].clone(), tangente, lateral, peralte: 0 });
+    }
+
+    // Peralte proporcional a la curvatura, suavizado para evitar escalones.
+    for (let i = 0; i < total; i += 1) {
+        const antes = muestras[(i - 1 + total) % total].tangente;
+        const despues = muestras[(i + 1) % total].tangente;
+        const giro = new Vector3().crossVectors(antes, despues).y;
+        muestras[i].peralte = limitar(giro * 16, -0.22, 0.22);
+    }
+
+    for (let pasada = 0; pasada < 4; pasada += 1) {
+        const copia = muestras.map((m) => m.peralte);
+        for (let i = 0; i < total; i += 1) {
+            const antes = copia[(i - 1 + total) % total];
+            const despues = copia[(i + 1) % total];
+            muestras[i].peralte = (antes + copia[i] * 2 + despues) / 4;
+        }
+    }
+
+    for (const muestra of muestras) {
+        muestra.lateral.applyAxisAngle(muestra.tangente, muestra.peralte).normalize();
+    }
+
+    return muestras;
+}
+
+/** Cinta continua a lo largo de las muestras: asfalto, bordillos y línea central. */
+function construirCinta(muestras, desvio, ancho, elevacion = 0) {
+    const posiciones = [];
+    const uvs = [];
+    const indices = [];
+    const total = muestras.length;
+
+    for (let i = 0; i <= total; i += 1) {
+        const muestra = muestras[i % total];
+        const centro = muestra.posicion.clone().addScaledVector(ARRIBA, elevacion);
+        const bordeA = centro.clone().addScaledVector(muestra.lateral, desvio + ancho / 2);
+        const bordeB = centro.clone().addScaledVector(muestra.lateral, desvio - ancho / 2);
+
+        posiciones.push(bordeA.x, bordeA.y, bordeA.z, bordeB.x, bordeB.y, bordeB.z);
+        const v = (i / total) * 90;
+        uvs.push(0, v, 1, v);
+    }
+
+    for (let i = 0; i < total; i += 1) {
+        const a = i * 2;
+        const b = a + 1;
+        const c = a + 2;
+        const d = a + 3;
+        indices.push(a, c, b, b, c, d);
+    }
+
+    const geometria = new BufferGeometry();
+    geometria.setAttribute("position", new Float32BufferAttribute(posiciones, 3));
+    geometria.setAttribute("uv", new Float32BufferAttribute(uvs, 2));
+    geometria.setIndex(indices);
+    geometria.computeVertexNormals();
+    return geometria;
+}
+
+function crearLineaMeta(muestra) {
+    const lienzo = document.createElement("canvas");
+    lienzo.width = 128;
+    lienzo.height = 32;
+    const contexto = lienzo.getContext("2d");
+    const celdas = 16;
+    const lado = lienzo.width / celdas;
+    for (let x = 0; x < celdas; x += 1) {
+        for (let y = 0; y < 2; y += 1) {
+            contexto.fillStyle = (x + y) % 2 === 0 ? "#f2f4ff" : "#0b1020";
+            contexto.fillRect(x * lado, y * (lienzo.height / 2), lado, lienzo.height / 2);
+        }
+    }
+
+    const textura = new CanvasTexture(lienzo);
+    textura.colorSpace = SRGBColorSpace;
+    textura.magFilter = NearestFilter;
+    textura.wrapS = RepeatWrapping;
+    textura.repeat.set(3, 1);
+
+    const meta = new Mesh(
+        new PlaneGeometry(ANCHO_PISTA, 2.6),
+        new MeshBasicNodeMaterial({ map: textura })
+    );
+    const base = new Matrix4().makeBasis(muestra.lateral, muestra.tangente, ARRIBA);
+    meta.quaternion.setFromRotationMatrix(base);
+    meta.position.copy(muestra.posicion).addScaledVector(ARRIBA, 0.05);
+    return meta;
+}
+
+/** Postes de luz instanciados a ambos lados: cian a la derecha, magenta a la izquierda. */
+function crearPostes(muestras, desvio) {
+    const grupo = new Group();
+    const geometria = new BoxGeometry(0.16, 4.4, 0.16);
+    const geometriaLuz = new SphereGeometry(0.42, 10, 10);
+    const paso = 8;
+    const cantidad = Math.floor(muestras.length / paso);
+    const matriz = new Object3D();
+
+    const derecho = new MeshBasicNodeMaterial({ color: 0x35c6db });
+    const izquierdo = new MeshBasicNodeMaterial({ color: 0xb45cff });
+    const postesDerecha = new InstancedMesh(geometria, derecho, cantidad);
+    const postesIzquierda = new InstancedMesh(geometria, izquierdo, cantidad);
+    const lucesDerecha = new InstancedMesh(geometriaLuz, derecho, cantidad);
+    const lucesIzquierda = new InstancedMesh(geometriaLuz, izquierdo, cantidad);
+
+    for (let i = 0; i < cantidad; i += 1) {
+        const muestra = muestras[(i * paso) % muestras.length];
+        const centro = muestra.posicion.clone().addScaledVector(ARRIBA, 2.2);
+        const corona = muestra.posicion.clone().addScaledVector(ARRIBA, 4.5);
+
+        const derecha = centro.clone().addScaledVector(muestra.lateral, desvio);
+        matriz.position.copy(derecha);
+        matriz.updateMatrix();
+        postesDerecha.setMatrixAt(i, matriz.matrix);
+
+        matriz.position.copy(corona.clone().addScaledVector(muestra.lateral, desvio));
+        matriz.updateMatrix();
+        lucesDerecha.setMatrixAt(i, matriz.matrix);
+
+        const izquierda = centro.clone().addScaledVector(muestra.lateral, -desvio);
+        matriz.position.copy(izquierda);
+        matriz.updateMatrix();
+        postesIzquierda.setMatrixAt(i, matriz.matrix);
+
+        matriz.position.copy(corona.clone().addScaledVector(muestra.lateral, -desvio));
+        matriz.updateMatrix();
+        lucesIzquierda.setMatrixAt(i, matriz.matrix);
+    }
+
+    for (const malla of [postesDerecha, postesIzquierda, lucesDerecha, lucesIzquierda]) {
+        malla.instanceMatrix.needsUpdate = true;
+    }
+
+    grupo.add(postesDerecha, postesIzquierda, lucesDerecha, lucesIzquierda);
+    return grupo;
+}
