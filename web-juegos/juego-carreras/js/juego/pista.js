@@ -4,6 +4,7 @@ import {
     CanvasTexture,
     DoubleSide,
     Float32BufferAttribute,
+    FrontSide,
     Group,
     InstancedMesh,
     Matrix4,
@@ -41,20 +42,32 @@ export function crearCircuito({ nucleo }) {
         metalness: 0.22,
         roughness: 0.72,
         side: DoubleSide,
+        // La cinta es de doble cara: sin esto la cara trasera entra en el mapa
+        // de sombras y aparecen manchas oscuras sobre el asfalto.
+        shadowSide: FrontSide,
     });
     const pista = new Mesh(construirCinta(muestras, 0, ANCHO_PISTA), asfalto);
     pista.receiveShadow = true;
     grupo.add(pista);
 
-    const centro = new MeshBasicNodeMaterial({ color: 0xa9bcf5, transparent: true, opacity: 0.85 });
-    grupo.add(new Mesh(construirCinta(muestras, 0, 0.32, 0.015), centro));
+    const centro = new MeshBasicNodeMaterial({
+        color: 0xa9bcf5,
+        transparent: true,
+        opacity: 0.85,
+        polygonOffset: true,
+        polygonOffsetFactor: -2,
+        polygonOffsetUnits: -2,
+    });
+    grupo.add(new Mesh(construirCinta(muestras, 0, 0.32, 0.035), centro));
 
     const bordilloDerecho = new MeshBasicNodeMaterial({ color: 0x35c6db });
     const bordilloIzquierdo = new MeshBasicNodeMaterial({ color: 0xb45cff });
     const desvioBordillo = ANCHO_PISTA / 2 + ANCHO_BORDILLO / 2;
-    grupo.add(new Mesh(construirCinta(muestras, desvioBordillo, ANCHO_BORDILLO, 0.03), bordilloDerecho));
     grupo.add(
-        new Mesh(construirCinta(muestras, -desvioBordillo, ANCHO_BORDILLO, 0.03), bordilloIzquierdo)
+        new Mesh(construirCinta(muestras, desvioBordillo, ANCHO_BORDILLO, 0.05), bordilloDerecho)
+    );
+    grupo.add(
+        new Mesh(construirCinta(muestras, -desvioBordillo, ANCHO_BORDILLO, 0.05), bordilloIzquierdo)
     );
 
     grupo.add(crearLineaMeta(muestras[0]));
@@ -174,7 +187,7 @@ function crearLineaMeta(muestra) {
     );
     const base = new Matrix4().makeBasis(muestra.lateral, muestra.tangente, ARRIBA);
     meta.quaternion.setFromRotationMatrix(base);
-    meta.position.copy(muestra.posicion).addScaledVector(ARRIBA, 0.05);
+    meta.position.copy(muestra.posicion).addScaledVector(ARRIBA, 0.07);
     return meta;
 }
 

@@ -273,9 +273,9 @@ export function crearCoche({ color = 0x35c6db, colorPinza = 0xff7a1a } = {}) {
             giroRuedas += (velocidad / RADIO_REFERENCIA) * dt;
             for (const { soporte, rueda, frontal } of ruedas) {
                 rueda.rotation.x = giroRuedas;
-                if (frontal) soporte.rotation.y = giro * 0.42;
+                if (frontal) soporte.rotation.y = -giro * 0.42;
             }
-            grupo.rotation.z = -giro * 0.03;
+            grupo.rotation.z = giro * 0.03;
         },
     };
 }

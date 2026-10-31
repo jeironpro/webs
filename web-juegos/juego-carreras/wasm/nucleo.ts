@@ -504,7 +504,9 @@ export function paso(dt: f32, acelerar: f32, frenar: f32, giro: f32, derrape: u3
     const agarre: f32 = derrape != 0 ? 1.9 : 1.0;
     const respuesta: f32 = (1.5 + 4.5 / (1.0 + cocheVelocidad * 0.075)) * agarre;
 
-    cocheRumbo += giro * respuesta * d;
+    // Signo de la dirección: girar a la derecha (giro positivo) baja el rumbo
+    // y mueve el coche hacia -X, que es la derecha en pantalla.
+    cocheRumbo -= giro * respuesta * d;
     cocheRumbo += diferencia * (alineacion * d < UNO ? alineacion * d : UNO);
     cocheRumbo = normalizarAngulo(cocheRumbo);
 

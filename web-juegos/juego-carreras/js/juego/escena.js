@@ -1,5 +1,6 @@
 import {
     BoxGeometry,
+    CanvasTexture,
     CircleGeometry,
     Color,
     DirectionalLight,
@@ -10,7 +11,9 @@ import {
     MeshBasicNodeMaterial,
     MeshStandardNodeMaterial,
     Object3D,
+    RepeatWrapping,
     Scene,
+    SRGBColorSpace,
     SphereGeometry,
 } from "three/webgpu";
 import { crearAzar } from "./utilidades.js";
@@ -18,7 +21,7 @@ import { crearAzar } from "./utilidades.js";
 export function crearEscena() {
     const escena = new Scene();
     escena.background = new Color(0x060a16);
-    escena.fog = new FogExp2(0x0a1224, 0.0019);
+    escena.fog = new FogExp2(0x0a1224, 0.0016);
 
     const ambiente = new HemisphereLight(0x8aa6ff, 0x141d33, 2.3);
     escena.add(ambiente);
@@ -38,7 +41,8 @@ export function crearEscena() {
     luna.shadow.camera.top = 220;
     luna.shadow.camera.bottom = -220;
     luna.shadow.camera.far = 620;
-    luna.shadow.bias = -0.0008;
+    luna.shadow.bias = -0.0004;
+    luna.shadow.normalBias = 0.6;
     escena.add(luna);
     escena.add(luna.target);
 
@@ -94,14 +98,76 @@ function crearEstrellas() {
     return estrellas;
 }
 
+/**
+ * Fachada procedural en dos mapas: el muro con sus ventanas apagadas y, aparte,
+ * solo las ventanas encendidas. Así la emisión ilumina únicamente los huecos y
+ * el edificio no se convierte en una masa beige al alejarse la cámara.
+ */
+function texturaFachada() {
+    const azar = crearAzar(53);
+    const ancho = 128;
+    const alto = 256;
+    const muro = document.createElement("canvas");
+    muro.width = ancho;
+    muro.height = alto;
+    const luces = document.createElement("canvas");
+    luces.width = ancho;
+    luces.height = alto;
+    const contexto = muro.getContext("2d");
+    const emision = luces.getContext("2d");
+
+    contexto.fillStyle = "#2b3a5c";
+    contexto.fillRect(0, 0, ancho, alto);
+    emision.fillStyle = "#000000";
+    emision.fillRect(0, 0, ancho, alto);
+
+    // Rejilla de 5x5 ventanas por baldosa: huecos grandes y separados, para que
+    // la fachada se lea como un edificio y no como una trama de puntos.
+    for (let fila = 0; fila < 5; fila += 1) {
+        const y = 5 + fila * 26;
+        // Losa de forjado entre plantas: da escala al edificio.
+        contexto.fillStyle = "#1e2b44";
+        contexto.fillRect(0, y - 4, ancho, 2);
+
+        for (let columna = 0; columna < 5; columna += 1) {
+            const x = 4 + columna * 26;
+            if (azar() > 0.45) {
+                const calida = azar() > 0.35;
+                contexto.fillStyle = calida ? "#e8c48c" : "#cfd9f0";
+                contexto.fillRect(x, y, 15, 14);
+                emision.fillStyle = calida ? "#ffc978" : "#dfe9ff";
+                emision.fillRect(x, y, 15, 14);
+            } else {
+                contexto.fillStyle = "#33445f";
+                contexto.fillRect(x, y, 15, 14);
+            }
+        }
+    }
+
+    const preparar = (lienzo) => {
+        const textura = new CanvasTexture(lienzo);
+        textura.colorSpace = SRGBColorSpace;
+        textura.wrapS = RepeatWrapping;
+        textura.wrapT = RepeatWrapping;
+        textura.repeat.set(1, 2);
+        return textura;
+    };
+
+    return { mapa: preparar(muro), emisiva: preparar(luces) };
+}
+
 function crearPerfilUrbano() {
     const azar = crearAzar(31);
     const cantidad = 64;
+    const fachada = texturaFachada();
     const material = new MeshStandardNodeMaterial({
-        color: 0x0a1020,
-        emissive: 0x22306b,
-        emissiveIntensity: 0.8,
-        roughness: 0.9,
+        color: 0xffffff,
+        map: fachada.mapa,
+        emissive: 0xffd9a0,
+        emissiveMap: fachada.emisiva,
+        emissiveIntensity: 1.4,
+        roughness: 0.72,
+        metalness: 0.15,
     });
     const edificios = new InstancedMesh(new BoxGeometry(1, 1, 1), material, cantidad);
     const matriz = new Object3D();

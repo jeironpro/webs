@@ -141,6 +141,27 @@ afirmar(
 );
 afirmar(rivalVelocidad > 20, `rival demasiado lento: ${rivalVelocidad.toFixed(1)} m/s`);
 
+// La dirección no está invertida: girar a la derecha (input +1) desplaza el coche
+// hacia -X, que es la derecha en pantalla con el morro apuntando a +Z.
+function simularGiro(giro) {
+    nucleo.inicializar(2026, MUESTRAS);
+    nucleo.iniciarCarrera(1, 3);
+    const estado = estadoActual();
+    for (let frame = 0; frame < 90; frame += 1) {
+        nucleo.paso(1 / 60, 1, 0, giro, 0);
+    }
+    return { x: estado[0], rumbo: estado[3] };
+}
+
+const recto = simularGiro(0);
+const derecha = simularGiro(1);
+const izquierda = simularGiro(-1);
+
+afirmar(
+    derecha.x < recto.x && izquierda.x > recto.x,
+    `la dirección está invertida: recto ${recto.x.toFixed(2)}, derecha ${derecha.x.toFixed(2)}, izquierda ${izquierda.x.toFixed(2)}`
+);
+
 const repetida = simular(60 * 45);
 afirmar(
     carrera.valores.every((valor, indice) => valor === repetida.valores[indice]),
