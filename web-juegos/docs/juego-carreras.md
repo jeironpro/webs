@@ -141,8 +141,9 @@ juego-carreras/
 ```
 
 El juego se sirve sin bundler: `index.html` carga `js/app.js` como módulo y usa un **import map**
-que resuelve `three/webgpu`, `three/tsl` y `three/core` contra `vendor/three/`. El WASM se
-instancia con `WebAssembly.instantiateStreaming` y memoria compartida con JS.
+que resuelve `three/webgpu` y `three/tsl` contra `vendor/three/` (las importaciones relativas internas
+las resuelve el propio build de Three.js). El WASM se instancia con
+`WebAssembly.instantiateStreaming`, con caída a `arrayBuffer`, y JS lee su memoria lineal.
 
 ## 4. Modelo de juego
 
