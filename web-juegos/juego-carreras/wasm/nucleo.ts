@@ -320,3 +320,306 @@ export function buscarCercana(x: f32, z: f32, desde: i32, ventana: i32): i32 {
 
     return mejor;
 }
+
+// ---------------------------------------------------------------------------
+// Carrera: coche, rivales, vueltas y cronometraje
+// ---------------------------------------------------------------------------
+
+const RIVALES: i32 = 3;
+const ESTRIDO_ESTADO: i32 = 16 + RIVALES * 6;
+const ANCHO_MEDIO: f32 = 6.4;
+const LIMITE_FUERA: f32 = ANCHO_MEDIO + 4.5;
+const VELOCIDAD_MAXIMA: f32 = 68.0;
+const PI_F: f32 = 3.141592653589793;
+const UNO: f32 = 1.0;
+const CERO: f32 = 0.0;
+
+let estado = new Float32Array(ESTRIDO_ESTADO);
+let dificultadCarrera: i32 = 1;
+let vueltasTotales: i32 = 3;
+
+let cocheX: f32 = 0;
+let cocheY: f32 = 0;
+let cocheZ: f32 = 0;
+let cocheRumbo: f32 = 0;
+let cocheVelocidad: f32 = 0;
+let cocheLateral: f32 = 0;
+let cocheIndice: i32 = 0;
+let cocheProgreso: f32 = 0;
+let cocheProgresoPrevio: f32 = 0;
+let cocheVuelta: i32 = 1;
+let cocheTiempo: f32 = 0;
+let cocheMejorVuelta: f32 = 0;
+let cocheVueltaInicio: f32 = 0;
+let cocheTerminado: i32 = 0;
+let cocheChoques: i32 = 0;
+let enfriamientoChoque: f32 = 0;
+
+let rivalX = new Float32Array(RIVALES);
+let rivalZ = new Float32Array(RIVALES);
+let rivalY = new Float32Array(RIVALES);
+let rivalRumbo = new Float32Array(RIVALES);
+let rivalVelocidad = new Float32Array(RIVALES);
+let rivalProgreso = new Float32Array(RIVALES);
+let rivalDesvio = new Float32Array(RIVALES);
+let rivalVuelta = new Float32Array(RIVALES);
+
+function normalizarAngulo(angulo: f32): f32 {
+    let valor = angulo;
+    while (valor > PI_F) valor -= DOS_PI;
+    while (valor < -PI_F) valor += DOS_PI;
+    return valor;
+}
+
+/** Curvatura aproximada entre dos muestras separadas: alimenta la IA. */
+function curvaturaEn(indice: i32): f32 {
+    const antes = indiceMuestra(indice - 5) * ESTRIDO;
+    const despues = indiceMuestra(indice + 5) * ESTRIDO;
+    return Mathf.abs(datos[antes + 5] * datos[despues + 3] - datos[antes + 3] * datos[despues + 5]);
+}
+
+function situarRival(r: i32): void {
+    const indice = indiceMuestra(i32(rivalProgreso[r] * f32(total)));
+    const base = indice * ESTRIDO;
+    rivalX[r] = datos[base] + datos[base + 6] * rivalDesvio[r];
+    rivalY[r] = datos[base + 1];
+    rivalZ[r] = datos[base + 2] + datos[base + 8] * rivalDesvio[r];
+    rivalRumbo[r] = Mathf.atan2(datos[base + 3], datos[base + 5]);
+}
+
+function escribirEstado(): void {
+    estado[0] = cocheX;
+    estado[1] = cocheY;
+    estado[2] = cocheZ;
+    estado[3] = cocheRumbo;
+    estado[4] = cocheVelocidad;
+    estado[5] = cocheLateral;
+    estado[6] = cocheProgreso;
+    estado[7] = f32(cocheVuelta);
+    estado[8] = cocheTiempo;
+    estado[9] = cocheMejorVuelta;
+    estado[10] = f32(cocheTerminado);
+    estado[11] = f32(cocheIndice);
+    estado[12] = f32(cocheChoques);
+    estado[13] = f32(vueltasTotales);
+    estado[14] = longitudTotal;
+    estado[15] = f32(total);
+
+    for (let r = 0; r < RIVALES; r++) {
+        const base = 16 + r * 6;
+        estado[base] = rivalX[r];
+        estado[base + 1] = rivalY[r];
+        estado[base + 2] = rivalZ[r];
+        estado[base + 3] = rivalRumbo[r];
+        estado[base + 4] = rivalVelocidad[r];
+        estado[base + 5] = rivalProgreso[r];
+    }
+}
+
+/** Coloca coche y rivales en la parrilla y reinicia el cronómetro. */
+export function iniciarCarrera(dificultad: u32, vueltas: u32): void {
+    if (total === 0) return;
+
+    dificultadCarrera = dificultad > 2 ? 2 : i32(dificultad);
+    vueltasTotales = vueltas < 1 ? 1 : i32(vueltas);
+
+    const base = 0;
+    cocheX = datos[base];
+    cocheY = datos[base + 1];
+    cocheZ = datos[base + 2];
+    cocheRumbo = Mathf.atan2(datos[base + 3], datos[base + 5]);
+    cocheVelocidad = 0;
+    cocheLateral = 0;
+    cocheIndice = 0;
+    cocheProgreso = 0;
+    cocheProgresoPrevio = 0;
+    cocheVuelta = 1;
+    cocheTiempo = 0;
+    cocheMejorVuelta = 0;
+    cocheVueltaInicio = 0;
+    cocheTerminado = 0;
+    cocheChoques = 0;
+    enfriamientoChoque = 0;
+
+    for (let r = 0; r < RIVALES; r++) {
+        rivalProgreso[r] = 1.0 - f32(r + 1) * 0.008;
+        rivalVelocidad[r] = 0;
+        rivalDesvio[r] = (f32(r) - 1.0) * 2.2;
+        rivalVuelta[r] = 1;
+        situarRival(r);
+    }
+
+    escribirEstado();
+}
+
+/**
+ * Un paso de simulación. `acelerar`, `frenar` y `giro` llegan en 0..1 y
+ * `derrape` como 0/1. El coche se alinea solo con la pista para que se conduzca
+ * con correcciones amplias, no con microajustes.
+ */
+export function paso(dt: f32, acelerar: f32, frenar: f32, giro: f32, derrape: u32): void {
+    if (total === 0) return;
+
+    let d = dt;
+    if (d > 0.05) d = 0.05;
+    if (d <= CERO) return;
+
+    if (cocheTerminado == 0) cocheTiempo += d;
+
+    cocheIndice = buscarCercana(cocheX, cocheZ, cocheIndice, 28);
+    let base = cocheIndice * ESTRIDO;
+    let tangenteX = datos[base + 3];
+    let tangenteZ = datos[base + 5];
+    let lateralX = datos[base + 6];
+    let lateralZ = datos[base + 8];
+
+    let dx = cocheX - datos[base];
+    let dz = cocheZ - datos[base + 2];
+    cocheLateral = dx * lateralX + dz * lateralZ;
+    const fuera = Mathf.abs(cocheLateral) > ANCHO_MEDIO;
+
+    const superficie: f32 = fuera ? 0.5 : 1.0;
+    const motor = acelerar * 32.0 * superficie;
+    const freno = frenar * 45.0;
+    const arrastre = cocheVelocidad * 0.32 + cocheVelocidad * cocheVelocidad * 0.0062;
+    const frenoMano: f32 = derrape != 0 ? cocheVelocidad * 1.1 : 0.0;
+
+    cocheVelocidad += (motor - freno - arrastre - frenoMano) * d;
+    if (cocheVelocidad < CERO) cocheVelocidad = 0;
+    if (cocheVelocidad > VELOCIDAD_MAXIMA) cocheVelocidad = VELOCIDAD_MAXIMA;
+
+    // Asistencia de conducción tipo pure pursuit: se apunta a la línea central
+    // unas muestras por delante, así el coche corrige el desvío lateral en vez
+    // de cortar las curvas.
+    const adelanto = 8 + i32(cocheVelocidad * 0.32);
+    const indiceObjetivo = indiceMuestra(cocheIndice + adelanto);
+    const baseObjetivo = indiceObjetivo * ESTRIDO;
+    const rumboObjetivo = Mathf.atan2(
+        datos[baseObjetivo] - cocheX,
+        datos[baseObjetivo + 2] - cocheZ
+    );
+    const diferencia = normalizarAngulo(rumboObjetivo - cocheRumbo);
+    const alineacion: f32 = giro == 0 ? 3.2 : 0.8;
+    const agarre: f32 = derrape != 0 ? 1.9 : 1.0;
+    const respuesta: f32 = (1.5 + 4.5 / (1.0 + cocheVelocidad * 0.075)) * agarre;
+
+    cocheRumbo += giro * respuesta * d;
+    cocheRumbo += diferencia * (alineacion * d < UNO ? alineacion * d : UNO);
+    cocheRumbo = normalizarAngulo(cocheRumbo);
+
+    cocheX += Mathf.sin(cocheRumbo) * cocheVelocidad * d;
+    cocheZ += Mathf.cos(cocheRumbo) * cocheVelocidad * d;
+
+    // Re-proyección tras avanzar: el lateral y la altura salen de la pista real.
+    cocheIndice = buscarCercana(cocheX, cocheZ, cocheIndice, 16);
+    base = cocheIndice * ESTRIDO;
+    tangenteX = datos[base + 3];
+    tangenteZ = datos[base + 5];
+    lateralX = datos[base + 6];
+    lateralZ = datos[base + 8];
+    dx = cocheX - datos[base];
+    dz = cocheZ - datos[base + 2];
+    cocheLateral = dx * lateralX + dz * lateralZ;
+
+    // Muro blando: fuera del asfalto y del arcén el coche pierde velocidad y se reorienta.
+    if (Mathf.abs(cocheLateral) > LIMITE_FUERA) {
+        const exceso = Mathf.abs(cocheLateral) - LIMITE_FUERA;
+        const signo: f32 = cocheLateral > CERO ? 1.0 : -1.0;
+        cocheX -= lateralX * exceso * signo;
+        cocheZ -= lateralZ * exceso * signo;
+        cocheVelocidad *= 0.72;
+        cocheRumbo = normalizarAngulo(cocheRumbo + diferencia * 0.15);
+        if (enfriamientoChoque <= CERO) {
+            cocheChoques++;
+            enfriamientoChoque = 0.6;
+        }
+    }
+    if (enfriamientoChoque > CERO) enfriamientoChoque -= d;
+
+    cocheY = datos[base + 1];
+
+    const avance = dx * tangenteX + dz * tangenteZ;
+    const pasoMuestra = longitudTotal / f32(total);
+    let progreso = (f32(cocheIndice) + avance / pasoMuestra) / f32(total);
+    if (progreso < CERO) progreso += 1.0;
+    if (progreso >= UNO) progreso -= 1.0;
+
+    if (cocheProgresoPrevio > 0.7 && progreso < 0.3) {
+        const tiempoVuelta = cocheTiempo - cocheVueltaInicio;
+        if (tiempoVuelta > 5.0) {
+            if (cocheMejorVuelta == CERO || tiempoVuelta < cocheMejorVuelta) {
+                cocheMejorVuelta = tiempoVuelta;
+            }
+            cocheVueltaInicio = cocheTiempo;
+            cocheVuelta++;
+            if (cocheVuelta > vueltasTotales) cocheTerminado = 1;
+        }
+    } else if (cocheProgresoPrevio < 0.3 && progreso > 0.7 && cocheVuelta > 1) {
+        cocheVuelta--;
+    }
+
+    cocheProgresoPrevio = progreso;
+    cocheProgreso = progreso;
+
+    if (cocheTerminado == 1) cocheVelocidad *= 0.985;
+
+    // Rivales: línea de carrera, velocidad objetivo por curvatura y rubber-banding.
+    for (let r = 0; r < RIVALES; r++) {
+        const indice = indiceMuestra(i32(rivalProgreso[r] * f32(total)));
+        const curvatura = curvaturaEn(indice);
+        const baseObjetivo: f32 = 40.0 + f32(dificultadCarrera) * 4.5;
+        const factorCurva: f32 = curvatura * 5.0 < 0.42 ? curvatura * 5.0 : 0.42;
+        let objetivo: f32 = baseObjetivo * (1.0 - factorCurva);
+
+        let diferenciaJugador: f32 = cocheProgreso - rivalProgreso[r];
+        if (diferenciaJugador > 0.5) diferenciaJugador -= 1.0;
+        if (diferenciaJugador < -0.5) diferenciaJugador += 1.0;
+        const ajuste: f32 = limitar(1.0 + diferenciaJugador * 0.08, 0.93, 1.08);
+        objetivo *= ajuste;
+
+        rivalVelocidad[r] += (objetivo - rivalVelocidad[r]) * (f32(1.8) * d);
+        rivalProgreso[r] += (rivalVelocidad[r] * d) / longitudTotal;
+
+        if (rivalProgreso[r] >= UNO) {
+            rivalProgreso[r] -= 1.0;
+            rivalVuelta[r] += 1.0;
+        }
+        if (rivalProgreso[r] < CERO) rivalProgreso[r] += 1.0;
+
+        const balanceo = Mathf.sin(cocheTiempo * 0.8 + f32(r) * 2.1) * 0.12;
+        rivalDesvio[r] = limitar(rivalDesvio[r] + balanceo * d, -4.4, 4.4);
+        situarRival(r);
+
+        // Colisión simple entre cajas: separa y frena a ambos.
+        const choqueX = rivalX[r] - cocheX;
+        const choqueZ = rivalZ[r] - cocheZ;
+        const distancia2 = choqueX * choqueX + choqueZ * choqueZ;
+        if (distancia2 < 6.8) {
+            let distancia = Mathf.sqrt(distancia2);
+            if (distancia < 0.01) distancia = 0.01;
+            const empuje: f32 = (2.6 - distancia) * 0.5;
+            cocheX -= (choqueX / distancia) * empuje;
+            cocheZ -= (choqueZ / distancia) * empuje;
+            cocheVelocidad *= 0.92;
+            rivalVelocidad[r] *= 0.94;
+            if (enfriamientoChoque <= CERO) {
+                cocheChoques++;
+                enfriamientoChoque = 0.5;
+            }
+        }
+    }
+
+    escribirEstado();
+}
+
+export function estadoPtr(): usize {
+    return estado.dataStart;
+}
+
+export function estridasEstado(): i32 {
+    return ESTRIDO_ESTADO;
+}
+
+export function totalRivales(): i32 {
+    return RIVALES;
+}

@@ -151,6 +151,11 @@ instancia con `WebAssembly.instantiateStreaming` y memoria compartida con JS.
   semilla, así que el mismo número de circuito produce siempre la misma pista.
 - **Carrera**: 3 vueltas, 3 rivales con línea de carrera, velocidad objetivo por curvatura y
   _rubber-banding_ suave; dificultad fácil / normal / difícil.
+- **Conducción asistida**: la dirección apunta con _pure pursuit_ a la línea central unas muestras
+  por delante, de modo que el coche corrige el desvío lateral en vez de cortar las curvas. El
+  jugador manda con el volante, el asistente solo evita que la pista se vuelva un rail.
+- **Vueltas**: el progreso se mide proyectando el coche sobre la muestra más cercana y cruzando la
+  meta al pasar de 0,7 a 0,3; el cronómetro y la mejor vuelta viven en el núcleo wasm.
 - **Puntuación**: tiempo total, mejor vuelta, choques y adelantamientos; mejor marca por circuito
   en `localStorage`.
 - **Controles**: WASD o flechas, espacio para derrape, `P` pausa, `R` reinicio; gamepad estándar y
