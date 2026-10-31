@@ -2,7 +2,6 @@ import {
     BoxGeometry,
     BufferGeometry,
     CanvasTexture,
-    CatmullRomCurve3,
     DoubleSide,
     Float32BufferAttribute,
     Group,
@@ -19,34 +18,21 @@ import {
     SRGBColorSpace,
     Vector3,
 } from "three/webgpu";
-import { crearAzar, limitar, modulo } from "./utilidades.js";
+import { modulo } from "./utilidades.js";
 
 const ARRIBA = new Vector3(0, 1, 0);
 export const ANCHO_PISTA = 14;
 const ANCHO_BORDILLO = 0.9;
-const MUESTRAS = 640;
 
 /**
  * Circuito cerrado y determinista: la semilla mueve los puntos de control y el
  * peralte. Devuelve la malla lista para la escena y una API de consulta por
  * progreso (0..1) que la física y la cámara usan para colocarse.
  */
-export function crearCircuito({ semilla = 2026 } = {}) {
-    const azar = crearAzar(semilla);
-    const puntosControl = [];
-    const totalPuntos = 12;
+export function crearCircuito({ nucleo }) {
+    if (!nucleo) throw new Error("crearCircuito necesita un núcleo WebAssembly cargado");
 
-    for (let i = 0; i < totalPuntos; i += 1) {
-        const angulo = (i / totalPuntos) * Math.PI * 2;
-        const radio = 104 + azar() * 46;
-        const altura = Math.sin(i * 0.9) * 3.2 + azar() * 2.6;
-        puntosControl.push(new Vector3(Math.cos(angulo) * radio, altura, Math.sin(angulo) * radio));
-    }
-
-    const curva = new CatmullRomCurve3(puntosControl, true, "catmullrom", 0.5);
-    curva.arcLengthDivisions = 2000;
-
-    const muestras = construirMuestras(curva);
+    const muestras = leerMuestras(nucleo);
     const grupo = new Group();
     grupo.name = "circuito";
 
@@ -79,11 +65,11 @@ export function crearCircuito({ semilla = 2026 } = {}) {
 
     return {
         grupo,
-        curva,
         muestras,
-        longitud: curva.getLength(),
+        nucleo,
+        longitud: nucleo.longitud,
         ancho: ANCHO_PISTA,
-        semilla,
+        semilla: nucleo.semilla,
         muestraEn(progreso) {
             return muestras[indiceDe(progreso)];
         },
@@ -107,38 +93,22 @@ export function crearCircuito({ semilla = 2026 } = {}) {
     };
 }
 
-function construirMuestras(curva) {
-    const puntos = curva.getSpacedPoints(MUESTRAS);
-    const total = puntos.length - 1;
-    const muestras = [];
+/**
+ * Lee el bloque plano del núcleo wasm y lo convierte en muestras con vectores.
+ * El binario ya trae tangente, lateral y peralte resueltos.
+ */
+function leerMuestras(nucleo) {
+    const { datos, estridas, total } = nucleo;
+    const muestras = new Array(total);
 
     for (let i = 0; i < total; i += 1) {
-        const anterior = puntos[(i - 1 + total) % total];
-        const siguiente = puntos[(i + 1) % total];
-        const tangente = new Vector3().subVectors(siguiente, anterior).normalize();
-        const lateral = new Vector3().crossVectors(tangente, ARRIBA).normalize();
-        muestras.push({ posicion: puntos[i].clone(), tangente, lateral, peralte: 0 });
-    }
-
-    // Peralte proporcional a la curvatura, suavizado para evitar escalones.
-    for (let i = 0; i < total; i += 1) {
-        const antes = muestras[(i - 1 + total) % total].tangente;
-        const despues = muestras[(i + 1) % total].tangente;
-        const giro = new Vector3().crossVectors(antes, despues).y;
-        muestras[i].peralte = limitar(giro * 16, -0.22, 0.22);
-    }
-
-    for (let pasada = 0; pasada < 4; pasada += 1) {
-        const copia = muestras.map((m) => m.peralte);
-        for (let i = 0; i < total; i += 1) {
-            const antes = copia[(i - 1 + total) % total];
-            const despues = copia[(i + 1) % total];
-            muestras[i].peralte = (antes + copia[i] * 2 + despues) / 4;
-        }
-    }
-
-    for (const muestra of muestras) {
-        muestra.lateral.applyAxisAngle(muestra.tangente, muestra.peralte).normalize();
+        const base = i * estridas;
+        muestras[i] = {
+            posicion: new Vector3(datos[base], datos[base + 1], datos[base + 2]),
+            tangente: new Vector3(datos[base + 3], datos[base + 4], datos[base + 5]),
+            lateral: new Vector3(datos[base + 6], datos[base + 7], datos[base + 8]),
+            peralte: datos[base + 9],
+        };
     }
 
     return muestras;

@@ -107,7 +107,7 @@ Tres capas con fronteras explícitas:
 │   js/juego/*.js       → consume el núcleo wasm y dibuja       │
 ├──────────────────────────────────────────────────────────────┤
 │ núcleo de simulación (WebAssembly)                            │
-│   wasm/nucleo.as → wasm/nucleo.wasm                           │
+│   wasm/nucleo.ts → wasm/nucleo.wasm                           │
 │   circuito · proyección · física · IA · vueltas               │
 └──────────────────────────────────────────────────────────────┘
 ```
@@ -134,7 +134,7 @@ juego-carreras/
 │   ├── juego/              # escena, pista, coche, rivales, carrera, camara
 │   └── interfaz/           # menu, hud, controles, audio, marcador
 ├── wasm/
-│   ├── nucleo.as           # fuente AssemblyScript
+│   ├── nucleo.ts           # fuente AssemblyScript
 │   └── nucleo.wasm         # binario compilado y versionado
 ├── scripts/build-wasm.mjs  # npm run build:wasm
 └── vendor/three/           # three 0.187.0 (core, webgpu, tsl) + LICENSE

@@ -19,7 +19,8 @@ persecución renderizados con Three.js sobre **WebGPU**, con un núcleo de simul
 
 - WebGPU para hablar con la GPU del equipo; `WebGPURenderer` de Three.js como capa de escena,
   cámara, materiales y sombras.
-- WebAssembly (AssemblyScript) para el núcleo de simulación determinista.
+- WebAssembly (AssemblyScript) para el núcleo de simulación determinista: PRNG, spline
+  Catmull-Rom, remuestreo por longitud de arco, tangentes, peralte y proyección sobre la pista.
 - HTML, CSS y JavaScript para la interfaz, el menú y el HUD, sin frameworks ni paso de compilación.
 
 ## Uso
@@ -34,6 +35,26 @@ python3 -m http.server 8080
 
 Abre `http://localhost:8080/`. No requiere instalación: Three.js viaja vendorizado en
 `vendor/three/` con su versión fijada y su licencia MIT.
+
+## Núcleo WebAssembly
+
+El trazado lo genera `wasm/nucleo.ts` (AssemblyScript) y se versiona compilado en
+`wasm/nucleo.wasm`: para jugar no hace falta toolchain ni compilación en el navegador. Para cambiar el
+núcleo:
+
+```sh
+cd juego-carreras
+npm install
+npm run build:wasm
+```
+
+`build:wasm` compila con `asc` y valida el binario antes de darlo por bueno: total de muestras,
+equidistancia por longitud de arco, determinismo con la misma semilla, cambio de trazado con otra
+semilla y proyección de un punto sobre la pista.
+
+El módulo expone **un único bloque `Float32Array`** (10 floats por muestra: posición, tangente,
+lateral y peralte) sobre su memoria lineal. La capa JS lo lee por índice, sin copiar objetos en
+cada frame.
 
 ## Controles
 
@@ -54,8 +75,12 @@ juego-carreras/
 ├── css/                  # tokens compartidos con el catálogo y estilos del juego
 ├── js/
 │   ├── app.js            # arranque y bucle principal
-│   ├── juego/            # renderizador, escena, circuito, coche, cámara, entrada
+│   ├── juego/            # renderizador, escena, circuito, coche, cámara, entrada y núcleo wasm
 │   └── interfaz/         # HUD y, más adelante, menú, marcador y audio
+├── wasm/
+│   ├── nucleo.ts         # fuente AssemblyScript
+│   └── nucleo.wasm       # binario compilado y versionado
+├── scripts/              # compilación y validación del núcleo wasm
 ├── icon/                 # favicon
 └── vendor/three/         # Three.js 0.187.0 (core, webgpu, tsl) + licencia
 ```

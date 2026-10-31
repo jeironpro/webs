@@ -1,6 +1,7 @@
 import { crearRenderizador, redimensionar } from "./juego/renderizador.js";
 import { crearEscena } from "./juego/escena.js";
 import { crearCircuito } from "./juego/pista.js";
+import { cargarNucleo } from "./juego/nucleo.js";
 import { crearCoche } from "./juego/coche.js";
 import { crearCamara, crearSeguimiento } from "./juego/camara.js";
 import { crearEntrada } from "./juego/entrada.js";
@@ -47,11 +48,14 @@ async function arrancar() {
         renderizador = creado.renderizador;
         hud.backend(creado.backend);
 
+        mensajeCarga.textContent = "Cargando el núcleo WebAssembly…";
+        const nucleo = await cargarNucleo({ semilla: 2026, muestras: 640 });
+
         mensajeCarga.textContent = "Generando circuito…";
         const mundo = crearEscena();
         escena = mundo.escena;
 
-        circuito = crearCircuito();
+        circuito = crearCircuito({ nucleo });
         escena.add(circuito.grupo);
 
         coche = crearCoche();
