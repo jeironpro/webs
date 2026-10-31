@@ -102,6 +102,54 @@ nucleo.inicializar(2026, MUESTRAS);
 const cercana = nucleo.buscarCercana(nucleo.posicionX(120), nucleo.posicionZ(120), 110, 32);
 afirmar(Math.abs(cercana - 120) <= 2, `buscarCercana devolvió ${cercana} en vez de ~120`);
 
+// Carrera completa simulada: acelerador a fondo y coche alineado con la pista.
+function estadoActual() {
+    return new Float32Array(nucleo.memory.buffer, nucleo.estadoPtr(), nucleo.estridasEstado());
+}
+
+function simular(frames) {
+    nucleo.inicializar(2026, MUESTRAS);
+    nucleo.iniciarCarrera(1, 3);
+    const estado = estadoActual();
+    let pico = 0;
+    for (let frame = 0; frame < frames; frame += 1) {
+        nucleo.paso(1 / 60, 1, 0, 0, 0);
+        pico = Math.max(pico, estado[4]);
+    }
+    return { valores: Array.from(estado), pico };
+}
+
+const carrera = simular(60 * 45);
+const [cocheX, , cocheZ, , velocidad, desvio, progreso, vuelta, tiempo, mejorVuelta] =
+    carrera.valores;
+
+for (const [nombre, valor] of Object.entries({ cocheX, cocheZ, velocidad, desvio, tiempo })) {
+    afirmar(Number.isFinite(valor), `${nombre} no es finito`);
+}
+afirmar(carrera.pico > 25, `velocidad máxima demasiado baja: ${carrera.pico.toFixed(1)} m/s`);
+afirmar(vuelta >= 2, `esperaba al menos 2 vueltas, van ${vuelta}`);
+afirmar(tiempo > 20, `tiempo de carrera demasiado bajo: ${tiempo.toFixed(1)} s`);
+afirmar(mejorVuelta > 5, `mejor vuelta no registrada: ${mejorVuelta}`);
+afirmar(progreso >= 0 && progreso < 1, `progreso fuera de rango: ${progreso}`);
+afirmar(Math.abs(desvio) < 12, `el coche se ha salido demasiado: ${desvio.toFixed(1)} m`);
+
+const rivalProgreso = carrera.valores[21];
+const rivalVelocidad = carrera.valores[20];
+afirmar(
+    rivalProgreso >= 0 && rivalProgreso < 1,
+    `progreso de rival fuera de rango: ${rivalProgreso}`
+);
+afirmar(rivalVelocidad > 20, `rival demasiado lento: ${rivalVelocidad.toFixed(1)} m/s`);
+
+const repetida = simular(60 * 45);
+afirmar(
+    carrera.valores.every((valor, indice) => valor === repetida.valores[indice]),
+    "la misma semilla e input deben producir la misma carrera"
+);
+
 console.log(
     `OK nucleo.wasm · ${(bytes.byteLength / 1024).toFixed(1)} KB · ${MUESTRAS} muestras · ${largo.toFixed(1)} m · paso ${paso.toFixed(2)} m`
+);
+console.log(
+    `OK carrera simulada · ${tiempo.toFixed(1)} s · ${vuelta} vueltas · mejor ${mejorVuelta.toFixed(1)} s · pico ${(carrera.pico * 3.6).toFixed(0)} km/h · rival a ${(rivalVelocidad * 3.6).toFixed(0)} km/h`
 );

@@ -44,7 +44,18 @@ export async function cargarNucleo({ semilla = 2026, muestras = 640 } = {}) {
         estridas,
         total,
         datos,
+        memoria: modulo.memory,
         longitud: modulo.longitud(),
+        iniciarCarrera: (dificultad, vueltas) => modulo.iniciarCarrera(dificultad, vueltas),
+        paso: (dt, acelerar, frenar, giro, derrape) =>
+            modulo.paso(dt, acelerar, frenar, giro, derrape),
+        totalRivales: () => modulo.totalRivales(),
+        estado: () =>
+            new Float32Array(
+                modulo.memory.buffer,
+                modulo.estadoPtr(),
+                modulo.estridasEstado()
+            ),
         posicionX: (indice) => modulo.posicionX(indice),
         posicionY: (indice) => modulo.posicionY(indice),
         posicionZ: (indice) => modulo.posicionZ(indice),

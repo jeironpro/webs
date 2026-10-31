@@ -12,8 +12,13 @@ persecución renderizados con Three.js sobre **WebGPU**, con un núcleo de simul
   el motor cae a WebGL 2 sin cambiar la escena.
 - Escena nocturna con sombras, niebla, luna, estrellas y perfil urbano instanciado con
   `InstancedMesh`.
+- Física arcade en WebAssembly: motor, arrastre cuadrático, frenada, freno de mano para derrapar,
+  pérdida de agarre fuera del asfalto y muro blando que devuelve el coche a la pista.
+- Tres rivales con línea de carrera, velocidad objetivo según la curvatura y rubber-banding suave;
+  colisiones que separan los coches y reparten el frenazo.
+- Carrera a 3 vueltas con cronómetro, mejor vuelta y contador de choques, todo calculado en el núcleo.
 - Cámara de persecución suavizada y órbita cinematográfica en el menú.
-- HUD de velocidad y vuelta, control por teclado y aviso claro quando no hay contexto gráfico.
+- HUD de velocidad y vuelta, control por teclado y aviso claro cuando no hay contexto gráfico.
 
 ## Tecnologías
 
@@ -50,7 +55,8 @@ npm run build:wasm
 
 `build:wasm` compila con `asc` y valida el binario antes de darlo por bueno: total de muestras,
 equidistancia por longitud de arco, determinismo con la misma semilla, cambio de trazado con otra
-semilla y proyección de un punto sobre la pista.
+semilla, proyección de un punto sobre la pista y una **carrera simulada de 45 s** (velocidad punta,
+vueltas, mejor vuelta, avance de rivales y reproducibilidad con el mismo input).
 
 El módulo expone **un único bloque `Float32Array`** (10 floats por muestra: posición, tangente,
 lateral y peralte) sobre su memoria lineal. La capa JS lo lee por índice, sin copiar objetos en
