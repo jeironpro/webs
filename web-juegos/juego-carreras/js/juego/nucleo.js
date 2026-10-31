@@ -35,17 +35,18 @@ export async function cargarNucleo({ semilla = 2026, muestras = 640 } = {}) {
         throw new Error("El núcleo no pudo generar el circuito");
     }
 
-    const estridas = modulo.estridas();
-    const total = modulo.totalMuestras();
-    const datos = new Float32Array(modulo.memory.buffer, modulo.datosPtr(), total * estridas);
-
-    return {
-        semilla: modulo.semilla(),
-        estridas,
-        total,
-        datos,
+    const nucleo = {
+        semilla: 0,
+        estridas: 0,
+        total: 0,
+        datos: null,
         memoria: modulo.memory,
-        longitud: modulo.longitud(),
+        longitud: 0,
+        posicionX: (indice) => modulo.posicionX(indice),
+        posicionY: (indice) => modulo.posicionY(indice),
+        posicionZ: (indice) => modulo.posicionZ(indice),
+        peralteEn: (indice) => modulo.peralteEn(indice),
+        buscarCercana: (x, z, desde, ventana = 24) => modulo.buscarCercana(x, z, desde, ventana),
         iniciarCarrera: (dificultad, vueltas) => modulo.iniciarCarrera(dificultad, vueltas),
         paso: (dt, acelerar, frenar, giro, derrape) =>
             modulo.paso(dt, acelerar, frenar, giro, derrape),
@@ -56,10 +57,28 @@ export async function cargarNucleo({ semilla = 2026, muestras = 640 } = {}) {
                 modulo.estadoPtr(),
                 modulo.estridasEstado()
             ),
-        posicionX: (indice) => modulo.posicionX(indice),
-        posicionY: (indice) => modulo.posicionY(indice),
-        posicionZ: (indice) => modulo.posicionZ(indice),
-        peralteEn: (indice) => modulo.peralteEn(indice),
-        buscarCercana: (x, z, desde, ventana = 24) => modulo.buscarCercana(x, z, desde, ventana),
+        /** Regenera el circuito con otra semilla y refresca las vistas. */
+        regenerar(nuevaSemilla, cantidadMuestras = nucleo.total || 640) {
+            if (modulo.inicializar(nuevaSemilla, cantidadMuestras) !== 1) {
+                throw new Error("El núcleo no pudo generar el circuito");
+            }
+            refrescar();
+            return nucleo;
+        },
     };
+
+    function refrescar() {
+        nucleo.semilla = modulo.semilla();
+        nucleo.estridas = modulo.estridas();
+        nucleo.total = modulo.totalMuestras();
+        nucleo.longitud = modulo.longitud();
+        nucleo.datos = new Float32Array(
+            modulo.memory.buffer,
+            modulo.datosPtr(),
+            nucleo.total * nucleo.estridas
+        );
+    }
+
+    refrescar();
+    return nucleo;
 }

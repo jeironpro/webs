@@ -5,6 +5,7 @@
 export function crearCarrera({ nucleo, dificultad = 1, vueltas = 3 }) {
     const totalRivales = nucleo.totalRivales();
     let estado = nucleo.estado();
+    let config = { dificultad, vueltas };
 
     const leer = () => {
         const coche = {
@@ -28,7 +29,7 @@ export function crearCarrera({ nucleo, dificultad = 1, vueltas = 3 }) {
 
         const rivales = [];
         for (let r = 0; r < totalRivales; r += 1) {
-            const base = 16 + r * 6;
+            const base = 16 + r * 7;
             rivales.push({
                 x: estado[base],
                 y: estado[base + 1],
@@ -36,6 +37,7 @@ export function crearCarrera({ nucleo, dificultad = 1, vueltas = 3 }) {
                 rumbo: estado[base + 3],
                 velocidad: estado[base + 4],
                 progreso: estado[base + 5],
+                vuelta: estado[base + 6],
             });
         }
 
@@ -43,22 +45,21 @@ export function crearCarrera({ nucleo, dificultad = 1, vueltas = 3 }) {
     };
 
     return {
-        dificultad,
-        vueltas,
         rivales: totalRivales,
-        iniciar() {
-            nucleo.iniciarCarrera(dificultad, vueltas);
+        get vueltas() {
+            return config.vueltas;
+        },
+        iniciar(opciones = {}) {
+            config = {
+                dificultad: opciones.dificultad ?? config.dificultad,
+                vueltas: opciones.vueltas ?? config.vueltas,
+            };
+            nucleo.iniciarCarrera(config.dificultad, config.vueltas);
             estado = nucleo.estado();
             return leer();
         },
         paso(dt, input) {
-            nucleo.paso(
-                dt,
-                input.acelerar,
-                input.frenar,
-                input.giro,
-                input.derrape ? 1 : 0
-            );
+            nucleo.paso(dt, input.acelerar, input.frenar, input.giro, input.derrape ? 1 : 0);
             return leer();
         },
         leer,
