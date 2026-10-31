@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+        <meta name="color-scheme" content="dark" />
+        <meta
+            name="description"
+            content="Circuito Neón: carreras arcade 3D con WebGPU, Three.js y un núcleo de simulación en WebAssembly."
+        />
+        <title>Circuito Neón</title>
+        <link rel="icon" href="icon/bandera.svg" type="image/svg+xml" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="css/tokens.css" />
+        <link rel="stylesheet" href="css/estilos.css" />
+        <script type="importmap">
+            {
+                "imports": {
+                    "three/webgpu": "./vendor/three/three.webgpu.js",
+                    "three/tsl": "./vendor/three/three.tsl.js"
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <a class="salto" href="#menu">Saltar al menú</a>
+
+        <div class="lienzo" id="lienzo" aria-hidden="true"></div>
+
+        <div class="velo" id="velo-carga" role="status" aria-live="polite">
+            <div class="velo__interior">
+                <p class="velo__marca">CIRCUITO NEÓN</p>
+                <p class="velo__mensaje" id="carga-mensaje">Inicializando el motor gráfico…</p>
+                <div class="velo__barra" aria-hidden="true"><span id="carga-barra"></span></div>
+            </div>
+        </div>
+
+        <section class="menu" id="menu" aria-labelledby="menu-titulo">
+            <p class="menu__meta">
+                <span class="chip" id="hud-backend">
+                    <span class="ms" aria-hidden="true">memory</span>
+                    <span id="hud-backend-texto">detectando GPU</span>
+                </span>
+                <span class="chip chip--suave">three.js r187</span>
+            </p>
+            <h1 class="menu__titulo" id="menu-titulo">Circuito<br />Neón</h1>
+            <p class="menu__lede">
+                Traza el circuito procedural, encadena derrapes y baja tu mejor vuelta. La pista se
+                genera con una semilla: el mismo número, el mismo trazado.
+            </p>
+            <div class="menu__acciones">
+                <button class="btn btn--primario" type="button" id="boton-iniciar">
+                    <span class="ms" aria-hidden="true">sports_score</span>
+                    Iniciar carrera
+                </button>
+            </div>
+            <ul class="menu__teclas" aria-label="Controles de teclado">
+                <li><kbd>W</kbd><kbd>↑</kbd><span>acelerar</span></li>
+                <li><kbd>S</kbd><kbd>↓</kbd><span>frenar</span></li>
+                <li><kbd>A</kbd><kbd>D</kbd><span>girar</span></li>
+                <li><kbd>Espacio</kbd><span>derrape</span></li>
+            </ul>
+        </section>
+
+        <div class="hud" id="hud" hidden>
+            <div class="hud__velocidad">
+                <span class="hud__valor" id="hud-velocidad">0</span>
+                <span class="hud__unidad">km/h</span>
+            </div>
+            <div class="hud__vueltas">
+                <span class="hud__etiqueta">Vuelta</span>
+                <span class="hud__valor hud__valor--pequeno" id="hud-vuelta">1/3</span>
+            </div>
+        </div>
+
+        <div class="aviso" id="aviso" hidden>
+            <div class="aviso__caja" role="alert">
+                <h2 class="aviso__titulo">Este equipo no puede dibujar la carrera</h2>
+                <p class="aviso__texto" id="aviso-texto">
+                    El navegador no ha podido crear un contexto WebGPU ni WebGL 2. Activa la
+                    aceleración por hardware o prueba en un navegador actualizado.
+                </p>
+                <p class="aviso__pie">Circuito Neón · juego-carreras</p>
+            </div>
+        </div>
+
+        <script type="module" src="js/app.js"></script>
+    </body>
+</html>
