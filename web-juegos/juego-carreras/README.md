@@ -8,6 +8,9 @@ persecución renderizados con Three.js sobre **WebGPU**, con un núcleo de simul
 
 - Circuito cerrado generado a partir de una semilla: el mismo número produce siempre el mismo
   trazado, con elevación, peralte y bordillos neón.
+- Coche con las señas del **McLaren 570S**: monocasco bajo y ancho, morro descendente, cabina
+  adelantada con flying buttresses, tomas laterales, difusor, doble escape alto y ruedas
+  escalonadas con pinza de freno a la vista.
 - Renderizado con `WebGPURenderer` (Three.js `r187`); si la GPU o el navegador no exponen WebGPU,
   el motor cae a WebGL 2 sin cambiar la escena.
 - Escena nocturna con sombras, niebla, luna, estrellas y perfil urbano instanciado con
