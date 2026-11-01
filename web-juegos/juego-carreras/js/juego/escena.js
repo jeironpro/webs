@@ -32,23 +32,10 @@ export function crearEscena() {
     relleno.position.set(-140, 90, -120);
     escena.add(relleno);
 
-    // La sombra sigue al coche con un frustum pequeño. Con la cámara fija de
-    // 440 m el asfalto se auto-sombraba en parches (bordes en escalera y zonas
-    // enteras negras) porque el texel medía más de 20 cm.
+    // Luz direccional sin sombras: el coche lleva su propia sombra de contacto
+    // y así el asfalto no recibe auto-sombreado.
     const luna = new DirectionalLight(0xcfe0ff, 3.4);
     luna.position.set(60, 95, 40);
-    // Sin sombras proyectadas: en la cinta del asfalto generaban parches
-    // oscuros (auto-sombreado) y el coche ya lleva su sombra de contacto.
-    luna.castShadow = false;
-    luna.shadow.mapSize.set(1024, 1024);
-    luna.shadow.camera.left = -42;
-    luna.shadow.camera.right = 42;
-    luna.shadow.camera.top = 42;
-    luna.shadow.camera.bottom = -42;
-    luna.shadow.camera.near = 1;
-    luna.shadow.camera.far = 260;
-    luna.shadow.bias = -0.0005;
-    luna.shadow.normalBias = 0.05;
     escena.add(luna);
     escena.add(luna.target);
 
@@ -63,13 +50,7 @@ export function crearEscena() {
     escena.add(crearEstrellas());
     escena.add(crearPerfilUrbano());
 
-    const seguirSombra = (posicion) => {
-        luna.position.set(posicion.x + 60, posicion.y + 95, posicion.z + 40);
-        luna.target.position.copy(posicion);
-        luna.target.updateMatrixWorld();
-    };
-
-    return { escena, luces: { luna, seguirSombra } };
+    return { escena };
 }
 
 function crearLuna() {

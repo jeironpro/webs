@@ -52,7 +52,6 @@ let carrera;
 let menu;
 let ultimoTiempo = 0;
 let hudAcumulado = 0;
-let seguirSombra = () => {};
 
 async function arrancar() {
     try {
@@ -67,7 +66,6 @@ async function arrancar() {
         mensajeCarga.textContent = "Generando circuito…";
         const mundo = crearEscena();
         escena = mundo.escena;
-        seguirSombra = mundo.luces.seguirSombra;
 
         circuito = crearCircuito({ nucleo });
         escena.add(circuito.grupo);
@@ -354,7 +352,6 @@ function bucle(tiempoMs) {
         coche.actualizar({ dt, velocidad: 0, giro: 0 });
     }
 
-    seguirSombra(coche.grupo.position);
     renderizador.render(escena, camara);
 }
 

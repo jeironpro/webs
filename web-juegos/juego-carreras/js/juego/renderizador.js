@@ -19,7 +19,6 @@ export async function crearRenderizador(contenedor) {
     renderizador.outputColorSpace = SRGBColorSpace;
     renderizador.toneMapping = ACESFilmicToneMapping;
     renderizador.toneMappingExposure = 1.05;
-    renderizador.shadowMap.enabled = true;
 
     await renderizador.init();
 

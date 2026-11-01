@@ -4,7 +4,6 @@ import {
     CanvasTexture,
     DoubleSide,
     Float32BufferAttribute,
-    FrontSide,
     Group,
     InstancedMesh,
     Mesh,
@@ -17,7 +16,6 @@ import {
     SRGBColorSpace,
     Vector3,
 } from "three/webgpu";
-import { modulo } from "./utilidades.js";
 
 const ARRIBA = new Vector3(0, 1, 0);
 export const ANCHO_PISTA = 14;
@@ -40,9 +38,6 @@ export function crearCircuito({ nucleo }) {
         metalness: 0.22,
         roughness: 0.72,
         side: DoubleSide,
-        // La cinta es de doble cara: sin esto la cara trasera entra en el mapa
-        // de sombras y aparecen manchas oscuras sobre el asfalto.
-        shadowSide: FrontSide,
     });
     const pista = new Mesh(construirCinta(muestras, 0, ANCHO_PISTA), asfalto);
     grupo.add(pista);
@@ -100,36 +95,11 @@ export function crearCircuito({ nucleo }) {
     grupo.add(crearLineaMeta(muestras));
     grupo.add(crearPostes(muestras, desvioBordillo + 2.4));
 
-    const total = muestras.length;
-    const indiceDe = (progreso) => Math.floor(modulo(progreso, 1) * total) % total;
-
     return {
         grupo,
         muestras,
         nucleo,
-        longitud: nucleo.longitud,
-        ancho: ANCHO_PISTA,
         semilla: nucleo.semilla,
-        muestraEn(progreso) {
-            return muestras[indiceDe(progreso)];
-        },
-        posicionEn(progreso, desvio = 0, altura = 0) {
-            const muestra = muestras[indiceDe(progreso)];
-            return muestra.posicion
-                .clone()
-                .addScaledVector(muestra.lateral, desvio)
-                .addScaledVector(ARRIBA, altura);
-        },
-        rumboEn(progreso) {
-            const { tangente } = muestras[indiceDe(progreso)];
-            return Math.atan2(tangente.x, tangente.z);
-        },
-        inclinacionEn(progreso) {
-            return muestras[indiceDe(progreso)].tangente.y;
-        },
-        peralteEn(progreso) {
-            return muestras[indiceDe(progreso)].peralte;
-        },
     };
 }
 

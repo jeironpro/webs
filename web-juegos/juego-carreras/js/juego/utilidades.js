@@ -18,15 +18,6 @@ export function limitar(valor, minimo, maximo) {
     return Math.min(Math.max(valor, minimo), maximo);
 }
 
-export function interpolar(a, b, t) {
-    return a + (b - a) * t;
-}
-
-/** Suavizado independiente del framerate. */
-export function suavizar(actual, objetivo, velocidad, dt) {
-    return interpolar(actual, objetivo, 1 - Math.exp(-velocidad * dt));
-}
-
 export function modulo(valor, base) {
     return ((valor % base) + base) % base;
 }
