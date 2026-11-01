@@ -95,7 +95,10 @@ function generarControl(): void {
             base +
             Mathf.sin(angulo * 2.0 + fase2) * amplitud2 +
             Mathf.sin(angulo * 3.0 + fase3) * amplitud3;
-        const altura: f32 = Mathf.sin(angulo * 2.0 + faseAltura) * 2.2;
+        // La pista nunca baja del terreno (y = -0,35): si ondulaba ±2,2 m, el
+        // suelo la cortaba en los tramos bajos y aparecían manchas negras sobre
+        // el asfalto y la sensación de que el coche se hundía.
+        const altura: f32 = 2.0 + Mathf.sin(angulo * 2.0 + faseAltura) * 1.4;
 
         control[i * 3] = Mathf.cos(angulo) * radio;
         control[i * 3 + 1] = altura;
@@ -342,7 +345,9 @@ export function buscarCercana(x: f32, z: f32, desde: i32, ventana: i32): i32 {
 const RIVALES: i32 = 3;
 const ESTRIDO_ESTADO: i32 = 16 + RIVALES * 7;
 const ANCHO_MEDIO: f32 = 6.4;
-const LIMITE_FUERA: f32 = ANCHO_MEDIO + 4.5;
+// Borde exterior del bordillo: la pista es un recinto cerrado, el coche no
+// puede irse a la hierba.
+const LIMITE_FUERA: f32 = 7.9;
 const VELOCIDAD_MAXIMA: f32 = 68.0;
 const PI_F: f32 = 3.141592653589793;
 const UNO: f32 = 1.0;
@@ -396,7 +401,9 @@ function situarRival(r: i32): void {
     const indice = indiceMuestra(i32(rivalProgreso[r] * f32(total)));
     const base = indice * ESTRIDO;
     rivalX[r] = datos[base] + datos[base + 6] * rivalDesvio[r];
-    rivalY[r] = datos[base + 1];
+    // También el peralte: sin él, en las curvas peraltadas los rivales se
+    // hundían bajo el asfalto y parecían coches fuera de la pista.
+    rivalY[r] = datos[base + 1] + datos[base + 7] * rivalDesvio[r];
     rivalZ[r] = datos[base + 2] + datos[base + 8] * rivalDesvio[r];
     rivalRumbo[r] = Mathf.atan2(datos[base + 3], datos[base + 5]);
 }
@@ -541,9 +548,9 @@ export function paso(dt: f32, acelerar: f32, frenar: f32, giro: f32, derrape: u3
         const signo: f32 = cocheLateral > CERO ? 1.0 : -1.0;
         cocheX -= lateralX * exceso * signo;
         cocheZ -= lateralZ * exceso * signo;
-        // Roce contra la valla: se pierde punta, pero el morro no se recoloca
-        // solo. Si la valla enderezara el coche, se conduciría solo rebotando.
-        cocheVelocidad *= 0.965;
+        // Valla sólida: frena el desplazamiento lateral pero no clava el coche
+        // ni le cambia el rumbo, así se desliza por el borde y puede seguir.
+        cocheVelocidad *= 0.995;
         if (enfriamientoChoque <= CERO) {
             cocheChoques++;
             enfriamientoChoque = 0.6;
@@ -605,7 +612,7 @@ export function paso(dt: f32, acelerar: f32, frenar: f32, giro: f32, derrape: u3
         if (rivalProgreso[r] < CERO) rivalProgreso[r] += 1.0;
 
         const balanceo = Mathf.sin(cocheTiempo * 0.8 + f32(r) * 2.1) * 0.12;
-        rivalDesvio[r] = limitar(rivalDesvio[r] + balanceo * d, -4.4, 4.4);
+        rivalDesvio[r] = limitar(rivalDesvio[r] + balanceo * d, -3.6, 3.6);
         situarRival(r);
 
         // Colisión simple entre cajas: separa y frena a ambos.
