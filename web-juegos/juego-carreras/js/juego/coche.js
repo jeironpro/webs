@@ -135,10 +135,16 @@ export function crearCoche({ color = 0x35c6db, colorPinza = 0xff7a1a } = {}) {
         textura.colorSpace = SRGBColorSpace;
         return textura;
     })();
+    // `polygonOffset` mantiene el manchón por delante del asfalto aunque la
+    // carrocería quede algo por debajo en el interior de una curva peraltada;
+    // sin él, las esquinas del plano cortaban la pista y salían cuñas negras.
     const materialSombra = new MeshBasicNodeMaterial({
         map: sombra,
         transparent: true,
         depthWrite: false,
+        polygonOffset: true,
+        polygonOffsetFactor: -8,
+        polygonOffsetUnits: -8,
     });
 
     function anadir(geometria, material, posicion, rotacion = [0, 0, 0]) {
@@ -260,9 +266,11 @@ export function crearCoche({ color = 0x35c6db, colorPinza = 0xff7a1a } = {}) {
     }
     anadir(new BoxGeometry(1.7, 0.04, 0.42), carbono, [0, 0.2, 2.0]);
 
-    const manchon = new Mesh(new PlaneGeometry(3.4, 5.4), materialSombra);
+    // Más pequeño que el coche: así sus esquinas quedan siempre bajo la
+    // carrocería y nunca asoman sobre el asfalto en las curvas.
+    const manchon = new Mesh(new PlaneGeometry(2.4, 4.0), materialSombra);
     manchon.rotation.x = -Math.PI / 2;
-    manchon.position.y = 0.04;
+    manchon.position.y = 0.05;
     manchon.renderOrder = -1;
     grupo.add(manchon);
 
