@@ -37,7 +37,9 @@ export function crearEscena() {
     // enteras negras) porque el texel medía más de 20 cm.
     const luna = new DirectionalLight(0xcfe0ff, 3.4);
     luna.position.set(60, 95, 40);
-    luna.castShadow = true;
+    // Sin sombras proyectadas: en la cinta del asfalto generaban parches
+    // oscuros (auto-sombreado) y el coche ya lleva su sombra de contacto.
+    luna.castShadow = false;
     luna.shadow.mapSize.set(1024, 1024);
     luna.shadow.camera.left = -42;
     luna.shadow.camera.right = 42;
@@ -55,7 +57,6 @@ export function crearEscena() {
         new MeshStandardNodeMaterial({ color: 0x0a1220, roughness: 0.96, metalness: 0.06 })
     );
     suelo.position.y = -0.35;
-    suelo.receiveShadow = true;
     escena.add(suelo);
 
     escena.add(crearLuna());
