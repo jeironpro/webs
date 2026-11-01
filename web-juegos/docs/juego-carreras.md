@@ -152,9 +152,11 @@ las resuelve el propio build de Three.js). El WASM se instancia con
   semilla, así que el mismo número de circuito produce siempre la misma pista.
 - **Carrera**: 3 vueltas, 3 rivales con línea de carrera, velocidad objetivo por curvatura y
   _rubber-banding_ suave; dificultad fácil / normal / difícil.
-- **Conducción asistida**: la dirección apunta con _pure pursuit_ a la línea central unas muestras
-  por delante, de modo que el coche corrige el desvío lateral en vez de cortar las curvas. El
-  jugador manda con el volante, el asistente solo evita que la pista se vuelva un rail.
+- **Dirección con radio de giro**: el volante gira el morro a una tasa que baja con la velocidad
+  (`~34 m/s²` de agarre lateral), así que el coche no trompea en recta ni se queda sin girar en las
+  curvas lentas. Sin volante mantiene el rumbo: el jugador traza, el coche no se conduce solo.
+- **Salidas de pista**: la hierba suma arrastre y la valla roza (pierde punta y empuja de vuelta)
+  sin recolocar el morro ni detener el coche.
 - **Vueltas**: el progreso se mide proyectando el coche sobre la muestra más cercana y cruzando la
   meta al pasar de 0,7 a 0,3; el cronómetro y la mejor vuelta viven en el núcleo wasm.
 - **Puntuación**: tiempo total, mejor vuelta, choques y adelantamientos; mejor marca por circuito

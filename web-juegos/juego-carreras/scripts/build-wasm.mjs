@@ -102,21 +102,73 @@ nucleo.inicializar(2026, MUESTRAS);
 const cercana = nucleo.buscarCercana(nucleo.posicionX(120), nucleo.posicionZ(120), 110, 32);
 afirmar(Math.abs(cercana - 120) <= 2, `buscarCercana devolvió ${cercana} en vez de ~120`);
 
-// Carrera completa simulada: acelerador a fondo y coche alineado con la pista.
 function estadoActual() {
     return new Float32Array(nucleo.memory.buffer, nucleo.estadoPtr(), nucleo.estridasEstado());
 }
 
-function simular(frames) {
+// `inicializar` reconstruye los buffers del módulo, así que las vistas sobre
+// memoria se piden después de cada reinicio.
+function vistas() {
+    const total = nucleo.totalMuestras();
+    const est = nucleo.estridas();
+    return {
+        total,
+        est,
+        datos: new Float32Array(nucleo.memory.buffer, nucleo.datosPtr(), total * est),
+        estado: estadoActual(),
+    };
+}
+
+function indiceMuestra(total, indice) {
+    return ((indice % total) + total) % total;
+}
+
+function curvaturaEn(datos, est, total, indice) {
+    const antes = indiceMuestra(total, indice - 5) * est;
+    const despues = indiceMuestra(total, indice + 5) * est;
+    return Math.abs(datos[antes + 5] * datos[despues + 3] - datos[antes + 3] * datos[despues + 5]);
+}
+
+/**
+ * Piloto de pruebas: como la dirección ya no se endereza sola, la carrera se
+ * simula con un conductor que apunta a la pista y frena en las curvas cerradas.
+ */
+function pilotar({ estado, datos, est, total }) {
+    const velocidad = estado[4];
+    const adelanto = Math.round(7 + velocidad * 0.55);
+    const objetivo = indiceMuestra(total, estado[11] + adelanto) * est;
+    const deseado = Math.atan2(datos[objetivo] - estado[0], datos[objetivo + 2] - estado[2]);
+    const error = normalizarAngulo(deseado - estado[3]);
+    const curva = Math.max(
+        curvaturaEn(datos, est, total, estado[11] + 12),
+        curvaturaEn(datos, est, total, estado[11] + 24)
+    );
+
+    return {
+        acelerar: 1,
+        frenar: curva > 0.1 && velocidad > 45 * (1 - curva * 1.5) ? 0.55 : 0,
+        giro: Math.max(-1, Math.min(1, -error * 2.4)),
+    };
+}
+
+function normalizarAngulo(angulo) {
+    let valor = angulo;
+    while (valor > Math.PI) valor -= Math.PI * 2;
+    while (valor < -Math.PI) valor += Math.PI * 2;
+    return valor;
+}
+
+function simular(frames, conducir = true) {
     nucleo.inicializar(2026, MUESTRAS);
     nucleo.iniciarCarrera(1, 3);
-    const estado = estadoActual();
+    const v = vistas();
     let pico = 0;
     for (let frame = 0; frame < frames; frame += 1) {
-        nucleo.paso(1 / 60, 1, 0, 0, 0);
-        pico = Math.max(pico, estado[4]);
+        const entrada = conducir ? pilotar(v) : { acelerar: 1, frenar: 0, giro: 0 };
+        nucleo.paso(1 / 60, entrada.acelerar, entrada.frenar, entrada.giro, 0);
+        pico = Math.max(pico, v.estado[4]);
     }
-    return { valores: Array.from(estado), pico };
+    return { valores: Array.from(v.estado), pico };
 }
 
 const carrera = simular(60 * 45);
@@ -166,6 +218,13 @@ const repetida = simular(60 * 45);
 afirmar(
     carrera.valores.every((valor, indice) => valor === repetida.valores[indice]),
     "la misma semilla e input deben producir la misma carrera"
+);
+
+// Sin volante el coche sale de la trazada: la asistencia ya no conduce sola.
+const suelto = simular(60 * 20, false);
+afirmar(
+    Math.abs(suelto.valores[5]) > 8,
+    `el coche no debe completar la pista sin volante (desvío ${suelto.valores[5].toFixed(1)} m)`
 );
 
 console.log(
