@@ -261,45 +261,59 @@
     margin: 0;
 }
 
-/* ---------- Controles táctiles ---------- */
+/* ---------- Controles táctiles ----------
+ * Cinco botones del mismo tamaño repartidos a todo el ancho. Los dos grupos se
+ * reparten la fila a partes iguales y el tamaño lo fija el grupo de tres, que es
+ * el más ancho: así los cinco quedan iguales y ninguno se sale de la pantalla.
+ * Solo aparecen mientras se conduce; `hidden` lo controla app.js. */
 
 .tactil {
     align-items: flex-end;
     bottom: max(var(--space-4), env(safe-area-inset-bottom));
     display: none;
+    gap: var(--space-2);
     justify-content: space-between;
-    left: var(--space-4);
+    left: max(var(--space-3), env(safe-area-inset-left));
     pointer-events: none;
     position: fixed;
-    right: var(--space-4);
+    right: max(var(--space-3), env(safe-area-inset-right));
     z-index: 12;
+}
+
+.tactil[hidden] {
+    display: none;
 }
 
 .tactil__grupo {
     display: flex;
-    gap: var(--space-3);
+    flex: 1 1 0;
+    gap: var(--space-2);
+    min-width: 0;
     pointer-events: auto;
+}
+
+.tactil__grupo:last-child {
+    justify-content: flex-end;
 }
 
 .tactil__boton {
     align-items: center;
+    aspect-ratio: 1;
     background: color-mix(in oklab, var(--color-surface) 70%, transparent);
     border: 1px solid color-mix(in oklab, var(--color-line) 80%, transparent);
     border-radius: var(--radius-full);
     color: var(--color-ink);
     display: flex;
-    height: 62px;
+    flex: 0 1 auto;
     justify-content: center;
     touch-action: none;
     user-select: none;
-    width: 62px;
+    width: clamp(2.5rem, calc((100% - 2 * var(--space-2)) / 3), 4.5rem);
 }
 
 .tactil__boton--grande {
     background: color-mix(in oklab, var(--color-accent) 28%, var(--color-surface));
     border-color: color-mix(in oklab, var(--color-accent) 60%, transparent);
-    height: 76px;
-    width: 76px;
 }
 
 .tactil__boton--alerta {

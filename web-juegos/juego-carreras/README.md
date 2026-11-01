@@ -24,7 +24,7 @@ persecución renderizados con Three.js sobre **WebGPU**, con un núcleo de simul
 - HUD con velocidad, posición, vuelta, cronómetro, mejor vuelta, toques y **minimapa** en canvas.
 - Menú con dificultad de los rivales, semilla del circuito y número de vueltas; cuenta atrás, pausa y
   panel de resultados con récord de vuelta guardado en `localStorage`.
-- Control por teclado, **gamepad estándar** y botones táctiles que aparecen en punteros gruesos.
+- Control por teclado, **gamepad estándar** y cinco botones táctiles del mismo tamaño que solo aparecen mientras se conduce.
 - Audio sintetizado con WebAudio (motor por velocidad y derrape), sin archivos de sonido.
 - Aviso claro cuando no hay contexto gráfico ni WebAssembly disponible.
 

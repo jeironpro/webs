@@ -97,6 +97,14 @@ export function crearEntrada() {
         alAccion(accion, manejador) {
             acciones.set(accion, manejador);
         },
+        /** Suelta los botones táctiles al ocultarlos: si no, quedan pegados. */
+        soltarTactiles() {
+            if (tactiles.size === 0) return;
+            tactiles.clear();
+            document.querySelectorAll("[data-accion]").forEach((boton) => {
+                delete boton.dataset.pulsado;
+            });
+        },
         leer() {
             const pad = leerGamepad();
             const izquierda = teclas.has("izquierda") || tactiles.has("izquierda");
