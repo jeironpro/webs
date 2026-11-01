@@ -7,13 +7,11 @@ import {
     FrontSide,
     Group,
     InstancedMesh,
-    Matrix4,
     Mesh,
     MeshBasicNodeMaterial,
     MeshStandardNodeMaterial,
     NearestFilter,
     Object3D,
-    PlaneGeometry,
     RepeatWrapping,
     SphereGeometry,
     SRGBColorSpace,
@@ -99,7 +97,7 @@ export function crearCircuito({ nucleo }) {
     grupo.add(new Mesh(construirFaldon(muestras, bordeExterior), faldon));
     grupo.add(new Mesh(construirFaldon(muestras, -bordeExterior), faldon));
 
-    grupo.add(crearLineaMeta(muestras[0]));
+    grupo.add(crearLineaMeta(muestras));
     grupo.add(crearPostes(muestras, desvioBordillo + 2.4));
 
     const total = muestras.length;
@@ -223,7 +221,7 @@ function construirFaldon(muestras, desvio, profundidad = 5.5) {
     return geometria;
 }
 
-function crearLineaMeta(muestra) {
+function crearLineaMeta(muestras) {
     const lienzo = document.createElement("canvas");
     lienzo.width = 128;
     lienzo.height = 32;
@@ -243,21 +241,39 @@ function crearLineaMeta(muestra) {
     textura.wrapS = RepeatWrapping;
     textura.repeat.set(3, 1);
 
-    const meta = new Mesh(
-        new PlaneGeometry(ANCHO_PISTA, 2.6),
-        new MeshBasicNodeMaterial({ map: textura })
-    );
-    // El plano se apoya en el lateral y la tangente de la pista; el tercer eje
-    // tiene que ser su producto vectorial. Con ARRIBA como tercera columna la
-    // base dejaba de ser ortonormal en las curvas peraltadas y la meta salía
-    // escorada, como si solo ocupara media pista.
-    const normal = new Vector3()
-        .crossVectors(muestra.lateral, muestra.tangente)
-        .normalize();
-    const base = new Matrix4().makeBasis(muestra.lateral, muestra.tangente, normal);
-    meta.quaternion.setFromRotationMatrix(base);
-    meta.position.copy(muestra.posicion).addScaledVector(ARRIBA, 0.02);
-    return meta;
+    // Cinta de la meta pegada a la pista. Un plano rígido de 14 m no sigue el
+    // peralte: en la curva de salida se salía del bordillo y los cuadros negros
+    // quedaban sobre la hierba del lado izquierdo.
+    const tramos = 4;
+    const medio = ANCHO_PISTA / 2;
+    const posiciones = [];
+    const uvs = [];
+    const indices = [];
+
+    for (let i = 0; i <= tramos; i += 1) {
+        const muestra = muestras[i % muestras.length];
+        const centro = muestra.posicion.clone().addScaledVector(ARRIBA, 0.012);
+        const bordeA = centro.clone().addScaledVector(muestra.lateral, medio);
+        const bordeB = centro.clone().addScaledVector(muestra.lateral, -medio);
+        posiciones.push(bordeA.x, bordeA.y, bordeA.z, bordeB.x, bordeB.y, bordeB.z);
+        uvs.push(0, i / tramos, 1, i / tramos);
+    }
+
+    for (let i = 0; i < tramos; i += 1) {
+        const a = i * 2;
+        const b = a + 1;
+        const c = a + 2;
+        const d = a + 3;
+        indices.push(a, c, b, b, c, d);
+    }
+
+    const geometria = new BufferGeometry();
+    geometria.setAttribute("position", new Float32BufferAttribute(posiciones, 3));
+    geometria.setAttribute("uv", new Float32BufferAttribute(uvs, 2));
+    geometria.setIndex(indices);
+    geometria.computeVertexNormals();
+
+    return new Mesh(geometria, new MeshBasicNodeMaterial({ map: textura }));
 }
 
 /** Postes de luz instanciados a ambos lados: cian a la derecha, magenta a la izquierda. */
