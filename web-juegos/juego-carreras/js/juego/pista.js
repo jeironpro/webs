@@ -55,19 +55,32 @@ export function crearCircuito({ nucleo }) {
         transparent: true,
         opacity: 0.85,
         polygonOffset: true,
+        polygonOffsetFactor: -3,
+        polygonOffsetUnits: -3,
+    });
+    grupo.add(new Mesh(construirCinta(muestras, 0, 0.32, 0.06), centro));
+
+    // Los bordillos van por encima del asfalto y con polygonOffset: si no, en
+    // las curvas peraltadas su canto rozaba la cinta y dejaba líneas sueltas
+    // sobre todo en el borde izquierdo.
+    const bordilloDerecho = new MeshBasicNodeMaterial({
+        color: 0x35c6db,
+        polygonOffset: true,
         polygonOffsetFactor: -2,
         polygonOffsetUnits: -2,
     });
-    grupo.add(new Mesh(construirCinta(muestras, 0, 0.32, 0.035), centro));
-
-    const bordilloDerecho = new MeshBasicNodeMaterial({ color: 0x35c6db });
-    const bordilloIzquierdo = new MeshBasicNodeMaterial({ color: 0xb45cff });
+    const bordilloIzquierdo = new MeshBasicNodeMaterial({
+        color: 0xb45cff,
+        polygonOffset: true,
+        polygonOffsetFactor: -2,
+        polygonOffsetUnits: -2,
+    });
     const desvioBordillo = ANCHO_PISTA / 2 + ANCHO_BORDILLO / 2;
     grupo.add(
-        new Mesh(construirCinta(muestras, desvioBordillo, ANCHO_BORDILLO, 0.05), bordilloDerecho)
+        new Mesh(construirCinta(muestras, desvioBordillo, ANCHO_BORDILLO, 0.09), bordilloDerecho)
     );
     grupo.add(
-        new Mesh(construirCinta(muestras, -desvioBordillo, ANCHO_BORDILLO, 0.05), bordilloIzquierdo)
+        new Mesh(construirCinta(muestras, -desvioBordillo, ANCHO_BORDILLO, 0.09), bordilloIzquierdo)
     );
 
     // Faldones: dan grosor a la cinta para que la pista se vea maciza desde el
@@ -181,7 +194,12 @@ function construirFaldon(muestras, desvio, profundidad = 5.5) {
 
     for (let i = 0; i <= total; i += 1) {
         const muestra = muestras[i % total];
-        const borde = muestra.posicion.clone().addScaledVector(muestra.lateral, desvio);
+        // Un pelín por debajo del asfalto: así el canto del faldón no asoma
+        // como una línea al otro lado del borde.
+        const borde = muestra.posicion
+            .clone()
+            .addScaledVector(muestra.lateral, desvio)
+            .addScaledVector(ARRIBA, -0.06);
         const fondo = borde.clone().addScaledVector(ARRIBA, -profundidad);
         posiciones.push(borde.x, borde.y, borde.z, fondo.x, fondo.y, fondo.z);
     }
@@ -234,7 +252,7 @@ function crearLineaMeta(muestra) {
         .normalize();
     const base = new Matrix4().makeBasis(muestra.lateral, muestra.tangente, normal);
     meta.quaternion.setFromRotationMatrix(base);
-    meta.position.copy(muestra.posicion).addScaledVector(ARRIBA, 0.07);
+    meta.position.copy(muestra.posicion).addScaledVector(ARRIBA, 0.1);
     return meta;
 }
 

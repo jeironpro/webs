@@ -240,7 +240,7 @@ export function crearCoche({ color = 0x35c6db, colorPinza = 0xff7a1a } = {}) {
     // Halo neón bajo el coche, coherente con la identidad del juego.
     const halo = new Mesh(new PlaneGeometry(2.5, 4.7), neon);
     halo.rotation.x = -Math.PI / 2;
-    halo.position.y = 0.045;
+    halo.position.y = 0.02;
     grupo.add(halo);
 
     // Ruedas escalonadas: 19" delante y 20" detrás, como el 570S.

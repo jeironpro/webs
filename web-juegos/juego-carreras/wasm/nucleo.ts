@@ -342,7 +342,7 @@ export function buscarCercana(x: f32, z: f32, desde: i32, ventana: i32): i32 {
 // Carrera: coche, rivales, vueltas y cronometraje
 // ---------------------------------------------------------------------------
 
-const RIVALES: i32 = 3;
+const RIVALES: i32 = 1;
 const ESTRIDO_ESTADO: i32 = 16 + RIVALES * 7;
 const ANCHO_MEDIO: f32 = 6.4;
 // Borde exterior del bordillo: la pista es un recinto cerrado, el coche no
@@ -427,7 +427,7 @@ function escribirEstado(): void {
     estado[15] = f32(total);
 
     for (let r = 0; r < RIVALES; r++) {
-        const base = 16 + r * 6;
+        const base = 16 + r * 7;
         estado[base] = rivalX[r];
         estado[base + 1] = rivalY[r];
         estado[base + 2] = rivalZ[r];
@@ -561,7 +561,7 @@ export function paso(dt: f32, acelerar: f32, frenar: f32, giro: f32, derrape: u3
     // La altura sale del centro de la pista más el peralte en el punto donde
     // está el coche: sin ese término, en las curvas peraltadas el asfalto subía
     // por encima del coche y parecía hundirse bajo la pista.
-    cocheY = datos[base + 1] + cocheLateral * datos[base + 7];
+    cocheY = datos[base + 1] + cocheLateral * datos[base + 7] + 0.06;
 
     const avance = dx * tangenteX + dz * tangenteZ;
     const pasoMuestra = longitudTotal / f32(total);
