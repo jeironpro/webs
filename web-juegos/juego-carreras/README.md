@@ -17,7 +17,7 @@ persecución renderizados con Three.js sobre **WebGPU**, con un núcleo de simul
   `InstancedMesh`.
 - Física arcade en WebAssembly: motor, arrastre cuadrático, frenada, freno de mano para derrapar,
   pérdida de agarre fuera del asfalto y muro blando que devuelve el coche a la pista.
-- Tres rivales con línea de carrera, velocidad objetivo según la curvatura y rubber-banding suave;
+- Un rival con línea de carrera: frena por agarre lateral en cada curva, cede al vértice y ajusta tope y trazada según la dificultad, con rubber-banding suave;
   colisiones que separan los coches y reparten el frenazo.
 - Carrera a 3 vueltas con cronómetro, mejor vuelta y contador de choques, todo calculado en el núcleo.
 - Cámara de persecución suavizada y órbita cinematográfica en el menú.
