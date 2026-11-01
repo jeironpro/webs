@@ -1,6 +1,7 @@
 import {
     BoxGeometry,
     BufferGeometry,
+    CanvasTexture,
     CylinderGeometry,
     Float32BufferAttribute,
     Group,
@@ -8,6 +9,7 @@ import {
     MeshBasicNodeMaterial,
     MeshStandardNodeMaterial,
     PlaneGeometry,
+    SRGBColorSpace,
 } from "three/webgpu";
 
 /**
@@ -116,7 +118,28 @@ export function crearCoche({ color = 0x35c6db, colorPinza = 0xff7a1a } = {}) {
     const metal = new MeshStandardNodeMaterial({ color: 0x9fabc0, metalness: 0.95, roughness: 0.28 });
     const faro = new MeshBasicNodeMaterial({ color: 0xeaf2ff });
     const piloto = new MeshBasicNodeMaterial({ color: 0xff2d55 });
-    const neon = new MeshBasicNodeMaterial({ color, transparent: true, opacity: 0.22 });
+    // Sombra de contacto: un manchón suave bajo el coche en lugar de sombras
+    // proyectadas, que dejaban motas oscuras sobre el asfalto.
+    const sombra = (() => {
+        const lienzo = document.createElement("canvas");
+        lienzo.width = 64;
+        lienzo.height = 64;
+        const contexto = lienzo.getContext("2d");
+        const degradado = contexto.createRadialGradient(32, 32, 2, 32, 32, 31);
+        degradado.addColorStop(0, "rgba(0, 0, 0, 0.6)");
+        degradado.addColorStop(0.55, "rgba(0, 0, 0, 0.35)");
+        degradado.addColorStop(1, "rgba(0, 0, 0, 0)");
+        contexto.fillStyle = degradado;
+        contexto.fillRect(0, 0, 64, 64);
+        const textura = new CanvasTexture(lienzo);
+        textura.colorSpace = SRGBColorSpace;
+        return textura;
+    })();
+    const materialSombra = new MeshBasicNodeMaterial({
+        map: sombra,
+        transparent: true,
+        depthWrite: false,
+    });
 
     function anadir(geometria, material, posicion, rotacion = [0, 0, 0]) {
         const malla = new Mesh(geometria, material);
@@ -237,11 +260,11 @@ export function crearCoche({ color = 0x35c6db, colorPinza = 0xff7a1a } = {}) {
     }
     anadir(new BoxGeometry(1.7, 0.04, 0.42), carbono, [0, 0.2, 2.0]);
 
-    // Halo neón bajo el coche, coherente con la identidad del juego.
-    const halo = new Mesh(new PlaneGeometry(2.5, 4.7), neon);
-    halo.rotation.x = -Math.PI / 2;
-    halo.position.y = 0.02;
-    grupo.add(halo);
+    const manchon = new Mesh(new PlaneGeometry(3.4, 5.4), materialSombra);
+    manchon.rotation.x = -Math.PI / 2;
+    manchon.position.y = 0.04;
+    manchon.renderOrder = -1;
+    grupo.add(manchon);
 
     // Ruedas escalonadas: 19" delante y 20" detrás, como el 570S.
     const ruedas = [];

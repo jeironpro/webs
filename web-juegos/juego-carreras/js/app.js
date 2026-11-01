@@ -251,7 +251,7 @@ function colocarCoche(cocheEstado) {
         coche.grupo.rotation.x = -Math.asin(limitar(muestra.tangente.y, -1, 1));
         // El coche se apoya en el peralte: si no rueda con la curva, las ruedas
         // del lado alto quedan enterradas en el asfalto.
-        coche.grupo.rotation.z = -muestra.peralte;
+        coche.grupo.rotation.z = muestra.peralte;
     }
 }
 

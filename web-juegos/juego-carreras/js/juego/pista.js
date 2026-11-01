@@ -47,7 +47,6 @@ export function crearCircuito({ nucleo }) {
         shadowSide: FrontSide,
     });
     const pista = new Mesh(construirCinta(muestras, 0, ANCHO_PISTA), asfalto);
-    pista.receiveShadow = true;
     grupo.add(pista);
 
     const centro = new MeshBasicNodeMaterial({
