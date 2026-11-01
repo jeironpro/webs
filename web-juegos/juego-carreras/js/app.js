@@ -11,6 +11,7 @@ import { crearHud } from "./interfaz/hud.js";
 import { crearMenu } from "./interfaz/menu.js";
 import { crearPaneles } from "./interfaz/paneles.js";
 import { crearAudio } from "./interfaz/audio.js";
+import { crearTactil } from "./interfaz/tactil.js";
 import { limitar } from "./juego/utilidades.js";
 
 const VUELTAS_POR_DEFECTO = 3;
@@ -26,6 +27,7 @@ const hud = crearHud();
 const paneles = crearPaneles();
 const entrada = crearEntrada();
 const audio = crearAudio();
+const tactil = crearTactil();
 
 const estado = {
     modo: "menu",
@@ -352,7 +354,15 @@ function bucle(tiempoMs) {
         coche.actualizar({ dt, velocidad: 0, giro: 0 });
     }
 
+    sincronizarTactil();
     renderizador.render(escena, camara);
+}
+
+/** Los botones táctiles solo acompañan a la partida en marcha. */
+function sincronizarTactil() {
+    const enCarrera = estado.modo === "carrera" || estado.modo === "cuenta";
+    tactil.mostrar(enCarrera);
+    if (!enCarrera) entrada.soltarTactiles();
 }
 
 arrancar();
