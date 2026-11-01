@@ -558,13 +558,19 @@ export function paso(dt: f32, acelerar: f32, frenar: f32, giro: f32, derrape: u3
     }
     if (enfriamientoChoque > CERO) enfriamientoChoque -= d;
 
-    // La altura sale del centro de la pista más el peralte en el punto donde
-    // está el coche: sin ese término, en las curvas peraltadas el asfalto subía
-    // por encima del coche y parecía hundirse bajo la pista.
-    cocheY = datos[base + 1] + cocheLateral * datos[base + 7] + 0.06;
-
     const avance = dx * tangenteX + dz * tangenteZ;
     const pasoMuestra = longitudTotal / f32(total);
+
+    // Altura de la superficie en el punto exacto del coche: la cinta es lineal
+    // entre muestras, así que se interpola la altura del centro y el peralte en
+    // función del avance, en vez de tomar solo la muestra más cercana.
+    const avanceRelativo: f32 = limitar(avance / pasoMuestra, 0.0, 1.0);
+    const siguiente = indiceMuestra(cocheIndice + 1) * ESTRIDO;
+    const alturaCentro: f32 =
+        datos[base + 1] + (datos[siguiente + 1] - datos[base + 1]) * avanceRelativo;
+    const lateralY: f32 =
+        datos[base + 7] + (datos[siguiente + 7] - datos[base + 7]) * avanceRelativo;
+    cocheY = alturaCentro + cocheLateral * lateralY + 0.06;
     let progreso = (f32(cocheIndice) + avance / pasoMuestra) / f32(total);
     if (progreso < CERO) progreso += 1.0;
     if (progreso >= UNO) progreso -= 1.0;
