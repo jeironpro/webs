@@ -116,13 +116,5 @@ export function crearEntrada() {
 
             return { acelerar, frenar, giro, derrape };
         },
-        liberar() {
-            teclas.clear();
-            tactiles.clear();
-            acciones.clear();
-            globalThis.removeEventListener("keydown", alPulsar);
-            globalThis.removeEventListener("keyup", alSoltar);
-            globalThis.removeEventListener("blur", alPerderFoco);
-        },
     };
 }

@@ -168,7 +168,7 @@ las resuelve el propio build de Three.js). El WASM se instancia con
 
 - `InstancedMesh` para árboles, vallas, farolas y gradas; malla de pista única por segmento.
 - Escala de resolución dinámica (0,6–1,0) según el tiempo de frame, ajustable en opciones.
-- Sombras: una luz direccional con mapa contenido; sin sombras en calidad baja.
+- Sin sombras proyectadas: el coche lleva una sombra de contacto propia y el asfalto no recibe sombreado dinámico.
 - `prefers-reduced-motion` reduce el temblor de cámara y las animaciones de la interfaz.
 - Sin WebGPU → WebGL 2 con las mismas escenas; sin WebGL → aviso claro con opciones de
   accesibilidad en texto.

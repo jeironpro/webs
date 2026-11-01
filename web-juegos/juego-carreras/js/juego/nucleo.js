@@ -42,11 +42,6 @@ export async function cargarNucleo({ semilla = 2026, muestras = 640 } = {}) {
         datos: null,
         memoria: modulo.memory,
         longitud: 0,
-        posicionX: (indice) => modulo.posicionX(indice),
-        posicionY: (indice) => modulo.posicionY(indice),
-        posicionZ: (indice) => modulo.posicionZ(indice),
-        peralteEn: (indice) => modulo.peralteEn(indice),
-        buscarCercana: (x, z, desde, ventana = 24) => modulo.buscarCercana(x, z, desde, ventana),
         iniciarCarrera: (dificultad, vueltas) => modulo.iniciarCarrera(dificultad, vueltas),
         paso: (dt, acelerar, frenar, giro, derrape) =>
             modulo.paso(dt, acelerar, frenar, giro, derrape),

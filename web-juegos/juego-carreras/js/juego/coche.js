@@ -299,7 +299,6 @@ export function crearCoche({ color = 0x35c6db, colorPinza = 0xff7a1a } = {}) {
 
     return {
         grupo,
-        ruedas,
         actualizar({ dt = 0, velocidad = 0, giro = 0 }) {
             giroRuedas += (velocidad / RADIO_REFERENCIA) * dt;
             for (const { soporte, rueda, frontal } of ruedas) {
