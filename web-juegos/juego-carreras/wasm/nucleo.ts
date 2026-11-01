@@ -457,7 +457,9 @@ export function iniciarCarrera(dificultad: u32, vueltas: u32): void {
     enfriamientoChoque = 0;
 
     for (let r = 0; r < RIVALES; r++) {
-        rivalProgreso[r] = 1.0 - f32(r + 1) * 0.008;
+        // Parrilla por delante del jugador: si arrancan detrás, embisten al
+        // coche parado en la salida y lo empujan de lado.
+        rivalProgreso[r] = f32(r + 1) * 0.012;
         rivalVelocidad[r] = 0;
         rivalDesvio[r] = (f32(r) - 1.0) * 2.2;
         rivalVuelta[r] = 1;
@@ -549,7 +551,10 @@ export function paso(dt: f32, acelerar: f32, frenar: f32, giro: f32, derrape: u3
     }
     if (enfriamientoChoque > CERO) enfriamientoChoque -= d;
 
-    cocheY = datos[base + 1];
+    // La altura sale del centro de la pista más el peralte en el punto donde
+    // está el coche: sin ese término, en las curvas peraltadas el asfalto subía
+    // por encima del coche y parecía hundirse bajo la pista.
+    cocheY = datos[base + 1] + cocheLateral * datos[base + 7];
 
     const avance = dx * tangenteX + dz * tangenteZ;
     const pasoMuestra = longitudTotal / f32(total);
