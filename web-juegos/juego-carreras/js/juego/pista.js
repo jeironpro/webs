@@ -174,7 +174,7 @@ function construirCinta(muestras, desvio, ancho, elevacion = 0) {
 }
 
 /** Banda vertical bajo el borde de la pista: el grosor que la hace maciza. */
-function construirFaldon(muestras, desvio, profundidad = 2.8) {
+function construirFaldon(muestras, desvio, profundidad = 5.5) {
     const posiciones = [];
     const indices = [];
     const total = muestras.length;
