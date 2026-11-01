@@ -10,7 +10,7 @@ const ESTRIDO: i32 = 10;
 const PUNTOS_CONTROL: i32 = 12;
 const MUESTRAS_FINAS: i32 = 4608;
 const DOS_PI: f32 = 6.283185307179586;
-const MAX_PERALTE: f32 = 0.22;
+const MAX_PERALTE: f32 = 0.14;
 
 let datos = new Float32Array(0);
 let finas = new Float32Array(0);
@@ -95,10 +95,11 @@ function generarControl(): void {
             base +
             Mathf.sin(angulo * 2.0 + fase2) * amplitud2 +
             Mathf.sin(angulo * 3.0 + fase3) * amplitud3;
-        // La pista nunca baja del terreno (y = -0,35): si ondulaba ±2,2 m, el
-        // suelo la cortaba en los tramos bajos y aparecían manchas negras sobre
-        // el asfalto y la sensación de que el coche se hundía.
-        const altura: f32 = 2.0 + Mathf.sin(angulo * 2.0 + faseAltura) * 1.4;
+        // La pista nunca puede bajar del terreno (y = -0,35). El peralte inclina
+        // la cinta y su borde bajo cae `seno(peralte) * 7,9` metros: con 0,14 rad
+        // son 1,10 m, así que el centro se mantiene entre 1,5 y 3,7 m para que
+        // ningún borde quede por debajo del suelo en las curvas.
+        const altura: f32 = 2.6 + Mathf.sin(angulo * 2.0 + faseAltura) * 1.1;
 
         control[i * 3] = Mathf.cos(angulo) * radio;
         control[i * 3 + 1] = altura;
