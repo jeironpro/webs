@@ -70,6 +70,18 @@ export function crearCircuito({ nucleo }) {
         new Mesh(construirCinta(muestras, -desvioBordillo, ANCHO_BORDILLO, 0.05), bordilloIzquierdo)
     );
 
+    // Faldones: dan grosor a la cinta para que la pista se vea maciza desde el
+    // lado y no quede flotando sobre el suelo.
+    const faldon = new MeshStandardNodeMaterial({
+        color: 0x0b1224,
+        roughness: 0.95,
+        metalness: 0.1,
+        side: DoubleSide,
+    });
+    const bordeExterior = ANCHO_PISTA / 2 + ANCHO_BORDILLO;
+    grupo.add(new Mesh(construirFaldon(muestras, bordeExterior), faldon));
+    grupo.add(new Mesh(construirFaldon(muestras, -bordeExterior), faldon));
+
     grupo.add(crearLineaMeta(muestras[0]));
     grupo.add(crearPostes(muestras, desvioBordillo + 2.4));
 
@@ -161,6 +173,34 @@ function construirCinta(muestras, desvio, ancho, elevacion = 0) {
     return geometria;
 }
 
+/** Banda vertical bajo el borde de la pista: el grosor que la hace maciza. */
+function construirFaldon(muestras, desvio, profundidad = 2.8) {
+    const posiciones = [];
+    const indices = [];
+    const total = muestras.length;
+
+    for (let i = 0; i <= total; i += 1) {
+        const muestra = muestras[i % total];
+        const borde = muestra.posicion.clone().addScaledVector(muestra.lateral, desvio);
+        const fondo = borde.clone().addScaledVector(ARRIBA, -profundidad);
+        posiciones.push(borde.x, borde.y, borde.z, fondo.x, fondo.y, fondo.z);
+    }
+
+    for (let i = 0; i < total; i += 1) {
+        const a = i * 2;
+        const b = a + 1;
+        const c = a + 2;
+        const d = a + 3;
+        indices.push(a, b, c, b, d, c);
+    }
+
+    const geometria = new BufferGeometry();
+    geometria.setAttribute("position", new Float32BufferAttribute(posiciones, 3));
+    geometria.setIndex(indices);
+    geometria.computeVertexNormals();
+    return geometria;
+}
+
 function crearLineaMeta(muestra) {
     const lienzo = document.createElement("canvas");
     lienzo.width = 128;
@@ -185,7 +225,14 @@ function crearLineaMeta(muestra) {
         new PlaneGeometry(ANCHO_PISTA, 2.6),
         new MeshBasicNodeMaterial({ map: textura })
     );
-    const base = new Matrix4().makeBasis(muestra.lateral, muestra.tangente, ARRIBA);
+    // El plano se apoya en el lateral y la tangente de la pista; el tercer eje
+    // tiene que ser su producto vectorial. Con ARRIBA como tercera columna la
+    // base dejaba de ser ortonormal en las curvas peraltadas y la meta salía
+    // escorada, como si solo ocupara media pista.
+    const normal = new Vector3()
+        .crossVectors(muestra.lateral, muestra.tangente)
+        .normalize();
+    const base = new Matrix4().makeBasis(muestra.lateral, muestra.tangente, normal);
     meta.quaternion.setFromRotationMatrix(base);
     meta.position.copy(muestra.posicion).addScaledVector(ARRIBA, 0.07);
     return meta;
