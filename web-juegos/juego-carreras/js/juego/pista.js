@@ -57,7 +57,9 @@ export function crearCircuito({ nucleo }) {
         polygonOffsetFactor: -3,
         polygonOffsetUnits: -3,
     });
-    grupo.add(new Mesh(construirCinta(muestras, 0, 0.32, 0.06), centro));
+    // A ras de asfalto: al ir elevada, entre la cinta y el asfalto quedaba un
+    // hueco vertical por el que se veía el fondo y aparecía un filo negro.
+    grupo.add(new Mesh(construirCinta(muestras, 0, 0.32, 0.012), centro));
 
     // Los bordillos van por encima del asfalto y con polygonOffset: si no, en
     // las curvas peraltadas su canto rozaba la cinta y dejaba líneas sueltas
@@ -76,10 +78,13 @@ export function crearCircuito({ nucleo }) {
     });
     const desvioBordillo = ANCHO_PISTA / 2 + ANCHO_BORDILLO / 2;
     grupo.add(
-        new Mesh(construirCinta(muestras, desvioBordillo, ANCHO_BORDILLO, 0.09), bordilloDerecho)
+        new Mesh(construirCinta(muestras, desvioBordillo, ANCHO_BORDILLO, 0.008), bordilloDerecho)
     );
     grupo.add(
-        new Mesh(construirCinta(muestras, -desvioBordillo, ANCHO_BORDILLO, 0.09), bordilloIzquierdo)
+        new Mesh(
+            construirCinta(muestras, -desvioBordillo, ANCHO_BORDILLO, 0.008),
+            bordilloIzquierdo
+        )
     );
 
     // Faldones: dan grosor a la cinta para que la pista se vea maciza desde el
@@ -251,7 +256,7 @@ function crearLineaMeta(muestra) {
         .normalize();
     const base = new Matrix4().makeBasis(muestra.lateral, muestra.tangente, normal);
     meta.quaternion.setFromRotationMatrix(base);
-    meta.position.copy(muestra.posicion).addScaledVector(ARRIBA, 0.1);
+    meta.position.copy(muestra.posicion).addScaledVector(ARRIBA, 0.02);
     return meta;
 }
 
