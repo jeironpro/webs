@@ -391,11 +391,36 @@ function normalizarAngulo(angulo: f32): f32 {
     return valor;
 }
 
-/** Curvatura aproximada entre dos muestras separadas: alimenta la IA. */
-function curvaturaEn(indice: i32): f32 {
-    const antes = indiceMuestra(indice - 5) * ESTRIDO;
-    const despues = indiceMuestra(indice + 5) * ESTRIDO;
-    return Mathf.abs(datos[antes + 5] * datos[despues + 3] - datos[antes + 3] * datos[despues + 5]);
+/**
+ * Curvatura con signo entre dos muestras separadas `separacion` posiciones.
+ * Es negativa cuando la pista gira hacia el lateral + (la izquierda del
+ * coche), el dato que la IA usa para elegir el vértice de la curva.
+ */
+function curvaturaFirmadaEn(indice: i32, separacion: i32): f32 {
+    const antes = indiceMuestra(indice - separacion) * ESTRIDO;
+    const despues = indiceMuestra(indice + separacion) * ESTRIDO;
+    return datos[antes + 5] * datos[despues + 3] - datos[antes + 3] * datos[despues + 5];
+}
+
+// Tabla de la IA por dificultad: tope en recta (m/s), agarre lateral en curva
+// (m/s²) y cuánto se cede al vértice (m). Con más dificultad el rival corre más
+// y traza una línea más ajustada, en vez de solo acelerar más en recta.
+function topeRival(dificultad: i32): f32 {
+    if (dificultad <= 0) return 35.0;
+    if (dificultad >= 2) return 54.0;
+    return 46.0;
+}
+
+function agarreRival(dificultad: i32): f32 {
+    if (dificultad <= 0) return 12.0;
+    if (dificultad >= 2) return 25.0;
+    return 19.0;
+}
+
+function lineaRival(dificultad: i32): f32 {
+    if (dificultad <= 0) return 1.1;
+    if (dificultad >= 2) return 3.0;
+    return 2.1;
 }
 
 function situarRival(r: i32): void {
@@ -595,21 +620,50 @@ export function paso(dt: f32, acelerar: f32, frenar: f32, giro: f32, derrape: u3
 
     if (cocheTerminado == 1) cocheVelocidad *= 0.985;
 
-    // Rivales: línea de carrera, velocidad objetivo por curvatura y rubber-banding.
+    // Rivales: vértice de la curva que llega, tope de velocidad por agarre
+    // lateral y rubber-banding suave con el jugador.
+    const linea = lineaRival(dificultadCarrera);
+    const tope = topeRival(dificultadCarrera);
+    const agarreCurva = agarreRival(dificultadCarrera);
+
     for (let r = 0; r < RIVALES; r++) {
         const indice = indiceMuestra(i32(rivalProgreso[r] * f32(total)));
-        const curvatura = curvaturaEn(indice);
-        const baseObjetivo: f32 = 51.0 + f32(dificultadCarrera) * 4.0;
-        const factorCurva: f32 = curvatura * 4.0 < 0.3 ? curvatura * 4.0 : 0.3;
-        let objetivo: f32 = baseObjetivo * (1.0 - factorCurva);
+        // Mira más lejos cuanto más rápido va: levanta el pie antes del vértice
+        // en vez de frenar justo encima.
+        const adelanto = 14 + i32(rivalVelocidad[r] * 0.45);
+        const separacion: i32 = 9;
+        const giro = curvaturaFirmadaEn(indice + adelanto, separacion);
+        // El producto vectorial da el ángulo entre dos muestras separadas 2·9
+        // posiciones, así que la curvatura en 1/m divide por ese arco completo y
+        // no por el paso de una muestra (si no, se infla dieciocho veces).
+        const arcoBase: f32 = f32(separacion * 2) * pasoMuestra;
+        const curvatura = Mathf.abs(giro) / arcoBase;
+
+        // El vértice está en el interior del giro: el desvío buscado cae al lado
+        // contrario al signo de la curvatura. La cesión depende de la dificultad
+        // y la entrada es progresiva, sin zigzag.
+        const intensidad = limitar(curvatura * 40.0, CERO, UNO);
+        const sentido: f32 = giro < CERO ? 1.0 : -1.0;
+        const objetivoDesvio: f32 = sentido * linea * intensidad;
+        rivalDesvio[r] += (objetivoDesvio - rivalDesvio[r]) * limitar(2.8 * d, CERO, UNO);
+
+        // Velocidad que aguanta la curva (v² · κ = agarre lateral), acotada por
+        // el tope de la dificultad: el rival frena lo justo en cada curva.
+        const curvaturaSegura: f32 = curvatura > 0.0005 ? curvatura : 0.0005;
+        let objetivo: f32 = Mathf.sqrt(agarreCurva / curvaturaSegura);
+        if (objetivo > tope) objetivo = tope;
 
         let diferenciaJugador: f32 = cocheProgreso - rivalProgreso[r];
         if (diferenciaJugador > 0.5) diferenciaJugador -= 1.0;
         if (diferenciaJugador < -0.5) diferenciaJugador += 1.0;
-        const ajuste: f32 = limitar(1.0 + diferenciaJugador * 0.08, 0.93, 1.08);
+        const ajuste: f32 = limitar(1.0 + diferenciaJugador * 0.06, 0.95, 1.05);
         objetivo *= ajuste;
 
-        rivalVelocidad[r] += (objetivo - rivalVelocidad[r]) * (f32(1.8) * d);
+        // Acelera con suavidad y frena bastante más rápido, como un coche real.
+        const delta: f32 = (objetivo - rivalVelocidad[r]) * 3.2 * d;
+        const margen: f32 = (delta > CERO ? 8.0 : 26.0) * d;
+        rivalVelocidad[r] += limitar(delta, -margen, margen);
+
         rivalProgreso[r] += (rivalVelocidad[r] * d) / longitudTotal;
 
         if (rivalProgreso[r] >= UNO) {
@@ -618,8 +672,6 @@ export function paso(dt: f32, acelerar: f32, frenar: f32, giro: f32, derrape: u3
         }
         if (rivalProgreso[r] < CERO) rivalProgreso[r] += 1.0;
 
-        const balanceo = Mathf.sin(cocheTiempo * 0.8 + f32(r) * 2.1) * 0.12;
-        rivalDesvio[r] = limitar(rivalDesvio[r] + balanceo * d, -3.6, 3.6);
         situarRival(r);
 
         // Colisión simple entre cajas: separa y frena a ambos.

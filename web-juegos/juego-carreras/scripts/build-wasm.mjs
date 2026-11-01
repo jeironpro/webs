@@ -158,9 +158,9 @@ function normalizarAngulo(angulo) {
     return valor;
 }
 
-function simular(frames, conducir = true) {
+function simular(frames, conducir = true, dificultad = 1) {
     nucleo.inicializar(2026, MUESTRAS);
-    nucleo.iniciarCarrera(1, 3);
+    nucleo.iniciarCarrera(dificultad, 3);
     const v = vistas();
     let pico = 0;
     for (let frame = 0; frame < frames; frame += 1) {
@@ -192,6 +192,48 @@ afirmar(
     `progreso de rival fuera de rango: ${rivalProgreso}`
 );
 afirmar(rivalVelocidad > 20, `rival demasiado lento: ${rivalVelocidad.toFixed(1)} m/s`);
+
+/**
+ * Ritmo del rival tras `segundos` de carrera: distancia en vueltas y velocidad
+ * final, junto al avance del jugador para comparar. Es la medida que confirma
+ * que la IA usa la dificultad para correr más y que el rival es competitivo sin
+ * volverse imbatible.
+ */
+function ritmoRival(dificultad, segundos = 40) {
+    const { valores } = simular(Math.round(60 * segundos), true, dificultad);
+    return {
+        avance: valores[22] - 1 + valores[21],
+        velocidad: valores[20],
+        avanceJugador: valores[7] - 1 + valores[6],
+    };
+}
+
+const ritmoFacil = ritmoRival(0);
+const ritmoNormal = ritmoRival(1);
+const ritmoDificil = ritmoRival(2);
+
+const vueltas = (ritmo) => `${ritmo.avance.toFixed(2)} vueltas`;
+const vueltasDe = (avance) => `${avance.toFixed(2)} vueltas`;
+afirmar(
+    ritmoFacil.avance < ritmoNormal.avance && ritmoNormal.avance < ritmoDificil.avance,
+    `la dificultad debe subir el ritmo del rival: ${vueltas(ritmoFacil)} / ${vueltas(ritmoNormal)} / ${vueltas(ritmoDificil)}`
+);
+// La velocidad instantánea no sirve para comparar: cada dificultad va por un
+// punto distinto del circuito. Lo que manda es el ritmo medio, medido en
+// distancia recorrida sobre los mismos segundos.
+const ritmoMedio = (ritmo) => (ritmo.avance * largo) / 40;
+afirmar(
+    ritmoDificil.avance > ritmoFacil.avance * 1.05,
+    `difícil debe rodar más rápido que fácil: ${vueltas(ritmoFacil)} vs ${vueltas(ritmoDificil)}`
+);
+
+// En normal el rival debe rodar cerca del jugador: por delante no interesa, y a
+// más de un 35 % de desventaja la carrera deja de ser una carrera.
+const proporcion = ritmoNormal.avance / ritmoNormal.avanceJugador;
+afirmar(
+    proporcion > 0.88 && proporcion < 1.2,
+    `rival descompensado en normal: ${vueltasDe(ritmoNormal.avance)} frente a ${vueltasDe(ritmoNormal.avanceJugador)} del jugador`
+);
 
 // La dirección no está invertida: girar a la derecha (input +1) desplaza el coche
 // hacia -X, que es la derecha en pantalla con el morro apuntando a +Z.
@@ -231,5 +273,8 @@ console.log(
     `OK nucleo.wasm · ${(bytes.byteLength / 1024).toFixed(1)} KB · ${MUESTRAS} muestras · ${largo.toFixed(1)} m · paso ${paso.toFixed(2)} m`
 );
 console.log(
-    `OK carrera simulada · ${tiempo.toFixed(1)} s · ${vuelta} vueltas · mejor ${mejorVuelta.toFixed(1)} s · pico ${(carrera.pico * 3.6).toFixed(0)} km/h · rival a ${(rivalVelocidad * 3.6).toFixed(0)} km/h`
+    `OK carrera simulada · ${tiempo.toFixed(1)} s · ${vuelta} vueltas · mejor ${mejorVuelta.toFixed(1)} s · pico ${(carrera.pico * 3.6).toFixed(0)} km/h`
+);
+console.log(
+    `OK rival · fácil ${(ritmoMedio(ritmoFacil) * 3.6).toFixed(0)} km/h · normal ${(ritmoMedio(ritmoNormal) * 3.6).toFixed(0)} km/h · difícil ${(ritmoMedio(ritmoDificil) * 3.6).toFixed(0)} km/h · jugador ${vueltasDe(ritmoNormal.avanceJugador)} en 40 s`
 );

@@ -150,8 +150,10 @@ las resuelve el propio build de Three.js). El WASM se instancia con
 - **Circuito procedural determinista**: semilla → puntos de control → spline Catmull-Rom
   muestreada por longitud de arco. Ancho, peralte, elevación y decorado derivan de la misma
   semilla, así que el mismo número de circuito produce siempre la misma pista.
-- **Carrera**: 3 vueltas, 3 rivales con línea de carrera, velocidad objetivo por curvatura y
-  _rubber-banding_ suave; dificultad fácil / normal / difícil.
+- **Carrera**: 3 vueltas y un rival con línea de carrera. Su velocidad sale de `v² · κ = agarre`
+  lateral en la curva que viene (mira más lejos cuanto más rápido va) y el vértice se cede según la
+  dificultad, que fija tope en recta, agarre y cesión: fácil / normal / difícil, con _rubber-banding_
+  suave respecto al jugador.
 - **Dirección con radio de giro**: el volante gira el morro a una tasa que baja con la velocidad
   (`~34 m/s²` de agarre lateral), así que el coche no trompea en recta ni se queda sin girar en las
   curvas lentas. Sin volante mantiene el rumbo: el jugador traza, el coche no se conduce solo.
