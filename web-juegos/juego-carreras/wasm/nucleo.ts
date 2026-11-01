@@ -79,10 +79,24 @@ function rotarAlrededor(
 }
 
 function generarControl(): void {
+    // El radio y la altura varían con armónicos suaves del ángulo. Antes cada
+    // punto tomaba un radio al azar y el spline se cruzaba consigo mismo: la
+    // cinta se partía y dejaba huecos sobre el asfalto.
+    const base: f32 = 116.0 + azar() * 24.0;
+    const amplitud2: f32 = 10.0 + azar() * 10.0;
+    const amplitud3: f32 = 6.0 + azar() * 8.0;
+    const fase2: f32 = azar() * DOS_PI;
+    const fase3: f32 = azar() * DOS_PI;
+    const faseAltura: f32 = azar() * DOS_PI;
+
     for (let i = 0; i < PUNTOS_CONTROL; i++) {
         const angulo = (f32(i) / f32(PUNTOS_CONTROL)) * DOS_PI;
-        const radio: f32 = 104.0 + azar() * 46.0;
-        const altura: f32 = Mathf.sin(f32(i) * 0.9) * 3.2 + azar() * 2.6;
+        const radio: f32 =
+            base +
+            Mathf.sin(angulo * 2.0 + fase2) * amplitud2 +
+            Mathf.sin(angulo * 3.0 + fase3) * amplitud3;
+        const altura: f32 = Mathf.sin(angulo * 2.0 + faseAltura) * 2.2;
+
         control[i * 3] = Mathf.cos(angulo) * radio;
         control[i * 3 + 1] = altura;
         control[i * 3 + 2] = Mathf.sin(angulo) * radio;
@@ -479,35 +493,30 @@ export function paso(dt: f32, acelerar: f32, frenar: f32, giro: f32, derrape: u3
     cocheLateral = dx * lateralX + dz * lateralZ;
     const fuera = Mathf.abs(cocheLateral) > ANCHO_MEDIO;
 
-    const superficie: f32 = fuera ? 0.5 : 1.0;
+    const superficie: f32 = fuera ? 0.62 : 1.0;
     const motor = acelerar * 32.0 * superficie;
     const freno = frenar * 45.0;
-    const arrastre = cocheVelocidad * 0.32 + cocheVelocidad * cocheVelocidad * 0.0062;
+    // En la hierba el arrastre crece, pero sin clavar el coche: se sale, se
+    // pierde velocidad y se puede volver a la pista.
+    const rodadura: f32 = fuera ? 0.62 : 0.32;
+    const arrastre = cocheVelocidad * rodadura + cocheVelocidad * cocheVelocidad * 0.0062;
     const frenoMano: f32 = derrape != 0 ? cocheVelocidad * 1.1 : 0.0;
 
     cocheVelocidad += (motor - freno - arrastre - frenoMano) * d;
     if (cocheVelocidad < CERO) cocheVelocidad = 0;
     if (cocheVelocidad > VELOCIDAD_MAXIMA) cocheVelocidad = VELOCIDAD_MAXIMA;
 
-    // Asistencia de conducción tipo pure pursuit: se apunta a la línea central
-    // unas muestras por delante, así el coche corrige el desvío lateral en vez
-    // de cortar las curvas.
-    const adelanto = 8 + i32(cocheVelocidad * 0.32);
-    const indiceObjetivo = indiceMuestra(cocheIndice + adelanto);
-    const baseObjetivo = indiceObjetivo * ESTRIDO;
-    const rumboObjetivo = Mathf.atan2(
-        datos[baseObjetivo] - cocheX,
-        datos[baseObjetivo + 2] - cocheZ
-    );
-    const diferencia = normalizarAngulo(rumboObjetivo - cocheRumbo);
-    const alineacion: f32 = giro == 0 ? 3.2 : 0.8;
-    const agarre: f32 = derrape != 0 ? 1.9 : 1.0;
-    const respuesta: f32 = (1.5 + 4.5 / (1.0 + cocheVelocidad * 0.075)) * agarre;
+    // Radio de giro mínimo: la tasa de giro baja con la velocidad, así el coche
+    // no trompea al volante en recta ni deja de girar en las curvas lentas.
+    const velocidadSegura: f32 = cocheVelocidad < 6.0 ? 6.0 : cocheVelocidad;
+    const agarre: f32 = derrape != 0 ? 2.4 : 1.0;
+    const porAgarre: f32 = (34.0 * agarre) / velocidadSegura;
+    const tasaGiro: f32 = porAgarre < 2.6 ? porAgarre : 2.6;
 
     // Signo de la dirección: girar a la derecha (giro positivo) baja el rumbo
     // y mueve el coche hacia -X, que es la derecha en pantalla.
-    cocheRumbo -= giro * respuesta * d;
-    cocheRumbo += diferencia * (alineacion * d < UNO ? alineacion * d : UNO);
+    cocheRumbo -= giro * tasaGiro * d;
+
     cocheRumbo = normalizarAngulo(cocheRumbo);
 
     cocheX += Mathf.sin(cocheRumbo) * cocheVelocidad * d;
@@ -530,8 +539,9 @@ export function paso(dt: f32, acelerar: f32, frenar: f32, giro: f32, derrape: u3
         const signo: f32 = cocheLateral > CERO ? 1.0 : -1.0;
         cocheX -= lateralX * exceso * signo;
         cocheZ -= lateralZ * exceso * signo;
-        cocheVelocidad *= 0.72;
-        cocheRumbo = normalizarAngulo(cocheRumbo + diferencia * 0.15);
+        // Roce contra la valla: se pierde punta, pero el morro no se recoloca
+        // solo. Si la valla enderezara el coche, se conduciría solo rebotando.
+        cocheVelocidad *= 0.965;
         if (enfriamientoChoque <= CERO) {
             cocheChoques++;
             enfriamientoChoque = 0.6;
@@ -597,7 +607,7 @@ export function paso(dt: f32, acelerar: f32, frenar: f32, giro: f32, derrape: u3
         const choqueX = rivalX[r] - cocheX;
         const choqueZ = rivalZ[r] - cocheZ;
         const distancia2 = choqueX * choqueX + choqueZ * choqueZ;
-        if (distancia2 < 5.2) {
+        if (distancia2 < 3.6) {
             let distancia = Mathf.sqrt(distancia2);
             if (distancia < 0.01) distancia = 0.01;
             // Roce, no choque frontal: se separa de lado y se conserva casi toda la velocidad.
