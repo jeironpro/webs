@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="color-scheme" content="light" />
+        <meta name="theme-color" content="#f8fafc" />
+        <title>Tango · sol y luna</title>
+        <meta
+            name="description"
+            content="Tango: rellena el tablero 6×6 con tres soles y tres lunas por fila y columna, sin tres iguales seguidos y respetando las pistas."
+        />
+        <link rel="icon" href="icon/tango.svg" type="image/svg+xml" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="css/tango.css" />
+    </head>
+    <body>
+        <svg class="sprite" aria-hidden="true" focusable="false">
+            <symbol id="simbolo-sol" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="4.5" fill="currentColor" />
+                <g stroke="currentColor" stroke-linecap="round" stroke-width="2.2" fill="none">
+                    <path d="M12 2.4v3.1M12 18.5v3.1M2.4 12h3.1M18.5 12h3.1" />
+                    <path
+                        d="M5.2 5.2 7.4 7.4M16.6 16.6l2.2 2.2M18.8 5.2l-2.2 2.2M7.4 16.6l-2.2 2.2"
+                    />
+                </g>
+            </symbol>
+            <symbol id="simbolo-luna" viewBox="0 0 24 24">
+                <path
+                    d="M20.6 14.1A9 9 0 1 1 9.9 3.4a7 7 0 0 0 10.7 10.7Z"
+                    fill="currentColor"
+                />
+            </symbol>
+            <symbol
+                id="icono-deshacer"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.8"
+            >
+                <path d="M4 10h9a5 5 0 0 1 0 10H8" />
+                <path d="M8 6 4 10l4 4" />
+            </symbol>
+            <symbol
+                id="icono-vaciar"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.8"
+            >
+                <path d="M4 9a8 8 0 1 1 1.7 9.2" />
+                <path d="M4 4v5h5" />
+            </symbol>
+            <symbol
+                id="icono-otro"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.8"
+            >
+                <path d="M4 8h3l7 8h3" />
+                <path d="M4 16h3l7-8h3" />
+                <path d="m14 5 3 3-3 3M14 13l3 3-3 3" />
+            </symbol>
+            <symbol
+                id="icono-guardar"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.8"
+            >
+                <path d="M6 4h9l4 4v12H6z" />
+                <path d="M9 4v5h6V4" />
+                <path d="M9 20v-5h6v5" />
+            </symbol>
+            <symbol
+                id="icono-borrar"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.8"
+            >
+                <path d="M5 7h14M9 7V4h6v3" />
+                <path d="M7 7l1 13h8l1-13" />
+            </symbol>
+        </svg>
+
+        <div class="hoja">
+            <header class="cabecera">
+                <h1>Tango</h1>
+                <p class="cabecera__entradilla">
+                    Tres soles y tres lunas por fila y columna.
+                </p>
+                <p class="cabecera__meta">
+                    <span>6×6</span>
+                    <span>sol y luna</span>
+                    <span class="etiqueta">solución única</span>
+                </p>
+            </header>
+
+            <main>
+                <section class="puzzle" aria-label="Tablero">
+                    <dl class="registro">
+                        <div>
+                            <dt>Tiempo</dt>
+                            <dd id="tiempo">0:00</dd>
+                        </div>
+                        <div>
+                            <dt>Soles</dt>
+                            <dd id="soles">0</dd>
+                        </div>
+                        <div>
+                            <dt>Lunas</dt>
+                            <dd id="lunas">0</dd>
+                        </div>
+                        <div>
+                            <dt>Récord</dt>
+                            <dd id="mejor">Sin récord</dd>
+                        </div>
+                    </dl>
+
+                    <div class="marco">
+                        <div
+                            id="tablero"
+                            class="tablero"
+                            role="group"
+                            aria-label="Tablero de Tango. Usa las flechas para moverte y Enter para colocar sol o luna."
+                        ></div>
+                    </div>
+
+                    <p id="estado" class="estado" role="status" aria-live="polite">
+                        Cargando tableros…
+                    </p>
+
+                    <div class="mandos">
+                        <div class="mandos__botones">
+                            <button type="button" id="deshacer" class="btn btn--fantasma">
+                                <svg class="icono" aria-hidden="true" focusable="false">
+                                    <use href="#icono-deshacer"></use>
+                                </svg>
+                                Deshacer
+                            </button>
+                            <button type="button" id="borrar" class="btn btn--fantasma">
+                                <svg class="icono" aria-hidden="true" focusable="false">
+                                    <use href="#icono-vaciar"></use>
+                                </svg>
+                                Vaciar
+                            </button>
+                            <button type="button" id="nuevo" class="btn btn--primario">
+                                <svg class="icono" aria-hidden="true" focusable="false">
+                                    <use href="#icono-otro"></use>
+                                </svg>
+                                Otro tablero
+                            </button>
+                        </div>
+                        <p class="guardado" id="guardado" role="status" aria-live="polite">
+                            <svg class="icono" aria-hidden="true" focusable="false">
+                                <use href="#icono-guardar"></use>
+                            </svg>
+                            <span id="guardado-texto">Se guarda en este navegador</span>
+                        </p>
+                    </div>
+                </section>
+
+                <div class="notas">
+                    <section class="nota" aria-labelledby="titulo-reglas">
+                        <h2 id="titulo-reglas">Cómo se juega</h2>
+                        <ol class="reglas">
+                            <li>
+                                <span class="reglas__num" aria-hidden="true">1</span>
+                                <p>
+                                    <strong>Tres y tres.</strong> Cada fila y cada columna llevan 3
+                                    soles y 3 lunas.
+                                </p>
+                            </li>
+                            <li>
+                                <span class="reglas__num" aria-hidden="true">2</span>
+                                <p>
+                                    <strong>Nunca tres.</strong> No pueden quedar tres símbolos
+                                    iguales seguidos, ni en horizontal ni en vertical.
+                                </p>
+                            </li>
+                            <li>
+                                <span class="reglas__num" aria-hidden="true">3</span>
+                                <p>
+                                    <strong>Las pistas.</strong> La casilla con marco ámbar viene dada. El
+                                    signo <b>=</b> une iguales y el signo <b>×</b> separa contrarios.
+                                </p>
+                            </li>
+                        </ol>
+                    </section>
+
+                    <section class="nota" aria-labelledby="titulo-records">
+                        <h2 id="titulo-records">Récords</h2>
+                        <ul class="records" id="records"></ul>
+                        <p class="nota__datos">
+                            La partida y los récords se guardan solo en este navegador con
+                            <code>localStorage</code>.
+                            <button type="button" id="olvidar" class="btn btn--texto">
+                                <svg class="icono" aria-hidden="true" focusable="false">
+                                    <use href="#icono-borrar"></use>
+                                </svg>
+                                Borrar progreso y récords
+                            </button>
+                        </p>
+                    </section>
+                </div>
+            </main>
+
+            <footer class="pie">
+                <p>© 2026 JeironPro</p>
+                <p>MIT</p>
+            </footer>
+        </div>
+
+        <div class="modal" id="modal" hidden>
+            <div
+                class="modal__caja"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="modal-titulo"
+                aria-describedby="modal-texto"
+            >
+                <h2 id="modal-titulo">Resuelto</h2>
+                <p id="modal-texto">
+                    Tres soles y tres lunas en cada línea, sin tres iguales seguidos.
+                </p>
+                <dl class="modal__datos">
+                    <div>
+                        <dt>Tiempo</dt>
+                        <dd id="modal-tiempo">0:00</dd>
+                    </div>
+                    <div>
+                        <dt>Récord</dt>
+                        <dd id="modal-record">Sin récord</dd>
+                    </div>
+                </dl>
+                <div class="modal__acciones">
+                    <button type="button" class="btn btn--fantasma" data-accion="cerrar">
+                        Ver tablero
+                    </button>
+                    <button type="button" class="btn btn--primario" data-accion="otro">
+                        Otro tablero
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <noscript>
+            <p class="aviso">Tango necesita JavaScript para dibujar el tablero.</p>
+        </noscript>
+        <script type="module" src="js/tango.js"></script>
+    </body>
+</html>

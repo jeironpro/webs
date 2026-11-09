@@ -1,6 +1,6 @@
 # juegos
 
-Monorepo que agrupa los juegos de jeironpro como una **sala de máquinas**. En la raíz vive un **catálogo** que indexa los 17 juegos; cada juego ocupa su propio subdirectorio (`juego-*`) y se sirve de forma independiente como página estática.
+Monorepo que agrupa los juegos de jeironpro como una **sala de máquinas**. En la raíz vive un **catálogo** que indexa los 18 juegos; cada juego ocupa su propio subdirectorio (`juego-*`) y se sirve de forma independiente como página estática.
 
 ## Catálogo
 
@@ -28,6 +28,7 @@ Abre `index.html` de la raíz (o despliega el repositorio en GitHub Pages: el ca
 | [juego-serpiente](./juego-serpiente/)           | Serpiente         | Reflejos | html, css, javascript   |
 | [juego-sopa-letras](./juego-sopa-letras/)       | Sopa de letras    | Palabras | html, css, javascript   |
 | [juego-sudoku](./juego-sudoku/)                 | Sudoku            | Lógica   | html, css, javascript   |
+| [juego-tango](./juego-tango/)                   | Tango             | Lógica   | html, css, javascript   |
 | [juego-tic-tac-toe](./juego-tic-tac-toe/)       | Tres en Raya      | Tablero  | html, css, javascript   |
 | [juego-yatzy](./juego-yatzy/)                   | Yatzy             | Lógica   | react, vite, javascript |
 | [juego-zip](./juego-zip/)                       | Zip               | Lógica   | html, css, javascript   |
@@ -37,7 +38,7 @@ Abre `index.html` de la raíz (o despliega el repositorio en GitHub Pages: el ca
 La fuente de verdad es `projects.yml` en la raíz. Los artefactos se regeneran con comandos npm:
 
 - `npm run data:build` valida el esquema y genera `assets/projects.json` (datos ordenados que consume el catálogo).
-- `npm run data:screenshots` captura los 17 juegos en `assets/screenshots/*.webp` (Chrome headless sobre un servidor local).
+- `npm run data:screenshots` captura los 18 juegos en `assets/screenshots/*.webp` (Chrome headless sobre un servidor local).
 - `npm test` valida integridad de datos, esquema y generador.
 
 ## Desarrollo
