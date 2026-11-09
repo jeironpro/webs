@@ -79,7 +79,7 @@ La fuente de verdad es `projects.yml` en la raíz. Los artefactos se regeneran c
 
 - `npm run data:build` valida el esquema y genera `assets/projects.json` (datos ordenados que consume el catálogo).
 - `npm run data:screenshots` captura las 56 webs en `assets/screenshots/*.webp` (Chrome headless sobre un servidor local); con ids detrás (`npm run data:screenshots -- web-apis`) regenera solo esas.
-- `npm run capturas:check` avisa si una captura es anterior al `index.html` de su página (fechas de git).
+- `npm run capturas:check` avisa si el `index.html` de una página cambió desde su captura (huella guardada en `assets/screenshots/capturas.json`).
 - `npm test` valida integridad de datos, esquema y generador.
 
 ## Añadir una nueva web

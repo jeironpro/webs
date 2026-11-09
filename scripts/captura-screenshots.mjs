@@ -13,6 +13,22 @@ const FUERZA = process.argv.includes("--force") || SOLO.length > 0;
 const CONCURRENCIA = 4;
 const CHROME = "/usr/bin/google-chrome";
 
+/** Huella del HTML de entrada: detecta cambios aunque la fecha del commit sea posterior. */
+function huellaDe(url) {
+    const relativa = url.replace(/^\.\//, "");
+    const entrada = /\.html?$/.test(relativa)
+        ? relativa
+        : `${relativa}${relativa.endsWith("/") ? "" : "/"}index.html`;
+    try {
+        return createHash("sha256")
+            .update(readFileSync(join(RAIZ, entrada)))
+            .digest("hex")
+            .slice(0, 16);
+    } catch {
+        return "";
+    }
+}
+
 async function servir() {
     const server = spawn(
         "python3",
@@ -117,7 +133,9 @@ async function main() {
     }
     const ahora = new Date().toISOString();
     ids.forEach((id, i) => {
-        if (ok[i]) fechas[id] = ahora;
+        if (!ok[i]) return;
+        const web = webs.find((w) => w.id === id);
+        fechas[id] = { fecha: ahora, huella: web ? huellaDe(web.url) : "" };
     });
     const ordenado = Object.fromEntries(
         Object.keys(fechas)

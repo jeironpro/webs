@@ -1,5 +1,6 @@
 import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync, statSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -30,6 +31,13 @@ function paginaDe(web) {
     return `${relativa}${relativa.endsWith("/") ? "" : "/"}index.html`;
 }
 
+/** Huella del HTML que muestra la tarjeta. */
+function huellaDe(ruta) {
+    const absoluta = join(RAIZ, ruta);
+    if (!existsSync(absoluta)) return "";
+    return createHash("sha256").update(readFileSync(absoluta)).digest("hex").slice(0, 16);
+}
+
 const fecha = (valor) => {
     const t = Date.parse(valor);
     return Number.isNaN(t) ? 0 : t;
@@ -47,17 +55,29 @@ for (const web of webs) {
         continue;
     }
     const pagina = paginaDe(web);
-    const fCaptura = manifestadas[web.id] || fechaDeCommit(captura);
+    const registro = manifestadas[web.id];
+    const fCaptura =
+        (typeof registro === "string" ? registro : registro?.fecha) || fechaDeCommit(captura);
     const fPagina = fechaDeCommit(pagina);
+    const huellaGuardada = typeof registro === "object" ? registro?.huella : "";
+    const huellaActual = huellaDe(pagina);
+    if (huellaGuardada && huellaActual && huellaGuardada === huellaActual) continue;
+    if (huellaGuardada && huellaActual && huellaGuardada !== huellaActual) {
+        desfasadas.push({ id: web.id, pagina, captura, fCaptura, fPagina, motivo: "contenido" });
+        continue;
+    }
     if (fecha(fPagina) > fecha(fCaptura)) {
-        desfasadas.push({ id: web.id, pagina, captura, fCaptura, fPagina });
+        desfasadas.push({ id: web.id, pagina, captura, fCaptura, fPagina, motivo: "fecha" });
     }
 }
 
 const enCI = Boolean(process.env.GITHUB_ACTIONS);
 
 for (const d of desfasadas) {
-    const detalle = `${d.captura} es del ${d.fCaptura.slice(0, 10)} y ${d.pagina} cambió el ${d.fPagina.slice(0, 10)}`;
+    const detalle =
+        d.motivo === "contenido"
+            ? `${d.pagina} cambió desde la captura (${d.captura}, ${d.fCaptura.slice(0, 10)})`
+            : `${d.captura} es del ${d.fCaptura.slice(0, 10)} y ${d.pagina} cambió el ${d.fPagina.slice(0, 10)}`;
     console.log(`  ! ${d.id}: ${detalle}`);
     if (enCI) console.log(`::warning file=${d.captura}::${detalle}`);
 }
