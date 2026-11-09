@@ -1,5 +1,6 @@
 import { existsSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { fileURLToPath, pathToFileURL } from "node:url";
+import { execFileSync } from "node:child_process";
 import { dirname, join } from "node:path";
 import { parse } from "yaml";
 
@@ -145,11 +146,31 @@ export function validar(webs) {
     return errores;
 }
 
+/**
+ * Fecha del último cambio del catálogo, para que la regeneración sea
+ * determinista: si se usara la fecha del build, el JSON nunca coincidiría
+ * con el commit y la comprobación de CI fallaría cualquier otro día.
+ */
+function fechaCatalogo() {
+    try {
+        const fecha = execFileSync("git", ["log", "-1", "--format=%cs", "--", "projects.yml"], {
+            cwd: dirname(ARCHIVO_YM),
+            stdio: ["ignore", "pipe", "ignore"],
+        })
+            .toString()
+            .trim();
+        if (/^\d{4}-\d{2}-\d{2}$/.test(fecha)) return fecha;
+    } catch {
+        /* sin git: se usa la fecha actual */
+    }
+    return new Date().toISOString().slice(0, 10);
+}
+
 export function construirJSON(webs) {
     const ordenadas = [...webs].sort((a, b) => a.titulo.localeCompare(b.titulo, "es"));
     return {
         proyecto: "webs",
-        actualizado: new Date().toISOString().slice(0, 10),
+        actualizado: fechaCatalogo(),
         total: ordenadas.length,
         webs: ordenadas,
     };
