@@ -21,7 +21,8 @@ Cada tarjeta ofrece:
 También puedes clonar el repositorio completo:
 
 ```bash
-git clone git@github.com:jeironpro/frontend.git
+git clone git@github.com:jeironpro/webs.git
+cd webs/web-frontend
 ```
 
 ## Estructura

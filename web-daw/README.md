@@ -46,7 +46,7 @@ web-daw/
 
 ## Ver en línea
 
-<https://jeironpro.github.io/web-daw/>
+<https://jeironpro.github.io/webs/web-daw/>
 
 Cada web se sirve por ruta relativa desde la raíz del repositorio (p. ej. `daw1/web-calendari-daw1/`).
 

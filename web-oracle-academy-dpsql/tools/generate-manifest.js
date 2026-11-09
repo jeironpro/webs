@@ -26,6 +26,9 @@ const LFS_POINTER_PREFIX = "version https://git-lfs.github.com/spec/v1\n";
 /** Rama base para construir URLs raw de GitHub (archivos LFS). */
 const BASE_BRANCH = "main";
 
+/** Carpeta del sitio dentro del monorepo (las rutas del manifiesto son relativas a ella). */
+const REPO_SUBPATH = "web-oracle-academy-dpsql";
+
 /** Títulos legibles de las carpetas de tema (derivados del nombre de carpeta del curso). */
 const FOLDER_TITLES = {
     "0_recursos": "Recursos",
@@ -265,16 +268,16 @@ export async function generateManifest(root = DEFAULT_ROOT_PATH) {
 
 /**
  * Construye la URL raw de GitHub para un archivo LFS (GitHub Pages no sirve LFS).
- * @param {string} path Relativa al repositorio.
+ * @param {string} path Relativa a la carpeta del sitio dentro del monorepo.
  * @returns {string}
  */
 export function githubRawUrl(path) {
     const remote =
-        process.env.GIT_REMOTE_ORIGIN ?? "git@github.com:jeironpro/oracle-academy-dpsql.git";
+        process.env.GIT_REMOTE_ORIGIN ?? "git@github.com:jeironpro/webs.git";
     const match = remote.match(/(?:github\.com[:/])([^/]+)\/([^/]+?)(?:\.git)?$/);
     const owner = match?.[1] ?? "jeironpro";
-    const repository = match?.[2] ?? "oracle-academy-dpsql";
-    return `https://github.com/${owner}/${repository}/raw/${BASE_BRANCH}/${path}`;
+    const repository = match?.[2] ?? "webs";
+    return `https://github.com/${owner}/${repository}/raw/${BASE_BRANCH}/${REPO_SUBPATH}/${path}`;
 }
 
 /** Escribe el manifiesto en disco (pretty-printed). */

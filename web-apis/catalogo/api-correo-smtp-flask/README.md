@@ -10,8 +10,8 @@ El objetivo es demostrar buenas prácticas de programación, organización y doc
 Clonar el repositorio:
 
 ```bash
-git clone https://github.com/jeironpro/api-correo-smtp-flask.git
-cd api-correo-smtp-flask
+git clone https://github.com/jeironpro/webs.git
+cd webs/web-apis/catalogo/api-correo-smtp-flask
 ```
 
 Crear y activar entorno virtual:
