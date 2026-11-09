@@ -1,4 +1,4 @@
-import { existsSync, mkdirSync, rmSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { join } from "node:path";
 import { execFile, spawn } from "node:child_process";
@@ -6,8 +6,10 @@ import { leerProjects } from "./lib/data.mjs";
 
 const RAIZ = fileURLToPath(new URL("..", import.meta.url));
 const DIR_SCREENSHOTS = join(RAIZ, "assets", "screenshots");
+const MANIFIESTO = join(DIR_SCREENSHOTS, "capturas.json");
 const PUERTO = 8941;
-const FUERZA = process.argv.includes("--force");
+const SOLO = process.argv.slice(2).filter((arg) => !arg.startsWith("--"));
+const FUERZA = process.argv.includes("--force") || SOLO.length > 0;
 const CONCURRENCIA = 4;
 const CHROME = "/usr/bin/google-chrome";
 
@@ -90,9 +92,14 @@ async function cola(items, concurrency, trabajo) {
 async function main() {
     mkdirSync(DIR_SCREENSHOTS, { recursive: true });
     const webs = leerProjects();
-    console.log(`Capturando ${webs.length} webs en http://127.0.0.1:${PUERTO}/`);
+    const ids = webs.map((w) => w.id).filter((id) => SOLO.length === 0 || SOLO.includes(id));
+    const desconocidos = SOLO.filter((id) => !webs.some((w) => w.id === id));
+    if (desconocidos.length > 0) {
+        console.error(`No estan en projects.yml: ${desconocidos.join(", ")}`);
+        process.exit(1);
+    }
+    console.log(`Capturando ${ids.length} webs en http://127.0.0.1:${PUERTO}/`);
     const servidor = await servir();
-    const ids = webs.map((w) => w.id);
     const ok = await cola(ids, CONCURRENCIA, capturar);
     servidor.kill("SIGTERM");
     const fallidas = ids.filter((_, i) => !ok[i]);
@@ -100,6 +107,24 @@ async function main() {
         console.error(`Fallaron ${fallidas.length}: ${fallidas.join(", ")}`);
         process.exit(1);
     }
+    const fechas = {};
+    if (existsSync(MANIFIESTO)) {
+        try {
+            Object.assign(fechas, JSON.parse(readFileSync(MANIFIESTO, "utf8")));
+        } catch {
+            /* manifiesto ilegible: se reescribe */
+        }
+    }
+    const ahora = new Date().toISOString();
+    ids.forEach((id, i) => {
+        if (ok[i]) fechas[id] = ahora;
+    });
+    const ordenado = Object.fromEntries(
+        Object.keys(fechas)
+            .sort()
+            .map((id) => [id, fechas[id]])
+    );
+    writeFileSync(MANIFIESTO, `${JSON.stringify(ordenado, null, 2)}\n`);
     console.log("Capturas completas.");
 }
 
