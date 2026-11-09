@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="color-scheme" content="light" />
+        <meta name="theme-color" content="#e7efff" />
+        <title>Wend · la red de palabras</title>
+        <meta
+            name="description"
+            content="Wend: un tablero 6×6 lleno de letras y cinco palabras que se cruzan. Traza cada camino sin repetir casillas. Progreso y récords en tu navegador."
+        />
+        <link rel="icon" href="icon/wend.svg" type="image/svg+xml" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;600&family=Syne:wght@600;700;800&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="css/wend.css" />
+    </head>
+    <body>
+        <svg class="sprite" aria-hidden="true" focusable="false">
+            <symbol
+                id="icono-guardar"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.8"
+            >
+                <path d="M5 4h11l3 3v13H5z" />
+                <path d="M8 4v5h7V4" />
+                <path d="M8 20v-6h8v6" />
+            </symbol>
+            <symbol
+                id="icono-deshacer"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.8"
+            >
+                <path d="M4 10h9a5 5 0 0 1 0 10H8" />
+                <path d="M8 6 4 10l4 4" />
+            </symbol>
+            <symbol
+                id="icono-vaciar"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.8"
+            >
+                <path d="M4 9a8 8 0 1 1 1.7 9.2" />
+                <path d="M4 4v5h5" />
+            </symbol>
+            <symbol
+                id="icono-pista"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.8"
+            >
+                <circle cx="12" cy="12" r="7.5" />
+                <path d="m15.8 8.2-2.2 5.4-5.4 2.2 2.2-5.4z" />
+            </symbol>
+            <symbol
+                id="icono-otro"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.8"
+            >
+                <path d="M4 7h4l8 10h4" />
+                <path d="M4 17h4l8-10h4" />
+                <path d="m17 4 3 3-3 3M17 14l3 3-3 3" />
+            </symbol>
+            <symbol
+                id="icono-borrar"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.8"
+            >
+                <path d="M5 7h14M9 7V4h6v3" />
+                <path d="M7 7l1 13h8l1-13" />
+            </symbol>
+            <symbol
+                id="icono-hecho"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2.2"
+            >
+                <path d="m5 12 4.5 4.5L19 7" />
+            </symbol>
+        </svg>
+
+        <div class="hoja">
+            <header class="cabecera">
+                <div class="marca">
+                    <span class="marca__icono" aria-hidden="true">
+                        <svg viewBox="0 0 44 44" fill="none">
+                            <path
+                                d="M7 29c0-7 6-7 6-14 0-3-2-5-5-5"
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-width="3.2"
+                            />
+                            <path
+                                d="M20 37c0-8 7-8 7-16 0-4-2-6-5-6"
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-width="3.2"
+                            />
+                            <path
+                                d="M33 40c0-9 6-9 6-18"
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-width="3.2"
+                            />
+                        </svg>
+                    </span>
+                    <div class="marca__texto">
+                        <p class="marca__nombre">Wend<span>.</span></p>
+                        <p class="marca__lema">Traza la red de palabras</p>
+                    </div>
+                </div>
+                <div class="cabecera__meta" aria-label="Características del tablero">
+                    <span class="pildora">6×6</span>
+                    <span class="pildora">5 palabras</span>
+                    <span class="pildora pildora--lima">36 letras</span>
+                </div>
+            </header>
+
+            <main class="disposicion">
+                <section class="juego" aria-labelledby="titulo-tablero">
+                    <div class="juego__barra">
+                        <div>
+                            <p class="etiqueta">Tablero</p>
+                            <h1 id="titulo-tablero">La red</h1>
+                        </div>
+                        <p class="juego__nota" id="biblioteca">Cargando tableros…</p>
+                    </div>
+
+                    <dl class="registro">
+                        <div>
+                            <dt>Tiempo</dt>
+                            <dd id="tiempo">0:00</dd>
+                        </div>
+                        <div>
+                            <dt>Palabras</dt>
+                            <dd id="palabras">0/0</dd>
+                        </div>
+                        <div>
+                            <dt>Pistas</dt>
+                            <dd id="pistas">0</dd>
+                        </div>
+                        <div>
+                            <dt>Récord</dt>
+                            <dd id="mejor">Sin récord</dd>
+                        </div>
+                    </dl>
+
+                    <div class="marco">
+                        <div
+                            id="tablero"
+                            class="tablero"
+                            role="grid"
+                            tabindex="0"
+                            aria-label="Tablero de Wend. Todas las casillas tienen letra. Usa las flechas para moverte, Enter para empezar y añadir letras, y Enter otra vez para comprobar."
+                        ></div>
+                        <svg id="capa" class="capa" aria-hidden="true" preserveAspectRatio="none">
+                            <g id="rutas"></g>
+                            <polyline id="trazo" class="trazo" points=""></polyline>
+                        </svg>
+                    </div>
+
+                    <p id="estado" class="estado" role="status" aria-live="polite">
+                        Cargando tableros…
+                    </p>
+                </section>
+
+                <aside class="lateral" aria-label="Palabras y controles">
+                    <section class="panel panel--palabras">
+                        <div class="panel__cabecera">
+                            <h2>Palabras</h2>
+                            <span class="contador">5 caminos</span>
+                        </div>
+                        <div
+                            id="huecos"
+                            class="huecos"
+                            aria-label="Palabras que hay que encontrar"
+                        ></div>
+                    </section>
+
+                    <div class="acciones">
+                        <button type="button" id="pista" class="btn btn--pista">
+                            <svg class="icono" aria-hidden="true" focusable="false">
+                                <use href="#icono-pista"></use>
+                            </svg>
+                            Pista
+                        </button>
+                        <button type="button" id="nuevo" class="btn btn--primario">
+                            <svg class="icono" aria-hidden="true" focusable="false">
+                                <use href="#icono-otro"></use>
+                            </svg>
+                            Otro tablero
+                        </button>
+                        <button type="button" id="deshacer" class="btn btn--fantasma">
+                            <svg class="icono" aria-hidden="true" focusable="false">
+                                <use href="#icono-deshacer"></use>
+                            </svg>
+                            Deshacer
+                        </button>
+                        <button type="button" id="borrar" class="btn btn--fantasma">
+                            <svg class="icono" aria-hidden="true" focusable="false">
+                                <use href="#icono-vaciar"></use>
+                            </svg>
+                            Vaciar
+                        </button>
+                    </div>
+
+                    <p class="guardado" id="guardado" role="status" aria-live="polite">
+                        <svg class="icono" aria-hidden="true" focusable="false">
+                            <use href="#icono-guardar"></use>
+                        </svg>
+                        <span id="guardado-texto">Se guarda en este navegador</span>
+                    </p>
+
+                    <details class="panel panel--plegable">
+                        <summary>Cómo se juega</summary>
+                        <ol class="reglas">
+                            <li>
+                                <span aria-hidden="true">01</span>
+                                <p>
+                                    <strong>Traza una palabra.</strong> Arrastra por letras
+                                    contiguas, en horizontal o vertical, y suelta al final.
+                                </p>
+                            </li>
+                            <li>
+                                <span aria-hidden="true">02</span>
+                                <p>
+                                    <strong>No repitas casilla.</strong> Cada camino usa letras
+                                    distintas; las diagonales no cuentan.
+                                </p>
+                            </li>
+                            <li>
+                                <span aria-hidden="true">03</span>
+                                <p>
+                                    <strong>Ocupa las 36 letras.</strong> Las cinco palabras se
+                                    reparten el tablero completo, sin casillas vacías.
+                                </p>
+                            </li>
+                            <li>
+                                <span aria-hidden="true">04</span>
+                                <p>
+                                    <strong>Una sola red.</strong> Las longitudes y el diccionario
+                                    dejan una única partición posible.
+                                </p>
+                            </li>
+                        </ol>
+                    </details>
+
+                    <details class="panel panel--plegable">
+                        <summary>Récords y datos</summary>
+                        <ul class="records" id="records"></ul>
+                        <p class="nota__datos">
+                            La partida y los récords se guardan solo en este navegador con
+                            <code>localStorage</code>.
+                            <button type="button" id="olvidar" class="btn btn--texto">
+                                <svg class="icono" aria-hidden="true" focusable="false">
+                                    <use href="#icono-borrar"></use>
+                                </svg>
+                                Borrar progreso y récords
+                            </button>
+                        </p>
+                    </details>
+                </aside>
+            </main>
+
+            <footer class="pie">
+                <p>© 2026 JeironPro</p>
+                <p>Wend · 6×6</p>
+                <p>MIT</p>
+            </footer>
+        </div>
+
+        <div class="modal" id="modal" hidden>
+            <div
+                class="modal__caja"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="modal-titulo"
+                aria-describedby="modal-texto"
+            >
+                <span class="modal__marca" aria-hidden="true">
+                    <svg viewBox="0 0 44 44" fill="none">
+                        <path
+                            d="M7 29c0-7 6-7 6-14 0-3-2-5-5-5"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-width="3.2"
+                        />
+                        <path
+                            d="M20 37c0-8 7-8 7-16 0-4-2-6-5-6"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-width="3.2"
+                        />
+                        <path
+                            d="M33 40c0-9 6-9 6-18"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-width="3.2"
+                        />
+                    </svg>
+                </span>
+                <p class="etiqueta">Red completa</p>
+                <h2 id="modal-titulo">Tablero resuelto</h2>
+                <p id="modal-texto">
+                    Las 36 letras tienen su palabra y ninguna casilla queda sin recorrer.
+                </p>
+                <dl class="modal__datos">
+                    <div>
+                        <dt>Tiempo</dt>
+                        <dd id="modal-tiempo">0:00</dd>
+                    </div>
+                    <div>
+                        <dt>Pistas</dt>
+                        <dd id="modal-pistas">0</dd>
+                    </div>
+                    <div>
+                        <dt>Récord</dt>
+                        <dd id="modal-record">Sin récord</dd>
+                    </div>
+                </dl>
+                <div class="modal__acciones">
+                    <button type="button" class="btn btn--fantasma" data-accion="cerrar">
+                        Ver tablero
+                    </button>
+                    <button type="button" class="btn btn--primario" data-accion="otro">
+                        Otro tablero
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <noscript>
+            <p class="aviso">Wend necesita JavaScript para dibujar el tablero.</p>
+        </noscript>
+        <script type="module" src="js/wend.js"></script>
+    </body>
+</html>
