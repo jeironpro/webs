@@ -45,7 +45,7 @@ export function validarDashboard(dashboard, errores) {
     if (dashboard.url !== `./${id}/`) {
         push("url", `debe ser el subpath relativo "./${id}/"`);
     }
-    if (dashboard.repo !== `https://github.com/jeironpro/dashboards/tree/main/${id}`) {
+    if (dashboard.repo !== `https://github.com/jeironpro/webs/tree/main/web-dashboards/${id}`) {
         push("repo", "debe apuntar a la ruta del monorepo en main");
     }
     const rutaCaptura = new URL(`../../${dashboard.screenshot}`, import.meta.url);

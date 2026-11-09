@@ -10,7 +10,7 @@ El catálogo es vanilla HTML, CSS y JavaScript (sin frameworks), con la identida
 - Filtros por dominio, destacados y búsqueda por título, descripción, etiquetas o stack.
 - Iconos Material Symbols, sin emojis; accesible y con `prefers-reduced-motion`.
 
-Abre `index.html` de la raíz (o despliega el repositorio en GitHub Pages: el catálogo queda en `https://jeironpro.github.io/dashboards/` y cada dashboard en su subruta `./<id>/`).
+Abre `index.html` de la raíz (o despliega el repositorio en GitHub Pages: el catálogo queda en `https://jeironpro.github.io/webs/web-dashboards/` y cada dashboard en su subruta `./<id>/`).
 
 | Dashboard                                                         | Título  | Dominio   | Stack                   |
 | ----------------------------------------------------------------- | ------- | --------- | ----------------------- |

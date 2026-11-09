@@ -20,8 +20,8 @@ Panel de gestión de soporte técnico para e-commerce. Proyecto de portafolio qu
 
 ```bash
 # Clonar el repositorio
-git clone git@github.com:jeironpro/dashboard-soporte.git
-cd dashboard-soporte
+git clone git@github.com:jeironpro/webs.git
+cd webs/web-dashboards/dashboard-soporte
 
 # Instalar dependencias
 yarn install

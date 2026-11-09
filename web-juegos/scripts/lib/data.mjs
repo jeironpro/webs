@@ -45,7 +45,7 @@ export function validarJuego(juego, errores) {
     if (juego.url !== `./${id}/`) {
         push("url", `debe ser el subpath relativo "./${id}/"`);
     }
-    if (juego.repo !== `https://github.com/jeironpro/juegos/tree/main/${id}`) {
+    if (juego.repo !== `https://github.com/jeironpro/webs/tree/main/web-juegos/${id}`) {
         push("repo", "debe apuntar a la ruta del monorepo en main");
     }
     const rutaCaptura = new URL(`../../${juego.screenshot}`, import.meta.url);
