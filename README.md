@@ -78,7 +78,8 @@ Las 5 webs marcadas _(sub-catálogo)_ son hubs con catálogo propio: `web-apis` 
 La fuente de verdad es `projects.yml` en la raíz. Los artefactos se regeneran con comandos npm:
 
 - `npm run data:build` valida el esquema y genera `assets/projects.json` (datos ordenados que consume el catálogo).
-- `npm run data:screenshots` captura las 56 webs en `assets/screenshots/*.webp` (Chrome headless sobre un servidor local).
+- `npm run data:screenshots` captura las 56 webs en `assets/screenshots/*.webp` (Chrome headless sobre un servidor local); con ids detrás (`npm run data:screenshots -- web-apis`) regenera solo esas.
+- `npm run capturas:check` avisa si una captura es anterior al `index.html` de su página (fechas de git).
 - `npm test` valida integridad de datos, esquema y generador.
 
 ## Añadir una nueva web
@@ -114,6 +115,7 @@ La fuente de verdad es `projects.yml` en la raíz. Los artefactos se regeneran c
 
    ```sh
    npm run data:screenshots   # solo captura las webs nuevas (las existentes se omiten)
+   npm run capturas:check     # avisa si alguna captura se ha quedado atrás
    npm run data:build
    npm test
    ```

@@ -1,0 +1,25 @@
+name: capturas
+
+# Avisa (sin bloquear) cuando una captura del catálogo es anterior a la página
+# que muestra. Las fechas salen de git, así que hace falta historial completo.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  desfase:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: Avisar de capturas desfasadas
+        run: node scripts/check-capturas.mjs
