@@ -14,11 +14,11 @@
             <img src="{{ profile_picture }}" alt="Profile picture" class="profile-pic">
             <h1 class="username">{{ name }}</h1>
             <p class="email">{{ email }}</p>
-            <a href="/logout" class="btn logout-btn">Logout</a>
+            <a href="{{ url_for('logout') }}" class="btn logout-btn">Logout</a>
         {% else %}
             <h1 class="title">Welcome</h1>
             <p class="subtitle">Sign in with your Google account</p>
-            <a href="/login" class="btn login-btn">Login with Google</a>
+            <a href="{{ url_for('login') }}" class="btn login-btn">Login with Google</a>
         {% endif %}
     </div>
 </body>

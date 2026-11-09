@@ -1,0 +1,23 @@
+name: enlaces
+
+# Falla si algún enlace interno del sitio apunta a un archivo que no se publica.
+# Se ejecuta sobre el contenido del repositorio: es lo que sube Pages.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  internos:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: Comprobar enlaces internos
+        run: node scripts/check-links.mjs

@@ -84,6 +84,8 @@ La jerarquía de los scripts o archivos JavaScript se organiza de la siguiente m
 - **2.** En archivos externos: Se recomienda separar el código JavaScript en un archivo .js y enlazarlo desde el HTML:
 
 **Archivo HTML**
+
+```html
 <html>
 <head>
 <script src="script.js"></script>
@@ -92,6 +94,7 @@ La jerarquía de los scripts o archivos JavaScript se organiza de la siguiente m
 <h1>Hola Mundo</h1>
 </body>
 </html>
+```
 
 **Archivo script.js**
 
