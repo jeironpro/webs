@@ -1,4 +1,5 @@
 import { execFileSync } from "node:child_process";
+import { createHash } from "node:crypto";
 import { existsSync, readFileSync, statSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -23,6 +24,13 @@ function fechaDeCommit(ruta) {
     return existsSync(absoluta) ? statSync(absoluta).mtime.toISOString() : "";
 }
 
+/** Huella del HTML que muestra la tarjeta. */
+function huellaDe(ruta) {
+    const absoluta = join(RAIZ, ruta);
+    if (!existsSync(absoluta)) return "";
+    return createHash("sha256").update(readFileSync(absoluta)).digest("hex").slice(0, 16);
+}
+
 /** Página que captura la tarjeta: la url del catálogo, con su index.html. */
 function paginaDe(web) {
     const relativa = web.url.replace(/^\.\//, "");
@@ -37,6 +45,7 @@ const fecha = (valor) => {
 
 const webs = JSON.parse(readFileSync(join(RAIZ, "assets", "projects.json"), "utf8")).webs;
 const manifestadas = existsSync(MANIFIESTO) ? JSON.parse(readFileSync(MANIFIESTO, "utf8")) : {};
+
 const desfasadas = [];
 const sinCaptura = [];
 
@@ -46,18 +55,34 @@ for (const web of webs) {
         sinCaptura.push(web.id);
         continue;
     }
+
     const pagina = paginaDe(web);
-    const fCaptura = manifestadas[web.id] || fechaDeCommit(captura);
+    const registro = manifestadas[web.id];
+    const fCaptura =
+        (typeof registro === "string" ? registro : registro?.fecha) || fechaDeCommit(captura);
     const fPagina = fechaDeCommit(pagina);
+    const huellaGuardada = registro && typeof registro === "object" ? registro.huella : "";
+    const huellaActual = huellaDe(pagina);
+
+    if (huellaGuardada && huellaActual) {
+        if (huellaGuardada === huellaActual) continue;
+        desfasadas.push({ id: web.id, pagina, captura, fCaptura, fPagina, motivo: "contenido" });
+        continue;
+    }
+
     if (fecha(fPagina) > fecha(fCaptura)) {
-        desfasadas.push({ id: web.id, pagina, captura, fCaptura, fPagina });
+        desfasadas.push({ id: web.id, pagina, captura, fCaptura, fPagina, motivo: "fecha" });
     }
 }
 
 const enCI = Boolean(process.env.GITHUB_ACTIONS);
+const dia = (valor) => String(valor || "").slice(0, 10) || "sin fecha";
 
 for (const d of desfasadas) {
-    const detalle = `${d.captura} es del ${d.fCaptura.slice(0, 10)} y ${d.pagina} cambió el ${d.fPagina.slice(0, 10)}`;
+    const detalle =
+        d.motivo === "contenido"
+            ? `${d.pagina} cambió desde la captura del ${dia(d.fCaptura)}`
+            : `${d.captura} es del ${dia(d.fCaptura)} y ${d.pagina} cambió el ${dia(d.fPagina)}`;
     console.log(`  ! ${d.id}: ${detalle}`);
     if (enCI) console.log(`::warning file=${d.captura}::${detalle}`);
 }
