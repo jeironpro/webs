@@ -1,5 +1,6 @@
 import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
+import { createHash } from "node:crypto";
 import { join } from "node:path";
 import { execFile, spawn } from "node:child_process";
 import { leerProjects } from "./lib/data.mjs";
