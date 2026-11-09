@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="color-scheme" content="dark" />
+        <meta name="theme-color" content="#0f1526" />
+        <title>Zip · un solo camino</title>
+        <meta
+            name="description"
+            content="Zip: dibuja un único camino que pase por los números en orden y llene todas las casillas sin cruzar muros."
+        />
+        <link rel="icon" href="icon/zip.svg" type="image/svg+xml" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="css/zip.css" />
+    </head>
+    <body>
+        <header class="cabecera">
+            <a class="marca" href="../index.html">
+                <span class="ms" aria-hidden="true">arrow_back</span>
+                juegos
+            </a>
+            <div class="cabecera__texto">
+                <h1>Zip</h1>
+                <p>Un solo trazo. Todas las casillas.</p>
+            </div>
+        </header>
+
+        <main class="principal">
+            <section class="panel" aria-labelledby="titulo-tablero">
+                <h2 id="titulo-tablero" class="oculto">Tablero de Zip</h2>
+
+                <div class="barra">
+                    <div class="tamanos" role="group" aria-label="Tamaño del tablero">
+                        <button type="button" class="chip" data-n="6" aria-pressed="true">
+                            6×6
+                        </button>
+                        <button type="button" class="chip" data-n="7" aria-pressed="false">
+                            7×7
+                        </button>
+                        <button type="button" class="chip" data-n="8" aria-pressed="false">
+                            8×8
+                        </button>
+                    </div>
+                    <ul class="hud">
+                        <li class="hud__dato">
+                            <span class="ms" aria-hidden="true">timer</span>
+                            <span id="tiempo">0:00</span>
+                        </li>
+                        <li class="hud__dato">
+                            <span class="ms" aria-hidden="true">footprint</span>
+                            <span id="movimientos">0</span>
+                        </li>
+                        <li class="hud__dato">
+                            <span class="ms" aria-hidden="true">grid_view</span>
+                            <span id="progreso">0/36</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="marco">
+                    <div
+                        id="tablero"
+                        class="tablero"
+                        role="grid"
+                        tabindex="0"
+                        aria-label="Tablero de Zip. Empieza en el 1 y avanza con las flechas."
+                    ></div>
+                    <svg id="capa" class="capa" aria-hidden="true">
+                        <g id="capa-muros"></g>
+                        <polyline id="capa-camino" points="" />
+                        <circle id="capa-cabeza" cx="0" cy="0" r="0" />
+                    </svg>
+                </div>
+
+                <p id="estado" class="estado" role="status" aria-live="polite">
+                    Cargando tableros…
+                </p>
+
+                <div class="acciones">
+                    <button type="button" id="deshacer" class="btn btn--secundario">
+                        <span class="ms" aria-hidden="true">undo</span>
+                        Deshacer
+                    </button>
+                    <button type="button" id="borrar" class="btn btn--secundario">
+                        <span class="ms" aria-hidden="true">restart_alt</span>
+                        Borrar
+                    </button>
+                    <button type="button" id="nuevo" class="btn btn--primario">
+                        <span class="ms" aria-hidden="true">casino</span>
+                        Nuevo tablero
+                    </button>
+                </div>
+
+                <p class="mejor">Mejor tiempo · <span id="mejor">—</span></p>
+            </section>
+
+            <section class="reglas" aria-labelledby="titulo-reglas">
+                <h2 id="titulo-reglas">Cómo se juega</h2>
+                <ol>
+                    <li>
+                        <strong>Empieza en el 1.</strong> Arrastra o usa las flechas: el camino
+                        solo avanza a casillas contiguas, nunca en diagonal.
+                    </li>
+                    <li>
+                        <strong>Sigue el orden.</strong> Pasa por 2, 3, 4… sin saltarte ninguno y
+                        sin pisar dos veces la misma casilla.
+                    </li>
+                    <li>
+                        <strong>Llénalo todo.</strong> El tablero se resuelve cuando todas las
+                        casillas forman parte del camino y terminas en el último número. Los muros
+                        no se cruzan.
+                    </li>
+                </ol>
+            </section>
+        </main>
+
+        <footer class="pie">
+            <p>&copy; 2026 JeironPro · MIT</p>
+        </footer>
+
+        <div class="modal" id="modal" hidden>
+            <div
+                class="modal__caja"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="modal-titulo"
+                aria-describedby="modal-texto"
+            >
+                <span class="ms modal__icono" aria-hidden="true">check_circle</span>
+                <h2 id="modal-titulo">¡Tablero resuelto!</h2>
+                <p id="modal-texto">Camino completo, en orden y sin cruzar muros.</p>
+                <dl class="modal__datos">
+                    <div><dt>Tiempo</dt><dd id="modal-tiempo">0:00</dd></div>
+                    <div><dt>Pasos</dt><dd id="modal-movimientos">0</dd></div>
+                </dl>
+                <div class="modal__acciones">
+                    <button type="button" class="btn btn--secundario" data-accion="cerrar">
+                        Ver tablero
+                    </button>
+                    <button type="button" class="btn btn--primario" data-accion="otro">
+                        Otro tablero
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <noscript>
+            <p class="aviso">Zip necesita JavaScript para dibujar el camino.</p>
+        </noscript>
+        <script type="module" src="js/zip.js"></script>
+    </body>
+</html>
