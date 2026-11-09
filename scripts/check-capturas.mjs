@@ -2,7 +2,6 @@ import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync, statSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { leerProjects } from "./lib/data.mjs";
 
 const RAIZ = join(dirname(fileURLToPath(import.meta.url)), "..");
 const MANIFIESTO = join(RAIZ, "assets", "screenshots", "capturas.json");
@@ -36,7 +35,7 @@ const fecha = (valor) => {
     return Number.isNaN(t) ? 0 : t;
 };
 
-const webs = leerProjects();
+const webs = JSON.parse(readFileSync(join(RAIZ, "assets", "projects.json"), "utf8")).webs;
 const manifestadas = existsSync(MANIFIESTO) ? JSON.parse(readFileSync(MANIFIESTO, "utf8")) : {};
 const desfasadas = [];
 const sinCaptura = [];
