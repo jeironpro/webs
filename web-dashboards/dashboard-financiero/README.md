@@ -4,21 +4,21 @@ Frontend de dashboard financiero para portafolio personal: **ingresos, facturaci
 
 ## ✨ Qué incluye
 
-- **Resumen**: KPIs animados (MRR, ingresos del mes, facturas, suscripciones activas, tasa de cobro), chart de ingresos/gastos (12 meses), donut de estado de pagos, MRR por plan y pagos recientes.
-- **Facturación**: tabla de facturas con filtros por estado (todas / pendientes / exitosas / fallidas).
-- **Suscripciones**: tarjetas de planes (Starter / Growth / Scale) con MRR por plan y tabla de suscripciones.
-- **Pagos**: desglose pendientes / exitosos / fallidos y CTA «Cobrar pendiente» que dibuja la marca de tally (character moment de Hum) con **GSAP**.
-- **Reportes**: IVA mensual (16 %), estado de resultados (ISR 30 %) y balance general con la ecuación contable verificada, exportables a impresión.
+- **Resumen**: KPIs de ingresos, gastos, utilidad y MRR, más desglose de ingresos y gastos por concepto.
+- **Facturas**: tabla de facturas con estado (pagada / pendiente / vencida) y acciones rápidas.
+- **Suscripciones**: planes y tabla de suscripciones activas.
+- **Pagos**: movimientos recientes con método y estado.
+- **Reportes**: IVA, estado de resultados y balance general.
+- **Perfil**: datos de la cuenta.
 
 ## Stack
 
-| Capa      | Tecnología                    |
-| --------- | ---------------------------- |
+| Capa      | Tecnología                      |
+| --------- | ------------------------------ |
 | Framework | HTML / CSS / JavaScript vanilla |
-| Three.js  | Visualizaciones 3D           |
-| GSAP      | Animaciones                  |
-| Datos     | `src/data/mock-data.json`    |
-| Testing   | vitest + testing-library     |
+| Build     | Vite                            |
+| Datos     | datos de ejemplo en `app.js`    |
+| Testing   | vitest                          |
 
 ## 🚀 Arranque
 
@@ -31,33 +31,20 @@ yarn dev
 
 ```bash
 yarn dev        # servidor de desarrollo
-yarn build      # typecheck + build de producción
+yarn build      # build de producción
 yarn preview    # previsualiza el build
 yarn lint       # ESLint
-yarn typecheck  # tsc -b
-yarn test       # vitest run
+yarn test       # vitest
 yarn format     # Prettier
 ```
 
 ## 🧱 Estructura
 
 ```
-src/
-├── components/
-│   ├── brand/          # marca BrandMark (character moment)
-│   ├── dashboard/      # KPIs, charts, donut, badges
-│   ├── invoices/       # tabla de facturación
-│   ├── layout/         # sidebar, header, footer, nav
-│   ├── payments/       # tally counter y movimientos
-│   ├── profile/        # avatar
-│   ├── reports/        # IVA, estado de resultados, balance
-│   ├── subscriptions/  # planes y tabla de suscripciones
-│   └── ui/             # componentes vanilla JS
-├── data/               # cargador tipado del MOCK + KPIs derivados
-├── hooks/              # useAnimatedNumber, useReveal, useDashboardData
-├── lib/                # anime.ts, format.ts (es-MX), status.ts, utils.ts
-├── pages/              # Resumen · Facturación · Suscripciones · Pagos · Reportes
-└── types/              # tipos del dominio financiero
+app.js           # datos de ejemplo, layout y vistas (resumen, facturas, …)
+index.html       # página publicada
+index.src.html   # fuente que compila el hub
+assets/          # CSS compilado y favicon
 ```
 
 ## Licencia
