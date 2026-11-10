@@ -518,7 +518,7 @@ const renderFavorites = () => {
                         </article>
                     `).join('')}
                 </div>
-
+            `}
         </section>
     `
 }
@@ -540,7 +540,7 @@ const renderComparator = () => {
         return
 
     if (selected.length < 2) {
-        document.getElementById('root').innerHTML = ' STRING_START<section class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8"><div class="text-center py-20"><span class="material-symbols-rounded text-4xl text-accent" aria-hidden="true">compare_arrows</span><h2 class="font-display text-lg font-semibold text-ink mt-4">Selecciona al menos dos ejercicios</h2><p class="font-body text-sm text-ink-2 mt-2">Añade ejercicios con el botón de comparación en el catálogo.</p><a href="/ejercicios" class="btn no-underline mt-4">Ir al catálogo</a></div></section> STRING_END';
+        document.getElementById('root').innerHTML = '<section class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8"><div class="text-center py-20"><span class="material-symbols-rounded text-4xl text-accent" aria-hidden="true">compare_arrows</span><h2 class="font-display text-lg font-semibold text-ink mt-4">Selecciona al menos dos ejercicios</h2><p class="font-body text-sm text-ink-2 mt-2">Añade ejercicios con el botón de comparación en el catálogo.</p><a href="/ejercicios" class="btn no-underline mt-4">Ir al catálogo</a></div></section> ';
     }
     const attributes = {
         bodyPart: selected.map((ex) => ({ label: 'Grupo corporal', value: ex.body_part })),
@@ -552,19 +552,9 @@ const renderComparator = () => {
     const rows = []
 
     // Header
-    const headerRow = ' STRING_START<tr><th class="sticky left-0 z-20 bg-paper p-4 text-left font-mono text-xs font-medium uppercase tracking-widest text-ink-2">Atributo</th>' + selected.map((_, i) => '<th class="p-4 text-left align-top font-body text-ink">' + selected[i].name + '</th>').join('') + '</tr> STRING_END';
-    rows.push(headerRow)
-    // Header
-
-    // Header
-    const headerRow2 = ' STRING_START<tr><th class="sticky left-0 z-20 bg-paper p-4 text-left font-mono text-xs font-medium uppercase tracking-widest text-ink-2">Atributo</th>' + selected.map((_, i) => '<th class="p-4 text-left align-top font-body text-ink">' + selected[i].name + '</th>').join('') + '</tr> STRING_END';
-    rows.push(headerRow2)
-
-    const headerRow = ' STRING_START<tr><th class="sticky left-0 z-20 bg-paper p-4 text-left font-mono text-xs font-medium uppercase tracking-widest text-ink-2">Atributo</th>' + selected.map((_, i) => '<th class="p-4 text-left align-top font-body text-ink">' + selected[i].name + '</th>').join('') + '</tr> STRING_END';
-    rows.push(headerRow)
     const headerRow = `<tr>
         <th class="sticky left-0 z-20 bg-paper p-4 text-left font-mono text-xs font-medium uppercase tracking-widest text-ink-2">Atributo</th>
-        ${selected.map((_, i) => `<th class="p-4 text-left align-top font-body text-ink"">${selected[i].name}</th>`).join('')}
+        ${selected.map((_, i) => `<th class="p-4 text-left align-top font-body text-ink">${selected[i].name}</th>`).join('')}
     </tr>`
     rows.push(headerRow)
 

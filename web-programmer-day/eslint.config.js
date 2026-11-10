@@ -1,18 +1,21 @@
-import js from "@eslint/js";
-import tseslint from "typescript-eslint";
+import js from '@eslint/js'
+import globals from 'globals'
 
-// ESLint plano (v9): recomendaciones de JS + TS sin reglas con opiniones
-export default tseslint.config(
-  { ignores: ["dist/", "node_modules/", ".yarn/", ".vite/"] },
-  js.configs.recommended,
-  ...tseslint.configs.recommended,
+// ESLint plano (v9) para JS vanilla con Three.js
+export default [
   {
-    files: ["**/*.{ts,tsx}"],
-    rules: {
-      "@typescript-eslint/no-unused-vars": [
-        "error",
-        { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
-      ],
+    ignores: ['dist/', 'node_modules/', '.yarn/', '.vite/'],
+  },
+  js.configs.recommended,
+  {
+    files: ['**/*.{js,mjs}'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+      },
     },
   },
-);
+]
