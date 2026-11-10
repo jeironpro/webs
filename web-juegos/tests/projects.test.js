@@ -14,7 +14,7 @@ const carpetasLocales = readdirSync(raiz, { withFileTypes: true })
 describe("projects.yml", () => {
     test("contiene todas las carpetas juego-* locales", () => {
         expect(proyectos.length).toBeGreaterThanOrEqual(10);
-        expect(carpetasLocales.length).toBe(19);
+        expect(carpetasLocales.length).toBe(20);
         expect(proyectos.length).toBe(carpetasLocales.length);
     });
 

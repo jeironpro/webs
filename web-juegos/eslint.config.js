@@ -10,6 +10,7 @@ export default [
             "assets/**",
             "coverage/**",
             ".hallmark/**",
+            ".rea/**",
         ],
     },
     js.configs.recommended,
