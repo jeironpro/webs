@@ -1,59 +1,39 @@
 <!doctype html>
 <html lang="es">
-  <head>
+<head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>exerciness</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block"
-      rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=block"
+        rel="stylesheet"
     />
     <meta
-      name="description"
-      content="exerciness — catálogo de ejercicios de gimnasio con búsqueda, filtros, favoritos y comparador."
+        name="description"
+        content="Catálogo de ejercicios de gimnasio con búsqueda, filtros, favoritos y comparador."
     />
     <meta property="og:title" content="exerciness" />
     <meta
-      property="og:description"
-      content="Catálogo de ejercicios de gimnasio con búsqueda, filtros, favoritos y comparador."
+        property="og:description"
+        content="Catálogo de ejercicios de gimnasio con búsqueda, filtros, favoritos y comparador."
     />
-    <meta property="og:image" content="./og-image.png" />
+    <meta property="og:image" content="assets/og-image.png" />
     <meta property="og:type" content="website" />
-    <title>exerciness</title>
     <script>
-      ;(function () {
-        // GitHub Pages sirve el 404.html raiz en subrutas de la SPA (p. ej.
-        // /web-exerciness/ejercicios); ese fallback redirige aqui con la subruta
-        // en la query (?/ejercicios) y este script la restaura en la barra de
-        // direcciones para que el router la resuelva sin recargar.
-        var busqueda = window.location.search
-        if (busqueda.indexOf('?/') === 0) {
-          var resta = busqueda.slice(2)
-          var amp = resta.indexOf('&')
-          if (amp !== -1) resta = resta.slice(0, amp) + '?' + resta.slice(amp + 1)
-          window.history.replaceState(
-            null,
-            '',
-            window.location.pathname.replace(/index\.html$/, '') + resta + window.location.hash,
-          )
-        }
-      })()
-    </script>
-    <script>
-      ;(function () {
-        // Aplica el tema persistido antes del primer render para evitar un flash.
+        // Apply persisted theme before first render
         var stored = localStorage.getItem('exerciness-theme')
         var dark = stored
-          ? JSON.parse(stored).state.theme === 'dark'
-          : window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? JSON.parse(stored).state.theme === 'dark'
+            : window.matchMedia('(prefers-color-scheme: dark)').matches
         if (dark) document.documentElement.classList.add('dark')
-      })()
     </script>
-    <script type="module" src="/src/main.jsx"></script>
-  </head>
-  <body>
+    <link rel="stylesheet" href="assets/index-CUSTOMS.css" />
+</head>
+<body>
     <div id="root"></div>
-  </body>
+    <script type="module" src="app.js"></script>
+</body>
 </html>

@@ -1,12 +1,7 @@
 import js from '@eslint/js'
-import globals from 'globals'
-import react from 'eslint-plugin-react'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
-import jsxA11y from 'eslint-plugin-jsx-a11y'
 
-// Configuración flat de ESLint (v9+).
-// Combina reglas recomendadas de JS, React, hooks y accesibilidad.
+// Configuración flat de ESLint (v9+) para JS vanilla.
+// Removidos plugins y reglas de React - el app es vanilla JS puro.
 export default [
   {
     ignores: [
@@ -21,34 +16,16 @@ export default [
   },
   js.configs.recommended,
   {
-    files: ['**/*.{js,jsx,mjs}'],
+    files: ['**/*.{js,mjs}'],
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',
       globals: {
-        ...globals.browser,
-        ...globals.node,
+        ...js.configs.browser.globals,
+        ...js.configs.node.globals,
       },
-      parserOptions: {
-        ecmaFeatures: { jsx: true },
-      },
-    },
-    settings: {
-      react: { version: 'detect' },
-    },
-    plugins: {
-      react,
-      'react-hooks': reactHooks,
-      'react-refresh': reactRefresh,
-      'jsx-a11y': jsxA11y,
     },
     rules: {
-      ...react.configs.flat.recommended.rules,
-      ...react.configs.flat['jsx-runtime'].rules,
-      ...reactHooks.configs.flat.recommended.rules,
-      ...jsxA11y.configs.recommended.rules,
-      'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
-      'react/prop-types': 'off',
       'no-console': 'warn',
     },
   },
