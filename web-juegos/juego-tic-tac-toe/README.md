@@ -5,7 +5,7 @@ Juego clásico del tres en raya (tic-tac-toe) para dos jugadores o contra un bot
 ## Características
 
 - Dos modos: partida local para dos jugadores o partida contra el bot.
-- Bot con tres niveles de dificultad: fácil, medio y difícil. El nivel difícil usa minimax y no comete errores.
+- Bot con tres niveles de dificultad: fácil, medio y difícil. Todos priorizan ganar en la siguiente jugada o bloquear una línea inmediata del jugador; el nivel difícil usa minimax y no comete errores.
 - Marcador de rondas para X, O y tablas, además de la indicación del jugador en turno.
 - Detección automática de victoria (tres en línea) y de empate, con la línea ganadora resaltada.
 - Botón para reiniciar la ronda, jugar otra vez o volver al menú.

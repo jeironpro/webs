@@ -1,13 +1,4 @@
-const LINEAS_GANADORAS = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-];
+const Bot = window.TresEnRayaBot;
 
 const NOMBRES_DIFICULTAD = {
     facil: "Fácil",
@@ -190,7 +181,7 @@ function hacerJugada(indice) {
     }
 
     estado.tablero[indice] = estado.turno;
-    const resultado = evaluarTablero(estado.tablero);
+    const resultado = Bot.evaluarTablero(estado.tablero);
 
     if (resultado) {
         finalizarRonda(resultado);
@@ -207,22 +198,6 @@ function hacerJugada(indice) {
     } else {
         anunciar(`Turno de ${estado.turno}. Elige una casilla.`);
     }
-}
-
-function evaluarTablero(tablero) {
-    for (const linea of LINEAS_GANADORAS) {
-        const [a, b, c] = linea;
-
-        if (tablero[a] && tablero[a] === tablero[b] && tablero[a] === tablero[c]) {
-            return { ganador: tablero[a], linea };
-        }
-    }
-
-    if (tablero.every(Boolean)) {
-        return { ganador: null, linea: null };
-    }
-
-    return null;
 }
 
 function finalizarRonda(resultado) {
@@ -284,7 +259,7 @@ function programarTurnoDelBot() {
     estado.temporizador = window.setTimeout(() => {
         estado.temporizador = null;
         estado.ocupado = false;
-        const indice = elegirJugadaDelBot();
+        const indice = Bot.elegirJugadaDelBot(estado.tablero, estado.dificultad);
 
         if (indice !== null && !estado.terminada) {
             hacerJugada(indice);
@@ -299,88 +274,6 @@ function cancelarTurnoDelBot() {
     }
 
     estado.ocupado = false;
-}
-
-function elegirJugadaDelBot() {
-    const vacias = estado.tablero
-        .map((valor, indice) => (valor === "" ? indice : null))
-        .filter((indice) => indice !== null);
-
-    if (vacias.length === 0) {
-        return null;
-    }
-
-    if (estado.dificultad === "facil") {
-        return vacias[Math.floor(Math.random() * vacias.length)];
-    }
-
-    if (estado.dificultad === "medio" && Math.random() < 0.68) {
-        return mejorJugada(vacias);
-    }
-
-    return vacias[Math.floor(Math.random() * vacias.length)];
-}
-
-function mejorJugada(vacias) {
-    let mejorPuntaje = Number.NEGATIVE_INFINITY;
-    let mejores = [];
-
-    for (const indice of vacias) {
-        estado.tablero[indice] = "O";
-        const puntaje = minimax(estado.tablero, "X", 0);
-        estado.tablero[indice] = "";
-
-        if (puntaje > mejorPuntaje) {
-            mejorPuntaje = puntaje;
-            mejores = [indice];
-        } else if (puntaje === mejorPuntaje) {
-            mejores.push(indice);
-        }
-    }
-
-    return mejores[Math.floor(Math.random() * mejores.length)];
-}
-
-function minimax(tablero, jugador, profundidad) {
-    const resultado = evaluarTablero(tablero);
-
-    if (resultado?.ganador === "O") {
-        return 10 - profundidad;
-    }
-
-    if (resultado?.ganador === "X") {
-        return profundidad - 10;
-    }
-
-    if (resultado) {
-        return 0;
-    }
-
-    const vacias = tablero
-        .map((valor, indice) => (valor === "" ? indice : null))
-        .filter((indice) => indice !== null);
-
-    if (jugador === "O") {
-        let mejor = Number.NEGATIVE_INFINITY;
-
-        for (const indice of vacias) {
-            tablero[indice] = "O";
-            mejor = Math.max(mejor, minimax(tablero, "X", profundidad + 1));
-            tablero[indice] = "";
-        }
-
-        return mejor;
-    }
-
-    let mejor = Number.POSITIVE_INFINITY;
-
-    for (const indice of vacias) {
-        tablero[indice] = "X";
-        mejor = Math.min(mejor, minimax(tablero, "O", profundidad + 1));
-        tablero[indice] = "";
-    }
-
-    return mejor;
 }
 
 function volverAlMenu() {
