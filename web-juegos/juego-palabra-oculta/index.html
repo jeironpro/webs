@@ -1,28 +1,94 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="icon/palabra_oculta.png" type="image/x-icon">
-    <title>Palabra oculta (Wordle)</title>
-    <link href="https://fonts.googleapis.com/css2?family=Mozilla+Text:wght@200..700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
-    <link rel="stylesheet" href="css/palabra_oculta.css">
-</head>
-<body>
-    <header>
-        <h1>Palabra oculta</h1>
-    </header>
-    <main>
-        <div class="contenedor-principal">
-            <div class="mensaje" id="mensaje"></div>
-            <div class="tablero" id="tablero"></div>
-            <div class="teclado" id="teclado"></div>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="color-scheme" content="light" />
+        <meta name="theme-color" content="#f3eee4" />
+        <title>Palabra oculta · cinco letras</title>
+        <meta
+            name="description"
+            content="Adivina la palabra oculta de cinco letras en seis intentos, con un diccionario ampliado."
+        />
+        <link rel="shortcut icon" href="icon/palabra_oculta.png" type="image/x-icon" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400,0,0"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="css/palabra_oculta.css" />
+    </head>
+    <body>
+        <div class="pagina">
+            <header class="cabecera">
+                <div class="cabecera__linea">
+                    <p class="eyebrow">CUADERNO DE PALABRAS · VOL. 03</p>
+                    <span class="sello">5 / 6</span>
+                </div>
+                <h1>Palabra oculta</h1>
+                <p class="entradilla">
+                    Cinco letras, seis intentos y un diccionario ampliado. Cada intento te dice
+                    qué letras están en el lugar correcto y cuáles pertenecen a otra casilla.
+                </p>
+                <div class="meta">
+                    <span id="total-palabras">12.000+ palabras válidas</span>
+                    <span>6 intentos</span>
+                    <span>español</span>
+                </div>
+            </header>
+
+            <main class="juego">
+                <section class="panel-juego" aria-label="Tablero de palabra oculta">
+                    <div class="panel-juego__cabecera">
+                        <p id="estado" class="estado" role="status" aria-live="polite">
+                            Escribe una palabra de cinco letras.
+                        </p>
+                        <span id="intento" class="intento">Intento 1 / 6</span>
+                    </div>
+
+                    <div class="marco">
+                        <div id="tablero" class="tablero" role="grid" aria-label="Palabra oculta"></div>
+                    </div>
+
+                    <div class="leyenda">
+                        <span><i class="punto punto--verde"></i> Lugar correcto</span>
+                        <span><i class="punto punto--amarillo"></i> Otra casilla</span>
+                        <span><i class="punto punto--gris"></i> No está</span>
+                    </div>
+
+                    <p id="mensaje" class="mensaje" role="status" aria-live="polite" hidden></p>
+
+                    <button id="btn-nueva" class="btn btn--primario" type="button">
+                        <span class="material-symbols-rounded" aria-hidden="true">refresh</span>
+                        Nueva palabra
+                    </button>
+                </section>
+
+                <aside class="lateral" aria-label="Teclado y ayuda">
+                    <section class="tarjeta">
+                        <p class="tarjeta__etiqueta">Cómo se lee</p>
+                        <p class="nota">
+                            Verde: letra y posición correctas. Amarillo: la letra existe, pero
+                            está en otra casilla. Gris: esa letra no aparece.
+                        </p>
+                    </section>
+
+                    <div id="teclado" class="teclado" aria-label="Teclado de letras"></div>
+
+                    <p class="nota nota--pie">
+                        También puedes usar el teclado físico, con <kbd>Enter</kbd> para enviar y
+                        <kbd>⌫</kbd> para borrar.
+                    </p>
+                </aside>
+            </main>
+
+            <footer class="pie">
+                <span>© 2026 JeironPro</span>
+                <span>MIT</span>
+            </footer>
         </div>
-    </main>
-    <footer>
-        <p>&copy; Todos los derechos reservados - JeironPro 2025</p>
-    </footer>
-    <script src="js/palabra_oculta.js"></script>
-</body>
+
+        <script src="js/palabra_oculta.js"></script>
+    </body>
 </html>
