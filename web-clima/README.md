@@ -12,13 +12,15 @@ Aplicación web del tiempo (SPA) que muestra el clima actual y el pronóstico de
 - Conversor de unidades y persistencia de la última ubicación consultada.
 - Diseño responsive y accesible, con fondo animado y soporte de `prefers-reduced-motion`.
 
-## Tecnologías
+## Stack
 
-- React + Vite como stack principal.
-- CSS Modules con variables CSS (tokens de diseño).
-- Vitest para los tests.
-- Tipografías locales con @fontsource.
-- Datos meteorologicos de Open-Meteo (geocoding, forecast y air quality).
+| Capa      | Tecnología                    |
+| --------- | ---------------------------- |
+| Framework | HTML / CSS / JavaScript vanilla |
+| Build     | Vite 8                       |
+| Estilo    | CSS Modules con variables CSS (tokens OKLCH) |
+| Tests     | Vitest                       |
+| Datos     | Datos meteorologicos de Open-Meteo (geocoding, forecast y air quality) |
 
 ## Instalación y desarrollo
 

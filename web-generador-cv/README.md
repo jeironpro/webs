@@ -5,15 +5,17 @@ Generador de currículum vitae en PDF con dos interfaces:
 - **App web**: formulario en 4 pasos que genera el PDF en el navegador.
 - **CLI**: generación por línea de comandos desde un archivo de datos.
 
-Ambas comparten el mismo **tema visual** y las mismas **etiquetas i18n** (español, catalán e inglés), definidos una única vez en la carpeta `shared/`.
+Ambas comparten el mismo **tema visual** y las mismas **etiquetas i18n** (español, catalán e inglés), definidas una única vez en la carpeta `shared/`.
 
 ## Stack
 
-- **Frontend**: React + Vite + TailwindCSS
-- **PDF web**: jsPDF (generación en el cliente)
-- **CLI**: Node.js + PDFKit + Lucide Static
-- **Iconos**: Material Symbols (Google Fonts)
-- **Canvas**: partículas animadas de fondo
+| Capa      | Tecnología                    |
+| --------- | ---------------------------- |
+| Framework | HTML / CSS / JavaScript vanilla |
+| PDF web   | jsPDF (generación en el cliente) |
+| CLI       | Node.js + PDFKit + Lucide Static |
+| Iconos    | Material Symbols (Google Fonts) |
+| Canvas    | Partículas animadas vanilla JS |
 
 ## Requisitos
 

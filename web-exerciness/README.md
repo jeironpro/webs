@@ -1,7 +1,7 @@
 # Web Exerciness
 
 Catálogo de ejercicios de gimnasio con búsqueda, filtros, detalle, favoritos y
-comparador. Frontend SPA en React + Vite, sin backend.
+comparador. Frontend SPA vanilla JS, sin backend.
 
 ## Características
 
