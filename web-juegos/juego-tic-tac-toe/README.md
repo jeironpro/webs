@@ -1,13 +1,14 @@
 # juego-tic-tac-toe
 
-Juego clásico del tres en raya (tic-tac-toe) para dos jugadores en el navegador.
+Juego clásico del tres en raya (tic-tac-toe) para dos jugadores o contra un bot, en el navegador.
 
 ## Características
 
-- Tablero de 3x3 donde dos jugadores alternan turnos con las fichas X y O.
-- Detección automática de victoria (tres en línea) y de empate.
-- Indicación del jugador en turno durante la partida.
-- Botón de reinicio para empezar una partida nueva.
+- Dos modos: partida local para dos jugadores o partida contra el bot.
+- Bot con tres niveles de dificultad: fácil, medio y difícil. El nivel difícil usa minimax y no comete errores.
+- Marcador de rondas para X, O y tablas, además de la indicación del jugador en turno.
+- Detección automática de victoria (tres en línea) y de empate, con la línea ganadora resaltada.
+- Botón para reiniciar la ronda, jugar otra vez o volver al menú.
 
 ## Tecnologías
 

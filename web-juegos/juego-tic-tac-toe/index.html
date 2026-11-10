@@ -1,41 +1,191 @@
 <!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tic Tac Toe</title>
-    <link rel="icon" href="icon/xo.png" />
-    <link rel="stylesheet" href="css/styles.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
-</head>
-<body>
-    <main>
-        <div class="contenedor-principal">
-            <h1 class="titulo">
-                <span>Tic</span>
-                <span>Tac</span>
-                <span>Toe</span>
-            </h1>
-            <div id="tablero-juego" class="tablero-juego">
-                <div class="celda-juego" onclick="marcarJugador(0)"></div>
-                <div class="celda-juego" onclick="marcarJugador(1)"></div>
-                <div class="celda-juego" onclick="marcarJugador(2)"></div>
-                <div class="celda-juego" onclick="marcarJugador(3)"></div>
-                <div class="celda-juego" onclick="marcarJugador(4)"></div>
-                <div class="celda-juego" onclick="marcarJugador(5)"></div>
-                <div class="celda-juego" onclick="marcarJugador(6)"></div>
-                <div class="celda-juego" onclick="marcarJugador(7)"></div>
-                <div class="celda-juego" onclick="marcarJugador(8)"></div>
-            </div>
-            <div id="notificacion-estado" class="notificacion-estado">
-                <div id="mensaje-estado" class="mensaje-estado">
-                    <!-- El estado se generara desde el javascript -->
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="color-scheme" content="light" />
+        <meta name="theme-color" content="#f3eee4" />
+        <title>Tres en raya · duelo de mesa</title>
+        <meta
+            name="description"
+            content="Tres en raya: juega contra otra persona o contra un bot con tres niveles de dificultad."
+        />
+        <link rel="icon" href="icon/xo.png" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400,0,0"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="css/styles.css" />
+    </head>
+    <body>
+        <main class="app">
+            <section id="pantalla-inicio" class="pantalla pantalla--inicio">
+                <div class="hoja">
+                    <header class="cabecera cabecera--inicio">
+                        <p class="eyebrow">SALA DE MÁQUINAS · TABLERO</p>
+                        <h1>Tres en raya</h1>
+                        <p class="entradilla">
+                            Tres fichas en línea y una sola mesa. Elige si quieres compartir el
+                            tablero o medirte a un bot que no regala la partida.
+                        </p>
+                        <p class="meta">
+                            <span>3×3</span>
+                            <span>turnos alternos</span>
+                            <span>local / bot</span>
+                        </p>
+                    </header>
+
+                    <div class="inicio__cuerpo">
+                        <div class="modos" role="group" aria-label="Modo de juego">
+                            <button type="button" class="modo" data-modo="local" aria-pressed="false">
+                                <span class="material-symbols-rounded modo__icono" aria-hidden="true"
+                                    >group</span
+                                >
+                                <span class="modo__texto">
+                                    <strong>2 jugadores</strong>
+                                    <small>Comparte el tablero con otra persona.</small>
+                                </span>
+                                <span class="material-symbols-rounded modo__flecha" aria-hidden="true"
+                                    >arrow_forward</span
+                                >
+                            </button>
+                            <button type="button" class="modo" data-modo="bot" aria-pressed="false">
+                                <span class="material-symbols-rounded modo__icono" aria-hidden="true"
+                                    >smart_toy</span
+                                >
+                                <span class="modo__texto">
+                                    <strong>Jugar contra el bot</strong>
+                                    <small>Elige dificultad y juega con las X.</small>
+                                </span>
+                                <span class="material-symbols-rounded modo__flecha" aria-hidden="true"
+                                    >arrow_forward</span
+                                >
+                            </button>
+                        </div>
+
+                        <div id="dificultad" class="dificultad" hidden>
+                            <p class="dificultad__titulo">Dificultad del bot</p>
+                            <div class="chips" role="group" aria-label="Dificultad del bot">
+                                <button type="button" class="chip" data-dificultad="facil">
+                                    Fácil
+                                </button>
+                                <button
+                                    type="button"
+                                    class="chip chip--activo"
+                                    data-dificultad="medio"
+                                    aria-pressed="true"
+                                >
+                                    Medio
+                                </button>
+                                <button type="button" class="chip" data-dificultad="dificil">
+                                    Difícil
+                                </button>
+                            </div>
+                        </div>
+
+                        <button id="empezar" class="btn btn--primario" type="button" disabled>
+                            <span>Jugar</span>
+                            <span class="material-symbols-rounded" aria-hidden="true"
+                                >arrow_forward</span
+                            >
+                        </button>
+                    </div>
+
+                    <footer class="pie">
+                        <span>© 2026 JeironPro</span>
+                        <span>MIT</span>
+                    </footer>
                 </div>
-                <div id="barra-progreso" class="barra-progreso"></div>
+            </section>
+
+            <section id="pantalla-partida" class="pantalla pantalla--partida" hidden>
+                <div class="hoja hoja--partida">
+                    <header class="cabecera cabecera--partida">
+                        <div>
+                            <p class="eyebrow">TRES EN RAYA</p>
+                            <h1 id="titulo-partida">Duelo de mesa</h1>
+                        </div>
+                        <button
+                            id="menu-superior"
+                            class="btn btn--icono"
+                            type="button"
+                            aria-label="Volver al menú"
+                        >
+                            <span class="material-symbols-rounded" aria-hidden="true">arrow_back</span>
+                        </button>
+                    </header>
+
+                    <div class="marcador" aria-label="Marcador">
+                        <article id="lado-x" class="marcador__lado marcador__lado--x">
+                            <span class="marcador__ficha">X</span>
+                            <strong id="puntos-x" class="marcador__puntos">0</strong>
+                            <small id="nombre-x" class="marcador__nombre">Jugador 1</small>
+                        </article>
+                        <div class="marcador__centro">
+                            <span id="turno" class="marcador__turno" role="status" aria-live="polite"
+                                >Turno de X</span
+                            >
+                            <small id="modo-activo" class="marcador__modo">2 jugadores</small>
+                            <small id="tablas" class="marcador__tablas">Tablas: 0</small>
+                        </div>
+                        <article id="lado-o" class="marcador__lado marcador__lado--o">
+                            <span class="marcador__ficha">O</span>
+                            <strong id="puntos-o" class="marcador__puntos">0</strong>
+                            <small id="nombre-o" class="marcador__nombre">Jugador 2</small>
+                        </article>
+                    </div>
+
+                    <div class="marco">
+                        <div
+                            id="tablero"
+                            class="tablero"
+                            role="grid"
+                            aria-label="Tablero de Tres en raya"
+                        ></div>
+                    </div>
+
+                    <p id="estado" class="estado" role="status" aria-live="polite">
+                        Elige una casilla para empezar.
+                    </p>
+
+                    <div class="acciones">
+                        <button id="reiniciar" class="btn btn--secundario" type="button">
+                            <span class="material-symbols-rounded" aria-hidden="true">restart_alt</span>
+                            Reiniciar ronda
+                        </button>
+                        <button id="menu" class="btn btn--secundario" type="button">
+                            <span class="material-symbols-rounded" aria-hidden="true">menu</span>
+                            Menú
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <div id="modal" class="modal" hidden>
+            <div
+                class="modal__caja"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="modal-titulo"
+                aria-describedby="modal-texto"
+            >
+                <span id="modal-icono" class="material-symbols-rounded modal__icono" aria-hidden="true"
+                    >emoji_events</span
+                >
+                <h2 id="modal-titulo">Ronda terminada</h2>
+                <p id="modal-texto"></p>
+                <div class="modal__acciones">
+                    <button id="modal-menu" class="btn btn--secundario" type="button">Menú</button>
+                    <button id="modal-otra" class="btn btn--primario" type="button">
+                        Otra ronda
+                    </button>
+                </div>
             </div>
-            <button class="boton-reiniciar" onclick="reiniciar()">Reiniciar</button>
         </div>
-    </main>
-    <script src="js/app.js"></script>
-</body>
+
+        <script src="js/app.js"></script>
+    </body>
 </html>
