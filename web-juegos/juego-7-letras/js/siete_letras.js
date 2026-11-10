@@ -1,183 +1,225 @@
-let palabrasAcertadas = [];
+const elementos = {
+    centro: document.querySelector("#centro"),
+    lados: [...document.querySelectorAll(".lado")],
+    palabra: document.querySelector("#palabra"),
+    estado: document.querySelector("#estado"),
+    contador: document.querySelector("#contador"),
+    totalEncontradas: document.querySelector("#total-encontradas"),
+    contenedorPalabras: document.querySelector("#contenedor-palabras"),
+    totalPalabras: document.querySelector("#total-palabras"),
+    mensaje: document.querySelector("#mensaje"),
+    btnBorrar: document.querySelector("#borrar"),
+    btnCambiar: document.querySelector("#cambiar"),
+    btnAplicar: document.querySelector("#aplicar"),
+    btnNueva: document.querySelector("#nueva"),
+};
+
+let bloques = [];
 let palabras = [];
-let letraComun = "";
+let palabrasValidas = [];
+let palabrasAcertadas = [];
+let letraCentro = "";
 let otrasLetras = [];
+let palabraActual = "";
+let bloqueActual = -1;
 
-const centro = document.getElementById("centro");
-const lados = document.querySelectorAll(".lado");
-const letrasUI = document.querySelectorAll(".hexagono");
-const palabraUI = document.getElementById("palabra");
-const botonBorrar = document.getElementById("borrar");
-const botonCambiar = document.getElementById("cambiar");
-const botonAplicar = document.getElementById("aplicar");
-const contadorPalabrasAcertadas = document.getElementById("contador-palabras-validas");
-const contenedorPalabrasAcertadas = document.getElementById("contenedor-palabras-acertadas");
-
-let letrasHabilitadas = true;
-
-async function iniciarJuego() {
-    try {
-        const respuesta = await fetch('json/siete_letras.json');
-        const datos = await respuesta.json();
-        
-        const indiceAleatorio = Math.floor(Math.random() * datos.length);
-        palabras = datos[indiceAleatorio];
-        
-        const palabraRaiz = palabras.find(p => p.length === 7);
-        if (!palabraRaiz) {
-            console.error("No se encontró palabra de 7 letras en el bloque");
-            return;
-        }
-        
-        const letras = palabraRaiz.toUpperCase().split("");
-        cambiarOrden(letras);
-        
-        letraComun = letras[0];
-        otrasLetras = letras.slice(1);
-        
-        actualizarUI();
-        actualizarContador();
-        
-    } catch (error) {
-        console.error("Error al cargar datos del juego:", error);
-        mostrarMensaje("Error al cargar el juego", "error");
+function mezclar(array) {
+    const copia = [...array];
+    for (let i = copia.length - 1; i > 0; i -= 1) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copia[i], copia[j]] = [copia[j], copia[i]];
     }
+    return copia;
+}
+
+function elegirLetraCentral(letrasRaiz) {
+    const unicas = [...new Set(letrasRaiz)];
+    const candidatos = unicas.map((letra) => ({
+        letra,
+        total: palabras.filter(
+            (palabra) =>
+                palabra.includes(letra) &&
+                [...palabra].every((caracter) => letrasRaiz.includes(caracter)),
+        ).length,
+    }));
+    const maximo = Math.max(...candidatos.map((candidato) => candidato.total));
+    const mejores = candidatos.filter((candidato) => candidato.total === maximo);
+    return mejores[Math.floor(Math.random() * mejores.length)].letra;
+}
+
+function nuevaColmena() {
+    if (bloques.length === 0) return;
+
+    let indice = Math.floor(Math.random() * bloques.length);
+    if (bloques.length > 1 && indice === bloqueActual) {
+        indice = (indice + 1) % bloques.length;
+    }
+
+    bloqueActual = indice;
+    palabras = bloques[indice].map((palabra) => palabra.toLowerCase());
+    const raiz = palabras.find((palabra) => palabra.length === 7);
+
+    if (!raiz) {
+        nuevaColmena();
+        return;
+    }
+
+    const letrasRaiz = raiz.split("");
+    const letrasDisponibles = [...new Set(letrasRaiz)];
+    letraCentro = elegirLetraCentral(letrasRaiz);
+    otrasLetras = mezclar(letrasRaiz.filter((letra) => letra !== letraCentro));
+    palabrasValidas = [
+        ...new Set(
+            palabras.filter(
+                (palabra) =>
+                    palabra.length >= 3 &&
+                    palabra.includes(letraCentro) &&
+                    [...palabra].every((caracter) => letrasDisponibles.includes(caracter)),
+            ),
+        ),
+    ];
+
+    palabrasAcertadas = [];
+    palabraActual = "";
+    elementos.mensaje.className = "mensaje";
+    elementos.mensaje.textContent = "";
+    elementos.totalPalabras.textContent = `${palabrasValidas.length} palabras en esta colmena`;
+    pintarLetras();
+    actualizarUI();
+    anunciar("Forma una palabra que contenga la letra central.");
+}
+
+function pintarLetras() {
+    elementos.centro.querySelector(".letra").textContent = letraCentro.toUpperCase();
+    elementos.lados.forEach((lado, indice) => {
+        lado.querySelector(".letra").textContent = (otrasLetras[indice] ?? "").toUpperCase();
+    });
 }
 
 function actualizarUI() {
-    const spanCentro = document.createElement("span");
-    spanCentro.className = "letra";
-    spanCentro.textContent = letraComun;
-    centro.textContent = "";
-    centro.appendChild(spanCentro);
-    
-    lados.forEach((lado, indice) => {
-        const spanLado = document.createElement("span");
-        spanLado.className = "letra";
-        spanLado.textContent = otrasLetras[indice] ?? "";
-        lado.textContent = "";
-        lado.appendChild(spanLado);
-    });
-}
+    elementos.palabra.textContent = palabraActual.toUpperCase();
+    elementos.contador.textContent = `${palabrasAcertadas.length} / ${palabrasValidas.length}`;
+    elementos.totalEncontradas.textContent = String(palabrasAcertadas.length);
+    elementos.contenedorPalabras.textContent = "";
 
-function cambiarOrden(arreglo) {
-    for (let i = arreglo.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [arreglo[i], arreglo[j]] = [arreglo[j], arreglo[i]];
+    if (palabrasAcertadas.length === 0) {
+        const vacio = document.createElement("p");
+        vacio.className = "vacio";
+        vacio.textContent = "Todavía no has formado ninguna.";
+        elementos.contenedorPalabras.appendChild(vacio);
+        return;
     }
-    return arreglo;
+
+    [...palabrasAcertadas]
+        .sort((a, b) => a.localeCompare(b, "es"))
+        .forEach((palabra) => {
+            const chip = document.createElement("span");
+            chip.className = "palabra-chip";
+            chip.textContent = palabra;
+            elementos.contenedorPalabras.appendChild(chip);
+        });
 }
 
-letrasUI.forEach(letra => {
-    letra.addEventListener("click", () => {
-        if (!letrasHabilitadas) return;
-        const valor = letra.querySelector("span").textContent.toUpperCase();
-        palabraUI.textContent += valor;
-    });
-});
-
-botonBorrar.addEventListener("click", () => {
-    palabraUI.textContent = palabraUI.textContent.slice(0, -1);
-});
-
-botonCambiar.addEventListener("click", () => {
-    cambiarOrden(otrasLetras);
-    actualizarUI();
-});
+function anunciar(texto) {
+    elementos.estado.textContent = texto;
+}
 
 function mostrarMensaje(texto, tipo = "") {
-    const divMensaje = document.createElement("div");
-    divMensaje.className = tipo;
-    divMensaje.textContent = texto;
-    
-    palabraUI.textContent = "";
-    palabraUI.appendChild(divMensaje);
-    
-    botonBorrar.disabled = true;
-    botonCambiar.disabled = true;
-    botonAplicar.disabled = true;
-    letrasHabilitadas = false;
-
-    setTimeout(() => {
-        botonBorrar.disabled = false;
-        botonCambiar.disabled = false;
-        botonAplicar.disabled = false;
-        letrasHabilitadas = true;
-        palabraUI.textContent = "";
-    }, 2000);
+    elementos.mensaje.className = "mensaje";
+    if (tipo) elementos.mensaje.classList.add(tipo);
+    elementos.mensaje.textContent = texto;
 }
 
-function verificarPalabra(palabra) {
-    palabra = palabra.toLowerCase();
+function agregarLetra(letra) {
+    if (!letra) return;
+    palabraActual += letra;
+    elementos.palabra.textContent = palabraActual.toUpperCase();
+    elementos.mensaje.textContent = "";
+}
 
-    if (!palabra.includes(letraComun.toLowerCase())) {
-        mostrarMensaje("La palabra debe contener la letra del centro.", "error");
-    } else if (palabra.length < 3) {
+function borrarLetra() {
+    palabraActual = palabraActual.slice(0, -1);
+    elementos.palabra.textContent = palabraActual.toUpperCase();
+}
+
+function cambiarOrden() {
+    otrasLetras = mezclar(otrasLetras);
+    pintarLetras();
+}
+
+function probarPalabra() {
+    const palabra = palabraActual.toLowerCase();
+
+    if (palabra.length < 3) {
         mostrarMensaje("La palabra debe tener al menos 3 letras.", "error");
-    } else if (!palabras.some(palab => palab.toLowerCase() === palabra)) {
-        mostrarMensaje("La palabra no es válida.", "error");
-    } else if (palabrasAcertadas.includes(palabra)) {
-        mostrarMensaje("La palabra ya ha sido acertada.", "aviso");
+        return;
+    }
+
+    if (!palabra.includes(letraCentro)) {
+        mostrarMensaje(`La palabra debe contener la letra central: ${letraCentro.toUpperCase()}.`, "error");
+        return;
+    }
+
+    if (!palabrasValidas.includes(palabra)) {
+        mostrarMensaje("Esa palabra no está en esta colmena.", "error");
+        return;
+    }
+
+    if (palabrasAcertadas.includes(palabra)) {
+        mostrarMensaje("Ya has encontrado esa palabra.", "aviso");
+        return;
+    }
+
+    palabrasAcertadas.push(palabra);
+    palabraActual = "";
+    actualizarUI();
+    mostrarMensaje("¡Palabra encontrada!", "exito");
+
+    if (palabrasAcertadas.length === palabrasValidas.length) {
+        anunciar("¡Colmena completa!");
+        mostrarMensaje("¡Has encontrado todas las palabras de la colmena!", "exito");
     } else {
-        palabrasAcertadas.push(palabra);
-        actualizarContador();
-        mostrarMensaje("¡Palabra acertada!", "exito");
+        anunciar("Sigue buscando palabras con la letra central.");
     }
 }
 
-function actualizarContador() {
-    contadorPalabrasAcertadas.textContent = "";
-    
-    const marcadorPA = document.createElement("span");
-    marcadorPA.className = "marcador contador-palabras";
-    
-    const tituloPA = document.createElement("span");
-    tituloPA.className = "titulo-estadistica";
-    tituloPA.textContent = "PA";
-    
-    const contadorSpan = document.createElement("span");
-    contadorSpan.className = "contador";
-    contadorSpan.textContent = palabrasAcertadas.length;
-    
-    marcadorPA.appendChild(tituloPA);
-    marcadorPA.appendChild(contadorSpan);
-    
-    const separador = document.createTextNode(" / ");
-    
-    const marcadorTP = document.createElement("span");
-    marcadorTP.className = "marcador total-palabras";
-    
-    const tituloTP = document.createElement("span");
-    tituloTP.className = "titulo-estadistica";
-    tituloTP.textContent = "TP";
-    
-    const totalSpan = document.createElement("span");
-    totalSpan.className = "total";
-    totalSpan.textContent = palabras.length;
-    
-    marcadorTP.appendChild(tituloTP);
-    marcadorTP.appendChild(totalSpan);
-    
-    contadorPalabrasAcertadas.appendChild(marcadorPA);
-    contadorPalabrasAcertadas.appendChild(separador);
-    contadorPalabrasAcertadas.appendChild(marcadorTP);
-    
-    contenedorPalabrasAcertadas.textContent = "";
-    
-    const spanPalabras = document.createElement("span");
-    spanPalabras.className = "palabras-acertadas";
-    spanPalabras.textContent = palabrasAcertadas.join(", ");
-    
-    contenedorPalabrasAcertadas.appendChild(spanPalabras);
-    
-    if(contadorSpan) {
-        contadorSpan.classList.add("animar");
-        setTimeout(() => contadorSpan.classList.remove("animar"), 300);
+async function cargarJuego() {
+    try {
+        const respuesta = await fetch("json/siete_letras.json");
+        if (!respuesta.ok) throw new Error("No se pudo cargar el archivo de colmenas.");
+        bloques = await respuesta.json();
+        elementos.totalPalabras.textContent = `${bloques.flat().length.toLocaleString("es-ES")} palabras`;
+        nuevaColmena();
+    } catch (error) {
+        console.error(error);
+        anunciar("No se pudo cargar el juego. Recarga la página.");
     }
 }
 
-botonAplicar.addEventListener("click", () => {
-    verificarPalabra(palabraUI.textContent);
+elementos.lados.forEach((lado) => {
+    lado.addEventListener("click", () => agregarLetra(lado.querySelector(".letra").textContent.toLowerCase()));
 });
 
-iniciarJuego();
+elementos.centro.addEventListener("click", () => agregarLetra(letraCentro));
+elementos.btnBorrar.addEventListener("click", borrarLetra);
+elementos.btnCambiar.addEventListener("click", cambiarOrden);
+elementos.btnAplicar.addEventListener("click", probarPalabra);
+elementos.btnNueva.addEventListener("click", nuevaColmena);
+
+document.addEventListener("keydown", (evento) => {
+    if (evento.ctrlKey || evento.metaKey || evento.altKey) return;
+    const tecla = evento.key.toLowerCase();
+
+    if (tecla === "enter") {
+        evento.preventDefault();
+        probarPalabra();
+    } else if (tecla === "backspace") {
+        evento.preventDefault();
+        borrarLetra();
+    } else if (/^[a-zñ]$/.test(tecla)) {
+        evento.preventDefault();
+        agregarLetra(tecla);
+    }
+});
+
+cargarJuego();
