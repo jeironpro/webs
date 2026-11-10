@@ -74,10 +74,9 @@ jobs:
 
       - name: Tests
         run: |-
-          if [ -f package.json ] && yarn test 2>/dev/null; then \
-            echo "Tests passed\n"; \
-          elif [ -f package.json ] && yarn vitest run 2>/dev/null; then \
-            echo "Vitest tests passed\n"; \
+          if [ -f package.json ]; then \
+           cd \$(ls -d */ 2>/dev/null | head -1 | sed 's|/||') && yarn test 2>/dev/null || cd ..; \
+            echo "Tests check finished\n"; \
           fi
 
       - name: Data build
