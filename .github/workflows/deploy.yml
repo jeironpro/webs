@@ -28,23 +28,26 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
+          cache: npm
 
-      - name: Enable corepack (yarn y pnpm)
-        run: corepack enable# Despliegue de sitio estático: cada proyecto usa su estrategia de build
-      # Según su stack tecnológico. Los proyectos migrados a vanilla JS ya no
-      # usan VITE_BASE inyección de subruta, su salida es JS/HTML/CSS puro.
-      # - web-exerciness, web-programmer-day: build Vite vanilla JS (usa VITE_BASE si es necesario)
-      # - web-clima: HTML/JS puro (copy directo de archivos)
-      # - web-generador-cv: dist/ rsync (build previo)
-      # - Hubs (juegos, dashboards): compilados por scripts/compila-hubs.mjs
-      # - web-lenguajes-programacion: docs Sphinx
-      # - Los demas proyectos tienen su build en package.json scripts
+      - name: Enable corepack
+        run: corepack enable
+
+      # La mayoría de proyectos son HTML/CSS/JS estático y se publican tal cual.
+      # programmer-day importa Three.js desde node_modules, así que necesita build.
+      - name: Build web-programmer-day
+        working-directory: web-programmer-day
+        run: |
+          yarn install --immutable
+          yarn build --base=./
+
       - name: Ensamblar sitio
         run: |
           mkdir -p site
           rsync -a --delete \
             --exclude .git \
             --exclude .github \
+            --exclude .worktrees \
             --exclude site \
             --exclude node_modules \
             --exclude '*/node_modules' \
@@ -53,25 +56,19 @@ jobs:
             --exclude '*/.pnp.cjs' \
             --exclude '*/.pnp.loader.mjs' \
             --exclude tests \
-            --exclude web-exerciness \
-            --exclude web-programmer-day \
-            --exclude web-clima \
-            --exclude web-generador-cv \
-            --exclude web-codelang-quiz \
-            --exclude web-pokemon \
-            --exclude web-naruto \
-            --exclude web-lenguajes-programacion \
             ./ site/
-          # Cada proyecto compila o se copia como corresponde:
-          # cp -r web-exerciness/* site/web-exerciness/ 2>/dev/null || true
-          # cp -r web-programmer-day/* site/web-programmer-day/ 2>/dev/null || true
-          # web-clima: archivos estáticos puros
-          rsync -a web-clima/ site/web-clima/ 2>/dev/null || true
-          # web-generador-cv: dist/ generado previamente
-          rsync -a web-generador-cv/dist/ site/web-generador-cv/
-          # hubs y docs: compilados por scripts externos
-          touch site/.nojekyll
 
+          # programmer-day: build de Vite (index.html y assets compilados)
+          rm -rf site/web-programmer-day/assets
+          cp -r web-programmer-day/dist/. site/web-programmer-day/
+
+          # web-generador-cv: dist/ ya compilado en el repo
+          if [ -d web-generador-cv/dist ]; then
+            mkdir -p site/web-generador-cv
+            rsync -a web-generador-cv/dist/ site/web-generador-cv/
+          fi
+
+          touch site/.nojekyll
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

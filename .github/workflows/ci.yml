@@ -52,38 +52,22 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
+          cache: npm
 
       - name: Install
-        run: |-
-          if [ -f package.json ]; then \
-            corepack enable \
-            yarn install --frozen-lockfile; \
-          fi
+        run: npm ci
 
       - name: Format check
-        run: |-
-          if [ -f package.json ]; then \
-            yarn format:check; \
-          fi
+        run: npm run format:check
 
       - name: Lint
-        run: |-
-          if [ -f package.json ]; then \
-            yarn lint; \
-          fi
+        run: npm run lint
 
       - name: Tests
-        run: |-
-          if [ -f package.json ]; then \
-           cd \$(ls -d */ 2>/dev/null | head -1 | sed 's|/||') && yarn test 2>/dev/null || cd ..; \
-            echo "Tests check finished\n"; \
-          fi
+        run: npm test
 
       - name: Data build
-        run: |-
-          if [ -f package.json ]; then \
-            yarn data:build; \
-          fi
+        run: npm run data:build
 
       - name: Data sincronizada
         run: git diff --exit-code assets/projects.json
