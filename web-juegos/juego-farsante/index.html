@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="color-scheme" content="light" />
+        <meta name="theme-color" content="#f0e4cf" />
+        <title>Farsante · uno no sabe la palabra</title>
+        <meta
+            name="description"
+            content="Farsante: un juego de deducción para 3–12 personas en un solo móvil. Reparte una palabra, juega con uno o dos farsantes, practica con dos bots o comparte cartas privadas por enlace."
+        />
+        <link rel="icon" href="icon/farsante.svg" type="image/svg+xml" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="css/farsante.css" />
+    </head>
+    <body>
+        <a class="salto" href="#principal">Saltar al contenido</a>
+
+        <svg class="sprite" aria-hidden="true" focusable="false">
+            <symbol id="i-flecha" viewBox="0 0 24 24">
+                <path d="M5 12h13M13 6l6 6-6 6" />
+            </symbol>
+            <symbol id="i-atras" viewBox="0 0 24 24">
+                <path d="M19 12H6M11 18l-6-6 6-6" />
+            </symbol>
+            <symbol id="i-mas" viewBox="0 0 24 24">
+                <path d="M12 5v14M5 12h14" />
+            </symbol>
+            <symbol id="i-x" viewBox="0 0 24 24">
+                <path d="m6 6 12 12M18 6 6 18" />
+            </symbol>
+            <symbol id="i-ojo" viewBox="0 0 24 24">
+                <path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z" />
+                <circle cx="12" cy="12" r="2.6" />
+            </symbol>
+            <symbol id="i-candado" viewBox="0 0 24 24">
+                <rect x="5" y="10" width="14" height="10" rx="2" />
+                <path d="M8 10V7a4 4 0 0 1 8 0v3" />
+            </symbol>
+            <symbol id="i-check" viewBox="0 0 24 24">
+                <path d="m5 12 4 4L19 6" />
+            </symbol>
+            <symbol id="i-personas" viewBox="0 0 24 24">
+                <circle cx="9" cy="8" r="3" />
+                <path d="M3.5 19c.6-3 2.5-4.5 5.5-4.5s4.9 1.5 5.5 4.5" />
+                <path d="M16 5.5a3 3 0 0 1 0 5.8M17 14.7c2 .4 3.2 1.8 3.6 4.3" />
+            </symbol>
+            <symbol id="i-cartas" viewBox="0 0 24 24">
+                <rect x="4" y="4" width="11" height="15" rx="1.5" />
+                <path d="m15 7 4.5 1.5-3.2 11.2L12 18.5" />
+                <path d="M8 8h3M8 11h3" />
+            </symbol>
+            <symbol id="i-reloj" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="8.5" />
+                <path d="M12 7v5l3.5 2" />
+            </symbol>
+            <symbol id="i-sello" viewBox="0 0 24 24">
+                <path d="M7 4h10v5H7zM5 9h14v10H5z" />
+                <path d="M8 13h8M8 16h5" />
+            </symbol>
+            <symbol id="i-copiar" viewBox="0 0 24 24">
+                <rect x="9" y="9" width="11" height="12" rx="1.5" />
+                <path d="M15 5H6a2 2 0 0 0-2 2v10" />
+            </symbol>
+            <symbol id="i-aleatorio" viewBox="0 0 24 24">
+                <path d="M4 7h3c4 0 5 10 9 10h4" />
+                <path d="m17 14 3 3-3 3M4 17h3c1.4 0 2.5-1.2 3.5-2.7M14 9.7C14.8 8.1 15.8 7 17 7h4" />
+                <path d="m18 4 3 3-3 3" />
+            </symbol>
+        </svg>
+
+        <header class="cabecera">
+            <a class="marca" href="./" aria-label="Farsante, inicio">
+                <img src="assets/marca-farsante.svg" alt="" width="46" height="46" />
+                <span class="marca__texto">
+                    <strong>Farsante</strong>
+                    <small>archivo de deducción</small>
+                </span>
+            </a>
+            <p class="cabecera__sello">
+                <span class="cabecera__punto" aria-hidden="true"></span>
+                JUEGO LOCAL · 3—12 PERSONAS
+            </p>
+        </header>
+
+        <main id="principal">
+            <div id="pantalla" class="pantalla"></div>
+        </main>
+
+        <footer class="pie">
+            <p>Farsante · un juego original de <a href="https://github.com/jeironpro">JeironPro</a></p>
+            <p>Sin cuentas. Sin servidores. Todo ocurre en este móvil.</p>
+        </footer>
+
+        <p id="anuncio" class="sr-only" role="status" aria-live="assertive"></p>
+
+        <script type="module" src="js/farsante.js"></script>
+    </body>
+</html>
