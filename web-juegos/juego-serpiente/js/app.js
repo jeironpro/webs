@@ -1,174 +1,304 @@
-const contenedorJuego = document.getElementById("tablero-juego");
-const tamanoSegmento = 20;
+const COLUMNAS = 24;
+const FILAS = 24;
+const VELOCIDAD = 115;
+const canvas = document.querySelector("#tablero");
+const contexto = canvas.getContext("2d");
+const capa = document.querySelector("#capa");
+const capaEyebrow = document.querySelector("#capa-eyebrow");
+const capaTitulo = document.querySelector("#capa-titulo");
+const capaTexto = document.querySelector("#capa-texto");
+const botonInicio = document.querySelector("#boton-inicio");
+const botonReiniciar = document.querySelector("#boton-reiniciar");
+const botonPausa = document.querySelector("#boton-pausa");
+const puntuacionUI = document.querySelector("#puntuacion");
+const recordUI = document.querySelector("#record");
+const estadoUI = document.querySelector("#estado");
 
-let cuerpoSerpiente = [{ x: 0, y: 0 }];
+const direcciones = {
+    arriba: { x: 0, y: -1 },
+    abajo: { x: 0, y: 1 },
+    izquierda: { x: -1, y: 0 },
+    derecha: { x: 1, y: 0 },
+};
+
+const opuestas = {
+    arriba: "abajo",
+    abajo: "arriba",
+    izquierda: "derecha",
+    derecha: "izquierda",
+};
+
+let cuerpo = [];
+let comida = { x: 0, y: 0 };
+let direccion = "derecha";
+let direccionPendiente = "derecha";
 let puntuacion = 0;
-let direccion = "Derecha";
-let velocidad = 150;
-let intervaloJuego;
+let record = 0;
+let intervalo = null;
+let jugando = false;
+let pausado = false;
+let terminado = false;
 
-const generarPosicionComida = () => {
-    const maximoX = Math.floor((contenedorJuego.clientWidth - tamanoSegmento) / tamanoSegmento);
-    const maximoY = Math.floor((contenedorJuego.clientHeight - tamanoSegmento) / tamanoSegmento);
+function tamanioCelda() {
+    return canvas.width / COLUMNAS;
+}
 
-    let comidaX, comidaY;
+function reiniciarEstado() {
+    cuerpo = [
+        { x: 8, y: 12 },
+        { x: 7, y: 12 },
+        { x: 6, y: 12 },
+    ];
+    direccion = "derecha";
+    direccionPendiente = "derecha";
+    puntuacion = 0;
+    actualizarPuntuacion();
+    colocarComida();
+    dibujar();
+}
+
+function colocarComida() {
+    let nueva;
+
     do {
-        comidaX = Math.floor(Math.random() * maximoX) * tamanoSegmento;
-        comidaY = Math.floor(Math.random() * maximoY) * tamanoSegmento;
-    } while (cuerpoSerpiente.some(segmento => segmento.x === comidaX && segmento.y === comidaY));
+        nueva = {
+            x: Math.floor(Math.random() * COLUMNAS),
+            y: Math.floor(Math.random() * FILAS),
+        };
+    } while (cuerpo.some((segmento) => segmento.x === nueva.x && segmento.y === nueva.y));
 
-    return { x: comidaX, y: comidaY };
-};
+    comida = nueva;
+}
 
-const limpiarTablero = () => {
-    const elementos = contenedorJuego.querySelectorAll('.segmento-serpiente, .cabeza-serpiente, .comida');
-    elementos.forEach(el => el.remove());
-};
+function actualizarPuntuacion() {
+    puntuacionUI.textContent = String(puntuacion);
+    recordUI.textContent = String(record);
+}
 
-const crearOjo = (posicion) => {
-    const ojo = document.createElement('div');
-    ojo.className = 'ojo';
-    ojo.style.top = '25%';
-    if (posicion === 'izq') {
-        ojo.style.left = '25%';
-    } else {
-        ojo.style.right = '25%';
+function dibujar() {
+    const celda = tamanioCelda();
+    contexto.clearRect(0, 0, canvas.width, canvas.height);
+    contexto.fillStyle = "#f7f1e6";
+    contexto.fillRect(0, 0, canvas.width, canvas.height);
+
+    contexto.strokeStyle = "rgba(32, 27, 23, 0.08)";
+    contexto.lineWidth = 1;
+
+    for (let columna = 1; columna < COLUMNAS; columna += 1) {
+        contexto.beginPath();
+        contexto.moveTo(columna * celda, 0);
+        contexto.lineTo(columna * celda, canvas.height);
+        contexto.stroke();
     }
-    return ojo;
-};
 
-const dibujar = () => {
-    limpiarTablero();
+    for (let fila = 1; fila < FILAS; fila += 1) {
+        contexto.beginPath();
+        contexto.moveTo(0, fila * celda);
+        contexto.lineTo(canvas.width, fila * celda);
+        contexto.stroke();
+    }
 
-    cuerpoSerpiente.forEach((segmento, indice) => {
-        if (indice === 0) return;
-        const parte = document.createElement('div');
-        parte.className = 'segmento-serpiente';
-        parte.style.left = segmento.x + 'px';
-        parte.style.top = segmento.y + 'px';
-        parte.style.opacity = 1 - (indice / cuerpoSerpiente.length) * 0.5;
-        contenedorJuego.appendChild(parte);
+    contexto.fillStyle = "#b83b2e";
+    contexto.beginPath();
+    contexto.arc(
+        comida.x * celda + celda / 2,
+        comida.y * celda + celda / 2,
+        celda * 0.32,
+        0,
+        Math.PI * 2,
+    );
+    contexto.fill();
+
+    cuerpo.forEach((segmento, indice) => {
+        const margen = indice === 0 ? celda * 0.08 : celda * 0.13;
+        const radio = Math.max(2, celda * 0.18);
+        contexto.fillStyle = indice === 0 ? "#16726f" : "#2d8c83";
+        contexto.beginPath();
+        contexto.roundRect(
+            segmento.x * celda + margen,
+            segmento.y * celda + margen,
+            celda - margen * 2,
+            celda - margen * 2,
+            radio,
+        );
+        contexto.fill();
+
+        if (indice === 0) {
+            contexto.fillStyle = "#fbf8f1";
+            const ojo = Math.max(1.2, celda * 0.09);
+            contexto.beginPath();
+            contexto.arc(
+                segmento.x * celda + celda * 0.36,
+                segmento.y * celda + celda * 0.4,
+                ojo,
+                0,
+                Math.PI * 2,
+            );
+            contexto.arc(
+                segmento.x * celda + celda * 0.64,
+                segmento.y * celda + celda * 0.4,
+                ojo,
+                0,
+                Math.PI * 2,
+            );
+            contexto.fill();
+        }
     });
+}
 
-    const cabeza = document.createElement('div');
-    cabeza.className = 'cabeza-serpiente';
-    cabeza.style.left = cuerpoSerpiente[0].x + 'px';
-    cabeza.style.top = cuerpoSerpiente[0].y + 'px';
-    cabeza.appendChild(crearOjo('izq'));
-    cabeza.appendChild(crearOjo('der'));
-    contenedorJuego.appendChild(cabeza);
+function mover() {
+    if (!jugando || pausado || terminado) return;
 
-    const comidaElemento = document.createElement('div');
-    comidaElemento.className = 'comida';
-    comidaElemento.style.left = (comida.x + 2) + 'px';
-    comidaElemento.style.top = (comida.y + 2) + 'px';
-    contenedorJuego.appendChild(comidaElemento);
-};
-
-// Variables de la interfaz final
-const pantallaFinal = document.getElementById("pantalla-final");
-const mensajeFinal = document.getElementById("mensaje-final");
-const puntosFinales = document.getElementById("puntos-finales");
-const botonReiniciar = document.getElementById("boton-reiniciar");
-
-let comida = generarPosicionComida();
-
-const mostrarFinJuego = (victoria) => {
-    clearInterval(intervaloJuego);
-    mensajeFinal.textContent = victoria ? "¡HAS GANADO!" : "¡FIN DEL JUEGO!";
-    mensajeFinal.style.color = victoria ? "var(--color-acento)" : "var(--color-alerta)";
-    puntosFinales.textContent = "PUNTOS: " + puntuacion;
-    pantallaFinal.className = "pantalla-final";
-};
-
-const verificarVictoria = () => {
-    const totalCeldas = (contenedorJuego.clientWidth * contenedorJuego.clientHeight) / (tamanoSegmento * tamanoSegmento);
-    return cuerpoSerpiente.length === totalCeldas;
-};
-
-const moverSerpiente = () => {
-    const nuevaCabeza = { x: cuerpoSerpiente[0].x, y: cuerpoSerpiente[0].y };
-
-    switch (direccion) {
-        case "Arriba": nuevaCabeza.y -= tamanoSegmento; break;
-        case "Abajo": nuevaCabeza.y += tamanoSegmento; break;
-        case "Izquierda": nuevaCabeza.x -= tamanoSegmento; break;
-        case "Derecha": nuevaCabeza.x += tamanoSegmento; break;
+    if (direccionPendiente !== opuestas[direccion]) {
+        direccion = direccionPendiente;
     }
 
-    const colisionCuerpo = cuerpoSerpiente.some((segmento, indice) => indice !== 0 && segmento.x === nuevaCabeza.x && segmento.y === nuevaCabeza.y);
-    const fueraLimites = nuevaCabeza.x < 0 || nuevaCabeza.x >= contenedorJuego.clientWidth || nuevaCabeza.y < 0 || nuevaCabeza.y >= contenedorJuego.clientHeight;
+    const vector = direcciones[direccion];
+    const cabeza = cuerpo[0];
+    const nuevaCabeza = {
+        x: (cabeza.x + vector.x + COLUMNAS) % COLUMNAS,
+        y: (cabeza.y + vector.y + FILAS) % FILAS,
+    };
+    const comera = nuevaCabeza.x === comida.x && nuevaCabeza.y === comida.y;
+    const cuerpoAComprobar = comera ? cuerpo : cuerpo.slice(0, -1);
+    const choca = cuerpoAComprobar.some(
+        (segmento) => segmento.x === nuevaCabeza.x && segmento.y === nuevaCabeza.y,
+    );
 
-    if (colisionCuerpo || fueraLimites) {
-        mostrarFinJuego(false);
+    if (choca) {
+        terminarJuego(false);
         return;
     }
 
-    if (nuevaCabeza.x === comida.x && nuevaCabeza.y === comida.y) {
+    cuerpo.unshift(nuevaCabeza);
+
+    if (comera) {
         puntuacion += 10;
-        document.getElementById("puntuacion-actual").textContent = "PUNTOS: " + puntuacion;
-        comida = generarPosicionComida();
+        if (puntuacion > record) record = puntuacion;
+        actualizarPuntuacion();
+        colocarComida();
+
+        if (cuerpo.length === COLUMNAS * FILAS) {
+            terminarJuego(true);
+            return;
+        }
     } else {
-        cuerpoSerpiente.pop();
+        cuerpo.pop();
     }
 
-    cuerpoSerpiente.unshift(nuevaCabeza);
-
-    if (verificarVictoria()) {
-        mostrarFinJuego(true);
-    }
-};
-
-const cambiarDireccion = (nuevaDireccion) => {
-    const direccionesOpuestas = {
-        "Arriba": "Abajo",
-        "Abajo": "Arriba",
-        "Izquierda": "Derecha",
-        "Derecha": "Izquierda"
-    };
-    if (nuevaDireccion !== direccionesOpuestas[direccion]) {
-        direccion = nuevaDireccion;
-    }
-};
-
-const reiniciarJuego = () => {
-    clearInterval(intervaloJuego);
-    cuerpoSerpiente = [{ x: 0, y: 0 }];
-    puntuacion = 0;
-    direccion = "Derecha";
-    comida = generarPosicionComida();
-    document.getElementById("puntuacion-actual").textContent = "PUNTOS: 0";
-    document.getElementById("boton-inicio").style.display = "flex";
-    pantallaFinal.className = "pantalla-oculta";
-    limpiarTablero();
     dibujar();
-};
+}
 
-const iniciarJuego = () => {
-    document.getElementById("boton-inicio").style.display = "none";
-    pantallaFinal.className = "pantalla-oculta";
-    if (intervaloJuego) clearInterval(intervaloJuego);
-    intervaloJuego = setInterval(() => {
-        moverSerpiente();
-        dibujar();
-    }, velocidad);
-};
+function iniciarJuego() {
+    if (terminado) reiniciarEstado();
 
-document.addEventListener('keydown', event => {
-    switch (event.key) {
-        case "ArrowUp": cambiarDireccion("Arriba"); break;
-        case "ArrowDown": cambiarDireccion("Abajo"); break;
-        case "ArrowLeft": cambiarDireccion("Izquierda"); break;
-        case "ArrowRight": cambiarDireccion("Derecha"); break;
+    jugando = true;
+    pausado = false;
+    terminado = false;
+    capa.hidden = true;
+    botonPausa.disabled = false;
+    botonPausa.innerHTML = `<span class="material-symbols-rounded" aria-hidden="true">pause</span> Pausa`;
+    estadoUI.textContent = "En marcha";
+    window.clearInterval(intervalo);
+    intervalo = window.setInterval(mover, VELOCIDAD);
+}
+
+function pausarJuego() {
+    if (!jugando || terminado) return;
+
+    if (pausado) {
+        pausado = false;
+        estadoUI.textContent = "En marcha";
+        botonPausa.innerHTML = `<span class="material-symbols-rounded" aria-hidden="true">pause</span> Pausa`;
+        window.clearInterval(intervalo);
+        intervalo = window.setInterval(mover, VELOCIDAD);
+        return;
+    }
+
+    pausado = true;
+    estadoUI.textContent = "Pausada";
+    botonPausa.innerHTML = `<span class="material-symbols-rounded" aria-hidden="true">play_arrow</span> Seguir`;
+    window.clearInterval(intervalo);
+}
+
+function terminarJuego(victoria) {
+    terminado = true;
+    jugando = false;
+    window.clearInterval(intervalo);
+    estadoUI.textContent = victoria ? "Completada" : "Fin del juego";
+    capaEyebrow.textContent = victoria ? "TABLERO COMPLETO" : "FIN DE LA PARTIDA";
+    capaTitulo.textContent = victoria ? "¡Serpiente completa!" : "Te has mordido";
+    capaTexto.textContent = victoria
+        ? `Has llenado las ${COLUMNAS * FILAS} casillas. Puntuación: ${puntuacion}.`
+        : `Puntuación: ${puntuacion} · Récord: ${record}. Los bordes conectan; la cola no perdona.`;
+    botonInicio.innerHTML = `<span class="material-symbols-rounded" aria-hidden="true">refresh</span> Reintentar`;
+    capa.hidden = false;
+    dibujar();
+}
+
+function reiniciarJuego() {
+    window.clearInterval(intervalo);
+    jugando = false;
+    pausado = false;
+    terminado = false;
+    reiniciarEstado();
+    estadoUI.textContent = "En espera";
+    capaEyebrow.textContent = "LISTO CUANDO QUIERAS";
+    capaTitulo.textContent = "Toma el control";
+    capaTexto.textContent =
+        "Usa las flechas o WASD. La serpiente aparece en el centro del tablero.";
+    botonInicio.innerHTML = `<span class="material-symbols-rounded" aria-hidden="true">play_arrow</span> Empezar`;
+    botonPausa.disabled = true;
+    capa.hidden = false;
+}
+
+function cambiarDireccion(nueva) {
+    if (!direcciones[nueva]) return;
+    if (nueva === opuestas[direccion]) return;
+    direccionPendiente = nueva;
+
+    if (!jugando && !terminado) iniciarJuego();
+}
+
+document.addEventListener("keydown", (evento) => {
+    const teclas = {
+        ArrowUp: "arriba",
+        ArrowDown: "abajo",
+        ArrowLeft: "izquierda",
+        ArrowRight: "derecha",
+        w: "arriba",
+        s: "abajo",
+        a: "izquierda",
+        d: "derecha",
+        W: "arriba",
+        S: "abajo",
+        A: "izquierda",
+        D: "derecha",
+    };
+
+    if (teclas[evento.key]) {
+        evento.preventDefault();
+        cambiarDireccion(teclas[evento.key]);
+        return;
+    }
+
+    if (evento.key === " " || evento.key === "Spacebar") {
+        evento.preventDefault();
+        if (!jugando && !terminado) {
+            iniciarJuego();
+        } else {
+            pausarJuego();
+        }
     }
 });
 
-document.getElementById("ctrl-arriba").addEventListener('click', () => cambiarDireccion("Arriba"));
-document.getElementById("ctrl-abajo").addEventListener('click', () => cambiarDireccion("Abajo"));
-document.getElementById("ctrl-izquierda").addEventListener('click', () => cambiarDireccion("Izquierda"));
-document.getElementById("ctrl-derecha").addEventListener('click', () => cambiarDireccion("Derecha"));
+document.querySelectorAll("[data-direccion]").forEach((boton) => {
+    boton.addEventListener("click", () => cambiarDireccion(boton.dataset.direccion));
+});
 
-document.getElementById("boton-inicio").addEventListener('click', iniciarJuego);
-botonReiniciar.addEventListener('click', reiniciarJuego);
+botonInicio.addEventListener("click", iniciarJuego);
+botonReiniciar.addEventListener("click", reiniciarJuego);
+botonPausa.addEventListener("click", pausarJuego);
+botonPausa.disabled = true;
 
-dibujar();
+reiniciarEstado();
