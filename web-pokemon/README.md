@@ -1,48 +1,51 @@
 # Web Pokémon
 
-Aplicación web para consultar información de Pokémon por generación.
+Aplicación web estática para consultar información de Pokémon por generación.
 
 ## Stack
 
-- React + Vite
-- Yarn
-- Sitio 100% estático (sin backend)
+- HTML, CSS y JavaScript vanilla
+- Sin backend
+- Datos y sprites servidos desde `public/api/pokemones.json` y `public/pokemon-images/`
 
-## Instalación
+## Uso
 
-```bash
-yarn install
-```
-
-## Desarrollo
+Abre `index.html` en el navegador o sirve la carpeta con un servidor estático:
 
 ```bash
-yarn dev
+python3 -m http.server 8000
 ```
 
-La API local se sirve mediante un middleware de Vite que transforma los datos JSON de `data/pokemon/` y los expone en `/api/pokemones`.
+La pantalla de bienvenida redirige automáticamente a la primera generación. Desde ahí puedes:
 
-## Producción
+- cambiar de generación con los botones o el menú superior;
+- buscar Pokémon por nombre;
+- filtrar por tipo;
+- navegar por páginas de 24 resultados;
+- consultar tipos, descripción y estadísticas de cada Pokémon.
 
-```bash
-yarn build
+## Rutas
+
+La app conserva las rutas `/generation/:id`. El `404.html` de la raíz redirige las rutas profundas a `web-pokemon/?/generation/:id`, y el script de entrada restaura la URL antes de renderizar.
+
+## Estructura
+
+```text
+web-pokemon/
+├── index.html
+├── styles.css
+├── app.js
+└── public/
+    ├── api/pokemones.json
+    ├── pokemon-logo.png
+    ├── pokemon.png
+    └── pokemon-images/
 ```
 
-El build copia las imágenes de `data/pokemon-images/` a `public/pokemon-images/` y genera `public/api/pokemones.json` (script `scripts/build-dataset.mjs`) con el dataset completo enriquecido: colores de tipo e `imagen_url`.
+## Créditos
 
-En el sitio estático, `src/services/api.js` detecta que no hay backend y filtra/pagina ese JSON en el navegador con la misma forma de respuesta que la API de desarrollo.
+Pokémon y los sprites pertenecen a Nintendo, Game Freak y The Pokémon Company. Este proyecto es una demostración sin ánimo de lucro.
 
-## Estructura de datos
+## Licencia
 
-```
-data/
-├── pokemon/
-│   ├── pokemons_{generacion}_generacion.json
-│   └── tipos_colores.json
-└── pokemon-images/
-    └── {generacion}_generacion/
-        └── {Nombre}.png
-public/
-└── api/
-    └── pokemones.json   (generado en el build)
-```
+MIT
