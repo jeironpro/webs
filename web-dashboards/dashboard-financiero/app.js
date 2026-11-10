@@ -89,24 +89,95 @@ const elements = {
     navLinks: [],
 };
 
-// Inicializar después del DOMContentLoaded
-document.addEventListener('DOMContentLoaded', () => {
+// ===== Montaje del layout =====
+const NAV_ITEMS = [
+    { view: 'overview', label: 'Resumen' },
+    { view: 'invoices', label: 'Facturas' },
+    { view: 'payments', label: 'Pagos' },
+    { view: 'reports', label: 'Reportes' },
+    { view: 'subscriptions', label: 'Suscripciones' },
+    { view: 'profile', label: 'Perfil' },
+];
+
+function mountLayout() {
+    const root = elements.root;
+    if (!root) return;
+
+    root.innerHTML = `
+        <div class="dashboard">
+            <aside class="sidebar" aria-label="Navegación principal">
+                <div class="sidebar-brand">Suma</div>
+                <nav class="sidebar-nav">
+                    ${NAV_ITEMS.map(({ view, label }) => `
+                        <a href="#${view}" class="nav-link" data-view="${view}">${label}</a>
+                    `).join('')}
+                </nav>
+                <div class="sidebar-footer">
+                    <span class="sidebar-user">${dashboardData.currentUser}</span>
+                </div>
+            </aside>
+
+            <div class="main">
+                <header class="header">
+                    <div class="header-brand">
+                        <button class="btn btn-secondary sidebar-toggle" type="button" aria-label="Abrir menú">Menú</button>
+                        <span class="header-title">Finanzas al día</span>
+                    </div>
+                    <div class="header-actions">
+                        <label class="header-range">
+                            <span>Periodo</span>
+                            <select class="input" data-range>
+                                <option value="7d">7 días</option>
+                                <option value="30d" selected>30 días</option>
+                                <option value="90d">90 días</option>
+                            </select>
+                        </label>
+                        <button class="btn" type="button" data-refresh>Actualizar</button>
+                        <button class="btn btn-secondary" type="button" data-theme-toggle>${currentTheme === THEME.DARK ? 'Modo claro' : 'Modo oscuro'}</button>
+                    </div>
+                </header>
+
+                <main id="view"></main>
+
+                <footer class="footer">
+                    <p>Suma · Datos de ejemplo actualizados ${dashboardData.updatedAt}</p>
+                </footer>
+            </div>
+        </div>
+    `;
+}
+
+function cacheElements() {
     elements.sidebar = document.querySelector('.sidebar');
     elements.header = document.querySelector('.header');
-    elements.main = document.querySelector('.main');
+    elements.main = document.getElementById('view');
     elements.footer = document.querySelector('.footer');
     elements.navLinks = document.querySelectorAll('.nav-link');
-    
+}
+
+function initThemeToggle() {
+    const button = document.querySelector('[data-theme-toggle]');
+    if (!button) return;
+
+    button.addEventListener('click', () => {
+        const next = document.documentElement.classList.contains('dark') ? THEME.LIGHT : THEME.DARK;
+        applyTheme(next);
+        button.textContent = next === THEME.DARK ? 'Modo claro' : 'Modo oscuro';
+    });
+}
+
+// Inicializar después del DOMContentLoaded
+document.addEventListener('DOMContentLoaded', () => {
+    addGlobalStyles();
+    mountLayout();
+    cacheElements();
+
     initSidebar();
     initHeader();
     initThemeToggle();
-    updateView(currentTheme);
+    updateView(state.view);
+    updateNavState(state.view);
 });
-
-// ===== Hook useDashboardData equivalente =====
-function useDashboardData() {
-    return { ...dashboardData };
-}
 
 // ===== Navegación =====
 const viewNames = ['overview', 'invoices', 'payments', 'reports', 'subscriptions', 'profile'];
@@ -181,7 +252,7 @@ function initHeader() {
                 elements.sidebar.classList.toggle('open', state.mobileOpen);
             }
         });
-    });
+    }
 }
 
 // ===== Actualizar vista =====
@@ -497,7 +568,7 @@ function addGlobalStyles() {
         * { box-sizing: border-box; }
         
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
             background-color: var(--color-paper);
             color: var(--color-ink);
             min-height: 100vh;
@@ -537,7 +608,47 @@ function addGlobalStyles() {
         
         .header > * { flex: 1; min-width: 200px; }
         
-        .main { max-width: 1400px; margin: 0 auto; }
+        .main { max-width: 1400px; margin-left: 260px; padding: 2rem; }
+
+        .sidebar-brand {
+            padding: 1.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            border-bottom: 1px solid var(--color-rule);
+        }
+
+        .sidebar-nav { display: flex; flex-direction: column; padding: 1rem 0.75rem; gap: 0.25rem; }
+
+        .nav-link {
+            padding: 0.6rem 0.75rem;
+            border-radius: 6px;
+            color: var(--color-ink);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .nav-link:hover { background: rgba(59, 130, 246, 0.08); }
+        .nav-link.active { background: var(--color-accent); color: #fff; }
+
+        .sidebar-footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem 1.5rem;
+            border-top: 1px solid var(--color-rule);
+            font-size: 0.8rem;
+            color: var(--color-ink-2);
+        }
+
+        .header-brand { display: flex; align-items: center; gap: 0.75rem; }
+        .header-title { font-weight: 600; }
+        .header-actions { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+        .header-range { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--color-ink-2); }
+        .sidebar-toggle { display: none; }
+
+        #view { padding-bottom: 2rem; }
         
         .section-heading {
             font-size: 1.25rem;
@@ -623,9 +734,9 @@ function addGlobalStyles() {
         @media (max-width: 768px) {
             .sidebar { transform: translateX(-260px); }
             .sidebar.open { transform: translateX(0); }
-            .main { margin-left: 0; }
+            .main { margin-left: 0; padding: 1rem; padding-top: 4rem; }
             .header { flex-direction: column; text-align: center; }
-            .main { margin-top: 4rem; }
+            .sidebar-toggle { display: inline-block; }
         }
         
         .flex { display: flex; }
