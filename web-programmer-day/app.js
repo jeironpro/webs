@@ -1,6 +1,8 @@
 // Vanilla JS migration of programmer-day
 // Three.js + GSAP — no React, no React Three Fiber
 
+import * as THREE from 'three';
+
 // ── Inicialización ──
 document.addEventListener('DOMContentLoaded', () => {
   initI18n();
@@ -165,6 +167,19 @@ const i18n = {
     }
   },
 };
+
+// ── i18n: aplica el idioma guardado o el del navegador ──
+function initI18n() {
+  let stored = null;
+  try {
+    stored = localStorage.getItem('programmer-day.lang');
+  } catch {
+    stored = null;
+  }
+  const browser = (navigator.language || 'es').toLowerCase();
+  const lang = stored || (browser.startsWith('en') ? 'en' : 'es');
+  i18n.setLang(lang);
+}
 
 // ── Lógica del día 256 (portada de day256.ts) ──
 const DAY_NUMBER = 256;

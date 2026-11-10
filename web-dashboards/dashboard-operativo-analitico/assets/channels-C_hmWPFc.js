@@ -1,1 +1,0 @@
-var e=[{id:`online`,name:`Online`},{id:`tienda`,name:`Tienda`},{id:`marketplace`,name:`Marketplace`},{id:`mayorista`,name:`Mayorista`}];export{e as default};
