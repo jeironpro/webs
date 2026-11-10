@@ -12,15 +12,15 @@ Frontend de un dashboard de **observabilidad de infraestructura** en tiempo real
 
 ## Stack
 
-- **React 19** + **Vite** + **TypeScript** (modo estricto)
+- **HTML / CSS / JavaScript** (vanilla)
+- **Three.js** para visualizaciones de datos 3D
+- **GSAP** para animaciones y indicadores críticos
 - **Yarn** (Berry, linker `node-modules`) con lockfile commiteado
-- **shadcn/ui** (new-york) + **Tailwind CSS v4**
-- **anime.js v4** para animaciones (contador, reveal de entrada y pulso de indicadores críticos)
 - Datos **MOCK** en `src/data/mock-data.json`, con simulación de actualizaciones en vivo
 
 ## Diseño
 
-Sistema de diseño generado con las skills **Hallmark** (género _modern-minimal_, tema _Cobalt_) y **frontend-design**. Los tokens (OKLCH, tipografía, espaciado, easings) viven en `tokens.css` y se mapean a las variables de shadcn/ui en `src/index.css`. El libro de estilo está en `docs/style-guide.md` y el plan de implementación por tareas (convención dicresoft/TASK.md) en `docs/plan-implementacion.md`.
+Sistema de diseño generado con las skills **Hallmark** (género _modern-minimal_, tema _Cobalt_) y **frontend-design*. Los tokens (OKLCH, tipografía, espaciado, easings) viven en `tokens.css`. El libro de estilo está en `docs/style-guide.md` y el plan de implementación por tareas (convención dicresoft/TASK.md) en `docs/plan-implementacion.md`.
 
 ## Convenciones de código
 
@@ -43,12 +43,11 @@ yarn lint      # ESLint
 ```
 src/
 ├── components/
-│   ├── ui/          # primitivas shadcn/ui
 │   ├── layout/      # sidebar, header, footer, nav
 │   └── dashboard/   # paneles: resumen, servidores, métricas, logs, seguridad
 ├── data/            # mock-data.json + cargador tipado
 ├── hooks/           # datos en vivo, scroll-spy, contadores animados, reveal
-├── lib/             # utils, formateadores, metadatos de estado, envoltura anime.js
+├── lib/             # utils, formateadores, metadatos de estado, envoltura vanilla JS
 └── types/           # modelo de dominio
 ```
 

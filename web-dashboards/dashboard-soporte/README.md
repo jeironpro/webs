@@ -2,17 +2,17 @@
 
 Panel de gestión de soporte técnico para e-commerce. Proyecto de portafolio que demuestra buenas prácticas de desarrollo frontend con React moderno.
 
-## Stack tecnológico
+## Stack tecnológica
 
 | Capa        | Tecnología                          |
 | ----------- | ----------------------------------- |
-| Framework   | React 19 + TypeScript 6             |
+| Framework   | HTML / CSS / JavaScript vanilla             |
 | Bundler     | Vite 8                              |
-| Estilos     | Tailwind CSS 4 (CSS-first config)   |
-| Componentes | shadcn/base-nova (headless)         |
-| Gráficos    | Recharts 3                          |
-| Animaciones | anime.js 4                          |
-| Routing     | React Router 7                      |
+| Estilos     | Tokens OKLCH (CSS-first config)   |
+| Componentes | Vanilla JS components               |
+| Gráficos    | Three.js + GSAP                     |
+| Animaciones | GSAP                                |
+| Routing     | Vanilla JS routing                  |
 | Linter      | oxlint                              |
 | Testing     | Vitest + Testing Library + jest-axe |
 

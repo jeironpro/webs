@@ -4,7 +4,7 @@ Dashboard operativo analítico (frontend) para monitorear KPIs de negocio, anali
 
 ## Funcionalidades
 
-- **KPIs del negocio** — ventas, conversión, pedidos, ticket promedio, retención y clientes nuevos con contadores animados (animejs), variación vs. periodo anterior y sparklines.
+- **KPIs del negocio** — ventas, conversión, pedidos, ticket promedio, retención y clientes nuevos con contadores animados ( **GSAP** ), variación vs. periodo anterior y sparklines.
 - **Gráficos de tendencias** — ventas del periodo (área), por categoría (barras), por canal (donut) y por región (barras horizontales), con conmutador **diario / semanal / mensual** (Recharts).
 - **Filtros** — rango de fechas (presets + calendario), categoría, región y canal. Todos los consumidores (KPIs, gráficos, tabla y reportes) se actualizan al cambiar cualquier filtro.
 - **Detalle de pedidos** — tabla de pedidos recientes con búsqueda (id, cliente o categoría, ignora tildes), filtro por estado y paginación.
@@ -15,15 +15,15 @@ Dashboard operativo analítico (frontend) para monitorear KPIs de negocio, anali
 
 ## Stack
 
-| Capa        | Tecnología                                                    |
-| ----------- | ------------------------------------------------------------- |
-| Framework   | React 19 + TypeScript + Vite 8                                |
-| Gestor      | yarn 4 (`.yarnrc.yml`, Corepack)                              |
-| UI          | shadcn/ui sobre Tailwind CSS v4 (Radix primitives)            |
-| Estado      | zustand                                                       |
-| Enrutado    | react-router (dashboard en `/`, perfil en `/perfil`)          |
-| Gráficos    | Recharts (vía componente `chart` de shadcn/ui)                |
-| Animaciones | animejs (contadores, transiciones, star-burst)                |
+| Capa        | Tecnología                    |
+| ----------- | ---------------------------- |
+| Framework   | HTML / CSS / JavaScript vanilla |
+| Three.js    | Visualizaciones 3D           |
+| GSAP        | Animaciones y KPIs          |
+| Estado      | Zustand (datos globales)     |
+| Enrutado    | Vanilla JS routing           |
+| Gráficos    | Recharts (puede usarse con vanilla) |
+| Animaciones | GSAP (contadores, transiciones, star-burst) |
 | Exportación | `jspdf` + `jspdf-autotable` (PDF), `xlsx` (Excel), Blob (CSV) |
 | Tests       | vitest (+ ESLint, Prettier, Husky/lint-staged)                |
 | CI          | GitHub Actions: install → lint → typecheck → test → build     |
@@ -31,7 +31,6 @@ Dashboard operativo analítico (frontend) para monitorear KPIs de negocio, anali
 ## Requisitos
 
 - Node.js ≥ 20 (recomendado 22 LTS)
-- yarn 4.18 (`corepack enable` si usas Corepack, o `npm i -g yarn`)
 
 ## Instalación y uso
 
@@ -39,7 +38,7 @@ Dashboard operativo analítico (frontend) para monitorear KPIs de negocio, anali
 # 1. Instalar dependencias
 yarn install
 
-# 2. Levantar el dev server (http://localhost:5173)
+# 2. Levantar el dev server
 yarn dev
 
 # 3. Abrir otro puerto si el 5173 está ocupado
@@ -68,7 +67,7 @@ yarn dev --port 5199
 
 ```
 src/
-├─ components/ui/      # Componentes base de shadcn/ui (botón, tabla, select…)
+├─ components/ui/      # Componentes base vanilla JS o Recharts vanilla port
 ├─ data/               # Datos mock en JSON (generados por scripts/generate-mock-data.mjs)
 ├─ features/
 │  ├─ charts/          # Tendencias: área, barras, donut + preparación de datos
@@ -80,7 +79,7 @@ src/
 │  └─ reports/         # Reporte por categoría + exportación PDF/Excel/CSV
 ├─ hooks/              # useAnimatedNumber, useReveal, useActiveSection
 ├─ lib/                # Lógica pura y testeable: agregaciones, filtros, pedidos, exporters
-├─ store/              # Store global (zustand) con datos y filtros
+├─ store/              # Store global (zustand) o vanilla JS state
 └─ types/              # Tipos de dominio del negocio
 ```
 
@@ -92,7 +91,7 @@ El diseño sigue la skill de diseño **hallmark** con el tema **Hum** (referenci
 - **Macroestructura** — **Stat-Led**: la banda de KPIs es el hero con contadores gigantes; el cuerpo funciona como **Workbench** con sidebar de navegación.
 - **Tipografía** — Plus Jakarta Sans (interfaz) + JetBrains Mono (labels técnicos y números tabulares).
 - **Forma** — radios generosos (píldoras y `rounded-4xl`), sin esquinas cuadradas; superficies con tint de acento y _lift_ en hover.
-- **Motion** — animejs para contadores (_tick-up_), transición de periodo, _reveal_ de secciones, marquee del footer y **star-burst** coral como microcelebración al exportar o interactuar con la mascota. Todo respeta `prefers-reduced-motion`.
+- **Motion** — GSAP para contadores (_tick-up_), transición de periodo, _reveal_ de secciones, marquee del footer y **star-burst** coral como microcelebración al exportar o interactuar con la mascota. Todo respeta `prefers-reduced-motion`.
 - **Personaje** — "Pulso", la mascota del dashboard: una bolita pera con ojos que vive en el hero y celebra al hacer clic. También es el favicon y el logo de la app.
 
 ## Flujo de trabajo (PRs)

@@ -6,11 +6,11 @@ documentación.
 
 ## Stack
 
-- **React 19 + Vite + TypeScript** (alias `@/` → `src/`)
+- **HTML / CSS / JavaScript** (vanilla)
+- **Three.js** para visualizaciones 3D
+- **GSAP** para animaciones
 - **yarn** (Berry, linker `node-modules`)
-- **Tailwind CSS v4 + shadcn/ui** (estilo `new-york`)
-- **animejs v4** para las animaciones firmadas
-- Sistema de diseño **Cobalt** (Hallmark) con tokens OKLCH en [`tokens.css`](tokens.css)
+- Sistema de diseño con tokens OKLCH
 
 ## Secciones
 
@@ -22,7 +22,7 @@ documentación.
 6. Salud del sistema (BD, recursos, servicios, colas)
 7. Reportes y exportación (CSV/Excel, programables)
 
-Los datos son un `MOCK` estático en [`src/data/mock.json`](src/data/mock.json).
+Los datos son un `MOCK` estático.
 
 ## Desarrollo
 
@@ -32,11 +32,6 @@ yarn dev        # servidor de desarrollo
 yarn typecheck  # chequeo de tipos
 yarn build      # build de producción
 ```
-
-## Documentación
-
-- [`docs/TASKS.md`](docs/TASKS.md) — plan de implementación por tarea (skill `dicresoft/TASK.md`)
-- [`docs/style-guide.md`](docs/style-guide.md) — libro de estilo
 
 ## Licencia
 
