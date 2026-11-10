@@ -17,7 +17,7 @@ Abre `index.html` de la raíz (o despliega el repositorio en GitHub Pages: el ca
 | [juego-4-rayas](./juego-4-rayas/)               | 4 en Raya         | Tablero  | react, vite, javascript |
 | [juego-7-letras](./juego-7-letras/)             | 7 Letras          | Palabras | html, css, javascript   |
 | [juego-adivina-numero](./juego-adivina-numero/) | Adivina el numero | Lógica   | html, css, javascript   |
-| [juego-ajedrez](./juego-ajedrez/)               | Ajedrez           | Tablero  | react, vite, javascript |
+| [juego-ajedrez](./juego-ajedrez/)               | Ajedrez           | Tablero  | html, css, javascript   |
 | [juego-carreras](./juego-carreras/)             | Circuito Neon     | Carreras | html, css, javascript   |
 | [juego-damas](./juego-damas/)                   | Damas             | Tablero  | react, vite, javascript |
 | [juego-farsante](./juego-farsante/)             | Farsante          | Lógica   | html, css, javascript   |
