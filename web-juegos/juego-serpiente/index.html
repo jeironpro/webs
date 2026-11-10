@@ -1,57 +1,113 @@
 <!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <link rel="icon" href="icon/serpiente.png" />
-    <title>Serpiente</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="css/styles.css" />
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
-</head>
-<body>
-    <main>
-        <div class="contenedor-principal">
-            <div class="cabecera-juego">
-                <h1 class="titulo-principal">Serpiente</h1>
-            </div>
-            <div id="tablero-juego" class="tablero">
-                <!-- El juego se genera desde el JavaScript -->
-                <div id="boton-inicio" class="capa-inicio">
-                    <span class="material-symbols-rounded">play_arrow</span>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="color-scheme" content="light" />
+        <meta name="theme-color" content="#f3eee4" />
+        <title>Serpiente · arcade de bolsillo</title>
+        <meta
+            name="description"
+            content="Serpiente en un tablero de 24×24 con bordes conectados y controles de teclado o táctiles."
+        />
+        <link rel="icon" href="icon/serpiente.png" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400,0,0"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="css/styles.css" />
+    </head>
+    <body>
+        <main class="app">
+            <div class="hoja">
+                <header class="cabecera">
+                    <div class="cabecera__linea">
+                        <p class="eyebrow">ARCADE DE BOLSILLO · 24 × 24</p>
+                        <span class="sello">SNAKE</span>
+                    </div>
+                    <h1>Serpiente</h1>
+                    <p class="entradilla">
+                        Come, crece y no te muerdas la cola. Los bordes del tablero conectan:
+                        si sales por un lado, entras por el otro.
+                    </p>
+                </header>
+
+                <section class="marcador" aria-label="Marcador">
+                    <div class="dato">
+                        <span class="dato__etiqueta">Puntos</span>
+                        <strong id="puntuacion" class="dato__valor">0</strong>
+                    </div>
+                    <div class="dato dato--centro">
+                        <span class="dato__etiqueta">Récord</span>
+                        <strong id="record" class="dato__valor">0</strong>
+                    </div>
+                    <div class="dato dato--derecha">
+                        <span class="dato__etiqueta">Estado</span>
+                        <strong id="estado" class="dato__estado">En espera</strong>
+                    </div>
+                </section>
+
+                <div class="marco">
+                    <canvas
+                        id="tablero"
+                        class="tablero"
+                        width="640"
+                        height="640"
+                        role="img"
+                        aria-label="Tablero de serpiente de 24 por 24"
+                    ></canvas>
+                    <div id="capa" class="capa">
+                        <p class="eyebrow" id="capa-eyebrow">LISTO CUANDO QUIERAS</p>
+                        <h2 id="capa-titulo">Toma el control</h2>
+                        <p id="capa-texto">
+                            Usa las flechas o WASD. La serpiente aparece en el centro del tablero.
+                        </p>
+                        <button id="boton-inicio" class="btn btn--primario" type="button">
+                            <span class="material-symbols-rounded" aria-hidden="true">play_arrow</span>
+                            Empezar
+                        </button>
+                    </div>
                 </div>
-                <!-- Pantalla de fin de juego -->
-                <div id="pantalla-final" class="pantalla-oculta">
-                    <h2 id="mensaje-final">¡FIN DEL JUEGO!</h2>
-                    <p id="puntos-finales">Puntos: 0</p>
-                    <button id="boton-reiniciar"><span class="material-symbols-rounded">refresh</span>
-                        REINTENTAR</button>
-                </div>
-            </div>
-            <div class="panel-info">
-                <div id="puntuacion-actual" class="puntuacion">PUNTOS: 0</div>
-            </div>
-            <div class="controles-tactiles">
-                <div class="fila-controles">
-                    <button id="ctrl-arriba" class="boton-direccion">
-                        <span class="material-symbols-rounded">arrow_upward</span>
+
+                <div class="acciones">
+                    <button id="boton-reiniciar" class="btn btn--secundario" type="button">
+                        <span class="material-symbols-rounded" aria-hidden="true">refresh</span>
+                        Reiniciar
+                    </button>
+                    <button id="boton-pausa" class="btn btn--secundario" type="button">
+                        <span class="material-symbols-rounded" aria-hidden="true">pause</span>
+                        Pausa
                     </button>
                 </div>
-                <div class="fila-controles">
-                    <button id="ctrl-izquierda" class="boton-direccion">
-                        <span class="material-symbols-rounded">arrow_back</span>
-                    </button>
-                    <button id="ctrl-abajo" class="boton-direccion">
-                        <span class="material-symbols-rounded">arrow_downward</span>
-                    </button>
-                    <button id="ctrl-derecha" class="boton-direccion">
-                        <span class="material-symbols-rounded">arrow_forward</span>
-                    </button>
+
+                <div class="controles-tactiles" aria-label="Controles de dirección">
+                    <div class="fila-controles">
+                        <button class="boton-direccion" data-direccion="arriba" type="button" aria-label="Arriba">
+                            <span class="material-symbols-rounded" aria-hidden="true">arrow_upward</span>
+                        </button>
+                    </div>
+                    <div class="fila-controles">
+                        <button class="boton-direccion" data-direccion="izquierda" type="button" aria-label="Izquierda">
+                            <span class="material-symbols-rounded" aria-hidden="true">arrow_back</span>
+                        </button>
+                        <button class="boton-direccion" data-direccion="abajo" type="button" aria-label="Abajo">
+                            <span class="material-symbols-rounded" aria-hidden="true">arrow_downward</span>
+                        </button>
+                        <button class="boton-direccion" data-direccion="derecha" type="button" aria-label="Derecha">
+                            <span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span>
+                        </button>
+                    </div>
                 </div>
+
+                <footer class="pie">
+                    <span>Flechas / WASD para mover · Espacio para pausar</span>
+                    <span>© 2026 JeironPro</span>
+                </footer>
             </div>
-        </div>
-    </main>
-    <script src="js/app.js"></script>
-</body>
+        </main>
+
+        <script src="js/app.js"></script>
+    </body>
 </html>
