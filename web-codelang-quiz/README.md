@@ -1,6 +1,6 @@
 # Web Codelang Quiz
 
-Aplicación web de preguntas y respuestas sobre programación. Plantea problemáticas de código con opciones A/B/C/D categorizadas por **lenguaje**, **dificultad** y **tipo**.
+Aplicación web estática de preguntas y respuestas sobre programación. Plantea problemáticas de código con opciones A/B/C/D categorizadas por **lenguaje**, **dificultad** y **tipo**.
 
 Es frontend-only: los datos viven como ficheros JSON en `public/data/` y el progreso se guarda en `localStorage`.
 
@@ -12,49 +12,32 @@ Es frontend-only: los datos viven como ficheros JSON en `public/data/` y el prog
 - Filtros por lenguaje, dificultad y tipo.
 - Historial de partidas y score acumulado persistidos en `localStorage`, con modal informativo en la barra de navegación que explica qué se guarda y dónde.
 - Sistema de diseño **Hum** (skill Hallmark): papel crema, acentos pera/cian/coral, sans redondeada.
+- Ruta oculta `/captura/:lenguaje/:id/:ratio` para generar piezas de redes sociales.
 
 ## Stack
 
-- React 18 + Vite
-- React Router v6
-- Vitest + React Testing Library
-- ESLint + Prettier
-- Yarn (corepack, Node 24)
+- HTML, CSS y JavaScript vanilla.
+- Datos JSON en `public/data/`.
+- `localStorage` para score e historial.
 
-## Instalación
+## Uso
+
+Abre `index.html` en el navegador o sirve la carpeta con un servidor estático:
 
 ```bash
-corepack enable
-yarn install
-yarn dev
+python3 -m http.server 8000
 ```
-
-## Scripts
-
-| Comando | Descripción |
-| --- | --- |
-| `yarn dev` | Servidor de desarrollo con HMR |
-| `yarn build` | Compilación de producción |
-| `yarn preview` | Previsualizar el build |
-| `yarn lint` | ESLint (sin warnings) |
-| `yarn format` / `yarn format:check` | Formato con Prettier |
-| `yarn test` | Ejecutar tests con Vitest |
 
 ## Estructura
 
-```
-src/
-  components/
-    layout/       Navbar, Footer, Layout
-    ui/           CodeBlock
-  context/        QuizContext (score e historial)
-  hooks/          useQuiz, useLocalStorage
-  pages/          Home, Quiz, Resultados, NotFound
-  routes/         Definición de rutas
-  services/       Acceso y filtrado de preguntas
-  styles/         tokens.css, globals.css, components.css
-  utils/          constantes, scoring, validators
-public/data/      Catálogo JSON de preguntas
+```text
+web-codelang-quiz/
+├── index.html
+├── styles.css
+├── app.js
+├── DESIGN.md
+└── public/
+    └── data/       Catálogo JSON de preguntas
 ```
 
 ## Dataset: cómo añadir preguntas
@@ -78,15 +61,6 @@ Cada lenguaje tiene un fichero en `public/data/<lenguaje>.json` con un array de 
 - `tipo`: `output`, `sintaxis`, `bug` o `concepto`.
 - `opciones` siempre usa claves `A`, `B`, `C`, `D`.
 - `respuesta` debe existir en `opciones`.
-- El test `src/services/questions.test.js` valida el esquema y los ids únicos de todo el catálogo.
-
-## Pruebas
-
-```bash
-yarn test
-```
-
-Los tests validan el esquema del dataset, la lógica de scoring, los hooks, el comportamiento de la página Quiz (feedback y detención de partida) y el modal informativo de la barra de navegación.
 
 ## Documentación de diseño
 
@@ -94,4 +68,4 @@ El sistema visual completo está documentado en [DESIGN.md](./DESIGN.md).
 
 ## Licencia
 
-MIT. Consulta [LICENSE](./LICENSE).
+MIT
