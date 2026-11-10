@@ -1,40 +1,111 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Memoriza La Carta</title>
-    <link rel="icon" href="img/pares.png">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
-</head>
-<body>
-    <main>
-        <div id="contenedor-principal">
-            <header class="encabezado">
-                <h1>Memoriza La Carta</h1>
-                <p>Encuentra todas las parejas de animales</p>
-            </header>
-            <section id="tablero-juego" class="tablero">
-                <!-- Las cartas se generarán dinámicamente mediante JavaScript -->
-            </section>
-            <footer class="controles">
-                <button id="boton-reiniciar" class="boton">Reiniciar Juego</button>
-            </footer>
-        </div>
-    </main>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="color-scheme" content="light" />
+        <meta name="theme-color" content="#f3eee4" />
+        <title>Memoriza la carta · mesa de parejas</title>
+        <meta
+            name="description"
+            content="Memoriza parejas de animales, frutas y objetos en tres niveles de dificultad."
+        />
+        <link rel="icon" href="img/pares.png" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400,0,0"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="css/styles.css" />
+    </head>
+    <body>
+        <main class="app">
+            <div class="hoja">
+                <header class="cabecera">
+                    <div class="cabecera__linea">
+                        <p class="eyebrow">MESA DE PAREJAS · VOL. 05</p>
+                        <span class="sello">MEMO</span>
+                    </div>
+                    <h1>Memoriza la carta</h1>
+                    <p class="entradilla">
+                        Levanta dos cartas, recuerda dónde está cada figura y encuentra todas las
+                        parejas. Elige un nivel y empieza por las que ya conoces.
+                    </p>
+                </header>
 
-    <!-- Modal de Victoria -->
-    <div id="modal-victoria" class="modal">
-        <div class="modal-contenido">
-            <h2>¡Felicidades!</h2>
-            <p>Has encontrado todas las parejas de animales.</p>
-            <button id="boton-cerrar-modal" class="boton">Jugar de Nuevo</button>
-        </div>
-    </div>
+                <section class="niveles" aria-label="Nivel de dificultad">
+                    <button class="nivel nivel--activo" type="button" data-nivel="facil" aria-pressed="true">
+                        <strong>Fácil</strong>
+                        <span>8 parejas</span>
+                    </button>
+                    <button class="nivel" type="button" data-nivel="medio" aria-pressed="false">
+                        <strong>Medio</strong>
+                        <span>12 parejas</span>
+                    </button>
+                    <button class="nivel" type="button" data-nivel="dificil" aria-pressed="false">
+                        <strong>Difícil</strong>
+                        <span>18 parejas</span>
+                    </button>
+                </section>
 
-    <script src="js/app.js"></script>
-</body>
+                <section class="marcador" aria-label="Marcador">
+                    <div class="dato">
+                        <span class="dato__etiqueta">Parejas</span>
+                        <strong id="parejas" class="dato__valor">0 / 8</strong>
+                    </div>
+                    <div class="dato dato--centro">
+                        <span class="dato__etiqueta">Intentos</span>
+                        <strong id="intentos" class="dato__valor">0</strong>
+                    </div>
+                    <div class="dato dato--derecha">
+                        <span class="dato__etiqueta">Tiempo</span>
+                        <strong id="tiempo" class="dato__valor">00:00</strong>
+                    </div>
+                </section>
+
+                <div class="marco">
+                    <div id="tablero-juego" class="tablero" role="grid" aria-label="Tablero de parejas"></div>
+                </div>
+
+                <div class="acciones">
+                    <button id="boton-reiniciar" class="btn btn--primario" type="button">
+                        <span class="material-symbols-rounded" aria-hidden="true">refresh</span>
+                        Nueva partida
+                    </button>
+                </div>
+
+                <footer class="pie">
+                    <span id="estado" role="status" aria-live="polite">Elige una carta para empezar.</span>
+                    <span>© 2026 JeironPro</span>
+                </footer>
+            </div>
+        </main>
+
+        <div id="modal-victoria" class="modal" hidden>
+            <div
+                class="modal__caja"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="modal-titulo"
+                aria-describedby="modal-texto"
+            >
+                <span class="material-symbols-rounded modal__icono" aria-hidden="true"
+                    >emoji_events</span
+                >
+                <p class="eyebrow">MESA COMPLETA</p>
+                <h2 id="modal-titulo">¡Todas las parejas!</h2>
+                <p id="modal-texto">Has encontrado cada figura de la mesa.</p>
+                <div class="modal__datos">
+                    <span>Intentos <strong id="modal-intentos">0</strong></span>
+                    <span>Tiempo <strong id="modal-tiempo">00:00</strong></span>
+                </div>
+                <button id="modal-jugar" class="btn btn--primario" type="button">
+                    Jugar otra vez
+                </button>
+            </div>
+        </div>
+
+        <script src="js/app.js"></script>
+    </body>
 </html>
