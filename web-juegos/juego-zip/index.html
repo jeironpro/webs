@@ -20,22 +20,26 @@
         <link rel="stylesheet" href="css/zip.css" />
     </head>
     <body>
-        <header class="cabecera">
-            <a class="marca" href="../index.html">
-                <span class="ms" aria-hidden="true">arrow_back</span>
-                juegos
-            </a>
-            <div class="cabecera__texto">
+        <header class="barra-superior">
+            <div class="marca-juego">
+                <span class="marca-juego__punto" aria-hidden="true"></span>
                 <h1>Zip</h1>
-                <p>Un solo trazo. Todas las casillas.</p>
+                <span class="marca-juego__lema">un solo camino</span>
             </div>
+            <p class="guardado" id="guardado" aria-live="polite">
+                <span class="ms" aria-hidden="true">save</span>
+                <span id="guardado-texto">Se guarda en este navegador</span>
+            </p>
         </header>
 
-        <main class="principal">
-            <section class="panel" aria-labelledby="titulo-tablero">
-                <h2 id="titulo-tablero" class="oculto">Tablero de Zip</h2>
-
-                <div class="barra">
+        <main class="disposicion">
+            <section class="partida" aria-labelledby="titulo-tablero">
+                <div class="partida__cabecera">
+                    <div>
+                        <p class="etiqueta">Partida</p>
+                        <h2 id="titulo-tablero">Tablero <span id="tamano-actual">6×6</span></h2>
+                        <p class="partida__nota" id="biblioteca">Cargando tableros…</p>
+                    </div>
                     <div class="tamanos" role="group" aria-label="Tamaño del tablero">
                         <button type="button" class="chip" data-n="6" aria-pressed="true">
                             6×6
@@ -47,20 +51,6 @@
                             8×8
                         </button>
                     </div>
-                    <ul class="hud">
-                        <li class="hud__dato">
-                            <span class="ms" aria-hidden="true">timer</span>
-                            <span id="tiempo">0:00</span>
-                        </li>
-                        <li class="hud__dato">
-                            <span class="ms" aria-hidden="true">footprint</span>
-                            <span id="movimientos">0</span>
-                        </li>
-                        <li class="hud__dato">
-                            <span class="ms" aria-hidden="true">grid_view</span>
-                            <span id="progreso">0/36</span>
-                        </li>
-                    </ul>
                 </div>
 
                 <div class="marco">
@@ -97,27 +87,92 @@
                     </button>
                 </div>
 
-                <p class="mejor">Mejor tiempo · <span id="mejor">—</span></p>
+                <p class="teclas">
+                    Flechas para avanzar · <kbd>U</kbd> deshacer · <kbd>R</kbd> borrar
+                </p>
             </section>
 
-            <section class="reglas" aria-labelledby="titulo-reglas">
-                <h2 id="titulo-reglas">Cómo se juega</h2>
-                <ol>
-                    <li>
-                        <strong>Empieza en el 1.</strong> Arrastra o usa las flechas: el camino
-                        solo avanza a casillas contiguas, nunca en diagonal.
-                    </li>
-                    <li>
-                        <strong>Sigue el orden.</strong> Pasa por 2, 3, 4… sin saltarte ninguno y
-                        sin pisar dos veces la misma casilla.
-                    </li>
-                    <li>
-                        <strong>Llénalo todo.</strong> El tablero se resuelve cuando todas las
-                        casillas forman parte del camino y terminas en el último número. Los muros
-                        no se cruzan.
-                    </li>
-                </ol>
-            </section>
+            <aside class="lateral" aria-label="Resumen de la partida y ayuda">
+                <section class="tarjeta" aria-labelledby="titulo-ahora">
+                    <div class="tarjeta__cabecera">
+                        <h2 id="titulo-ahora">Ahora</h2>
+                        <span class="tarjeta__detalle" id="detalle-tamano">6×6</span>
+                    </div>
+                    <dl class="datos">
+                        <div class="dato">
+                            <dt>Tiempo</dt>
+                            <dd id="tiempo">0:00</dd>
+                        </div>
+                        <div class="dato">
+                            <dt>Pasos</dt>
+                            <dd id="movimientos">0</dd>
+                        </div>
+                        <div class="dato">
+                            <dt>Casillas</dt>
+                            <dd id="progreso">0/36</dd>
+                        </div>
+                        <div class="dato">
+                            <dt>Récord</dt>
+                            <dd id="mejor">—</dd>
+                        </div>
+                    </dl>
+                    <div
+                        class="barra-progreso"
+                        id="barra-progreso"
+                        role="progressbar"
+                        aria-label="Casillas del camino"
+                        aria-valuemin="0"
+                        aria-valuemax="36"
+                        aria-valuenow="0"
+                    >
+                        <span id="barra-relleno"></span>
+                    </div>
+                </section>
+
+                <section class="tarjeta" aria-labelledby="titulo-records">
+                    <div class="tarjeta__cabecera">
+                        <h2 id="titulo-records">Récords</h2>
+                        <span class="tarjeta__detalle">por tamaño</span>
+                    </div>
+                    <ul class="records" id="records"></ul>
+                </section>
+
+                <section class="tarjeta tarjeta--datos" aria-labelledby="titulo-datos">
+                    <div class="tarjeta__cabecera">
+                        <h2 id="titulo-datos">Tus datos</h2>
+                        <span class="ms" aria-hidden="true">shield</span>
+                    </div>
+                    <p>
+                        La partida en curso, los récords y los tableros resueltos se guardan solo
+                        en este navegador con <code>localStorage</code>. No se envían a ningún
+                        servidor.
+                    </p>
+                    <button type="button" id="olvidar" class="btn btn--texto">
+                        <span class="ms" aria-hidden="true">delete</span>
+                        Borrar progreso y récords
+                    </button>
+                </section>
+
+                <section class="tarjeta" aria-labelledby="titulo-reglas">
+                    <div class="tarjeta__cabecera">
+                        <h2 id="titulo-reglas">Cómo se juega</h2>
+                    </div>
+                    <ol class="reglas">
+                        <li>
+                            <strong>Empieza en el 1.</strong> El camino solo avanza a casillas
+                            contiguas, nunca en diagonal.
+                        </li>
+                        <li>
+                            <strong>Sigue el orden.</strong> Pasa por 2, 3, 4… sin saltarte ninguno
+                            y sin pisar dos veces la misma casilla.
+                        </li>
+                        <li>
+                            <strong>Llénalo todo.</strong> Termina en el último número con todas las
+                            casillas usadas. Los muros no se cruzan.
+                        </li>
+                    </ol>
+                </section>
+            </aside>
         </main>
 
         <footer class="pie">
@@ -138,6 +193,7 @@
                 <dl class="modal__datos">
                     <div><dt>Tiempo</dt><dd id="modal-tiempo">0:00</dd></div>
                     <div><dt>Pasos</dt><dd id="modal-movimientos">0</dd></div>
+                    <div><dt>Récord</dt><dd id="modal-record">—</dd></div>
                 </dl>
                 <div class="modal__acciones">
                     <button type="button" class="btn btn--secundario" data-accion="cerrar">

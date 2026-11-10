@@ -75,13 +75,27 @@ function caminoHamiltoniano(n, rng, presupuesto = 400000) {
     return dfs(Math.floor(rng() * total)) ? camino : null;
 }
 
-/** Reparte los números a lo largo del camino, incluidos el primero y el último. */
-function colocarNumeros(camino, cantidad) {
+/**
+ * Reparte los números a lo largo del camino: primero y último siempre, y el
+ * resto con separación irregular para que ningún tablero se parezca a otro.
+ */
+function colocarNumeros(camino, cantidad, rng) {
     const largo = camino.length;
-    const posiciones = new Set();
-    for (let k = 0; k < cantidad; k++) {
-        posiciones.add(Math.round((k * (largo - 1)) / (cantidad - 1)));
+    const paso = (largo - 1) / (cantidad - 1);
+    const margen = Math.max(1, Math.floor(paso / 3));
+    const posiciones = new Set([0, largo - 1]);
+
+    for (let k = 1; k < cantidad - 1; k++) {
+        const centro = k * paso;
+        const desvio = Math.round((rng() * 2 - 1) * margen);
+        const posicion = Math.min(largo - 2, Math.max(1, Math.round(centro + desvio)));
+        posiciones.add(posicion);
     }
+
+    for (let relleno = 1; posiciones.size < cantidad && relleno < largo - 1; relleno++) {
+        posiciones.add(relleno);
+    }
+
     return [...posiciones]
         .sort((a, b) => a - b)
         .map((posicion, orden) => ({ i: camino[posicion], orden }));
@@ -199,7 +213,7 @@ export function generarPuzzle(n, opciones = {}) {
         const camino = caminoHamiltoniano(n, rng);
         if (!camino) continue;
 
-        const numeros = colocarNumeros(camino, cantidad);
+        const numeros = colocarNumeros(camino, cantidad, rng);
         if (numeros.length !== cantidad) continue;
         const candidatas = barajar(aristasLibres(n, camino), rng);
 
