@@ -1,56 +1,35 @@
 # Web Naruto
 
-Aplicación web de personajes de Naruto con fichas, sistema de puntuación, podio top 3, filtros y diseño oscuro temático.
+Enciclopedia estática de personajes de Naruto con fichas, sistema de puntuación, podio top 3, filtros y diseño oscuro temático.
 
 ## Stack
 
-- React 19 + Vite 8 + TypeScript
-- CSS puro (sin frameworks)
+- HTML5, CSS y JavaScript vanilla
 - Bangers (títulos) + Inter (cuerpo)
-- Cloudflare Functions (API serverless)
-
-## Instalación
-
-```bash
-pnpm install
-```
+- Datos locales en JSON e imágenes WebP
 
 ## Desarrollo
 
-```bash
-pnpm dev
-```
-
-## Producción
+Abre `index.html` desde un servidor estático, por ejemplo:
 
 ```bash
-pnpm build
+python3 -m http.server 8000
 ```
 
 ## Estructura
 
 ```
-src/
-  components/    — Componentes React (Card, FilterBar, Modal, Podium, etc.)
-  hooks/         — Custom hooks (useNarutoData)
-  services/      — Cliente API (api.ts)
-  utils/         — Tipos TypeScript compartidos
+index.html       — Estructura de la interfaz
+styles.css       — Estilos compilados del diseño original
+app.js           — Filtros, orden, paginación y modales
 data/naruto/     — JSON de personajes con stats, habilidades, fortalezas y debilidades
-functions/       — Cloudflare Functions (API serverless)
-public/images/   — Imágenes de personajes (PNG)
+images/          — Imágenes WebP de los personajes
 ```
 
-## API
+## Funcionalidad
 
-La API sirve personajes con filtros, orden y paginación. Parámetros de query:
-
-| Parámetro   | Tipo   | Descripción                          |
-|-------------|--------|--------------------------------------|
-| `pagina`    | number | Página actual (default: 1)           |
-| `por_pagina`| number | Resultados por página (default: 24)  |
-| `busqueda`  | string | Búsqueda por nombre                   |
-| `aldea`     | string | Filtrar por aldea                     |
-| `clan`      | string | Filtrar por clan                      |
-| `equipo`    | string | Filtrar por equipo                    |
-| `rango`     | string | Filtrar por rango                     |
-| `ordenar`   | string | `score-desc`, `score-asc`, `nombre-asc`, `nombre-desc` |
+- Búsqueda por nombre y filtros por aldea, clan, equipo y rango.
+- Orden por puntuación o nombre.
+- Paginación de 24 personajes por página.
+- Fichas con estadísticas, habilidades, fortalezas y debilidades.
+- Modal con la imagen ampliada y podio de los tres mejores personajes.

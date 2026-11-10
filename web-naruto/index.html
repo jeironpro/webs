@@ -4,17 +4,48 @@
         <meta charset="UTF-8" />
         <link rel="icon" type="image/png" href="./favicon.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="Enciclopedia interactiva de personajes de Naruto con fichas, estadísticas, sistema de puntuación y podio top 3." />
+        <meta
+            name="description"
+            content="Enciclopedia interactiva de personajes de Naruto con fichas, estadísticas, sistema de puntuación y podio top 3."
+        />
         <meta name="theme-color" content="#0d1b3e" />
         <meta property="og:title" content="Naruto - Enciclopedia de Personajes" />
-        <meta property="og:description" content="Explora todos los personajes de Naruto con sus estadísticas, habilidades, fortalezas y debilidades." />
+        <meta
+            property="og:description"
+            content="Explora todos los personajes de Naruto con sus estadísticas, habilidades, fortalezas y debilidades."
+        />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Bangers&family=Inter:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="./styles.css" />
         <title>Naruto</title>
-        <script type="module" src="/src/main.tsx"></script>
     </head>
     <body>
         <noscript>Necesitas JavaScript habilitado para usar esta aplicación.</noscript>
-        <div id="root"></div>
+        <div id="app" class="app">
+            <div class="background-kunai" id="background-kunai" aria-hidden="true"></div>
+
+            <header class="header">
+                <div class="header-content"><h1 class="header-title">NARUTO</h1></div>
+                <div class="header-decor"></div>
+            </header>
+
+            <main class="main-content">
+                <section class="filter-bar" id="filter-bar" aria-label="Filtros"></section>
+                <div id="estado" class="loading-state">Cargando personajes...</div>
+                <div class="characters-grid" id="cards"></div>
+                <nav class="pagination" id="pagination" role="navigation" aria-label="Paginación"></nav>
+            </main>
+
+            <footer class="footer"><span class="footer-text">jeironpro</span></footer>
+        </div>
+
+        <div id="modal-root"></div>
+        <script src="./app.js"></script>
     </body>
 </html>
