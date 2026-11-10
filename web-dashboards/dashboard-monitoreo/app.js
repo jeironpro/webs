@@ -94,11 +94,13 @@ const elements = {
 
 // Inicializar referencias después del DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
+    mountLayout();
+
     elements.sidebar = document.querySelector('.sidebar');
     elements.header = document.querySelector('.header');
     elements.main = document.querySelector('.main');
     elements.footer = document.querySelector('.footer');
-    
+
     // Inicializar componentes
     initSidebar();
     initHeader();
@@ -106,8 +108,66 @@ document.addEventListener('DOMContentLoaded', () => {
     updateDashboard();
 });
 
+// ===== Montaje del layout (la plantilla solo trae #root) =====
+function mountLayout() {
+    const root = elements.root;
+    if (!root) return;
+
+    root.innerHTML = `
+        <div class="app-shell">
+            <aside class="sidebar">
+                <div class="brand">
+                    <span class="brand-mark">V</span>
+                    <span class="brand-name">Vigía</span>
+                </div>
+                <nav class="nav" aria-label="Secciones del panel">
+                    ${navSections
+                        .map(
+                            (section) => `
+                        <a href="#${section.id}" class="nav-link${section.id === 'overview' ? ' active' : ''}" data-section="${section.id}">
+                            <span class="nav-icon" aria-hidden="true">${section.icon}</span>
+                            <span>${section.title}</span>
+                        </a>`
+                        )
+                        .join('')}
+                </nav>
+            </aside>
+            <div class="app-body">
+                <header class="header">
+                    <button type="button" class="sidebar-toggle" aria-label="Abrir menú">☰</button>
+                    <div class="header-title">Observabilidad de infraestructura</div>
+                    <div class="header-actions">
+                        <select data-range aria-label="Rango temporal">
+                            <option value="1h">Última hora</option>
+                            <option value="24h" selected>Últimas 24 h</option>
+                            <option value="7d">Últimos 7 días</option>
+                        </select>
+                        <button type="button" data-refresh>Actualizar</button>
+                        <button type="button" data-theme-toggle aria-label="Cambiar tema">🌓</button>
+                        <a href="#" data-profile>${dashboardData.currentUser}</a>
+                    </div>
+                </header>
+                <main class="main" id="main"></main>
+                <footer class="footer">
+                    <span data-range-display>Última actualización: ${dashboardData.updatedAt}</span>
+                </footer>
+            </div>
+        </div>
+    `;
+}
+
+// ===== Tema claro/oscuro =====
+function initThemeToggle() {
+    const toggle = document.querySelector('[data-theme-toggle]');
+    if (!toggle) return;
+
+    toggle.addEventListener('click', () => {
+        const isDark = document.documentElement.classList.toggle('dark');
+        applyTheme(isDark ? THEME.DARK : THEME.LIGHT);
+    });
+}
+
 // ===== Hook useReveal equivalente =====
-const revealElements = [];
 function observeReveal(selector) {
     const elements = document.querySelectorAll(selector);
     const observer = new IntersectionObserver((entries) => {
@@ -121,11 +181,6 @@ function observeReveal(selector) {
     
     elements.forEach(el => observer.observe(el));
     return observer;
-}
-
-// ===== Hook useDashboardData equivalente =====
-function useDashboardData() {
-    return { ...dashboardData };
 }
 
 // ===== Hook useActiveSection equivalente =====
@@ -234,38 +289,66 @@ function updateRangeDisplay() {
 // ===== Actualizar dashboard =====
 function updateDashboard() {
     if (!elements.main) return;
-    
-    const html = `
-        <section>
-            <h2 class="section-heading">Visión general</h2>
-            <div class="status-summary">
-                <div class="metric-card">
-                    <span class="metric-value">${dashboardData.latencyAvg}ms</span>
-                    <span class="metric-label">Latencia promedio</span>
-                </div>
-                <div class="metric-card">
-                    <span class="metric-value">${dashboardData.servers.filter(s => s.status === 'online').length}</span>
-                    <span class="metric-label">Servidores en línea</span>
-                </div>
-                <div class="metric-card">
-                    <span class="metric-value">${dashboardData.alertCounts.critical}</span>
-                    <span class="metric-label">Alertas críticas</span>
-                </div>
+
+    const section = document.createElement('section');
+    section.className = 'overview';
+    section.innerHTML = `
+        <h2 class="section-heading">Visión general</h2>
+        <div class="status-summary">
+            <div class="metric-card">
+                <span class="metric-value">${dashboardData.latencyAvg}ms</span>
+                <span class="metric-label">Latencia promedio</span>
             </div>
-            <latency-chart></latency-chart>
-            <recent-alerts></recent-alerts>
-        </section>
-        
-        <servers-panel></servers-panel>
-        <metrics-panels></metrics-panels>
-        <logs-panel></logs-panel>
-        <security-alerts></security-alerts>
+            <div class="metric-card">
+                <span class="metric-value">${dashboardData.servers.filter((s) => s.status === 'online').length}</span>
+                <span class="metric-label">Servidores en línea</span>
+            </div>
+            <div class="metric-card">
+                <span class="metric-value">${dashboardData.alertCounts.critical}</span>
+                <span class="metric-label">Alertas críticas</span>
+            </div>
+        </div>
     `;
-    
-    elements.main.innerHTML = html;
-    
+
+    const overviewGrid = document.createElement('div');
+    overviewGrid.className = 'overview-grid';
+    overviewGrid.append(createLatencyChart(), createRecentAlerts());
+    section.appendChild(overviewGrid);
+
+    elements.main.innerHTML = '';
+    elements.main.append(
+        section,
+        createServersPanel(),
+        createMetricsPanels(),
+        createLogsPanel(),
+        createSecurityAlerts()
+    );
+
     // Ejecutar observadores de reveal
     observeReveal('.reveal');
+}
+
+// ===== Vista de perfil =====
+function updateView() {
+    if (!elements.main) return;
+
+    if (state.view !== 'profile') {
+        updateDashboard();
+        return;
+    }
+
+    elements.main.innerHTML = `
+        <section class="profile">
+            <h2 class="section-heading">Perfil</h2>
+            <div class="profile-card">
+                <span class="profile-avatar" aria-hidden="true">${dashboardData.currentUser[0].toUpperCase()}</span>
+                <div class="profile-data">
+                    <span class="profile-name">${dashboardData.currentUser}</span>
+                    <span class="profile-role">Operador de infraestructura</span>
+                </div>
+            </div>
+        </section>
+    `;
 }
 
 // ===== Componentes Vanilla =====
@@ -292,17 +375,14 @@ function createLatencyChart() {
     
     // Área bajo la curva
     const areaPath = document.createElementNS(svgNS, 'path');
-    const areaPoints = [
-        ...dashboardData.latencyHistoryData.map(p => {
-            const x = (p.time === '00:00' || p.time === '05:00') ? 
-                (dashboardData.latencyHistoryData.indexOf(p) / (dashboardData.latencyHistoryData.length - 1)) * 200 : 
-                ((dashboardData.latencyHistoryData.indexOf(p) + 1) / (dashboardData.latencyHistoryData.length - 1)) * 200;
-            const y = 50 - (p.value / 100) * 30;
-            return `${x},${y}`;
-        }),
-        '200,50', '0,50'
-    ];
-    areaPath.setAttribute('d', areaPoints.join(' '));
+    const total = dashboardData.latencyHistoryData.length - 1;
+    const areaPoints = dashboardData.latencyHistoryData.map((p, i) => {
+        const x = (i / total) * 200;
+        const y = 50 - (p.value / 100) * 30;
+        return `${x},${y}`;
+    });
+    const areaD = `M${areaPoints[0]} ${areaPoints.slice(1).map((p) => `L${p}`).join(' ')} L200,50 L0,50 Z`;
+    areaPath.setAttribute('d', areaD);
     areaPath.setAttribute('fill', 'rgba(59, 130, 246, 0.1)');
     
     svg.appendChild(path);
