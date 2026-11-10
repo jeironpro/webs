@@ -1,41 +1,142 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="icon/sudoku.png" type="image/x-icon">
-    <title>Sudoku</title>
-    <link href="https://fonts.googleapis.com/css2?family=Mozilla+Text:wght@200..700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
-    <link rel="stylesheet" href="css/sudoku.css">
-</head>
-<body>
-    <header>
-        <h1>Sudoku</h1>
-    </header>
-    <main>
-        <div class="contenedor-principal">
-            <div class="tablero sudoku" id="tablero"></div>
-            <div class="teclado" id="teclado"></div>
-        </div>
-    </main>
-    <footer>
-        <p>&copy; Todos los derechos reservados 2025 - JeironPro</p>
-    </footer>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="color-scheme" content="light" />
+        <meta name="theme-color" content="#f3eee4" />
+        <title>Sudoku · cuaderno de lógica</title>
+        <meta
+            name="description"
+            content="Sudoku clásico de 9×9 con 500 tableros, progreso, errores y reloj."
+        />
+        <link rel="shortcut icon" href="icon/sudoku.png" type="image/x-icon" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400,0,0"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="css/sudoku.css" />
+    </head>
+    <body>
+        <div class="pagina">
+            <header class="cabecera">
+                <div class="cabecera__linea">
+                    <p class="eyebrow">CUADERNO DE LÓGICA · VOL. 01</p>
+                    <span class="sello">9 × 9</span>
+                </div>
+                <h1>Sudoku</h1>
+                <p class="entradilla">
+                    Un tablero, nueve números y una sola regla: cada fila, columna y caja debe
+                    contener del 1 al 9 sin repetir. Tómate tu tiempo.
+                </p>
+                <div class="meta">
+                    <span>500 tableros</span>
+                    <span>dificultad variable</span>
+                    <span>sin prisa</span>
+                </div>
+            </header>
 
-    <!-- Modal de Victoria -->
-    <div class="contenedor-modal" id="modal-victoria">
-        <div class="modal">
-            <span class="material-symbols-outlined icono-victoria">emoji_events</span>
-            <h2>¡Felicidades!</h2>
-            <p>Has completado el Sudoku correctamente.</p>
-            <button id="btn-reiniciar" class="btn-reiniciar">
-                <span class="material-symbols-outlined">replay</span>
-                Jugar de nuevo
-            </button>
-        </div>
-    </div>
+            <main class="juego">
+                <section class="panel-tablero" aria-label="Tablero de sudoku">
+                    <div class="panel-tablero__cabecera">
+                        <p id="estado" class="estado" role="status" aria-live="polite">
+                            Elige una casilla para empezar.
+                        </p>
+                        <span id="progreso-texto" class="progreso-texto">0 / 81</span>
+                    </div>
 
-    <script src="js/sudoku.js"></script>
-</body>
+                    <div class="marco">
+                        <div id="tablero" class="tablero" role="grid" aria-label="Sudoku"></div>
+                    </div>
+
+                    <div class="leyenda">
+                        <span><i class="punto punto--dada"></i> Número fijo</span>
+                        <span><i class="punto punto--activa"></i> Casilla activa</span>
+                        <span><i class="punto punto--error"></i> Revisa ese número</span>
+                    </div>
+                </section>
+
+                <aside class="lateral" aria-label="Controles del sudoku">
+                    <section class="tarjeta tarjeta--progreso">
+                        <div class="tarjeta__titulo">
+                            <span class="material-symbols-rounded" aria-hidden="true">trending_up</span>
+                            <p>Progreso</p>
+                            <strong id="progreso">0%</strong>
+                        </div>
+                        <div class="barra" aria-hidden="true">
+                            <span id="barra"></span>
+                        </div>
+                        <p class="nota">Cada acierto te acerca al tablero completo.</p>
+                    </section>
+
+                    <section class="tarjeta tarjeta--datos">
+                        <div class="dato">
+                            <span class="dato__etiqueta">Errores</span>
+                            <strong id="errores">0</strong>
+                        </div>
+                        <div class="dato">
+                            <span class="dato__etiqueta">Tiempo</span>
+                            <strong id="tiempo">00:00</strong>
+                        </div>
+                    </section>
+
+                    <section class="teclado" aria-label="Teclado numérico">
+                        <div id="teclado" class="teclado__numeros"></div>
+                        <div class="teclado__acciones">
+                            <button id="btn-borrar" class="btn btn--secundario" type="button">
+                                <span class="material-symbols-rounded" aria-hidden="true">backspace</span>
+                                Borrar
+                            </button>
+                            <button id="btn-comprobar" class="btn btn--secundario" type="button">
+                                <span class="material-symbols-rounded" aria-hidden="true">check</span>
+                                Comprobar
+                            </button>
+                        </div>
+                    </section>
+
+                    <button id="btn-reiniciar" class="btn btn--primario" type="button">
+                        <span class="material-symbols-rounded" aria-hidden="true">refresh</span>
+                        Nuevo tablero
+                    </button>
+
+                    <p class="nota nota--pie">
+                        También puedes usar las flechas del teclado y las teclas 1–9.
+                    </p>
+                </aside>
+            </main>
+
+            <footer class="pie">
+                <span>© 2026 JeironPro</span>
+                <span>MIT</span>
+            </footer>
+        </div>
+
+        <div id="modal-victoria" class="modal" hidden>
+            <div
+                class="modal__caja"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="modal-titulo"
+                aria-describedby="modal-texto"
+            >
+                <span class="material-symbols-rounded modal__icono" aria-hidden="true"
+                    >emoji_events</span
+                >
+                <p class="eyebrow">TABLERO COMPLETO</p>
+                <h2 id="modal-titulo">Sudoku resuelto</h2>
+                <p id="modal-texto">Cada fila, columna y caja está en su sitio.</p>
+                <div class="modal__datos">
+                    <span>Tiempo <strong id="modal-tiempo">00:00</strong></span>
+                    <span>Errores <strong id="modal-errores">0</strong></span>
+                </div>
+                <button id="btn-jugar-otra" class="btn btn--primario" type="button">
+                    Jugar otro tablero
+                </button>
+            </div>
+        </div>
+
+        <script src="js/sudoku.js"></script>
+    </body>
 </html>
