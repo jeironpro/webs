@@ -1,3 +1,10 @@
+@layer base {
+:root {
+    --borde: #f00;
+    --texto: #000;
+    --texto-2: #fff;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
@@ -39,16 +46,16 @@ main {
 }
 
 .contenedor form input {
-    border: 1px solid #f00;
+    border: 1px solid var(--borde);
     border-radius: 3px;
     height: 26px;
     outline: none;
 }
 
 .contenedor form .mostrar-ocultar {
-    background-color: #000;
+    background-color: var(--texto);
     border-radius: 0 2px 2px 0;
-    color: #fff;
+    color: var(--texto-2);
     cursor: pointer;
     font-size: 15px;
     height: 24px;
@@ -62,18 +69,18 @@ main {
 }
 
 .contenedor form .olv-con {
-    color: #000;
+    color: var(--texto);
     cursor: pointer;
     font-size: 13px;
     margin: 2px;
 }
 
 .contenedor form .olv-con:hover {
-    text-decoration: underline #f00;
+    text-decoration: underline var(--borde);
 }
 
 .contenedor form .captcha {
-    border: 1px dotted #000;
+    border: 1px dotted var(--texto);
     border-radius: 3px;
     font-size: 15px;
     padding: 2px;
@@ -82,7 +89,7 @@ main {
 
 .contenedor form .reiniciar-captcha {
     border-radius: 0 2px 2px 0;
-    color: #f00;
+    color: var(--borde);
     cursor: pointer;
     font-size: 16px;
     height: 22px;
@@ -102,14 +109,14 @@ main {
 }
 
 .contenedor form .captcha-usuario::placeholder {
-    color: #000;
+    color: var(--texto);
 }
 
 .contenedor form button {
     background-color: rgb(255, 80, 80);
     border: none;
     border-radius: 3px;
-    color: #000;
+    color: var(--texto);
     font-size: 15px;
     font-weight: 600;
     margin-top: 30px;
@@ -117,7 +124,7 @@ main {
 }
 
 .contenedor form button:hover {
-    background-color: #f00;
+    background-color: var(--borde);
 }
 
 .contenedor .enlace-registro {
@@ -127,7 +134,7 @@ main {
 }
 
 .contenedor .enlace-registro a {
-    color: #000;
+    color: var(--texto);
     font-weight: 500;
     text-decoration: none;
 }
@@ -135,14 +142,25 @@ main {
 .contenedor .enlace-registro a:hover {
     text-decoration: underline;
 }
+}
 
-
-@media screen and (max-width: 500px) {
+@layer responsive {
+    /* Base móvil: hasta 500 px */
     .contenedor {
         margin-top: 150px;
     }
 
     .contenedor form .mostrar-ocultar {
         height: 27px;
+    }
+
+    @media (min-width: 501px) {
+        .contenedor {
+            margin-top: revert-layer;
+        }
+
+        .contenedor form .mostrar-ocultar {
+            height: 24px;
+        }
     }
 }

@@ -1,3 +1,9 @@
+:root {
+    --fondo: #0b4550;
+    --fondo-2: #1b454d;
+    --texto: #fff;
+}
+
 body {
     font-family: 'Quicksand', sans-serif;
     margin: 0;
@@ -19,7 +25,7 @@ main {
 }
 
 .contenedor-elementos {
-    background: linear-gradient(to bottom, #0b4550, #1b454d);
+    background: linear-gradient(to bottom, var(--fondo), var(--fondo-2));
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(27, 69, 77, 1);
     padding: 20px;
@@ -36,7 +42,7 @@ main {
 }
 
 .contenedor-elementos span {
-    color: #fff;
+    color: var(--texto);
     cursor: pointer;
     font-size: 20px;
     font-weight: 600;

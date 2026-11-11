@@ -1,8 +1,8 @@
 function menu() {
-    var ul = document.querySelector('nav ul');
-    var items = document.getElementById('contenedor-items');
-    var iconoBurger = document.getElementById('icono-burger');
-    var main = document.querySelector('main');
+    const ul = document.querySelector('nav ul');
+    const items = document.getElementById('contenedor-items');
+    const iconoBurger = document.getElementById('icono-burger');
+    const main = document.querySelector('main');
 
     ul.classList.toggle('active');
     items.classList.toggle('active');

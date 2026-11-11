@@ -228,20 +228,98 @@ function chooseMove(current, level) {
 }
 
 // Interfaz.
-const icon = (name) => `<span class="material-symbols-rounded" aria-hidden="true">${name}</span>`;
-const button = (text, iconName, variant = 'primary') => `<button type="button" class="button button--${variant}" data-action="${text === 'Jugar' ? 'start' : text === 'Reiniciar' ? 'restart' : text === 'Menú' ? 'menu' : text === 'Jugar de nuevo' ? 'restart' : ''}">${iconName ? icon(iconName) : ''}${text}</button>`;
+function crear(etiqueta, propiedades = {}, hijos = []) {
+    const nodo = document.createElement(etiqueta);
+
+    Object.entries(propiedades).forEach(([clave, valor]) => {
+        if (valor === undefined || valor === null || valor === false) return;
+        if (clave === 'clase') nodo.className = valor;
+        else if (clave === 'texto') nodo.textContent = valor;
+        else if (clave === 'estilo') nodo.setAttribute('style', valor);
+        else nodo.setAttribute(clave, valor === true ? '' : String(valor));
+    });
+
+    [].concat(hijos).forEach((hijo) => {
+        if (hijo === null || hijo === undefined || hijo === false) return;
+        nodo.append(hijo instanceof Node ? hijo : document.createTextNode(String(hijo)));
+    });
+
+    return nodo;
+}
+
+const icon = (name) => crear('span', { clase: 'material-symbols-rounded', 'aria-hidden': 'true', texto: name });
+
+const accionDe = (text) => (text === 'Jugar' ? 'start' : text === 'Reiniciar' || text === 'Jugar de nuevo' ? 'restart' : text === 'Menú' ? 'menu' : '');
+
+const button = (text, iconName, variant = 'primary') =>
+    crear('button', { type: 'button', clase: `button button--${variant}`, 'data-action': accionDe(text) }, [
+        iconName ? icon(iconName) : null,
+        text,
+    ]);
 
 function renderHome() {
     const modes = [
         { id: 'bot', label: 'Jugar vs Bot', description: 'Enfréntate al bot en este tablero', icon: 'smart_toy' },
         { id: 'local', label: '2 Jugadores', description: 'Comparte el tablero con otra persona', icon: 'group' },
     ];
-    app.innerHTML = `<div class="home">
-        <header class="home__header">${icon('sports_esports')}<h1 class="home__title">4 en Raya</h1><p class="home__subtitle">Conecta cuatro bolitas para ganar</p></header>
-        <div class="home__modes">${modes.map((item) => `<button type="button" class="home__mode${selectedMode === item.id ? ' home__mode--selected' : ''}" data-mode="${item.id}" aria-pressed="${selectedMode === item.id}">${icon(item.icon)}<span class="home__mode-label">${item.label}</span><span class="home__mode-description">${item.description}</span></button>`).join('')}</div>
-        ${selectedMode === 'bot' ? `<div class="home__difficulty" role="group" aria-label="Dificultad del bot">${DIFFICULTIES.map((level) => `<button type="button" class="home__difficulty-option${difficulty === level ? ' home__difficulty-option--active' : ''}" data-difficulty="${level}" aria-pressed="${difficulty === level}">${DIFFICULTY_LABELS[level]}</button>`).join('')}</div>` : ''}
-        <button type="button" class="button button--primary" data-action="start" ${selectedMode === null ? 'disabled' : ''}>${icon('play_arrow')}Jugar</button>
-    </div>`;
+    const dificultades = crear(
+        'div',
+        { clase: 'home__difficulty', role: 'group', 'aria-label': 'Dificultad del bot' },
+        DIFFICULTIES.map((level) =>
+            crear(
+                'button',
+                {
+                    type: 'button',
+                    clase: `home__difficulty-option${difficulty === level ? ' home__difficulty-option--active' : ''}`,
+                    'data-difficulty': level,
+                    'aria-pressed': String(difficulty === level),
+                },
+                [DIFFICULTY_LABELS[level]]
+            )
+        )
+    );
+
+    app.replaceChildren(
+        crear('div', { clase: 'home' }, [
+            crear('header', { clase: 'home__header' }, [
+                icon('sports_esports'),
+                crear('h1', { clase: 'home__title', texto: '4 en Raya' }),
+                crear('p', { clase: 'home__subtitle', texto: 'Conecta cuatro bolitas para ganar' }),
+            ]),
+            crear(
+                'div',
+                { clase: 'home__modes' },
+                modes.map((item) =>
+                    crear(
+                        'button',
+                        {
+                            type: 'button',
+                            clase: `home__mode${selectedMode === item.id ? ' home__mode--selected' : ''}`,
+                            'data-mode': item.id,
+                            'aria-pressed': String(selectedMode === item.id),
+                        },
+                        [
+                            icon(item.icon),
+                            crear('span', { clase: 'home__mode-label', texto: item.label }),
+                            crear('span', { clase: 'home__mode-description', texto: item.description }),
+                        ]
+                    )
+                )
+            ),
+            selectedMode === 'bot' ? dificultades : null,
+            crear(
+                'button',
+                {
+                    type: 'button',
+                    clase: 'button button--primary',
+                    'data-action': 'start',
+                    disabled: selectedMode === null ? true : undefined,
+                },
+                [icon('play_arrow'), 'Jugar']
+            ),
+        ])
+    );
+
     app.querySelectorAll('[data-mode]').forEach((element) => element.addEventListener('click', () => { selectedMode = element.dataset.mode; renderHome(); }));
     app.querySelectorAll('[data-difficulty]').forEach((element) => element.addEventListener('click', () => { difficulty = element.dataset.difficulty; renderHome(); }));
     app.querySelector('[data-action="start"]').addEventListener('click', startGame);
@@ -253,11 +331,35 @@ function scoreboard() {
     const p2Name = isBotMode ? 'BOT' : 'JUGADOR 2';
     const active1 = game.turn === PLAYER_1;
     const active2 = game.turn === PLAYER_2;
-    return `<section class="scoreboard" aria-label="Marcador de la partida">
-        ${isBotMode ? `<div class="scoreboard__badge-row"><span class="scoreboard__badge">${DIFFICULTY_LABELS[difficulty]}</span></div>` : ''}
-        <div class="scoreboard__names"><span class="scoreboard__name${active1 ? ' scoreboard__name--active' : ''}">${p1Name}</span><span class="scoreboard__name${active2 ? ' scoreboard__name--active' : ''}">${p2Name}</span></div>
-        <div class="scoreboard__counts"><span class="scoreboard__count${active1 ? ' scoreboard__count--active' : ''}">${scores[PLAYER_1]}</span><span class="scoreboard__vs">vs</span><span class="scoreboard__count${active2 ? ' scoreboard__count--active' : ''}">${scores[PLAYER_2]}</span></div>
-    </section>`;
+
+    return crear('section', { clase: 'scoreboard', 'aria-label': 'Marcador de la partida' }, [
+        isBotMode
+            ? crear('div', { clase: 'scoreboard__badge-row' }, [
+                  crear('span', { clase: 'scoreboard__badge', texto: DIFFICULTY_LABELS[difficulty] }),
+              ])
+            : null,
+        crear('div', { clase: 'scoreboard__names' }, [
+            crear('span', {
+                clase: `scoreboard__name${active1 ? ' scoreboard__name--active' : ''}`,
+                texto: p1Name,
+            }),
+            crear('span', {
+                clase: `scoreboard__name${active2 ? ' scoreboard__name--active' : ''}`,
+                texto: p2Name,
+            }),
+        ]),
+        crear('div', { clase: 'scoreboard__counts' }, [
+            crear('span', {
+                clase: `scoreboard__count${active1 ? ' scoreboard__count--active' : ''}`,
+                texto: String(scores[PLAYER_1]),
+            }),
+            crear('span', { clase: 'scoreboard__vs', texto: 'vs' }),
+            crear('span', {
+                clase: `scoreboard__count${active2 ? ' scoreboard__count--active' : ''}`,
+                texto: String(scores[PLAYER_2]),
+            }),
+        ]),
+    ]);
 }
 
 function listBalls(board) {
@@ -275,18 +377,61 @@ function getStrikeEnds(line) {
     return { x1: first.col + 0.5 - stepCol * 0.5, y1: first.row + 0.5 - stepRow * 0.5, x2: last.col + 0.5 + stepCol * 0.5, y2: last.row + 0.5 + stepRow * 0.5 };
 }
 
+const SVG = 'http://www.w3.org/2000/svg';
+
+function marcaGanadora(strike) {
+    const svg = document.createElementNS(SVG, 'svg');
+    svg.setAttribute('class', 'board__strike');
+    svg.setAttribute('viewBox', `0 0 ${COLUMNS} ${ROWS}`);
+    svg.setAttribute('preserveAspectRatio', 'none');
+    svg.setAttribute('aria-hidden', 'true');
+    svg.setAttribute('focusable', 'false');
+
+    const linea = document.createElementNS(SVG, 'line');
+    linea.setAttribute('x1', String(strike.x1));
+    linea.setAttribute('y1', String(strike.y1));
+    linea.setAttribute('x2', String(strike.x2));
+    linea.setAttribute('y2', String(strike.y2));
+    svg.append(linea);
+
+    return svg;
+}
+
 function boardMarkup() {
     const line = game.winningLine ?? [];
     const isWinningCell = (row, col) => line.some((cell) => cell.row === row && cell.col === col);
     const strike = line.length >= 2 ? getStrikeEnds(line) : null;
     const disabled = game.status !== GAME_STATUS.PLAYING || (mode === 'bot' && game.turn === PLAYER_2);
-    return `<div class="board">
-        <div class="board__back"></div>
-        <div class="board__balls">${listBalls(game.board).map(({ row, col, player }) => `<span class="board__ball board__ball--${player}${isWinningCell(row, col) ? ' board__ball--winner' : ''}" style="grid-column:${col + 1};grid-row:${row + 1};--ball-row:${row}" aria-hidden="true"></span>`).join('')}</div>
-        <div class="board__front" aria-hidden="true"></div>
-        ${strike ? `<svg class="board__strike" viewBox="0 0 ${COLUMNS} ${ROWS}" preserveAspectRatio="none" aria-hidden="true" focusable="false"><line x1="${strike.x1}" y1="${strike.y1}" x2="${strike.x2}" y2="${strike.y2}"></line></svg>` : ''}
-        <div class="board__columns">${Array.from({ length: COLUMNS }, (_, col) => `<button type="button" class="board__column" data-column="${col}" aria-label="Columna ${col + 1}" ${disabled || isColumnFull(game.board, col) ? 'disabled' : ''}></button>`).join('')}</div>
-    </div>`;
+
+    return crear('div', { clase: 'board' }, [
+        crear('div', { clase: 'board__back' }),
+        crear(
+            'div',
+            { clase: 'board__balls' },
+            listBalls(game.board).map(({ row, col, player }) =>
+                crear('span', {
+                    clase: `board__ball board__ball--${player}${isWinningCell(row, col) ? ' board__ball--winner' : ''}`,
+                    estilo: `grid-column:${col + 1};grid-row:${row + 1};--ball-row:${row}`,
+                    'aria-hidden': 'true',
+                })
+            )
+        ),
+        crear('div', { clase: 'board__front', 'aria-hidden': 'true' }),
+        strike ? marcaGanadora(strike) : null,
+        crear(
+            'div',
+            { clase: 'board__columns' },
+            Array.from({ length: COLUMNS }, (_, col) =>
+                crear('button', {
+                    type: 'button',
+                    clase: 'board__column',
+                    'data-column': String(col),
+                    'aria-label': `Columna ${col + 1}`,
+                    disabled: disabled || isColumnFull(game.board, col) ? true : undefined,
+                })
+            )
+        ),
+    ]);
 }
 
 function renderGame() {
@@ -294,13 +439,29 @@ function renderGame() {
     const gameOver = game.status !== GAME_STATUS.PLAYING;
     const botTurn = isBotMode && game.turn === PLAYER_2 && !gameOver;
     const title = game.status === GAME_STATUS.DRAW ? 'Empate' : isBotMode ? (game.winner === PLAYER_1 ? '¡Ganaste!' : '¡El bot ganó!') : `¡${game.winner === PLAYER_1 ? 'JUGADOR 1' : 'JUGADOR 2'} gana!`;
-    app.innerHTML = `<div class="game-screen">
-        ${scoreboard()}
-        ${boardMarkup()}
-        <div class="game-screen__status" role="status">${botTurn ? 'El bot está pensando…' : ''}</div>
-        <div class="game-screen__actions"><button type="button" class="button button--secondary" data-action="restart">${icon('restart_alt')}Reiniciar</button><button type="button" class="button button--secondary" data-action="menu">${icon('arrow_back')}Menú</button></div>
-        ${gameOver ? `<div class="game-over" role="dialog" aria-modal="true" aria-label="Fin de la partida"><div class="game-over__card"><h2 class="game-over__title">${title}</h2><div class="game-over__actions"><button type="button" class="button button--primary" data-action="restart">${icon('replay')}Jugar de nuevo</button><button type="button" class="button button--secondary" data-action="menu">${icon('arrow_back')}Menú</button></div></div></div>` : ''}
-    </div>`;
+    const fin = crear('div', { clase: 'game-over', role: 'dialog', 'aria-modal': 'true', 'aria-label': 'Fin de la partida' }, [
+        crear('div', { clase: 'game-over__card' }, [
+            crear('h2', { clase: 'game-over__title', texto: title }),
+            crear('div', { clase: 'game-over__actions' }, [
+                button('Jugar de nuevo', 'replay', 'primary'),
+                button('Menú', 'arrow_back', 'secondary'),
+            ]),
+        ]),
+    ]);
+
+    app.replaceChildren(
+        crear('div', { clase: 'game-screen' }, [
+            scoreboard(),
+            boardMarkup(),
+            crear('div', { clase: 'game-screen__status', role: 'status', texto: botTurn ? 'El bot está pensando…' : '' }),
+            crear('div', { clase: 'game-screen__actions' }, [
+                button('Reiniciar', 'restart_alt', 'secondary'),
+                button('Menú', 'arrow_back', 'secondary'),
+            ]),
+            gameOver ? fin : null,
+        ])
+    );
+
     app.querySelectorAll('[data-column]').forEach((element) => element.addEventListener('click', () => playColumn(Number(element.dataset.column))));
     app.querySelectorAll('[data-action="restart"]').forEach((element) => element.addEventListener('click', restartGame));
     app.querySelectorAll('[data-action="menu"]').forEach((element) => element.addEventListener('click', goMenu));

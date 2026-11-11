@@ -1,3 +1,13 @@
+@layer base {
+:root {
+    --borde: #000;
+    --fondo: #009000;
+    --fondo-2: #5fca78;
+    --fondo-3: #02ac2a;
+    --texto: #fff;
+    --texto-2: #f00;
+}
+
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
@@ -22,11 +32,11 @@ main {
 }
 
 .contenedor .abrir-modal {
-    background-color: #009000;
-    border: 1px solid #000;
+    background-color: var(--fondo);
+    border: 1px solid var(--borde);
     border-radius: 5px;
     box-shadow: 0 0 15px;
-    color: #fff;
+    color: var(--texto);
     font-size: 18px;
     font-weight: 600;
     height: 40px;
@@ -34,13 +44,13 @@ main {
 }
 
 .contenedor .abrir-modal:hover {
-    background-color: #5fca78;
-    color: #000;
+    background-color: var(--fondo-2);
+    color: var(--borde);
 }
 
 .modal {
-    background-color: #5fca78;
-    border: 1px solid #000;
+    background-color: var(--fondo-2);
+    border: 1px solid var(--borde);
     box-shadow: 0 0 10px;
     display: none;
     height: 300px;
@@ -55,7 +65,7 @@ main {
 
 .titulo-modal {
     align-items: center;
-    background-color: #fff;
+    background-color: var(--texto);
     box-shadow: 0 0 10px;
     display: flex;
     height: fit-content;
@@ -71,22 +81,25 @@ main {
 }
 
 .cerrar-modal {
-    color: #000;
+    background: none;
+    border: 0;
+    color: var(--borde);
     cursor: pointer;
     font-size: 30px;
     font-weight: bolder;
+    padding: 0;
     position: absolute;
     right: 2%;
 }
 
 .cerrar-modal:hover {
-    color: #f00;
+    color: var(--texto-2);
 }
 
 .contenido-modal {
     align-items: center;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    color: #fff;
+    color: var(--texto);
     display: flex;
     height: 200px;
     justify-content: center;
@@ -104,10 +117,10 @@ main {
 }
 
 .boton-modal {
-    background-color: #009000;
+    background-color: var(--fondo);
     border-radius: 5px;
-    border: 1px solid #000;
-    color: #fff;
+    border: 1px solid var(--borde);
+    color: var(--texto);
     cursor: pointer;
     height: 30px;
     font-size: 14px;
@@ -117,9 +130,9 @@ main {
 }
 
 .boton-modal:hover {
-    background-color: #02ac2a;
-    border: 1px solid #fff;
-    color: #000;
+    background-color: var(--fondo-3);
+    border: 1px solid var(--texto);
+    color: var(--borde);
 }
 
 .modal-overlay {
@@ -132,28 +145,44 @@ main {
     width: 100%;
     z-index: 0;
 }
-
-@media screen and (max-width: 600px) {
-    .modal {
-        width: 400px;
-    }
-
-    .contenido-modal {
-        width: 400px;
-    }
 }
 
-@media screen and (max-width: 500px) {
+@layer responsive {
+    /* Base móvil: hasta 500 px */
     .contenedor {
         margin-top: 300px;
     }
-    
+
+    .contenido-modal {
+        width: 350px;
+    }
+
     .modal {
         margin-top: 50px;
         width: 350px;
     }
 
-    .contenido-modal {
-        width: 350px;
+    @media (min-width: 501px) {
+        .contenedor {
+            margin-top: revert-layer;
+        }
+
+        .contenido-modal {
+            width: 400px;
+        }
+
+        .modal {
+            margin-top: revert-layer;
+            width: 400px;
+        }
+    }
+    @media (min-width: 601px) {
+        .contenido-modal {
+            width: 500px;
+        }
+
+        .modal {
+            width: 500px;
+        }
     }
 }

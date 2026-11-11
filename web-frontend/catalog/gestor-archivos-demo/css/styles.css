@@ -1,4 +1,19 @@
 /* CUERPO */
+:root {
+    --borde: #000;
+    --fondo: #f0f0f0;
+    --texto: #fff;
+    --texto-10: #ffc107;
+    --texto-2: #333;
+    --texto-3: #4caf50;
+    --texto-4: #2196f3;
+    --texto-5: #607b8d;
+    --texto-6: #9c27b0;
+    --texto-7: #e91e63;
+    --texto-8: #f44336;
+    --texto-9: #ff9800;
+}
+
 body {
     display: flex;
     font-family: 'Poppins', sans-serif;
@@ -9,7 +24,7 @@ body {
 
 /* CABECERA */
 header {
-    background-color: #F0F0F0;
+    background-color: var(--fondo);
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
     flex-shrink: 0;
     height: 100vh;
@@ -46,7 +61,7 @@ nav ul li {
 
 nav ul li a {
     align-items: center;
-    color: #333;
+    color: var(--texto-2);
     display: flex;
     flex-grow: 1;
     height: 100%;
@@ -81,37 +96,37 @@ nav ul li span {
 }
 
 .fa-house {
-    color: #4CAF50;
+    color: var(--texto-3);
 }
 
 .fa-download {
-    color: #2196F3;
+    color: var(--texto-4);
 }
 
 .fa-file {
-    color: #FF9800;
+    color: var(--texto-9);
 }
 
 .fa-image {
-    color: #E91E63;
+    color: var(--texto-7);
 }
 
 .fa-music {
-    color: #9C27B0;
+    color: var(--texto-6);
 }
 
 .fa-video {
-    color: #F44336;
+    color: var(--texto-8);
 }
 
 .fa-trash {
-    color: #607B8D;
+    color: var(--texto-5);
 }
 
 
 /* PRINCIPAL */
 main {
-    background-color: #FFF;
+    background-color: var(--texto);
     height: 100vh;
     width: 100%;
 }
@@ -139,14 +154,14 @@ main {
 }
 
 .navegacion i {
-    color: #FFF;
+    color: var(--texto);
     cursor: pointer;
     font-size: 18px;
     margin: 0 10px;
 }
 
 .titulo_navegacion .titulo {
-    color: #FFF;
+    color: var(--texto);
     cursor: context-menu;
     font-size: 22px;
     font-weight: 700;
@@ -155,7 +170,7 @@ main {
 }
 
 .barra_busqueda input {
-    border: 2px solid #FFF;
+    border: 2px solid var(--texto);
     border-radius: 5px;
     height: 28px;
     width: 200px;
@@ -166,7 +181,7 @@ main {
 }
 
 .contenedor_acciones_configuraciones_filtro {
-    border-top: 2px solid #FFF;
+    border-top: 2px solid var(--texto);
     width: 100%;
 }
 
@@ -184,8 +199,8 @@ main {
 
 .acciones i, 
 .configuraciones_filtro i {
-    border-left: 1px solid #FFF;
-    color: #FFF;
+    border-left: 1px solid var(--texto);
+    color: var(--texto);
     cursor: pointer;
     font-size: 16px;
     padding: 10px;
@@ -222,7 +237,7 @@ main {
 
 .texto_agregar {
     display: none;
-    color: #FFF;
+    color: var(--texto);
     font-size: 18px;
     font-weight: 500;
     left: 50%;
@@ -236,7 +251,7 @@ main {
 }
 
 .agregar {
-    border-top: 1px solid #FFF;
+    border-top: 1px solid var(--texto);
     display: none;
     position: absolute;
     width: 100%;
@@ -244,7 +259,7 @@ main {
 
 .agregar span {
     align-items: center;
-    color: #FFF;
+    color: var(--texto);
     cursor: pointer;
     display: flex;
 }
@@ -283,7 +298,7 @@ main {
 }
 
 .contenedor_favoritos_recientes .favoritos {
-    border-right: 2px solid #4CAF50;
+    border-right: 2px solid var(--texto-3);
 }
 
 .texto_favoritos, 
@@ -342,7 +357,7 @@ main {
 }
 
 .texto_elemento i {
-    color: #FFC107;
+    color: var(--texto-10);
     font-size: 55px;
 }
 
@@ -362,18 +377,18 @@ main {
 
 table {
     border-collapse: collapse;
-    border-top: 2px solid #FFF;
+    border-top: 2px solid var(--texto);
     height: 100%;
     width: 100%;
 }
 
 thead {
-    background-color: #F0F0F0;
-    color: #333;
+    background-color: var(--fondo);
+    color: var(--texto-2);
 }
 
 thead th {
-    border-right: 1px solid #000;
+    border-right: 1px solid var(--borde);
     font-weight: 600;
     padding: 10px;
     text-align: left;
@@ -388,8 +403,8 @@ tbody tr:hover {
 }
 
 tbody td {
-    border-right: 1px solid #000;
-    color: #333;
+    border-right: 1px solid var(--borde);
+    color: var(--texto-2);
     padding: auto;
     text-align: left;
 }

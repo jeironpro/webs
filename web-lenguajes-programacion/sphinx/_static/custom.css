@@ -18,6 +18,12 @@
 
 /* ---------- 2. Estilo docente (de la referencia introprg2526) ---------- */
 
+:root {
+    --cookies-fondo: #eae672;
+    --codigo-fondo: #e3e3e3;
+    --codigo-resaltado: #f3f3f3;
+}
+
 #cookiesbox {
     width:100%;
     z-index:99999;
@@ -26,7 +32,7 @@
     bottom:0px;
     left:0px;
     text-align:center;
-    background-color: #eae672;
+    background-color: var(--cookies-fondo);
     padding: 10px 0px;
     color: red;
     border: 1px solid black;
@@ -50,5 +56,5 @@ img.align-center {
     padding-bottom: 1em;
 }
 /* Colors for code */
-.highlight { background: #e3e3e3; }
-.highlight .hll { background-color: #f3f3f3 }
+.highlight { background: var(--codigo-fondo); }
+.highlight .hll { background-color: var(--codigo-resaltado) }

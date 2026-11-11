@@ -1,3 +1,10 @@
+:root {
+    --fondo: #c61b0d;
+    --texto: #fff;
+    --texto-2: #000;
+    --texto-3: #1acf1a;
+}
+
 * {
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
@@ -6,7 +13,7 @@
 }
 
 body {
-    background-color: #C61B0D;
+    background-color: var(--fondo);
 }
 
 main {
@@ -21,7 +28,7 @@ main {
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    background-color: #FFF;
+    background-color: var(--texto);
     width: 400px;
     height: 500px;
     border-radius: 10px;
@@ -51,9 +58,9 @@ form .control label {
 form .control input {
     width: 330px;
     height: 28px;
-    background-color: #C61B0D;
-    border: 1px solid #fff;
-    color: #FFF;
+    background-color: var(--fondo);
+    border: 1px solid var(--texto);
+    color: var(--texto);
     border-radius: 5px;
     padding-left: 5px;
 }
@@ -63,10 +70,15 @@ form .control input:focus {
 }
 
 form .control .mostrar-ocultar {
+    background: none;
+    border: 0;
+    color: var(--texto);
+    cursor: pointer;
+    font: inherit;
+    padding: 0;
     position: absolute;
     right: 5px;
     top: 24px;
-    color: #FFF;
 }
 
 .validador {
@@ -81,12 +93,12 @@ form .control .mostrar-ocultar {
 }
 
 .validador i {
-    color: #1ACF1A;
+    color: var(--texto-3);
     opacity: 0.5;
 }
 
 .validador .requerimiento {
-    color: #000;
+    color: var(--texto-2);
     font-size: 11px;
     margin-left: 5px;
 }
@@ -111,8 +123,8 @@ form .botones button, form .botones .enlace-regresar {
     height: 30px;
     font-weight: 700;
     font-size: 16px;
-    background-color: #000;
-    color: #FFF;
+    background-color: var(--texto-2);
+    color: var(--texto);
     border-radius: 5px;
     border: none;
     transition: transform 0.3s ease;
@@ -121,5 +133,5 @@ form .botones button, form .botones .enlace-regresar {
 
 form .botones button:hover, form .botones a:hover {
     transform: scale(0.95);
-    background-color: #C61B0D;
+    background-color: var(--fondo);
 }

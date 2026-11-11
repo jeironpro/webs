@@ -1,6 +1,6 @@
 document.getElementById('mostrar-ocultar').addEventListener('click', function() {
-    var input = document.getElementById('contrasena');
-    var icono = document.querySelector('.mostrar-ocultar i');
+    let input = document.getElementById('contrasena');
+    let icono = document.querySelector('.mostrar-ocultar i');
 
     if (input.type === 'password') {
         input.type = 'text';
@@ -14,8 +14,8 @@ document.getElementById('mostrar-ocultar').addEventListener('click', function() 
 })
 
 document.getElementById('mostrar-ocultar-reg').addEventListener('click', function() {
-    var input = document.getElementById('contrasena-reg');
-    var icono = document.querySelector('.mostrar-ocultar-reg i');
+    const input = document.getElementById('contrasena-reg');
+    const icono = document.querySelector('.mostrar-ocultar-reg i');
 
     if (input.type === 'password') {
         input.type = 'text';
@@ -28,9 +28,9 @@ document.getElementById('mostrar-ocultar-reg').addEventListener('click', functio
     }
 })
 
-var contenedor = document.getElementById('contenedor');
-var registro = document.getElementById('registro');
-var iniciar = document.getElementById('iniciar');
+const contenedor = document.getElementById('contenedor');
+const registro = document.getElementById('registro');
+const iniciar = document.getElementById('iniciar');
 
 document.getElementById('registrarse').addEventListener('click', function() {
     contenedor.style.height = '400px';

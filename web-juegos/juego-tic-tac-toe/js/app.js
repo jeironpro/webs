@@ -47,7 +47,7 @@ const elementos = {
 };
 
 function crearTablero() {
-    elementos.tablero.innerHTML = "";
+    elementos.tablero.replaceChildren();
 
     for (let indice = 0; indice < 9; indice += 1) {
         const celda = document.createElement("button");

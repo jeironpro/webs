@@ -1,3 +1,4 @@
+@layer base {
 /* ============================================================
    Base
    ============================================================ */
@@ -739,29 +740,28 @@ h3 {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 }
+}
 
-/* ============================================================
-   Movimiento reducido
-   ============================================================ */
-
+@layer accesibilidad {
 @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        animation-duration: var(--dur-r) !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: var(--dur-r) !important;
-    }
+            *,
+            *::before,
+            *::after {
+                animation-duration: var(--dur-r);
+                animation-iteration-count: 1;
+                transition-duration: var(--dur-r);
+            }
 
-    .tarjeta {
-        animation-name: none;
-    }
+            .tarjeta {
+                animation-name: none;
+            }
 
-    .tarjeta:hover {
-        transform: none;
-    }
+            .tarjeta:hover {
+                transform: none;
+            }
 
-    .tarjeta:hover .tarjeta__media img {
-        transform: none;
+            .tarjeta:hover .tarjeta__media img {
+                transform: none;
+            }
     }
 }

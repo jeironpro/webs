@@ -30,6 +30,10 @@ function esCssGenerado(contenido) {
 
 /** Rutas que no son código propio: dependencias, builds y terceros. */
 const EXCLUIDAS = /(^|\/)(node_modules|vendor|dist|site|\.yarn|coverage)\//;
+/** Salida de Sphinx: assets compilados, fuentes copiadas y plantillas parciales. */
+const GENERADAS_SPHINX = /^web-[^/]+\/(\.doctrees|_sources|_static|sphinx\/_templates)\//;
+/** Página escrita por el generador de Sphinx (no se edita a mano). */
+const MARCA_SPHINX = /writer-html5|sphinxsidebar/;
 /** Salidas de bundler con hash en el nombre (Vite, Rollup...): no se editan a mano. */
 const COMPILADOS = /(^|\/)assets\/[^/]+-[A-Za-z0-9_-]{8}\.(m?js|css)$/;
 const EXTENSIONES = /\.(html?|css|m?js)$/i;
@@ -48,6 +52,7 @@ function ficherosVersionados() {
         .filter(Boolean)
         .filter((ruta) => EXTENSIONES.test(ruta))
         .filter((ruta) => !EXCLUIDAS.test(ruta))
+        .filter((ruta) => !GENERADAS_SPHINX.test(ruta))
         .filter((ruta) => !/\.min\.(js|css)$/i.test(ruta))
         .filter((ruta) => !COMPILADOS.test(ruta));
 }
@@ -70,6 +75,7 @@ function auditar() {
             return; // fichero declarado pero ausente (submódulo, fichero borrado)
         }
         if (/\.css$/i.test(ruta) && esCssGenerado(contenido)) return;
+        if (/\.html?$/i.test(ruta) && MARCA_SPHINX.test(contenido)) return;
         const hallazgos = analizarArchivo(ruta, contenido);
         if (hallazgos.length === 0) return;
 

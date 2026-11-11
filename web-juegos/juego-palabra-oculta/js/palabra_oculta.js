@@ -49,6 +49,14 @@ function crearTablero() {
     }
 }
 
+function crearIcono(nombre) {
+    const icono = document.createElement("span");
+    icono.className = "material-symbols-rounded";
+    icono.setAttribute("aria-hidden", "true");
+    icono.textContent = nombre;
+    return icono;
+}
+
 function crearTeclado() {
     teclas.forEach((fila) => {
         const filaElemento = document.createElement("div");
@@ -62,7 +70,7 @@ function crearTeclado() {
 
             if (tecla === "eliminar") {
                 boton.classList.add("tecla--accion");
-                boton.innerHTML = `<span class="material-symbols-rounded" aria-hidden="true">backspace</span>`;
+                boton.append(crearIcono("backspace"));
                 boton.setAttribute("aria-label", "Borrar letra");
             } else if (tecla === "enviar") {
                 boton.classList.add("tecla--accion");
@@ -256,9 +264,10 @@ function nuevaPartida() {
         }
     }
 
-    elementos.btnNueva.textContent = "";
-    elementos.btnNueva.innerHTML =
-        '<span class="material-symbols-rounded" aria-hidden="true">refresh</span> Nueva palabra';
+    elementos.btnNueva.replaceChildren(
+        crearIcono("refresh"),
+        document.createTextNode(" Nueva palabra")
+    );
     actualizarIntento();
     actualizarTeclado();
     pintarTablero();

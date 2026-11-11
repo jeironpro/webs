@@ -1,3 +1,12 @@
+@layer base {
+:root {
+    --fondo: #3c0e5a;
+    --fondo-2: #9900ff;
+    --fondo-3: #ad32ff;
+    --texto: #fff;
+    --texto-2: #000;
+}
+
 body {
     font-family: 'Quicksand', sans-serif;
     margin: 0;
@@ -6,7 +15,7 @@ body {
 }
 
 header {
-    background-color: #9900ff;
+    background-color: var(--fondo-2);
     border-radius: 0 5px 5px 0;
     display: block;
     height: 100%;
@@ -17,7 +26,7 @@ header {
 }
 
 .menu-burger {
-    color: #000;
+    color: var(--texto-2);
     display: none;
     font-size: 26px;
     position: absolute;
@@ -39,7 +48,7 @@ header {
 }
 
 .logo-titulo h2 {
-    color: #fff;
+    color: var(--texto);
     font-size: 28px;
     font-weight: bolder;
     margin-top: 20px;
@@ -60,9 +69,9 @@ header {
 }
 
 .menu li {
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid var(--texto);
     border-radius: 5px;
-    color: #fff;
+    color: var(--texto);
     cursor: pointer;
     font-size: 18px;
     font-weight: 600;
@@ -76,7 +85,7 @@ header {
 }
 
 .menu .no-submenu:hover {
-    background-color: #3c0e5a;
+    background-color: var(--fondo);
 }
 
 .menu .submenu {
@@ -86,58 +95,41 @@ header {
 }
 
 .menu .submenu .subelemento {
-    background-color: #3c0e5a;
+    background-color: var(--fondo);
     margin-top: 2px;
 }
 
 .menu li a, .menu .submenu .subelemento a {
-    color: #fff;
+    color: var(--texto);
     text-decoration: none;
 }
 
 .menu .submenu .subelemento:hover {
-    background-color: #ad32ff;
+    background-color: var(--fondo-3);
 }
 
 .menu li .subelemento {
     font-size: 14px;
     padding: 10px;
 }
+}
 
-@media screen and (max-width: 1024px) {
-    body {
-        overflow-y: hidden;
-    }
-
-    .menu-burger {
-        color: #fff;
-        display: flex;
-        margin: 10px 0;
-    }
-
-    .menu-burger .fa-x {
-        font-size: 18px;
-        margin: -5px;
-    }
-
-    .menu-burger .fa-bars {
-        font-size: 25px;
+@layer responsive {
+    /* Base móvil: hasta 500 px */
+    #logo-bar {
+        display: none;
+        height: 22px;
+        margin: 0 10px;
+        width: 22px;
     }
 
     #titulo-bar {
-        font-size: 25px;
-        margin: -4px;
-    }
-
-    #logo-bar {
-        display: none;
-        height: 25px;
-        margin: 0 10px;
-        width: 25px;
+        font-size: 23px;
+        margin: -3px;
     }
 
     .logo-titulo {
-        margin-top: 20px;
+        margin-top: 15px;
     }
 
     .logo-titulo h2 {
@@ -152,32 +144,104 @@ header {
     .menu {
         margin-top: 20px;
     }
-}
 
-@media screen and (max-width: 500px) {
-    .menu-burger .fa-x {
-        font-size: 20px;
+    .menu li {
+        padding: 23px 10px;
+    }
+
+    .menu-burger {
+        color: var(--texto);
+        display: flex;
+        margin: 10px 0;
     }
 
     .menu-burger .fa-bars {
         font-size: 22px;
     }
 
-    #logo-bar {
-        height: 22px;
-        width: 22px;
+    .menu-burger .fa-x {
+        font-size: 20px;
+        margin: -5px;
     }
 
-    #titulo-bar {
-        font-size: 23px;
-        margin: -3px;
+    body {
+        overflow-y: hidden;
     }
 
-    .logo-titulo {
-        margin-top: 15px;
-    }
+    @media (min-width: 501px) {
+        #logo-bar {
+            height: 25px;
+            width: 25px;
+        }
 
-    .menu li {
-        padding: 23px 10px;
+        #titulo-bar {
+            font-size: 25px;
+            margin: -4px;
+        }
+
+        .logo-titulo {
+            margin-top: 20px;
+        }
+
+        .menu li {
+            padding: 22.5px 10px;
+        }
+
+        .menu-burger .fa-bars {
+            font-size: 25px;
+        }
+
+        .menu-burger .fa-x {
+            font-size: 18px;
+        }
+    }
+    @media (min-width: 1025px) {
+        #logo-bar {
+            display: revert-layer;
+            height: revert-layer;
+            margin: revert-layer;
+            width: revert-layer;
+        }
+
+        #titulo-bar {
+            font-size: revert-layer;
+            margin: revert-layer;
+        }
+
+        .logo-titulo {
+            margin-top: revert-layer;
+        }
+
+        .logo-titulo h2 {
+            font-size: 28px;
+        }
+
+        .logo-titulo img {
+            height: 50px;
+            width: 50px;
+        }
+
+        .menu {
+            margin-top: revert-layer;
+        }
+
+        .menu-burger {
+            color: var(--texto-2);
+            display: none;
+            margin: revert-layer;
+        }
+
+        .menu-burger .fa-bars {
+            font-size: revert-layer;
+        }
+
+        .menu-burger .fa-x {
+            font-size: revert-layer;
+            margin: revert-layer;
+        }
+
+        body {
+            overflow-y: revert-layer;
+        }
     }
 }

@@ -1,3 +1,10 @@
+@layer base {
+:root {
+    --borde: #000;
+    --fondo: #cccccc;
+    --fondo-2: #fff;
+}
+
 body {
     font-family: 'Quicksand', sans-serif;
     margin: 0;
@@ -13,7 +20,7 @@ main {
 }
 
 .contenedor {
-    background-color: #fff;
+    background-color: var(--fondo-2);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     margin: 0 auto;
     width: 500px;
@@ -25,7 +32,7 @@ main {
 }
 
 .lista li {
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid var(--borde);
     font-weight: 700;
     margin: 20px;
     padding: 10px;
@@ -38,7 +45,7 @@ main {
 }
 
 .lista .descripcion {
-    background-color: #cccccc;
+    background-color: var(--fondo);
     box-shadow: 0 0 5px;
     display: none;
     font-weight: 600;
@@ -55,13 +62,25 @@ main {
 .activo .fa-chevron-down {
     transform: rotate(180deg);
 }
+}
 
-@media screen and (max-width: 500px) {
+@layer responsive {
+    /* Base móvil: hasta 500 px */
     .contenedor {
         width: 400px;
     }
 
     .lista .descripcion {
         font-size: 12px;
+    }
+
+    @media (min-width: 501px) {
+        .contenedor {
+            width: 500px;
+        }
+
+        .lista .descripcion {
+            font-size: 13px;
+        }
     }
 }

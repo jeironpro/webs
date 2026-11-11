@@ -162,19 +162,73 @@ function chooseMove(current, level) {
 }
 
 // Interfaz.
-const icon = (name, extra = '') => `<span class="material-symbols-rounded ${extra}" aria-hidden="true">${name}</span>`;
-const button = (text, iconName, variant = 'primary', action = '') => `<button type="button" class="button button--${variant}"${action ? ` data-action="${action}"` : ''}>${iconName ? icon(iconName) : ''}${text}</button>`;
+function crear(etiqueta, propiedades = {}, hijos = []) {
+    const nodo = document.createElement(etiqueta);
+
+    Object.entries(propiedades).forEach(([clave, valor]) => {
+        if (valor === undefined || valor === null || valor === false) return;
+        if (clave === 'clase') nodo.className = valor;
+        else if (clave === 'texto') nodo.textContent = valor;
+        else if (clave === 'estilo') nodo.setAttribute('style', valor);
+        else nodo.setAttribute(clave, valor === true ? '' : String(valor));
+    });
+
+    [].concat(hijos).forEach((hijo) => {
+        if (hijo === null || hijo === undefined || hijo === false) return;
+        nodo.append(hijo instanceof Node ? hijo : document.createTextNode(String(hijo)));
+    });
+
+    return nodo;
+}
+
+const icon = (name, extra = '') =>
+    crear('span', { clase: `material-symbols-rounded ${extra}`.trim(), 'aria-hidden': 'true', texto: name });
+
+const button = (text, iconName, variant = 'primary', action = '') =>
+    crear(
+        'button',
+        { type: 'button', clase: `button button--${variant}`, 'data-action': action || undefined },
+        [iconName ? icon(iconName) : null, text]
+    );
 
 function renderHome() {
-    app.innerHTML = `<main class="app"><section class="home" aria-label="Pantalla de inicio">
-        <h1 class="home__title">Puntos y Cajas</h1>
-        <p class="home__subtitle">Completa más cajas que tu rival</p>
-        <div class="home__card">
-            <div class="home__modes">${button('vs Bot', 'smart_toy', mode === 'bot' ? 'primary' : 'secondary', 'mode-bot')}${button('2 Jugadores', 'group', mode === 'local' ? 'primary' : 'secondary', 'mode-local')}</div>
-            ${mode === 'bot' ? `<div class="home__difficulty"><span class="home__label">Dificultad</span><div class="home__difficulty-options">${Object.entries(DIFFICULTY_LABELS).map(([id, label]) => `<button type="button" class="home__difficulty-option${difficulty === id ? ' home__difficulty-option--active' : ''}" data-difficulty="${id}" aria-pressed="${difficulty === id}">${label}</button>`).join('')}</div></div>` : ''}
-            ${button('Jugar', null, 'primary', 'start')}
-        </div>
-    </section></main>`;
+    const dificultades = crear('div', { clase: 'home__difficulty' }, [
+        crear('span', { clase: 'home__label', texto: 'Dificultad' }),
+        crear(
+            'div',
+            { clase: 'home__difficulty-options' },
+            Object.entries(DIFFICULTY_LABELS).map(([id, label]) =>
+                crear(
+                    'button',
+                    {
+                        type: 'button',
+                        clase: `home__difficulty-option${difficulty === id ? ' home__difficulty-option--active' : ''}`,
+                        'data-difficulty': id,
+                        'aria-pressed': String(difficulty === id),
+                    },
+                    [label]
+                )
+            )
+        ),
+    ]);
+
+    app.replaceChildren(
+        crear('main', { clase: 'app' }, [
+            crear('section', { clase: 'home', 'aria-label': 'Pantalla de inicio' }, [
+                crear('h1', { clase: 'home__title', texto: 'Puntos y Cajas' }),
+                crear('p', { clase: 'home__subtitle', texto: 'Completa más cajas que tu rival' }),
+                crear('div', { clase: 'home__card' }, [
+                    crear('div', { clase: 'home__modes' }, [
+                        button('vs Bot', 'smart_toy', mode === 'bot' ? 'primary' : 'secondary', 'mode-bot'),
+                        button('2 Jugadores', 'group', mode === 'local' ? 'primary' : 'secondary', 'mode-local'),
+                    ]),
+                    mode === 'bot' ? dificultades : null,
+                    button('Jugar', null, 'primary', 'start'),
+                ]),
+            ]),
+        ])
+    );
+
     app.querySelector('[data-action="mode-bot"]').addEventListener('click', () => { mode = 'bot'; renderHome(); });
     app.querySelector('[data-action="mode-local"]').addEventListener('click', () => { mode = 'local'; renderHome(); });
     app.querySelectorAll('[data-difficulty]').forEach((element) => element.addEventListener('click', () => { difficulty = element.dataset.difficulty; renderHome(); }));
@@ -187,19 +241,50 @@ function scoreboard() {
     const badge = mode === 'bot' ? DIFFICULTY_LABELS[difficulty] : '2 jugadores';
     const active1 = game.turn === PLAYER_1;
     const active2 = game.turn === PLAYER_2;
-    return `<section class="scoreboard" aria-label="Marcador de la partida"><div class="scoreboard__badge-row"><span class="scoreboard__badge">${badge}</span></div><div class="scoreboard__names"><span class="scoreboard__name${active1 ? ' scoreboard__name--player-1' : ''}">${p1Name}</span><span class="scoreboard__name${active2 ? ' scoreboard__name--player-2' : ''}">${p2Name}</span></div><div class="scoreboard__counts"><span class="scoreboard__count${active1 ? ' scoreboard__count--player-1' : ''}">${game.scores[PLAYER_1]}</span><span class="scoreboard__vs" aria-hidden="true">VS</span><span class="scoreboard__count${active2 ? ' scoreboard__count--player-2' : ''}">${game.scores[PLAYER_2]}</span></div></section>`;
+
+    return crear('section', { clase: 'scoreboard', 'aria-label': 'Marcador de la partida' }, [
+        crear('div', { clase: 'scoreboard__badge-row' }, [
+            crear('span', { clase: 'scoreboard__badge', texto: badge }),
+        ]),
+        crear('div', { clase: 'scoreboard__names' }, [
+            crear('span', {
+                clase: `scoreboard__name${active1 ? ' scoreboard__name--player-1' : ''}`,
+                texto: p1Name,
+            }),
+            crear('span', {
+                clase: `scoreboard__name${active2 ? ' scoreboard__name--player-2' : ''}`,
+                texto: p2Name,
+            }),
+        ]),
+        crear('div', { clase: 'scoreboard__counts' }, [
+            crear('span', {
+                clase: `scoreboard__count${active1 ? ' scoreboard__count--player-1' : ''}`,
+                texto: String(game.scores[PLAYER_1]),
+            }),
+            crear('span', { clase: 'scoreboard__vs', 'aria-hidden': 'true', texto: 'VS' }),
+            crear('span', {
+                clase: `scoreboard__count${active2 ? ' scoreboard__count--player-2' : ''}`,
+                texto: String(game.scores[PLAYER_2]),
+            }),
+        ]),
+    ]);
 }
 
 function boardMarkup() {
     const cells = [];
     const totalCells = GRID_SIZE * 2 - 1;
+
     for (let row = 0; row < totalCells; row += 1) {
         for (let col = 0; col < totalCells; col += 1) {
             const isDot = row % 2 === 0 && col % 2 === 0;
             const horizontal = row % 2 === 0 && col % 2 === 1;
             const vertical = row % 2 === 1 && col % 2 === 0;
-            const key = `${row}-${col}`;
-            if (isDot) { cells.push(`<span class="board__dot" aria-hidden="true"></span>`); continue; }
+
+            if (isDot) {
+                cells.push(crear('span', { clase: 'board__dot', 'aria-hidden': 'true' }));
+                continue;
+            }
+
             if (horizontal || vertical) {
                 const type = horizontal ? EDGE_HORIZONTAL : EDGE_VERTICAL;
                 const edgeRow = Math.floor(row / 2);
@@ -207,19 +292,50 @@ function boardMarkup() {
                 const placedBy = game.edges.get(edgeKey(type, edgeRow, edgeCol));
                 const completed = getBoxesAroundEdge(type, edgeRow, edgeCol).some((box) => game.boxes.has(boxKey(box.row, box.col)));
                 const classes = ['edge-button', horizontal ? 'edge-button--horizontal' : 'edge-button--vertical'];
+
                 if (placedBy === PLAYER_1) classes.push('edge-button--player-1');
                 if (placedBy === PLAYER_2) classes.push('edge-button--player-2');
                 if (completed) classes.push('edge-button--completed');
-                cells.push(`<button type="button" class="${classes.join(' ')}" data-edge-type="${type}" data-edge-row="${edgeRow}" data-edge-col="${edgeCol}" aria-label="Arista ${horizontal ? 'horizontal' : 'vertical'} fila ${edgeRow} columna ${edgeCol}" ${placedBy !== undefined ? 'disabled' : ''}></button>`);
+
+                cells.push(
+                    crear('button', {
+                        type: 'button',
+                        clase: classes.join(' '),
+                        'data-edge-type': type,
+                        'data-edge-row': String(edgeRow),
+                        'data-edge-col': String(edgeCol),
+                        'aria-label': `Arista ${horizontal ? 'horizontal' : 'vertical'} fila ${edgeRow} columna ${edgeCol}`,
+                        disabled: placedBy !== undefined ? true : undefined,
+                    })
+                );
                 continue;
             }
+
             const boxRow = Math.floor(row / 2);
             const boxCol = Math.floor(col / 2);
             const owner = game.boxes.get(boxKey(boxRow, boxCol));
-            cells.push(`<div class="box-cell${owner === PLAYER_1 ? ' box-cell--player-1' : owner === PLAYER_2 ? ' box-cell--player-2' : ''}" aria-hidden="true"></div>`);
+
+            cells.push(
+                crear('div', {
+                    clase: `box-cell${owner === PLAYER_1 ? ' box-cell--player-1' : owner === PLAYER_2 ? ' box-cell--player-2' : ''}`,
+                    'aria-hidden': 'true',
+                })
+            );
         }
     }
-    return `<div class="board"><div class="board__grid" role="group" aria-label="Tablero de puntos y cajas" style="--board-cells:${totalCells}">${cells.join('')}</div></div>`;
+
+    return crear('div', { clase: 'board' }, [
+        crear(
+            'div',
+            {
+                clase: 'board__grid',
+                role: 'group',
+                'aria-label': 'Tablero de puntos y cajas',
+                estilo: `--board-cells:${totalCells}`,
+            },
+            cells
+        ),
+    ]);
 }
 
 function renderGame() {
@@ -227,15 +343,35 @@ function renderGame() {
     const botTurn = mode === 'bot' && game.turn === PLAYER_2;
     const winner = over ? getWinner(game) : null;
     const winnerName = winner === null ? null : winner === PLAYER_1 ? (mode === 'bot' ? 'TÚ' : 'Jugador 1') : (mode === 'bot' ? 'BOT' : 'Jugador 2');
-    app.innerHTML = `<main class="app"><header class="app__header"><h1 class="app__title">Puntos y Cajas</h1></header>
-        <section class="game-screen" aria-label="Pantalla de partida">
-            ${scoreboard()}
-            ${boardMarkup()}
-            <div class="game-screen__controls">${button('Reiniciar', 'restart_alt', 'ghost', 'restart')}${button('Menú', 'arrow_back', 'ghost', 'menu')}</div>
-            <p class="sr-only" role="status">Turno del jugador ${game.turn}</p>
-        </section>
-        ${over ? `<section class="game-over" aria-label="Fin de la partida"><div class="game-over__card">${icon('emoji_events', 'game-over__icon')}<h2 class="game-over__title">${winnerName === null ? 'Empate' : `Gana ${winnerName}`}</h2><div class="game-over__actions">${button('Jugar de nuevo', null, 'primary', 'play-again')}${button('Menú', null, 'secondary', 'menu')}</div></div></section>` : ''}
-    </main>`;
+    const fin = crear('section', { clase: 'game-over', 'aria-label': 'Fin de la partida' }, [
+        crear('div', { clase: 'game-over__card' }, [
+            icon('emoji_events', 'game-over__icon'),
+            crear('h2', { clase: 'game-over__title', texto: winnerName === null ? 'Empate' : `Gana ${winnerName}` }),
+            crear('div', { clase: 'game-over__actions' }, [
+                button('Jugar de nuevo', null, 'primary', 'play-again'),
+                button('Menú', null, 'secondary', 'menu'),
+            ]),
+        ]),
+    ]);
+
+    app.replaceChildren(
+        crear('main', { clase: 'app' }, [
+            crear('header', { clase: 'app__header' }, [
+                crear('h1', { clase: 'app__title', texto: 'Puntos y Cajas' }),
+            ]),
+            crear('section', { clase: 'game-screen', 'aria-label': 'Pantalla de partida' }, [
+                scoreboard(),
+                boardMarkup(),
+                crear('div', { clase: 'game-screen__controls' }, [
+                    button('Reiniciar', 'restart_alt', 'ghost', 'restart'),
+                    button('Menú', 'arrow_back', 'ghost', 'menu'),
+                ]),
+                crear('p', { clase: 'sr-only', role: 'status', texto: `Turno del jugador ${game.turn}` }),
+            ]),
+            over ? fin : null,
+        ])
+    );
+
     app.querySelectorAll('[data-edge-type]').forEach((element) => element.addEventListener('click', () => {
         if (botTurn) return;
         playEdge(element.dataset.edgeType, Number(element.dataset.edgeRow), Number(element.dataset.edgeCol));

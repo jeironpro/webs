@@ -1,24 +1,46 @@
+@layer base {
 /* Zip · un solo camino
    Cabina de arcade sobre panel oscuro, con el tablero como pieza principal. */
 
 :root {
+    --color: #0f1526;
+    --color-10: #6746e8;
+    --color-11: #7d5cff;
+    --color-12: #a8b0cb;
+    --color-13: #f2f4ff;
+    --color-14: #ff7285;
+    --color-2: #161d31;
+    --color-3: #17384b;
+    --color-4: #1e2740;
+    --color-5: #243052;
+    --color-6: #2f3a5c;
+    --color-7: #4b5780;
+    --color-8: #58e2a0;
+    --color-9: #5ed0f5;
+    --fondo: #1c4459;
+    --texto-2: #fff;
+    --texto-3: #04291b;
+    --texto-4: #2b0710;
+}
+
+:root {
     color-scheme: dark;
 
-    --papel: #0f1526;
-    --superficie: #161d31;
-    --superficie-suave: #1e2740;
-    --superficie-alta: #243052;
-    --tinta: #f2f4ff;
-    --tinta-suave: #a8b0cb;
-    --linea: #2f3a5c;
-    --linea-fuerte: #4b5780;
+    --papel: var(--color);
+    --superficie: var(--color-2);
+    --superficie-suave: var(--color-4);
+    --superficie-alta: var(--color-5);
+    --tinta: var(--color-13);
+    --tinta-suave: var(--color-12);
+    --linea: var(--color-6);
+    --linea-fuerte: var(--color-7);
 
-    --primario: #7d5cff;
-    --primario-oscuro: #6746e8;
-    --acento: #5ed0f5;
-    --acento-suave: #17384b;
-    --exito: #58e2a0;
-    --error: #ff7285;
+    --primario: var(--color-11);
+    --primario-oscuro: var(--color-10);
+    --acento: var(--color-9);
+    --acento-suave: var(--color-3);
+    --exito: var(--color-8);
+    --error: var(--color-14);
 
     --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
     --display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
@@ -211,7 +233,7 @@ body {
 .chip[aria-pressed="true"] {
     background: var(--primario);
     border-color: var(--primario);
-    color: #fff;
+    color: var(--texto-2);
 }
 
 .marco {
@@ -259,7 +281,7 @@ body {
 }
 
 .celda--visitada:hover {
-    background: #1c4459;
+    background: var(--fondo);
 }
 
 .celda--cabeza {
@@ -271,7 +293,7 @@ body {
     background: var(--primario);
     border-radius: 50%;
     box-shadow: 0 4px 14px rgb(0 0 0 / 35%);
-    color: #fff;
+    color: var(--texto-2);
     display: flex;
     font-family: var(--mono);
     font-size: clamp(0.72rem, 2.4vw, 1rem);
@@ -291,12 +313,12 @@ body {
 
 .celda--inicio .celda__numero {
     background: var(--exito);
-    color: #04291b;
+    color: var(--texto-3);
 }
 
 .celda--fin .celda__numero {
     background: var(--error);
-    color: #2b0710;
+    color: var(--texto-4);
 }
 
 .capa {
@@ -553,7 +575,7 @@ kbd {
 
 .btn--primario {
     background: var(--primario);
-    color: #fff;
+    color: var(--texto-2);
 }
 
 .btn--primario:hover {
@@ -690,12 +712,15 @@ kbd {
         top: 1rem;
     }
 }
+}
 
+@layer accesibilidad {
 @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.01ms !important;
-        transition-duration: 0.01ms !important;
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms;
+                transition-duration: 0.01ms;
+            }
     }
 }

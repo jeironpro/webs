@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
-    var sesionIniciada = localStorage.getItem('sesionIniciada');
-    var items = document.getElementById('items');
-    var loguearse = document.getElementById('loguearse');
-    var paginaPedidos = document.getElementById('pagina-pedidos');
+    const sesionIniciada = localStorage.getItem('sesionIniciada');
+    const items = document.getElementById('items');
+    const loguearse = document.getElementById('loguearse');
+    const paginaPedidos = document.getElementById('pagina-pedidos');
 
     if (sesionIniciada === 'true') {
         items.style.display = 'flex';
