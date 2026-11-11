@@ -994,12 +994,33 @@ function chooseMove(game, difficulty, random = Math.random) {
 // ===== Interfaz =====
 
 const app = document.querySelector("#app");
+function crear(etiqueta, propiedades = {}, hijos = []) {
+    const nodo = document.createElement(etiqueta);
+
+    Object.entries(propiedades).forEach(([clave, valor]) => {
+        if (valor === undefined || valor === null || valor === false) return;
+        if (clave === 'clase') nodo.className = valor;
+        else if (clave === 'texto') nodo.textContent = valor;
+        else if (clave === 'estilo') nodo.setAttribute('style', valor);
+        else nodo.setAttribute(clave, valor === true ? '' : String(valor));
+    });
+
+    [].concat(hijos).forEach((hijo) => {
+        if (hijo === null || hijo === undefined || hijo === false) return;
+        nodo.append(hijo instanceof Node ? hijo : document.createTextNode(String(hijo)));
+    });
+
+    return nodo;
+}
+
 const icon = (name, extra = "") =>
-    `<span class="material-symbols-rounded ${extra}" aria-hidden="true">${name}</span>`;
+    crear("span", { clase: `material-symbols-rounded ${extra}`.trim(), "aria-hidden": "true", texto: name });
 const button = (text, iconName, variant = "primary", action = "") =>
-    `<button type="button" class="button button--${variant}"${
-        action ? ` data-action="${action}"` : ""
-    }>${iconName ? icon(iconName) : ""}${text}</button>`;
+    crear(
+        "button",
+        { type: "button", clase: `button button--${variant}`, "data-action": action || undefined },
+        [iconName ? icon(iconName) : null, text],
+    );
 
 const MODES = [
     {
@@ -1032,7 +1053,7 @@ function isLightSquare(row, col) {
 
 function pieceMarkup(type, color, extra = "") {
     const classes = ["piece", `piece--${color}`, extra].filter(Boolean).join(" ");
-    return `<span class="${classes}" aria-hidden="true">${PIECE_GLYPHS[color][type]}</span>`;
+    return crear("span", { clase: classes, "aria-hidden": "true", texto: PIECE_GLYPHS[color][type] });
 }
 
 function sortCapturedPieces(pieces) {
@@ -1086,29 +1107,45 @@ function scoreboardMarkup() {
     const badge = mode === "bot" ? DIFFICULTY_LABELS[difficulty] : "2 JUGADORES";
     const player1Pieces = countPieces(game.board, WHITE);
     const player2Pieces = countPieces(game.board, BLACK);
-    return `<section class="scoreboard" aria-label="Marcador de la partida">
-        <div class="scoreboard__top-row"><span class="scoreboard__badge">${badge}</span></div>
-        <div class="scoreboard__names">
-            <span class="scoreboard__name${player1Active ? " scoreboard__name--active" : ""}">${player1Name}</span>
-            <span class="scoreboard__name${player2Active ? " scoreboard__name--active" : ""}">${player2Name}</span>
-        </div>
-        <div class="scoreboard__counts">
-            <span class="scoreboard__count${player1Active ? " scoreboard__count--active" : ""}">${player1Pieces}</span>
-            <span class="scoreboard__vs">vs</span>
-            <span class="scoreboard__count${player2Active ? " scoreboard__count--active" : ""}">${player2Pieces}</span>
-        </div>
-    </section>`;
+    return crear("section", { clase: "scoreboard", "aria-label": "Marcador de la partida" }, [
+        crear("div", { clase: "scoreboard__top-row" }, [crear("span", { clase: "scoreboard__badge", texto: badge })]),
+        crear("div", { clase: "scoreboard__names" }, [
+            crear("span", {
+                clase: `scoreboard__name${player1Active ? " scoreboard__name--active" : ""}`,
+                texto: player1Name,
+            }),
+            crear("span", {
+                clase: `scoreboard__name${player2Active ? " scoreboard__name--active" : ""}`,
+                texto: player2Name,
+            }),
+        ]),
+        crear("div", { clase: "scoreboard__counts" }, [
+            crear("span", {
+                clase: `scoreboard__count${player1Active ? " scoreboard__count--active" : ""}`,
+                texto: String(player1Pieces),
+            }),
+            crear("span", { clase: "scoreboard__vs", texto: "vs" }),
+            crear("span", {
+                clase: `scoreboard__count${player2Active ? " scoreboard__count--active" : ""}`,
+                texto: String(player2Pieces),
+            }),
+        ]),
+    ]);
 }
 
 function capturedPiecesMarkup(pieces, ownerName) {
-    if (pieces.length === 0) return "";
+    if (pieces.length === 0) return null;
     const ordered = sortCapturedPieces(pieces);
     const summary = ordered.map((piece) => PIECE_NAMES[piece.type]).join(", ");
-    return `<div class="captured-pieces" role="region" aria-label="Piezas capturadas por ${ownerName}: ${summary}">
-        ${ordered
-            .map((piece) => pieceMarkup(piece.type, piece.color, "captured-pieces__item"))
-            .join("")}
-    </div>`;
+    return crear(
+        "div",
+        {
+            clase: "captured-pieces",
+            role: "region",
+            "aria-label": `Piezas capturadas por ${ownerName}: ${summary}`,
+        },
+        ordered.map((piece) => pieceMarkup(piece.type, piece.color, "captured-pieces__item")),
+    );
 }
 
 function boardMarkup() {
@@ -1158,75 +1195,113 @@ function boardMarkup() {
 
             const markers = [];
             if (isLastMove) {
-                markers.push('<span class="board__marker board__marker--last-move"></span>');
+                markers.push(crear("span", { clase: "board__marker board__marker--last-move" }));
             }
             if (isCheck) {
-                markers.push('<span class="board__marker board__marker--check"></span>');
+                markers.push(crear("span", { clase: "board__marker board__marker--check" }));
             }
             if (selected) {
-                markers.push('<span class="board__marker board__marker--selection"></span>');
+                markers.push(crear("span", { clase: "board__marker board__marker--selection" }));
             }
 
             const className = `board__square ${
                 isLightSquare(row, col) ? "board__square--light" : "board__square--dark"
             }`;
 
-            squares.push(`<button type="button" class="${className}" data-row="${row}" data-col="${col}"${
-                currentDisabled ? " disabled" : ""
-            } aria-label="${squareLabel(row, col, piece)}" aria-pressed="${selected}">
-                ${markers.join("")}
-                ${piece !== null ? pieceMarkup(piece.type, piece.color) : ""}
-                ${
-                    isTarget
-                        ? `<span class="board__marker board__marker--target ${
-                              isCapture ? "board__marker--capture" : "board__marker--dot"
-                          }" aria-hidden="true"></span>`
-                        : ""
-                }
-            </button>`);
+            squares.push(
+                crear(
+                    "button",
+                    {
+                        type: "button",
+                        clase: className,
+                        "data-row": String(row),
+                        "data-col": String(col),
+                        disabled: currentDisabled ? true : undefined,
+                        "aria-label": squareLabel(row, col, piece),
+                        "aria-pressed": String(selected),
+                    },
+                    [
+                        ...markers,
+                        piece !== null ? pieceMarkup(piece.type, piece.color) : null,
+                        isTarget
+                            ? crear("span", {
+                                  clase: `board__marker board__marker--target ${
+                                      isCapture ? "board__marker--capture" : "board__marker--dot"
+                                  }`,
+                                  "aria-hidden": "true",
+                              })
+                            : null,
+                    ],
+                ),
+            );
         }
     }
 
-    return `<div class="chessboard" role="grid" aria-label="Tablero de ajedrez">${squares.join("")}</div>`;
+    return crear("div", { clase: "chessboard", role: "grid", "aria-label": "Tablero de ajedrez" }, squares);
 }
 
 function renderHome() {
-    app.innerHTML = `<div class="app"><div class="home">
-        <header class="home__header">
-            ${icon("sports_esports")}
-            <h1 class="home__title">Ajedrez</h1>
-            <p class="home__subtitle">Elige cómo quieres jugar</p>
-        </header>
-        <div class="home__modes">
-            ${MODES.map(
-                (item) =>
-                    `<button type="button" class="home__mode${
-                        selectedMode === item.id ? " home__mode--selected" : ""
-                    }" data-mode="${item.id}" aria-pressed="${selectedMode === item.id}">
-                        ${icon(item.icon)}
-                        <span class="home__mode-label">${item.label}</span>
-                        <span class="home__mode-description">${item.description}</span>
-                    </button>`,
-            ).join("")}
-        </div>
-        ${
-            selectedMode === "bot"
-                ? `<div class="home__difficulty" role="group" aria-label="Dificultad del bot">
-                    ${DIFFICULTIES.map(
-                        (level) =>
-                            `<button type="button" class="home__difficulty-option${
-                                difficulty === level ? " home__difficulty-option--active" : ""
-                            }" data-difficulty="${level}" aria-pressed="${difficulty === level}">${
-                                DIFFICULTY_LABELS[level]
-                            }</button>`,
-                    ).join("")}
-                </div>`
-                : ""
-        }
-        <button type="button" class="button button--primary" data-action="start" ${
-            selectedMode === null ? "disabled" : ""
-        }>${icon("play_arrow")}Jugar</button>
-    </div></div>`;
+    const dificultades = crear(
+        "div",
+        { clase: "home__difficulty", role: "group", "aria-label": "Dificultad del bot" },
+        DIFFICULTIES.map((level) =>
+            crear(
+                "button",
+                {
+                    type: "button",
+                    clase: `home__difficulty-option${
+                        difficulty === level ? " home__difficulty-option--active" : ""
+                    }`,
+                    "data-difficulty": level,
+                    "aria-pressed": String(difficulty === level),
+                },
+                [DIFFICULTY_LABELS[level]],
+            ),
+        ),
+    );
+
+    app.replaceChildren(
+        crear("div", { clase: "app" }, [
+            crear("div", { clase: "home" }, [
+                crear("header", { clase: "home__header" }, [
+                    icon("sports_esports"),
+                    crear("h1", { clase: "home__title", texto: "Ajedrez" }),
+                    crear("p", { clase: "home__subtitle", texto: "Elige cómo quieres jugar" }),
+                ]),
+                crear(
+                    "div",
+                    { clase: "home__modes" },
+                    MODES.map((item) =>
+                        crear(
+                            "button",
+                            {
+                                type: "button",
+                                clase: `home__mode${selectedMode === item.id ? " home__mode--selected" : ""}`,
+                                "data-mode": item.id,
+                                "aria-pressed": String(selectedMode === item.id),
+                            },
+                            [
+                                icon(item.icon),
+                                crear("span", { clase: "home__mode-label", texto: item.label }),
+                                crear("span", { clase: "home__mode-description", texto: item.description }),
+                            ],
+                        ),
+                    ),
+                ),
+                selectedMode === "bot" ? dificultades : null,
+                crear(
+                    "button",
+                    {
+                        type: "button",
+                        clase: "button button--primary",
+                        "data-action": "start",
+                        disabled: selectedMode === null ? true : undefined,
+                    },
+                    [icon("play_arrow"), "Jugar"],
+                ),
+            ]),
+        ]),
+    );
 
     app.querySelectorAll("[data-mode]").forEach((element) =>
         element.addEventListener("click", () => {
@@ -1261,45 +1336,46 @@ function renderGame() {
         botTurn || game.undoUsed || game.history.length === 0 || game.over;
     const status = botTurn ? "El bot está pensando…" : null;
 
-    app.innerHTML = `<div class="app"><div class="game-screen">
-        <div class="game-screen__score">${scoreboardMarkup()}</div>
-        <div class="game-screen__side game-screen__side--left">${capturedPiecesMarkup(
-            player1Captures,
-            player1Name,
-        )}</div>
-        <div class="game-screen__board">${boardMarkup()}</div>
-        <div class="game-screen__side game-screen__side--right">${capturedPiecesMarkup(
-            player2Captures,
-            player2Name,
-        )}</div>
-        <div class="game-screen__controls">
-            ${status !== null ? `<p class="game-screen__status" role="status">${status}</p>` : ""}
-            <div class="game-screen__actions">
-                ${button("Deshacer", "undo", "secondary", "undo")}
-                ${button("Reiniciar", "restart_alt", "secondary", "restart")}
-                ${button("Menú", "arrow_back", "secondary", "menu")}
-            </div>
-        </div>
-        ${
-            game.over
-                ? `<div class="game-over" role="dialog" aria-modal="true" aria-label="Fin de partida">
-                    <div class="game-over__card">
-                        ${icon("emoji_events")}
-                        <h2 class="game-over__title">${resultTitle()}</h2>
-                        ${
-                            endReasonText(game.endReason) !== ""
-                                ? `<p class="game-over__subtitle">${endReasonText(game.endReason)}</p>`
-                                : ""
-                        }
-                        <div class="game-over__actions">
-                            ${button("Jugar de nuevo", "restart_alt", "primary", "restart")}
-                            ${button("Volver al menú", "", "secondary", "menu")}
-                        </div>
-                    </div>
-                </div>`
-                : ""
-        }
-    </div></div>`;
+    const motivoFin = endReasonText(game.endReason);
+    const fin = crear(
+        "div",
+        { clase: "game-over", role: "dialog", "aria-modal": "true", "aria-label": "Fin de partida" },
+        [
+            crear("div", { clase: "game-over__card" }, [
+                icon("emoji_events"),
+                crear("h2", { clase: "game-over__title", texto: resultTitle() }),
+                motivoFin !== "" ? crear("p", { clase: "game-over__subtitle", texto: motivoFin }) : null,
+                crear("div", { clase: "game-over__actions" }, [
+                    button("Jugar de nuevo", "restart_alt", "primary", "restart"),
+                    button("Volver al menú", "", "secondary", "menu"),
+                ]),
+            ]),
+        ],
+    );
+
+    app.replaceChildren(
+        crear("div", { clase: "app" }, [
+            crear("div", { clase: "game-screen" }, [
+                crear("div", { clase: "game-screen__score" }, [scoreboardMarkup()]),
+                crear("div", { clase: "game-screen__side game-screen__side--left" }, [
+                    capturedPiecesMarkup(player1Captures, player1Name),
+                ]),
+                crear("div", { clase: "game-screen__board" }, [boardMarkup()]),
+                crear("div", { clase: "game-screen__side game-screen__side--right" }, [
+                    capturedPiecesMarkup(player2Captures, player2Name),
+                ]),
+                crear("div", { clase: "game-screen__controls" }, [
+                    status !== null ? crear("p", { clase: "game-screen__status", role: "status", texto: status }) : null,
+                    crear("div", { clase: "game-screen__actions" }, [
+                        button("Deshacer", "undo", "secondary", "undo"),
+                        button("Reiniciar", "restart_alt", "secondary", "restart"),
+                        button("Menú", "arrow_back", "secondary", "menu"),
+                    ]),
+                ]),
+                game.over ? fin : null,
+            ]),
+        ]),
+    );
 
     app.querySelectorAll("[data-row]").forEach((element) =>
         element.addEventListener("click", () =>

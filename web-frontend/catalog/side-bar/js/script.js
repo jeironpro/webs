@@ -1,7 +1,7 @@
 document.getElementById('control').addEventListener('click', function() {
-    var header = document.querySelector('header');
-    var textoElementos = document.querySelectorAll('li span');
-    var icono = document.querySelector('.control i');
+    const header = document.querySelector('header');
+    const textoElementos = document.querySelectorAll('li span');
+    const icono = document.querySelector('.control i');
 
     if (icono.classList.contains('fa-chevron-left')) {
         header.style.width = '55px';

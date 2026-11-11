@@ -189,6 +189,14 @@ function mover() {
     dibujar();
 }
 
+function pintarIcono(boton, icono, texto) {
+    const marca = document.createElement("span");
+    marca.className = "material-symbols-rounded";
+    marca.setAttribute("aria-hidden", "true");
+    marca.textContent = icono;
+    boton.replaceChildren(marca, document.createTextNode(` ${texto}`));
+}
+
 function iniciarJuego() {
     if (terminado) reiniciarEstado();
 
@@ -197,7 +205,7 @@ function iniciarJuego() {
     terminado = false;
     capa.hidden = true;
     botonPausa.disabled = false;
-    botonPausa.innerHTML = `<span class="material-symbols-rounded" aria-hidden="true">pause</span> Pausa`;
+    pintarIcono(botonPausa, "pause", "Pausa");
     estadoUI.textContent = "En marcha";
     window.clearInterval(intervalo);
     intervalo = window.setInterval(mover, VELOCIDAD);
@@ -209,7 +217,7 @@ function pausarJuego() {
     if (pausado) {
         pausado = false;
         estadoUI.textContent = "En marcha";
-        botonPausa.innerHTML = `<span class="material-symbols-rounded" aria-hidden="true">pause</span> Pausa`;
+        pintarIcono(botonPausa, "pause", "Pausa");
         window.clearInterval(intervalo);
         intervalo = window.setInterval(mover, VELOCIDAD);
         return;
@@ -217,7 +225,7 @@ function pausarJuego() {
 
     pausado = true;
     estadoUI.textContent = "Pausada";
-    botonPausa.innerHTML = `<span class="material-symbols-rounded" aria-hidden="true">play_arrow</span> Seguir`;
+    pintarIcono(botonPausa, "play_arrow", "Seguir");
     window.clearInterval(intervalo);
 }
 
@@ -231,7 +239,7 @@ function terminarJuego(victoria) {
     capaTexto.textContent = victoria
         ? `Has llenado las ${COLUMNAS * FILAS} casillas. Puntuación: ${puntuacion}.`
         : `Puntuación: ${puntuacion} · Récord: ${record}. Los bordes conectan; la cola no perdona.`;
-    botonInicio.innerHTML = `<span class="material-symbols-rounded" aria-hidden="true">refresh</span> Reintentar`;
+    pintarIcono(botonInicio, "refresh", "Reintentar");
     capa.hidden = false;
     dibujar();
 }
@@ -247,7 +255,7 @@ function reiniciarJuego() {
     capaTitulo.textContent = "Toma el control";
     capaTexto.textContent =
         "Usa las flechas o WASD. La serpiente aparece en el centro del tablero.";
-    botonInicio.innerHTML = `<span class="material-symbols-rounded" aria-hidden="true">play_arrow</span> Empezar`;
+    pintarIcono(botonInicio, "play_arrow", "Empezar");
     botonPausa.disabled = true;
     capa.hidden = false;
 }

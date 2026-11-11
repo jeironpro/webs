@@ -1,9 +1,9 @@
 function menuAcordeon(index) {
-    var elementos = document.querySelectorAll('.si-submenu');
+    const elementos = document.querySelectorAll('.si-submenu');
 
     elementos.forEach(function(elemento, i) {
-        var icono = elemento.querySelector('.icono i');
-        var submenu = elemento.querySelector('.submenu');
+        let icono = elemento.querySelector('.icono i');
+        const submenu = elemento.querySelector('.submenu');
         if (i === index) {
             if (elemento.classList.contains('activo')) {
                 elemento.classList.remove('activo');
@@ -26,12 +26,12 @@ function menuAcordeon(index) {
 }
 
 document.getElementById('menu-burger').addEventListener('click', function() {
-    var menuNavegacion = document.getElementById('menu-navegacion');
-    var menuBurger = document.getElementById('menu-burger');
-    var icono = menuBurger.querySelector('.menu-burger i');
-    var tituloBar = document.getElementById('titulo-bar');
-    var logoBar = document.getElementById('logo-bar');
-    var header = document.querySelector('header');
+    const menuNavegacion = document.getElementById('menu-navegacion');
+    const menuBurger = document.getElementById('menu-burger');
+    const icono = menuBurger.querySelector('.menu-burger i');
+    const tituloBar = document.getElementById('titulo-bar');
+    const logoBar = document.getElementById('logo-bar');
+    const header = document.querySelector('header');
 
     if (menuNavegacion.style.display === 'none') {
         menuNavegacion.style.display = 'block';

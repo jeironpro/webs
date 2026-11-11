@@ -1,3 +1,9 @@
+:root {
+    --fondo: #fff;
+    --fondo-2: #7fff00;
+    --texto: #000;
+}
+
 body {
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
@@ -6,7 +12,7 @@ body {
 }
 
 footer {
-    background-color: #7fff00;
+    background-color: var(--fondo-2);
     height: 100%;
     overflow: hidden;
     position: absolute;
@@ -15,7 +21,7 @@ footer {
 
 footer .icono-titulo {
     align-items: center;
-    background-color: #FFF;
+    background-color: var(--fondo);
     display: flex;
     width: 100%;
 }
@@ -69,14 +75,14 @@ footer .grupos-enlaces .grupo .enlace {
 }
 
 footer .grupos-enlaces .grupo a {
-    color: #000;
+    color: var(--texto);
     font-size: 18px;
     font-weight: 500;
     text-decoration: none;
 }
 
 footer .derechos {
-    background-color: #FFF;
+    background-color: var(--fondo);
     bottom: 0;
     font-size: 18px;
     font-weight: 600;

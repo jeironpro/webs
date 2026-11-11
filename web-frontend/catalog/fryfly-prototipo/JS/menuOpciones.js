@@ -3,11 +3,11 @@ document.addEventListener('DOMContentLoaded', function() {
     function verificarClick(event) {
         event.preventDefault();
 
-        var opcionSeleccionada = event.currentTarget.id;
+        let opcionSeleccionada = event.currentTarget.id;
         window.location.href = '../HTML/menuopciones.html?opcion=' + opcionSeleccionada;
     }
 
-    var opciones = document.querySelectorAll('.opcion');
+    const opciones = document.querySelectorAll('.opcion');
     opciones.forEach(function(opcion) {
         opcion.addEventListener('click', verificarClick);
     })
@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function mostrarImagenesOpcion(opcion) {
-        var imagenes = [];
+        let imagenes = [];
 
         if (opcion === 'hamburguesas') {
             imagenes = [
@@ -158,10 +158,10 @@ document.addEventListener("DOMContentLoaded", function() {
             ];
         }
 
-        var subOpciones = document.querySelector('.sub-opciones');
+        const subOpciones = document.querySelector('.sub-opciones');
 
         imagenes.forEach(function(imagen) {
-            var cardOpcion = document.createElement('div');
+            const cardOpcion = document.createElement('div');
             cardOpcion.classList.add('card-opcion');
             cardOpcion.style.backgroundImage = `url('../IMG/${opcion}/${imagen}')`;
 
@@ -173,7 +173,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.querySelector('.anterior').addEventListener('click', mostrarAnterior);
 
     function obtenerParametro(nombre) {
-        var parametros = new URLSearchParams(window.location.search);
+        const parametros = new URLSearchParams(window.location.search);
         return parametros.get(nombre);
     }
 
@@ -235,22 +235,22 @@ document.addEventListener("DOMContentLoaded", function() {
         mostrarImagenesOpcion(opcion);
     }
 
-    var opcionSeleccionada = obtenerParametro('opcion');
+    const opcionSeleccionada = obtenerParametro('opcion');
     if (opcionSeleccionada) {
         actualizarContenido(opcionSeleccionada);
     }
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-    var cardOpciones = document.querySelectorAll('.card-opcion');
+    const cardOpciones = document.querySelectorAll('.card-opcion');
 
     cardOpciones.forEach(function(card) {
         card.addEventListener('click', function() {
-            var nombreImagen = card.style.backgroundImage.replace(/\)$/, '').split('/').pop().replace(/"|"/g, '').replace('.jpg', '');
+            const nombreImagen = card.style.backgroundImage.replace(/\)$/, '').split('/').pop().replace(/"|"/g, '').replace('.jpg', '');
 
-            var modalNombre = document.getElementById('nombre-opcion');
-            var modalIngredientes = document.getElementById('ingredientes-opcion');
-            var modalImagen = document.querySelector('.img-card');
+            const modalNombre = document.getElementById('nombre-opcion');
+            const modalIngredientes = document.getElementById('ingredientes-opcion');
+            const modalImagen = document.querySelector('.img-card');
 
             // HAMBURGUESAS
             if (nombreImagen === 'hamburguesaclasica') {
@@ -576,7 +576,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function mostrarIngredientes(nombreImagen, modalIngredientes) {
-    var ingredientes = [];
+    let ingredientes = [];
 
     switch (nombreImagen) {
         // HAMBURGUESAS
@@ -778,7 +778,7 @@ function mostrarIngredientes(nombreImagen, modalIngredientes) {
     modalIngredientes.textContent = '';
 
     ingredientes.forEach(function(ingrediente) {
-        var li = document.createElement('li');
+        const li = document.createElement('li');
 
         li.textContent = ingrediente;
         li.className = 'ingrediente';
@@ -792,7 +792,7 @@ function mostrarIngredientes(nombreImagen, modalIngredientes) {
 }
 
 // function ordenar() {
-//     var sesionIniciada = localStorage.getItem('sesionIniciada');
+//     const sesionIniciada = localStorage.getItem('sesionIniciada');
 //     if (sesionIniciada !== 'true') {
 //         window.location.href = 'login.html';
 //     }
@@ -804,9 +804,11 @@ function mostrarModal() {
 }
 
 function cerrarModal() {
-    var modalOlvCon = document.getElementById('modalOpcion');
+    const modalOlvCon = document.getElementById('modalOpcion');
 
     modalOlvCon.style.display = 'none';
 
     document.getElementById('modalOpcionOverlay').style.display = 'none';
 }
+
+document.getElementById('modalOpcionOverlay').addEventListener('click', cerrarModal);

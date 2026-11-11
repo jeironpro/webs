@@ -283,33 +283,33 @@ function anunciar(texto) {
     elementos.estado.textContent = texto;
 }
 
-function cargarSudoku() {
-    fetch("json/sudokus.json")
-        .then((respuesta) => {
-            if (!respuesta.ok) {
-                throw new Error("No se pudo cargar el archivo de sudokus.");
-            }
-            return respuesta.json();
-        })
-        .then((sudokus) => {
-            const sudoku = sudokus[Math.floor(Math.random() * sudokus.length)];
-            tableroCompleto = sudoku.completo;
-            tableroVisible = sudoku.visible;
-            tableroActual = sudoku.visible.map((fila) => [...fila]);
-            casillaActiva = null;
-            celdasConError = new Set();
-            errores = 0;
-            resuelto = false;
-            elementos.modal.hidden = true;
-            actualizarDatos();
-            iniciarReloj();
-            pintarTablero();
-            anunciar("Elige una casilla vacía para empezar.");
-        })
-        .catch((error) => {
-            console.error(error);
-            anunciar("No se pudieron cargar los tableros. Recarga la página.");
-        });
+async function cargarSudoku() {
+    try {
+        const respuesta = await fetch("json/sudokus.json");
+
+        if (!respuesta.ok) {
+            throw new Error("No se pudo cargar el archivo de sudokus.");
+        }
+
+        const sudokus = await respuesta.json();
+        const sudoku = sudokus[Math.floor(Math.random() * sudokus.length)];
+
+        tableroCompleto = sudoku.completo;
+        tableroVisible = sudoku.visible;
+        tableroActual = sudoku.visible.map((fila) => [...fila]);
+        casillaActiva = null;
+        celdasConError = new Set();
+        errores = 0;
+        resuelto = false;
+        elementos.modal.hidden = true;
+        actualizarDatos();
+        iniciarReloj();
+        pintarTablero();
+        anunciar("Elige una casilla vacía para empezar.");
+    } catch (error) {
+        console.error(error);
+        anunciar("No se pudieron cargar los tableros. Recarga la página.");
+    }
 }
 
 elementos.btnBorrar.addEventListener("click", borrarNumero);

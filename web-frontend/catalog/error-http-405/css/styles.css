@@ -1,7 +1,13 @@
+@layer base {
+:root {
+    --fondo: #2e7d32;
+    --texto: #fff;
+}
+
 body {
     align-items: center;
     animation: gradientAnimation 5s infinite alternate;
-    background: #2E7D32;
+    background: var(--fondo);
     display: flex;
     font-family: "Montserrat", sans-serif;
     height: 100vh;
@@ -14,7 +20,7 @@ body {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    color: #FFF;
+    color: var(--texto);
     padding: 20px;
     text-align: center;
 }
@@ -55,43 +61,52 @@ p {
         transform: translateX(0);
     }
 }
-
-@media screen and (max-width: 900px) {
-    h1 {
-        font-size: 2.7em;
-    }
-    
-    p {
-        font-size: 1.3em;
-    }
 }
 
-@media screen and (max-width: 750px) {
-    h1 {
-        font-size: 2.3em;
-    }
-    
-    p {
-        font-size: 1em;
-    }
-}
-
-@media screen and (max-width: 600px) {
-    h1 {
-        font-size: 2em;
-    }
-    
-    p {
-        font-size: 0.8em;
-    }
-}
-
-@media screen and (max-width: 500px) {
+@layer responsive {
+    /* Base móvil: hasta 500 px */
     h1 {
         font-size: 1.5em;
     }
-    
+
     p {
         font-size: 0.6em;
+    }
+
+    @media (min-width: 501px) {
+        h1 {
+            font-size: 2em;
+        }
+
+        p {
+            font-size: 0.8em;
+        }
+    }
+    @media (min-width: 601px) {
+        h1 {
+            font-size: 2.3em;
+        }
+
+        p {
+            font-size: 1em;
+        }
+    }
+    @media (min-width: 751px) {
+        h1 {
+            font-size: 2.7em;
+        }
+
+        p {
+            font-size: 1.3em;
+        }
+    }
+    @media (min-width: 901px) {
+        h1 {
+            font-size: 3em;
+        }
+
+        p {
+            font-size: 1.5em;
+        }
     }
 }

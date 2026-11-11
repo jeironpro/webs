@@ -1,3 +1,14 @@
+:root {
+    --borde: #000;
+    --fondo: #c61b0d;
+    --fondo-2: #34a853;
+    --fondo-3: #4285f4;
+    --fondo-4: #fbbc05;
+    --texto: #fff;
+    --texto-2: #1778f2;
+    --texto-3: #ea4335;
+}
+
 * {
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
@@ -6,7 +17,7 @@
 }
 
 body {
-    background-color: #C61B0D;
+    background-color: var(--fondo);
 }
 
 main {
@@ -21,7 +32,7 @@ main {
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    background-color: #FFF;
+    background-color: var(--texto);
     width: 400px;
     height: 550px;
     border-radius: 10px;
@@ -32,7 +43,7 @@ main {
     position: absolute;
     top: 0px;
     right: 0px;
-    background-color: #C61B0D;
+    background-color: var(--fondo);
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
     border-radius: 0 10px 0 0;
     padding: 5px;
@@ -40,7 +51,7 @@ main {
 
 .contenedor-login .registro a {
     text-decoration: none;
-    color: #FFF;
+    color: var(--texto);
     font-size: 14px;
     font-weight: 500;
 }
@@ -80,9 +91,9 @@ form .control label {
 form .control input {
     width: 260px;
     height: 28px;
-    background-color: #C61B0D;
-    border: 1px solid #fff;
-    color: #FFF;
+    background-color: var(--fondo);
+    border: 1px solid var(--texto);
+    color: var(--texto);
     border-radius: 5px;
     padding-left: 5px;
 }
@@ -91,26 +102,29 @@ form .control input:focus {
     outline: none;
 }
 
-form .control span {
+form .control a {
     font-size: 14px;
     font-weight: 500;
     margin-left: 3px;
-}
-
-form .control span a {
     text-decoration: none;
-    color: #000;
+    color: var(--borde);
 }
 
-form .control span a:hover {
+form .control a:hover {
     text-decoration: underline;
 }
 
 form .control .mostrar-ocultar {
+    background: none;
+    border: 0;
+    color: var(--texto);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0;
     position: absolute;
     right: 5px;
     top: 24px;
-    color: #FFF;
 }
 
 form .boton {
@@ -125,8 +139,8 @@ form .boton button {
     height: 30px;
     font-weight: 700;
     font-size: 16px;
-    background-color: #000;
-    color: #FFF;
+    background-color: var(--borde);
+    color: var(--texto);
     border-radius: 5px;
     border: none;
     transition: transform 0.3s ease;
@@ -135,7 +149,7 @@ form .boton button {
 
 form .boton button:hover {
     transform: scale(0.95);
-    background-color: #C61B0D;
+    background-color: var(--fondo);
 }
 
 .registro-sociales {
@@ -153,7 +167,7 @@ form .boton button:hover {
 }
 
 .registro-sociales .linea-izquierda, .registro-sociales .linea-derecha {
-    border-top: 1px solid #000;
+    border-top: 1px solid var(--borde);
     width: 100%;
 }
 
@@ -164,32 +178,32 @@ form .boton button:hover {
 }
 
 .enlaces-registro .enlace-google, .enlaces-registro .enlace-facebook {
-    border: 1px solid #000;
+    border: 1px solid var(--borde);
     border-radius: 50%;
     padding: 12px;
     transition: transform 0.3s ease;
 }
 
 .enlaces-registro .enlace-google i {
-    color: #EA4335;
+    color: var(--texto-3);
     font-size: 20px;
 }
 
 .enlaces-registro .enlace-facebook i {
-    color: #1778F2;
+    color: var(--texto-2);
     font-size: 20px;
 }
 
 .enlaces-registro .enlace-google:hover {
-    background: conic-gradient(from -45deg, #ea4335 110deg, #4285f4 90deg 180deg, #34a853 180deg 270deg, #fbbc05 270deg) 73% 55%/150% 150% no-repeat;
+    background: conic-gradient(from -45deg, var(--texto-3) 110deg, var(--fondo-3) 90deg 180deg, var(--fondo-2) 180deg 270deg, var(--fondo-4) 270deg) 73% 55%/150% 150% no-repeat;
     transform: scale(1.1);
 }
 
 .enlaces-registro .enlace-facebook:hover {
-    background-color: #1778F2;
+    background-color: var(--texto-2);
     transform: scale(1.1);
 }
 
 .enlaces-registro .enlace-google:hover i, .enlaces-registro .enlace-facebook:hover i {
-    color: #FFF;
+    color: var(--texto);
 }

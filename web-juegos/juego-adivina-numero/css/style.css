@@ -1,3 +1,4 @@
+@layer base {
 /* Hallmark · genre: playful · macrostructure: Marquee Hero · theme: Hum
  * enrichment: none (typography only, Tier-A CSS character mark) · nav: N1a · footer: Ft8
  * pre-emit critique: P5 H4 E5 S4 R5 V5
@@ -154,24 +155,26 @@ a {
 .btn--soft:active {
   box-shadow: var(--shadow-soft-press);
 }
+}
 
-/* ── Movimiento reducido ─────────────────────────── */
+@layer accesibilidad {
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 150ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 150ms !important;
-  }
+          *,
+          *::before,
+          *::after {
+            animation-duration: 150ms;
+            animation-iteration-count: 1;
+            transition-duration: 150ms;
+          }
 
-  .game-mark,
-  .star-burst,
-  .foot-marquee__track {
-    animation: none !important;
-  }
+          .game-mark,
+          .star-burst,
+          .foot-marquee__track {
+            animation: none;
+          }
 
-  .star-burst {
-    display: none;
-  }
+          .star-burst {
+            display: none;
+          }
+    }
 }

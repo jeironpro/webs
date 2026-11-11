@@ -7,3 +7,5 @@ function cerrarModal() {
     document.getElementById('modal').style.display = 'none';
     document.getElementById('modalOverlay').style.display = 'none';
 }
+
+document.getElementById('modalOverlay').addEventListener('click', cerrarModal);

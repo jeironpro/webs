@@ -1,3 +1,14 @@
+:root {
+    --fondo: #03a65a;
+    --fondo-2: #c61b0d;
+    --fondo-3: #000;
+    --fondo-4: #c24914;
+    --texto: #fff;
+    --texto-2: #555;
+    --texto-3: #595959;
+    --texto-4: #f5f5f5;
+}
+
 * {
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
@@ -6,7 +17,7 @@
 }
 
 body {
-    background-color: #C61B0D;
+    background-color: var(--fondo-2);
 }
 
 main {
@@ -21,7 +32,7 @@ main {
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    background-color: #FFF;
+    background-color: var(--texto);
     width: 400px;
     height: 500px;
     border-radius: 10px;
@@ -55,9 +66,9 @@ form .control label {
 form .control input {
     width: 300px;
     height: 28px;
-    background-color: #C61B0D;
-    border: 1px solid #fff;
-    color: #FFF;
+    background-color: var(--fondo-2);
+    border: 1px solid var(--texto);
+    color: var(--texto);
     border-radius: 5px;
     padding-left: 5px;
 }
@@ -79,7 +90,7 @@ form .control .indicaciones-direccion .indicaciones::after {
     left: 50%;
     transform: translateX(-50%);
     background-color: rgba(0, 0, 0, 1);
-    color: #FFF;
+    color: var(--texto);
     padding: 5px 10px;
     border-radius: 5px;
     font-size: 14px;
@@ -99,10 +110,15 @@ form .control input:focus {
 }
 
 form .control .mostrar-ocultar {
+    background: none;
+    border: 0;
+    color: var(--texto);
+    cursor: pointer;
+    font: inherit;
+    padding: 0;
     position: absolute;
     right: 5px;
     top: 24px;
-    color: #FFF;
 }
 
 form .botones {
@@ -125,8 +141,8 @@ form .botones button, form .botones .enlace-regresar {
     height: 30px;
     font-weight: 700;
     font-size: 16px;
-    background-color: #000;
-    color: #FFF;
+    background-color: var(--fondo-3);
+    color: var(--texto);
     border-radius: 5px;
     border: none;
     transition: transform 0.3s ease;
@@ -135,7 +151,7 @@ form .botones button, form .botones .enlace-regresar {
 
 form .botones button:hover, form .botones a:hover {
     transform: scale(0.95);
-    background-color: #C61B0D;
+    background-color: var(--fondo-2);
 }
 
 /* NOTIFICACION */
@@ -165,9 +181,9 @@ form .botones button:hover, form .botones a:hover {
 }
 
 .notificacion {
-    background-color: #FFF;
+    background-color: var(--texto);
     border-radius: 5px;
-    color: #F5F5F5;
+    color: var(--texto-4);
     font-weight: 300;
     margin: 15px 0;
     max-width: 250px;
@@ -179,7 +195,7 @@ form .botones button:hover, form .botones a:hover {
 }
 
 .notificacion::before {
-    background: #03A65A;
+    background: var(--fondo);
     border-radius: 15px;
     content: "";
     height: calc(100% - 20px);
@@ -191,11 +207,11 @@ form .botones button:hover, form .botones a:hover {
 }
 
 .notificacion.error::before {
-    background: #C24914;
+    background: var(--fondo-4);
 }
 
 .notificacion h3 {
-    color: #03A65A;
+    color: var(--fondo);
     font-size: 20px;
     font-weight: 700;
     line-height: 20px;
@@ -204,7 +220,7 @@ form .botones button:hover, form .botones a:hover {
 }
 
 .notificacion p {
-    color: #555;
+    color: var(--texto-2);
     font-size: 15px;
     font-weight: 500;
     line-height: 20px;
@@ -226,7 +242,7 @@ form .botones button:hover, form .botones a:hover {
 .notificacion .cerrar::after {
     align-items: center;
     border-radius: 100%;
-    color: #595959;
+    color: var(--texto-3);
     content: "+";
     display: flex;
     font-size: 30px;
@@ -240,6 +256,6 @@ form .botones button:hover, form .botones a:hover {
 }
 
 .notificacion .cerrar:hover::after {
-    background-color: #03A65A;
-    color: #FFF;
+    background-color: var(--fondo);
+    color: var(--texto);
 }
