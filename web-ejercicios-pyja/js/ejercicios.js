@@ -152,7 +152,7 @@ const mostrarCodigoSolucion = (modal, codigo, lenguaje) => {
     pre.classList.add("codigo-solucion");
 
     const code = document.createElement("code");
-    code.innerHTML = window.resaltarCodigo(codigo, lenguaje);
+    code.append(window.resaltarCodigo(codigo, lenguaje));
     pre.appendChild(code);
 
     envoltorio.appendChild(numeros);
@@ -179,9 +179,9 @@ const abrirSolucion = async (ejercicio, indice) => {
     }
 };
 
-fetch(window.CONFIG.jsonUrl)
-    .then((response) => response.json())
-    .then((datos) => {
+const iniciar = async () => {
+    const response = await fetch(window.CONFIG.jsonUrl);
+    const datos = await response.json();
         const contenedorEjercicios = document.querySelector("#contenedor-ejercicios");
         const ejerciciosPorPagina = 10;
         let paginaActual = 1;
@@ -396,5 +396,6 @@ fetch(window.CONFIG.jsonUrl)
         };
 
         mostrarPagina(1);
-    })
-    .catch((error) => console.error("Error al cargar ejercicios:", error));
+};
+
+iniciar().catch((error) => console.error("Error al cargar ejercicios:", error));

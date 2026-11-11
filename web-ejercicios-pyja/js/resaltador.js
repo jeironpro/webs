@@ -1,11 +1,8 @@
 // Resaltador de sintaxis ligero y sin dependencias para Python y Java.
-// Expone window.resaltarCodigo(codigo, lenguaje) que devuelve HTML con spans.
+// Expone window.resaltarCodigo(codigo, lenguaje) que devuelve un fragmento con spans.
 // Clases CSS: tok-comentario, tok-cadena, tok-palabra, tok-numero, tok-builtin, tok-anotacion.
 
 const RESALTADOR = (() => {
-    const escapeHtml = (texto) =>
-        texto.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-
     const patrones = (re, cls) => ({ re: new RegExp(re, "g"), cls });
 
     const LENGUAJES = {
@@ -29,7 +26,7 @@ const RESALTADOR = (() => {
 
     const tokenizar = (codigo, lenguaje) => {
         const reglas = LENGUAJES[lenguaje] || [];
-        let html = "";
+        const trozo = document.createDocumentFragment();
         let i = 0;
 
         while (i < codigo.length) {
@@ -44,15 +41,18 @@ const RESALTADOR = (() => {
             }
 
             if (coincidencia) {
-                html += `<span class="${coincidencia.cls}">${escapeHtml(coincidencia.texto)}</span>`;
+                const span = document.createElement("span");
+                span.className = coincidencia.cls;
+                span.textContent = coincidencia.texto;
+                trozo.append(span);
                 i += coincidencia.texto.length;
             } else {
-                html += escapeHtml(codigo[i]);
+                trozo.append(document.createTextNode(codigo[i]));
                 i += 1;
             }
         }
 
-        return html;
+        return trozo;
     };
 
     return {
