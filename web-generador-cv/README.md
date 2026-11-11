@@ -21,26 +21,15 @@ Ambas comparten el mismo **tema visual** y las mismas **etiquetas i18n** (españ
 
 - Node.js >= 18
 
-## Instalación
+## Ver la app web
+
+La app es estática: no necesita instalación ni build. jsPDF va vendorizado en `assets/jspdf.umd.min.js`.
 
 ```bash
-npm install
-```
-
-## Desarrollo (app web)
-
-```bash
-npm run dev
+python3 -m http.server 5173 --directory web-generador-cv
 ```
 
 Abre http://localhost:5173.
-
-## Build (app web)
-
-```bash
-npm run build
-npm run preview
-```
 
 ## Generador CLI
 
@@ -83,28 +72,22 @@ La web y la CLI comparten el mismo modelo de datos:
 
 ```
 web-generador-cv/
-├── src/                    # Frontend React (wizard de 4 pasos)
-│   ├── App.jsx
-│   ├── StepReview.jsx
-│   ├── ParticleBackground.jsx
-│   ├── pdf-renderer.js     # Renderizador PDF con jsPDF
-│   ├── index.css
-│   └── main.jsx
+├── index.html              # Wizard de 4 pasos + canvas de partículas
+├── app.js                  # Estado, vistas y generación del PDF
+├── styles.css              # Estilos de la app
+├── assets/
+│   └── jspdf.umd.min.js    # jsPDF vendorizado (script global)
 ├── shared/                 # Código compartido web + CLI
 │   ├── theme.js            # Tema (colores, dimensiones, fuentes)
 │   ├── i18n.js             # Etiquetas de sección por idioma
 │   └── constants.js        # Idiomas soportados
-├── cli/                    # Generador CLI (PDFKit)
-│   ├── index.js
-│   ├── src/
-│   │   ├── renderer.js
-│   │   └── components.js
-│   ├── data/               # cv-data.js (no versionado)
-│   └── output/             # PDFs generados (no versionado)
-├── public/
-├── index.html
-├── vite.config.js
-└── package.json
+└── cli/                    # Generador CLI (PDFKit)
+    ├── index.js
+    ├── src/
+    │   ├── renderer.js
+    │   └── components.js
+    ├── data/               # cv-data.js (no versionado)
+    └── output/             # PDFs generados (no versionado)
 ```
 
 ## Personalización
