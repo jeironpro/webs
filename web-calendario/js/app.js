@@ -15,17 +15,21 @@ function renderizarCalendario() {
     contenedorCalendario.replaceChildren();
 
     const tituloCalendario = document.querySelector('.titulo');
-    tituloCalendario.textContent = 'CALENDARIO ' + calendarioActual.toString();
+    tituloCalendario.textContent = 'Calendario ' + calendarioActual.toString();
 
     const nombresMeses = ['ENERO', 'FEBRERO', 'MARZO', 'ABRIL', 'MAYO', 'JUNIO', 'JULIO', 'AGOSTO', 'SEPTIEMBRE', 'OCTUBRE', 'NOVIEMBRE', 'DICIEMBRE'];
 
     for (let mes = 0; mes < 12; mes++) {
         // Contenedor del mes (antes table)
-        const contenedorMes = document.createElement('div');
+        const contenedorMes = document.createElement('section');
         contenedorMes.classList.add('contenedor-mes');
+        contenedorMes.setAttribute(
+            'aria-label',
+            `Calendario de ${nombresMeses[mes]} de ${calendarioActual}`
+        );
 
         // Título del mes (antes caption)
-        const tituloMes = document.createElement('div');
+        const tituloMes = document.createElement('h2');
         tituloMes.classList.add('titulo-mes');
         tituloMes.textContent = nombresMeses[mes];
         contenedorMes.appendChild(tituloMes);
@@ -64,6 +68,21 @@ function renderizarCalendario() {
         for (let dia = 1; dia <= diasEnMes; dia++) {
             const celdaDia = document.createElement('div');
             celdaDia.classList.add('celda-dia');
+
+            const indiceColumna = (primerDiaSemana - 1 + dia - 1) % 7;
+            if (indiceColumna >= 5) {
+                celdaDia.classList.add('finde');
+            }
+
+            const esHoy =
+                calendarioActual === fechaActual.getFullYear() &&
+                mes === fechaActual.getMonth() &&
+                dia === fechaActual.getDate();
+            if (esHoy) {
+                celdaDia.classList.add('hoy');
+                celdaDia.setAttribute('aria-current', 'date');
+            }
+
             celdaDia.textContent = dia;
             cuerpoDias.appendChild(celdaDia);
         }
