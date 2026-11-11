@@ -51,17 +51,6 @@
                     <img src="./public/pokemon-logo.png" alt="Logo Pokemon" data-logo />
                     <h1>Pokémon</h1>
                     <p class="splash-subtitulo">Todas las generaciones</p>
-                    <div class="pokemones">
-                        <div class="pokemon"></div>
-                        <div class="pokemon"></div>
-                        <div class="pokemon"></div>
-                        <div class="pokemon"></div>
-                        <div class="pokemon"></div>
-                        <div class="pokemon"></div>
-                        <div class="pokemon"></div>
-                        <div class="pokemon"></div>
-                        <div class="pokemon"></div>
-                    </div>
                 </div>
             </section>
 
@@ -100,7 +89,7 @@
                 <main id="contenido"></main>
 
                 <footer>
-                    <p>&copy; Todos los derechos reservados 2025 - JeironPro</p>
+                    <p>&copy; Todos los derechos reservados <span data-anio>2025</span> - JeironPro</p>
                 </footer>
             </div>
 
@@ -111,5 +100,10 @@
             </section>
         </div>
         <script src="./app.js"></script>
-    </body>
+        <script>
+        document.querySelectorAll("[data-anio]").forEach((nodo) => {
+            nodo.textContent = new Date().getFullYear();
+        });
+    </script>
+</body>
 </html>

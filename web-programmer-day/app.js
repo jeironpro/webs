@@ -160,11 +160,12 @@ const i18n = {
   setLang(lang) {
     this.currentLang = lang;
     document.documentElement.lang = lang;
-    try { localStorage.setItem('programmer-day.lang', lang); } catch {}
-    // Re-run init if needed
-    if (window.programmerDay && window.programmerDay.updateLang) {
-      window.programmerDay.updateLang(lang);
+    try {
+      localStorage.setItem('programmer-day.lang', lang);
+    } catch {
+      /* sin persistencia disponible */
     }
+    updateTitle(getDayState(new Date()));
   },
 };
 

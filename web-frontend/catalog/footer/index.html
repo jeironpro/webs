@@ -61,8 +61,13 @@
                 </div>
             </div>
         </div>
-        <div class="derechos">Todos los derechos reservados - 2024</div>
+        <div class="derechos">Todos los derechos reservados - <span data-anio>2024</span></div>
     </footer>
     <script src="https://kit.fontawesome.com/25da21ab57.js" crossorigin="anonymous"></script>
+    <script>
+        document.querySelectorAll("[data-anio]").forEach((nodo) => {
+            nodo.textContent = new Date().getFullYear();
+        });
+    </script>
 </body>
 </html>

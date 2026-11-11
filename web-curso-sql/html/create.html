@@ -56,7 +56,12 @@ VALUES
     </main>
     
     <footer class="pie-pagina">
-        <p>&copy; Todos los derechos reservados 2025 - JeironPro</p>
+        <p>&copy; Todos los derechos reservados <span data-anio>2025</span> - JeironPro</p>
     </footer>
+    <script>
+        document.querySelectorAll("[data-anio]").forEach((nodo) => {
+            nodo.textContent = new Date().getFullYear();
+        });
+    </script>
 </body>
 </html>
