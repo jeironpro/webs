@@ -1,157 +1,378 @@
 // Vanilla JS Dashboard de Soporte - Migrado desde React + Vite + Tailwind
-// Ruteo SPA, tema, KPIs y tabla de tickets
+// Ruteo por hash, tema, KPIs, filtros y tabla de tickets
 
-document.addEventListener('DOMContentLoaded', () => {
-    initTheme();
-    initRouting();
-    initSidebar();
-    initHeader();
-    navigateTo(window.location.pathname || '/dashboard');
-});
+const TICKETS = [
+    {
+        id: 'T-1001',
+        titulo: 'No puedo restablecer mi contraseña',
+        cliente_id: 'C-01',
+        agente_id: 'A-01',
+        estado: 'abierto',
+        prioridad: 'alta',
+        categoria: 'acceso',
+        descripcion: 'El enlace de recuperación caduca antes de poder usarlo.',
+        creado_el: '2026-01-18T09:12:00Z',
+        primera_respuesta_el: '2026-01-18T10:05:00Z',
+    },
+    {
+        id: 'T-1002',
+        titulo: 'Error al exportar el informe mensual',
+        cliente_id: 'C-02',
+        agente_id: 'A-02',
+        estado: 'en_progreso',
+        prioridad: 'media',
+        categoria: 'facturacion',
+        descripcion: 'La exportación se queda en el 90 % y no descarga el archivo.',
+        creado_el: '2026-01-17T14:30:00Z',
+        primera_respuesta_el: '2026-01-17T15:10:00Z',
+    },
+    {
+        id: 'T-1003',
+        titulo: 'La integración con Slack no envía avisos',
+        cliente_id: 'C-03',
+        agente_id: 'A-01',
+        estado: 'abierto',
+        prioridad: 'alta',
+        categoria: 'integraciones',
+        descripcion: 'Los avisos dejaron de llegar tras cambiar el webhook.',
+        creado_el: '2026-01-17T08:45:00Z',
+        primera_respuesta_el: null,
+    },
+    {
+        id: 'T-1004',
+        titulo: 'Solicitud de acceso para una persona nueva',
+        cliente_id: 'C-04',
+        agente_id: 'A-03',
+        estado: 'cerrado',
+        prioridad: 'baja',
+        categoria: 'acceso',
+        descripcion: 'Necesitamos dar de alta a una nueva incorporación en el equipo.',
+        creado_el: '2026-01-16T11:20:00Z',
+        primera_respuesta_el: '2026-01-16T11:55:00Z',
+    },
+    {
+        id: 'T-1005',
+        titulo: 'Los pedidos aparecen duplicados',
+        cliente_id: 'C-02',
+        agente_id: 'A-02',
+        estado: 'en_progreso',
+        prioridad: 'alta',
+        categoria: 'pedidos',
+        descripcion: 'Cada pedido se muestra dos veces en el listado.',
+        creado_el: '2026-01-15T16:05:00Z',
+        primera_respuesta_el: '2026-01-15T16:40:00Z',
+    },
+    {
+        id: 'T-1006',
+        titulo: 'Duda sobre el límite del plan Pro',
+        cliente_id: 'C-01',
+        agente_id: 'A-03',
+        estado: 'cerrado',
+        prioridad: 'media',
+        categoria: 'facturacion',
+        descripcion: 'Queremos saber si el plan Pro incluye usuarios ilimitados.',
+        creado_el: '2026-01-14T10:00:00Z',
+        primera_respuesta_el: '2026-01-14T10:25:00Z',
+    },
+    {
+        id: 'T-1007',
+        titulo: 'El panel carga muy lento',
+        cliente_id: 'C-03',
+        agente_id: 'A-01',
+        estado: 'abierto',
+        prioridad: 'media',
+        categoria: 'rendimiento',
+        descripcion: 'El dashboard tarda más de diez segundos en cargar.',
+        creado_el: '2026-01-13T12:15:00Z',
+        primera_respuesta_el: '2026-01-13T13:00:00Z',
+    },
+    {
+        id: 'T-1008',
+        titulo: 'Adjuntos que no se visualizan',
+        cliente_id: 'C-04',
+        agente_id: 'A-02',
+        estado: 'cerrado',
+        prioridad: 'baja',
+        categoria: 'integraciones',
+        descripcion: 'Los PDF adjuntos se descargan pero no se previsualizan.',
+        creado_el: '2026-01-12T09:30:00Z',
+        primera_respuesta_el: '2026-01-12T10:10:00Z',
+    },
+]
 
+const CLIENTES = [
+    {
+        id: 'C-01',
+        nombre: 'Lucía Ferrer',
+        empresa: 'Nexo Labs',
+        plan: 'Pro',
+        email: 'lucia@nexolabs.io',
+        ciudad: 'Barcelona',
+    },
+    {
+        id: 'C-02',
+        nombre: 'Marcos Ruiz',
+        empresa: 'Taller Digital',
+        plan: 'Empresa',
+        email: 'marcos@tallerdigital.es',
+        ciudad: 'Valencia',
+    },
+    {
+        id: 'C-03',
+        nombre: 'Ana Salas',
+        empresa: 'Kuma Studio',
+        plan: 'Pro',
+        email: 'ana@kumastudio.co',
+        ciudad: 'Bogotá',
+    },
+    {
+        id: 'C-04',
+        nombre: 'Diego Álvarez',
+        empresa: 'Cooperativa Sur',
+        plan: 'Básico',
+        email: 'diego@coopsur.ar',
+        ciudad: 'Rosario',
+    },
+]
+
+const AGENTES = [
+    {
+        id: 'A-01',
+        nombre: 'Paula',
+        apellido: 'Méndez',
+        rol: 'Soporte senior',
+        especialidad: 'Accesos e integraciones',
+        tickets_resueltos: 184,
+        satisfaccion_promedio: 4.7,
+        disponible: true,
+    },
+    {
+        id: 'A-02',
+        nombre: 'Iván',
+        apellido: 'Cortés',
+        rol: 'Soporte técnico',
+        especialidad: 'Pedidos y facturación',
+        tickets_resueltos: 152,
+        satisfaccion_promedio: 4.4,
+        disponible: true,
+    },
+    {
+        id: 'A-03',
+        nombre: 'Nadia',
+        apellido: 'Bermúdez',
+        rol: 'Soporte técnico',
+        especialidad: 'Onboarding y cuentas',
+        tickets_resueltos: 131,
+        satisfaccion_promedio: 4.6,
+        disponible: false,
+    },
+]
+
+const NAV_ITEMS = [
+    { path: '/dashboard', view: 'dashboard', label: 'Visión general' },
+    { path: '/tickets', view: 'tickets', label: 'Tickets' },
+    { path: '/perfil', view: 'profile', label: 'Perfil' },
+]
+
+const state = {
+    view: null,
+    mobileOpen: false,
+    filterBusqueda: '',
+    filterEstado: 'todos',
+    filterPrioridad: 'todos',
+}
+
+const elements = {
+    root: document.getElementById('root'),
+    sidebar: null,
+    main: null,
+    navLinks: [],
+}
+
+// ===== Utilidades =====
+function formatearFecha(iso) {
+    if (!iso) return '—'
+    const date = new Date(iso)
+    return new Intl.DateTimeFormat('es-ES', {
+        day: '2-digit',
+        month: 'short',
+        year: 'numeric',
+    }).format(date)
+}
+
+function formatearDuracionHoras(horas) {
+    if (horas === null || Number.isNaN(horas)) return '—'
+    if (horas < 1) return 'menos de 1 h'
+    if (horas < 24) return `${horas} h`
+    const dias = Math.floor(horas / 24)
+    const resto = horas % 24
+    return resto ? `${dias} d ${resto} h` : `${dias} d`
+}
+
+function estadoEtiqueta(estado) {
+    return estado.replace('_', ' ')
+}
+
+function contarPor(coleccion, campo, valor) {
+    return coleccion.filter((item) => item[campo] === valor).length
+}
+
+// ===== Tema =====
 function initTheme() {
-    const html = document.documentElement;
-    const stored = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const theme = stored ? JSON.parse(stored).theme : (prefersDark ? 'dark' : 'light');
-    html.classList.toggle('dark', theme === 'dark');
-    html.dataset.theme = theme;
+    const stored = localStorage.getItem('theme')
+    let theme = stored
+    try {
+        const parsed = stored ? JSON.parse(stored) : null
+        if (parsed && parsed.theme) theme = parsed.theme
+    } catch {
+        theme = stored === 'dark' ? 'dark' : 'light'
+    }
+    setTheme(theme === 'dark' ? 'dark' : 'light')
+    syncThemeLabels()
+}
+
+function setTheme(theme) {
+    const html = document.documentElement
+    html.dataset.theme = theme
+    html.classList.toggle('dark', theme === 'dark')
+    localStorage.setItem('theme', JSON.stringify({ theme }))
 }
 
 function toggleTheme() {
-    const html = document.documentElement;
-    const current = html.dataset.theme;
-    const newTheme = current === 'dark' ? 'light' : 'dark';
-    html.dataset.theme = newTheme;
-    html.classList.toggle('dark', newTheme === 'dark');
-    localStorage.setItem('theme', JSON.stringify({ theme: newTheme }));
+    const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'
+    setTheme(next)
+    syncThemeLabels()
+}
+
+function syncThemeLabels() {
+    const isDark = document.documentElement.dataset.theme === 'dark'
+    document.querySelectorAll('[data-theme-toggle]').forEach((button) => {
+        button.textContent = isDark ? 'Modo claro' : 'Modo oscuro'
+    })
+    const label = document.getElementById('current-theme')
+    if (label) label.textContent = isDark ? 'Oscuro' : 'Claro'
+}
+
+// ===== Layout =====
+function mountLayout() {
+    if (!elements.root) return
+
+    elements.root.innerHTML = `
+        <div class="dashboard-shell">
+            <aside class="sidebar" aria-label="Navegación principal">
+                <div class="sidebar-brand">Soporte</div>
+                <nav class="sidebar-nav">
+                    ${NAV_ITEMS.map(
+                        ({ path, label }) => `
+                        <a href="#${path}" class="nav-link" data-page-path="${path}">${label}</a>
+                    `,
+                    ).join('')}
+                </nav>
+            </aside>
+
+            <div class="main">
+                <header class="header">
+                    <div class="header-brand">
+                        <button class="btn btn-secondary menu-btn sidebar-toggle" type="button" aria-label="Abrir menú">Menú</button>
+                        <span class="header-title">Mesa de soporte</span>
+                    </div>
+                    <div class="header-actions">
+                        <button class="btn btn-secondary" type="button" data-theme-toggle>Modo oscuro</button>
+                    </div>
+                </header>
+
+                <main class="main-content" id="page"></main>
+
+                <footer class="footer">
+                    <p>Soporte · Datos de ejemplo de la mesa de ayuda</p>
+                </footer>
+            </div>
+        </div>
+    `
+}
+
+function cacheElements() {
+    elements.sidebar = document.querySelector('.sidebar')
+    elements.main = document.getElementById('page')
+    elements.navLinks = document.querySelectorAll('.nav-link')
 }
 
 function initSidebar() {
-    const sidebar = document.querySelector('.sidebar');
-    const main = document.querySelector('.main');
-    const menuBtn = document.querySelector('.menu-btn');
-    const closeBtn = document.querySelector('.close-btn');
-    
-    if (menuBtn) {
-        menuBtn.addEventListener('click', () => {
-            sidebar.classList.add('open');
-            main.classList.add('sidebar-open');
-        });
-    }
-    
-    if (closeBtn) {
-        closeBtn.addEventListener('click', () => {
-            sidebar.classList.remove('open');
-            main.classList.remove('sidebar-open');
-        });
-    }
-    
-    // Cerrar sidebar al hacer clic en un enlace
-    document.querySelectorAll('.nav-link').forEach(link => {
+    document.querySelectorAll('.sidebar-toggle').forEach((toggle) => {
+        toggle.addEventListener('click', () => {
+            state.mobileOpen = !state.mobileOpen
+            elements.sidebar?.classList.toggle('open', state.mobileOpen)
+        })
+    })
+
+    elements.navLinks.forEach((link) => {
         link.addEventListener('click', () => {
-            sidebar.classList.remove('open');
-            main.classList.remove('sidebar-open');
-        });
-    });
+            state.mobileOpen = false
+            elements.sidebar?.classList.remove('open')
+        })
+    })
 }
 
-function initHeader() {
-    // Cerrar sidebar al hacer clic fuera en móvil
-    const header = document.querySelector('header');
-    if (header) {
-        header.addEventListener('click', (e) => {
-            if (window.innerWidth < 768) {
-                document.querySelector('.sidebar').classList.remove('open');
-                document.querySelector('.main')?.classList.remove('sidebar-open');
-            }
-        });
+// ===== Routing =====
+function parseRoute() {
+    const raw = window.location.hash.replace(/^#/, '') || '/dashboard'
+    const segments = raw.split('/').filter(Boolean)
+    if (segments[0] === 'tickets' && segments[1]) {
+        return { view: 'ticket-detail', id: segments[1], path: raw }
     }
+    const match = NAV_ITEMS.find((item) => item.path === `/${segments[0] || 'dashboard'}`)
+    return { view: match ? match.view : 'notfound', id: null, path: raw }
 }
 
-function initRouting() {
-    document.querySelectorAll('a[data-page]').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const page = link.getAttribute('data-page');
-            navigateTo(page, true);
-        });
-    });
-    
-    // Manejar enlaces normales fuera del dashboard
-    document.querySelectorAll('a:not([data-page])').forEach(link => {
-        link.addEventListener('click', (e) => {
-            if (link.host !== window.location.host) return;
-            // Dejar que funcione normalmente
-        });
-    });
-}
-
-// Estado actual
-const state = {
-    view: null,
-    mobileOpen: false
-};
-
-// Ruteo SPA
-function navigateTo(path, pushHistory = true) {
-    const normalizedPath = path.startsWith('/') ? path : `/${path}`;
-    state.view = getPageFromPath(normalizedPath);
-    
-    // Actualizar navegación
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.classList.toggle('active', link.getAttribute('data-page') === state.view);
-    });
-    
-    // Actualizar contenido
-    updatePageContent(state.view);
-    
-    // Actualizar título
-    updateTitle(state.view);
-    
-    // Historial
-    if (pushHistory) {
-        window.history.pushState({ path: normalizedPath }, '', normalizedPath);
+function navigateTo(path, updateHash = true) {
+    const normalized = path.startsWith('/') ? path : `/${path}`
+    if (updateHash && window.location.hash !== `#${normalized}`) {
+        window.location.hash = normalized
+        return
     }
+    render()
 }
 
 function navigateBack() {
-    window.history.back();
+    window.history.back()
 }
 
-function getPageFromPath(path) {
-    const routes = {
-        '/': 'dashboard',
-        '/dashboard': 'dashboard',
-        '/tickets': 'tickets',
-        '/tickets/': 'tickets',
-        '/tickets/:id': 'ticket-detail',
-        '/perfil': 'profile',
-        '/profile': 'profile'
-    };
-    
-    // Verificar rutas con parámetros
-    if (path.startsWith('/tickets/') && path !== '/tickets/') {
-        return 'ticket-detail';
+function initRouting() {
+    window.addEventListener('hashchange', () => render())
+    render()
+}
+
+function render() {
+    const route = parseRoute()
+    state.view = route.view
+    updateNavState(route.view)
+    updatePageContent(route, route.id)
+    updateTitle(route.view)
+}
+
+function updateNavState(view) {
+    elements.navLinks.forEach((link) => {
+        const path = link.getAttribute('data-page-path')
+        const item = NAV_ITEMS.find((nav) => nav.path === path)
+        link.classList.toggle('active', item ? item.view === view : false)
+    })
+}
+
+function updatePageContent(route, ticketId) {
+    if (!elements.main) return
+
+    const pages = {
+        dashboard: createDashboardPage,
+        tickets: createTicketsPage,
+        'ticket-detail': () => createTicketDetailPage(ticketId),
+        profile: createProfilePage,
+        notfound: createNotFoundPage,
     }
-    
-    return routes[path] || 'notfound';
-}
 
-function updatePageContent(view) {
-    const main = document.getElementById('root');
-    if (!main) return;
-    
-    main.innerHTML = pages[view] || pages['notfound'];
-    
-    // Inicializar componentes después de renderizar
-    if (view === 'dashboard') initDashboard();
-    if (view === 'tickets') initTickets();
-    if (view === 'ticket-detail') initTicketDetail();
-    if (view === 'profile') initProfile();
-    
-    // Observadores de reveal
-    observeReveal('.reveal');
+    elements.main.innerHTML = (pages[route.view] || pages.notfound)()
+    initPage(route.view, ticketId)
+    syncThemeLabels()
+    observeReveal('.reveal')
 }
 
 function updateTitle(view) {
@@ -160,80 +381,110 @@ function updateTitle(view) {
         tickets: 'Dashboard de Soporte - Tickets',
         'ticket-detail': 'Dashboard de Soporte - Detalle de Ticket',
         profile: 'Dashboard de Soporte - Perfil',
-        notfound: 'Dashboard de Soporte - 404'
-    };
-    document.title = titles[view] || titles['notfound'];
+        notfound: 'Dashboard de Soporte - 404',
+    }
+    document.title = titles[view] || titles.notfound
 }
 
-// Páginas
-const pages = {
-    dashboard: createDashboardPage(),
-    tickets: createTicketsPage(),
-    'ticket-detail': createTicketDetailPage(),
-    profile: createProfilePage(),
-    notfound: createNotFoundPage()
-};
-
-// Página Dashboard
-function createDashboardPage() {
-    const ticketsCount = ticketsData.length;
-    const openCount = ticketsData.filter(t => t.estado === 'abierto').length;
-    const inProgressCount = ticketsData.filter(t => t.estado === 'en_progreso').length;
-    const closedCount = ticketsData.filter(t => t.estado === 'cerrado').length;
-    
-    return `<section class="dashboard py-8">
-        <div class="max-w-7xl mx-auto px-4">
-            <h1 class="text-2xl font-bold mb-6">Dashboard de Soporte</h1>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-                <KpiCard title="Tickets abiertos" count={openCount} />
-                <KpiCard title="En progreso" count={inProgressCount} />
-                <KpiCard title="Cerrados" count={closedCount} />
-                <KpiCard title="Total" count={ticketsCount} />
-            </div>
-            
-            <div class="grid grid-cols-1 gap-6 mb-8">
-                <div class="reveal">
-                    <h2 class="section-heading">Tickets por día (últimos 30 días)</h2>
-                    <div id="chart-daily" class="chart-area h-64"></div>
-                </div>
-                <div class="reveal">
-                    <h2 class="section-heading">Distribución por categoría</h2>
-                    <div id="chart-category" class="chart-area h-64"></div>
-                </div>
-            </div>
-            
-            <div class="reveal">
-                <h2 class="section-heading">Tickets recientes</h2>
-                <div id="recent-tickets" class="recent-list"></div>
-            </div>
-        </div>
-    </section>`;
-}
-
-// Componente KpiCard
-function KpiCard({title, count}) {
-    const container = document.createElement('div');
-    container.className = 'kpi-card';
-    container.innerHTML = `
+// ===== Componentes =====
+function kpiCard({ title, count, subtitle }) {
+    return `
         <div class="metric-card">
             <span class="metric-value">${count}</span>
             <span class="metric-label">${title}</span>
+            ${subtitle ? `<span class="metric-subtitle">${subtitle}</span>` : ''}
         </div>
-    `;
-    return container.outerHTML;
+    `
 }
 
-// Página Tickets
+function filterTickets(tickets) {
+    const busqueda = state.filterBusqueda.trim().toLowerCase()
+    return tickets.filter((ticket) => {
+        const matchBusqueda =
+            !busqueda ||
+            ticket.titulo.toLowerCase().includes(busqueda) ||
+            ticket.id.toLowerCase().includes(busqueda) ||
+            ticket.cliente_id.toLowerCase().includes(busqueda)
+        const matchEstado = state.filterEstado === 'todos' || ticket.estado === state.filterEstado
+        const matchPrioridad =
+            state.filterPrioridad === 'todos' || ticket.prioridad === state.filterPrioridad
+        return matchBusqueda && matchEstado && matchPrioridad
+    })
+}
+
+function createTicketRow(ticket) {
+    return `
+        <tr>
+            <td class="font-medium">${ticket.id}</td>
+            <td><a href="#/tickets/${ticket.id}" class="ticket-link">${ticket.titulo}</a></td>
+            <td>${ticket.cliente_id}</td>
+            <td><span class="status-badge status-${ticket.estado}">${estadoEtiqueta(ticket.estado)}</span></td>
+            <td><span class="badge badge-${ticket.prioridad}">${ticket.prioridad}</span></td>
+            <td>${ticket.categoria}</td>
+            <td>${formatearFecha(ticket.creado_el)}</td>
+            <td><a href="#/tickets/${ticket.id}" class="ticket-link">Ver</a></td>
+        </tr>
+    `
+}
+
+// ===== Páginas =====
+function createDashboardPage() {
+    const openCount = contarPor(TICKETS, 'estado', 'abierto')
+    const inProgressCount = contarPor(TICKETS, 'estado', 'en_progreso')
+    const closedCount = contarPor(TICKETS, 'estado', 'cerrado')
+    const recientes = [...TICKETS].sort((a, b) => (a.creado_el < b.creado_el ? 1 : -1)).slice(0, 5)
+
+    return `
+        <section class="reveal">
+            <h1 class="page-title">Dashboard de Soporte</h1>
+
+            <div class="kpi-grid">
+                ${kpiCard({ title: 'Tickets abiertos', count: openCount, subtitle: 'Pendientes de primera respuesta' })}
+                ${kpiCard({ title: 'En progreso', count: inProgressCount, subtitle: 'Asignados a un agente' })}
+                ${kpiCard({ title: 'Cerrados', count: closedCount, subtitle: 'Resueltos' })}
+                ${kpiCard({ title: 'Total', count: TICKETS.length, subtitle: 'Periodo actual' })}
+            </div>
+
+            <div class="chart-grid">
+                <div>
+                    <h2 class="section-heading">Tickets por día</h2>
+                    <div id="chart-daily" class="chart-area"></div>
+                </div>
+                <div>
+                    <h2 class="section-heading">Distribución por categoría</h2>
+                    <div id="chart-category" class="chart-area"></div>
+                </div>
+            </div>
+
+            <div class="reveal">
+                <h2 class="section-heading">Tickets recientes</h2>
+                <div class="recent-list">
+                    ${recientes
+                        .map(
+                            (ticket) => `
+                                <a class="recent-item" href="#/tickets/${ticket.id}">
+                                    <span class="badge badge-${ticket.prioridad}">${ticket.prioridad}</span>
+                                    <span class="recent-title">${ticket.titulo}</span>
+                                    <span class="status-badge status-${ticket.estado}">${estadoEtiqueta(ticket.estado)}</span>
+                                </a>
+                            `,
+                        )
+                        .join('')}
+                </div>
+            </div>
+        </section>
+    `
+}
+
 function createTicketsPage() {
-    const filteredTickets = filterTickets(ticketsData, state);
-    
-    return `<section class="dashboard py-8">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="flex flex-col sm:flex-row gap-4 mb-8">
-                <h1 class="text-2xl font-bold sm:w-64">Tickets</h1>
-                <div class="flex-1 flex gap-2">
-                    <input type="text" id="search-input" class="input" placeholder="Buscar tickets..." />
+    const filtrados = filterTickets(TICKETS)
+
+    return `
+        <section class="reveal">
+            <div class="page-header">
+                <h1 class="page-title">Tickets</h1>
+                <div class="filters-row">
+                    <input type="text" id="search-input" class="input" placeholder="Buscar tickets..." value="${state.filterBusqueda}" />
                     <select id="estado-filter" class="input">
                         <option value="todos">Todos los estados</option>
                         <option value="abierto">Abiertos</option>
@@ -248,9 +499,9 @@ function createTicketsPage() {
                     </select>
                 </div>
             </div>
-            
-            <p class="text-sm text-muted-foreground mb-4">Mostrando ${filteredTickets.length} de ${ticketsData.length} tickets</p>
-            
+
+            <p class="text-muted" id="tickets-count">Mostrando ${filtrados.length} de ${TICKETS.length} tickets</p>
+
             <div class="table-responsive">
                 <table>
                     <thead>
@@ -265,241 +516,418 @@ function createTicketsPage() {
                             <th>Acciones</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        ${filteredTickets.map(ticket => createTicketRow(ticket)).join('')}
+                    <tbody id="tickets-body">
+                        ${filtrados.map((ticket) => createTicketRow(ticket)).join('')}
                     </tbody>
                 </table>
             </div>
-        </div>
-    </section>`;
+        </section>
+    `
 }
 
-function filterTickets(tickets, state) {
-    const { filterBusqueda, filterEstado, filterPrioridad, filterCategoria } = state;
-    
-    return tickets.filter(ticket => {
-        const matchBusqueda = !filterBusqueda || 
-            ticket.titulo.toLowerCase().includes(filterBusqueda.toLowerCase()) ||
-            ticket.id.includes(filterBusqueda) ||
-            ticket.cliente_id.includes(filterBusqueda);
-        
-        const matchEstado = filterEstado === 'todos' || ticket.estado === filterEstado;
-        const matchPrioridad = filterPrioridad === 'todos' || ticket.prioridad === filterPrioridad;
-        
-        // Categoría no tiene filtro en esta versión simplificada
-        
-        return matchBusqueda && matchEstado && matchPrioridad;
-    });
-}
+function createTicketDetailPage(ticketId) {
+    const ticket = TICKETS.find((item) => item.id === ticketId)
 
-function createTicketRow(ticket) {
-    const statusClass = `status-${ticket.estado}`;
-    const priorityClass = `priority-${ticket.prioridad}`;
-    
-    return `
-        <tr>
-            <td class="font-medium">${ticket.id}</td>
-            <td><a href="/tickets/${ticket.id}" class="text-primary hover-underline">${ticket.titulo}</a></td>
-            <td>${ticket.cliente_id}</td>
-            <td><span class="status-badge status-${ticket.estado}">${ticket.estado}</span></td>
-            <td><span class="badge badge-${ticket.prioridad}">${ticket.prioridad}</span></td>
-            <td>${ticket.categoria}</td>
-            <td>${formatearFecha(ticket.creado_el)}</td>
-            <td>
-                <a href="/tickets/${ticket.id}" class="text-sm text-accent">Ver</a>
-            </td>
-        </tr>
-    `;
-}
-
-// Helper formatear fecha
-function formatearFecha(iso) {
-    if (!iso) return '—';
-    const partes = new Intl.DateTimeFormat('es-AR', {
-        timeZone: 'America/Argentina/Buenos_Aires',
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit'
-    }).formatToParts(new Date(iso));
-    const year = partes.find(p => p.type === 'year').value;
-    const month = partes.find(p => p.type === 'month').value;
-    const day = partes.find(p => p.type === 'day').value;
-    const meses = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
-    return `${day} ${meses[Number(month) - 1]} ${year}`;
-}
-
-// Página Ticket Detail
-function createTicketDetailPage() {
-    const params = new URLSearchParams(window.location.search);
-    const ticketId = params.get('id') || window.location.pathname.replace('/tickets/', '');
-    const ticket = ticketsData.find(t => t.id === ticketId);
-    
     if (!ticket) {
-        return `<section class="dashboard py-8">
-            <div class="max-w-2xl mx-auto text-center py-16">
-                <h2 class="text-2xl font-bold mb-2">404</h2>
-                <p class="text-muted-foreground">Ticket no encontrado</p>
-                <a href="/tickets" class="btn btn-secondary mt-4">Volver a Tickets</a>
-            </div>
-        </section>`;
+        return `
+            <section class="reveal">
+                <h2 class="page-title">Ticket no encontrado</h2>
+                <p class="text-muted">No existe ningún ticket con el identificador ${ticketId || '—'}.</p>
+                <a href="#/tickets" class="btn">Volver a Tickets</a>
+            </section>
+        `
     }
-    
-    const cliente = clientesData.find(c => c.id === ticket.cliente_id);
-    const agente = agentesData.find(a => a.id === ticket.agente_id);
-    const tiempoRespuesta = ticket.primera_respuesta_el 
+
+    const cliente = CLIENTES.find((item) => item.id === ticket.cliente_id)
+    const agente = AGENTES.find((item) => item.id === ticket.agente_id)
+    const horasRespuesta = ticket.primera_respuesta_el
         ? Math.round((new Date(ticket.primera_respuesta_el) - new Date(ticket.creado_el)) / 3600000)
-        : null;
-    
-    return `<section class="dashboard py-8">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <div>
-                    <h2 class="section-heading">Detalle del Ticket</h2>
-                    <div class="card">
-                        <div class="card-header flex flex-col sm:flex-row gap-2">
-                            <span class="status-badge status-${ticket.estado}">${ticket.estado}</span>
-                            <span class="badge badge-${ticket.prioridad} ml-auto">${ticket.prioridad}</span>
-                            <span class="badge badge-${ticket.categoria} ml-2">${ticket.categoria}</span>
-                        </div>
-                        <h1 class="card-title">${ticket.titulo}</h1>
-                        <p class="card-description">${ticket.descripcion}</p>
+        : null
+
+    return `
+        <section class="reveal">
+            <a href="#/tickets" class="back-link">← Volver a tickets</a>
+            <h1 class="page-title">${ticket.titulo}</h1>
+
+            <div class="detail-grid">
+                <article class="card">
+                    <div class="card-badges">
+                        <span class="status-badge status-${ticket.estado}">${estadoEtiqueta(ticket.estado)}</span>
+                        <span class="badge badge-${ticket.prioridad}">${ticket.prioridad}</span>
+                        <span class="badge">${ticket.categoria}</span>
                     </div>
-                </div>
-                
-                <div class="lg:col-span-2 space-y-4">
-                    <div>
-                        <h3 class="section-heading">Información del cliente</h3>
-                        ${cliente ? `
-                            <div class="grid grid-cols-2 gap-4">
-                                <div>
-                                    <p><strong>Nombre:</strong> ${cliente.nombre}</p>
-                                    <p><strong>Empresa:</strong> ${cliente.empresa}</p>
-                                    <p><strong>Plan:</strong> ${cliente.plan}</p>
-                                </div>
-                                <div>
-                                    <p><strong>Email:</strong> ${cliente.email}</p>
-                                    <p><strong>Ciudad:</strong> ${cliente.ciudad}</p>
-                                </div>
-                            </div>
-                        ` : '<p>Cliente no encontrado</p>'}
-                    </div>
-                    
-                    <div>
-                        <h3 class="section-heading">Equipo de soporte</h3>
-                        ${agente ? `
-                            <div class="flex items-center gap-3">
-                                <div class="avatar-sm">${agente.nombre[0]}${agente.apellido ? agente.apellido[0] : ''}</div>
-                                <div>
-                                    <p><strong>${agente.nombre}</strong></p>
-                                    <p class="text-sm text-muted-foreground">${agente.rol}</p>
-                                </div>
-                            </div>
-                        ` : '<p>Sin asignar</p>'}
-                    </div>
-                    
-                    <div>
-                        <h3 class="section-heading">Estadísticas</h3>
-                        <div class="grid grid-cols-2 gap-2">
-                            <div>
-                                <p>Tiempo de respuesta:${tiempoRespuesta !== null ? ` ${formatearDuracionHoras(tiempoRespuesta)}` : ' Sin respuesta'}</p>
-                            </div>
-                            <div>
-                                <p>Creado: ${formatearFecha(ticket.creado_el)}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    <p class="card-description">${ticket.descripcion}</p>
+                    <dl class="detail-list">
+                        <div><dt>ID</dt><dd>${ticket.id}</dd></div>
+                        <div><dt>Creado</dt><dd>${formatearFecha(ticket.creado_el)}</dd></div>
+                        <div><dt>Tiempo de respuesta</dt><dd>${formatearDuracionHoras(horasRespuesta)}</dd></div>
+                    </dl>
+                </article>
+
+                <aside>
+                    <h3 class="section-heading">Cliente</h3>
+                    ${
+                        cliente
+                            ? `<dl class="detail-list">
+                                   <div><dt>Nombre</dt><dd>${cliente.nombre}</dd></div>
+                                   <div><dt>Empresa</dt><dd>${cliente.empresa}</dd></div>
+                                   <div><dt>Plan</dt><dd>${cliente.plan}</dd></div>
+                                   <div><dt>Email</dt><dd>${cliente.email}</dd></div>
+                                   <div><dt>Ciudad</dt><dd>${cliente.ciudad}</dd></div>
+                               </dl>`
+                            : '<p class="text-muted">Cliente no encontrado</p>'
+                    }
+
+                    <h3 class="section-heading">Equipo de soporte</h3>
+                    ${
+                        agente
+                            ? `<div class="agent-row">
+                                   <div class="avatar-sm">${agente.nombre[0]}${agente.apellido[0]}</div>
+                                   <div>
+                                       <p><strong>${agente.nombre} ${agente.apellido}</strong></p>
+                                       <p class="text-muted">${agente.rol} · ${agente.especialidad}</p>
+                                   </div>
+                               </div>`
+                            : '<p class="text-muted">Sin asignar</p>'
+                    }
+                </aside>
             </div>
-        </div>
-    </section>`;
+        </section>
+    `
 }
 
-// Página Profile
 function createProfilePage() {
-    const agente = agentesData[0];
-    return `<section class="dashboard py-8">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <div>
-                    <div class="avatar-lg">${agente.nombre[0]}${agente.apellido ? agente.apellido[0] : ''}</div>
-                    <h2 class="text-2xl font-bold mt-2">${agente.nombre}</h2>
-                    <p class="text-muted-foreground">${agente.rol}</p>
+    const agente = AGENTES[0]
+
+    return `
+        <section class="reveal">
+            <h1 class="page-title">Perfil</h1>
+
+            <div class="detail-grid">
+                <div class="profile-card">
+                    <div class="profile-avatar">${agente.nombre[0]}${agente.apellido[0]}</div>
+                    <h2 class="profile-name">${agente.nombre} ${agente.apellido}</h2>
+                    <p class="profile-email">${agente.rol}</p>
                 </div>
-                
+
                 <div>
-                    <h3 class="section-heading mt-4">Estadísticas</h3>
-                    <div class="grid grid-cols-2 gap-2">
-                        <div>
-                            <p class="text-lg font-medium">Tickets resueltos</p>
-                            <p class="text-3xl font-bold">${agente.tickets_resueltos}</p>
-                        </div>
-                        <div>
-                            <p class="text-lg font-medium">CSAT promedio</p>
-                            <p class="text-3xl font-bold">${agente.satisfaccion_promedio.toFixed(1)} / 5</p>
-                        </div>
+                    <h3 class="section-heading">Estadísticas</h3>
+                    <div class="kpi-grid">
+                        ${kpiCard({ title: 'Tickets resueltos', count: agente.tickets_resueltos, subtitle: 'Histórico' })}
+                        ${kpiCard({ title: 'CSAT promedio', count: agente.satisfaccion_promedio.toFixed(1) + ' / 5', subtitle: 'Satisfacción' })}
                     </div>
-                </div>
-                
-                <div>
-                    <h3 class="section-heading mt-4">Información</h3>
-                    <p><strong>Especialidad:</strong> ${agente.especialidad}</p>
-                    <p><strong>Disponible:</strong> ${agente.disponible ? 'Sí' : 'No'}</p>
+
+                    <h3 class="section-heading">Información</h3>
+                    <dl class="detail-list">
+                        <div><dt>Especialidad</dt><dd>${agente.especialidad}</dd></div>
+                        <div><dt>Disponible</dt><dd>${agente.disponible ? 'Sí' : 'No'}</dd></div>
+                        <div><dt>Tema</dt><dd id="current-theme">Claro</dd></div>
+                    </dl>
+                    <button class="btn btn-secondary" type="button" data-theme-toggle>Cambiar tema</button>
                 </div>
             </div>
-        </div>
-    </section>`;
+        </section>
+    `
 }
 
 function createNotFoundPage() {
-    return `<section class="dashboard py-8">
-        <div class="max-w-xl mx-auto text-center py-16">
-            <h2 class="text-5xl font-bold mb-2">404</h2>
-            <p class="text-muted-foreground">La página solicitada no existe</p>
-            <a href="/" class="btn btn-primary mt-4">Volver al inicio</a>
-        </div>
-    </section>`;
+    return `
+        <section class="reveal">
+            <h2 class="page-title">404</h2>
+            <p class="text-muted">La página solicitada no existe.</p>
+            <a href="#/dashboard" class="btn">Volver al inicio</a>
+        </section>
+    `
 }
 
-// Observadores IntersectionObserver
+// ===== Inicialización por vista =====
+function initPage(view, ticketId) {
+    if (view === 'dashboard') initDashboard()
+    if (view === 'tickets') initTickets()
+    if (view === 'ticket-detail') initTicketDetail(ticketId)
+}
+
+function initDashboard() {
+    const daily = new Map()
+    TICKETS.forEach((ticket) => {
+        const day = ticket.creado_el.slice(0, 10)
+        daily.set(day, (daily.get(day) || 0) + 1)
+    })
+    const dailyData = [...daily.entries()]
+        .sort(([a], [b]) => (a > b ? 1 : -1))
+        .map(([date, count]) => ({ label: date.slice(5), value: count }))
+
+    const categories = new Map()
+    TICKETS.forEach((ticket) => {
+        categories.set(ticket.categoria, (categories.get(ticket.categoria) || 0) + 1)
+    })
+    const categoryData = [...categories.entries()].map(([label, value]) => ({ label, value }))
+
+    const dailyContainer = document.getElementById('chart-daily')
+    if (dailyContainer) dailyContainer.replaceChildren(createLineChart(dailyData))
+
+    const categoryContainer = document.getElementById('chart-category')
+    if (categoryContainer) categoryContainer.replaceChildren(createBarChart(categoryData))
+}
+
+function initTickets() {
+    const searchInput = document.getElementById('search-input')
+    const estadoFilter = document.getElementById('estado-filter')
+    const prioridadFilter = document.getElementById('prioridad-filter')
+
+    if (estadoFilter) estadoFilter.value = state.filterEstado
+    if (prioridadFilter) prioridadFilter.value = state.filterPrioridad
+
+    const refresh = () => {
+        const filtrados = filterTickets(TICKETS)
+        const body = document.getElementById('tickets-body')
+        const count = document.getElementById('tickets-count')
+        if (body) body.innerHTML = filtrados.map((ticket) => createTicketRow(ticket)).join('')
+        if (count) count.textContent = `Mostrando ${filtrados.length} de ${TICKETS.length} tickets`
+    }
+
+    searchInput?.addEventListener('input', (event) => {
+        state.filterBusqueda = event.target.value
+        refresh()
+    })
+
+    estadoFilter?.addEventListener('change', (event) => {
+        state.filterEstado = event.target.value
+        refresh()
+    })
+
+    prioridadFilter?.addEventListener('change', (event) => {
+        state.filterPrioridad = event.target.value
+        refresh()
+    })
+}
+
+function initTicketDetail() {
+    // La vista de detalle no necesita listeners propios.
+}
+
+// ===== Gráficas SVG =====
+function createLineChart(data, { width = 520, height = 220, color = '#38bdf8' } = {}) {
+    const svgNS = 'http://www.w3.org/2000/svg'
+    const svg = document.createElementNS(svgNS, 'svg')
+    svg.setAttribute('viewBox', `0 0 ${width} ${height}`)
+    svg.setAttribute('class', 'chart-svg')
+    svg.setAttribute('role', 'img')
+    svg.setAttribute('aria-label', 'Tickets por día')
+
+    const margin = { top: 20, right: 20, bottom: 34, left: 40 }
+    const chartWidth = width - margin.left - margin.right
+    const chartHeight = height - margin.top - margin.bottom
+    const max = data.reduce((top, row) => Math.max(top, row.value), 0) || 1
+
+    const x = (index) => margin.left + (index / Math.max(data.length - 1, 1)) * chartWidth
+    const y = (value) => margin.top + chartHeight - (value / max) * chartHeight
+
+    if (data.length > 0) {
+        const path = data
+            .map((row, index) => `${index === 0 ? 'M' : 'L'}${x(index)},${y(row.value)}`)
+            .join(' ')
+
+        const line = document.createElementNS(svgNS, 'path')
+        line.setAttribute('d', path)
+        line.setAttribute('fill', 'none')
+        line.setAttribute('stroke', color)
+        line.setAttribute('stroke-width', '2')
+        svg.appendChild(line)
+
+        data.forEach((row, index) => {
+            const dot = document.createElementNS(svgNS, 'circle')
+            dot.setAttribute('cx', String(x(index)))
+            dot.setAttribute('cy', String(y(row.value)))
+            dot.setAttribute('r', '3')
+            dot.setAttribute('fill', color)
+            svg.appendChild(dot)
+
+            const label = document.createElementNS(svgNS, 'text')
+            label.setAttribute('x', String(x(index)))
+            label.setAttribute('y', String(margin.top + chartHeight + 18))
+            label.setAttribute('font-size', '10')
+            label.setAttribute('text-anchor', 'middle')
+            label.setAttribute('fill', 'currentColor')
+            label.textContent = row.label
+            svg.appendChild(label)
+        })
+    }
+
+    return svg
+}
+
+function createBarChart(data, { width = 520, height = 220, color = '#9dc454' } = {}) {
+    const svgNS = 'http://www.w3.org/2000/svg'
+    const svg = document.createElementNS(svgNS, 'svg')
+    svg.setAttribute('viewBox', `0 0 ${width} ${height}`)
+    svg.setAttribute('class', 'chart-svg')
+    svg.setAttribute('role', 'img')
+    svg.setAttribute('aria-label', 'Tickets por categoría')
+
+    const margin = { top: 20, right: 20, bottom: 40, left: 40 }
+    const chartWidth = width - margin.left - margin.right
+    const chartHeight = height - margin.top - margin.bottom
+    const max = data.reduce((top, row) => Math.max(top, row.value), 0) || 1
+    const band = chartWidth / Math.max(data.length, 1)
+
+    data.forEach((row, index) => {
+        const barHeight = (row.value / max) * chartHeight
+        const barX = margin.left + index * band + band * 0.15
+        const barWidth = band * 0.7
+
+        const bar = document.createElementNS(svgNS, 'rect')
+        bar.setAttribute('x', String(barX))
+        bar.setAttribute('y', String(margin.top + chartHeight - barHeight))
+        bar.setAttribute('width', String(barWidth))
+        bar.setAttribute('height', String(barHeight))
+        bar.setAttribute('fill', color)
+        bar.setAttribute('rx', '4')
+        svg.appendChild(bar)
+
+        const value = document.createElementNS(svgNS, 'text')
+        value.setAttribute('x', String(barX + barWidth / 2))
+        value.setAttribute('y', String(Math.max(margin.top + chartHeight - barHeight - 6, 12)))
+        value.setAttribute('font-size', '10')
+        value.setAttribute('text-anchor', 'middle')
+        value.setAttribute('fill', 'currentColor')
+        value.textContent = String(row.value)
+        svg.appendChild(value)
+
+        const label = document.createElementNS(svgNS, 'text')
+        label.setAttribute('x', String(barX + barWidth / 2))
+        label.setAttribute('y', String(margin.top + chartHeight + 18))
+        label.setAttribute('font-size', '10')
+        label.setAttribute('text-anchor', 'middle')
+        label.setAttribute('fill', 'currentColor')
+        label.textContent = row.label
+        svg.appendChild(label)
+    })
+
+    return svg
+}
+
+// ===== Estilos propios =====
+function addGlobalStyles() {
+    const style = document.createElement('style')
+    style.textContent = `
+        :root {
+            --color-paper: #f7f7fb;
+            --color-ink: #1f2430;
+            --color-ink-2: #5b6474;
+            --color-rule: #d9dce6;
+            --color-accent: #3b6cf0;
+        }
+        .dark {
+            --color-paper: #171a21;
+            --color-ink: #eef1f7;
+            --color-ink-2: #a6adbb;
+            --color-rule: #333a47;
+        }
+        body { margin: 0; background: var(--color-paper); color: var(--color-ink); font-family: system-ui, sans-serif; }
+        .dashboard-shell { display: flex; min-height: 100vh; }
+        .sidebar { width: 240px; flex: 0 0 240px; border-right: 1px solid var(--color-rule); padding: 1.5rem 1rem; }
+        .sidebar-brand { font-weight: 700; font-size: 1.2rem; margin-bottom: 1.5rem; }
+        .sidebar-nav { display: flex; flex-direction: column; gap: 0.25rem; }
+        .nav-link { padding: 0.5rem 0.75rem; border-radius: 6px; color: var(--color-ink-2); text-decoration: none; font-size: 0.9rem; }
+        .nav-link:hover { background: rgba(127, 127, 127, 0.12); color: var(--color-ink); }
+        .nav-link.active { background: var(--color-accent); color: #fff; }
+        .main { flex: 1; min-width: 0; padding: 2rem; }
+        .header { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--color-rule); }
+        .header-brand, .header-actions { display: flex; align-items: center; gap: 0.75rem; }
+        .header-title { font-weight: 600; }
+        .main-content { max-width: 1200px; }
+        .footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--color-rule); color: var(--color-ink-2); font-size: 0.85rem; }
+        .page-header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 1rem; margin-bottom: 1rem; }
+        .page-title { font-size: 1.5rem; font-weight: 700; margin: 0 0 1rem; }
+        .section-heading { font-size: 1.05rem; font-weight: 600; margin: 2rem 0 1rem; }
+        .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+        .metric-card { display: flex; flex-direction: column; gap: 0.25rem; padding: 1rem; border: 1px solid var(--color-rule); border-radius: 10px; }
+        .metric-value { font-size: 1.5rem; font-weight: 700; }
+        .metric-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-ink-2); }
+        .metric-subtitle { font-size: 0.8rem; color: var(--color-ink-2); }
+        .chart-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+        .chart-area { border: 1px solid var(--color-rule); border-radius: 10px; padding: 0.75rem; }
+        .chart-svg { width: 100%; height: auto; display: block; color: var(--color-ink-2); }
+        .table-responsive { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+        th, td { text-align: left; padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--color-rule); }
+        th { text-transform: uppercase; font-size: 0.72rem; letter-spacing: 0.08em; color: var(--color-ink-2); }
+        .ticket-link { color: var(--color-accent); text-decoration: none; }
+        .ticket-link:hover { text-decoration: underline; }
+        .status-badge, .badge { display: inline-block; padding: 0.15rem 0.5rem; border-radius: 999px; font-size: 0.75rem; border: 1px solid var(--color-rule); }
+        .status-abierto { border-color: #f59e0b; color: #b45309; }
+        .status-en_progreso { border-color: #3b82f6; color: #1d4ed8; }
+        .status-cerrado { border-color: #10b981; color: #047857; }
+        .badge-alta { border-color: #ef4444; color: #b91c1c; }
+        .badge-media { border-color: #f59e0b; color: #b45309; }
+        .badge-baja { border-color: #94a3b8; color: #475569; }
+        .btn { display: inline-block; padding: 0.5rem 1rem; border-radius: 6px; border: 1px solid transparent; background: var(--color-accent); color: #fff; font-size: 0.875rem; cursor: pointer; text-decoration: none; }
+        .btn-secondary { background: transparent; border-color: var(--color-rule); color: var(--color-ink); }
+        .input { padding: 0.5rem 0.65rem; border: 1px solid var(--color-rule); border-radius: 6px; font-size: 0.875rem; background: transparent; color: inherit; }
+        .filters-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .text-muted { color: var(--color-ink-2); font-size: 0.9rem; }
+        .recent-list { display: flex; flex-direction: column; gap: 0.5rem; }
+        .recent-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.6rem 0.75rem; border: 1px solid var(--color-rule); border-radius: 8px; text-decoration: none; color: inherit; }
+        .recent-item:hover { border-color: var(--color-accent); }
+        .recent-title { flex: 1; }
+        .back-link { color: var(--color-accent); text-decoration: none; font-size: 0.875rem; }
+        .detail-grid { display: grid; grid-template-columns: minmax(280px, 2fr) minmax(240px, 1fr); gap: 1.5rem; }
+        .card { border: 1px solid var(--color-rule); border-radius: 10px; padding: 1.25rem; }
+        .card-badges { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.75rem; }
+        .card-description { color: var(--color-ink-2); }
+        .detail-list { display: grid; gap: 0.5rem; margin: 0; }
+        .detail-list div { display: flex; justify-content: space-between; gap: 1rem; border-bottom: 1px dashed var(--color-rule); padding-bottom: 0.35rem; }
+        .detail-list dt { color: var(--color-ink-2); font-size: 0.85rem; }
+        .detail-list dd { margin: 0; font-size: 0.9rem; }
+        .agent-row { display: flex; gap: 0.75rem; align-items: center; }
+        .avatar-sm { width: 40px; height: 40px; border-radius: 50%; background: var(--color-accent); color: #fff; display: grid; place-items: center; font-weight: 600; }
+        .profile-card { border: 1px solid var(--color-rule); border-radius: 10px; padding: 2rem; text-align: center; }
+        .profile-avatar { width: 72px; height: 72px; border-radius: 50%; background: var(--color-accent); color: #fff; font-weight: 700; display: grid; place-items: center; margin: 0 auto 1rem; }
+        .profile-name { margin: 0 0 0.25rem; font-size: 1.2rem; }
+        .profile-email { margin: 0; color: var(--color-ink-2); }
+        .reveal { opacity: 0; transform: translateY(8px); transition: opacity 0.4s ease, transform 0.4s ease; }
+        .reveal.revealed { opacity: 1; transform: none; }
+        @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+        @media (max-width: 820px) {
+            .sidebar { position: fixed; inset: 0 auto 0 0; z-index: 20; background: var(--color-paper); transform: translateX(-100%); transition: transform 0.25s ease; }
+            .sidebar.open { transform: none; }
+            .main { padding: 1.25rem; }
+            .detail-grid { grid-template-columns: 1fr; }
+        }
+    `
+    document.head.appendChild(style)
+}
+
 function observeReveal(selector) {
-    const elements = document.querySelectorAll(selector);
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('revealed');
-            }
-        });
-    }, { threshold: 0.1 });
-    elements.forEach(el => observer.observe(el));
-    return observer;
+    const nodes = document.querySelectorAll(selector)
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed')
+                    observer.unobserve(entry.target)
+                }
+            })
+        },
+        { threshold: 0.1 },
+    )
+    nodes.forEach((node) => observer.observe(node))
+    return observer
 }
 
-// Hilera de eventos para filtros
+// ===== Arranque =====
 document.addEventListener('DOMContentLoaded', () => {
-    // Filtro de búsqueda
-    const searchInput = document.getElementById('search-input');
-    if (searchInput) {
-        searchInput.addEventListener('input', (e) => {
-            state.filterBusqueda = e.target.value;
-            navigateTo('tickets', false);
-        });
-    }
-    
-    // Filtro de estado
-    const estadoFilter = document.getElementById('estado-filter');
-    if (estadoFilter) {
-        estadoFilter.addEventListener('change', (e) => {
-            state.filterEstado = e.target.value;
-            navigateTo('tickets', false);
-        });
-    }
-    
-    // Filtro de prioridad
-    const prioridadFilter = document.getElementById('prioridad-filter');
-    if (prioridadFilter) {
-        prioridadFilter.addEventListener('change', (e) => {
-            state.filterPrioridad = e.target.value;
-            navigateTo('tickets', false);
-        });
-    }
-});
+    addGlobalStyles()
+    mountLayout()
+    cacheElements()
+    initTheme()
+    initSidebar()
+    initRouting()
+
+    document.addEventListener('click', (event) => {
+        if (event.target.closest('[data-theme-toggle]')) toggleTheme()
+    })
+})
+
+window.dashboard = { navigateTo, navigateBack, toggleTheme, state }
