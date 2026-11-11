@@ -2,24 +2,40 @@
 // Migración desde React + Vite + Tailwind
 
 // ===== Configuración y datos =====
-const THEME = { LIGHT: 'light', DARK: 'dark' };
+const THEME = { LIGHT: 'light', DARK: 'dark' }
 
 const getSystemTheme = () => {
-    if (typeof window === 'undefined') return THEME.LIGHT;
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? THEME.DARK : THEME.LIGHT;
-};
+    if (typeof window === 'undefined') return THEME.LIGHT
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? THEME.DARK : THEME.LIGHT
+}
+
+function readStoredTheme() {
+    // Todos los dashboards comparten origen y clave, y no todos guardan el mismo formato.
+    const raw = localStorage.getItem('theme')
+    if (!raw) return null
+    try {
+        const parsed = JSON.parse(raw)
+        if (parsed && parsed.state && parsed.state.theme) return parsed
+        if (typeof parsed === 'string') return { state: { theme: parsed } }
+        return null
+    } catch {
+        return { state: { theme: raw } }
+    }
+}
 
 const applyTheme = (theme) => {
-    if (typeof document === 'undefined') return;
-    document.documentElement.classList.toggle('dark', theme === THEME.DARK);
-    localStorage.setItem('theme', JSON.stringify({ state: { theme } }));
-};
+    if (typeof document === 'undefined') return
+    document.documentElement.classList.toggle('dark', theme === THEME.DARK)
+    localStorage.setItem('theme', JSON.stringify({ state: { theme } }))
+}
 
-const storedTheme = JSON.parse(localStorage.getItem('theme'));
+const storedTheme = readStoredTheme()
 const currentTheme = storedTheme
-    ? storedTheme.state.theme === THEME.DARK ? THEME.DARK : THEME.LIGHT
-    : getSystemTheme();
-applyTheme(currentTheme);
+    ? storedTheme.state.theme === THEME.DARK
+        ? THEME.DARK
+        : THEME.LIGHT
+    : getSystemTheme()
+applyTheme(currentTheme)
 
 // ===== Datos simulados =====
 const dashboardData = {
@@ -35,15 +51,49 @@ const dashboardData = {
     ],
     expenses: [
         { id: 'e1', name: 'Servidores', amount: 850, category: 'Infra', date: '2024-01-16' },
-        { id: 'e2', name: 'Software licenses', amount: 320, category: 'Software', date: '2024-01-12' },
+        {
+            id: 'e2',
+            name: 'Software licenses',
+            amount: 320,
+            category: 'Software',
+            date: '2024-01-12',
+        },
         { id: 'e3', name: 'Nómina', amount: 4200, category: 'Personal', date: '2024-01-20' },
         { id: 'e4', name: 'Marketing', amount: 670, category: 'Crecimiento', date: '2024-01-14' },
     ],
     subscriptions: [
-        { id: 's1', name: 'Pro Plan', price: 49, interval: 'monthly', status: 'active', customers: 124 },
-        { id: 's2', name: 'Basic Plan', price: 19, interval: 'monthly', status: 'active', customers: 342 },
-        { id: 's3', name: 'Enterprise Plan', price: 199, interval: 'yearly', status: 'active', customers: 23 },
-        { id: 's4', name: 'Trial Plan', price: 0, interval: 'monthly', status: 'trial', customers: 56 },
+        {
+            id: 's1',
+            name: 'Pro Plan',
+            price: 49,
+            interval: 'monthly',
+            status: 'active',
+            customers: 124,
+        },
+        {
+            id: 's2',
+            name: 'Basic Plan',
+            price: 19,
+            interval: 'monthly',
+            status: 'active',
+            customers: 342,
+        },
+        {
+            id: 's3',
+            name: 'Enterprise Plan',
+            price: 199,
+            interval: 'yearly',
+            status: 'active',
+            customers: 23,
+        },
+        {
+            id: 's4',
+            name: 'Trial Plan',
+            price: 0,
+            interval: 'monthly',
+            status: 'trial',
+            customers: 56,
+        },
     ],
     invoices: [
         { id: 'inv1', customer: 'Acme Corp', amount: 2800, status: 'paid', date: '2024-01-15' },
@@ -51,9 +101,30 @@ const dashboardData = {
         { id: 'inv3', customer: 'Gamma LLC', amount: 950, status: 'overdue', date: '2024-01-10' },
     ],
     payments: [
-        { id: 'p1', customer: 'Acme Corp', amount: 2800, method: 'Tarjeta', date: '2024-01-15', status: 'completed' },
-        { id: 'p2', customer: 'Beta Ltd', amount: 1500, method: 'Transferencia', date: '2024-01-18', status: 'processing' },
-        { id: 'p3', customer: 'Gamma LLC', amount: 950, method: 'Tarjeta', date: '2024-01-22', status: 'failed' },
+        {
+            id: 'p1',
+            customer: 'Acme Corp',
+            amount: 2800,
+            method: 'Tarjeta',
+            date: '2024-01-15',
+            status: 'completed',
+        },
+        {
+            id: 'p2',
+            customer: 'Beta Ltd',
+            amount: 1500,
+            method: 'Transferencia',
+            date: '2024-01-18',
+            status: 'processing',
+        },
+        {
+            id: 'p3',
+            customer: 'Gamma LLC',
+            amount: 950,
+            method: 'Tarjeta',
+            date: '2024-01-22',
+            status: 'failed',
+        },
     ],
     taxSummary: {
         incomeTax: 3850,
@@ -70,14 +141,14 @@ const dashboardData = {
     paidInvoices: 2,
     totalCustomers: 467,
     activeSubscriptions: 147,
-};
+}
 
 // ===== Estado del dashboard =====
 const state = {
     mobileOpen: false,
     view: 'overview',
     range: '30d',
-};
+}
 
 // ===== Elementos del DOM =====
 const elements = {
@@ -87,7 +158,7 @@ const elements = {
     main: null,
     footer: null,
     navLinks: [],
-};
+}
 
 // ===== Montaje del layout =====
 const NAV_ITEMS = [
@@ -97,20 +168,22 @@ const NAV_ITEMS = [
     { view: 'reports', label: 'Reportes' },
     { view: 'subscriptions', label: 'Suscripciones' },
     { view: 'profile', label: 'Perfil' },
-];
+]
 
 function mountLayout() {
-    const root = elements.root;
-    if (!root) return;
+    const root = elements.root
+    if (!root) return
 
     root.innerHTML = `
         <div class="dashboard">
             <aside class="sidebar" aria-label="Navegación principal">
                 <div class="sidebar-brand">Suma</div>
                 <nav class="sidebar-nav">
-                    ${NAV_ITEMS.map(({ view, label }) => `
+                    ${NAV_ITEMS.map(
+                        ({ view, label }) => `
                         <a href="#${view}" class="nav-link" data-view="${view}">${label}</a>
-                    `).join('')}
+                    `,
+                    ).join('')}
                 </nav>
                 <div class="sidebar-footer">
                     <span class="sidebar-user">${dashboardData.currentUser}</span>
@@ -144,121 +217,121 @@ function mountLayout() {
                 </footer>
             </div>
         </div>
-    `;
+    `
 }
 
 function cacheElements() {
-    elements.sidebar = document.querySelector('.sidebar');
-    elements.header = document.querySelector('.header');
-    elements.main = document.getElementById('view');
-    elements.footer = document.querySelector('.footer');
-    elements.navLinks = document.querySelectorAll('.nav-link');
+    elements.sidebar = document.querySelector('.sidebar')
+    elements.header = document.querySelector('.header')
+    elements.main = document.getElementById('view')
+    elements.footer = document.querySelector('.footer')
+    elements.navLinks = document.querySelectorAll('.nav-link')
 }
 
 function initThemeToggle() {
-    const button = document.querySelector('[data-theme-toggle]');
-    if (!button) return;
+    const button = document.querySelector('[data-theme-toggle]')
+    if (!button) return
 
     button.addEventListener('click', () => {
-        const next = document.documentElement.classList.contains('dark') ? THEME.LIGHT : THEME.DARK;
-        applyTheme(next);
-        button.textContent = next === THEME.DARK ? 'Modo claro' : 'Modo oscuro';
-    });
+        const next = document.documentElement.classList.contains('dark') ? THEME.LIGHT : THEME.DARK
+        applyTheme(next)
+        button.textContent = next === THEME.DARK ? 'Modo claro' : 'Modo oscuro'
+    })
 }
 
 // Inicializar después del DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
-    addGlobalStyles();
-    mountLayout();
-    cacheElements();
+    addGlobalStyles()
+    mountLayout()
+    cacheElements()
 
-    initSidebar();
-    initHeader();
-    initThemeToggle();
-    updateView(state.view);
-    updateNavState(state.view);
-});
+    initSidebar()
+    initHeader()
+    initThemeToggle()
+    updateView(state.view)
+    updateNavState(state.view)
+})
 
 // ===== Navegación =====
-const viewNames = ['overview', 'invoices', 'payments', 'reports', 'subscriptions', 'profile'];
+const viewNames = ['overview', 'invoices', 'payments', 'reports', 'subscriptions', 'profile']
 
 function setView(view) {
-    state.view = view;
-    updateView(view);
-    updateNavState(view);
+    state.view = view
+    updateView(view)
+    updateNavState(view)
 }
 
 function updateNavState(activeView) {
-    elements.navLinks.forEach(link => {
-        const view = link.getAttribute('data-view');
+    elements.navLinks.forEach((link) => {
+        const view = link.getAttribute('data-view')
         if (view) {
-            link.classList.toggle('active', view === activeView);
+            link.classList.toggle('active', view === activeView)
         }
-    });
+    })
 }
 
 // ===== Inicializar Sidebar =====
 function initSidebar() {
-    const toggles = document.querySelectorAll('.sidebar-toggle');
-    
-    toggles.forEach(toggle => {
+    const toggles = document.querySelectorAll('.sidebar-toggle')
+
+    toggles.forEach((toggle) => {
         toggle.addEventListener('click', () => {
-            state.mobileOpen = !state.mobileOpen;
+            state.mobileOpen = !state.mobileOpen
             if (elements.sidebar) {
-                elements.sidebar.classList.toggle('open', state.mobileOpen);
+                elements.sidebar.classList.toggle('open', state.mobileOpen)
             }
-        });
-    });
-    
+        })
+    })
+
     // Enlaces de navegación
-    const navLinks = document.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
+    const navLinks = document.querySelectorAll('.nav-link')
+    navLinks.forEach((link) => {
         link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const view = link.getAttribute('data-view');
+            e.preventDefault()
+            const view = link.getAttribute('data-view')
             if (view && viewNames.includes(view)) {
-                setView(view);
-                state.mobileOpen = false;
+                setView(view)
+                state.mobileOpen = false
                 if (elements.sidebar) {
-                    elements.sidebar.classList.remove('open');
+                    elements.sidebar.classList.remove('open')
                 }
             }
-        });
-    });
+        })
+    })
 }
 
 // ===== Inicializar Header =====
 function initHeader() {
-    const rangeSelector = document.querySelector('[data-range]');
-    const refreshBtn = document.querySelector('[data-refresh]');
-    const menuBtn = document.querySelector('[data-menu]');
-    
+    const rangeSelector = document.querySelector('[data-range]')
+    const refreshBtn = document.querySelector('[data-refresh]')
+    const menuBtn = document.querySelector('[data-menu]')
+
     if (rangeSelector) {
         rangeSelector.addEventListener('change', (e) => {
-            state.range = e.target.value;
-        });
+            state.range = e.target.value
+        })
     }
-    
+
     if (refreshBtn) {
         refreshBtn.addEventListener('click', () => {
-            updateView(state.view);
-        });
+            updateView(state.view)
+        })
     }
-    
+
     if (menuBtn) {
         menuBtn.addEventListener('click', () => {
-            state.mobileOpen = !state.mobileOpen;
+            state.mobileOpen = !state.mobileOpen
             if (elements.sidebar) {
-                elements.sidebar.classList.toggle('open', state.mobileOpen);
+                elements.sidebar.classList.toggle('open', state.mobileOpen)
             }
-        });
+        })
     }
 }
 
 // ===== Actualizar vista =====
 function updateView(view) {
-    if (!elements.main) return;
-    
+    if (!elements.main) return
+
     // Actualizar título
     const titleMap = {
         overview: 'Resumen',
@@ -267,8 +340,8 @@ function updateView(view) {
         reports: 'Reportes',
         subscriptions: 'Suscripciones',
         profile: 'Perfil',
-    };
-    
+    }
+
     // Renderizar contenido según la vista
     const pages = {
         overview: createOverviewPage(),
@@ -277,30 +350,30 @@ function updateView(view) {
         reports: createReportsPage(),
         subscriptions: createSubscriptionsPage(),
         profile: createProfilePage(),
-    };
-    
+    }
+
     elements.main.innerHTML = `
         <div class="page-header">
             <h1 class="page-title">${titleMap[view] || 'Resumen'}</h1>
         </div>
         ${pages[view].outerHTML}
-    `;
-    
+    `
+
     // Ejecutar observers de reveal
-    observeReveal('.reveal');
+    observeReveal('.reveal')
 }
 
 // ===== Componentes =====
 
 function createOverviewPage() {
-    const income = dashboardData.income;
-    const expenses = dashboardData.expenses;
-    
-    const totalIncome = income.reduce((sum, i) => sum + i.amount, 0);
-    const totalExpenses = expenses.reduce((sum, e) => sum + e.amount, 0);
-    const netProfit = totalIncome - totalExpenses;
-    
-    const html = document.createElement('div');
+    const income = dashboardData.income
+    const expenses = dashboardData.expenses
+
+    const totalIncome = income.reduce((sum, i) => sum + i.amount, 0)
+    const totalExpenses = expenses.reduce((sum, e) => sum + e.amount, 0)
+    const netProfit = totalIncome - totalExpenses
+
+    const html = document.createElement('div')
     html.innerHTML = `
         <section class="reveal">
             <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
@@ -325,37 +398,45 @@ function createOverviewPage() {
             <div class="mt-6">
                 <h2 class="section-heading">Ingresos por categoría</h2>
                 <div class="income-grid">
-                    ${income.map(item => `
+                    ${income
+                        .map(
+                            (item) => `
                         <div class="income-item">
                             <span class="income-name">${item.name}</span>
                             <span class="income-amount">$${item.amount.toLocaleString()}</span>
                         </div>
-                    `).join('')}
+                    `,
+                        )
+                        .join('')}
                 </div>
             </div>
             
             <div class="mt-6">
                 <h2 class="section-heading">Principales gastos</h2>
                 <div class="expense-grid">
-                    ${expenses.map(item => `
+                    ${expenses
+                        .map(
+                            (item) => `
                         <div class="expense-item">
                             <span class="expense-name">${item.name}</span>
                             <span class="expense-amount">$${item.amount.toLocaleString()}</span>
                         </div>
-                    `).join('')}
+                    `,
+                        )
+                        .join('')}
                 </div>
             </div>
         </section>
-    `;
-    return html;
+    `
+    return html
 }
 
 function createInvoicesPage() {
-    const invoices = dashboardData.invoices;
-    const overdue = dashboardData.overdueInvoices;
-    const paid = dashboardData.paidInvoices;
-    
-    const html = document.createElement('div');
+    const invoices = dashboardData.invoices
+    const overdue = dashboardData.overdueInvoices
+    const paid = dashboardData.paidInvoices
+
+    const html = document.createElement('div')
     html.innerHTML = `
         <section class="reveal">
             <div class="flex items-center justify-between mb-4">
@@ -374,7 +455,9 @@ function createInvoicesPage() {
                         </tr>
                     </thead>
                     <tbody>
-                        ${invoices.map(invoice => `
+                        ${invoices
+                            .map(
+                                (invoice) => `
                             <tr class="border-b">
                                 <td class="p-4">${invoice.customer}</td>
                                 <td class="p-4">$${invoice.amount.toLocaleString()}</td>
@@ -383,7 +466,9 @@ function createInvoicesPage() {
                                     <span class="status-badge ${invoice.status}">${invoice.status}</span>
                                 </td>
                             </tr>
-                        `).join('')}
+                        `,
+                            )
+                            .join('')}
                     </tbody>
                 </table>
             </div>
@@ -396,14 +481,14 @@ function createInvoicesPage() {
                 <button class="btn btn-secondary">Exportar CSV</button>
             </div>
         </section>
-    `;
-    return html;
+    `
+    return html
 }
 
 function createPaymentsPage() {
-    const payments = dashboardData.payments;
-    
-    const html = document.createElement('div');
+    const payments = dashboardData.payments
+
+    const html = document.createElement('div')
     html.innerHTML = `
         <section class="reveal">
             <div class="flex items-center justify-between mb-4">
@@ -422,7 +507,9 @@ function createPaymentsPage() {
                         </tr>
                     </thead>
                     <tbody>
-                        ${payments.map(payment => `
+                        ${payments
+                            .map(
+                                (payment) => `
                             <tr class="border-b">
                                 <td class="p-4">${payment.customer}</td>
                                 <td class="p-4">$${payment.amount.toLocaleString()}</td>
@@ -432,19 +519,21 @@ function createPaymentsPage() {
                                     <span class="status-badge ${payment.status}">${payment.status}</span>
                                 </td>
                             </tr>
-                        `).join('')}
+                        `,
+                            )
+                            .join('')}
                     </tbody>
                 </table>
             </div>
         </section>
-    `;
-    return html;
+    `
+    return html
 }
 
 function createReportsPage() {
-    const taxSummary = dashboardData.taxSummary;
-    
-    const html = document.createElement('div');
+    const taxSummary = dashboardData.taxSummary
+
+    const html = document.createElement('div')
     html.innerHTML = `
         <section class="reveal">
             <div class="grid grid-cols-2 gap-4">
@@ -469,16 +558,16 @@ function createReportsPage() {
                 </p>
             </div>
         </section>
-    `;
-    return html;
+    `
+    return html
 }
 
 function createSubscriptionsPage() {
-    const subscriptions = dashboardData.subscriptions;
-    const active = subscriptions.filter(s => s.status === 'active').length;
-    const trial = subscriptions.filter(s => s.status === 'trial').length;
-    
-    const html = document.createElement('div');
+    const subscriptions = dashboardData.subscriptions
+    const active = subscriptions.filter((s) => s.status === 'active').length
+    const trial = subscriptions.filter((s) => s.status === 'trial').length
+
+    const html = document.createElement('div')
     html.innerHTML = `
         <section class="reveal">
             <div class="grid grid-cols-2 gap-4">
@@ -495,22 +584,26 @@ function createSubscriptionsPage() {
             <div class="mt-6">
                 <h2 class="section-heading">Planes de suscripción</h2>
                 <div class="sub-grid">
-                    ${subscriptions.map(sub => `
+                    ${subscriptions
+                        .map(
+                            (sub) => `
                         <div class="sub-item">
                             <span class="sub-name">${sub.name}</span>
                             <span class="sub-price">$${sub.price}${sub.interval}</span>
                             <span class="sub-status ${sub.status}">${sub.status}</span>
                         </div>
-                    `).join('')}
+                    `,
+                        )
+                        .join('')}
                 </div>
             </div>
         </section>
-    `;
-    return html;
+    `
+    return html
 }
 
 function createProfilePage() {
-    const html = document.createElement('div');
+    const html = document.createElement('div')
     html.innerHTML = `
         <section class="reveal">
             <div class="profile-card">
@@ -539,13 +632,13 @@ function createProfilePage() {
                 <button class="btn btn-secondary mt-4" onclick="applyTheme('dark')">Aplicar tema oscuro</button>
             </div>
         </section>
-    `;
-    return html;
+    `
+    return html
 }
 
 // ===== Utilidades CSS =====
 function addGlobalStyles() {
-    const style = document.createElement('style');
+    const style = document.createElement('style')
     style.textContent = `
         :root {
             --color-paper: oklch(98% 0 0);
@@ -760,27 +853,32 @@ function addGlobalStyles() {
         .mb-6 { margin-bottom: 1.5rem; }
         .flex-gap-2 { gap: 0.5rem; }
         .flex-gap-4 { gap: 1rem; }
-    `;
-    document.head.appendChild(style);
+    `
+    document.head.appendChild(style)
 }
 
 // Observadores de reveal
 function observeReveal(selector) {
-    const elements = document.querySelectorAll(selector);
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('revealed');
-                observer.disconnect();
-            }
-        });
-    }, { threshold: 0.1 });
-    elements.forEach(el => observer.observe(el));
-    return observer;
+    const elements = document.querySelectorAll(selector)
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed')
+                    observer.disconnect()
+                }
+            })
+        },
+        { threshold: 0.1 },
+    )
+    elements.forEach((el) => observer.observe(el))
+    return observer
 }
 
 // Exportar
 window.dashboard = {
     setView,
-    toggleMobile: () => { state.mobileOpen = !state.mobileOpen; }
-};
+    toggleMobile: () => {
+        state.mobileOpen = !state.mobileOpen
+    },
+}

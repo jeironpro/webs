@@ -2,32 +2,52 @@
 // Migración desde React + Vite + Tailwind
 
 // ===== Configuración y datos =====
-const THEME = { LIGHT: 'light', DARK: 'dark' };
+const THEME = { LIGHT: 'light', DARK: 'dark' }
 
 const getSystemTheme = () => {
-    if (typeof window === 'undefined') return THEME.LIGHT;
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? THEME.DARK : THEME.LIGHT;
-};
+    if (typeof window === 'undefined') return THEME.LIGHT
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? THEME.DARK : THEME.LIGHT
+}
+
+function readStoredTheme() {
+    // Todos los dashboards comparten origen y clave, y no todos guardan el mismo formato.
+    const raw = localStorage.getItem('theme')
+    if (!raw) return null
+    try {
+        const parsed = JSON.parse(raw)
+        if (parsed && parsed.state && parsed.state.theme) return parsed
+        if (typeof parsed === 'string') return { state: { theme: parsed } }
+        return null
+    } catch {
+        return { state: { theme: raw } }
+    }
+}
 
 const applyTheme = (theme) => {
-    if (typeof document === 'undefined') return;
-    document.documentElement.classList.toggle('dark', theme === THEME.DARK);
-    localStorage.setItem('theme', JSON.stringify({ state: { theme } }));
-};
+    if (typeof document === 'undefined') return
+    document.documentElement.classList.toggle('dark', theme === THEME.DARK)
+    localStorage.setItem('theme', JSON.stringify({ state: { theme } }))
+}
 
-const storedTheme = JSON.parse(localStorage.getItem('theme'));
+const storedTheme = readStoredTheme()
 const currentTheme = storedTheme
-    ? storedTheme.state.theme === THEME.DARK ? THEME.DARK : THEME.LIGHT
-    : getSystemTheme();
-applyTheme(currentTheme);
+    ? storedTheme.state.theme === THEME.DARK
+        ? THEME.DARK
+        : THEME.LIGHT
+    : getSystemTheme()
+applyTheme(currentTheme)
 
 // ===== Datos simulados (serían fetch en producción) =====
 const dashboardData = {
     updatedAt: 'Just now',
     currentUser: 'usuario@empresa.com',
     latencyHistory: [
-        { x: '00:00', y: 45 }, { x: '01:00', y: 52 }, { x: '02:00', y: 38 },
-        { x: '03:00', y: 61 }, { x: '04:00', y: 55 }, { x: '05:00', y: 48 }
+        { x: '00:00', y: 45 },
+        { x: '01:00', y: 52 },
+        { x: '02:00', y: 38 },
+        { x: '03:00', y: 61 },
+        { x: '04:00', y: 55 },
+        { x: '05:00', y: 48 },
     ],
     latencyAvg: 50,
     latencyMin: 38,
@@ -53,9 +73,12 @@ const dashboardData = {
     latencyPercentiles: { p50: 45, p95: 89, p99: 95 },
     alertCounts: { critical: 3, warning: 7, info: 15 },
     latencyHistoryData: [
-        { time: '00:00', value: 45 }, { time: '01:00', value: 52 },
-        { time: '02:00', value: 38 }, { time: '03:00', value: 61 },
-        { time: '04:00', value: 55 }, { time: '05:00', value: 48 }
+        { time: '00:00', value: 45 },
+        { time: '01:00', value: 52 },
+        { time: '02:00', value: 38 },
+        { time: '03:00', value: 61 },
+        { time: '04:00', value: 55 },
+        { time: '05:00', value: 48 },
     ],
     serverHistory: [
         { time: '00:00', s1: 45, s2: 32, s3: 78, s4: 23, s5: 92 },
@@ -68,11 +91,19 @@ const dashboardData = {
     usageData: {
         labels: ['00:00', '02:00', '04:00', '06:00', '08:00', '10:00', '12:00'],
         datasets: [
-            { label: 'Entrada', data: [65, 59, 80, 81, 55, 54, 40], backgroundColor: 'rgba(59, 130, 246, 0.2)' },
-            { label: 'Salida', data: [28, 48, 40, 19, 86, 27, 90], backgroundColor: 'rgba(239, 68, 68, 0.2)' }
-        ]
-    }
-};
+            {
+                label: 'Entrada',
+                data: [65, 59, 80, 81, 55, 54, 40],
+                backgroundColor: 'rgba(59, 130, 246, 0.2)',
+            },
+            {
+                label: 'Salida',
+                data: [28, 48, 40, 19, 86, 27, 90],
+                backgroundColor: 'rgba(239, 68, 68, 0.2)',
+            },
+        ],
+    },
+}
 
 // ===== Estado del dashboard =====
 const state = {
@@ -80,8 +111,8 @@ const state = {
     range: '24h',
     view: 'dashboard',
     profile: false,
-    pendingSection: null
-};
+    pendingSection: null,
+}
 
 // ===== Elementos del DOM =====
 const elements = {
@@ -89,29 +120,29 @@ const elements = {
     sidebar: null,
     header: null,
     main: null,
-    footer: null
-};
+    footer: null,
+}
 
 // Inicializar referencias después del DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
-    mountLayout();
+    mountLayout()
 
-    elements.sidebar = document.querySelector('.sidebar');
-    elements.header = document.querySelector('.header');
-    elements.main = document.querySelector('.main');
-    elements.footer = document.querySelector('.footer');
+    elements.sidebar = document.querySelector('.sidebar')
+    elements.header = document.querySelector('.header')
+    elements.main = document.querySelector('.main')
+    elements.footer = document.querySelector('.footer')
 
     // Inicializar componentes
-    initSidebar();
-    initHeader();
-    initThemeToggle();
-    updateDashboard();
-});
+    initSidebar()
+    initHeader()
+    initThemeToggle()
+    updateDashboard()
+})
 
 // ===== Montaje del layout (la plantilla solo trae #root) =====
 function mountLayout() {
-    const root = elements.root;
-    if (!root) return;
+    const root = elements.root
+    if (!root) return
 
     root.innerHTML = `
         <div class="app-shell">
@@ -127,7 +158,7 @@ function mountLayout() {
                         <a href="#${section.id}" class="nav-link${section.id === 'overview' ? ' active' : ''}" data-section="${section.id}">
                             <span class="nav-icon" aria-hidden="true">${section.icon}</span>
                             <span>${section.title}</span>
-                        </a>`
+                        </a>`,
                         )
                         .join('')}
                 </nav>
@@ -153,34 +184,37 @@ function mountLayout() {
                 </footer>
             </div>
         </div>
-    `;
+    `
 }
 
 // ===== Tema claro/oscuro =====
 function initThemeToggle() {
-    const toggle = document.querySelector('[data-theme-toggle]');
-    if (!toggle) return;
+    const toggle = document.querySelector('[data-theme-toggle]')
+    if (!toggle) return
 
     toggle.addEventListener('click', () => {
-        const isDark = document.documentElement.classList.toggle('dark');
-        applyTheme(isDark ? THEME.DARK : THEME.LIGHT);
-    });
+        const isDark = document.documentElement.classList.toggle('dark')
+        applyTheme(isDark ? THEME.DARK : THEME.LIGHT)
+    })
 }
 
 // ===== Hook useReveal equivalente =====
 function observeReveal(selector) {
-    const elements = document.querySelectorAll(selector);
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('revealed');
-                observer.disconnect();
-            }
-        });
-    }, { threshold: 0.1 });
-    
-    elements.forEach(el => observer.observe(el));
-    return observer;
+    const elements = document.querySelectorAll(selector)
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed')
+                    observer.disconnect()
+                }
+            })
+        },
+        { threshold: 0.1 },
+    )
+
+    elements.forEach((el) => observer.observe(el))
+    return observer
 }
 
 // ===== Hook useActiveSection equivalente =====
@@ -189,109 +223,109 @@ const navSections = [
     { id: 'servers', title: 'Servidores', icon: '🖥️' },
     { id: 'metrics', title: 'Métricas', icon: '📈' },
     { id: 'logs', title: 'Logs', icon: '📝' },
-    { id: 'security', title: 'Seguridad', icon: '🔒' }
-];
+    { id: 'security', title: 'Seguridad', icon: '🔒' },
+]
 
-let activeSection = 'overview';
+let activeSection = 'overview'
 
 function setActiveSection(id) {
-    activeSection = id;
-    updateActiveState();
+    activeSection = id
+    updateActiveState()
 }
 
 function getActiveSection() {
-    return activeSection;
+    return activeSection
 }
 
 function updateActiveState() {
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.classList.toggle('active', link.getAttribute('data-section') === activeSection);
-    });
+    document.querySelectorAll('.nav-link').forEach((link) => {
+        link.classList.toggle('active', link.getAttribute('data-section') === activeSection)
+    })
 }
 
 // ===== Inicializar Sidebar =====
 function initSidebar() {
-    const toggles = document.querySelectorAll('.sidebar-toggle');
-    const sidebarLinks = document.querySelectorAll('.nav-link');
-    
-    toggles.forEach(toggle => {
+    const toggles = document.querySelectorAll('.sidebar-toggle')
+    const sidebarLinks = document.querySelectorAll('.nav-link')
+
+    toggles.forEach((toggle) => {
         toggle.addEventListener('click', () => {
-            state.mobileOpen = !state.mobileOpen;
+            state.mobileOpen = !state.mobileOpen
             if (elements.sidebar) {
-                elements.sidebar.classList.toggle('open', state.mobileOpen);
+                elements.sidebar.classList.toggle('open', state.mobileOpen)
             }
-        });
-    });
-    
-    sidebarLinks.forEach(link => {
+        })
+    })
+
+    sidebarLinks.forEach((link) => {
         link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const section = link.getAttribute('data-section');
+            e.preventDefault()
+            const section = link.getAttribute('data-section')
             if (section) {
-                setActiveSection(section);
-                state.mobileOpen = false;
+                setActiveSection(section)
+                state.mobileOpen = false
                 if (elements.sidebar) {
-                    elements.sidebar.classList.remove('open');
+                    elements.sidebar.classList.remove('open')
                 }
             }
-        });
-    });
+        })
+    })
 }
 
 // ===== Inicializar Header =====
 function initHeader() {
-    const rangeSelector = document.querySelector('[data-range]');
-    const refreshBtn = document.querySelector('[data-refresh]');
-    const userProfile = document.querySelector('[data-profile]');
-    const menuBtn = document.querySelector('[data-menu]');
-    
+    const rangeSelector = document.querySelector('[data-range]')
+    const refreshBtn = document.querySelector('[data-refresh]')
+    const userProfile = document.querySelector('[data-profile]')
+    const menuBtn = document.querySelector('[data-menu]')
+
     if (rangeSelector) {
         rangeSelector.addEventListener('change', (e) => {
-            state.range = e.target.value;
-            updateRangeDisplay();
-        });
+            state.range = e.target.value
+            updateRangeDisplay()
+        })
     }
-    
+
     if (refreshBtn) {
         refreshBtn.addEventListener('click', () => {
-            updateDashboard();
-        });
+            updateDashboard()
+        })
     }
-    
+
     if (userProfile) {
         userProfile.addEventListener('click', (e) => {
-            e.preventDefault();
-            state.view = state.view === 'profile' ? 'dashboard' : 'profile';
-            updateView();
-        });
+            e.preventDefault()
+            state.view = state.view === 'profile' ? 'dashboard' : 'profile'
+            updateView()
+        })
     }
-    
+
     if (menuBtn) {
         menuBtn.addEventListener('click', () => {
-            state.mobileOpen = !state.mobileOpen;
+            state.mobileOpen = !state.mobileOpen
             if (elements.sidebar) {
-                elements.sidebar.classList.toggle('open', state.mobileOpen);
+                elements.sidebar.classList.toggle('open', state.mobileOpen)
             }
-        });
+        })
     }
-    
-    updateRangeDisplay();
+
+    updateRangeDisplay()
 }
 
 // ===== Actualizar rango display =====
 function updateRangeDisplay() {
-    const rangeDisplay = document.querySelector('[data-range-display]');
+    const rangeDisplay = document.querySelector('[data-range-display]')
     if (rangeDisplay) {
-        rangeDisplay.textContent = `Última actualización: ${dashboardData.updatedAt}`;
+        rangeDisplay.textContent = `Última actualización: ${dashboardData.updatedAt}`
     }
 }
 
 // ===== Actualizar dashboard =====
 function updateDashboard() {
-    if (!elements.main) return;
+    if (!elements.main) return
 
-    const section = document.createElement('section');
-    section.className = 'overview';
+    const section = document.createElement('section')
+    section.className = 'overview'
     section.innerHTML = `
         <h2 class="section-heading">Visión general</h2>
         <div class="status-summary">
@@ -308,33 +342,33 @@ function updateDashboard() {
                 <span class="metric-label">Alertas críticas</span>
             </div>
         </div>
-    `;
+    `
 
-    const overviewGrid = document.createElement('div');
-    overviewGrid.className = 'overview-grid';
-    overviewGrid.append(createLatencyChart(), createRecentAlerts());
-    section.appendChild(overviewGrid);
+    const overviewGrid = document.createElement('div')
+    overviewGrid.className = 'overview-grid'
+    overviewGrid.append(createLatencyChart(), createRecentAlerts())
+    section.appendChild(overviewGrid)
 
-    elements.main.innerHTML = '';
+    elements.main.innerHTML = ''
     elements.main.append(
         section,
         createServersPanel(),
         createMetricsPanels(),
         createLogsPanel(),
-        createSecurityAlerts()
-    );
+        createSecurityAlerts(),
+    )
 
     // Ejecutar observadores de reveal
-    observeReveal('.reveal');
+    observeReveal('.reveal')
 }
 
 // ===== Vista de perfil =====
 function updateView() {
-    if (!elements.main) return;
+    if (!elements.main) return
 
     if (state.view !== 'profile') {
-        updateDashboard();
-        return;
+        updateDashboard()
+        return
     }
 
     elements.main.innerHTML = `
@@ -348,68 +382,73 @@ function updateView() {
                 </div>
             </div>
         </section>
-    `;
+    `
 }
 
 // ===== Componentes Vanilla =====
 function createLatencyChart() {
-    const container = document.createElement('div');
-    container.className = 'latency-chart chart';
-    
-    const svgNS = 'http://www.w3.org/2000/svg';
-    const svg = document.createElementNS(svgNS, 'svg');
-    svg.setAttribute('viewBox', '0 0 200 50');
-    svg.setAttribute('class', 'chart-svg');
-    
+    const container = document.createElement('div')
+    container.className = 'latency-chart chart'
+
+    const svgNS = 'http://www.w3.org/2000/svg'
+    const svg = document.createElementNS(svgNS, 'svg')
+    svg.setAttribute('viewBox', '0 0 200 50')
+    svg.setAttribute('class', 'chart-svg')
+
     // Ejes y líneas simplificados
-    const path = document.createElementNS(svgNS, 'path');
+    const path = document.createElementNS(svgNS, 'path')
     const points = dashboardData.latencyHistoryData.map((p, i) => {
-        const x = (i / (dashboardData.latencyHistoryData.length - 1)) * 200;
-        const y = 50 - (p.value / 100) * 30;
-        return i === 0 ? `M${x},${y}` : `L${x},${y}`;
-    });
-    path.setAttribute('d', points.join(' '));
-    path.setAttribute('fill', 'none');
-    path.setAttribute('stroke', 'rgb(59, 130, 246)');
-    path.setAttribute('stroke-width', '2');
-    
+        const x = (i / (dashboardData.latencyHistoryData.length - 1)) * 200
+        const y = 50 - (p.value / 100) * 30
+        return i === 0 ? `M${x},${y}` : `L${x},${y}`
+    })
+    path.setAttribute('d', points.join(' '))
+    path.setAttribute('fill', 'none')
+    path.setAttribute('stroke', 'rgb(59, 130, 246)')
+    path.setAttribute('stroke-width', '2')
+
     // Área bajo la curva
-    const areaPath = document.createElementNS(svgNS, 'path');
-    const total = dashboardData.latencyHistoryData.length - 1;
+    const areaPath = document.createElementNS(svgNS, 'path')
+    const total = dashboardData.latencyHistoryData.length - 1
     const areaPoints = dashboardData.latencyHistoryData.map((p, i) => {
-        const x = (i / total) * 200;
-        const y = 50 - (p.value / 100) * 30;
-        return `${x},${y}`;
-    });
-    const areaD = `M${areaPoints[0]} ${areaPoints.slice(1).map((p) => `L${p}`).join(' ')} L200,50 L0,50 Z`;
-    areaPath.setAttribute('d', areaD);
-    areaPath.setAttribute('fill', 'rgba(59, 130, 246, 0.1)');
-    
-    svg.appendChild(path);
-    svg.appendChild(areaPath);
-    container.appendChild(svg);
-    
+        const x = (i / total) * 200
+        const y = 50 - (p.value / 100) * 30
+        return `${x},${y}`
+    })
+    const areaD = `M${areaPoints[0]} ${areaPoints
+        .slice(1)
+        .map((p) => `L${p}`)
+        .join(' ')} L200,50 L0,50 Z`
+    areaPath.setAttribute('d', areaD)
+    areaPath.setAttribute('fill', 'rgba(59, 130, 246, 0.1)')
+
+    svg.appendChild(path)
+    svg.appendChild(areaPath)
+    container.appendChild(svg)
+
     // Leyenda
-    const legend = document.createElement('div');
-    legend.innerHTML = `<div class="legend-item"><span class="legend-color"></span><span>Latencia</span></div>`;
-    container.appendChild(legend);
-    
-    return container;
+    const legend = document.createElement('div')
+    legend.innerHTML = `<div class="legend-item"><span class="legend-color"></span><span>Latencia</span></div>`
+    container.appendChild(legend)
+
+    return container
 }
 
 function createRecentAlerts() {
-    const container = document.createElement('div');
-    container.className = 'recent-alerts';
-    
-    const alerts = dashboardData.recentAlerts;
+    const container = document.createElement('div')
+    container.className = 'recent-alerts'
+
+    const alerts = dashboardData.recentAlerts
     if (!alerts || alerts.length === 0) {
-        container.innerHTML = '<p class="no-alerts">No hay alertas recientes</p>';
-        return container;
+        container.innerHTML = '<p class="no-alerts">No hay alertas recientes</p>'
+        return container
     }
-    
+
     const html = `
         <div class="alerts-list">
-            ${alerts.map(alert => `
+            ${alerts
+                .map(
+                    (alert) => `
                 <div class="alert-item ${alert.type}">
                     <span class="alert-icon">${alert.type[0].toUpperCase()}</span>
                     <div class="alert-content">
@@ -417,27 +456,31 @@ function createRecentAlerts() {
                         <span class="alert-time">${alert.time}</span>
                     </div>
                 </div>
-            `).join('')}
+            `,
+                )
+                .join('')}
         </div>
-    `;
-    
-    container.innerHTML = html;
-    return container;
+    `
+
+    container.innerHTML = html
+    return container
 }
 
 function createServersPanel() {
-    const container = document.createElement('div');
-    container.className = 'servers-panel';
-    
-    const servers = dashboardData.servers;
+    const container = document.createElement('div')
+    container.className = 'servers-panel'
+
+    const servers = dashboardData.servers
     if (!servers || servers.length === 0) {
-        container.innerHTML = '<p>No hay datos de servidores</p>';
-        return container;
+        container.innerHTML = '<p>No hay datos de servidores</p>'
+        return container
     }
-    
+
     const html = `
         <div class="servers-grid">
-            ${servers.map(server => `
+            ${servers
+                .map(
+                    (server) => `
                 <div class="server-card ${server.status}">
                     <div class="server-info">
                         <span class="server-name">${server.name}</span>
@@ -452,78 +495,88 @@ function createServersPanel() {
                         <span class="stat-label">Mem.</span>
                     </div>
                 </div>
-            `).join('')}
+            `,
+                )
+                .join('')}
         </div>
-    `;
-    
-    container.innerHTML = html;
-    return container;
+    `
+
+    container.innerHTML = html
+    return container
 }
 
 function createMetricsPanels() {
-    const container = document.createElement('div');
-    container.className = 'metrics-panels';
-    
-    const metrics = dashboardData.metrics;
+    const container = document.createElement('div')
+    container.className = 'metrics-panels'
+
+    const metrics = dashboardData.metrics
     if (!metrics || metrics.length === 0) {
-        container.innerHTML = '<p>No hay datos de métricas</p>';
-        return container;
+        container.innerHTML = '<p>No hay datos de métricas</p>'
+        return container
     }
-    
+
     const html = `
         <div class="metrics-grid">
-            ${metrics.map(metric => `
+            ${metrics
+                .map(
+                    (metric) => `
                 <div class="metric-panel">
                     <span class="metric-name">${metric.name}</span>
                     <span class="metric-value">${metric.value}</span>
                     <div class="metric-spark">
-                        ${metric.spark ? metric.spark.map(v => `<span class="spark-point" style="height: ${(v / 100) * 50}%"></span>`).join('') : ''}
+                        ${metric.spark ? metric.spark.map((v) => `<span class="spark-point" style="height: ${(v / 100) * 50}%"></span>`).join('') : ''}
                     </div>
                 </div>
-            `).join('')}
+            `,
+                )
+                .join('')}
         </div>
-    `;
-    
-    container.innerHTML = html;
-    return container;
+    `
+
+    container.innerHTML = html
+    return container
 }
 
 function createLogsPanel() {
-    const container = document.createElement('div');
-    container.className = 'logs-panel';
-    
+    const container = document.createElement('div')
+    container.className = 'logs-panel'
+
     const logs = [
         { time: 'Just now', message: 'Dashboard actualizado', level: 'info' },
         { time: '2 min ago', message: 'High CPU warning on Server 5', level: 'warning' },
         { time: '15 min ago', message: 'Memory threshold crossed', level: 'warning' },
         { time: '1 hour ago', message: 'Cache refreshed', level: 'info' },
-    ];
-    
+    ]
+
     const html = `
         <div class="logs-list">
-            ${logs.map(log => `
+            ${logs
+                .map(
+                    (log) => `
                 <div class="log-item ${log.level}">
                     <span class="log-time">${log.time}</span>
                     <span class="log-message">${log.message}</span>
                 </div>
-            `).join('')}
+            `,
+                )
+                .join('')}
         </div>
-    `;
-    
-    container.innerHTML = html;
-    return container;
+    `
+
+    container.innerHTML = html
+    return container
 }
 
 function createSecurityAlerts() {
-    const container = document.createElement('div');
-    container.className = 'security-alerts';
-    
+    const container = document.createElement('div')
+    container.className = 'security-alerts'
+
     const alerts = [
         { id: 'a1', type: 'error', message: 'High CPU on Server 5', time: '2 min ago' },
         { id: 'a2', type: 'warning', message: 'Low memory on Server 3', time: '15 min ago' },
         { id: 'a3', type: 'info', message: 'Cache refreshed', time: '1 hour ago' },
-    ];
-    
+    ]
+
     const html = `
         <div class="alerts-summary">
             <div class="alert-counts">
@@ -532,23 +585,27 @@ function createSecurityAlerts() {
                 <span class="count info">${dashboardData.alertCounts.info}</span>
             </div>
             <ul class="alert-list">
-                ${alerts.map(alert => `
+                ${alerts
+                    .map(
+                        (alert) => `
                     <li class="alert-item ${alert.type}">
                         <span class="alert-time">${alert.time}</span>
                         <span class="alert-message">${alert.message}</span>
                     </li>
-                `).join('')}
+                `,
+                    )
+                    .join('')}
             </ul>
         </div>
-    `;
-    
-    container.innerHTML = html;
-    return container;
+    `
+
+    container.innerHTML = html
+    return container
 }
 
 // ===== Utilidades CSS =====
 function addGlobalStyles() {
-    const style = document.createElement('style');
+    const style = document.createElement('style')
     style.textContent = `
         :root {
             --color-paper: oklch(98% 0 0);
@@ -997,17 +1054,19 @@ function addGlobalStyles() {
                 margin-top: 4rem;
             }
         }
-    `;
-    document.head.appendChild(style);
+    `
+    document.head.appendChild(style)
 }
 
 // Agregar estilos globales al cargar
-document.addEventListener('DOMContentLoaded', addGlobalStyles);
+document.addEventListener('DOMContentLoaded', addGlobalStyles)
 
 // Exportar funciones para uso global
 window.dashboard = {
     setActiveSection,
     getActiveSection,
     updateDashboard,
-    toggleMobile: () => { state.mobileOpen = !state.mobileOpen; }
-};
+    toggleMobile: () => {
+        state.mobileOpen = !state.mobileOpen
+    },
+}

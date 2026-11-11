@@ -2,37 +2,55 @@
 // Migración desde React + Vite + Tailwind + React Router
 
 // ===== Configuración =====
-const THEME = { LIGHT: 'light', DARK: 'dark' };
+const THEME = { LIGHT: "light", DARK: "dark" };
 
 const getSystemTheme = () => {
-    if (typeof window === 'undefined') return THEME.LIGHT;
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? THEME.DARK : THEME.LIGHT;
+    if (typeof window === "undefined") return THEME.LIGHT;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? THEME.DARK
+        : THEME.LIGHT;
 };
+
+function readStoredTheme() {
+    // Todos los dashboards comparten origen y clave, y no todos guardan el mismo formato.
+    const raw = localStorage.getItem("theme");
+    if (!raw) return null;
+    try {
+        const parsed = JSON.parse(raw);
+        if (parsed && parsed.state && parsed.state.theme) return parsed;
+        if (typeof parsed === "string") return { state: { theme: parsed } };
+        return null;
+    } catch {
+        return { state: { theme: raw } };
+    }
+}
 
 const applyTheme = (theme) => {
-    if (typeof document === 'undefined') return;
-    document.documentElement.classList.toggle('dark', theme === THEME.DARK);
-    localStorage.setItem('theme', JSON.stringify({ state: { theme } }));
+    if (typeof document === "undefined") return;
+    document.documentElement.classList.toggle("dark", theme === THEME.DARK);
+    localStorage.setItem("theme", JSON.stringify({ state: { theme } }));
 };
 
-const storedTheme = JSON.parse(localStorage.getItem('theme'));
+const storedTheme = readStoredTheme();
 const currentTheme = storedTheme
-    ? storedTheme.state.theme === THEME.DARK ? THEME.DARK : THEME.LIGHT
+    ? storedTheme.state.theme === THEME.DARK
+        ? THEME.DARK
+        : THEME.LIGHT
     : getSystemTheme();
 applyTheme(currentTheme);
 
 // ===== Ruteo simple (SPA) =====
 const routes = {
-    '/': 'overview',
-    '/overview': 'overview',
-    '/usuarios': 'users',
-    '/contenido': 'content',
-    '/auditoria': 'logs',
-    '/configuracion': 'settings',
-    '/salud': 'health',
-    '/reportes': 'reports',
-    '/perfil': 'profile',
-    '*': 'notfound'
+    "/": "overview",
+    "/overview": "overview",
+    "/usuarios": "users",
+    "/contenido": "content",
+    "/auditoria": "logs",
+    "/configuracion": "settings",
+    "/salud": "health",
+    "/reportes": "reports",
+    "/perfil": "profile",
+    "*": "notfound",
 };
 
 const routeHistory = [];
@@ -41,55 +59,156 @@ const routeHistory = [];
 const state = {
     theme: currentTheme,
     mobileOpen: false,
-    page: 'overview'
+    page: "overview",
 };
 
 // Elementos del DOM
 const elements = {
-    root: document.getElementById('root'),
+    root: document.getElementById("root"),
     sidebar: null,
     main: null,
+    header: null,
     footer: null,
-    navLinks: []
+    navLinks: [],
 };
 
+const NAV_ITEMS = [
+    { path: "/overview", page: "overview", label: "Visión general" },
+    { path: "/usuarios", page: "users", label: "Usuarios" },
+    { path: "/contenido", page: "content", label: "Contenido" },
+    { path: "/auditoria", page: "logs", label: "Auditoría" },
+    { path: "/salud", page: "health", label: "Salud" },
+    { path: "/reportes", page: "reports", label: "Reportes" },
+    { path: "/configuracion", page: "settings", label: "Configuración" },
+    { path: "/perfil", page: "profile", label: "Perfil" },
+];
+
 // Inicializar después del DOMContentLoaded
-document.addEventListener('DOMContentLoaded', () => {
-    elements.sidebar = document.querySelector('.sidebar');
-    elements.main = document.querySelector('.main');
-    elements.footer = document.querySelector('.footer');
-    elements.navLinks = document.querySelectorAll('.nav-link');
-    
+document.addEventListener("DOMContentLoaded", () => {
+    addGlobalStyles();
+    mountLayout();
+    cacheElements();
+
     initRouting();
     initSidebar();
     initHeader();
     initThemeToggle();
-    navigateTo(state.page);
 });
 
+// ===== Layout =====
+function mountLayout() {
+    const root = elements.root;
+    if (!root) return;
+
+    root.innerHTML = `
+        <div class="dashboard">
+            <aside class="sidebar" aria-label="Navegación principal">
+                <div class="sidebar-brand">Nexo</div>
+                <nav class="sidebar-nav">
+                    ${NAV_ITEMS.map(
+                        ({ path, label }) => `
+                        <a href="#${path}" class="nav-link" data-page-path="${path}">${label}</a>
+                    `,
+                    ).join("")}
+                </nav>
+            </aside>
+
+            <div class="main">
+                <header class="header">
+                    <div class="header-brand">
+                        <button class="btn btn-secondary sidebar-toggle" type="button" aria-label="Abrir menú">Menú</button>
+                        <span class="header-title">Consola de administración</span>
+                    </div>
+                    <div class="header-actions">
+                        <button class="btn btn-secondary" type="button" data-theme-toggle>Modo oscuro</button>
+                    </div>
+                </header>
+
+                <main class="main-content" id="page"></main>
+
+                <footer class="footer">
+                    <p>Nexo · Datos de ejemplo para la consola de administración</p>
+                </footer>
+            </div>
+        </div>
+    `;
+}
+
+function cacheElements() {
+    elements.sidebar = document.querySelector(".sidebar");
+    elements.header = document.querySelector(".header");
+    elements.main = document.getElementById("page");
+    elements.footer = document.querySelector(".footer");
+    elements.navLinks = document.querySelectorAll(".nav-link");
+}
+
 // ===== Router =====
-function navigateTo(path, pushHistory = true) {
-    // Guardar en historial
-    if (pushHistory) {
-        routeHistory.push({ path, timestamp: Date.now() });
+function normalizePath(path) {
+    const raw = (path || "").split("#").pop() || "";
+    const clean = raw.trim();
+    if (!clean || clean === "/") return "/overview";
+    return clean.startsWith("/") ? clean : `/${clean}`;
+}
+
+function navigateTo(path, updateHash = true) {
+    const normalizedPath = normalizePath(path);
+    const page = routes[normalizedPath] || "notfound";
+
+    if (updateHash && window.location.hash !== `#${normalizedPath}`) {
+        window.location.hash = normalizedPath;
     }
-    
-    // Determinar ruta
-    const normalizedPath = path.startsWith('/') ? path : `/${path}`;
-    const routeKey = Object.keys(routes).find(k => k === normalizedPath) || '*';
-    const page = routes[routeKey];
-    
+
+    routeHistory.push({ path: normalizedPath, timestamp: Date.now() });
     state.page = page;
     updateNavState(page);
     updatePageContent(page);
-    
-    // Actualizar URL sin recargar
-    const currentPath = window.location.pathname;
-    const hash = normalizedPath.replace('/', '#!');
-    window.location.hash = hash;
-    
-    // Actualizar título
     updateTitle(page);
+}
+
+function initRouting() {
+    const currentPath = () => normalizePath(window.location.hash.replace(/^#/, ""));
+    window.addEventListener("hashchange", () => navigateTo(currentPath(), false));
+    navigateTo(currentPath(), false);
+}
+
+function initSidebar() {
+    document.querySelectorAll(".sidebar-toggle").forEach((toggle) => {
+        toggle.addEventListener("click", () => {
+            state.mobileOpen = !state.mobileOpen;
+            elements.sidebar?.classList.toggle("open", state.mobileOpen);
+        });
+    });
+
+    elements.navLinks.forEach((link) => {
+        link.addEventListener("click", (event) => {
+            event.preventDefault();
+            state.mobileOpen = false;
+            elements.sidebar?.classList.remove("open");
+            navigateTo(link.getAttribute("data-page-path"));
+        });
+    });
+}
+
+function initHeader() {
+    const menuButton = document.querySelector("[data-menu]");
+    if (!menuButton) return;
+
+    menuButton.addEventListener("click", () => {
+        state.mobileOpen = !state.mobileOpen;
+        elements.sidebar?.classList.toggle("open", state.mobileOpen);
+    });
+}
+
+function initThemeToggle() {
+    const button = document.querySelector("[data-theme-toggle]");
+    const { theme, toggle } = useTheme();
+    if (!button) return;
+
+    button.textContent = theme === THEME.DARK ? "Modo claro" : "Modo oscuro";
+    button.addEventListener("click", () => {
+        toggle();
+        button.textContent = state.theme === THEME.DARK ? "Modo claro" : "Modo oscuro";
+    });
 }
 
 function navigateBack() {
@@ -101,17 +220,17 @@ function navigateBack() {
 }
 
 function updateNavState(activePage) {
-    elements.navLinks.forEach(link => {
-        const page = link.getAttribute('data-page');
-        if (page) {
-            link.classList.toggle('active', page === activePage);
+    elements.navLinks.forEach((link) => {
+        const path = link.getAttribute("data-page-path");
+        if (path) {
+            link.classList.toggle("active", routes[path] === activePage);
         }
     });
 }
 
 function updatePageContent(page) {
     if (!elements.main) return;
-    
+
     const pages = {
         overview: createOverviewPage(),
         users: createUsersPage(),
@@ -121,29 +240,29 @@ function updatePageContent(page) {
         health: createHealthPage(),
         reports: createReportsPage(),
         profile: createProfilePage(),
-        notfound: createNotFoundPage()
+        notfound: createNotFoundPage(),
     };
-    
-    elements.main.innerHTML = pages[page] || pages['notfound'];
-    
+
+    elements.main.replaceChildren(pages[page] || pages["notfound"]);
+
     // Ejecutar observers de reveal
-    observeReveal('.reveal');
+    observeReveal(".reveal");
 }
 
 function updateTitle(page) {
     const titles = {
-        overview: 'Panel Administrativo - Visión General',
-        users: 'Panel Administrativo - Usuarios',
-        content: 'Panel Administrativo - Contenido',
-        logs: 'Panel Administrativo - Auditoría',
-        settings: 'Panel Administrativo - Configuración',
-        health: 'Panel Administrativo - Salud',
-        reports: 'Panel Administrativo - Reportes',
-        profile: 'Panel Administrativo - Perfil',
-        notfound: 'Panel Administrativo - 404'
+        overview: "Panel Administrativo - Visión General",
+        users: "Panel Administrativo - Usuarios",
+        content: "Panel Administrativo - Contenido",
+        logs: "Panel Administrativo - Auditoría",
+        settings: "Panel Administrativo - Configuración",
+        health: "Panel Administrativo - Salud",
+        reports: "Panel Administrativo - Reportes",
+        profile: "Panel Administrativo - Perfil",
+        notfound: "Panel Administrativo - 404",
     };
-    
-    document.title = titles[page] || titles['notfound'];
+
+    document.title = titles[page] || titles["notfound"];
 }
 
 // ===== Hook useTheme equivalente =====
@@ -153,7 +272,7 @@ function useTheme() {
         toggle: () => {
             state.theme = state.theme === THEME.LIGHT ? THEME.DARK : THEME.LIGHT;
             applyTheme(state.theme);
-        }
+        },
     };
 }
 
@@ -162,39 +281,84 @@ function useData() {
     // Datos simulados - en producción serían fetches API
     return {
         users: [
-            { id: 'u1', name: 'Administrador', role: 'admin', status: 'active', lastLogin: '2024-01-20' },
-            { id: 'u2', name: 'Maria Garcia', role: 'editor', status: 'active', lastLogin: '2024-01-18' },
-            { id: 'u3', name: 'Juan Perez', role: 'viewer', status: 'inactive', lastLogin: '2024-01-15' },
-            { id: 'u4', name: 'Laura SM', role: 'admin', status: 'active', lastLogin: '2024-01-22' },
-            { id: 'u5', name: 'Carlos R.', role: 'editor', status: 'active', lastLogin: '2024-01-19' }
+            {
+                id: "u1",
+                name: "Administrador",
+                role: "admin",
+                status: "active",
+                lastLogin: "2024-01-20",
+            },
+            {
+                id: "u2",
+                name: "Maria Garcia",
+                role: "editor",
+                status: "active",
+                lastLogin: "2024-01-18",
+            },
+            {
+                id: "u3",
+                name: "Juan Perez",
+                role: "viewer",
+                status: "inactive",
+                lastLogin: "2024-01-15",
+            },
+            {
+                id: "u4",
+                name: "Laura SM",
+                role: "admin",
+                status: "active",
+                lastLogin: "2024-01-22",
+            },
+            {
+                id: "u5",
+                name: "Carlos R.",
+                role: "editor",
+                status: "active",
+                lastLogin: "2024-01-19",
+            },
         ],
         settings: {
-            companyName: 'MiEmpresa S.A.',
-            timezone: 'UTC-5',
-            dateFormat: 'DD/MM/YYYY',
+            companyName: "MiEmpresa S.A.",
+            timezone: "UTC-5",
+            dateFormat: "DD/MM/YYYY",
             emailNotifications: true,
-            smsNotifications: false
+            smsNotifications: false,
         },
         stats: {
             totalUsers: 1247,
             activeUsers: 892,
             newThisMonth: 45,
-            systemsOnline: 97
+            systemsOnline: 97,
         },
         alerts: [
-            { id: 'a1', type: 'critical', message: 'Disco casi lleno en servidor DB', time: '2 min ago' },
-            { id: 'a2', type: 'warning', message: 'Uso de CPU alto en API gateway', time: '15 min ago' },
-            { id: 'a3', type: 'info', message: 'Backup completado exitosamente', time: '1 hour ago' }
-        ]
+            {
+                id: "a1",
+                type: "critical",
+                message: "Disco casi lleno en servidor DB",
+                time: "2 min ago",
+            },
+            {
+                id: "a2",
+                type: "warning",
+                message: "Uso de CPU alto en API gateway",
+                time: "15 min ago",
+            },
+            {
+                id: "a3",
+                type: "info",
+                message: "Backup completado exitosamente",
+                time: "1 hour ago",
+            },
+        ],
     };
 }
 
 // ===== Páginas =====
 
 function createOverviewPage() {
-    const { users, stats, alerts } = useData();
-    
-    const html = document.createElement('div');
+    const { stats, alerts } = useData();
+
+    const html = document.createElement("div");
     html.innerHTML = `
         <section class="reveal">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -229,7 +393,9 @@ function createOverviewPage() {
             <div class="mt-6">
                 <h2 class="section-heading">Alertas recientes</h2>
                 <div class="alerts-list">
-                    ${alerts.map(alert => `
+                    ${alerts
+                        .map(
+                            (alert) => `
                         <div class="alert-item ${alert.type}">
                             <span class="alert-icon">${alert.type[0].toUpperCase()}</span>
                             <div class="alert-content">
@@ -237,7 +403,9 @@ function createOverviewPage() {
                                 <span class="alert-time">${alert.time}</span>
                             </div>
                         </div>
-                    `).join('')}
+                    `,
+                        )
+                        .join("")}
                 </div>
             </div>
         </section>
@@ -247,8 +415,8 @@ function createOverviewPage() {
 
 function createUsersPage() {
     const { users } = useData();
-    
-    const html = document.createElement('div');
+
+    const html = document.createElement("div");
     html.innerHTML = `
         <section class="reveal">
             <div class="page-header">
@@ -271,7 +439,9 @@ function createUsersPage() {
                         </tr>
                     </thead>
                     <tbody>
-                        ${users.map(user => `
+                        ${users
+                            .map(
+                                (user) => `
                             <tr class="border-b">
                                 <td class="p-4">${user.name}</td>
                                 <td class="p-4">
@@ -286,7 +456,9 @@ function createUsersPage() {
                                     <button class="btn btn-sm">Eliminar</button>
                                 </td>
                             </tr>
-                        `).join('')}
+                        `,
+                            )
+                            .join("")}
                     </tbody>
                 </table>
             </div>
@@ -300,7 +472,7 @@ function createUsersPage() {
 }
 
 function createContentPage() {
-    const html = document.createElement('div');
+    const html = document.createElement("div");
     html.innerHTML = `
         <section class="reveal">
             <h2 class="section-heading">Gestión de Contenido</h2>
@@ -324,13 +496,15 @@ function createContentPage() {
 
 function createLogsPage() {
     const { alerts } = useData();
-    
-    const html = document.createElement('div');
+
+    const html = document.createElement("div");
     html.innerHTML = `
         <section class="reveal">
             <h2 class="section-heading">Log de Auditoría</h2>
             <div class="alerts-list">
-                ${alerts.map(alert => `
+                ${alerts
+                    .map(
+                        (alert) => `
                     <div class="alert-item ${alert.type}">
                         <span class="alert-icon">${alert.type[0].toUpperCase()}</span>
                         <div class="alert-content">
@@ -338,7 +512,9 @@ function createLogsPage() {
                             <span class="alert-time">${alert.time}</span>
                         </div>
                     </div>
-                `).join('')}
+                `,
+                    )
+                    .join("")}
             </div>
             <p class="text-xs text-[var(--color-ink-2)] mt-4">
                 Mostrando últimas 50 entradas. Use los filtros para refinar.
@@ -349,7 +525,7 @@ function createLogsPage() {
 }
 
 function createSettingsPage() {
-    const html = document.createElement('div');
+    const html = document.createElement("div");
     html.innerHTML = `
         <section class="reveal">
             <h2 class="section-heading">Configuración del Sistema</h2>
@@ -393,7 +569,7 @@ function createSettingsPage() {
 }
 
 function createHealthPage() {
-    const html = document.createElement('div');
+    const html = document.createElement("div");
     html.innerHTML = `
         <section class="reveal">
             <h2 class="section-heading">Salud del Sistema</h2>
@@ -428,7 +604,7 @@ function createHealthPage() {
 }
 
 function createReportsPage() {
-    const html = document.createElement('div');
+    const html = document.createElement("div");
     html.innerHTML = `
         <section class="reveal">
             <h2 class="section-heading">Reportes</h2>
@@ -464,7 +640,7 @@ function createReportsPage() {
 }
 
 function createProfilePage() {
-    const html = document.createElement('div');
+    const html = document.createElement("div");
     html.innerHTML = `
         <section class="reveal">
             <div class="profile-card">
@@ -494,7 +670,7 @@ function createProfilePage() {
 }
 
 function createNotFoundPage() {
-    const html = document.createElement('div');
+    const html = document.createElement("div");
     html.innerHTML = `
         <section class="reveal min-h-[50vh] flex items-center justify-center">
             <div>
@@ -510,7 +686,7 @@ function createNotFoundPage() {
 
 // ===== Utilidades CSS =====
 function addGlobalStyles() {
-    const style = document.createElement('style');
+    const style = document.createElement("style");
     style.textContent = `
         :root {
             --color-paper: oklch(98% 0 0);
@@ -559,6 +735,21 @@ function addGlobalStyles() {
         
         .main { margin-left: 280px; padding: 2rem; transition: margin-left 0.3s ease; }
         .sidebar.closed ~ .main { margin-left: 0; }
+
+        .sidebar-brand { padding: 1.5rem 1.5rem 0.5rem; font-size: 1.25rem; font-weight: 700; }
+        .sidebar-nav { display: flex; flex-direction: column; gap: 0.25rem; padding: 1rem; }
+        .nav-link {
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            color: var(--color-ink-2);
+            text-decoration: none;
+            font-size: 0.875rem;
+        }
+        .nav-link:hover { background: rgba(127, 127, 127, 0.12); color: var(--color-ink); }
+        .nav-link.active { background: var(--color-accent); color: #fff; }
+        .header-brand, .header-actions { display: flex; align-items: center; gap: 0.75rem; }
+        .header-actions { justify-content: flex-end; }
+        .header-title { font-weight: 600; }
         
         .header {
             display: flex;
@@ -573,7 +764,7 @@ function addGlobalStyles() {
         
         .header > * { flex: 1; min-width: 200px; }
         
-        .main { max-width: 1600px; margin: 0 auto; }
+        .main-content { max-width: 1600px; }
         
         .section-heading {
             font-size: 1.25rem;
@@ -749,22 +940,26 @@ function addGlobalStyles() {
 // Observadores de reveal
 function observeReveal(selector) {
     const elements = document.querySelectorAll(selector);
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('revealed');
-                observer.disconnect();
-            }
-        });
-    }, { threshold: 0.1 });
-    elements.forEach(el => observer.observe(el));
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("revealed");
+                    observer.disconnect();
+                }
+            });
+        },
+        { threshold: 0.1 },
+    );
+    elements.forEach((el) => observer.observe(el));
     return observer;
 }
 
 // Exportar
+window.navigateTo = navigateTo;
 window.dashboard = {
     navigateTo,
     navigateBack,
-    toggleTheme: () => useData().toggleTheme(),
-    state
+    toggleTheme: () => useTheme().toggle(),
+    state,
 };
