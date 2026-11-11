@@ -253,42 +253,70 @@ function syncThemeLabels() {
     if (label) label.textContent = isDark ? 'Oscuro' : 'Claro'
 }
 
+// Construye nodos sin pasar por HTML.
+function crear(etiqueta, propiedades = {}, hijos = []) {
+    const nodo = document.createElement(etiqueta)
+
+    Object.entries(propiedades).forEach(([clave, valor]) => {
+        if (valor === undefined || valor === null || valor === false) return
+        if (clave === 'clase') nodo.className = valor
+        else if (clave === 'texto') nodo.textContent = valor
+        else nodo.setAttribute(clave, valor === true ? '' : String(valor))
+    })
+
+    ;[].concat(hijos).forEach((hijo) => {
+        if (hijo === null || hijo === undefined || hijo === false) return
+        nodo.append(hijo instanceof Node ? hijo : document.createTextNode(String(hijo)))
+    })
+
+    return nodo
+}
+
 // ===== Layout =====
 function mountLayout() {
     if (!elements.root) return
 
-    elements.root.innerHTML = `
-        <div class="dashboard-shell">
-            <aside class="sidebar" aria-label="Navegación principal">
-                <div class="sidebar-brand">Soporte</div>
-                <nav class="sidebar-nav">
-                    ${NAV_ITEMS.map(
-                        ({ path, label }) => `
-                        <a href="#${path}" class="nav-link" data-page-path="${path}">${label}</a>
-                    `,
-                    ).join('')}
-                </nav>
-            </aside>
+    const navegacion = crear(
+        'nav',
+        { clase: 'sidebar-nav' },
+        NAV_ITEMS.map(({ path, label }) =>
+            crear('a', { href: `#${path}`, clase: 'nav-link', 'data-page-path': path, texto: label }),
+        ),
+    )
 
-            <div class="main">
-                <header class="header">
-                    <div class="header-brand">
-                        <button class="btn btn-secondary menu-btn sidebar-toggle" type="button" aria-label="Abrir menú">Menú</button>
-                        <span class="header-title">Mesa de soporte</span>
-                    </div>
-                    <div class="header-actions">
-                        <button class="btn btn-secondary" type="button" data-theme-toggle>Modo oscuro</button>
-                    </div>
-                </header>
-
-                <main class="main-content" id="page"></main>
-
-                <footer class="footer">
-                    <p>Soporte · Datos de ejemplo de la mesa de ayuda</p>
-                </footer>
-            </div>
-        </div>
-    `
+    elements.root.replaceChildren(
+        crear('div', { clase: 'dashboard-shell' }, [
+            crear('aside', { clase: 'sidebar', 'aria-label': 'Navegación principal' }, [
+                crear('div', { clase: 'sidebar-brand', texto: 'Soporte' }),
+                navegacion,
+            ]),
+            crear('div', { clase: 'main' }, [
+                crear('header', { clase: 'header' }, [
+                    crear('div', { clase: 'header-brand' }, [
+                        crear('button', {
+                            clase: 'btn btn-secondary menu-btn sidebar-toggle',
+                            type: 'button',
+                            'aria-label': 'Abrir menú',
+                            texto: 'Menú',
+                        }),
+                        crear('span', { clase: 'header-title', texto: 'Mesa de soporte' }),
+                    ]),
+                    crear('div', { clase: 'header-actions' }, [
+                        crear('button', {
+                            clase: 'btn btn-secondary',
+                            type: 'button',
+                            'data-theme-toggle': true,
+                            texto: 'Modo oscuro',
+                        }),
+                    ]),
+                ]),
+                crear('main', { clase: 'main-content', id: 'page' }),
+                crear('footer', { clase: 'footer' }, [
+                    crear('p', { texto: 'Soporte · Datos de ejemplo de la mesa de ayuda' }),
+                ]),
+            ]),
+        ]),
+    )
 }
 
 function cacheElements() {
@@ -369,7 +397,7 @@ function updatePageContent(route, ticketId) {
         notfound: createNotFoundPage,
     }
 
-    elements.main.innerHTML = (pages[route.view] || pages.notfound)()
+    elements.main.replaceChildren((pages[route.view] || pages.notfound)())
     initPage(route.view, ticketId)
     syncThemeLabels()
     observeReveal('.reveal')
@@ -388,13 +416,11 @@ function updateTitle(view) {
 
 // ===== Componentes =====
 function kpiCard({ title, count, subtitle }) {
-    return `
-        <div class="metric-card">
-            <span class="metric-value">${count}</span>
-            <span class="metric-label">${title}</span>
-            ${subtitle ? `<span class="metric-subtitle">${subtitle}</span>` : ''}
-        </div>
-    `
+    return crear('div', { clase: 'metric-card' }, [
+        crear('span', { clase: 'metric-value', texto: String(count) }),
+        crear('span', { clase: 'metric-label', texto: title }),
+        subtitle ? crear('span', { clase: 'metric-subtitle', texto: subtitle }) : null,
+    ])
 }
 
 function filterTickets(tickets) {
@@ -413,18 +439,26 @@ function filterTickets(tickets) {
 }
 
 function createTicketRow(ticket) {
-    return `
-        <tr>
-            <td class="font-medium">${ticket.id}</td>
-            <td><a href="#/tickets/${ticket.id}" class="ticket-link">${ticket.titulo}</a></td>
-            <td>${ticket.cliente_id}</td>
-            <td><span class="status-badge status-${ticket.estado}">${estadoEtiqueta(ticket.estado)}</span></td>
-            <td><span class="badge badge-${ticket.prioridad}">${ticket.prioridad}</span></td>
-            <td>${ticket.categoria}</td>
-            <td>${formatearFecha(ticket.creado_el)}</td>
-            <td><a href="#/tickets/${ticket.id}" class="ticket-link">Ver</a></td>
-        </tr>
-    `
+    const enlace = (texto) =>
+        crear('a', { href: `#/tickets/${ticket.id}`, clase: 'ticket-link', texto })
+
+    return crear('tr', {}, [
+        crear('td', { clase: 'font-medium', texto: ticket.id }),
+        crear('td', {}, [enlace(ticket.titulo)]),
+        crear('td', { texto: ticket.cliente_id }),
+        crear('td', {}, [
+            crear('span', {
+                clase: `status-badge status-${ticket.estado}`,
+                texto: estadoEtiqueta(ticket.estado),
+            }),
+        ]),
+        crear('td', {}, [
+            crear('span', { clase: `badge badge-${ticket.prioridad}`, texto: ticket.prioridad }),
+        ]),
+        crear('td', { texto: ticket.categoria }),
+        crear('td', { texto: formatearFecha(ticket.creado_el) }),
+        crear('td', {}, [enlace('Ver')]),
+    ])
 }
 
 // ===== Páginas =====
@@ -434,108 +468,106 @@ function createDashboardPage() {
     const closedCount = contarPor(TICKETS, 'estado', 'cerrado')
     const recientes = [...TICKETS].sort((a, b) => (a.creado_el < b.creado_el ? 1 : -1)).slice(0, 5)
 
-    return `
-        <section class="reveal">
-            <h1 class="page-title">Dashboard de Soporte</h1>
-
-            <div class="kpi-grid">
-                ${kpiCard({ title: 'Tickets abiertos', count: openCount, subtitle: 'Pendientes de primera respuesta' })}
-                ${kpiCard({ title: 'En progreso', count: inProgressCount, subtitle: 'Asignados a un agente' })}
-                ${kpiCard({ title: 'Cerrados', count: closedCount, subtitle: 'Resueltos' })}
-                ${kpiCard({ title: 'Total', count: TICKETS.length, subtitle: 'Periodo actual' })}
-            </div>
-
-            <div class="chart-grid">
-                <div>
-                    <h2 class="section-heading">Tickets por día</h2>
-                    <div id="chart-daily" class="chart-area"></div>
-                </div>
-                <div>
-                    <h2 class="section-heading">Distribución por categoría</h2>
-                    <div id="chart-category" class="chart-area"></div>
-                </div>
-            </div>
-
-            <div class="reveal">
-                <h2 class="section-heading">Tickets recientes</h2>
-                <div class="recent-list">
-                    ${recientes
-                        .map(
-                            (ticket) => `
-                                <a class="recent-item" href="#/tickets/${ticket.id}">
-                                    <span class="badge badge-${ticket.prioridad}">${ticket.prioridad}</span>
-                                    <span class="recent-title">${ticket.titulo}</span>
-                                    <span class="status-badge status-${ticket.estado}">${estadoEtiqueta(ticket.estado)}</span>
-                                </a>
-                            `,
-                        )
-                        .join('')}
-                </div>
-            </div>
-        </section>
-    `
+    return crear('section', { clase: 'reveal' }, [
+        crear('h1', { clase: 'page-title', texto: 'Dashboard de Soporte' }),
+        crear('div', { clase: 'kpi-grid' }, [
+            kpiCard({ title: 'Tickets abiertos', count: openCount, subtitle: 'Pendientes de primera respuesta' }),
+            kpiCard({ title: 'En progreso', count: inProgressCount, subtitle: 'Asignados a un agente' }),
+            kpiCard({ title: 'Cerrados', count: closedCount, subtitle: 'Resueltos' }),
+            kpiCard({ title: 'Total', count: TICKETS.length, subtitle: 'Periodo actual' }),
+        ]),
+        crear('div', { clase: 'chart-grid' }, [
+            crear('div', {}, [
+                crear('h2', { clase: 'section-heading', texto: 'Tickets por día' }),
+                crear('div', { id: 'chart-daily', clase: 'chart-area' }),
+            ]),
+            crear('div', {}, [
+                crear('h2', { clase: 'section-heading', texto: 'Distribución por categoría' }),
+                crear('div', { id: 'chart-category', clase: 'chart-area' }),
+            ]),
+        ]),
+        crear('div', { clase: 'reveal' }, [
+            crear('h2', { clase: 'section-heading', texto: 'Tickets recientes' }),
+            crear(
+                'div',
+                { clase: 'recent-list' },
+                recientes.map((ticket) =>
+                    crear('a', { clase: 'recent-item', href: `#/tickets/${ticket.id}` }, [
+                        crear('span', { clase: `badge badge-${ticket.prioridad}`, texto: ticket.prioridad }),
+                        crear('span', { clase: 'recent-title', texto: ticket.titulo }),
+                        crear('span', {
+                            clase: `status-badge status-${ticket.estado}`,
+                            texto: estadoEtiqueta(ticket.estado),
+                        }),
+                    ]),
+                ),
+            ),
+        ]),
+    ])
 }
 
 function createTicketsPage() {
     const filtrados = filterTickets(TICKETS)
 
-    return `
-        <section class="reveal">
-            <div class="page-header">
-                <h1 class="page-title">Tickets</h1>
-                <div class="filters-row">
-                    <input type="text" id="search-input" class="input" placeholder="Buscar tickets..." value="${state.filterBusqueda}" />
-                    <select id="estado-filter" class="input">
-                        <option value="todos">Todos los estados</option>
-                        <option value="abierto">Abiertos</option>
-                        <option value="en_progreso">En progreso</option>
-                        <option value="cerrado">Cerrados</option>
-                    </select>
-                    <select id="prioridad-filter" class="input">
-                        <option value="todos">Todas las prioridades</option>
-                        <option value="alta">Alta</option>
-                        <option value="media">Media</option>
-                        <option value="baja">Baja</option>
-                    </select>
-                </div>
-            </div>
-
-            <p class="text-muted" id="tickets-count">Mostrando ${filtrados.length} de ${TICKETS.length} tickets</p>
-
-            <div class="table-responsive">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Título</th>
-                            <th>Cliente</th>
-                            <th>Estado</th>
-                            <th>Prioridad</th>
-                            <th>Categoría</th>
-                            <th>Creado</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tickets-body">
-                        ${filtrados.map((ticket) => createTicketRow(ticket)).join('')}
-                    </tbody>
-                </table>
-            </div>
-        </section>
-    `
+    return crear('section', { clase: 'reveal' }, [
+        crear('div', { clase: 'page-header' }, [
+            crear('h1', { clase: 'page-title', texto: 'Tickets' }),
+            crear('div', { clase: 'filters-row' }, [
+                crear('input', {
+                    type: 'text',
+                    id: 'search-input',
+                    clase: 'input',
+                    placeholder: 'Buscar tickets...',
+                    value: state.filterBusqueda,
+                }),
+                crear('select', { id: 'estado-filter', clase: 'input' }, [
+                    crear('option', { value: 'todos', texto: 'Todos los estados' }),
+                    crear('option', { value: 'abierto', texto: 'Abiertos' }),
+                    crear('option', { value: 'en_progreso', texto: 'En progreso' }),
+                    crear('option', { value: 'cerrado', texto: 'Cerrados' }),
+                ]),
+                crear('select', { id: 'prioridad-filter', clase: 'input' }, [
+                    crear('option', { value: 'todos', texto: 'Todas las prioridades' }),
+                    crear('option', { value: 'alta', texto: 'Alta' }),
+                    crear('option', { value: 'media', texto: 'Media' }),
+                    crear('option', { value: 'baja', texto: 'Baja' }),
+                ]),
+            ]),
+        ]),
+        crear('p', {
+            clase: 'text-muted',
+            id: 'tickets-count',
+            texto: `Mostrando ${filtrados.length} de ${TICKETS.length} tickets`,
+        }),
+        crear('div', { clase: 'table-responsive' }, [
+            crear('table', {}, [
+                crear('thead', {}, [
+                    crear(
+                        'tr',
+                        {},
+                        ['ID', 'Título', 'Cliente', 'Estado', 'Prioridad', 'Categoría', 'Creado', 'Acciones'].map(
+                            (titulo) => crear('th', { texto: titulo }),
+                        ),
+                    ),
+                ]),
+                crear('tbody', { id: 'tickets-body' }, filtrados.map(createTicketRow)),
+            ]),
+        ]),
+    ])
 }
 
 function createTicketDetailPage(ticketId) {
     const ticket = TICKETS.find((item) => item.id === ticketId)
 
     if (!ticket) {
-        return `
-            <section class="reveal">
-                <h2 class="page-title">Ticket no encontrado</h2>
-                <p class="text-muted">No existe ningún ticket con el identificador ${ticketId || '—'}.</p>
-                <a href="#/tickets" class="btn">Volver a Tickets</a>
-            </section>
-        `
+        return crear('section', { clase: 'reveal' }, [
+            crear('h2', { clase: 'page-title', texto: 'Ticket no encontrado' }),
+            crear('p', {
+                clase: 'text-muted',
+                texto: `No existe ningún ticket con el identificador ${ticketId || '—'}.`,
+            }),
+            crear('a', { href: '#/tickets', clase: 'btn', texto: 'Volver a Tickets' }),
+        ])
     }
 
     const cliente = CLIENTES.find((item) => item.id === ticket.cliente_id)
@@ -544,100 +576,121 @@ function createTicketDetailPage(ticketId) {
         ? Math.round((new Date(ticket.primera_respuesta_el) - new Date(ticket.creado_el)) / 3600000)
         : null
 
-    return `
-        <section class="reveal">
-            <a href="#/tickets" class="back-link">← Volver a tickets</a>
-            <h1 class="page-title">${ticket.titulo}</h1>
+    const listaDatos = (filas) =>
+        crear(
+            'dl',
+            { clase: 'detail-list' },
+            filas.map(([etiqueta, valor]) =>
+                crear('div', {}, [crear('dt', { texto: etiqueta }), crear('dd', { texto: valor })]),
+            ),
+        )
 
-            <div class="detail-grid">
-                <article class="card">
-                    <div class="card-badges">
-                        <span class="status-badge status-${ticket.estado}">${estadoEtiqueta(ticket.estado)}</span>
-                        <span class="badge badge-${ticket.prioridad}">${ticket.prioridad}</span>
-                        <span class="badge">${ticket.categoria}</span>
-                    </div>
-                    <p class="card-description">${ticket.descripcion}</p>
-                    <dl class="detail-list">
-                        <div><dt>ID</dt><dd>${ticket.id}</dd></div>
-                        <div><dt>Creado</dt><dd>${formatearFecha(ticket.creado_el)}</dd></div>
-                        <div><dt>Tiempo de respuesta</dt><dd>${formatearDuracionHoras(horasRespuesta)}</dd></div>
-                    </dl>
-                </article>
+    const fichaCliente = cliente
+        ? listaDatos([
+              ['Nombre', cliente.nombre],
+              ['Empresa', cliente.empresa],
+              ['Plan', cliente.plan],
+              ['Email', cliente.email],
+              ['Ciudad', cliente.ciudad],
+          ])
+        : crear('p', { clase: 'text-muted', texto: 'Cliente no encontrado' })
 
-                <aside>
-                    <h3 class="section-heading">Cliente</h3>
-                    ${
-                        cliente
-                            ? `<dl class="detail-list">
-                                   <div><dt>Nombre</dt><dd>${cliente.nombre}</dd></div>
-                                   <div><dt>Empresa</dt><dd>${cliente.empresa}</dd></div>
-                                   <div><dt>Plan</dt><dd>${cliente.plan}</dd></div>
-                                   <div><dt>Email</dt><dd>${cliente.email}</dd></div>
-                                   <div><dt>Ciudad</dt><dd>${cliente.ciudad}</dd></div>
-                               </dl>`
-                            : '<p class="text-muted">Cliente no encontrado</p>'
-                    }
+    const fichaAgente = agente
+        ? crear('div', { clase: 'agent-row' }, [
+              crear('div', { clase: 'avatar-sm', texto: `${agente.nombre[0]}${agente.apellido[0]}` }),
+              crear('div', {}, [
+                  crear('p', {}, [crear('strong', { texto: `${agente.nombre} ${agente.apellido}` })]),
+                  crear('p', {
+                      clase: 'text-muted',
+                      texto: `${agente.rol} · ${agente.especialidad}`,
+                  }),
+              ]),
+          ])
+        : crear('p', { clase: 'text-muted', texto: 'Sin asignar' })
 
-                    <h3 class="section-heading">Equipo de soporte</h3>
-                    ${
-                        agente
-                            ? `<div class="agent-row">
-                                   <div class="avatar-sm">${agente.nombre[0]}${agente.apellido[0]}</div>
-                                   <div>
-                                       <p><strong>${agente.nombre} ${agente.apellido}</strong></p>
-                                       <p class="text-muted">${agente.rol} · ${agente.especialidad}</p>
-                                   </div>
-                               </div>`
-                            : '<p class="text-muted">Sin asignar</p>'
-                    }
-                </aside>
-            </div>
-        </section>
-    `
+    return crear('section', { clase: 'reveal' }, [
+        crear('a', { href: '#/tickets', clase: 'back-link', texto: '← Volver a tickets' }),
+        crear('h1', { clase: 'page-title', texto: ticket.titulo }),
+        crear('div', { clase: 'detail-grid' }, [
+            crear('article', { clase: 'card' }, [
+                crear('div', { clase: 'card-badges' }, [
+                    crear('span', {
+                        clase: `status-badge status-${ticket.estado}`,
+                        texto: estadoEtiqueta(ticket.estado),
+                    }),
+                    crear('span', { clase: `badge badge-${ticket.prioridad}`, texto: ticket.prioridad }),
+                    crear('span', { clase: 'badge', texto: ticket.categoria }),
+                ]),
+                crear('p', { clase: 'card-description', texto: ticket.descripcion }),
+                listaDatos([
+                    ['ID', ticket.id],
+                    ['Creado', formatearFecha(ticket.creado_el)],
+                    ['Tiempo de respuesta', formatearDuracionHoras(horasRespuesta)],
+                ]),
+            ]),
+            crear('aside', {}, [
+                crear('h3', { clase: 'section-heading', texto: 'Cliente' }),
+                fichaCliente,
+                crear('h3', { clase: 'section-heading', texto: 'Equipo de soporte' }),
+                fichaAgente,
+            ]),
+        ]),
+    ])
 }
 
 function createProfilePage() {
     const agente = AGENTES[0]
 
-    return `
-        <section class="reveal">
-            <h1 class="page-title">Perfil</h1>
-
-            <div class="detail-grid">
-                <div class="profile-card">
-                    <div class="profile-avatar">${agente.nombre[0]}${agente.apellido[0]}</div>
-                    <h2 class="profile-name">${agente.nombre} ${agente.apellido}</h2>
-                    <p class="profile-email">${agente.rol}</p>
-                </div>
-
-                <div>
-                    <h3 class="section-heading">Estadísticas</h3>
-                    <div class="kpi-grid">
-                        ${kpiCard({ title: 'Tickets resueltos', count: agente.tickets_resueltos, subtitle: 'Histórico' })}
-                        ${kpiCard({ title: 'CSAT promedio', count: agente.satisfaccion_promedio.toFixed(1) + ' / 5', subtitle: 'Satisfacción' })}
-                    </div>
-
-                    <h3 class="section-heading">Información</h3>
-                    <dl class="detail-list">
-                        <div><dt>Especialidad</dt><dd>${agente.especialidad}</dd></div>
-                        <div><dt>Disponible</dt><dd>${agente.disponible ? 'Sí' : 'No'}</dd></div>
-                        <div><dt>Tema</dt><dd id="current-theme">Claro</dd></div>
-                    </dl>
-                    <button class="btn btn-secondary" type="button" data-theme-toggle>Cambiar tema</button>
-                </div>
-            </div>
-        </section>
-    `
+    return crear('section', { clase: 'reveal' }, [
+        crear('h1', { clase: 'page-title', texto: 'Perfil' }),
+        crear('div', { clase: 'detail-grid' }, [
+            crear('div', { clase: 'profile-card' }, [
+                crear('div', { clase: 'profile-avatar', texto: `${agente.nombre[0]}${agente.apellido[0]}` }),
+                crear('h2', { clase: 'profile-name', texto: `${agente.nombre} ${agente.apellido}` }),
+                crear('p', { clase: 'profile-email', texto: agente.rol }),
+            ]),
+            crear('div', {}, [
+                crear('h3', { clase: 'section-heading', texto: 'Estadísticas' }),
+                crear('div', { clase: 'kpi-grid' }, [
+                    kpiCard({ title: 'Tickets resueltos', count: agente.tickets_resueltos, subtitle: 'Histórico' }),
+                    kpiCard({
+                        title: 'CSAT promedio',
+                        count: `${agente.satisfaccion_promedio.toFixed(1)} / 5`,
+                        subtitle: 'Satisfacción',
+                    }),
+                ]),
+                crear('h3', { clase: 'section-heading', texto: 'Información' }),
+                crear('dl', { clase: 'detail-list' }, [
+                    crear('div', {}, [
+                        crear('dt', { texto: 'Especialidad' }),
+                        crear('dd', { texto: agente.especialidad }),
+                    ]),
+                    crear('div', {}, [
+                        crear('dt', { texto: 'Disponible' }),
+                        crear('dd', { texto: agente.disponible ? 'Sí' : 'No' }),
+                    ]),
+                    crear('div', {}, [
+                        crear('dt', { texto: 'Tema' }),
+                        crear('dd', { id: 'current-theme', texto: 'Claro' }),
+                    ]),
+                ]),
+                crear('button', {
+                    clase: 'btn btn-secondary',
+                    type: 'button',
+                    'data-theme-toggle': true,
+                    texto: 'Cambiar tema',
+                }),
+            ]),
+        ]),
+    ])
 }
 
 function createNotFoundPage() {
-    return `
-        <section class="reveal">
-            <h2 class="page-title">404</h2>
-            <p class="text-muted">La página solicitada no existe.</p>
-            <a href="#/dashboard" class="btn">Volver al inicio</a>
-        </section>
-    `
+    return crear('section', { clase: 'reveal' }, [
+        crear('h2', { clase: 'page-title', texto: '404' }),
+        crear('p', { clase: 'text-muted', texto: 'La página solicitada no existe.' }),
+        crear('a', { href: '#/dashboard', clase: 'btn', texto: 'Volver al inicio' }),
+    ])
 }
 
 // ===== Inicialización por vista =====
@@ -682,7 +735,7 @@ function initTickets() {
         const filtrados = filterTickets(TICKETS)
         const body = document.getElementById('tickets-body')
         const count = document.getElementById('tickets-count')
-        if (body) body.innerHTML = filtrados.map((ticket) => createTicketRow(ticket)).join('')
+        if (body) body.replaceChildren(...filtrados.map(createTicketRow))
         if (count) count.textContent = `Mostrando ${filtrados.length} de ${TICKETS.length} tickets`
     }
 

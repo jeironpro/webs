@@ -246,42 +246,68 @@ function setTheme(theme) {
     localStorage.setItem('theme', JSON.stringify({ state: { theme } }))
 }
 
+// Construye nodos sin pasar por HTML.
+function crear(etiqueta, propiedades = {}, hijos = []) {
+    const nodo = document.createElement(etiqueta)
+
+    Object.entries(propiedades).forEach(([clave, valor]) => {
+        if (valor === undefined || valor === null || valor === false) return
+        if (clave === 'clase') nodo.className = valor
+        else if (clave === 'texto') nodo.textContent = valor
+        else nodo.setAttribute(clave, valor === true ? '' : String(valor))
+    })
+
+    ;[].concat(hijos).forEach((hijo) => {
+        if (hijo === null || hijo === undefined || hijo === false) return
+        nodo.append(hijo instanceof Node ? hijo : document.createTextNode(String(hijo)))
+    })
+
+    return nodo
+}
+
 // ===== Layout =====
 function mountLayout() {
     if (!elements.root) return
 
-    elements.root.innerHTML = `
-        <div class="dashboard-shell">
-            <aside class="sidebar" aria-label="Navegación principal">
-                <div class="sidebar-brand">Pulso</div>
-                <nav class="sidebar-nav">
-                    ${NAV_ITEMS.map(
-                        ({ path, label }) => `
-                        <a href="#${path}" class="nav-link" data-page-path="${path}">${label}</a>
-                    `,
-                    ).join('')}
-                </nav>
-            </aside>
-
-            <div class="main">
-                <header class="header">
-                    <div class="header-brand">
-                        <button class="btn btn-secondary sidebar-toggle" type="button" aria-label="Abrir menú">Menú</button>
-                        <span class="header-title">Dashboard operativo</span>
-                    </div>
-                    <div class="header-actions">
-                        <button class="btn btn-secondary" type="button" data-theme-toggle>Modo oscuro</button>
-                    </div>
-                </header>
-
-                <main class="main-content" id="page"></main>
-
-                <footer class="footer">
-                    <p>Pulso · Datos de ejemplo del dashboard operativo</p>
-                </footer>
-            </div>
-        </div>
-    `
+    elements.root.replaceChildren(
+        crear('div', { clase: 'dashboard-shell' }, [
+            crear('aside', { clase: 'sidebar', 'aria-label': 'Navegación principal' }, [
+                crear('div', { clase: 'sidebar-brand', texto: 'Pulso' }),
+                crear(
+                    'nav',
+                    { clase: 'sidebar-nav' },
+                    NAV_ITEMS.map(({ path, label }) =>
+                        crear('a', { href: `#${path}`, clase: 'nav-link', 'data-page-path': path, texto: label }),
+                    ),
+                ),
+            ]),
+            crear('div', { clase: 'main' }, [
+                crear('header', { clase: 'header' }, [
+                    crear('div', { clase: 'header-brand' }, [
+                        crear('button', {
+                            clase: 'btn btn-secondary sidebar-toggle',
+                            type: 'button',
+                            'aria-label': 'Abrir menú',
+                            texto: 'Menú',
+                        }),
+                        crear('span', { clase: 'header-title', texto: 'Dashboard operativo' }),
+                    ]),
+                    crear('div', { clase: 'header-actions' }, [
+                        crear('button', {
+                            clase: 'btn btn-secondary',
+                            type: 'button',
+                            'data-theme-toggle': true,
+                            texto: 'Modo oscuro',
+                        }),
+                    ]),
+                ]),
+                crear('main', { clase: 'main-content', id: 'page' }),
+                crear('footer', { clase: 'footer' }, [
+                    crear('p', { texto: 'Pulso · Datos de ejemplo del dashboard operativo' }),
+                ]),
+            ]),
+        ]),
+    )
 }
 
 function cacheElements() {
@@ -354,7 +380,7 @@ function updateNavState(activePage) {
 
 function updatePageContent(page) {
     if (!elements.main) return
-    elements.main.innerHTML = (PAGES[page] || PAGES.notfound)()
+    elements.main.replaceChildren((PAGES[page] || PAGES.notfound)())
     initExportButtons()
     initReportFilters()
     syncThemeLabels()
@@ -437,13 +463,11 @@ function revenueByCategory(rows) {
 
 // ===== Componentes =====
 function kpiCard({ title, value, subtitle }) {
-    return `
-        <div class="metric-card">
-            <span class="metric-value">${value}</span>
-            <span class="metric-label">${title}</span>
-            ${subtitle ? `<span class="metric-subtitle">${subtitle}</span>` : ''}
-        </div>
-    `
+    return crear('div', { clase: 'metric-card' }, [
+        crear('span', { clase: 'metric-value', texto: String(value) }),
+        crear('span', { clase: 'metric-label', texto: title }),
+        subtitle ? crear('span', { clase: 'metric-subtitle', texto: subtitle }) : null,
+    ])
 }
 
 function renderKpis(filteredData) {
@@ -451,19 +475,16 @@ function renderKpis(filteredData) {
     if (!container) return
 
     const { revenue, orders, units, avgTicket } = totalsFor(filteredData)
-    container.innerHTML =
-        kpiCard({
-            title: 'Ingresos totales',
-            value: formatCurrency(revenue),
-            subtitle: 'Periodo filtrado',
-        }) +
-        kpiCard({ title: 'Pedidos', value: formatNumber(orders), subtitle: 'Total' }) +
-        kpiCard({ title: 'Unidades vendidas', value: formatNumber(units), subtitle: 'Total' }) +
+    container.replaceChildren(
+        kpiCard({ title: 'Ingresos totales', value: formatCurrency(revenue), subtitle: 'Periodo filtrado' }),
+        kpiCard({ title: 'Pedidos', value: formatNumber(orders), subtitle: 'Total' }),
+        kpiCard({ title: 'Unidades vendidas', value: formatNumber(units), subtitle: 'Total' }),
         kpiCard({
             title: 'Ticket promedio',
             value: formatCurrency(Math.round(avgTicket)),
             subtitle: 'Por pedido',
-        })
+        }),
+    )
 }
 
 function renderTrends(filteredData) {
@@ -490,23 +511,20 @@ function renderOrders(filteredData) {
     const tbody = document.getElementById('orders-body')
     if (!tbody) return
 
-    const rows = (filteredData && filteredData.length ? filteredData : window.dashboardData.daily)
-        .map(
-            (row) => `
-                <tr>
-                    <td>${formatShortDate(row.d)}</td>
-                    <td>${row.c}</td>
-                    <td>${row.r}</td>
-                    <td>${row.ch}</td>
-                    <td>${row.ord}</td>
-                    <td>${row.uni}</td>
-                    <td>${formatCurrency(row.rev)}</td>
-                </tr>
-            `,
-        )
-        .join('')
-
-    tbody.innerHTML = rows
+    const filas = filteredData && filteredData.length ? filteredData : window.dashboardData.daily
+    tbody.replaceChildren(
+        ...filas.map((row) =>
+            crear('tr', {}, [
+                crear('td', { texto: formatShortDate(row.d) }),
+                crear('td', { texto: row.c }),
+                crear('td', { texto: row.r }),
+                crear('td', { texto: row.ch }),
+                crear('td', { texto: row.ord }),
+                crear('td', { texto: row.uni }),
+                crear('td', { texto: formatCurrency(row.rev) }),
+            ]),
+        ),
+    )
 }
 
 // ===== Gráficas SVG =====
@@ -653,41 +671,37 @@ function createBarChart({ data, width = 520, height = 240, color = 'var(--color-
 
 // ===== Páginas =====
 function createDashboardPage() {
-    return `
-        <section class="reveal">
-            <h1 class="page-title">Dashboard Operativo</h1>
-            <div id="kpis" class="kpi-grid"></div>
-
-            <div class="chart-grid">
-                <div>
-                    <h2 class="section-heading">Tendencia de ventas</h2>
-                    <div id="chart-area" class="chart-area"></div>
-                </div>
-                <div>
-                    <h2 class="section-heading">Distribución por categoría</h2>
-                    <div id="chart-bar" class="chart-area"></div>
-                </div>
-            </div>
-
-            <div class="kpi-grid">
-                ${kpiCard({
-                    title: 'Clientes',
-                    value: formatNumber(window.dashboardData.customers.length),
-                    subtitle: 'Activos',
-                })}
-                ${kpiCard({
-                    title: 'Canales',
-                    value: formatNumber(window.dashboardData.channels.length),
-                    subtitle: 'Distribución',
-                })}
-                ${kpiCard({
-                    title: 'Regiones',
-                    value: formatNumber(window.dashboardData.regions.length),
-                    subtitle: 'Cobertura',
-                })}
-            </div>
-        </section>
-    `
+    return crear('section', { clase: 'reveal' }, [
+        crear('h1', { clase: 'page-title', texto: 'Dashboard Operativo' }),
+        crear('div', { id: 'kpis', clase: 'kpi-grid' }),
+        crear('div', { clase: 'chart-grid' }, [
+            crear('div', {}, [
+                crear('h2', { clase: 'section-heading', texto: 'Tendencia de ventas' }),
+                crear('div', { id: 'chart-area', clase: 'chart-area' }),
+            ]),
+            crear('div', {}, [
+                crear('h2', { clase: 'section-heading', texto: 'Distribución por categoría' }),
+                crear('div', { id: 'chart-bar', clase: 'chart-area' }),
+            ]),
+        ]),
+        crear('div', { clase: 'kpi-grid' }, [
+            kpiCard({
+                title: 'Clientes',
+                value: formatNumber(window.dashboardData.customers.length),
+                subtitle: 'Activos',
+            }),
+            kpiCard({
+                title: 'Canales',
+                value: formatNumber(window.dashboardData.channels.length),
+                subtitle: 'Distribución',
+            }),
+            kpiCard({
+                title: 'Regiones',
+                value: formatNumber(window.dashboardData.regions.length),
+                subtitle: 'Cobertura',
+            }),
+        ]),
+    ])
 }
 
 function createKpisPage() {
@@ -695,257 +709,272 @@ function createKpisPage() {
     const { revenue, orders, units, avgTicket } = totalsFor(rows)
     const margins = window.dashboardData.categoryMargins
     const averageMargin =
-        Object.values(margins).reduce((sum, value) => sum + value, 0) /
-        Object.values(margins).length
+        Object.values(margins).reduce((sum, value) => sum + value, 0) / Object.values(margins).length
 
-    return `
-        <section class="reveal">
-            <h1 class="page-title">KPIs Operativos</h1>
-            <div class="kpi-grid">
-                ${kpiCard({ title: 'Ingresos totales', value: formatCurrency(revenue), subtitle: 'Periodo filtrado' })}
-                ${kpiCard({ title: 'Total pedidos', value: formatNumber(orders), subtitle: 'Periodo filtrado' })}
-                ${kpiCard({ title: 'Ticket promedio', value: formatCurrency(Math.round(avgTicket)), subtitle: 'Por pedido' })}
-                ${kpiCard({ title: 'Unidades totales', value: formatNumber(units), subtitle: 'Periodo filtrado' })}
-            </div>
-
-            <div class="kpi-grid">
-                ${kpiCard({
-                    title: 'Clientes activos',
-                    value: formatNumber(window.dashboardData.customers.length),
-                    subtitle: 'En cartera',
-                })}
-                ${kpiCard({
-                    title: 'Pedidos por día',
-                    value: formatNumber(rows.length ? orders / rows.length : 0),
-                    subtitle: 'Promedio',
-                })}
-                ${kpiCard({
-                    title: 'Margen bruto medio',
-                    value: formatPercent(averageMargin),
-                    subtitle: 'Por categoría',
-                })}
-            </div>
-
-            <div class="reveal">
-                <h2 class="section-heading">Margen por categoría</h2>
-                <div class="table-responsive">
-                    <table>
-                        <thead>
-                            <tr><th>Categoría</th><th>Margen</th></tr>
-                        </thead>
-                        <tbody>
-                            ${window.dashboardData.categories
-                                .map(
-                                    (category) => `
-                                        <tr>
-                                            <td>${category.name}</td>
-                                            <td>${formatPercent(margins[category.id] || 0)}</td>
-                                        </tr>
-                                    `,
-                                )
-                                .join('')}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-    `
+    return crear('section', { clase: 'reveal' }, [
+        crear('h1', { clase: 'page-title', texto: 'KPIs Operativos' }),
+        crear('div', { clase: 'kpi-grid' }, [
+            kpiCard({ title: 'Ingresos totales', value: formatCurrency(revenue), subtitle: 'Periodo filtrado' }),
+            kpiCard({ title: 'Total pedidos', value: formatNumber(orders), subtitle: 'Periodo filtrado' }),
+            kpiCard({
+                title: 'Ticket promedio',
+                value: formatCurrency(Math.round(avgTicket)),
+                subtitle: 'Por pedido',
+            }),
+            kpiCard({ title: 'Unidades totales', value: formatNumber(units), subtitle: 'Periodo filtrado' }),
+        ]),
+        crear('div', { clase: 'kpi-grid' }, [
+            kpiCard({
+                title: 'Clientes activos',
+                value: formatNumber(window.dashboardData.customers.length),
+                subtitle: 'En cartera',
+            }),
+            kpiCard({
+                title: 'Pedidos por día',
+                value: formatNumber(rows.length ? orders / rows.length : 0),
+                subtitle: 'Promedio',
+            }),
+            kpiCard({
+                title: 'Margen bruto medio',
+                value: formatPercent(averageMargin),
+                subtitle: 'Por categoría',
+            }),
+        ]),
+        crear('div', { clase: 'reveal' }, [
+            crear('h2', { clase: 'section-heading', texto: 'Margen por categoría' }),
+            crear('div', { clase: 'table-responsive' }, [
+                crear('table', {}, [
+                    crear('thead', {}, [
+                        crear('tr', {}, [
+                            crear('th', { texto: 'Categoría' }),
+                            crear('th', { texto: 'Margen' }),
+                        ]),
+                    ]),
+                    crear(
+                        'tbody',
+                        {},
+                        window.dashboardData.categories.map((category) =>
+                            crear('tr', {}, [
+                                crear('td', { texto: category.name }),
+                                crear('td', { texto: formatPercent(margins[category.id] || 0) }),
+                            ]),
+                        ),
+                    ),
+                ]),
+            ]),
+        ]),
+    ])
 }
 
 function createTrendsPage() {
     const rows = computeFiltered()
     const { revenue } = totalsFor(rows)
+    const filtros = window.filters
 
-    return `
-        <section class="reveal">
-            <h1 class="page-title">Tendencias</h1>
-
-            <div class="chart-grid">
-                <div>
-                    <h2 class="section-heading">Ventas por día</h2>
-                    <div id="trend-chart" class="chart-area"></div>
-                </div>
-                <div>
-                    <h2 class="section-heading">Distribución por categoría</h2>
-                    <div id="category-chart" class="chart-area"></div>
-                </div>
-            </div>
-
-            <div class="kpi-grid">
-                ${kpiCard({ title: 'Ingresos actuales', value: formatCurrency(revenue), subtitle: 'Periodo filtrado' })}
-                ${kpiCard({ title: 'Crecimiento', value: formatDelta(12.5), subtitle: 'vs periodo anterior' })}
-                ${kpiCard({ title: 'Pedidos', value: formatNumber(rows.length), subtitle: 'Periodo filtrado' })}
-            </div>
-
-            <div class="reveal">
-                <h2 class="section-heading">Filtros activos</h2>
-                <div class="filters-summary">
-                    <p>Periodo: ${window.period === 'diario' ? 'Últimos 30 días' : window.period}</p>
-                    ${
-                        window.filters.dateRange
-                            ? `<p>Rango: ${formatDate(window.filters.dateRange.from)} — ${formatDate(
-                                  window.filters.dateRange.to,
-                              )}</p>`
-                            : ''
-                    }
-                    ${window.filters.category ? `<p>Categoría: ${window.filters.category}</p>` : ''}
-                    ${window.filters.region ? `<p>Región: ${window.filters.region}</p>` : ''}
-                    ${window.filters.channel ? `<p>Canal: ${window.filters.channel}</p>` : ''}
-                </div>
-            </div>
-        </section>
-    `
+    return crear('section', { clase: 'reveal' }, [
+        crear('h1', { clase: 'page-title', texto: 'Tendencias' }),
+        crear('div', { clase: 'chart-grid' }, [
+            crear('div', {}, [
+                crear('h2', { clase: 'section-heading', texto: 'Ventas por día' }),
+                crear('div', { id: 'trend-chart', clase: 'chart-area' }),
+            ]),
+            crear('div', {}, [
+                crear('h2', { clase: 'section-heading', texto: 'Distribución por categoría' }),
+                crear('div', { id: 'category-chart', clase: 'chart-area' }),
+            ]),
+        ]),
+        crear('div', { clase: 'kpi-grid' }, [
+            kpiCard({ title: 'Ingresos actuales', value: formatCurrency(revenue), subtitle: 'Periodo filtrado' }),
+            kpiCard({ title: 'Crecimiento', value: formatDelta(12.5), subtitle: 'vs periodo anterior' }),
+            kpiCard({ title: 'Pedidos', value: formatNumber(rows.length), subtitle: 'Periodo filtrado' }),
+        ]),
+        crear('div', { clase: 'reveal' }, [
+            crear('h2', { clase: 'section-heading', texto: 'Filtros activos' }),
+            crear('div', { clase: 'filters-summary' }, [
+                crear('p', {
+                    texto: `Periodo: ${window.period === 'diario' ? 'Últimos 30 días' : window.period}`,
+                }),
+                filtros.dateRange
+                    ? crear('p', {
+                          texto: `Rango: ${formatDate(filtros.dateRange.from)} — ${formatDate(
+                              filtros.dateRange.to,
+                          )}`,
+                      })
+                    : null,
+                filtros.category ? crear('p', { texto: `Categoría: ${filtros.category}` }) : null,
+                filtros.region ? crear('p', { texto: `Región: ${filtros.region}` }) : null,
+                filtros.channel ? crear('p', { texto: `Canal: ${filtros.channel}` }) : null,
+            ]),
+        ]),
+    ])
 }
 
 function createOrdersPage() {
-    return `
-        <section class="reveal">
-            <h1 class="page-title">Órdenes recientes</h1>
-
-            <div class="table-responsive">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Fecha</th>
-                            <th>Categoría</th>
-                            <th>Región</th>
-                            <th>Canal</th>
-                            <th>Pedidos</th>
-                            <th>Unidades</th>
-                            <th>Ingresos</th>
-                        </tr>
-                    </thead>
-                    <tbody id="orders-body"></tbody>
-                </table>
-            </div>
-
-            <div class="export-actions">
-                <button class="btn" type="button" data-export="csv">Exportar CSV</button>
-                <button class="btn btn-secondary" type="button" data-export="pdf">Exportar PDF</button>
-            </div>
-        </section>
-    `
+    return crear('section', { clase: 'reveal' }, [
+        crear('h1', { clase: 'page-title', texto: 'Órdenes recientes' }),
+        crear('div', { clase: 'table-responsive' }, [
+            crear('table', {}, [
+                crear('thead', {}, [
+                    crear(
+                        'tr',
+                        {},
+                        ['Fecha', 'Categoría', 'Región', 'Canal', 'Pedidos', 'Unidades', 'Ingresos'].map(
+                            (titulo) => crear('th', { texto: titulo }),
+                        ),
+                    ),
+                ]),
+                crear('tbody', { id: 'orders-body' }),
+            ]),
+        ]),
+        crear('div', { clase: 'export-actions' }, [
+            crear('button', { clase: 'btn', type: 'button', 'data-export': 'csv', texto: 'Exportar CSV' }),
+            crear('button', {
+                clase: 'btn btn-secondary',
+                type: 'button',
+                'data-export': 'pdf',
+                texto: 'Exportar PDF',
+            }),
+        ]),
+    ])
 }
 
 function createReportsPage() {
     const data = window.dashboardData
+    const opciones = (elementos) =>
+        elementos.map((elemento) => crear('option', { value: elemento.id, texto: elemento.name }))
 
-    return `
-        <section class="reveal">
-            <h1 class="page-title">Reportes</h1>
-
-            <div class="chart-grid">
-                <div>
-                    <h2 class="section-heading">Reporte por categoría (CSV)</h2>
-                    <p class="text-sm">Ventas agregadas por categoría en un archivo CSV.</p>
-                    <button class="btn" type="button" data-export="csv">Descargar CSV</button>
-                </div>
-                <div>
-                    <h2 class="section-heading">Reporte por categoría (PDF)</h2>
-                    <p class="text-sm">Mismo reporte en PDF con la paleta del dashboard.</p>
-                    <button class="btn btn-secondary" type="button" data-export="pdf">Descargar PDF</button>
-                </div>
-            </div>
-
-            <div class="kpi-grid">
-                <div class="metric-card">
-                    <span class="metric-value" id="report-revenue">${formatCurrency(
-                        totalsFor(window.filteredDaily || []).revenue,
-                    )}</span>
-                    <span class="metric-label">Ingresos totales</span>
-                    <span class="metric-subtitle">Periodo filtrado</span>
-                </div>
-                ${kpiCard({
-                    title: 'Categorías',
-                    value: formatNumber(data.categories.length),
-                    subtitle: 'Disponibles',
-                })}
-                ${kpiCard({ title: 'Regiones', value: formatNumber(data.regions.length), subtitle: 'Cobertura' })}
-            </div>
-
-            <div class="reveal">
-                <h2 class="section-heading">Filtros</h2>
-                <div class="filters-grid">
-                    <label class="filter-group">
-                        <span>Fecha desde</span>
-                        <input type="date" id="filter-date-from" class="input" />
-                    </label>
-                    <label class="filter-group">
-                        <span>Fecha hasta</span>
-                        <input type="date" id="filter-date-to" class="input" />
-                    </label>
-                    <label class="filter-group">
-                        <span>Categoría</span>
-                        <select id="filter-category" class="input">
-                            <option value="todos">Todas</option>
-                            ${data.categories.map((c) => `<option value="${c.id}">${c.name}</option>`).join('')}
-                        </select>
-                    </label>
-                    <label class="filter-group">
-                        <span>Región</span>
-                        <select id="filter-region" class="input">
-                            <option value="todos">Todas</option>
-                            ${data.regions.map((r) => `<option value="${r.id}">${r.name}</option>`).join('')}
-                        </select>
-                    </label>
-                    <label class="filter-group">
-                        <span>Canal</span>
-                        <select id="filter-channel" class="input">
-                            <option value="todos">Todos</option>
-                            ${data.channels.map((c) => `<option value="${c.id}">${c.name}</option>`).join('')}
-                        </select>
-                    </label>
-                </div>
-            </div>
-        </section>
-    `
+    return crear('section', { clase: 'reveal' }, [
+        crear('h1', { clase: 'page-title', texto: 'Reportes' }),
+        crear('div', { clase: 'chart-grid' }, [
+            crear('div', {}, [
+                crear('h2', { clase: 'section-heading', texto: 'Reporte por categoría (CSV)' }),
+                crear('p', { clase: 'text-sm', texto: 'Ventas agregadas por categoría en un archivo CSV.' }),
+                crear('button', { clase: 'btn', type: 'button', 'data-export': 'csv', texto: 'Descargar CSV' }),
+            ]),
+            crear('div', {}, [
+                crear('h2', { clase: 'section-heading', texto: 'Reporte por categoría (PDF)' }),
+                crear('p', {
+                    clase: 'text-sm',
+                    texto: 'Mismo reporte en PDF con la paleta del dashboard.',
+                }),
+                crear('button', {
+                    clase: 'btn btn-secondary',
+                    type: 'button',
+                    'data-export': 'pdf',
+                    texto: 'Descargar PDF',
+                }),
+            ]),
+        ]),
+        crear('div', { clase: 'kpi-grid' }, [
+            crear('div', { clase: 'metric-card' }, [
+                crear('span', {
+                    clase: 'metric-value',
+                    id: 'report-revenue',
+                    texto: formatCurrency(totalsFor(window.filteredDaily || []).revenue),
+                }),
+                crear('span', { clase: 'metric-label', texto: 'Ingresos totales' }),
+                crear('span', { clase: 'metric-subtitle', texto: 'Periodo filtrado' }),
+            ]),
+            kpiCard({
+                title: 'Categorías',
+                value: formatNumber(data.categories.length),
+                subtitle: 'Disponibles',
+            }),
+            kpiCard({ title: 'Regiones', value: formatNumber(data.regions.length), subtitle: 'Cobertura' }),
+        ]),
+        crear('div', { clase: 'reveal' }, [
+            crear('h2', { clase: 'section-heading', texto: 'Filtros' }),
+            crear('div', { clase: 'filters-grid' }, [
+                crear('label', { clase: 'filter-group' }, [
+                    crear('span', { texto: 'Fecha desde' }),
+                    crear('input', { type: 'date', id: 'filter-date-from', clase: 'input' }),
+                ]),
+                crear('label', { clase: 'filter-group' }, [
+                    crear('span', { texto: 'Fecha hasta' }),
+                    crear('input', { type: 'date', id: 'filter-date-to', clase: 'input' }),
+                ]),
+                crear('label', { clase: 'filter-group' }, [
+                    crear('span', { texto: 'Categoría' }),
+                    crear('select', { id: 'filter-category', clase: 'input' }, [
+                        crear('option', { value: 'todos', texto: 'Todas' }),
+                        ...opciones(data.categories),
+                    ]),
+                ]),
+                crear('label', { clase: 'filter-group' }, [
+                    crear('span', { texto: 'Región' }),
+                    crear('select', { id: 'filter-region', clase: 'input' }, [
+                        crear('option', { value: 'todos', texto: 'Todas' }),
+                        ...opciones(data.regions),
+                    ]),
+                ]),
+                crear('label', { clase: 'filter-group' }, [
+                    crear('span', { texto: 'Canal' }),
+                    crear('select', { id: 'filter-channel', clase: 'input' }, [
+                        crear('option', { value: 'todos', texto: 'Todos' }),
+                        ...opciones(data.channels),
+                    ]),
+                ]),
+            ]),
+        ]),
+    ])
 }
 
 function createProfilePage() {
-    return `
-        <section class="reveal">
-            <h1 class="page-title">Perfil</h1>
-
-            <div class="chart-grid">
-                <div class="profile-card">
-                    <div class="profile-avatar">OP</div>
-                    <h2 class="profile-name">Operativo Pulso</h2>
-                    <p class="profile-email">Dashboard operativo · analítica de ventas</p>
-                </div>
-
-                <div>
-                    <h3 class="section-heading">Estadísticas</h3>
-                    <div class="kpi-grid">
-                        ${kpiCard({
-                            title: 'Total ingresos',
-                            value: formatCurrency(totalsFor(window.dashboardData.daily).revenue),
-                            subtitle: 'Histórico',
-                        })}
-                        ${kpiCard({
-                            title: 'Pedidos totales',
-                            value: formatNumber(window.dashboardData.orders.length),
-                            subtitle: 'Histórico',
-                        })}
-                    </div>
-
-                    <h3 class="section-heading">Configuración</h3>
-                    <p><strong>Tema:</strong> <span id="current-theme">${document.documentElement.dataset.theme || 'light'}</span></p>
-                    <p><strong>Última actualización:</strong> ${new Date().toLocaleDateString('es-ES')}</p>
-                    <button class="btn btn-secondary" type="button" data-theme-toggle>Cambiar tema</button>
-                </div>
-            </div>
-        </section>
-    `
+    return crear('section', { clase: 'reveal' }, [
+        crear('h1', { clase: 'page-title', texto: 'Perfil' }),
+        crear('div', { clase: 'chart-grid' }, [
+            crear('div', { clase: 'profile-card' }, [
+                crear('div', { clase: 'profile-avatar', texto: 'OP' }),
+                crear('h2', { clase: 'profile-name', texto: 'Operativo Pulso' }),
+                crear('p', {
+                    clase: 'profile-email',
+                    texto: 'Dashboard operativo · analítica de ventas',
+                }),
+            ]),
+            crear('div', {}, [
+                crear('h3', { clase: 'section-heading', texto: 'Estadísticas' }),
+                crear('div', { clase: 'kpi-grid' }, [
+                    kpiCard({
+                        title: 'Total ingresos',
+                        value: formatCurrency(totalsFor(window.dashboardData.daily).revenue),
+                        subtitle: 'Histórico',
+                    }),
+                    kpiCard({
+                        title: 'Pedidos totales',
+                        value: formatNumber(window.dashboardData.orders.length),
+                        subtitle: 'Histórico',
+                    }),
+                ]),
+                crear('h3', { clase: 'section-heading', texto: 'Configuración' }),
+                crear('p', {}, [
+                    crear('strong', { texto: 'Tema:' }),
+                    ' ',
+                    crear('span', {
+                        id: 'current-theme',
+                        texto: document.documentElement.dataset.theme || 'light',
+                    }),
+                ]),
+                crear('p', {}, [
+                    crear('strong', { texto: 'Última actualización:' }),
+                    ` ${new Date().toLocaleDateString('es-ES')}`,
+                ]),
+                crear('button', {
+                    clase: 'btn btn-secondary',
+                    type: 'button',
+                    'data-theme-toggle': true,
+                    texto: 'Cambiar tema',
+                }),
+            ]),
+        ]),
+    ])
 }
 
 function createNotFoundPage() {
-    return `
-        <section class="reveal">
-            <h2 class="page-title">404</h2>
-            <p>La página solicitada no existe.</p>
-            <a href="#/" class="btn">Volver al inicio</a>
-        </section>
-    `
+    return crear('section', { clase: 'reveal' }, [
+        crear('h2', { clase: 'page-title', texto: '404' }),
+        crear('p', { texto: 'La página solicitada no existe.' }),
+        crear('a', { href: '#/', clase: 'btn', texto: 'Volver al inicio' }),
+    ])
 }
 
 // ===== Exportadores =====

@@ -170,54 +170,87 @@ const NAV_ITEMS = [
     { view: 'profile', label: 'Perfil' },
 ]
 
+// Construye nodos sin pasar por HTML.
+function crear(etiqueta, propiedades = {}, hijos = []) {
+    const nodo = document.createElement(etiqueta)
+
+    Object.entries(propiedades).forEach(([clave, valor]) => {
+        if (valor === undefined || valor === null || valor === false) return
+        if (clave === 'clase') nodo.className = valor
+        else if (clave === 'texto') nodo.textContent = valor
+        else nodo.setAttribute(clave, valor === true ? '' : String(valor))
+    })
+
+    ;[].concat(hijos).forEach((hijo) => {
+        if (hijo === null || hijo === undefined || hijo === false) return
+        nodo.append(hijo instanceof Node ? hijo : document.createTextNode(String(hijo)))
+    })
+
+    return nodo
+}
+
+function fragmento(...hijos) {
+    const trozo = document.createDocumentFragment()
+    trozo.append(...hijos.filter(Boolean))
+    return trozo
+}
+
 function mountLayout() {
     const root = elements.root
     if (!root) return
 
-    root.innerHTML = `
-        <div class="dashboard">
-            <aside class="sidebar" aria-label="Navegación principal">
-                <div class="sidebar-brand">Suma</div>
-                <nav class="sidebar-nav">
-                    ${NAV_ITEMS.map(
-                        ({ view, label }) => `
-                        <a href="#${view}" class="nav-link" data-view="${view}">${label}</a>
-                    `,
-                    ).join('')}
-                </nav>
-                <div class="sidebar-footer">
-                    <span class="sidebar-user">${dashboardData.currentUser}</span>
-                </div>
-            </aside>
-
-            <div class="main">
-                <header class="header">
-                    <div class="header-brand">
-                        <button class="btn btn-secondary sidebar-toggle" type="button" aria-label="Abrir menú">Menú</button>
-                        <span class="header-title">Finanzas al día</span>
-                    </div>
-                    <div class="header-actions">
-                        <label class="header-range">
-                            <span>Periodo</span>
-                            <select class="input" data-range>
-                                <option value="7d">7 días</option>
-                                <option value="30d" selected>30 días</option>
-                                <option value="90d">90 días</option>
-                            </select>
-                        </label>
-                        <button class="btn" type="button" data-refresh>Actualizar</button>
-                        <button class="btn btn-secondary" type="button" data-theme-toggle>${currentTheme === THEME.DARK ? 'Modo claro' : 'Modo oscuro'}</button>
-                    </div>
-                </header>
-
-                <main id="view"></main>
-
-                <footer class="footer">
-                    <p>Suma · Datos de ejemplo actualizados ${dashboardData.updatedAt}</p>
-                </footer>
-            </div>
-        </div>
-    `
+    const temaOscuro = currentTheme === THEME.DARK
+    root.replaceChildren(
+        crear('div', { clase: 'dashboard' }, [
+            crear('aside', { clase: 'sidebar', 'aria-label': 'Navegación principal' }, [
+                crear('div', { clase: 'sidebar-brand', texto: 'Suma' }),
+                crear(
+                    'nav',
+                    { clase: 'sidebar-nav' },
+                    NAV_ITEMS.map(({ view, label }) =>
+                        crear('a', { href: `#${view}`, clase: 'nav-link', 'data-view': view, texto: label }),
+                    ),
+                ),
+                crear('div', { clase: 'sidebar-footer' }, [
+                    crear('span', { clase: 'sidebar-user', texto: dashboardData.currentUser }),
+                ]),
+            ]),
+            crear('div', { clase: 'main' }, [
+                crear('header', { clase: 'header' }, [
+                    crear('div', { clase: 'header-brand' }, [
+                        crear('button', {
+                            clase: 'btn btn-secondary sidebar-toggle',
+                            type: 'button',
+                            'aria-label': 'Abrir menú',
+                            texto: 'Menú',
+                        }),
+                        crear('span', { clase: 'header-title', texto: 'Finanzas al día' }),
+                    ]),
+                    crear('div', { clase: 'header-actions' }, [
+                        crear('label', { clase: 'header-range' }, [
+                            crear('span', { texto: 'Periodo' }),
+                            crear('select', { clase: 'input', 'data-range': true }, [
+                                crear('option', { value: '7d', texto: '7 días' }),
+                                crear('option', { value: '30d', selected: true, texto: '30 días' }),
+                                crear('option', { value: '90d', texto: '90 días' }),
+                            ]),
+                        ]),
+                        crear('button', { clase: 'btn', type: 'button', 'data-refresh': true, texto: 'Actualizar' }),
+                        crear('button', {
+                            clase: 'btn btn-secondary',
+                            type: 'button',
+                            'data-theme-toggle': true,
+                            texto: temaOscuro ? 'Modo claro' : 'Modo oscuro',
+                        }),
+                    ]),
+                ]),
+                crear('main', { id: 'view' }),
+                crear('footer', { clase: 'footer' }, [
+                    crear('p', { texto: `Suma · Datos de ejemplo actualizados ${dashboardData.updatedAt}` }),
+                ]),
+            ]),
+        ]),
+    )
 }
 
 function cacheElements() {
@@ -352,12 +385,12 @@ function updateView(view) {
         profile: createProfilePage(),
     }
 
-    elements.main.innerHTML = `
-        <div class="page-header">
-            <h1 class="page-title">${titleMap[view] || 'Resumen'}</h1>
-        </div>
-        ${pages[view].outerHTML}
-    `
+    elements.main.replaceChildren(
+        crear('div', { clase: 'page-header' }, [
+            crear('h1', { clase: 'page-title', texto: titleMap[view] || 'Resumen' }),
+        ]),
+        pages[view],
+    )
 
     // Ejecutar observers de reveal
     observeReveal('.reveal')
@@ -373,62 +406,40 @@ function createOverviewPage() {
     const totalExpenses = expenses.reduce((sum, e) => sum + e.amount, 0)
     const netProfit = totalIncome - totalExpenses
 
-    const html = document.createElement('div')
-    html.innerHTML = `
-        <section class="reveal">
-            <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
-                <div class="metric-card">
-                    <span class="metric-value">$${totalIncome.toLocaleString()}</span>
-                    <span class="metric-label">Ingresos totales</span>
-                </div>
-                <div class="metric-card">
-                    <span class="metric-value">$${totalExpenses.toLocaleString()}</span>
-                    <span class="metric-label">Gastos totales</span>
-                </div>
-                <div class="metric-card">
-                    <span class="metric-value">$${netProfit.toLocaleString()}</span>
-                    <span class="metric-label">Utilidad neta</span>
-                </div>
-                <div class="metric-card">
-                    <span class="metric-value">${dashboardData.revenueMetrics.mrr} MRR</span>
-                    <span class="metric-label">MRR mensual</span>
-                </div>
-            </div>
-            
-            <div class="mt-6">
-                <h2 class="section-heading">Ingresos por categoría</h2>
-                <div class="income-grid">
-                    ${income
-                        .map(
-                            (item) => `
-                        <div class="income-item">
-                            <span class="income-name">${item.name}</span>
-                            <span class="income-amount">$${item.amount.toLocaleString()}</span>
-                        </div>
-                    `,
-                        )
-                        .join('')}
-                </div>
-            </div>
-            
-            <div class="mt-6">
-                <h2 class="section-heading">Principales gastos</h2>
-                <div class="expense-grid">
-                    ${expenses
-                        .map(
-                            (item) => `
-                        <div class="expense-item">
-                            <span class="expense-name">${item.name}</span>
-                            <span class="expense-amount">$${item.amount.toLocaleString()}</span>
-                        </div>
-                    `,
-                        )
-                        .join('')}
-                </div>
-            </div>
-        </section>
-    `
-    return html
+    const metrica = (valor, etiqueta) =>
+        crear('div', { clase: 'metric-card' }, [
+            crear('span', { clase: 'metric-value', texto: valor }),
+            crear('span', { clase: 'metric-label', texto: etiqueta }),
+        ])
+
+    const listado = (elementos, prefijo, campo) =>
+        crear(
+            'div',
+            { clase: `${prefijo}-grid` },
+            elementos.map((item) =>
+                crear('div', { clase: `${prefijo}-item` }, [
+                    crear('span', { clase: `${prefijo}-name`, texto: item.name }),
+                    crear('span', { clase: `${prefijo}-amount`, texto: `$${item[campo].toLocaleString()}` }),
+                ]),
+            ),
+        )
+
+    return crear('section', { clase: 'reveal' }, [
+        crear('div', { clase: 'grid grid-cols-2 gap-4 md:grid-cols-4' }, [
+            metrica(`$${totalIncome.toLocaleString()}`, 'Ingresos totales'),
+            metrica(`$${totalExpenses.toLocaleString()}`, 'Gastos totales'),
+            metrica(`$${netProfit.toLocaleString()}`, 'Utilidad neta'),
+            metrica(`${dashboardData.revenueMetrics.mrr} MRR`, 'MRR mensual'),
+        ]),
+        crear('div', { clase: 'mt-6' }, [
+            crear('h2', { clase: 'section-heading', texto: 'Ingresos por categoría' }),
+            listado(income, 'income', 'amount'),
+        ]),
+        crear('div', { clase: 'mt-6' }, [
+            crear('h2', { clase: 'section-heading', texto: 'Principales gastos' }),
+            listado(expenses, 'expense', 'amount'),
+        ]),
+    ])
 }
 
 function createInvoicesPage() {
@@ -436,130 +447,125 @@ function createInvoicesPage() {
     const overdue = dashboardData.overdueInvoices
     const paid = dashboardData.paidInvoices
 
-    const html = document.createElement('div')
-    html.innerHTML = `
-        <section class="reveal">
-            <div class="flex items-center justify-between mb-4">
-                <h2 class="section-heading">Facturas</h2>
-                <span class="text-sm text-[var(--color-ink-2)]">${paid} pagadas • ${overdue} vencidas</span>
-            </div>
-            
-            <div class="overflow-x-auto">
-                <table class="min-w-full">
-                    <thead>
-                        <tr>
-                            <th class="p-4 text-left text-xs font-medium uppercase tracking-widest text-[var(--color-ink-2)]">Cliente</th>
-                            <th class="p-4 text-left text-xs font-medium uppercase tracking-widest text-[var(--color-ink-2)]">Monto</th>
-                            <th class="p-4 text-left text-xs font-medium uppercase tracking-widest text-[var(--color-ink-2)]">Fecha</th>
-                            <th class="p-4 text-left text-xs font-medium uppercase tracking-widest text-[var(--color-ink-2)]">Estado</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        ${invoices
-                            .map(
-                                (invoice) => `
-                            <tr class="border-b">
-                                <td class="p-4">${invoice.customer}</td>
-                                <td class="p-4">$${invoice.amount.toLocaleString()}</td>
-                                <td class="p-4">${invoice.date}</td>
-                                <td class="p-4">
-                                    <span class="status-badge ${invoice.status}">${invoice.status}</span>
-                                </td>
-                            </tr>
-                        `,
-                            )
-                            .join('')}
-                    </tbody>
-                </table>
-            </div>
-        </section>
-        
-        <section class="mt-6 reveal">
-            <h2 class="section-heading">Acciones rápidas</h2>
-            <div class="flex gap-2">
-                <button class="btn" onclick="window.location.href='/new-invoice'">Crear factura</button>
-                <button class="btn btn-secondary">Exportar CSV</button>
-            </div>
-        </section>
-    `
-    return html
+    const crearFactura = () =>
+        crear('button', { clase: 'btn', type: 'button', texto: 'Crear factura' })
+    const botonCrear = crearFactura()
+    botonCrear.addEventListener('click', () => {
+        window.location.href = '/new-invoice'
+    })
+
+    return fragmento(
+        crear('section', { clase: 'reveal' }, [
+            crear('div', { clase: 'flex items-center justify-between mb-4' }, [
+                crear('h2', { clase: 'section-heading', texto: 'Facturas' }),
+                crear('span', {
+                    clase: 'text-sm text-[var(--color-ink-2)]',
+                    texto: `${paid} pagadas • ${overdue} vencidas`,
+                }),
+            ]),
+            crear('div', { clase: 'overflow-x-auto' }, [
+                crear('table', { clase: 'min-w-full' }, [
+                    crear('thead', {}, [
+                        crear(
+                            'tr',
+                            {},
+                            ['Cliente', 'Monto', 'Fecha', 'Estado'].map((titulo) =>
+                                crear('th', {
+                                    clase: 'p-4 text-left text-xs font-medium uppercase tracking-widest text-[var(--color-ink-2)]',
+                                    texto: titulo,
+                                }),
+                            ),
+                        ),
+                    ]),
+                    crear(
+                        'tbody',
+                        {},
+                        invoices.map((invoice) =>
+                            crear('tr', { clase: 'border-b' }, [
+                                crear('td', { clase: 'p-4', texto: invoice.customer }),
+                                crear('td', { clase: 'p-4', texto: `$${invoice.amount.toLocaleString()}` }),
+                                crear('td', { clase: 'p-4', texto: invoice.date }),
+                                crear('td', { clase: 'p-4' }, [
+                                    crear('span', {
+                                        clase: `status-badge ${invoice.status}`,
+                                        texto: invoice.status,
+                                    }),
+                                ]),
+                            ]),
+                        ),
+                    ),
+                ]),
+            ]),
+        ]),
+        crear('section', { clase: 'mt-6 reveal' }, [
+            crear('h2', { clase: 'section-heading', texto: 'Acciones rápidas' }),
+            crear('div', { clase: 'flex gap-2' }, [
+                botonCrear,
+                crear('button', { clase: 'btn btn-secondary', type: 'button', texto: 'Exportar CSV' }),
+            ]),
+        ]),
+    )
 }
 
 function createPaymentsPage() {
     const payments = dashboardData.payments
+    const encabezado = (titulo) =>
+        crear('th', {
+            clase: 'p-4 text-left text-xs font-medium uppercase tracking-widest text-[var(--color-ink-2)]',
+            texto: titulo,
+        })
 
-    const html = document.createElement('div')
-    html.innerHTML = `
-        <section class="reveal">
-            <div class="flex items-center justify-between mb-4">
-                <h2 class="section-heading">Ultimos pagos</h2>
-            </div>
-            
-            <div class="overflow-x-auto">
-                <table class="min-w-full">
-                    <thead>
-                        <tr>
-                            <th class="p-4 text-left text-xs font-medium uppercase tracking-widest text-[var(--color-ink-2)]">Cliente</th>
-                            <th class="p-4 text-left text-xs font-medium uppercase tracking-widest text-[var(--color-ink-2)]">Monto</th>
-                            <th class="p-4 text-left text-xs font-medium uppercase tracking-widest text-[var(--color-ink-2)]">Método</th>
-                            <th class="p-4 text-left text-xs font-medium uppercase tracking-widest text-[var(--color-ink-2)]">Fecha</th>
-                            <th class="p-4 text-left text-xs font-medium uppercase tracking-widest text-[var(--color-ink-2)]">Estado</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        ${payments
-                            .map(
-                                (payment) => `
-                            <tr class="border-b">
-                                <td class="p-4">${payment.customer}</td>
-                                <td class="p-4">$${payment.amount.toLocaleString()}</td>
-                                <td class="p-4">${payment.method}</td>
-                                <td class="p-4">${payment.date}</td>
-                                <td class="p-4">
-                                    <span class="status-badge ${payment.status}">${payment.status}</span>
-                                </td>
-                            </tr>
-                        `,
-                            )
-                            .join('')}
-                    </tbody>
-                </table>
-            </div>
-        </section>
-    `
-    return html
+    return crear('section', { clase: 'reveal' }, [
+        crear('div', { clase: 'flex items-center justify-between mb-4' }, [
+            crear('h2', { clase: 'section-heading', texto: 'Ultimos pagos' }),
+        ]),
+        crear('div', { clase: 'overflow-x-auto' }, [
+            crear('table', { clase: 'min-w-full' }, [
+                crear('thead', {}, [
+                    crear('tr', {}, ['Cliente', 'Monto', 'Método', 'Fecha', 'Estado'].map(encabezado)),
+                ]),
+                crear(
+                    'tbody',
+                    {},
+                    payments.map((payment) =>
+                        crear('tr', { clase: 'border-b' }, [
+                            crear('td', { clase: 'p-4', texto: payment.customer }),
+                            crear('td', { clase: 'p-4', texto: `$${payment.amount.toLocaleString()}` }),
+                            crear('td', { clase: 'p-4', texto: payment.method }),
+                            crear('td', { clase: 'p-4', texto: payment.date }),
+                            crear('td', { clase: 'p-4' }, [
+                                crear('span', { clase: `status-badge ${payment.status}`, texto: payment.status }),
+                            ]),
+                        ]),
+                    ),
+                ),
+            ]),
+        ]),
+    ])
 }
 
 function createReportsPage() {
     const taxSummary = dashboardData.taxSummary
+    const metrica = (valor, etiqueta) =>
+        crear('div', { clase: 'metric-card' }, [
+            crear('span', { clase: 'metric-value', texto: valor }),
+            crear('span', { clase: 'metric-label', texto: etiqueta }),
+        ])
 
-    const html = document.createElement('div')
-    html.innerHTML = `
-        <section class="reveal">
-            <div class="grid grid-cols-2 gap-4">
-                <div class="metric-card">
-                    <span class="metric-value">$${taxSummary.incomeTax.toLocaleString()}</span>
-                    <span class="metric-label">Impuesto a la renta</span>
-                </div>
-                <div class="metric-card">
-                    <span class="metric-value">$${taxSummary.vat.toLocaleString()}</span>
-                    <span class="metric-label">IVA</span>
-                </div>
-                <div class="metric-card">
-                    <span class="metric-value">$${taxSummary.deductibleExpenses.toLocaleString()}</span>
-                    <span class="metric-label">Gastos deducibles</span>
-                </div>
-            </div>
-            
-            <div class="mt-6">
-                <h2 class="section-heading">Resumen fiscal</h2>
-                <p class="text-sm text-[var(--color-ink-2)] mb-4">
-                    Declaration period: Q1 2024. All figures in USD.
-                </p>
-            </div>
-        </section>
-    `
-    return html
+    return crear('section', { clase: 'reveal' }, [
+        crear('div', { clase: 'grid grid-cols-2 gap-4' }, [
+            metrica(`$${taxSummary.incomeTax.toLocaleString()}`, 'Impuesto a la renta'),
+            metrica(`$${taxSummary.vat.toLocaleString()}`, 'IVA'),
+            metrica(`$${taxSummary.deductibleExpenses.toLocaleString()}`, 'Gastos deducibles'),
+        ]),
+        crear('div', { clase: 'mt-6' }, [
+            crear('h2', { clase: 'section-heading', texto: 'Resumen fiscal' }),
+            crear('p', {
+                clase: 'text-sm text-[var(--color-ink-2)] mb-4',
+                texto: 'Declaration period: Q1 2024. All figures in USD.',
+            }),
+        ]),
+    ])
 }
 
 function createSubscriptionsPage() {
@@ -567,73 +573,70 @@ function createSubscriptionsPage() {
     const active = subscriptions.filter((s) => s.status === 'active').length
     const trial = subscriptions.filter((s) => s.status === 'trial').length
 
-    const html = document.createElement('div')
-    html.innerHTML = `
-        <section class="reveal">
-            <div class="grid grid-cols-2 gap-4">
-                <div class="metric-card">
-                    <span class="metric-value">${active}</span>
-                    <span class="metric-label">Suscripciones activas</span>
-                </div>
-                <div class="metric-card">
-                    <span class="metric-value">${trial}</span>
-                    <span class="metric-label">Suscripciones trial</span>
-                </div>
-            </div>
-            
-            <div class="mt-6">
-                <h2 class="section-heading">Planes de suscripción</h2>
-                <div class="sub-grid">
-                    ${subscriptions
-                        .map(
-                            (sub) => `
-                        <div class="sub-item">
-                            <span class="sub-name">${sub.name}</span>
-                            <span class="sub-price">$${sub.price}${sub.interval}</span>
-                            <span class="sub-status ${sub.status}">${sub.status}</span>
-                        </div>
-                    `,
-                        )
-                        .join('')}
-                </div>
-            </div>
-        </section>
-    `
-    return html
+    return crear('section', { clase: 'reveal' }, [
+        crear('div', { clase: 'grid grid-cols-2 gap-4' }, [
+            crear('div', { clase: 'metric-card' }, [
+                crear('span', { clase: 'metric-value', texto: String(active) }),
+                crear('span', { clase: 'metric-label', texto: 'Suscripciones activas' }),
+            ]),
+            crear('div', { clase: 'metric-card' }, [
+                crear('span', { clase: 'metric-value', texto: String(trial) }),
+                crear('span', { clase: 'metric-label', texto: 'Suscripciones trial' }),
+            ]),
+        ]),
+        crear('div', { clase: 'mt-6' }, [
+            crear('h2', { clase: 'section-heading', texto: 'Planes de suscripción' }),
+            crear(
+                'div',
+                { clase: 'sub-grid' },
+                subscriptions.map((sub) =>
+                    crear('div', { clase: 'sub-item' }, [
+                        crear('span', { clase: 'sub-name', texto: sub.name }),
+                        crear('span', { clase: 'sub-price', texto: `$${sub.price}${sub.interval}` }),
+                        crear('span', { clase: `sub-status ${sub.status}`, texto: sub.status }),
+                    ]),
+                ),
+            ),
+        ]),
+    ])
 }
 
 function createProfilePage() {
-    const html = document.createElement('div')
-    html.innerHTML = `
-        <section class="reveal">
-            <div class="profile-card">
-                <div class="profile-avatar">U</div>
-                <h2 class="profile-name">Usuario Administrador</h2>
-                <p class="profile-email">${dashboardData.currentUser}</p>
-            </div>
-            
-            <div class="mt-6">
-                <h2 class="section-heading">Configuración de cuenta</h2>
-                <div class="setting-item">
-                    <label class="setting-label">Notificaciones por email</label>
-                    <select class="input" disabled>
-                        <option value="always">Siempre</option>
-                        <option value="weekly">Semanal</option>
-                        <option value="never">Nunca</option>
-                    </select>
-                </div>
-                <div class="setting-item">
-                    <label class="setting-label">Tema</label>
-                    <select class="input" id="theme-select">
-                        <option value="light">Claro</option>
-                        <option value="dark">Oscuro</option>
-                    </select>
-                </div>
-                <button class="btn btn-secondary mt-4" onclick="applyTheme('dark')">Aplicar tema oscuro</button>
-            </div>
-        </section>
-    `
-    return html
+    const botonTema = crear('button', {
+        clase: 'btn btn-secondary mt-4',
+        type: 'button',
+        texto: 'Aplicar tema oscuro',
+    })
+    botonTema.addEventListener('click', () => {
+        applyTheme('dark')
+    })
+
+    return crear('section', { clase: 'reveal' }, [
+        crear('div', { clase: 'profile-card' }, [
+            crear('div', { clase: 'profile-avatar', texto: 'U' }),
+            crear('h2', { clase: 'profile-name', texto: 'Usuario Administrador' }),
+            crear('p', { clase: 'profile-email', texto: dashboardData.currentUser }),
+        ]),
+        crear('div', { clase: 'mt-6' }, [
+            crear('h2', { clase: 'section-heading', texto: 'Configuración de cuenta' }),
+            crear('div', { clase: 'setting-item' }, [
+                crear('label', { clase: 'setting-label', texto: 'Notificaciones por email' }),
+                crear('select', { clase: 'input', disabled: true }, [
+                    crear('option', { value: 'always', texto: 'Siempre' }),
+                    crear('option', { value: 'weekly', texto: 'Semanal' }),
+                    crear('option', { value: 'never', texto: 'Nunca' }),
+                ]),
+            ]),
+            crear('div', { clase: 'setting-item' }, [
+                crear('label', { clase: 'setting-label', texto: 'Tema' }),
+                crear('select', { clase: 'input', id: 'theme-select' }, [
+                    crear('option', { value: 'light', texto: 'Claro' }),
+                    crear('option', { value: 'dark', texto: 'Oscuro' }),
+                ]),
+            ]),
+            botonTema,
+        ]),
+    ])
 }
 
 // ===== Utilidades CSS =====
