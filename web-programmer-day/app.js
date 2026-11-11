@@ -165,7 +165,7 @@ const i18n = {
     } catch {
       /* sin persistencia disponible */
     }
-    updateTitle(getDayState(new Date()));
+    aplicarIdioma();
   },
 };
 
@@ -180,6 +180,25 @@ function initI18n() {
   const browser = (navigator.language || 'es').toLowerCase();
   const lang = stored || (browser.startsWith('en') ? 'en' : 'es');
   i18n.setLang(lang);
+}
+
+// ── i18n: aplica los textos al DOM ──
+function aplicarIdioma() {
+  document.documentElement.lang = i18n.currentLang;
+  document.querySelectorAll('[data-i18n]').forEach((nodo) => {
+    const clave = nodo.getAttribute('data-i18n');
+    const valor = i18n.t(clave);
+    if (valor !== clave) nodo.textContent = valor;
+  });
+
+  const botonIdioma = document.querySelector('.nav-lang');
+  if (botonIdioma) {
+    botonIdioma.setAttribute('aria-label', i18n.t('footer.langTitle'));
+  }
+
+  const estado = getDayState(new Date());
+  updateTitle(estado);
+  updateCountdown(estado);
 }
 
 // ── Lógica del día 256 (portada de day256.ts) ──
@@ -231,11 +250,14 @@ function getDayState(now) {
 
 // ── Three.js Scene (reemplaza a React Three Fiber + ByteScene) ──
 let threeScene = null;
+let scene = null;
 let camera = null;
 let renderer = null;
 const PHOSPHOR = '#55ff88';
 
 function initThreeScene() {
+  if (renderer !== null) return;
+
   const canvas = document.getElementById('byte-canvas');
   if (!canvas) return;
 
@@ -249,13 +271,14 @@ function initThreeScene() {
   camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
   camera.position.set(0, 0, 12);
 
-  // Luces
+  // Escena y luces (la escena debe existir antes de añadir nada)
+  scene = new THREE.Scene();
   const ambientLight = new THREE.AmbientLight(0xffffff, 0.35);
-  renderer.scene.add(ambientLight);
+  scene.add(ambientLight);
 
   const pointLight = new THREE.PointLight(PHOSPHOR, 60);
   pointLight.position.set(0, 6, 10);
-  renderer.scene.add(pointLight);
+  scene.add(pointLight);
 
   // Construir la escena del byte 01010101
   buildByteScene();
@@ -265,8 +288,6 @@ function initThreeScene() {
 }
 
 function buildByteScene() {
-  const scene = new THREE.Scene();
-  renderer.scene = scene;
 
   // Patrón del byte: 0 1 0 1 0 1 0 1
   const pattern = ['0', '1', '0', '1', '0', '1', '0', '1'];
@@ -434,7 +455,7 @@ function buildByteScene() {
       -4 - ((i * 13.3) % 16)
     );
   }
-  particlesGeometry.setAttribute(
+  particlesGeometry.geometry.setAttribute(
     'instancePosition',
     new THREE.InstancedBufferAttribute(new Float32Array(particlePositions), 3)
   );
@@ -499,22 +520,36 @@ function updateCountdown(state) {
   if (!heroSection) return;
 
   const { d, h, m, s } = timeParts(state.target, new Date());
+  const enDosDigitos = (valor) => String(valor).padStart(2, '0');
+  const pintar = (id, valor) => {
+    const nodo = document.getElementById(id);
+    if (nodo) nodo.textContent = enDosDigitos(valor);
+  };
 
-  // Actualizar dígitos
-  const digitElements = heroSection.querySelectorAll('.digit');
-  digitElements.forEach((el, i) => {
-    el.textContent = state.celebrating ? '0' : (d + h + m + s)[i] || '';
-  });
+  pintar('count-dias', d);
+  pintar('count-horas', h);
+  pintar('count-minutos', m);
+  pintar('count-segundos', s);
 
-  // Mostrar/ocultar modo celebración
-  const countGroups = heroSection.querySelectorAll('.count-group');
-  if (state.celebrating) {
-    heroSection.classList.add('celebrating');
-    // Ocultar countdown, mostrar celebración
-    countGroups.forEach(g => g.style.display = 'none');
-  } else {
-    heroSection.classList.remove('celebrating');
-    countGroups.forEach(g => g.style.display = 'block');
+  const yearTag = document.getElementById('hero-year');
+  if (yearTag) {
+    yearTag.textContent = i18n
+      .t('hero.yearTag')
+      .replace('{year}', state.year)
+      .replace('{today}', state.today)
+      .replace('{total}', state.total);
+  }
+
+  const sub = heroSection.querySelector('.hero__sub');
+  const cuenta = heroSection.querySelector('.hero__cuenta');
+  const titulo = heroSection.querySelector('.hero__titulo');
+  heroSection.classList.toggle('celebrating', state.celebrating);
+  if (sub) sub.hidden = !state.celebrating;
+  if (cuenta) cuenta.hidden = state.celebrating;
+  if (titulo) {
+    titulo.textContent = state.celebrating
+      ? i18n.t('hero.celebratingTitle')
+      : i18n.t('hero.countdownLabel');
   }
 }
 
@@ -542,14 +577,23 @@ function initEventListeners() {
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   if (prefersReducedMotion.matches) {
     // Aplicar estilos de reduced motion
-    document.documentElement.style.setProperty('scroll-behavior', 'auto', 'important');
+    document.documentElement.classList.add('movimiento-reducido');
   }
   prefersReducedMotion.addEventListener('change', (e) => {
     if (e.matches) {
-      document.documentElement.style.setProperty('scroll-behavior', 'auto', 'important');
+      document.documentElement.classList.add('movimiento-reducido');
     } else {
-      document.documentElement.style.setProperty('scroll-behavior', 'smooth', 'important');
+      document.documentElement.classList.remove('movimiento-reducido');
     }
+  });
+
+  // Bits del byte de la sesión
+  document.querySelectorAll('.bit').forEach((bit) => {
+    bit.addEventListener('click', () => {
+      const encendido = bit.getAttribute('aria-pressed') === 'true';
+      bit.setAttribute('aria-pressed', String(!encendido));
+      bit.textContent = encendido ? '0' : '1';
+    });
   });
 
   // Celebration dismiss

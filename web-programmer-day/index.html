@@ -1,19 +1,121 @@
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>programmer-day — Día del Programador · 256</title>
-    <meta
-      name="description"
-      content="Cuenta atrás en vivo hacia el día 256 del año y celebración interactiva con un byte 3D cuando llega el Día del Programador."
-    />
-    <meta name="theme-color" content="#05090f" />
-    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
-  </head>
-  <body>
-    <canvas id="byte-canvas"></canvas>
-    <div id="content"></div>
-    <script type="module" src="./app.js"></script>
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>programmer-day — Día del Programador · 256</title>
+        <meta
+            name="description"
+            content="Cuenta atrás en vivo hacia el día 256 del año y celebración interactiva con un byte 3D cuando llega el Día del Programador."
+        />
+        <meta name="theme-color" content="#05090f" />
+        <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="./styles.css" />
+    </head>
+    <body>
+        <canvas id="byte-canvas" aria-hidden="true"></canvas>
+        <div id="content">
+            <a class="salto-contenido" href="#hero">Saltar al contenido</a>
+            <header class="cabecera">
+                <a class="marca" href="#hero">
+                    <span class="marca__punto" aria-hidden="true"></span>
+                    256
+                </a>
+                <nav class="nav" aria-label="Principal">
+                    <a class="nav__enlace" href="#por-que" data-i18n="nav.why"></a>
+                    <a class="nav__enlace" href="#byte" data-i18n="nav.byte"></a>
+                    <button class="boton-idioma nav-lang" type="button" data-i18n="nav.langLabel"></button>
+                </nav>
+            </header>
+
+            <main>
+                <section id="hero" class="hero">
+                    <p class="hero__eyebrow" data-i18n="hero.countEyebrow"></p>
+                    <h1 class="hero__titulo" data-i18n="hero.countdownLabel"></h1>
+                    <p class="hero__year" id="hero-year"></p>
+                    <div class="hero__cuenta">
+                        <div class="count-group">
+                            <span class="count-group__valor" id="count-dias">00</span>
+                            <span class="count-group__etiqueta" data-i18n="hero.daysLabel"></span>
+                        </div>
+                        <div class="count-group">
+                            <span class="count-group__valor" id="count-horas">00</span>
+                            <span class="count-group__etiqueta" data-i18n="hero.hoursLabel"></span>
+                        </div>
+                        <div class="count-group">
+                            <span class="count-group__valor" id="count-minutos">00</span>
+                            <span class="count-group__etiqueta" data-i18n="hero.minutesLabel"></span>
+                        </div>
+                        <div class="count-group">
+                            <span class="count-group__valor" id="count-segundos">00</span>
+                            <span class="count-group__etiqueta" data-i18n="hero.secondsLabel"></span>
+                        </div>
+                    </div>
+                    <p class="hero__sub" data-i18n="hero.celebratingSub" hidden></p>
+                    <a class="hero__cta" href="#por-que" data-i18n="hero.cta"></a>
+                </section>
+
+                <section id="por-que" class="seccion">
+                    <p class="seccion__eyebrow" data-i18n="why.eyebrow"></p>
+                    <h2 class="seccion__titulo" data-i18n="why.title"></h2>
+                    <p data-i18n="why.p1"></p>
+                    <p data-i18n="why.p2"></p>
+                    <p data-i18n="why.p3"></p>
+                    <ul class="hechos">
+                        <li>
+                            <span class="hechos__bits">00000000</span>
+                            <span class="hechos__valor">0</span>
+                        </li>
+                        <li>
+                            <span class="hechos__bits">00010000</span>
+                            <span class="hechos__valor">16</span>
+                        </li>
+                        <li>
+                            <span class="hechos__bits">10000000</span>
+                            <span class="hechos__valor">128</span>
+                        </li>
+                        <li>
+                            <span class="hechos__bits">11111111</span>
+                            <span class="hechos__valor">255</span>
+                        </li>
+                    </ul>
+                </section>
+
+                <section id="byte" class="seccion">
+                    <p class="seccion__eyebrow" data-i18n="byte.eyebrow"></p>
+                    <h2 class="seccion__titulo" data-i18n="byte.title"></h2>
+                    <p data-i18n="byte.hint"></p>
+                    <ul class="bits">
+                        <li><button class="bit" type="button" aria-pressed="false">0</button></li>
+                        <li><button class="bit" type="button" aria-pressed="false">0</button></li>
+                        <li><button class="bit" type="button" aria-pressed="false">0</button></li>
+                        <li><button class="bit" type="button" aria-pressed="false">0</button></li>
+                        <li><button class="bit" type="button" aria-pressed="false">0</button></li>
+                        <li><button class="bit" type="button" aria-pressed="false">0</button></li>
+                        <li><button class="bit" type="button" aria-pressed="false">0</button></li>
+                        <li><button class="bit" type="button" aria-pressed="false">0</button></li>
+                    </ul>
+                    <p class="hero__cta" data-i18n="byte.cta"></p>
+                </section>
+            </main>
+
+            <footer class="pie">
+                <p data-i18n="footer.statement"></p>
+                <p data-i18n="footer.sub"></p>
+                <p>© <span data-anio></span> JeironPro</p>
+            </footer>
+        </div>
+        <script type="module" src="./app.js"></script>
+        <script>
+            document.querySelectorAll("[data-anio]").forEach((nodo) => {
+                nodo.textContent = new Date().getFullYear();
+            });
+        </script>
+    </body>
 </html>
