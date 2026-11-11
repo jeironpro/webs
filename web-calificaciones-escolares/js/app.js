@@ -71,9 +71,8 @@ function schoolYears(record) {
 
 /* Crea un elemento a partir de un fragmento de HTML. */
 function fromHtml(html) {
-	const template = document.createElement("template");
-	template.innerHTML = html.trim();
-	return template.content.firstElementChild;
+	const parsed = new DOMParser().parseFromString(html.trim(), "text/html");
+	return document.importNode(parsed.body.firstElementChild, true);
 }
 
 async function loadRecord() {

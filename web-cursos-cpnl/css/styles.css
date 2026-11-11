@@ -32,12 +32,6 @@ body {
     line-height: 1.55;
 }
 
-@media (prefers-reduced-motion: reduce) {
-    html {
-        scroll-behavior: auto;
-    }
-}
-
 ::selection {
     background: var(--color-accent);
     color: var(--color-accent-ink);
@@ -772,18 +766,21 @@ p {
     }
 }
 
-/* ---------- movimiento reducido ---------- */
+@layer accesibilidad {
+    @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }    }
+    @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 150ms;
+                animation-iteration-count: 1;
+                transition-duration: 150ms;
+            }
 
-@media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        animation-duration: 150ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 150ms !important;
-    }
-
-    .sidebar {
-        transition: none;
-    }
+            .sidebar {
+                transition: none;
+            }    }
 }

@@ -63,13 +63,6 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* Utilidad de ocultación: usa !important porque debe poder
-   ocultar cualquier componente (p. ej. el modal con display:grid)
-   sin depender del orden de las reglas. */
-.hidden {
-    display: none !important;
-}
-
 /* Texto visible solo para lectores de pantalla (accesibilidad). */
 .sr-only {
     position: absolute;
@@ -836,27 +829,6 @@ mark {
     grid-template-rows: 1fr;
 }
 
-/* Usuarios que prefieren menos movimiento: se desactivan las
-   transiciones del árbol y la animación de entrada de tarjetas. */
-@media (prefers-reduced-motion: reduce) {
-    .course-body {
-        transition: none;
-    }
-    .caret {
-        transition: none;
-    }
-    .grid.animating .card {
-        animation: none;
-    }
-    .sidebar,
-    .sidebar-backdrop {
-        transition: none;
-    }
-    .menu-line {
-        transition: none;
-    }
-}
-
 .module-btn {
     font-size: 13.5px;
     font-weight: 700;
@@ -1521,4 +1493,30 @@ body.modal-open {
         max-height: 72vh;
         padding: 18px;
     }
+}
+
+@layer accesibilidad {
+    @media (prefers-reduced-motion: reduce) {
+            .course-body {
+                transition: none;
+            }
+            .caret {
+                transition: none;
+            }
+            .grid.animating .card {
+                animation: none;
+            }
+            .sidebar,
+            .sidebar-backdrop {
+                transition: none;
+            }
+            .menu-line {
+                transition: none;
+            }    }
+}
+
+/* Utilidad de ocultación: va la última de la hoja para ganar por orden
+   a cualquier componente (p. ej. el modal con display:grid) sin !important. */
+.hidden {
+    display: none;
 }
