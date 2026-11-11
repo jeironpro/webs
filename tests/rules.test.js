@@ -54,6 +54,13 @@ describe("reglas de HTML", () => {
         expect(analizarHtml(documento(oculto))).toEqual([]);
     });
 
+    test("un campo envuelto en <label> está asociado", () => {
+        const html = documento(
+            `<label><span>Horas</span><input id="horas" type="number" /></label>`
+        );
+        expect(analizarHtml(html)).toEqual([]);
+    });
+
     test("señala div usado como botón", () => {
         const html = documento(`<div onclick="cerrar()">Cerrar</div>`);
         expect(reglasDe(analizarHtml(html))).toEqual(["html-div-interactivo"]);

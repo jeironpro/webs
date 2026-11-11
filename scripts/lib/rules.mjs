@@ -188,7 +188,17 @@ export function analizarHtml(texto) {
         });
     });
 
-    // Campos de formulario: necesitan label con for, o aria-label/labelledby.
+    // Campos de formulario: necesitan label con for, envoltorio <label> o aria-label.
+    const rangosLabel = [];
+    const regexLabel = /<label\b[^>]*>[\s\S]*?<\/label>/gi;
+    let etiqueta = regexLabel.exec(sinComentarios);
+    while (etiqueta !== null) {
+        rangosLabel.push([etiqueta.index, etiqueta.index + etiqueta[0].length]);
+        etiqueta = regexLabel.exec(sinComentarios);
+    }
+    const dentroDeLabel = (indice) =>
+        rangosLabel.some(([inicio, fin]) => indice > inicio && indice < fin);
+
     const campos = sinComentarios.match(/<(input|select|textarea)\b[^>]*>/gi) ?? [];
     const etiquetasFor = new Set(
         [...(sinComentarios.match(/<label\b[^>]*>/gi) ?? [])]
@@ -200,10 +210,11 @@ export function analizarHtml(texto) {
         if (TIPOS_SIN_LABEL.has(tipo)) return;
         const id = /\bid\s*=\s*["']([^"']+)["']/i.exec(etiqueta)?.[1];
         const conAria = /\baria-label(ledby)?\s*=/i.test(etiqueta);
-        if (conAria || (id && etiquetasFor.has(id))) return;
+        const indice = sinComentarios.indexOf(etiqueta);
+        if (conAria || (id && etiquetasFor.has(id)) || dentroDeLabel(indice)) return;
         hallazgos.push({
             regla: "html-control-label",
-            linea: lineaDe(lineas, sinComentarios.indexOf(etiqueta)),
+            linea: lineaDe(lineas, indice),
             fragmento: etiqueta,
         });
     });

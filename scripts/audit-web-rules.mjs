@@ -18,8 +18,10 @@ import { REGLAS, analizarArchivo } from "./lib/rules.mjs";
 const RAIZ = join(dirname(fileURLToPath(import.meta.url)), "..");
 const GRUPO_RAIZ = "(raíz)";
 
-/** Rutas que no son código del sitio: dependencias, builds y terceros. */
+/** Rutas que no son código propio: dependencias, builds y terceros. */
 const EXCLUIDAS = /(^|\/)(node_modules|vendor|dist|site|\.yarn|coverage)\//;
+/** Salidas de bundler con hash en el nombre (Vite, Rollup...): no se editan a mano. */
+const COMPILADOS = /(^|\/)assets\/[^/]+-[A-Za-z0-9_-]{8}\.(m?js|css)$/;
 const EXTENSIONES = /\.(html?|css|m?js)$/i;
 
 function argumento(nombre) {
@@ -36,7 +38,8 @@ function ficherosVersionados() {
         .filter(Boolean)
         .filter((ruta) => EXTENSIONES.test(ruta))
         .filter((ruta) => !EXCLUIDAS.test(ruta))
-        .filter((ruta) => !/\.min\.(js|css)$/i.test(ruta));
+        .filter((ruta) => !/\.min\.(js|css)$/i.test(ruta))
+        .filter((ruta) => !COMPILADOS.test(ruta));
 }
 
 /** Primera carpeta de la ruta; los ficheros de la raíz forman su propio grupo. */
