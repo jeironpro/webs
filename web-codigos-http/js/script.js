@@ -252,3 +252,22 @@ const inicializar = () => {
 
 // Inicializar la lista de códigos cuando el DOM esté listo
 inicializar();
+// Descripción accesible con clic y teclado (en táctil el hover no existe).
+document.querySelectorAll(".codigo").forEach((codigo) => {
+    codigo.tabIndex = 0;
+    codigo.setAttribute("role", "button");
+    codigo.setAttribute("aria-expanded", "false");
+
+    const alternar = () => {
+        const abierto = codigo.classList.toggle("abierto");
+        codigo.setAttribute("aria-expanded", String(abierto));
+    };
+
+    codigo.addEventListener("click", alternar);
+    codigo.addEventListener("keydown", (evento) => {
+        if (evento.key === "Enter" || evento.key === " ") {
+            evento.preventDefault();
+            alternar();
+        }
+    });
+});
