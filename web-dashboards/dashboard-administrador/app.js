@@ -96,42 +96,73 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // ===== Layout =====
+// Construye nodos sin pasar por HTML.
+function crear(etiqueta, propiedades = {}, hijos = []) {
+    const nodo = document.createElement(etiqueta);
+
+    Object.entries(propiedades).forEach(([clave, valor]) => {
+        if (valor === undefined || valor === null || valor === false) return;
+        if (clave === "clase") nodo.className = valor;
+        else if (clave === "texto") nodo.textContent = valor;
+        else nodo.setAttribute(clave, valor === true ? "" : String(valor));
+    });
+
+    [].concat(hijos).forEach((hijo) => {
+        if (hijo === null || hijo === undefined || hijo === false) return;
+        nodo.append(hijo instanceof Node ? hijo : document.createTextNode(String(hijo)));
+    });
+
+    return nodo;
+}
+
 function mountLayout() {
     const root = elements.root;
     if (!root) return;
 
-    root.innerHTML = `
-        <div class="dashboard">
-            <aside class="sidebar" aria-label="Navegación principal">
-                <div class="sidebar-brand">Nexo</div>
-                <nav class="sidebar-nav">
-                    ${NAV_ITEMS.map(
-                        ({ path, label }) => `
-                        <a href="#${path}" class="nav-link" data-page-path="${path}">${label}</a>
-                    `,
-                    ).join("")}
-                </nav>
-            </aside>
-
-            <div class="main">
-                <header class="header">
-                    <div class="header-brand">
-                        <button class="btn btn-secondary sidebar-toggle" type="button" aria-label="Abrir menú">Menú</button>
-                        <span class="header-title">Consola de administración</span>
-                    </div>
-                    <div class="header-actions">
-                        <button class="btn btn-secondary" type="button" data-theme-toggle>Modo oscuro</button>
-                    </div>
-                </header>
-
-                <main class="main-content" id="page"></main>
-
-                <footer class="footer">
-                    <p>Nexo · Datos de ejemplo para la consola de administración</p>
-                </footer>
-            </div>
-        </div>
-    `;
+    root.replaceChildren(
+        crear("div", { clase: "dashboard" }, [
+            crear("aside", { clase: "sidebar", "aria-label": "Navegación principal" }, [
+                crear("div", { clase: "sidebar-brand", texto: "Nexo" }),
+                crear(
+                    "nav",
+                    { clase: "sidebar-nav" },
+                    NAV_ITEMS.map(({ path, label }) =>
+                        crear("a", {
+                            href: `#${path}`,
+                            clase: "nav-link",
+                            "data-page-path": path,
+                            texto: label,
+                        }),
+                    ),
+                ),
+            ]),
+            crear("div", { clase: "main" }, [
+                crear("header", { clase: "header" }, [
+                    crear("div", { clase: "header-brand" }, [
+                        crear("button", {
+                            clase: "btn btn-secondary sidebar-toggle",
+                            type: "button",
+                            "aria-label": "Abrir menú",
+                            texto: "Menú",
+                        }),
+                        crear("span", { clase: "header-title", texto: "Consola de administración" }),
+                    ]),
+                    crear("div", { clase: "header-actions" }, [
+                        crear("button", {
+                            clase: "btn btn-secondary",
+                            type: "button",
+                            "data-theme-toggle": true,
+                            texto: "Modo oscuro",
+                        }),
+                    ]),
+                ]),
+                crear("main", { clase: "main-content", id: "page" }),
+                crear("footer", { clase: "footer" }, [
+                    crear("p", { texto: "Nexo · Datos de ejemplo para la consola de administración" }),
+                ]),
+            ]),
+        ]),
+    );
 }
 
 function cacheElements() {
@@ -358,330 +389,298 @@ function useData() {
 function createOverviewPage() {
     const { stats, alerts } = useData();
 
-    const html = document.createElement("div");
-    html.innerHTML = `
-        <section class="reveal">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="metric-card">
-                    <span class="metric-value">${stats.totalUsers}</span>
-                    <span class="metric-label">Usuarios totales</span>
-                </div>
-                <div class="metric-card">
-                    <span class="metric-value">${stats.activeUsers}</span>
-                    <span class="metric-label">Usuarios activos</span>
-                </div>
-                <div class="metric-card">
-                    <span class="metric-value">${stats.newThisMonth}</span>
-                    <span class="metric-label">Nuevos este mes</span>
-                </div>
-            </div>
-            
-            <div class="mt-6">
-                <h2 class="section-heading">Estadísticas rápidas</h2>
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="metric-card">
-                        <span class="metric-value">${stats.systemsOnline}%</span>
-                        <span class="metric-label">Sistemas en línea</span>
-                    </div>
-                    <div class="metric-card">
-                        <span class="metric-value">${alerts.length}</span>
-                        <span class="metric-label">Alertas activas</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="mt-6">
-                <h2 class="section-heading">Alertas recientes</h2>
-                <div class="alerts-list">
-                    ${alerts
-                        .map(
-                            (alert) => `
-                        <div class="alert-item ${alert.type}">
-                            <span class="alert-icon">${alert.type[0].toUpperCase()}</span>
-                            <div class="alert-content">
-                                <span class="alert-message">${alert.message}</span>
-                                <span class="alert-time">${alert.time}</span>
-                            </div>
-                        </div>
-                    `,
-                        )
-                        .join("")}
-                </div>
-            </div>
-        </section>
-    `;
-    return html;
+    const metrica = (valor, etiqueta) =>
+        crear("div", { clase: "metric-card" }, [
+            crear("span", { clase: "metric-value", texto: String(valor) }),
+            crear("span", { clase: "metric-label", texto: etiqueta }),
+        ]);
+
+    const alerta = (item) =>
+        crear("div", { clase: `alert-item ${item.type}` }, [
+            crear("span", { clase: "alert-icon", texto: item.type[0].toUpperCase() }),
+            crear("div", { clase: "alert-content" }, [
+                crear("span", { clase: "alert-message", texto: item.message }),
+                crear("span", { clase: "alert-time", texto: item.time }),
+            ]),
+        ]);
+
+    return crear("section", { clase: "reveal" }, [
+        crear("div", { clase: "grid grid-cols-1 md:grid-cols-3 gap-6" }, [
+            metrica(stats.totalUsers, "Usuarios totales"),
+            metrica(stats.activeUsers, "Usuarios activos"),
+            metrica(stats.newThisMonth, "Nuevos este mes"),
+        ]),
+        crear("div", { clase: "mt-6" }, [
+            crear("h2", { clase: "section-heading", texto: "Estadísticas rápidas" }),
+            crear("div", { clase: "grid grid-cols-2 gap-4" }, [
+                metrica(`${stats.systemsOnline}%`, "Sistemas en línea"),
+                metrica(alerts.length, "Alertas activas"),
+            ]),
+        ]),
+        crear("div", { clase: "mt-6" }, [
+            crear("h2", { clase: "section-heading", texto: "Alertas recientes" }),
+            crear("div", { clase: "alerts-list" }, alerts.map(alerta)),
+        ]),
+    ]);
 }
 
 function createUsersPage() {
     const { users } = useData();
+    const botonNuevo = crear("button", { clase: "btn", type: "button", texto: "Nuevo usuario" });
+    botonNuevo.addEventListener("click", () => navigateTo("/new-user"));
 
-    const html = document.createElement("div");
-    html.innerHTML = `
-        <section class="reveal">
-            <div class="page-header">
-                <h1 class="page-title">Gestión de Usuarios</h1>
-                <div class="flex items-center gap-2">
-                    <input type="text" class="input" placeholder="Buscar usuarios..." />
-                    <button class="btn btn-secondary">Exportar CSV</button>
-                </div>
-            </div>
-            
-            <div class="table-responsive">
-                <table>
-                    <thead>
-                        <tr>
-                            <th class="p-4 text-left text-xs font-medium uppercase tracking-widest text-[var(--color-ink-2)]">Nombre</th>
-                            <th class="p-4 text-left text-xs font-medium uppercase tracking-widest text-[var(--color-ink-2)]">Rol</th>
-                            <th class="p-4 text-left text-xs font-medium uppercase tracking-widest text-[var(--color-ink-2)]">Estado</th>
-                            <th class="p-4 text-left text-xs font-medium uppercase tracking-widest text-[var(--color-ink-2)]">Último ingreso</th>
-                            <th class="p-4 text-left text-xs font-medium uppercase tracking-widest text-[var(--color-ink-2)]">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        ${users
-                            .map(
-                                (user) => `
-                            <tr class="border-b">
-                                <td class="p-4">${user.name}</td>
-                                <td class="p-4">
-                                    <span class="badge ${user.role}">${user.role}</span>
-                                </td>
-                                <td class="p-4">
-                                    <span class="status-badge ${user.status}">${user.status}</span>
-                                </td>
-                                <td class="p-4">${user.lastLogin}</td>
-                                <td class="p-4">
-                                    <button class="btn btn-sm btn-secondary">Editar</button>
-                                    <button class="btn btn-sm">Eliminar</button>
-                                </td>
-                            </tr>
-                        `,
-                            )
-                            .join("")}
-                    </tbody>
-                </table>
-            </div>
-            
-            <div class="mt-6">
-                <button class="btn" onclick="navigateTo('/new-user')">Nuevo usuario</button>
-            </div>
-        </section>
-    `;
-    return html;
+    const encabezado = (texto) =>
+        crear("th", {
+            clase: "p-4 text-left text-xs font-medium uppercase tracking-widest text-[var(--color-ink-2)]",
+            texto,
+        });
+
+    return crear("section", { clase: "reveal" }, [
+        crear("div", { clase: "page-header" }, [
+            crear("h1", { clase: "page-title", texto: "Gestión de Usuarios" }),
+            crear("div", { clase: "flex items-center gap-2" }, [
+                crear("input", { type: "text", clase: "input", placeholder: "Buscar usuarios..." }),
+                crear("button", { clase: "btn btn-secondary", type: "button", texto: "Exportar CSV" }),
+            ]),
+        ]),
+        crear("div", { clase: "table-responsive" }, [
+            crear("table", {}, [
+                crear("thead", {}, [
+                    crear("tr", {}, ["Nombre", "Rol", "Estado", "Último ingreso", "Acciones"].map(encabezado)),
+                ]),
+                crear(
+                    "tbody",
+                    {},
+                    users.map((user) =>
+                        crear("tr", { clase: "border-b" }, [
+                            crear("td", { clase: "p-4", texto: user.name }),
+                            crear("td", { clase: "p-4" }, [
+                                crear("span", { clase: `badge ${user.role}`, texto: user.role }),
+                            ]),
+                            crear("td", { clase: "p-4" }, [
+                                crear("span", { clase: `status-badge ${user.status}`, texto: user.status }),
+                            ]),
+                            crear("td", { clase: "p-4", texto: user.lastLogin }),
+                            crear("td", { clase: "p-4" }, [
+                                crear("button", {
+                                    clase: "btn btn-sm btn-secondary",
+                                    type: "button",
+                                    texto: "Editar",
+                                }),
+                                crear("button", { clase: "btn btn-sm", type: "button", texto: "Eliminar" }),
+                            ]),
+                        ]),
+                    ),
+                ),
+            ]),
+        ]),
+        crear("div", { clase: "mt-6" }, [botonNuevo]),
+    ]);
 }
 
 function createContentPage() {
-    const html = document.createElement("div");
-    html.innerHTML = `
-        <section class="reveal">
-            <h2 class="section-heading">Gestión de Contenido</h2>
-            <p class="text-sm text-[var(--color-ink-2)] mb-4">
-                Funcionalidad de gestión de contenido en desarrollo.
-            </p>
-            <div class="grid grid-cols-2 gap-4">
-                <div class="metric-card">
-                    <span class="metric-value">1,234</span>
-                    <span class="metric-label">Artículos</span>
-                </div>
-                <div class="metric-card">
-                    <span class="metric-value">47</span>
-                    <span class="metric-label">Comentarios</span>
-                </div>
-            </div>
-        </section>
-    `;
-    return html;
+    const metrica = (valor, etiqueta) =>
+        crear("div", { clase: "metric-card" }, [
+            crear("span", { clase: "metric-value", texto: valor }),
+            crear("span", { clase: "metric-label", texto: etiqueta }),
+        ]);
+
+    return crear("section", { clase: "reveal" }, [
+        crear("h2", { clase: "section-heading", texto: "Gestión de Contenido" }),
+        crear("p", {
+            clase: "text-sm text-[var(--color-ink-2)] mb-4",
+            texto: "Funcionalidad de gestión de contenido en desarrollo.",
+        }),
+        crear("div", { clase: "grid grid-cols-2 gap-4" }, [
+            metrica("1,234", "Artículos"),
+            metrica("47", "Comentarios"),
+        ]),
+    ]);
 }
 
 function createLogsPage() {
     const { alerts } = useData();
 
-    const html = document.createElement("div");
-    html.innerHTML = `
-        <section class="reveal">
-            <h2 class="section-heading">Log de Auditoría</h2>
-            <div class="alerts-list">
-                ${alerts
-                    .map(
-                        (alert) => `
-                    <div class="alert-item ${alert.type}">
-                        <span class="alert-icon">${alert.type[0].toUpperCase()}</span>
-                        <div class="alert-content">
-                            <span class="alert-message">${alert.message}</span>
-                            <span class="alert-time">${alert.time}</span>
-                        </div>
-                    </div>
-                `,
-                    )
-                    .join("")}
-            </div>
-            <p class="text-xs text-[var(--color-ink-2)] mt-4">
-                Mostrando últimas 50 entradas. Use los filtros para refinar.
-            </p>
-        </section>
-    `;
-    return html;
+    return crear("section", { clase: "reveal" }, [
+        crear("h2", { clase: "section-heading", texto: "Log de Auditoría" }),
+        crear(
+            "div",
+            { clase: "alerts-list" },
+            alerts.map((item) =>
+                crear("div", { clase: `alert-item ${item.type}` }, [
+                    crear("span", { clase: "alert-icon", texto: item.type[0].toUpperCase() }),
+                    crear("div", { clase: "alert-content" }, [
+                        crear("span", { clase: "alert-message", texto: item.message }),
+                        crear("span", { clase: "alert-time", texto: item.time }),
+                    ]),
+                ]),
+            ),
+        ),
+        crear("p", {
+            clase: "text-xs text-[var(--color-ink-2)] mt-4",
+            texto: "Mostrando últimas 50 entradas. Use los filtros para refinar.",
+        }),
+    ]);
 }
 
 function createSettingsPage() {
-    const html = document.createElement("div");
-    html.innerHTML = `
-        <section class="reveal">
-            <h2 class="section-heading">Configuración del Sistema</h2>
-            <div class="grid grid-cols-2 gap-6">
-                <div class="setting-group">
-                    <label class="setting-label">Nombre de la empresa</label>
-                    <input type="text" class="input" value="MiEmpresa S.A." />
-                </div>
-                <div class="setting-group">
-                    <label class="setting-label">Zona horaria</label>
-                    <select class="input">
-                        <option value="UTC-5">UTC-5</option>
-                        <option value="UTC">UTC</option>
-                        <option value="UTC+1">UTC+1</option>
-                    </select>
-                </div>
-                <div class="setting-group">
-                    <label class="setting-label">Formato de fecha</label>
-                    <select class="input">
-                        <option value="DD/MM/YYYY">DD/MM/YYYY</option>
-                        <option value="MM/DD/YYYY">MM/DD/YYYY</option>
-                        <option value="YYYY-MM-DD">YYYY-MM-DD</option>
-                    </select>
-                </div>
-            </div>
-            
-            <div class="mt-6">
-                <label class="setting-label">Notificaciones por email</label>
-                <label class="flex items-center gap-2">
-                    <input type="checkbox" checked class="checkbox" />
-                    <span>Activado</span>
-                </label>
-            </div>
-            
-            <div class="mt-6">
-                <button class="btn btn-primary w-full">Guardar configuración</button>
-            </div>
-        </section>
-    `;
-    return html;
+    const grupo = (etiqueta, campo) =>
+        crear("div", { clase: "setting-group" }, [
+            crear("label", { clase: "setting-label", texto: etiqueta }),
+            campo,
+        ]);
+
+    return crear("section", { clase: "reveal" }, [
+        crear("h2", { clase: "section-heading", texto: "Configuración del Sistema" }),
+        crear("div", { clase: "grid grid-cols-2 gap-6" }, [
+            grupo(
+                "Nombre de la empresa",
+                crear("input", { type: "text", clase: "input", value: "MiEmpresa S.A." }),
+            ),
+            grupo(
+                "Zona horaria",
+                crear("select", { clase: "input" }, [
+                    crear("option", { value: "UTC-5", texto: "UTC-5" }),
+                    crear("option", { value: "UTC", texto: "UTC" }),
+                    crear("option", { value: "UTC+1", texto: "UTC+1" }),
+                ]),
+            ),
+            grupo(
+                "Formato de fecha",
+                crear("select", { clase: "input" }, [
+                    crear("option", { value: "DD/MM/YYYY", texto: "DD/MM/YYYY" }),
+                    crear("option", { value: "MM/DD/YYYY", texto: "MM/DD/YYYY" }),
+                    crear("option", { value: "YYYY-MM-DD", texto: "YYYY-MM-DD" }),
+                ]),
+            ),
+        ]),
+        crear("div", { clase: "mt-6" }, [
+            crear("label", { clase: "setting-label", texto: "Notificaciones por email" }),
+            crear("label", { clase: "flex items-center gap-2" }, [
+                crear("input", { type: "checkbox", clase: "checkbox", checked: true }),
+                crear("span", { texto: "Activado" }),
+            ]),
+        ]),
+        crear("div", { clase: "mt-6" }, [
+            crear("button", { clase: "btn btn-primary w-full", type: "button", texto: "Guardar configuración" }),
+        ]),
+    ]);
 }
 
 function createHealthPage() {
-    const html = document.createElement("div");
-    html.innerHTML = `
-        <section class="reveal">
-            <h2 class="section-heading">Salud del Sistema</h2>
-            <div class="grid grid-cols-2 gap-4">
-                <div class="metric-card">
-                    <span class="metric-value">99.9%</span>
-                    <span class="metric-label">Disponibilidad</span>
-                </div>
-                <div class="metric-card">
-                    <span class="metric-value">45ms</span>
-                    <span class="metric-label">Latencia promedio</span>
-                </div>
-                <div class="metric-card">
-                    <span class="metric-value">12</span>
-                    <span class="metric-label">Conexiones activas</span>
-                </div>
-                <div class="metric-card">
-                    <span class="metric-value">0</span>
-                    <span class="metric-label">Errores críticos</span>
-                </div>
-            </div>
-            
-            <div class="mt-6">
-                <h3 class="section-subheading">Ultima comprobación</h2>
-                <p class="text-sm text-[var(--color-ink-2)]">
-                    Hace 2 minutos. Todos los sistemas operativos normally.
-                </p>
-            </div>
-        </section>
-    `;
-    return html;
+    const metrica = (valor, etiqueta) =>
+        crear("div", { clase: "metric-card" }, [
+            crear("span", { clase: "metric-value", texto: valor }),
+            crear("span", { clase: "metric-label", texto: etiqueta }),
+        ]);
+
+    return crear("section", { clase: "reveal" }, [
+        crear("h2", { clase: "section-heading", texto: "Salud del Sistema" }),
+        crear("div", { clase: "grid grid-cols-2 gap-4" }, [
+            metrica("99.9%", "Disponibilidad"),
+            metrica("45ms", "Latencia promedio"),
+            metrica("12", "Conexiones activas"),
+            metrica("0", "Errores críticos"),
+        ]),
+        crear("div", { clase: "mt-6" }, [
+            crear("h3", { clase: "section-subheading", texto: "Ultima comprobación" }),
+            crear("p", {
+                clase: "text-sm text-[var(--color-ink-2)]",
+                texto: "Hace 2 minutos. Todos los sistemas operativos normally.",
+            }),
+        ]),
+    ]);
 }
 
 function createReportsPage() {
-    const html = document.createElement("div");
-    html.innerHTML = `
-        <section class="reveal">
-            <h2 class="section-heading">Reportes</h2>
-            <div class="grid grid-cols-2 gap-4">
-                <div class="setting-group">
-                    <label class="setting-label">Tipo de reporte</label>
-                    <select class="input">
-                        <option value="users">Reporte de Usuarios</option>
-                        <option value="activity">Reporte de Actividad</option>
-                        <option value="system">Reporte del Sistema</option>
-                    </select>
-                </div>
-                <div class="setting-group">
-                    <label class="setting-label">Periodo</label>
-                    <select class="input">
-                        <option value="week">Semana actual</option>
-                        <option value="month">Mes actual</option>
-                        <option value="quarter">Trimestre actual</option>
-                    </select>
-                </div>
-            </div>
-            
-            <div class="mt-6">
-                <button class="btn btn-primary w-full">Generar reporte</button>
-            </div>
-            
-            <p class="text-sm text-[var(--color-ink-2)] mt-4">
-                Los reportes se generan en formato PDF y CSV.
-            </p>
-        </section>
-    `;
-    return html;
+    const grupo = (etiqueta, opciones) =>
+        crear("div", { clase: "setting-group" }, [
+            crear("label", { clase: "setting-label", texto: etiqueta }),
+            crear(
+                "select",
+                { clase: "input" },
+                opciones.map(([valor, texto]) => crear("option", { value: valor, texto })),
+            ),
+        ]);
+
+    return crear("section", { clase: "reveal" }, [
+        crear("h2", { clase: "section-heading", texto: "Reportes" }),
+        crear("div", { clase: "grid grid-cols-2 gap-4" }, [
+            grupo("Tipo de reporte", [
+                ["users", "Reporte de Usuarios"],
+                ["activity", "Reporte de Actividad"],
+                ["system", "Reporte del Sistema"],
+            ]),
+            grupo("Periodo", [
+                ["week", "Semana actual"],
+                ["month", "Mes actual"],
+                ["quarter", "Trimestre actual"],
+            ]),
+        ]),
+        crear("div", { clase: "mt-6" }, [
+            crear("button", { clase: "btn btn-primary w-full", type: "button", texto: "Generar reporte" }),
+        ]),
+        crear("p", {
+            clase: "text-sm text-[var(--color-ink-2)] mt-4",
+            texto: "Los reportes se generan en formato PDF y CSV.",
+        }),
+    ]);
 }
 
 function createProfilePage() {
-    const html = document.createElement("div");
-    html.innerHTML = `
-        <section class="reveal">
-            <div class="profile-card">
-                <div class="profile-avatar">A</div>
-                <h2 class="profile-name">Administrador</h2>
-                <p class="profile-email">admin@miempresa.com</p>
-            </div>
-            
-            <div class="mt-6">
-                <h2 class="section-heading">Configuración de perfil</h2>
-                <div class="setting-item">
-                    <label class="setting-label">Nombre display</label>
-                    <input type="text" class="input" value="Administrador" />
-                </div>
-                <div class="setting-item">
-                    <label class="setting-label">Dirección de email</label>
-                    <input type="email" class="input" value="admin@miempresa.com" disabled />
-                </div>
-                <div class="setting-item">
-                    <label class="setting-label">Cambiar contraseña</label>
-                    <button class="btn btn-secondary">Configurar</button>
-                </div>
-            </div>
-        </section>
-    `;
-    return html;
+    const item = (etiqueta, campo) =>
+        crear("div", { clase: "setting-item" }, [
+            crear("label", { clase: "setting-label", texto: etiqueta }),
+            campo,
+        ]);
+
+    return crear("section", { clase: "reveal" }, [
+        crear("div", { clase: "profile-card" }, [
+            crear("div", { clase: "profile-avatar", texto: "A" }),
+            crear("h2", { clase: "profile-name", texto: "Administrador" }),
+            crear("p", { clase: "profile-email", texto: "admin@miempresa.com" }),
+        ]),
+        crear("div", { clase: "mt-6" }, [
+            crear("h2", { clase: "section-heading", texto: "Configuración de perfil" }),
+            item(
+                "Nombre display",
+                crear("input", { type: "text", clase: "input", value: "Administrador" }),
+            ),
+            item(
+                "Dirección de email",
+                crear("input", {
+                    type: "email",
+                    clase: "input",
+                    value: "admin@miempresa.com",
+                    disabled: true,
+                }),
+            ),
+            item(
+                "Cambiar contraseña",
+                crear("button", { clase: "btn btn-secondary", type: "button", texto: "Configurar" }),
+            ),
+        ]),
+    ]);
 }
 
 function createNotFoundPage() {
-    const html = document.createElement("div");
-    html.innerHTML = `
-        <section class="reveal min-h-[50vh] flex items-center justify-center">
-            <div>
-                <h1 class="text-6xl font-bold text-[var(--color-rule)]">404</h1>
-                <p class="text-xl text-[var(--color-ink-2)] mt-4">Página no encontrada</p>
-                <p class="text-base text-[var(--color-ink-2)] mt-2">La página que buscas no existe.</p>
-                <button class="btn mt-4" onclick="navigateTo('/')">Volver al inicio</button>
-            </div>
-        </section>
-    `;
-    return html;
+    const boton = crear("button", { clase: "btn mt-4", type: "button", texto: "Volver al inicio" });
+    boton.addEventListener("click", () => navigateTo("/"));
+
+    return crear("section", { clase: "reveal min-h-[50vh] flex items-center justify-center" }, [
+        crear("div", {}, [
+            crear("h1", { clase: "text-6xl font-bold text-[var(--color-rule)]", texto: "404" }),
+            crear("p", {
+                clase: "text-xl text-[var(--color-ink-2)] mt-4",
+                texto: "Página no encontrada",
+            }),
+            crear("p", {
+                clase: "text-base text-[var(--color-ink-2)] mt-2",
+                texto: "La página que buscas no existe.",
+            }),
+            boton,
+        ]),
+    ]);
 }
 
 // ===== Utilidades CSS =====

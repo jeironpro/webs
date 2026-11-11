@@ -139,52 +139,91 @@ document.addEventListener('DOMContentLoaded', () => {
     updateDashboard()
 })
 
+// Construye nodos sin pasar por HTML.
+function crear(etiqueta, propiedades = {}, hijos = []) {
+    const nodo = document.createElement(etiqueta)
+
+    Object.entries(propiedades).forEach(([clave, valor]) => {
+        if (valor === undefined || valor === null || valor === false) return
+        if (clave === 'clase') nodo.className = valor
+        else if (clave === 'texto') nodo.textContent = valor
+        else nodo.setAttribute(clave, valor === true ? '' : String(valor))
+    })
+
+    ;[].concat(hijos).forEach((hijo) => {
+        if (hijo === null || hijo === undefined || hijo === false) return
+        nodo.append(hijo instanceof Node ? hijo : document.createTextNode(String(hijo)))
+    })
+
+    return nodo
+}
+
 // ===== Montaje del layout (la plantilla solo trae #root) =====
 function mountLayout() {
     const root = elements.root
     if (!root) return
 
-    root.innerHTML = `
-        <div class="app-shell">
-            <aside class="sidebar">
-                <div class="brand">
-                    <span class="brand-mark">V</span>
-                    <span class="brand-name">Vigía</span>
-                </div>
-                <nav class="nav" aria-label="Secciones del panel">
-                    ${navSections
-                        .map(
-                            (section) => `
-                        <a href="#${section.id}" class="nav-link${section.id === 'overview' ? ' active' : ''}" data-section="${section.id}">
-                            <span class="nav-icon" aria-hidden="true">${section.icon}</span>
-                            <span>${section.title}</span>
-                        </a>`,
-                        )
-                        .join('')}
-                </nav>
-            </aside>
-            <div class="app-body">
-                <header class="header">
-                    <button type="button" class="sidebar-toggle" aria-label="Abrir menú">☰</button>
-                    <div class="header-title">Observabilidad de infraestructura</div>
-                    <div class="header-actions">
-                        <select data-range aria-label="Rango temporal">
-                            <option value="1h">Última hora</option>
-                            <option value="24h" selected>Últimas 24 h</option>
-                            <option value="7d">Últimos 7 días</option>
-                        </select>
-                        <button type="button" data-refresh>Actualizar</button>
-                        <button type="button" data-theme-toggle aria-label="Cambiar tema">🌓</button>
-                        <a href="#" data-profile>${dashboardData.currentUser}</a>
-                    </div>
-                </header>
-                <main class="main" id="main"></main>
-                <footer class="footer">
-                    <span data-range-display>Última actualización: ${dashboardData.updatedAt}</span>
-                </footer>
-            </div>
-        </div>
-    `
+    root.replaceChildren(
+        crear('div', { clase: 'app-shell' }, [
+            crear('aside', { clase: 'sidebar' }, [
+                crear('div', { clase: 'brand' }, [
+                    crear('span', { clase: 'brand-mark', texto: 'V' }),
+                    crear('span', { clase: 'brand-name', texto: 'Vigía' }),
+                ]),
+                crear(
+                    'nav',
+                    { clase: 'nav', 'aria-label': 'Secciones del panel' },
+                    navSections.map((section) =>
+                        crear('a', {
+                            href: `#${section.id}`,
+                            clase: `nav-link${section.id === 'overview' ? ' active' : ''}`,
+                            'data-section': section.id,
+                        }, [
+                            crear('span', {
+                                clase: 'nav-icon',
+                                'aria-hidden': 'true',
+                                texto: section.icon,
+                            }),
+                            crear('span', { texto: section.title }),
+                        ]),
+                    ),
+                ),
+            ]),
+            crear('div', { clase: 'app-body' }, [
+                crear('header', { clase: 'header' }, [
+                    crear('button', {
+                        type: 'button',
+                        clase: 'sidebar-toggle',
+                        'aria-label': 'Abrir menú',
+                        texto: '☰',
+                    }),
+                    crear('div', { clase: 'header-title', texto: 'Observabilidad de infraestructura' }),
+                    crear('div', { clase: 'header-actions' }, [
+                        crear('select', { 'data-range': true, 'aria-label': 'Rango temporal' }, [
+                            crear('option', { value: '1h', texto: 'Última hora' }),
+                            crear('option', { value: '24h', selected: true, texto: 'Últimas 24 h' }),
+                            crear('option', { value: '7d', texto: 'Últimos 7 días' }),
+                        ]),
+                        crear('button', { type: 'button', 'data-refresh': true, texto: 'Actualizar' }),
+                        crear('button', {
+                            type: 'button',
+                            'data-theme-toggle': true,
+                            'aria-label': 'Cambiar tema',
+                            texto: '🌓',
+                        }),
+                        crear('a', { href: '#', 'data-profile': true, texto: dashboardData.currentUser }),
+                    ]),
+                ]),
+                crear('main', { clase: 'main', id: 'main' }),
+                crear('footer', { clase: 'footer' }, [
+                    crear('span', {
+                        'data-range-display': true,
+                        texto: `Última actualización: ${dashboardData.updatedAt}`,
+                    }),
+                ]),
+            ]),
+        ]),
+    )
 }
 
 // ===== Tema claro/oscuro =====
@@ -324,33 +363,31 @@ function updateRangeDisplay() {
 function updateDashboard() {
     if (!elements.main) return
 
-    const section = document.createElement('section')
-    section.className = 'overview'
-    section.innerHTML = `
-        <h2 class="section-heading">Visión general</h2>
-        <div class="status-summary">
-            <div class="metric-card">
-                <span class="metric-value">${dashboardData.latencyAvg}ms</span>
-                <span class="metric-label">Latencia promedio</span>
-            </div>
-            <div class="metric-card">
-                <span class="metric-value">${dashboardData.servers.filter((s) => s.status === 'online').length}</span>
-                <span class="metric-label">Servidores en línea</span>
-            </div>
-            <div class="metric-card">
-                <span class="metric-value">${dashboardData.alertCounts.critical}</span>
-                <span class="metric-label">Alertas críticas</span>
-            </div>
-        </div>
-    `
+    const metrica = (valor, etiqueta) =>
+        crear('div', { clase: 'metric-card' }, [
+            crear('span', { clase: 'metric-value', texto: String(valor) }),
+            crear('span', { clase: 'metric-label', texto: etiqueta }),
+        ])
 
-    const overviewGrid = document.createElement('div')
-    overviewGrid.className = 'overview-grid'
-    overviewGrid.append(createLatencyChart(), createRecentAlerts())
-    section.appendChild(overviewGrid)
+    const section = crear('section', { clase: 'overview' }, [
+        crear('h2', { clase: 'section-heading', texto: 'Visión general' }),
+        crear('div', { clase: 'status-summary' }, [
+            metrica(`${dashboardData.latencyAvg}ms`, 'Latencia promedio'),
+            metrica(
+                dashboardData.servers.filter((s) => s.status === 'online').length,
+                'Servidores en línea',
+            ),
+            metrica(dashboardData.alertCounts.critical, 'Alertas críticas'),
+        ]),
+    ])
 
-    elements.main.innerHTML = ''
-    elements.main.append(
+    const overviewGrid = crear('div', { clase: 'overview-grid' }, [
+        createLatencyChart(),
+        createRecentAlerts(),
+    ])
+    section.append(overviewGrid)
+
+    elements.main.replaceChildren(
         section,
         createServersPanel(),
         createMetricsPanels(),
@@ -371,18 +408,22 @@ function updateView() {
         return
     }
 
-    elements.main.innerHTML = `
-        <section class="profile">
-            <h2 class="section-heading">Perfil</h2>
-            <div class="profile-card">
-                <span class="profile-avatar" aria-hidden="true">${dashboardData.currentUser[0].toUpperCase()}</span>
-                <div class="profile-data">
-                    <span class="profile-name">${dashboardData.currentUser}</span>
-                    <span class="profile-role">Operador de infraestructura</span>
-                </div>
-            </div>
-        </section>
-    `
+    elements.main.replaceChildren(
+        crear('section', { clase: 'profile' }, [
+            crear('h2', { clase: 'section-heading', texto: 'Perfil' }),
+            crear('div', { clase: 'profile-card' }, [
+                crear('span', {
+                    clase: 'profile-avatar',
+                    'aria-hidden': 'true',
+                    texto: dashboardData.currentUser[0].toUpperCase(),
+                }),
+                crear('div', { clase: 'profile-data' }, [
+                    crear('span', { clase: 'profile-name', texto: dashboardData.currentUser }),
+                    crear('span', { clase: 'profile-role', texto: 'Operador de infraestructura' }),
+                ]),
+            ]),
+        ]),
+    )
 }
 
 // ===== Componentes Vanilla =====
@@ -428,118 +469,115 @@ function createLatencyChart() {
 
     // Leyenda
     const legend = document.createElement('div')
-    legend.innerHTML = `<div class="legend-item"><span class="legend-color"></span><span>Latencia</span></div>`
+    legend.append(
+        crear('div', { clase: 'legend-item' }, [
+            crear('span', { clase: 'legend-color' }),
+            crear('span', { texto: 'Latencia' }),
+        ]),
+    )
     container.appendChild(legend)
 
     return container
 }
 
 function createRecentAlerts() {
-    const container = document.createElement('div')
-    container.className = 'recent-alerts'
+    const container = crear('div', { clase: 'recent-alerts' })
 
     const alerts = dashboardData.recentAlerts
     if (!alerts || alerts.length === 0) {
-        container.innerHTML = '<p class="no-alerts">No hay alertas recientes</p>'
+        container.append(crear('p', { clase: 'no-alerts', texto: 'No hay alertas recientes' }))
         return container
     }
 
-    const html = `
-        <div class="alerts-list">
-            ${alerts
-                .map(
-                    (alert) => `
-                <div class="alert-item ${alert.type}">
-                    <span class="alert-icon">${alert.type[0].toUpperCase()}</span>
-                    <div class="alert-content">
-                        <span class="alert-message">${alert.message}</span>
-                        <span class="alert-time">${alert.time}</span>
-                    </div>
-                </div>
-            `,
-                )
-                .join('')}
-        </div>
-    `
+    container.append(
+        crear(
+            'div',
+            { clase: 'alerts-list' },
+            alerts.map((alert) =>
+                crear('div', { clase: `alert-item ${alert.type}` }, [
+                    crear('span', { clase: 'alert-icon', texto: alert.type[0].toUpperCase() }),
+                    crear('div', { clase: 'alert-content' }, [
+                        crear('span', { clase: 'alert-message', texto: alert.message }),
+                        crear('span', { clase: 'alert-time', texto: alert.time }),
+                    ]),
+                ]),
+            ),
+        ),
+    )
 
-    container.innerHTML = html
     return container
 }
 
 function createServersPanel() {
-    const container = document.createElement('div')
-    container.className = 'servers-panel'
+    const container = crear('div', { clase: 'servers-panel' })
 
     const servers = dashboardData.servers
     if (!servers || servers.length === 0) {
-        container.innerHTML = '<p>No hay datos de servidores</p>'
+        container.append(crear('p', { texto: 'No hay datos de servidores' }))
         return container
     }
 
-    const html = `
-        <div class="servers-grid">
-            ${servers
-                .map(
-                    (server) => `
-                <div class="server-card ${server.status}">
-                    <div class="server-info">
-                        <span class="server-name">${server.name}</span>
-                        <div class="server-status ${server.status}">${server.status}</div>
-                    </div>
-                    <div class="server-stats">
-                        <span class="stat-item">
-                            <span class="stat-value">${server.cpu}%</span>
-                            <span class="stat-label">CPU</span>
-                        </span>
-                        <span class="stat-value">${server.memory}%</span>
-                        <span class="stat-label">Mem.</span>
-                    </div>
-                </div>
-            `,
-                )
-                .join('')}
-        </div>
-    `
+    container.append(
+        crear(
+            'div',
+            { clase: 'servers-grid' },
+            servers.map((server) =>
+                crear('div', { clase: `server-card ${server.status}` }, [
+                    crear('div', { clase: 'server-info' }, [
+                        crear('span', { clase: 'server-name', texto: server.name }),
+                        crear('div', { clase: `server-status ${server.status}`, texto: server.status }),
+                    ]),
+                    crear('div', { clase: 'server-stats' }, [
+                        crear('span', { clase: 'stat-item' }, [
+                            crear('span', { clase: 'stat-value', texto: `${server.cpu}%` }),
+                            crear('span', { clase: 'stat-label', texto: 'CPU' }),
+                        ]),
+                        crear('span', { clase: 'stat-value', texto: `${server.memory}%` }),
+                        crear('span', { clase: 'stat-label', texto: 'Mem.' }),
+                    ]),
+                ]),
+            ),
+        ),
+    )
 
-    container.innerHTML = html
     return container
 }
 
 function createMetricsPanels() {
-    const container = document.createElement('div')
-    container.className = 'metrics-panels'
+    const container = crear('div', { clase: 'metrics-panels' })
 
     const metrics = dashboardData.metrics
     if (!metrics || metrics.length === 0) {
-        container.innerHTML = '<p>No hay datos de métricas</p>'
+        container.append(crear('p', { texto: 'No hay datos de métricas' }))
         return container
     }
 
-    const html = `
-        <div class="metrics-grid">
-            ${metrics
-                .map(
-                    (metric) => `
-                <div class="metric-panel">
-                    <span class="metric-name">${metric.name}</span>
-                    <span class="metric-value">${metric.value}</span>
-                    <div class="metric-spark">
-                        ${metric.spark ? metric.spark.map((v) => `<span class="spark-point" style="height: ${(v / 100) * 50}%"></span>`).join('') : ''}
-                    </div>
-                </div>
-            `,
-                )
-                .join('')}
-        </div>
-    `
+    container.append(
+        crear(
+            'div',
+            { clase: 'metrics-grid' },
+            metrics.map((metric) =>
+                crear('div', { clase: 'metric-panel' }, [
+                    crear('span', { clase: 'metric-name', texto: metric.name }),
+                    crear('span', { clase: 'metric-value', texto: String(metric.value) }),
+                    crear('div', { clase: 'metric-spark' }, [
+                        ...(metric.spark || []).map((v) =>
+                            crear('span', {
+                                clase: 'spark-point',
+                                style: `height: ${(v / 100) * 50}%`,
+                            }),
+                        ),
+                    ]),
+                ]),
+            ),
+        ),
+    )
 
-    container.innerHTML = html
     return container
 }
 
 function createLogsPanel() {
-    const container = document.createElement('div')
-    container.className = 'logs-panel'
+    const container = crear('div', { clase: 'logs-panel' })
 
     const logs = [
         { time: 'Just now', message: 'Dashboard actualizado', level: 'info' },
@@ -548,28 +586,24 @@ function createLogsPanel() {
         { time: '1 hour ago', message: 'Cache refreshed', level: 'info' },
     ]
 
-    const html = `
-        <div class="logs-list">
-            ${logs
-                .map(
-                    (log) => `
-                <div class="log-item ${log.level}">
-                    <span class="log-time">${log.time}</span>
-                    <span class="log-message">${log.message}</span>
-                </div>
-            `,
-                )
-                .join('')}
-        </div>
-    `
+    container.append(
+        crear(
+            'div',
+            { clase: 'logs-list' },
+            logs.map((log) =>
+                crear('div', { clase: `log-item ${log.level}` }, [
+                    crear('span', { clase: 'log-time', texto: log.time }),
+                    crear('span', { clase: 'log-message', texto: log.message }),
+                ]),
+            ),
+        ),
+    )
 
-    container.innerHTML = html
     return container
 }
 
 function createSecurityAlerts() {
-    const container = document.createElement('div')
-    container.className = 'security-alerts'
+    const container = crear('div', { clase: 'security-alerts' })
 
     const alerts = [
         { id: 'a1', type: 'error', message: 'High CPU on Server 5', time: '2 min ago' },
@@ -577,29 +611,26 @@ function createSecurityAlerts() {
         { id: 'a3', type: 'info', message: 'Cache refreshed', time: '1 hour ago' },
     ]
 
-    const html = `
-        <div class="alerts-summary">
-            <div class="alert-counts">
-                <span class="count critical">${dashboardData.alertCounts.critical}</span>
-                <span class="count warning">${dashboardData.alertCounts.warning}</span>
-                <span class="count info">${dashboardData.alertCounts.info}</span>
-            </div>
-            <ul class="alert-list">
-                ${alerts
-                    .map(
-                        (alert) => `
-                    <li class="alert-item ${alert.type}">
-                        <span class="alert-time">${alert.time}</span>
-                        <span class="alert-message">${alert.message}</span>
-                    </li>
-                `,
-                    )
-                    .join('')}
-            </ul>
-        </div>
-    `
+    container.append(
+        crear('div', { clase: 'alerts-summary' }, [
+            crear('div', { clase: 'alert-counts' }, [
+                crear('span', { clase: 'count critical', texto: String(dashboardData.alertCounts.critical) }),
+                crear('span', { clase: 'count warning', texto: String(dashboardData.alertCounts.warning) }),
+                crear('span', { clase: 'count info', texto: String(dashboardData.alertCounts.info) }),
+            ]),
+            crear(
+                'ul',
+                { clase: 'alert-list' },
+                alerts.map((alert) =>
+                    crear('li', { clase: `alert-item ${alert.type}` }, [
+                        crear('span', { clase: 'alert-time', texto: alert.time }),
+                        crear('span', { clase: 'alert-message', texto: alert.message }),
+                    ]),
+                ),
+            ),
+        ]),
+    )
 
-    container.innerHTML = html
     return container
 }
 
