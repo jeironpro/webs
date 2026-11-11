@@ -274,213 +274,291 @@ const instructionText = (exercise) => {
   return instructions.es || instructions.en || ''
 }
 
+// Construye nodos sin pasar por HTML.
+const crear = (etiqueta, propiedades = {}, hijos = []) => {
+  const nodo = document.createElement(etiqueta)
+
+  Object.entries(propiedades).forEach(([clave, valor]) => {
+    if (valor === undefined || valor === null || valor === false) return
+    if (clave === 'clase') nodo.className = valor
+    else if (clave === 'texto') nodo.textContent = valor
+    else nodo.setAttribute(clave, valor === true ? '' : String(valor))
+  })
+  ;[].concat(hijos).forEach((hijo) => {
+    if (hijo === null || hijo === undefined || hijo === false) return
+    nodo.append(hijo instanceof Node ? hijo : document.createTextNode(String(hijo)))
+  })
+
+  return nodo
+}
+
+const fragmento = (...hijos) => {
+  const trozo = document.createDocumentFragment()
+  trozo.append(...hijos.filter(Boolean))
+  return trozo
+}
+
 // ===== Tarjetas =====
-const exerciseCard = (exercise) => `
-    <article class="exercise-card">
-        <a class="exercise-card-image-link" href="#/ejercicio/${exercise.id}">
-            <img src="${exercise.image}" alt="${exercise.name}" loading="lazy" class="exercise-card-image" />
-        </a>
-        <div class="exercise-card-info">
-            <h3 class="exercise-card-name">
-                <a class="exercise-card-link" href="#/ejercicio/${exercise.id}">${exercise.name}</a>
-            </h3>
-            <div class="exercise-card-badges">
-                ${exercise.body_part ? `<span class="badge">${bodyPartLabel(exercise.body_part)}</span>` : ''}
-                ${exercise.equipment ? `<span class="badge">${equipmentLabel(exercise.equipment)}</span>` : ''}
-            </div>
-            <div class="exercise-card-actions">
-                <button type="button" class="btn btn--soft btn-small" data-favorite="${exercise.id}"
-                    aria-pressed="${favoritesStore.has(exercise.id)}">
-                    ${favoritesStore.has(exercise.id) ? '★ Guardado' : '☆ Guardar'}
-                </button>
-                <button type="button" class="btn btn--outline btn-small" data-compare="${exercise.id}"
-                    aria-pressed="${compareStore.has(exercise.id)}">
-                    ${compareStore.has(exercise.id) ? 'Quitar' : 'Comparar'}
-                </button>
-            </div>
-        </div>
-    </article>
-`
+const exerciseCard = (exercise) => {
+  const guardado = favoritesStore.has(exercise.id)
+  const comparando = compareStore.has(exercise.id)
+  const enlace = { clase: 'exercise-card-link', href: `#/ejercicio/${exercise.id}`, texto: exercise.name }
+
+  return crear('article', { clase: 'exercise-card' }, [
+    crear('a', { clase: 'exercise-card-image-link', href: `#/ejercicio/${exercise.id}` }, [
+      crear('img', {
+        src: exercise.image,
+        alt: exercise.name,
+        loading: 'lazy',
+        clase: 'exercise-card-image',
+      }),
+    ]),
+    crear('div', { clase: 'exercise-card-info' }, [
+      crear('h3', { clase: 'exercise-card-name' }, [crear('a', enlace)]),
+      crear('div', { clase: 'exercise-card-badges' }, [
+        exercise.body_part
+          ? crear('span', { clase: 'badge', texto: bodyPartLabel(exercise.body_part) })
+          : null,
+        exercise.equipment
+          ? crear('span', { clase: 'badge', texto: equipmentLabel(exercise.equipment) })
+          : null,
+      ]),
+      crear('div', { clase: 'exercise-card-actions' }, [
+        crear('button', {
+          type: 'button',
+          clase: 'btn btn--soft btn-small',
+          'data-favorite': exercise.id,
+          'aria-pressed': String(guardado),
+          texto: guardado ? '★ Guardado' : '☆ Guardar',
+        }),
+        crear('button', {
+          type: 'button',
+          clase: 'btn btn--outline btn-small',
+          'data-compare': exercise.id,
+          'aria-pressed': String(comparando),
+          texto: comparando ? 'Quitar' : 'Comparar',
+        }),
+      ]),
+    ]),
+  ])
+}
+
+const seccionVacia = (titulo, texto, enlace) =>
+  crear('div', { clase: 'empty-state' }, [
+    crear(titulo.etiqueta, { clase: 'section-title', texto: titulo.texto }),
+    crear('p', { clase: 'section-subtitle', texto }),
+    enlace,
+  ])
 
 // ===== Vistas =====
 const renderHome = () => {
   const featured = exerciseStore.exercises.slice(0, 6)
 
-  return `
-        <section class="hero">
-            <h1 class="hero-title">Tu catálogo de<br /><span>ejercicios</span></h1>
-            <p class="hero-text">
-                Más de ${exerciseStore.exercises.length.toLocaleString('es-ES')} movimientos. Busca, filtra, guarda y compara.
-            </p>
-            <div class="hero-actions">
-                <a href="#/ejercicios" class="btn no-underline">Explorar ahora</a>
-                <a href="#/favoritos" class="btn btn--outline no-underline">Tus favoritos</a>
-            </div>
-        </section>
-        <section class="page-section">
-            <div class="section-header">
-                <span class="section-kicker">01 · Destacados</span>
-                <h2 class="section-title">Seis para empezar</h2>
-            </div>
-            <div class="exercise-grid">${featured.map(exerciseCard).join('')}</div>
-        </section>
-    `
+  return fragmento(
+    crear('section', { clase: 'hero' }, [
+      crear('h1', { clase: 'hero-title' }, [
+        'Tu catálogo de',
+        crear('br'),
+        crear('span', { texto: 'ejercicios' }),
+      ]),
+      crear('p', {
+        clase: 'hero-text',
+        texto: `Más de ${exerciseStore.exercises.length.toLocaleString('es-ES')} movimientos. Busca, filtra, guarda y compara.`,
+      }),
+      crear('div', { clase: 'hero-actions' }, [
+        crear('a', { href: '#/ejercicios', clase: 'btn no-underline', texto: 'Explorar ahora' }),
+        crear('a', {
+          href: '#/favoritos',
+          clase: 'btn btn--outline no-underline',
+          texto: 'Tus favoritos',
+        }),
+      ]),
+    ]),
+    crear('section', { clase: 'page-section' }, [
+      crear('div', { clase: 'section-header' }, [
+        crear('span', { clase: 'section-kicker', texto: '01 · Destacados' }),
+        crear('h2', { clase: 'section-title', texto: 'Seis para empezar' }),
+      ]),
+      crear('div', { clase: 'exercise-grid' }, featured.map(exerciseCard)),
+    ]),
+  )
 }
 
 const renderExercisesList = () => {
   const filters = filterStore.state
-  const bodyParts = [
-    ...new Set(exerciseStore.exercises.map((exercise) => exercise.body_part)),
-  ].sort()
-  const equipment = [
-    ...new Set(exerciseStore.exercises.map((exercise) => exercise.equipment)),
-  ].sort()
+  const bodyParts = [...new Set(exerciseStore.exercises.map((exercise) => exercise.body_part))].sort()
+  const equipment = [...new Set(exerciseStore.exercises.map((exercise) => exercise.equipment))].sort()
 
   const results = sortExercises(filterExercises(exerciseStore.exercises, filters), filters.sortBy)
 
-  return `
-        <section class="page-section">
-            <header class="section-header">
-                <span class="section-kicker">Catálogo</span>
-                <h1 class="section-title">Ejercicios</h1>
-                <p class="section-subtitle">
-                    ${results.length} de ${exerciseStore.exercises.length} ejercicios
-                </p>
-            </header>
+  const opcion = (valor, etiqueta, activo) =>
+    crear('option', { value: valor, selected: activo, texto: etiqueta })
 
-            <div class="filter-bar">
-                <input type="search" id="search-input" class="filter" placeholder="Buscar ejercicio..."
-                    value="${filters.search}" aria-label="Buscar ejercicio" />
-                <select id="body-part-filter" class="filter" aria-label="Grupo corporal">
-                    <option value="all">Todos los grupos</option>
-                    ${bodyParts
-                      .map(
-                        (part) =>
-                          `<option value="${part}" ${filters.bodyPart === part ? 'selected' : ''}>${bodyPartLabel(part)}</option>`,
-                      )
-                      .join('')}
-                </select>
-                <select id="equipment-filter" class="filter" aria-label="Equipamiento">
-                    <option value="all">Todo el equipamiento</option>
-                    ${equipment
-                      .map(
-                        (item) =>
-                          `<option value="${item}" ${filters.equipment === item ? 'selected' : ''}>${equipmentLabel(item)}</option>`,
-                      )
-                      .join('')}
-                </select>
-                <select id="sort-filter" class="filter" aria-label="Ordenar">
-                    <option value="name" ${filters.sortBy === 'name' ? 'selected' : ''}>Nombre</option>
-                    <option value="body_part" ${filters.sortBy === 'body_part' ? 'selected' : ''}>Grupo corporal</option>
-                    <option value="equipment" ${filters.sortBy === 'equipment' ? 'selected' : ''}>Equipamiento</option>
-                </select>
-                <button type="button" class="btn btn--outline btn-small" id="reset-filters">Limpiar</button>
-            </div>
-
-            ${
-              results.length === 0
-                ? `<div class="empty-state">
-                           <h2 class="section-title">Sin resultados</h2>
-                           <p class="section-subtitle">Prueba con otra búsqueda o limpia los filtros.</p>
-                       </div>`
-                : `<div class="exercise-grid">${results.map(exerciseCard).join('')}</div>`
-            }
-        </section>
-    `
+  return crear('section', { clase: 'page-section' }, [
+    crear('header', { clase: 'section-header' }, [
+      crear('span', { clase: 'section-kicker', texto: 'Catálogo' }),
+      crear('h1', { clase: 'section-title', texto: 'Ejercicios' }),
+      crear('p', {
+        clase: 'section-subtitle',
+        texto: `${results.length} de ${exerciseStore.exercises.length} ejercicios`,
+      }),
+    ]),
+    crear('div', { clase: 'filter-bar' }, [
+      crear('input', {
+        type: 'search',
+        id: 'search-input',
+        clase: 'filter',
+        placeholder: 'Buscar ejercicio...',
+        value: filters.search,
+        'aria-label': 'Buscar ejercicio',
+      }),
+      crear('select', { id: 'body-part-filter', clase: 'filter', 'aria-label': 'Grupo corporal' }, [
+        opcion('all', 'Todos los grupos', filters.bodyPart === 'all'),
+        ...bodyParts.map((part) =>
+          opcion(part, bodyPartLabel(part), filters.bodyPart === part),
+        ),
+      ]),
+      crear('select', { id: 'equipment-filter', clase: 'filter', 'aria-label': 'Equipamiento' }, [
+        opcion('all', 'Todo el equipamiento', filters.equipment === 'all'),
+        ...equipment.map((item) =>
+          opcion(item, equipmentLabel(item), filters.equipment === item),
+        ),
+      ]),
+      crear('select', { id: 'sort-filter', clase: 'filter', 'aria-label': 'Ordenar' }, [
+        opcion('name', 'Nombre', filters.sortBy === 'name'),
+        opcion('body_part', 'Grupo corporal', filters.sortBy === 'body_part'),
+        opcion('equipment', 'Equipamiento', filters.sortBy === 'equipment'),
+      ]),
+      crear('button', {
+        type: 'button',
+        clase: 'btn btn--outline btn-small',
+        id: 'reset-filters',
+        texto: 'Limpiar',
+      }),
+    ]),
+    results.length === 0
+      ? seccionVacia(
+          { etiqueta: 'h2', texto: 'Sin resultados' },
+          'Prueba con otra búsqueda o limpia los filtros.',
+          null,
+        )
+      : crear('div', { clase: 'exercise-grid' }, results.map(exerciseCard)),
+  ])
 }
 
 const renderExerciseDetail = (id) => {
   const exercise = exerciseStore.exercises.find((item) => item.id === id)
 
   if (!exercise) {
-    return `
-            <section class="page-section empty-state">
-                <h1 class="section-title">Ejercicio no encontrado</h1>
-                <p class="section-subtitle">No existe ningún ejercicio con el identificador ${id}.</p>
-                <a href="#/ejercicios" class="btn no-underline">Volver al catálogo</a>
-            </section>
-        `
+    return crear('section', { clase: 'page-section empty-state' }, [
+      crear('h1', { clase: 'section-title', texto: 'Ejercicio no encontrado' }),
+      crear('p', {
+        clase: 'section-subtitle',
+        texto: `No existe ningún ejercicio con el identificador ${id}.`,
+      }),
+      crear('a', { href: '#/ejercicios', clase: 'btn no-underline', texto: 'Volver al catálogo' }),
+    ])
   }
 
   const muscles = asArray(exercise.muscle_group)
   const secondary = asArray(exercise.secondary_muscles)
   const media = exercise.gif_url || exercise.image
   const instructions = instructionText(exercise)
+  const guardado = favoritesStore.has(exercise.id)
+  const comparando = compareStore.has(exercise.id)
 
-  return `
-        <section class="detail-view">
-            <a href="#/ejercicios" class="back-link">← Volver al catálogo</a>
-            <header class="section-header">
-                <div class="badge-row">
-                    ${exercise.body_part ? `<span class="badge-primary">${bodyPartLabel(exercise.body_part)}</span>` : ''}
-                    ${exercise.equipment ? `<span class="badge-secondary">${equipmentLabel(exercise.equipment)}</span>` : ''}
-                </div>
-                <h1 class="section-title">${exercise.name}</h1>
-                <p class="section-subtitle">${exercise.target ? 'Objetivo: ' + muscleLabel(exercise.target) : ''}</p>
-            </header>
-
-            <figure class="detail-media">
-                <img src="${media}" alt="Animación de ${exercise.name}" class="detail-image" />
-                ${exercise.attribution ? `<figcaption class="caption">${exercise.attribution}</figcaption>` : ''}
-            </figure>
-
-            <div class="detail-actions">
-                <button type="button" class="btn btn--soft" data-favorite="${exercise.id}" aria-pressed="${favoritesStore.has(exercise.id)}">
-                    ${favoritesStore.has(exercise.id) ? '★ Quitar de favoritos' : '☆ Guardar en favoritos'}
-                </button>
-                <button type="button" class="btn btn--outline" data-compare="${exercise.id}" aria-pressed="${compareStore.has(exercise.id)}">
-                    ${compareStore.has(exercise.id) ? 'Quitar del comparador' : 'Añadir al comparador'}
-                </button>
-            </div>
-
-            <section class="detail-block">
-                <h2 class="section-title">Instrucciones</h2>
-                <p>${instructions || 'No hay instrucciones disponibles para este ejercicio.'}</p>
-            </section>
-
-            <section class="detail-block">
-                <h2 class="section-title">Músculos implicados</h2>
-                <div class="badge-row">
-                    ${muscles.map((muscle) => `<span class="badge">${muscleLabel(muscle)}</span>`).join('')}
-                </div>
-                ${
-                  secondary.length
-                    ? `<p class="section-subtitle">Secundarios: ${secondary
-                        .map(
-                          (muscle) => `<span class="badge-secondary">${muscleLabel(muscle)}</span>`,
-                        )
-                        .join(' ')}</p>`
-                    : ''
-                }
-            </section>
-        </section>
-    `
+  return crear('section', { clase: 'detail-view' }, [
+    crear('a', { href: '#/ejercicios', clase: 'back-link', texto: '← Volver al catálogo' }),
+    crear('header', { clase: 'section-header' }, [
+      crear('div', { clase: 'badge-row' }, [
+        exercise.body_part
+          ? crear('span', { clase: 'badge-primary', texto: bodyPartLabel(exercise.body_part) })
+          : null,
+        exercise.equipment
+          ? crear('span', {
+              clase: 'badge-secondary',
+              texto: equipmentLabel(exercise.equipment),
+            })
+          : null,
+      ]),
+      crear('h1', { clase: 'section-title', texto: exercise.name }),
+      crear('p', {
+        clase: 'section-subtitle',
+        texto: exercise.target ? `Objetivo: ${muscleLabel(exercise.target)}` : '',
+      }),
+    ]),
+    crear('figure', { clase: 'detail-media' }, [
+      crear('img', {
+        src: media,
+        alt: `Animación de ${exercise.name}`,
+        clase: 'detail-image',
+      }),
+      exercise.attribution
+        ? crear('figcaption', { clase: 'caption', texto: exercise.attribution })
+        : null,
+    ]),
+    crear('div', { clase: 'detail-actions' }, [
+      crear('button', {
+        type: 'button',
+        clase: 'btn btn--soft',
+        'data-favorite': exercise.id,
+        'aria-pressed': String(guardado),
+        texto: guardado ? '★ Quitar de favoritos' : '☆ Guardar en favoritos',
+      }),
+      crear('button', {
+        type: 'button',
+        clase: 'btn btn--outline',
+        'data-compare': exercise.id,
+        'aria-pressed': String(comparando),
+        texto: comparando ? 'Quitar del comparador' : 'Añadir al comparador',
+      }),
+    ]),
+    crear('section', { clase: 'detail-block' }, [
+      crear('h2', { clase: 'section-title', texto: 'Instrucciones' }),
+      crear('p', {
+        texto: instructions || 'No hay instrucciones disponibles para este ejercicio.',
+      }),
+    ]),
+    crear('section', { clase: 'detail-block' }, [
+      crear('h2', { clase: 'section-title', texto: 'Músculos implicados' }),
+      crear(
+        'div',
+        { clase: 'badge-row' },
+        muscles.map((muscle) => crear('span', { clase: 'badge', texto: muscleLabel(muscle) })),
+      ),
+      secondary.length
+        ? crear('p', { clase: 'section-subtitle' }, [
+            'Secundarios: ',
+            ...secondary.flatMap((muscle, indice) => [
+              indice ? ' ' : '',
+              crear('span', { clase: 'badge-secondary', texto: muscleLabel(muscle) }),
+            ]),
+          ])
+        : null,
+    ]),
+  ])
 }
 
 const renderFavorites = () => {
   const favorites = exerciseStore.exercises.filter((exercise) => favoritesStore.has(exercise.id))
 
-  return `
-        <section class="page-section">
-            <header class="section-header">
-                <span class="section-kicker">Guardados</span>
-                <h1 class="section-title">Mis favoritos</h1>
-                <p class="section-subtitle">
-                    ${favorites.length} ${favorites.length === 1 ? 'ejercicio guardado' : 'ejercicios guardados'}
-                </p>
-            </header>
-
-            ${
-              favorites.length === 0
-                ? `<div class="empty-state">
-                           <h2 class="section-title">Aún no tienes favoritos</h2>
-                           <p class="section-subtitle">Marca ejercicios con el botón Guardar para tenerlos a mano.</p>
-                           <a href="#/ejercicios" class="btn no-underline">Explorar ejercicios</a>
-                       </div>`
-                : `<div class="exercise-grid">${favorites.map(exerciseCard).join('')}</div>`
-            }
-        </section>
-    `
+  return crear('section', { clase: 'page-section' }, [
+    crear('header', { clase: 'section-header' }, [
+      crear('span', { clase: 'section-kicker', texto: 'Guardados' }),
+      crear('h1', { clase: 'section-title', texto: 'Mis favoritos' }),
+      crear('p', {
+        clase: 'section-subtitle',
+        texto: `${favorites.length} ${favorites.length === 1 ? 'ejercicio guardado' : 'ejercicios guardados'}`,
+      }),
+    ]),
+    favorites.length === 0
+      ? seccionVacia(
+          { etiqueta: 'h2', texto: 'Aún no tienes favoritos' },
+          'Marca ejercicios con el botón Guardar para tenerlos a mano.',
+          crear('a', { href: '#/ejercicios', clase: 'btn no-underline', texto: 'Explorar ejercicios' }),
+        )
+      : crear('div', { clase: 'exercise-grid' }, favorites.map(exerciseCard)),
+  ])
 }
 
 const renderComparator = () => {
@@ -489,15 +567,14 @@ const renderComparator = () => {
     .filter(Boolean)
 
   if (selected.length < 2) {
-    return `
-            <section class="page-section empty-state">
-                <h1 class="section-title">Selecciona al menos dos ejercicios</h1>
-                <p class="section-subtitle">
-                    Añade ejercicios con el botón Comparar del catálogo (máximo ${compareStore.limit}).
-                </p>
-                <a href="#/ejercicios" class="btn no-underline">Ir al catálogo</a>
-            </section>
-        `
+    return crear('section', { clase: 'page-section empty-state' }, [
+      crear('h1', { clase: 'section-title', texto: 'Selecciona al menos dos ejercicios' }),
+      crear('p', {
+        clase: 'section-subtitle',
+        texto: `Añade ejercicios con el botón Comparar del catálogo (máximo ${compareStore.limit}).`,
+      }),
+      crear('a', { href: '#/ejercicios', clase: 'btn no-underline', texto: 'Ir al catálogo' }),
+    ])
   }
 
   const rows = [
@@ -514,58 +591,58 @@ const renderComparator = () => {
     },
   ]
 
-  return `
-        <section class="page-section">
-            <header class="section-header">
-                <span class="section-kicker">Comparador</span>
-                <h1 class="section-title">Comparar ejercicios</h1>
-                <p class="section-subtitle">${selected.length} de ${compareStore.limit} ejercicios seleccionados.</p>
-            </header>
-
-            <div class="table-wrapper">
-                <table class="comparison-table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Atributo</th>
-                            ${selected.map((exercise) => `<th scope="col">${exercise.name}</th>`).join('')}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        ${rows
-                          .map(
-                            (row) => `
-                                    <tr>
-                                        <th scope="row">${row.label}</th>
-                                        ${selected.map((exercise) => `<td>${row.value(exercise)}</td>`).join('')}
-                                    </tr>
-                                `,
-                          )
-                          .join('')}
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="detail-actions">
-                <a href="#/ejercicios" class="btn no-underline">Seguir explorando</a>
-                <button type="button" class="btn btn--outline" id="clear-compare">Vaciar comparador</button>
-            </div>
-        </section>
-    `
+  return crear('section', { clase: 'page-section' }, [
+    crear('header', { clase: 'section-header' }, [
+      crear('span', { clase: 'section-kicker', texto: 'Comparador' }),
+      crear('h1', { clase: 'section-title', texto: 'Comparar ejercicios' }),
+      crear('p', {
+        clase: 'section-subtitle',
+        texto: `${selected.length} de ${compareStore.limit} ejercicios seleccionados.`,
+      }),
+    ]),
+    crear('div', { clase: 'table-wrapper' }, [
+      crear('table', { clase: 'comparison-table' }, [
+        crear('thead', {}, [
+          crear('tr', {}, [
+            crear('th', { scope: 'col', texto: 'Atributo' }),
+            ...selected.map((exercise) => crear('th', { scope: 'col', texto: exercise.name })),
+          ]),
+        ]),
+        crear(
+          'tbody',
+          {},
+          rows.map((row) =>
+            crear('tr', {}, [
+              crear('th', { scope: 'row', texto: row.label }),
+              ...selected.map((exercise) => crear('td', { texto: row.value(exercise) })),
+            ]),
+          ),
+        ),
+      ]),
+    ]),
+    crear('div', { clase: 'detail-actions' }, [
+      crear('a', { href: '#/ejercicios', clase: 'btn no-underline', texto: 'Seguir explorando' }),
+      crear('button', {
+        type: 'button',
+        clase: 'btn btn--outline',
+        id: 'clear-compare',
+        texto: 'Vaciar comparador',
+      }),
+    ]),
+  ])
 }
 
-const renderNotFound = () => `
-    <section class="page-section empty-state">
-        <span class="section-kicker">404</span>
-        <h1 class="section-title">No encontramos lo que buscas</h1>
-        <a href="#/" class="btn no-underline">Volver al inicio</a>
-    </section>
-`
+const renderNotFound = () =>
+  crear('section', { clase: 'page-section empty-state' }, [
+    crear('span', { clase: 'section-kicker', texto: '404' }),
+    crear('h1', { clase: 'section-title', texto: 'No encontramos lo que buscas' }),
+    crear('a', { href: '#/', clase: 'btn no-underline', texto: 'Volver al inicio' }),
+  ])
 
-const renderLoading = (message) => `
-    <section class="page-section empty-state">
-        <p class="section-title">${message}</p>
-    </section>
-`
+const renderLoading = (message) =>
+  crear('section', { clase: 'page-section empty-state' }, [
+    crear('p', { clase: 'section-title', texto: message }),
+  ])
 
 // ===== Shell y rutas =====
 const routes = {
@@ -586,21 +663,26 @@ const mountLayout = () => {
   const root = document.getElementById('root')
   if (!root) return
 
-  root.innerHTML = `
-        <header class="site-header">
-            <a class="site-brand" href="#/">exerciness</a>
-            <nav class="site-nav" aria-label="Navegación principal">
-                <a class="nav-link" href="#/ejercicios">Ejercicios</a>
-                <a class="nav-link" href="#/favoritos">Favoritos</a>
-                <a class="nav-link" href="#/comparar">Comparar</a>
-            </nav>
-            <button type="button" class="btn btn--outline btn-small" id="theme-toggle">Modo oscuro</button>
-        </header>
-        <main id="app" class="site-main"></main>
-        <footer class="site-footer">
-            <p>exerciness · catálogo de ejercicios con datos de ejemplo</p>
-        </footer>
-    `
+  root.replaceChildren(
+    crear('header', { clase: 'site-header' }, [
+      crear('a', { clase: 'site-brand', href: '#/', texto: 'exerciness' }),
+      crear('nav', { clase: 'site-nav', 'aria-label': 'Navegación principal' }, [
+        crear('a', { clase: 'nav-link', href: '#/ejercicios', texto: 'Ejercicios' }),
+        crear('a', { clase: 'nav-link', href: '#/favoritos', texto: 'Favoritos' }),
+        crear('a', { clase: 'nav-link', href: '#/comparar', texto: 'Comparar' }),
+      ]),
+      crear('button', {
+        type: 'button',
+        clase: 'btn btn--outline btn-small',
+        id: 'theme-toggle',
+        texto: 'Modo oscuro',
+      }),
+    ]),
+    crear('main', { id: 'app', clase: 'site-main' }),
+    crear('footer', { clase: 'site-footer' }, [
+      crear('p', { texto: 'exerciness · catálogo de ejercicios con datos de ejemplo' }),
+    ]),
+  )
 }
 
 const updateNav = (route) => {
@@ -616,12 +698,12 @@ const render = () => {
   if (!main) return
 
   if (exerciseStore.loading) {
-    main.innerHTML = renderLoading('Cargando ejercicios...')
+    main.replaceChildren(renderLoading('Cargando ejercicios...'))
     return
   }
 
   if (exerciseStore.error) {
-    main.innerHTML = renderLoading(exerciseStore.error)
+    main.replaceChildren(renderLoading(exerciseStore.error))
     return
   }
 
@@ -629,12 +711,12 @@ const render = () => {
   const caret = document.activeElement?.selectionStart ?? null
 
   const route = parseRoute()
-  let html
-  if (route.view === 'detail') html = renderExerciseDetail(route.id)
-  else if (routes[route.view]) html = routes[route.view]()
-  else html = renderNotFound()
+  let vista
+  if (route.view === 'detail') vista = renderExerciseDetail(route.id)
+  else if (routes[route.view]) vista = routes[route.view]()
+  else vista = renderNotFound()
 
-  main.innerHTML = html
+  main.replaceChildren(vista)
   if (activeId) {
     const focused = document.getElementById(activeId)
     if (focused) {
