@@ -228,7 +228,7 @@ paises.forEach((data) => {
   const inputBuscar = document.getElementById("buscador");
 
   const mostrarPaisesPorContinente = (data) => {
-    contenedorPaises.innerHTML = "";
+    contenedorPaises.replaceChildren();
 
     const paisesVisitados = [];
 

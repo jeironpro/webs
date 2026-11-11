@@ -39,12 +39,6 @@ const prefersReduced = () =>
 
 /* ---------- Utilidades ---------- */
 
-function escapeHtml(s) {
-    return String(s).replace(/[&<>"']/g, c => ({
-        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
-    }[c]));
-}
-
 async function copyText(text) {
     try {
         await navigator.clipboard.writeText(text);
@@ -81,26 +75,40 @@ function tokenRules(lang) {
     ];
 }
 
+function nodo(etiqueta, props = {}, hijos = []) {
+    const el = document.createElement(etiqueta);
+    for (const [clave, valor] of Object.entries(props)) {
+        if (valor === undefined || valor === null || valor === false) continue;
+        if (clave === 'clase') el.className = valor;
+        else if (clave === 'texto') el.textContent = valor;
+        else if (clave === 'disabled' || clave === 'hidden') el[clave] = valor;
+        else el.setAttribute(clave, valor === true ? '' : String(valor));
+    }
+    for (const hijo of [].concat(hijos)) {
+        if (hijo === undefined || hijo === null || hijo === false) continue;
+        el.append(hijo);
+    }
+    return el;
+}
+
 function highlight(code, lang) {
     const rules = tokenRules(lang);
     const combined = new RegExp(rules.map(r => '(' + r.re.source + ')').join('|'), 'g');
-    let out = '';
+    const partes = [];
     let pos = 0;
     let m;
     while ((m = combined.exec(code)) !== null) {
-        out += escapeHtml(code.slice(pos, m.index));
+        if (m.index > pos) partes.push(document.createTextNode(code.slice(pos, m.index)));
         let cls = 'k';
         for (let i = 0; i < rules.length; i++) {
             if (m[i + 1] !== undefined) { cls = rules[i].cls; break; }
         }
-        out += '<span class="tok ' + cls + '">' + escapeHtml(m[0]) + '</span>';
+        partes.push(nodo('span', { clase: 'tok ' + cls, texto: m[0] }));
         pos = m.index + m[0].length;
     }
-    out += escapeHtml(code.slice(pos));
-    return out;
+    if (pos < code.length) partes.push(document.createTextNode(code.slice(pos)));
+    return partes;
 }
-
-/* ---------- Estadísticas (cifras reales, siempre derivadas de los datos) ---------- */
 
 function renderStats() {
     const langs = { java: 0, python: 0 };
@@ -114,9 +122,10 @@ function renderStats() {
         [categories, 'categorías'],
         [files, 'archivos fuente'],
     ];
-    statsEl.innerHTML = items.map(([n, label]) =>
-        '<div class="stat"><b class="tnum">' + n + '</b><span>' + label + '</span></div>'
-    ).join('');
+    statsEl.replaceChildren(...items.map(([n, label]) => nodo('div', { clase: 'stat' }, [
+        nodo('b', { clase: 'tnum', texto: String(n) }),
+        nodo('span', { texto: label }),
+    ])));
 }
 
 /* ---------- Renderizado de tarjetas ---------- */
@@ -132,59 +141,85 @@ function previewLine(code) {
     return lines[0] || '';
 }
 
-function statementHtml(ex) {
-    return ex.statement
-        ? ex.statement.split(/\n{2,}/)
-            .map(p => '<p>' + escapeHtml(p).replace(/\n/g, '<br>') + '</p>')
-            .join('')
-        : '<p>Sin enunciado disponible.</p>';
+function statementNodes(ex) {
+    if (!ex.statement) return [nodo('p', { texto: 'Sin enunciado disponible.' })];
+    return ex.statement.split(/\n{2,}/).map(parrafo => {
+        const p = nodo('p', {});
+        parrafo.split('\n').forEach((linea, i) => {
+            if (i) p.append(nodo('br'));
+            p.append(document.createTextNode(linea));
+        });
+        return p;
+    });
 }
 
-function solutionHtml(ex, idx) {
-    const examples = ex.examples.length
-        ? '<div class="solution__examples"><h4>Ejemplos</h4><ul>' +
-        ex.examples.map(x =>
-            '<li><code>' + escapeHtml(x).replace('→', '<span class="arrow">→</span>') + '</code></li>'
-        ).join('') +
-        '</ul></div>'
-        : '';
+function solutionNodes(ex, idx) {
+    const nodos = [nodo('div', { clase: 'solution__stmt' }, statementNodes(ex))];
 
-    return (
-        '<div class="solution__stmt">' + statementHtml(ex) + '</div>' +
-        examples +
-        '<div class="solution__code">' +
-        '<div class="solution__bar">' +
-        '<span class="solution__label">solución</span>' +
-        '<button class="copy" type="button" data-idx="' + idx + '">copiar</button>' +
-        '</div>' +
-        '<pre><code>' + highlight(ex.code, ex.lang) + '</code></pre>' +
-        '</div>'
-    );
+    if (ex.examples.length) {
+        nodos.push(nodo('div', { clase: 'solution__examples' }, [
+            nodo('h4', { texto: 'Ejemplos' }),
+            nodo('ul', {}, ex.examples.map(ejemplo => {
+                const code = nodo('code', {});
+                const flecha = ejemplo.indexOf('→');
+                if (flecha === -1) {
+                    code.append(document.createTextNode(ejemplo));
+                } else {
+                    code.append(document.createTextNode(ejemplo.slice(0, flecha)));
+                    code.append(nodo('span', { clase: 'arrow', texto: '→' }));
+                    code.append(document.createTextNode(ejemplo.slice(flecha + 1)));
+                }
+                return nodo('li', {}, [code]);
+            })),
+        ]));
+    }
+
+    nodos.push(nodo('div', { clase: 'solution__code' }, [
+        nodo('div', { clase: 'solution__bar' }, [
+            nodo('span', { clase: 'solution__label', texto: 'solución' }),
+            nodo('button', { clase: 'copy', type: 'button', 'data-idx': idx, texto: 'copiar' }),
+        ]),
+        nodo('pre', {}, [nodo('code', {}, highlight(ex.code, ex.lang))]),
+    ]));
+    return nodos;
 }
 
-function cardHtml(ex, idx) {
-    return (
-        '<article class="card reveal" id="ex-' + idx + '">' +
-        '<header class="card__head">' +
-        '<span class="card__badge">[' + ex.lang + ']</span>' +
-        '<span class="card__meta">' + escapeHtml(ex.category.toLowerCase()) + ' · ' + escapeHtml(ex.level.toLowerCase()) + '</span>' +
-        '</header>' +
-        '<h3 class="card__name">' + escapeHtml(ex.name) + '()</h3>' +
-        '<p class="card__file">' + escapeHtml(ex.file) + '</p>' +
-        '<p class="card__preview">' + escapeHtml(previewLine(ex.code)) + '</p>' +
-        '<button class="card__view" type="button" data-idx="' + idx + '">Ver solución →</button>' +
-        '</article>'
-    );
+function cardNode(ex, idx) {
+    return nodo('article', { clase: 'card reveal', id: 'ex-' + idx }, [
+        nodo('header', { clase: 'card__head' }, [
+            nodo('span', { clase: 'card__badge', texto: '[' + ex.lang + ']' }),
+            nodo('span', {
+                clase: 'card__meta',
+                texto: ex.category.toLowerCase() + ' · ' + ex.level.toLowerCase(),
+            }),
+        ]),
+        nodo('h3', { clase: 'card__name', texto: ex.name + '()' }),
+        nodo('p', { clase: 'card__file', texto: ex.file }),
+        nodo('p', { clase: 'card__preview', texto: previewLine(ex.code) }),
+        nodo('button', { clase: 'card__view', type: 'button', 'data-idx': idx, texto: 'Ver solución →' }),
+    ]);
 }
 
 function renderPagination(total) {
     const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
-    const html =
-        '<button class="page-btn" type="button" data-page="prev"' + (state.page <= 1 ? ' disabled' : '') + '>‹ anterior</button>' +
-        '<span class="page-info">página ' + state.page + ' de ' + totalPages + '</span>' +
-        '<button class="page-btn" type="button" data-page="next"' + (state.page >= totalPages ? ' disabled' : '') + '>siguiente ›</button>';
     paginationEls.forEach(el => {
-        el.innerHTML = html;
+        el.replaceChildren(
+            nodo('button', {
+                clase: 'page-btn',
+                type: 'button',
+                'data-page': 'prev',
+                texto: '‹ anterior',
+                disabled: state.page <= 1,
+            }),
+            nodo('span', { clase: 'page-info', texto: 'página ' + state.page + ' de ' + totalPages }),
+            nodo('button', {
+                clase: 'page-btn',
+                type: 'button',
+                'data-page': 'next',
+                texto: 'siguiente ›',
+                disabled: state.page >= totalPages,
+            })
+        );
         el.hidden = totalPages < 2;
     });
 }
@@ -207,7 +242,7 @@ function render() {
     const start = (state.page - 1) * PAGE_SIZE;
     const pageItems = filtered.slice(start, start + PAGE_SIZE);
 
-    resultsEl.innerHTML = pageItems.map(ex => cardHtml(ex, EXERCISES.indexOf(ex))).join('');
+    resultsEl.replaceChildren(...pageItems.map(ex => cardNode(ex, EXERCISES.indexOf(ex))));
     emptyEl.hidden = filtered.length > 0;
     countEl.textContent = filtered.length === EXERCISES.length
         ? EXERCISES.length + ' ejercicios'
@@ -228,7 +263,7 @@ function makeChip(label, value, active) {
 }
 
 function renderChips() {
-    langChipsEl.innerHTML = '';
+    langChipsEl.replaceChildren();
     for (const [value, label] of [['all', 'todos'], ['java', 'java'], ['python', 'python']]) {
         langChipsEl.appendChild(makeChip(label, value, state.lang === value));
     }
@@ -236,7 +271,7 @@ function renderChips() {
     const order = ['Calentamiento', 'Cadenas', 'Lógica', 'Matrices', 'Listas'];
     const cats = order.filter(c => EXERCISES.some(ex => ex.category === c));
     const extras = [...new Set(EXERCISES.map(ex => ex.category))].filter(c => !order.includes(c)).sort();
-    catChipsEl.innerHTML = '';
+    catChipsEl.replaceChildren();
     catChipsEl.appendChild(makeChip('todas', 'all', state.cat === 'all'));
     for (const c of cats.concat(extras)) {
         catChipsEl.appendChild(makeChip(c.toLowerCase(), c, state.cat === c));
@@ -334,7 +369,7 @@ function openSolution(idx) {
     modalBadge.textContent = '[' + ex.lang + ']';
     modalTitle.textContent = ex.name + '()';
     modalMeta.textContent = ex.file + ' · ' + ex.category.toLowerCase() + ' · ' + ex.level.toLowerCase();
-    modalBody.innerHTML = solutionHtml(ex, idx);
+    modalBody.replaceChildren(...solutionNodes(ex, idx));
     modalEl.classList.add('is-open');
     modalEl.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
@@ -412,14 +447,16 @@ function renderCmdk(query) {
         .slice(0, 8);
     cmdkItems = matches;
     cmdkActive = matches.length ? 0 : -1;
-    cmdkResults.innerHTML = matches.length
-        ? matches.map(({ ex, i }, k) =>
-            '<button class="cmdk__item' + (k === cmdkActive ? ' is-active' : '') + '" type="button" data-idx="' + i + '">' +
-            '<span class="cmdk__name">' + escapeHtml(ex.name) + '()</span>' +
-            '<span class="cmdk__lang">[' + ex.lang + ']</span>' +
-            '</button>'
-        ).join('')
-        : '<p class="cmdk__none">Sin coincidencias.</p>';
+    cmdkResults.replaceChildren(...(matches.length
+        ? matches.map(({ ex, i }, k) => nodo('button', {
+            clase: 'cmdk__item' + (k === cmdkActive ? ' is-active' : ''),
+            type: 'button',
+            'data-idx': i,
+        }, [
+            nodo('span', { clase: 'cmdk__name', texto: ex.name + '()' }),
+            nodo('span', { clase: 'cmdk__lang', texto: '[' + ex.lang + ']' }),
+        ]))
+        : [nodo('p', { clase: 'cmdk__none', texto: 'Sin coincidencias.' })]));
 }
 
 function moveCmdk(delta) {
@@ -495,7 +532,7 @@ function initHero() {
     const out = document.getElementById('hero-code-out');
     if (!out) return;
     if (prefersReduced()) {
-        out.innerHTML = highlight(HERO_CODE, 'java');
+        out.replaceChildren(...highlight(HERO_CODE, 'java'));
         return;
     }
     const firstLine = HERO_CODE.split('\n')[0];
@@ -513,7 +550,7 @@ function initHero() {
             setTimeout(step, 26);
         } else {
             caret.remove();
-            out.innerHTML = highlight(HERO_CODE, 'java');
+            out.replaceChildren(...highlight(HERO_CODE, 'java'));
         }
     };
     step();

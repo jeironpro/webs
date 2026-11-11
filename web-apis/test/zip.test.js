@@ -1,8 +1,10 @@
 "use strict";
 
-const { test } = require("node:test");
-const assert = require("node:assert");
-const { crc32, buildZip } = require("../js/zip.js");
+import { test } from "node:test";
+import assert from "node:assert";
+import "../js/zip.js";
+
+const { crc32, buildZip } = globalThis.Zip;
 
 const enc = new TextEncoder();
 

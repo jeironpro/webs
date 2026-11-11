@@ -27,7 +27,7 @@ const limpiarApp = () => {
 };
 
 const renderizarCuadriculaCapos = () => {
-    cuadriculaCapos.innerHTML = '';
+    cuadriculaCapos.replaceChildren();
     caposDroga.forEach(capo => {
         const tarjeta = crearTarjeta(capo, () => mostrarDetalleCapo(capo));
         cuadriculaCapos.appendChild(tarjeta);
@@ -35,7 +35,7 @@ const renderizarCuadriculaCapos = () => {
 };
 
 const renderizarCuadriculaOrganizaciones = () => {
-    cuadriculaOrganizaciones.innerHTML = '';
+    cuadriculaOrganizaciones.replaceChildren();
     organizaciones.forEach(org => {
         const tarjeta = crearTarjeta(org, () => mostrarDetalleOrganizacion(org), true);
         cuadriculaOrganizaciones.appendChild(tarjeta);
@@ -77,7 +77,7 @@ const crearTarjeta = (item, clickHandler, esOrg = false) => {
 
 const mostrarDetalleCapo = (capo) => {
     window.scrollTo({ top: 0, behavior: 'instant' });
-    contenidoDetalle.innerHTML = ''; 
+    contenidoDetalle.replaceChildren(); 
 
     const cabecera = crearCabeceraDetalle(capo.imagen, capo.nombre, capo.rol);
     const cuadriculaInfo = crearElemento('div', 'cuadricula-info');
@@ -130,7 +130,7 @@ const mostrarDetalleCapo = (capo) => {
 
 const mostrarDetalleOrganizacion = (org) => {
     window.scrollTo({ top: 0, behavior: 'instant' });
-    contenidoDetalle.innerHTML = ''; 
+    contenidoDetalle.replaceChildren(); 
 
     const cabecera = crearCabeceraDetalle(org.imagen, org.nombre, `Organización Criminal - ${org.estado}`);
     const cuadriculaInfo = crearElemento('div', 'cuadricula-info');

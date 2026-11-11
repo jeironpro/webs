@@ -8,10 +8,10 @@
  * Uso: node tools/smoke-test.js
  */
 
-'use strict';
+import fs from 'node:fs';
+import { fileURLToPath } from 'node:url';
 
-const fs = require('fs');
-const path = require('path');
+const leer = (rel) => fs.readFileSync(fileURLToPath(new URL(rel, import.meta.url)), 'utf8');
 
 function classListFor(el) {
     const set = new Set();
@@ -30,29 +30,58 @@ function classListFor(el) {
 class El {
     constructor(tag) {
         this.tagName = tag;
+        this.nodeType = 1;
         this.children = [];
         this.listeners = {};
         this.dataset = {};
         this.attrs = {};
         this.hidden = false;
+        this.disabled = false;
+        this.className = '';
         this.textContent = '';
         this.value = '';
         this.style = {};
         this.classList = classListFor(this);
-        this._innerHTML = '';
     }
-    set innerHTML(v) { this._innerHTML = v; this.children = []; }
-    get innerHTML() { return this._innerHTML; }
+    append(...nodos) {
+        for (const nodo of nodos) {
+            if (nodo !== null && nodo !== undefined) this.children.push(nodo);
+        }
+    }
+    replaceChildren(...nodos) {
+        this.children = [];
+        this.append(...nodos);
+    }
+    appendChild(child) { this.children.push(child); return child; }
     addEventListener(type, fn) { (this.listeners[type] ||= []).push(fn); }
-    appendChild(child) { this.children.push(child); }
     querySelectorAll() { return []; }
     querySelector() { return null; }
     scrollIntoView() { }
     setAttribute(k, v) { this.attrs[k] = v; }
+    getAttribute(k) { return this.attrs[k]; }
     focus() { }
     remove() { }
     before() { }
+    select() { }
 }
+
+const textoDe = (el) => {
+    if (!el) return '';
+    if (el.nodeType === 3) return el.textContent;
+    return (el.textContent || '') + (el.children || []).map(textoDe).join('');
+};
+
+const tieneClase = (el, clase) => (el.className || '').split(/\s+/).includes(clase);
+
+function recoger(el, pred, acc = []) {
+    for (const hijo of el.children || []) {
+        if (pred(hijo)) acc.push(hijo);
+        recoger(hijo, pred, acc);
+    }
+    return acc;
+}
+
+const conClase = (el, clase) => recoger(el, (hijo) => tieneClase(hijo, clase));
 
 const failures = [];
 function check(name, cond) {
@@ -85,55 +114,54 @@ async function main() {
         execCommand: () => true,
     };
 
-    const dataSrc = fs.readFileSync(path.join(__dirname, '..', 'js', 'data.js'), 'utf8');
-    const appSrc = fs.readFileSync(path.join(__dirname, '..', 'js', 'app.js'), 'utf8');
-    eval(dataSrc);
-    eval(appSrc);
+    eval(leer('../js/data.js'));
+    eval(leer('../js/app.js'));
 
     const data = global.window.EXERCISES;
-    const resultsHtml = () => elements['results'].innerHTML;
+    const resultados = () => elements['results'];
+    const tarjetas = () => recoger(resultados(), (el) => el.tagName === 'article');
+    const textoResultados = () => textoDe(resultados());
+    const textoPaginacion = () => textoDe(elements['pagination-top']);
+    const botonPagina = (page) => recoger(elements['pagination-top'], (el) => el.attrs['data-page'] === page)[0];
     const countText = () => elements['count'].textContent;
-    const paginationHtml = () => elements['pagination-top'].innerHTML;
 
     console.log('Smoke test');
     check('se cargaron los ejercicios (222)', data.length === 222);
-    check('la banda de stats muestra cifras reales', elements['stats'].innerHTML.includes('222'));
+    check('la banda de stats muestra cifras reales', textoDe(elements['stats']).includes('222'));
     check('los chips de lenguaje se renderizan', elements['lang-chips'].children.map(c => c.textContent).join(',') === 'todos,java,python');
     check('los chips de categoría se renderizan',
         elements['cat-chips'].children.some(c => c.textContent === 'todas') &&
         elements['cat-chips'].children.some(c => c.textContent === 'cadenas') &&
         elements['cat-chips'].children.some(c => c.textContent === 'lógica'));
     check('el contador muestra el total', countText().includes('222 ejercicios'));
-    check('el código del hero se resalta', elements['hero-code-out'].innerHTML.includes('class="tok '));
+    check('el código del hero se resalta', conClase(elements['hero-code-out'], 'tok').length > 0);
 
     /* Paginación inicial */
-    const firstPageCards = (resultsHtml().match(/<article/g) || []).length;
-    check('la página 1 muestra 10 tarjetas', firstPageCards === 10);
-    check('la paginación muestra página 1 de 23', paginationHtml().includes('página 1 de 23'));
-    check('el botón anterior está deshabilitado en la página 1', paginationHtml().includes('data-page="prev" disabled'));
-    check('la primera tarjeta contiene el ejercicio correcto', resultsHtml().includes(data[0].name + '()'));
-    check('las tarjetas incluyen el botón ver solución', resultsHtml().includes('Ver solución'));
-    check('las tarjetas muestran la línea de preview', resultsHtml().includes('card__preview'));
+    check('la página 1 muestra 10 tarjetas', tarjetas().length === 10);
+    check('la paginación muestra página 1 de 23', textoPaginacion().includes('página 1 de 23'));
+    check('el botón anterior está deshabilitado en la página 1', botonPagina('prev').disabled === true);
+    check('la primera tarjeta contiene el ejercicio correcto', textoDe(tarjetas()[0]).includes(data[0].name + '()'));
+    check('las tarjetas incluyen el botón ver solución', textoResultados().includes('Ver solución'));
+    check('las tarjetas muestran la línea de preview', conClase(resultados(), 'card__preview').length > 0);
     check('cada ejercicio tiene lenguaje válido', data.every(e => ['java', 'python'].includes(e.lang)));
     check('cada ejercicio tiene categoría y nivel', data.every(e => e.category && e.level));
 
     /* Siguiente página */
-    const pagTop = elements['pagination-top'];
-    fakeClick(pagTop, 'click', '.page-btn', { disabled: false, dataset: { page: 'next' } });
-    check('la página 2 empieza en el ejercicio 11', resultsHtml().includes(data[10].name + '()'));
-    check('la paginación muestra página 2 de 23', paginationHtml().includes('página 2 de 23'));
+    fakeClick(elements['pagination-top'], 'click', '.page-btn', { disabled: false, dataset: { page: 'next' } });
+    check('la página 2 empieza en el ejercicio 11', textoResultados().includes(data[10].name + '()'));
+    check('la paginación muestra página 2 de 23', textoPaginacion().includes('página 2 de 23'));
 
     /* Modal: abrir la solución desde la tarjeta (filtro python, índice correcto) */
     fakeClick(elements['lang-chips'], 'click', '.chip', elements['lang-chips'].children[2]); // chip python
     const firstPythonIdx = data.findIndex(e => e.lang === 'python');
-    const firstCopyIdx = Number(resultsHtml().match(/data-idx="(\d+)"/)[1]);
-    check('el filtro python reinicia a la página 1', paginationHtml().includes('página 1 de 8'));
+    const firstCopyIdx = Number(conClase(tarjetas()[0], 'card__view')[0].attrs['data-idx']);
+    check('el filtro python reinicia a la página 1', textoPaginacion().includes('página 1 de 8'));
     check('la primera tarjeta python tiene el índice correcto', firstCopyIdx === firstPythonIdx);
     await openCardSolution(firstPythonIdx);
     check('el modal se abre', elements['modal'].classList.contains('is-open'));
     check('el modal muestra el ejercicio correcto', elements['modal-title'].textContent === data[firstPythonIdx].name + '()');
-    check('el modal muestra la solución resaltada', elements['modal-body'].innerHTML.includes('class="tok '));
-    check('el modal incluye el botón copiar', elements['modal-body'].innerHTML.includes('class="copy"'));
+    check('el modal muestra la solución resaltada', conClase(elements['modal-body'], 'tok').length > 0);
+    check('el modal incluye el botón copiar', conClase(elements['modal-body'], 'copy').length > 0);
     await elements['modal-body'].listeners['click'][0]({
         target: {
             closest: sel => (sel === '.copy'
@@ -152,8 +180,8 @@ async function main() {
     searchEl.listeners['input'][0]();
     check('la búsqueda filtra resultados',
         countText().includes('2 de 222') &&
-        resultsHtml().includes('cadenaEfervescencia()') &&
-        paginationHtml().includes('página 1 de'));
+        textoResultados().includes('cadenaEfervescencia()') &&
+        textoPaginacion().includes('página 1 de'));
 
     /* Estado vacío y limpiar filtros */
     searchEl.value = 'zzznadaexiste';
@@ -165,7 +193,7 @@ async function main() {
         countText().includes('222 ejercicios') &&
         elements['empty'].hidden === true &&
         searchEl.value === '' &&
-        paginationHtml().includes('página 1 de 23'));
+        textoPaginacion().includes('página 1 de 23'));
 
     /* Paleta ⌘K: abre con atajo, filtra y abre el ejercicio */
     keyHandlers[0]({ metaKey: true, key: 'k', preventDefault() { } });
@@ -173,10 +201,10 @@ async function main() {
     const cmdkInput = elements['cmdk-input'];
     cmdkInput.value = 'diferencia21';
     cmdkInput.listeners['input'][0]();
-    check('la paleta filtra por nombre', elements['cmdk-results'].innerHTML.includes('diferencia21'));
+    check('la paleta filtra por nombre', textoDe(elements['cmdk-results']).includes('diferencia21'));
     keyHandlers[0]({ key: 'Enter', preventDefault() { } });
     check('enter en la paleta abre el ejercicio en el modal y cierra',
-        resultsHtml().includes('diferencia21()') &&
+        textoResultados().includes('diferencia21()') &&
         elements['cmdk'].classList.contains('is-open') === false &&
         elements['modal'].classList.contains('is-open'));
     check('la paleta se restableció a todos los ejercicios', countText().includes('222 ejercicios'));
