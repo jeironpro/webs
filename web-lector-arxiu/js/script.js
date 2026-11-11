@@ -1,4 +1,3 @@
-const body = document.querySelector("body");
 const contenidor = document.getElementById("contenidor");
 const titolArxiu = document.getElementById("titol-arxiu");
 const arxiu = document.getElementById("arxiu");
@@ -18,7 +17,6 @@ arxiu.addEventListener("change", function(event) {
         };
 
         contenidor.style.display = "none";
-        body.style.height = "100vh";
         lector.readAsText(arxiuLlegit);
     }
 });
