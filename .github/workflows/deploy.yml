@@ -62,12 +62,6 @@ jobs:
           rm -rf site/web-programmer-day/assets
           cp -r web-programmer-day/dist/. site/web-programmer-day/
 
-          # web-generador-cv: dist/ ya compilado en el repo
-          if [ -d web-generador-cv/dist ]; then
-            mkdir -p site/web-generador-cv
-            rsync -a web-generador-cv/dist/ site/web-generador-cv/
-          fi
-
           touch site/.nojekyll
 
       - name: Setup Pages

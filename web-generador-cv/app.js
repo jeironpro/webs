@@ -1,4 +1,4 @@
-import { jsPDF } from 'jspdf';
+const { jsPDF } = window.jspdf;
 import { theme } from './shared/theme.js';
 import { labels } from './shared/i18n.js';
 import { LANG_CODES, LANG_MAP } from './shared/constants.js';
