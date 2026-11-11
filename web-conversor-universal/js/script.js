@@ -193,7 +193,7 @@ const listaConversiones = document.getElementById("lista-conversiones");
 const contenedorConversion = document.getElementById("contenedor-conversion");
 
 const mostraSelectoresCategoria = function (categoria) {
-    contenedorConversion.innerHTML = "";
+    contenedorConversion.replaceChildren();
 
     const inputObj = document.createElement("input");
     inputObj.type = "number";

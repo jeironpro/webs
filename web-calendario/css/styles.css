@@ -1,152 +1,140 @@
-:root {
-    --color-acento: #bb86fc;
-    --color-fondo: #121212;
-    --color-fondo-mes: #1e1e1e;
-    --color-hover: #333333;
-    --color-texto-encabezado: #b0b0b0;
-    --color-texto-principal: #e0e0e0;
-    --color-titulo: #ffffff;
-    --fuente-principal: "Poppins", sans-serif;
-}
+@layer base {
+    :root {
+        --color-acento: #bb86fc;
+        --color-fondo: #121212;
+        --color-fondo-mes: #1e1e1e;
+        --color-hover: #333333;
+        --color-texto-encabezado: #b0b0b0;
+        --color-texto-principal: #e0e0e0;
+        --color-titulo: #ffffff;
+        --fuente-principal: "Poppins", sans-serif;
+    }
 
-* {
-    box-sizing: border-box;
-}
+    * {
+        box-sizing: border-box;
+    }
 
-body {
-    background-color: var(--color-fondo);
-    color: var(--color-texto-principal);
-    font-family: var(--fuente-principal);
-    margin: 0;
-    padding: 0;
-}
+    body {
+        background-color: var(--color-fondo);
+        color: var(--color-texto-principal);
+        font-family: var(--fuente-principal);
+        margin: 0;
+        padding: 0;
+    }
 
-.celda-dia {
-    align-items: center;
-    border-radius: 50%;
-    cursor: default;
-    display: flex;
-    height: 35px;
-    justify-content: center;
-    transition:
-        background-color 0.2s ease,
-        color 0.2s ease;
-    width: 35px;
-}
+    .celda-dia {
+        align-items: center;
+        border-radius: 50%;
+        cursor: default;
+        display: flex;
+        height: 35px;
+        justify-content: center;
+        transition:
+            background-color 0.2s ease,
+            color 0.2s ease;
+        width: 35px;
+    }
 
-.celda-dia:not(.vacia):hover {
-    background-color: var(--color-acento);
-    color: var(--color-fondo);
-    cursor: pointer;
-    font-weight: 600;
-}
+    .celda-dia:not(.vacia):hover {
+        background-color: var(--color-acento);
+        color: var(--color-fondo);
+        cursor: pointer;
+        font-weight: 600;
+    }
 
-.celda-encabezado {
-    color: var(--color-texto-encabezado);
-    font-size: 0.85em;
-    font-weight: 500;
-    text-align: center;
-}
+    .celda-encabezado {
+        color: var(--color-texto-encabezado);
+        font-size: 0.85em;
+        font-weight: 500;
+        text-align: center;
+    }
 
-.contenedor-calendario {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    justify-content: center;
-    margin: 40px auto;
-    max-width: 1200px;
-    padding: 0 20px;
-}
-
-.contenedor-mes {
-    background-color: var(--color-fondo-mes);
-    border-radius: 16px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    padding: 24px;
-    width: 300px;
-}
-
-.cuerpo-dias {
-    display: grid;
-    grid-gap: 8px;
-    grid-template-columns: repeat(7, 1fr);
-    justify-items: center;
-}
-
-.fila-encabezados {
-    display: grid;
-    grid-gap: 8px;
-    grid-template-columns: repeat(7, 1fr);
-    margin-bottom: 12px;
-}
-
-.tabla-dias {
-    width: 100%;
-}
-
-.titulo {
-    color: var(--color-titulo);
-    font-size: 32px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    margin-top: 40px;
-    text-align: center;
-    text-transform: uppercase;
-}
-
-.titulo-mes {
-    color: var(--color-acento);
-    font-size: 1.25em;
-    font-weight: 600;
-    margin-bottom: 20px;
-    text-align: center;
-    text-transform: uppercase;
-}
-
-@media screen and (max-width: 1024px) {
     .contenedor-calendario {
-        gap: 20px;
-        max-width: 800px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        justify-content: center;
+        margin: 40px auto;
+        max-width: 1200px;
+        padding: 0 20px;
+    }
+
+    .contenedor-mes {
+        background-color: var(--color-fondo-mes);
+        border-radius: 16px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        padding: 24px;
+        width: 300px;
+    }
+
+    .cuerpo-dias {
+        display: grid;
+        grid-gap: 8px;
+        grid-template-columns: repeat(7, 1fr);
+        justify-items: center;
+    }
+
+    .fila-encabezados {
+        display: grid;
+        grid-gap: 8px;
+        grid-template-columns: repeat(7, 1fr);
+        margin-bottom: 12px;
+    }
+
+    .tabla-dias {
+        width: 100%;
+    }
+
+    .titulo {
+        color: var(--color-titulo);
+        font-size: 32px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        margin-top: 40px;
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+    .titulo-mes {
+        color: var(--color-acento);
+        font-size: 1.25em;
+        font-weight: 600;
+        margin-bottom: 20px;
+        text-align: center;
+        text-transform: uppercase;
     }
 }
 
-@media screen and (max-width: 768px) {
+@layer responsive {
+    .celda-dia {
+        font-size: 0.8em;
+        height: 28px;
+        width: 28px;
+    }
+
     .contenedor-calendario {
         align-items: center;
         flex-direction: column;
-        gap: 20px;
-        margin: 20px auto;
+        gap: 15px;
+        margin: 10px auto;
+        max-width: 800px;
+        padding: 0 5px;
         width: 100%;
     }
 
     .contenedor-mes {
         margin: 0 auto;
         max-width: 300px;
+        padding: 12px;
         width: 100%;
     }
 
-    .titulo {
-        font-size: 24px;
-        margin-top: 20px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .celda-dia {
-        height: 30px;
-        width: 30px;
-        font-size: 0.9em;
+    .cuerpo-dias {
+        grid-gap: 4px;
     }
 
-    .contenedor-calendario {
-        gap: 15px;
-        margin: 10px auto;
-        padding: 0 10px;
-    }
-
-    .contenedor-mes {
-        padding: 16px;
-        width: 100%;
+    .fila-encabezados {
+        grid-gap: 4px;
     }
 
     .titulo {
@@ -158,25 +146,80 @@ body {
         font-size: 1.1em;
         margin-bottom: 15px;
     }
-}
 
-@media screen and (max-width: 350px) {
-    .contenedor-calendario {
-        padding: 0 5px;
+    @media (min-width: 351px) {
+        .celda-dia {
+            font-size: 0.9em;
+            height: 30px;
+            width: 30px;
+        }
+
+        .contenedor-calendario {
+            padding: 0 10px;
+        }
+
+        .contenedor-mes {
+            padding: 16px;
+        }
+
+        .cuerpo-dias {
+            grid-gap: 8px;
+        }
+
+        .fila-encabezados {
+            grid-gap: 8px;
+        }
     }
+    @media (min-width: 481px) {
+        .celda-dia {
+            font-size: revert-layer;
+            height: 35px;
+            width: 35px;
+        }
 
-    .contenedor-mes {
-        padding: 12px;
+        .contenedor-calendario {
+            gap: 20px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .contenedor-mes {
+            padding: 24px;
+        }
+
+        .titulo {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+
+        .titulo-mes {
+            font-size: 1.25em;
+            margin-bottom: 20px;
+        }
     }
+    @media (min-width: 769px) {
+        .contenedor-calendario {
+            align-items: revert-layer;
+            flex-direction: revert-layer;
+            margin: 40px auto;
+            width: revert-layer;
+        }
 
-    .fila-encabezados,
-    .cuerpo-dias {
-        grid-gap: 4px;
+        .contenedor-mes {
+            margin: revert-layer;
+            max-width: revert-layer;
+            width: 300px;
+        }
+
+        .titulo {
+            font-size: 32px;
+            margin-top: 40px;
+        }
     }
-
-    .celda-dia {
-        height: 28px;
-        width: 28px;
-        font-size: 0.8em;
+    @media (min-width: 1025px) {
+        .contenedor-calendario {
+            gap: 30px;
+            max-width: 1200px;
+        }
     }
 }
