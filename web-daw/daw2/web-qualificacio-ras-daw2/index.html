@@ -37,9 +37,14 @@
     </main>
     
     <footer class="peu-pagina">
-        <p>&copy; Tots els drets reservats - 2025 JeironPro</p>
+        <p>&copy; Tots els drets reservats - <span data-anio>2025</span> JeironPro</p>
     </footer>
     
     <script src="js/ras.js"></script>
+    <script>
+        document.querySelectorAll("[data-anio]").forEach((nodo) => {
+            nodo.textContent = new Date().getFullYear();
+        });
+    </script>
 </body>
 </html>

@@ -24,27 +24,33 @@ header {
     background-color: var(--fondo);
     color: var(--texto);
     display: flex;
-    height: 80px;
     justify-content: center;
+    padding: 1rem;
     position: sticky;
     top: 0;
     width: 100%;
     z-index: 1000;
 }
 
+header h1 {
+    font-size: clamp(1.1rem, 4.5vw, 1.75rem);
+    text-align: center;
+}
+
 main {
-    align-items: center;
     display: flex;
-    height: 100%;
     justify-content: center;
+    padding: 1rem;
     width: 100%;
 }
 
 .contenidor-setmanes {
     display: grid;
     gap: 10px;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
     margin: auto;
+    max-width: 1200px;
+    width: 100%;
 }
 
 .setmana {
@@ -52,11 +58,10 @@ main {
     box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
-    height: 200px;
     justify-content: center;
-    margin: 15px;
+    min-height: 200px;
     position: relative;
-    width: 220px;
+    width: 100%;
 }
 
 .setmana .numero-setmana,
@@ -78,7 +83,7 @@ main {
     align-items: center;
     border-bottom: 1px solid var(--borde);
     gap: 5px;
-    padding-left: 3px;
+    padding: 0.15rem 0.5rem;
     position: relative;
 }
 
@@ -92,4 +97,22 @@ main {
     padding: 3px;
     position: absolute;
     right: 5px;
+}
+
+@media (min-width: 640px) {
+    .contenidor-setmanes {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 1024px) {
+    .contenidor-setmanes {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 1320px) {
+    .contenidor-setmanes {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
 }
