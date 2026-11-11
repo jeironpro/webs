@@ -334,255 +334,371 @@ function initParticles() {
     };
 }
 
+const SVG_NS = 'http://www.w3.org/2000/svg';
+
+function anadir(destino, hijos) {
+    for (const hijo of [].concat(hijos)) {
+        if (hijo === undefined || hijo === null || hijo === false) continue;
+        destino.append(hijo instanceof Node ? hijo : document.createTextNode(String(hijo)));
+    }
+    return destino;
+}
+
+function crear(etiqueta, props = {}, hijos = []) {
+    const el = document.createElement(etiqueta);
+    for (const [clave, valor] of Object.entries(props)) {
+        if (valor === undefined || valor === null || valor === false) continue;
+        if (clave === 'clase') el.className = cn(...[].concat(valor));
+        else if (clave === 'texto') el.textContent = valor;
+        else if (clave === 'on') { for (const [evento, fn] of Object.entries(valor)) el.addEventListener(evento, fn); }
+        else el.setAttribute(clave, valor === true ? '' : String(valor));
+    }
+    anadir(el, hijos);
+    return el;
+}
+
+function fragmento(...hijos) {
+    return anadir(document.createDocumentFragment(), hijos);
+}
+
+function svg(etiqueta, props = {}, hijos = []) {
+    const el = document.createElementNS(SVG_NS, etiqueta);
+    for (const [clave, valor] of Object.entries(props)) el.setAttribute(clave, valor);
+    anadir(el, hijos);
+    return el;
+}
+
+const icono = (name, cls = '') => crear('span', { clase: ['material-symbols-outlined', cls], texto: name });
+
 function input(label, value, handler, type = 'text', placeholder = '', colSpan = 1) {
-    const span = colSpan === 2 ? ' md:col-span-2' : '';
-    return `<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div class="${span}">
-            <label class="block">
-                <span class="label-base">${label}</span>
-                <input type="${type}" value="${value}" placeholder="${placeholder}" class="input-base" oninput="${handler}(this.value)">
-            </label>
-        </div>
-    </div>`;
+    const span = colSpan === 2 ? 'md:col-span-2' : '';
+    return crear('div', { clase: 'grid grid-cols-1 md:grid-cols-2 gap-4' }, [
+        crear('div', { clase: span }, [
+            crear('label', { clase: 'block' }, [
+                crear('span', { clase: 'label-base', texto: label }),
+                crear('input', {
+                    clase: 'input-base',
+                    type,
+                    value,
+                    placeholder,
+                    on: { input: (e) => handler(e.target.value) },
+                }),
+            ]),
+        ]),
+    ]);
 }
 
 function arrayField(label, values, addHandler, removeHandler, placeholder) {
-    let html = `<div class="array-field"><span class="label-base">${label}</span>`;
-    values.forEach((v, i) => {
-        html += `<div class="array-item" style="animation-delay:${i * 0.03}s">
-            <input value="${v}" placeholder="${placeholder}" class="input-base flex-1" oninput="${addHandler}('${i}', this.value)">
-            <button type="button" class="remove-btn" onclick="${removeHandler}(${i})">×</button>
-        </div>`;
-    });
-    html += `<button type="button" class="array-add-btn" onclick="${addHandler}('new')">
-        <span class="plus-icon">+</span> Añadir
-    </button></div>`;
-    return html;
+    const items = values.map((v, i) => crear('div', { clase: 'array-item', style: `animation-delay:${i * 0.03}s` }, [
+        crear('input', {
+            clase: 'input-base flex-1',
+            value: v,
+            placeholder,
+            on: { input: (e) => window[addHandler](String(i), e.target.value) },
+        }),
+        crear('button', {
+            clase: 'remove-btn',
+            type: 'button',
+            texto: '\u00d7',
+            on: { click: () => window[removeHandler](i) },
+        }),
+    ]));
+    return crear('div', { clase: 'array-field' }, [
+        crear('span', { clase: 'label-base', texto: label }),
+        ...items,
+        crear('button', {
+            clase: 'array-add-btn',
+            type: 'button',
+            on: { click: () => window[addHandler]('new') },
+        }, [crear('span', { clase: 'plus-icon', texto: '+' }), ' Añadir']),
+    ]);
+}
+
+const botonAnadir = (texto, fn) => crear('button', {
+    clase: 'inline-flex items-center gap-1.5 text-sm font-semibold text-navy-600 hover:text-navy-700 transition-colors mt-4',
+    type: 'button',
+    on: { click: fn },
+}, [
+    crear('span', {
+        clase: 'w-5 h-5 rounded-full border-2 border-navy-400 flex items-center justify-center text-xs font-bold',
+        texto: '+',
+    }),
+    ` ${texto}`,
+]);
+
+function degradado(color) {
+    const [desde, hasta] = color.split(' ');
+    return `linear-gradient(135deg, var(--${desde.replace('from-', '')}), var(--${hasta}))`;
 }
 
 function entryCard(title, color, children, onDelete) {
-    return `<div class="entry-card">
-        <div class="entry-card-title">
-            <div class="entry-card-color-bar" style="background:linear-gradient(135deg, var(--${color.split(' ')[0].replace('from-','')}), var(--${color.split(' ')[1]}))"></div>
-            <span class="entry-card-title-text">${title}</span>
-        </div>
-        ${children}
-        ${onDelete ? `<button type="button" class="entry-card-delete" onclick="${onDelete}">×</button>` : ''}
-    </div>`;
+    return crear('div', { clase: 'entry-card' }, [
+        title
+            ? crear('div', { clase: 'entry-card-title' }, [
+                crear('div', { clase: 'entry-card-color-bar', style: `background:${degradado(color)}` }),
+                crear('span', { clase: 'entry-card-title-text', texto: title }),
+            ])
+            : null,
+        children,
+        onDelete
+            ? crear('button', {
+                clase: 'entry-card-delete',
+                type: 'button',
+                texto: '\u00d7',
+                on: { click: () => window[onDelete]() },
+            })
+            : null,
+    ]);
 }
 
 function sectionCard(sec, idx) {
     const open = store.profileExpanded_[sec.key];
     const content = renderSectionContent(sec, store.data_.profiles[store.activeLang_] || EMPTY_PROFILE, idx);
-    return `<div class="glass-card overflow-hidden transition-all duration-300 ${open ? ' shadow-xl' : ''}">
-        <button type="button" class="section-card-btn ${open ? 'open' : ''}" onclick="toggleProfile('${sec.key}')">
-            <div class="flex items-center gap-3.5">
-                <div class="section-card-icon ${open ? ' scale-110' : ''}" style="background:linear-gradient(135deg, var(--${sec.color.split(' ')[0].replace('from-','')}), var(--${sec.color.split(' ')[1]}))">
-                    ${icon(sec.icon, 'text-white text-sm')}
-                </div>
-                <span class="section-card-title">${sec.label}${open && idx !== undefined ? '<span class="section-card-badge">Paso ' + (idx + 1) + '</span>' : ''}</span>
-            </div>
-            <div class="section-card-arrow ${open ? 'section-card-arrow-rotate' : ''}">
-                ${icon('expand_more', 'w-4 h-4')}
-            </div>
-        </button>
-        ${open ? '<div class="px-6 pb-6 space-y-5 animate-slide-down">' + content + '</div>' : ''}
-    </div>`;
+    return crear('div', { clase: ['glass-card overflow-hidden transition-all duration-300', open && 'shadow-xl'] }, [
+        crear('button', {
+            clase: ['section-card-btn', open && 'open'],
+            type: 'button',
+            on: { click: () => window.toggleProfile(sec.key) },
+        }, [
+            crear('div', { clase: 'flex items-center gap-3.5' }, [
+                crear('div', {
+                    clase: ['section-card-icon', open && 'scale-110'],
+                    style: `background:${degradado(sec.color)}`,
+                }, [icono(sec.icon, 'text-white text-sm')]),
+                crear('span', { clase: 'section-card-title' }, [
+                    sec.label,
+                    open && idx !== undefined
+                        ? crear('span', { clase: 'section-card-badge', texto: `Paso ${idx + 1}` })
+                        : null,
+                ]),
+            ]),
+            crear('div', { clase: ['section-card-arrow', open && 'section-card-arrow-rotate'] }, [
+                icono('expand_more', 'w-4 h-4'),
+            ]),
+        ]),
+        open
+            ? crear('div', { clase: 'px-6 pb-6 space-y-5 animate-slide-down' }, [content])
+            : null,
+    ]);
 }
 
 function renderSectionContent(sec, prof, idx) {
     switch (sec.key) {
         case 'intro':
-            return cn(
-                input('Título profesional', prof.title, 'setProf', 'text', 'Ej: Desarrollador Full Stack'),
-                `<div class="mt-4"><label class="block"><span class="label-base">Descripción corta</span>
-                    <textarea rows="3" class="input-base resize-none" oninput="setProf('shortDescription', this.value)" placeholder="Descripción breve...">${prof.shortDescription}</textarea>
-                </label></div>`
+            return fragmento(
+                input('Título profesional', prof.title, (v) => window.setProf('title', v), 'text', 'Ej: Desarrollador Full Stack'),
+                crear('div', { clase: 'mt-4' }, [
+                    crear('label', { clase: 'block' }, [
+                        crear('span', { clase: 'label-base', texto: 'Descripción corta' }),
+                        crear('textarea', {
+                            clase: 'input-base resize-none',
+                            rows: '3',
+                            placeholder: 'Descripción breve...',
+                            on: { input: (e) => window.setProf('shortDescription', e.target.value) },
+                        }, [prof.shortDescription]),
+                    ]),
+                ])
             );
 
         case 'work': {
-            let html = '';
-            if (!prof.workExperience.length) html += '<p class="text-sm text-slate-400 italic">Sin experiencia laboral añadida.</p>';
+            const nodos = [];
+            if (!prof.workExperience.length) {
+                nodos.push(crear('p', { clase: 'text-sm text-slate-400 italic', texto: 'Sin experiencia laboral añadida.' }));
+            }
             prof.workExperience.forEach((w, i) => {
-                html += entryCard(`Experiencia ${i + 1}`, sec.color,
-                    cn(
-                        input('Fechas', w.dates, 'setWorkField', 'text', 'ene 2024 - actualidad'),
-                        input('Ocupación', w.occupation, 'setWorkField', 'text', 'Desarrollador Full Stack'),
-                        input('Empleador', w.employer, 'setWorkField', 'text', 'Empresa S.L.'),
-                        input('Ubicación', w.location, 'setWorkField', 'text', 'Barcelona, España'),
-                        arrayField('Tareas', w.description, 'addWorkDesc', 'removeWork', 'Ej: Desarrollo de APIs REST')
-                    ),
-                    'removeWork'
-                );
+                nodos.push(entryCard(`Experiencia ${i + 1}`, sec.color, fragmento(
+                    input('Fechas', w.dates, (v) => window.setWorkField(i, 'dates', v), 'text', 'ene 2024 - actualidad'),
+                    input('Ocupación', w.occupation, (v) => window.setWorkField(i, 'occupation', v), 'text', 'Desarrollador Full Stack'),
+                    input('Empleador', w.employer, (v) => window.setWorkField(i, 'employer', v), 'text', 'Empresa S.L.'),
+                    input('Ubicación', w.location, (v) => window.setWorkField(i, 'location', v), 'text', 'Barcelona, España'),
+                    arrayField('Tareas', w.description, 'addWorkDesc', 'removeWork', 'Ej: Desarrollo de APIs REST')
+                ), 'removeWork'));
             });
-            html += `<button type="button" class="inline-flex items-center gap-1.5 text-sm font-semibold text-navy-600 hover:text-navy-700 transition-colors mt-4" onclick="addWork()">
-                <span class="w-5 h-5 rounded-full border-2 border-navy-400 flex items-center justify-center text-xs font-bold">+</span>
-                Añadir experiencia
-            </button>`;
-            return html;
+            nodos.push(botonAnadir('Añadir experiencia', () => window.addWork()));
+            return fragmento(...nodos);
         }
 
         case 'edu': {
-            let html = '';
-            if (!prof.education.length) html += '<p class="text-sm text-slate-400 italic">Sin formación añadida.</p>';
+            const nodos = [];
+            if (!prof.education.length) {
+                nodos.push(crear('p', { clase: 'text-sm text-slate-400 italic', texto: 'Sin formación añadida.' }));
+            }
             prof.education.forEach((e, i) => {
-                html += entryCard(`Formación ${i + 1}`, sec.color,
-                    cn(
-                        input('Fechas', e.dates, 'setEduField', 'text', '2020 - 2024'),
-                        input('Titulación', e.qualification, 'setEduField', 'text', 'Grado en Ingeniería'),
-                        input('Institución', e.institution, 'setEduField', 'text', 'Universidad de Barcelona', 2)
-                    ),
-                    'removeEdu'
-                );
+                nodos.push(entryCard(`Formación ${i + 1}`, sec.color, fragmento(
+                    input('Fechas', e.dates, (v) => window.setEduField(i, 'dates', v), 'text', '2020 - 2024'),
+                    input('Titulación', e.qualification, (v) => window.setEduField(i, 'qualification', v), 'text', 'Grado en Ingeniería'),
+                    input('Institución', e.institution, (v) => window.setEduField(i, 'institution', v), 'text', 'Universidad de Barcelona', 2)
+                ), 'removeEdu'));
             });
-            html += `<button type="button" class="inline-flex items-center gap-1.5 text-sm font-semibold text-navy-600 hover:text-navy-700 transition-colors mt-4" onclick="addEdu()">
-                <span class="w-5 h-5 rounded-full border-2 border-navy-400 flex items-center justify-center text-xs font-bold">+</span>
-                Añadir formación
-            </button>`;
-            return html;
+            nodos.push(botonAnadir('Añadir formación', () => window.addEdu()));
+            return fragmento(...nodos);
         }
 
         case 'lang':
-            return arrayField('Idiomas', prof.languageSkills.map(l => l.language), 'addLangSkill', 'removeLangSkill', 'Ej: Inglés C1 Avanzado');
+            return arrayField('Idiomas', prof.languageSkills.map((l) => l.language), 'addLangSkill', 'removeLangSkill', 'Ej: Inglés C1 Avanzado');
 
         case 'skills': {
-            let html = '';
-            if (!prof.digitalSkills.length) html += '<p class="text-sm text-slate-400 italic">Sin categorías añadidas.</p>';
+            const nodos = [];
+            if (!prof.digitalSkills.length) {
+                nodos.push(crear('p', { clase: 'text-sm text-slate-400 italic', texto: 'Sin categorías añadidas.' }));
+            }
             prof.digitalSkills.forEach((cat, i) => {
-                html += entryCard(`Categoría ${i + 1}`, sec.color,
-                    cn(
-                        input('Categoría', cat.category, 'setDigitalSkillCat', 'text', 'Ej: Backend, Frontend...'),
-                        arrayField('Tecnologías', cat.items, 'addDigitalSkillItems', 'removeDigitalSkillItems', 'Ej: React, Node.js...')
-                    ),
-                    'removeDigitalSkill'
-                );
+                nodos.push(entryCard(`Categoría ${i + 1}`, sec.color, fragmento(
+                    input('Categoría', cat.category, (v) => window.setDigitalSkillCat(i, v), 'text', 'Ej: Backend, Frontend...'),
+                    arrayField('Tecnologías', cat.items, 'addDigitalSkillItems', 'removeDigitalSkillItems', 'Ej: React, Node.js...')
+                ), 'removeDigitalSkill'));
             });
-            html += `<button type="button" class="inline-flex items-center gap-1.5 text-sm font-semibold text-navy-600 hover:text-navy-700 transition-colors mt-4" onclick="addDigitalSkill()">
-                <span class="w-5 h-5 rounded-full border-2 border-navy-400 flex items-center justify-center text-xs font-bold">+</span>
-                Añadir categoría
-            </button>`;
-            return html;
+            nodos.push(botonAnadir('Añadir categoría', () => window.addDigitalSkill()));
+            return fragmento(...nodos);
         }
 
         default:
-            return '<p class="text-sm text-slate-400 italic">Esta sección está disponible pero no requiere entrada en este paso.</p>';
+            return crear('p', {
+                clase: 'text-sm text-slate-400 italic',
+                texto: 'Esta sección está disponible pero no requiere entrada en este paso.',
+            });
     }
 }
 
 function navButtons(step, onPrev, onNext) {
-    const prevDisabled = step === 0;
-    return `<div class="nav-buttons">
-        <button type="button" class="nav-btn prev" ${prevDisabled ? 'disabled' : ''} onclick="${onPrev}">
-            ${icon('arrow_back', 'w-4 h-4')} Atrás
-        </button>
-        <button type="button" class="nav-btn next" onclick="${onNext}">
-            Continuar ${icon('arrow_forward', 'w-4 h-4')}
-        </button>
-    </div>`;
+    return crear('div', { clase: 'nav-buttons' }, [
+        crear('button', {
+            clase: 'nav-btn prev',
+            type: 'button',
+            disabled: step === 0,
+            on: { click: onPrev },
+        }, [icono('arrow_back', 'w-4 h-4'), ' Atrás']),
+        crear('button', {
+            clase: 'nav-btn next',
+            type: 'button',
+            on: { click: onNext },
+        }, [' Continuar', icono('arrow_forward', 'w-4 h-4')]),
+    ]);
+}
+
+function encabezadoPaso(color, name, titulo, subtitulo) {
+    return crear('div', { clase: 'flex items-center gap-3' }, [
+        crear('div', { clase: `w-9 h-9 rounded-xl bg-gradient-to-br ${color} flex items-center justify-center text-white shadow-md` }, [
+            icono(name, 'text-white text-lg'),
+        ]),
+        crear('div', {}, [
+            crear('h2', { clase: 'text-lg font-bold text-slate-800', texto: titulo }),
+            crear('p', { clase: 'text-xs text-slate-500' }, [subtitulo]),
+        ]),
+    ]);
 }
 
 function renderStep0() {
     const d = store.data_;
-    let social = '';
-    if (!d.socialLinks.length) {
-        social = '<p class="social-empty">Aún no has añadido ninguna red social.</p>';
-    } else {
-        d.socialLinks.forEach((s, i) => {
-            social += entryCard(null, null,
-                cn(
-                    input('Red', s.name, 'setSocialLinkName', 'text', 'LinkedIn, GitHub...'),
-                    input('URL', s.url, 'setSocialLinkUrl', 'text', 'linkedin.com/in/usuario')
-                ),
-                'removeSocialLink'
-            );
-        });
-    }
+    const social = d.socialLinks.length
+        ? fragmento(...d.socialLinks.map((s) => entryCard(null, null, fragmento(
+            input('Red', s.name, (v) => window.setSocialLinkName(v), 'text', 'LinkedIn, GitHub...'),
+            input('URL', s.url, (v) => window.setSocialLinkUrl(v), 'text', 'linkedin.com/in/usuario')
+        ), 'removeSocialLink')))
+        : crear('p', { clase: 'social-empty', texto: 'Aún no has añadido ninguna red social.' });
 
-    return cn(
-        `<div class="space-y-5 animate-fade-up">
-            <div class="flex items-center gap-3 mb-1">
-                <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-navy-500 to-indigo-600 flex items-center justify-center text-white shadow-md">
-                    ${icon('person', 'text-white text-lg')}
-                </div>
-                <div>
-                    <h2 class="text-lg font-bold text-slate-800">Información personal</h2>
-                    <p class="text-xs text-slate-500">Tus datos de contacto y redes sociales</p>
-                </div>
-            </div>
-            <div class="glass-card p-6 space-y-5">
-                ${input('Nombre completo', d.name, 'setDataName', 'text', 'Ej: María García López', 2)}
-                ${input('Correo electrónico', d.email, 'setDataEmail', 'email', 'maria@ejemplo.com')}
-                ${input('Teléfono', d.telephone, 'setDataTelephone', 'text', '+34 600 000 000')}
-                ${input('Dirección', d.address, 'setDataAddress', 'text', '08001, Barcelona, España')}
-                ${input('Nacionalidad', d.nationality, 'setDataNationality', 'text', 'Española')}
-                ${input('Fecha de nacimiento', d.dateOfBirth, 'setDataDateOfBirth', 'date')}
-            </div>
-            <div class="glass-card p-6">
-                <div class="flex items-center gap-6 flex-wrap">
-                    <div class="shrink-0">
-                        ${d.photoPreview
-                            ? `<div class="photo-preview"><img src="${d.photoPreview}" alt="">
-                                <button type="button" class="remove-photo" onclick="removePhoto()">×</button></div>`
-                            : `<div class="photo-placeholder">${icon('person', 'w-10 h-10')}</div>`}
-                    </div>
-                    <div class="flex-1 min-w-0">
-                        <label class="photo-upload-label">
-                            ${icon('upload', 'w-4 h-4')} Subir foto
-                            <input type="file" accept="image/*" onchange="handlePhotoUpload(event)">
-                        </label>
-                        <p class="photo-hint">PNG, JPG o WebP — se mostrará como recorte circular en el CV</p>
-                    </div>
-                </div>
-            </div>
-            <div class="glass-card p-6 space-y-4">
-                <div class="social-section-title">
-                    ${icon('link', 'w-5 h-5 text-slate-400')}<span class="tracking-wider uppercase text-xs font-semibold text-slate-500">Redes sociales</span>
-                </div>
-                ${social}
-                <button type="button" class="inline-flex items-center gap-1.5 text-sm font-semibold text-navy-600 hover:text-navy-700 transition-colors" onclick="addSocialLink()">
-                    <span class="w-5 h-5 rounded-full border-2 border-navy-400 flex items-center justify-center text-xs font-bold">+</span>
-                    Añadir red social
-                </button>
-            </div>
-            ${navButtons(0, '', 'goToStep(1)')}
-        </div>`
-    );
+    const foto = d.photoPreview
+        ? crear('div', { clase: 'photo-preview' }, [
+            crear('img', { src: d.photoPreview, alt: '' }),
+            crear('button', {
+                clase: 'remove-photo',
+                type: 'button',
+                texto: '\u00d7',
+                on: { click: () => window.removePhoto() },
+            }),
+        ])
+        : crear('div', { clase: 'photo-placeholder' }, [icono('person', 'w-10 h-10')]);
+
+    return crear('div', { clase: 'space-y-5 animate-fade-up' }, [
+        crear('div', { clase: 'flex items-center gap-3 mb-1' }, [
+            crear('div', { clase: 'w-9 h-9 rounded-xl bg-gradient-to-br from-navy-500 to-indigo-600 flex items-center justify-center text-white shadow-md' }, [
+                icono('person', 'text-white text-lg'),
+            ]),
+            crear('div', {}, [
+                crear('h2', { clase: 'text-lg font-bold text-slate-800', texto: 'Información personal' }),
+                crear('p', { clase: 'text-xs text-slate-500', texto: 'Tus datos de contacto y redes sociales' }),
+            ]),
+        ]),
+        crear('div', { clase: 'glass-card p-6 space-y-5' }, [
+            input('Nombre completo', d.name, (v) => window.setDataName(v), 'text', 'Ej: María García López', 2),
+            input('Correo electrónico', d.email, (v) => window.setDataEmail(v), 'email', 'maria@ejemplo.com'),
+            input('Teléfono', d.telephone, (v) => window.setDataTelephone(v), 'text', '+34 600 000 000'),
+            input('Dirección', d.address, (v) => window.setDataAddress(v), 'text', '08001, Barcelona, España'),
+            input('Nacionalidad', d.nationality, (v) => window.setDataNationality(v), 'text', 'Española'),
+            input('Fecha de nacimiento', d.dateOfBirth, (v) => window.setDataDateOfBirth(v), 'date'),
+        ]),
+        crear('div', { clase: 'glass-card p-6' }, [
+            crear('div', { clase: 'flex items-center gap-6 flex-wrap' }, [
+                crear('div', { clase: 'shrink-0' }, [foto]),
+                crear('div', { clase: 'flex-1 min-w-0' }, [
+                    crear('label', { clase: 'photo-upload-label' }, [
+                        icono('upload', 'w-4 h-4'),
+                        ' Subir foto',
+                        crear('input', {
+                            type: 'file',
+                            accept: 'image/*',
+                            on: { change: (e) => window.handlePhotoUpload(e) },
+                        }),
+                    ]),
+                    crear('p', {
+                        clase: 'photo-hint',
+                        texto: 'PNG, JPG o WebP — se mostrará como recorte circular en el CV',
+                    }),
+                ]),
+            ]),
+        ]),
+        crear('div', { clase: 'glass-card p-6 space-y-4' }, [
+            crear('div', { clase: 'social-section-title' }, [
+                icono('link', 'w-5 h-5 text-slate-400'),
+                crear('span', {
+                    clase: 'tracking-wider uppercase text-xs font-semibold text-slate-500',
+                    texto: 'Redes sociales',
+                }),
+            ]),
+            social,
+            crear('button', {
+                clase: 'inline-flex items-center gap-1.5 text-sm font-semibold text-navy-600 hover:text-navy-700 transition-colors',
+                type: 'button',
+                on: { click: () => window.addSocialLink() },
+            }, [
+                crear('span', {
+                    clase: 'w-5 h-5 rounded-full border-2 border-navy-400 flex items-center justify-center text-xs font-bold',
+                    texto: '+',
+                }),
+                ' Añadir red social',
+            ]),
+        ]),
+        navButtons(0, null, () => window.goToStep(1)),
+    ]);
 }
 
 function renderStep1() {
     const d = store.data_;
-    const langPills = d.langsDone_.length
-        ? d.langsDone_.map(code =>
-            `<button type="button" class="lang-pill ${code === d.activeLang_ ? 'active' : ''}" onclick="setActiveLang('${code}')">${LANG_MAP[code]}</button>`
-        ).join('')
-        : '';
+    const langPills = store.langsDone_.length
+        ? crear('div', { clase: 'lang-pills' }, store.langsDone_.map((code) => crear('button', {
+            clase: ['lang-pill', code === store.activeLang_ && 'active'],
+            type: 'button',
+            texto: LANG_MAP[code],
+            on: { click: () => window.setActiveLang(code) },
+        })))
+        : null;
 
-    return cn(
-        `<div class="space-y-5 animate-fade-up">
-            <div class="flex items-center justify-between flex-wrap gap-3">
-                <div class="flex items-center gap-3">
-                    <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center text-white shadow-md">
-                        ${icon('description', 'text-white text-lg')}
-                    </div>
-                    <div>
-                        <h2 class="text-lg font-bold text-slate-800">Contenido del CV</h2>
-                        <p class="text-xs text-slate-500">Editando: ${LANG_MAP[d.activeLang_]}</p>
-                    </div>
-                </div>
-                ${langPills ? `<div class="lang-pills">${langPills}</div>` : ''}
-            </div>
-            <div class="space-y-4">
-                ${PROFILE_SECTIONS.map((s, i) => sectionCard(s, i)).join('')}
-            </div>
-            ${navButtons(1, 'goToStep(0)', 'checkLangDoneAndNext()')}
-        </div>`
-    );
+    return crear('div', { clase: 'space-y-5 animate-fade-up' }, [
+        crear('div', { clase: 'flex items-center justify-between flex-wrap gap-3' }, [
+            encabezadoPaso('from-violet-500 to-purple-600', 'description', 'Contenido del CV', [
+                'Editando: ',
+                LANG_MAP[store.activeLang_],
+            ]),
+            langPills,
+        ]),
+        crear('div', { clase: 'space-y-4' }, PROFILE_SECTIONS.map((s, i) => sectionCard(s, i))),
+        navButtons(1, () => window.goToStep(0), () => window.checkLangDoneAndNext()),
+    ]);
 }
 
 function renderStep2() {
     const d = store.data_;
     const lang = store.reviewLang_;
-    const prof = d.profiles[lang] || {};
 
     const hasData = (l) => {
         const p = d.profiles[l];
@@ -596,96 +712,134 @@ function renderStep2() {
     const currentProf = d.profiles[currentLang] || {};
 
     const langTabs = available.length > 1
-        ? `<div class="inline-flex gap-1 bg-slate-100/80 backdrop-blur-sm p-1 rounded-2xl border border-slate-200/60 shadow-sm">
-            ${available.map(code => `<button type="button" class="lang-tab ${code === currentLang ? 'active' : ''}" onclick="setReviewLang('${code}')">${LANG_MAP[code]}</button>`).join('')}
-          </div>`
-        : '';
+        ? crear('div', {
+            clase: 'inline-flex gap-1 bg-slate-100/80 backdrop-blur-sm p-1 rounded-2xl border border-slate-200/60 shadow-sm',
+        }, available.map((code) => crear('button', {
+            clase: ['lang-tab', code === currentLang && 'active'],
+            type: 'button',
+            texto: LANG_MAP[code],
+            on: { click: () => window.setReviewLang(code) },
+        })))
+        : null;
 
-    const field = (label, value) => (!value) ? '' : `<div class="info-field"><span class="info-field-label">${label}</span><span class="info-field-value">${value}</span></div>`;
-    const listBlock = (items) => (!items || !items.length) ? '' : `<ul class="info-list">${items.filter(i => i).map(i => `<li class="info-list-item">${i}</li>`).join('')}</ul>`;
+    const campoInfo = (label, value) => (value
+        ? crear('div', { clase: 'info-field' }, [
+            crear('span', { clase: 'info-field-label', texto: label }),
+            crear('span', { clase: 'info-field-value' }, [value]),
+        ])
+        : null);
 
-    const socialHtml = d.socialLinks.filter(s => s.name || s.url).map(s =>
-        `<div class="info-list-item">${(s.name ? `<span class="font-semibold">${s.name}: </span>` : '')}${(s.url ? `<span class="text-slate-500">${s.url}</span>` : '')}</div>`
-    ).join('');
+    const listaInfo = (items) => ((!items || !items.length)
+        ? null
+        : crear('ul', { clase: 'info-list' }, items
+            .filter((i) => i)
+            .map((i) => crear('li', { clase: 'info-list-item' }, [i]))));
 
-    const workHtml = currentProf.workExperience.map((w, i) =>
-        `<div class="${i < currentProf.workExperience.length - 1 ? 'border-b border-slate-200 mb-4 pb-4' : ''}">
-            <div class="flex items-start justify-between gap-4">
-                <div>
-                    <p class="font-semibold text-sm text-slate-800">${w.occupation || '—'}</p>
-                    <p class="text-xs text-slate-500">${w.employer}${w.employer && w.location ? ' · ' : ''}${w.location}</p>
-                </div>
-            </div>
-            ${listBlock(w.description)}
-        </div>`
-    ).join('');
+    const socialInfo = crear('div', { clase: 'space-y-2' }, d.socialLinks
+        .filter((s) => s.name || s.url)
+        .map((s) => crear('div', { clase: 'info-list-item' }, [
+            s.name ? crear('span', { clase: 'font-semibold' }, [`${s.name}: `]) : null,
+            s.url ? crear('span', { clase: 'text-slate-500' }, [s.url]) : null,
+        ])));
 
-    const eduHtml = currentProf.education.map((e, i) =>
-        `<div class="${i < currentProf.education.length - 1 ? 'border-b border-slate-200 mb-4 pb-4' : ''}">
-            <div class="flex items-start justify-between gap-4">
-                <div>
-                    <p class="font-semibold text-sm text-slate-800">${e.qualification || '—'}</p>
-                    <p class="text-xs text-slate-500">${e.institution}${e.institution && e.dates ? ' · ' : ''}${e.dates}</p>
-                </div>
-            </div>
-        </div>`
-    ).join('');
+    const workInfo = crear('div', {}, currentProf.workExperience.map((w, i) => crear('div', {
+        clase: i < currentProf.workExperience.length - 1 ? 'border-b border-slate-200 mb-4 pb-4' : '',
+    }, [
+        crear('div', { clase: 'flex items-start justify-between gap-4' }, [
+            crear('div', {}, [
+                crear('p', { clase: 'font-semibold text-sm text-slate-800' }, [w.occupation || '—']),
+                crear('p', { clase: 'text-xs text-slate-500' }, [
+                    `${w.employer || ''}${w.employer && w.location ? ' · ' : ''}${w.location || ''}`,
+                ]),
+            ]),
+        ]),
+        listaInfo(w.description),
+    ])));
 
-    const infoCard = (title, inner, onEdit) =>
-        `<div class="info-card">
-            <div class="info-card-header">
-                <h3 class="info-card-title">${title}</h3>
-                ${onEdit ? `<button type="button" class="info-card-edit" onclick="${onEdit}">Editar</button>` : ''}
-            </div>
-            ${inner}
-        </div>`;
+    const eduInfo = crear('div', {}, currentProf.education.map((e, i) => crear('div', {
+        clase: i < currentProf.education.length - 1 ? 'border-b border-slate-200 mb-4 pb-4' : '',
+    }, [
+        crear('div', { clase: 'flex items-start justify-between gap-4' }, [
+            crear('div', {}, [
+                crear('p', { clase: 'font-semibold text-sm text-slate-800' }, [e.qualification || '—']),
+                crear('p', { clase: 'text-xs text-slate-500' }, [
+                    `${e.institution || ''}${e.institution && e.dates ? ' · ' : ''}${e.dates || ''}`,
+                ]),
+            ]),
+        ]),
+    ])));
 
-    return cn(
-        `<div class="space-y-5 animate-fade-up">
-            <div class="step-title-area">
-                <div class="flex items-center gap-3">
-                    <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white shadow-md">
-                        ${icon('visibility', 'text-white text-lg')}
-                    </div>
-                    <div>
-                        <h2 class="text-lg font-bold text-slate-800">Revisa tu CV</h2>
-                        <p class="text-xs text-slate-500">Verifica que todos los datos sean correctos antes de descargar</p>
-                    </div>
-                </div>
-                ${langTabs}
-            </div>
-            ${infoCard('Información personal',
-                `<div class="info-card-grid">
-                    ${field('Nombre', d.name)}
-                    ${field('Correo', d.email)}
-                    ${field('Teléfono', d.telephone)}
-                    ${field('Dirección', d.address)}
-                    ${field('Nacionalidad', d.nationality)}
-                    ${field('Fecha de nacimiento', d.dateOfBirth)}
-                </div>
-                ${d.photoPreview ? `<div class="mt-4"><span class="info-field-label">Foto</span><div class="mt-1 w-20 h-20 rounded-2xl overflow-hidden ring-2 ring-white shadow-md"><img src="${d.photoPreview}" alt="" class="w-full h-full object-cover"></div></div>` : ''}`,
-                'goToStep(0)'
-            )}
-            ${d.socialLinks.length && d.socialLinks.some(s => s.name || s.url)
-                ? infoCard('Redes sociales', `<div class="space-y-2">${socialHtml}</div>`, 'goToStep(0)')
-                : ''}
-            ${currentProf.title || currentProf.shortDescription
-                ? infoCard(`Introducción — ${LANG_MAP[currentLang]}`, cn(field('Título profesional', currentProf.title), field('Descripción corta', currentProf.shortDescription)), 'goToStep(1)')
-                : ''}
-            ${currentProf.workExperience.length
-                ? infoCard(`Experiencia laboral — ${LANG_MAP[currentLang]}`, workHtml, 'goToStep(1)')
-                : ''}
-            ${currentProf.education.length
-                ? infoCard(`Educación y formación — ${LANG_MAP[currentLang]}`, eduHtml, 'goToStep(1)')
-                : ''}
-            ${navButtons(2, 'goToStep(1)', 'goToStep(3)')}
-        </div>`
-    );
+    const infoCard = (title, inner, onEdit) => crear('div', { clase: 'info-card' }, [
+        crear('div', { clase: 'info-card-header' }, [
+            crear('h3', { clase: 'info-card-title', texto: title }),
+            onEdit
+                ? crear('button', {
+                    clase: 'info-card-edit',
+                    type: 'button',
+                    texto: 'Editar',
+                    on: { click: onEdit },
+                })
+                : null,
+        ]),
+        inner,
+    ]);
+
+    const foto = d.photoPreview
+        ? crear('div', { clase: 'mt-4' }, [
+            crear('span', { clase: 'info-field-label', texto: 'Foto' }),
+            crear('div', { clase: 'mt-1 w-20 h-20 rounded-2xl overflow-hidden ring-2 ring-white shadow-md' }, [
+                crear('img', { src: d.photoPreview, alt: '', clase: 'w-full h-full object-cover' }),
+            ]),
+        ])
+        : null;
+
+    const tarjetas = [
+        infoCard('Información personal', fragmento(
+            crear('div', { clase: 'info-card-grid' }, [
+                campoInfo('Nombre', d.name),
+                campoInfo('Correo', d.email),
+                campoInfo('Teléfono', d.telephone),
+                campoInfo('Dirección', d.address),
+                campoInfo('Nacionalidad', d.nationality),
+                campoInfo('Fecha de nacimiento', d.dateOfBirth),
+            ]),
+            foto
+        ), () => window.goToStep(0)),
+        d.socialLinks.length && d.socialLinks.some((s) => s.name || s.url)
+            ? infoCard('Redes sociales', socialInfo, () => window.goToStep(0))
+            : null,
+        currentProf.title || currentProf.shortDescription
+            ? infoCard(`Introducción — ${LANG_MAP[currentLang]}`, fragmento(
+                campoInfo('Título profesional', currentProf.title),
+                campoInfo('Descripción corta', currentProf.shortDescription)
+            ), () => window.goToStep(1))
+            : null,
+        currentProf.workExperience.length
+            ? infoCard(`Experiencia laboral — ${LANG_MAP[currentLang]}`, workInfo, () => window.goToStep(1))
+            : null,
+        currentProf.education.length
+            ? infoCard(`Educación y formación — ${LANG_MAP[currentLang]}`, eduInfo, () => window.goToStep(1))
+            : null,
+    ];
+
+    return crear('div', { clase: 'space-y-5 animate-fade-up' }, [
+        crear('div', { clase: 'step-title-area' }, [
+            encabezadoPaso(
+                'from-emerald-500 to-teal-600',
+                'visibility',
+                'Revisa tu CV',
+                'Verifica que todos los datos sean correctos antes de descargar'
+            ),
+            langTabs,
+        ]),
+        ...tarjetas,
+        navButtons(2, () => window.goToStep(1), () => window.goToStep(3)),
+    ]);
 }
 
 function renderStep3() {
     const d = store.data_;
-    const withData = LANG_CODES.filter(l => {
+    const withData = LANG_CODES.filter((l) => {
         const p = d.profiles[l];
         return p && (p.title || p.shortDescription || p.workExperience.length || p.education.length);
     });
@@ -693,92 +847,131 @@ function renderStep3() {
     const prof = d.profiles[currentLang] || {};
 
     const langTabs = withData.length > 1
-        ? `<div class="download-preview-lang">
-            ${withData.map(code => `<button type="button" class="lang-tab ${code === currentLang ? 'active' : ''}" onclick="switchDownloadLang('${code}')">${LANG_MAP[code]}</button>`).join('')}
-          </div>`
-        : '';
+        ? crear('div', { clase: 'download-preview-lang' }, withData.map((code) => crear('button', {
+            clase: ['lang-tab', code === currentLang && 'active'],
+            type: 'button',
+            texto: LANG_MAP[code],
+            on: { click: () => window.switchDownloadLang(code) },
+        })))
+        : null;
 
     const previewContent = (prof.title || prof.shortDescription || prof.workExperience.length || prof.education.length)
-        ? `<div class="text-center text-slate-500">
-            ${icon('picture_as_pdf', 'w-12 h-12 mx-auto mb-2 text-slate-300')}
-            <p class="text-sm">PDF generado con ${d.name || 'tu nombre'}</p>
-          </div>`
-        : `<div class="text-center text-slate-400">
-            <p class="text-sm mb-2">Completa los pasos anteriores para ver una vista previa</p>
-            <button type="button" class="btn-secondary mt-4" onclick="goToStep(0)">Ir al paso 1</button>
-          </div>`;
+        ? crear('div', { clase: 'text-center text-slate-500' }, [
+            icono('picture_as_pdf', 'w-12 h-12 mx-auto mb-2 text-slate-300'),
+            crear('p', { clase: 'text-sm' }, [`PDF generado con ${d.name || 'tu nombre'}`]),
+        ])
+        : crear('div', { clase: 'text-center text-slate-400' }, [
+            crear('p', { clase: 'text-sm mb-2', texto: 'Completa los pasos anteriores para ver una vista previa' }),
+            crear('button', {
+                clase: 'btn-secondary mt-4',
+                type: 'button',
+                texto: 'Ir al paso 1',
+                on: { click: () => window.goToStep(0) },
+            }),
+        ]);
 
-    return cn(
-        `<div class="space-y-5 animate-fade-up">
-            <div class="step-title-area">
-                <div class="flex items-center gap-3">
-                    <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white shadow-md">
-                        ${icon('download', 'text-white text-lg')}
-                    </div>
-                    <div>
-                        <h2 class="text-lg font-bold text-slate-800">Descargar CV</h2>
-                        <p class="text-xs text-slate-500">Genera tu currículum en PDF con el diseño profesional de dos columnas</p>
-                    </div>
-                </div>
-            </div>
-            <div class="download-section">
-                <div class="download-preview">
-                    <div class="download-preview-header">
-                        <span class="download-preview-title">Vista previa del PDF</span>
-                        ${langTabs}
-                    </div>
-                    <div class="pdf-preview-box">${previewContent}</div>
-                </div>
-                <div class="flex gap-3 justify-center flex-wrap">
-                    <button type="button" class="btn-primary" onclick="downloadPDF('${currentLang}')">
-                        ${icon('download', 'w-5 h-5')} Descargar CV en PDF (${LANG_MAP[currentLang]})
-                    </button>
-                    <button type="button" class="btn-secondary" onclick="goToStep(2)">
-                        ${icon('edit', 'w-4 h-4')} Volver a revisar
-                    </button>
-                </div>
-                <p class="text-xs text-slate-400 text-center mt-4">
-                    El PDF se generará en el navegador usando jsPDF. No se envían datos a ningún servidor.
-                </p>
-            </div>
-        </div>`
-    );
+    return crear('div', { clase: 'space-y-5 animate-fade-up' }, [
+        crear('div', { clase: 'step-title-area' }, [
+            encabezadoPaso(
+                'from-emerald-500 to-teal-600',
+                'download',
+                'Descargar CV',
+                'Genera tu currículum en PDF con el diseño profesional de dos columnas'
+            ),
+        ]),
+        crear('div', { clase: 'download-section' }, [
+            crear('div', { clase: 'download-preview' }, [
+                crear('div', { clase: 'download-preview-header' }, [
+                    crear('span', { clase: 'download-preview-title', texto: 'Vista previa del PDF' }),
+                    langTabs,
+                ]),
+                crear('div', { clase: 'pdf-preview-box' }, [previewContent]),
+            ]),
+            crear('div', { clase: 'flex gap-3 justify-center flex-wrap' }, [
+                crear('button', {
+                    clase: 'btn-primary',
+                    type: 'button',
+                    on: { click: (e) => window.downloadPDF(currentLang, e) },
+                }, [
+                    icono('download', 'w-5 h-5'),
+                    ` Descargar CV en PDF (${LANG_MAP[currentLang]})`,
+                ]),
+                crear('button', {
+                    clase: 'btn-secondary',
+                    type: 'button',
+                    on: { click: () => window.goToStep(2) },
+                }, [icono('edit', 'w-4 h-4'), ' Volver a revisar']),
+            ]),
+            crear('p', {
+                clase: 'text-xs text-slate-400 text-center mt-4',
+                texto: 'El PDF se generará en el navegador usando jsPDF. No se envían datos a ningún servidor.',
+            }),
+        ]),
+    ]);
 }
 
 function render() {
     switch (store.step_) {
-        case 0: root.content.innerHTML = renderStep0(); break;
-        case 1: root.content.innerHTML = renderStep1(); break;
-        case 2: root.content.innerHTML = renderStep2(); break;
-        case 3: root.content.innerHTML = renderStep3(); break;
+        case 0: root.content.replaceChildren(renderStep0()); break;
+        case 1: root.content.replaceChildren(renderStep1()); break;
+        case 2: root.content.replaceChildren(renderStep2()); break;
+        case 3: root.content.replaceChildren(renderStep3()); break;
     }
     renderIndicator();
 }
 
 function renderIndicator() {
-    let html = '';
-    STEPS.forEach((s, i) => {
+    const botones = STEPS.map((s, i) => {
         const active = i === store.step_;
         const done = i < store.step_;
         const bg = done ? 'var(--emerald-100)' : active ? 'linear-gradient(135deg, var(--navy-500), var(--navy-700))' : 'var(--slate-100)';
         const col = done ? 'var(--emerald-600)' : active ? 'white' : 'var(--slate-400)';
         const numCol = active ? 'var(--navy-700)' : done ? 'var(--emerald-600)' : 'var(--slate-400)';
         const labCol = active ? 'var(--slate-800)' : 'var(--slate-500)';
-        html += `<button type="button" class="step-btn ${active ? 'active' : ''} ${done ? 'done' : ''}" onclick="goToStep(${i})">
-            <div class="step-btn-icon" style="background:${bg}; color:${col}">${icon(done ? 'check' : s.icon)}</div>
-            <div>
-                <span class="step-btn-number" style="color:${numCol}">Paso ${i + 1}</span>
-                <span class="step-btn-label" style="color:${labCol}">${s.label}</span>
-            </div>
-            ${done ? '<div class="ml-auto"><div class="w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center"><svg class="w-3.5 h-3.5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></div></div>' : ''}
-        </button>`;
+        const marca = svg('svg', {
+            clase: 'w-3.5 h-3.5 text-emerald-600',
+            fill: 'none',
+            viewBox: '0 0 24 24',
+            stroke: 'currentColor',
+            'stroke-width': '3',
+        }, [svg('path', {
+            'stroke-linecap': 'round',
+            'stroke-linejoin': 'round',
+            d: 'M5 13l4 4L19 7',
+        })]);
+
+        return crear('button', {
+            clase: ['step-btn', active && 'active', done && 'done'],
+            type: 'button',
+            on: { click: () => window.goToStep(i) },
+        }, [
+            crear('div', { clase: 'step-btn-icon', style: `background:${bg}; color:${col}` }, [
+                icono(done ? 'check' : s.icon),
+            ]),
+            crear('div', {}, [
+                crear('span', { clase: 'step-btn-number', style: `color:${numCol}` }, [`Paso ${i + 1}`]),
+                crear('span', { clase: 'step-btn-label', style: `color:${labCol}`, texto: s.label }),
+            ]),
+            done
+                ? crear('div', { clase: 'ml-auto' }, [
+                    crear('div', { clase: 'w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center' }, [marca]),
+                ])
+                : null,
+        ]);
     });
-    html += `<div class="step-progress">
-        <div class="step-progress-label">Progreso</div>
-        <div class="step-progress-bar"><div class="step-progress-fill" style="width:${((store.step_ + 1) / STEPS.length) * 100}%"></div></div>
-        <div class="step-progress-text">${store.step_ + 1} de ${STEPS.length}</div>
-    </div>`;
-    root.indicator.innerHTML = html;
+
+    const progreso = crear('div', { clase: 'step-progress' }, [
+        crear('div', { clase: 'step-progress-label', texto: 'Progreso' }),
+        crear('div', { clase: 'step-progress-bar' }, [
+            crear('div', {
+                clase: 'step-progress-fill',
+                style: `width:${((store.step_ + 1) / STEPS.length) * 100}%`,
+            }),
+        ]),
+        crear('div', { clase: 'step-progress-text' }, [`${store.step_ + 1} de ${STEPS.length}`]),
+    ]);
+
+    root.indicator.replaceChildren(...botones, progreso);
 }
 
 window.setDataName = (v) => { store.data_.name = v; render(); };
@@ -918,11 +1111,11 @@ window.checkLangDoneAndNext = () => {
 
 window.switchDownloadLang = (lang) => { store.reviewLang_ = lang; render(); };
 
-window.downloadPDF = async (lang) => {
-    const btn = event.currentTarget;
+window.downloadPDF = async (lang, evento) => {
+    const btn = evento.currentTarget;
     btn.disabled = true;
-    const orig = btn.innerHTML;
-    btn.innerHTML = icon('hourglass_top', 'w-5 h-5') + ' Generando PDF...';
+    const original = [...btn.childNodes];
+    btn.replaceChildren(icono('hourglass_top', 'w-5 h-5'), ' Generando PDF...');
 
     try {
         const doc = generateCV(store.data_, lang, store.data_.photoPreview);
@@ -933,7 +1126,7 @@ window.downloadPDF = async (lang) => {
     }
 
     btn.disabled = false;
-    btn.innerHTML = orig;
+    btn.replaceChildren(...original);
 };
 
 function init() {
