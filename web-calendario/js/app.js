@@ -12,7 +12,7 @@ function obtenerPrimerDiaSemana(mes) {
 
 function renderizarCalendario() {
     const contenedorCalendario = document.querySelector('.contenedor-calendario');
-    contenedorCalendario.innerHTML = '';
+    contenedorCalendario.replaceChildren();
 
     const tituloCalendario = document.querySelector('.titulo');
     tituloCalendario.textContent = 'CALENDARIO ' + calendarioActual.toString();

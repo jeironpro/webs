@@ -1,12 +1,23 @@
 :root {
-    --color-borde: #e2e8f0;
-    --color-extencion: #4f46e5;
-    --color-fondo: #f8fafc;
-    --color-primario: #4f46e5;
-    --color-primario-hover: #4338ca;
-    --color-tarjeta: #ffffff;
-    --color-texto-principal: #1e293b;
-    --color-texto-secundario: #64748b;
+    --color: #4f46e5;
+    --color-2: #ffffff;
+    --color-3: #1e293b;
+    --color-4: #4338ca;
+    --color-5: #64748b;
+    --color-6: #e2e8f0;
+    --color-7: #f8fafc;
+    --fondo: #f1f5f9;
+}
+
+:root {
+    --color-borde: var(--color-6);
+    --color-extencion: var(--color);
+    --color-fondo: var(--color-7);
+    --color-primario: var(--color);
+    --color-primario-hover: var(--color-4);
+    --color-tarjeta: var(--color-2);
+    --color-texto-principal: var(--color-3);
+    --color-texto-secundario: var(--color-5);
     --radio-borde: 12px;
     --sombra: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
     --transition: all 0.3s ease;
@@ -67,7 +78,7 @@ main {
 
 .zona-carga:hover,
 .zona-carga.dragover {
-    background-color: #f1f5f9;
+    background-color: var(--fondo);
     border-color: var(--color-primario);
 }
 
@@ -143,7 +154,7 @@ main {
     background-color: var(--color-primario);
     border: none;
     border-radius: 8px;
-    color: #ffffff;
+    color: var(--color-2);
     cursor: pointer;
     font-family: inherit;
     font-size: 16px;
@@ -162,22 +173,39 @@ main {
     transform: translateY(0);
 }
 
-@media screen and (max-width: 600px) {
-    .contenedor-principal {
-        padding: 30px 20px;
+
+.contenedor-principal {
+    padding: 30px 20px;
+}
+
+.contenedor-principal h1 {
+    font-size: 20px;
+}
+
+.controles-dimension {
+    gap: 15px;
+}
+
+.zona-carga {
+    height: 200px;
+}
+
+@media (min-width: 481px) {
+    .contenedor-principal h1 {
+        font-size: 24px;
     }
 
-    .zona-carga {
-        height: 200px;
+    .controles-dimension {
+        gap: 20px;
     }
 }
 
-@media screen and (max-width: 480px) {
-    .controles-dimension {
-        gap: 15px;
+@media (min-width: 601px) {
+    .contenedor-principal {
+        padding: 40px;
     }
 
-    .contenedor-principal h1 {
-        font-size: 20px;
+    .zona-carga {
+        height: 250px;
     }
 }

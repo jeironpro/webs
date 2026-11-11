@@ -1,3 +1,10 @@
+:root {
+    --fondo: #7c3aed;
+    --fondo-2: #0f172a;
+    --fondo-3: #1e40af;
+    --fondo-4: #3b82f6;
+}
+
 *,
 *::before,
 *::after {
@@ -15,7 +22,7 @@ body {
 }
 
 .hero-gradient {
-    background: linear-gradient(135deg, #0f172a 0%, #1e40af 50%, #7c3aed 100%);
+    background: linear-gradient(135deg, var(--fondo-2) 0%, var(--fondo-3) 50%, var(--fondo) 100%);
 }
 
 .card-hover {
@@ -35,12 +42,6 @@ body {
 
 .subject-content.open {
     max-height: 99999px;
-}
-
-@media (max-width: 768px) {
-    .subject-content.open {
-        max-height: none;
-    }
 }
 
 .accordion-arrow {
@@ -84,12 +85,25 @@ code {
     top: 0;
     bottom: 0;
     width: 2px;
-    background: linear-gradient(to bottom, #3b82f6, #7c3aed);
+    background: linear-gradient(to bottom, var(--fondo-4), var(--fondo));
     transform: translateX(-50%);
 }
 
-@media (max-width: 768px) {
+
+.subject-content.open {
+    max-height: none;
+}
+
+.timeline-line {
+    left: 24px;
+}
+
+@media (min-width: 769px) {
+    .subject-content.open {
+        max-height: 99999px;
+    }
+
     .timeline-line {
-        left: 24px;
+        left: 50%;
     }
 }
