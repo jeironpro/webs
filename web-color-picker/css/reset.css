@@ -10,7 +10,7 @@
 html {
   font-size: 16px;
   -webkit-text-size-adjust: 100%;
-  scroll-behavior: smooth;
+  scroll-behavior: var(--scroll-behavior);
 }
 
 body {
@@ -48,7 +48,7 @@ a {
 }
 
 :focus-visible {
-  outline: 2px solid #2563eb;
+  outline: 2px solid var(--color-accent);
   outline-offset: 2px;
 }
 
@@ -65,14 +65,16 @@ a {
   border: 0;
 }
 
-/* Respetar preferencia de movimiento reducido */
+/* Respetar preferencia de movimiento reducido.
+ * Las animaciones y transiciones leen sus duraciones de estos tokens, así que
+ * basta con anularlos aquí: no hace falta !important. */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+  :root {
+    --duration-fast: 0.01ms;
+    --duration-normal: 0.01ms;
+    --duration-pulse: 0.01ms;
+    --duration-fade: 0.01ms;
+    --duration-tap: 0.01ms;
+    --scroll-behavior: auto;
   }
 }

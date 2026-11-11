@@ -6,7 +6,8 @@
   transition: background-color var(--transition-normal);
   position: relative;
   overflow: hidden;
-  min-height: 120px;
+  /* Mobile-first: el panel arranca compacto */
+  min-height: 100px;
 }
 
 .color-display__info {
@@ -14,8 +15,8 @@
   flex-direction: column;
   align-items: center;
   gap: var(--spacing-sm);
-  padding: var(--spacing-lg);
-  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-radius: var(--border-radius-md);
   background: rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(6px);
   cursor: pointer;
@@ -35,7 +36,7 @@
   font-family: var(--font-mono);
   font-size: clamp(1.25rem, 4vw, 2rem);
   font-weight: 600;
-  color: #ffffff;
+  color: var(--color-white);
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
   letter-spacing: 0.02em;
 }
@@ -48,23 +49,25 @@
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
 }
 
-@media (max-width: 768px) {
+/* Tablet: mas alto y con mas aire */
+@media (min-width: 481px) {
   .color-display {
     min-height: 160px;
   }
 
   .color-display__info {
     padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--border-radius-lg);
   }
 }
 
-@media (max-width: 480px) {
+/* Escritorio: el panel recupera su altura y padding originales */
+@media (min-width: 769px) {
   .color-display {
-    min-height: 100px;
+    min-height: 120px;
   }
 
   .color-display__info {
-    padding: var(--spacing-xs) var(--spacing-md);
-    border-radius: var(--border-radius-md);
+    padding: var(--spacing-lg);
   }
 }
