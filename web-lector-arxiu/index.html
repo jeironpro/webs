@@ -1,26 +1,73 @@
 <!doctype html>
-<html lang="ca">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Llegir arxius</title>
-    <link rel="icon" href="icons/arxiu.png" type="image/x-icon" />
-    <link rel="stylesheet" href="css/styles.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-</head>
-<body>
-    <h1 id="titol-arxiu" class="titol-arxiu"></h1>
-    <div id="contenidor" class="contenidor">
-        <span class="material-icons icono-arxiu">description</span>
-        <label for="arxiu">Seleccionar arxiu</label>
-        <input type="file" name="arxiu" id="arxiu" accept=".txt, .js, .css, .html, .json, .md, .py, .rb, .php, .sql, .csv, .ts, .jsx, .tsx, .java, .c, .pub, .rs, .go, .log, .asc, .tsv, .nfo, .xml, .yaml, .yml, .cpp, .h, .sh, .bat, .ini, .conf, .cfg" />
-    </div>
-    <pre id="contingut-arxiu"></pre>
-    <button id="boto-reset" class="boto-reset">
-        <span class="material-icons">refresh</span>
-        Reset
-    </button>
-    <script src="js/script.js"></script>
-</body>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Lector de archivos · abre y lee cualquier texto</title>
+        <meta
+            name="description"
+            content="Abre un archivo de texto, código o datos y léelo en el navegador sin subirlo a ningún servidor."
+        />
+        <link rel="icon" href="icons/arxiu.png" type="image/x-icon" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="css/styles.css" />
+    </head>
+    <body>
+        <header class="cabecera">
+            <p class="cabecera__eyebrow">lector</p>
+            <h1 class="cabecera__titulo">Abre un archivo y léelo</h1>
+            <p class="cabecera__sub">
+                Texto, código, JSON, CSV o configuración. El archivo se lee en tu navegador: no se
+                sube a ningún servidor.
+            </p>
+        </header>
+
+        <main class="principal">
+            <h2 class="titol-arxiu" id="titol-arxiu"></h2>
+
+            <div class="contenidor" id="contenidor">
+                <span class="material-symbols-outlined icono-arxiu" aria-hidden="true"
+                    >description</span
+                >
+                <div class="contenidor__texto">
+                    <label class="contenidor__label" for="arxiu">Seleccionar archivo</label>
+                    <p class="contenidor__ayuda">Hasta unos pocos MB de texto plano</p>
+                </div>
+                <input
+                    class="contenidor__input"
+                    type="file"
+                    name="arxiu"
+                    id="arxiu"
+                    accept=".txt, .js, .css, .html, .json, .md, .py, .rb, .php, .sql, .csv, .ts, .jsx, .tsx, .java, .c, .pub, .rs, .go, .log, .asc, .tsv, .nfo, .xml, .yaml, .yml, .cpp, .h, .sh, .bat, .ini, .conf, .cfg"
+                />
+            </div>
+
+            <pre class="visor" id="contingut-arxiu" tabindex="0"></pre>
+
+            <button class="boto-reset" id="boto-reset" type="button">
+                <span class="material-symbols-outlined" aria-hidden="true">refresh</span>
+                Vaciar
+            </button>
+        </main>
+
+        <footer class="pie">
+            &copy; Todos los derechos reservados <span data-anio>2025</span> - JeironPro
+        </footer>
+
+        <script src="js/script.js"></script>
+        <script>
+            document.querySelectorAll("[data-anio]").forEach((nodo) => {
+                nodo.textContent = new Date().getFullYear();
+            });
+        </script>
+    </body>
 </html>
