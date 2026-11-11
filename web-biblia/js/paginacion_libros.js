@@ -109,6 +109,6 @@ btnSiguiente.addEventListener("click", () => {
 actualizarUI();
 
 (function () {
-  var anio = document.getElementById("anio");
+  const anio = document.getElementById("anio");
   if (anio) anio.textContent = new Date().getFullYear();
 })();

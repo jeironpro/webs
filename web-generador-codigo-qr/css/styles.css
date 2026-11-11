@@ -1,8 +1,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap");
 
+:root {
+    --color-fondo: #f0f2f5;
+    --color-texto: #333;
+    --color-acento: #4a90e2;
+    --color-acento-hover: #357abd;
+    --color-superficie: #ffffff;
+    --color-superficie-suave: #fafafa;
+    --color-borde: #ddd;
+    --color-error: #e74c3c;
+    --color-texto-tenue: #aaa;
+    --color-texto-inverso: #fff;
+}
+
 body {
-    background-color: #f0f2f5;
-    color: #333;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
     font-family: "Fredoka", sans-serif;
     margin: 0;
     min-height: 100vh;
@@ -18,17 +31,17 @@ main {
 }
 
 h1 {
-    color: #333;
-    font-size: 28px;
+    color: var(--color-texto);
+    font-size: 24px;
     margin: 0 0 20px 0;
     text-align: center;
 }
 
 .boton-generar {
-    background-color: #4a90e2;
+    background-color: var(--color-acento);
     border: none;
     border-radius: 8px;
-    color: white;
+    color: var(--color-texto-inverso);
     cursor: pointer;
     font-family: "Fredoka", sans-serif;
     font-size: 16px;
@@ -38,14 +51,14 @@ h1 {
 }
 
 .boton-generar:hover {
-    background-color: #357abd;
+    background-color: var(--color-acento-hover);
 }
 
 .contenedor-codigo-qr {
     align-items: center;
     aspect-ratio: 1 / 1;
-    background-color: #fafafa;
-    border: 2px dashed #ddd;
+    background-color: var(--color-superficie-suave);
+    border: 2px dashed var(--color-borde);
     border-radius: 12px;
     display: flex;
     justify-content: center;
@@ -68,8 +81,14 @@ h1 {
     width: 100%;
 }
 
+.grupo-entrada .etiqueta-campo {
+    color: var(--color-texto);
+    font-size: 14px;
+    font-weight: 500;
+}
+
 .grupo-entrada input {
-    border: 2px solid #ddd;
+    border: 2px solid var(--color-borde);
     border-radius: 8px;
     box-sizing: border-box;
     font-family: "Fredoka", sans-serif;
@@ -81,14 +100,14 @@ h1 {
 }
 
 .grupo-entrada input:focus {
-    border-color: #4a90e2;
+    border-color: var(--color-acento);
 }
 
 .grupo-entrada button {
-    background-color: #4a90e2;
+    background-color: var(--color-acento);
     border: none;
     border-radius: 8px;
-    color: white;
+    color: var(--color-texto-inverso);
     cursor: pointer;
     font-family: "Fredoka", sans-serif;
     font-size: 16px;
@@ -98,48 +117,47 @@ h1 {
 }
 
 .grupo-entrada button:hover {
-    background-color: #357abd;
+    background-color: var(--color-acento-hover);
 }
 
 .tarjeta-principal {
     align-items: center;
-    background-color: #ffffff;
+    background-color: var(--color-superficie);
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     max-width: 400px;
-    padding: 30px;
+    padding: 20px;
     width: 100%;
 }
 
 .mensaje-error {
-    color: #e74c3c;
+    color: var(--color-error);
     font-size: 16px;
     font-weight: 600;
     text-align: center;
 }
 
 .texto-vacio {
-    color: #aaa;
+    color: var(--color-texto-tenue);
     font-size: 14px;
     font-weight: 500;
+}
+
+@media screen and (min-width: 481px) {
+    h1 {
+        font-size: 28px;
+    }
+
+    .tarjeta-principal {
+        padding: 30px;
+    }
 }
 
 @media screen and (min-width: 768px) {
     .tarjeta-principal {
         max-width: 450px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    h1 {
-        font-size: 24px;
-    }
-
-    .tarjeta-principal {
-        padding: 20px;
-        width: 100%;
     }
 }

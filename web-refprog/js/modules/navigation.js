@@ -3,8 +3,8 @@
 import { qs, on, toggleClass } from '../utils/dom.js';
 
 export function initMobileMenu() {
-  var toggle = qs('.menu-toggle');
-  var nav = qs('.header-nav');
+  const toggle = qs('.menu-toggle');
+  const nav = qs('.header-nav');
   if (!toggle || !nav) return;
 
   on(toggle, 'click', function () { toggleClass(nav, 'open'); });
@@ -18,9 +18,9 @@ export function initMobileMenu() {
 
 // Marca el enlace de navegacion activo segun la URL actual
 export function initActiveNav() {
-  var path = window.location.pathname;
+  const path = window.location.pathname;
   document.querySelectorAll('.header-nav a').forEach(function (link) {
-    var href = link.getAttribute('href');
+    const href = link.getAttribute('href');
     if (href && path.endsWith(href)) link.classList.add('active');
   });
 }

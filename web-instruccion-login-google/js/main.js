@@ -213,26 +213,41 @@ def logout():
     },
 };
 
-// Escapa HTML y resalta comentarios, cadenas y palabras clave con un solo
-// paso de tokenizado (el orden en la alternancia evita sustituciones anidadas).
+// Resalta comentarios, cadenas y palabras clave construyendo nodos (nunca HTML
+// como texto), con un solo paso de tokenizado: el orden en la alternancia evita
+// sustituciones anidadas.
 const PALABRAS_CLAVE =
     "def|class|return|if|else|elif|for|while|import|from|as|with|in|is|not|and|or|None|True|False|pass|try|except|raise|CREATE|TABLE|IF|EXISTS|PRIMARY|KEY|UNIQUE|NOT|NULL|TEXT";
 
 function resaltar(codigo) {
-    const escapado = codigo
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;");
+    const fragmento = document.createDocumentFragment();
     const patron = new RegExp(
         `(#[^\\n]*)|("(?:[^"\\\\]|\\\\.)*")|\\b(${PALABRAS_CLAVE})\\b`,
         "g",
     );
-    return escapado.replace(patron, (coincide, comentario, cadena, palabra) => {
-        if (comentario) return `<span class="tok-com">${comentario}</span>`;
-        if (cadena) return `<span class="tok-str">${cadena}</span>`;
-        if (palabra) return `<span class="tok-key">${palabra}</span>`;
-        return coincide;
-    });
+
+    let ultimo = 0;
+    for (const coincidencia of codigo.matchAll(patron)) {
+        const [texto, comentario, cadena, palabra] = coincidencia;
+        if (coincidencia.index > ultimo) {
+            fragmento.append(codigo.slice(ultimo, coincidencia.index));
+        }
+
+        const clase = comentario ? "tok-com" : cadena ? "tok-str" : palabra ? "tok-key" : "";
+        if (clase) {
+            const trozo = document.createElement("span");
+            trozo.className = clase;
+            trozo.textContent = texto;
+            fragmento.append(trozo);
+        } else {
+            fragmento.append(texto);
+        }
+
+        ultimo = coincidencia.index + texto.length;
+    }
+
+    if (ultimo < codigo.length) fragmento.append(codigo.slice(ultimo));
+    return fragmento;
 }
 
 const modal = document.getElementById("modal-codigo");
@@ -245,7 +260,7 @@ function abrirModal(id) {
     const info = FRAGMENTOS[id];
     if (!info) return;
     modalTitulo.textContent = info.nombre;
-    modalContenido.innerHTML = resaltar(info.codigo);
+    modalContenido.replaceChildren(resaltar(info.codigo));
     modalDescarga.href = info.ruta;
     modalDescarga.setAttribute("download", info.ruta.split("/").pop());
     modal.showModal();

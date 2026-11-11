@@ -1,7 +1,7 @@
 /* Hero de portada */
 
 .hero {
-  padding: var(--space-20) 0 var(--space-16);
+  padding: var(--space-12) 0 var(--space-10);
   text-align: center;
   position: relative;
 }
@@ -18,14 +18,14 @@
 
 .hero-title {
   font-family: var(--font-heading);
-  font-size: var(--text-5xl);
+  font-size: var(--text-3xl);
   color: var(--color-heading);
   margin-bottom: var(--space-4);
   letter-spacing: -0.03em;
 }
 
 .hero-subtitle {
-  font-size: var(--text-xl);
+  font-size: var(--text-lg);
   color: var(--color-text-soft);
   max-width: 640px;
   margin: 0 auto var(--space-8);
@@ -36,11 +36,13 @@
   display: flex;
   justify-content: center;
   gap: var(--space-4);
+  flex-direction: column;
+  align-items: center;
 }
 
-@media (max-width: 768px) {
-  .hero { padding: var(--space-12) 0 var(--space-10); }
-  .hero-title { font-size: var(--text-3xl); }
-  .hero-subtitle { font-size: var(--text-lg); }
-  .hero-actions { flex-direction: column; align-items: center; }
+@media (min-width: 769px) {
+  .hero { padding: var(--space-20) 0 var(--space-16); }
+  .hero-title { font-size: var(--text-5xl); }
+  .hero-subtitle { font-size: var(--text-xl); }
+  .hero-actions { flex-direction: row; align-items: stretch; }
 }

@@ -2,7 +2,7 @@
 
 .home-sections {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: var(--space-8);
   margin-top: var(--space-6);
 }
@@ -11,7 +11,7 @@
   background-color: var(--color-bg-card);
   border: 2px solid var(--color-border);
   border-radius: var(--border-radius);
-  padding: var(--space-10);
+  padding: var(--space-6);
   transition: border-color var(--transition-base);
 }
 
@@ -72,7 +72,7 @@
 
 .card-link:hover { gap: var(--space-3); }
 
-@media (max-width: 768px) {
-  .home-sections { grid-template-columns: 1fr; }
-  .section-card { padding: var(--space-6); }
+@media (min-width: 769px) {
+  .home-sections { grid-template-columns: 1fr 1fr; }
+  .section-card { padding: var(--space-10); }
 }

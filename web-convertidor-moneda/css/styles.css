@@ -7,6 +7,9 @@
     --color-texto-secundario: #64748b;
     --sombra-fuerte: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
     --sombra-suave: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --color-superficie-suave: #f1f5f9;
+    --color-borde: #e2e8f0;
+    --color-resultado: #f8fafc;
 }
 
 * {
@@ -35,7 +38,7 @@ main {
     border-radius: 16px;
     box-shadow: var(--sombra-fuerte);
     max-width: 450px;
-    padding: 40px;
+    padding: 30px 20px;
     transition: transform 0.3s ease;
     width: 100%;
 }
@@ -45,7 +48,7 @@ main {
 }
 
 h1 {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 700;
     margin-bottom: 30px;
     margin-top: 0;
@@ -53,11 +56,26 @@ h1 {
 }
 
 .grupo-seleccion {
-    align-items: flex-end;
+    align-items: center;
     display: flex;
-    gap: 15px;
+    flex-direction: column;
+    gap: 10px;
     justify-content: space-between;
     margin-bottom: 25px;
+}
+
+.seccion-origen,
+.seccion-destino {
+    width: 100%;
+}
+
+.boton-intercambio {
+    margin: 5px 0;
+    transform: rotate(90deg);
+}
+
+.boton-intercambio:hover {
+    transform: rotate(270deg);
 }
 
 .seccion-origen,
@@ -66,7 +84,8 @@ h1 {
     min-width: 0;
 }
 
-.grupo-seleccion p {
+.grupo-seleccion label,
+.etiqueta-campo {
     color: var(--color-texto-secundario);
     font-size: 12px;
     font-weight: 600;
@@ -78,12 +97,12 @@ h1 {
 .campo-seleccion-origen select,
 .campo-seleccion-destino select {
     appearance: none;
-    background-color: #f1f5f9;
+    background-color: var(--color-superficie-suave);
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748b'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
     background-position: right 10px center;
     background-repeat: no-repeat;
     background-size: 16px;
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--color-borde);
     border-radius: 8px;
     color: var(--color-texto);
     cursor: pointer;
@@ -103,7 +122,7 @@ h1 {
 
 .boton-intercambio {
     align-items: center;
-    background-color: #f1f5f9;
+    background-color: var(--color-superficie-suave);
     border-radius: 50%;
     color: var(--color-primario);
     cursor: pointer;
@@ -125,8 +144,13 @@ h1 {
     margin-bottom: 25px;
 }
 
+.grupo-entrada .etiqueta-campo {
+    display: block;
+    margin-bottom: 8px;
+}
+
 .grupo-entrada input {
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--color-borde);
     border-radius: 8px;
     color: var(--color-texto);
     font-family: inherit;
@@ -167,7 +191,7 @@ h1 {
 }
 
 #caja-resultado {
-    background-color: #f8fafc;
+    background-color: var(--color-resultado);
     border-radius: 8px;
     color: var(--color-primario);
     font-size: 18px;
@@ -178,32 +202,32 @@ h1 {
     text-align: center;
 }
 
-@media (max-width: 640px) {
+@media (min-width: 641px) {
     .contenedor-principal {
-        padding: 30px 20px;
+        padding: 40px;
     }
 
     h1 {
-        font-size: 20px;
+        font-size: 24px;
     }
 
     .grupo-seleccion {
-        align-items: center;
-        flex-direction: column;
-        gap: 10px;
+        align-items: flex-end;
+        flex-direction: row;
+        gap: 15px;
     }
 
     .seccion-origen,
     .seccion-destino {
-        width: 100%;
+        width: auto;
     }
 
     .boton-intercambio {
-        margin: 5px 0;
-        transform: rotate(90deg);
+        margin: 0 0 2px;
+        transform: none;
     }
 
     .boton-intercambio:hover {
-        transform: rotate(270deg);
+        transform: rotate(180deg);
     }
 }

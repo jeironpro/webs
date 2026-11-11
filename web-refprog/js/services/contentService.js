@@ -1,12 +1,12 @@
 // Servicio de contenido - rutas, nombres y fetch de diagramas e info-util
 
 // Detecta subpath de GitHub Pages (ej: /repo/) para rutas absolutas
-var BASE = (function () {
-  var parts = window.location.pathname.split('/').filter(Boolean);
+const BASE = (function () {
+  const parts = window.location.pathname.split('/').filter(Boolean);
   return (parts.length > 1 && parts[0] !== 'pages') ? '/' + parts[0] : '';
 })();
 
-var diagramNames = {
+const diagramNames = {
   array: 'Array',
   bst: 'Arbol Binario de Busqueda',
   hashmap: 'HashMap',
@@ -19,7 +19,7 @@ var diagramNames = {
   trie: 'Trie',
 };
 
-var topicNames = {
+const topicNames = {
   bash: 'Bash',
   comando_sql: 'Comandos SQL',
   conceptos_java: 'Conceptos de Java',
@@ -63,11 +63,10 @@ export function getTopics() {
 }
 
 // Fetch de un archivo YAML y retorna texto plano
-export function fetchYaml(path) {
-  return fetch(path).then(function (r) {
-    if (!r.ok) throw new Error('Error al cargar ' + path);
-    return r.text();
-  });
+export async function fetchYaml(path) {
+  const respuesta = await fetch(path);
+  if (!respuesta.ok) throw new Error('Error al cargar ' + path);
+  return respuesta.text();
 }
 
 // Nombre legible de un diagrama
