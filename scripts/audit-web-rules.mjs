@@ -42,10 +42,10 @@ function ficherosVersionados() {
         .filter((ruta) => !COMPILADOS.test(ruta));
 }
 
-/** Primera carpeta de la ruta; los ficheros de la raíz forman su propio grupo. */
+/** Agrupa por carpeta `web-*`; todo lo demás (raíz y scripts) es un solo grupo. */
 function grupoDe(ruta) {
-    const partes = ruta.split("/");
-    return partes.length === 1 ? GRUPO_RAIZ : partes[0];
+    const primera = ruta.split("/")[0];
+    return primera.startsWith("web-") ? primera : GRUPO_RAIZ;
 }
 
 function auditar() {
