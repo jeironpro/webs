@@ -3,12 +3,12 @@
 (function () {
   "use strict";
 
-  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* ── N10 · morph the bar into a floating pill past a threshold ── */
-  var nav = document.getElementById("nav");
+  const nav = document.getElementById("nav");
   if (nav) {
-    var ticking = false;
+    let ticking = false;
     function onScroll() {
       nav.classList.toggle("is-floating", window.scrollY > 24);
       ticking = false;
@@ -20,15 +20,15 @@
   }
 
   /* ── Counter tick-up on view-enter ── */
-  var counters = Array.prototype.slice.call(document.querySelectorAll(".count"));
+  const counters = Array.prototype.slice.call(document.querySelectorAll(".count"));
   function runCount(el) {
-    var to = parseInt(el.dataset.to || "0", 10) || 0;
+    const to = parseInt(el.dataset.to || "0", 10) || 0;
     function fmt(n) { return n.toLocaleString("es-ES"); }
     if (reduce) { el.textContent = fmt(to); return; }
-    var dur = 1200, start = performance.now();
+    const dur = 1200, start = performance.now();
     function tick(now) {
-      var p = Math.min((now - start) / dur, 1);
-      var eased = 1 - Math.pow(1 - p, 3);
+      const p = Math.min((now - start) / dur, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
       el.textContent = fmt(Math.round(to * eased));
       if (p < 1) { requestAnimationFrame(tick); }
       else {
@@ -43,17 +43,17 @@
   }
 
   /* ── Stage reveal · sweep in as each enters the viewport ── */
-  var stages = Array.prototype.slice.call(document.querySelectorAll(".stage"));
+  const stages = Array.prototype.slice.call(document.querySelectorAll(".stage"));
 
   if ("IntersectionObserver" in window) {
     if (counters.length) {
-      var ioCount = new IntersectionObserver(function (entries) {
+      const ioCount = new IntersectionObserver(function (entries) {
         entries.forEach(function (e) { if (e.isIntersecting) { runCount(e.target); ioCount.unobserve(e.target); } });
       }, { threshold: 0.6 });
       counters.forEach(function (c) { ioCount.observe(c); });
     }
     if (stages.length) {
-      var ioStage = new IntersectionObserver(function (entries) {
+      const ioStage = new IntersectionObserver(function (entries) {
         entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("is-in"); ioStage.unobserve(e.target); } });
       }, { threshold: 0.25, rootMargin: "0px 0px -10% 0px" });
       stages.forEach(function (s) { ioStage.observe(s); });
@@ -64,10 +64,10 @@
   }
 
   /* ── Star-burst micro-celebration + character reaction ── */
-  var snake = document.getElementById("snake");
+  const snake = document.getElementById("snake");
   function burst(x, y) {
     if (reduce) return;
-    var s = document.createElement("span");
+    const s = document.createElement("span");
     s.className = "star-burst";
     s.style.position = "absolute";
     s.style.left = (x - 12) + "px";
@@ -89,22 +89,22 @@
   });
 
   /* ── Índice · búsqueda + filtro por categoría ── */
-  var input = document.getElementById("buscar");
-  var chips = Array.prototype.slice.call(document.querySelectorAll(".filtro"));
-  var categorias = Array.prototype.slice.call(document.querySelectorAll(".categoria"));
-  var tarjetas = Array.prototype.slice.call(document.querySelectorAll(".tarjeta"));
-  var vacio = document.getElementById("sin-resultados");
-  var activa = "todos";
+  const input = document.getElementById("buscar");
+  const chips = Array.prototype.slice.call(document.querySelectorAll(".filtro"));
+  const categorias = Array.prototype.slice.call(document.querySelectorAll(".categoria"));
+  const tarjetas = Array.prototype.slice.call(document.querySelectorAll(".tarjeta"));
+  const vacio = document.getElementById("sin-resultados");
+  let activa = "todos";
 
   function normaliza(texto) {
     return texto.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
   }
 
   function aplica() {
-    var termino = normaliza(input ? input.value.trim() : "");
-    var visibles = 0;
+    const termino = normaliza(input ? input.value.trim() : "");
+    let visibles = 0;
     tarjetas.forEach(function (tarjeta) {
-      var coincide = (activa === "todos" || tarjeta.dataset.cat === activa) &&
+      const coincide = (activa === "todos" || tarjeta.dataset.cat === activa) &&
         (!termino || normaliza(tarjeta.dataset.busqueda).indexOf(termino) !== -1);
       tarjeta.hidden = !coincide;
       if (coincide) visibles++;
@@ -126,14 +126,14 @@
   });
 
   /* ── Detalle · copiar y descargar ── */
-  var codigo = document.querySelector(".detalle pre code");
+  const codigo = document.querySelector(".detalle pre code");
 
   document.addEventListener("click", function (evento) {
-    var boton = evento.target.closest("button[data-accion]");
+    const boton = evento.target.closest("button[data-accion]");
     if (!boton || !codigo) return;
     burst(evento.pageX, evento.pageY);
-    var texto = codigo.textContent.replace(/\s+$/, "");
-    var accion = boton.dataset.accion;
+    const texto = codigo.textContent.replace(/\s+$/, "");
+    const accion = boton.dataset.accion;
     if (accion === "copiar") {
       copiar(boton, texto);
     } else if (accion === "descargar") {
@@ -141,8 +141,8 @@
     }
   });
 
-  function copiar(boton, texto) {
-    var hecho = function () {
+  async function copiar(boton, texto) {
+    const hecho = function () {
       boton.textContent = "Copiado ✓";
       boton.dataset.copiado = "true";
       setTimeout(function () {
@@ -151,16 +151,19 @@
       }, 2500);
     };
     if (navigator.clipboard && window.isSecureContext) {
-      navigator.clipboard.writeText(texto).then(hecho, function () {
+      try {
+        await navigator.clipboard.writeText(texto);
+        hecho();
+      } catch (error) {
         copiarPorSeleccion(texto, hecho);
-      });
+      }
     } else {
       copiarPorSeleccion(texto, hecho);
     }
   }
 
   function copiarPorSeleccion(texto, hecho) {
-    var area = document.createElement("textarea");
+    const area = document.createElement("textarea");
     area.value = texto;
     area.setAttribute("readonly", "");
     area.style.position = "fixed";
@@ -175,9 +178,9 @@
   }
 
   function descargar(nombre, texto) {
-    var blob = new Blob([texto], { type: "text/plain;charset=utf-8" });
-    var url = URL.createObjectURL(blob);
-    var enlace = document.createElement("a");
+    const blob = new Blob([texto], { type: "text/plain;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const enlace = document.createElement("a");
     enlace.href = url;
     enlace.download = nombre;
     document.body.appendChild(enlace);

@@ -1,10 +1,10 @@
+@import url("tokens.css");
 /* Hallmark · macrostructure: Index-First con narrativa (hero → método → cifras → índice)
  * theme: Hum · nav: N10 floating-on-scroll morph · footer: Ft5 statement · lead accent: pear
  * character: la serpiente (pear, respira; salta al copiar) · brief: "Python se aprende haciendo."
  * Referencia de diseño: hum-07 (Bubble)
  */
 
-@import url("tokens.css");
 
 *, *::before, *::after { box-sizing: border-box; }
 html, body { margin: 0; }
@@ -22,7 +22,6 @@ a { color: inherit; text-decoration: none; }
 a:focus-visible, button:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 3px; border-radius: 6px; }
 button { font: inherit; background: none; border: 0; padding: 0; cursor: pointer; color: inherit; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
-[hidden] { display: none !important; }
 
 .eyebrow { font-family: var(--font-label); font-size: 11px; letter-spacing: 0.10em; text-transform: uppercase; color: var(--color-ink-2); opacity: 0.78; margin: 0 0 1rem; display: inline-flex; align-items: center; gap: 0.55em; }
 .eyebrow__dot { width: 8px; height: 8px; border-radius: 50%; flex: 0 0 auto; }
@@ -191,7 +190,6 @@ html.js .stage__line { transform: scaleY(0); }
 
 .stage__panel { min-width: 0; background: var(--color-paper); border: 1.5px solid var(--color-rule); border-radius: var(--radius-card); box-shadow: var(--shadow-card); padding: clamp(1.4rem, 3vw, 2.25rem); margin-bottom: clamp(2rem, 5vh, 3.75rem); display: grid; grid-template-columns: 1fr; gap: 1.5rem; align-items: center; transition: opacity 620ms var(--ease-out), transform 620ms var(--ease-out); }
 html.js .stage__panel { opacity: 0; transform: translateX(28px); }
-@media (max-width: 639px) { html.js .stage__panel { transform: none; } }
 .stage__copy { min-width: 0; }
 @media (min-width: 720px) { .stage__panel { grid-template-columns: 1fr clamp(120px, 22vw, 168px); } }
 .stage.is-in .stage__node { transform: none; opacity: 1; }
@@ -377,10 +375,27 @@ html.js .stage__panel { opacity: 0; transform: translateX(28px); }
   animation: star-burst 420ms ease-out forwards; }
 @keyframes star-burst { 0% { transform: scale(0) rotate(0); opacity: 1; } 60% { transform: scale(1.2) rotate(35deg); opacity: 0.9; } 100% { transform: scale(1.4) rotate(45deg); opacity: 0; } }
 
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  .snake__pulse, .snake__cuerpo { animation: none; }
-  .snake.is-react { animation: none; }
-  .stage__node, .stage__line, .stage__panel { transition: none; opacity: 1; transform: none; }
-  * { animation-duration: 0.01ms !important; }
+
+html.js .stage__panel {
+    transform: none;
+}
+
+@media (min-width: 640px) {
+    html.js .stage__panel {
+        transform: translateX(28px);
+    }
+}
+
+@layer accesibilidad {
+    @media (prefers-reduced-motion: reduce) {
+          html { scroll-behavior: auto; }
+          .snake__pulse, .snake__cuerpo { animation: none; }
+          .snake.is-react { animation: none; }
+          .stage__node, .stage__line, .stage__panel { transition: none; opacity: 1; transform: none; }
+          * { animation-duration: 0.01ms; }    }
+}
+
+/* El atributo hidden manda sobre cualquier display de componente. */
+html [hidden] {
+    display: none;
 }

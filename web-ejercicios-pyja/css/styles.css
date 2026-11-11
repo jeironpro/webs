@@ -1,17 +1,54 @@
-/* --------- Globales --------- */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Fredoka:wght@300..700&display=swap");
 
+/* --------- Globales --------- */
+
 :root {
-  --borde: #e2e8f0;
-  --fondo: #f8fafc;
-  --fondo-tarjeta: #ffffff;
-  --hover-primario: #1d4ed8;
-  --primario: #2563eb;
+  --borde: var(--texto);
+  --fondo: var(--color);
+  --fondo-tarjeta: var(--fondo-2);
+  --hover-primario: var(--color-3);
+  --primario: var(--color-4);
   --sombra: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   --sombra-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  --texto-principal: #1e293b;
-  --texto-secundario: #64748b;
+  --texto-principal: var(--fondo-3);
+  --texto-secundario: var(--color-2);
   --transicion: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --borde-2: #334155;
+    --borde-3: #fbbf24;
+    --color: #f8fafc;
+    --color-2: #64748b;
+    --color-3: #1d4ed8;
+    --color-4: #2563eb;
+    --fondo-10: #fee2e2;
+    --fondo-11: #fef9c3;
+    --fondo-12: #ffedd5;
+    --fondo-13: #fffbeb;
+    --fondo-2: #ffffff;
+    --fondo-3: #1e293b;
+    --fondo-4: #0f172a;
+    --fondo-5: #dcfce7;
+    --fondo-6: #e0f2fe;
+    --fondo-7: #f1f5f9;
+    --fondo-8: #f3e8ff;
+    --fondo-9: #fdf2f8;
+    --texto: #e2e8f0;
+    --texto-10: #98c379;
+    --texto-11: #991b1b;
+    --texto-12: #be185d;
+    --texto-13: #c2410c;
+    --texto-14: #d19a66;
+    --texto-15: #e06c75;
+    --texto-16: #e5c07b;
+    --texto-17: #f87171;
+    --texto-2: #0369a1;
+    --texto-3: #166534;
+    --texto-4: #475569;
+    --texto-5: #61afef;
+    --texto-6: #7e22ce;
+    --texto-7: #7f848e;
+    --texto-8: #854d0e;
+    --texto-9: #94a3b8;
 }
 
 * {
@@ -75,7 +112,7 @@ header .titulo-paginacion {
 
 .cabecera-ejercicios {
   align-items: center;
-  background-color: #ffffff;
+  background-color: var(--fondo-2);
   border: 1px solid var(--borde);
   border-radius: 16px;
   display: flex;
@@ -245,56 +282,56 @@ main {
 }
 
 .nivel-facil {
-  background-color: #dcfce7;
-  color: #166534;
+  background-color: var(--fondo-5);
+  color: var(--texto-3);
 }
 
 .nivel-medio {
-  background-color: #fef9c3;
-  color: #854d0e;
+  background-color: var(--fondo-11);
+  color: var(--texto-8);
 }
 
 .nivel-dificil {
-  background-color: #fee2e2;
-  color: #991b1b;
+  background-color: var(--fondo-10);
+  color: var(--texto-11);
 }
 
 .tipo {
-  background-color: #f1f5f9;
-  color: #475569;
+  background-color: var(--fondo-7);
+  color: var(--texto-4);
 }
 
 .tipo.elementos-basicos {
-  background-color: #e0f2fe;
-  color: #0369a1;
+  background-color: var(--fondo-6);
+  color: var(--texto-2);
 }
 
 .tipo.programacion-orientada-a-objetos {
-  background-color: #f3e8ff;
-  color: #7e22ce;
+  background-color: var(--fondo-8);
+  color: var(--texto-6);
 }
 
 .tipo.funcional {
-  background-color: #ffedd5;
-  color: #c2410c;
+  background-color: var(--fondo-12);
+  color: var(--texto-13);
 }
 
 .tipo.avanzado {
-  background-color: #fdf2f8;
-  color: #be185d;
+  background-color: var(--fondo-9);
+  color: var(--texto-12);
 }
 
 .tareas-programa,
 .pistas {
-  background-color: #f8fafc;
+  background-color: var(--color);
   border-radius: 12px;
   margin-top: 24px;
   padding: 20px;
 }
 
 .pistas {
-  background-color: #fffbeb;
-  border-left: 4px solid #fbbf24;
+  background-color: var(--fondo-13);
+  border-left: 4px solid var(--borde-3);
 }
 
 ul {
@@ -316,9 +353,9 @@ li::before {
 }
 
 .ejemplo-codigo {
-  background-color: #1e293b;
+  background-color: var(--fondo-3);
   border-radius: 12px;
-  color: #e2e8f0;
+  color: var(--texto);
   font-family: "JetBrains Mono", "Fira Code", monospace;
   font-size: 0.9rem;
   line-height: 1.6;
@@ -333,7 +370,7 @@ li::before {
 }
 
 .uml-diagrama {
-  background-color: #ffffff;
+  background-color: var(--fondo-2);
   border: 1px solid var(--borde);
   border-radius: 16px;
   margin-top: 24px;
@@ -362,7 +399,7 @@ li::before {
 
 #paginacion button {
   align-items: center;
-  background-color: #ffffff;
+  background-color: var(--fondo-2);
   border: 1px solid var(--borde);
   border-radius: 6px;
   color: var(--texto-secundario);
@@ -387,13 +424,13 @@ li::before {
 #paginacion button:disabled {
   background-color: var(--primario);
   border-color: var(--primario);
-  color: #ffffff;
+  color: var(--fondo-2);
   cursor: default;
 }
 
 /* --------- Footer --------- */
 footer {
-  background-color: #ffffff;
+  background-color: var(--fondo-2);
   border-top: 1px solid var(--borde);
   color: var(--texto-secundario);
   font-size: 0.875rem;
@@ -403,40 +440,7 @@ footer {
   white-space: nowrap;
 }
 
-/* --------- Media Queries --------- */
-@media (max-width: 768px) {
-  header {
-    padding: 16px;
-  }
-
-  header .titulo-principal {
-    font-size: 2.25rem;
-  }
-
-  .titulo-texto {
-    font-size: 1.75rem;
-  }
-
-  main {
-    padding: 24px 16px;
-  }
-
-  .tarjeta {
-    height: 40vh;
-    min-height: 450px;
-  }
-
-  .ejercicio {
-    padding: 20px;
-  }
-
-  .titulo-ejercicio {
-    font-size: 1.5rem;
-  }
-}
-
-
-@media (min-width: 769px) and (max-width: 1024px) {
+@media (min-width: 769px) {
   .contenedor-principal {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -448,7 +452,7 @@ footer {
   background-color: var(--primario);
   border: 1px solid var(--primario);
   border-radius: 12px;
-  color: #ffffff;
+  color: var(--fondo-2);
   cursor: pointer;
   display: inline-flex;
   font-family: inherit;
@@ -481,8 +485,8 @@ footer {
 }
 
 .modal-panel {
-  background-color: #0f172a;
-  border: 1px solid #334155;
+  background-color: var(--fondo-4);
+  border: 1px solid var(--borde-2);
   border-radius: 20px;
   box-shadow: var(--sombra-hover);
   display: flex;
@@ -495,8 +499,8 @@ footer {
 
 .modal-cabecera {
   align-items: center;
-  background-color: #1e293b;
-  border-bottom: 1px solid #334155;
+  background-color: var(--fondo-3);
+  border-bottom: 1px solid var(--borde-2);
   display: flex;
   flex: none;
   gap: 16px;
@@ -505,7 +509,7 @@ footer {
 }
 
 .modal-titulo {
-  color: #f8fafc;
+  color: var(--color);
   font-size: 1.25rem;
   margin: 0;
   overflow: hidden;
@@ -518,7 +522,7 @@ footer {
   background-color: transparent;
   border: none;
   border-radius: 8px;
-  color: #94a3b8;
+  color: var(--texto-9);
   cursor: pointer;
   display: flex;
   flex: none;
@@ -530,8 +534,8 @@ footer {
 }
 
 .modal-cerrar:hover {
-  background-color: #334155;
-  color: #ffffff;
+  background-color: var(--borde-2);
+  color: var(--fondo-2);
 }
 
 .modal-contenido {
@@ -540,7 +544,7 @@ footer {
 
 .modal-aviso {
   align-items: center;
-  color: #fbbf24;
+  color: var(--borde-3);
   display: flex;
   flex-direction: column;
   font-family: "Fredoka", sans-serif;
@@ -560,7 +564,7 @@ footer {
 }
 
 .modal-aviso-error {
-  color: #f87171;
+  color: var(--texto-17);
 }
 
 /* --------- Código de solución --------- */
@@ -569,9 +573,9 @@ footer {
 }
 
 .numeros-linea {
-  background-color: #1e293b;
-  border-right: 1px solid #334155;
-  color: #64748b;
+  background-color: var(--fondo-3);
+  border-right: 1px solid var(--borde-2);
+  color: var(--color-2);
   flex: none;
   font-family: "JetBrains Mono", "Fira Code", monospace;
   font-size: 0.875rem;
@@ -585,8 +589,8 @@ footer {
 }
 
 .codigo-solucion {
-  background-color: #0f172a;
-  color: #e2e8f0;
+  background-color: var(--fondo-4);
+  color: var(--texto);
   flex: 1;
   font-family: "JetBrains Mono", "Fira Code", monospace;
   font-size: 0.875rem;
@@ -603,52 +607,146 @@ footer {
 
 /* --------- Tokens de resaltado (paleta estilo editor) --------- */
 .tok-comentario {
-  color: #7f848e;
+  color: var(--texto-7);
   font-style: italic;
 }
 
 .tok-cadena {
-  color: #98c379;
+  color: var(--texto-10);
 }
 
 .tok-palabra {
-  color: #e06c75;
+  color: var(--texto-15);
 }
 
 .tok-numero {
-  color: #d19a66;
+  color: var(--texto-14);
 }
 
 .tok-builtin {
-  color: #61afef;
+  color: var(--texto-5);
 }
 
 .tok-anotacion {
-  color: #e5c07b;
+  color: var(--texto-16);
 }
 
-@media (max-width: 768px) {
-  .modal-fondo {
-    padding: 8px;
-  }
+.codigo-solucion {
+    font-size: 0.75rem;
+}
 
-  .modal-panel {
-    border-radius: 16px;
-    max-height: 92vh;
-  }
+.ejercicio {
+    padding: 20px;
+}
 
-  .modal-titulo {
-    font-size: 1rem;
-  }
-
-  .modal-aviso {
+.modal-aviso {
     font-size: 1.25rem;
     padding: 48px 16px;
-  }
-
-  .codigo-solucion,
-  .numeros-linea {
-    font-size: 0.75rem;
-  }
 }
 
+.modal-fondo {
+    padding: 8px;
+}
+
+.modal-panel {
+    border-radius: 16px;
+    max-height: 92vh;
+}
+
+.modal-titulo {
+    font-size: 1rem;
+}
+
+.numeros-linea {
+    font-size: 0.75rem;
+}
+
+.tarjeta {
+    height: 40vh;
+    min-height: 450px;
+}
+
+.titulo-ejercicio {
+    font-size: 1.5rem;
+}
+
+.titulo-texto {
+    font-size: 1.75rem;
+}
+
+header {
+    padding: 16px;
+}
+
+header .titulo-principal {
+    font-size: 2.25rem;
+}
+
+main {
+    padding: 24px 16px;
+}
+
+@media (min-width: 769px) {
+    .codigo-solucion {
+        font-size: 0.875rem;
+    }
+
+    .ejercicio {
+        padding: 32px;
+    }
+
+    .modal-aviso {
+        font-size: 1.5rem;
+        padding: 64px 24px;
+    }
+
+    .modal-fondo {
+        padding: 24px;
+    }
+
+    .modal-panel {
+        border-radius: 20px;
+        max-height: 85vh;
+    }
+
+    .modal-titulo {
+        font-size: 1.25rem;
+    }
+
+    .numeros-linea {
+        font-size: 0.875rem;
+    }
+
+    .tarjeta {
+        height: 65vh;
+        min-height: 500px;
+    }
+
+    .titulo-ejercicio {
+        font-size: 1.75rem;
+    }
+
+    .titulo-texto {
+        font-size: 2.5rem;
+    }
+
+    header {
+        padding: 24px;
+    }
+
+    header .titulo-principal {
+        font-size: 3rem;
+    }
+
+    main {
+        padding: 48px 24px;
+    }
+}
+
+@layer responsive {
+    @media (min-width: 1025px) {
+        .contenedor-principal {
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        }
+    }
+}
