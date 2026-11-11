@@ -109,3 +109,38 @@ function limpiarTodo() {
     let botones = document.querySelectorAll('.boton-operador');
     botones.forEach(boton => boton.classList.remove('seleccionado'));
 }
+
+function manejarTeclado(evento) {
+    const tecla = evento.key;
+    if (/^[0-9]$/.test(tecla)) {
+        datosCalculo(tecla);
+        return;
+    }
+    if (tecla === '.' || tecla === ',') {
+        datosCalculo('.');
+        return;
+    }
+    if (tecla === '+' || tecla === '-' || tecla === '*' || tecla === '/') {
+        operadorSeleccionado(tecla);
+        return;
+    }
+    if (tecla === '%') {
+        operadorSeleccionado('%');
+        return;
+    }
+    if (tecla === 'Enter' || tecla === '=') {
+        evento.preventDefault();
+        calcular();
+        return;
+    }
+    if (tecla === 'Backspace') {
+        evento.preventDefault();
+        limpiar();
+        return;
+    }
+    if (tecla === 'Escape' || tecla === 'Delete') {
+        limpiarTodo();
+    }
+}
+
+document.addEventListener('keydown', manejarTeclado);

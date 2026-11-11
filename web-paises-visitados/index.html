@@ -28,10 +28,15 @@
         <div id="contenedor-paises"></div>
     </main>
     <footer>
-        <p>Todos los derechos reservados - JeironPro 2025</p>
+        <p>Todos los derechos reservados - JeironPro <span data-anio>2025</span></p>
     </footer>
     <script src="js/script.js"></script>
     <script src="js/animacion.js"></script>
     <script src="https://kit.fontawesome.com/25da21ab57.js" crossorigin="anonymous"></script>
+    <script>
+        document.querySelectorAll("[data-anio]").forEach((nodo) => {
+            nodo.textContent = new Date().getFullYear();
+        });
+    </script>
 </body>
 </html>

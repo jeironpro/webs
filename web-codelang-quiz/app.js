@@ -142,6 +142,18 @@ function barajar(arreglo) {
     return copia;
 }
 
+function prepararPregunta(pregunta) {
+    const textos = barajar(OPCIONES.map((letra) => pregunta.opciones[letra]));
+    const opciones = {};
+    OPCIONES.forEach((letra, indice) => {
+        opciones[letra] = textos[indice];
+    });
+    const respuesta = OPCIONES.find(
+        (letra) => opciones[letra] === pregunta.opciones[pregunta.respuesta],
+    );
+    return { ...pregunta, opciones, respuesta, orden: OPCIONES };
+}
+
 function puntosDe(dificultad) {
     return DIFICULTADES[dificultad]?.puntos || 0;
 }
@@ -498,10 +510,7 @@ async function empezarPartida() {
         cargando = false;
         filtrosResultados = { ...filtrosHome };
         quiz = {
-            preguntas: disponibles.map((pregunta) => ({
-                ...pregunta,
-                orden: barajar(OPCIONES),
-            })),
+            preguntas: disponibles.map(prepararPregunta),
             filtros: { ...filtrosHome },
             indice: 0,
             respuestas: [],

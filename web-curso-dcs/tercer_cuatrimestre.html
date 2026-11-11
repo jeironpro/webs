@@ -3634,7 +3634,7 @@ class Migration(migrations.Migration):
 
     {% endblock %}
     &lt;footer class="card-footer text-body-secondary"&gt;
-        &amp;copy; Todos los derechos reservados | JEIRON-DiCreSoft 2023
+        &amp;copy; Todos los derechos reservados | JEIRON-DiCreSoft <span data-anio>2023</span>
     &lt;/footer&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
@@ -4055,7 +4055,7 @@ class Migration(migrations.Migration):
 
     {% endblock %}
     &lt;footer class="card-footer text-body-secondary"&gt;
-        &amp;copy; Todos los derechos reservados | JEIRON-DiCreSoft 2023
+        &amp;copy; Todos los derechos reservados | JEIRON-DiCreSoft <span data-anio>2023</span>
     &lt;/footer&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
@@ -4417,7 +4417,7 @@ def agregar(request):
     {% endblock %}
 
     &lt;footer&gt;
-        &amp;copy; Todos los derechos reservados | DiCreSoft 2023
+        &amp;copy; Todos los derechos reservados | DiCreSoft <span data-anio>2023</span>
     &lt;/footer&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
@@ -5440,7 +5440,7 @@ class Migration(migrations.Migration):
 
     {% endblock %}
     &lt;footer&gt;
-        &amp;copy; Todos los derechos reservados | DiCreSoft 2023
+        &amp;copy; Todos los derechos reservados | DiCreSoft <span data-anio>2023</span>
     &lt;/footer&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
@@ -9756,6 +9756,11 @@ public class EvaluacionJava {
     </footer>
 
     <script src="js/app.js"></script>
+    <script>
+        document.querySelectorAll("[data-anio]").forEach((nodo) => {
+            nodo.textContent = new Date().getFullYear();
+        });
+    </script>
 </body>
 
 </html>

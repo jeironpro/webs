@@ -78,8 +78,13 @@ Submodule path 'libreria': checked out 'a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0
         </section>
     </main>
     <footer>
-        &copy; Todos los derechos reservados 2025 - JeironPro
+        &copy; Todos los derechos reservados <span data-anio>2025</span> - JeironPro
     </footer>
     <script src="../js/cabezera.js"></script>
+    <script>
+        document.querySelectorAll("[data-anio]").forEach((nodo) => {
+            nodo.textContent = new Date().getFullYear();
+        });
+    </script>
 </body>
 </html>

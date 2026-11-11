@@ -224,12 +224,12 @@ const mostraSelectoresCategoria = function (categoria) {
     contenedorSelectsObj.appendChild(cloneSelectObj);
     contenedorConversion.appendChild(contenedorSelectsObj);
 
-    inputObj.addEventListener("input", function () {
-        const desdeValue = selectObj.value;
-        const hastaValue = cloneSelectObj.value;
-        const valor = Number(inputObj.value);
-        calculoConversion(categoria, desdeValue, hastaValue, valor);
-    });
+    const recalcular = function () {
+        calculoConversion(categoria, selectObj.value, cloneSelectObj.value, inputObj.value);
+    };
+    inputObj.addEventListener("input", recalcular);
+    selectObj.addEventListener("change", recalcular);
+    cloneSelectObj.addEventListener("change", recalcular);
     const contenedorResultadoObj = document.createElement("span");
     contenedorResultadoObj.id = "resultado-conversion";
 
@@ -240,8 +240,14 @@ const obtenerFuncion = (tipoConversiones, conversion) => {
     return tipoConversiones.find(conversiones => conversiones[conversion])?.[conversion];
 };
 
+const UNIDADES_INVERSAS = new Set(["Litro por 100 kilómetros"]);
+
 const calculoConversion = function (categoria, desde, hasta, valor) {
-    if (!valor || isNaN(valor)) {
+    const contenedorResultadoObj = document.getElementById("resultado-conversion");
+    if (!contenedorResultadoObj) return;
+
+    const numero = valor === "" ? NaN : Number(valor);
+    if (!Number.isFinite(numero)) {
         contenedorResultadoObj.textContent = "";
         contenedorResultadoObj.style.display = "none";
         return;
@@ -251,14 +257,16 @@ const calculoConversion = function (categoria, desde, hasta, valor) {
     const conversionDesde = obtenerFuncion(tipoConversiones, desde);
     const conversionHasta = obtenerFuncion(tipoConversiones, hasta);
 
-    const valorBase = conversionDesde(valor);
-    const resultado = valorBase / conversionHasta(1);
+    const valorBase = conversionDesde(numero);
+    // Las unidades inversas (l/100 km) se convierten dividiendo, no multiplicando.
+    const resultado = UNIDADES_INVERSAS.has(hasta)
+        ? 100 / valorBase
+        : valorBase / conversionHasta(1);
     const resultadoFormateado = resultado.toLocaleString('en-US', {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2
     });
 
-    const contenedorResultadoObj = document.getElementById("resultado-conversion");
     contenedorResultadoObj.textContent = resultadoFormateado;
     contenedorResultadoObj.style.display = "flex";
 }

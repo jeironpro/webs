@@ -83,8 +83,13 @@ no hay nada agregado al commit pero hay archivos sin seguimiento presentes (usa 
         </section>
     </main>
     <footer>
-        &copy; Todos los derechos reservados 2025 - JeironPro
+        &copy; Todos los derechos reservados <span data-anio>2025</span> - JeironPro
     </footer>
     <script src="../js/cabezera.js"></script>
+    <script>
+        document.querySelectorAll("[data-anio]").forEach((nodo) => {
+            nodo.textContent = new Date().getFullYear();
+        });
+    </script>
 </body>
 </html>
