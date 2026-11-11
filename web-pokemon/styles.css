@@ -1019,3 +1019,65 @@ footer p {
     width: 160px;
   }
 }
+
+/* ── Cartas de altura fluida y rejilla adaptable ──
+   Las cartas tenían 700–760 px fijos, así que en móvil ocupaban más de una
+   pantalla y en escritorio quedaban desproporcionadas. */
+.carta,
+.skeleton-card {
+    height: auto;
+    min-height: 0;
+}
+
+.carta {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.carta-imagen {
+    aspect-ratio: 1 / 1;
+    flex: 0 0 auto;
+    height: auto;
+}
+
+.carta-imagen img {
+    height: 100%;
+    object-fit: contain;
+    width: 100%;
+}
+
+.carta-contenido {
+    flex: 1 1 auto;
+    min-height: 0;
+}
+
+.carta-descripcion {
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    display: -webkit-box;
+    overflow: hidden;
+}
+
+@media (min-width: 481px) {
+    .carta,
+    .skeleton-card {
+        max-width: 340px;
+        width: calc(50% - 18px);
+    }
+}
+
+@media (min-width: 769px) {
+    .carta,
+    .skeleton-card {
+        max-width: 350px;
+        width: 320px;
+    }
+}
+
+@media (min-width: 1025px) {
+    .carta,
+    .skeleton-card {
+        width: 330px;
+    }
+}
