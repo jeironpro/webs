@@ -1,3 +1,14 @@
+:root {
+    --borde: #000;
+    --fondo: #97ff9e;
+    --fondo-2: #97c1ff;
+    --fondo-3: #d7d7d7;
+    --fondo-4: #f2ff7a;
+    --fondo-5: #ff907a;
+    --fondo-6: #ff9797;
+    --texto: #ff0000;
+}
+
 * {
     font-family: 'Fredoka', sans-serif;
 }
@@ -6,7 +17,7 @@ h1 {
 }
 table, th, td {
     border-collapse: collapse;
-    border: 1px solid #000;
+    border: 1px solid var(--borde);
 }
 th {
     font-weight: 800;
@@ -15,25 +26,25 @@ th, td {
     padding: 10px;
 }
 th:nth-child(1), .modul {
-    background-color: #d7d7d7;
+    background-color: var(--fondo-3);
 }
 th:nth-child(2), .ra {
-    background-color: #97c1ff;
+    background-color: var(--fondo-2);
 }
 th:nth-child(3), .aprovat {
-    background-color: #97ff9e;
+    background-color: var(--fondo);
 }
 th:nth-child(4) {
-    background-color: #f2ff7a;
+    background-color: var(--fondo-4);
 }
 th:nth-child(5) {
-    background-color: #ff907a;
+    background-color: var(--fondo-5);
 }
 .reprovat {
-    background-color: #ff9797;
+    background-color: var(--fondo-6);
 }
 .absencia {
-    color: #ff0000;
+    color: var(--texto);
 }
 tr th:nth-child(1) {
     width: 25%;
@@ -55,7 +66,7 @@ tr td:nth-child(5) {
     text-align: center;
 }
 .qualificacio-final {
-    background-color: #97ff9e;
+    background-color: var(--fondo);
 }
 .qualificacio-final span {
     float: right
