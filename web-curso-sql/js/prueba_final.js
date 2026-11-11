@@ -26,19 +26,19 @@ function verificarRespuestas() {
     
     if (puntuacion === totalPreguntas) {
         divResultado.style.color = 'green';
-        divResultado.textContent += ' ¡PERFECTO! 🏆 Eres un verdadero Maestro SQL.';
+        divResultado.textContent += ' ¡PERFECTO! Eres un verdadero Maestro SQL.';
     } else if (puntuacion >= 22) {
         divResultado.style.color = '#2563eb';
-        divResultado.textContent += ' ¡Excelente! 🌟 Dominas SQL a nivel experto.';
+        divResultado.textContent += ' ¡Excelente! Dominas SQL a nivel experto.';
     } else if (puntuacion >= 18) {
         divResultado.style.color = '#059669';
-        divResultado.textContent += ' ¡Muy bien! 👍 Tienes un nivel sólido.';
+        divResultado.textContent += ' ¡Muy bien! Tienes un nivel sólido.';
     } else if (puntuacion >= 13) {
         divResultado.style.color = 'orange';
-        divResultado.textContent += ' Buen trabajo, pero repasa algunos temas. 📚';
+        divResultado.textContent += ' Buen trabajo, pero repasa algunos temas.';
     } else {
         divResultado.style.color = 'red';
-        divResultado.textContent += ' Sigue estudiando, ¡tú puedes! 💪';
+        divResultado.textContent += ' Sigue estudiando, ¡tú puedes!';
     }
 }
 
