@@ -11,6 +11,7 @@
     --color-codigo-borde: #e0e0e0;
     --color-codigo-texto: #37474f;
     --color-icono: #64b5f6;
+    --color-texto-inverso: #fff;
     --espaciado-base: 20px;
     --radio-borde: 16px;
     --sombra-suave: 0 4px 20px rgba(0, 0, 0, 0.08);
@@ -166,7 +167,7 @@ input[type="file"]::file-selector-button:hover {
     border: none;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(255, 112, 67, 0.3);
-    color: #fff;
+    color: var(--color-texto-inverso);
     cursor: pointer;
     display: flex;
     font-family: "Poppins", sans-serif;
@@ -194,13 +195,115 @@ input[type="file"]::file-selector-button:hover {
     font-size: 20px;
 }
 
-/* Responsive Design - Tablet */
-@media (max-width: 1023px) and (min-width: 768px) {
-    .titol-arxiu {
-        font-size: 28px;
+
+#contingut-arxiu {
+    font-size: 11px;
+    line-height: 1.5;
+    max-height: 350px;
+    max-width: 100%;
+    padding: 12px;
+}
+
+.boto-reset {
+    font-size: 13px;
+    max-width: 100%;
+    padding: 10px 18px;
+}
+
+.boto-reset .material-icons {
+    font-size: 18px;
+}
+
+.contenidor {
+    gap: 20px;
+    max-width: 100%;
+    padding: 30px 20px;
+}
+
+.icono-arxiu {
+    font-size: 50px;
+}
+
+.titol-arxiu {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+body {
+    gap: 15px;
+    padding: 15px;
+}
+
+input[type="file"] {
+    font-size: 13px;
+    padding: 10px 12px;
+}
+
+input[type="file"]::file-selector-button {
+    font-size: 12px;
+    margin-right: 10px;
+    padding: 8px 15px;
+}
+
+label {
+    font-size: 15px;
+}
+
+@media (min-width: 375px) {
+    #contingut-arxiu {
+        font-size: 12px;
+        max-height: 400px;
+        padding: 15px;
+    }
+
+    .boto-reset {
+        font-size: 14px;
+        padding: 12px 20px;
     }
 
     .contenidor {
+        padding: 40px 25px;
+    }
+
+    .icono-arxiu {
+        font-size: 60px;
+    }
+
+    .titol-arxiu {
+        font-size: 22px;
+    }
+
+    input[type="file"] {
+        font-size: 14px;
+        padding: 12px 15px;
+    }
+
+    label {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 768px) {
+    #contingut-arxiu {
+        font-size: 13px;
+        line-height: 1.6;
+        max-height: 450px;
+        max-width: 700px;
+        padding: 20px;
+    }
+
+    .boto-reset {
+        font-size: 15px;
+        max-width: 450px;
+        padding: 12px 25px;
+    }
+
+    .boto-reset .material-icons {
+        font-size: 20px;
+    }
+
+    .contenidor {
+        gap: 30px;
         max-width: 450px;
         padding: 50px 35px;
     }
@@ -209,110 +312,59 @@ input[type="file"]::file-selector-button:hover {
         font-size: 70px;
     }
 
-    label {
-        font-size: 18px;
-    }
-
-    #contingut-arxiu {
-        font-size: 13px;
-        max-height: 450px;
-        max-width: 700px;
-    }
-
-    .boto-reset {
-        font-size: 15px;
-        max-width: 450px;
-        padding: 12px 25px;
-    }
-}
-
-/* Responsive Design - Mobile */
-@media (max-width: 767px) {
-    body {
-        gap: 15px;
-        padding: 15px;
-    }
-
     .titol-arxiu {
-        font-size: 22px;
-        margin-bottom: 5px;
+        font-size: 28px;
+        margin-bottom: 10px;
     }
 
-    .contenidor {
-        gap: 20px;
-        max-width: 100%;
-        padding: 40px 25px;
-    }
-
-    .icono-arxiu {
-        font-size: 60px;
-    }
-
-    label {
-        font-size: 16px;
+    body {
+        gap: var(--espaciado-base);
+        padding: var(--espaciado-base);
     }
 
     input[type="file"] {
-        font-size: 14px;
-        padding: 12px 15px;
+        font-size: 16px;
+        padding: 15px 20px;
     }
 
     input[type="file"]::file-selector-button {
-        font-size: 12px;
-        margin-right: 10px;
-        padding: 8px 15px;
-    }
-
-    #contingut-arxiu {
-        font-size: 12px;
-        line-height: 1.5;
-        max-height: 400px;
-        max-width: 100%;
-        padding: 15px;
-    }
-
-    .boto-reset {
         font-size: 14px;
-        max-width: 100%;
-        padding: 12px 20px;
+        margin-right: 15px;
+        padding: 10px 20px;
     }
 
-    .boto-reset .material-icons {
+    label {
         font-size: 18px;
     }
 }
 
-/* Extra Small Mobile */
-@media (max-width: 374px) {
-    .titol-arxiu {
-        font-size: 20px;
-    }
-
-    .contenidor {
-        padding: 30px 20px;
-    }
-
-    .icono-arxiu {
-        font-size: 50px;
-    }
-
-    label {
-        font-size: 15px;
-    }
-
-    input[type="file"] {
-        font-size: 13px;
-        padding: 10px 12px;
-    }
-
+@media (min-width: 1024px) {
     #contingut-arxiu {
-        font-size: 11px;
-        max-height: 350px;
-        padding: 12px;
+        font-size: 14px;
+        max-height: 500px;
+        max-width: 900px;
     }
 
     .boto-reset {
-        font-size: 13px;
-        padding: 10px 18px;
+        font-size: 16px;
+        max-width: 500px;
+        padding: 14px 30px;
+    }
+
+    .contenidor {
+        max-width: 500px;
+        padding: 60px 40px;
+    }
+
+    .icono-arxiu {
+        font-size: 80px;
+    }
+
+    .titol-arxiu {
+        font-size: 32px;
+    }
+
+    label {
+        font-size: 20px;
     }
 }

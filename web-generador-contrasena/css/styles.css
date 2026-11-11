@@ -5,6 +5,7 @@
     --color-fondo: #f8fafc;
     --color-subtexto: #64748b;
     --color-tarjeta: #ffffff;
+    --color-texto-inverso: #ffffff;
     --color-texto: #1e293b;
     --sombra:
         0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -98,7 +99,7 @@ body {
     background-color: var(--color-acento);
     border: none;
     border-radius: 12px;
-    color: #ffffff;
+    color: var(--color-texto-inverso);
     cursor: pointer;
     display: flex;
     font-family: inherit;
@@ -127,41 +128,69 @@ body {
     text-align: center;
 }
 
-@media (max-width: 768px) {
-    .tarjeta-generador {
-        padding: 30px;
+
+#campo-contrasena {
+    font-size: 1.1rem;
+    padding: 12px;
+}
+
+.boton-primario {
+    font-size: 1rem;
+    padding: 14px;
+}
+
+.encabezado h1 {
+    font-size: 1.5rem;
+}
+
+.encabezado p {
+    font-size: 0.85rem;
+}
+
+.principal {
+    padding: 15px;
+}
+
+.tarjeta-generador {
+    border-radius: 12px;
+    padding: 24px;
+}
+
+@media (min-width: 481px) {
+    #campo-contrasena {
+        font-size: 1.25rem;
+        padding: 15px;
+    }
+
+    .boton-primario {
+        font-size: 1.1rem;
+        padding: 15px;
     }
 
     .encabezado h1 {
         font-size: 1.75rem;
     }
-}
 
-@media (max-width: 480px) {
+    .encabezado p {
+        font-size: 0.95rem;
+    }
+
     .principal {
-        padding: 15px;
+        padding: 20px;
     }
 
     .tarjeta-generador {
-        border-radius: 12px;
-        padding: 24px;
+        border-radius: 16px;
+        padding: 30px;
     }
+}
 
+@media (min-width: 769px) {
     .encabezado h1 {
-        font-size: 1.5rem;
+        font-size: 2rem;
     }
 
-    .encabezado p {
-        font-size: 0.85rem;
-    }
-
-    #campo-contrasena {
-        font-size: 1.1rem;
-        padding: 12px;
-    }
-
-    .boton-primario {
-        font-size: 1rem;
-        padding: 14px;
+    .tarjeta-generador {
+        padding: 40px;
     }
 }

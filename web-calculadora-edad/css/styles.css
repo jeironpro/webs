@@ -80,7 +80,7 @@ body {
 }
 
 input[type="date"] {
-    background: #fff;
+    background: var(--card-bg);
     border: 1px solid var(--border-color);
     border-radius: 8px;
     color: var(--text-primary);
@@ -133,35 +133,57 @@ input[type="date"]:focus {
     display: none;
 }
 
-@media (max-width: 768px) {
+
+.boton-calcular {
+    padding: 0.8rem;
+}
+
+.contenedor-principal {
+    padding: 1.5rem;
+    width: 95%;
+}
+
+.encabezado {
+    margin-bottom: 2rem;
+}
+
+.encabezado h1 {
+    font-size: 1.5rem;
+}
+
+input[type="date"] {
+    padding: 0.7rem;
+}
+
+@media (min-width: 481px) {
+    .boton-calcular {
+        padding: 0.9rem;
+    }
+
     .contenedor-principal {
         padding: 2.5rem;
+        width: 90%;
+    }
+
+    .encabezado {
+        margin-bottom: 2.5rem;
     }
 
     .encabezado h1 {
         font-size: 1.6rem;
     }
+
+    input[type="date"] {
+        padding: 0.8rem 1rem;
+    }
 }
 
-@media (max-width: 480px) {
+@media (min-width: 769px) {
     .contenedor-principal {
-        padding: 1.5rem;
-        width: 95%;
-    }
-
-    .encabezado {
-        margin-bottom: 2rem;
+        padding: 3rem;
     }
 
     .encabezado h1 {
-        font-size: 1.5rem;
-    }
-
-    input[type="date"] {
-        padding: 0.7rem;
-    }
-
-    .boton-calcular {
-        padding: 0.8rem;
+        font-size: 1.8rem;
     }
 }

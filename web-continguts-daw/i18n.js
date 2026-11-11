@@ -81,16 +81,17 @@ export const setLanguage = (lang) => {
 export const loadDictionary = async (lang) => {
     if (dictionaryCache.has(lang)) return dictionaryCache.get(lang);
     if (!pendingLoads.has(lang)) {
-        const request = fetch(`${LANG_DIR}${lang}.json`)
-            .then((response) => {
+        const request = (async () => {
+            try {
+                const response = await fetch(`${LANG_DIR}${lang}.json`);
                 if (!response.ok) throw new Error(`HTTP ${response.status}`);
-                return response.json();
-            })
-            .then((data) => {
+                const data = await response.json();
                 dictionaryCache.set(lang, data);
                 return data;
-            })
-            .finally(() => pendingLoads.delete(lang));
+            } finally {
+                pendingLoads.delete(lang);
+            }
+        })();
         pendingLoads.set(lang, request);
     }
     return pendingLoads.get(lang);
