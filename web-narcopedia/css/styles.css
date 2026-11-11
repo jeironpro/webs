@@ -1,4 +1,5 @@
 :root {
+    --gris-acento: #888;
     --acento-color: #8b0000;
     --borde-cristal: rgba(255, 255, 255, 0.1);
     --color-fondo: #050505;
@@ -72,7 +73,7 @@ body {
     background: var(--fondo-tarjeta);
     border: 1px solid var(--borde-cristal);
     border-radius: 8px;
-    color: #fff;
+    color: var(--texto-primario);
     cursor: pointer;
     font-family: "Inter", sans-serif;
     font-size: 1rem;
@@ -102,7 +103,7 @@ body {
 }
 
 .detalle-info__nombre {
-    color: #fff;
+    color: var(--texto-primario);
     font-size: clamp(2.5rem, 5vw, 4rem);
     margin-bottom: 1rem;
 }
@@ -173,7 +174,7 @@ body {
 }
 
 .item-info span {
-    color: #fff;
+    color: var(--texto-primario);
     font-size: 1.1rem;
 }
 
@@ -266,7 +267,7 @@ body {
 }
 
 .titulo {
-    color: linear-gradient(to bottom, #fff, #888);
+    color: linear-gradient(to bottom, var(--texto-primario), var(--gris-acento));
     font-size: clamp(2rem, 8vw, 3.5rem);
     font-weight: 900;
     margin-bottom: 0.5rem;
@@ -308,9 +309,15 @@ h3 {
     }
 }
 
-@media (max-width: 900px) {
+
+.detalle-cabecera {
+    gap: 2rem;
+    grid-template-columns: 1fr;
+}
+
+@media (min-width: 901px) {
     .detalle-cabecera {
-        gap: 2rem;
-        grid-template-columns: 1fr;
+        gap: 4rem;
+        grid-template-columns: 1fr 1.5fr;
     }
 }

@@ -1,4 +1,6 @@
 :root {
+    --cielo-claro: #e0f7ff;
+    --verde-exito: #16a34a;
     --cielo-azul: #87ceeb;
     --texto-dark: #1e293b;
     --texto-light: #64748b;
@@ -104,7 +106,6 @@ h2 {
 }
 
 .pais {
-    background: transparent !important;
     border: 1px solid var(--border-color);
     display: flex;
     flex-direction: column;
@@ -140,9 +141,7 @@ h2 {
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
 }
 
-.pais {
-    background-image: none !important;
-}
+
 
 .pais:hover::before {
     transform: scale(1.1);
@@ -169,7 +168,7 @@ h2 {
 }
 
 .icono {
-    color: #16a34a;
+    color: var(--verde-exito);
     font-size: 1.8rem;
     z-index: 2;
 }
@@ -183,16 +182,29 @@ footer {
     text-align: center;
 }
 
-@media (max-width: 768px) {
-    header h1 { font-size: 1.8rem; }
+
+#contenedor-paises {
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+}
+
+header h1 {
+    font-size: 1.8rem;
+}
+
+@media (min-width: 401px) {
     #contenedor-paises {
         grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-        gap: 1rem;
     }
 }
 
-@media (max-width: 400px) {
+@media (min-width: 769px) {
     #contenedor-paises {
-        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        gap: 3rem;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    }
+
+    header h1 {
+        font-size: 2.5rem;
     }
 }

@@ -307,8 +307,8 @@ export function analizarJs(texto) {
     hallazgos.push(...hallazgosDesde("js-require", limpio, apariciones(limpio, /\brequire\s*\(/g)));
 
     // Igualdad no estricta: se permite `== null` / `!= null` (regla del equipo).
-    apariciones(limpio, /(?:^|[^=!<>])(==|!=)(?!=)/g).forEach((indice) => {
-        const operador = limpio.slice(indice).match(/^(?:[^=!<>])?(==|!=)/);
+    apariciones(limpio, /(?:^|[^=!<>])([=][=]|![=])(?![=])/g).forEach((indice) => {
+        const operador = limpio.slice(indice).match(/^(?:[^=!<>])?([=][=]|![=])/);
         const desde = indice + (operador?.[0].length ?? 2);
         const resto = limpio.slice(desde);
         if (/^\s*null\b/.test(resto)) return;
