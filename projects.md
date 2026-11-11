@@ -4,7 +4,8 @@ Monorepositorio con **56 webs** y sus subwebs, publicadas en GitHub Pages:
 <https://jeironpro.github.io/webs/>. El catálogo de la portada se genera desde `projects.yml`.
 
 Casi todas son HTML/CSS/JS estático y se publican tal cual; `web-programmer-day` es la excepción,
-porque importa Three.js y se compila con Vite antes de desplegarse.
+porque importa Three.js y se compila con Vite antes de desplegarse. `web-reloj` y `web-exerciness`
+conservan tooling de Vite, pero su build ya está versionado y el deploy tampoco los recompila.
 
 ## Cómo se publica
 
