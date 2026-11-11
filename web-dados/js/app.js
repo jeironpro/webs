@@ -76,13 +76,11 @@ function setupRollEvents() {
 /**
  * Maneja la accion de lanzar los dados
  */
-function handleRoll() {
+async function handleRoll() {
     if (diceManager.isRolling) {
         return;
     }
-    diceManager.rollAll().then(function (values) {
-        anunciarResultado(values);
-    });
+    anunciarResultado(await diceManager.rollAll());
 }
 
 /**
@@ -93,9 +91,7 @@ function anunciarResultado(values) {
     if (!rollAnnouncer) {
         return;
     }
-    var total = values.reduce(function (sum, v) {
-        return sum + v;
-    }, 0);
+    const total = values.reduce((suma, valor) => suma + valor, 0);
     rollAnnouncer.textContent = '';
     /* Usar requestAnimationFrame para asegurar que el cambio se anuncie */
     requestAnimationFrame(function () {

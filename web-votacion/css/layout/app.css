@@ -146,10 +146,12 @@ body {
     padding-block: var(--space-xl);
   }
 
-  .mast__open-sidebar,
-  .sidebar__close,
+  /* Los selectores anidados ganan a las utilidades .btn/.icon-btn, que se
+     cargan después y también fijan display. */
+  .mast .mast__open-sidebar,
+  .sidebar .sidebar__close,
   .scrim {
-    display: none !important;
+    display: none;
   }
 }
 

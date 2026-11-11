@@ -18,6 +18,16 @@ import { REGLAS, analizarArchivo } from "./lib/rules.mjs";
 const RAIZ = join(dirname(fileURLToPath(import.meta.url)), "..");
 const GRUPO_RAIZ = "(raíz)";
 
+/** CSS compilado (Tailwind, bundles) o minificado: no se edita a mano. */
+function esCssGenerado(contenido) {
+    const cabecera = contenido.slice(0, 300);
+    if (/tailwindcss/i.test(cabecera) || contenido.includes("@layer properties{")) return true;
+    const lineaMasLarga = contenido
+        .split("\n")
+        .reduce((maximo, linea) => Math.max(maximo, linea.length), 0);
+    return lineaMasLarga > 500;
+}
+
 /** Rutas que no son código propio: dependencias, builds y terceros. */
 const EXCLUIDAS = /(^|\/)(node_modules|vendor|dist|site|\.yarn|coverage)\//;
 /** Salidas de bundler con hash en el nombre (Vite, Rollup...): no se editan a mano. */
@@ -59,6 +69,7 @@ function auditar() {
         } catch {
             return; // fichero declarado pero ausente (submódulo, fichero borrado)
         }
+        if (/\.css$/i.test(ruta) && esCssGenerado(contenido)) return;
         const hallazgos = analizarArchivo(ruta, contenido);
         if (hallazgos.length === 0) return;
 

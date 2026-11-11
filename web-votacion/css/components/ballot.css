@@ -90,12 +90,14 @@
 
 .party {
   display: grid;
-  grid-template-columns: 2.5rem minmax(0, 1fr) auto auto;
+  /* Mobile-first: el escrutinio baja bajo el nombre */
+  grid-template-columns: 2rem minmax(0, 1fr) auto;
   grid-template-areas:
-    "rank name  tally act"
-    "bar  bar   bar   bar";
+    "rank name  act"
+    "rank tally act"
+    "bar  bar   bar";
   align-items: center;
-  column-gap: var(--space-sm);
+  column-gap: var(--space-xs);
   row-gap: var(--space-2xs);
   padding-block: var(--space-md);
   border-block-start: var(--rule-hair) solid var(--color-rule);
@@ -155,7 +157,7 @@
   font-variant-numeric: tabular-nums;
   font-size: var(--text-sm);
   color: var(--color-muted);
-  text-align: end;
+  text-align: start;
   white-space: nowrap;
 }
 
@@ -229,18 +231,17 @@
   color: var(--color-muted);
 }
 
-/* — Móvil (≤ 40rem): el escrutinio baja bajo el nombre — */
-@media (max-width: 40rem) {
+/* — ≥ 40rem: el escrutinio vuelve a su columna — */
+@media (min-width: 40rem) {
   .party {
-    grid-template-columns: 2rem minmax(0, 1fr) auto;
+    grid-template-columns: 2.5rem minmax(0, 1fr) auto auto;
     grid-template-areas:
-      "rank name  act"
-      "rank tally act"
-      "bar  bar   bar";
-    column-gap: var(--space-xs);
+      "rank name  tally act"
+      "bar  bar   bar   bar";
+    column-gap: var(--space-sm);
   }
 
   .party__tally {
-    text-align: start;
+    text-align: end;
   }
 }
