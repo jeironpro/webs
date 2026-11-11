@@ -1,3 +1,21 @@
+/* Tokens del libro de estilo: colores y degradados en un unico punto */
+:root {
+    --color-surface: #ffffff;
+    --color-heading: #2c3e50;
+    --color-text-muted: #5a6c7d;
+    --color-on-brand: #fff;
+
+    /* Familias de codigos HTTP */
+    --color-1xx: #4a90e2;
+    --color-2xx: #50c878;
+    --color-3xx: #ff7f50;
+    --color-4xx: #e74c3c;
+    --color-5xx: #9b59b6;
+
+    --gradient-page: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    --gradient-brand: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -10,7 +28,7 @@ body {
 }
 
 body {
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    background: var(--gradient-page);
     display: flex;
     flex-direction: column;
     font-family: "Stack Sans Text", Arial, Helvetica, sans-serif;
@@ -18,11 +36,11 @@ body {
 }
 
 header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: var(--gradient-brand);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    color: #fff;
+    color: var(--color-on-brand);
     left: 0;
-    padding: 20px 15px;
+    padding: 14px 10px;
     position: sticky;
     text-align: center;
     top: 0;
@@ -30,48 +48,49 @@ header {
 }
 
 header h1 {
-    font-size: 1.8rem;
+    font-size: 1.2rem;
     font-weight: 600;
     letter-spacing: 0.5px;
 }
 
 main {
     flex: 1;
-    padding: 40px 60px;
+    padding: 20px 15px;
 }
 
 .contenedor-seccion {
-    margin: 40px 0;
+    margin: 30px 0;
 }
 
 .contenedor-seccion h2 {
-    color: #2c3e50;
-    font-size: 1.5rem;
+    color: var(--color-heading);
+    font-size: 1.2rem;
     font-weight: 600;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     text-align: left;
 }
 
 .codigos {
     display: grid;
-    gap: 20px;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 14px;
+    /* Mobile-first: una tarjeta por fila */
+    grid-template-columns: 1fr;
 }
 
 .codigos .codigo {
     align-items: center;
-    background-color: #ffffff;
+    background-color: var(--color-surface);
     border-left: 4px solid;
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
     cursor: pointer;
     display: flex;
     flex-direction: column;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: 700;
     justify-content: center;
-    min-height: 120px;
-    padding: 20px;
+    min-height: 90px;
+    padding: 14px;
     position: relative;
     text-align: center;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -79,33 +98,33 @@ main {
 
 /* Colores por categoría */
 .codigos .codigo[data-categoria="1xx"] {
-    border-left-color: #4a90e2;
-    color: #4a90e2;
+    border-left-color: var(--color-1xx);
+    color: var(--color-1xx);
 }
 
 .codigos .codigo[data-categoria="2xx"] {
-    border-left-color: #50c878;
-    color: #50c878;
+    border-left-color: var(--color-2xx);
+    color: var(--color-2xx);
 }
 
 .codigos .codigo[data-categoria="3xx"] {
-    border-left-color: #ff7f50;
-    color: #ff7f50;
+    border-left-color: var(--color-3xx);
+    color: var(--color-3xx);
 }
 
 .codigos .codigo[data-categoria="4xx"] {
-    border-left-color: #e74c3c;
-    color: #e74c3c;
+    border-left-color: var(--color-4xx);
+    color: var(--color-4xx);
 }
 
 .codigos .codigo[data-categoria="5xx"] {
-    border-left-color: #9b59b6;
-    color: #9b59b6;
+    border-left-color: var(--color-5xx);
+    color: var(--color-5xx);
 }
 
 .codigos .codigo .descripcion {
-    color: #5a6c7d;
-    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    font-size: 0.8rem;
     font-weight: 400;
     line-height: 1.5;
     margin-top: 12px;
@@ -130,31 +149,29 @@ main {
 }
 
 footer {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: var(--gradient-brand);
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-    color: #fff;
-    padding: 20px 15px;
+    color: var(--color-on-brand);
+    font-size: 0.85rem;
+    padding: 14px 10px;
     text-align: center;
 }
 
-@media (max-width: 1024px) {
-    main {
-        padding: 30px 40px;
-    }
+/* ─── Mobile-first: cada banda amplia el layout anterior ─── */
 
-    .codigos {
-        gap: 18px;
-        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    }
-
-    header h1 {
-        font-size: 1.6rem;
-    }
-}
-
-@media (max-width: 768px) {
+/* Movil grande y tablet vertical */
+@media (min-width: 481px) {
     main {
         padding: 25px 20px;
+    }
+
+    .contenedor-seccion {
+        margin: 40px 0;
+    }
+
+    .contenedor-seccion h2 {
+        font-size: 1.3rem;
+        margin-bottom: 20px;
     }
 
     .codigos {
@@ -168,16 +185,16 @@ footer {
         padding: 16px;
     }
 
-    .contenedor-seccion h2 {
-        font-size: 1.3rem;
-    }
-
-    header h1 {
-        font-size: 1.4rem;
+    .codigos .codigo .descripcion {
+        font-size: 0.85rem;
     }
 
     header {
         padding: 16px 12px;
+    }
+
+    header h1 {
+        font-size: 1.4rem;
     }
 
     footer {
@@ -186,45 +203,53 @@ footer {
     }
 }
 
-@media (max-width: 480px) {
+/* Tablet horizontal */
+@media (min-width: 769px) {
     main {
-        padding: 20px 15px;
+        padding: 30px 40px;
     }
 
     .codigos {
-        gap: 14px;
-        grid-template-columns: 1fr;
+        gap: 18px;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     }
 
     .codigos .codigo {
-        font-size: 1.2rem;
-        min-height: 90px;
-        padding: 14px;
-    }
-
-    .codigos .codigo .descripcion {
-        font-size: 0.8rem;
-    }
-
-    .contenedor-seccion {
-        margin: 30px 0;
+        font-size: 1.5rem;
+        min-height: 120px;
+        padding: 20px;
     }
 
     .contenedor-seccion h2 {
-        font-size: 1.2rem;
-        margin-bottom: 16px;
-    }
-
-    header h1 {
-        font-size: 1.2rem;
+        font-size: 1.5rem;
     }
 
     header {
-        padding: 14px 10px;
+        padding: 20px 15px;
+    }
+
+    header h1 {
+        font-size: 1.6rem;
     }
 
     footer {
-        font-size: 0.85rem;
-        padding: 14px 10px;
+        font-size: 1rem;
+        padding: 20px 15px;
+    }
+}
+
+/* Escritorio */
+@media (min-width: 1025px) {
+    main {
+        padding: 40px 60px;
+    }
+
+    .codigos {
+        gap: 20px;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+
+    header h1 {
+        font-size: 1.8rem;
     }
 }

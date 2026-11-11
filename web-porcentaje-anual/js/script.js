@@ -1,3 +1,6 @@
+/* Milisegundos que tiene un día, base del cálculo del día del año. */
+const MILISEGUNDOS_POR_DIA = 1000 * 60 * 60 * 24;
+
 document.addEventListener('DOMContentLoaded', () => {
     // Referencias a elementos del DOM
     const anioActualTexto = document.getElementById('anio-actual-texto');
@@ -19,10 +22,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Calcular día del año (1-indexed)
         const inicioAnio = new Date(anio, 0, 1);
-        const milisegundosPorDia = 1000 * 60 * 60 * 24;
-        
+        const milisegundosPorDia = MILISEGUNDOS_POR_DIA;
+
         // Calcular diferencia y convertir a días
-        const diferenciaMilisegundos = fechaActual - inicioAnio;
+        const diferenciaMilisegundos = fechaActual.getTime() - inicioAnio.getTime();
         const diaActualNumero = Math.floor(diferenciaMilisegundos / milisegundosPorDia) + 1;
 
         return {
@@ -56,9 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
             fragmento.appendChild(punto);
         }
         
-        // Limpiar y renderizar
-        gridDias.innerHTML = ''; 
-        gridDias.appendChild(fragmento);
+        // Limpiar y renderizar (sin innerHTML: los nodos ya están construidos)
+        gridDias.replaceChildren(fragmento);
     };
 
     /**

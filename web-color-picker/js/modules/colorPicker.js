@@ -518,45 +518,60 @@ function mostrarTooltip(mensaje) {
 }
 
 /**
+ * Respaldo del portapapeles para navegadores sin permisos: selecciona el texto
+ * en un textarea oculto y lanza el copiado clásico.
+ */
+function copiarConTextarea(texto) {
+	const textarea = document.createElement('textarea');
+	textarea.value = texto;
+	textarea.style.position = 'fixed';
+	textarea.style.opacity = '0';
+	document.body.appendChild(textarea);
+	textarea.select();
+
+	let copiado = false;
+	try {
+		copiado = document.execCommand('copy');
+	} catch (error) {
+		console.error('El portapapeles clásico tampoco está disponible', error);
+	}
+
+	document.body.removeChild(textarea);
+	return copiado;
+}
+
+/**
+ * Copia un texto al portapapeles, con respaldo clásico si la API falla.
+ */
+async function copiarTexto(texto) {
+	try {
+		await navigator.clipboard.writeText(texto);
+		return true;
+	} catch (error) {
+		console.error('No se pudo copiar con la API del portapapeles', error);
+		return copiarConTextarea(texto);
+	}
+}
+
+/**
  * Copia el valor de un espacio de color de la barra flotante al portapapeles
  */
-function copiarValor(type) {
+async function copiarValor(type) {
 	const el = document.getElementById(type + 'Values');
 	const texto = el.textContent;
 
-	navigator.clipboard.writeText(texto).catch(() => {
-		const textarea = document.createElement('textarea');
-		textarea.value = texto;
-		textarea.style.position = 'fixed';
-		textarea.style.opacity = '0';
-		document.body.appendChild(textarea);
-		textarea.select();
-		document.execCommand('copy');
-		document.body.removeChild(textarea);
-	});
-
+	await copiarTexto(texto);
 	mostrarTooltip('Copiado: ' + texto);
 }
 
 /**
  * Copia el valor hexadecimal al portapapeles
  */
-function copiarHexAlPortapapeles() {
+async function copiarHexAlPortapapeles() {
 	const hex = hexDisplay.textContent;
 
-	navigator.clipboard.writeText(hex).then(() => {
-		mostrarTooltip('Copiado: ' + hex);
-	}).catch(() => {
-		const textarea = document.createElement('textarea');
-		textarea.value = hex;
-		textarea.style.position = 'fixed';
-		textarea.style.opacity = '0';
-		document.body.appendChild(textarea);
-		textarea.select();
-		document.execCommand('copy');
-		document.body.removeChild(textarea);
-		mostrarTooltip('Copiado: ' + hex);
-	});
+	await copiarTexto(hex);
+	mostrarTooltip('Copiado: ' + hex);
 }
 
 /**

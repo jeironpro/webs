@@ -1,20 +1,16 @@
-/* Layout principal con grid de dos columnas 40/60 */
+/* Layout principal: mobile-first, una sola columna apilada */
 .main-layout {
   display: grid;
-  grid-template-columns: 40fr 60fr;
-  height: 100vh;
-  height: 100dvh;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 3fr;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  height: auto;
   overflow: hidden;
 }
 
-/* Tableta: se mantiene en dos columnas pero con padding reducido */
-@media (max-width: 1024px) {
-  .main-layout {
-    grid-template-columns: 35fr 65fr;
-  }
-}
-
-/* Movil en horizontal: usar filas apiladas */
+/* Movil en horizontal: el lienzo de color ocupa el alto disponible */
 @media (max-height: 500px) and (orientation: landscape) {
   .main-layout {
     grid-template-columns: 1fr;
@@ -22,15 +18,19 @@
   }
 }
 
-/* Movil en vertical: apila las secciones en vertical */
-@media (max-width: 768px) {
+/* Tablet: dos columnas, con mas espacio para el selector */
+@media (min-width: 769px) {
   .main-layout {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 3fr;
-    width: 100%;
-    min-height: 100vh;
-    min-height: 100dvh;
-    height: auto;
-    overflow: hidden;
+    grid-template-columns: 35fr 65fr;
+    grid-template-rows: 1fr;
+    height: 100vh;
+    height: 100dvh;
+  }
+}
+
+/* Escritorio: reparto 40/60 a pantalla completa */
+@media (min-width: 1025px) {
+  .main-layout {
+    grid-template-columns: 40fr 60fr;
   }
 }

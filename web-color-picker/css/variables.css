@@ -22,6 +22,37 @@
   --color-text-secondary: rgba(0, 0, 0, 0.45);
   --color-border: rgba(0, 0, 0, 0.08);
 
-  --transition-fast: 150ms ease;
-  --transition-normal: 250ms ease;
+  /* Colores funcionales de los controles */
+  --color-white: #ffffff;
+  --color-accent: #2563eb;
+  --color-control-track: #c8c8c8;
+  --color-control-border: #b0b0b0;
+  --color-hue-start: #b8b8b8;
+  --color-channel-red: #ff0000;
+  --color-channel-green: #00ff00;
+  --color-channel-blue: #0000ff;
+
+  /* Degradados de los sliders RGB */
+  --gradient-range-red: linear-gradient(to right, var(--color-hue-start), var(--color-channel-red));
+  --gradient-range-green: linear-gradient(
+    to right,
+    var(--color-hue-start),
+    var(--color-channel-green)
+  );
+  --gradient-range-blue: linear-gradient(
+    to right,
+    var(--color-hue-start),
+    var(--color-channel-blue)
+  );
+
+  /* Duraciones: se anulan en bloque con prefers-reduced-motion */
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-pulse: 300ms;
+  --duration-fade: 500ms;
+  --duration-tap: 100ms;
+  --scroll-behavior: smooth;
+
+  --transition-fast: var(--duration-fast) ease;
+  --transition-normal: var(--duration-normal) ease;
 }
