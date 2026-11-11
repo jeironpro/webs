@@ -544,328 +544,356 @@ footer {
 }
 
 /* RESPONSIVE DESIGN */
-/* Extra Small Mobile (320px - 374px) */
-@media (max-width: 374px) {
-    body {
-        padding-top: 60px;
-    }
-
-    header {
-        height: 60px;
-        padding: 0 var(--space-sm);
-    }
-
-    header h1 {
-        font-size: clamp(1rem, 5vw, 1.2rem);
-        padding: 0 var(--space-sm);
-    }
-
-    header a {
-        height: 40px;
-        width: 40px;
-    }
-
-    header a .material-symbols-outlined {
-        font-size: 20px;
-    }
-
-    header .contenedor-principal-anterior {
-        gap: var(--space-sm);
-    }
-
-    main {
-        padding: var(--space-lg) var(--space-sm);
-    }
-
-    article {
-        border-radius: var(--radius-md);
-        padding: var(--space-lg);
-    }
-
-    .definicion-comandos,
-    .iteracion {
-        gap: var(--space-lg);
-    }
-
-    h2 {
-        font-size: clamp(1.1rem, 4vw, 1.25rem);
-        gap: var(--space-sm);
-    }
-
-    h3 {
-        font-size: clamp(1rem, 3.5vw, 1.15rem);
-    }
-
-    .comandos li {
-        padding: var(--space-lg);
-    }
-
-    .comandos li code {
-        font-size: 0.85rem;
-        gap: var(--space-sm);
-    }
-
-    pre {
-        font-size: 0.8rem;
-        padding: var(--space-md);
-    }
-
-    .iteracion pre code {
-        padding-top: var(--space-xl);
-    }
-
-    /* List adjustments for small screens */
-    .lista-prueba-final > li,
-    .pasos > ul > li,
-    .pasos > ol > li {
-        margin-bottom: var(--space-lg);
-        padding: var(--space-md);
-    }
-
-    .lista-prueba-final ul,
-    .pasos ul ul,
-    .pasos ol ul {
-        padding-left: var(--space-lg);
-    }
-
-    footer {
-        font-size: 12px;
-    }
+/* Mobile-first: la base es el ancho más pequeño y cada banda amplía. */
+/* Base: 320-374 px */
+.comandos li {
+    padding: var(--space-lg);
 }
 
-/* Small Mobile (375px - 479px) */
-@media (min-width: 375px) and (max-width: 479px) {
-    body {
-        padding-top: 64px;
-    }
-
-    header {
-        height: 64px;
-        padding: 0 var(--space-md);
-    }
-
-    header h1 {
-        font-size: clamp(1.1rem, 4.5vw, 1.3rem);
-    }
-
-    header a {
-        height: 42px;
-        width: 42px;
-    }
-
-    header a .material-symbols-outlined {
-        font-size: 21px;
-    }
-
-    header .contenedor-principal-anterior {
-        gap: var(--space-sm);
-    }
-
-    main {
-        padding: var(--space-xl) var(--space-md);
-    }
-
-    article {
-        padding: var(--space-xl);
-    }
-
-    .definicion-comandos,
-    .iteracion {
-        gap: var(--space-xl);
-    }
-
-    .comandos li code {
-        font-size: 0.9rem;
-        gap: var(--space-sm);
-    }
-
-    pre {
-        font-size: 0.85rem;
-    }
-
-    /* List adjustments for mobile */
-    .lista-prueba-final > li,
-    .pasos > ul > li,
-    .pasos > ol > li {
-        margin-bottom: var(--space-lg);
-        padding: var(--space-lg);
-    }
-
-    footer {
-        font-size: 12px;
-    }
+.comandos li code {
+    font-size: 0.85rem;
+    gap: var(--space-sm);
 }
 
-/* Mobile (480px - 599px) */
-@media (min-width: 480px) and (max-width: 599px) {
-    body {
-        padding-top: 68px;
-    }
-
-    header {
-        height: 68px;
-        padding: 0 var(--space-md);
-    }
-
-    header h1 {
-        font-size: clamp(1.2rem, 4vw, 1.4rem);
-    }
-
-    header a {
-        height: 44px;
-        width: 44px;
-    }
-
-    header a .material-symbols-outlined {
-        font-size: 22px;
-    }
-
-    main {
-        padding: var(--space-2xl) var(--space-md);
-    }
-
-    article {
-        padding: var(--space-2xl);
-    }
-
-    pre {
-        font-size: 0.9rem;
-    }
-
-    footer {
-        font-size: 12px;
-    }
+.contenedor-git {
+    gap: var(--space-3xl);
 }
 
-/* Large Mobile (600px - 667px) */
-@media (min-width: 600px) and (max-width: 667px) {
-    body {
-        padding-top: 70px;
-    }
-
-    header {
-        height: 70px;
-        padding: 0 var(--space-lg);
-    }
-
-    header h1 {
-        font-size: clamp(1.25rem, 3.5vw, 1.5rem);
-    }
-
-    header a {
-        height: 45px;
-        width: 45px;
-    }
-
-    header a .material-symbols-outlined {
-        font-size: 22px;
-    }
-
-    main {
-        padding: var(--space-2xl) var(--space-lg);
-    }
-
-    article {
-        padding: var(--space-2xl);
-    }
+.definicion-comandos, .iteracion {
+    gap: var(--space-lg);
 }
 
-/* Small Tablet (668px - 767px) */
-@media (min-width: 668px) and (max-width: 767px) {
-    body {
-        padding-top: 72px;
-    }
-
-    header {
-        height: 72px;
-        padding: 0 var(--space-lg);
-    }
-
-    header h1 {
-        font-size: clamp(1.3rem, 3vw, 1.5rem);
-    }
-
-    header a {
-        height: 46px;
-        width: 46px;
-    }
-
-    header a .material-symbols-outlined {
-        font-size: 23px;
-    }
-
-    main {
-        padding: var(--space-3xl) var(--space-lg);
-    }
-
-    article {
-        padding: var(--space-3xl);
-    }
+.iteracion pre code {
+    padding-top: var(--space-xl);
 }
 
-/* Tablet (768px - 1023px) */
-@media (min-width: 768px) and (max-width: 1023px) {
-    body {
-        padding-top: 76px;
-    }
-
-    header {
-        height: 76px;
-    }
-
-    header a {
-        height: 46px;
-        width: 46px;
-    }
-
-    header a .material-symbols-outlined {
-        font-size: 23px;
-    }
-
-    .seccion-git {
-        display: grid;
-        gap: var(--space-3xl);
-        grid-template-columns: 1fr;
-    }
-
-    footer {
-        font-size: 14px;
-        padding: 24px;
-    }
+.lista-prueba-final > li, .pasos > ul > li, .pasos > ol > li {
+    margin-bottom: var(--space-lg);
+    padding: var(--space-md);
 }
 
-/* Desktop (1024px+) */
+.lista-prueba-final ul, .pasos ul ul, .pasos ol ul {
+    padding-left: var(--space-lg);
+}
+
+.seccion-git {
+    align-items: normal;
+    display: flex;
+    gap: var(--space-3xl);
+    grid-template-columns: none;
+}
+
+article {
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+}
+
+article:hover {
+    transform: translateY(-4px);
+}
+
+body {
+    padding-top: 60px;
+}
+
+footer {
+    font-size: 12px;
+    padding: var(--space-xl);
+}
+
+h2 {
+    font-size: clamp(1.1rem, 4vw, 1.25rem);
+    gap: var(--space-sm);
+}
+
+h3 {
+    font-size: clamp(1rem, 3.5vw, 1.15rem);
+}
+
+header {
+    height: 60px;
+    padding: 0 var(--space-sm);
+}
+
+header .contenedor-principal-anterior {
+    gap: var(--space-sm);
+}
+
+header a {
+    height: 40px;
+    width: 40px;
+}
+
+header a .material-symbols-outlined {
+    font-size: 20px;
+}
+
+header h1 {
+    font-size: clamp(1rem, 5vw, 1.2rem);
+    padding: 0 var(--space-sm);
+}
+
+main {
+    padding: var(--space-lg) var(--space-sm);
+}
+
+pre {
+    font-size: 0.8rem;
+    padding: var(--space-md);
+}
+
+@media (min-width: 375px) {
+.comandos li {
+    padding: var(--space-xl);
+}
+
+.comandos li code {
+    font-size: 0.9rem;
+}
+
+.definicion-comandos, .iteracion {
+    gap: var(--space-xl);
+}
+
+.iteracion pre code {
+    padding-top: var(--space-2xl);
+}
+
+.lista-prueba-final > li, .pasos > ul > li, .pasos > ol > li {
+    padding: var(--space-lg);
+}
+
+.lista-prueba-final ul, .pasos ul ul, .pasos ol ul {
+    padding-left: var(--space-xl);
+}
+
+article {
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+}
+
+body {
+    padding-top: 64px;
+}
+
+h2 {
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
+    gap: var(--space-md);
+}
+
+h3 {
+    font-size: clamp(1.1rem, 2.5vw, 1.25rem);
+}
+
+header {
+    height: 64px;
+    padding: 0 var(--space-md);
+}
+
+header a {
+    height: 42px;
+    width: 42px;
+}
+
+header a .material-symbols-outlined {
+    font-size: 21px;
+}
+
+header h1 {
+    font-size: clamp(1.1rem, 4.5vw, 1.3rem);
+    padding: 0 var(--space-md);
+}
+
+main {
+    padding: var(--space-xl) var(--space-md);
+}
+
+pre {
+    font-size: 0.85rem;
+    padding: var(--space-lg);
+}
+}
+@media (min-width: 480px) {
+.comandos li code {
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    gap: var(--space-md);
+}
+
+.definicion-comandos, .iteracion {
+    gap: 0;
+}
+
+.lista-prueba-final > li, .pasos > ul > li, .pasos > ol > li {
+    margin-bottom: 0;
+    padding: 0;
+}
+
+article {
+    padding: var(--space-2xl);
+}
+
+body {
+    padding-top: 68px;
+}
+
+header {
+    height: 68px;
+}
+
+header .contenedor-principal-anterior {
+    gap: var(--space-md);
+}
+
+header a {
+    height: 44px;
+    width: 44px;
+}
+
+header a .material-symbols-outlined {
+    font-size: 22px;
+}
+
+header h1 {
+    font-size: clamp(1.2rem, 4vw, 1.4rem);
+}
+
+main {
+    padding: var(--space-2xl) var(--space-md);
+}
+
+pre {
+    font-size: 0.9rem;
+}
+}
+@media (min-width: 600px) {
+body {
+    padding-top: 70px;
+}
+
+footer {
+    font-size: 18px;
+}
+
+header {
+    height: 70px;
+    padding: 0 var(--space-lg);
+}
+
+header a {
+    height: 45px;
+    width: 45px;
+}
+
+header h1 {
+    font-size: clamp(1.25rem, 3.5vw, 1.5rem);
+}
+
+main {
+    padding: var(--space-2xl) var(--space-lg);
+}
+
+pre {
+    font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+}
+}
+@media (min-width: 668px) {
+article {
+    padding: var(--space-3xl);
+}
+
+body {
+    padding-top: 72px;
+}
+
+header {
+    height: 72px;
+}
+
+header a {
+    height: 46px;
+    width: 46px;
+}
+
+header a .material-symbols-outlined {
+    font-size: 23px;
+}
+
+header h1 {
+    font-size: clamp(1.3rem, 3vw, 1.5rem);
+}
+
+main {
+    padding: var(--space-3xl) var(--space-lg);
+}
+}
+@media (min-width: 768px) {
+.seccion-git {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+body {
+    padding-top: 76px;
+}
+
+footer {
+    font-size: 14px;
+    padding: 24px;
+}
+
+header {
+    height: 76px;
+}
+
+header h1 {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+}
+}
 @media (min-width: 1024px) {
-    header {
-        height: 80px;
-        padding: 0 var(--space-2xl);
-    }
-
-    header .contenedor-principal-anterior {
-        gap: var(--space-lg);
-    }
-
-    .seccion-git {
-        align-items: start;
-        display: grid;
-        gap: var(--space-3xl);
-        grid-template-columns: 1fr 1fr;
-    }
-
-    article:hover {
-        transform: translateY(-6px);
-    }
+.seccion-git {
+    align-items: start;
+    grid-template-columns: 1fr 1fr;
 }
 
-/* Large Desktop (1280px+) */
-@media (min-width: 1280px) {
-    .contenedor-git {
-        gap: var(--space-4xl);
-    }
+article:hover {
+    transform: translateY(-6px);
+}
 
-    main {
-        padding: var(--space-4xl) var(--space-3xl);
-    }
+body {
+    padding-top: 80px;
+}
+
+footer {
+    font-size: 18px;
+    padding: var(--space-xl);
+}
+
+header {
+    height: 80px;
+    padding: 0 var(--space-2xl);
+}
+
+header .contenedor-principal-anterior {
+    gap: var(--space-lg);
+}
+
+header a {
+    height: 48px;
+    width: 48px;
+}
+
+header a .material-symbols-outlined {
+    font-size: 24px;
+}
+}
+@media (min-width: 1280px) {
+.contenedor-git {
+    gap: var(--space-4xl);
+}
+
+main {
+    padding: var(--space-4xl) var(--space-3xl);
+}
 }
 
 /* ACCESIBILIDAD */
@@ -876,13 +904,14 @@ button:focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
+    :root {
+        --transition-base: 0.01ms;
+        --transition-fast: 0.01ms;
+    }
 
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
+    .comandos li code .material-symbols-outlined {
+        animation-duration: 0.01ms;
+        animation-iteration-count: 1;
     }
 }
 

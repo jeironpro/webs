@@ -175,7 +175,45 @@ footer {
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+/* Mobile-first: la base es el ancho más pequeño y cada banda amplía. */
+.cabecera-main {
+    height: 64px;
+    padding: 0 var(--space-md);
+}
+
+.cabecera-main h1 {
+    font-size: 1.3rem;
+}
+
+main {
+    padding: var(--space-md);
+}
+
+.arbol {
+    gap: var(--space-sm);
+    grid-template-columns: 1fr;
+    padding: var(--space-md) 0;
+}
+
+.nodo {
+    min-height: 90px;
+    padding: var(--space-sm) var(--space-md);
+}
+
+.nodo::after {
+    font-size: 1.75rem;
+}
+
+.titulo {
+    font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+}
+
+footer {
+    font-size: 12px;
+    padding: var(--space-lg);
+}
+
+@media (min-width: 481px) {
     .cabecera-main {
         height: 70px;
         padding: 0 var(--space-md);
@@ -191,7 +229,6 @@ footer {
 
     .arbol {
         gap: var(--space-md);
-        grid-template-columns: 1fr;
         padding: var(--space-md) 0;
     }
 
@@ -214,44 +251,42 @@ footer {
     }
 }
 
-@media (max-width: 480px) {
+@media (min-width: 769px) {
     .cabecera-main {
-        height: 64px;
+        height: 80px;
+        padding: 0 var(--space-lg);
     }
 
     .cabecera-main h1 {
-        font-size: 1.3rem;
+        font-size: 2em;
     }
 
     main {
-        padding: var(--space-md);
+        padding: var(--space-xl);
     }
 
     .arbol {
-        gap: var(--space-sm);
+        gap: var(--space-lg);
+        grid-template-columns: repeat(2, 1fr);
+        padding: var(--space-lg) 0;
     }
 
     .nodo {
-        min-height: 90px;
-        padding: var(--space-sm) var(--space-md);
+        min-height: 120px;
+        padding: var(--space-lg);
     }
 
     .nodo::after {
-        font-size: 1.75rem;
+        font-size: 2.5rem;
     }
 
     .titulo {
-        font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+        font-size: clamp(0.95rem, 2vw, 1.1rem);
     }
 
     footer {
-        font-size: 12px;
-    }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-    .arbol {
-        grid-template-columns: repeat(2, 1fr);
+        font-size: 18px;
+        padding: var(--space-xl);
     }
 }
 

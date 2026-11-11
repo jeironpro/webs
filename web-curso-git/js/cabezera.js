@@ -87,10 +87,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const paginaActual = window.location.pathname.split("/").pop().replace(".html", "");
     const indice = ruta.indexOf(paginaActual);
 
-    if (indice == 0) {
+    if (indice === 0) {
         botonAnterior.href = `./${ruta[ruta.length -1]}.html`;
         botonSiguiente.href = `./${ruta[indice + 1]}.html`;
-    } else if (indice == ruta.length -1) {
+    } else if (indice === ruta.length - 1) {
         botonAnterior.href = `./${ruta[indice -1]}.html`;
         botonSiguiente.href = `./${ruta[0]}.html`;
     } else {

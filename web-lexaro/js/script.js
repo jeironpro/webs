@@ -564,7 +564,10 @@ class TableroKanban {
         const clasePrioridad = `prioridad-${datosTarea.prioridad}`;
         const elementosEtiqueta = datosTarea.etiquetas.map(etiqueta => {
             const claseEtiqueta = this.obtenerClaseEtiqueta(etiqueta);
-            return `<span class="etiqueta etiqueta-${claseEtiqueta}">${etiqueta}</span>`;
+            const etiquetaElement = document.createElement('span');
+            etiquetaElement.className = `etiqueta etiqueta-${claseEtiqueta}`;
+            etiquetaElement.textContent = etiqueta;
+            return etiquetaElement;
         });
 
         // Crear estructura de la tarjeta usando createElement
@@ -641,10 +644,7 @@ class TableroKanban {
         etiquetasTarea.className = 'etiquetas-tarea';
 
         // Añadir etiquetas
-        elementosEtiqueta.forEach(etiquetaHtml => {
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = etiquetaHtml;
-            const etiquetaElement = tempDiv.firstChild;
+        elementosEtiqueta.forEach(etiquetaElement => {
             etiquetasTarea.appendChild(etiquetaElement);
         });
 

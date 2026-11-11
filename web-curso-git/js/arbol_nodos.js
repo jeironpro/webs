@@ -32,7 +32,7 @@ const limpiarCadena = str =>
 
 // Función para agregar nodo dinámicamente
 function agregarNodo(id, titulo, enlace) {
-    if (enlace == "") {
+    if (enlace === "") {
         enlace = `html/${limpiarCadena(titulo)}.html`
     }
     nodosData.push({ id, titulo, enlace });

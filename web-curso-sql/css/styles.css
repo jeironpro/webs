@@ -7,6 +7,21 @@
     --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     --text-color: #1f2937;
     --text-light: #6b7280;
+    --border-color: var(--pre-color);
+    --hover-bg: #f9fafb;
+    --advertencia-inicio: #fef3c7;
+    --advertencia-fin: #fde68a;
+    --advertencia-borde: #f59e0b;
+    --advertencia-texto: #92400e;
+    --info-inicio: #dbeafe;
+    --info-fin: #bfdbfe;
+    --code-bg: #f3f4f6;
+    --code-color: var(--code-color);
+    --cabecera-inicio: #1e40af;
+    --cabecera-fin: #3b82f6;
+    --pre-bg: #1f2937;
+    --pre-color: var(--pre-color);
+    --print-border: #ddd;
 }
 
 * {
@@ -23,10 +38,10 @@ body {
 }
 
 .advertencia {
-    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-    border-left: 4px solid #f59e0b;
+    background: linear-gradient(135deg, var(--advertencia-inicio) 0%, var(--advertencia-fin) 100%);
+    border-left: 4px solid var(--advertencia-borde);
     border-radius: 8px;
-    color: #92400e;
+    color: var(--advertencia-texto);
     font-weight: 500;
     margin: 20px 0;
     padding: 15px 20px;
@@ -63,7 +78,7 @@ body {
 }
 
 .caja-info {
-    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+    background: linear-gradient(135deg, var(--info-inicio) 0%, var(--info-fin) 100%);
     border-left: 4px solid var(--primary-color);
     border-radius: 8px;
     margin: 20px 0;
@@ -75,9 +90,9 @@ body {
 }
 
 code {
-    background-color: #f3f4f6;
+    background-color: var(--code-bg);
     border-radius: 4px;
-    color: #e11d48;
+    color: var(--code-color);
     font-family: 'Courier New', Courier, monospace;
     font-size: 0.9em;
     padding: 3px 8px;
@@ -123,7 +138,7 @@ code {
 }
 
 .hero {
-    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+    background: linear-gradient(135deg, var(--cabecera-inicio) 0%, var(--cabecera-fin) 100%);
     color: white;
     padding: 4rem 2rem;
     text-align: center;
@@ -173,10 +188,10 @@ code {
 }
 
 pre {
-    background-color: #1f2937;
+    background-color: var(--pre-bg);
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    color: #e5e7eb;
+    color: var(--pre-color);
     margin: 20px 0;
     overflow-x: auto;
     padding: 20px;
@@ -241,14 +256,14 @@ pre code {
 }
 
 .seccion-contenido td {
-    border-bottom: 1px solid #e5e7eb;
+    border-bottom: 1px solid var(--border-color);
     padding: 12px 15px;
     text-align: left;
 }
 
 .seccion-contenido th {
     background-color: var(--primary-color);
-    border-bottom: 1px solid #e5e7eb;
+    border-bottom: 1px solid var(--border-color);
     color: white;
     font-weight: 600;
     padding: 12px 15px;
@@ -256,7 +271,7 @@ pre code {
 }
 
 .seccion-contenido tr:hover {
-    background-color: #f9fafb;
+    background-color: var(--hover-bg);
 }
 
 .seccion-contenido ul {
@@ -336,252 +351,385 @@ pre code {
 }
 
 /* Diseño Responsive */
-@media (max-width: 1024px) {
-    .principal {
-        padding: 1.5rem;
-    }
-    
-    .hero h1 {
-        font-size: 2.5rem;
-    }
-    
-    .hero p {
-        font-size: 1.1rem;
-    }
-    
-    .contenedor-cuadricula {
-        gap: 1.5rem;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    }
-    
-    .seccion-contenido {
-        padding: 40px 30px;
-    }
+/* Mobile-first: la base es el ancho más pequeño y cada banda amplía. */
+.advertencia {
+    font-size: 0.9rem;
+    padding: 12px 15px;
 }
 
-@media (max-width: 767px) {
-    .encabezado {
-        padding: 1rem;
-    }
-    
-    .logo {
-        font-size: 1.25rem;
-    }
-    
-    .logo img {
-        height: 32px;
-    }
-    
-    .hero {
-        padding: 3rem 1.5rem;
-    }
-    
-    .hero h1 {
-        font-size: 2rem;
-    }
-    
-    .hero p {
-        font-size: 1rem;
-    }
-    
-    .principal {
-        padding: 1rem;
-    }
-    
-    .titulo-seccion {
-        font-size: 1.5rem;
-        margin-bottom: 1.5rem;
-    }
-    
-    .contenedor-cuadricula {
-        gap: 1rem;
-        grid-template-columns: 1fr;
-    }
-    
-    .tarjeta {
-        padding: 1.5rem;
-    }
-    
-    .icono-tarjeta {
-        font-size: 2.5rem;
-    }
-    
-    .tarjeta h3 {
-        font-size: 1.25rem;
-    }
-    
-    .seccion-contenido {
-        margin: 20px auto;
-        padding: 30px 20px;
-    }
-    
-    .seccion-contenido h1 {
-        font-size: 2rem;
-    }
-    
-    .seccion-contenido h2 {
-        font-size: 1.5rem;
-    }
-    
-    .seccion-contenido h3 {
-        font-size: 1.2rem;
-    }
-    
-    .seccion-contenido td,
-    .seccion-contenido th {
-        padding: 10px 12px;
-    }
-    
-    .tarjeta-cta {
-        padding: 2rem 1.5rem;
-    }
-    
-    .boton-cta {
-        font-size: 0.95rem;
-        padding: 10px 24px;
-    }
-    
-    pre {
-        font-size: 0.85rem;
-        overflow-x: auto;
-        padding: 15px;
-    }
-    
-    table {
-        font-size: 0.9rem;
-    }
-    
-    .pie-pagina {
-        font-size: 0.9rem;
-        padding: 1.5rem 1rem;
-    }
-    
-    .pie-pagina p {
-        word-wrap: break-word;
-    }
+.boton-cta {
+    font-size: 0.9rem;
+    padding: 10px 20px;
 }
 
-@media (max-width: 480px) {
-    .hero h1 {
-        font-size: 1.75rem;
-    }
-    
-    .hero p {
-        font-size: 0.95rem;
-        margin-bottom: 1.5rem;
-    }
-    
-    .boton-cta {
-        font-size: 0.9rem;
-        padding: 10px 20px;
-    }
-    
-    .titulo-seccion {
-        font-size: 1.35rem;
-    }
-    
-    .tarjeta {
-        padding: 1.25rem;
-    }
-    
-    .icono-tarjeta {
-        font-size: 2rem;
-    }
-    
-    .tarjeta h3 {
-        font-size: 1.1rem;
-    }
-    
-    .tarjeta p {
-        font-size: 0.9rem;
-    }
-    
-    .seccion-contenido {
-        margin: 15px auto;
-        padding: 20px 15px;
-    }
-    
-    .seccion-contenido h1 {
-        font-size: 1.75rem;
-    }
-    
-    .seccion-contenido h2 {
-        font-size: 1.35rem;
-    }
-    
-    .seccion-contenido h3 {
-        font-size: 1.1rem;
-    }
-    
-    .boton-verificar,
-    .enlace-volver {
-        font-size: 0.9rem;
-        padding: 10px 20px;
-    }
-    
-    pre {
-        font-size: 0.8rem;
-        padding: 12px;
-    }
-    
-    code {
-        font-size: 0.85em;
-        padding: 2px 6px;
-    }
-    
-    .advertencia,
-    .caja-info {
-        font-size: 0.9rem;
-        padding: 12px 15px;
-    }
-    
-    .tarjeta-cta h2 {
-        font-size: 1.5rem;
-    }
-    
-    .tarjeta-cta p {
-        font-size: 0.95rem;
-    }
-    
-    .pie-pagina {
-        font-size: 0.85rem;
-        padding: 1.25rem 0.75rem;
-    }
-    
-    .pie-pagina p {
-        overflow-wrap: break-word;
-        word-wrap: break-word;
-    }
+.boton-verificar {
+    font-size: 0.9rem;
+    padding: 10px 20px;
 }
 
-@media (max-width: 319px) {
-    .hero h1 {
-        font-size: 1.5rem;
-    }
-    
-    .seccion-contenido {
-        padding: 15px 10px;
-    }
-    
-    .contenedor-cuadricula {
-        gap: 0.75rem;
-    }
+.caja-info {
+    font-size: 0.9rem;
+    padding: 12px 15px;
 }
 
-@media (max-height: 500px) and (orientation: landscape) {
-    .hero {
-        padding: 2rem 1.5rem;
-    }
-    
-    .hero h1 {
-        font-size: 1.75rem;
-        margin-bottom: 0.5rem;
-    }
-    
-    .hero p {
-        font-size: 0.95rem;
-        margin-bottom: 1rem;
-    }
+.contenedor-cuadricula {
+    gap: 0.75rem;
+    grid-template-columns: 1fr;
+}
+
+.encabezado {
+    padding: 1rem;
+}
+
+.enlace-volver {
+    font-size: 0.9rem;
+    padding: 10px 20px;
+}
+
+.hero {
+    padding: 3rem 1.5rem;
+}
+
+.hero h1 {
+    font-size: 1.5rem;
+}
+
+.hero p {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+}
+
+.icono-tarjeta {
+    font-size: 2rem;
+}
+
+.logo {
+    font-size: 1.25rem;
+}
+
+.logo img {
+    height: 32px;
+}
+
+.pie-pagina {
+    font-size: 0.85rem;
+    padding: 1.25rem 0.75rem;
+}
+
+.pie-pagina p {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.principal {
+    padding: 1rem;
+}
+
+.seccion-contenido {
+    margin: 15px auto;
+    padding: 15px 10px;
+}
+
+.seccion-contenido h1 {
+    font-size: 1.75rem;
+}
+
+.seccion-contenido h2 {
+    font-size: 1.35rem;
+}
+
+.seccion-contenido h3 {
+    font-size: 1.1rem;
+}
+
+.seccion-contenido td {
+    padding: 10px 12px;
+}
+
+.seccion-contenido th {
+    padding: 10px 12px;
+}
+
+.tarjeta {
+    padding: 1.25rem;
+}
+
+.tarjeta h3 {
+    font-size: 1.1rem;
+}
+
+.tarjeta p {
+    font-size: 0.9rem;
+}
+
+.tarjeta-cta {
+    padding: 2rem 1.5rem;
+}
+
+.tarjeta-cta h2 {
+    font-size: 1.5rem;
+}
+
+.tarjeta-cta p {
+    font-size: 0.95rem;
+}
+
+.titulo-seccion {
+    font-size: 1.35rem;
+    margin-bottom: 1.5rem;
+}
+
+code {
+    font-size: 0.85em;
+    padding: 2px 6px;
+}
+
+pre {
+    font-size: 0.8rem;
+    overflow-x: auto;
+    padding: 12px;
+}
+
+table {
+    font-size: 0.9rem;
+}
+
+@media (min-width: 320px) {
+.contenedor-cuadricula {
+    gap: 1rem;
+}
+
+.hero h1 {
+    font-size: 1.75rem;
+}
+
+.seccion-contenido {
+    padding: 20px 15px;
+}
+}
+@media (min-width: 481px) {
+.advertencia {
+    font-size: inherit;
+    padding: 15px 20px;
+}
+
+.boton-cta {
+    font-size: 0.95rem;
+    padding: 10px 24px;
+}
+
+.boton-verificar {
+    font-size: inherit;
+    padding: 12px 30px;
+}
+
+.caja-info {
+    font-size: inherit;
+    padding: 15px 20px;
+}
+
+.enlace-volver {
+    font-size: inherit;
+    padding: 12px 30px;
+}
+
+.hero h1 {
+    font-size: 2rem;
+}
+
+.hero p {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+}
+
+.icono-tarjeta {
+    font-size: 2.5rem;
+}
+
+.pie-pagina {
+    font-size: 0.9rem;
+    padding: 1.5rem 1rem;
+}
+
+.pie-pagina p {
+    overflow-wrap: normal;
+}
+
+.seccion-contenido {
+    margin: 20px auto;
+    padding: 30px 20px;
+}
+
+.seccion-contenido h1 {
+    font-size: 2rem;
+}
+
+.seccion-contenido h2 {
+    font-size: 1.5rem;
+}
+
+.seccion-contenido h3 {
+    font-size: 1.2rem;
+}
+
+.tarjeta {
+    padding: 1.5rem;
+}
+
+.tarjeta h3 {
+    font-size: 1.25rem;
+}
+
+.tarjeta p {
+    font-size: 0.95rem;
+}
+
+.tarjeta-cta h2 {
+    font-size: 1.5em;
+}
+
+.tarjeta-cta p {
+    font-size: inherit;
+}
+
+.titulo-seccion {
+    font-size: 1.5rem;
+}
+
+code {
+    font-size: 0.9em;
+    padding: 3px 8px;
+}
+
+pre {
+    font-size: 0.85rem;
+    padding: 15px;
+}
+}
+@media (min-width: 768px) {
+.boton-cta {
+    font-size: inherit;
+    padding: 12px 30px;
+}
+
+.contenedor-cuadricula {
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.encabezado {
+    padding: 1rem 2rem;
+}
+
+.hero {
+    padding: 4rem 2rem;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+}
+
+.hero p {
+    font-size: 1.1rem;
+}
+
+.icono-tarjeta {
+    font-size: 3rem;
+}
+
+.logo {
+    font-size: 1.5rem;
+}
+
+.logo img {
+    height: 40px;
+}
+
+.pie-pagina {
+    font-size: inherit;
+    padding: 2rem;
+}
+
+.pie-pagina p {
+    word-wrap: normal;
+}
+
+.principal {
+    padding: 1.5rem;
+}
+
+.seccion-contenido {
+    margin: 40px auto;
+    padding: 40px 30px;
+}
+
+.seccion-contenido h1 {
+    font-size: 2.5rem;
+}
+
+.seccion-contenido h2 {
+    font-size: 1.8rem;
+}
+
+.seccion-contenido h3 {
+    font-size: 1.4rem;
+}
+
+.seccion-contenido td {
+    padding: 12px 15px;
+}
+
+.seccion-contenido th {
+    padding: 12px 15px;
+}
+
+.tarjeta {
+    padding: 2rem;
+}
+
+.tarjeta h3 {
+    font-size: 1.5rem;
+}
+
+.tarjeta-cta {
+    padding: 3rem;
+}
+
+.titulo-seccion {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+pre {
+    font-size: medium;
+    padding: 20px;
+}
+
+table {
+    font-size: inherit;
+}
+}
+@media (min-width: 1025px) {
+.contenedor-cuadricula {
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.hero h1 {
+    font-size: 3rem;
+}
+
+.hero p {
+    font-size: 1.25rem;
+}
+
+.principal {
+    padding: 2rem;
+}
+
+.seccion-contenido {
+    padding: 50px;
+}
 }
 
 @media print {
@@ -598,7 +746,7 @@ pre code {
     }
     
     pre {
-        border: 1px solid #ddd;
+        border: 1px solid var(--print-border);
         page-break-inside: avoid;
     }
 }
