@@ -1,29 +1,53 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Algoritmos</title>
-    <link rel="shortcut icon" href="icon/algoritmos.png" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-    <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-    <header>
-        <h1>Algoritmos</h1>
-    </header>
-    <main>
-        <div class="contenedor-tarjetas" id="contenedor-tarjetas"></div>
-    </main>
-    <footer>
-        &copy; Todos los derechos reservados <span data-anio>2025</span> - JeironPro
-    </footer>
-    <script src="js/tarjetas.js"></script>
-    <script>
-        document.querySelectorAll("[data-anio]").forEach((nodo) => {
-            nodo.textContent = new Date().getFullYear();
-        });
-    </script>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Algoritmos · tarjetas para repasar</title>
+        <meta
+            name="description"
+            content="Colección de algoritmos clásicos de búsqueda, ordenación, grafos y compresión explicados en tarjetas que se giran."
+        />
+        <link rel="shortcut icon" href="icon/algoritmos.png" type="image/x-icon" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="css/styles.css" />
+    </head>
+    <body>
+        <header class="cabecera">
+            <div class="cabecera__contenido">
+                <p class="cabecera__eyebrow">colección</p>
+                <h1 class="cabecera__titulo">Algoritmos</h1>
+                <p class="cabecera__sub">
+                    Búsqueda, ordenación, grafos y compresión en tarjetas. Pasa el cursor, toca o
+                    pulsa <kbd>Intro</kbd> para girarlas.
+                </p>
+            </div>
+        </header>
+
+        <main class="principal">
+            <section class="catalogo" aria-label="Lista de algoritmos">
+                <div class="contenedor-tarjetas" id="contenedor-tarjetas"></div>
+            </section>
+        </main>
+
+        <footer class="pie">
+            &copy; Todos los derechos reservados <span data-anio>2025</span> - JeironPro
+        </footer>
+
+        <script src="js/tarjetas.js"></script>
+        <script>
+            document.querySelectorAll("[data-anio]").forEach((nodo) => {
+                nodo.textContent = new Date().getFullYear();
+            });
+        </script>
+    </body>
 </html>
