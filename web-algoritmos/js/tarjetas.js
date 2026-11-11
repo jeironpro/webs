@@ -36,6 +36,9 @@ const crearTarjeta = (algoritmo) => {
     const descripcion = document.createElement("p");
 
     tarjeta.classList.add("tarjeta");
+    tarjeta.tabIndex = 0;
+    tarjeta.setAttribute("role", "button");
+    tarjeta.setAttribute("aria-label", `${algoritmo.nombre}: ${algoritmo.descripcion}`);
     tarjetaVuelta.classList.add("tarjeta-vuelta");
     tarjetaFrontal.classList.add("tarjeta-cara", "tarjeta-frontal");
     tarjetaTrasera.classList.add("tarjeta-cara", "tarjeta-trasera");
@@ -51,6 +54,15 @@ const crearTarjeta = (algoritmo) => {
     tarjetaVuelta.appendChild(tarjetaFrontal);
     tarjetaVuelta.appendChild(tarjetaTrasera);
     tarjeta.appendChild(tarjetaVuelta);
+    const girar = () => tarjeta.classList.toggle("giro");
+    tarjeta.addEventListener("click", girar);
+    tarjeta.addEventListener("keydown", (evento) => {
+        if (evento.key === "Enter" || evento.key === " ") {
+            evento.preventDefault();
+            girar();
+        }
+    });
+
     contenedorTarjetas.appendChild(tarjeta);
 };
 

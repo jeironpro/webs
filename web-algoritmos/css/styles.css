@@ -1,82 +1,124 @@
-/* Tokens del libro de estilo */
 :root {
-    --color-text: #222;
-    --color-text-card: #2d3748;
-    --color-on-brand: #fff;
-    --color-footer: #6b7280;
+    --fondo: #f7f4ff;
+    --superficie: #ffffff;
+    --texto: #1f2430;
+    --texto-tenue: #5d6475;
+    --marca: #5b53d6;
+    --marca-2: #14b8a6;
+    --marca-suave: #ece9ff;
+    --borde: #e3e0f3;
+    --sombra: 0 18px 40px -24px rgba(31, 36, 48, 0.35);
+    --radio: 22px;
+    --blanco: #ffffff;
 
-    --gradient-page: linear-gradient(180deg, #fff5f0 0%, #ffe8d6 100%);
-    --gradient-header: linear-gradient(90deg, #ff6b6b, #ffa500);
-    --gradient-card: linear-gradient(135deg, #4ecdc4, #a78bfa);
-    --gradient-card-hover: linear-gradient(135deg, #3bb5ad, #9370db);
-    --gradient-card-back: linear-gradient(135deg, #ffffff, #fef3f0);
+    --gradiente-marca: linear-gradient(135deg, var(--marca), var(--marca-2));
+    --gradiente-pagina:
+        radial-gradient(48rem 26rem at 12% -10%, #e9e4ff 0%, transparent 60%),
+        radial-gradient(40rem 24rem at 92% 0%, #dcfbf6 0%, transparent 55%), var(--fondo);
+    --gradiente-trasera: linear-gradient(160deg, #ffffff, #f6f4ff);
 }
 
-* {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
-    font-family: "Fredoka", sans-serif;
-    margin: 0;
-    padding: 0;
 }
 
 body {
-    background: var(--gradient-page);
-    color: var(--color-text);
-    display: grid;
-    grid-template-rows: auto 1fr auto;
+    margin: 0;
     min-height: 100dvh;
-    overflow-x: hidden;
-}
-
-header {
-    align-items: center;
-    background: var(--gradient-header);
-    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.2);
-    color: var(--color-on-brand);
+    background: var(--gradiente-pagina);
+    color: var(--texto);
     display: flex;
-    height: 70px;
-    justify-content: center;
+    flex-direction: column;
+    font-family: "Fredoka", system-ui, sans-serif;
+    overflow-x: clip;
 }
 
-header h1 {
-    font-size: 1.5rem;
-    letter-spacing: 0.5px;
-    text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.15);
+kbd {
+    background: var(--marca-suave);
+    border: 1px solid var(--borde);
+    border-radius: 6px;
+    color: var(--marca);
+    font-family: inherit;
+    font-size: 0.85em;
+    padding: 0.05em 0.4em;
 }
 
-main {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    padding: 20px 10px;
+.cabecera {
+    padding: clamp(2.5rem, 8vw, 4.5rem) 1.25rem clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.cabecera__contenido {
+    margin: 0 auto;
+    max-width: 1100px;
+}
+
+.cabecera__eyebrow {
+    color: var(--marca);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    margin: 0 0 0.6rem;
+    text-transform: uppercase;
+}
+
+.cabecera__titulo {
+    font-size: clamp(2.2rem, 8vw, 3.6rem);
+    line-height: 1.05;
+    margin: 0;
+}
+
+.cabecera__sub {
+    color: var(--texto-tenue);
+    font-size: clamp(0.95rem, 2.6vw, 1.1rem);
+    line-height: 1.6;
+    margin: 1rem 0 0;
+    max-width: 52ch;
+}
+
+.principal {
+    flex: 1;
+    padding: 0 1.25rem clamp(3rem, 7vw, 4.5rem);
+}
+
+.catalogo {
+    margin: 0 auto;
+    max-width: 1100px;
 }
 
 .contenedor-tarjetas {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 1.25rem;
     justify-content: center;
-    max-width: 1200px;
-    width: 100%;
 }
 
 .tarjeta {
     cursor: pointer;
-    /* Mobile-first: una tarjeta por fila, sin pasar del ancho del movil */
-    height: 260px;
-    perspective: 1200px;
-    transition: transform 0.3s ease;
-    width: 100%;
+    height: 250px;
     max-width: 320px;
+    perspective: 1200px;
+    transition:
+        transform 0.3s ease,
+        filter 0.3s ease;
+    width: 100%;
 }
 
 .tarjeta:hover {
+    filter: drop-shadow(0 16px 24px rgba(91, 83, 214, 0.18));
     transform: translateY(-4px);
 }
 
+.tarjeta:focus-visible {
+    border-radius: var(--radio);
+    outline: 3px solid var(--marca);
+    outline-offset: 4px;
+}
+
 .tarjeta-vuelta {
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
     height: 100%;
     position: relative;
     transform-style: preserve-3d;
@@ -92,130 +134,77 @@ main {
 .tarjeta-cara {
     align-items: center;
     backface-visibility: hidden;
-    border-radius: 20px;
+    border-radius: var(--radio);
     display: flex;
     flex-direction: column;
     inset: 0;
     justify-content: center;
-    padding: 20px;
+    padding: 1.4rem;
     position: absolute;
     text-align: center;
 }
 
 .tarjeta-frontal {
-    background: var(--gradient-card);
-    color: var(--color-on-brand);
-    transition: background 0.4s ease;
+    background: var(--gradiente-marca);
+    color: var(--blanco);
 }
 
-.tarjeta-frontal:hover {
-    background: var(--gradient-card-hover);
+.tarjeta-frontal .material-symbols-outlined {
+    background: rgba(255, 255, 255, 0.18);
+    border-radius: 18px;
+    font-size: 2.2rem;
+    padding: 0.55rem;
 }
 
 .tarjeta-frontal h2 {
-    font-size: 1rem;
-    margin-top: 12px;
-    word-wrap: break-word;
-}
-
-.tarjeta-frontal span {
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    font-size: 2.2rem;
-    padding: 10px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    line-height: 1.3;
+    margin: 0.9rem 0 0;
+    overflow-wrap: anywhere;
 }
 
 .tarjeta-trasera {
-    background: var(--gradient-card-back);
-    border: 2px solid rgba(255, 107, 107, 0.15);
-    color: var(--color-text-card);
-    padding: 20px;
+    background: var(--gradiente-trasera);
+    border: 1px solid var(--borde);
+    color: var(--texto-tenue);
     transform: rotateY(180deg);
 }
 
 .tarjeta-trasera p {
-    font-size: 0.9rem;
-    line-height: 1.5;
+    font-size: 0.92rem;
+    line-height: 1.55;
+    margin: 0;
 }
 
-.tarjeta:focus {
-    border-radius: 20px;
-    outline: 3px solid rgba(255, 107, 107, 0.4);
-}
-
-footer {
-    align-items: center;
-    background-color: var(--color-footer);
-    color: var(--color-on-brand);
-    display: flex;
+.pie {
+    background: var(--texto);
+    color: var(--blanco);
     font-size: 0.85rem;
-    font-weight: 500;
-    height: 60px;
-    justify-content: center;
-    letter-spacing: 0.5px;
-    padding: 0 10px;
+    letter-spacing: 0.04em;
+    padding: 1.4rem 1.25rem;
     text-align: center;
 }
 
-/* ─── Mobile-first: cada banda amplia la tarjeta ─── */
-
-/* Movil grande y tablet vertical */
 @media (min-width: 481px) {
-    header h1 {
-        font-size: 2rem;
-    }
-
-    main {
-        padding: 30px 15px;
-    }
-
     .contenedor-tarjetas {
-        gap: 30px;
+        gap: 1.5rem;
     }
 
     .tarjeta {
-        height: 280px;
+        height: 270px;
         width: 280px;
         max-width: none;
     }
 
     .tarjeta-frontal h2 {
-        font-size: 1.1rem;
-    }
-
-    .tarjeta-frontal span {
-        font-size: 2.5rem;
-        padding: 12px;
-    }
-
-    .tarjeta-trasera p {
-        font-size: 0.95rem;
-    }
-
-    footer {
-        font-size: 1rem;
-        height: 70px;
-        padding: 0;
+        font-size: 1.12rem;
     }
 }
 
-/* Escritorio: tamanos completos */
 @media (min-width: 769px) {
-    header h1 {
-        font-size: 2.5rem;
-        letter-spacing: 1px;
-    }
-
-    main {
-        padding: 40px 20px;
-    }
-
-    .contenedor-tarjetas {
-        gap: 40px;
-    }
-
     .tarjeta {
-        height: 300px;
+        height: 290px;
         width: 300px;
     }
 
@@ -223,22 +212,14 @@ footer {
         transform: translateY(-8px);
     }
 
-    .tarjeta-frontal h2 {
-        font-size: 1.2rem;
-        margin-top: 15px;
-    }
-
-    .tarjeta-frontal span {
-        font-size: 3rem;
-        padding: 15px;
-    }
-
-    .tarjeta-trasera {
-        padding: 25px;
-    }
-
     .tarjeta-trasera p {
-        font-size: 1rem;
-        line-height: 1.6;
+        font-size: 0.98rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tarjeta,
+    .tarjeta-vuelta {
+        transition: none;
     }
 }
