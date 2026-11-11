@@ -73,24 +73,24 @@ const seleccionarCancion = (index) => {
     reproducirCancion();
     contenedorListado.style.display = 'none';
     reproductor.style.display = 'block';
-    iconoVolver.style.setProperty('display', 'none', 'important');
+    iconoVolver.style.display = 'none';
     contenedorReproductor.style.overflowY = 'hidden';
 };
 
 iconoVolver.addEventListener('click', () => {
     reproductor.style.display = 'block';
-    iconoVolver.style.setProperty('display', 'none', 'important');
+    iconoVolver.style.display = 'none';
     contenedorReproductor.style.overflowY = 'hidden';
     contenedorListado.style.display = 'none';
 });
 
 iconoListado.addEventListener('click', () => {
     reproductor.style.display = 'none';
-    iconoVolver.style.setProperty('display', 'block', 'important');
+    iconoVolver.style.display = 'block';
     contenedorReproductor.style.overflowY = 'auto';
     contenedorListado.style.display = 'block';
 
-    contenedorListado.innerHTML = "";
+    contenedorListado.replaceChildren();
     const ul = document.createElement("ul");
     ul.className = "listado-estilo";
 
