@@ -9,8 +9,8 @@ async function monedasSelect() {
     const selectDesde = document.getElementById('selector-origen');
     const selectHasta = document.getElementById('selector-destino');
 
-    selectDesde.innerHTML = '';
-    selectHasta.innerHTML = '';
+    selectDesde.replaceChildren();
+    selectHasta.replaceChildren();
 
     Object.keys(obtenerTasaCambio).forEach(moneda => {
         const opciones = document.createElement('option');

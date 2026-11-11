@@ -11,6 +11,7 @@
     --oro: #a8843c;
     --linea: #e0d5c2;
     --linea-fuerte: #c9b99b;
+    --linea-brillo: #eee3cd;
 
     /* Tipografía editorial */
     --fuente-titulo: "Cormorant Garamond", "Times New Roman", serif;
@@ -21,10 +22,17 @@
     --sombra: 0 1px 3px rgba(43, 33, 26, 0.08);
     --regla: 1px solid var(--linea);
     --regla-fuerte: 1px solid var(--linea-fuerte);
-    --alto-cabecera: 64px;
+    --alto-cabecera: 56px;
     --transicion: 0.2s ease;
 
     /* Composición de lectura */
     --columna-lectura: 680px;
     --ancho-maximo: 1100px;
+}
+
+/* La cabecera crece en pantallas grandes */
+@media (min-width: 769px) {
+    :root {
+        --alto-cabecera: 64px;
+    }
 }

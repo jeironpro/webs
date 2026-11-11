@@ -15,7 +15,7 @@ export function delegate(parent, selector, evt, handler) {
   if (typeof parent === 'string') parent = qs(parent);
   if (!parent) return;
   parent.addEventListener(evt, function (e) {
-    var target = e.target.closest(selector);
+    const target = e.target.closest(selector);
     if (target && parent.contains(target)) handler(e, target);
   });
 }

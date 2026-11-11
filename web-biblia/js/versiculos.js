@@ -11,7 +11,7 @@ const RUTA_DATOS = (function () {
 })();
 
 function mostrarMensaje(contenedor, mensaje) {
-  contenedor.innerHTML = "";
+  contenedor.replaceChildren();
   const aviso = document.createElement("p");
   aviso.textContent = mensaje;
   contenedor.appendChild(aviso);
@@ -19,7 +19,7 @@ function mostrarMensaje(contenedor, mensaje) {
 
 // Esqueleto de carga: simula líneas de texto mientras se descarga el dataset.
 function mostrarSkeleton(contenedor) {
-  contenedor.innerHTML = "";
+  contenedor.replaceChildren();
   const esqueleto = document.createElement("div");
   esqueleto.className = "skeleton";
   esqueleto.setAttribute("role", "status");
@@ -65,8 +65,7 @@ async function main() {
     contenedorTexto.textContent = versiculos
       .map((v) => `${v.numero}. ${v.texto}`)
       .join("\n");
-    contenedorVersiculos.innerHTML = "";
-    contenedorVersiculos.appendChild(contenedorTexto);
+    contenedorVersiculos.replaceChildren(contenedorTexto);
   } catch (err) {
     console.log("Error:", err);
     mostrarMensaje(contenedorVersiculos, "Contenido en preparación.");

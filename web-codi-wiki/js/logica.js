@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
         contenedorPrincipal.scrollTop = 0;
 
         // Limpiar vista anterior
-        vistaDetalle.innerHTML = '';
+        vistaDetalle.replaceChildren();
 
         // 1. Header
         const header = document.createElement('header');

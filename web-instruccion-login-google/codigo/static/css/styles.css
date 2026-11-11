@@ -1,3 +1,17 @@
+/* Libro de estilo — colores y sombras del perfil */
+:root {
+    --color-fondo: #f5f5f7;
+    --color-texto: #333;
+    --color-superficie: #ffffff;
+    --color-texto-suave: #666;
+    --color-texto-medio: #555;
+    --color-google: #4285f4;
+    --color-google-hover: #357ae8;
+    --color-salir: #ff4b5c;
+    --color-salir-hover: #e63950;
+    --color-texto-inverso: #fff;
+}
+
 /* Reset y tipografía */
 * {
     box-sizing: border-box;
@@ -8,19 +22,19 @@
 
 body {
     align-items: center;
-    background: #f5f5f7;
-    color: #333;
+    background: var(--color-fondo);
+    color: var(--color-texto);
     display: flex;
     height: 100vh;
     justify-content: center;
 }
 
 .container {
-    background: #ffffff;
+    background: var(--color-superficie);
     border-radius: 20px;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
-    max-width: 400px;
-    padding: 60px 40px;
+    max-width: 90%;
+    padding: 30px 20px;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     width: 100%;
@@ -33,11 +47,11 @@ body {
 
 .profile-pic {
     border-radius: 50%;
-    height: 100px;
+    height: 70px;
     margin-bottom: 20px;
     object-fit: cover;
     transition: transform 0.3s ease;
-    width: 100px;
+    width: 70px;
 }
 
 .profile-pic:hover {
@@ -45,26 +59,26 @@ body {
 }
 
 h1.username {
-    font-size: 1.8rem;
+    font-size: 1.3rem;
     font-weight: 700;
     margin-bottom: 5px;
 }
 
 p.email {
-    color: #666;
-    font-size: 1rem;
+    color: var(--color-texto-suave);
+    font-size: 0.85rem;
     margin-bottom: 30px;
 }
 
 h1.title {
-    font-size: 2rem;
+    font-size: 1.3rem;
     font-weight: 700;
     margin-bottom: 10px;
 }
 
 p.subtitle {
-    color: #555;
-    font-size: 1rem;
+    color: var(--color-texto-medio);
+    font-size: 0.85rem;
     margin-bottom: 30px;
 }
 
@@ -73,79 +87,88 @@ p.subtitle {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
     cursor: pointer;
     display: inline-block;
+    font-size: 0.9rem;
     font-weight: 600;
-    padding: 14px 30px;
+    padding: 10px 20px;
     text-decoration: none;
     transition: all 0.3s ease;
 }
 
 .login-btn {
-    background-color: #4285F4;
-    color: #fff;
+    background-color: var(--color-google);
+    color: var(--color-texto-inverso);
 }
 
 .login-btn:hover {
-    background-color: #357ae8;
+    background-color: var(--color-google-hover);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
     transform: translateY(-2px);
 }
 
 .logout-btn {
-    background-color: #ff4b5c;
-    color: #fff;
+    background-color: var(--color-salir);
+    color: var(--color-texto-inverso);
 }
 
 .logout-btn:hover {
-    background-color: #e63950;
+    background-color: var(--color-salir-hover);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
     transform: translateY(-2px);
 }
 
-@media (max-width: 500px) {
+@media (min-width: 351px) {
     .container {
-        padding: 40px 25px;
         max-width: 90%;
+        padding: 40px 25px;
     }
 
     .profile-pic {
-        width: 80px;
         height: 80px;
+        width: 80px;
     }
 
-    h1.username, h1.title {
+    h1.username,
+    h1.title {
         font-size: 1.5rem;
     }
 
-    p.email, p.subtitle {
+    p.email,
+    p.subtitle {
         font-size: 0.9rem;
     }
 
     .btn {
-        padding: 12px 25px;
         font-size: 0.95rem;
+        padding: 12px 25px;
     }
 }
 
-@media (max-width: 350px) {
+@media (min-width: 501px) {
     .container {
-        padding: 30px 20px;
+        max-width: 400px;
+        padding: 60px 40px;
     }
 
     .profile-pic {
-        width: 70px;
-        height: 70px;
+        height: 100px;
+        width: 100px;
     }
 
-    h1.username, h1.title {
-        font-size: 1.3rem;
+    h1.username {
+        font-size: 1.8rem;
     }
 
-    p.email, p.subtitle {
-        font-size: 0.85rem;
+    h1.title {
+        font-size: 2rem;
+    }
+
+    p.email,
+    p.subtitle {
+        font-size: 1rem;
     }
 
     .btn {
-        padding: 10px 20px;
-        font-size: 0.9rem;
+        font-size: 1rem;
+        padding: 14px 30px;
     }
 }

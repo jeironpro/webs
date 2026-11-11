@@ -4,7 +4,7 @@
 .contenedor-testamento {
     margin: 0 auto;
     max-width: var(--ancho-maximo);
-    padding: 24px 20px;
+    padding: 16px 12px;
 }
 
 /* Encabezado de sección canónica */
@@ -38,8 +38,8 @@
 
 .contenedor-libros {
     display: grid;
-    gap: 12px;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
     margin: 0 auto;
     max-width: var(--ancho-maximo);
 }
@@ -49,7 +49,7 @@
     border: var(--regla);
     border-radius: var(--radio);
     box-shadow: var(--sombra);
-    height: 84px;
+    height: 72px;
     overflow: hidden;
     transition: border-color var(--transicion), transform var(--transicion);
 }
@@ -64,7 +64,7 @@
     color: var(--tinta);
     display: flex;
     font-family: var(--fuente-titulo);
-    font-size: 17px;
+    font-size: 15px;
     font-weight: 600;
     height: 100%;
     justify-content: center;
@@ -82,21 +82,21 @@
 
 /* ---------- Responsive ---------- */
 
-@media (max-width: 480px) {
+@media (min-width: 481px) {
     .contenedor-testamento {
-        padding: 16px 12px;
+        padding: 24px 20px;
     }
 
     .contenedor-libros {
-        gap: 10px;
-        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+        gap: 12px;
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     }
 
     .contenedor-libros .libro {
-        height: 72px;
+        height: 84px;
     }
 
     .contenedor-libros .libro a {
-        font-size: 15px;
+        font-size: 17px;
     }
 }

@@ -12,7 +12,7 @@
 .contenedor-principal {
     display: flex;
     flex-wrap: wrap;
-    gap: 32px;
+    gap: 20px;
     justify-content: center;
     max-width: var(--ancho-maximo);
     width: 100%;
@@ -23,7 +23,7 @@
 .titulo-portada {
     color: var(--tinta);
     font-family: var(--fuente-titulo);
-    font-size: 56px;
+    font-size: 27px;
     font-weight: 600;
     letter-spacing: 0.06em;
     margin: 0 0 8px;
@@ -34,7 +34,7 @@
 .subtitulo-portada {
     color: var(--tinta-suave);
     font-family: var(--fuente-titulo);
-    font-size: 18px;
+    font-size: 14px;
     font-style: italic;
     letter-spacing: 0.12em;
     margin: 0 0 32px;
@@ -58,7 +58,7 @@
     box-shadow: var(--sombra);
     display: flex;
     flex: 1 1 300px;
-    height: 180px;
+    height: 140px;
     justify-content: center;
     overflow: hidden;
     position: relative;
@@ -84,7 +84,7 @@
     display: flex;
     flex-direction: column;
     font-family: var(--fuente-titulo);
-    font-size: 26px;
+    font-size: 21px;
     font-weight: 600;
     gap: 10px;
     height: 100%;
@@ -117,36 +117,36 @@
 
 /* ---------- Responsive ---------- */
 
-@media (max-width: 768px) {
-    .titulo-portada {
-        font-size: 40px;
-    }
-
-    .contenedor-principal .card {
-        height: 140px;
-    }
-
-    .contenedor-principal .card a {
-        font-size: 21px;
-    }
-}
-
-@media (max-width: 480px) {
+@media (min-width: 321px) {
     .titulo-portada {
         font-size: 32px;
     }
+}
 
-    .subtitulo-portada {
-        font-size: 14px;
-    }
-
-    .contenedor-principal {
-        gap: 20px;
+@media (min-width: 481px) {
+    .titulo-portada {
+        font-size: 40px;
     }
 }
 
-@media (max-width: 320px) {
+@media (min-width: 769px) {
     .titulo-portada {
-        font-size: 27px;
+        font-size: 56px;
+    }
+
+    .subtitulo-portada {
+        font-size: 18px;
+    }
+
+    .contenedor-principal {
+        gap: 32px;
+    }
+
+    .contenedor-principal .card {
+        height: 180px;
+    }
+
+    .contenedor-principal .card a {
+        font-size: 26px;
     }
 }

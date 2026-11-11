@@ -2,7 +2,7 @@
 
 .diagramas-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: 1fr;
   gap: var(--space-6);
 }
 
@@ -47,6 +47,6 @@
   margin-bottom: var(--space-2);
 }
 
-@media (max-width: 768px) {
-  .diagramas-grid { grid-template-columns: 1fr; }
+@media (min-width: 769px) {
+  .diagramas-grid { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
 }
