@@ -119,30 +119,47 @@ export class SidebarManager {
 	}
 
 	_renderNames() {
+		/* Se reconstruye la lista con nodos: nada de HTML inyectado. */
+		this.nameList.replaceChildren();
+
 		if (this.names.length === 0) {
-			this.nameList.innerHTML = '<p class="name-list-empty">No hay nombres agregados</p>';
+			const vacio = document.createElement('p');
+			vacio.className = 'name-list-empty';
+			vacio.textContent = 'No hay nombres agregados';
+			this.nameList.appendChild(vacio);
 			return;
 		}
 
-		this.nameList.innerHTML = this.names
-			.map(
-				(name, i) => `
-        <div class="name-item">
-          <span class="name-item-color" style="background-color: ${this._getColor(i)}"></span>
-          <span class="name-item-text">${this._escapeHtml(name)}</span>
-          <button class="name-item-remove" data-index="${i}" aria-label="Eliminar ${name}">
-            <span class="material-symbols-outlined">close</span>
-          </button>
-        </div>
-      `,
-			)
-			.join('');
+		const fragmento = document.createDocumentFragment();
 
-		$$('.name-item-remove').forEach((btn) => {
-			btn.addEventListener('click', () => {
-				this._removeName(parseInt(btn.dataset.index, 10));
-			});
+		this.names.forEach((name, i) => {
+			const item = document.createElement('div');
+			item.className = 'name-item';
+
+			const color = document.createElement('span');
+			color.className = 'name-item-color';
+			color.style.backgroundColor = this._getColor(i);
+
+			const texto = document.createElement('span');
+			texto.className = 'name-item-text';
+			texto.textContent = name;
+
+			const boton = document.createElement('button');
+			boton.type = 'button';
+			boton.className = 'name-item-remove';
+			boton.setAttribute('aria-label', `Eliminar ${name}`);
+			boton.addEventListener('click', () => this._removeName(i));
+
+			const icono = document.createElement('span');
+			icono.className = 'material-symbols-outlined';
+			icono.textContent = 'close';
+			boton.appendChild(icono);
+
+			item.append(color, texto, boton);
+			fragmento.appendChild(item);
 		});
+
+		this.nameList.appendChild(fragmento);
 	}
 
 	_applyNames() {
@@ -163,9 +180,4 @@ export class SidebarManager {
 		return colors[index % colors.length];
 	}
 
-	_escapeHtml(text) {
-		const div = document.createElement('div');
-		div.textContent = text;
-		return div.innerHTML;
-	}
 }

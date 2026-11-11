@@ -62,13 +62,12 @@ p {
   white-space: nowrap;
 }
 
-/* — Movimiento reducido: cruce por opacidad (≤150 ms) — — */
+/* — Movimiento reducido: cruce por opacidad (≤150 ms).
+ *   Las transiciones ya leen las duraciones de los tokens, así que se acortan
+ *   aquí en vez de forzarlas con !important. — — */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 150ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 150ms !important;
+  :root {
+    --dur-short: 150ms;
+    --dur-long: 150ms;
   }
 }

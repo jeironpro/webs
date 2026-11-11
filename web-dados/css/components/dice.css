@@ -23,7 +23,7 @@
     gap: 4px;
     width: 100%;
     height: 100%;
-    padding: 16%;
+    padding: 12%;
     background:
         radial-gradient(
             ellipse at 30% 20%,
@@ -48,8 +48,8 @@
 .dice-cell.dot::after {
     content: '';
     display: block;
-    width: 70%;
-    height: 70%;
+    width: 65%;
+    height: 65%;
     background:
         radial-gradient(
             circle at 35% 30%,
@@ -97,19 +97,19 @@
 }
 
 .dice-wrapper.rolling {
-    animation: dice-shake 0.6s ease-in-out;
+    animation: dice-shake var(--duration-shake) ease-in-out;
     animation-iteration-count: 1;
 }
 
-/* Ajustes responsive para el dado */
-@media (max-width: 600px) {
+/* Tablet en adelante: dado mas grande y con mas padding */
+@media (min-width: 601px) {
     .dice-face {
-        padding: 12%;
-        border-radius: 10px;
+        padding: 16%;
+        border-radius: var(--border-radius);
     }
 
     .dice-cell.dot::after {
-        width: 65%;
-        height: 65%;
+        width: 70%;
+        height: 70%;
     }
 }

@@ -12,6 +12,42 @@
   --borde-radio: 12px;
   --transicion-rapida: 0.2s ease;
   --transicion-media: 0.3s ease;
+
+  /* — Tonos de rojo del degradado de cabecera y la barra de progreso — */
+  --color-rojo-tinte: #ff6b6b;
+  --color-rojo-sombra: #b71c1c;
+  --color-negro: #000;
+
+  /* — Grises de superficies, bordes y esqueletos de carga — */
+  --color-gris-claro: #e0e0e0;
+  --color-gris-medio: #ccc;
+  --color-gris-suave: #e8e8e8;
+  --color-gris-hondo: #d0d0d0;
+
+  /* — Colores de tipo de Pokémon (fondo de la barra de estadísticas) — */
+  --color-tipo-planta: #baffb4;
+  --color-tipo-fuego: #ffd09d;
+  --color-tipo-agua: #b3d5ff;
+  --color-tipo-psiquico: #e1b3ff;
+  --color-tipo-normal: #d1d1d1;
+  --color-tipo-hielo: #b3f0ff;
+
+  /* — Degradados decorativos — */
+  --gradient-cabecera: linear-gradient(
+    135deg,
+    var(--color-rojo) 0%,
+    var(--color-rojo-sombra) 50%,
+    var(--color-rojo-oscuro) 100%
+  );
+  --gradient-progreso: linear-gradient(90deg, var(--color-rojo), var(--color-rojo-tinte));
+  --gradient-esqueleto: linear-gradient(
+    90deg,
+    var(--color-gris-claro) 25%,
+    var(--color-fondo) 50%,
+    var(--color-gris-claro) 75%
+  );
+  --gradient-avatar: linear-gradient(135deg, var(--color-gris-suave) 0%, var(--color-gris-hondo) 100%);
+  --gradient-pie: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
 }
 
 /* Reset global — fuente Kanit, sin márgenes ni paddings, box-sizing consistente */
@@ -77,7 +113,7 @@ main {
 /* Pantalla de splash — fondo degradado rojo, ocupa todo el viewport */
 .splash-body {
   align-items: center;
-  background: linear-gradient(135deg, var(--color-rojo) 0%, #b71c1c 50%, var(--color-rojo-oscuro) 100%);
+  background: var(--gradient-cabecera);
   display: flex;
   height: 100vh;
   justify-content: center;
@@ -102,14 +138,14 @@ main {
 /* Imagen de la Pokéball — animación de latido infinita */
 .contenedor-logo-titulo img {
   animation: pulse 3s ease-in-out infinite;
-  height: 220px;
-  width: 220px;
+  height: 120px;
+  width: 120px;
 }
 
 /* Título principal — blanco con sombra para legibilidad */
 .contenedor-logo-titulo h1 {
   color: var(--color-blanco);
-  font-size: 52px;
+  font-size: 28px;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
@@ -131,9 +167,9 @@ main {
 /* Cada Pokémon flotante — posicionado absolutamente con sombra */
 .pokemon {
   filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3));
-  height: 160px;
+  height: 70px;
   position: absolute;
-  width: 160px;
+  width: 70px;
 }
 
 /* Cada Pokémon usa una imagen de fondo distinta según su generación */
@@ -228,54 +264,15 @@ main {
   top: 75%;
 }
 
-/* Tablets y pantallas medianas — Pokémon más pequeños */
-@media (max-width: 1024px) {
-  .pokemon {
-    height: 130px;
-    width: 130px;
-  }
-}
 
-/* Móviles grandes — se reduce todo proporcionalmente */
-@media (max-width: 768px) {
-  .pokemon {
-    height: 100px;
-    width: 100px;
-  }
 
-  .contenedor-logo-titulo img {
-    height: 160px;
-    width: 160px;
-  }
-
-  .contenedor-logo-titulo h1 {
-    font-size: 36px;
-  }
-}
-
-/* Móviles pequeños — escala mínima para evitar saturación visual */
-@media (max-width: 480px) {
-  .pokemon {
-    height: 70px;
-    width: 70px;
-  }
-
-  .contenedor-logo-titulo img {
-    height: 120px;
-    width: 120px;
-  }
-
-  .contenedor-logo-titulo h1 {
-    font-size: 28px;
-  }
-}
 /* Navegación entre generaciones — botones Anterior/Siguiente con barra de progreso */
 .generacion-navegacion {
   align-items: center;
   display: flex;
-  gap: 16px;
+  gap: 8px;
   justify-content: center;
-  padding: 16px 20px;
+  padding: 12px 0;
   width: 100%;
 }
 
@@ -292,7 +289,7 @@ main {
   font-size: 14px;
   font-weight: 600;
   gap: 6px;
-  padding: 8px 20px;
+  padding: 8px 12px;
   transition: background var(--transicion-rapida), opacity var(--transicion-rapida);
 }
 
@@ -316,22 +313,22 @@ main {
 
 .generacion-progreso span {
   color: var(--color-texto-secundario);
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
 }
 
 /* Barra de progresión — contenedor gris claro */
 .generacion-barra {
-  background: #e0e0e0;
+  background: var(--color-gris-claro);
   border-radius: 4px;
   height: 6px;
   overflow: hidden;
-  width: 200px;
+  width: 80px;
 }
 
 /* Relleno de la barra — degradado rojo con transición suave */
 .generacion-barra-inner {
-  background: linear-gradient(90deg, var(--color-rojo), #ff6b6b);
+  background: var(--gradient-progreso);
   border-radius: 4px;
   height: 100%;
   transition: width 0.3s ease;
@@ -363,13 +360,13 @@ main {
   background: var(--color-blanco);
   border-radius: var(--borde-radio);
   box-shadow: var(--sombra-suave);
-  height: 760px;
+  height: 700px;
   overflow: hidden;
-  width: 350px;
+  width: 100%;
 }
 
 .skeleton-imagen {
-  background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+  background: var(--gradient-esqueleto);
   background-size: 200% 100%;
   animation: shimmer 1.5s ease-in-out infinite;
   height: 55%;
@@ -381,7 +378,7 @@ main {
 }
 
 .skeleton-line {
-  background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+  background: var(--gradient-esqueleto);
   background-size: 200% 100%;
   animation: shimmer 1.5s ease-in-out infinite;
   border-radius: 4px;
@@ -402,16 +399,18 @@ main {
 .filtros {
   align-items: center;
   display: flex;
-  gap: 12px;
+  flex-direction: column;
+  gap: 8px;
   justify-content: center;
   margin-bottom: 20px;
   max-width: 600px;
+  padding: 0 12px;
   width: 100%;
 }
 
 /* Input de búsqueda — borde gris que se vuelve rojo al enfocar */
 .buscador {
-  border: 1px solid #ccc;
+  border: 1px solid var(--color-gris-medio);
   border-radius: 8px;
   font-family: 'Kanit', sans-serif;
   font-size: 14px;
@@ -428,7 +427,7 @@ main {
 /* Selector desplegable de tipo Pokémon */
 .filtro-tipo {
   background: var(--color-blanco);
-  border: 1px solid #ccc;
+  border: 1px solid var(--color-gris-medio);
   border-radius: 8px;
   cursor: pointer;
   font-family: 'Kanit', sans-serif;
@@ -436,6 +435,7 @@ main {
   outline: none;
   padding: 8px 14px;
   transition: border-color var(--transicion-rapida);
+  width: 100%;
 }
 
 .filtro-tipo:focus {
@@ -467,57 +467,7 @@ main {
   font-weight: 600;
 }
 
-/* Tablets — skeleton y barra de progreso más pequeños */
-@media (max-width: 768px) {
-  .skeleton-card {
-    height: 700px;
-    width: 300px;
-  }
 
-  .generacion-barra {
-    width: 140px;
-  }
-}
-
-/* Móviles — layout apilado, oculta etiquetas de botones, filtros en columna */
-@media (max-width: 600px) {
-  .skeleton-card {
-    height: 700px;
-    width: 100%;
-  }
-
-  .generacion-btn span:not(.material-icons) {
-    display: none;
-  }
-
-  .generacion-barra {
-    width: 80px;
-  }
-
-  .generacion-navegacion {
-    gap: 8px;
-    padding: 12px 0;
-    width: 100%;
-  }
-
-  .generacion-progreso span {
-    font-size: 12px;
-  }
-
-  .generacion-btn {
-    padding: 8px 12px;
-  }
-
-  .filtros {
-    flex-direction: column;
-    gap: 8px;
-    padding: 0 12px;
-  }
-
-  .filtro-tipo {
-    width: 100%;
-  }
-}
 /* Animación de entrada — las cartas aparecen desde abajo */
 @keyframes fadeInUp {
   from {
@@ -537,7 +487,7 @@ main {
   flex: 1;
   flex-direction: column;
   justify-content: flex-start;
-  padding: 20px;
+  padding: 20px 12px;
   width: 100%;
 }
 
@@ -554,10 +504,10 @@ main {
   align-items: center;
   display: flex;
   flex-wrap: wrap;
-  gap: 24px;
+  gap: 16px;
   justify-content: center;
   max-width: 1200px;
-  padding: 10px;
+  padding: 0;
   width: 100%;
 }
 
@@ -567,13 +517,13 @@ main {
   border-radius: var(--borde-radio);
   box-shadow: var(--sombra-suave);
   cursor: pointer;
-  height: 760px;
+  height: 700px;
   overflow: hidden;
   perspective: 1000px;
   position: relative;
   transition: transform var(--transicion-media), box-shadow var(--transicion-media);
   user-select: none;
-  width: 350px;
+  width: 100%;
 }
 
 /* Hover — levanta la carta y la inclina ligeramente en 3D */
@@ -590,9 +540,9 @@ main {
 /* Parte superior de la carta — fondo degradado gris con la imagen del Pokémon */
 .carta-imagen {
   align-items: center;
-  background: linear-gradient(135deg, #e8e8e8 0%, #d0d0d0 100%);
+  background: var(--gradient-avatar);
   display: flex;
-  height: 55%;
+  height: 50%;
   justify-content: center;
   padding: 20px;
   position: relative;
@@ -625,7 +575,7 @@ main {
   background: var(--color-blanco);
   display: flex;
   flex-direction: column;
-  height: 45%;
+  height: 50%;
   padding: 14px 16px;
   position: relative;
 }
@@ -640,7 +590,7 @@ main {
 
 .carta-nombre {
   color: var(--color-texto);
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   line-height: 1.2;
 }
@@ -703,7 +653,7 @@ main {
 
 /* Barra visual de estrellas con puntos suspensivos si desborda */
 .estadistica-estrellas {
-  color: #000;
+  color: var(--color-negro);
   font-size: 14px;
   letter-spacing: 1px;
   overflow: hidden;
@@ -721,69 +671,30 @@ main {
 
 /* Colores de fondo para cada estadística — código de colores por tipo de stat */
 .ps {
-  background-color: #baffb4;
+  background-color: var(--color-tipo-planta);
 }
 
 .ataque {
-  background-color: #ffd09d;
+  background-color: var(--color-tipo-fuego);
 }
 
 .defensa {
-  background-color: #b3d5ff;
+  background-color: var(--color-tipo-agua);
 }
 
 .at-esp {
-  background-color: #e1b3ff;
+  background-color: var(--color-tipo-psiquico);
 }
 
 .def-esp {
-  background-color: #d1d1d1;
+  background-color: var(--color-tipo-normal);
 }
 
 .velocidad {
-  background-color: #b3f0ff;
+  background-color: var(--color-tipo-hielo);
 }
 
-/* Tablets — cartas más angostas, gap reducido */
-@media (max-width: 768px) {
-  .contenedor-cartas {
-    gap: 18px;
-  }
 
-  .carta {
-    height: 700px;
-    width: 300px;
-  }
-
-  .carta-nombre {
-    font-size: 18px;
-  }
-}
-
-/* Móviles — cartas ocupan todo el ancho, imagen y contenido se reparten 50/50 */
-@media (max-width: 600px) {
-  .generacion-contenido {
-    padding: 20px 12px;
-  }
-
-  .contenedor-cartas {
-    gap: 16px;
-    padding: 0;
-  }
-
-  .carta {
-    height: 700px;
-    width: 100%;
-  }
-
-  .carta-imagen {
-    height: 50%;
-  }
-
-  .carta-contenido {
-    height: 50%;
-  }
-}
 /* Barra de navegación superior — sticky, degradado rojo, sombra */
 header {
   background: linear-gradient(135deg, var(--color-rojo) 0%, var(--color-rojo-oscuro) 100%);
@@ -823,6 +734,7 @@ header nav .contenedor-logo img {
 
 header nav .contenedor-logo h1 {
   color: var(--color-blanco);
+  display: none;
   font-size: 20px;
 }
 
@@ -832,7 +744,7 @@ header nav .contenedor-logo h1 {
   border: none;
   color: var(--color-blanco);
   cursor: pointer;
-  display: none;
+  display: block;
   padding: 4px;
 }
 
@@ -842,11 +754,27 @@ header nav .contenedor-logo h1 {
 
 /* Enlaces de generaciones — scroll horizontal, scrollbar oculta */
 header nav .nav-generaciones {
+  background: var(--color-rojo-oscuro);
   display: flex;
-  gap: 4px;
-  overflow-x: auto;
+  flex-direction: column;
+  gap: 0;
+  left: 0;
+  opacity: 0;
+  overflow-x: visible;
+  padding: 0;
+  pointer-events: none;
+  position: absolute;
   scrollbar-width: none;
+  top: 64px;
+  transition: opacity var(--transicion-media);
+  width: 100%;
   -ms-overflow-style: none;
+}
+
+/* Clase .abierto la añade el JS al desplegar el menú */
+header nav .nav-generaciones.abierto {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 header nav .nav-generaciones::-webkit-scrollbar {
@@ -855,11 +783,12 @@ header nav .nav-generaciones::-webkit-scrollbar {
 
 /* Cada enlace de generación — semitransparente, se ilumina en hover */
 header nav .nav-generaciones a {
-  border-radius: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0;
   color: rgba(255, 255, 255, 0.8);
   font-size: 13px;
   font-weight: 500;
-  padding: 6px 12px;
+  padding: 12px 20px;
   text-decoration: none;
   transition: background var(--transicion-rapida), color var(--transicion-rapida);
   white-space: nowrap;
@@ -870,6 +799,11 @@ header nav .nav-generaciones a:hover {
   color: var(--color-blanco);
 }
 
+/* El último enlace del menú desplegable no lleva borde */
+header nav .nav-generaciones a:last-child {
+  border-bottom: none;
+}
+
 /* Enlace activo — fondo más marcado y texto en negrita */
 header nav .nav-generaciones a.active {
   background: rgba(255, 255, 255, 0.25);
@@ -877,82 +811,19 @@ header nav .nav-generaciones a.active {
   font-weight: 700;
 }
 
-/* Versión móvil — menú hamburguesa con panel desplegable */
-@media (max-width: 600px) {
-  /* Muestra el botón hamburguesa */
-  .hamburger {
-    display: block;
-  }
-
-  /* Panel de navegación — oculto por defecto (opacity + pointer-events) */
-  header nav .nav-generaciones {
-    background: var(--color-rojo-oscuro);
-    flex-direction: column;
-    gap: 0;
-    left: 0;
-    opacity: 0;
-    overflow-x: visible;
-    padding: 0;
-    pointer-events: none;
-    position: absolute;
-    top: 64px;
-    transition: opacity var(--transicion-media);
-    width: 100%;
-  }
-
-  /* Clase .abierto activa el menú vía JS */
-  header nav .nav-generaciones.abierto {
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  /* Enlaces en vertical con bordes entre ellos */
-  header nav .nav-generaciones a {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 0;
-    font-size: 14px;
-    padding: 12px 20px;
-  }
-
-  header nav .nav-generaciones a:last-child {
-    border-bottom: none;
-  }
-
-  /* Overlay semitransparente detrás del menú desplegado */
-  header nav .overlay {
-    background: rgba(0, 0, 0, 0.4);
-    height: 100vh;
-    left: 0;
-    position: fixed;
-    top: 64px;
-    width: 100%;
-    z-index: -1;
-  }
-
-  /* Oculta el texto del logo para ahorrar espacio */
-  header nav .contenedor-logo h1 {
-    display: none;
-  }
-}
 /* Pie de página — fondo oscuro degradado, texto centrado */
 footer {
-  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  background: var(--gradient-pie);
   padding: 14px;
   text-align: center;
 }
 
 footer p {
   color: rgba(255, 255, 255, 0.7);
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 400;
 }
 
-/* Móviles pequeños — texto ligeramente más reducido */
-@media (max-width: 480px) {
-  footer p {
-    font-size: 12px;
-  }
-}
 
 /* Layout estático y utilidades de visibilidad */
 #app {
@@ -966,7 +837,7 @@ footer p {
 }
 
 .oculto {
-  display: none !important;
+  display: none;
 }
 
 .pagina-no-encontrada {
@@ -989,4 +860,162 @@ footer p {
 
 .pagina-no-encontrada a:hover {
   text-decoration: underline;
+}
+
+/* — Responsive mobile-first: la base ya es el diseño compacto y cada banda
+ *   devuelve progresivamente los tamaños de escritorio. — */
+
+/* Móviles pequeños y tablets verticales */
+@media (min-width: 481px) {
+  .pokemon {
+    height: 100px;
+    width: 100px;
+  }
+
+  .contenedor-logo-titulo img {
+    height: 160px;
+    width: 160px;
+  }
+
+  .contenedor-logo-titulo h1 {
+    font-size: 36px;
+  }
+
+  footer p {
+    font-size: 14px;
+  }
+}
+
+/* Tablets y móviles grandes: vuelve la navegación horizontal */
+@media (min-width: 601px) {
+  .skeleton-card {
+    width: 300px;
+  }
+
+  .generacion-barra {
+    width: 140px;
+  }
+
+  .generacion-navegacion {
+    gap: 16px;
+    padding: 16px 20px;
+  }
+
+  .generacion-progreso span {
+    font-size: 14px;
+  }
+
+  .generacion-btn {
+    padding: 8px 20px;
+  }
+
+  .filtros {
+    flex-direction: row;
+    gap: 12px;
+    padding: 0;
+  }
+
+  .filtro-tipo {
+    width: auto;
+  }
+
+  .contenedor-cartas {
+    gap: 18px;
+  }
+
+  .carta {
+    width: 300px;
+  }
+
+  .generacion-contenido {
+    padding: 20px;
+  }
+
+  .carta-imagen {
+    height: 55%;
+  }
+
+  .carta-contenido {
+    height: 45%;
+  }
+
+  .hamburger {
+    display: none;
+  }
+
+  header nav .contenedor-logo h1 {
+    display: block;
+  }
+
+  header nav .nav-generaciones {
+    background: transparent;
+    flex-direction: row;
+    gap: 4px;
+    left: auto;
+    opacity: 1;
+    overflow-x: auto;
+    pointer-events: auto;
+    position: static;
+    top: auto;
+    width: auto;
+  }
+
+  header nav .nav-generaciones a {
+    border-bottom: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+  }
+
+  /* El overlay solo acompaña al menú desplegable */
+  header nav .overlay {
+    display: none;
+  }
+}
+
+/* Escritorio compacto */
+@media (min-width: 769px) {
+  .pokemon {
+    height: 130px;
+    width: 130px;
+  }
+
+  .contenedor-logo-titulo img {
+    height: 220px;
+    width: 220px;
+  }
+
+  .contenedor-logo-titulo h1 {
+    font-size: 52px;
+  }
+
+  .skeleton-card {
+    height: 760px;
+    width: 350px;
+  }
+
+  .generacion-barra {
+    width: 200px;
+  }
+
+  .contenedor-cartas {
+    gap: 24px;
+    padding: 10px;
+  }
+
+  .carta {
+    height: 760px;
+    width: 350px;
+  }
+
+  .carta-nombre {
+    font-size: 20px;
+  }
+}
+
+/* Escritorio amplio */
+@media (min-width: 1025px) {
+  .pokemon {
+    height: 160px;
+    width: 160px;
+  }
 }

@@ -1,3 +1,17 @@
+/* Tokens del libro de estilo */
+:root {
+    --color-text: #222;
+    --color-text-card: #2d3748;
+    --color-on-brand: #fff;
+    --color-footer: #6b7280;
+
+    --gradient-page: linear-gradient(180deg, #fff5f0 0%, #ffe8d6 100%);
+    --gradient-header: linear-gradient(90deg, #ff6b6b, #ffa500);
+    --gradient-card: linear-gradient(135deg, #4ecdc4, #a78bfa);
+    --gradient-card-hover: linear-gradient(135deg, #3bb5ad, #9370db);
+    --gradient-card-back: linear-gradient(135deg, #ffffff, #fef3f0);
+}
+
 * {
     box-sizing: border-box;
     font-family: "Fredoka", sans-serif;
@@ -6,8 +20,8 @@
 }
 
 body {
-    background: linear-gradient(180deg, #fff5f0 0%, #ffe8d6 100%);
-    color: #222;
+    background: var(--gradient-page);
+    color: var(--color-text);
     display: grid;
     grid-template-rows: auto 1fr auto;
     min-height: 100dvh;
@@ -16,17 +30,17 @@ body {
 
 header {
     align-items: center;
-    background: linear-gradient(90deg, #ff6b6b, #ffa500);
+    background: var(--gradient-header);
     box-shadow: 0 4px 15px rgba(255, 107, 107, 0.2);
-    color: #fff;
+    color: var(--color-on-brand);
     display: flex;
-    height: 90px;
+    height: 70px;
     justify-content: center;
 }
 
 header h1 {
-    font-size: 2.5rem;
-    letter-spacing: 1px;
+    font-size: 1.5rem;
+    letter-spacing: 0.5px;
     text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.15);
 }
 
@@ -34,13 +48,13 @@ main {
     align-items: center;
     display: flex;
     justify-content: center;
-    padding: 40px 20px;
+    padding: 20px 10px;
 }
 
 .contenedor-tarjetas {
     display: flex;
     flex-wrap: wrap;
-    gap: 40px;
+    gap: 20px;
     justify-content: center;
     max-width: 1200px;
     width: 100%;
@@ -48,14 +62,16 @@ main {
 
 .tarjeta {
     cursor: pointer;
-    height: 300px;
+    /* Mobile-first: una tarjeta por fila, sin pasar del ancho del movil */
+    height: 260px;
     perspective: 1200px;
     transition: transform 0.3s ease;
-    width: 300px;
+    width: 100%;
+    max-width: 320px;
 }
 
 .tarjeta:hover {
-    transform: translateY(-8px);
+    transform: translateY(-4px);
 }
 
 .tarjeta-vuelta {
@@ -87,39 +103,39 @@ main {
 }
 
 .tarjeta-frontal {
-    background: linear-gradient(135deg, #4ecdc4, #a78bfa);
-    color: #fff;
+    background: var(--gradient-card);
+    color: var(--color-on-brand);
     transition: background 0.4s ease;
 }
 
 .tarjeta-frontal:hover {
-    background: linear-gradient(135deg, #3bb5ad, #9370db);
+    background: var(--gradient-card-hover);
 }
 
 .tarjeta-frontal h2 {
-    font-size: 1.2rem;
-    margin-top: 15px;
+    font-size: 1rem;
+    margin-top: 12px;
     word-wrap: break-word;
 }
 
 .tarjeta-frontal span {
     background: rgba(255, 255, 255, 0.2);
     border-radius: 50%;
-    font-size: 3rem;
-    padding: 15px;
+    font-size: 2.2rem;
+    padding: 10px;
 }
 
 .tarjeta-trasera {
-    background: linear-gradient(135deg, #ffffff, #fef3f0);
+    background: var(--gradient-card-back);
     border: 2px solid rgba(255, 107, 107, 0.15);
-    color: #2d3748;
-    padding: 25px;
+    color: var(--color-text-card);
+    padding: 20px;
     transform: rotateY(180deg);
 }
 
 .tarjeta-trasera p {
-    font-size: 1rem;
-    line-height: 1.6;
+    font-size: 0.9rem;
+    line-height: 1.5;
 }
 
 .tarjeta:focus {
@@ -129,17 +145,22 @@ main {
 
 footer {
     align-items: center;
-    background-color: #6b7280;
-    color: #fff;
+    background-color: var(--color-footer);
+    color: var(--color-on-brand);
     display: flex;
-    font-size: 1rem;
+    font-size: 0.85rem;
     font-weight: 500;
-    height: 70px;
+    height: 60px;
     justify-content: center;
     letter-spacing: 0.5px;
+    padding: 0 10px;
+    text-align: center;
 }
 
-@media (max-width: 768px) {
+/* ─── Mobile-first: cada banda amplia la tarjeta ─── */
+
+/* Movil grande y tablet vertical */
+@media (min-width: 481px) {
     header h1 {
         font-size: 2rem;
     }
@@ -155,6 +176,7 @@ footer {
     .tarjeta {
         height: 280px;
         width: 280px;
+        max-width: none;
     }
 
     .tarjeta-frontal h2 {
@@ -169,59 +191,54 @@ footer {
     .tarjeta-trasera p {
         font-size: 0.95rem;
     }
+
+    footer {
+        font-size: 1rem;
+        height: 70px;
+        padding: 0;
+    }
 }
 
-@media (max-width: 480px) {
-    header {
-        height: 70px;
-    }
-
+/* Escritorio: tamanos completos */
+@media (min-width: 769px) {
     header h1 {
-        font-size: 1.5rem;
-        letter-spacing: 0.5px;
+        font-size: 2.5rem;
+        letter-spacing: 1px;
     }
 
     main {
-        padding: 20px 10px;
+        padding: 40px 20px;
     }
 
     .contenedor-tarjetas {
-        gap: 20px;
+        gap: 40px;
     }
 
     .tarjeta {
-        height: 260px;
-        width: 100%;
-        max-width: 320px;
+        height: 300px;
+        width: 300px;
     }
 
     .tarjeta:hover {
-        transform: translateY(-4px);
+        transform: translateY(-8px);
     }
 
     .tarjeta-frontal h2 {
-        font-size: 1rem;
-        margin-top: 12px;
+        font-size: 1.2rem;
+        margin-top: 15px;
     }
 
     .tarjeta-frontal span {
-        font-size: 2.2rem;
-        padding: 10px;
+        font-size: 3rem;
+        padding: 15px;
     }
 
     .tarjeta-trasera {
-        padding: 20px;
+        padding: 25px;
     }
 
     .tarjeta-trasera p {
-        font-size: 0.9rem;
-        line-height: 1.5;
-    }
-
-    footer {
-        font-size: 0.85rem;
-        height: 60px;
-        padding: 0 10px;
-        text-align: center;
+        font-size: 1rem;
+        line-height: 1.6;
     }
 }

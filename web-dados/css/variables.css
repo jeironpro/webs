@@ -32,5 +32,9 @@
     --shadow-dice: 0 4px 16px rgba(0, 0, 0, 0.2);
     --shadow-controls: 0 2px 8px rgba(0, 0, 0, 0.3);
 
-    --transition-fast: 0.2s ease;
+    /* Duraciones: el reset de movimiento reducido las anula sin !important */
+    --duration-fast: 0.2s;
+    --duration-shake: 0.6s;
+    --transition-fast: var(--duration-fast) ease;
+    --scroll-behavior: smooth;
 }
