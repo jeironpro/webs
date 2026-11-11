@@ -1,25 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="icon/crucigrama.png" type="image/x-icon">
-    <title>Generador de patrones crucigramas</title>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-    <!-- HTML básico -->
-    <header>
-        <h1>Generador de patrones crucigramas</h1>
-    </header>
-    <main>
-        <button id="btnGenerar">Generar y descargar 100 patrones</button>
-        <p id="mensaje"></p>
-    </main>
-    <footer>
-        <p>&copy;Todos los derecos reservados 2025 - JeironPro</p>
-    </footer>
-    <script src="js/generador.js"></script>
-</body>
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Generador de patrones de crucigramas</title>
+        <meta
+            name="description"
+            content="Genera y descarga un paquete de 100 patrones de crucigramas listos para imprimir."
+        />
+        <link rel="shortcut icon" href="icon/crucigrama.png" type="image/x-icon" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="css/styles.css" />
+    </head>
+    <body>
+        <header class="cabecera">
+            <p class="cabecera__eyebrow">herramienta</p>
+            <h1 class="cabecera__titulo">Generador de crucigramas</h1>
+            <p class="cabecera__sub">
+                Crea un paquete con 100 patrones de cuadrícula, listos para imprimir y rellenar.
+            </p>
+        </header>
+
+        <main class="principal">
+            <section class="panel" aria-labelledby="panel-titulo">
+                <h2 class="panel__titulo" id="panel-titulo">100 patrones en un solo archivo</h2>
+                <p class="panel__texto">
+                    Cada patrón trae su cuadrícula en blanco. La descarga se genera en tu navegador,
+                    sin subir nada a ningún servidor.
+                </p>
+                <button class="boton" id="btnGenerar" type="button">
+                    Generar y descargar 100 patrones
+                </button>
+                <p class="mensaje" id="mensaje" role="status" aria-live="polite"></p>
+            </section>
+        </main>
+
+        <footer class="pie">
+            &copy; Todos los derechos reservados <span data-anio>2025</span> - JeironPro
+        </footer>
+
+        <script src="js/generador.js"></script>
+        <script>
+            document.querySelectorAll("[data-anio]").forEach((nodo) => {
+                nodo.textContent = new Date().getFullYear();
+            });
+        </script>
+    </body>
 </html>
