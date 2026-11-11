@@ -36,6 +36,17 @@ try {
     process.exit(2);
 }
 const publicados = new Set(archivos.filter((f) => !ignora(f)));
+// Los destinos sí incluyen ficheros minificados o vendorizados: el deploy
+// publica todo el repo, así que una referencia a ellos es un enlace real.
+const existentes = new Set(
+    archivos.filter(
+        (f) =>
+            !f.startsWith(".git/") &&
+            !f.includes("node_modules/") &&
+            !f.includes("/dist/") &&
+            !f.startsWith("dist/")
+    )
+);
 
 const esCatalogo = (f) => /(^|\/)projects\.yml$/.test(f) || /(^|\/)assets\/projects\.json$/.test(f);
 const baseCatalogo = (f) =>
@@ -138,8 +149,8 @@ const resolver = (src, raw) => {
 const existe = (p) => {
     if (p === "" || p === "." || p === "./") return true;
     if (p.startsWith("../")) return false;
-    if (p.endsWith("/")) return publicados.has(p + "index.html");
-    return publicados.has(p) || publicados.has(p + "/index.html") || publicados.has(p + ".html");
+    if (p.endsWith("/")) return existentes.has(p + "index.html");
+    return existentes.has(p) || existentes.has(p + "/index.html") || existentes.has(p + ".html");
 };
 
 const rotos = new Map();

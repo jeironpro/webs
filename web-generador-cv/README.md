@@ -23,7 +23,7 @@ Ambas comparten el mismo **tema visual** y las mismas **etiquetas i18n** (españ
 
 ## Ver la app web
 
-La app es estática: no necesita instalación ni build. jsPDF va vendorizado en `assets/jspdf.umd.min.js`.
+La app es estática: no necesita instalación ni build. jsPDF va vendorizado en `vendor/jspdf.umd.min.js`.
 
 ```bash
 python3 -m http.server 5173 --directory web-generador-cv
@@ -75,7 +75,7 @@ web-generador-cv/
 ├── index.html              # Wizard de 4 pasos + canvas de partículas
 ├── app.js                  # Estado, vistas y generación del PDF
 ├── styles.css              # Estilos de la app
-├── assets/
+├── vendor/
 │   └── jspdf.umd.min.js    # jsPDF vendorizado (script global)
 ├── shared/                 # Código compartido web + CLI
 │   ├── theme.js            # Tema (colores, dimensiones, fuentes)
