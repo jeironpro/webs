@@ -1,3 +1,12 @@
+:root {
+    --borde: #000;
+    --fondo: #97c1ff;
+    --fondo-2: #97ff9e;
+    --fondo-3: #d7d7d7;
+    --fondo-4: #f2ff7a;
+    --fondo-5: #ff907a;
+}
+
 * {
     font-family: 'Fredoka', sans-serif;
 }
@@ -6,7 +15,7 @@ h1 {
 }
 table, th, td {
     border-collapse: collapse;
-    border: 1px solid #000;
+    border: 1px solid var(--borde);
 }
 th {
     font-weight: 800;
@@ -15,19 +24,19 @@ th, td {
     padding: 10px;
 }
 th:nth-child(1), .modul {
-    background-color: #d7d7d7;
+    background-color: var(--fondo-3);
 }
 th:nth-child(2), .activitat {
-    background-color: #97c1ff;
+    background-color: var(--fondo);
 }
 th:nth-child(3), .aprovat {
-    background-color: #97ff9e;
+    background-color: var(--fondo-2);
 }
 th:nth-child(4) {
-    background-color: #f2ff7a;
+    background-color: var(--fondo-4);
 }
 th:nth-child(5) {
-    background-color: #ff907a;
+    background-color: var(--fondo-5);
 }
 tr th:nth-child(1) {
     width: 25%;

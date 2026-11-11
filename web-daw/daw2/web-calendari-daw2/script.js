@@ -9,7 +9,7 @@ if (!modalDiv) {
     modalDiv.appendChild(modalContingut);
     
     const cerrarModal = document.createElement("button");
-    cerrarModal.innerHTML = "&times;";
+    cerrarModal.textContent = "×";
     cerrarModal.classList.add("cerrar-modal");
     modalContingut.appendChild(cerrarModal);
     
@@ -68,7 +68,7 @@ const dataFinal = new Date("2026-05-22");
 
 function generarCalendari(inici, fi) {
     const contenedor = document.getElementById("calendari");
-    contenedor.innerHTML = ""; 
+    contenedor.replaceChildren(); 
 
     let actual = new Date(inici.getFullYear(), inici.getMonth(), 1);
 

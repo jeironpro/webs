@@ -460,7 +460,7 @@ const renderitzarTaulaRAs = function(codiModul) {
     
     if (!taula || !titol) return;
     
-    taula.innerHTML = '';
+    taula.replaceChildren();
     
     const existingResum = document.getElementById('taulaResum');
     if (existingResum) existingResum.remove();
