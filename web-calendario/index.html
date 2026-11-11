@@ -1,18 +1,42 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calendario</title>
-    <link rel="icon" href="icon/calendario.png">
-    <link rel="stylesheet" href="css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-</head>
-<body>
-    <div class="titulo"></div>
-    <div class="contenedor-calendario">
-        <!-- Los meses se generan desde el javascript -->
-    </div>
-    <script src="js/app.js"></script>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Calendario anual</title>
+        <meta
+            name="description"
+            content="Calendario anual con los doce meses, la semana de lunes a domingo y el día de hoy destacado."
+        />
+        <link rel="icon" href="icon/calendario.png" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="css/styles.css" />
+    </head>
+    <body>
+        <header class="cabecera">
+            <p class="cabecera__eyebrow">doce meses</p>
+            <h1 class="titulo" id="titulo-calendario">Calendario</h1>
+            <p class="cabecera__sub">Vista anual con el día de hoy destacado.</p>
+        </header>
+
+        <main class="principal">
+            <div class="contenedor-calendario" id="contenedor-calendario"></div>
+        </main>
+
+        <footer class="pie">
+            &copy; Todos los derechos reservados <span data-anio>2025</span> - JeironPro
+        </footer>
+
+        <script src="js/app.js"></script>
+        <script>
+            document.querySelectorAll("[data-anio]").forEach((nodo) => {
+                nodo.textContent = new Date().getFullYear();
+            });
+        </script>
+    </body>
 </html>
