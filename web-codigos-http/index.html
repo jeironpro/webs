@@ -1,28 +1,45 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="icon/http.png">
-    <title>Códigos HTTP</title>
-    <link href="https://fonts.googleapis.com/css2?family=Stack+Sans+Text:wght@200..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-    <header>
-        <h1>Lista códigos HTTP</h1>
-    </header>
-    <main class="contenedor-principal">
-        <div class="contenedor-lista-codigos" id="contenedor-lista-codigos"></div>
-    </main>
-    <footer>
-        &copy; Todos los derechos reservados <span data-anio>2025</span> - JeironPro
-    </footer>
-    <script src="js/script.js"></script>
-    <script>
-        document.querySelectorAll("[data-anio]").forEach((nodo) => {
-            nodo.textContent = new Date().getFullYear();
-        });
-    </script>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Códigos HTTP · referencia rápida</title>
+        <meta
+            name="description"
+            content="Lista de códigos de estado HTTP agrupados por familia (1xx a 5xx) con su descripción."
+        />
+        <link rel="icon" type="image/png" href="icon/http.png" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Stack+Sans+Text:wght@200..700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="css/styles.css" />
+    </head>
+    <body>
+        <header class="cabecera">
+            <p class="cabecera__eyebrow">referencia</p>
+            <h1 class="cabecera__titulo">Códigos HTTP</h1>
+            <p class="cabecera__sub">
+                Las cinco familias de estados, con el código y qué significa cada uno. Pasa el
+                cursor, toca o pulsa <kbd>Intro</kbd> para leer la descripción.
+            </p>
+        </header>
+
+        <main class="contenedor-principal" id="contenedor-principal">
+            <div class="contenedor-lista-codigos" id="contenedor-lista-codigos"></div>
+        </main>
+
+        <footer class="pie">
+            &copy; Todos los derechos reservados <span data-anio>2025</span> - JeironPro
+        </footer>
+
+        <script src="js/script.js"></script>
+        <script>
+            document.querySelectorAll("[data-anio]").forEach((nodo) => {
+                nodo.textContent = new Date().getFullYear();
+            });
+        </script>
+    </body>
 </html>
