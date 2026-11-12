@@ -1,17 +1,17 @@
 # api-correo-smtp-flask
 
-## 📌 Descripción
+## Descripción
 
 Este proyecto forma parte de mi portafolio personal.  
 El objetivo es demostrar buenas prácticas de programación, organización y documentación en GitHub.
 
-## 🛠️ Uso
+## Uso
 
 Clonar el repositorio:
 
 ```bash
 git clone https://github.com/jeironpro/webs.git
-cd webs/web-apis/catalogo/api-correo-smtp-flask
+cd webs/web-apis/catalog/api-correo-smtp-flask
 ```
 
 Crear y activar entorno virtual:
@@ -57,7 +57,7 @@ curl -X POST http://localhost:5000/enviar_correo -H "Content-Type: application/j
 curl -X POST http://localhost:5000/enviar_correo_html -H "Content-Type: application/json" -d '{"subject": "Asunto del correo", "to": "destinatario@gmail.com"}'
 ```
 
-## 📜 Licencia
+## Licencia
 
 Este proyecto está bajo la licencia **MIT**.  
 Consulta el archivo [LICENSE](LICENSE) para más detalles.

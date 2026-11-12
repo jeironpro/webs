@@ -10,11 +10,11 @@ demostrar buenas prácticas de programación, organización y documentación en 
 
 | Proyecto | Stack | Descripción | Base de datos | Despliegue |
 |----------|-------|-------------|---------------|------------|
-| [api-biblia](catalogo/api-biblia/) | FastAPI + SQLModel | CRUD de la Biblia (biblias, testamentos, libros, capítulos, versículos) con patrón de servicios separados por verbo HTTP | MySQL | — |
-| [api-pokemon](catalogo/api-pokemon/) | FastAPI + SQLModel | Colección de los 1025 Pokémon con tipos, estadísticas, imágenes y filtros | PostgreSQL | — |
-| [api-naruto](catalogo/api-naruto/) | FastAPI + SQLModel | Personajes de Naruto con habilidades, debilidades, fortalezas, estadísticas y filtros | PostgreSQL | — |
-| [api-juego-preguntas-respuestas](catalogo/api-juego-preguntas-respuestas/) | Flask + SQLAlchemy | Juego de trivia con 350 preguntas en 7 categorías: CRUD, pregunta aleatoria y validación de respuestas (Swagger incluido) | PostgreSQL | — |
-| [api-correo-smtp-flask](catalogo/api-correo-smtp-flask/) | Flask + Flask-Mail | Envío de correos electrónicos por SMTP, en texto plano o con plantilla HTML | — | — |
+| [api-biblia](catalog/api-biblia/) | FastAPI + SQLModel | CRUD de la Biblia (biblias, testamentos, libros, capítulos, versículos) con patrón de servicios separados por verbo HTTP | MySQL | — |
+| [api-pokemon](catalog/api-pokemon/) | FastAPI + SQLModel | Colección de los 1025 Pokémon con tipos, estadísticas, imágenes y filtros | PostgreSQL | — |
+| [api-naruto](catalog/api-naruto/) | FastAPI + SQLModel | Personajes de Naruto con habilidades, debilidades, fortalezas, estadísticas y filtros | PostgreSQL | — |
+| [api-juego-preguntas-respuestas](catalog/api-juego-preguntas-respuestas/) | Flask + SQLAlchemy | Juego de trivia con 350 preguntas en 7 categorías: CRUD, pregunta aleatoria y validación de respuestas (Swagger incluido) | PostgreSQL | — |
+| [api-correo-smtp-flask](catalog/api-correo-smtp-flask/) | Flask + Flask-Mail | Envío de correos electrónicos por SMTP, en texto plano o con plantilla HTML | — | — |
 
 ## Portal web
 
@@ -53,7 +53,7 @@ node --test "test/*.test.js"
 ### Añadir una API
 
 1. Añade su entrada al `CATALOG` de `js/app.js`.
-2. Si quieres que sea descargable, su directorio debe estar en `catalogo/` (el árbol de
+2. Si quieres que sea descargable, su directorio debe estar en `catalog/` (el árbol de
    GitHub se lee automáticamente; no hay que listar archivos a mano).
 
 ## Autenticación y seguridad
@@ -66,7 +66,7 @@ node --test "test/*.test.js"
 Cada proyecto es independiente. Entra al subdirectorio correspondiente y sigue las instrucciones de su README:
 
 ```bash
-cd catalogo/api-pokemon
+cd catalog/api-pokemon
 # Configura .env, instala dependencias y ejecuta la API
 ```
 

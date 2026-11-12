@@ -9,7 +9,7 @@
     const REPO = { owner: "jeironpro", repo: "webs", branch: "main" };
     const RAW_BASE = `https://raw.githubusercontent.com/${REPO.owner}/${REPO.repo}/${REPO.branch}/`;
     const TREE_URL = `https://api.github.com/repos/${REPO.owner}/${REPO.repo}/git/trees/${REPO.branch}?recursive=1`;
-    const CATALOG_DIR = "web-apis/catalogo"; // carpeta del repo donde viven las APIs
+    const CATALOG_DIR = "web-apis/catalog"; // carpeta del repo donde viven las APIs
 
     /* ── Catálogo ────────────────────────────────────── */
     const CATALOG = [
