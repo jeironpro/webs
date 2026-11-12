@@ -5,65 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Codi Wiki</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/styles.css">
     <link rel="icon" href="icon/codi_wiki.ico">
 </head>
 <body>
-    <div class="contenedor-app">
-        <aside class="barra-lateral">
-            <div class="marca">
-                <h1>Codi<span class="punto">.</span>Wiki</h1>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="brand">
+                <h1>Codi<span class="dot">.</span>Wiki</h1>
             </div>
-            <nav class="navegacion">
-                <div class="seccion-nav">
-                    <h3 class="titulo-seccion">Lenguajes</h3>
-                    <div id="lista-lenguajes" class="lista-items">
+            <nav class="navigation">
+                <div class="nav-section">
+                    <h3 class="section-title">Lenguajes</h3>
+                    <div id="language-list" class="nav-list">
                         <!-- Inyectado por JS -->
                     </div>
                 </div>
 
-                <div class="seccion-nav">
-                    <h3 class="titulo-seccion">Paradigmas</h3>
-                    <div id="lista-paradigmas" class="lista-items">
+                <div class="nav-section">
+                    <h3 class="section-title">Paradigmas</h3>
+                    <div id="paradigm-list" class="nav-list">
                         <!-- Inyectado por JS -->
                     </div>
                 </div>
             </nav>
-            <div class="pie-lateral">
+            <div class="sidebar-footer">
                 <p>Versión 1.0.0</p>
             </div>
         </aside>
 
-        <main class="contenido-principal">
-            <div class="contenedor-fluido">
-                <div id="pantalla-bienvenida" class="seccion-activa">
+        <main class="main-content">
+            <div class="content">
+                <div id="welcome-screen" class="view-active">
                     <header class="hero-header">
-                        <div class="badge-hero">Documentación Técnica</div>
-                        <h1>El Arte de la <br><span class="texto-gradiente">Programación</span></h1>
-                        <p class="subtitulo">Una referencia exhaustiva sobre los lenguajes que construyen el mundo digital y los paradigmas que definen cómo pensamos.</p>
+                        <div class="hero-badge">Documentación Técnica</div>
+                        <h1>El Arte de la <br><span class="gradient-text">Programación</span></h1>
+                        <p class="subtitle">Una referencia exhaustiva sobre los lenguajes que construyen el mundo digital y los paradigmas que definen cómo pensamos.</p>
                     </header>
-                    
-                    <div class="grid-tarjetas">
-                        <div class="tarjeta-info">
-                            <div class="icono-tarjeta">➜</div>
+
+                    <div class="card-grid">
+                        <div class="info-card">
+                            <div class="card-icon">➜</div>
                             <h3>Lenguajes Modernos</h3>
                             <p>Desde los fundamentos de C hasta la seguridad de Rust y la versatilidad de Python.</p>
                         </div>
-                        <div class="tarjeta-info">
-                            <div class="icono-tarjeta">∞</div>
+                        <div class="info-card">
+                            <div class="card-icon">∞</div>
                             <h3>Paradigmas Teóricos</h3>
                             <p>Explora la POO, la programación funcional y los modelos imperativos.</p>
                         </div>
                     </div>
                 </div>
 
-                <div id="vista-detalle" class="oculto">
+                <div id="detail-view" class="is-hidden">
                     <!-- Contenido Dinámico -->
                 </div>
             </div>
         </main>
     </div>
-    <script src="js/datos.js"></script>
-    <script src="js/logica.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>
