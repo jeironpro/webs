@@ -53,6 +53,7 @@ const store = {
 
 const root = {
     indicator: document.getElementById('step-indicator'),
+    wizard: document.getElementById('step-wizard'),
     content: document.getElementById('step-content'),
 };
 
@@ -921,57 +922,58 @@ function render() {
 }
 
 function renderIndicator() {
-    const botones = STEPS.map((s, i) => {
-        const active = i === store.step_;
-        const done = i < store.step_;
-        const bg = done ? 'var(--emerald-100)' : active ? 'linear-gradient(135deg, var(--navy-500), var(--navy-700))' : 'var(--slate-100)';
-        const col = done ? 'var(--emerald-600)' : active ? 'white' : 'var(--slate-400)';
-        const numCol = active ? 'var(--navy-700)' : done ? 'var(--emerald-600)' : 'var(--slate-400)';
-        const labCol = active ? 'var(--slate-800)' : 'var(--slate-500)';
-        const marca = svg('svg', {
-            clase: 'w-3.5 h-3.5 text-emerald-600',
-            fill: 'none',
-            viewBox: '0 0 24 24',
-            stroke: 'currentColor',
-            'stroke-width': '3',
-        }, [svg('path', {
-            'stroke-linecap': 'round',
-            'stroke-linejoin': 'round',
-            d: 'M5 13l4 4L19 7',
-        })]);
+    const iconos = ['person', 'description', 'visibility', 'download'];
 
-        return crear('button', {
-            clase: ['step-btn', active && 'active', done && 'done'],
-            type: 'button',
-            on: { click: () => window.goToStep(i) },
-        }, [
-            crear('div', { clase: 'step-btn-icon', style: `background:${bg}; color:${col}` }, [
-                icono(done ? 'check' : s.icon),
-            ]),
-            crear('div', {}, [
-                crear('span', { clase: 'step-btn-number', style: `color:${numCol}` }, [`Paso ${i + 1}`]),
-                crear('span', { clase: 'step-btn-label', style: `color:${labCol}`, texto: s.label }),
-            ]),
-            done
-                ? crear('div', { clase: 'ml-auto' }, [
-                    crear('div', { clase: 'w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center' }, [marca]),
-                ])
-                : null,
-        ]);
-    });
-
-    const progreso = crear('div', { clase: 'step-progress' }, [
-        crear('div', { clase: 'step-progress-label', texto: 'Progreso' }),
-        crear('div', { clase: 'step-progress-bar' }, [
-            crear('div', {
-                clase: 'step-progress-fill',
-                style: `width:${((store.step_ + 1) / STEPS.length) * 100}%`,
+    if (root.indicator) {
+        root.indicator.replaceChildren(
+            ...STEPS.map((paso, i) => {
+                const activo = i === store.step_;
+                const hecho = i < store.step_;
+                const estado = activo
+                    ? 'bg-navy-600 text-white shadow-md scale-110'
+                    : hecho
+                      ? 'bg-emerald-100 text-emerald-600'
+                      : 'bg-slate-100 text-slate-400';
+                return crear('button', {
+                    clase: `w-8 h-8 rounded-xl flex items-center justify-center text-xs font-bold transition-all ${estado}`,
+                    type: 'button',
+                    'aria-label': `Paso ${i + 1}: ${paso.label}`,
+                    'aria-current': activo ? 'step' : null,
+                    on: { click: () => window.goToStep(i) },
+                }, [icono(hecho ? 'check' : iconos[i])]);
             }),
-        ]),
-        crear('div', { clase: 'step-progress-text' }, [`${store.step_ + 1} de ${STEPS.length}`]),
-    ]);
+        );
+    }
 
-    root.indicator.replaceChildren(...botones, progreso);
+    if (root.wizard) {
+        const pasos = STEPS.map((paso, i) => {
+            const activo = i === store.step_;
+            const hecho = i < store.step_;
+            return crear('button', {
+                clase: `flex items-center gap-3 w-full text-left px-3 py-2.5 rounded-xl transition-all ${activo ? 'bg-white shadow-md' : 'hover:bg-white/60'}`,
+                type: 'button',
+                on: { click: () => window.goToStep(i) },
+            }, [
+                crear('div', {
+                    clase: `w-9 h-9 rounded-lg flex items-center justify-center shrink-0 ${activo ? 'bg-gradient-to-br from-navy-500 to-navy-700 text-white shadow-sm' : hecho ? 'bg-emerald-100 text-emerald-600' : 'bg-slate-100 text-slate-400'}`,
+                }, [icono(hecho ? 'check' : iconos[i])]),
+                crear('div', { clase: 'min-w-0' }, [
+                    crear('div', { clase: 'text-[0.68rem] font-semibold uppercase tracking-wider text-slate-400' }, [`Paso ${i + 1}`]),
+                    crear('div', { clase: `text-sm font-semibold ${activo ? 'text-slate-800' : 'text-slate-500'}` }, [paso.label]),
+                ]),
+            ]);
+        });
+
+        const progreso = crear('div', { clase: 'mt-2 px-4 py-3 rounded-xl bg-gradient-to-br from-navy-50 to-indigo-50/50 border border-navy-100/50' }, [
+            crear('div', { clase: 'text-[0.7rem] font-semibold uppercase tracking-wider text-navy-500' }, ['Progreso']),
+            crear('div', { clase: 'mt-1.5 h-1.5 rounded-full bg-navy-100 overflow-hidden' }, [
+                crear('div', { clase: 'h-full rounded-full bg-gradient-to-r from-navy-500 to-indigo-500', style: `width:${((store.step_ + 1) / STEPS.length) * 100}%` }),
+            ]),
+            crear('div', { clase: 'mt-1 text-xs font-medium text-navy-400' }, [`${store.step_ + 1} de ${STEPS.length}`]),
+        ]);
+
+        root.wizard.replaceChildren(...pasos, progreso);
+    }
 }
 
 window.setDataName = (v) => { store.data_.name = v; render(); };
