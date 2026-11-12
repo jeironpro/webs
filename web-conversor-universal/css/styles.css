@@ -7,7 +7,7 @@
     --color-6: #e4e4e7;
     --color-7: #f4f4f5;
     --color-8: #fafafa;
-    --fondo: #eef2ff;
+    --background: #eef2ff;
 }
 
 @layer base {
@@ -44,7 +44,7 @@
         overflow: hidden;
     }
 
-    #contenedor-conversiones {
+    #sidebar {
         background-color: var(--sidebar-bg);
         border-right: 1px solid var(--border-color);
         display: flex;
@@ -53,7 +53,7 @@
         width: var(--sidebar-width);
     }
 
-    .logo-titulo {
+    .brand {
         align-items: center;
         color: var(--color-2);
         display: flex;
@@ -63,7 +63,7 @@
         text-decoration: none;
     }
 
-    .logo-titulo img {
+    .brand img {
         filter: drop-shadow(0 4px 3px rgba(0, 0, 0, 0.07));
         height: 50px;
         margin-bottom: 12px;
@@ -71,43 +71,58 @@
         width: 50px;
     }
 
-    .logo-titulo h1 {
+    .brand h1 {
         font-size: 1.25rem;
         font-weight: 700;
         letter-spacing: -0.025em;
         line-height: 1.2;
     }
 
-    #lista-conversiones {
+    #category-list {
         flex-grow: 1;
         list-style: none;
     }
 
-    #lista-conversiones li {
+    #category-list li {
+        margin-bottom: 4px;
+    }
+
+    .category-button {
         align-items: center;
+        appearance: none;
+        background: none;
+        border: 0;
         border-radius: 8px;
         color: var(--text-muted);
         cursor: pointer;
         display: flex;
+        font-family: inherit;
         font-size: 0.95rem;
         font-weight: 500;
-        margin-bottom: 4px;
+        line-height: inherit;
         padding: 12px;
+        text-align: left;
         transition: all 0.2s ease;
+        width: 100%;
     }
 
-    #lista-conversiones li:hover {
+    .category-button:hover {
         background-color: var(--hover-color);
         color: var(--text-main);
     }
 
-    #lista-conversiones li.active {
-        background-color: var(--fondo);
+    .category-button.is-active {
+        background-color: var(--background);
         color: var(--accent-color);
         font-weight: 600;
     }
 
-    #contenedor-conversion {
+    .category-button:focus-visible {
+        outline: 2px solid var(--accent-color);
+        outline-offset: 2px;
+    }
+
+    #converter {
         align-items: center;
         display: flex;
         flex: 1;
@@ -117,12 +132,12 @@
         padding: 20px;
     }
 
-    #contenedor-conversion .sel-categoria {
+    #converter .category-hint {
         font-size: 3em;
         font-weight: bold;
     }
 
-    #contenedor-conversion div {
+    #converter div {
         display: flex;
         gap: 16px;
         justify-content: center;
@@ -130,8 +145,8 @@
         width: 100%;
     }
 
-    #contenedor-conversion input,
-    #contenedor-conversion select {
+    #converter input,
+    #converter select {
         background-color: var(--color);
         border: 1px solid var(--border-color);
         border-radius: 10px;
@@ -141,7 +156,7 @@
         transition: border-color 0.2s, box-shadow 0.2s;
     }
 
-    #contenedor-conversion input {
+    #converter input {
         font-size: 1.1rem;
         padding: 0 16px;
         max-width: 620px;
@@ -149,20 +164,20 @@
         width: 100%;
     }
 
-    #contenedor-conversion select {
+    #converter select {
         cursor: pointer;
         flex: 1;
         font-size: 0.9rem;
         padding: 0 12px;
     }
 
-    #contenedor-conversion input:focus,
-    #contenedor-conversion select:focus {
+    #converter input:focus,
+    #converter select:focus {
         border-color: var(--accent-color);
         box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
     }
 
-    #resultado-conversion {
+    #conversion-result {
         align-items: center;
         background: var(--accent-color);
         border-radius: 12px;
@@ -179,46 +194,46 @@
         width: 100%;
     }
 
-    #resultado-conversion:hover {
+    #conversion-result:hover {
         background-color: var(--accent-hover);
         transform: translateY(-2px);
     }
 }
 
 @layer responsive {
-    #contenedor-conversion {
+    #converter {
         min-height: 60vh;
         padding: 40px 20px;
     }
 
-    #contenedor-conversion .sel-categoria {
+    #converter .category-hint {
         font-size: 1em;
     }
 
-    #contenedor-conversion div {
+    #converter div {
         flex-direction: column;
         gap: 12px;
     }
 
-    #contenedor-conversion input {
+    #converter input {
         max-width: none;
         padding: 14px;
     }
 
-    #contenedor-conversion select {
+    #converter select {
         max-width: none;
         padding: 14px;
         width: 100%;
     }
 
-    #contenedor-conversiones {
+    #sidebar {
         border-bottom: 1px solid var(--border-color);
         border-right: none;
         padding: 16px;
         width: 100%;
     }
 
-    #lista-conversiones {
+    #category-list {
         display: flex;
         gap: 8px;
         overflow-x: auto;
@@ -226,35 +241,38 @@
         scrollbar-width: none;
     }
 
-    #lista-conversiones li {
+    #category-list li {
         margin-bottom: 0;
+    }
+
+    .category-button {
         padding: 8px 16px;
         white-space: nowrap;
     }
 
-    #lista-conversiones::-webkit-scrollbar {
+    #category-list::-webkit-scrollbar {
         display: none;
     }
 
-    #resultado-conversion {
+    #conversion-result {
         font-size: 1.4rem;
         height: auto;
         padding: 15px;
         text-align: center;
     }
 
-    .logo-titulo {
+    .brand {
         flex-direction: row;
         gap: 12px;
         justify-content: center;
         padding-bottom: 20px;
     }
 
-    .logo-titulo h1 {
+    .brand h1 {
         font-size: 1.1rem;
     }
 
-    .logo-titulo img {
+    .brand img {
         height: 40px;
         margin-bottom: 0;
         width: 40px;
@@ -263,59 +281,59 @@
     main {
         flex-direction: column;
         height: auto;
-        overflow: y-auto;
+        overflow-y: auto;
     }
 
     @media (min-width: 481px) {
-        #contenedor-conversion .sel-categoria {
+        #converter .category-hint {
             font-size: 1.8rem;
         }
 
-        #contenedor-conversion div {
+        #converter div {
             flex-direction: revert-layer;
             gap: 16px;
         }
 
-        #contenedor-conversion input {
+        #converter input {
             max-width: 620px;
             padding: 0 16px;
         }
 
-        #contenedor-conversion select {
+        #converter select {
             max-width: revert-layer;
             padding: 0 12px;
             width: revert-layer;
         }
 
-        #resultado-conversion {
+        #conversion-result {
             font-size: 1.75rem;
             height: 50px;
             padding: revert-layer;
             text-align: revert-layer;
         }
 
-        .logo-titulo h1 {
+        .brand h1 {
             font-size: 1.25rem;
         }
     }
     @media (min-width: 769px) {
-        #contenedor-conversion {
+        #converter {
             min-height: revert-layer;
             padding: 20px;
         }
 
-        #contenedor-conversion .sel-categoria {
+        #converter .category-hint {
             font-size: 3em;
         }
 
-        #contenedor-conversiones {
+        #sidebar {
             border-bottom: revert-layer;
             border-right: 1px solid var(--border-color);
             padding: 24px 16px;
             width: var(--sidebar-width);
         }
 
-        #lista-conversiones {
+        #category-list {
             display: revert-layer;
             gap: revert-layer;
             overflow-x: revert-layer;
@@ -323,24 +341,27 @@
             scrollbar-width: revert-layer;
         }
 
-        #lista-conversiones li {
+        #category-list li {
             margin-bottom: 4px;
+        }
+
+        .category-button {
             padding: 12px;
             white-space: revert-layer;
         }
 
-        #lista-conversiones::-webkit-scrollbar {
+        #category-list::-webkit-scrollbar {
             display: revert-layer;
         }
 
-        .logo-titulo {
+        .brand {
             flex-direction: column;
             gap: revert-layer;
             justify-content: revert-layer;
             padding-bottom: 40px;
         }
 
-        .logo-titulo img {
+        .brand img {
             height: 50px;
             margin-bottom: 12px;
             width: 50px;
