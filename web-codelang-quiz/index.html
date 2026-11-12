@@ -2,25 +2,6 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <script>
-      // GitHub Pages sirve el 404.html raiz en subrutas de la SPA (p. ej.
-      // /web-codelang-quiz/quiz); ese fallback redirige aqui con la subruta en la
-      // query (?/quiz) y este script la restaura en la barra de direcciones para
-      // que la app la resuelva sin recargar.
-      ;(function () {
-        var busqueda = window.location.search
-        if (busqueda.indexOf('?/') === 0) {
-          var resta = busqueda.slice(2)
-          var amp = resta.indexOf('&')
-          if (amp !== -1) resta = resta.slice(0, amp) + '?' + resta.slice(amp + 1)
-          window.history.replaceState(
-            null,
-            '',
-            window.location.pathname.replace(/index\.html$/, '') + resta + window.location.hash,
-          )
-        }
-      })()
-    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
@@ -40,7 +21,7 @@
     <div id="app">
       <header class="nav">
         <div class="nav__inner">
-          <a href="./" class="nav__brand" data-ruta="inicio">
+          <a href="./" class="nav__brand" data-route="home">
             codelang<span class="nav__dot">quiz</span>
           </a>
 
@@ -50,16 +31,16 @@
             id="nav-toggle"
             aria-label="Abrir menú"
             aria-expanded="false"
-            aria-controls="nav-enlaces"
+            aria-controls="nav-links"
           >
             <span class="nav__bar"></span>
             <span class="nav__bar"></span>
             <span class="nav__bar"></span>
           </button>
 
-          <nav id="nav-enlaces" class="nav__links" aria-label="Principal">
-            <a class="nav__link" data-ruta="inicio" href="./">Inicio</a>
-            <a class="nav__link" data-ruta="resultados" href="./?/resultados">Resultados</a>
+          <nav id="nav-links" class="nav__links" aria-label="Principal">
+            <a class="nav__link" data-route="home" href="./">Inicio</a>
+            <a class="nav__link" data-route="results" href="./?/results">Resultados</a>
             <button
               type="button"
               class="nav__link nav__menu-info"
@@ -86,7 +67,7 @@
         </div>
       </header>
 
-      <main id="cuerpo"></main>
+      <main id="main-content"></main>
 
       <footer class="footer" aria-label="Pie de pagina">
         <p class="footer__tagline mono-label">Resuelve. Aprende. Repite.</p>
@@ -94,8 +75,8 @@
       </footer>
     </div>
 
-    <div id="captura" class="captura oculto"></div>
-    <div id="modal-root" class="oculto"></div>
+    <div id="capture" class="capture is-hidden"></div>
+    <div id="modal-root" class="is-hidden"></div>
 
     <script src="./app.js"></script>
   </body>

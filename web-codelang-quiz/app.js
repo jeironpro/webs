@@ -1,45 +1,45 @@
-const scriptActual = document.currentScript;
-const BASE = new URL(".", scriptActual ? scriptActual.src : document.baseURI);
+const currentScript = document.currentScript;
+const BASE = new URL(".", currentScript ? currentScript.src : document.baseURI);
 const BASE_PATH = BASE.pathname;
 
-const CATALOGO = [
-    { id: "javascript", nombre: "JavaScript", color: "accent" },
-    { id: "typescript", nombre: "TypeScript", color: "accent-2" },
-    { id: "python", nombre: "Python", color: "accent-3" },
-    { id: "html", nombre: "HTML", color: "lavender" },
-    { id: "css", nombre: "CSS", color: "mint" },
-    { id: "sql", nombre: "SQL", color: "accent-2" },
-    { id: "java", nombre: "Java", color: "accent-3" },
-    { id: "go", nombre: "Go", color: "mint" },
-    { id: "rust", nombre: "Rust", color: "accent-3" },
-    { id: "php", nombre: "PHP", color: "lavender" },
-    { id: "csharp", nombre: "C#", color: "accent-2" },
-    { id: "cpp", nombre: "C++", color: "accent-3" },
+const LANGUAGES = [
+    { id: "javascript", name: "JavaScript", color: "accent" },
+    { id: "typescript", name: "TypeScript", color: "accent-2" },
+    { id: "python", name: "Python", color: "accent-3" },
+    { id: "html", name: "HTML", color: "lavender" },
+    { id: "css", name: "CSS", color: "mint" },
+    { id: "sql", name: "SQL", color: "accent-2" },
+    { id: "java", name: "Java", color: "accent-3" },
+    { id: "go", name: "Go", color: "mint" },
+    { id: "rust", name: "Rust", color: "accent-3" },
+    { id: "php", name: "PHP", color: "lavender" },
+    { id: "csharp", name: "C#", color: "accent-2" },
+    { id: "cpp", name: "C++", color: "accent-3" },
 ];
 
-const DIFICULTADES = {
-    facil: { label: "Fácil", puntos: 1 },
-    media: { label: "Media", puntos: 2 },
-    dificil: { label: "Difícil", puntos: 3 },
+const DIFFICULTIES = {
+    easy: { label: "Fácil", points: 1 },
+    medium: { label: "Media", points: 2 },
+    hard: { label: "Difícil", points: 3 },
 };
 
-const TIPOS = {
+const QUESTION_TYPES = {
     output: "¿Qué imprime?",
-    sintaxis: "Sintaxis",
+    syntax: "Sintaxis",
     bug: "Bug",
-    concepto: "Concepto",
+    concept: "Concepto",
 };
 
-const OPCIONES = ["A", "B", "C", "D"];
-const TIEMPO_PREGUNTA = 30;
-const CLAVE_SCORE = "codelang-quiz:score";
-const CLAVE_HISTORIAL = "codelang-quiz:historial";
+const OPTIONS = ["A", "B", "C", "D"];
+const QUESTION_TIME = 30;
+const SCORE_KEY = "codelang-quiz:score";
+const HISTORY_KEY = "codelang-quiz:history";
 
-const RATIOS = {
-    "4-5": { w: 1080, h: 1350 },
-    "1-1": { w: 1080, h: 1080 },
-    "9-16": { w: 1080, h: 1920 },
-    "1-91": { w: 1200, h: 628 },
+const ASPECT_RATIOS = {
+    "4-5": { width: 1080, height: 1350 },
+    "1-1": { width: 1080, height: 1080 },
+    "9-16": { width: 1080, height: 1920 },
+    "1-91": { width: 1200, height: 628 },
 };
 
 const PALETTE = {
@@ -57,793 +57,796 @@ const PALETTE = {
     cpp: "accent-3",
 };
 
-const TIPO_CAPTURA = {
+const CAPTURE_TYPE_LABELS = {
     output: "Que imprime?",
-    sintaxis: "Sintaxis",
+    syntax: "Sintaxis",
     bug: "Bug",
-    concepto: "Concepto",
+    concept: "Concepto",
 };
 
-const DIFICULTAD_CAPTURA = {
-    facil: "Facil",
-    media: "Media",
-    dificil: "Dificil",
+const CAPTURE_DIFFICULTY_LABELS = {
+    easy: "Facil",
+    medium: "Media",
+    hard: "Dificil",
 };
 
-const elementos = {
+const elements = {
     app: document.getElementById("app"),
-    cuerpo: document.getElementById("cuerpo"),
-    captura: document.getElementById("captura"),
+    main: document.getElementById("main-content"),
+    capture: document.getElementById("capture"),
     modal: document.getElementById("modal-root"),
     navToggle: document.getElementById("nav-toggle"),
-    navLinks: document.getElementById("nav-enlaces"),
+    navLinks: document.getElementById("nav-links"),
     menuInfo: document.getElementById("menu-info"),
     navInfo: document.getElementById("nav-info"),
 };
 
 let datasetPromise = null;
-let filtrosHome = { lenguaje: "", dificultad: "", tipo: "" };
-let filtrosResultados = {};
-let cargando = false;
-let errorHome = "";
+let homeFilters = { language: "", difficulty: "", type: "" };
+let resultsFilters = {};
+let isLoading = false;
+let homeError = "";
 let quiz = null;
-let temporizador = null;
-let tokenInicio = 0;
-let score = leerNumero(CLAVE_SCORE, 0);
-let historial = leerHistorial();
-let modalEstado = null;
+let timer = null;
+let startToken = 0;
+let totalScore = readNumber(SCORE_KEY, 0);
+let roundHistory = readHistory();
+let modalState = null;
 
-function escapar(valor) {
-    return String(valor ?? "").replace(
+function escapeHtml(value) {
+    return String(value ?? "").replace(
         /[&<>"']/g,
-        (caracter) =>
+        (character) =>
             ({
                 "&": "&amp;",
                 "<": "&lt;",
                 ">": "&gt;",
                 '"': "&quot;",
                 "'": "&#39;",
-            })[caracter],
+            })[character],
     );
 }
 
-function leerNumero(clave, inicial) {
+function readNumber(key, fallback) {
     try {
-        const guardado = window.localStorage.getItem(clave);
-        return guardado === null ? inicial : JSON.parse(guardado);
+        const stored = window.localStorage.getItem(key);
+        return stored === null ? fallback : JSON.parse(stored);
     } catch {
-        return inicial;
+        return fallback;
     }
 }
 
-function leerHistorial() {
+function readHistory() {
     try {
-        const guardado = JSON.parse(window.localStorage.getItem(CLAVE_HISTORIAL));
-        return Array.isArray(guardado) ? guardado : [];
+        const stored = JSON.parse(window.localStorage.getItem(HISTORY_KEY));
+        return Array.isArray(stored) ? stored : [];
     } catch {
         return [];
     }
 }
 
-function guardarLocal(clave, valor) {
+function saveToStorage(key, value) {
     try {
-        window.localStorage.setItem(clave, JSON.stringify(valor));
+        window.localStorage.setItem(key, JSON.stringify(value));
     } catch {
         /* sin persistencia disponible */
     }
 }
 
-function barajar(arreglo) {
-    const copia = [...arreglo];
-    for (let i = copia.length - 1; i > 0; i -= 1) {
+function shuffle(array) {
+    const copy = [...array];
+    for (let i = copy.length - 1; i > 0; i -= 1) {
         const j = Math.floor(Math.random() * (i + 1));
-        [copia[i], copia[j]] = [copia[j], copia[i]];
+        [copy[i], copy[j]] = [copy[j], copy[i]];
     }
-    return copia;
+    return copy;
 }
 
-function prepararPregunta(pregunta) {
-    const textos = barajar(OPCIONES.map((letra) => pregunta.opciones[letra]));
-    const opciones = {};
-    OPCIONES.forEach((letra, indice) => {
-        opciones[letra] = textos[indice];
+function prepareQuestion(question) {
+    const texts = shuffle(OPTIONS.map((letter) => question.options[letter]));
+    const options = {};
+    OPTIONS.forEach((letter, index) => {
+        options[letter] = texts[index];
     });
-    const respuesta = OPCIONES.find(
-        (letra) => opciones[letra] === pregunta.opciones[pregunta.respuesta],
+    const answer = OPTIONS.find(
+        (letter) => options[letter] === question.options[question.answer],
     );
-    return { ...pregunta, opciones, respuesta, orden: OPCIONES };
+    return { ...question, options, answer, order: OPTIONS };
 }
 
-function puntosDe(dificultad) {
-    return DIFICULTADES[dificultad]?.puntos || 0;
+function pointsFor(difficulty) {
+    return DIFFICULTIES[difficulty]?.points || 0;
 }
 
-function aplicarRespuesta(total, dificultad, esCorrecta) {
-    const delta = puntosDe(dificultad);
-    return total + (esCorrecta ? delta : -delta);
+function applyAnswer(total, difficulty, isCorrect) {
+    const delta = pointsFor(difficulty);
+    return total + (isCorrect ? delta : -delta);
 }
 
-function scoreDe(respuestas) {
-    return respuestas.reduce(
-        (total, item) => aplicarRespuesta(total, item.dificultad, item.esCorrecta),
+function scoreOf(answers) {
+    return answers.reduce(
+        (total, item) => applyAnswer(total, item.difficulty, item.isCorrect),
         0,
     );
 }
 
-function pluralPuntos(valor) {
-    return `${valor} pt${Math.abs(valor) === 1 ? "" : "s"}`;
+function formatPoints(value) {
+    return `${value} pt${Math.abs(value) === 1 ? "" : "s"}`;
 }
 
-function nombreLenguaje(id) {
-    return CATALOGO.find((lenguaje) => lenguaje.id === id)?.nombre;
+function languageName(id) {
+    return LANGUAGES.find((language) => language.id === id)?.name;
 }
 
-function registrarPartida({ aciertos, fallos, puntos, total, lenguaje, dificultad }) {
-    const partida = {
-        fecha: new Date().toISOString(),
-        aciertos,
-        fallos,
-        puntos,
+function saveRound({ correct, wrong, points, total, language, difficulty }) {
+    const round = {
+        date: new Date().toISOString(),
+        correct,
+        wrong,
+        points,
         total,
-        lenguaje,
-        dificultad,
+        language,
+        difficulty,
     };
-    historial = [partida, ...historial].slice(0, 20);
-    score += puntos;
-    guardarLocal(CLAVE_HISTORIAL, historial);
-    guardarLocal(CLAVE_SCORE, score);
+    roundHistory = [round, ...roundHistory].slice(0, 20);
+    totalScore += points;
+    saveToStorage(HISTORY_KEY, roundHistory);
+    saveToStorage(SCORE_KEY, totalScore);
 }
 
-async function cargarTodasLasPreguntas() {
+async function loadAllQuestions() {
     if (!datasetPromise) {
         datasetPromise = Promise.allSettled(
-            CATALOGO.map(async (lenguaje) => {
-                const respuesta = await fetch(new URL(`public/data/${lenguaje.id}.json`, BASE));
-                if (!respuesta.ok) throw new Error(`Error HTTP ${respuesta.status}`);
-                return { lenguaje: lenguaje.id, preguntas: await respuesta.json() };
+            LANGUAGES.map(async (language) => {
+                const response = await fetch(new URL(`public/data/${language.id}.json`, BASE));
+                if (!response.ok) throw new Error(`Error HTTP ${response.status}`);
+                return { language: language.id, questions: await response.json() };
             }),
-        ).then((resultados) =>
-            resultados
-                .filter((resultado) => resultado.status === "fulfilled")
-                .map((resultado) => resultado.value),
+        ).then((results) =>
+            results
+                .filter((result) => result.status === "fulfilled")
+                .map((result) => result.value),
         );
     }
     return datasetPromise;
 }
 
-function filtrarPreguntas(dataset, filtros) {
-    return dataset.preguntas.filter((pregunta) => {
-        if (filtros.dificultad && pregunta.dificultad !== filtros.dificultad) return false;
-        if (filtros.tipo && pregunta.tipo !== filtros.tipo) return false;
-        if (filtros.lenguaje && dataset.lenguaje !== filtros.lenguaje) return false;
+function filterQuestions(dataset, filters) {
+    return dataset.questions.filter((question) => {
+        if (filters.difficulty && question.difficulty !== filters.difficulty) return false;
+        if (filters.type && question.type !== filters.type) return false;
+        if (filters.language && dataset.language !== filters.language) return false;
         return true;
     });
 }
 
-function pararTemporizador() {
-    if (temporizador !== null) {
-        window.clearInterval(temporizador);
-        temporizador = null;
+function stopTimer() {
+    if (timer !== null) {
+        window.clearInterval(timer);
+        timer = null;
     }
 }
 
-function cerrarMenu() {
-    elementos.navLinks.classList.remove("is-open");
-    elementos.navToggle.setAttribute("aria-expanded", "false");
-    elementos.navToggle.setAttribute("aria-label", "Abrir menú");
+function closeMenu() {
+    elements.navLinks.classList.remove("is-open");
+    elements.navToggle.setAttribute("aria-expanded", "false");
+    elements.navToggle.setAttribute("aria-label", "Abrir menú");
 }
 
-function actualizarNav(vista) {
-    document.querySelectorAll("[data-ruta]").forEach((enlace) => {
-        const activo = enlace.dataset.ruta === vista;
-        enlace.classList.toggle("is-active", activo);
-        if (activo) enlace.setAttribute("aria-current", "page");
-        else enlace.removeAttribute("aria-current");
+function updateNav(view) {
+    document.querySelectorAll("[data-route]").forEach((link) => {
+        const isActive = link.dataset.route === view;
+        link.classList.toggle("is-active", isActive);
+        if (isActive) link.setAttribute("aria-current", "page");
+        else link.removeAttribute("aria-current");
     });
 }
 
-function configurarEnlaces() {
-    document.querySelectorAll("[data-ruta]").forEach((enlace) => {
-        const ruta = enlace.dataset.ruta;
-        enlace.href = ruta === "inicio" ? BASE_PATH : new URL(ruta, BASE).pathname;
-        enlace.addEventListener("click", (evento) => {
-            evento.preventDefault();
-            cerrarMenu();
-            navegar(ruta === "inicio" ? "" : ruta);
+function setupLinks() {
+    document.querySelectorAll("[data-route]").forEach((link) => {
+        const route = link.dataset.route;
+        link.href = route === "home" ? BASE_PATH : new URL(route, BASE).pathname;
+        link.addEventListener("click", (event) => {
+            event.preventDefault();
+            closeMenu();
+            navigate(route === "home" ? "" : route);
         });
     });
-    elementos.navToggle.addEventListener("click", () => {
-        const abierto = elementos.navLinks.classList.toggle("is-open");
-        elementos.navToggle.setAttribute("aria-expanded", String(abierto));
-        elementos.navToggle.setAttribute("aria-label", abierto ? "Cerrar menú" : "Abrir menú");
+    elements.navToggle.addEventListener("click", () => {
+        const isOpen = elements.navLinks.classList.toggle("is-open");
+        elements.navToggle.setAttribute("aria-expanded", String(isOpen));
+        elements.navToggle.setAttribute("aria-label", isOpen ? "Cerrar menú" : "Abrir menú");
     });
-    elementos.menuInfo.addEventListener("click", abrirInfo);
-    elementos.navInfo.addEventListener("click", abrirInfo);
+    elements.menuInfo.addEventListener("click", openInfo);
+    elements.navInfo.addEventListener("click", openInfo);
 }
 
-function abrirInfo() {
-    cerrarMenu();
-    abrirModal({
-        titulo: "Tus datos se guardan en este navegador",
-        contenido: `<p>Tu progreso se almacena con <strong>localStorage</strong> en este navegador: el score acumulado y el historial de las últimas 20 partidas.</p>
+function openInfo() {
+    closeMenu();
+    openModal({
+        title: "Tus datos se guardan en este navegador",
+        content: `<p>Tu progreso se almacena con <strong>localStorage</strong> en este navegador: el score acumulado y el historial de las últimas 20 partidas.</p>
             <p>Los datos viven solo en tu dispositivo: no se envían a ningún servidor. Puedes borrarlos cuando quieras desde la configuración de tu navegador (opción «limpiar datos» o «borrar el almacenamiento local»).</p>`,
-        acciones: [{ texto: "Entendido", onClick: cerrarModal }],
+        actions: [{ text: "Entendido", onClick: closeModal }],
     });
 }
 
-function abrirModal({ titulo, contenido, acciones = [] }) {
-    cerrarModal();
-    const anterior = document.activeElement;
-    elementos.modal.classList.remove("oculto");
-    elementos.modal.innerHTML = `<div class="modal__overlay" data-modal-overlay>
-        <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="modal-titulo" tabindex="-1">
-            <h2 id="modal-titulo" class="modal__titulo">${escapar(titulo)}</h2>
-            <div class="modal__texto">${contenido}</div>
-            <div class="modal__acciones"></div>
+function openModal({ title, content, actions = [] }) {
+    closeModal();
+    const previous = document.activeElement;
+    elements.modal.classList.remove("is-hidden");
+    elements.modal.innerHTML = `<div class="modal__overlay" data-modal-overlay>
+        <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1">
+            <h2 id="modal-title" class="modal__title">${escapeHtml(title)}</h2>
+            <div class="modal__text">${content}</div>
+            <div class="modal__actions"></div>
         </div>
     </div>`;
 
-    const overlay = elementos.modal.querySelector("[data-modal-overlay]");
-    const dialogo = elementos.modal.querySelector(".modal__dialog");
-    const contenedorAcciones = elementos.modal.querySelector(".modal__acciones");
-    const cerrar = () => cerrarModal();
+    const overlay = elements.modal.querySelector("[data-modal-overlay]");
+    const dialog = elements.modal.querySelector(".modal__dialog");
+    const actionsContainer = elements.modal.querySelector(".modal__actions");
+    const close = () => closeModal();
 
-    if (acciones.length === 0) acciones = [{ texto: "Entendido", onClick: cerrar }];
-    acciones.forEach((accion) => {
-        const boton = document.createElement("button");
-        boton.type = "button";
-        boton.className = accion.clase || "btn";
-        boton.textContent = accion.texto;
-        boton.addEventListener("click", accion.onClick);
-        contenedorAcciones.appendChild(boton);
+    if (actions.length === 0) actions = [{ text: "Entendido", onClick: close }];
+    actions.forEach((action) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = action.className || "btn";
+        button.textContent = action.text;
+        button.addEventListener("click", action.onClick);
+        actionsContainer.appendChild(button);
     });
 
-    overlay.addEventListener("click", cerrar);
-    dialogo.addEventListener("click", (evento) => evento.stopPropagation());
+    overlay.addEventListener("click", close);
+    dialog.addEventListener("click", (event) => event.stopPropagation());
     document.body.style.overflow = "hidden";
-    elementos.modal.querySelectorAll(".nav__info, .nav__menu-info").forEach((boton) => {
-        boton.setAttribute("aria-expanded", "true");
+    elements.modal.querySelectorAll(".nav__info, .nav__menu-info").forEach((button) => {
+        button.setAttribute("aria-expanded", "true");
     });
 
-    const onKeyDown = (evento) => {
-        if (evento.key === "Escape") {
-            cerrar();
+    const onKeyDown = (event) => {
+        if (event.key === "Escape") {
+            close();
             return;
         }
-        if (evento.key !== "Tab") return;
-        const focoables = dialogo.querySelectorAll(
+        if (event.key !== "Tab") return;
+        const focusable = dialog.querySelectorAll(
             'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
         );
-        if (focoables.length === 0) return;
-        const primero = focoables[0];
-        const ultimo = focoables[focoables.length - 1];
-        if (evento.shiftKey && document.activeElement === primero) {
-            evento.preventDefault();
-            ultimo.focus();
-        } else if (!evento.shiftKey && document.activeElement === ultimo) {
-            evento.preventDefault();
-            primero.focus();
+        if (focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
         }
     };
 
     document.addEventListener("keydown", onKeyDown);
-    modalEstado = { anterior, onKeyDown };
-    dialogo.focus();
+    modalState = { previous, onKeyDown };
+    dialog.focus();
 }
 
-function cerrarModal() {
-    if (!modalEstado) {
-        elementos.modal.classList.add("oculto");
-        elementos.modal.innerHTML = "";
+function closeModal() {
+    if (!modalState) {
+        elements.modal.classList.add("is-hidden");
+        elements.modal.innerHTML = "";
         return;
     }
-    document.removeEventListener("keydown", modalEstado.onKeyDown);
+    document.removeEventListener("keydown", modalState.onKeyDown);
     document.body.style.overflow = "";
-    elementos.modal.classList.add("oculto");
-    elementos.modal.innerHTML = "";
-    elementos.menuInfo.setAttribute("aria-expanded", "false");
-    elementos.navInfo.setAttribute("aria-expanded", "false");
-    const anterior = modalEstado.anterior;
-    modalEstado = null;
-    if (anterior && typeof anterior.focus === "function") anterior.focus();
+    elements.modal.classList.add("is-hidden");
+    elements.modal.innerHTML = "";
+    elements.menuInfo.setAttribute("aria-expanded", "false");
+    elements.navInfo.setAttribute("aria-expanded", "false");
+    const previous = modalState.previous;
+    modalState = null;
+    if (previous && typeof previous.focus === "function") previous.focus();
 }
 
-function navegar(ruta) {
-    const destino = ruta ? new URL(ruta, BASE) : BASE;
-    window.history.pushState(null, "", destino.pathname);
-    enrutar();
+function navigate(route) {
+    const destination = route ? new URL(route, BASE) : BASE;
+    window.history.pushState(null, "", destination.pathname);
+    renderRoute();
 }
 
-function rutaActual() {
+function currentRoute() {
     const base = BASE_PATH.endsWith("/") ? BASE_PATH : `${BASE_PATH}/`;
-    let ruta = decodeURIComponent(window.location.pathname);
-    if (ruta === base.replace(/\/$/, "")) ruta = "";
-    else if (ruta.startsWith(base)) ruta = ruta.slice(base.length);
-    ruta = ruta.replace(/^\/+|\/+$/g, "");
+    let route = decodeURIComponent(window.location.pathname);
+    if (route === base.replace(/\/$/, "")) route = "";
+    else if (route.startsWith(base)) route = route.slice(base.length);
+    route = route.replace(/^\/+|\/+$/g, "");
 
-    if (ruta === "" || ruta === "index.html") return { vista: "inicio" };
-    if (ruta === "quiz") return { vista: "quiz" };
-    if (ruta === "resultados") return { vista: "resultados" };
+    // GitHub Pages sirve el 404.html raiz en subrutas de la SPA y redirige aqui
+    // con la subruta en la query (?/quiz). Se resuelve antes de mirar el path
+    // para que la app cargue sus scripts desde la base del proyecto.
+    const query = window.location.search.match(/^\?\/([^&]+)/);
+    if (query) {
+        const subroute = decodeURIComponent(query[1]).replace(/\/+$/, "");
+        if (subroute === "quiz" || subroute === "results") {
+            window.history.replaceState(null, "", `${base}${subroute}`);
+            return { view: subroute };
+        }
+        const captureQuery = subroute.match(/^capture\/([^/]+)\/([^/]+)\/([^/]+)$/);
+        if (captureQuery) {
+            window.history.replaceState(null, "", `${base}${subroute}`);
+            return {
+                view: "capture",
+                language: decodeURIComponent(captureQuery[1]),
+                id: decodeURIComponent(captureQuery[2]),
+                ratio: decodeURIComponent(captureQuery[3]),
+            };
+        }
+        return { view: "404" };
+    }
 
-    const captura = ruta.match(/^captura\/([^/]+)\/([^/]+)\/([^/]+)$/);
-    if (captura) {
+    if (route === "" || route === "index.html") return { view: "home" };
+    if (route === "quiz") return { view: "quiz" };
+    if (route === "results") return { view: "results" };
+
+    const capture = route.match(/^capture\/([^/]+)\/([^/]+)\/([^/]+)$/);
+    if (capture) {
         return {
-            vista: "captura",
-            lenguaje: decodeURIComponent(captura[1]),
-            id: decodeURIComponent(captura[2]),
-            ratio: decodeURIComponent(captura[3]),
+            view: "capture",
+            language: decodeURIComponent(capture[1]),
+            id: decodeURIComponent(capture[2]),
+            ratio: decodeURIComponent(capture[3]),
         };
     }
 
-    const consulta = window.location.search.match(/^\?\/([^&]+)/);
-    if (consulta) {
-        const subruta = decodeURIComponent(consulta[1]).replace(/\/+$/, "");
-        if (subruta === "quiz" || subruta === "resultados") {
-            window.history.replaceState(null, "", `${base}${subruta}`);
-            return { vista: subruta };
-        }
-        const capturaQuery = subruta.match(/^captura\/([^/]+)\/([^/]+)\/([^/]+)$/);
-        if (capturaQuery) {
-            window.history.replaceState(null, "", `${base}${subruta}`);
-            return {
-                vista: "captura",
-                lenguaje: decodeURIComponent(capturaQuery[1]),
-                id: decodeURIComponent(capturaQuery[2]),
-                ratio: decodeURIComponent(capturaQuery[3]),
-            };
-        }
-    }
-
-    return { vista: "404" };
+    return { view: "404" };
 }
 
-function enrutar() {
-    tokenInicio += 1;
-    pararTemporizador();
-    cerrarMenu();
-    const ruta = rutaActual();
+function renderRoute() {
+    startToken += 1;
+    stopTimer();
+    closeMenu();
+    const route = currentRoute();
 
-    if (ruta.vista === "captura") {
-        mostrarCaptura(ruta);
+    if (route.view === "capture") {
+        showCapture(route);
         return;
     }
 
-    elementos.app.classList.remove("oculto");
-    elementos.captura.classList.add("oculto");
-    actualizarNav(ruta.vista === "inicio" ? "inicio" : ruta.vista === "resultados" ? "resultados" : "");
+    elements.app.classList.remove("is-hidden");
+    elements.capture.classList.add("is-hidden");
+    updateNav(route.view === "home" ? "home" : route.view === "results" ? "results" : "");
 
-    if (ruta.vista === "inicio") mostrarInicio();
-    else if (ruta.vista === "quiz") mostrarQuiz();
-    else if (ruta.vista === "resultados") mostrarResultados();
-    else mostrar404();
+    if (route.view === "home") showHome();
+    else if (route.view === "quiz") showQuiz();
+    else if (route.view === "results") showResults();
+    else showNotFound();
 }
 
-function mostrarInicio() {
+function showHome() {
     document.title = "Codelang Quiz";
-    filtrosResultados = {};
-    errorHome = "";
-    filtrosHome = { lenguaje: "", dificultad: "", tipo: "" };
+    resultsFilters = {};
+    homeError = "";
+    homeFilters = { language: "", difficulty: "", type: "" };
     renderHome();
 }
 
 function renderHome() {
-    const chipLenguaje = CATALOGO.map((lenguaje) => {
-        const activo = filtrosHome.lenguaje === lenguaje.id;
-        return `<button type="button" class="chip chip--${lenguaje.color}${activo ? " is-active" : ""}" data-filtro="lenguaje" data-valor="${lenguaje.id}">${lenguaje.nombre}</button>`;
+    const languageChips = LANGUAGES.map((language) => {
+        const isActive = homeFilters.language === language.id;
+        return `<button type="button" class="chip chip--${language.color}${isActive ? " is-active" : ""}" data-filter="language" data-value="${language.id}">${language.name}</button>`;
     }).join("");
-    const chipDificultad = Object.entries(DIFICULTADES)
-        .map(([clave, dato]) => {
-            const activo = filtrosHome.dificultad === clave;
-            return `<button type="button" class="chip${activo ? " is-active" : ""}" data-filtro="dificultad" data-valor="${clave}">${dato.label} · ${dato.puntos} pt</button>`;
+    const difficultyChips = Object.entries(DIFFICULTIES)
+        .map(([key, item]) => {
+            const isActive = homeFilters.difficulty === key;
+            return `<button type="button" class="chip${isActive ? " is-active" : ""}" data-filter="difficulty" data-value="${key}">${item.label} · ${item.points} pt</button>`;
         })
         .join("");
-    const chipTipo = Object.entries(TIPOS)
-        .map(([clave, label]) => {
-            const activo = filtrosHome.tipo === clave;
-            return `<button type="button" class="chip${activo ? " is-active" : ""}" data-filtro="tipo" data-valor="${clave}">${label}</button>`;
+    const typeChips = Object.entries(QUESTION_TYPES)
+        .map(([key, label]) => {
+            const isActive = homeFilters.type === key;
+            return `<button type="button" class="chip${isActive ? " is-active" : ""}" data-filter="type" data-value="${key}">${label}</button>`;
         })
         .join("");
 
-    elementos.cuerpo.innerHTML = `<div class="home">
+    elements.main.innerHTML = `<div class="home">
         <section class="section home__hero">
             <p class="eyebrow mono-label">Practica con código real</p>
             <h1 class="hero-title">Pon a prueba lo que <em>sabes</em> de código.</h1>
             <p class="home__lead">Elige tu lenguaje y nivel. Resuelve problemáticas de código con opciones de respuesta y gana puntos según la dificultad.</p>
         </section>
         <section class="section home__config" aria-label="Configuración de la partida">
-            <fieldset class="filtro"><legend class="mono-label">Lenguaje</legend>
-                <div class="filtro__chips">
-                    <button type="button" class="chip${!filtrosHome.lenguaje ? " is-active" : ""}" data-filtro="lenguaje" data-valor="">Todos</button>
-                    ${chipLenguaje}
+            <fieldset class="filter"><legend class="mono-label">Lenguaje</legend>
+                <div class="filter__chips">
+                    <button type="button" class="chip${!homeFilters.language ? " is-active" : ""}" data-filter="language" data-value="">Todos</button>
+                    ${languageChips}
                 </div>
             </fieldset>
-            <fieldset class="filtro"><legend class="mono-label">Dificultad</legend>
-                <div class="filtro__chips">
-                    <button type="button" class="chip${!filtrosHome.dificultad ? " is-active" : ""}" data-filtro="dificultad" data-valor="">Cualquiera</button>
-                    ${chipDificultad}
+            <fieldset class="filter"><legend class="mono-label">Dificultad</legend>
+                <div class="filter__chips">
+                    <button type="button" class="chip${!homeFilters.difficulty ? " is-active" : ""}" data-filter="difficulty" data-value="">Cualquiera</button>
+                    ${difficultyChips}
                 </div>
             </fieldset>
-            <fieldset class="filtro"><legend class="mono-label">Tipo de problema</legend>
-                <div class="filtro__chips">
-                    <button type="button" class="chip${!filtrosHome.tipo ? " is-active" : ""}" data-filtro="tipo" data-valor="">Cualquiera</button>
-                    ${chipTipo}
+            <fieldset class="filter"><legend class="mono-label">Tipo de problema</legend>
+                <div class="filter__chips">
+                    <button type="button" class="chip${!homeFilters.type ? " is-active" : ""}" data-filter="type" data-value="">Cualquiera</button>
+                    ${typeChips}
                 </div>
             </fieldset>
-            ${errorHome ? `<p class="home__error" role="alert">${escapar(errorHome)}</p>` : ""}
-            <button type="button" class="btn btn--lg" id="empezar" ${cargando ? "disabled" : ""}>${cargando ? "Preparando..." : "Empezar partida"}</button>
+            ${homeError ? `<p class="home__error" role="alert">${escapeHtml(homeError)}</p>` : ""}
+            <button type="button" class="btn btn--lg" id="start" ${isLoading ? "disabled" : ""}>${isLoading ? "Preparando..." : "Empezar partida"}</button>
         </section>
     </div>`;
 
-    elementos.cuerpo.querySelectorAll("[data-filtro]").forEach((boton) => {
-        boton.addEventListener("click", () => {
-            filtrosHome[boton.dataset.filtro] = boton.dataset.valor;
-            errorHome = "";
+    elements.main.querySelectorAll("[data-filter]").forEach((button) => {
+        button.addEventListener("click", () => {
+            homeFilters[button.dataset.filter] = button.dataset.value;
+            homeError = "";
             renderHome();
         });
     });
-    document.getElementById("empezar").addEventListener("click", empezarPartida);
+    document.getElementById("start").addEventListener("click", startGame);
 }
 
-async function empezarPartida() {
-    if (cargando) return;
-    cargando = true;
-    errorHome = "";
-    const token = ++tokenInicio;
+async function startGame() {
+    if (isLoading) return;
+    isLoading = true;
+    homeError = "";
+    const token = ++startToken;
     renderHome();
 
     try {
-        const dataset = await cargarTodasLasPreguntas();
-        if (token !== tokenInicio || rutaActual().vista !== "inicio") return;
+        const dataset = await loadAllQuestions();
+        if (token !== startToken || currentRoute().view !== "home") return;
         if (dataset.length === 0) throw new Error("sin datos");
-        const disponibles = dataset.flatMap((dato) =>
-            filtrarPreguntas(dato, filtrosHome).map((pregunta) => ({
-                ...pregunta,
-                lenguaje: dato.lenguaje,
+        const available = dataset.flatMap((entry) =>
+            filterQuestions(entry, homeFilters).map((question) => ({
+                ...question,
+                language: entry.language,
             })),
         );
-        if (disponibles.length === 0) {
-            cargando = false;
-            errorHome = "No hay preguntas que coincidan con esos filtros. Prueba con otros.";
+        if (available.length === 0) {
+            isLoading = false;
+            homeError = "No hay preguntas que coincidan con esos filtros. Prueba con otros.";
             renderHome();
             return;
         }
-        cargando = false;
-        filtrosResultados = { ...filtrosHome };
+        isLoading = false;
+        resultsFilters = { ...homeFilters };
         quiz = {
-            preguntas: disponibles.map(prepararPregunta),
-            filtros: { ...filtrosHome },
-            indice: 0,
-            respuestas: [],
-            seleccionada: null,
-            bloqueada: false,
-            tiempoRestante: TIEMPO_PREGUNTA,
-            tiempoAgotado: false,
+            questions: available.map(prepareQuestion),
+            filters: { ...homeFilters },
+            index: 0,
+            answers: [],
+            selected: null,
+            locked: false,
+            timeLeft: QUESTION_TIME,
+            timeExpired: false,
         };
-        navegar("quiz");
+        navigate("quiz");
     } catch {
-        if (token !== tokenInicio) return;
-        cargando = false;
-        errorHome = "No se pudo cargar el catálogo de preguntas.";
+        if (token !== startToken) return;
+        isLoading = false;
+        homeError = "No se pudo cargar el catálogo de preguntas.";
         renderHome();
     }
 }
 
 function renderQuiz() {
-    const anterior = quiz;
-    if (!anterior || !anterior.preguntas.length) {
-        elementos.cuerpo.innerHTML = `<div class="home"><section class="section">
+    const previous = quiz;
+    if (!previous || !previous.questions.length) {
+        elements.main.innerHTML = `<div class="home"><section class="section">
             <p class="home__error">Aún no has configurado una partida.</p>
-            <button type="button" class="btn" id="volver-inicio">Volver al inicio</button>
+            <button type="button" class="btn" id="back-home">Volver al inicio</button>
         </section></div>`;
-        document.getElementById("volver-inicio").addEventListener("click", () => navegar(""));
+        document.getElementById("back-home").addEventListener("click", () => navigate(""));
         return;
     }
 
-    const pregunta = anterior.preguntas[anterior.indice];
-    if (!pregunta) {
-        elementos.cuerpo.innerHTML = '<div class="section mono-label">Partida terminada.</div>';
+    const question = previous.questions[previous.index];
+    if (!question) {
+        elements.main.innerHTML = '<div class="section mono-label">Partida terminada.</div>';
         return;
     }
 
-    const score = scoreDe(anterior.respuestas);
-    const actualLenguaje = nombreLenguaje(pregunta.lenguaje);
-    const tiempoUrgente = anterior.tiempoRestante <= 5;
+    const roundScore = scoreOf(previous.answers);
+    const currentLanguage = languageName(question.language);
+    const urgentTime = previous.timeLeft <= 5;
 
-    const opciones = pregunta.orden
-        .map((letra) => {
-            const esCorrecta = letra === pregunta.respuesta;
-            let clase = "opcion";
-            if (anterior.seleccionada === letra) clase += " is-selected";
-            if (anterior.bloqueada && esCorrecta) clase += " is-correct";
-            if (anterior.bloqueada && anterior.seleccionada === letra && !esCorrecta) {
-                clase += " is-wrong";
+    const options = question.order
+        .map((letter) => {
+            const isCorrect = letter === question.answer;
+            let className = "option";
+            if (previous.selected === letter) className += " is-selected";
+            if (previous.locked && isCorrect) className += " is-correct";
+            if (previous.locked && previous.selected === letter && !isCorrect) {
+                className += " is-wrong";
             }
-            return `<button type="button" data-letra="${letra}" class="${clase}" ${anterior.bloqueada ? "disabled" : ""}>
-                <span class="opcion__letra mono-label">${letra}</span>
-                <span class="opcion__texto">${escapar(pregunta.opciones[letra])}</span>
+            return `<button type="button" data-letter="${letter}" class="${className}" ${previous.locked ? "disabled" : ""}>
+                <span class="option__letter mono-label">${letter}</span>
+                <span class="option__text">${escapeHtml(question.options[letter])}</span>
             </button>`;
         })
         .join("");
 
     let feedback = "";
-    if (anterior.bloqueada) {
-        if (anterior.tiempoAgotado) {
-            feedback = `<p class="feedback feedback--ko"><strong>Se acabó el tiempo.</strong> La correcta era la opción ${pregunta.respuesta}. ${escapar(pregunta.explicacion)}</p>`;
-        } else if (anterior.seleccionada === pregunta.respuesta) {
-            const puntos = puntosDe(pregunta.dificultad);
-            feedback = `<p class="feedback feedback--ok"><strong>Acertaste. +${puntos} punto${puntos === 1 ? "" : "s"}.</strong> ${escapar(pregunta.explicacion)}</p>`;
+    if (previous.locked) {
+        if (previous.timeExpired) {
+            feedback = `<p class="feedback feedback--ko"><strong>Se acabó el tiempo.</strong> La correcta era la opción ${question.answer}. ${escapeHtml(question.explanation)}</p>`;
+        } else if (previous.selected === question.answer) {
+            const points = pointsFor(question.difficulty);
+            feedback = `<p class="feedback feedback--ok"><strong>Acertaste. +${points} punto${points === 1 ? "" : "s"}.</strong> ${escapeHtml(question.explanation)}</p>`;
         } else {
-            feedback = `<p class="feedback feedback--ko"><strong>No acertaste.</strong> La correcta era la opción ${pregunta.respuesta}. ${escapar(pregunta.explicacion)}</p>`;
+            feedback = `<p class="feedback feedback--ko"><strong>No acertaste.</strong> La correcta era la opción ${question.answer}. ${escapeHtml(question.explanation)}</p>`;
         }
-        feedback += `<button type="button" class="btn btn--coral" id="continuar">${anterior.indice >= anterior.preguntas.length - 1 ? "Ver resultados" : "Siguiente"}</button>`;
+        feedback += `<button type="button" class="btn btn--coral" id="continue">${previous.index >= previous.questions.length - 1 ? "Ver resultados" : "Siguiente"}</button>`;
     }
 
-    elementos.cuerpo.innerHTML = `<div class="quiz">
+    elements.main.innerHTML = `<div class="quiz">
         <section class="section quiz__header" aria-label="Progreso">
-            <div class="quiz__progreso">
-                <span class="mono-label">Pregunta ${anterior.indice + 1} de ${anterior.preguntas.length}</span>
-                <span id="tiempo" class="quiz__tiempo${tiempoUrgente ? " is-urgente" : ""}" role="timer" aria-label="Tiempo restante para responder">⏱ ${anterior.tiempoRestante}s</span>
+            <div class="quiz__progress">
+                <span class="mono-label">Pregunta ${previous.index + 1} de ${previous.questions.length}</span>
+                <span id="time" class="quiz__time${urgentTime ? " is-urgent" : ""}" role="timer" aria-label="Tiempo restante para responder">⏱ ${previous.timeLeft}s</span>
             </div>
-            <span class="quiz__score" aria-label="Score de la partida">${pluralPuntos(score)}</span>
+            <span class="quiz__score" aria-label="Score de la partida">${formatPoints(roundScore)}</span>
         </section>
         <section class="section quiz__body">
-            <div class="card quiz__pregunta">
-                <span class="mono-label quiz__tag">${actualLenguaje ? `${actualLenguaje} · ` : ""}${pregunta.tipo} · ${pregunta.dificultad}</span>
-                <h2 class="quiz__texto">${escapar(pregunta.pregunta)}</h2>
-                ${pregunta.codigo ? `<div class="code-card">${anterior.filtros.lenguaje ? `<span class="code-card__lang mono-label">${escapar(anterior.filtros.lenguaje)}</span>` : ""}<pre class="code-card__pre"><code>${escapar(pregunta.codigo)}</code></pre></div>` : ""}
+            <div class="card quiz__question">
+                <span class="mono-label quiz__tag">${currentLanguage ? `${currentLanguage} · ` : ""}${QUESTION_TYPES[question.type] || question.type} · ${DIFFICULTIES[question.difficulty]?.label || question.difficulty}</span>
+                <h2 class="quiz__question-text">${escapeHtml(question.question)}</h2>
+                ${question.code ? `<div class="code-card">${previous.filters.language ? `<span class="code-card__lang mono-label">${escapeHtml(previous.filters.language)}</span>` : ""}<pre class="code-card__pre"><code>${escapeHtml(question.code)}</code></pre></div>` : ""}
             </div>
-            <div class="quiz__opciones" role="group" aria-label="Opciones de respuesta">${opciones}</div>
+            <div class="quiz__options" role="group" aria-label="Opciones de respuesta">${options}</div>
             <div class="quiz__feedback">
-                <button type="button" class="btn btn--mint quiz__detener" id="detener" ${anterior.respuestas.length === 0 ? "disabled" : ""}>Detener partida</button>
+                <button type="button" class="btn btn--mint quiz__stop" id="stop" ${previous.answers.length === 0 ? "disabled" : ""}>Detener partida</button>
             </div>
             ${feedback ? `<div class="quiz__feedback">${feedback}</div>` : ""}
         </section>
     </div>`;
 
-    elementos.cuerpo.querySelectorAll("[data-letra]").forEach((boton) => {
-        boton.addEventListener("click", () => responder(boton.dataset.letra));
+    elements.main.querySelectorAll("[data-letter]").forEach((button) => {
+        button.addEventListener("click", () => answer(button.dataset.letter));
     });
-    document.getElementById("detener").addEventListener("click", abrirConfirmacion);
-    const continuar = document.getElementById("continuar");
-    if (continuar) continuar.addEventListener("click", continuarPartida);
+    document.getElementById("stop").addEventListener("click", openStopConfirmation);
+    const continueButton = document.getElementById("continue");
+    if (continueButton) continueButton.addEventListener("click", continueGame);
 
-    if (!anterior.bloqueada) iniciarTemporizador();
-    else pararTemporizador();
-
+    if (!previous.locked) startTimer();
+    else stopTimer();
 }
 
-function iniciarTemporizador() {
-    pararTemporizador();
-    if (!quiz || quiz.bloqueada) return;
-    temporizador = window.setInterval(() => {
-        if (!quiz || quiz.bloqueada) return;
-        quiz.tiempoRestante = Math.max(0, quiz.tiempoRestante - 1);
-        const tiempo = document.getElementById("tiempo");
-        if (tiempo) {
-            tiempo.textContent = `⏱ ${quiz.tiempoRestante}s`;
-            tiempo.classList.toggle("is-urgente", quiz.tiempoRestante <= 5);
+function startTimer() {
+    stopTimer();
+    if (!quiz || quiz.locked) return;
+    timer = window.setInterval(() => {
+        if (!quiz || quiz.locked) return;
+        quiz.timeLeft = Math.max(0, quiz.timeLeft - 1);
+        const time = document.getElementById("time");
+        if (time) {
+            time.textContent = `⏱ ${quiz.timeLeft}s`;
+            time.classList.toggle("is-urgent", quiz.timeLeft <= 5);
         }
-        if (quiz.tiempoRestante === 0) {
-            pararTemporizador();
-            quiz.bloqueada = true;
-            quiz.tiempoAgotado = true;
-            quiz.respuestas.push({
-                ...quiz.preguntas[quiz.indice],
-                letra: null,
-                esCorrecta: false,
+        if (quiz.timeLeft === 0) {
+            stopTimer();
+            quiz.locked = true;
+            quiz.timeExpired = true;
+            quiz.answers.push({
+                ...quiz.questions[quiz.index],
+                letter: null,
+                isCorrect: false,
             });
             renderQuiz();
         }
     }, 1000);
 }
 
-function responder(letra) {
-    if (!quiz || quiz.bloqueada) return;
-    const pregunta = quiz.preguntas[quiz.indice];
-    quiz.seleccionada = letra;
-    quiz.respuestas.push({
-        ...pregunta,
-        letra,
-        esCorrecta: letra === pregunta.respuesta,
+function answer(letter) {
+    if (!quiz || quiz.locked) return;
+    const question = quiz.questions[quiz.index];
+    quiz.selected = letter;
+    quiz.answers.push({
+        ...question,
+        letter,
+        isCorrect: letter === question.answer,
     });
-    quiz.bloqueada = true;
-    pararTemporizador();
+    quiz.locked = true;
+    stopTimer();
     renderQuiz();
 }
 
-function continuarPartida() {
+function continueGame() {
     if (!quiz) return;
-    if (quiz.indice >= quiz.preguntas.length - 1) {
-        finalizarPartida();
+    if (quiz.index >= quiz.questions.length - 1) {
+        finishGame();
         return;
     }
-    quiz.indice += 1;
-    quiz.seleccionada = null;
-    quiz.bloqueada = false;
-    quiz.tiempoAgotado = false;
-    quiz.tiempoRestante = TIEMPO_PREGUNTA;
+    quiz.index += 1;
+    quiz.selected = null;
+    quiz.locked = false;
+    quiz.timeExpired = false;
+    quiz.timeLeft = QUESTION_TIME;
     renderQuiz();
 }
 
-function finalizarPartida() {
+function finishGame() {
     if (!quiz) return;
-    const aciertos = quiz.respuestas.filter((respuesta) => respuesta.esCorrecta).length;
-    const fallos = quiz.respuestas.length - aciertos;
-    registrarPartida({
-        aciertos,
-        fallos,
-        puntos: scoreDe(quiz.respuestas),
-        total: quiz.preguntas.length,
-        lenguaje: quiz.filtros.lenguaje,
-        dificultad: quiz.filtros.dificultad,
+    const correct = quiz.answers.filter((item) => item.isCorrect).length;
+    const wrong = quiz.answers.length - correct;
+    saveRound({
+        correct,
+        wrong,
+        points: scoreOf(quiz.answers),
+        total: quiz.questions.length,
+        language: quiz.filters.language,
+        difficulty: quiz.filters.difficulty,
     });
-    filtrosResultados = quiz.filtros;
+    resultsFilters = quiz.filters;
     quiz = null;
-    navegar("resultados");
+    navigate("results");
 }
 
-function abrirConfirmacion() {
+function openStopConfirmation() {
     if (!quiz) return;
-    const puntos = scoreDe(quiz.respuestas);
-    abrirModal({
-        titulo: "¿Detener la partida?",
-        contenido: `<p>Tu puntuación actual (<strong>${pluralPuntos(puntos)}</strong>) se guardará y no podrás continuar esta partida.</p>`,
-        acciones: [
-            { texto: "Continuar jugando", clase: "btn", onClick: cerrarModal },
+    const points = scoreOf(quiz.answers);
+    openModal({
+        title: "¿Detener la partida?",
+        content: `<p>Tu puntuación actual (<strong>${formatPoints(points)}</strong>) se guardará y no podrás continuar esta partida.</p>`,
+        actions: [
+            { text: "Continuar jugando", className: "btn", onClick: closeModal },
             {
-                texto: "Detener y guardar",
-                clase: "btn btn--coral",
+                text: "Detener y guardar",
+                className: "btn btn--coral",
                 onClick: () => {
-                    cerrarModal();
-                    detenerPartida();
+                    closeModal();
+                    stopGame();
                 },
             },
         ],
     });
 }
 
-function detenerPartida() {
+function stopGame() {
     if (!quiz) return;
-    const aciertos = quiz.respuestas.filter((respuesta) => respuesta.esCorrecta).length;
-    const fallos = quiz.respuestas.length - aciertos;
-    registrarPartida({
-        aciertos,
-        fallos,
-        puntos: scoreDe(quiz.respuestas),
-        total: quiz.respuestas.length,
-        lenguaje: quiz.filtros.lenguaje,
-        dificultad: quiz.filtros.dificultad,
+    const correct = quiz.answers.filter((item) => item.isCorrect).length;
+    const wrong = quiz.answers.length - correct;
+    saveRound({
+        correct,
+        wrong,
+        points: scoreOf(quiz.answers),
+        total: quiz.answers.length,
+        language: quiz.filters.language,
+        difficulty: quiz.filters.difficulty,
     });
-    filtrosResultados = quiz.filtros;
+    resultsFilters = quiz.filters;
     quiz = null;
-    navegar("resultados");
+    navigate("results");
 }
 
-function mostrarQuiz() {
+function showQuiz() {
     document.title = "Quiz · Codelang Quiz";
     renderQuiz();
 }
 
-function mostrarResultados() {
+function showResults() {
     document.title = "Resultados · Codelang Quiz";
-    const ultima = historial[0];
-    const lenguaje = filtrosResultados.lenguaje || "todos los lenguajes";
-    const historialHTML =
-        historial.length > 0
-            ? `<ul class="historial">${historial
+    const last = roundHistory[0];
+    const language = resultsFilters.language || "todos los lenguajes";
+    const historyHtml =
+        roundHistory.length > 0
+            ? `<ul class="history">${roundHistory
                   .map(
-                      (partida) => `<li class="historial__item">
-                        <span class="mono-label historial__fecha">${escapar(new Date(partida.fecha).toLocaleString())}</span>
-                        <span class="historial__resumen">${partida.aciertos}/${partida.total} aciertos</span>
-                        <span class="historial__puntos">${partida.puntos} pt</span>
+                      (round) => `<li class="history__item">
+                        <span class="mono-label history__date">${escapeHtml(new Date(round.date).toLocaleString())}</span>
+                        <span class="history__summary">${round.correct}/${round.total} aciertos</span>
+                        <span class="history__points">${round.points} pt</span>
                     </li>`,
                   )
                   .join("")}</ul>`
             : "";
 
-    elementos.cuerpo.innerHTML = `<div class="resultados">
-        <section class="section resultados__hero">
+    elements.main.innerHTML = `<div class="results">
+        <section class="section results__hero">
             <p class="eyebrow mono-label">Resultados</p>
             <h1 class="hero-title">Tu rendimiento, de un vistazo.</h1>
         </section>
-        <section class="section resultados__stats" aria-label="Estadísticas">
-            <div class="card card__tint stat stat--pear"><span class="mono-label">Score acumulado</span><strong class="stat__num">${score}</strong></div>
-            <div class="card card__tint stat stat--cyan"><span class="mono-label">Partidas</span><strong class="stat__num">${historial.length}</strong></div>
+        <section class="section results__stats" aria-label="Estadísticas">
+            <div class="card card__tint stat stat--pear"><span class="mono-label">Score acumulado</span><strong class="stat__num">${totalScore}</strong></div>
+            <div class="card card__tint stat stat--cyan"><span class="mono-label">Partidas</span><strong class="stat__num">${roundHistory.length}</strong></div>
         </section>
         <section class="section" aria-label="Historial de partidas">
-            <h2 class="seccion-titulo">Historial</h2>
+            <h2 class="section-title">Historial</h2>
             ${
-                ultima
-                    ? `<div class="card resultados__ultima"><p class="mono-label">Última partida · ${escapar(lenguaje)}</p><p class="resultados__resumen">${ultima.aciertos} aciertos · ${ultima.fallos} fallos · ${ultima.puntos} puntos</p></div>`
-                    : '<p class="resultados__vacio">Aún no has jugado ninguna partida.</p>'
+                last
+                    ? `<div class="card results__last"><p class="mono-label">Última partida · ${escapeHtml(language)}</p><p class="results__summary">${last.correct} aciertos · ${last.wrong} fallos · ${last.points} puntos</p></div>`
+                    : '<p class="results__empty">Aún no has jugado ninguna partida.</p>'
             }
-            ${historialHTML}
-            <button type="button" class="btn btn--lg" id="nueva-partida">Nueva partida</button>
+            ${historyHtml}
+            <button type="button" class="btn btn--lg" id="new-game">Nueva partida</button>
         </section>
     </div>`;
-    document.getElementById("nueva-partida").addEventListener("click", () => navegar(""));
+    document.getElementById("new-game").addEventListener("click", () => navigate(""));
 }
 
-function mostrar404() {
+function showNotFound() {
     document.title = "Página no encontrada · Codelang Quiz";
-    elementos.cuerpo.innerHTML = `<div class="home"><section class="section">
+    elements.main.innerHTML = `<div class="home"><section class="section">
         <p class="mono-label">404</p>
         <h1 class="hero-title">Esa ruta no existe.</h1>
         <p>La página que buscas no está en esta app.</p>
-        <a href="${BASE_PATH}" class="btn btn--mint" id="volver-inicio">Volver al inicio</a>
+        <a href="${BASE_PATH}" class="btn btn--mint" id="back-home">Volver al inicio</a>
     </section></div>`;
-    document.getElementById("volver-inicio").addEventListener("click", (evento) => {
-        evento.preventDefault();
-        navegar("");
+    document.getElementById("back-home").addEventListener("click", (event) => {
+        event.preventDefault();
+        navigate("");
     });
 }
 
-function opcionesCapturaHTML(pregunta, columns) {
-    return `<div class="captura__opciones${columns === 2 ? " captura__opciones--cols2" : ""}" role="group" aria-label="Opciones">
-        ${OPCIONES.map(
-            (letra) => `<div class="opcion"><span class="opcion__letra mono-label">${letra}</span><span class="opcion__texto">${escapar(pregunta.opciones[letra])}</span></div>`,
+function captureOptionsHtml(question, columns) {
+    return `<div class="capture__options${columns === 2 ? " capture__options--cols2" : ""}" role="group" aria-label="Opciones">
+        ${OPTIONS.map(
+            (letter) => `<div class="option"><span class="option__letter mono-label">${letter}</span><span class="option__text">${escapeHtml(question.options[letter])}</span></div>`,
         ).join("")}
     </div>`;
 }
 
-async function mostrarCaptura({ lenguaje, id, ratio }) {
+async function showCapture({ language, id, ratio }) {
     document.title = "Captura · Codelang Quiz";
-    pararTemporizador();
-    cerrarMenu();
-    const objetivo = RATIOS[ratio] || RATIOS["4-5"];
-    elementos.app.classList.add("oculto");
-    elementos.captura.classList.remove("oculto");
-    elementos.captura.className = "captura captura--loading";
-    elementos.captura.style.width = `${objetivo.w}px`;
-    elementos.captura.style.height = `${objetivo.h}px`;
-    elementos.captura.innerHTML = "";
+    stopTimer();
+    closeMenu();
+    const target = ASPECT_RATIOS[ratio] || ASPECT_RATIOS["4-5"];
+    elements.app.classList.add("is-hidden");
+    elements.capture.classList.remove("is-hidden");
+    elements.capture.className = "capture capture--loading";
+    elements.capture.style.width = `${target.width}px`;
+    elements.capture.style.height = `${target.height}px`;
+    elements.capture.innerHTML = "";
 
     try {
-        const dataset = await cargarTodasLasPreguntas();
-        const dato = dataset.find((item) => item.lenguaje === lenguaje);
-        const pregunta = dato?.preguntas.find((item) => item.id === id);
-        if (!pregunta) {
-            elementos.captura.className = "captura captura--error";
-            elementos.captura.innerHTML = '<p class="mono-label">No encontrada</p>';
+        const dataset = await loadAllQuestions();
+        const entry = dataset.find((item) => item.language === language);
+        const question = entry?.questions.find((item) => item.id === id);
+        if (!question) {
+            elements.capture.className = "capture capture--error";
+            elements.capture.innerHTML = '<p class="mono-label">No encontrada</p>';
             return;
         }
-        const langMeta = CATALOGO.find((item) => item.id === lenguaje);
-        const chipColor = PALETTE[lenguaje] || "accent";
+        const languageMeta = LANGUAGES.find((item) => item.id === language);
+        const chipColor = PALETTE[language] || "accent";
         const columns = ratio === "1-91" ? 2 : 1;
-        elementos.captura.className = "captura";
-        elementos.captura.dataset.fit = "busy";
-        elementos.captura.innerHTML = `<div class="captura__frame"><div class="captura__fill">
-            <header class="captura__header">
-                <span class="captura__brand mono-label">Codelang · Quiz</span>
-                <span class="captura__chip mono-label" style="background:var(--color-${chipColor});color:var(--color-ink)">${escapar(langMeta?.nombre || lenguaje)} · ${TIPO_CAPTURA[pregunta.tipo] || pregunta.tipo} · ${DIFICULTAD_CAPTURA[pregunta.dificultad] || pregunta.dificultad}</span>
+        elements.capture.className = "capture";
+        elements.capture.dataset.fit = "busy";
+        elements.capture.innerHTML = `<div class="capture__frame"><div class="capture__fill">
+            <header class="capture__header">
+                <span class="capture__brand mono-label">Codelang · Quiz</span>
+                <span class="capture__chip mono-label" style="background:var(--color-${chipColor});color:var(--color-ink)">${escapeHtml(languageMeta?.name || language)} · ${CAPTURE_TYPE_LABELS[question.type] || question.type} · ${CAPTURE_DIFFICULTY_LABELS[question.difficulty] || question.difficulty}</span>
             </header>
-            <div class="captura__columnas">
-                <article class="captura__pregunta">
-                    <h2 class="captura__texto">${escapar(pregunta.pregunta)}</h2>
+            <div class="capture__columns">
+                <article class="capture__question">
+                    <h2 class="capture__text">${escapeHtml(question.question)}</h2>
                     ${
-                        pregunta.codigo
-                            ? `<div class="captura__code code-card"><span class="code-card__lang mono-label">${escapar(lenguaje)}</span><pre class="captura__pre code-card__pre"><code>${escapar(pregunta.codigo)}</code></pre></div>`
+                        question.code
+                            ? `<div class="capture__code code-card"><span class="code-card__lang mono-label">${escapeHtml(language)}</span><pre class="capture__pre code-card__pre"><code>${escapeHtml(question.code)}</code></pre></div>`
                             : ""
                     }
                 </article>
-                ${opcionesCapturaHTML(pregunta, columns)}
+                ${captureOptionsHtml(question, columns)}
             </div>
-            <footer class="captura__footer mono-label" aria-hidden="true">codelang.quiz</footer>
+            <footer class="capture__footer mono-label" aria-hidden="true">codelang.quiz</footer>
         </div></div>`;
         await document.fonts.ready;
         window.requestAnimationFrame(() => {
             window.requestAnimationFrame(() => {
-                if (elementos.captura.classList.contains("captura")) {
-                    elementos.captura.dataset.fit = "ready";
+                if (elements.capture.classList.contains("capture")) {
+                    elements.capture.dataset.fit = "ready";
                 }
             });
         });
     } catch {
-        elementos.captura.className = "captura captura--error";
-        elementos.captura.innerHTML = '<p class="mono-label">No encontrada</p>';
+        elements.capture.className = "capture capture--error";
+        elements.capture.innerHTML = '<p class="mono-label">No encontrada</p>';
     }
 }
 
-window.addEventListener("popstate", enrutar);
-configurarEnlaces();
-enrutar();
+window.addEventListener("popstate", renderRoute);
+setupLinks();
+renderRoute();
