@@ -1,11 +1,11 @@
 :root {
-    --papel: #f6f1e7;
-    --hoja: #fffdf8;
-    --tinta: #22201c;
-    --tinta-tenue: #7a7365;
-    --filete: #e0d8c8;
-    --rojo: #b3261e;
-    --sombra-hoja: 0 1px 0 rgba(34, 32, 28, 0.04), 0 18px 30px -26px rgba(34, 32, 28, 0.55);
+    --paper: #f6f1e7;
+    --sheet: #fffdf8;
+    --ink: #22201c;
+    --ink-muted: #7a7365;
+    --border-color: #e0d8c8;
+    --red: #b3261e;
+    --sheet-shadow: 0 1px 0 rgba(34, 32, 28, 0.04), 0 18px 30px -26px rgba(34, 32, 28, 0.55);
 }
 
 *,
@@ -15,10 +15,10 @@
 }
 
 body {
-    background-color: var(--papel);
+    background-color: var(--paper);
     background-image: radial-gradient(rgba(34, 32, 28, 0.07) 0.6px, transparent 0.6px);
     background-size: 14px 14px;
-    color: var(--tinta);
+    color: var(--ink);
     display: flex;
     flex-direction: column;
     font-family: "Inter", system-ui, sans-serif;
@@ -27,8 +27,8 @@ body {
     overflow-x: clip;
 }
 
-.cabecera {
-    border-bottom: 3px double var(--tinta);
+.header {
+    border-bottom: 3px double var(--ink);
     margin: 0 auto;
     max-width: 1180px;
     padding: clamp(2rem, 7vw, 3.5rem) 1.25rem clamp(1.2rem, 3vw, 1.8rem);
@@ -36,8 +36,8 @@ body {
     width: 100%;
 }
 
-.cabecera__eyebrow {
-    color: var(--tinta-tenue);
+.header__eyebrow {
+    color: var(--ink-muted);
     font-size: 0.68rem;
     font-weight: 600;
     letter-spacing: 0.42em;
@@ -45,7 +45,7 @@ body {
     text-transform: uppercase;
 }
 
-.titulo {
+.title {
     font-family: "Fraunces", Georgia, serif;
     font-size: clamp(2.6rem, 9vw, 4.2rem);
     font-variation-settings: "opsz" 144;
@@ -55,15 +55,15 @@ body {
     margin: 0;
 }
 
-.cabecera__sub {
-    color: var(--tinta-tenue);
+.header__subtitle {
+    color: var(--ink-muted);
     font-family: "Fraunces", Georgia, serif;
     font-size: clamp(0.95rem, 2.6vw, 1.1rem);
     font-style: italic;
     margin: 0.9rem 0 0;
 }
 
-.principal {
+.main-content {
     flex: 1;
     margin: 0 auto;
     max-width: 1180px;
@@ -71,24 +71,24 @@ body {
     width: 100%;
 }
 
-.contenedor-calendario {
+.calendar {
     display: grid;
     gap: clamp(1rem, 2.5vw, 1.5rem);
     grid-template-columns: 1fr;
 }
 
-.contenedor-mes {
-    background: var(--hoja);
-    border: 1px solid var(--filete);
-    border-top: 4px solid var(--tinta);
-    box-shadow: var(--sombra-hoja);
+.month {
+    background: var(--sheet);
+    border: 1px solid var(--border-color);
+    border-top: 4px solid var(--ink);
+    box-shadow: var(--sheet-shadow);
     padding: clamp(0.9rem, 2.5vw, 1.15rem);
     position: relative;
 }
 
 
-.titulo-mes {
-    border-bottom: 1px solid var(--filete);
+.month__title {
+    border-bottom: 1px solid var(--border-color);
     font-family: "Fraunces", Georgia, serif;
     font-size: clamp(1.15rem, 3.4vw, 1.4rem);
     font-weight: 500;
@@ -98,20 +98,20 @@ body {
     text-transform: capitalize;
 }
 
-.tabla-dias {
+.days {
     display: grid;
     gap: 0.15rem;
 }
 
-.fila-encabezados,
-.cuerpo-dias {
+.weekdays,
+.days__grid {
     display: grid;
     gap: 0.1rem;
     grid-template-columns: repeat(7, minmax(0, 1fr));
 }
 
-.celda-encabezado {
-    color: var(--tinta-tenue);
+.weekday {
+    color: var(--ink-muted);
     font-size: 0.62rem;
     font-weight: 600;
     letter-spacing: 0.12em;
@@ -120,34 +120,34 @@ body {
     text-transform: uppercase;
 }
 
-.celda-dia {
+.day {
     align-items: center;
     aspect-ratio: 1;
-    color: var(--tinta);
+    color: var(--ink);
     display: flex;
     font-size: clamp(0.68rem, 2.1vw, 0.82rem);
     font-variant-numeric: tabular-nums;
     justify-content: center;
 }
 
-.celda-dia.finde {
-    color: var(--rojo);
+.day.is-weekend {
+    color: var(--red);
 }
 
-.celda-dia.hoy {
-    background: var(--tinta);
+.day.is-today {
+    background: var(--ink);
     border-radius: 50%;
-    color: var(--hoja);
+    color: var(--sheet);
     font-weight: 600;
 }
 
-.celda-dia.vacia {
+.day.is-empty {
     color: transparent;
 }
 
-.pie {
-    border-top: 1px solid var(--filete);
-    color: var(--tinta-tenue);
+.footer {
+    border-top: 1px solid var(--border-color);
+    color: var(--ink-muted);
     font-size: 0.72rem;
     letter-spacing: 0.16em;
     margin-top: auto;
@@ -157,19 +157,19 @@ body {
 }
 
 @media (min-width: 560px) {
-    .contenedor-calendario {
+    .calendar {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
 @media (min-width: 900px) {
-    .contenedor-calendario {
+    .calendar {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 }
 
 @media (min-width: 1180px) {
-    .contenedor-calendario {
+    .calendar {
         grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 }
