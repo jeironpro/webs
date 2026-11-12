@@ -60,7 +60,7 @@ conservan tooling de Vite, pero su build ya está versionado y el deploy tampoco
 | [web-instruccion-login-google](https://jeironpro.github.io/webs/web-instruccion-login-google/) | Login con Google           | Educación       |
 | [web-javarcises](https://jeironpro.github.io/webs/web-javarcises/)                             | Javarcises                 | Educación       |
 | [web-juegos](https://jeironpro.github.io/webs/web-juegos/)                                     | Juegos                     | Entretenimiento |
-| [web-lector-arxiu](https://jeironpro.github.io/webs/web-lector-arxiu/)                         | Lector d'arxiu             | Utilidades      |
+| [web-lector-archivo](https://jeironpro.github.io/webs/web-lector-archivo/)                     | Lector de archivos         | Utilidades      |
 | [web-lenguajes-programacion](https://jeironpro.github.io/webs/web-lenguajes-programacion/)     | Lenguajes de programacion  | Educación       |
 | [web-lexaro](https://jeironpro.github.io/webs/web-lexaro/)                                     | Lexaro                     | Productividad   |
 | [web-mandala](https://jeironpro.github.io/webs/web-mandala/)                                   | Mandala                    | Entretenimiento |
