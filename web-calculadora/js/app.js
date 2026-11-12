@@ -1,146 +1,173 @@
-let datosMostrar = document.getElementById('calculo'); 
-let operador = ''; 
-let primerosNumeros = '';
-let segundosNumeros = '';
-let operadorSeleccion = false;
+const display = document.getElementById("display");
+const keypad = document.querySelector(".keypad");
 
-function datosCalculo(value) { 
-    if (operador === '') {
-        if (primerosNumeros === '' && value === '.') {
-            primerosNumeros += '0.';
-            datosMostrar.value += '0.';
-        } else if (primerosNumeros === '' && value === '0') {
+let operator = "";
+let firstOperand = "";
+let secondOperand = "";
+let operatorSelected = false;
+
+function enterDigit(value) {
+    if (operator === "") {
+        if (firstOperand === "" && value === ".") {
+            firstOperand += "0.";
+            display.value += "0.";
+        } else if (firstOperand === "" && value === "0") {
             return;
-        } else if (value === '-' && primerosNumeros === '') {
-            primerosNumeros += value;
-            datosMostrar.value += value;
+        } else if (value === "-" && firstOperand === "") {
+            firstOperand += value;
+            display.value += value;
         } else {
-            primerosNumeros += value;
-            if (operadorSeleccion) { 
-                datosMostrar.value = '';
-                operadorSeleccion = false;
+            firstOperand += value;
+            if (operatorSelected) {
+                display.value = "";
+                operatorSelected = false;
             }
-            datosMostrar.value += value; 
+            display.value += value;
         }
     } else {
-        if (segundosNumeros === '' && value === '.') {
-            segundosNumeros += '0';
-        } else if (segundosNumeros === '0' && value !== '.') {
-            segundosNumeros = '';
+        if (secondOperand === "" && value === ".") {
+            secondOperand += "0";
+        } else if (secondOperand === "0" && value !== ".") {
+            secondOperand = "";
         }
-        segundosNumeros += value;
-        datosMostrar.value = '';
+        secondOperand += value;
+        display.value = "";
     }
-    datosMostrar.value += segundosNumeros;
-} 
+    display.value += secondOperand;
+}
 
-function operadorSeleccionado(operadorCalculo) { 
-    if (segundosNumeros !== '') {
-        calcular();
-    }
-    
-    operador = operadorCalculo; 
-    operadorSeleccion = true;
-
-    // Selector en español
-    let botones = document.querySelectorAll('.boton-operador');
-    botones.forEach(boton => boton.classList.remove('seleccionado'))
-
-    let operadorSeleccionado = document.querySelector(`button[data-operador="${operador}"]`);
-
-    if (operadorSeleccionado) {
-        operadorSeleccionado.classList.add('seleccionado');
-    }
-} 
-
-function calcular() { 
-    let resultado;
-
-    // Selector en español
-    let operadorSeleccionado = document.querySelector(`button[data-operador="${operador}"]`);
-
-    if (operadorSeleccionado) {
-        operadorSeleccionado.classList.remove('seleccionado');
+function selectOperator(nextOperator) {
+    if (secondOperand !== "") {
+        calculate();
     }
 
-    if (operador === "%") {
-        resultado = parseFloat(primerosNumeros / 100)
+    operator = nextOperator;
+    operatorSelected = true;
+
+    keypad.querySelectorAll(".button--operator").forEach((button) => {
+        button.classList.remove("is-selected");
+    });
+
+    const operatorButton = keypad.querySelector(`button[data-operator="${operator}"]`);
+    if (operatorButton) {
+        operatorButton.classList.add("is-selected");
     }
-    else if (operador === "√") {
-        resultado = Math.sqrt(primerosNumeros)
+}
+
+function evaluate(left, operation, right) {
+    const a = parseFloat(left);
+    const b = parseFloat(right);
+
+    switch (operation) {
+        case "+":
+            return a + b;
+        case "-":
+            return a - b;
+        case "*":
+            return a * b;
+        case "/":
+            return a / b;
+        default:
+            return b ? NaN : a;
+    }
+}
+
+function calculate() {
+    const operatorButton = keypad.querySelector(`button[data-operator="${operator}"]`);
+    if (operatorButton) {
+        operatorButton.classList.remove("is-selected");
+    }
+
+    let result;
+    if (operator === "%") {
+        result = parseFloat(firstOperand) / 100;
+    } else if (operator === "√") {
+        result = Math.sqrt(firstOperand);
     } else {
-        try {
-            resultado = eval(primerosNumeros + operador + segundosNumeros);
-        } catch (e) {
-            resultado = "Error";
-        }
-    }
-    
-    // Validar infinito o NaN
-    if (!isFinite(resultado) || isNaN(resultado)) {
-        resultado = "Error";
+        result = evaluate(firstOperand, operator, secondOperand);
     }
 
-    datosMostrar.value = resultado; 
-    operador = ''; 
-    primerosNumeros = resultado.toString();
-    segundosNumeros = '';
-    operadorSeleccion = false;    
+    if (!Number.isFinite(result)) {
+        result = "Error";
+    }
+
+    display.value = result;
+    operator = "";
+    firstOperand = result.toString();
+    secondOperand = "";
+    operatorSelected = false;
 }
 
-function limpiar() {
-    let valorActual = datosMostrar.value;
-    datosMostrar.value = valorActual.slice(0, -1);
-    if (operador === '') {
-        primerosNumeros = datosMostrar.value;
+function clearEntry() {
+    const currentValue = display.value;
+    display.value = currentValue.slice(0, -1);
+    if (operator === "") {
+        firstOperand = display.value;
     } else {
-        segundosNumeros = datosMostrar.value; 
+        secondOperand = display.value;
     }
 }
 
-function limpiarTodo() { 
-    datosMostrar.value = ''; 
-    operador = '';
-    primerosNumeros = '';
-    segundosNumeros = ''; 
-    operadorSeleccion = false;
-    
-    // Selector en español
-    let botones = document.querySelectorAll('.boton-operador');
-    botones.forEach(boton => boton.classList.remove('seleccionado'));
+function clearAll() {
+    display.value = "";
+    operator = "";
+    firstOperand = "";
+    secondOperand = "";
+    operatorSelected = false;
+
+    keypad.querySelectorAll(".button--operator").forEach((button) => {
+        button.classList.remove("is-selected");
+    });
 }
 
-function manejarTeclado(evento) {
-    const tecla = evento.key;
-    if (/^[0-9]$/.test(tecla)) {
-        datosCalculo(tecla);
+function handleKeyboard(event) {
+    const key = event.key;
+    if (/^[0-9]$/.test(key)) {
+        enterDigit(key);
         return;
     }
-    if (tecla === '.' || tecla === ',') {
-        datosCalculo('.');
+    if (key === "." || key === ",") {
+        enterDigit(".");
         return;
     }
-    if (tecla === '+' || tecla === '-' || tecla === '*' || tecla === '/') {
-        operadorSeleccionado(tecla);
+    if (key === "+" || key === "-" || key === "*" || key === "/") {
+        selectOperator(key);
         return;
     }
-    if (tecla === '%') {
-        operadorSeleccionado('%');
+    if (key === "%") {
+        selectOperator("%");
         return;
     }
-    if (tecla === 'Enter' || tecla === '=') {
-        evento.preventDefault();
-        calcular();
+    if (key === "Enter" || key === "=") {
+        event.preventDefault();
+        calculate();
         return;
     }
-    if (tecla === 'Backspace') {
-        evento.preventDefault();
-        limpiar();
+    if (key === "Backspace") {
+        event.preventDefault();
+        clearEntry();
         return;
     }
-    if (tecla === 'Escape' || tecla === 'Delete') {
-        limpiarTodo();
+    if (key === "Escape" || key === "Delete") {
+        clearAll();
     }
 }
 
-document.addEventListener('keydown', manejarTeclado);
+keypad.addEventListener("click", (event) => {
+    const button = event.target.closest("button");
+    if (!button) return;
+
+    if (button.dataset.digit !== undefined) {
+        enterDigit(button.dataset.digit);
+    } else if (button.dataset.operator !== undefined) {
+        selectOperator(button.dataset.operator);
+    } else if (button.dataset.action === "equals") {
+        calculate();
+    } else if (button.dataset.action === "clear") {
+        clearEntry();
+    } else if (button.dataset.action === "clear-all") {
+        clearAll();
+    }
+});
+
+document.addEventListener("keydown", handleKeyboard);
