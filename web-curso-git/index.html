@@ -8,7 +8,7 @@
             name="description"
             content="Curso de Git con una ficha por comando: qué hace, cómo se usa y qué muestra en la terminal."
         />
-        <link rel="shortcut icon" href="icons/curso_git.png" type="image/x-icon" />
+        <link rel="shortcut icon" href="icon/curso_git.png" type="image/x-icon" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -18,30 +18,25 @@
         <link rel="stylesheet" href="css/styles.css" />
     </head>
     <body>
-        <header class="cabecera">
-            <p class="cabecera__eyebrow">manual de terminal</p>
-            <h1 class="cabecera__titulo"><span class="prompt">$</span> git --help</h1>
-            <p class="cabecera__sub">
+        <header class="site-header">
+            <p class="header-eyebrow">manual de terminal</p>
+            <h1 class="header-title"><span class="prompt">$</span> git --help</h1>
+            <p class="header-subtitle">
                 Del primer <code>git init</code> al <code>git bisect</code>. Elige un comando para
                 ver qué hace, cómo se escribe y qué devuelve la terminal.
             </p>
-            <p class="cabecera__nota">35 comandos · una ficha por comando</p>
+            <p class="header-note">35 comandos · una ficha por comando</p>
         </header>
 
-        <main class="principal">
-            <h2 class="principal__titulo">Comandos disponibles</h2>
-            <div class="arbol" id="arbol"></div>
+        <main class="main-content">
+            <h2 class="section-title">Comandos disponibles</h2>
+            <div class="command-tree" id="tree"></div>
         </main>
 
-        <footer class="pie">
-            &copy; Todos los derechos reservados <span data-anio>2025</span> - JeironPro
+        <footer class="site-footer">
+            &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
         </footer>
 
-        <script src="js/arbol_nodos.js"></script>
-        <script>
-            document.querySelectorAll("[data-anio]").forEach((nodo) => {
-                nodo.textContent = new Date().getFullYear();
-            });
-        </script>
+        <script src="js/tree.js"></script>
     </body>
 </html>

@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../icons/curso_git.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../icon/curso_git.png" type="image/x-icon">
     <title>Primeros pasos</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/git.css">
 </head>
 
@@ -14,11 +14,11 @@
     <header>
         <h1>Primeros pasos</h1>
     </header>
-    <main class="contenedor-git">
-        <section class="seccion-git">
-            <article class="definicion-comandos">
-                <h2><span class="material-symbols-outlined">developer_guide</span>Intrucciones</h2>
-                <div class="pasos">
+    <main class="course-content">
+        <section class="course-section">
+            <article class="command-definition">
+                <h2>Intrucciones</h2>
+                <div class="steps">
                     <p>Instalación de git</p>
                     <ul>
                         <li>sudo apt install git (Ubuntu)</li>
@@ -42,9 +42,9 @@
                     </ul>
                 </div>
             </article>
-            <article class="iteracion">
-                <h3><span class="material-symbols-outlined">key</span>Conexión SSH entre Git y GitHub</h3>
-                <div class="pasos">
+            <article class="practice">
+                <h3>Conexión SSH entre Git y GitHub</h3>
+                <div class="steps">
                     <ul>
                         <li>
                             <span>En tu terminal:</span>
@@ -80,14 +80,9 @@
         </section>
     </main>
     <footer>
-        &copy; Todos los derechos reservados <span data-anio>2025</span> - JeironPro
+        &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
     </footer>
-    <script src="../js/cabezera.js"></script>
-    <script>
-        document.querySelectorAll("[data-anio]").forEach((nodo) => {
-            nodo.textContent = new Date().getFullYear();
-        });
-    </script>
+    <script src="../js/header.js"></script>
 </body>
 
 </html>

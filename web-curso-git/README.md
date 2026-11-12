@@ -26,7 +26,7 @@ web-curso-git/
 ├── html/                  # página por comando de Git
 ├── css/                   # estilos del curso
 ├── js/                    # lógica de la interfaz
-└── icons/                 # iconos
+└── icon/                  # iconos
 ```
 
 ## Licencia
