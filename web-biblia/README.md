@@ -8,20 +8,20 @@ partir de un catálogo único de libros.
 ## Caracteristicas
 
 - 73 libros y 1189 capítulos con texto completo de la Biblia Latinoamérica
-- Sin servidor: contenido servido como sitio estático desde el dataset `js/data/versiculos.json`
+- Sin servidor: contenido servido como sitio estático desde el dataset `js/data/verses.json`
 - Navegación entre libros y capítulos con recuentos validados contra el catálogo
 - Sistema editorial clásico (papel, tinta, encuadernación y oro) documentado en [design.md](design.md)
 - Diseño responsive verificado en 320, 375, 414 y 768 px
 
 ## Estructura
 
-- `js/data/catalogo.js` — catálogo canónico de los 73 libros (id, nombre, capítulos y ruta)
-- `js/data/versiculos.json` — texto completo de los versículos
-- `js/generar_capitulos.js` — generación de las grillas de capítulos desde el catálogo
-- `js/paginacion_libros.js` y `js/paginacion_capitulos.js` — navegación entre libros y capítulos
-- `js/versiculos.js` — carga y renderizado de los versículos desde el dataset
+- `js/data/catalog.js` — catálogo canónico de los 73 libros (id, nombre, capítulos y ruta)
+- `js/data/verses.json` — texto completo de los versículos
+- `js/generate_chapters.js` — generación de las grillas de capítulos desde el catálogo
+- `js/book_pagination.js` y `js/chapter_pagination.js` — navegación entre libros y capítulos
+- `js/verses.js` — carga y renderizado de los versículos desde el dataset
 - `css/tokens.css` — tokens del sistema editorial; el resto de los CSS lo consumen
-- `scripts/importar_biblia.mjs` — conversión y validación del dataset contra el catálogo
+- `scripts/import_bible.mjs` — conversión y validación del dataset contra el catálogo
 
 ## Sistema editorial
 
@@ -36,7 +36,7 @@ El texto corresponde a la **Biblia Latinoamérica** (traducción pastoral de
 Bernardo Hurault). Los derechos del texto pertenecen a su traductor y
 editorial; consúltese la licencia de uso antes de una distribución pública.
 
-El dataset se valida y se genera con el pipeline `scripts/importar_biblia.mjs`,
+El dataset se valida y se genera con el pipeline `scripts/import_bible.mjs`,
 que comprueba los recuentos de capítulos contra el catálogo.
 
 ## Atribuciones

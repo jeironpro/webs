@@ -11,16 +11,16 @@ aplicación se mantiene en `.hallmark/log.json`.
 
 ## Principios
 
-1. **Papel, no pantalla.** Fondo cálido de papel antiguo (`--papel`) y
-   superficies apenas más claras (`--papel-alto`). Nada de negro puro ni
+1. **Papel, no pantalla.** Fondo cálido de papel antiguo (`--paper`) y
+   superficies apenas más claras (`--paper-raised`). Nada de negro puro ni
    blancos fríos.
-2. **Tinta, no color de marca.** El texto es tinta oscura (`--tinta`); el
+2. **Tinta, no color de marca.** El texto es tinta oscura (`--ink`); el
    acento cromático se reserva al granate de encuadernación y al oro, usados
    con moderación (reglas, numerales, hover).
 3. **Serif, no grotesca.** Tipografía editorial serif en todos los niveles:
    títulos en Cormorant Garamond y cuerpo en EB Garamond.
 4. **Reglas en lugar de sombras.** La estructura se dibuja con filetes finos
-   (`--regla`, `--linea`) y ornamentos, no con sombras grandes ni degradados.
+   (`--rule`, `--line`) y ornamentos, no con sombras grandes ni degradados.
 5. **Jerarquía por versalitas y espaciado.** Las cabeceras usan versalitas
    con interletraje; la separación entre secciones se logra con aire y
    filetes, no con cajas de color.
@@ -32,14 +32,14 @@ aplicación se mantiene en `.hallmark/log.json`.
 
 | Token            | Valor      | Uso                                   |
 | ---------------- | ---------- | ------------------------------------- |
-| `--papel`        | `#f6efe3`  | Fondo general (papel antiguo)         |
-| `--papel-alto`   | `#fffdf7`  | Superficies (cabeceras, tarjetas)     |
-| `--tinta`        | `#2b211a`  | Texto principal (tinta)               |
-| `--tinta-suave`  | `#7a6a5a`  | Texto secundario y pies               |
-| `--granate`      | `#7d2a24`  | Acento principal (encuadernación)     |
-| `--oro`          | `#a8843c`  | Acento secundario (detalles)          |
-| `--linea`        | `#e0d5c2`  | Filetes y bordes                      |
-| `--linea-fuerte` | `#c9b99b`  | Filetes en estados destacados         |
+| `--paper`        | `#f6efe3`  | Fondo general (papel antiguo)         |
+| `--paper-raised`   | `#fffdf7`  | Superficies (cabeceras, tarjetas)     |
+| `--ink`        | `#2b211a`  | Texto principal (tinta)               |
+| `--ink-muted`  | `#7a6a5a`  | Texto secundario y pies               |
+| `--maroon`      | `#7d2a24`  | Acento principal (encuadernación)     |
+| `--gold`          | `#a8843c`  | Acento secundario (detalles)          |
+| `--line`        | `#e0d5c2`  | Filetes y bordes                      |
+| `--line-strong` | `#c9b99b`  | Filetes en estados destacados         |
 
 ## Tipografía
 

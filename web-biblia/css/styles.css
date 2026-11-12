@@ -8,11 +8,11 @@
 }
 
 body {
-    background-color: var(--papel);
-    color: var(--tinta);
+    background-color: var(--paper);
+    color: var(--ink);
     display: flex;
     flex-direction: column;
-    font-family: var(--fuente-cuerpo);
+    font-family: var(--font-body);
     font-size: 18px;
     line-height: 1.9;
     min-height: 100vh;
@@ -20,14 +20,14 @@ body {
 
 /* ---------- Cabeceras ---------- */
 
-.header-principal,
-.header-libros-capitulos,
-.header-testamentos {
+.main-header,
+.books-header,
+.testaments-header {
     align-items: center;
-    background-color: var(--papel-alto);
-    border-bottom: var(--regla);
+    background-color: var(--paper-raised);
+    border-bottom: var(--rule);
     display: flex;
-    height: var(--alto-cabecera);
+    height: var(--header-height);
     left: 0;
     padding: 0 16px;
     position: fixed;
@@ -36,29 +36,29 @@ body {
     z-index: 1000;
 }
 
-.header-principal {
+.main-header {
     justify-content: center;
 }
 
-.header-libros-capitulos {
+.books-header {
     justify-content: space-between;
 }
 
-.header-testamentos {
+.testaments-header {
     justify-content: center;
     position: relative;
 }
 
-.header-testamentos .enlaces {
+.testaments-header .links {
     left: 16px;
     position: absolute;
 }
 
-.header-principal h1,
-.header-libros-capitulos h1,
-.header-testamentos h1 {
-    color: var(--tinta);
-    font-family: var(--fuente-titulo);
+.main-header h1,
+.books-header h1,
+.testaments-header h1 {
+    color: var(--ink);
+    font-family: var(--font-title);
     font-size: 17px;
     font-weight: 600;
     letter-spacing: 0.04em;
@@ -69,31 +69,31 @@ body {
 
 /* Iconos de navegación (SVG de trazo fino) */
 
-.header-libros-capitulos .enlaces a,
-.header-testamentos .enlaces a {
+.books-header .links a,
+.testaments-header .links a {
     align-items: center;
-    color: var(--tinta-suave);
+    color: var(--ink-muted);
     display: flex;
     height: 40px;
     justify-content: center;
     text-decoration: none;
-    transition: color var(--transicion);
+    transition: color var(--transition);
     width: 40px;
 }
 
-.header-libros-capitulos .enlaces a:hover,
-.header-testamentos .enlaces a:hover {
-    color: var(--granate);
+.books-header .links a:hover,
+.testaments-header .links a:hover {
+    color: var(--maroon);
 }
 
-.icono {
+.icon {
     height: 22px;
     width: 22px;
 }
 
 /* Botones Anterior / Siguiente */
 
-.header-libros-capitulos .botones-titulo {
+.books-header .title-actions {
     align-items: center;
     display: flex;
     flex: 1;
@@ -102,27 +102,27 @@ body {
     justify-content: center;
 }
 
-.header-libros-capitulos .botones-titulo button {
+.books-header .title-actions button {
     background-color: transparent;
-    border: var(--regla-fuerte);
-    border-radius: var(--radio);
-    color: var(--granate);
+    border: var(--rule-strong);
+    border-radius: var(--radius);
+    color: var(--maroon);
     cursor: pointer;
-    font-family: var(--fuente-titulo);
+    font-family: var(--font-title);
     font-size: 15px;
     font-weight: 600;
     letter-spacing: 0.05em;
     padding: 6px 18px;
     text-transform: uppercase;
-    transition: background-color var(--transicion), color var(--transicion);
+    transition: background-color var(--transition), color var(--transition);
 }
 
-.header-libros-capitulos .botones-titulo button:hover:not(:disabled) {
-    background-color: var(--granate);
-    color: var(--papel-alto);
+.books-header .title-actions button:hover:not(:disabled) {
+    background-color: var(--maroon);
+    color: var(--paper-raised);
 }
 
-.header-libros-capitulos .botones-titulo button:disabled {
+.books-header .title-actions button:disabled {
     cursor: default;
     opacity: 0.4;
 }
@@ -131,7 +131,7 @@ body {
 
 main {
     flex: 1;
-    margin-top: var(--alto-cabecera);
+    margin-top: var(--header-height);
     padding: 16px 12px 36px;
     width: 100%;
 }
@@ -139,8 +139,8 @@ main {
 /* ---------- Pie ---------- */
 
 footer {
-    background-color: var(--papel-alto);
-    border-top: var(--regla);
+    background-color: var(--paper-raised);
+    border-top: var(--rule);
     margin-top: auto;
     padding: 18px 15px;
     text-align: center;
@@ -148,7 +148,7 @@ footer {
 }
 
 footer p {
-    color: var(--tinta-suave);
+    color: var(--ink-muted);
     font-size: 14px;
     letter-spacing: 0.03em;
     margin: 0;
@@ -157,8 +157,8 @@ footer p {
 /* ---------- Responsive ---------- */
 
 /* En móvil los botones de navegación muestran sólo la flecha */
-#anterior,
-#siguiente {
+#previous,
+#next {
     align-items: center;
     display: flex;
     font-size: 0;
@@ -166,34 +166,34 @@ footer p {
     padding: 6px 12px;
 }
 
-#anterior::before {
+#previous::before {
     content: "‹";
     display: block;
     font-size: 22px;
     line-height: 1;
 }
 
-#siguiente::before {
+#next::before {
     content: "›";
     display: block;
     font-size: 22px;
     line-height: 1;
 }
 
-.header-libros-capitulos {
+.books-header {
     padding: 0 8px;
 }
 
 @media (min-width: 321px) {
-    .header-principal h1,
-    .header-libros-capitulos h1,
-    .header-testamentos h1 {
+    .main-header h1,
+    .books-header h1,
+    .testaments-header h1 {
         font-size: 20px;
     }
 }
 
 @media (min-width: 481px) {
-    .header-libros-capitulos {
+    .books-header {
         padding: 0;
     }
 
@@ -203,27 +203,27 @@ footer p {
 }
 
 @media (min-width: 769px) {
-    .header-principal h1,
-    .header-libros-capitulos h1,
-    .header-testamentos h1 {
+    .main-header h1,
+    .books-header h1,
+    .testaments-header h1 {
         font-size: 30px;
         text-align: start;
     }
 
-    .header-libros-capitulos .botones-titulo {
+    .books-header .title-actions {
         flex: initial;
         gap: 24px;
     }
 
-    #anterior,
-    #siguiente {
+    #previous,
+    #next {
         display: inline-block;
         font-size: 15px;
         padding: 6px 18px;
     }
 
-    #anterior::before,
-    #siguiente::before {
+    #previous::before,
+    #next::before {
         content: none;
         display: none;
     }
