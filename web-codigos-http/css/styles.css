@@ -1,9 +1,9 @@
 :root {
-    --papel: #ffffff;
-    --tinta: #16181d;
-    --tenue: #5e6572;
-    --filete: #e6e7ea;
-    --fila: #f7f8fa;
+    --paper: #ffffff;
+    --ink: #16181d;
+    --ink-muted: #5e6572;
+    --border-color: #e6e7ea;
+    --row: #f7f8fa;
 
     --color-1xx: #1d63d1;
     --color-2xx: #0f7b45;
@@ -19,8 +19,8 @@
 }
 
 body {
-    background: var(--papel);
-    color: var(--tinta);
+    background: var(--paper);
+    color: var(--ink);
     display: flex;
     flex-direction: column;
     font-family: "Inter", system-ui, sans-serif;
@@ -29,20 +29,20 @@ body {
     overflow-x: clip;
 }
 
-.doc-cabecera {
-    border-bottom: 1px solid var(--tinta);
+.doc-header {
+    border-bottom: 1px solid var(--ink);
     padding: clamp(2.2rem, 7vw, 3.6rem) 1.25rem clamp(1.6rem, 4vw, 2.4rem);
 }
 
-.doc-cabecera__interior,
-.doc-cuerpo {
+.doc-header__inner,
+.doc-body {
     margin: 0 auto;
     max-width: 860px;
     width: 100%;
 }
 
-.doc-miga {
-    color: var(--tenue);
+.doc-breadcrumb {
+    color: var(--ink-muted);
     font-family: "IBM Plex Mono", ui-monospace, monospace;
     font-size: 0.7rem;
     letter-spacing: 0.22em;
@@ -50,7 +50,7 @@ body {
     text-transform: uppercase;
 }
 
-.doc-titulo {
+.doc-title {
     font-family: "IBM Plex Mono", ui-monospace, monospace;
     font-size: clamp(1.7rem, 6vw, 2.7rem);
     font-weight: 600;
@@ -60,30 +60,30 @@ body {
 }
 
 .doc-intro {
-    color: var(--tenue);
+    color: var(--ink-muted);
     font-size: clamp(0.92rem, 2.5vw, 1rem);
     line-height: 1.65;
     margin: 1rem 0 0;
     max-width: 60ch;
 }
 
-.doc-cuerpo {
+.doc-body {
     flex: 1;
     padding: clamp(1.6rem, 5vw, 2.6rem) 1.25rem clamp(2.5rem, 6vw, 4rem);
 }
 
-.contenedor-seccion {
-    border-top: 2px solid var(--tinta);
+.section {
+    border-top: 2px solid var(--ink);
     margin-top: 2.4rem;
     padding-top: 0.9rem;
 }
 
-.contenedor-seccion:first-child {
+.section:first-child {
     margin-top: 0;
 }
 
-.contenedor-seccion h2 {
-    color: var(--tenue);
+.section h2 {
+    color: var(--ink-muted);
     font-family: "IBM Plex Mono", ui-monospace, monospace;
     font-size: 0.82rem;
     font-weight: 600;
@@ -92,29 +92,29 @@ body {
     text-transform: uppercase;
 }
 
-.contenedor-seccion:nth-child(1) h2 {
+.section:nth-child(1) h2 {
     color: var(--color-1xx);
 }
 
-.contenedor-seccion:nth-child(2) h2 {
+.section:nth-child(2) h2 {
     color: var(--color-2xx);
 }
 
-.contenedor-seccion:nth-child(3) h2 {
+.section:nth-child(3) h2 {
     color: var(--color-3xx);
 }
 
-.contenedor-seccion:nth-child(4) h2 {
+.section:nth-child(4) h2 {
     color: var(--color-4xx);
 }
 
-.contenedor-seccion:nth-child(5) h2 {
+.section:nth-child(5) h2 {
     color: var(--color-5xx);
 }
 
-.codigo {
+.code {
     align-items: baseline;
-    border-bottom: 1px solid var(--filete);
+    border-bottom: 1px solid var(--border-color);
     display: grid;
     font-family: "IBM Plex Mono", ui-monospace, monospace;
     font-size: 0.95rem;
@@ -125,12 +125,12 @@ body {
     transition: background-color 0.15s ease;
 }
 
-.codigo:hover {
-    background: var(--fila);
+.code:hover {
+    background: var(--row);
 }
 
-.codigo .descripcion {
-    color: var(--tenue);
+.code .description {
+    color: var(--ink-muted);
     font-family: "Inter", system-ui, sans-serif;
     font-size: 0.88rem;
     font-weight: 400;
@@ -138,29 +138,29 @@ body {
     margin: 0;
 }
 
-.codigo[data-categoria="1xx"] {
+.code[data-category="1xx"] {
     color: var(--color-1xx);
 }
 
-.codigo[data-categoria="2xx"] {
+.code[data-category="2xx"] {
     color: var(--color-2xx);
 }
 
-.codigo[data-categoria="3xx"] {
+.code[data-category="3xx"] {
     color: var(--color-3xx);
 }
 
-.codigo[data-categoria="4xx"] {
+.code[data-category="4xx"] {
     color: var(--color-4xx);
 }
 
-.codigo[data-categoria="5xx"] {
+.code[data-category="5xx"] {
     color: var(--color-5xx);
 }
 
-.doc-pie {
-    border-top: 1px solid var(--filete);
-    color: var(--tenue);
+.doc-footer {
+    border-top: 1px solid var(--border-color);
+    color: var(--ink-muted);
     font-family: "IBM Plex Mono", ui-monospace, monospace;
     font-size: 0.68rem;
     letter-spacing: 0.14em;
@@ -170,18 +170,18 @@ body {
 }
 
 @media (min-width: 640px) {
-    .codigo {
+    .code {
         grid-template-columns: 4.4rem minmax(0, 1fr);
         padding: 0.7rem 0.6rem;
     }
 
-    .codigo .descripcion {
+    .code .description {
         font-size: 0.9rem;
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .codigo {
+    .code {
         transition: none;
     }
 }

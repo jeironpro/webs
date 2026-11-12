@@ -18,10 +18,10 @@
         <link rel="stylesheet" href="css/styles.css" />
     </head>
     <body>
-        <header class="doc-cabecera">
-            <div class="doc-cabecera__interior">
-                <p class="doc-miga">HTTP · estados</p>
-                <h1 class="doc-titulo">Códigos de respuesta</h1>
+        <header class="doc-header">
+            <div class="doc-header__inner">
+                <p class="doc-breadcrumb">HTTP · estados</p>
+                <h1 class="doc-title">Códigos de respuesta</h1>
                 <p class="doc-intro">
                     Las cinco familias de estados del protocolo, del 1xx al 5xx, con el significado
                     de cada código tal como lo devuelve un servidor.
@@ -29,19 +29,14 @@
             </div>
         </header>
 
-        <main class="doc-cuerpo">
-            <div id="contenedor-lista-codigos"></div>
+        <main class="doc-body">
+            <div id="code-list"></div>
         </main>
 
-        <footer class="doc-pie">
-            &copy; Todos los derechos reservados <span data-anio>2025</span> - JeironPro
+        <footer class="doc-footer">
+            &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
         </footer>
 
-        <script src="js/script.js"></script>
-        <script>
-            document.querySelectorAll("[data-anio]").forEach((nodo) => {
-                nodo.textContent = new Date().getFullYear();
-            });
-        </script>
+        <script src="js/app.js"></script>
     </body>
 </html>
