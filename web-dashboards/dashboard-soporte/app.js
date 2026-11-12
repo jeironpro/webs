@@ -950,6 +950,11 @@ function addGlobalStyles() {
         }
     `
     document.head.appendChild(style)
+
+    const skin = document.createElement('link')
+    skin.rel = 'stylesheet'
+    skin.href = '../css/dashboard-skin.css'
+    document.head.append(skin)
 }
 
 function observeReveal(selector) {

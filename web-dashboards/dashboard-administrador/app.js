@@ -6,7 +6,7 @@ const THEME = { LIGHT: "light", DARK: "dark" };
 
 const getSystemTheme = () => {
     if (typeof window === "undefined") return THEME.LIGHT;
-    return window.matchMedia("(prefers-color-scheme: dark)").matches
+    return false //
         ? THEME.DARK
         : THEME.LIGHT;
 };
@@ -934,6 +934,11 @@ function addGlobalStyles() {
         .flex-gap-6 { gap: 1.5rem; }
     `;
     document.head.appendChild(style);
+
+    const skin = document.createElement('link')
+    skin.rel = 'stylesheet'
+    skin.href = '../css/dashboard-skin.css'
+    document.head.append(skin)
 }
 
 // Observadores de reveal

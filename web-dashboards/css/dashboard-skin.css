@@ -1,0 +1,454 @@
+/* Piel de los dashboards: recupera la composición y la paleta de la versión React
+   (papel crema, barra lateral blanca, tarjetas con filete y cifras apiladas)
+   sobre las clases semánticas que emite el JS vanilla. */
+
+:root {
+    --skin-card: var(--color-card, oklch(99% 0.004 95));
+    --skin-rule: var(--color-rule, oklch(89% 0.016 95));
+    --skin-rule-strong: var(--color-rule-strong, oklch(82% 0.02 95));
+    --skin-ink: var(--color-ink, oklch(20% 0.012 250));
+    --skin-ink-2: var(--color-ink-2, oklch(20% 0.012 250 / 0.62));
+    --skin-ink-3: var(--color-ink-3, oklch(20% 0.012 250 / 0.45));
+    --skin-paper: var(--color-paper, oklch(97% 0.012 95));
+    --skin-accent: var(--color-accent, oklch(86% 0.18 95));
+    --skin-accent-deep: var(--color-accent-deep, oklch(74% 0.17 95));
+    --skin-radius: var(--radius-xl, 20px);
+    --skin-sidebar: 15.5rem;
+}
+
+/* Paletas por dashboard, tomadas de su versión React */
+body.skin-admin {
+    --skin-btn-ink: oklch(99% 0.002 250);
+    --skin-accent: oklch(58% 0.2 256);
+    --skin-accent-deep: oklch(50% 0.19 256);
+    --skin-card: oklch(99.4% 0.002 250);
+    --skin-paper: oklch(98% 0.004 250);
+    --skin-ink: oklch(24% 0.02 258);
+    --skin-rule: oklch(91% 0.006 250);
+    --skin-rule-strong: oklch(85% 0.008 250);
+    --skin-font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+    --skin-radius: 12px;
+}
+
+body.skin-financiero {
+    --skin-accent: oklch(86% 0.18 95);
+    --skin-accent-deep: oklch(74% 0.17 95);
+    --skin-card: oklch(99% 0.004 95);
+    --skin-paper: oklch(97% 0.012 95);
+    --skin-ink: oklch(20% 0.012 250);
+    --skin-rule: oklch(89% 0.016 95);
+    --skin-rule-strong: oklch(82% 0.02 95);
+    --skin-font-display: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+    --skin-radius: 20px;
+}
+
+body.skin-operativo {
+    --skin-accent: oklch(86% 0.18 95);
+    --skin-accent-deep: oklch(81% 0.19 95);
+    --skin-card: oklch(99% 0.004 95);
+    --skin-paper: oklch(97% 0.012 95);
+    --skin-ink: oklch(20% 0.012 250);
+    --skin-rule: oklch(89% 0.016 95);
+    --skin-rule-strong: oklch(82% 0.02 95);
+    --skin-font-display: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+    --skin-radius: 20px;
+}
+
+body.skin-soporte {
+    --skin-btn-ink: oklch(99% 0.002 250);
+    --skin-accent: oklch(58% 0.18 285);
+    --skin-accent-deep: oklch(50% 0.19 285);
+    --skin-card: oklch(100% 0 0);
+    --skin-paper: oklch(97.5% 0.005 250);
+    --skin-ink: oklch(24% 0.02 250);
+    --skin-rule: oklch(92% 0.006 250);
+    --skin-rule-strong: oklch(86% 0.008 250);
+    --skin-font-display: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+    --skin-radius: 14px;
+}
+
+html.dark {
+    --skin-paper: oklch(18% 0.008 250);
+    --skin-card: oklch(23% 0.01 250);
+    --skin-rule: oklch(32% 0.012 250);
+    --skin-rule-strong: oklch(40% 0.014 250);
+    --skin-ink: oklch(96% 0.004 95);
+    --skin-ink-2: oklch(96% 0.004 95 / 0.66);
+    --skin-ink-3: oklch(96% 0.004 95 / 0.48);
+}
+
+body {
+    background: var(--skin-paper);
+    color: var(--skin-ink);
+}
+
+.dashboard {
+    min-height: 100dvh;
+}
+
+/* En modo oscuro la paleta de cada dashboard se oscurece también en el body */
+html.dark body {
+    --skin-paper: oklch(18% 0.008 250);
+    --skin-card: oklch(23% 0.01 250);
+    --skin-rule: oklch(32% 0.012 250);
+    --skin-rule-strong: oklch(40% 0.014 250);
+    --skin-ink: oklch(96% 0.004 95);
+    --skin-ink-2: oklch(96% 0.004 95 / 0.66);
+    --skin-ink-3: oklch(96% 0.004 95 / 0.48);
+}
+
+/* Barra lateral */
+.sidebar {
+    background: var(--skin-card);
+    border-right: 1px solid var(--skin-rule);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    height: 100dvh;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    padding: 0.75rem;
+    position: fixed;
+    transition: transform 0.2s ease;
+    width: var(--skin-sidebar);
+    z-index: 30;
+}
+
+.sidebar-brand {
+    align-items: center;
+    border: 0;
+    color: var(--skin-ink);
+    display: flex;
+    font-family: var(--skin-font-display, var(--font-display, inherit));
+    font-size: 1.05rem;
+    font-weight: 700;
+    gap: 0.55rem;
+    letter-spacing: -0.02em;
+    padding: 0.6rem 0.5rem 1rem;
+}
+
+.sidebar-brand::before {
+    background: var(--skin-accent);
+    border-radius: 8px;
+    color: oklch(24% 0.02 95);
+    content: "";
+    display: block;
+    height: 1.6rem;
+    width: 1.6rem;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding: 0;
+}
+
+.nav-link {
+    border-radius: 10px;
+    color: var(--skin-ink-2);
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.55rem 0.7rem;
+    text-decoration: none;
+    transition:
+        background-color 0.15s ease,
+        color 0.15s ease;
+}
+
+.nav-link:hover {
+    background: color-mix(in oklab, var(--skin-ink) 6%, transparent);
+    color: var(--skin-ink);
+}
+
+.nav-link.active {
+    background: color-mix(in oklab, var(--skin-accent) 45%, transparent);
+    color: var(--skin-ink);
+    font-weight: 600;
+}
+
+.sidebar-footer {
+    border-top: 1px solid var(--skin-rule);
+    color: var(--skin-ink-2);
+    font-size: 0.8rem;
+    inset-block-end: 0;
+    inset-inline: 0;
+    margin-top: auto;
+    padding: 0.9rem 0.6rem 0.35rem;
+    position: static;
+}
+
+.sidebar-user {
+    color: var(--skin-ink);
+    font-weight: 600;
+}
+
+/* Contenido */
+.main {
+    margin-left: var(--skin-sidebar);
+    max-width: 90rem;
+    padding: 1.25rem 1rem 3rem;
+}
+
+.header {
+    align-items: center;
+    border-bottom: 1px solid var(--skin-rule);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1rem;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.85rem;
+}
+
+.header > * {
+    flex: 0 1 auto;
+    min-width: 0;
+}
+
+.header-brand {
+    align-items: center;
+    display: flex;
+    gap: 0.6rem;
+    min-width: 0;
+}
+
+.header-title {
+    color: var(--skin-ink-2);
+    font-family: var(--font-mono, inherit);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.header-actions {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.header-range {
+    align-items: center;
+    color: var(--skin-ink-2);
+    display: flex;
+    font-size: 0.8rem;
+    gap: 0.4rem;
+}
+
+.sidebar-toggle {
+    display: none;
+}
+
+/* Tipografía de página */
+.page-header {
+    margin-bottom: 1.4rem;
+}
+
+.page-title {
+    font-family: var(--skin-font-display, var(--font-display, inherit));
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+    margin: 0;
+}
+
+.section-heading {
+    color: var(--skin-ink);
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 0 0 0.75rem;
+}
+
+/* Cifras */
+.metric-card {
+    background: var(--skin-card);
+    border: 1px solid var(--skin-rule);
+    border-radius: var(--skin-radius);
+    box-shadow: 0 1px 2px oklch(20% 0.012 250 / 0.04);
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding: 1rem 1.1rem;
+}
+
+.metric-value {
+    color: var(--skin-ink);
+    display: block;
+    font-family: var(--font-mono, inherit);
+    font-size: clamp(1.35rem, 2.4vw, 1.7rem);
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+}
+
+.metric-label {
+    color: var(--skin-ink-2);
+    display: block;
+    font-size: 0.75rem;
+    line-height: 1.3;
+}
+
+/* Listados y tarjetas menores */
+.income-grid,
+.expense-grid,
+.sub-grid {
+    display: grid;
+    gap: 0.6rem;
+    grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+}
+
+.income-item,
+.expense-item,
+.sub-item,
+.setting-item,
+.profile-card {
+    background: var(--skin-card);
+    border: 1px solid var(--skin-rule);
+    border-radius: calc(var(--skin-radius) - 6px);
+    padding: 0.75rem 0.85rem;
+}
+
+.income-name,
+.expense-name,
+.sub-name,
+.setting-label,
+.profile-name {
+    color: var(--skin-ink-2);
+    display: block;
+    font-size: 0.78rem;
+    margin-bottom: 0.15rem;
+}
+
+.income-amount,
+.expense-amount,
+.sub-price {
+    color: var(--skin-ink);
+    font-family: var(--font-mono, inherit);
+    font-size: 0.95rem;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+}
+
+.profile-email {
+    color: var(--skin-ink-3);
+    font-size: 0.78rem;
+}
+
+.profile-avatar {
+    align-items: center;
+    background: color-mix(in oklab, var(--skin-accent) 55%, var(--skin-card));
+    border-radius: 999px;
+    color: var(--skin-ink);
+    display: inline-flex;
+    font-size: 0.85rem;
+    font-weight: 700;
+    height: 2rem;
+    justify-content: center;
+    width: 2rem;
+}
+
+/* Controles */
+.btn {
+    align-items: center;
+    background: var(--skin-accent);
+    border: 1px solid var(--skin-accent-deep);
+    border-radius: 10px;
+    color: var(--skin-btn-ink, oklch(24% 0.02 95));
+    cursor: pointer;
+    display: inline-flex;
+    font-size: 0.82rem;
+    font-weight: 600;
+    gap: 0.35rem;
+    padding: 0.45rem 0.85rem;
+    transition:
+        background-color 0.15s ease,
+        transform 0.15s ease;
+}
+
+.btn:hover {
+    background: var(--skin-accent-deep);
+}
+
+.btn:focus-visible {
+    outline: 2px solid var(--skin-accent-deep);
+    outline-offset: 2px;
+}
+
+.btn-secondary {
+    background: var(--skin-card);
+    border-color: var(--skin-rule-strong);
+    color: var(--skin-ink);
+}
+
+.btn-secondary:hover {
+    background: color-mix(in oklab, var(--skin-ink) 5%, var(--skin-card));
+}
+
+.input {
+    background: var(--skin-card);
+    border: 1px solid var(--skin-rule-strong);
+    border-radius: 9px;
+    color: var(--skin-ink);
+    font-size: 0.82rem;
+    padding: 0.4rem 0.55rem;
+}
+
+.status-badge {
+    background: color-mix(in oklab, var(--skin-accent) 40%, transparent);
+    border-radius: 999px;
+    color: var(--skin-ink);
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.12rem 0.5rem;
+}
+
+.footer {
+    border-top: 1px solid var(--skin-rule);
+    color: var(--skin-ink-3);
+    font-size: 0.78rem;
+    margin-top: 2.5rem;
+    padding-top: 1rem;
+}
+
+@media (max-width: 63.99rem) {
+    .sidebar {
+        transform: translateX(-100%);
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .sidebar.closed {
+        transform: translateX(-100%);
+    }
+
+    .main {
+        margin-left: 0;
+        padding: 1rem 0.9rem 2.5rem;
+    }
+
+    .sidebar-toggle {
+        display: inline-flex;
+    }
+}
+
+@media (min-width: 64rem) {
+    .main {
+        padding: 1.75rem 2rem 3rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sidebar,
+    .btn,
+    .nav-link {
+        transition: none;
+    }
+}
