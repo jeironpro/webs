@@ -1,44 +1,56 @@
-let balanceInicial = 0;
-let gastosTotales = 0;
+'use strict';
 
-const agregarIngresos = () => {
-    const inputIngresos = document.getElementById('ingresos');
-    const ingresos = parseInt(inputIngresos.value) || 0;
-    const totalIngresos = document.getElementById("totalIngresos");
-    
-    totalIngresos.textContent = ingresos;
-    balanceInicial = ingresos;
-    actualizarBalance();
-    limpiarInput();
-};
+let totalIncomeCents = 0;
+let totalExpenseCents = 0;
 
-const agregarGastos = () => {
-    const inputGastos = document.getElementById('gastos');
-    const gastos = parseInt(inputGastos.value) || 0;
-    
-    balanceInicial -= gastos;
-    gastosTotales += gastos; 
-    actualizarBalance();
-    actualizarGastos();
-    limpiarInput();
-};
+const incomeForm = document.getElementById('income-form');
+const expenseForm = document.getElementById('expense-form');
+const incomeInput = document.getElementById('income-input');
+const expenseInput = document.getElementById('expense-input');
+const totalIncome = document.getElementById('total-income');
+const totalExpenses = document.getElementById('total-expenses');
+const netBalance = document.getElementById('net-balance');
 
-const actualizarGastos = () => {
-    const totalGastos = document.getElementById("totalGastos");
-    totalGastos.textContent = gastosTotales;
-};
+const amountFormatter = new Intl.NumberFormat('es-ES', {
+    maximumFractionDigits: 2,
+});
 
-const actualizarBalance = () => {
-    const balance = document.getElementById("balance");
+function formatCents(cents) {
+    return amountFormatter.format(cents / 100);
+}
 
-    if (balanceInicial <= 0) {
-        balance.textContent = 0;
+function updateSummary() {
+    const netCents = totalIncomeCents - totalExpenseCents;
+
+    totalIncome.textContent = formatCents(totalIncomeCents);
+    totalExpenses.textContent = formatCents(totalExpenseCents);
+    netBalance.textContent = formatCents(netCents);
+    netBalance.classList.toggle('is-negative', netCents < 0);
+}
+
+function addAmount(event, type) {
+    event.preventDefault();
+
+    const isIncome = type === 'income';
+    const input = isIncome ? incomeInput : expenseInput;
+    const amount = Number.parseFloat(input.value);
+
+    if (!Number.isFinite(amount) || amount <= 0) return;
+
+    const cents = Math.round(amount * 100);
+
+    if (isIncome) {
+        totalIncomeCents += cents;
     } else {
-        balance.textContent = balanceInicial;
+        totalExpenseCents += cents;
     }
-};
 
-const limpiarInput = () => {
-    document.getElementById('ingresos').value = '';
-    document.getElementById('gastos').value = '';
-};
+    input.value = '';
+    updateSummary();
+    input.focus();
+}
+
+incomeForm.addEventListener('submit', (event) => addAmount(event, 'income'));
+expenseForm.addEventListener('submit', (event) => addAmount(event, 'expense'));
+
+updateSummary();
