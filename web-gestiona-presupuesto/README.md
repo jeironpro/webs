@@ -4,14 +4,15 @@ Gestor de presupuesto personal en el navegador: registra ingresos y gastos y con
 
 ## Características
 
-- Registro de ingresos y gastos con importe.
+- Registro de ingresos y gastos con importe, acumulando cada movimiento.
 - Totales parciales de ingresos y de gastos.
-- Cálculo automático del balance neto.
+- Cálculo automático del balance neto, incluso cuando es negativo.
 - Interfaz en español con formularios separados para cada tipo de movimiento.
 
 ## Tecnologías
 
-- HTML5, CSS3 y JavaScript (ES6+), sin dependencias externas.
+- HTML5, CSS3 y JavaScript (ES6+), sin librerías externas.
+- Tipografía desde Google Fonts.
 
 ## Uso
 
@@ -30,4 +31,4 @@ web-gestiona-presupuesto/
 
 ## Licencia
 Este proyecto está bajo la licencia **MIT**.  
-Consulta el archivo [LICENSE](LICENSE) para más detalles.
+Consulta el archivo [LICENSE](../LICENSE) para más detalles.
