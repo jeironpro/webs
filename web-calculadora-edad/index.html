@@ -5,29 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Una calculadora de edad moderna y visualmente atractiva." />
     <title>Calculadora de Edad</title>
-    <link rel="icon" href="icon/calculadora_edad.png" />
+    <link rel="icon" href="icon/age_calculator.png" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-    <main class="contenedor-principal">
-        <header class="encabezado">
+    <main class="app">
+        <header class="header">
             <h1>Calculadora de Edad</h1>
-            <p class="subtitulo">Descubre tu edad exacta en años, meses y días</p>
+            <p class="subtitle">Descubre tu edad exacta en años, meses y días</p>
         </header>
-        <section class="seccion-calculadora">
-            <div class="grupo-entrada">
-                <label for="fecha">Fecha de Nacimiento</label>
-                <input type="date" id="fecha" aria-label="Selecciona tu fecha de nacimiento" />
+        <section class="calculator-section">
+            <div class="field-group">
+                <label for="birthDate">Fecha de Nacimiento</label>
+                <input type="date" id="birthDate" aria-label="Selecciona tu fecha de nacimiento" />
             </div>
 
-            <button onclick="calcular()" class="boton-calcular" id="botonCalcular">
+            <button class="button" id="calculateButton">
                 Calcular Edad
             </button>
         </section>
-        <section class="seccion-resultado" id="seccionResultado">
-            <div class="tarjeta-resultado oculto" id="tarjetaResultado">
-                <p id="textoEdad" class="texto-resultado"></p>
+        <section class="result-section" id="resultSection">
+            <div class="result-card is-hidden" id="resultCard">
+                <p id="ageText" class="result-text"></p>
             </div>
         </section>
     </main>
