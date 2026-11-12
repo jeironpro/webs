@@ -1,21 +1,20 @@
 :root {
-    --fondo: #f7f4ff;
-    --superficie: #ffffff;
-    --texto: #1f2430;
-    --texto-tenue: #5d6475;
-    --marca: #5b53d6;
-    --marca-2: #14b8a6;
-    --marca-suave: #ece9ff;
-    --borde: #e3e0f3;
-    --sombra: 0 18px 40px -24px rgba(31, 36, 48, 0.35);
-    --radio: 22px;
-    --blanco: #ffffff;
+    --background: #f7f4ff;
+    --surface: #ffffff;
+    --text: #1f2430;
+    --text-muted: #5d6475;
+    --brand: #5b53d6;
+    --brand-secondary: #14b8a6;
+    --border: #e3e0f3;
+    --shadow: 0 18px 40px -24px rgba(31, 36, 48, 0.35);
+    --radius: 22px;
+    --white: #ffffff;
 
-    --gradiente-marca: linear-gradient(135deg, var(--marca), var(--marca-2));
-    --gradiente-pagina:
+    --brand-gradient: linear-gradient(135deg, var(--brand), var(--brand-secondary));
+    --page-gradient:
         radial-gradient(48rem 26rem at 12% -10%, #e9e4ff 0%, transparent 60%),
-        radial-gradient(40rem 24rem at 92% 0%, #dcfbf6 0%, transparent 55%), var(--fondo);
-    --gradiente-trasera: linear-gradient(160deg, #ffffff, #f6f4ff);
+        radial-gradient(40rem 24rem at 92% 0%, #dcfbf6 0%, transparent 55%), var(--background);
+    --back-gradient: linear-gradient(160deg, #ffffff, #f6f4ff);
 }
 
 *,
@@ -27,35 +26,25 @@
 body {
     margin: 0;
     min-height: 100dvh;
-    background: var(--gradiente-pagina);
-    color: var(--texto);
+    background: var(--page-gradient);
+    color: var(--text);
     display: flex;
     flex-direction: column;
     font-family: "Fredoka", system-ui, sans-serif;
     overflow-x: clip;
 }
 
-kbd {
-    background: var(--marca-suave);
-    border: 1px solid var(--borde);
-    border-radius: 6px;
-    color: var(--marca);
-    font-family: inherit;
-    font-size: 0.85em;
-    padding: 0.05em 0.4em;
-}
-
-.cabecera {
+.header {
     padding: clamp(2.5rem, 8vw, 4.5rem) 1.25rem clamp(1.5rem, 4vw, 2.5rem);
 }
 
-.cabecera__contenido {
+.header__content {
     margin: 0 auto;
     max-width: 1100px;
 }
 
-.cabecera__eyebrow {
-    color: var(--marca);
+.header__eyebrow {
+    color: var(--brand);
     font-size: 0.75rem;
     font-weight: 600;
     letter-spacing: 0.28em;
@@ -63,38 +52,38 @@ kbd {
     text-transform: uppercase;
 }
 
-.cabecera__titulo {
+.header__title {
     font-size: clamp(2.2rem, 8vw, 3.6rem);
     line-height: 1.05;
     margin: 0;
 }
 
-.cabecera__sub {
-    color: var(--texto-tenue);
+.header__subtitle {
+    color: var(--text-muted);
     font-size: clamp(0.95rem, 2.6vw, 1.1rem);
     line-height: 1.6;
     margin: 1rem 0 0;
     max-width: 52ch;
 }
 
-.principal {
+.main {
     flex: 1;
     padding: 0 1.25rem clamp(3rem, 7vw, 4.5rem);
 }
 
-.catalogo {
+.catalog {
     margin: 0 auto;
     max-width: 1100px;
 }
 
-.contenedor-tarjetas {
+.cards {
     display: flex;
     flex-wrap: wrap;
     gap: 1.25rem;
     justify-content: center;
 }
 
-.tarjeta {
+.card {
     cursor: pointer;
     height: 250px;
     max-width: 320px;
@@ -105,20 +94,20 @@ kbd {
     width: 100%;
 }
 
-.tarjeta:hover {
+.card:hover {
     filter: drop-shadow(0 16px 24px rgba(91, 83, 214, 0.18));
     transform: translateY(-4px);
 }
 
-.tarjeta:focus-visible {
-    border-radius: var(--radio);
-    outline: 3px solid var(--marca);
+.card:focus-visible {
+    border-radius: var(--radius);
+    outline: 3px solid var(--brand);
     outline-offset: 4px;
 }
 
-.tarjeta-vuelta {
-    border-radius: var(--radio);
-    box-shadow: var(--sombra);
+.card__inner {
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
     height: 100%;
     position: relative;
     transform-style: preserve-3d;
@@ -126,15 +115,15 @@ kbd {
     width: 100%;
 }
 
-.tarjeta:hover .tarjeta-vuelta,
-.tarjeta.giro .tarjeta-vuelta {
+.card:hover .card__inner,
+.card.is-flipped .card__inner {
     transform: rotateY(180deg);
 }
 
-.tarjeta-cara {
+.card__face {
     align-items: center;
     backface-visibility: hidden;
-    border-radius: var(--radio);
+    border-radius: var(--radius);
     display: flex;
     flex-direction: column;
     inset: 0;
@@ -144,19 +133,19 @@ kbd {
     text-align: center;
 }
 
-.tarjeta-frontal {
-    background: var(--gradiente-marca);
-    color: var(--blanco);
+.card__front {
+    background: var(--brand-gradient);
+    color: var(--white);
 }
 
-.tarjeta-frontal .material-symbols-outlined {
+.card__front .material-symbols-outlined {
     background: rgba(255, 255, 255, 0.18);
     border-radius: 18px;
     font-size: 2.2rem;
     padding: 0.55rem;
 }
 
-.tarjeta-frontal h2 {
+.card__front h2 {
     font-size: 1.05rem;
     font-weight: 600;
     line-height: 1.3;
@@ -164,22 +153,22 @@ kbd {
     overflow-wrap: anywhere;
 }
 
-.tarjeta-trasera {
-    background: var(--gradiente-trasera);
-    border: 1px solid var(--borde);
-    color: var(--texto-tenue);
+.card__back {
+    background: var(--back-gradient);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
     transform: rotateY(180deg);
 }
 
-.tarjeta-trasera p {
+.card__back p {
     font-size: 0.92rem;
     line-height: 1.55;
     margin: 0;
 }
 
-.pie {
-    background: var(--texto);
-    color: var(--blanco);
+.footer {
+    background: var(--text);
+    color: var(--white);
     font-size: 0.85rem;
     letter-spacing: 0.04em;
     padding: 1.4rem 1.25rem;
@@ -187,39 +176,39 @@ kbd {
 }
 
 @media (min-width: 481px) {
-    .contenedor-tarjetas {
+    .cards {
         gap: 1.5rem;
     }
 
-    .tarjeta {
+    .card {
         height: 270px;
         width: 280px;
         max-width: none;
     }
 
-    .tarjeta-frontal h2 {
+    .card__front h2 {
         font-size: 1.12rem;
     }
 }
 
 @media (min-width: 769px) {
-    .tarjeta {
+    .card {
         height: 290px;
         width: 300px;
     }
 
-    .tarjeta:hover {
+    .card:hover {
         transform: translateY(-8px);
     }
 
-    .tarjeta-trasera p {
+    .card__back p {
         font-size: 0.98rem;
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .tarjeta,
-    .tarjeta-vuelta {
+    .card,
+    .card__inner {
         transition: none;
     }
 }
