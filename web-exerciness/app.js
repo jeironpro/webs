@@ -302,7 +302,11 @@ const fragmento = (...hijos) => {
 const exerciseCard = (exercise) => {
   const guardado = favoritesStore.has(exercise.id)
   const comparando = compareStore.has(exercise.id)
-  const enlace = { clase: 'exercise-card-link', href: `#/ejercicio/${exercise.id}`, texto: exercise.name }
+  const enlace = {
+    clase: 'exercise-card-link',
+    href: `#/ejercicio/${exercise.id}`,
+    texto: exercise.name,
+  }
 
   return crear('article', { clase: 'exercise-card' }, [
     crear('a', { clase: 'exercise-card-image-link', href: `#/ejercicio/${exercise.id}` }, [
@@ -386,8 +390,12 @@ const renderHome = () => {
 
 const renderExercisesList = () => {
   const filters = filterStore.state
-  const bodyParts = [...new Set(exerciseStore.exercises.map((exercise) => exercise.body_part))].sort()
-  const equipment = [...new Set(exerciseStore.exercises.map((exercise) => exercise.equipment))].sort()
+  const bodyParts = [
+    ...new Set(exerciseStore.exercises.map((exercise) => exercise.body_part)),
+  ].sort()
+  const equipment = [
+    ...new Set(exerciseStore.exercises.map((exercise) => exercise.equipment)),
+  ].sort()
 
   const results = sortExercises(filterExercises(exerciseStore.exercises, filters), filters.sortBy)
 
@@ -414,15 +422,11 @@ const renderExercisesList = () => {
       }),
       crear('select', { id: 'body-part-filter', clase: 'filter', 'aria-label': 'Grupo corporal' }, [
         opcion('all', 'Todos los grupos', filters.bodyPart === 'all'),
-        ...bodyParts.map((part) =>
-          opcion(part, bodyPartLabel(part), filters.bodyPart === part),
-        ),
+        ...bodyParts.map((part) => opcion(part, bodyPartLabel(part), filters.bodyPart === part)),
       ]),
       crear('select', { id: 'equipment-filter', clase: 'filter', 'aria-label': 'Equipamiento' }, [
         opcion('all', 'Todo el equipamiento', filters.equipment === 'all'),
-        ...equipment.map((item) =>
-          opcion(item, equipmentLabel(item), filters.equipment === item),
-        ),
+        ...equipment.map((item) => opcion(item, equipmentLabel(item), filters.equipment === item)),
       ]),
       crear('select', { id: 'sort-filter', clase: 'filter', 'aria-label': 'Ordenar' }, [
         opcion('name', 'Nombre', filters.sortBy === 'name'),
@@ -555,7 +559,11 @@ const renderFavorites = () => {
       ? seccionVacia(
           { etiqueta: 'h2', texto: 'Aún no tienes favoritos' },
           'Marca ejercicios con el botón Guardar para tenerlos a mano.',
-          crear('a', { href: '#/ejercicios', clase: 'btn no-underline', texto: 'Explorar ejercicios' }),
+          crear('a', {
+            href: '#/ejercicios',
+            clase: 'btn no-underline',
+            texto: 'Explorar ejercicios',
+          }),
         )
       : crear('div', { clase: 'exercise-grid' }, favorites.map(exerciseCard)),
   ])
