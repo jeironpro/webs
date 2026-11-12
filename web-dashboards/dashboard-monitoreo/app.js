@@ -6,7 +6,7 @@ const THEME = { LIGHT: 'light', DARK: 'dark' }
 
 const getSystemTheme = () => {
     if (typeof window === 'undefined') return THEME.LIGHT
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? THEME.DARK : THEME.LIGHT
+    return THEME.LIGHT
 }
 
 function readStoredTheme() {
@@ -532,8 +532,10 @@ function createServersPanel() {
                             crear('span', { clase: 'stat-value', texto: `${server.cpu}%` }),
                             crear('span', { clase: 'stat-label', texto: 'CPU' }),
                         ]),
-                        crear('span', { clase: 'stat-value', texto: `${server.memory}%` }),
-                        crear('span', { clase: 'stat-label', texto: 'Mem.' }),
+                        crear('span', { clase: 'stat-item' }, [
+                            crear('span', { clase: 'stat-value', texto: `${server.memory}%` }),
+                            crear('span', { clase: 'stat-label', texto: 'Mem.' }),
+                        ]),
                     ]),
                 ]),
             ),
@@ -1087,6 +1089,11 @@ function addGlobalStyles() {
         }
     `
     document.head.appendChild(style)
+
+    const skin = document.createElement('link')
+    skin.rel = 'stylesheet'
+    skin.href = '../css/dashboard-skin.css'
+    document.head.append(skin)
 }
 
 // Agregar estilos globales al cargar
