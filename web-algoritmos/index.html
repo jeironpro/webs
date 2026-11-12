@@ -8,7 +8,7 @@
             name="description"
             content="Colección de algoritmos clásicos de búsqueda, ordenación, grafos y compresión explicados en tarjetas que se giran."
         />
-        <link rel="shortcut icon" href="icon/algoritmos.png" type="image/x-icon" />
+        <link rel="shortcut icon" href="icon/algorithms.png" type="image/x-icon" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -22,31 +22,31 @@
         <link rel="stylesheet" href="css/styles.css" />
     </head>
     <body>
-        <header class="cabecera">
-            <div class="cabecera__contenido">
-                <p class="cabecera__eyebrow">colección</p>
-                <h1 class="cabecera__titulo">Algoritmos</h1>
-                <p class="cabecera__sub">
-                    Búsqueda, ordenación, grafos y compresión en tarjetas. Pasa el cursor, toca o
-                    pulsa <kbd>Intro</kbd> para girarlas.
+        <header class="header">
+            <div class="header__content">
+                <p class="header__eyebrow">colección</p>
+                <h1 class="header__title">Algoritmos</h1>
+                <p class="header__subtitle">
+                    Búsqueda, ordenación, grafos y compresión en tarjetas. Pasa el cursor para
+                    girarlas.
                 </p>
             </div>
         </header>
 
-        <main class="principal">
-            <section class="catalogo" aria-label="Lista de algoritmos">
-                <div class="contenedor-tarjetas" id="contenedor-tarjetas"></div>
+        <main class="main">
+            <section class="catalog" aria-label="Lista de algoritmos">
+                <div class="cards" id="cards"></div>
             </section>
         </main>
 
-        <footer class="pie">
-            &copy; Todos los derechos reservados <span data-anio>2025</span> - JeironPro
+        <footer class="footer">
+            &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
         </footer>
 
-        <script src="js/tarjetas.js"></script>
+        <script src="js/cards.js"></script>
         <script>
-            document.querySelectorAll("[data-anio]").forEach((nodo) => {
-                nodo.textContent = new Date().getFullYear();
+            document.querySelectorAll("[data-year]").forEach((node) => {
+                node.textContent = new Date().getFullYear();
             });
         </script>
     </body>
