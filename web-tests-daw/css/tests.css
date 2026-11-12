@@ -1250,3 +1250,31 @@
         }
     }
 }
+
+/* Las opciones son botones reales: heredan tipografía y se recorren con Tab. */
+button.opcion {
+    display: block;
+    font-family: inherit;
+    font-size: inherit;
+    text-align: left;
+    width: 100%;
+}
+
+button.opcion:focus-visible {
+    outline: 3px solid var(--primary);
+    outline-offset: 2px;
+}
+
+.opcion:disabled {
+    cursor: default;
+}
+
+.opcion:disabled:hover {
+    transform: none;
+}
+
+li[role="button"]:focus-visible {
+    border-radius: 6px;
+    outline: 3px solid var(--primary);
+    outline-offset: 2px;
+}

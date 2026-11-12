@@ -169,9 +169,9 @@ const totalPreguntasElem = document.getElementById("total-preguntas");
 const progresoRapidoElem = document.getElementById("progreso-rapido");
 
 const insignias = [
-    { puntaje: 5, titulo: "Maestro DAW", icono: "🏆" },
-    { puntaje: 3, titulo: "Avanzado DAW", icono: "🥈" },
-    { puntaje: 1, titulo: "Principiante DAW", icono: "🥉" },
+    { puntaje: 5, titulo: "Maestro DAW", icono: "" },
+    { puntaje: 3, titulo: "Avanzado DAW", icono: "" },
+    { puntaje: 1, titulo: "Principiante DAW", icono: "" },
 ];
 
 // ================= UTILIDADES =================
@@ -304,6 +304,18 @@ function crearMenu() {
             }
         });
 
+        // El temario se recorre con Tab y se activa con Intro o Espacio.
+        liCat.querySelectorAll("li").forEach((item) => {
+            item.setAttribute("role", "button");
+            item.tabIndex = 0;
+            item.addEventListener("keydown", (evento) => {
+                if (evento.key === "Enter" || evento.key === " ") {
+                    evento.preventDefault();
+                    item.click();
+                }
+            });
+        });
+
         listaExamenes.appendChild(liCat);
     }
 }
@@ -356,14 +368,14 @@ async function cargarExamen(categoria, tema, subcategoria = null) {
 
     } catch (err) {
         console.error(err);
-        mostrarRetroalimentacion("⚠️ No se pudo cargar el test. Verifica que el archivo exista.", "info");
+        mostrarRetroalimentacion("No se pudo cargar el test. Verifica que el archivo exista.", "info");
     }
 }
 
 // ================= FUNCIONES DEL EXAMEN =================
 botonIniciar.addEventListener("click", () => {
     if (!preguntas.length) {
-        mostrarRetroalimentacion("⚠️ Primero selecciona un test del menú.", "info");
+        mostrarRetroalimentacion("Primero selecciona un test del menú.", "info");
         return;
     }
 
@@ -422,7 +434,8 @@ function cargarPregunta() {
     seccionPreguntas.appendChild(tarjeta);
 
     p.opciones.forEach((opcion, idx) => {
-        const div = document.createElement("div");
+        const div = document.createElement("button");
+        div.type = "button";
         div.className = "opcion";
         div.textContent = `${letras[idx]}. ${opcion}`;
         div.addEventListener("click", () => {
@@ -440,14 +453,16 @@ function cargarPregunta() {
     botonSiguiente.style.marginTop = "20px";
     botonSiguiente.addEventListener("click", () => {
         if (opcionSeleccionada) siguientePregunta();
-        else mostrarRetroalimentacion("⚠️ Por favor selecciona una respuesta antes de continuar.", "info");
+        else mostrarRetroalimentacion("Por favor selecciona una respuesta antes de continuar.", "info");
     });
     tarjeta.appendChild(botonSiguiente);
 }
 
 function seleccionarOpcion(idx, p, div) {
     const opciones = document.querySelectorAll(".opcion");
-    opciones.forEach(o => o.style.pointerEvents = "none");
+    opciones.forEach(o => {
+        o.disabled = true;
+    });
 
     const esCorrecta = idx === p.respuesta;
     
@@ -492,8 +507,7 @@ function actualizarProgreso() {
 function mostrarRetroalimentacion(texto, tipo = "info") {
     panelRetroalimentacion.classList.remove("oculto");
     panelRetroalimentacion.classList.add("activa");
-    const icono = tipo === "correcta" ? "✅" : tipo === "incorrecta" ? "❌" : "ℹ️";
-    textoRetroalimentacion.textContent = `${icono} ${texto}`;
+    textoRetroalimentacion.textContent = texto;
     
     // Ocultar automáticamente después de 3 segundos
     setTimeout(() => {
@@ -516,9 +530,9 @@ function mostrarResumen() {
         if (puntaje >= i.puntaje) { // Esta lógica podría necesitar ajuste basado en el total de preguntas
             // Lógica simple: si puntaje > 80% -> Oro, > 50% -> Plata, sino Bronce
             const porcentaje = (puntaje / preguntas.length) * 100;
-            if (porcentaje >= 90) textoInsignia = "🏆 Maestro DAW";
-            else if (porcentaje >= 70) textoInsignia = "🥈 Avanzado DAW";
-            else textoInsignia = "🥉 Principiante DAW";
+            if (porcentaje >= 90) textoInsignia = "Maestro DAW";
+            else if (porcentaje >= 70) textoInsignia = "Avanzado DAW";
+            else textoInsignia = "Principiante DAW";
             break;
         }
     }
