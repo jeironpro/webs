@@ -12,38 +12,33 @@
 </head>
 <body>
     <header>
-        <div class="titulo-paginacion">
-            <span class="titulo-texto">Ejercicios Java</span>
-            <div class="cabecera-ejercicios">
-                <div class="botones-navegacion">
+        <div class="header-title">
+            <span class="title-text">Ejercicios Java</span>
+            <div class="exercises-header">
+                <div class="navigation-buttons">
                     <a href="index.html" title="Inicio"><span class="material-symbols-outlined">home</span></a>
                     <a href="python.html" title="Ver Python"><img src="img/python.png" alt="Python Logo"></a>
                 </div>
-                <div class="botones-navegacion">
-                    <button id="anterior-pagina" class="material-symbols-outlined" type="button" title="Anterior" aria-label="Anterior">chevron_left</button>
-                    <button id="siguiente-pagina" class="material-symbols-outlined" type="button" title="Siguiente" aria-label="Siguiente">chevron_right</button>
+                <div class="navigation-buttons">
+                    <button id="previous-page" class="material-symbols-outlined" type="button" title="Anterior" aria-label="Anterior">chevron_left</button>
+                    <button id="next-page" class="material-symbols-outlined" type="button" title="Siguiente" aria-label="Siguiente">chevron_right</button>
                 </div>
             </div>
         </div>
     </header>
     <main>
-        <div id="contenedor-ejercicios">
+        <div id="exercises-container">
             <!-- Se generaran los ejercicios desde el js con fetch -->
         </div>
     </main>
     <footer>
-        <p>© Todos los derechos reservados. PyJa <span data-anio>2026</span>.</p>
+        <p>© Todos los derechos reservados. PyJa <span data-year>2026</span>.</p>
     </footer>
     <script src="js/script.js"></script>
     <script>
-        window.CONFIG = { jsonUrl: "json/java.json", lenguaje: "java" };
+        window.CONFIG = { jsonUrl: "json/java.json", language: "java" };
     </script>
-    <script src="js/resaltador.js"></script>
-    <script src="js/ejercicios.js"></script>
-    <script>
-        document.querySelectorAll("[data-anio]").forEach((nodo) => {
-            nodo.textContent = new Date().getFullYear();
-        });
-    </script>
+    <script src="js/highlighter.js"></script>
+    <script src="js/exercises.js"></script>
 </body>
 </html>
