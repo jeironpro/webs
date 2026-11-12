@@ -1,5 +1,7 @@
 const currentScript = document.currentScript;
-const BASE = new URL(".", currentScript ? currentScript.src : document.baseURI);
+const BASE = currentScript
+    ? new URL("../", currentScript.src)
+    : new URL("./", document.baseURI);
 const BASE_PATH = BASE.pathname;
 
 const LANGUAGES = [
@@ -198,7 +200,7 @@ async function loadAllQuestions() {
     if (!datasetPromise) {
         datasetPromise = Promise.allSettled(
             LANGUAGES.map(async (language) => {
-                const response = await fetch(new URL(`public/data/${language.id}.json`, BASE));
+                const response = await fetch(new URL(`data/${language.id}.json`, BASE));
                 if (!response.ok) throw new Error(`Error HTTP ${response.status}`);
                 return { language: language.id, questions: await response.json() };
             }),
