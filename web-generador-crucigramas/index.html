@@ -8,7 +8,7 @@
             name="description"
             content="Genera y descarga un paquete de 100 patrones de crucigramas listos para imprimir."
         />
-        <link rel="shortcut icon" href="icon/crucigrama.png" type="image/x-icon" />
+        <link rel="shortcut icon" href="icon/crossword.png" type="image/x-icon" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -18,37 +18,32 @@
         <link rel="stylesheet" href="css/styles.css" />
     </head>
     <body>
-        <header class="cabecera">
-            <p class="cabecera__eyebrow">cuaderno de actividades</p>
-            <h1 class="cabecera__titulo">Generador de crucigramas</h1>
-            <p class="cabecera__sub">
+        <header class="site-header">
+            <p class="site-header__eyebrow">cuaderno de actividades</p>
+            <h1 class="site-header__title">Generador de crucigramas</h1>
+            <p class="site-header__subtitle">
                 Crea un paquete con 100 patrones de cuadrícula, listos para imprimir y rellenar.
             </p>
         </header>
 
-        <main class="principal">
-            <section class="panel" aria-labelledby="panel-titulo">
-                <h2 class="panel__titulo" id="panel-titulo">100 patrones en un solo archivo</h2>
-                <p class="panel__texto">
+        <main class="main-content">
+            <section class="panel" aria-labelledby="panel-title">
+                <h2 class="panel__title" id="panel-title">100 patrones en un solo archivo</h2>
+                <p class="panel__text">
                     Cada patrón trae su cuadrícula en blanco. La descarga se genera en tu navegador,
                     sin subir nada a ningún servidor.
                 </p>
-                <button class="boton" id="btnGenerar" type="button">
+                <button class="primary-button" id="generate-button" type="button">
                     Generar y descargar 100 patrones
                 </button>
-                <p class="mensaje" id="mensaje" role="status" aria-live="polite"></p>
+                <p class="status-message" id="status-message" role="status" aria-live="polite"></p>
             </section>
         </main>
 
-        <footer class="pie">
-            &copy; Todos los derechos reservados <span data-anio>2025</span> - JeironPro
+        <footer class="site-footer">
+            &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
         </footer>
 
-        <script src="js/generador.js"></script>
-        <script>
-            document.querySelectorAll("[data-anio]").forEach((nodo) => {
-                nodo.textContent = new Date().getFullYear();
-            });
-        </script>
+        <script src="js/generator.js"></script>
     </body>
 </html>
