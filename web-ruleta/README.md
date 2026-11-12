@@ -7,11 +7,6 @@ Ruleta interactiva en una sola pagina. Configura numeros o nombres personalizado
 ```
 web-ruleta/
 ├── index.html            # Pagina principal (onepage)
-├── favicon.svg           # Icono SVG de la ruleta
-├── robots.txt            # Configuracion para crawlers
-├── sitemap.xml           # Mapa del sitio
-├── eslint.config.js      # Configuracion de ESLint (tab 4, incluye HTML)
-├── package.json          # Dependencias y scripts
 │
 ├── css/
 │   ├── reset.css         # Normalizacion de estilos entre navegadores
@@ -27,7 +22,7 @@ web-ruleta/
 │       └── dom.js        # Helpers de DOM ($, $$)
 │
 └── assets/
-    └── images/           # Recursos graficos
+    └── icons/            # Iconos y favicons
 ```
 
 ## Stack
@@ -74,7 +69,7 @@ Luego abrir `http://localhost:8000`.
 - HTML con estructura semantica
 - Comentarios en espanol en el codigo
 - Iconos de Material Symbols en lugar de emojis
-- ESLint + Stylelint + Prettier para calidad de codigo
+- ESLint + Prettier para calidad de codigo
 
 ## Licencia
 

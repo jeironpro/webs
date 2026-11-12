@@ -31,7 +31,7 @@ Genera claves criptograficamente seguras con opciones personalizables. Diseno in
 │   └── style.css
 ├── js/
 │   └── app.js
-├── style-guide.md
+├── STYLE-GUIDE.md
 └── README.md
 ```
 

@@ -26,9 +26,10 @@ web-generador-contrasena/
 ├── index.html
 ├── css/                   # estilos del generador
 ├── js/                    # lógica de generación
-└── icon/                  # favicon
+└── assets/icons/                  # favicon
 ```
 
 ## Licencia
+
 Este proyecto está bajo la licencia **MIT**.  
 Consulta el archivo [LICENSE](../LICENSE) para más detalles.

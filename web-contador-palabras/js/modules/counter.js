@@ -9,8 +9,8 @@
  * @returns {number} Número de palabras (0 si el texto está vacío).
  */
 export function countWords(text) {
-  const trimmed = text.trim();
-  return trimmed === "" ? 0 : trimmed.split(/\s+/).length;
+    const trimmed = text.trim();
+    return trimmed === "" ? 0 : trimmed.split(/\s+/).length;
 }
 
 /**
@@ -19,7 +19,7 @@ export function countWords(text) {
  * @returns {number} Número de caracteres.
  */
 export function countCharacters(text) {
-  return text.length;
+    return text.length;
 }
 
 /**
@@ -28,7 +28,7 @@ export function countCharacters(text) {
  * @returns {number} Número de caracteres sin espacios.
  */
 export function countCharactersNoSpaces(text) {
-  return text.replace(/\s/g, "").length;
+    return text.replace(/\s/g, "").length;
 }
 
 /**
@@ -37,9 +37,9 @@ export function countCharactersNoSpaces(text) {
  * @returns {{ palabras: number, caracteres: number, sinEspacios: number }}
  */
 export function getCounts(text) {
-  return {
-    palabras: countWords(text),
-    caracteres: countCharacters(text),
-    sinEspacios: countCharactersNoSpaces(text),
-  };
+    return {
+        palabras: countWords(text),
+        caracteres: countCharacters(text),
+        sinEspacios: countCharactersNoSpaces(text),
+    };
 }

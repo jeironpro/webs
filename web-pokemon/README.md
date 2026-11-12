@@ -6,7 +6,7 @@ Aplicación web estática para consultar información de Pokémon por generació
 
 - HTML, CSS y JavaScript vanilla
 - Sin backend
-- Datos y sprites servidos desde `public/api/pokemones.json` y `public/pokemon-images/`
+- Datos y sprites servidos desde `data/pokemones.json` y `assets/images/pokemon/`
 
 ## Uso
 
@@ -35,8 +35,8 @@ web-pokemon/
 ├── index.html
 ├── styles.css
 ├── app.js
-└── public/
-    ├── api/pokemones.json
+└── assets/
+    ├── data/pokemones.json
     ├── pokemon-logo.png
     ├── pokemon.png
     └── pokemon-images/

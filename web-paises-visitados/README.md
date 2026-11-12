@@ -28,9 +28,10 @@ web-paises-visitados/
 ├── index.html
 ├── css/                   # estilos de la página
 ├── js/                    # datos de países y animaciones
-└── img/                   # recursos graficos
+└── assets/images/                   # recursos graficos
 ```
 
 ## Licencia
+
 Este proyecto está bajo la licencia **MIT**.  
 Consulta el archivo [LICENSE](LICENSE) para más detalles.

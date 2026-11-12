@@ -1,13 +1,13 @@
 /* Milisegundos que tiene un día, base del cálculo del día del año. */
 const MILISEGUNDOS_POR_DIA = 1000 * 60 * 60 * 24;
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
     // Referencias a elementos del DOM
-    const anioActualTexto = document.getElementById('anio-actual-texto');
-    const diasRestantesTexto = document.getElementById('dias-restantes');
-    const gridDias = document.getElementById('grid-dias');
-    const valorPorcentaje = document.getElementById('valor-porcentaje');
-    const barraProgreso = document.getElementById('barra-progreso');
+    const anioActualTexto = document.getElementById("anio-actual-texto");
+    const diasRestantesTexto = document.getElementById("dias-restantes");
+    const gridDias = document.getElementById("grid-dias");
+    const valorPorcentaje = document.getElementById("valor-porcentaje");
+    const barraProgreso = document.getElementById("barra-progreso");
 
     /**
      * Calcula la información relevante sobre la fecha actual
@@ -15,9 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const obtenerInformacionFecha = () => {
         const fechaActual = new Date();
         const anio = fechaActual.getFullYear();
-        
+
         // Determinar si es bisiesto
-        const esBisiesto = (anio % 4 === 0 && anio % 100 !== 0) || (anio % 400 === 0);
+        const esBisiesto = (anio % 4 === 0 && anio % 100 !== 0) || anio % 400 === 0;
         const totalDiasDelAnio = esBisiesto ? 366 : 365;
 
         // Calcular día del año (1-indexed)
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return {
             anio,
             diaActualNumero,
-            totalDiasDelAnio
+            totalDiasDelAnio,
         };
     };
 
@@ -41,24 +41,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const generarPuntos = (totalDias, diaActual) => {
         // Verificar si ya existen puntos para no regenerar todo (opcional, pero buena práctica)
         // En este caso simple, limpiamos y regeneramos.
-        
+
         const fragmento = document.createDocumentFragment();
 
         for (let i = 1; i <= totalDias; i++) {
-            const punto = document.createElement('div');
-            punto.classList.add('punto-dia');
-            
+            const punto = document.createElement("div");
+            punto.classList.add("punto-dia");
+
             // Estado completado
             if (i <= diaActual) {
-                punto.classList.add('completado');
+                punto.classList.add("completado");
             }
-            
+
             // Tooltip personalizado
-            punto.setAttribute('data-tooltip', `Día ${i}`);
-            
+            punto.setAttribute("data-tooltip", `Día ${i}`);
+
             fragmento.appendChild(punto);
         }
-        
+
         // Limpiar y renderizar (sin innerHTML: los nodos ya están construidos)
         gridDias.replaceChildren(fragmento);
     };
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     const actualizarVista = () => {
         const { anio, diaActualNumero, totalDiasDelAnio } = obtenerInformacionFecha();
-        
+
         // 1. Textos Generales
         anioActualTexto.textContent = anio;
         diasRestantesTexto.textContent = totalDiasDelAnio - diaActualNumero;
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // 2. Porcentaje
         const porcentajeExacto = (diaActualNumero / totalDiasDelAnio) * 100;
         const porcentajeRedondeado = Math.round(porcentajeExacto);
-        
+
         valorPorcentaje.textContent = porcentajeRedondeado;
 
         // 3. Barra de Progreso

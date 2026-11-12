@@ -2,11 +2,11 @@
 
 ## C01 · Contar texto escrito
 
-| Campo | Valor |
-|---|---|
-| Actor | Visitante del sitio |
-| Precondición | Página cargada |
-| Disparador | El usuario escribe o pega texto en el área principal |
+| Campo        | Valor                                                |
+| ------------ | ---------------------------------------------------- |
+| Actor        | Visitante del sitio                                  |
+| Precondición | Página cargada                                       |
+| Disparador   | El usuario escribe o pega texto en el área principal |
 
 **Flujo principal**
 
@@ -18,9 +18,9 @@
 
 ## C02 · Subir un archivo de texto plano
 
-| Campo | Valor |
-|---|---|
-| Actor | Visitante del sitio |
+| Campo      | Valor                                                                           |
+| ---------- | ------------------------------------------------------------------------------- |
+| Actor      | Visitante del sitio                                                             |
 | Disparador | El usuario suelta un archivo sobre la zona de subida o lo elige con el selector |
 
 **Flujo principal**
@@ -34,9 +34,9 @@
 
 ## C03 · Limpiar el texto
 
-| Campo | Valor |
-|---|---|
-| Actor | Visitante del sitio |
+| Campo      | Valor                                 |
+| ---------- | ------------------------------------- |
+| Actor      | Visitante del sitio                   |
 | Disparador | El usuario pulsa el botón **Limpiar** |
 
 **Flujo principal**
@@ -48,9 +48,9 @@
 
 ## C04 · Copiar el resumen
 
-| Campo | Valor |
-|---|---|
-| Actor | Visitante del sitio |
+| Campo      | Valor                                |
+| ---------- | ------------------------------------ |
+| Actor      | Visitante del sitio                  |
 | Disparador | El usuario pulsa el botón **Copiar** |
 
 **Flujo principal**
@@ -61,9 +61,9 @@
 
 ## C05 · Probar con un ejemplo
 
-| Campo | Valor |
-|---|---|
-| Actor | Visitante del sitio |
+| Campo      | Valor                                 |
+| ---------- | ------------------------------------- |
+| Actor      | Visitante del sitio                   |
 | Disparador | El usuario pulsa el botón **Ejemplo** |
 
 **Flujo principal**

@@ -14,43 +14,40 @@ Aplicación web del tiempo (SPA) que muestra el clima actual y el pronóstico de
 
 ## Stack
 
-| Capa      | Tecnología                    |
-| --------- | ---------------------------- |
-| Framework | HTML / CSS / JavaScript vanilla |
-| Build     | Vite 8                       |
-| Estilo    | CSS Modules con variables CSS (tokens OKLCH) |
-| Tests     | Vitest                       |
+| Capa      | Tecnología                                                             |
+| --------- | ---------------------------------------------------------------------- |
+| Framework | HTML / CSS / JavaScript vanilla                                        |
+| Build     | Ninguno (estático, sin bundler)                                        |
+| Estilo    | CSS con variables y tokens OKLCH                                       |
+| Tests     | Vitest (raíz del repositorio)                                          |
 | Datos     | Datos meteorologicos de Open-Meteo (geocoding, forecast y air quality) |
 
-## Instalación y desarrollo
+## Uso
+
+Servir con cualquier servidor HTTP estático:
 
 ```bash
-npm install       # instala las dependencias
-npm run dev       # servidor de desarrollo con HMR
-npm run build     # genera la build de producción en dist/
-npm run preview   # previsualiza la build de producción
-npm run lint      # ejecuta ESLint
-npm run test:run  # ejecuta los tests (Vitest)
-npm run format    # formatea el código con Prettier
+python3 -m http.server 8000
 ```
+
+El lint, el formato y los tests se ejecutan desde la raíz del repositorio con
+`npm run lint`, `npm run format:check` y `npm test`.
 
 ## Estructura del proyecto
 
 ```
 web-clima/
 ├── index.html
-├── vite.config.js
-├── public/                # favicon, robots.txt
-├── src/
-│   ├── main.jsx
-│   ├── App.jsx
-│   ├── styles/            # tokens y estilos globales
-│   ├── pages/             # Home
-│   ├── components/        # layout, ui y efectos
-│   └── services/          # clientes de Open-Meteo
-└── docs/                  # documentación del proyecto
+├── assets/
+│   ├── icons/favicon.svg     # Favicon
+│   └── fonts/                # Variables de las fuentes locales
+├── css/
+│   └── styles.css            # Tokens y estilos globales
+└── js/
+    └── app.js                # Render de la web y clientes de Open-Meteo
 ```
 
 ## Licencia
+
 Este proyecto está bajo la licencia **MIT**.  
 Consulta el archivo [LICENSE](LICENSE) para más detalles.

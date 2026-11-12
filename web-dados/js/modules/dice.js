@@ -3,8 +3,8 @@
  * Cada dado se representa visualmente con una cuadricula 3x3 de puntos (pips)
  */
 
-import { createElement, clearElement } from '../utils/dom.js';
-import { roll, rollMultiple } from '../services/diceService.js';
+import { createElement, clearElement } from "../utils/dom.js";
+import { roll, rollMultiple } from "../services/diceService.js";
 
 /*
  * Mapa de posiciones de puntos para cada valor de dado (1-6)
@@ -77,11 +77,11 @@ export class DiceManager {
      * @returns {Object} Referencia al dado con wrapper, face y value
      */
     createDie() {
-        const wrapper = createElement('div', ['dice-wrapper']);
-        const face = createElement('div', ['dice-face']);
+        const wrapper = createElement("div", ["dice-wrapper"]);
+        const face = createElement("div", ["dice-face"]);
 
         for (let i = 1; i <= 9; i++) {
-            const cell = createElement('div', ['dice-cell']);
+            const cell = createElement("div", ["dice-cell"]);
             face.appendChild(cell);
         }
 
@@ -97,15 +97,15 @@ export class DiceManager {
      */
     setDieValue(die, value) {
         die.value = value;
-        const cells = die.face.querySelectorAll('.dice-cell');
+        const cells = die.face.querySelectorAll(".dice-cell");
         const positions = DOT_POSITIONS[value] || [];
 
         cells.forEach((cell, index) => {
             const pos = index + 1;
             if (positions.includes(pos)) {
-                cell.classList.add('dot');
+                cell.classList.add("dot");
             } else {
-                cell.classList.remove('dot');
+                cell.classList.remove("dot");
             }
         });
     }
@@ -124,7 +124,7 @@ export class DiceManager {
         const finalValues = rollMultiple(this.count);
 
         this.dice.forEach((die) => {
-            die.wrapper.classList.add('rolling');
+            die.wrapper.classList.add("rolling");
         });
 
         return new Promise((resolve) => {
@@ -139,7 +139,7 @@ export class DiceManager {
                 clearInterval(flashInterval);
 
                 this.dice.forEach((die, index) => {
-                    die.wrapper.classList.remove('rolling');
+                    die.wrapper.classList.remove("rolling");
                     this.setDieValue(die, finalValues[index]);
                 });
 

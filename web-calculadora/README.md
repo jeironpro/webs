@@ -25,9 +25,10 @@ web-calculadora/
 ├── index.html
 ├── css/                   # estilos de la calculadora
 ├── js/                    # lógica de calculo
-└── icon/                  # favicon
+└── assets/icons/                  # favicon
 ```
 
 ## Licencia
+
 Este proyecto está bajo la licencia **MIT**.  
 Consulta el archivo [LICENSE](LICENSE) para más detalles.

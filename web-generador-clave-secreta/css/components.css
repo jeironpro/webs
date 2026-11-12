@@ -15,7 +15,7 @@
 
 /* Brillo decorativo en la esquina superior derecha */
 .card-credit::before {
-    content: '';
+    content: "";
     position: absolute;
     top: -40%;
     right: -20%;
@@ -39,7 +39,7 @@
 
 /* Lineas internas del chip para efecto realista */
 .card-credit-chip::after {
-    content: '';
+    content: "";
     position: absolute;
     inset: 4px;
     border: 1px solid rgba(255, 255, 255, 0.15);
@@ -276,13 +276,13 @@
 }
 
 /* Estado activo: fondo dorado */
-.checkbox input:checked+.checkbox-box {
+.checkbox input:checked + .checkbox-box {
     background: var(--gradient-gold);
     border-color: var(--color-accent);
 }
 
 /* Indicador de foco para accesibilidad */
-.checkbox input:focus-visible+.checkbox-box {
+.checkbox input:focus-visible + .checkbox-box {
     outline: 2px solid var(--color-accent);
     outline-offset: 2px;
 }
@@ -296,7 +296,7 @@
 }
 
 /* Check visible solo cuando esta marcado */
-.checkbox input:checked+.checkbox-box .material-symbols-outlined {
+.checkbox input:checked + .checkbox-box .material-symbols-outlined {
     opacity: 1;
 }
 

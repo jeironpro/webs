@@ -1,29 +1,47 @@
 <!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Generador de Contraseñas Seguras</title>
-    <link rel="icon" href="icon/password-generator.png" />
-    <link rel="stylesheet" href="css/styles.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-</head>
-<body>
-    <main class="page">
-        <section class="generator-card">
-            <header class="generator-header">
-                <h1>Generador de Contraseñas</h1>
-                <p>Crea contraseñas seguras y aleatorias al instante.</p>
-            </header>
-            <div class="result-container">
-                <input type="text" id="password-field" class="password-field" aria-label="Contraseña generada" readonly placeholder="Tu contraseña aparecerá aquí" autocomplete="off" autocapitalize="off" spellcheck="false" />
-                <button id="generate-button" class="primary-button" type="button">
-                    <span>Generar</span>
-                </button>
-            </div>
-            <div id="status-message" class="status-message" role="status" aria-live="polite"></div>
-        </section>
-    </main>
-    <script src="js/app.js"></script>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Generador de Contraseñas Seguras</title>
+        <link rel="icon" href="assets/icons/password-generator.png" />
+        <link rel="stylesheet" href="css/styles.css" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <main class="page">
+            <section class="generator-card">
+                <header class="generator-header">
+                    <h1>Generador de Contraseñas</h1>
+                    <p>Crea contraseñas seguras y aleatorias al instante.</p>
+                </header>
+                <div class="result-container">
+                    <input
+                        type="text"
+                        id="password-field"
+                        class="password-field"
+                        aria-label="Contraseña generada"
+                        readonly
+                        placeholder="Tu contraseña aparecerá aquí"
+                        autocomplete="off"
+                        autocapitalize="off"
+                        spellcheck="false"
+                    />
+                    <button id="generate-button" class="primary-button" type="button">
+                        <span>Generar</span>
+                    </button>
+                </div>
+                <div
+                    id="status-message"
+                    class="status-message"
+                    role="status"
+                    aria-live="polite"
+                ></div>
+            </section>
+        </main>
+        <script src="js/app.js"></script>
+    </body>
 </html>

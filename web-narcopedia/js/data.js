@@ -9,18 +9,34 @@ export const caposDroga = [
         organizacion: "Cártel de Medellín",
         rol: "Líder Fundador",
         origen: "Colombia",
-        imagen: "assets/pablo_escobar.png",
-        descripcionCorta: "Conocido como 'El Rey de la Cocaína', dominó el comercio internacional en los años 70 y 80.",
-        historia: "Pablo Escobar fundó el Cártel de Medellín y se convirtió en uno de los criminales más ricos de la historia. En su apogeo, su cártel monopolizó el comercio de cocaína hacia los EE. UU., generando unos 100 millones de dólares en ganancias diarias.",
-        impacto: "Sus operaciones alimentaron una era de extrema violencia y narcoterrorismo en Colombia. Sin embargo, también ganó una imagen de 'Robin Hood' entre algunos por construir viviendas e instalaciones deportivas para los pobres.",
-        eventosNotables: ["Bombardeo del vuelo 203 de Avianca", "Bombardeo del edificio del DAS", "Fuga de la prisión de La Catedral"],
-        aliados: ["Cártel de Medellín", "Los Extraditables", "Grupos Guerrilleros", "Políticos Corruptos"],
+        imagen: "assets/images/pablo_escobar.png",
+        descripcionCorta:
+            "Conocido como 'El Rey de la Cocaína', dominó el comercio internacional en los años 70 y 80.",
+        historia:
+            "Pablo Escobar fundó el Cártel de Medellín y se convirtió en uno de los criminales más ricos de la historia. En su apogeo, su cártel monopolizó el comercio de cocaína hacia los EE. UU., generando unos 100 millones de dólares en ganancias diarias.",
+        impacto:
+            "Sus operaciones alimentaron una era de extrema violencia y narcoterrorismo en Colombia. Sin embargo, también ganó una imagen de 'Robin Hood' entre algunos por construir viviendas e instalaciones deportivas para los pobres.",
+        eventosNotables: [
+            "Bombardeo del vuelo 203 de Avianca",
+            "Bombardeo del edificio del DAS",
+            "Fuga de la prisión de La Catedral",
+        ],
+        aliados: [
+            "Cártel de Medellín",
+            "Los Extraditables",
+            "Grupos Guerrilleros",
+            "Políticos Corruptos",
+        ],
         enemigos: ["Gobierno Colombiano", "Cártel de Cali", "Los Pepes", "DEA / FBI / CIA"],
-        impactoCultural: "Inmortalizado en series como 'Narcos' y 'El Patrón del Mal'. Su figura sigue siendo un símbolo de la narcocultura global y el debate sobre la desigualdad en Colombia.",
+        impactoCultural:
+            "Inmortalizado en series como 'Narcos' y 'El Patrón del Mal'. Su figura sigue siendo un símbolo de la narcocultura global y el debate sobre la desigualdad en Colombia.",
         fortunaEstimada: "$30,000 millones de USD",
-        modusOperandi: "Uso de 'plata o plomo', narcoterrorismo a gran escala para presionar al gobierno y una red logística global que controlaba el 80% de la cocaína mundial.",
-        territorio: "Medellín (Base), control global de rutas desde Sudamérica hasta EE. UU. y Europa.",
-        detallesMuerte: "Murió en un tejado de Medellín tras un enfrentamiento con el Bloque de Búsqueda el 2 de diciembre de 1993."
+        modusOperandi:
+            "Uso de 'plata o plomo', narcoterrorismo a gran escala para presionar al gobierno y una red logística global que controlaba el 80% de la cocaína mundial.",
+        territorio:
+            "Medellín (Base), control global de rutas desde Sudamérica hasta EE. UU. y Europa.",
+        detallesMuerte:
+            "Murió en un tejado de Medellín tras un enfrentamiento con el Bloque de Búsqueda el 2 de diciembre de 1993.",
     },
     {
         id: "el-chapo",
@@ -32,18 +48,28 @@ export const caposDroga = [
         organizacion: "Cártel de Sinaloa",
         rol: "Líder",
         origen: "México",
-        imagen: "assets/el_chapo.png",
-        descripcionCorta: "El notorio líder del Cártel de Sinaloa, famoso por sus sofisticados túneles de contrabando.",
-        historia: "Guzmán surgió de la pobreza para liderar una de las organizaciones de narcotráfico más poderosas del mundo. Fue responsable de importar y distribuir cientos de toneladas de cocaína y heroína en los EE. UU.",
-        impacto: "Su liderazgo se caracterizó por una violencia extrema e intensas guerras entre cárteles, particularmente con el Cártel de Juárez. Sus fugas solidificaron su estatus mítico.",
-        eventosNotables: ["Fuga de prisión en 2001 en un carrito de lavandería", "Fuga en 2015 a través de un túnel de una milla"],
+        imagen: "assets/images/el_chapo.png",
+        descripcionCorta:
+            "El notorio líder del Cártel de Sinaloa, famoso por sus sofisticados túneles de contrabando.",
+        historia:
+            "Guzmán surgió de la pobreza para liderar una de las organizaciones de narcotráfico más poderosas del mundo. Fue responsable de importar y distribuir cientos de toneladas de cocaína y heroína en los EE. UU.",
+        impacto:
+            "Su liderazgo se caracterizó por una violencia extrema e intensas guerras entre cárteles, particularmente con el Cártel de Juárez. Sus fugas solidificaron su estatus mítico.",
+        eventosNotables: [
+            "Fuga de prisión en 2001 en un carrito de lavandería",
+            "Fuga en 2015 a través de un túnel de una milla",
+        ],
         aliados: ["Ismael 'El Mayo' Zambada", "Juan José Esparragoza 'El Azul'", "Ignacio Coronel"],
         enemigos: ["Cártel de los Beltrán Leyva", "Los Zetas", "Gobierno de México y EE. UU."],
-        impactoCultural: "Figura central de corridos mexicanos, series de TV y documentales. Su juicio en NY fue llamado 'el juicio del siglo'.",
+        impactoCultural:
+            "Figura central de corridos mexicanos, series de TV y documentales. Su juicio en NY fue llamado 'el juicio del siglo'.",
         fortunaEstimada: "$14,000 millones de USD",
-        modusOperandi: "Especialista en logística, túneles transfronterizos altamente sofisticados, uso de narcosubmarinos y una red de distribución en más de 50 países.",
-        territorio: "Sinaloa, México. Operaciones en 17 estados mexicanos y presencia en los 5 continentes.",
-        detallesCaptura: "Extraditado a EE. UU. en 2017 tras ser recapturado por tercera vez. Actualmente cumple cadena perpetua en ADX Florence."
+        modusOperandi:
+            "Especialista en logística, túneles transfronterizos altamente sofisticados, uso de narcosubmarinos y una red de distribución en más de 50 países.",
+        territorio:
+            "Sinaloa, México. Operaciones en 17 estados mexicanos y presencia en los 5 continentes.",
+        detallesCaptura:
+            "Extraditado a EE. UU. en 2017 tras ser recapturado por tercera vez. Actualmente cumple cadena perpetua en ADX Florence.",
     },
     {
         id: "amado-carrillo",
@@ -55,18 +81,31 @@ export const caposDroga = [
         organizacion: "Cártel de Juárez",
         rol: "Líder",
         origen: "México",
-        imagen: "assets/amado_carrillo.png",
-        descripcionCorta: "Conocido como 'El Señor de los Cielos' por su flota de aviones para transportar cocaína.",
-        historia: "Tomó el control del Cártel de Juárez tras asesinar a su predecesor. Expandió significativamente su alcance, transportando en un punto cuatro veces más cocaína que cualquier otro traficante.",
-        impacto: "Sus operaciones fomentaron una atmósfera de miedo y violencia en Ciudad Juárez. Murió tras una extensa cirugía plástica destinada a alterar su apariencia.",
-        eventosNotables: ["Uso de una flota de Boeing 727 para el contrabando", "Muerte por cirugía plástica"],
-        aliados: ["Cárteles Colombianos (Cali y Medellín)", "Funcionarios gubernamentales mexicanos"],
+        imagen: "assets/images/amado_carrillo.png",
+        descripcionCorta:
+            "Conocido como 'El Señor de los Cielos' por su flota de aviones para transportar cocaína.",
+        historia:
+            "Tomó el control del Cártel de Juárez tras asesinar a su predecesor. Expandió significativamente su alcance, transportando en un punto cuatro veces más cocaína que cualquier otro traficante.",
+        impacto:
+            "Sus operaciones fomentaron una atmósfera de miedo y violencia en Ciudad Juárez. Murió tras una extensa cirugía plástica destinada a alterar su apariencia.",
+        eventosNotables: [
+            "Uso de una flota de Boeing 727 para el contrabando",
+            "Muerte por cirugía plástica",
+        ],
+        aliados: [
+            "Cárteles Colombianos (Cali y Medellín)",
+            "Funcionarios gubernamentales mexicanos",
+        ],
         enemigos: ["Rafael Aguilar Guajardo (asesinado por él)", "Cártel de Sinaloa", "DEA"],
-        impactoCultural: "Inspiración para la serie 'El Señor de los Cielos'. Representa la opulencia y el misterio tras las sombras del poder.",
+        impactoCultural:
+            "Inspiración para la serie 'El Señor de los Cielos'. Representa la opulencia y el misterio tras las sombras del poder.",
         fortunaEstimada: "$25,000 millones de USD",
-        modusOperandi: "Transporte aéreo masivo mediante jets comerciales Boeing 727, lavado de dinero a través de bancos colombianos y soborno estructural de altos mandos militares.",
-        territorio: "Ciudad Juárez, México. Controló el corredor más importante de entrada de droga hacia Texas y el centro de EE. UU.",
-        detallesMuerte: "Falleció en la Ciudad de México el 4 de julio de 1997 tras complicaciones en una cirugía plástica de 9 horas para reconstruir su rostro."
+        modusOperandi:
+            "Transporte aéreo masivo mediante jets comerciales Boeing 727, lavado de dinero a través de bancos colombianos y soborno estructural de altos mandos militares.",
+        territorio:
+            "Ciudad Juárez, México. Controló el corredor más importante de entrada de droga hacia Texas y el centro de EE. UU.",
+        detallesMuerte:
+            "Falleció en la Ciudad de México el 4 de julio de 1997 tras complicaciones en una cirugía plástica de 9 horas para reconstruir su rostro.",
     },
     {
         id: "felix-gallardo",
@@ -78,18 +117,27 @@ export const caposDroga = [
         organizacion: "Cártel de Guadalajara",
         rol: "El Padrino",
         origen: "México",
-        imagen: "assets/felix_gallardo.png",
-        descripcionCorta: "Considerado el 'Padrino' del narcotráfico mexicano, cofundador del Cártel de Guadalajara.",
-        historia: "Fue crucial para conectar a los proveedores de cocaína colombianos con el mercado estadounidense. Su organización controlaba gran parte de las rutas de narcotráfico en México en la década de 1980.",
-        impacto: "Su arresto en 1989 por el asesinato del agente de la DEA Enrique Camarena llevó a la fragmentación del Cártel de Guadalajara, desencadenando la guerra del narcotráfico en México.",
-        eventosNotables: ["Asesinato del agente de la DEA Kiki Camarena", "Fundación de la primera federación de drogas mexicana"],
+        imagen: "assets/images/felix_gallardo.png",
+        descripcionCorta:
+            "Considerado el 'Padrino' del narcotráfico mexicano, cofundador del Cártel de Guadalajara.",
+        historia:
+            "Fue crucial para conectar a los proveedores de cocaína colombianos con el mercado estadounidense. Su organización controlaba gran parte de las rutas de narcotráfico en México en la década de 1980.",
+        impacto:
+            "Su arresto en 1989 por el asesinato del agente de la DEA Enrique Camarena llevó a la fragmentación del Cártel de Guadalajara, desencadenando la guerra del narcotráfico en México.",
+        eventosNotables: [
+            "Asesinato del agente de la DEA Kiki Camarena",
+            "Fundación de la primera federación de drogas mexicana",
+        ],
         aliados: ["Rafael Caro Quintero", "Ernesto Fonseca 'Don Neto'", "Cárteles Colombianos"],
         enemigos: ["Enrique 'Kiki' Camarena (DEA)", "Gobierno de EE. UU. (Operación Leyenda)"],
-        impactoCultural: "Representado como el estratega que industrializó el narco en 'Narcos: México'.",
+        impactoCultural:
+            "Representado como el estratega que industrializó el narco en 'Narcos: México'.",
         fortunaEstimada: "$5,000 millones de USD (Anuales en su apogeo)",
-        modusOperandi: "Creación del primer sistema de 'plazas' en México, actuando como mediador entre distribuidores mexicanos y proveedores colombianos.",
+        modusOperandi:
+            "Creación del primer sistema de 'plazas' en México, actuando como mediador entre distribuidores mexicanos y proveedores colombianos.",
         territorio: "Toda la frontera norte de México y las rutas del Pacífico.",
-        detallesCaptura: "Arrestado en 1989 en Guadalajara. Actualmente en prisión, con periodos de arresto domiciliario debido a su precario estado de salud."
+        detallesCaptura:
+            "Arrestado en 1989 en Guadalajara. Actualmente en prisión, con periodos de arresto domiciliario debido a su precario estado de salud.",
     },
     {
         id: "griselda-blanco",
@@ -101,18 +149,27 @@ export const caposDroga = [
         organizacion: "Cártel de Medellín (Asociada)",
         rol: "La Madrina / La Viuda Negra",
         origen: "Colombia / EE. UU.",
-        imagen: "assets/griselda_blanco.png",
-        descripcionCorta: "Una brutal traficante colombiana que operó entre Miami y Colombia en los años 70 y 80.",
-        historia: "Contrabandeó miles de kilogramos de cocaína al mes a los EE. UU. Fue infame por su crueldad y por supuestamente ordenar cientos de asesinatos.",
-        impacto: "Fue pionera en el uso de asesinatos desde motocicletas durante las 'Guerras de los Vaqueros de la Cocaína' en Miami. Su impacto en la seguridad pública fue profundo.",
-        eventosNotables: ["Guerras de la Cocaína en Miami", "Asesinada con su propio método (motociclista)"],
+        imagen: "assets/images/griselda_blanco.png",
+        descripcionCorta:
+            "Una brutal traficante colombiana que operó entre Miami y Colombia en los años 70 y 80.",
+        historia:
+            "Contrabandeó miles de kilogramos de cocaína al mes a los EE. UU. Fue infame por su crueldad y por supuestamente ordenar cientos de asesinatos.",
+        impacto:
+            "Fue pionera en el uso de asesinatos desde motocicletas durante las 'Guerras de los Vaqueros de la Cocaína' en Miami. Su impacto en la seguridad pública fue profundo.",
+        eventosNotables: [
+            "Guerras de la Cocaína en Miami",
+            "Asesinada con su propio método (motociclista)",
+        ],
         aliados: ["Sus hijos", "Red de sicarios en Miami"],
         enemigos: ["DEA", "Rivales locales en Miami", "Jaime Bravo (sobrino de su esposo Alberto)"],
-        impactoCultural: "Un ícono único por ser una de las pocas mujeres en la cima del poder criminal. Protagonista de la serie 'Griselda'.",
+        impactoCultural:
+            "Un ícono único por ser una de las pocas mujeres en la cima del poder criminal. Protagonista de la serie 'Griselda'.",
         fortunaEstimada: "$2,000 millones de USD",
-        modusOperandi: "Invención de caletas en ropa interior para contrabando humano, sicariato motorizado y uso de violencia extrema para ganar control territorial en Florida.",
+        modusOperandi:
+            "Invención de caletas en ropa interior para contrabando humano, sicariato motorizado y uso de violencia extrema para ganar control territorial en Florida.",
         territorio: "Miami, Florida (Base de operaciones) y Medellín, Colombia.",
-        detallesMuerte: "Asesinada el 3 de septiembre de 2012 en Medellín por un sicario motorizado mientras salía de una carnicería."
+        detallesMuerte:
+            "Asesinada el 3 de septiembre de 2012 en Medellín por un sicario motorizado mientras salía de una carnicería.",
     },
     {
         id: "gilberto-rodriguez",
@@ -124,18 +181,25 @@ export const caposDroga = [
         organizacion: "Cártel de Cali",
         rol: "Líder",
         origen: "Colombia",
-        imagen: "assets/gilberto_rodriguez.png",
-        descripcionCorta: "Conocido como 'El Ajedrecista' por su enfoque sofisticado y empresarial en el narcotráfico.",
-        historia: "El Cártel de Cali surgió como la fuerza dominante tras el declive de Medellín, controlando en un punto el 80% del mercado mundial de cocaína.",
-        impacto: "Se apoyó fuertemente en el soborno y el lavado de dinero para corromper a funcionarios. Su inmensa riqueza les permitió influir en gobiernos globalmente.",
+        imagen: "assets/images/gilberto_rodriguez.png",
+        descripcionCorta:
+            "Conocido como 'El Ajedrecista' por su enfoque sofisticado y empresarial en el narcotráfico.",
+        historia:
+            "El Cártel de Cali surgió como la fuerza dominante tras el declive de Medellín, controlando en un punto el 80% del mercado mundial de cocaína.",
+        impacto:
+            "Se apoyó fuertemente en el soborno y el lavado de dinero para corromper a funcionarios. Su inmensa riqueza les permitió influir en gobiernos globalmente.",
         eventosNotables: ["Extradición a los EE. UU.", "Caída del Cártel de Cali"],
         aliados: ["Miguel Rodríguez Orejuela", "Hélmer 'Pacho' Herrera", "José Santacruz Londoño"],
         enemigos: ["Pablo Escobar", "Gobierno de Colombia", "DEA"],
-        impactoCultural: "Representa el lado 'corporativo' y de guante blanco del narcotráfico en la historia.",
+        impactoCultural:
+            "Representa el lado 'corporativo' y de guante blanco del narcotráfico en la historia.",
         fortunaEstimada: "$2,100 millones de USD (Multa impuesta en EE. UU.)",
-        modusOperandi: "Estructura compartimentada tipo inteligencia estatal, uso masivo de sobornos a la clase política (Proceso 8000) y fachada de negocios legales.",
-        territorio: "Cali y el sur de Colombia. Controló el mercado de Nueva York y gran parte de Europa.",
-        detallesMuerte: "Murió por causas naturales en una prisión federal en Butner, Carolina del Norte, el 31 de mayo de 2022."
+        modusOperandi:
+            "Estructura compartimentada tipo inteligencia estatal, uso masivo de sobornos a la clase política (Proceso 8000) y fachada de negocios legales.",
+        territorio:
+            "Cali y el sur de Colombia. Controló el mercado de Nueva York y gran parte de Europa.",
+        detallesMuerte:
+            "Murió por causas naturales en una prisión federal en Butner, Carolina del Norte, el 31 de mayo de 2022.",
     },
     {
         id: "khun-sa",
@@ -147,18 +211,24 @@ export const caposDroga = [
         organizacion: "Ejército Mong Tai",
         rol: "Rey del Opio",
         origen: "Birmania (Triángulo Dorado)",
-        imagen: "assets/khun_sa.png",
-        descripcionCorta: "El señor del opio dominante en el Triángulo Dorado, controlando el 70% de la producción de Birmania.",
-        historia: "Operó refinerías de heroína a gran escala y suministró una cuarta parte de la heroína mundial en su apogeo. Comandó un ejército privado de 20,000 hombres.",
-        impacto: "Sus operaciones contribuyeron significativamente al flujo de heroína hacia Nueva York y los mercados globales. Fue una figura central en el sudeste asiático.",
+        imagen: "assets/images/khun_sa.png",
+        descripcionCorta:
+            "El señor del opio dominante en el Triángulo Dorado, controlando el 70% de la producción de Birmania.",
+        historia:
+            "Operó refinerías de heroína a gran escala y suministró una cuarta parte de la heroína mundial en su apogeo. Comandó un ejército privado de 20,000 hombres.",
+        impacto:
+            "Sus operaciones contribuyeron significativamente al flujo de heroína hacia Nueva York y los mercados globales. Fue una figura central en el sudeste asiático.",
         eventosNotables: ["Rendición al gobierno birmano en 1996", "Control del Triángulo Dorado"],
         aliados: ["Ejército Mong Tai", "Militias locales", "Funcionarios corruptos en Asia"],
         enemigos: ["Gobierno de Birmania", "DEA", "Ejércitos étnicos rivales"],
-        impactoCultural: "Visto por algunos como un luchador por la independencia Shan, su legado es una mezcla de caudillismo y narcotráfico.",
+        impactoCultural:
+            "Visto por algunos como un luchador por la independencia Shan, su legado es una mezcla de caudillismo y narcotráfico.",
         fortunaEstimada: "$600 millones de USD anuales en comercio de opio.",
-        modusOperandi: "Control militar de zonas de cultivo, sistemas de impuestos al campesinado (40%) y una red de refinerías protegida por su propio ejército.",
+        modusOperandi:
+            "Control militar de zonas de cultivo, sistemas de impuestos al campesinado (40%) y una red de refinerías protegida por su propio ejército.",
         territorio: "El 'Triángulo Dorado' entre Myanmar, Tailandia y Laos.",
-        detallesMuerte: "Falleció el 26 de octubre de 2007 en Yangón después de años bajo arresto domiciliario extraoficial."
+        detallesMuerte:
+            "Falleció el 26 de octubre de 2007 en Yangón después de años bajo arresto domiciliario extraoficial.",
     },
     {
         id: "frank-lucas",
@@ -170,18 +240,32 @@ export const caposDroga = [
         organizacion: "Familia Criminal Lucas",
         rol: "Rey de la Heroína",
         origen: "EE. UU.",
-        imagen: "assets/frank_lucas.png",
-        descripcionCorta: "Traficante estadounidense que controló el mercado en Harlem estableciendo una línea directa desde el sudeste asiático.",
-        historia: "Bypasseó a los intermediarios de la Mafia y alardeó de contrabandear heroína en los ataúdes de militares estadounidenses (la 'Conexión Cadáver').",
-        impacto: "Su heroína 'Blue Magic' era potente y barata, permitiéndole monopolizar el mercado de Harlem y exacerbando la epidemia de heroína.",
-        eventosNotables: ["Inspiración para 'American Gangster'", "Reclamación de la Conexión Cadáver"],
-        aliados: ["Leslie 'Ike' Atkinson", "Su extensa familia en Harlem", "Políticos y policías corruptos"],
+        imagen: "assets/images/frank_lucas.png",
+        descripcionCorta:
+            "Traficante estadounidense que controló el mercado en Harlem estableciendo una línea directa desde el sudeste asiático.",
+        historia:
+            "Bypasseó a los intermediarios de la Mafia y alardeó de contrabandear heroína en los ataúdes de militares estadounidenses (la 'Conexión Cadáver').",
+        impacto:
+            "Su heroína 'Blue Magic' era potente y barata, permitiéndole monopolizar el mercado de Harlem y exacerbando la epidemia de heroína.",
+        eventosNotables: [
+            "Inspiración para 'American Gangster'",
+            "Reclamación de la Conexión Cadáver",
+        ],
+        aliados: [
+            "Leslie 'Ike' Atkinson",
+            "Su extensa familia en Harlem",
+            "Políticos y policías corruptos",
+        ],
         enemigos: ["Detective Richie Roberts", "La Mafia de Nueva York", "NYPD / DEA"],
-        impactoCultural: "Su vida fue popularizada por Denzel Washington en la película 'American Gangster'.",
+        impactoCultural:
+            "Su vida fue popularizada por Denzel Washington en la película 'American Gangster'.",
         fortunaEstimada: "$52 millones de USD en bancos de las Islas Caimán.",
-        modusOperandi: "Importación directa (eliminando intermediarios), uso de vuelos militares de regreso de la Guerra de Vietnam y venta de marca propia ('Blue Magic').",
-        territorio: "Harlem, Nueva York. Propiedades en todo EE. UU., incluyendo Los Ángeles y Detroit.",
-        detallesCaptura: "Arrestado en 1975 en Nueva Jersey. Se convirtió en informante, reduciendo su condena de 70 años a solo 5."
+        modusOperandi:
+            "Importación directa (eliminando intermediarios), uso de vuelos militares de regreso de la Guerra de Vietnam y venta de marca propia ('Blue Magic').",
+        territorio:
+            "Harlem, Nueva York. Propiedades en todo EE. UU., incluyendo Los Ángeles y Detroit.",
+        detallesCaptura:
+            "Arrestado en 1975 en Nueva Jersey. Se convirtió en informante, reduciendo su condena de 70 años a solo 5.",
     },
     {
         id: "felix-mitchell",
@@ -193,18 +277,24 @@ export const caposDroga = [
         organizacion: "69 Mob",
         rol: "Líder",
         origen: "EE. UU.",
-        imagen: "assets/felix_mitchell.png",
-        descripcionCorta: "El primer gran traficante de Oakland, orquestando una red de distribución de heroína millonaria.",
-        historia: "Impuso un control territorial estricto mediante la violencia e intimidación, siendo uno de los primeros en industrializar las ventas callejeras.",
-        impacto: "Su fastuoso funeral en 1986, al que asistieron miles, destacó el impacto de la cultura de las drogas en la juventud urbana.",
+        imagen: "assets/images/felix_mitchell.png",
+        descripcionCorta:
+            "El primer gran traficante de Oakland, orquestando una red de distribución de heroína millonaria.",
+        historia:
+            "Impuso un control territorial estricto mediante la violencia e intimidación, siendo uno de los primeros en industrializar las ventas callejeras.",
+        impacto:
+            "Su fastuoso funeral en 1986, al que asistieron miles, destacó el impacto de la cultura de las drogas en la juventud urbana.",
         eventosNotables: ["Fundación de la 69 Mob", "Industrialización de las ventas callejeras"],
         aliados: ["Su organización 69 Mob", "Redes de distribución en Detroit y LA"],
         enemigos: ["Mickey Moore", "Gang de Funktown USA", "Departamento de Policía de Oakland"],
-        impactoCultural: "Conocido como 'Felix the Cat', su funeral fue un fenómeno mediático que cambió la percepción del crimen urbano.",
+        impactoCultural:
+            "Conocido como 'Felix the Cat', su funeral fue un fenómeno mediático que cambió la percepción del crimen urbano.",
         fortunaEstimada: "$1 millón de USD mensuales en su apogeo.",
-        modusOperandi: "Uso de niños como vigías y distribuidores callejeros, tácticas de guerrilla urbana para control de plazas y diversificación hacia Detroit.",
+        modusOperandi:
+            "Uso de niños como vigías y distribuidores callejeros, tácticas de guerrilla urbana para control de plazas y diversificación hacia Detroit.",
         territorio: "Oakland, California. Expansión a Los Ángeles y Detroit.",
-        detallesMuerte: "Asesinado en 1986 en la Penitenciaría Federal de Leavenworth por otro recluso mientras cumplía cadena perpetua."
+        detallesMuerte:
+            "Asesinado en 1986 en la Penitenciaría Federal de Leavenworth por otro recluso mientras cumplía cadena perpetua.",
     },
     {
         id: "freeway-rick-ross",
@@ -216,19 +306,26 @@ export const caposDroga = [
         organizacion: "Rey del Crack Independiente",
         rol: "Líder",
         origen: "EE. UU.",
-        imagen: "assets/freeway_rick_ross.png",
-        descripcionCorta: "Figura central de la epidemia de crack en Los Ángeles, cuyo imperio recaudaba más de 1 millón de dólares al día.",
-        historia: "Se le atribuye haber introducido casi sin ayuda el fenómeno del crack que devastó a las comunidades del sur de Los Ángeles.",
-        impacto: "Sus operaciones llamaron la atención sobre supuestas conexiones entre su fuente de cocaína y la CIA, vinculándolo al caso Irán-Contra.",
+        imagen: "assets/images/freeway_rick_ross.png",
+        descripcionCorta:
+            "Figura central de la epidemia de crack en Los Ángeles, cuyo imperio recaudaba más de 1 millón de dólares al día.",
+        historia:
+            "Se le atribuye haber introducido casi sin ayuda el fenómeno del crack que devastó a las comunidades del sur de Los Ángeles.",
+        impacto:
+            "Sus operaciones llamaron la atención sobre supuestas conexiones entre su fuente de cocaína y la CIA, vinculándolo al caso Irán-Contra.",
         eventosNotables: ["Conexión Irán-Contra", "Surgimiento de la epidemia del crack en LA"],
         aliados: ["Oscar Danilo Blandón", "Vasta red de distribuidores locales"],
         enemigos: ["LAPD / DEA", "Gobierno Federal de EE. UU."],
-        impactoCultural: "Su nombre fue adoptado por el rapero Rick Ross, lo que llevó a disputas legales y un lugar permanente en la cultura Hip-Hop.",
+        impactoCultural:
+            "Su nombre fue adoptado por el rapero Rick Ross, lo que llevó a disputas legales y un lugar permanente en la cultura Hip-Hop.",
         fortunaEstimada: "$300 millones de USD en ganancias netas.",
-        modusOperandi: "Distribución masiva de crack a bajo precio, uso de escáneres policiales avanzados y una red logística que cubría 42 ciudades de EE. UU.",
-        territorio: "South Central Los Ángeles (Base). Operaciones en Nueva York, Ohio y Pensilvania.",
-        detallesCaptura: "Condenado a cadena perpetua en 1996 tras una operación encubierta. Liberado en 2009 tras la apelación y reducción de su sentencia."
-    }
+        modusOperandi:
+            "Distribución masiva de crack a bajo precio, uso de escáneres policiales avanzados y una red logística que cubría 42 ciudades de EE. UU.",
+        territorio:
+            "South Central Los Ángeles (Base). Operaciones en Nueva York, Ohio y Pensilvania.",
+        detallesCaptura:
+            "Condenado a cadena perpetua en 1996 tras una operación encubierta. Liberado en 2009 tras la apelación y reducción de su sentencia.",
+    },
 ];
 
 export const organizaciones = [
@@ -241,12 +338,18 @@ export const organizaciones = [
         lideres: ["Pablo Escobar", "Gonzalo Rodríguez Gacha", "Carlos Lehder", "Hermanos Ochoa"],
         origen: "Medellín, Colombia",
         territorio: "Colombia (Sede), rutas hacia Florida y resto de EE. UU.",
-        aliados: ["Cártel de Guadalajara", "Narcotraficantes panameños", "Grupos guerrilleros (M-19)"],
+        aliados: [
+            "Cártel de Guadalajara",
+            "Narcotraficantes panameños",
+            "Grupos guerrilleros (M-19)",
+        ],
         enemigos: ["Cártel de Cali", "Gobierno de Colombia", "DEA", "Los Pepes"],
-        historia: "Fue la primera gran organización criminal dedicada al narcotráfico internacional. Se caracterizó por su estructura jerárquica y el uso sistemático del narcoterrorismo para presionar al Estado colombiano contra la extradición.",
-        modusOperandi: "Exportación masiva de cocaína, uso de sicariato motorizado y atentados terroristas contra figuras públicas y civiles.",
+        historia:
+            "Fue la primera gran organización criminal dedicada al narcotráfico internacional. Se caracterizó por su estructura jerárquica y el uso sistemático del narcoterrorismo para presionar al Estado colombiano contra la extradición.",
+        modusOperandi:
+            "Exportación masiva de cocaína, uso de sicariato motorizado y atentados terroristas contra figuras públicas y civiles.",
         estado: "Disuelto",
-        imagen: "assets/cartel_medellin.png"
+        imagen: "assets/images/cartel_medellin.png",
     },
     {
         id: "cartel-cali",
@@ -254,15 +357,22 @@ export const organizaciones = [
         nombreCompleto: "Cártel de Cali",
         fundacion: "1970",
         disolucion: "1998",
-        lideres: ["Gilberto Rodríguez Orejuela", "Miguel Rodríguez Orejuela", "José Santacruz Londoño", "Hélmer Herrera"],
+        lideres: [
+            "Gilberto Rodríguez Orejuela",
+            "Miguel Rodríguez Orejuela",
+            "José Santacruz Londoño",
+            "Hélmer Herrera",
+        ],
         origen: "Cali, Colombia",
         territorio: "Cali y el sur de Colombia, con control sobre el mercado de Nueva York.",
         aliados: ["Funcionarios políticos corruptos", "Redes de lavado de activos"],
         enemigos: ["Cártel de Medellín", "Los Pepes", "DEA"],
-        historia: "Emergió como el principal rival del Cártel de Medellín. A diferencia de Escobar, preferían la infiltración institucional y el soborno sobre el terrorismo abierto, ganándose el apodo de 'Los Caballeros de Cali'.",
-        modusOperandi: "Estructura compartimentada, inteligencia tipo estatal, sobornos masivos a la clase política (Proceso 8000) y lavado de dinero a través de empresas fachada.",
+        historia:
+            "Emergió como el principal rival del Cártel de Medellín. A diferencia de Escobar, preferían la infiltración institucional y el soborno sobre el terrorismo abierto, ganándose el apodo de 'Los Caballeros de Cali'.",
+        modusOperandi:
+            "Estructura compartimentada, inteligencia tipo estatal, sobornos masivos a la clase política (Proceso 8000) y lavado de dinero a través de empresas fachada.",
         estado: "Disuelto",
-        imagen: "assets/cartel_cali.png"
+        imagen: "assets/images/cartel_cali.png",
     },
     {
         id: "cartel-sinaloa",
@@ -270,15 +380,25 @@ export const organizaciones = [
         nombreCompleto: "Cártel de Sinaloa / Alianza de Sangre",
         fundacion: "1989",
         disolucion: "Activo",
-        lideres: ["Joaquín 'El Chapo' Guzmán", "Ismael 'El Mayo' Zambada", "Juan José Esparragoza 'El Azul'"],
+        lideres: [
+            "Joaquín 'El Chapo' Guzmán",
+            "Ismael 'El Mayo' Zambada",
+            "Juan José Esparragoza 'El Azul'",
+        ],
         origen: "Sinaloa, México",
         territorio: "Operaciones en más de 50 países, con base en el 'Triángulo Dorado' mexicano.",
         aliados: ["Cartel de Juárez (anteriormente)", "Redes de distribución global"],
-        enemigos: ["Los Zetas", "Cártel Jalisco Nueva Generación (CJNG)", "Cártel de los Beltrán Leyva"],
-        historia: "Considerada una de las organizaciones criminales más sofisticadas del mundo. Sobrevivió a la fragmentación de la federación de Guadalajara para convertirse en una corporación global con tecnología avanzada.",
-        modusOperandi: "Logística avanzada mediante túneles, narcosubmarinos, control de puertos y una estructura de 'federación' de facciones semi-autónomas.",
+        enemigos: [
+            "Los Zetas",
+            "Cártel Jalisco Nueva Generación (CJNG)",
+            "Cártel de los Beltrán Leyva",
+        ],
+        historia:
+            "Considerada una de las organizaciones criminales más sofisticadas del mundo. Sobrevivió a la fragmentación de la federación de Guadalajara para convertirse en una corporación global con tecnología avanzada.",
+        modusOperandi:
+            "Logística avanzada mediante túneles, narcosubmarinos, control de puertos y una estructura de 'federación' de facciones semi-autónomas.",
         estado: "Activo",
-        imagen: "assets/cartel_sinaloa.png"
+        imagen: "assets/images/cartel_sinaloa.png",
     },
     {
         id: "cartel-guadalajara",
@@ -286,15 +406,24 @@ export const organizaciones = [
         nombreCompleto: "Cártel de Guadalajara",
         fundacion: "1978",
         disolucion: "1989",
-        lideres: ["Miguel Ángel Félix Gallardo", "Rafael Caro Quintero", "Ernesto Fonseca Carrillo"],
+        lideres: [
+            "Miguel Ángel Félix Gallardo",
+            "Rafael Caro Quintero",
+            "Ernesto Fonseca Carrillo",
+        ],
         origen: "Guadalajara, México",
         territorio: "Centralizó el tráfico en México por primera vez.",
-        aliados: ["Cárteles de Medellín y Cali", "Funcionarios de la Dirección Federal de Seguridad (DFS)"],
+        aliados: [
+            "Cárteles de Medellín y Cali",
+            "Funcionarios de la Dirección Federal de Seguridad (DFS)",
+        ],
         enemigos: ["DEA (Operación Leyenda)"],
-        historia: "Fue la primera gran organización mexicana en industrializar el narcotráfico. Unieron a los grupos fragmentados de México en una 'federación' controlada por Félix Gallardo.",
-        modusOperandi: "Sistema de plazas, mediación entre distribuidores mexicanos y proveedores colombianos, y protección gubernamental de alto nivel.",
+        historia:
+            "Fue la primera gran organización mexicana en industrializar el narcotráfico. Unieron a los grupos fragmentados de México en una 'federación' controlada por Félix Gallardo.",
+        modusOperandi:
+            "Sistema de plazas, mediación entre distribuidores mexicanos y proveedores colombianos, y protección gubernamental de alto nivel.",
         estado: "Fragmentado",
-        imagen: "assets/cartel_guadalajara.png"
+        imagen: "assets/images/cartel_guadalajara.png",
     },
     {
         id: "cartel-juarez",
@@ -307,10 +436,12 @@ export const organizaciones = [
         territorio: "Ciudad Juárez y el corredor fronterizo de El Paso.",
         aliados: ["Cartel de Medellín", "Cartel de Cali"],
         enemigos: ["Cártel de Sinaloa"],
-        historia: "Bajo el mando de Amado Carrillo Fuentes, se convirtió en una potencia tecnológica y logística. Fueron pioneros en el uso de flotas de aviones de gran escala para el tráfico.",
-        modusOperandi: "Puente aéreo masivo usando Boeing 727 y lavado de dinero a niveles corporativos internacionales.",
+        historia:
+            "Bajo el mando de Amado Carrillo Fuentes, se convirtió en una potencia tecnológica y logística. Fueron pioneros en el uso de flotas de aviones de gran escala para el tráfico.",
+        modusOperandi:
+            "Puente aéreo masivo usando Boeing 727 y lavado de dinero a niveles corporativos internacionales.",
         estado: "Activo",
-        imagen: "assets/cartel_juarez.png"
+        imagen: "assets/images/cartel_juarez.png",
     },
     {
         id: "ejercito-mong-tai",
@@ -321,12 +452,18 @@ export const organizaciones = [
         lideres: ["Khun Sa (Chang Chi-fu)"],
         origen: "Estado Shan, Birmania",
         territorio: "El 'Triángulo Dorado' entre Myanmar, Tailandia y Laos.",
-        aliados: ["Milicias locales Shan", "Funcionarios corruptos birmanos y tailandeses", "Redes de refinación de heroína"],
+        aliados: [
+            "Milicias locales Shan",
+            "Funcionarios corruptos birmanos y tailandeses",
+            "Redes de refinación de heroína",
+        ],
         enemigos: ["Gobierno de Birmania", "DEA", "Ejércitos étnicos rivales (Wa, Kokang)"],
-        historia: "Fue tanto un ejército insurgente como una organización criminal. Khun Sa lo utilizó para controlar vastas zonas de cultivo de opio y refinerías de heroína, mientras proclamaba luchar por la independencia del pueblo Shan.",
-        modusOperandi: "Control militar directo de territorios, impuestos del 40% a los campesinos cultivadores de opio, red de refinerías protegidas por 20,000 soldados y exportación masiva de heroína hacia mercados globales.",
+        historia:
+            "Fue tanto un ejército insurgente como una organización criminal. Khun Sa lo utilizó para controlar vastas zonas de cultivo de opio y refinerías de heroína, mientras proclamaba luchar por la independencia del pueblo Shan.",
+        modusOperandi:
+            "Control militar directo de territorios, impuestos del 40% a los campesinos cultivadores de opio, red de refinerías protegidas por 20,000 soldados y exportación masiva de heroína hacia mercados globales.",
         estado: "Disuelto",
-        imagen: "assets/ejercito_mong_tai.png"
+        imagen: "assets/images/ejercito_mong_tai.png",
     },
     {
         id: "familia-lucas",
@@ -336,13 +473,20 @@ export const organizaciones = [
         disolucion: "1975",
         lideres: ["Frank Lucas"],
         origen: "Harlem, Nueva York",
-        territorio: "Harlem (Base principal), con extensiones a Newark, Nueva Jersey y otras ciudades del noreste de EE. UU.",
-        aliados: ["Leslie 'Ike' Atkinson (conexión en Tailandia)", "Familia extendida de Lucas", "Policías y políticos corruptos de Nueva York"],
+        territorio:
+            "Harlem (Base principal), con extensiones a Newark, Nueva Jersey y otras ciudades del noreste de EE. UU.",
+        aliados: [
+            "Leslie 'Ike' Atkinson (conexión en Tailandia)",
+            "Familia extendida de Lucas",
+            "Policías y políticos corruptos de Nueva York",
+        ],
         enemigos: ["Las Cinco Familias de la Mafia", "Detective Richie Roberts", "NYPD / DEA"],
-        historia: "Frank Lucas revolucionó el tráfico de heroína al eliminar a los intermediarios de la Mafia italiana y establecer una línea directa desde el Triángulo Dorado. Su marca 'Blue Magic' era más pura y barata que la competencia, permitiéndole dominar Harlem.",
-        modusOperandi: "Importación directa desde el sudeste asiático (supuestamente usando ataúdes de soldados caídos en Vietnam), distribución familiar cerrada, venta de heroína de alta pureza a precios competitivos y reinversión en bienes raíces.",
+        historia:
+            "Frank Lucas revolucionó el tráfico de heroína al eliminar a los intermediarios de la Mafia italiana y establecer una línea directa desde el Triángulo Dorado. Su marca 'Blue Magic' era más pura y barata que la competencia, permitiéndole dominar Harlem.",
+        modusOperandi:
+            "Importación directa desde el sudeste asiático (supuestamente usando ataúdes de soldados caídos en Vietnam), distribución familiar cerrada, venta de heroína de alta pureza a precios competitivos y reinversión en bienes raíces.",
         estado: "Desmantelada",
-        imagen: "assets/familia_lucas.png"
+        imagen: "assets/images/familia_lucas.png",
     },
     {
         id: "69-mob",
@@ -352,13 +496,16 @@ export const organizaciones = [
         disolucion: "1986",
         lideres: ["Felix Mitchell"],
         origen: "Oakland, California",
-        territorio: "East Oakland (Base), con expansión a Los Ángeles, Detroit y otras ciudades de la costa oeste.",
+        territorio:
+            "East Oakland (Base), con expansión a Los Ángeles, Detroit y otras ciudades de la costa oeste.",
         aliados: ["Redes de distribución en Detroit y LA", "Pandillas locales de Oakland"],
         enemigos: ["Mickey Moore", "Funktown USA", "Departamento de Policía de Oakland", "FBI"],
-        historia: "Fue una de las primeras organizaciones en industrializar las ventas callejeras de heroína en la costa oeste. Felix Mitchell implementó un sistema de distribución tipo franquicia que inspiró a futuras organizaciones de crack.",
-        modusOperandi: "Uso de menores como vigías y distribuidores ('soldiers'), control territorial mediante violencia e intimidación, diversificación geográfica y tácticas de guerrilla urbana para mantener el control de las 'plazas'.",
+        historia:
+            "Fue una de las primeras organizaciones en industrializar las ventas callejeras de heroína en la costa oeste. Felix Mitchell implementó un sistema de distribución tipo franquicia que inspiró a futuras organizaciones de crack.",
+        modusOperandi:
+            "Uso de menores como vigías y distribuidores ('soldiers'), control territorial mediante violencia e intimidación, diversificación geográfica y tácticas de guerrilla urbana para mantener el control de las 'plazas'.",
         estado: "Fragmentada",
-        imagen: "assets/69_mob.png"
+        imagen: "assets/images/69_mob.png",
     },
     {
         id: "imperio-freeway-rick",
@@ -368,13 +515,20 @@ export const organizaciones = [
         disolucion: "1996",
         lideres: ["Freeway Rick Ross (Ricky Donnell Ross)"],
         origen: "South Central Los Ángeles",
-        territorio: "South Central LA (Epicentro), con operaciones en 42 ciudades de EE. UU. incluyendo Nueva York, Cincinnati, Detroit y Pensilvania.",
-        aliados: ["Oscar Danilo Blandón (proveedor nicaragüense)", "Redes de distribuidores locales en múltiples ciudades", "Pandillas de Los Ángeles (Crips y Bloods)"],
+        territorio:
+            "South Central LA (Epicentro), con operaciones en 42 ciudades de EE. UU. incluyendo Nueva York, Cincinnati, Detroit y Pensilvania.",
+        aliados: [
+            "Oscar Danilo Blandón (proveedor nicaragüense)",
+            "Redes de distribuidores locales en múltiples ciudades",
+            "Pandillas de Los Ángeles (Crips y Bloods)",
+        ],
         enemigos: ["LAPD", "DEA", "Gobierno Federal (vinculado al escándalo Irán-Contra)"],
-        historia: "Freeway Rick Ross fue el arquitecto de la epidemia de crack en Los Ángeles y gran parte de EE. UU. Su conexión con Blandón, vinculado a la CIA y los Contras nicaragüenses, generó uno de los mayores escándalos de narcotráfico en la historia estadounidense.",
-        modusOperandi: "Distribución masiva de crack a precios ultra-bajos ($10-20 por roca), uso de tecnología avanzada (escáneres policiales), red logística que cubría 42 ciudades, reinversión constante para expandir el territorio y volumen sobre margen de ganancia.",
+        historia:
+            "Freeway Rick Ross fue el arquitecto de la epidemia de crack en Los Ángeles y gran parte de EE. UU. Su conexión con Blandón, vinculado a la CIA y los Contras nicaragüenses, generó uno de los mayores escándalos de narcotráfico en la historia estadounidense.",
+        modusOperandi:
+            "Distribución masiva de crack a precios ultra-bajos ($10-20 por roca), uso de tecnología avanzada (escáneres policiales), red logística que cubría 42 ciudades, reinversión constante para expandir el territorio y volumen sobre margen de ganancia.",
         estado: "Desmantelado",
-        imagen: "assets/imperio_freeway_rick.png"
+        imagen: "assets/images/imperio_freeway_rick.png",
     },
     {
         id: "red-griselda-blanco",
@@ -384,12 +538,15 @@ export const organizaciones = [
         disolucion: "1985",
         lideres: ["Griselda Blanco Restrepo"],
         origen: "Medellín, Colombia / Miami, Florida",
-        territorio: "Miami (Base de operaciones), con conexiones en Medellín, Nueva York y California.",
+        territorio:
+            "Miami (Base de operaciones), con conexiones en Medellín, Nueva York y California.",
         aliados: ["Cártel de Medellín (asociada)", "Sus tres hijos", "Red de sicarios en Miami"],
         enemigos: ["DEA", "Rivales locales en Miami", "Jaime Bravo", "Familias de la Mafia"],
-        historia: "Griselda Blanco fue pionera en establecer rutas de cocaína entre Colombia y Miami en los años 70. Conocida como 'La Madrina' y 'La Viuda Negra', fue una de las pocas mujeres en alcanzar el poder absoluto en el narcotráfico. Su organización fue responsable de cientos de asesinatos durante las 'Guerras de la Cocaína' en Miami.",
-        modusOperandi: "Invención de técnicas de contrabando (caletas en ropa interior, mulas humanas), uso del sicariato motorizado (asesinatos desde motocicletas), violencia extrema para eliminar competencia y control territorial mediante el terror. Contrabandeaba hasta 3,400 kg de cocaína al mes.",
+        historia:
+            "Griselda Blanco fue pionera en establecer rutas de cocaína entre Colombia y Miami en los años 70. Conocida como 'La Madrina' y 'La Viuda Negra', fue una de las pocas mujeres en alcanzar el poder absoluto en el narcotráfico. Su organización fue responsable de cientos de asesinatos durante las 'Guerras de la Cocaína' en Miami.",
+        modusOperandi:
+            "Invención de técnicas de contrabando (caletas en ropa interior, mulas humanas), uso del sicariato motorizado (asesinatos desde motocicletas), violencia extrema para eliminar competencia y control territorial mediante el terror. Contrabandeaba hasta 3,400 kg de cocaína al mes.",
         estado: "Desmantelada",
-        imagen: "assets/red_griselda_blanco.png"
-    }
+        imagen: "assets/images/red_griselda_blanco.png",
+    },
 ];

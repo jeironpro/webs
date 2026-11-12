@@ -26,9 +26,10 @@ web-codi-wiki/
 ├── index.html
 ├── css/                   # estilos de la wiki
 ├── js/                    # datos de contenido y lógica de la interfaz
-└── icon/                  # favicon
+└── assets/icons/                  # favicon
 ```
 
 ## Licencia
+
 Este proyecto está bajo la licencia **MIT**.  
 Consulta el archivo [LICENSE](LICENSE) para más detalles.

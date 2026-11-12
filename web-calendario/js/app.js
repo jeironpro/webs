@@ -43,7 +43,7 @@ function renderCalendar() {
         monthSection.classList.add("month");
         monthSection.setAttribute(
             "aria-label",
-            `Calendario de ${MONTH_NAMES[month]} de ${calendarYear}`,
+            `Calendario de ${MONTH_NAMES[month]} de ${calendarYear}`
         );
 
         const monthTitle = document.createElement("h2");

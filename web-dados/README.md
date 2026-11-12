@@ -19,17 +19,17 @@ Aplicacion web interactiva de dados con seleccion multiple (1-12), animaciones, 
 - CSS3 (Grid, Flexbox, Custom Properties, Media Queries, animaciones)
 - JavaScript ES6+ (modulos, promesas)
 - Sora (Google Fonts)
-- Vitest + jsdom (tests)
-- ESLint + Stylelint + Prettier
+- Vitest + jsdom (tests, desde la raíz del repositorio)
+- ESLint + Prettier
 
 ## Estructura
 
 ```
 web-dados/
   index.html          Pagina principal
-  favicon.svg         Favicon
-  robots.txt          Configuracion SEO
-  sitemap.xml         Mapa del sitio
+  assets/
+    icons/
+      favicon.svg     Favicon
   css/
     style.css         Hoja principal (imports)
     reset.css         Reset CSS
@@ -47,24 +47,13 @@ web-dados/
       diceService.js  Logica de dados
     utils/            Utilidades
       dom.js          Manipulacion DOM
+  STYLE-GUIDE.md      Libro de estilo
   docs/
-    style-guide.md    Libro de estilo
     technical.md      Documentacion tecnica
-  tests/
-    diceService.test.js
-    dice.test.js
 ```
 
-## Scripts
-
-```bash
-npm test              Ejecutar tests
-npm run test:watch    Tests en modo watch
-npm run lint          Analizar JS con ESLint
-npm run lint:css      Analizar CSS con Stylelint
-npm run format        Formatear codigo con Prettier
-npm run format:check  Verificar formato
-```
+Los tests viven en `tests/web-dados/` y se ejecutan desde la raíz del
+repositorio con `npm test`.
 
 ## Licencia
 

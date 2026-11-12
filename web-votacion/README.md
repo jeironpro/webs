@@ -60,13 +60,14 @@ js/
   modules/           partidos, votos, render
   services/          storage (localStorage)
   utils/             utilidades seguras de DOM
-assets/              favicon
+assets/
+  icons/             favicons e iconos de la aplicación
 docs/                documentación (arquitectura, casos de uso, maquetas)
 ```
 
 ## Contribuir
 
-Consulta [`CONTRIBUTING.md`](CONTRIBUTING.md).
+Consulta [`docs/CONTRIBUTING.md`](docs/CONTRIBUTING.md).
 
 ## Licencia
 

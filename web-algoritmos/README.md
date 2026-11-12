@@ -27,9 +27,10 @@ web-algoritmos/
 ├── index.html
 ├── css/                   # estilos de las tarjetas
 ├── js/                    # datos de algoritmos y lógica de las tarjetas
-└── icon/                  # favicon
+└── assets/icons/                  # favicon
 ```
 
 ## Licencia
+
 Este proyecto está bajo la licencia **MIT**.  
 Consulta el archivo [LICENSE](LICENSE) para más detalles.

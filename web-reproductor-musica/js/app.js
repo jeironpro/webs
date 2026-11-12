@@ -1,22 +1,22 @@
 const canciones = [
-    { titulo: "Gabito Ballesteros - A Puro Dolor", src: "canciones/APuroDolor.mp3" },
-    { titulo: "Gabito Ballesteros - Chiquitita", src: "canciones/Chiquitita.mp3" },
-    { titulo: "Fuerza Regida - Disculpe Usted", src: "canciones/DisculpeUsted.mp3" },
-    { titulo: "Fuerza Regida - Los Sufrimientos", src: "canciones/LosSufrimientos.mp3" },
-    { titulo: "Natanael Cano - Mi Bello Angel", src: "canciones/MiBelloAngel.mp3" },
-    { titulo: "Fuerza Regida - Navidad Sin Ti", src: "canciones/NavidadSinTi.mp3" },
-    { titulo: "Fuerza Regida - No Me Dejes Nunca", src: "canciones/NoMeDejesNunca.mp3" },
-    { titulo: "Fuerza Regida - No Volvere", src: "canciones/NoVolvere.mp3" },
-    { titulo: "Natanael Cano - O Me Voy O Te Vas", src: "canciones/OMeVoyOTeVas.mp3" },
-    { titulo: "Gabito Ballesteros - Que Lloro", src: "canciones/QueLloro.mp3" },
-    { titulo: "Fuerza Regida - Que Tal Se Siente", src: "canciones/QueTalSeSiente.mp3" },
-    { titulo: "Fuerza Regida - Quien Es Usted", src: "canciones/QuienEsUsted.mp3" },
-    { titulo: "Gabito Ballesteros - Te He Prometido", src: "canciones/TeHePrometido.mp3" },
-    { titulo: "Fuerza Regida - Te Hubieras Ido Antes", src: "canciones/TeHubierasIdoAntes.mp3" },
-    { titulo: "Fuerza Regida - Te Voy A Olvidar", src: "canciones/TeVoyAOlvidar.mp3" },
-    { titulo: "Fuerza Regida - Tu Ventana", src: "canciones/TuVentana.mp3" },
-    { titulo: "Fuerza Regida - Un Idiota", src: "canciones/UnIdiota.mp3" },
-    { titulo: "Fuerza Regida - Vete Ya", src: "canciones/VeteYa.mp3" },
+    { titulo: "Gabito Ballesteros - A Puro Dolor", src: "assets/media/APuroDolor.mp3" },
+    { titulo: "Gabito Ballesteros - Chiquitita", src: "assets/media/Chiquitita.mp3" },
+    { titulo: "Fuerza Regida - Disculpe Usted", src: "assets/media/DisculpeUsted.mp3" },
+    { titulo: "Fuerza Regida - Los Sufrimientos", src: "assets/media/LosSufrimientos.mp3" },
+    { titulo: "Natanael Cano - Mi Bello Angel", src: "assets/media/MiBelloAngel.mp3" },
+    { titulo: "Fuerza Regida - Navidad Sin Ti", src: "assets/media/NavidadSinTi.mp3" },
+    { titulo: "Fuerza Regida - No Me Dejes Nunca", src: "assets/media/NoMeDejesNunca.mp3" },
+    { titulo: "Fuerza Regida - No Volvere", src: "assets/media/NoVolvere.mp3" },
+    { titulo: "Natanael Cano - O Me Voy O Te Vas", src: "assets/media/OMeVoyOTeVas.mp3" },
+    { titulo: "Gabito Ballesteros - Que Lloro", src: "assets/media/QueLloro.mp3" },
+    { titulo: "Fuerza Regida - Que Tal Se Siente", src: "assets/media/QueTalSeSiente.mp3" },
+    { titulo: "Fuerza Regida - Quien Es Usted", src: "assets/media/QuienEsUsted.mp3" },
+    { titulo: "Gabito Ballesteros - Te He Prometido", src: "assets/media/TeHePrometido.mp3" },
+    { titulo: "Fuerza Regida - Te Hubieras Ido Antes", src: "assets/media/TeHubierasIdoAntes.mp3" },
+    { titulo: "Fuerza Regida - Te Voy A Olvidar", src: "assets/media/TeVoyAOlvidar.mp3" },
+    { titulo: "Fuerza Regida - Tu Ventana", src: "assets/media/TuVentana.mp3" },
+    { titulo: "Fuerza Regida - Un Idiota", src: "assets/media/UnIdiota.mp3" },
+    { titulo: "Fuerza Regida - Vete Ya", src: "assets/media/VeteYa.mp3" },
 ];
 
 const reproductorAudio = new Audio();
@@ -26,7 +26,9 @@ const cargarCancion = () => {
     reproductorAudio.src = canciones[cancionActual].src;
     const info = canciones[cancionActual].titulo.split("-");
     document.getElementById("nombre-artista").textContent = info[0] ? info[0].trim() : "";
-    document.getElementById("titulo-cancion").textContent = info[1] ? info[1].trim() : info[0].trim();
+    document.getElementById("titulo-cancion").textContent = info[1]
+        ? info[1].trim()
+        : info[0].trim();
 };
 
 const contenedorReproductor = document.getElementById("contenedor-reproductor");
@@ -44,15 +46,15 @@ const botonAnterior = document.getElementById("anterior");
 const reproducirCancion = () => {
     reproductorAudio.play();
     imagenCancion.classList.add("reproduciendo");
-    botonReproducir.style.display = 'none';
-    botonPausar.style.display = 'block';
+    botonReproducir.style.display = "none";
+    botonPausar.style.display = "block";
 };
 
 const pausarCancion = () => {
     reproductorAudio.pause();
     imagenCancion.classList.remove("reproduciendo");
-    botonPausar.style.display = 'none';
-    botonReproducir.style.display = 'block';
+    botonPausar.style.display = "none";
+    botonReproducir.style.display = "block";
 };
 
 const siguienteCancion = () => {
@@ -71,24 +73,24 @@ const seleccionarCancion = (index) => {
     cancionActual = index;
     cargarCancion();
     reproducirCancion();
-    contenedorListado.style.display = 'none';
-    reproductor.style.display = 'block';
-    iconoVolver.style.display = 'none';
-    contenedorReproductor.style.overflowY = 'hidden';
+    contenedorListado.style.display = "none";
+    reproductor.style.display = "block";
+    iconoVolver.style.display = "none";
+    contenedorReproductor.style.overflowY = "hidden";
 };
 
-iconoVolver.addEventListener('click', () => {
-    reproductor.style.display = 'block';
-    iconoVolver.style.display = 'none';
-    contenedorReproductor.style.overflowY = 'hidden';
-    contenedorListado.style.display = 'none';
+iconoVolver.addEventListener("click", () => {
+    reproductor.style.display = "block";
+    iconoVolver.style.display = "none";
+    contenedorReproductor.style.overflowY = "hidden";
+    contenedorListado.style.display = "none";
 });
 
-iconoListado.addEventListener('click', () => {
-    reproductor.style.display = 'none';
-    iconoVolver.style.display = 'block';
-    contenedorReproductor.style.overflowY = 'auto';
-    contenedorListado.style.display = 'block';
+iconoListado.addEventListener("click", () => {
+    reproductor.style.display = "none";
+    iconoVolver.style.display = "block";
+    contenedorReproductor.style.overflowY = "auto";
+    contenedorListado.style.display = "block";
 
     contenedorListado.replaceChildren();
     const ul = document.createElement("ul");

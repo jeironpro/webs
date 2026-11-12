@@ -1,13 +1,13 @@
-'use strict';
+"use strict";
 
 const MIN_PASSWORD_LENGTH = 12;
 const MAX_PASSWORD_LENGTH = 16;
 const PASSWORD_CHARACTERS =
-    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_=+';
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_=+";
 
-const passwordField = document.getElementById('password-field');
-const generateButton = document.getElementById('generate-button');
-const statusMessage = document.getElementById('status-message');
+const passwordField = document.getElementById("password-field");
+const generateButton = document.getElementById("generate-button");
+const statusMessage = document.getElementById("status-message");
 
 /**
  * Returns an unbiased integer in the range [0, max).
@@ -32,17 +32,17 @@ function getRandomInt(max) {
 function generatePassword() {
     const length =
         MIN_PASSWORD_LENGTH + getRandomInt(MAX_PASSWORD_LENGTH - MIN_PASSWORD_LENGTH + 1);
-    let password = '';
+    let password = "";
 
     for (let index = 0; index < length; index += 1) {
         password += PASSWORD_CHARACTERS[getRandomInt(PASSWORD_CHARACTERS.length)];
     }
 
     passwordField.value = password;
-    statusMessage.textContent = '¡Contraseña generada con éxito!';
+    statusMessage.textContent = "¡Contraseña generada con éxito!";
 }
 
-generateButton.addEventListener('click', generatePassword);
+generateButton.addEventListener("click", generatePassword);
 
 // Generate an initial password as soon as the script loads.
 generatePassword();

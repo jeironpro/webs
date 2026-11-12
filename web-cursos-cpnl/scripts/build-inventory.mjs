@@ -1,12 +1,13 @@
 import { readdirSync, writeFileSync } from "node:fs";
-import { join, relative } from "node:path";
+import { dirname, join, relative } from "node:path";
+import { fileURLToPath } from "node:url";
 
 /**
- * Recorre cpnl/ y genera src/js/inventory.generated.js con la lista de rutas
+ * Recorre cpnl/ y genera js/inventory.generated.js con la lista de rutas
  * de los PDFs. El fichero generado se commitea y lo consume la web.
- * Uso: node scripts/build-inventory.mjs
+ * Uso: node web-cursos-cpnl/scripts/build-inventory.mjs
  */
-const PROJECT_ROOT = process.cwd();
+const PROJECT_ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const SOURCE_DIR = "cpnl";
 const OUTPUT_FILE = "js/inventory.generated.js";
 

@@ -26,9 +26,10 @@ web-gestiona-presupuesto/
 ├── index.html
 ├── css/                   # estilos de la interfaz
 ├── js/                    # lógica de registros y balance
-└── icon/                  # favicon
+└── assets/icons/                  # favicon
 ```
 
 ## Licencia
+
 Este proyecto está bajo la licencia **MIT**.  
 Consulta el archivo [LICENSE](../LICENSE) para más detalles.

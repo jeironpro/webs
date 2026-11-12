@@ -54,7 +54,7 @@ Todo se procesa en el navegador: **no se envía nada a ningún servidor**.
 │   ├── modules/        # Lógica de conteo y de subida de archivos
 │   └── utils/          # Utilidades (DOM)
 ├── assets/
-│   └── favicon.svg
+│   └── icons/favicon.svg
 └── docs/               # Documentación técnica
 ```
 

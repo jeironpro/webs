@@ -29,9 +29,10 @@ web-conversor-universal/
 ├── index.html
 ├── css/                   # estilos de la interfaz
 ├── js/                    # unidades y lógica de conversión
-└── icon/                  # favicon y logo
+└── assets/icons/                  # favicon y logo
 ```
 
 ## Licencia
+
 Este proyecto está bajo la licencia **MIT**.  
 Consulta el archivo [LICENSE](LICENSE) para más detalles.

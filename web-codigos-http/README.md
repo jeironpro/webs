@@ -26,9 +26,10 @@ web-codigos-http/
 ├── index.html
 ├── css/                   # estilos de las tarjetas
 ├── js/                    # catalogo de códigos y renderizado
-└── icon/                  # favicon
+└── assets/icons/                  # favicon
 ```
 
 ## Licencia
+
 Este proyecto está bajo la licencia **MIT**.  
 Consulta el archivo [LICENSE](LICENSE) para más detalles.

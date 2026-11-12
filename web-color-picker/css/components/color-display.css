@@ -1,73 +1,73 @@
 /* Panel izquierdo: muestra el color seleccionado a pantalla completa */
 .color-display {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color var(--transition-normal);
-  position: relative;
-  overflow: hidden;
-  /* Mobile-first: el panel arranca compacto */
-  min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+    /* Mobile-first: el panel arranca compacto */
+    min-height: 100px;
 }
 
 .color-display__info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--spacing-sm);
-  padding: var(--spacing-xs) var(--spacing-md);
-  border-radius: var(--border-radius-md);
-  background: rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(6px);
-  cursor: pointer;
-  user-select: none;
-  transition: transform var(--transition-fast);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: var(--border-radius-md);
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(6px);
+    cursor: pointer;
+    user-select: none;
+    transition: transform var(--transition-fast);
 }
 
 .color-display__info:hover {
-  transform: scale(1.05);
+    transform: scale(1.05);
 }
 
 .color-display__info:active {
-  transform: scale(0.95);
+    transform: scale(0.95);
 }
 
 .color-display__hex {
-  font-family: var(--font-mono);
-  font-size: clamp(1.25rem, 4vw, 2rem);
-  font-weight: 600;
-  color: var(--color-white);
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
-  letter-spacing: 0.02em;
+    font-family: var(--font-mono);
+    font-size: clamp(1.25rem, 4vw, 2rem);
+    font-weight: 600;
+    color: var(--color-white);
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+    letter-spacing: 0.02em;
 }
 
 .color-display__label {
-  font-size: clamp(0.625rem, 1.5vw, 0.75rem);
-  color: rgba(255, 255, 255, 0.7);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+    font-size: clamp(0.625rem, 1.5vw, 0.75rem);
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
 }
 
 /* Tablet: mas alto y con mas aire */
 @media (min-width: 481px) {
-  .color-display {
-    min-height: 160px;
-  }
+    .color-display {
+        min-height: 160px;
+    }
 
-  .color-display__info {
-    padding: var(--spacing-md) var(--spacing-lg);
-    border-radius: var(--border-radius-lg);
-  }
+    .color-display__info {
+        padding: var(--spacing-md) var(--spacing-lg);
+        border-radius: var(--border-radius-lg);
+    }
 }
 
 /* Escritorio: el panel recupera su altura y padding originales */
 @media (min-width: 769px) {
-  .color-display {
-    min-height: 120px;
-  }
+    .color-display {
+        min-height: 120px;
+    }
 
-  .color-display__info {
-    padding: var(--spacing-lg);
-  }
+    .color-display__info {
+        padding: var(--spacing-lg);
+    }
 }

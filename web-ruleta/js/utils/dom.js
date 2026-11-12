@@ -1,8 +1,8 @@
 /* Utilidades: Manipulacion del DOM */
 export function $(selector, context = document) {
-	return context.querySelector(selector);
+    return context.querySelector(selector);
 }
 
 export function $$(selector, context = document) {
-	return [...context.querySelectorAll(selector)];
+    return [...context.querySelectorAll(selector)];
 }

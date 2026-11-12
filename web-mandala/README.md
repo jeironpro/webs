@@ -74,7 +74,7 @@ El diseño sigue la skill **Hallmark**: tema **Newsprint** (papel crema, tinta, 
 ## Interfaz
 
 - La interfaz se organiza en un único **panel de herramientas** (a la izquierda) que incluye el título _Mandalas_, el subtítulo _Colorea, guarda e imprime. Sin registro._, la paleta de colores y las acciones, cerrado con el pie **Web Mandala**.
-- **Favicon** SVG con marca de mandala (`img/favicon.svg`), enlazado desde `index.html`.
+- **Favicon** SVG con marca de mandala (`assets/icons/favicon.svg`), enlazado desde `index.html`.
 
 ## Reglas de estilo
 
@@ -85,7 +85,7 @@ El diseño sigue la skill **Hallmark**: tema **Newsprint** (papel crema, tinta, 
 
 ## Validación
 
-- `npm install` y `npm run lint` (ESLint + Prettier).
+- `npm install` y `npm run lint` desde la raíz del repositorio (ESLint + Prettier).
 - El generador se valida con un harness de Node que simula el DOM (ids únicos, radios válidos, regiones bien formadas).
 
 ## Licencia

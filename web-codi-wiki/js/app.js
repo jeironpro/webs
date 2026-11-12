@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
         header.append(
             createElement("span", "type-label", item.label),
             createElement("h1", "detail-title", item.name),
-            createElement("p", "detail-description", item.description),
+            createElement("p", "detail-description", item.description)
         );
         detailView.appendChild(header);
 
@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const historyBlock = createElement("div", "section-block");
         historyBlock.append(
             createElement("h2", null, "Historia y Origen"),
-            createElement("p", null, item.history),
+            createElement("p", null, item.history)
         );
         detailView.appendChild(historyBlock);
 

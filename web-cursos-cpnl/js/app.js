@@ -49,13 +49,13 @@ function setAccordionState(button, panel, panelInner, expanded) {
     panelInner.setAttribute("aria-hidden", String(!expanded));
 }
 
-/** Icono SVG local (icons/) reutilizable, coloreable con currentColor. */
+/** Icono SVG local (assets/icons/) reutilizable, coloreable con currentColor. */
 function createIcon(name) {
     const svg = document.createElementNS(SVG_NS, "svg");
     svg.setAttribute("class", "icon");
     svg.setAttribute("aria-hidden", "true");
     const use = document.createElementNS(SVG_NS, "use");
-    use.setAttribute("href", `icons/${name}.svg#icon`);
+    use.setAttribute("href", `assets/icons/${name}.svg#icon`);
     svg.append(use);
     return svg;
 }
@@ -116,7 +116,7 @@ function createSpecGroup(label, value) {
     const group = createElement("div");
     group.append(
         createElement("dt", { text: label }),
-        createElement("dd", { text: String(value) }),
+        createElement("dd", { text: String(value) })
     );
     return group;
 }
@@ -143,7 +143,7 @@ function renderSidebar() {
                 class: "sidebar__accordion-label",
                 text: `${String(level.number).padStart(2, "0")} · ${level.label}`,
             }),
-            `panel-${levelId}`,
+            `panel-${levelId}`
         );
         levelItem.append(levelAccordion.accordion);
         navLinks.set(levelId, levelAccordion.accordion);
@@ -155,7 +155,7 @@ function renderSidebar() {
             const unitAccordion = createAccordion(
                 "sidebar__unit-accordion",
                 createElement("span", { text: `unitat ${unit.number}` }),
-                `panel-${unitId}`,
+                `panel-${unitId}`
             );
             const unitItem = createElement("li");
             unitItem.append(unitAccordion.accordion);
@@ -169,8 +169,8 @@ function renderSidebar() {
                         createSidebarItem(
                             "sidebar__exercise-link",
                             exercise.file,
-                            `exercici ${exercise.number}`,
-                        ),
+                            `exercici ${exercise.number}`
+                        )
                     );
                 }
                 unitAccordion.panelInner.append(exerciseList);
@@ -185,7 +185,7 @@ function renderSidebar() {
             const materialsList = createElement("ul", { class: "sidebar__materials" });
             for (const material of level.materials) {
                 materialsList.append(
-                    createSidebarItem("sidebar__material-link", material.file, material.label),
+                    createSidebarItem("sidebar__material-link", material.file, material.label)
                 );
             }
             levelAccordion.panelInner.append(materialsList);
@@ -235,7 +235,7 @@ function renderLevels() {
                 class: "level__meta",
                 text: `nivell ${level.number} · curs de català`,
             }),
-            createElement("h2", { class: "level__title", text: level.label }),
+            createElement("h2", { class: "level__title", text: level.label })
         );
 
         const exercisesCount = level.units.reduce((sum, unit) => sum + unit.exercises.length, 0);
@@ -268,7 +268,7 @@ function renderLevels() {
                     createElement("span", {
                         class: "unit__count",
                         text: `${unit.exercises.length} exercicis`,
-                    }),
+                    })
                 );
 
                 const exerciseList = createElement("ol", { class: "unit__exercises" });
@@ -278,9 +278,9 @@ function renderLevels() {
                             createDownloadLink(
                                 exercise.file,
                                 exercise.label.toLowerCase(),
-                                "exercise-link",
+                                "exercise-link"
                             ),
-                        ]),
+                        ])
                     );
                 }
 
@@ -296,14 +296,14 @@ function renderLevels() {
                 createElement("h3", {
                     class: "level__materials-title",
                     text: "materials del nivell",
-                }),
+                })
             );
             const list = createElement("ul", { class: "materials-list" });
             for (const material of level.materials) {
                 list.append(
                     createElement("li", {}, [
                         createDownloadLink(material.file, material.label, "material-link"),
-                    ]),
+                    ])
                 );
             }
             materials.append(list);

@@ -28,9 +28,10 @@ web-convertidor-moneda/
 ├── index.html
 ├── css/                   # estilos de la interfaz
 ├── js/                    # lógica de conversión y consulta a la API
-└── icon/                  # favicon
+└── assets/icons/                  # favicon
 ```
 
 ## Licencia
+
 Este proyecto está bajo la licencia **MIT**.  
 Consulta el archivo [LICENSE](LICENSE) para más detalles.

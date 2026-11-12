@@ -10,5 +10,5 @@
  * @returns {Element|null} Elemento encontrado o null.
  */
 export function qs(selector, root = document) {
-  return root.querySelector(selector);
+    return root.querySelector(selector);
 }

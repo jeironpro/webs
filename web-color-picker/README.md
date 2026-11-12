@@ -37,10 +37,8 @@ web-color-picker/
 │   ├── app.js              # Entry point
 │   ├── modules/            # colorPicker.js, colorConverter.js
 │   └── utils/              # dom.js, format.js
-├── assets/images/          # favicon.svg
-├── package.json            # type: module + devDependencies
-├── eslint.config.js        # ESLint flat config (4 tab width)
-├── .gitignore              # node_modules, .DS_Store, logs
+├── assets/
+│   └── icons/favicon.svg   # Favicon SVG
 ├── ARQUITECTURA.md         # Documentación técnica
 └── STYLE-GUIDE.md          # Libro de estilo
 ```

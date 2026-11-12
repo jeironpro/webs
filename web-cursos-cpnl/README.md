@@ -29,13 +29,13 @@ Abrir <http://localhost:8000>.
 
 ## Scripts
 
-| Script                             | Descripción                                        |
-| ---------------------------------- | -------------------------------------------------- |
-| `npm run lint`                     | ESLint sobre `js/` y `scripts/`                    |
-| `npm run format`                   | Prettier (escribe)                                 |
-| `npm run format:check`             | Prettier (solo comprueba)                          |
-| `npm test`                         | Tests Vitest de la lógica del catálogo             |
-| `node scripts/build-inventory.mjs` | Regenera `js/inventory.generated.js` desde `cpnl/` |
+| Script                                             | Descripción                                        |
+| -------------------------------------------------- | -------------------------------------------------- |
+| `npm run lint`                                     | ESLint sobre `js/` y `scripts/`                    |
+| `npm run format`                                   | Prettier (escribe)                                 |
+| `npm run format:check`                             | Prettier (solo comprueba)                          |
+| `npm test`                                         | Tests Vitest de la lógica del catálogo             |
+| `node web-cursos-cpnl/scripts/build-inventory.mjs` | Regenera `js/inventory.generated.js` desde `cpnl/` |
 
 ## Estructura
 
@@ -50,13 +50,15 @@ css/                          # Hojas de estilo
 js/                           # Módulos de la web
 ├── app.js                    # Render de la web y panel lateral
 ├── catalog.js                # Lógica pura del catálogo + ficheros ocultos
-├── inventory.generated.js    # Inventario de PDFs (generado)
-└── test/catalog.test.js      # Tests del catálogo
-icons/                        # Iconos y favicons locales (SVG/PNG)
-docs/style-guide.md           # Libro de estilo
+└── inventory.generated.js    # Inventario de PDFs (generado)
+assets/icons/                 # Iconos y favicons locales (SVG/PNG)
+STYLE-GUIDE.md                # Libro de estilo
 index.html                    # Estructura semántica de la página
 scripts/build-inventory.mjs   # Genera el inventario desde cpnl/
 ```
+
+Los tests del catálogo viven en `tests/web-cursos-cpnl/` (raíz del repositorio)
+y se ejecutan con `npm test`.
 
 Nota: `cpnl/basic_1_a/_originals/` guarda las copias originales de los PDF
 comprimidos para el remoto; está excluido del repositorio vía `.gitignore`.

@@ -25,9 +25,10 @@ web-calculadora-edad/
 ├── index.html
 ├── css/                   # estilos de la interfaz
 ├── js/                    # lógica del calculo de edad
-└── icon/                  # favicon
+└── assets/icons/                  # favicon
 ```
 
 ## Licencia
+
 Este proyecto está bajo la licencia **MIT**.  
 Consulta el archivo [LICENSE](LICENSE) para más detalles.

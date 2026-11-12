@@ -148,7 +148,7 @@ export function buildCatalog(inventory) {
         exercises: levels.reduce(
             (sum, level) =>
                 sum + level.units.reduce((unitSum, unit) => unitSum + unit.exercises.length, 0),
-            0,
+            0
         ),
         materials: levels.reduce((sum, level) => sum + level.materials.length, 0),
     };

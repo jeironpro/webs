@@ -9,12 +9,12 @@
  * @returns {Promise<string>} Texto leído del archivo.
  */
 export function readTextFile(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
 
-    reader.addEventListener("load", () => resolve(String(reader.result)));
-    reader.addEventListener("error", () => reject(reader.error));
+        reader.addEventListener("load", () => resolve(String(reader.result)));
+        reader.addEventListener("error", () => reject(reader.error));
 
-    reader.readAsText(file, "UTF-8");
-  });
+        reader.readAsText(file, "UTF-8");
+    });
 }

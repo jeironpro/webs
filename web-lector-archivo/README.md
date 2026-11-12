@@ -28,7 +28,7 @@ web-lector-archivo/
 ├── index.html
 ├── css/                   # estilos de la interfaz
 ├── js/                    # lógica de lectura de archivos
-└── icon/                  # favicon
+└── assets/icons/                  # favicon
 ```
 
 ## Licencia

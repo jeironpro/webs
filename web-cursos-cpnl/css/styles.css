@@ -691,7 +691,7 @@ p {
     max-width: none;
 }
 
-/* ---------- iconos SVG locales (carpeta icons/) ---------- */
+/* ---------- iconos SVG locales (carpeta assets/icons/) ---------- */
 
 .icon {
     display: inline-block;
@@ -768,19 +768,21 @@ p {
 
 @layer accesibilidad {
     @media (prefers-reduced-motion: reduce) {
-            html {
-                scroll-behavior: auto;
-            }    }
+        html {
+            scroll-behavior: auto;
+        }
+    }
     @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-                animation-duration: 150ms;
-                animation-iteration-count: 1;
-                transition-duration: 150ms;
-            }
+        *,
+        *::before,
+        *::after {
+            animation-duration: 150ms;
+            animation-iteration-count: 1;
+            transition-duration: 150ms;
+        }
 
-            .sidebar {
-                transition: none;
-            }    }
+        .sidebar {
+            transition: none;
+        }
+    }
 }

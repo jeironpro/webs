@@ -27,10 +27,11 @@ web-reproductor-musica/
 ├── index.html
 ├── css/                   # estilos del reproductor
 ├── js/                    # lógica de reproducción
-├── canciones/             # pistas de audio (MP3)
-└── img/                   # carátulas de las canciones
+├── assets/media/             # pistas de audio (MP3)
+└── assets/images/                   # carátulas de las canciones
 ```
 
 ## Licencia
+
 Este proyecto está bajo la licencia **MIT**.  
 Consulta el archivo [LICENSE](LICENSE) para más detalles.

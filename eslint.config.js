@@ -1,15 +1,80 @@
 import js from "@eslint/js";
 import globals from "globals";
 
+const WEBS_CANONICAS = [
+    "web-algoritmos",
+    "web-calculadora",
+    "web-calculadora-edad",
+    "web-calendario",
+    "web-clima",
+    "web-codi-wiki",
+    "web-codigos-http",
+    "web-color-picker",
+    "web-contador-palabras",
+    "web-conversor-universal",
+    "web-convertidor-moneda",
+    "web-cursos-cpnl",
+    "web-dados",
+    "web-generador-clave-secreta",
+    "web-generador-codigo-qr",
+    "web-generador-contrasena",
+    "web-generador-crucigramas",
+    "web-gestiona-presupuesto",
+    "web-lector-archivo",
+    "web-lexaro",
+    "web-mandala",
+    "web-narcopedia",
+    "web-paises-visitados",
+    "web-pokemon",
+    "web-pomodoro",
+    "web-porcentaje-anual",
+    "web-redimensiona-imagen",
+    "web-reproductor-musica",
+    "web-ruleta",
+    "web-votacion",
+];
+
+const WEBS_PENDIENTES = [
+    "web-apis",
+    "web-biblia",
+    "web-calificaciones-escolares",
+    "web-codelang-quiz",
+    "web-codingbat-solutions",
+    "web-continguts-daw",
+    "web-curso-dcs",
+    "web-curso-git",
+    "web-curso-sql",
+    "web-dashboards",
+    "web-daw",
+    "web-ejercicios-pyja",
+    "web-exerciness",
+    "web-frontend",
+    "web-generador-cv",
+    "web-instruccion-login-google",
+    "web-javarcises",
+    "web-juegos",
+    "web-naruto",
+    "web-oracle-academy-dpsql",
+    "web-programmer-day",
+    "web-pythoncises",
+    "web-refprog",
+    "web-reloj",
+    "web-tests-daw",
+];
+
+const ARCHIVOS_CANONICOS = WEBS_CANONICAS.flatMap((web) => [`${web}/**/*.js`, `${web}/**/*.mjs`]);
+
 export default [
     {
         ignores: [
             "**/node_modules/**",
-            "web-*/**",
+            ...WEBS_PENDIENTES.map((web) => `${web}/**`),
             "vendor/**",
             "assets/**",
             "coverage/**",
             ".hallmark/**",
+            "**/cpnl/**",
+            "**/inventory.generated.js",
         ],
     },
     js.configs.recommended,
@@ -19,8 +84,49 @@ export default [
             ecmaVersion: 2023,
             sourceType: "module",
             globals: {
-                ...globals.browser,
                 ...globals.node,
+            },
+        },
+    },
+    {
+        files: ARCHIVOS_CANONICOS,
+        languageOptions: {
+            globals: {
+                ...globals.browser,
+            },
+        },
+    },
+    {
+        files: ["js/**/*.js", "tests/**/*.js"],
+        languageOptions: {
+            globals: {
+                ...globals.browser,
+            },
+        },
+    },
+    {
+        files: ["web-codi-wiki/js/data.js"],
+        languageOptions: {
+            sourceType: "script",
+        },
+        rules: {
+            "no-unused-vars": "off",
+        },
+    },
+    {
+        files: ["web-codi-wiki/js/app.js"],
+        languageOptions: {
+            globals: {
+                wikiData: "readonly",
+            },
+        },
+    },
+    {
+        files: ["web-mandala/js/app.js"],
+        languageOptions: {
+            globals: {
+                Mandala: "readonly",
+                MandalaTemplates: "readonly",
             },
         },
     },

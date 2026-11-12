@@ -3,14 +3,14 @@
  * Inicializa el gestor de dados y configura los eventos de interaccion
  */
 
-import { DiceManager } from './modules/dice.js';
-import { sumValues } from './services/diceService.js';
+import { DiceManager } from "./modules/dice.js";
+import { sumValues } from "./services/diceService.js";
 
 /* Elementos del DOM */
-const diceGrid = document.getElementById('dice-grid');
-const diceCountDisplay = document.getElementById('dice-count');
-const diceCountSlider = document.getElementById('dice-count-slider');
-const rollAnnouncer = document.getElementById('roll-announce');
+const diceGrid = document.getElementById("dice-grid");
+const diceCountDisplay = document.getElementById("dice-count");
+const diceCountSlider = document.getElementById("dice-count-slider");
+const rollAnnouncer = document.getElementById("roll-announce");
 
 /* Inicializar gestor de dados */
 const diceManager = new DiceManager(diceGrid);
@@ -21,7 +21,7 @@ diceManager.render();
  */
 function setupControls() {
     if (diceCountSlider && diceCountDisplay) {
-        diceCountSlider.addEventListener('input', function () {
+        diceCountSlider.addEventListener("input", function () {
             const count = parseInt(this.value, 10);
             diceCountDisplay.textContent = count;
             diceManager.setCount(count);
@@ -39,11 +39,11 @@ function setupRollEvents() {
      * @returns {boolean}
      */
     function isControlTarget(target) {
-        return target.closest('.controls') !== null;
+        return target.closest(".controls") !== null;
     }
 
     /* Evento de click para escritorio */
-    document.addEventListener('click', function (event) {
+    document.addEventListener("click", function (event) {
         if (isControlTarget(event.target)) {
             return;
         }
@@ -52,7 +52,7 @@ function setupRollEvents() {
 
     /* Evento tactil para dispositivos moviles */
     document.addEventListener(
-        'touchstart',
+        "touchstart",
         function (event) {
             if (isControlTarget(event.target)) {
                 return;
@@ -63,8 +63,8 @@ function setupRollEvents() {
     );
 
     /* Evento de teclado para accesibilidad */
-    document.addEventListener('keydown', function (event) {
-        if (event.key === 'Enter' || event.key === ' ') {
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "Enter" || event.key === " ") {
             if (isControlTarget(event.target)) {
                 return;
             }
@@ -102,11 +102,10 @@ function announceResult(values) {
         return;
     }
     const total = sumValues(values);
-    rollAnnouncer.textContent = '';
+    rollAnnouncer.textContent = "";
     /* Usar requestAnimationFrame para asegurar que el cambio se anuncie */
     requestAnimationFrame(function () {
-        rollAnnouncer.textContent =
-            'Resultado: ' + values.join(', ') + '. Total: ' + total;
+        rollAnnouncer.textContent = "Resultado: " + values.join(", ") + ". Total: " + total;
     });
 }
 

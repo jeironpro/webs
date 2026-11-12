@@ -25,9 +25,10 @@ web-porcentaje-anual/
 ├── index.html
 ├── css/                   # estilos del indicador
 ├── js/                    # calculo del progreso
-└── icon/                  # favicon
+└── assets/icons/                  # favicon
 ```
 
 ## Licencia
+
 Este proyecto está bajo la licencia **MIT**.  
 Consulta el archivo [LICENSE](LICENSE) para más detalles.
