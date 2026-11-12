@@ -1,32 +1,48 @@
-const campoContrasena = document.getElementById('campo-contrasena');
-const botonGenerar = document.getElementById('boton-generar');
-const mensajeEstado = document.getElementById('mensaje-estado');
+'use strict';
+
+const MIN_PASSWORD_LENGTH = 12;
+const MAX_PASSWORD_LENGTH = 16;
+const PASSWORD_CHARACTERS =
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_=+';
+
+const passwordField = document.getElementById('password-field');
+const generateButton = document.getElementById('generate-button');
+const statusMessage = document.getElementById('status-message');
 
 /**
- * Genera una contraseña aleatoria de longitud variable entre 12 y 16 caracteres.
+ * Returns an unbiased integer in the range [0, max).
+ * Values above the last complete bucket are discarded to avoid modulo bias.
  */
-function generarContrasena() {
-    const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_=+';
-    let contrasenaGenerada = '';
-    const longitud = Math.floor(Math.random() * (16 - 12 + 1)) + 12;
+function getRandomInt(max) {
+    const limit = Math.floor(0x100000000 / max) * max;
+    const bucket = new Uint32Array(1);
+    let value;
 
-    for (let i = 0; i < longitud; i++) {
-        contrasenaGenerada += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
-    }
+    do {
+        crypto.getRandomValues(bucket);
+        value = bucket[0];
+    } while (value >= limit);
 
-    campoContrasena.value = contrasenaGenerada;
-
-    // Limpiar mensaje de estado anterior
-    while (mensajeEstado.firstChild) {
-        mensajeEstado.removeChild(mensajeEstado.firstChild);
-    }
-
-    const textoInformativo = document.createTextNode('¡Contraseña generada con éxito!');
-    mensajeEstado.appendChild(textoInformativo);
+    return value % max;
 }
 
-// Event Listeners
-botonGenerar.addEventListener('click', generarContrasena);
+/**
+ * Generates a cryptographically secure password between 12 and 16 characters.
+ */
+function generatePassword() {
+    const length =
+        MIN_PASSWORD_LENGTH + getRandomInt(MAX_PASSWORD_LENGTH - MIN_PASSWORD_LENGTH + 1);
+    let password = '';
 
-// Generar una contraseña inicial al cargar
-window.addEventListener('DOMContentLoaded', generarContrasena);
+    for (let index = 0; index < length; index += 1) {
+        password += PASSWORD_CHARACTERS[getRandomInt(PASSWORD_CHARACTERS.length)];
+    }
+
+    passwordField.value = password;
+    statusMessage.textContent = '¡Contraseña generada con éxito!';
+}
+
+generateButton.addEventListener('click', generatePassword);
+
+// Generate an initial password as soon as the script loads.
+generatePassword();

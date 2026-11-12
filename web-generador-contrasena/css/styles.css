@@ -1,15 +1,13 @@
 :root {
-    --color-acento: #3b82f6;
-    --color-acento-hover: #2563eb;
-    --color-borde: #e2e8f0;
-    --color-fondo: #f8fafc;
-    --color-subtexto: #64748b;
-    --color-tarjeta: #ffffff;
-    --color-texto-inverso: #ffffff;
-    --color-texto: #1e293b;
-    --sombra:
-        0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --sombra-fuerte:
+    --color-accent: #3b82f6;
+    --color-accent-hover: #2563eb;
+    --color-border: #e2e8f0;
+    --color-background: #f8fafc;
+    --color-muted-text: #64748b;
+    --color-surface: #ffffff;
+    --color-text-inverse: #ffffff;
+    --color-text: #1e293b;
+    --shadow-card:
         0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
@@ -20,67 +18,67 @@
 }
 
 body {
-    background-color: var(--color-fondo);
-    color: var(--color-texto);
+    background-color: var(--color-background);
+    color: var(--color-text);
     font-family: "Poppins", sans-serif;
     line-height: 1.5;
 }
 
-.principal {
+.page {
     align-items: center;
     display: flex;
     justify-content: center;
     min-height: 100vh;
-    padding: 20px;
+    padding: 15px;
 }
 
-.tarjeta-generador {
-    background-color: var(--color-tarjeta);
-    border-radius: 16px;
-    box-shadow: var(--sombra-fuerte);
+.generator-card {
+    background-color: var(--color-surface);
+    border-radius: 12px;
+    box-shadow: var(--shadow-card);
     max-width: 500px;
-    padding: 40px;
+    padding: 24px;
     transition: transform 0.3s ease;
     width: 100%;
 }
 
-.tarjeta-generador:hover {
+.generator-card:hover {
     transform: translateY(-5px);
 }
 
-.encabezado {
+.generator-header {
     margin-bottom: 30px;
     text-align: center;
 }
 
-.encabezado h1 {
-    color: var(--color-texto);
-    font-size: 2rem;
+.generator-header h1 {
+    color: var(--color-text);
+    font-size: 1.5rem;
     font-weight: 700;
     margin-bottom: 8px;
 }
 
-.encabezado p {
-    color: var(--color-subtexto);
-    font-size: 0.95rem;
+.generator-header p {
+    color: var(--color-muted-text);
+    font-size: 0.85rem;
 }
 
-.contenedor-resultado {
+.result-container {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-#campo-contrasena {
-    background-color: var(--color-fondo);
-    border: 2px solid var(--color-borde);
+.password-field {
+    background-color: var(--color-background);
+    border: 2px solid var(--color-border);
     border-radius: 12px;
-    color: var(--color-texto);
+    color: var(--color-text);
     font-family: "Poppins", monospace;
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     font-weight: 600;
     letter-spacing: 1px;
-    padding: 15px;
+    padding: 12px;
     text-align: center;
     transition:
         border-color 0.2s ease,
@@ -88,109 +86,81 @@ body {
     width: 100%;
 }
 
-#campo-contrasena:focus {
-    border-color: var(--color-acento);
+.password-field:focus {
+    border-color: var(--color-accent);
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
     outline: none;
 }
 
-.boton-primario {
+.primary-button {
     align-items: center;
-    background-color: var(--color-acento);
+    background-color: var(--color-accent);
     border: none;
     border-radius: 12px;
-    color: var(--color-texto-inverso);
+    color: var(--color-text-inverse);
     cursor: pointer;
     display: flex;
     font-family: inherit;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 600;
     justify-content: center;
-    padding: 15px;
+    padding: 14px;
     transition:
         background-color 0.2s ease,
         transform 0.1s ease;
 }
 
-.boton-primario:hover {
-    background-color: var(--color-acento-hover);
+.primary-button:hover {
+    background-color: var(--color-accent-hover);
 }
 
-.boton-primario:active {
+.primary-button:active {
     transform: scale(0.98);
 }
 
-.mensaje-estado {
-    color: var(--color-subtexto);
+.status-message {
+    color: var(--color-muted-text);
     font-size: 0.85rem;
     margin-top: 20px;
     min-height: 20px;
     text-align: center;
 }
 
-
-#campo-contrasena {
-    font-size: 1.1rem;
-    padding: 12px;
-}
-
-.boton-primario {
-    font-size: 1rem;
-    padding: 14px;
-}
-
-.encabezado h1 {
-    font-size: 1.5rem;
-}
-
-.encabezado p {
-    font-size: 0.85rem;
-}
-
-.principal {
-    padding: 15px;
-}
-
-.tarjeta-generador {
-    border-radius: 12px;
-    padding: 24px;
-}
-
 @media (min-width: 481px) {
-    #campo-contrasena {
+    .page {
+        padding: 20px;
+    }
+
+    .generator-card {
+        border-radius: 16px;
+        padding: 30px;
+    }
+
+    .generator-header h1 {
+        font-size: 1.75rem;
+    }
+
+    .generator-header p {
+        font-size: 0.95rem;
+    }
+
+    .password-field {
         font-size: 1.25rem;
         padding: 15px;
     }
 
-    .boton-primario {
+    .primary-button {
         font-size: 1.1rem;
         padding: 15px;
-    }
-
-    .encabezado h1 {
-        font-size: 1.75rem;
-    }
-
-    .encabezado p {
-        font-size: 0.95rem;
-    }
-
-    .principal {
-        padding: 20px;
-    }
-
-    .tarjeta-generador {
-        border-radius: 16px;
-        padding: 30px;
     }
 }
 
 @media (min-width: 769px) {
-    .encabezado h1 {
-        font-size: 2rem;
+    .generator-card {
+        padding: 40px;
     }
 
-    .tarjeta-generador {
-        padding: 40px;
+    .generator-header h1 {
+        font-size: 2rem;
     }
 }

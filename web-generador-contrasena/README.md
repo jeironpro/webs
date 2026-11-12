@@ -5,7 +5,7 @@ Generador de contraseñas seguras y aleatorias al instante, desde el navegador.
 ## Características
 
 - Generación de una contraseña aleatoria con un solo clic.
-- Contraseñas formadas por combinaciones seguras de caracteres.
+- Contraseñas formadas por combinaciones seguras de caracteres, generadas con `crypto.getRandomValues()` y rejection sampling.
 - Campo de solo lectura donde se muestra el resultado para copiarlo.
 - Mensajes de estado que informan sobre la última acción realizada.
 
@@ -31,4 +31,4 @@ web-generador-contrasena/
 
 ## Licencia
 Este proyecto está bajo la licencia **MIT**.  
-Consulta el archivo [LICENSE](LICENSE) para más detalles.
+Consulta el archivo [LICENSE](../LICENSE) para más detalles.
