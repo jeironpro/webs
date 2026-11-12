@@ -6,10 +6,10 @@
     "use strict";
 
     /* ── Origen de los archivos ──────────────────────── */
-    const REPO = { owner: "jeironpro", repo: "apis", branch: "main" };
+    const REPO = { owner: "jeironpro", repo: "webs", branch: "main" };
     const RAW_BASE = `https://raw.githubusercontent.com/${REPO.owner}/${REPO.repo}/${REPO.branch}/`;
     const TREE_URL = `https://api.github.com/repos/${REPO.owner}/${REPO.repo}/git/trees/${REPO.branch}?recursive=1`;
-    const CATALOG_DIR = "catalogo"; // carpeta del repo donde viven las APIs
+    const CATALOG_DIR = "web-apis/catalogo"; // carpeta del repo donde viven las APIs
 
     /* ── Catálogo ────────────────────────────────────── */
     const CATALOG = [
@@ -334,11 +334,14 @@
         return new Uint8Array(await res.arrayBuffer());
     }
 
-    async function buildEntries(paths, strip) {
+    async function buildEntries(nodes, strip) {
         const entries = [];
-        for (const path of paths) {
-            const name = strip && path.startsWith(strip) ? path.slice(strip.length) : path;
-            entries.push({ path: name, data: await fetchFile(path) });
+        for (const node of nodes) {
+            const name =
+                strip && node.path.startsWith(strip) ? node.path.slice(strip.length) : node.path;
+            // Los ficheros vacíos (__init__.py) a veces responden 501 en raw: se crean sin pedirlos.
+            const data = node.size === 0 ? new Uint8Array(0) : await fetchFile(node.path);
+            entries.push({ path: name, data });
         }
         return entries;
     }
@@ -363,11 +366,12 @@
             toast("Preparando " + api.name + "…");
             const tree = await fetchTree();
             const prefix = CATALOG_DIR + "/" + slug + "/";
-            const paths = tree.filter((t) => t.path.startsWith(prefix)).map((t) => t.path);
-            if (paths.length === 0) throw new Error("sin archivos para " + slug);
-            if (tree.some((t) => t.path === "LICENSE")) paths.push("LICENSE");
+            const nodes = tree.filter((t) => t.path.startsWith(prefix));
+            if (nodes.length === 0) throw new Error("no files for " + slug);
+            const license = tree.find((t) => t.path === "LICENSE");
+            if (license) nodes.push(license);
 
-            const entries = await buildEntries(paths, CATALOG_DIR + "/");
+            const entries = await buildEntries(nodes, CATALOG_DIR + "/");
             const zip = window.Zip.buildZip(entries);
             saveZip(zip, slug + ".zip");
             toast("Descargando " + api.name + "…");
@@ -385,11 +389,11 @@
             toast("Preparando todas las APIs…");
             const tree = await fetchTree();
             const strip = CATALOG_DIR + "/";
-            const paths = tree
-                .filter((t) => t.path.startsWith(strip) || t.path === "LICENSE" || t.path === "README.md")
-                .map((t) => t.path);
+            const nodes = tree.filter((t) => t.path.startsWith(strip));
+            const license = tree.find((t) => t.path === "LICENSE");
+            if (license) nodes.push(license);
 
-            const entries = await buildEntries(paths, strip);
+            const entries = await buildEntries(nodes, strip);
             const zip = window.Zip.buildZip(entries);
             saveZip(zip, "apis.zip");
             toast("Descargando todas las APIs…");
