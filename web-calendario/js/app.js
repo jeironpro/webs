@@ -1,94 +1,111 @@
-document.addEventListener('DOMContentLoaded', renderizarCalendario);
+const MONTH_NAMES = [
+    "ENERO",
+    "FEBRERO",
+    "MARZO",
+    "ABRIL",
+    "MAYO",
+    "JUNIO",
+    "JULIO",
+    "AGOSTO",
+    "SEPTIEMBRE",
+    "OCTUBRE",
+    "NOVIEMBRE",
+    "DICIEMBRE",
+];
 
-let fechaActual = new Date();
-let calendarioActual = fechaActual.getFullYear();
+const WEEKDAY_LABELS = ["L", "M", "X", "J", "V", "S", "D"];
 
-function obtenerPrimerDiaSemana(mes) {
+function getFirstWeekday(year, month) {
     // 0 = Domingo, 1 = Lunes, ..., 6 = Sábado
-    // Ajustamos para que 1 = Lunes, ..., 7 = Domingo
-    const dia = new Date(calendarioActual, mes, 1).getDay();
-    return dia === 0 ? 7 : dia;
+    // Se ajusta para que 1 = Lunes, ..., 7 = Domingo
+    const weekday = new Date(year, month, 1).getDay();
+    return weekday === 0 ? 7 : weekday;
 }
 
-function renderizarCalendario() {
-    const contenedorCalendario = document.querySelector('.contenedor-calendario');
-    contenedorCalendario.replaceChildren();
+function renderCurrentYear() {
+    document.querySelectorAll("[data-year]").forEach((node) => {
+        node.textContent = new Date().getFullYear();
+    });
+}
 
-    const tituloCalendario = document.querySelector('.titulo');
-    tituloCalendario.textContent = 'Calendario ' + calendarioActual.toString();
+function renderCalendar() {
+    const currentDate = new Date();
+    const calendarYear = currentDate.getFullYear();
 
-    const nombresMeses = ['ENERO', 'FEBRERO', 'MARZO', 'ABRIL', 'MAYO', 'JUNIO', 'JULIO', 'AGOSTO', 'SEPTIEMBRE', 'OCTUBRE', 'NOVIEMBRE', 'DICIEMBRE'];
+    const calendar = document.getElementById("calendar");
+    const title = document.getElementById("calendarTitle");
 
-    for (let mes = 0; mes < 12; mes++) {
-        // Contenedor del mes (antes table)
-        const contenedorMes = document.createElement('section');
-        contenedorMes.classList.add('contenedor-mes');
-        contenedorMes.setAttribute(
-            'aria-label',
-            `Calendario de ${nombresMeses[mes]} de ${calendarioActual}`
+    calendar.replaceChildren();
+    title.textContent = `Calendario ${calendarYear}`;
+
+    for (let month = 0; month < 12; month++) {
+        const monthSection = document.createElement("section");
+        monthSection.classList.add("month");
+        monthSection.setAttribute(
+            "aria-label",
+            `Calendario de ${MONTH_NAMES[month]} de ${calendarYear}`,
         );
 
-        // Título del mes (antes caption)
-        const tituloMes = document.createElement('h2');
-        tituloMes.classList.add('titulo-mes');
-        tituloMes.textContent = nombresMeses[mes];
-        contenedorMes.appendChild(tituloMes);
+        const monthTitle = document.createElement("h2");
+        monthTitle.classList.add("month__title");
+        monthTitle.textContent = MONTH_NAMES[month];
+        monthSection.appendChild(monthTitle);
 
-        // Tabla de días
-        const tablaDias = document.createElement('div');
-        tablaDias.classList.add('tabla-dias');
+        const daysTable = document.createElement("div");
+        daysTable.classList.add("days");
 
-        // Encabezados de días (L, M, X...)
-        const filaEncabezados = document.createElement('div');
-        filaEncabezados.classList.add('fila-encabezados');
-        const diasSemana = ['L', 'M', 'X', 'J', 'V', 'S', 'D'];
-        diasSemana.forEach(dia => {
-            const celdaEncabezado = document.createElement('div');
-            celdaEncabezado.classList.add('celda-encabezado');
-            celdaEncabezado.textContent = dia;
-            filaEncabezados.appendChild(celdaEncabezado);
+        const weekdayRow = document.createElement("div");
+        weekdayRow.classList.add("weekdays");
+        WEEKDAY_LABELS.forEach((label) => {
+            const weekday = document.createElement("div");
+            weekday.classList.add("weekday");
+            weekday.textContent = label;
+            weekdayRow.appendChild(weekday);
         });
-        tablaDias.appendChild(filaEncabezados);
+        daysTable.appendChild(weekdayRow);
 
-        // Cuerpo de los días
-        const cuerpoDias = document.createElement('div');
-        cuerpoDias.classList.add('cuerpo-dias');
+        const daysGrid = document.createElement("div");
+        daysGrid.classList.add("days__grid");
 
-        const diasEnMes = new Date(calendarioActual, mes + 1, 0).getDate();
-        const primerDiaSemana = obtenerPrimerDiaSemana(mes);
+        const daysInMonth = new Date(calendarYear, month + 1, 0).getDate();
+        const firstWeekday = getFirstWeekday(calendarYear, month);
 
-        // Celdas vacías previas al primer día
-        for (let i = 1; i < primerDiaSemana; i++) {
-            const celdaVacia = document.createElement('div');
-            celdaVacia.classList.add('celda-dia', 'vacia');
-            cuerpoDias.appendChild(celdaVacia);
+        for (let i = 1; i < firstWeekday; i++) {
+            const emptyDay = document.createElement("div");
+            emptyDay.classList.add("day", "is-empty");
+            daysGrid.appendChild(emptyDay);
         }
 
-        // Celdas de los días
-        for (let dia = 1; dia <= diasEnMes; dia++) {
-            const celdaDia = document.createElement('div');
-            celdaDia.classList.add('celda-dia');
+        for (let day = 1; day <= daysInMonth; day++) {
+            const dayCell = document.createElement("div");
+            dayCell.classList.add("day");
 
-            const indiceColumna = (primerDiaSemana - 1 + dia - 1) % 7;
-            if (indiceColumna >= 5) {
-                celdaDia.classList.add('finde');
+            const weekdayIndex = (firstWeekday - 1 + day - 1) % 7;
+            if (weekdayIndex >= 5) {
+                dayCell.classList.add("is-weekend");
             }
 
-            const esHoy =
-                calendarioActual === fechaActual.getFullYear() &&
-                mes === fechaActual.getMonth() &&
-                dia === fechaActual.getDate();
-            if (esHoy) {
-                celdaDia.classList.add('hoy');
-                celdaDia.setAttribute('aria-current', 'date');
+            const isToday =
+                calendarYear === currentDate.getFullYear() &&
+                month === currentDate.getMonth() &&
+                day === currentDate.getDate();
+
+            if (isToday) {
+                dayCell.classList.add("is-today");
+                dayCell.setAttribute("aria-current", "date");
             }
 
-            celdaDia.textContent = dia;
-            cuerpoDias.appendChild(celdaDia);
+            dayCell.textContent = day;
+            daysGrid.appendChild(dayCell);
         }
 
-        tablaDias.appendChild(cuerpoDias);
-        contenedorMes.appendChild(tablaDias);
-        contenedorCalendario.appendChild(contenedorMes);
+        daysTable.appendChild(daysGrid);
+        monthSection.appendChild(daysTable);
+        calendar.appendChild(monthSection);
     }
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    renderCalendar();
+    renderCurrentYear();
+});

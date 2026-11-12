@@ -1,13 +1,14 @@
 # web-calendario
 
-Calendario mensual interactivo que muestra el mes actual y permite navegar entre meses anteriores y posteriores.
+Calendario anual que muestra los doce meses del año actual, con la semana de lunes a domingo y el día de hoy destacado.
 
 ## Características
 
-- Vista mensual con la distribución correcta de los días por semana.
-- Navegación entre meses mediante controles anterior y siguiente.
-- Resaltado del día actual.
-- Generado por completo con JavaScript a partir de la fecha del sistema.
+- Vista anual con los doce meses generados a partir de la fecha del sistema.
+- Semana de lunes a domingo con los días en su columna correcta.
+- Día actual destacado y fines de semana resaltados.
+- Diseño responsive de una a cuatro columnas.
+- Año del pie actualizado automáticamente.
 
 ## Tecnologías
 
@@ -24,7 +25,7 @@ Calendario mensual interactivo que muestra el mes actual y permite navegar entre
 web-calendario/
 ├── index.html
 ├── css/                   # estilos del calendario
-├── js/                    # lógica de generación del mes
+├── js/                    # lógica de generación del calendario
 └── icon/                  # favicon
 ```
 
