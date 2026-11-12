@@ -1,18 +1,18 @@
-# Importaciones
+# Imports
 from flask_login import UserMixin
 from db import get_db
 
-# Clase que representa un usuario y maneja la integración con Flask-Login
+# Class that represents a user and handles the Flask-Login integration
 class User(UserMixin):
     def __init__(self, _id, name, email, profile_picture):
         """
-        Inicializa un objeto User.
-        
+        Initialize a User object.
+
         Args:
-            _id (str): ID único del usuario (generalmente provisto por OAuth).
-            name (str): Nombre del usuario.
-            email (str): Correo electrónico del usuario.
-            profile_picture (str): URL de la imagen de perfil del usuario.
+            _id (str): Unique user ID (usually provided by OAuth).
+            name (str): User name.
+            email (str): User email address.
+            profile_picture (str): URL of the user's profile picture.
         """
         self.id = _id
         self.name = name
@@ -22,28 +22,28 @@ class User(UserMixin):
     @staticmethod
     def get(user_id):
         """
-        Obtiene un usuario de la base de datos por su ID.
+        Get a user from the database by its ID.
 
         Args:
-            user_id (str): ID único del usuario a buscar.
+            user_id (str): Unique ID of the user to look up.
 
         Returns:
-            User | None: Retorna un objeto User si se encuentra en la base de datos,
-                         de lo contrario retorna None.
+            User | None: A User object if found in the database,
+                         otherwise None.
         """
-        # Obtiene la conexión a la base de datos
+        # Get the database connection
         db = get_db()
-        
-        # Ejecuta la consulta para buscar el usuario por ID
+
+        # Run the query to find the user by ID
         user = db.execute(
             "SELECT * FROM user WHERE id = ?", (user_id,)
         ).fetchone()
 
-        # Si no existe el usuario, retorna None
+        # If the user does not exist, return None
         if not user:
             return None
 
-        # Crea un objeto User con los datos obtenidos de la DB
+        # Create a User object from the database data
         user = User(
             _id=user[0], name=user[1], email=user[2], profile_picture=user[3]
         )
@@ -53,26 +53,26 @@ class User(UserMixin):
     @staticmethod
     def create(_id, name, email, profile_picture):
         """
-        Crea un nuevo usuario en la base de datos y retorna el objeto User.
+        Create a new user in the database and return the User object.
 
         Args:
-            _id (str): ID único del usuario.
-            name (str): Nombre del usuario.
-            email (str): Correo electrónico del usuario.
-            profile_picture (str): URL de la imagen de perfil.
+            _id (str): Unique user ID.
+            name (str): User name.
+            email (str): User email address.
+            profile_picture (str): URL of the profile picture.
 
         Returns:
-            User: El objeto User recién creado.
+            User: The newly created User object.
         """
-        # Obtiene la conexión a la base de datos
+        # Get the database connection
         db = get_db()
 
-        # Inserta el usuario en la tabla 'user'
+        # Insert the user into the 'user' table
         db.execute(
-            "INSERT INTO user (id, name, email, profile_picture) VALUES(?, ?, ?, ?)", 
+            "INSERT INTO user (id, name, email, profile_picture) VALUES(?, ?, ?, ?)",
             (_id, name, email, profile_picture),
         )
         db.commit()
 
-        # Retorna el objeto User creado
+        # Return the created User object
         return User(_id=_id, name=name, email=email, profile_picture=profile_picture)
