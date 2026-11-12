@@ -1,0 +1,120 @@
+/* Hallmark · designed-as-app */
+/* Página de lectura: columna cómoda y capitular — ver design.md */
+
+.verses {
+    background-color: var(--paper-raised);
+    border: var(--rule);
+    box-shadow: var(--shadow);
+    margin: 0 auto;
+    max-width: var(--reading-width);
+    padding: 20px 16px 26px;
+}
+
+.verses pre {
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.85;
+    margin: 0;
+    white-space: pre-wrap;
+}
+
+/* Capitular en el primer versículo */
+
+.verses pre::first-letter {
+    color: var(--maroon);
+    float: left;
+    font-family: var(--font-title);
+    font-size: 3.4em;
+    font-weight: 600;
+    line-height: 0.85;
+    margin: 0.05em 0.14em 0 0;
+}
+
+.chapter-title {
+    color: var(--ink);
+    font-family: var(--font-title);
+    font-size: 22px;
+    letter-spacing: 0.04em;
+    margin-bottom: 20px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+/* Esqueleto de carga: líneas con brillo que imitan el texto */
+
+.skeleton {
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+    padding: 6px 0;
+}
+
+.skeleton-line {
+    animation: skeleton-shimmer 1.3s ease-in-out infinite;
+    background: linear-gradient(90deg, var(--line) 20%, var(--line-highlight) 50%, var(--line) 80%);
+    background-size: 200% 100%;
+    border-radius: var(--radius);
+    height: 15px;
+}
+
+@keyframes skeleton-shimmer {
+    from {
+        background-position: 200% 0;
+    }
+
+    to {
+        background-position: -200% 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .skeleton-line {
+        animation: none;
+    }
+}
+
+/* Mensajes de estado (en preparación, errores) */
+
+.verses p {
+    color: var(--ink-muted);
+    font-family: var(--font-title);
+    font-size: 19px;
+    font-style: italic;
+    letter-spacing: 0.03em;
+    margin: 0;
+    text-align: center;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (min-width: 321px) {
+    .verses pre {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 481px) {
+    .verses {
+        padding: 24px 22px 30px;
+    }
+
+    .verses pre {
+        font-size: 17px;
+        line-height: 1.95;
+    }
+}
+
+@media (min-width: 769px) {
+    .verses {
+        padding: 36px 40px 44px;
+    }
+
+    .verses pre {
+        font-size: 19px;
+    }
+
+    .chapter-title {
+        font-size: 26px;
+    }
+}

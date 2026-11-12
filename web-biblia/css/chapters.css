@@ -1,0 +1,67 @@
+/* Hallmark · designed-as-app */
+/* Índice de capítulos: numerales en caja con filete — ver design.md */
+
+#chapters {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(48px, 1fr));
+    margin: 0 auto;
+    max-width: var(--max-width);
+    padding: 8px 0;
+}
+
+.chapter {
+    background-color: var(--paper-raised);
+    border: var(--rule);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    height: 56px;
+    overflow: hidden;
+    transition: border-color var(--transition), transform var(--transition);
+}
+
+.chapter:hover {
+    border-color: var(--line-strong);
+    transform: translateY(-2px);
+}
+
+.chapter a {
+    align-items: center;
+    color: var(--ink);
+    display: flex;
+    font-family: var(--font-title);
+    font-size: 16px;
+    font-weight: 600;
+    height: 100%;
+    justify-content: center;
+    text-decoration: none;
+    transition: color var(--transition);
+    width: 100%;
+}
+
+.chapter:hover a {
+    color: var(--maroon);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (min-width: 321px) {
+    #chapters {
+        grid-template-columns: repeat(auto-fill, minmax(56px, 1fr));
+    }
+}
+
+@media (min-width: 481px) {
+    #chapters {
+        gap: 12px;
+        grid-template-columns: repeat(auto-fill, minmax(76px, 1fr));
+    }
+
+    .chapter {
+        height: 72px;
+    }
+
+    .chapter a {
+        font-size: 20px;
+    }
+}
