@@ -1,13 +1,13 @@
-/* Hoja de estilos propia de la web «Lenguajes de programación».
+/* Custom stylesheet for the "Lenguajes de programación" web.
  *
- * Sección 1: ajustes sobre sphinx-rtd-theme (logo del sidebar).
- * Sección 2: estilo docente replicado de la referencia introprg2526
- * (antes _static/moistyle.css, copia literal): admoniciones de ejercicio
- * con iconos ☼/☆/★, imágenes centradas, color de los bloques de código y
- * banner de cookies (#cookiesbox, activable con su JS).
+ * Section 1: overrides for sphinx-rtd-theme (sidebar logo).
+ * Section 2: teaching style replicated from the introprg2526 reference
+ * (formerly _static/moistyle.css, a literal copy): exercise admonitions
+ * with ☼/☆/★ icons, centered images, code block colors and cookie
+ * banner (#cookiesbox, enabled by its JS).
  */
 
-/* ---------- 1. Logo del sidebar: contenido y centrado ---------- */
+/* ---------- 1. Sidebar logo: content and centering ---------- */
 .wy-side-nav-search > a img.logo {
     width: auto;
     max-width: 96px;
@@ -16,17 +16,23 @@
     display: block;
 }
 
-/* ---------- 2. Estilo docente (de la referencia introprg2526) ---------- */
+/* ---------- 2. Teaching style (from the introprg2526 reference) ---------- */
+
+:root {
+    --cookie-banner-background: #eae672;
+    --code-background: #e3e3e3;
+    --code-highlight: #f3f3f3;
+}
 
 #cookiesbox {
-    width:100%;
-    z-index:99999;
-    display:none;
-    position:fixed;
-    bottom:0px;
-    left:0px;
-    text-align:center;
-    background-color: #eae672;
+    width: 100%;
+    z-index: 99999;
+    display: none;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    text-align: center;
+    background-color: var(--cookie-banner-background);
     padding: 10px 0px;
     color: red;
     border: 1px solid black;
@@ -36,13 +42,13 @@ div.admonition.exercise p.admonition-title {
     background-color: lightblue;
     color: darkblue;
 }
-div.admonition.exercise.optional p.admonition-title:before{
+div.admonition.exercise.optional p.admonition-title:before {
     content: "☼";
 }
-div.admonition.exercise.stared p.admonition-title:before{
+div.admonition.exercise.stared p.admonition-title:before {
     content: "☆";
 }
-div.admonition.exercise.blackstared p.admonition-title:before{
+div.admonition.exercise.blackstared p.admonition-title:before {
     content: "★";
 }
 
@@ -50,5 +56,9 @@ img.align-center {
     padding-bottom: 1em;
 }
 /* Colors for code */
-.highlight { background: #e3e3e3; }
-.highlight .hll { background-color: #f3f3f3 }
+.highlight {
+    background: var(--code-background);
+}
+.highlight .hll {
+    background-color: var(--code-highlight);
+}
