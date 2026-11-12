@@ -2,7 +2,7 @@
 
 Aplicación web estática de preguntas y respuestas sobre programación. Plantea problemáticas de código con opciones A/B/C/D categorizadas por **lenguaje**, **dificultad** y **tipo**.
 
-Es frontend-only: los datos viven como ficheros JSON en `public/data/` y el progreso se guarda en `localStorage`.
+Es frontend-only: los datos viven como ficheros JSON en `data/` y el progreso se guarda en `localStorage`.
 
 ## Características
 
@@ -17,7 +17,7 @@ Es frontend-only: los datos viven como ficheros JSON en `public/data/` y el prog
 ## Stack
 
 - HTML, CSS y JavaScript vanilla.
-- Datos JSON en `public/data/`.
+- Datos JSON en `data/`.
 - `localStorage` para score e historial.
 
 ## Uso
@@ -33,16 +33,17 @@ python3 -m http.server 8000
 ```text
 web-codelang-quiz/
 ├── index.html
-├── styles.css
-├── app.js
+├── css/            Hoja de estilos
+├── js/             Lógica de la aplicación
+├── data/           Catálogo JSON de preguntas
+├── icon/           Favicon
 ├── DESIGN.md
-└── public/
-    └── data/       Catálogo JSON de preguntas
+└── robots.txt
 ```
 
 ## Dataset: cómo añadir preguntas
 
-Cada lenguaje tiene un fichero en `public/data/<lenguaje>.json` con un array de preguntas. Esquema de cada pregunta:
+Cada lenguaje tiene un fichero en `data/<lenguaje>.json` con un array de preguntas. Esquema de cada pregunta:
 
 ```json
 {
