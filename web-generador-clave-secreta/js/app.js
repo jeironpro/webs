@@ -22,15 +22,15 @@ const ENTROPY_STRONG = 100;
 const TOAST_MS = 2000;
 
 /* Construye la cadena con los caracteres permitidos según las opciones. */
-function getCharacterSet(opts) {
+function getCharacterSet(options) {
     let chars = "";
-    if (opts.uppercase) chars += CHARSETS.uppercase;
-    if (opts.lowercase) chars += CHARSETS.lowercase;
-    if (opts.numbers) chars += CHARSETS.numbers;
-    if (opts.symbols) chars += CHARSETS.symbols;
-    if (opts.excludeAmbiguous) {
+    if (options.uppercase) chars += CHARSETS.uppercase;
+    if (options.lowercase) chars += CHARSETS.lowercase;
+    if (options.numbers) chars += CHARSETS.numbers;
+    if (options.symbols) chars += CHARSETS.symbols;
+    if (options.excludeAmbiguous) {
         /* Filtra los caracteres que aparecen en la lista de ambiguos. */
-        chars = [...chars].filter((caracter) => !AMBIGUOUS.includes(caracter)).join("");
+        chars = [...chars].filter((character) => !AMBIGUOUS.includes(character)).join("");
     }
     return chars;
 }
@@ -48,12 +48,12 @@ function unbiasedRandomInt(max) {
 }
 
 /* Genera la clave completa carácter a carácter. */
-function generateKey(opts) {
-    const chars = getCharacterSet(opts);
+function generateKey(options) {
+    const chars = getCharacterSet(options);
     if (chars.length === 0) return "";
     const size = chars.length;
     let key = "";
-    for (let i = 0; i < opts.length; i += 1) {
+    for (let i = 0; i < options.length; i += 1) {
         key += chars[unbiasedRandomInt(size)];
     }
     return key;
@@ -66,8 +66,8 @@ function calculateEntropy(length, charsetSize) {
 }
 
 /* Tamaño del conjunto de caracteres según las opciones activas. */
-function getCharsetSize(opts) {
-    return getCharacterSet(opts).length;
+function getCharsetSize(options) {
+    return getCharacterSet(options).length;
 }
 
 /* Nivel de fortaleza según los bits de entropía. */
@@ -103,10 +103,10 @@ function showToast(message, type) {
     if (type) toast.classList.add(type);
 
     /* El icono y el texto se crean como nodos, sin inyectar HTML. */
-    const icono = document.createElement("span");
-    icono.className = "toast-icon material-symbols-outlined";
-    icono.textContent = type === "success" ? "check_circle" : "info";
-    toast.replaceChildren(icono, document.createTextNode(message));
+    const icon = document.createElement("span");
+    icon.className = "toast-icon material-symbols-outlined";
+    icon.textContent = type === "success" ? "check_circle" : "info";
+    toast.replaceChildren(icon, document.createTextNode(message));
 
     requestAnimationFrame(() => toast.classList.add("visible"));
     clearTimeout(toastTimer);
@@ -131,21 +131,21 @@ async function copyToClipboard(text) {
 
 /* Copia con el método clásico, necesario en navegadores sin permisos de portapapeles. */
 function legacyCopy(text) {
-    const area = document.createElement("textarea");
-    area.value = text;
-    area.setAttribute("readonly", "");
-    area.style.position = "fixed";
-    area.style.opacity = "0";
-    document.body.appendChild(area);
-    area.select();
-    let copiado = false;
+    const field = document.createElement("textarea");
+    field.value = text;
+    field.setAttribute("readonly", "");
+    field.style.position = "fixed";
+    field.style.opacity = "0";
+    document.body.appendChild(field);
+    field.select();
+    let copied = false;
     try {
-        copiado = document.execCommand("copy");
+        copied = document.execCommand("copy");
     } catch (error) {
         console.error("El portapapeles clásico tampoco está disponible", error);
     }
-    area.remove();
-    return copiado;
+    field.remove();
+    return copied;
 }
 
 /* ─── Referencias al DOM ─── */
@@ -184,16 +184,16 @@ function renderKey(key) {
     keyNumber.replaceChildren();
     if (!key) {
         /* Aviso cuando no hay ningún conjunto de caracteres seleccionado. */
-        const vacio = document.createElement("span");
-        vacio.className = "key-empty";
-        vacio.textContent = "Selecciona tipos de caracter";
-        keyNumber.appendChild(vacio);
+        const empty = document.createElement("span");
+        empty.className = "key-empty";
+        empty.textContent = "Selecciona tipos de carácter";
+        keyNumber.appendChild(empty);
         return;
     }
-    groupKey(key).forEach((grupo) => {
+    groupKey(key).forEach((group) => {
         const span = document.createElement("span");
         span.className = "key-group";
-        span.textContent = grupo;
+        span.textContent = group;
         keyNumber.appendChild(span);
     });
 }
@@ -203,13 +203,13 @@ function updateStrength(charsetSize, length) {
     const entropy = calculateEntropy(length, charsetSize);
     const info = getStrengthLevel(entropy);
     /* Ilumina los segmentos hasta el nivel alcanzado. */
-    strengthSegments.forEach((segmento, indice) => {
-        segmento.className = "strength-segment";
-        if (indice <= info.level) {
-            segmento.classList.add("active");
-            segmento.style.background = `var(--color-${info.color})`;
+    strengthSegments.forEach((segment, index) => {
+        segment.className = "strength-segment";
+        if (index <= info.level) {
+            segment.classList.add("active");
+            segment.style.background = `var(--color-${info.color})`;
         } else {
-            segmento.style.background = "";
+            segment.style.background = "";
         }
     });
     strengthLabel.textContent = info.label;
@@ -219,23 +219,23 @@ function updateStrength(charsetSize, length) {
 
 /* Genera una clave nueva y refresca toda la interfaz. */
 function generateAndDisplay() {
-    const opts = getOptions();
+    const options = getOptions();
     /* Sin ningún tipo de carácter seleccionado no hay clave posible. */
-    if (!opts.uppercase && !opts.lowercase && !opts.numbers && !opts.symbols) {
+    if (!options.uppercase && !options.lowercase && !options.numbers && !options.symbols) {
         renderKey("");
         currentKey = "";
         strengthLabel.textContent = "—";
         entropyValue.textContent = "0 bits de entropía";
-        strengthSegments.forEach((segmento) => {
-            segmento.className = "strength-segment";
-            segmento.style.background = "";
+        strengthSegments.forEach((segment) => {
+            segment.className = "strength-segment";
+            segment.style.background = "";
         });
         return;
     }
-    const key = generateKey(opts);
+    const key = generateKey(options);
     currentKey = key;
     renderKey(key);
-    updateStrength(getCharsetSize(opts), opts.length);
+    updateStrength(getCharsetSize(options), options.length);
     if (autoCopy.checked) copyToClipboard(key);
 }
 
@@ -256,10 +256,10 @@ lengthSlider.addEventListener("input", () => {
 });
 
 /* Caducidad de la tarjeta: diciembre de dentro de dos años. */
-const expiryEl = document.getElementById("cardExpiry");
-if (expiryEl) {
+const expiryElement = document.getElementById("cardExpiry");
+if (expiryElement) {
     const year = new Date().getFullYear() + 2;
-    expiryEl.textContent = `12/${year.toString().slice(-2)}`;
+    expiryElement.textContent = `12/${year.toString().slice(-2)}`;
 }
 
 /* Arranca con una clave por defecto. */
