@@ -1,5 +1,5 @@
 // Lógica pura de paginación: no depende del DOM, por lo que se puede
-// testear con node --test (js/paginacion.test.js).
+// testear con node --test (js/pagination.test.js).
 
 export const PER_PAGE = 12;
 

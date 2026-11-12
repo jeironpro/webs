@@ -45,11 +45,11 @@ Colores definidos como custom properties en `:root` (formato **OKLCH**). Neutros
 | `--color-paper-emit`  | `oklch(0.55 0.15 50 / 0.06)`  | Emisión radial de tarjetas (hover: `--color-paper-emit-2` / 0.12) |
 | `--rule-blueprint`    | `oklch(0.22 0.02 262 / 0.05)` | Rejilla de fondo (hero y pie)                                     |
 | `--color-star`        | `oklch(0.76 0.16 80)`         | **Estrellas de dificultad rellenas (amarillas)**                  |
-| `--color-star-vacia`  | `oklch(0.83 0.01 265)`        | Estrellas vacías                                                  |
+| `--color-star-empty`  | `oklch(0.83 0.01 265)`        | Estrellas vacías                                                  |
 
 ### Badges de nivel: paleta por nivel
 
-Cada nivel (1–14) tiene su propio par fondo/tinta (`--nivel-N-bg` / `--nivel-N-ink`), fondos pastel con tinta legible. El badge se aplica con `badge--nivel-N`.
+Cada nivel (1–14) tiene su propio par fondo/tinta (`--level-N-bg` / `--level-N-ink`), fondos pastel con tinta legible. El badge se aplica con `badge--level-N`.
 
 | Nivel | Fondo                  | Tinta                  |
 | ----- | ---------------------- | ---------------------- |
@@ -107,8 +107,8 @@ Reglas: los titulares serif van en **romana**; el énfasis se lleva con el **piv
 ## 6. Iconografía
 
 - **Material Symbols** (Google), estilo _outlined_, tamaño base `1.25rem`.
-- Cada icono es un `<span class="material-symbols-outlined icono" aria-hidden="true">` con el nombre del glifo como texto.
-- **Prohibido incrustar emojis** en la UI o el código. Las estrellas de dificultad se dibujan con el glifo `star` **relleno en amarillo** (`--color-star`, `FILL 1`) y vacío en `--color-star-vacia` (`FILL 0`).
+- Cada icono es un `<span class="material-symbols-outlined icon" aria-hidden="true">` con el nombre del glifo como texto.
+- **Prohibido incrustar emojis** en la UI o el código. Las estrellas de dificultad se dibujan con el glifo `star` **relleno en amarillo** (`--color-star`, `FILL 1`) y vacío en `--color-star-empty` (`FILL 0`).
 
 ## 7. Componentes base y estados
 
@@ -118,13 +118,13 @@ Fija arriba al centro, `backdrop-filter: blur(22px)`, borde hairline, radio píl
 
 ### Botones
 
-- **Primario** (`btn btn--acento`, fondo latón, texto `--color-accent-ink`): hover con elevación de 1 px y aclarado; `:focus-visible` con anillo.
-- **Fantasma** (`btn btn--fantasma`): transparente, borde `--color-rule-2`; hover aclara el borde.
+- **Primario** (`btn btn--accent`, fondo latón, texto `--color-accent-ink`): hover con elevación de 1 px y aclarado; `:focus-visible` con anillo.
+- **Fantasma** (`btn btn--ghost`): transparente, borde `--color-rule-2`; hover aclara el borde.
 - Área táctil mínima 44 px; el texto nunca ocupa dos líneas.
 
 ### Badge de nivel
 
-Píldora mono en mayúsculas con **color propio por nivel** (`badge--nivel-N`); se usa en tarjetas y en la especificación del detalle.
+Píldora mono en mayúsculas con **color propio por nivel** (`badge--level-N`); se usa en tarjetas y en la especificación del detalle.
 
 ### Ficha (tarjeta de ejercicio)
 

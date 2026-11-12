@@ -1,10 +1,10 @@
 import js from "@eslint/js";
 
 // Configuración de ESLint (flat config) para el proyecto web-javarcises.
-// El archivo generado data/ejercicios.js se excluye: lo produce scripts/extraer-datos.js.
+// El archivo generado data/exercises.js se excluye: lo produce scripts/extract-data.js.
 export default [
     {
-        ignores: ["node_modules/**", "data/ejercicios.js"],
+        ignores: ["node_modules/**", "data/exercises.js"],
     },
     js.configs.recommended,
     {

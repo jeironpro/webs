@@ -1,11 +1,11 @@
-// Tests del parser de markdown (scripts/extraer-datos.js) con node --test.
+// Tests del parser de markdown (scripts/extract-data.js) con node --test.
 // Se ejecutan con: npm test
 
 import assert from "node:assert/strict";
 import test from "node:test";
-import { buildBlocks, countStars, parseFile, splitTopics } from "./extraer-datos.js";
+import { buildBlocks, countStars, parseFile, splitTopics } from "./extract-data.js";
 
-const EJERCICIO_001 = `# Ejercicio 001 - Convertidor de tiempo de carrera
+const EXERCISE_001 = `# Ejercicio 001 - Convertidor de tiempo de carrera
 
 **Nivel:** 1 - Básico I
 **Tema(s):** variables, operadores aritméticos
@@ -59,7 +59,7 @@ Las horas son el resultado de dividir el total entre 3600.
 </details>
 `;
 
-const PROBLEMA_001 = `# Problema 001 - El termómetro del cuarto de servidores
+const PROBLEM_001 = `# Problema 001 - El termómetro del cuarto de servidores
 
 **Nivel:** 1 - Modelado simple
 **Categoría:** Procesamiento de datos
@@ -81,13 +81,13 @@ Un sensor toma una lectura de temperatura cada hora.
 - Las rachas largas se reportan completas.
 `;
 
-test("countStars cuenta la dificultad", () => {
+test("countStars counts the difficulty", () => {
     assert.equal(countStars("⭐⭐☆☆☆"), 2);
     assert.equal(countStars("⭐☆☆☆☆"), 1);
     assert.equal(countStars(undefined), 0);
 });
 
-test("splitTopics respeta las comas dentro de paréntesis", () => {
+test("splitTopics respects commas inside parentheses", () => {
     assert.deepEqual(splitTopics("operadores lógicos combinados (&&, ||), rangos, condicionales"), [
         "operadores lógicos combinados (&&, ||)",
         "rangos",
@@ -101,7 +101,7 @@ test("splitTopics respeta las comas dentro de paréntesis", () => {
     assert.deepEqual(splitTopics(undefined), []);
 });
 
-test("buildBlocks agrupa listas numeradas y con viñetas", () => {
+test("buildBlocks groups numbered and bulleted lists", () => {
     const blocks = buildBlocks([
         "1. Primer punto",
         "2. Segundo punto",
@@ -117,10 +117,10 @@ test("buildBlocks agrupa listas numeradas y con viñetas", () => {
     assert.deepEqual(blocks[1].items, ["Con viñeta", "Otra viñeta"]);
 });
 
-test("parseFile estructura un ejercicio trivial", () => {
+test("parseFile structures a trivial exercise", () => {
     const item = parseFile(
         "ejercicio-001-nivel-1-convertidor-de-tiempo-de-carrera.md",
-        EJERCICIO_001
+        EXERCISE_001
     );
 
     assert.equal(item.number, 1);
@@ -160,10 +160,10 @@ test("parseFile estructura un ejercicio trivial", () => {
     assert.equal(pistas.blocks[0].content[0].type, "paragraph");
 });
 
-test("parseFile estructura un problema de diseño", () => {
+test("parseFile structures a design problem", () => {
     const item = parseFile(
         "problema-001-nivel-1-monitoreo-de-temperatura-del-servidor.md",
-        PROBLEMA_001
+        PROBLEM_001
     );
 
     assert.equal(item.number, 1);
@@ -185,8 +185,8 @@ test("parseFile estructura un problema de diseño", () => {
 });
 
 // Integración: los datos generados deben coincidir con el catálogo real.
-test("data/ejercicios.js contiene las colecciones esperadas", async () => {
-    const { JAVARCISES } = await import("../data/ejercicios.js");
+test("data/exercises.js contains the expected collections", async () => {
+    const { JAVARCISES } = await import("../data/exercises.js");
     const collections = JAVARCISES.collections;
     assert.equal(collections.length, 2);
 
@@ -195,9 +195,21 @@ test("data/ejercicios.js contiene las colecciones esperadas", async () => {
     assert.equal(exercises.items.length, 81);
     assert.equal(problems.items.length, 30);
 
+    const assertNoInternalFields = (blocks) => {
+        for (const block of blocks) {
+            assert.equal("insideFence" in block, false, "no se filtran campos internos");
+            if (block.content) {
+                assertNoInternalFields(block.content);
+            }
+        }
+    };
+
     for (const item of [...exercises.items, ...problems.items]) {
         assert.ok(item.title.length > 0, "todo ítem tiene título");
         assert.ok(item.level >= 1, "todo ítem tiene nivel");
         assert.ok(item.sections.length > 0, "todo ítem tiene al menos una sección");
+        for (const section of item.sections) {
+            assertNoInternalFields(section.blocks);
+        }
     }
 });

@@ -3,7 +3,7 @@
 // todo se construye con createElement/textContent, por lo que el contenido
 // de los ejercicios (markdown ya parseado) no puede inyectar marcado.
 
-import { pageNumbers } from "./paginacion.js";
+import { pageNumbers } from "./pagination.js";
 import { highlightJavaInto } from "./syntax-highlight.js";
 
 /**
@@ -163,7 +163,7 @@ export function renderBlocks(blocks) {
 /**
  * Renderiza la ficha (tarjeta) de un ejercicio. Toda la tarjeta es un único
  * enlace para que el teclado tenga un solo punto de tabulación.
- * @param {object} item Ítem estructurado (ver scripts/extraer-datos.js).
+ * @param {object} item Ítem estructurado (ver scripts/extract-data.js).
  * @returns {HTMLElement}
  */
 export function renderCard(item) {

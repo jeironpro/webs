@@ -16,13 +16,13 @@ repos:
             entry: npx eslint
             language: system
             types: [javascript]
-            exclude: ^data/ejercicios\.js$
+            exclude: ^data/exercises\.js$
           - id: prettier
             name: prettier
             entry: npx prettier --check
             language: system
             types_or: [javascript, css, html, json]
-            exclude: ^(data/ejercicios\.js|package-lock\.json)$
+            exclude: ^(data/exercises\.js|package-lock\.json)$
           - id: tests
             name: tests (node --test)
             entry: npm test

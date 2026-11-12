@@ -2,8 +2,8 @@
 // La vista de listado se compone de una barra de filtros (estable) y un
 // contenedor de resultados que se redibuja al cambiar filtros o página.
 
-import { JAVARCISES } from "../data/ejercicios.js";
-import { paginate } from "./paginacion.js";
+import { JAVARCISES } from "../data/exercises.js";
+import { paginate } from "./pagination.js";
 import { createIcon, renderCard, renderPagination, renderDetail, renderEmpty } from "./render.js";
 
 const appElement = document.querySelector("#app");
@@ -148,6 +148,7 @@ function renderResults() {
     const collection = getCollection(state.collection);
     const filtered = filterItems(collection);
     const result = paginate(filtered, state.page);
+    state.page = result.page;
 
     const container = document.createElement("div");
 
@@ -214,6 +215,7 @@ function renderDetailView(route) {
     const index = collection.items.findIndex((item) => item.number === route.number);
 
     if (index === -1) {
+        document.title = "Ficha no encontrada — Javarcises";
         appElement.replaceChildren(
             renderEmpty({
                 icon: "error",
@@ -288,7 +290,7 @@ function renderStats() {
     const levels = new Set();
     for (const collection of getCollections()) {
         for (const item of collection.items) {
-            levels.add(`${collection.key}-${item.level}`);
+            levels.add(item.level);
         }
     }
     addStat("Niveles de dificultad", String(levels.size));
