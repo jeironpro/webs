@@ -1,6 +1,6 @@
 # Proyectos de `webs`
 
-Monorepositorio con **56 webs** y sus subwebs, publicadas en GitHub Pages:
+Monorepositorio con **55 webs** y sus subwebs, publicadas en GitHub Pages:
 <https://jeironpro.github.io/webs/>. El catálogo de la portada se genera desde `projects.yml`.
 
 Casi todas son HTML/CSS/JS estático y se publican tal cual; `web-programmer-day` es la excepción,
@@ -20,7 +20,7 @@ conservan tooling de Vite, pero su build ya está versionado y el deploy tampoco
   `npm run data:build` regenera `assets/projects.json`.
 - `npm run links:check` valida los enlaces internos contra los ficheros versionados.
 
-## Webs raíz (56)
+## Webs raíz (55)
 
 | Web                                                                                            | Título                     | Categoría       |
 | ---------------------------------------------------------------------------------------------- | -------------------------- | --------------- |
@@ -61,7 +61,6 @@ conservan tooling de Vite, pero su build ya está versionado y el deploy tampoco
 | [web-javarcises](https://jeironpro.github.io/webs/web-javarcises/)                             | Javarcises                 | Educación       |
 | [web-juegos](https://jeironpro.github.io/webs/web-juegos/)                                     | Juegos                     | Entretenimiento |
 | [web-lector-archivo](https://jeironpro.github.io/webs/web-lector-archivo/)                     | Lector de archivos         | Utilidades      |
-| [web-lenguajes-programacion](https://jeironpro.github.io/webs/web-lenguajes-programacion/)     | Lenguajes de programacion  | Educación       |
 | [web-lexaro](https://jeironpro.github.io/webs/web-lexaro/)                                     | Lexaro                     | Productividad   |
 | [web-mandala](https://jeironpro.github.io/webs/web-mandala/)                                   | Mandala                    | Entretenimiento |
 | [web-narcopedia](https://jeironpro.github.io/webs/web-narcopedia/)                             | Narcopedia                 | Entretenimiento |
@@ -143,7 +142,6 @@ No son subwebs independientes, sino webs que listan contenido interno:
 - **web-apis** — portal de 5 APIs REST en Python: biblia, correo SMTP (Flask), trivia, naruto y pokemon.
 - **web-frontend** — catálogo de 17 componentes de interfaz (modal, menú acordeón, lista de tareas, modo claro/oscuro, etc.).
 - **web-continguts-daw** — materiales docentes organizados por curso y módulo.
-- **web-lenguajes-programacion** — documentación generada con Sphinx y MyST.
 
 ## Estructura del repositorio
 
