@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../icons/sql.png" type="image/x-icon">
+    <link rel="icon" href="../icon/sql.png" type="image/x-icon">
     <title>Constraints - Curso SQL</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
-    <header class="encabezado">
-        <div class="logo">
-            <img src="../icons/sql.png" alt="SQL Logo">
+    <header class="site-header">
+        <div class="brand">
+            <img src="../icon/sql.png" alt="SQL Logo">
             <span>Curso SQL</span>
         </div>
     </header>
 
-    <main class="principal">
-        <section class="seccion-contenido">
+    <main class="main-content">
+        <section class="lesson">
             <h1>Constraints (Restricciones)</h1>
             
             <h2>¿Qué son las Constraints?</h2>
@@ -50,17 +50,13 @@
             <p>Asegura que el valor en una columna cumpla una condición específica.</p>
             <pre>edad INT CHECK (edad >= 18)</pre>
 
-            <a href="../index.html" class="enlace-volver">Volver al Inicio</a>
+            <a href="../index.html" class="back-link">Volver al Inicio</a>
         </section>
     </main>
     
-    <footer class="pie-pagina">
-        <p>&copy; Todos los derechos reservados <span data-anio>2025</span> - JeironPro</p>
+    <footer class="site-footer">
+        <p>&copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro</p>
     </footer>
-    <script>
-        document.querySelectorAll("[data-anio]").forEach((nodo) => {
-            nodo.textContent = new Date().getFullYear();
-        });
-    </script>
+    <script src="../js/common.js"></script>
 </body>
 </html>

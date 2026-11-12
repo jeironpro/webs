@@ -7,20 +7,20 @@
     --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     --text-color: #1f2937;
     --text-light: #6b7280;
-    --border-color: var(--pre-color);
+    --border-color: #e5e7eb;
     --hover-bg: #f9fafb;
-    --advertencia-inicio: #fef3c7;
-    --advertencia-fin: #fde68a;
-    --advertencia-borde: #f59e0b;
-    --advertencia-texto: #92400e;
-    --info-inicio: #dbeafe;
-    --info-fin: #bfdbfe;
+    --warning-start: #fef3c7;
+    --warning-end: #fde68a;
+    --warning-border: #f59e0b;
+    --warning-text: #92400e;
+    --info-start: #dbeafe;
+    --info-end: #bfdbfe;
     --code-bg: #f3f4f6;
-    --code-color: var(--code-color);
-    --cabecera-inicio: #1e40af;
-    --cabecera-fin: #3b82f6;
+    --code-color: var(--text-light);
+    --header-start: #1e40af;
+    --header-end: #3b82f6;
     --pre-bg: #1f2937;
-    --pre-color: var(--pre-color);
+    --pre-color: #e5e7eb;
     --print-border: #ddd;
 }
 
@@ -37,22 +37,22 @@ body {
     line-height: 1.6;
 }
 
-.advertencia {
-    background: linear-gradient(135deg, var(--advertencia-inicio) 0%, var(--advertencia-fin) 100%);
-    border-left: 4px solid var(--advertencia-borde);
+.warning {
+    background: linear-gradient(135deg, var(--warning-start) 0%, var(--warning-end) 100%);
+    border-left: 4px solid var(--warning-border);
     border-radius: 8px;
-    color: var(--advertencia-texto);
+    color: var(--warning-text);
     font-weight: 500;
     margin: 20px 0;
     padding: 15px 20px;
 }
 
-.advertencia strong {
+.warning strong {
     display: block;
     margin-bottom: 5px;
 }
 
-.boton-cta {
+.cta-button {
     background-color: var(--secondary-color);
     border-radius: 50px;
     color: var(--text-color);
@@ -63,29 +63,29 @@ body {
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.boton-cta:hover {
+.cta-button:hover {
     box-shadow: 0 4px 12px rgba(255, 225, 93, 0.4);
     transform: translateY(-2px);
 }
 
-.boton-cta.secundario {
+.cta-button.secondary {
     background-color: var(--primary-color);
     color: white;
 }
 
-.boton-cta.secundario:hover {
+.cta-button.secondary:hover {
     box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
 }
 
-.caja-info {
-    background: linear-gradient(135deg, var(--info-inicio) 0%, var(--info-fin) 100%);
+.info-box {
+    background: linear-gradient(135deg, var(--info-start) 0%, var(--info-end) 100%);
     border-left: 4px solid var(--primary-color);
     border-radius: 8px;
     margin: 20px 0;
     padding: 15px 20px;
 }
 
-.caja-info strong {
+.info-box strong {
     color: var(--primary-color);
 }
 
@@ -98,18 +98,18 @@ code {
     padding: 3px 8px;
 }
 
-.contenedor-cuadricula {
+.card-grid {
     display: grid;
     gap: 2rem;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 
-.contenido-hero {
+.hero-content {
     margin: 0 auto;
     max-width: 800px;
 }
 
-.encabezado {
+.site-header {
     background-color: var(--card-bg);
     box-shadow: var(--shadow);
     padding: 1rem 2rem;
@@ -118,8 +118,8 @@ code {
     z-index: 100;
 }
 
-.boton-verificar,
-.enlace-volver {
+.check-button,
+.back-link {
     background-color: var(--secondary-color);
     border-radius: 50px;
     color: var(--text-color);
@@ -131,14 +131,14 @@ code {
     transition: all 0.2s;
 }
 
-.boton-verificar:hover,
-.enlace-volver:hover {
+.check-button:hover,
+.back-link:hover {
     box-shadow: 0 4px 12px rgba(255, 225, 93, 0.4);
     transform: translateY(-2px);
 }
 
 .hero {
-    background: linear-gradient(135deg, var(--cabecera-inicio) 0%, var(--cabecera-fin) 100%);
+    background: linear-gradient(135deg, var(--header-start) 0%, var(--header-end) 100%);
     color: white;
     padding: 4rem 2rem;
     text-align: center;
@@ -156,12 +156,12 @@ code {
     opacity: 0.9;
 }
 
-.icono-tarjeta {
+.card-icon {
     font-size: 3rem;
     margin-bottom: 1rem;
 }
 
-.logo {
+.brand {
     align-items: center;
     color: var(--text-color);
     display: flex;
@@ -170,11 +170,11 @@ code {
     gap: 10px;
 }
 
-.logo img {
+.brand img {
     height: 40px;
 }
 
-.pie-pagina {
+.site-footer {
     background-color: var(--text-color);
     color: white;
     margin-top: auto;
@@ -182,7 +182,7 @@ code {
     text-align: center;
 }
 
-.pie-pagina p {
+.site-footer p {
     line-height: 1.6;
     margin: 0;
 }
@@ -193,8 +193,10 @@ pre {
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     color: var(--pre-color);
     margin: 20px 0;
+    overflow-wrap: anywhere;
     overflow-x: auto;
     padding: 20px;
+    white-space: pre-wrap;
 }
 
 pre code {
@@ -203,13 +205,21 @@ pre code {
     padding: 0;
 }
 
-.principal {
+.main-content {
     margin: 0 auto;
     max-width: 1200px;
     padding: 2rem;
 }
 
-.seccion-contenido {
+.join-type {
+    background: linear-gradient(135deg, var(--bg-color) 0%, var(--border-color) 100%);
+    border-left: 4px solid var(--secondary-color);
+    border-radius: 8px;
+    margin-bottom: 30px;
+    padding: 20px;
+}
+
+.lesson {
     background: var(--card-bg);
     border-radius: 16px;
     box-shadow: var(--shadow);
@@ -218,13 +228,13 @@ pre code {
     padding: 50px;
 }
 
-.seccion-contenido h1 {
+.lesson h1 {
     color: var(--text-color);
     font-size: 2.5rem;
     margin-bottom: 1.5rem;
 }
 
-.seccion-contenido h2 {
+.lesson h2 {
     border-left: 4px solid var(--secondary-color);
     color: var(--text-color);
     font-size: 1.8rem;
@@ -233,20 +243,20 @@ pre code {
     padding-left: 15px;
 }
 
-.seccion-contenido h3 {
+.lesson h3 {
     color: var(--primary-color);
     font-size: 1.4rem;
     margin-bottom: 0.8rem;
     margin-top: 1.5rem;
 }
 
-.seccion-contenido p {
+.lesson p {
     color: var(--text-light);
     line-height: 1.8;
     margin-bottom: 1rem;
 }
 
-.seccion-contenido table {
+.lesson table {
     border-collapse: collapse;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -255,13 +265,13 @@ pre code {
     width: 100%;
 }
 
-.seccion-contenido td {
+.lesson td {
     border-bottom: 1px solid var(--border-color);
     padding: 12px 15px;
     text-align: left;
 }
 
-.seccion-contenido th {
+.lesson th {
     background-color: var(--primary-color);
     border-bottom: 1px solid var(--border-color);
     color: white;
@@ -270,30 +280,30 @@ pre code {
     text-align: left;
 }
 
-.seccion-contenido tr:hover {
+.lesson tr:hover {
     background-color: var(--hover-bg);
 }
 
-.seccion-contenido ul {
+.lesson ul {
     line-height: 1.8;
     margin: 1rem 0 1.5rem 2rem;
 }
 
-.seccion-contenido ul li {
+.lesson ul li {
     color: var(--text-light);
     margin-bottom: 0.5rem;
 }
 
-.seccion-final {
+.final-section {
     margin-top: 4rem;
     text-align: center;
 }
 
-.seccion-nivel {
+.level-section {
     margin-bottom: 4rem;
 }
 
-.tarjeta {
+.card {
     align-items: center;
     background-color: var(--card-bg);
     border-radius: 12px;
@@ -307,23 +317,23 @@ pre code {
     transition: all 0.3s ease;
 }
 
-.tarjeta:hover {
+.card:hover {
     box-shadow: var(--shadow-hover);
     transform: translateY(-5px);
 }
 
-.tarjeta h3 {
+.card h3 {
     color: var(--text-color);
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
 }
 
-.tarjeta p {
+.card p {
     color: var(--text-light);
     font-size: 0.95rem;
 }
 
-.tarjeta-cta {
+.cta-card {
     background-color: var(--card-bg);
     border-radius: 20px;
     box-shadow: var(--shadow);
@@ -333,16 +343,16 @@ pre code {
     width: 100%;
 }
 
-.tarjeta-cta h2 {
+.cta-card h2 {
     margin-bottom: 1rem;
 }
 
-.tarjeta-cta p {
+.cta-card p {
     color: var(--text-light);
     margin-bottom: 2rem;
 }
 
-.titulo-seccion {
+.section-title {
     border-left: 5px solid var(--secondary-color);
     color: var(--text-color);
     font-size: 2rem;
@@ -352,36 +362,36 @@ pre code {
 
 /* Diseño Responsive */
 /* Mobile-first: la base es el ancho más pequeño y cada banda amplía. */
-.advertencia {
+.warning {
     font-size: 0.9rem;
     padding: 12px 15px;
 }
 
-.boton-cta {
+.cta-button {
     font-size: 0.9rem;
     padding: 10px 20px;
 }
 
-.boton-verificar {
+.check-button {
     font-size: 0.9rem;
     padding: 10px 20px;
 }
 
-.caja-info {
+.info-box {
     font-size: 0.9rem;
     padding: 12px 15px;
 }
 
-.contenedor-cuadricula {
+.card-grid {
     gap: 0.75rem;
     grid-template-columns: 1fr;
 }
 
-.encabezado {
+.site-header {
     padding: 1rem;
 }
 
-.enlace-volver {
+.back-link {
     font-size: 0.9rem;
     padding: 10px 20px;
 }
@@ -399,82 +409,82 @@ pre code {
     margin-bottom: 1.5rem;
 }
 
-.icono-tarjeta {
+.card-icon {
     font-size: 2rem;
 }
 
-.logo {
+.brand {
     font-size: 1.25rem;
 }
 
-.logo img {
+.brand img {
     height: 32px;
 }
 
-.pie-pagina {
+.site-footer {
     font-size: 0.85rem;
     padding: 1.25rem 0.75rem;
 }
 
-.pie-pagina p {
+.site-footer p {
     overflow-wrap: break-word;
     word-wrap: break-word;
 }
 
-.principal {
+.main-content {
     padding: 1rem;
 }
 
-.seccion-contenido {
+.lesson {
     margin: 15px auto;
     padding: 15px 10px;
 }
 
-.seccion-contenido h1 {
+.lesson h1 {
     font-size: 1.75rem;
 }
 
-.seccion-contenido h2 {
+.lesson h2 {
     font-size: 1.35rem;
 }
 
-.seccion-contenido h3 {
+.lesson h3 {
     font-size: 1.1rem;
 }
 
-.seccion-contenido td {
+.lesson td {
     padding: 10px 12px;
 }
 
-.seccion-contenido th {
+.lesson th {
     padding: 10px 12px;
 }
 
-.tarjeta {
+.card {
     padding: 1.25rem;
 }
 
-.tarjeta h3 {
+.card h3 {
     font-size: 1.1rem;
 }
 
-.tarjeta p {
+.card p {
     font-size: 0.9rem;
 }
 
-.tarjeta-cta {
+.cta-card {
     padding: 2rem 1.5rem;
 }
 
-.tarjeta-cta h2 {
+.cta-card h2 {
     font-size: 1.5rem;
 }
 
-.tarjeta-cta p {
+.cta-card p {
     font-size: 0.95rem;
 }
 
-.titulo-seccion {
+.section-title {
     font-size: 1.35rem;
     margin-bottom: 1.5rem;
 }
@@ -495,7 +505,7 @@ table {
 }
 
 @media (min-width: 320px) {
-.contenedor-cuadricula {
+.card-grid {
     gap: 1rem;
 }
 
@@ -503,32 +513,32 @@ table {
     font-size: 1.75rem;
 }
 
-.seccion-contenido {
+.lesson {
     padding: 20px 15px;
 }
 }
 @media (min-width: 481px) {
-.advertencia {
+.warning {
     font-size: inherit;
     padding: 15px 20px;
 }
 
-.boton-cta {
+.cta-button {
     font-size: 0.95rem;
     padding: 10px 24px;
 }
 
-.boton-verificar {
+.check-button {
     font-size: inherit;
     padding: 12px 30px;
 }
 
-.caja-info {
+.info-box {
     font-size: inherit;
     padding: 15px 20px;
 }
 
-.enlace-volver {
+.back-link {
     font-size: inherit;
     padding: 12px 30px;
 }
@@ -542,57 +552,57 @@ table {
     margin-bottom: 2rem;
 }
 
-.icono-tarjeta {
+.card-icon {
     font-size: 2.5rem;
 }
 
-.pie-pagina {
+.site-footer {
     font-size: 0.9rem;
     padding: 1.5rem 1rem;
 }
 
-.pie-pagina p {
+.site-footer p {
     overflow-wrap: normal;
 }
 
-.seccion-contenido {
+.lesson {
     margin: 20px auto;
     padding: 30px 20px;
 }
 
-.seccion-contenido h1 {
+.lesson h1 {
     font-size: 2rem;
 }
 
-.seccion-contenido h2 {
+.lesson h2 {
     font-size: 1.5rem;
 }
 
-.seccion-contenido h3 {
+.lesson h3 {
     font-size: 1.2rem;
 }
 
-.tarjeta {
+.card {
     padding: 1.5rem;
 }
 
-.tarjeta h3 {
+.card h3 {
     font-size: 1.25rem;
 }
 
-.tarjeta p {
+.card p {
     font-size: 0.95rem;
 }
 
-.tarjeta-cta h2 {
+.cta-card h2 {
     font-size: 1.5em;
 }
 
-.tarjeta-cta p {
+.cta-card p {
     font-size: inherit;
 }
 
-.titulo-seccion {
+.section-title {
     font-size: 1.5rem;
 }
 
@@ -607,17 +617,17 @@ pre {
 }
 }
 @media (min-width: 768px) {
-.boton-cta {
+.cta-button {
     font-size: inherit;
     padding: 12px 30px;
 }
 
-.contenedor-cuadricula {
+.card-grid {
     gap: 1.5rem;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
-.encabezado {
+.site-header {
     padding: 1rem 2rem;
 }
 
@@ -633,69 +643,69 @@ pre {
     font-size: 1.1rem;
 }
 
-.icono-tarjeta {
+.card-icon {
     font-size: 3rem;
 }
 
-.logo {
+.brand {
     font-size: 1.5rem;
 }
 
-.logo img {
+.brand img {
     height: 40px;
 }
 
-.pie-pagina {
+.site-footer {
     font-size: inherit;
     padding: 2rem;
 }
 
-.pie-pagina p {
+.site-footer p {
     word-wrap: normal;
 }
 
-.principal {
+.main-content {
     padding: 1.5rem;
 }
 
-.seccion-contenido {
+.lesson {
     margin: 40px auto;
     padding: 40px 30px;
 }
 
-.seccion-contenido h1 {
+.lesson h1 {
     font-size: 2.5rem;
 }
 
-.seccion-contenido h2 {
+.lesson h2 {
     font-size: 1.8rem;
 }
 
-.seccion-contenido h3 {
+.lesson h3 {
     font-size: 1.4rem;
 }
 
-.seccion-contenido td {
+.lesson td {
     padding: 12px 15px;
 }
 
-.seccion-contenido th {
+.lesson th {
     padding: 12px 15px;
 }
 
-.tarjeta {
+.card {
     padding: 2rem;
 }
 
-.tarjeta h3 {
+.card h3 {
     font-size: 1.5rem;
 }
 
-.tarjeta-cta {
+.cta-card {
     padding: 3rem;
 }
 
-.titulo-seccion {
+.section-title {
     font-size: 2rem;
     margin-bottom: 2rem;
 }
@@ -710,7 +720,7 @@ table {
 }
 }
 @media (min-width: 1025px) {
-.contenedor-cuadricula {
+.card-grid {
     gap: 2rem;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
@@ -723,24 +733,24 @@ table {
     font-size: 1.25rem;
 }
 
-.principal {
+.main-content {
     padding: 2rem;
 }
 
-.seccion-contenido {
+.lesson {
     padding: 50px;
 }
 }
 
 @media print {
-    .encabezado,
-    .pie-pagina,
-    .enlace-volver,
-    .boton-cta {
+    .site-header,
+    .site-footer,
+    .back-link,
+    .cta-button {
         display: none;
     }
     
-    .seccion-contenido {
+    .lesson {
         box-shadow: none;
         padding: 0;
     }
@@ -758,12 +768,12 @@ table {
     vertical-align: -0.2em;
 }
 
-.icono-tarjeta .material-symbols-outlined {
+.card-icon .material-symbols-outlined {
     color: var(--primary-color);
     font-size: 2rem;
 }
 
-.titulo-seccion {
+.section-title {
     align-items: center;
     display: flex;
     gap: 0.5rem;
