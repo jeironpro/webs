@@ -31,6 +31,9 @@
     --degradado-fin: #2b6cb0;
     --rose-50: #fef2f2;
     --slate-900: #0f172a;
+        --indigo-500: #6366f1;
+        --indigo-600: #7c3aed;
+        --blanco: #ffffff;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -1014,5 +1017,158 @@
             align-items: center;
             flex-direction: revert-layer;
         }
+    }
+}
+
+/* ===== Diseño original de la etapa React, en CSS propio ===== */
+body {
+    background: linear-gradient(135deg, var(--slate-50) 0%, var(--blanco) 50%, var(--slate-100) 100%);
+    color: var(--slate-800);
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+#particle-canvas {
+    opacity: 0.35;
+}
+
+.app-header {
+    align-items: center;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    border-radius: 1.25rem;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    position: sticky;
+    top: 0.75rem;
+    z-index: 20;
+}
+
+.app-brand {
+    align-items: center;
+    color: var(--slate-800);
+    display: inline-flex;
+    font-size: 0.98rem;
+    font-weight: 700;
+    gap: 0.6rem;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.app-brand-icon {
+    align-items: center;
+    background: linear-gradient(135deg, var(--indigo-500), var(--indigo-600));
+    border-radius: 0.7rem;
+    color: var(--blanco);
+    display: inline-flex;
+    font-size: 1.15rem;
+    height: 2.25rem;
+    justify-content: center;
+    width: 2.25rem;
+}
+
+.app-header {
+    flex-wrap: wrap;
+}
+
+.step-indicator {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    justify-content: flex-end;
+    min-width: 0;
+    width: auto;
+}
+
+.step-progress {
+    background: var(--slate-50);
+    border: 1px solid var(--slate-200);
+    border-radius: 0.8rem;
+    flex-basis: 100%;
+    margin-top: 0.5rem;
+    padding: 0.55rem 0.8rem;
+}
+
+.step-progress-bar {
+    margin-top: 0.35rem;
+}
+
+.step-btn {
+    background: var(--slate-100);
+    border-radius: 0.7rem;
+    height: 2.25rem;
+    justify-content: center;
+    padding: 0;
+    width: 2.25rem;
+}
+
+.step-btn .step-btn-number,
+.step-btn .step-btn-label {
+    display: none;
+}
+
+.step-btn .step-btn-icon {
+    border-radius: 0.7rem;
+    height: 2.25rem;
+    width: 2.25rem;
+}
+
+.step-btn.active {
+    background: transparent;
+    box-shadow: none;
+    transform: none;
+}
+
+.step-btn.active .step-btn-icon {
+    box-shadow: 0 0 0 2px var(--indigo-500), 0 0 0 4px var(--blanco);
+}
+
+.main-content {
+    background: var(--blanco);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    border-radius: 1.5rem;
+    box-shadow: 0 20px 45px -30px rgba(15, 23, 42, 0.35);
+    backdrop-filter: none;
+}
+
+.glass-card {
+    background: var(--blanco);
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+    backdrop-filter: none;
+}
+
+.input-base {
+    background: var(--blanco);
+    backdrop-filter: none;
+}
+
+.input-base:focus {
+    border-color: var(--indigo-500);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.18);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--indigo-500), var(--indigo-600));
+    box-shadow: 0 10px 20px -12px rgba(79, 70, 229, 0.8);
+}
+
+.btn-primary:hover {
+    box-shadow: 0 16px 26px -14px rgba(79, 70, 229, 0.9);
+}
+
+@media (min-width: 768px) {
+    .step-btn {
+        border-radius: 0.9rem;
+        height: 2.5rem;
+        width: 2.5rem;
+    }
+
+    .step-btn .step-btn-icon {
+        height: 2.5rem;
+        width: 2.5rem;
     }
 }
