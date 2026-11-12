@@ -1,5 +1,11 @@
-const scriptActual = document.currentScript;
-const BASE = new URL(".", scriptActual ? scriptActual.src : document.baseURI);
+const scriptActual =
+    document.currentScript || document.querySelector('script[src$="app.js"]');
+const BASE = new URL(
+    ".",
+    scriptActual
+        ? scriptActual.src
+        : new URL(location.pathname.replace(/\/(?:generation\/\d+\/?)?$/, "/"), location.origin).href,
+);
 const BASE_PATH = BASE.pathname;
 const DATASET_URL = new URL("public/api/pokemones.json", BASE);
 const LOGO_URL = new URL("public/pokemon-logo.png", BASE).href;
