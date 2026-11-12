@@ -26,12 +26,3 @@ export function clearElement(element) {
         element.removeChild(element.firstChild);
     }
 }
-
-/**
- * Crea un elemento de texto
- * @param {string} text - Contenido textual
- * @returns {Text} Nodo de texto
- */
-export function createText(text) {
-    return document.createTextNode(text);
-}
