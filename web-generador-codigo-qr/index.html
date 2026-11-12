@@ -1,26 +1,35 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generador de codigo QR</title>
-    <link rel="icon" href="icon/generador_codigo_qr.png">
+    <meta name="description" content="Genera códigos QR a partir de una URL de forma rápida y sencilla.">
+    <title>Generador de código QR</title>
+    <link rel="icon" href="icon/qr-code.png">
     <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <main>
-        <div class="tarjeta-principal">
-            <h1>Generador QR</h1>
-            <div class="grupo-entrada">
-                <label class="etiqueta-campo" for="entrada-url">Dirección de la página</label>
-                <input type="text" id="entrada-url" placeholder="Introduce la URL aquí">
-                <button id="boton-generar">Generar</button>
+    <main class="page">
+        <section class="generator-card" aria-labelledby="generator-title">
+            <h1 class="generator-card__title" id="generator-title">Generador QR</h1>
+            <form class="input-group" id="qr-form">
+                <label class="input-group__label" for="url-input">Dirección de la página</label>
+                <input
+                    type="text"
+                    id="url-input"
+                    class="input-group__input"
+                    name="url"
+                    placeholder="Introduce la URL aquí"
+                    autocomplete="url"
+                    inputmode="url"
+                >
+                <button class="primary-button" id="generate-button" type="submit">Generar</button>
+            </form>
+            <div id="qr-container" class="qr-container" aria-live="polite" aria-busy="false">
+                <span class="empty-message">El código QR aparecerá aquí</span>
             </div>
-            <div id="contenedor-codigo-qr" class="contenedor-codigo-qr">
-                <span id="texto-vacio" class="texto-vacio">El código QR aparecerá aquí</span>
-            </div>
-        </div>
+        </section>
     </main>
     <script src="js/app.js"></script>
 </body>
