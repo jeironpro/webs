@@ -4,7 +4,7 @@ import { fileUrl, viewerUrl } from "../services/manifest.js";
 import { filterFiles, filterManifest } from "./search.js";
 
 const ALL_VIEW = "all";
-const ICONS = { pdf: "description", docx: "description", zip: "folder_zip" };
+const ICONS = { pdf: "picture_as_pdf", docx: "article", zip: "folder_zip" };
 const DEFAULT_ICON = "insert_drive_file";
 const CARD_CLASSES = { pdf: "card--pdf", docx: "card--docx", zip: "card--zip" };
 const CHIP_CLASSES = { pdf: "chip--pdf", docx: "chip--docx", zip: "chip--zip" };
