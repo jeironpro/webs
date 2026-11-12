@@ -16,7 +16,7 @@ Genera claves criptograficamente seguras con opciones personalizables. Diseno in
 
 - HTML5 semantico
 - CSS3 (custom properties, Flexbox, Grid)
-- JavaScript ES6+ (IIFE, compatible con `file://`)
+- JavaScript ES6+ (módulos ES, servido por HTTP)
 - Google Fonts (Inter + JetBrains Mono)
 - Material Symbols
 
@@ -31,13 +31,13 @@ Genera claves criptograficamente seguras con opciones personalizables. Diseno in
 │   └── style.css
 ├── js/
 │   └── app.js
-├── libro-de-estilos.md
+├── style-guide.md
 └── README.md
 ```
 
 ## Uso
 
-Abre `index.html` en cualquier navegador moderno. Funciona directamente desde el sistema de archivos y en GitHub Pages.
+Sirve la carpeta con cualquier servidor HTTP, por ejemplo `python3 -m http.server 8000`, y abre `http://localhost:8000`. Al usar módulos ES, abrir `index.html` directamente desde el sistema de archivos puede fallar en algunos navegadores. En GitHub Pages funciona directamente.
 
 ## Licencia
 
