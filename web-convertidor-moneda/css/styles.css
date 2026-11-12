@@ -1,15 +1,15 @@
 :root {
-    --color-fondo: #f8fafc;
-    --color-primario: #6366f1;
-    --color-primario-hover: #4f46e5;
-    --color-tarjeta: #ffffff;
-    --color-texto: #1e293b;
-    --color-texto-secundario: #64748b;
-    --sombra-fuerte: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-    --sombra-suave: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --color-superficie-suave: #f1f5f9;
-    --color-borde: #e2e8f0;
-    --color-resultado: #f8fafc;
+    --color-background: #f8fafc;
+    --color-primary: #6366f1;
+    --color-primary-hover: #4f46e5;
+    --color-card: #ffffff;
+    --color-text: #1e293b;
+    --color-text-muted: #64748b;
+    --shadow-strong: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-soft: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --color-surface: #f1f5f9;
+    --border-color: #e2e8f0;
+    --color-result: #f8fafc;
 }
 
 * {
@@ -17,8 +17,8 @@
 }
 
 body {
-    background-color: var(--color-fondo);
-    color: var(--color-texto);
+    background-color: var(--color-background);
+    color: var(--color-text);
     font-family: "Poppins", sans-serif;
     margin: 0;
     min-height: 100vh;
@@ -33,17 +33,17 @@ main {
     padding: 20px;
 }
 
-.contenedor-principal {
-    background-color: var(--color-tarjeta);
+.app-card {
+    background-color: var(--color-card);
     border-radius: 16px;
-    box-shadow: var(--sombra-fuerte);
+    box-shadow: var(--shadow-strong);
     max-width: 450px;
     padding: 30px 20px;
     transition: transform 0.3s ease;
     width: 100%;
 }
 
-.contenedor-principal:hover {
+.app-card:hover {
     transform: translateY(-5px);
 }
 
@@ -55,7 +55,7 @@ h1 {
     text-align: center;
 }
 
-.grupo-seleccion {
+.currency-row {
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -64,29 +64,32 @@ h1 {
     margin-bottom: 25px;
 }
 
-.seccion-origen,
-.seccion-destino {
+.from-section,
+.to-section {
     width: 100%;
 }
 
-.boton-intercambio {
+.swap-button {
+    border: 0;
+    font: inherit;
     margin: 5px 0;
+    padding: 0;
     transform: rotate(90deg);
 }
 
-.boton-intercambio:hover {
+.swap-button:hover {
     transform: rotate(270deg);
 }
 
-.seccion-origen,
-.seccion-destino {
+.from-section,
+.to-section {
     flex: 1;
     min-width: 0;
 }
 
-.grupo-seleccion label,
-.etiqueta-campo {
-    color: var(--color-texto-secundario);
+.currency-row label,
+.field-label {
+    color: var(--color-text-muted);
     font-size: 12px;
     font-weight: 600;
     margin: 0 0 8px 0;
@@ -94,17 +97,17 @@ h1 {
     text-transform: uppercase;
 }
 
-.campo-seleccion-origen select,
-.campo-seleccion-destino select {
+.from-select-wrapper select,
+.to-select-wrapper select {
     appearance: none;
-    background-color: var(--color-superficie-suave);
+    background-color: var(--color-surface);
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748b'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
     background-position: right 10px center;
     background-repeat: no-repeat;
     background-size: 16px;
-    border: 1px solid var(--color-borde);
+    border: 1px solid var(--border-color);
     border-radius: 8px;
-    color: var(--color-texto);
+    color: var(--color-text);
     cursor: pointer;
     font-family: inherit;
     font-size: 14px;
@@ -115,16 +118,25 @@ h1 {
     width: 100%;
 }
 
-.campo-seleccion-origen select:focus,
-.campo-seleccion-destino select:focus {
-    border-color: var(--color-primario);
+.from-select-wrapper select:focus,
+.to-select-wrapper select:focus {
+    border-color: var(--color-primary);
 }
 
-.boton-intercambio {
+.from-select-wrapper select:focus-visible,
+.to-select-wrapper select:focus-visible,
+.amount-group input:focus-visible,
+.swap-button:focus-visible,
+.convert-button:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+.swap-button {
     align-items: center;
-    background-color: var(--color-superficie-suave);
+    background-color: var(--color-surface);
     border-radius: 50%;
-    color: var(--color-primario);
+    color: var(--color-primary);
     cursor: pointer;
     display: flex;
     height: 40px;
@@ -134,25 +146,25 @@ h1 {
     width: 40px;
 }
 
-.boton-intercambio:hover {
-    background-color: var(--color-primario);
+.swap-button:hover {
+    background-color: var(--color-primary);
     color: white;
     transform: rotate(180deg);
 }
 
-.grupo-entrada {
+.amount-group {
     margin-bottom: 25px;
 }
 
-.grupo-entrada .etiqueta-campo {
+.amount-group .field-label {
     display: block;
     margin-bottom: 8px;
 }
 
-.grupo-entrada input {
-    border: 1px solid var(--color-borde);
+.amount-group input {
+    border: 1px solid var(--border-color);
     border-radius: 8px;
-    color: var(--color-texto);
+    color: var(--color-text);
     font-family: inherit;
     font-size: 16px;
     height: 50px;
@@ -162,12 +174,12 @@ h1 {
     width: 100%;
 }
 
-.grupo-entrada input:focus {
-    border-color: var(--color-primario);
+.amount-group input:focus {
+    border-color: var(--color-primary);
 }
 
-.boton-convertir {
-    background-color: var(--color-primario);
+.convert-button {
+    background-color: var(--color-primary);
     border: none;
     border-radius: 8px;
     box-shadow: 0 4px 6px -1px rgba(99, 102, 241, 0.4);
@@ -181,19 +193,19 @@ h1 {
     width: 100%;
 }
 
-.boton-convertir:hover {
-    background-color: var(--color-primario-hover);
+.convert-button:hover {
+    background-color: var(--color-primary-hover);
     transform: translateY(-2px);
 }
 
-.boton-convertir:active {
+.convert-button:active {
     transform: translateY(0);
 }
 
-#caja-resultado {
-    background-color: var(--color-resultado);
+#result-box {
+    background-color: var(--color-result);
     border-radius: 8px;
-    color: var(--color-primario);
+    color: var(--color-primary);
     font-size: 18px;
     font-weight: 700;
     margin-top: 25px;
@@ -203,7 +215,7 @@ h1 {
 }
 
 @media (min-width: 641px) {
-    .contenedor-principal {
+    .app-card {
         padding: 40px;
     }
 
@@ -211,23 +223,23 @@ h1 {
         font-size: 24px;
     }
 
-    .grupo-seleccion {
+    .currency-row {
         align-items: flex-end;
         flex-direction: row;
         gap: 15px;
     }
 
-    .seccion-origen,
-    .seccion-destino {
+    .from-section,
+    .to-section {
         width: auto;
     }
 
-    .boton-intercambio {
+    .swap-button {
         margin: 0 0 2px;
         transform: none;
     }
 
-    .boton-intercambio:hover {
+    .swap-button:hover {
         transform: rotate(180deg);
     }
 }
