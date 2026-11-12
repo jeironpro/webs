@@ -27,7 +27,7 @@ web-curso-sql/
 ├── html/                  # página por tema del curso
 ├── css/                   # estilos del curso
 ├── js/                    # lógica de la interfaz
-└── icons/                 # iconos
+└── icon/                  # iconos
 ```
 
 ## Licencia
