@@ -26,7 +26,7 @@ body {
     min-height: 100vh;
 }
 
-.contenedor-principal {
+.app {
     animation: fadeIn 0.4s ease-out;
     background: var(--card-bg);
     border: 1px solid var(--border-color);
@@ -49,31 +49,31 @@ body {
     }
 }
 
-.encabezado {
+.header {
     margin-bottom: 2.5rem;
     text-align: center;
 }
 
-.encabezado h1 {
+.header h1 {
     font-size: 1.8rem;
     font-weight: 600;
     letter-spacing: -0.5px;
     margin-bottom: 0.5rem;
 }
 
-.subtitulo {
+.subtitle {
     color: var(--text-secondary);
     font-size: 0.9rem;
 }
 
-.grupo-entrada {
+.field-group {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
     margin-bottom: 1.5rem;
 }
 
-.grupo-entrada label {
+.field-group label {
     color: var(--text-secondary);
     font-size: 0.85rem;
     font-weight: 500;
@@ -96,7 +96,7 @@ input[type="date"]:focus {
     border-color: var(--text-primary);
 }
 
-.boton-calcular {
+.button {
     background: var(--primary-btn);
     border: none;
     border-radius: 8px;
@@ -109,45 +109,45 @@ input[type="date"]:focus {
     width: 100%;
 }
 
-.boton-calcular:hover {
+.button:hover {
     opacity: 0.9;
 }
 
-.seccion-resultado {
+.result-section {
     margin-top: 2rem;
     min-height: 60px;
 }
 
-.tarjeta-resultado {
+.result-card {
     border-top: 1px solid var(--border-color);
     padding-top: 1.5rem;
     text-align: center;
 }
 
-.texto-resultado {
+.result-text {
     font-size: 1.1rem;
     font-weight: 500;
 }
 
-.oculto {
+.is-hidden {
     display: none;
 }
 
 
-.boton-calcular {
+.button {
     padding: 0.8rem;
 }
 
-.contenedor-principal {
+.app {
     padding: 1.5rem;
     width: 95%;
 }
 
-.encabezado {
+.header {
     margin-bottom: 2rem;
 }
 
-.encabezado h1 {
+.header h1 {
     font-size: 1.5rem;
 }
 
@@ -156,20 +156,20 @@ input[type="date"] {
 }
 
 @media (min-width: 481px) {
-    .boton-calcular {
+    .button {
         padding: 0.9rem;
     }
 
-    .contenedor-principal {
+    .app {
         padding: 2.5rem;
         width: 90%;
     }
 
-    .encabezado {
+    .header {
         margin-bottom: 2.5rem;
     }
 
-    .encabezado h1 {
+    .header h1 {
         font-size: 1.6rem;
     }
 
@@ -179,11 +179,11 @@ input[type="date"] {
 }
 
 @media (min-width: 769px) {
-    .contenedor-principal {
+    .app {
         padding: 3rem;
     }
 
-    .encabezado h1 {
+    .header h1 {
         font-size: 1.8rem;
     }
 }
