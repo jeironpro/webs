@@ -19,12 +19,11 @@ Aplicacion web interactiva de dados desarrollada con HTML semantico, CSS3 y Java
 ```
 web-dados/
 ├── index.html              # Pagina principal
-├── 404.html                # Pagina de error 404
 ├── favicon.svg             # Favicon en SVG
 ├── robots.txt              # Configuracion para motores de busqueda
 ├── sitemap.xml             # Mapa del sitio
 ├── package.json            # Dependencias y scripts
-├── .eslintrc.json          # Configuracion ESLint
+├── eslint.config.js        # Configuracion ESLint (flat config)
 ├── .stylelintrc.json       # Configuracion Stylelint
 ├── .prettierrc             # Configuracion Prettier
 ├── css/
@@ -64,7 +63,7 @@ web-dados/
 6. Los eventos de click/touch disparan `rollAll()`
 7. `rollAll()` usa `diceService.rollMultiple()` para generar valores aleatorios
 8. La animacion visual se ejecuta via CSS keyframes
-9. El resultado se muestra en el footer
+9. El resultado se anuncia mediante `aria-live` para lectores de pantalla
 
 ### Modulos JavaScript
 
@@ -72,7 +71,6 @@ web-dados/
 
 - `createElement(tag, classes)` - Crea elementos DOM con clases
 - `clearElement(element)` - Limpia hijos de un elemento
-- `createText(text)` - Crea nodos de texto
 
 #### `js/services/diceService.js`
 
@@ -89,7 +87,7 @@ web-dados/
 
 - Punto de entrada
 - Configura eventos de controles y lanzamiento
-- Actualiza la visualizacion del resultado
+- Anuncia el resultado por `aria-live`
 
 ### Sistema de cuadricula
 

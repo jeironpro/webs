@@ -4,6 +4,7 @@
  */
 
 import { DiceManager } from './modules/dice.js';
+import { sumValues } from './services/diceService.js';
 
 /* Elementos del DOM */
 const diceGrid = document.getElementById('dice-grid');
@@ -80,18 +81,27 @@ async function handleRoll() {
     if (diceManager.isRolling) {
         return;
     }
-    anunciarResultado(await diceManager.rollAll());
+    if (diceCountSlider) {
+        diceCountSlider.disabled = true;
+    }
+    try {
+        announceResult(await diceManager.rollAll());
+    } finally {
+        if (diceCountSlider) {
+            diceCountSlider.disabled = false;
+        }
+    }
 }
 
 /**
  * Anuncia el resultado a traves de un aria-live para lectores de pantalla
  * @param {number[]} values - Valores de los dados
  */
-function anunciarResultado(values) {
+function announceResult(values) {
     if (!rollAnnouncer) {
         return;
     }
-    const total = values.reduce((suma, valor) => suma + valor, 0);
+    const total = sumValues(values);
     rollAnnouncer.textContent = '';
     /* Usar requestAnimationFrame para asegurar que el cambio se anuncie */
     requestAnimationFrame(function () {
