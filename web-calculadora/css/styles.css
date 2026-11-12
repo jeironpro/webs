@@ -5,7 +5,7 @@
     --color-4: #bb86fc;
     --color-5: #cf6679;
     --color-6: #ffffff;
-    --texto: #000;
+    --ink: #000;
 }
 
 @layer base {
@@ -43,7 +43,7 @@
         color: var(--text-primary);
     }
 
-    .boton {
+    .button {
         border: none;
         outline: none;
         background: rgba(255, 255, 255, 0.05);
@@ -60,60 +60,60 @@
         align-items: center;
     }
 
-    .boton:active {
+    .button:active {
         transform: translateY(1px);
     }
 
-    .boton:hover {
+    .button:hover {
         background: rgba(255, 255, 255, 0.1);
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         transform: translateY(-2px);
     }
 
-    .boton-accion {
+    .button--action {
         background: rgba(207, 102, 121, 0.1);
         color: var(--action-color);
     }
 
-    .boton-accion:hover {
+    .button--action:hover {
         background: rgba(207, 102, 121, 0.2);
         box-shadow: 0 0 10px rgba(207, 102, 121, 0.3);
     }
 
-    .boton-igual {
+    .button--equals {
         background: var(--accent-color);
-        color: var(--texto);
+        color: var(--ink);
         font-weight: 700;
         grid-column: span 1;
     }
 
-    .boton-igual:hover {
+    .button--equals:hover {
         background: var(--accent-hover);
         box-shadow: 0 0 20px rgba(187, 134, 252, 0.4);
     }
 
-    .boton-numero {
+    .button--number {
         font-weight: 400;
     }
 
-    .boton-operador {
+    .button--operator {
         background: rgba(3, 218, 198, 0.1);
         color: var(--operator-color);
         font-weight: 600;
     }
 
-    .boton-operador.seleccionado {
+    .button--operator.is-selected {
         background: var(--operator-color);
         box-shadow: 0 0 15px var(--operator-color);
-        color: var(--texto);
+        color: var(--ink);
     }
 
-    .boton-operador:hover {
+    .button--operator:hover {
         background: rgba(3, 218, 198, 0.2);
         box-shadow: 0 0 10px rgba(3, 218, 198, 0.3);
     }
 
-    .calculadora {
+    .calculator {
         -webkit-backdrop-filter: blur(10px);
         background: var(--glass-bg);
         backdrop-filter: blur(10px);
@@ -125,11 +125,11 @@
         width: 320px;
     }
 
-    .contenedor-pantalla {
+    .display {
         margin-bottom: 20px;
     }
 
-    .contenedor-principal {
+    .app {
         align-items: center;
         display: flex;
         height: 100%;
@@ -137,7 +137,7 @@
         width: 100%;
     }
 
-    .pantalla {
+    .screen {
         background: rgba(0, 0, 0, 0.3);
         border: none;
         border-radius: 10px;
@@ -151,11 +151,11 @@
         width: 100%;
     }
 
-    .pantalla:focus {
+    .screen:focus {
         outline: 1px solid var(--accent-color);
     }
 
-    .teclado {
+    .keypad {
         display: grid;
         gap: 12px;
         grid-template-columns: repeat(4, 1fr);
@@ -163,75 +163,75 @@
 }
 
 @layer responsive {
-    .boton {
+    .button {
         border-radius: 5px;
         font-size: 0.8rem;
         padding: 8px;
     }
 
-    .calculadora {
+    .calculator {
         max-width: none;
         padding: 5px;
         width: 100%;
     }
 
-    .pantalla {
+    .screen {
         font-size: 1.5rem;
         padding: 5px;
     }
 
-    .teclado {
+    .keypad {
         gap: 2px;
     }
 
     @media (min-width: 201px) {
-        .boton {
+        .button {
             border-radius: 12px;
             font-size: 1rem;
             padding: 10px;
         }
 
-        .calculadora {
+        .calculator {
             padding: 10px;
         }
 
-        .pantalla {
+        .screen {
             font-size: 2rem;
             padding: 10px;
         }
 
-        .teclado {
+        .keypad {
             gap: 5px;
         }
     }
     @media (min-width: 321px) {
-        .boton {
+        .button {
             font-size: 1.2rem;
             padding: 15px;
         }
 
-        .calculadora {
+        .calculator {
             padding: 20px;
             width: 90%;
         }
 
-        .pantalla {
+        .screen {
             font-size: 2.5rem;
             padding: 15px;
         }
 
-        .teclado {
+        .keypad {
             gap: 12px;
         }
     }
     @media (min-width: 481px) {
-        .calculadora {
+        .calculator {
             max-width: 320px;
             width: 60%;
         }
     }
     @media (min-width: 769px) {
-        .calculadora {
+        .calculator {
             max-width: revert-layer;
             width: 320px;
         }
