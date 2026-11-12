@@ -50,7 +50,7 @@ Abre `index.html` de la raíz (o despliega el repositorio en GitHub Pages: el ca
 | [web-javarcises](./web-javarcises/)                             | Javarcises                  | Educación       | html, css, javascript                |
 | [web-juegos](./web-juegos/)                                     | Juegos _(sub-catálogo)_     | Entretenimiento | html, css, javascript, react, vite   |
 | [web-votacion](./web-votacion/)                                 | La Papeleta                 | Entretenimiento | html, css, javascript                |
-| [web-lector-arxiu](./web-lector-arxiu/)                         | Lector d'arxiu              | Utilidades      | html, css, javascript                |
+| [web-lector-archivo](./web-lector-archivo/)                     | Lector de archivos          | Utilidades      | html, css, javascript                |
 | [web-lexaro](./web-lexaro/)                                     | Lexaro                      | Productividad   | html, css, javascript, svg           |
 | [web-lenguajes-programacion](./web-lenguajes-programacion/)     | Lenguajes de programacion   | Educación       | python, sphinx, myst, css            |
 | [web-mandala](./web-mandala/)                                   | Mandala                     | Entretenimiento | html, css, javascript, svg           |

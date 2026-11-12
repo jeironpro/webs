@@ -8,7 +8,7 @@
             name="description"
             content="Abre un archivo de texto, código o datos y léelo en el navegador sin subirlo a ningún servidor."
         />
-        <link rel="icon" href="icons/arxiu.png" type="image/x-icon" />
+        <link rel="icon" href="icon/file-reader.png" type="image/x-icon" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -22,52 +22,47 @@
         <link rel="stylesheet" href="css/styles.css" />
     </head>
     <body>
-        <header class="cabecera">
-            <p class="cabecera__eyebrow">lector de archivos · local</p>
-            <h1 class="cabecera__titulo">Abre un archivo y léelo</h1>
-            <p class="cabecera__sub">
+        <header class="site-header">
+            <p class="site-header__eyebrow">lector de archivos · local</p>
+            <h1 class="site-header__title">Abre un archivo y léelo</h1>
+            <p class="site-header__sub">
                 Texto, código, JSON, CSV o configuración. El archivo se lee en tu navegador: no se
                 sube a ningún servidor.
             </p>
         </header>
 
-        <main class="principal">
-            <h2 class="titol-arxiu" id="titol-arxiu"></h2>
+        <main class="page">
+            <h2 class="file-title" id="file-title"></h2>
 
-            <div class="contenidor" id="contenidor">
-                <span class="material-symbols-outlined icono-arxiu" aria-hidden="true"
+            <div class="file-picker" id="file-picker">
+                <span class="material-symbols-outlined file-icon" aria-hidden="true"
                     >description</span
                 >
-                <div class="contenidor__texto">
-                    <label class="contenidor__label" for="arxiu">Seleccionar archivo</label>
-                    <p class="contenidor__ayuda">Hasta unos pocos MB de texto plano</p>
+                <div class="file-picker__text">
+                    <label class="file-picker__label" for="file-input">Seleccionar archivo</label>
+                    <p class="file-picker__hint">Hasta unos pocos MB de texto plano</p>
                 </div>
                 <input
-                    class="contenidor__input"
+                    class="file-picker__input"
                     type="file"
-                    name="arxiu"
-                    id="arxiu"
+                    name="file"
+                    id="file-input"
                     accept=".txt, .js, .css, .html, .json, .md, .py, .rb, .php, .sql, .csv, .ts, .jsx, .tsx, .java, .c, .pub, .rs, .go, .log, .asc, .tsv, .nfo, .xml, .yaml, .yml, .cpp, .h, .sh, .bat, .ini, .conf, .cfg"
                 />
             </div>
 
-            <pre class="visor" id="contingut-arxiu" tabindex="0"></pre>
+            <pre class="viewer" id="file-content" tabindex="0"></pre>
 
-            <button class="boto-reset" id="boto-reset" type="button">
+            <button class="reset-button" id="reset-button" type="button">
                 <span class="material-symbols-outlined" aria-hidden="true">refresh</span>
                 Vaciar
             </button>
         </main>
 
-        <footer class="pie">
-            &copy; Todos los derechos reservados <span data-anio>2025</span> - JeironPro
+        <footer class="site-footer">
+            &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
         </footer>
 
-        <script src="js/script.js"></script>
-        <script>
-            document.querySelectorAll("[data-anio]").forEach((nodo) => {
-                nodo.textContent = new Date().getFullYear();
-            });
-        </script>
+        <script src="js/app.js"></script>
     </body>
 </html>
