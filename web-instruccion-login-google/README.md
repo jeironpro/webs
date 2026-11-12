@@ -4,7 +4,8 @@ Web estática que **instruye paso a paso a cualquier programador** para implemen
 el login con Google (OAuth 2.0 · flujo Authorization Code) en una aplicación Flask.
 
 Cada fase de la guía corresponde a un archivo real del proyecto de referencia, que
-viaja junto a la web en `codigo/` para consultarlo o descargarlo desde la propia página.
+viaja junto a la web en `codigo/` (y en `codigo.zip` para descargarlo) para
+consultarlo desde la propia página.
 
 ## Estructura
 
@@ -14,15 +15,15 @@ web-instruccion-login-google/
 ├── css/styles.css      # estilos (tema Cobalt: tokens OKLCH, hairlines, código como héroe)
 ├── js/main.js          # revelado al hacer scroll (IntersectionObserver)
 ├── img/google.png      # icono
-└── codigo/             # implementación Flask de referencia
+├── codigo/             # implementación Flask de referencia
     ├── app.py          # rutas y flujo OAuth (/login, /login/callback, /logout)
     ├── config.py       # configuración por variables de entorno
     ├── db.py           # conexión SQLite por contexto de petición
     ├── user.py         # modelo de usuario (get/create por google_id)
     ├── schema.sql      # esquema de la tabla user
     ├── requirements.txt
-    ├── templates/index.html
-    └── static/
+    └── templates/index.html
+└── codigo.zip          # proyecto Flask completo para descargar (README + static/)
 ```
 
 ## Las siete fases de la guía
@@ -44,7 +45,7 @@ python3 -m http.server 8080
 # http://127.0.0.1:8080
 ```
 
-Para probar la implementación Flask de `codigo/`, sigue su `README.md` original
+Para probar la implementación Flask, sigue el `README.md` incluido en `codigo.zip`
 (archivos `.env` con `GOOGLE_CLIENT_ID` y `GOOGLE_CLIENT_SECRET`).
 
 ## Licencia

@@ -1,4 +1,4 @@
-# Importaciones
+# Imports
 import json
 import os
 from config import Config
@@ -13,46 +13,46 @@ from flask_login import (
     logout_user
 )
 
-# Permitir el protocolo HTTP en oauthlib
+# Allow HTTP in oauthlib
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = Config.OAUTHLIB_INSECURE_TRANSPORT
 
 from oauthlib.oauth2 import WebApplicationClient
 from user import User
 from db import register_db, init_db
 
-# Iniciar la aplicación
+# Start the application
 app = Flask(__name__)
 
-# Carga la configuración
+# Load the configuration
 app.config.from_object(Config)
 
-# Instanciar LoginManager
+# Instantiate LoginManager
 login_manager = LoginManager()
 
-# Agregar la aplicación a la instancia
+# Attach the application to the instance
 login_manager.init_app(app)
 
-# Registrar teardown
+# Register teardown
 register_db(app)
 
-# Inicializar DB al arrancar
+# Initialize the database on startup
 with app.app_context():
     init_db()
 
-# Inicializar cliente
+# Initialize the client
 client = WebApplicationClient(app.config["GOOGLE_CLIENT_ID"])
 
-# Manejar sesión de usuario
+# Handle the user session
 @login_manager.user_loader
 def load_user(user_id):
     return User.get(user_id)
 
-# Ruta principal
+# Main route
 @app.route("/")
 def index():
     if current_user.is_authenticated:
         return render_template(
-            "index.html", 
+            "index.html",
             name=current_user.name,
             email=current_user.email,
             profile_picture=current_user.profile_picture
@@ -60,7 +60,7 @@ def index():
     return render_template("index.html")
 
 def get_google_provider_cfg():
-    """ Devuelve un diccionario con toda la información necesaria para hacer OAuth dinámicamente """
+    """ Return a dict with all the information needed to do OAuth dynamically """
     return requests.get(app.config["GOOGLE_DISCOVERY_URL"]).json()
 
 # Login
@@ -83,7 +83,7 @@ def callback():
     code = request.args.get("code")
 
     if not code:
-        return "Authorization code missing", 400 
+        return "Authorization code missing", 400
 
     google_provider_cfg = get_google_provider_cfg()
     token_endpoint = google_provider_cfg["token_endpoint"]
