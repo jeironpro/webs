@@ -1,86 +1,86 @@
-const zonaCarga = document.getElementById("zona-carga");
-const previsualizacion = document.getElementById("previsualizacion");
+const dropZone = document.getElementById("drop-zone");
+const preview = document.getElementById("preview");
 
-function cargarImagen(archivo) {
-    if (archivo && archivo.type.startsWith("image/")) {
-        const lector = new FileReader();
-        lector.onload = function (e) {
-            previsualizacion.src = e.target.result;
-            previsualizacion.style.display = "block";
+function loadImage(file) {
+    if (file && file.type.startsWith("image/")) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            preview.src = e.target.result;
+            preview.style.display = "block";
         };
-        lector.readAsDataURL(archivo);
+        reader.readAsDataURL(file);
     }
 }
 
-zonaCarga.addEventListener("click", function () {
-    const selectorArchivos = document.createElement("input");
-    selectorArchivos.type = "file";
-    selectorArchivos.accept = "image/*";
-    selectorArchivos.style.display = "none";
+dropZone.addEventListener("click", function () {
+    const fileInput = document.createElement("input");
+    fileInput.type = "file";
+    fileInput.accept = "image/*";
+    fileInput.style.display = "none";
 
-    selectorArchivos.addEventListener("change", function () {
-        const archivo = selectorArchivos.files[0];
-        cargarImagen(archivo);
-        document.body.removeChild(selectorArchivos);
+    fileInput.addEventListener("change", function () {
+        const file = fileInput.files[0];
+        loadImage(file);
+        document.body.removeChild(fileInput);
     });
 
-    document.body.appendChild(selectorArchivos);
-    selectorArchivos.click();
+    document.body.appendChild(fileInput);
+    fileInput.click();
 });
 
 // Soporte para Arrastrar y Soltar (Drag and Drop)
-zonaCarga.addEventListener("dragover", (e) => {
+dropZone.addEventListener("dragover", (e) => {
     e.preventDefault();
-    zonaCarga.classList.add("dragover");
+    dropZone.classList.add("dragover");
 });
 
-zonaCarga.addEventListener("dragleave", () => {
-    zonaCarga.classList.remove("dragover");
+dropZone.addEventListener("dragleave", () => {
+    dropZone.classList.remove("dragover");
 });
 
-zonaCarga.addEventListener("drop", (e) => {
+dropZone.addEventListener("drop", (e) => {
     e.preventDefault();
-    zonaCarga.classList.remove("dragover");
-    const archivo = e.dataTransfer.files[0];
-    cargarImagen(archivo);
+    dropZone.classList.remove("dragover");
+    const file = e.dataTransfer.files[0];
+    loadImage(file);
 });
 
-document.getElementById("boton-descargar").addEventListener("click", function () {
-    const imagen = document.getElementById("previsualizacion");
+document.getElementById("download-button").addEventListener("click", function () {
+    const image = document.getElementById("preview");
 
     // Validación para evitar el error de "broken state"
-    if (!imagen.src || imagen.src === window.location.href || imagen.naturalWidth === 0) {
+    if (!image.src || image.src === window.location.href || image.naturalWidth === 0) {
         alert("Por favor, selecciona una imagen válida antes de descargar.");
         return;
     }
 
-    const lienzo = document.createElement("canvas");
-    const contexto = lienzo.getContext("2d");
-    const anchoMaximo = parseInt(document.getElementById("ancho").value) || imagen.naturalWidth;
-    const largoMaximo = parseInt(document.getElementById("largo").value) || imagen.naturalHeight;
+    const canvas = document.createElement("canvas");
+    const context = canvas.getContext("2d");
+    const maxWidth = parseInt(document.getElementById("width").value) || image.naturalWidth;
+    const maxHeight = parseInt(document.getElementById("height").value) || image.naturalHeight;
 
-    let ancho = imagen.naturalWidth;
-    let largo = imagen.naturalHeight;
+    let width = image.naturalWidth;
+    let height = image.naturalHeight;
 
-    if (ancho > largo) {
-        if (ancho > anchoMaximo) {
-            largo *= anchoMaximo / ancho;
-            ancho = anchoMaximo;
+    if (width > height) {
+        if (width > maxWidth) {
+            height *= maxWidth / width;
+            width = maxWidth;
         }
     } else {
-        if (largo > largoMaximo) {
-            ancho *= largoMaximo / largo;
-            largo = largoMaximo;
+        if (height > maxHeight) {
+            width *= maxHeight / height;
+            height = maxHeight;
         }
     }
 
-    lienzo.width = ancho;
-    lienzo.height = largo;
+    canvas.width = width;
+    canvas.height = height;
 
-    contexto.drawImage(imagen, 0, 0, ancho, largo);
+    context.drawImage(image, 0, 0, width, height);
 
-    const enlace = document.createElement("a");
-    enlace.download = "imagen_redimensionada.png";
-    enlace.href = lienzo.toDataURL("image/png");
-    enlace.click();
+    const link = document.createElement("a");
+    link.download = "imagen_redimensionada.png";
+    link.href = canvas.toDataURL("image/png");
+    link.click();
 });

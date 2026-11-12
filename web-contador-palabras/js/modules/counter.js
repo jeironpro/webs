@@ -34,12 +34,12 @@ export function countCharactersNoSpaces(text) {
 /**
  * Calcula las tres métricas de un texto de una sola vez.
  * @param {string} text Texto a analizar.
- * @returns {{ palabras: number, caracteres: number, sinEspacios: number }}
+ * @returns {{ words: number, characters: number, charactersNoSpaces: number }}
  */
 export function getCounts(text) {
     return {
-        palabras: countWords(text),
-        caracteres: countCharacters(text),
-        sinEspacios: countCharactersNoSpaces(text),
+        words: countWords(text),
+        characters: countCharacters(text),
+        charactersNoSpaces: countCharactersNoSpaces(text),
     };
 }

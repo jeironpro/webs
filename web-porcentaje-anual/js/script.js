@@ -1,94 +1,94 @@
 /* Milisegundos que tiene un día, base del cálculo del día del año. */
-const MILISEGUNDOS_POR_DIA = 1000 * 60 * 60 * 24;
+const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
 
 document.addEventListener("DOMContentLoaded", () => {
     // Referencias a elementos del DOM
-    const anioActualTexto = document.getElementById("anio-actual-texto");
-    const diasRestantesTexto = document.getElementById("dias-restantes");
-    const gridDias = document.getElementById("grid-dias");
-    const valorPorcentaje = document.getElementById("valor-porcentaje");
-    const barraProgreso = document.getElementById("barra-progreso");
+    const currentYearText = document.getElementById("current-year-text");
+    const remainingDaysText = document.getElementById("remaining-days");
+    const daysGrid = document.getElementById("days-grid");
+    const percentageValue = document.getElementById("percentage-value");
+    const progressBar = document.getElementById("progress-bar");
 
     /**
      * Calcula la información relevante sobre la fecha actual
      */
-    const obtenerInformacionFecha = () => {
-        const fechaActual = new Date();
-        const anio = fechaActual.getFullYear();
+    const getDateInfo = () => {
+        const currentDate = new Date();
+        const year = currentDate.getFullYear();
 
         // Determinar si es bisiesto
-        const esBisiesto = (anio % 4 === 0 && anio % 100 !== 0) || anio % 400 === 0;
-        const totalDiasDelAnio = esBisiesto ? 366 : 365;
+        const isLeapYear = (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+        const totalDaysInYear = isLeapYear ? 366 : 365;
 
         // Calcular día del año (1-indexed)
-        const inicioAnio = new Date(anio, 0, 1);
-        const milisegundosPorDia = MILISEGUNDOS_POR_DIA;
+        const yearStart = new Date(year, 0, 1);
+        const millisecondsPerDay = MILLISECONDS_PER_DAY;
 
         // Calcular diferencia y convertir a días
-        const diferenciaMilisegundos = fechaActual.getTime() - inicioAnio.getTime();
-        const diaActualNumero = Math.floor(diferenciaMilisegundos / milisegundosPorDia) + 1;
+        const differenceInMilliseconds = currentDate.getTime() - yearStart.getTime();
+        const currentDayNumber = Math.floor(differenceInMilliseconds / millisecondsPerDay) + 1;
 
         return {
-            anio,
-            diaActualNumero,
-            totalDiasDelAnio,
+            year,
+            currentDayNumber,
+            totalDaysInYear,
         };
     };
 
     /**
      * Genera la cuadrícula de puntos
      */
-    const generarPuntos = (totalDias, diaActual) => {
+    const generateDots = (totalDias, diaActual) => {
         // Verificar si ya existen puntos para no regenerar todo (opcional, pero buena práctica)
         // En este caso simple, limpiamos y regeneramos.
 
-        const fragmento = document.createDocumentFragment();
+        const fragment = document.createDocumentFragment();
 
         for (let i = 1; i <= totalDias; i++) {
-            const punto = document.createElement("div");
-            punto.classList.add("punto-dia");
+            const dot = document.createElement("div");
+            dot.classList.add("day-dot");
 
             // Estado completado
             if (i <= diaActual) {
-                punto.classList.add("completado");
+                dot.classList.add("completed");
             }
 
             // Tooltip personalizado
-            punto.setAttribute("data-tooltip", `Día ${i}`);
+            dot.setAttribute("data-tooltip", `Día ${i}`);
 
-            fragmento.appendChild(punto);
+            fragment.appendChild(dot);
         }
 
         // Limpiar y renderizar (sin innerHTML: los nodos ya están construidos)
-        gridDias.replaceChildren(fragmento);
+        daysGrid.replaceChildren(fragment);
     };
 
     /**
      * Actualiza toda la interfaz
      */
-    const actualizarVista = () => {
-        const { anio, diaActualNumero, totalDiasDelAnio } = obtenerInformacionFecha();
+    const updateView = () => {
+        const { year, currentDayNumber, totalDaysInYear } = getDateInfo();
 
         // 1. Textos Generales
-        anioActualTexto.textContent = anio;
-        diasRestantesTexto.textContent = totalDiasDelAnio - diaActualNumero;
+        currentYearText.textContent = year;
+        remainingDaysText.textContent = totalDaysInYear - currentDayNumber;
 
         // 2. Porcentaje
-        const porcentajeExacto = (diaActualNumero / totalDiasDelAnio) * 100;
-        const porcentajeRedondeado = Math.round(porcentajeExacto);
+        const exactPercentage = (currentDayNumber / totalDaysInYear) * 100;
+        const roundedPercentage = Math.round(exactPercentage);
 
-        valorPorcentaje.textContent = porcentajeRedondeado;
+        percentageValue.textContent = roundedPercentage;
 
         // 3. Barra de Progreso
         // Pequeño delay para permitir que la transición CSS se vea al cargar
         setTimeout(() => {
-            barraProgreso.style.width = `${porcentajeExacto}%`;
+            progressBar.style.width = `${exactPercentage}%`;
         }, 100);
 
         // 4. Grid
-        generarPuntos(totalDiasDelAnio, diaActualNumero);
+        generateDots(totalDaysInYear, currentDayNumber);
     };
 
     // Inicializar
-    actualizarVista();
+    updateView();
 });

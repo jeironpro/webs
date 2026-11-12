@@ -8,15 +8,15 @@ import { getCounts } from "./modules/counter.js";
 import { readTextFile } from "./modules/uploader.js";
 
 const elements = {
-    textarea: qs("#texto"),
-    palabras: qs("#valor-palabras"),
-    caracteres: qs("#valor-caracteres"),
-    sinEspacios: qs("#valor-sin-espacios"),
-    limpiar: qs("#limpiar"),
-    copiar: qs("#copiar"),
-    ejemplo: qs("#ejemplo"),
+    textarea: qs("#text"),
+    words: qs("#word-count"),
+    characters: qs("#character-count"),
+    charactersNoSpaces: qs("#character-count-no-spaces"),
+    clear: qs("#clear"),
+    copy: qs("#copy"),
+    example: qs("#example"),
     dropzone: qs("#dropzone"),
-    archivo: qs("#archivo"),
+    file: qs("#file"),
 };
 
 /** Texto de muestra para probar la aplicación. */
@@ -36,10 +36,10 @@ const SAMPLE_TEXT = [
  * @param {string} text Texto del que se muestran las métricas.
  */
 function renderStats(text) {
-    const { palabras, caracteres, sinEspacios } = getCounts(text);
-    elements.palabras.textContent = String(palabras);
-    elements.caracteres.textContent = String(caracteres);
-    elements.sinEspacios.textContent = String(sinEspacios);
+    const { words, characters, charactersNoSpaces } = getCounts(text);
+    elements.words.textContent = String(words);
+    elements.characters.textContent = String(characters);
+    elements.charactersNoSpaces.textContent = String(charactersNoSpaces);
 }
 
 /**
@@ -47,8 +47,8 @@ function renderStats(text) {
  * @param {boolean} hasText Hay texto en el área de escritura.
  */
 function updateControls(hasText) {
-    elements.limpiar.disabled = !hasText;
-    elements.copiar.disabled = !hasText;
+    elements.clear.disabled = !hasText;
+    elements.copy.disabled = !hasText;
 }
 
 /**
@@ -64,7 +64,7 @@ function sync() {
  * Fija el texto del área de escritura, actualiza la interfaz y devuelve el foco.
  * @param {string} text Nuevo contenido del área.
  */
-function establecerTexto(text) {
+function setText(text) {
     elements.textarea.value = text;
     sync();
     elements.textarea.focus();
@@ -73,23 +73,23 @@ function establecerTexto(text) {
 /**
  * Vacía el área de texto y restablece la interfaz.
  */
-function limpiar() {
-    establecerTexto("");
+function clear() {
+    setText("");
 }
 
 /**
  * Copia un resumen con las tres métricas al portapapeles.
  */
-async function copiar() {
-    const { palabras, caracteres, sinEspacios } = getCounts(elements.textarea.value);
-    const resumen = [
-        `Palabras: ${palabras}`,
-        `Caracteres: ${caracteres}`,
-        `Caracteres sin espacios: ${sinEspacios}`,
+async function copy() {
+    const { words, characters, charactersNoSpaces } = getCounts(elements.textarea.value);
+    const summary = [
+        `Palabras: ${words}`,
+        `Caracteres: ${characters}`,
+        `Caracteres sin espacios: ${charactersNoSpaces}`,
     ].join("\n");
 
     try {
-        await navigator.clipboard.writeText(resumen);
+        await navigator.clipboard.writeText(summary);
     } catch {
         /* Portapapeles no disponible: la acción se ignora. */
     }
@@ -98,48 +98,48 @@ async function copiar() {
 /**
  * Carga el texto de ejemplo y actualiza la interfaz.
  */
-function cargarEjemplo() {
-    establecerTexto(SAMPLE_TEXT);
+function loadExample() {
+    setText(SAMPLE_TEXT);
 }
 
 /**
  * Muestra u oculta el estado visual de arrastre sobre la zona de subida.
  * @param {boolean} activo El usuario está arrastrando sobre la zona.
  */
-function setDragover(activo) {
-    elements.dropzone.classList.toggle("is-dragover", activo);
+function setDragover(active) {
+    elements.dropzone.classList.toggle("is-dragover", active);
 }
 
 /**
  * Abre el selector de archivos del sistema al hacer clic en la zona.
  */
-function abrirSelector() {
-    elements.archivo.click();
+function openFilePicker() {
+    elements.file.click();
 }
 
 /**
  * Carga un archivo en el área de texto y actualiza la interfaz.
  * @param {File} file Archivo de texto plano a cargar.
  */
-async function cargarArchivo(file) {
+async function loadFile(file) {
     try {
         const text = await readTextFile(file);
-        establecerTexto(text);
+        setText(text);
     } catch {
         /* Archivo ilegible: se ignora y no se cambia el texto. */
     }
 }
 
 elements.textarea.addEventListener("input", sync);
-elements.limpiar.addEventListener("click", limpiar);
-elements.copiar.addEventListener("click", copiar);
-elements.ejemplo.addEventListener("click", cargarEjemplo);
+elements.clear.addEventListener("click", clear);
+elements.copy.addEventListener("click", copy);
+elements.example.addEventListener("click", loadExample);
 
-elements.dropzone.addEventListener("click", abrirSelector);
+elements.dropzone.addEventListener("click", openFilePicker);
 elements.dropzone.addEventListener("keydown", (event) => {
     if (event.key === "Enter" || event.key === " ") {
         event.preventDefault();
-        abrirSelector();
+        openFilePicker();
     }
 });
 elements.dropzone.addEventListener("dragenter", (event) => {
@@ -159,11 +159,11 @@ elements.dropzone.addEventListener("drop", (event) => {
     setDragover(false);
     const file = event.dataTransfer.files[0];
     if (!file) return;
-    cargarArchivo(file);
+    loadFile(file);
 });
-elements.archivo.addEventListener("change", () => {
-    cargarArchivo(elements.archivo.files[0]);
-    elements.archivo.value = "";
+elements.file.addEventListener("change", () => {
+    loadFile(elements.file.files[0]);
+    elements.file.value = "";
 });
 
 sync();

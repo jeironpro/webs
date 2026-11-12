@@ -20,9 +20,9 @@
             // en la query (?/generation/1) y este script la restaura en la barra de
             // direcciones para que la app la resuelva sin recargar.
             (function () {
-                var busqueda = window.location.search;
-                if (busqueda.indexOf("?/") === 0) {
-                    var resta = busqueda.slice(2);
+                var search = window.location.search;
+                if (search.indexOf("?/") === 0) {
+                    var resta = search.slice(2);
                     var amp = resta.indexOf("&");
                     if (amp !== -1) resta = resta.slice(0, amp) + "?" + resta.slice(amp + 1);
                     window.history.replaceState(
@@ -47,18 +47,18 @@
     <body>
         <div id="app">
             <section id="splash" class="splash-body">
-                <div class="contenedor-logo-titulo">
+                <div class="logo-title-container">
                     <img src="./assets/images/pokemon-logo.png" alt="Logo Pokemon" data-logo />
                     <h1>Pokémon</h1>
-                    <p class="splash-subtitulo">Todas las generaciones</p>
+                    <p class="splash-subtitle">Todas las generaciones</p>
                 </div>
             </section>
 
-            <div id="layout" class="layout-principal oculto">
-                <header id="cabecera">
+            <div id="layout" class="main-layout hidden">
+                <header id="header">
                     <nav>
-                        <div class="contenedor-logo">
-                            <a href="./" id="logo-inicio">
+                        <div class="logo-container">
+                            <a href="./" id="home-logo">
                                 <img
                                     src="./assets/images/pokemon-logo.png"
                                     alt="Logo Pokemon"
@@ -75,22 +75,22 @@
                         >
                             <span class="material-icons" id="hamburger-icon">menu</span>
                         </button>
-                        <div class="nav-generaciones" id="nav-generaciones">
-                            <a data-generacion="1" href="./?/generation/1">1 Generación</a>
-                            <a data-generacion="2" href="./?/generation/2">2 Generación</a>
-                            <a data-generacion="3" href="./?/generation/3">3 Generación</a>
-                            <a data-generacion="4" href="./?/generation/4">4 Generación</a>
-                            <a data-generacion="5" href="./?/generation/5">5 Generación</a>
-                            <a data-generacion="6" href="./?/generation/6">6 Generación</a>
-                            <a data-generacion="7" href="./?/generation/7">7 Generación</a>
-                            <a data-generacion="8" href="./?/generation/8">8 Generación</a>
-                            <a data-generacion="9" href="./?/generation/9">9 Generación</a>
+                        <div class="nav-generations" id="nav-generations">
+                            <a data-generation="1" href="./?/generation/1">1 Generación</a>
+                            <a data-generation="2" href="./?/generation/2">2 Generación</a>
+                            <a data-generation="3" href="./?/generation/3">3 Generación</a>
+                            <a data-generation="4" href="./?/generation/4">4 Generación</a>
+                            <a data-generation="5" href="./?/generation/5">5 Generación</a>
+                            <a data-generation="6" href="./?/generation/6">6 Generación</a>
+                            <a data-generation="7" href="./?/generation/7">7 Generación</a>
+                            <a data-generation="8" href="./?/generation/8">8 Generación</a>
+                            <a data-generation="9" href="./?/generation/9">9 Generación</a>
                         </div>
-                        <div class="overlay oculto" id="menu-overlay"></div>
+                        <div class="overlay hidden" id="menu-overlay"></div>
                     </nav>
                 </header>
 
-                <main id="contenido"></main>
+                <main id="content"></main>
 
                 <footer>
                     <p>
@@ -99,15 +99,15 @@
                 </footer>
             </div>
 
-            <section id="no-encontrado" class="pagina-no-encontrada oculto">
+            <section id="not-found" class="not-found-page hidden">
                 <h1>404 - Pagina no encontrada</h1>
                 <p>La pagina que buscas no existe.</p>
-                <a href="./" id="volver-inicio">Volver al inicio</a>
+                <a href="./" id="back-home">Volver al inicio</a>
             </section>
         </div>
         <script src="./js/app.js"></script>
         <script>
-            document.querySelectorAll("[data-anio]").forEach((nodo) => {
+            document.querySelectorAll("[data-year]").forEach((nodo) => {
                 nodo.textContent = new Date().getFullYear();
             });
         </script>

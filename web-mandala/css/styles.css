@@ -43,7 +43,7 @@ body {
 
     font-family: var(--font-body);
     font-size: var(--text-base);
-    line-height: var(--lh-body);
+    line-height: var(--line-height-body);
     color: var(--color-ink);
     background-color: var(--color-paper);
 }
@@ -52,8 +52,8 @@ body {
    Enfoque visible inmediato (nunca animado)
    ------------------------------------------------------------ */
 :focus-visible {
-    outline: var(--ancho-enfoque) solid var(--color-focus);
-    outline-offset: var(--desfase-enfoque);
+    outline: var(--focus-width) solid var(--color-focus);
+    outline-offset: var(--focus-offset);
 }
 
 /* ------------------------------------------------------------
@@ -80,12 +80,12 @@ body {
    en body). En escritorio la rejilla de dos columnas que ocupa el
    viewport se define en el media de min-width.
    ------------------------------------------------------------ */
-.taller {
+.workshop {
     width: 100%;
-    max-width: var(--ancho-max);
+    max-width: var(--max-width);
     /* Centra horizontalmente; en móvil no fija el alto (scroll de página). */
     margin: 0 auto;
-    padding: 0 var(--espacio-lateral) var(--space-4xl);
+    padding: 0 var(--space-lateral) var(--space-4xl);
 
     display: flex;
     flex-direction: column;
@@ -110,28 +110,28 @@ body {
    Alto natural (auto): en móvil el contenido fluye y la página hace
    scroll; el pie queda anclado al fondo del panel.
    ------------------------------------------------------------ */
-.panel--herramientas {
+.panel--tools {
     display: flex;
     flex-direction: column;
     /* En móvil: sin borde exterior, separado del borde superior del
      viewport y con línea divisora inferior hacia la section. */
-    margin-top: var(--espacio-lateral);
+    margin-top: var(--space-lateral);
     border: 0;
     border-bottom: var(--rule-hairline);
 }
 
 /* Identidad: título display y subtítulo monoespaciado. */
-.panel__titulo {
+.panel__title {
     margin: 0;
     font-family: var(--font-display);
     font-size: var(--text-2xl);
     font-weight: 400;
     font-style: normal;
     letter-spacing: var(--tracking-tight);
-    line-height: var(--lh-tight);
+    line-height: var(--line-height-tight);
 }
 
-.panel__subtitulo {
+.panel__subtitle {
     margin: var(--space-sm) 0 0;
     font-family: var(--font-outlier);
     font-size: var(--text-sm);
@@ -139,15 +139,15 @@ body {
 }
 
 /* Separación entre grupos de herramientas (regla superior). */
-.panel__subtitulo + .herramientas__grupo,
-.herramientas__grupo + .herramientas__grupo {
+.panel__subtitle + .tools__group,
+.tools__group + .tools__group {
     margin-top: var(--space-lg);
     padding-top: var(--space-md);
     border-top: var(--rule-hairline);
 }
 
 /* Rótulo de cada grupo de herramientas. */
-.herramientas__caption {
+.tools__caption {
     margin: 0 0 var(--space-xs);
     font-family: var(--font-outlier);
     font-size: var(--text-xs);
@@ -158,8 +158,8 @@ body {
 }
 
 /* Selector de plantilla: altura de diana táctil (44 px). */
-.herramientas__select {
-    min-height: var(--tamano-toque);
+.tools__select {
+    min-height: var(--touch-size);
     width: 100%;
     font-family: var(--font-body);
     font-size: var(--text-base);
@@ -172,15 +172,15 @@ body {
 }
 
 /* Paleta de colores predefinidos: rejilla adaptable al ancho. */
-.paleta {
+.palette {
     display: grid;
-    grid-template-columns: repeat(auto-fill, var(--tamano-toque));
+    grid-template-columns: repeat(auto-fill, var(--touch-size));
     gap: var(--space-2xs);
 }
 
-.paleta__color {
-    width: var(--tamano-toque);
-    height: var(--tamano-toque);
+.palette__color {
+    width: var(--touch-size);
+    height: var(--touch-size);
     padding: 0;
     border: 1px solid var(--color-rule);
     border-radius: var(--radius-sm);
@@ -188,12 +188,12 @@ body {
     cursor: pointer;
 }
 
-.paleta__color:hover {
+.palette__color:hover {
     border-color: var(--color-neutral);
 }
 
 /* Ficha de color seleccionada: anillo de acento. */
-.paleta__color--activo {
+.palette__color--active {
     border-color: var(--color-accent);
     box-shadow:
         0 0 0 2px var(--color-paper) inset,
@@ -201,7 +201,7 @@ body {
 }
 
 /* Selector de color personalizado (etiqueta + input[type=color]). */
-.herramientas__personalizado {
+.tools__custom {
     display: flex;
     align-items: center;
     gap: var(--space-xs);
@@ -211,9 +211,9 @@ body {
     color: var(--color-muted);
 }
 
-.herramientas__color {
-    width: var(--tamano-toque);
-    height: var(--tamano-toque);
+.tools__color {
+    width: var(--touch-size);
+    height: var(--touch-size);
     padding: 0;
     border: 1px solid var(--color-rule);
     border-radius: var(--radius-sm);
@@ -224,24 +224,24 @@ body {
 }
 
 /* Controla el color de acento de los controles nativos. */
-.herramientas__select,
-.herramientas__color {
+.tools__select,
+.tools__color {
     accent-color: var(--color-accent);
 }
 
 /* Botones de acción: rejilla adaptable con dianas de 44 px. */
-.herramientas__acciones {
+.tools__actions {
     display: grid;
-    grid-template-columns: repeat(auto-fill, var(--tamano-toque));
+    grid-template-columns: repeat(auto-fill, var(--touch-size));
     gap: var(--space-xs);
 }
 
-.herramienta {
+.tool {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: var(--tamano-toque);
-    height: var(--tamano-toque);
+    width: var(--touch-size);
+    height: var(--touch-size);
     padding: 0;
     border: 1px solid var(--color-rule);
     border-radius: var(--radius-sm);
@@ -251,22 +251,22 @@ body {
     font-size: 1.25rem;
 }
 
-.herramienta:hover:not(:disabled) {
+.tool:hover:not(:disabled) {
     background: var(--color-paper-2);
     border-color: var(--color-neutral);
 }
 
-.herramienta:active:not(:disabled) {
+.tool:active:not(:disabled) {
     background: var(--color-paper-3);
 }
 
-.herramienta:disabled {
+.tool:disabled {
     opacity: 0.4;
     cursor: not-allowed;
 }
 
 /* Botón activo (p. ej. borrador encendido). */
-.herramienta--activo {
+.tool--active {
     background: var(--color-paper-2);
     border-color: var(--color-accent);
     color: var(--color-accent-deep);
@@ -275,7 +275,7 @@ body {
 /* Pie del panel (Web Mandala).
    En móvil su regla superior conserva la misma separación que los
    demás grupos; en escritorio el margin-top:auto la ancla al fondo. */
-.panel__pie {
+.panel__footer {
     margin: var(--space-lg) 0 0;
     padding-top: var(--space-md);
     border-top: var(--rule-hairline);
@@ -292,18 +292,18 @@ body {
    En móvil fluye tras el nav y la página hace scroll; sin borde
    exterior de sección.
    ------------------------------------------------------------ */
-.panel--lienzo {
+.panel--canvas {
     display: flex;
     flex-direction: column;
     gap: var(--space-md);
     border: 0;
 }
 
-.lienzo {
+.canvas {
     margin: 0;
 }
 
-.lienzo__superficie {
+.canvas__surface {
     background: var(--color-paper-2);
     border: var(--rule-hairline);
     border-radius: var(--radius-md);
@@ -311,7 +311,7 @@ body {
 }
 
 /* SVG del mandala: ocupa el ancho disponible manteniendo la proporción. */
-.lienzo__svg {
+.canvas__svg {
     display: block;
     width: 100%;
     height: auto;
@@ -319,7 +319,7 @@ body {
     cursor: pointer;
 }
 
-.lienzo__caption {
+.canvas__caption {
     margin: var(--space-sm) 0 0;
     font-family: var(--font-outlier);
     font-size: var(--text-xs);
@@ -328,7 +328,7 @@ body {
 }
 
 /* Barra de estado accesible (reserva altura para evitar saltos). */
-.estado {
+.status {
     min-height: var(--space-lg);
     margin: var(--space-sm) 0 0;
     font-family: var(--font-outlier);
@@ -352,7 +352,7 @@ body {
         overflow: hidden;
     }
 
-    .taller {
+    .workshop {
         display: grid;
         height: 100vh;
         height: 100dvh;
@@ -365,7 +365,7 @@ body {
         gap: var(--space-2xl);
     }
 
-    .panel--herramientas {
+    .panel--tools {
         grid-area: herramientas;
         /* Restaura el borde completo y sin separación superior en escritorio. */
         margin-top: 0;
@@ -378,7 +378,7 @@ body {
         border-radius: 0;
     }
 
-    .panel--lienzo {
+    .panel--canvas {
         grid-area: lienzo;
         min-height: 0;
         overflow-y: auto;
@@ -388,28 +388,28 @@ body {
     }
 
     /* El pie vuelve a anclarse al fondo del nav en escritorio. */
-    .panel__pie {
+    .panel__footer {
         margin-top: auto;
     }
 
     /* La figura se centra con margen automático: permite hacer scroll
      correcto hasta el inicio cuando el contenido supera la altura. */
-    .panel--lienzo .lienzo {
+    .panel--canvas .canvas {
         width: 100%;
         margin: auto;
     }
 
     /* El mandala conserva un tamaño cómodo y se centra en su panel. */
-    .lienzo__superficie {
+    .canvas__surface {
         width: 100%;
-        max-width: var(--ancho-mandala);
+        max-width: var(--mandala-width);
         margin-inline: auto;
     }
 
     /* Leyenda y estado se alinean con el ancho del mandala. */
-    .lienzo__caption,
-    .estado {
-        max-width: var(--ancho-mandala);
+    .canvas__caption,
+    .status {
+        max-width: var(--mandala-width);
         margin-inline: auto;
     }
 }
@@ -441,13 +441,13 @@ body {
     }
 
     /* Se oculta todo lo que no es el mandala en sí. */
-    .panel--herramientas,
-    .estado,
-    .lienzo__caption {
+    .panel--tools,
+    .status,
+    .canvas__caption {
         display: none;
     }
 
-    .taller {
+    .workshop {
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -459,14 +459,14 @@ body {
         gap: 0;
     }
 
-    .panel--lienzo {
+    .panel--canvas {
         border: 0;
         padding: 0;
         width: auto;
         flex: 0 0 auto;
     }
 
-    .lienzo__superficie {
+    .canvas__surface {
         border: 0;
         padding: 0;
         background: var(--color-imprimir);

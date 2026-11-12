@@ -13,42 +13,37 @@
     </head>
     <body>
         <main>
-            <div class="contenedor-principal">
+            <div class="main-container">
                 <h1>Redimensionar Imagen</h1>
-                <div class="contenedor-entrada">
-                    <div class="zona-carga" id="zona-carga">
-                        <img src="assets/icons/carpeta.png" alt="SUBIR" class="icono-subida" />
-                        <span class="texto-seleccion">Selecciona una imagen</span>
-                        <img
-                            src=""
-                            alt="Previsualización"
-                            id="previsualizacion"
-                            class="previsualizacion"
-                        />
+                <div class="input-container">
+                    <div class="drop-zone" id="drop-zone">
+                        <img src="assets/icons/carpeta.png" alt="SUBIR" class="upload-icon" />
+                        <span class="selection-text">Selecciona una imagen</span>
+                        <img src="" alt="Previsualización" id="preview" class="preview" />
                     </div>
                 </div>
-                <div class="controles-dimension">
-                    <div class="campo-ancho">
+                <div class="dimension-controls">
+                    <div class="width-field">
                         <span>ANCHO</span>
                         <input
                             type="number"
-                            id="ancho"
-                            class="entrada-ancho"
+                            id="width"
+                            class="width-input"
                             aria-label="Ancho en píxeles"
                         />
                     </div>
-                    <div class="campo-largo">
+                    <div class="height-field">
                         <span>LARGO</span>
                         <input
                             type="number"
-                            id="largo"
-                            class="entrada-largo"
+                            id="height"
+                            class="height-input"
                             aria-label="Largo en píxeles"
                         />
                     </div>
                 </div>
-                <div class="contenedor-boton">
-                    <button id="boton-descargar">Descargar imagen</button>
+                <div class="button-container">
+                    <button id="download-button">Descargar imagen</button>
                 </div>
             </div>
         </main>

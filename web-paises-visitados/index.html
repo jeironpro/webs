@@ -13,8 +13,8 @@
         <link rel="stylesheet" href="css/animacion.css" />
     </head>
     <body>
-        <div id="avion-wrapper">
-            <svg id="avion" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+        <div id="plane-wrapper">
+            <svg id="plane" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
                 <polygon
                     points="32,2 4,62 32,50 60,62"
                     fill="white"
@@ -30,27 +30,27 @@
             <h1>Paises visitados</h1>
         </header>
         <main>
-            <div class="contenedor-filtro">
+            <div class="filter-container">
                 <input
                     type="search"
-                    name="buscador"
-                    id="buscador"
+                    name="search"
+                    id="search"
                     placeholder="buscar país"
                     autocomplete="off"
                     aria-label="Buscar país"
                 />
             </div>
-            <div id="contenedor-paises"></div>
+            <div id="countries-container"></div>
         </main>
         <footer>
-            <p>Todos los derechos reservados - JeironPro <span data-anio>2025</span></p>
+            <p>Todos los derechos reservados - JeironPro <span data-year>2025</span></p>
         </footer>
         <script src="js/script.js"></script>
         <script src="js/animacion.js"></script>
         <script src="https://kit.fontawesome.com/25da21ab57.js" crossorigin="anonymous"></script>
         <script>
-            document.querySelectorAll("[data-anio]").forEach((nodo) => {
-                nodo.textContent = new Date().getFullYear();
+            document.querySelectorAll("[data-year]").forEach((node) => {
+                node.textContent = new Date().getFullYear();
             });
         </script>
     </body>

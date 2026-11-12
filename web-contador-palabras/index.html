@@ -21,7 +21,7 @@
         <link rel="stylesheet" href="css/style.css" />
     </head>
     <body>
-        <a class="skip-link" href="#texto">Saltar al contador</a>
+        <a class="skip-link" href="#text">Saltar al contador</a>
 
         <div class="site">
             <header class="site-header">
@@ -52,10 +52,10 @@
                 </nav>
             </header>
 
-            <main class="site-main" id="contenido">
-                <section class="page-head" aria-labelledby="titulo">
+            <main class="site-main" id="content">
+                <section class="page-head" aria-labelledby="title">
                     <p class="mono-label">CONTADOR · PALABRAS Y LETRAS</p>
-                    <h1 class="page-head__title" id="titulo">
+                    <h1 class="page-head__title" id="title">
                         Cuenta palabras y letras mientras escribes
                     </h1>
                     <p class="page-head__lede">
@@ -66,34 +66,34 @@
 
                 <section class="form-block">
                     <div class="text-area">
-                        <label class="mono-label" for="texto">Tu texto</label>
+                        <label class="mono-label" for="text">Tu texto</label>
                         <textarea
                             class="text-area__field"
-                            id="texto"
-                            name="texto"
+                            id="text"
+                            name="text"
                             rows="12"
                             placeholder="Escribe o pega aquí tu texto, o suelta un archivo en la zona de subida…"
                         ></textarea>
                         <div class="text-area__toolbar">
-                            <button type="button" class="btn btn--accent" id="limpiar" disabled>
+                            <button type="button" class="btn btn--accent" id="clear" disabled>
                                 Limpiar
                             </button>
-                            <button type="button" class="btn" id="copiar" disabled>Copiar</button>
-                            <button type="button" class="btn" id="ejemplo">Ejemplo</button>
+                            <button type="button" class="btn" id="copy" disabled>Copiar</button>
+                            <button type="button" class="btn" id="example">Ejemplo</button>
                         </div>
                     </div>
 
                     <div class="stats" aria-live="polite">
                         <p class="stat">
-                            <span class="stat__value" id="valor-palabras">0</span>
+                            <span class="stat__value" id="word-count">0</span>
                             <span class="stat__label">Palabras</span>
                         </p>
                         <p class="stat">
-                            <span class="stat__value" id="valor-caracteres">0</span>
+                            <span class="stat__value" id="character-count">0</span>
                             <span class="stat__label">Caracteres</span>
                         </p>
                         <p class="stat">
-                            <span class="stat__value" id="valor-sin-espacios">0</span>
+                            <span class="stat__value" id="character-count-no-spaces">0</span>
                             <span class="stat__label">Caracteres sin espacios</span>
                         </p>
                     </div>
@@ -103,12 +103,12 @@
                         id="dropzone"
                         role="button"
                         tabindex="0"
-                        aria-controls="archivo"
+                        aria-controls="file"
                     >
                         <input
                             class="dropzone__input"
                             type="file"
-                            id="archivo"
+                            id="file"
                             aria-label="Archivo de texto para contar palabras"
                             accept=".txt,.md,.html,.htm,.css,.js,.json,.csv,.log,.xml,.yaml,.yml,.py,.java,.c,.cpp,.h,.sh,.ini,.cfg,text/*"
                         />

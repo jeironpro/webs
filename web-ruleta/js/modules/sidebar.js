@@ -123,14 +123,14 @@ export class SidebarManager {
         this.nameList.replaceChildren();
 
         if (this.names.length === 0) {
-            const vacio = document.createElement("p");
-            vacio.className = "name-list-empty";
-            vacio.textContent = "No hay nombres agregados";
-            this.nameList.appendChild(vacio);
+            const empty = document.createElement("p");
+            empty.className = "name-list-empty";
+            empty.textContent = "No hay nombres agregados";
+            this.nameList.appendChild(empty);
             return;
         }
 
-        const fragmento = document.createDocumentFragment();
+        const fragment = document.createDocumentFragment();
 
         this.names.forEach((name, i) => {
             const item = document.createElement("div");
@@ -140,26 +140,26 @@ export class SidebarManager {
             color.className = "name-item-color";
             color.style.backgroundColor = this._getColor(i);
 
-            const texto = document.createElement("span");
-            texto.className = "name-item-text";
-            texto.textContent = name;
+            const text = document.createElement("span");
+            text.className = "name-item-text";
+            text.textContent = name;
 
-            const boton = document.createElement("button");
-            boton.type = "button";
-            boton.className = "name-item-remove";
-            boton.setAttribute("aria-label", `Eliminar ${name}`);
-            boton.addEventListener("click", () => this._removeName(i));
+            const button = document.createElement("button");
+            button.type = "button";
+            button.className = "name-item-remove";
+            button.setAttribute("aria-label", `Eliminar ${name}`);
+            button.addEventListener("click", () => this._removeName(i));
 
-            const icono = document.createElement("span");
-            icono.className = "material-symbols-outlined";
-            icono.textContent = "close";
-            boton.appendChild(icono);
+            const icon = document.createElement("span");
+            icon.className = "material-symbols-outlined";
+            icon.textContent = "close";
+            button.appendChild(icon);
 
-            item.append(color, texto, boton);
-            fragmento.appendChild(item);
+            item.append(color, text, button);
+            fragment.appendChild(item);
         });
 
-        this.nameList.appendChild(fragmento);
+        this.nameList.appendChild(fragment);
     }
 
     _applyNames() {

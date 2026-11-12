@@ -24,57 +24,55 @@
 
     // Desplazamientos angulares usados para intercalar pétalos entre bandas:
     // la mitad del giro (PI) y un cuarto de giro.
-    const MEDIO_GIRO = Math.PI;
-    const CUARTO_GIRO = Math.PI / 2;
+    const HALF_TURN = Math.PI;
+    const QUARTER_TURN = Math.PI / 2;
 
     // Radio exterior máximo del lienzo (debe coincidir con Mandala.RADIO_MAX).
-    const RADIO_MAXIMO = 290;
+    const MAX_RADIUS = 290;
 
     /* ------------------------------------------------------------------------
      * Catálogo curado (10 diseños definidos a mano)
      * ---------------------------------------------------------------------- */
 
-    const PLANTILLAS_BASE = [
+    const BASE_TEMPLATES = [
         {
             id: "clasico",
-            nombre: "Clásico",
-            simetria: 12,
-            bandas: [
+            name: "Clásico",
+            symmetry: 12,
+            bands: [
                 {
-                    radioInterior: 0,
-                    radioExterior: 74,
-                    petalos: [{ tipo: "cuna", radioInterior: 0, radioExterior: 74 }],
+                    innerRadius: 0,
+                    outerRadius: 74,
+                    petals: [{ type: "wedge", innerRadius: 0, outerRadius: 74 }],
                 },
                 {
-                    radioInterior: 74,
-                    radioExterior: 148,
-                    petalos: [
+                    innerRadius: 74,
+                    outerRadius: 148,
+                    petals: [
                         {
-                            tipo: "gota",
-                            radioInterior: 74,
-                            radioExterior: 148,
+                            type: "drop",
+                            innerRadius: 74,
+                            outerRadius: 148,
                             ancho: 0.5,
-                            inicio: MEDIO_GIRO / 12,
+                            start: HALF_TURN / 12,
                         },
                     ],
                 },
                 {
-                    radioInterior: 148,
-                    radioExterior: 222,
-                    petalos: [
-                        { tipo: "petalo", radioInterior: 148, radioExterior: 222, ancho: 0.7 },
-                    ],
+                    innerRadius: 148,
+                    outerRadius: 222,
+                    petals: [{ type: "petal", innerRadius: 148, outerRadius: 222, ancho: 0.7 }],
                 },
                 {
-                    radioInterior: 222,
-                    radioExterior: 290,
-                    petalos: [
+                    innerRadius: 222,
+                    outerRadius: 290,
+                    petals: [
                         {
-                            tipo: "cuna",
-                            radioInterior: 222,
-                            radioExterior: 290,
+                            type: "wedge",
+                            innerRadius: 222,
+                            outerRadius: 290,
                             ancho: 0.55,
-                            inicio: MEDIO_GIRO / 12,
+                            start: HALF_TURN / 12,
                         },
                     ],
                 },
@@ -82,176 +80,174 @@
         },
         {
             id: "flor",
-            nombre: "Flor",
-            simetria: 8,
-            bandas: [
+            name: "Flor",
+            symmetry: 8,
+            bands: [
                 {
-                    radioInterior: 16,
-                    radioExterior: 96,
-                    petalos: [
-                        { tipo: "petalo", radioInterior: 16, radioExterior: 96, ancho: 0.85 },
-                    ],
+                    innerRadius: 16,
+                    outerRadius: 96,
+                    petals: [{ type: "petal", innerRadius: 16, outerRadius: 96, ancho: 0.85 }],
                 },
                 {
-                    radioInterior: 96,
-                    radioExterior: 168,
-                    petalos: [
+                    innerRadius: 96,
+                    outerRadius: 168,
+                    petals: [
                         {
-                            tipo: "gota",
-                            radioInterior: 96,
-                            radioExterior: 168,
+                            type: "drop",
+                            innerRadius: 96,
+                            outerRadius: 168,
                             ancho: 0.5,
-                            inicio: MEDIO_GIRO / 8,
+                            start: HALF_TURN / 8,
                         },
                     ],
                 },
                 {
-                    radioInterior: 168,
-                    radioExterior: 236,
-                    petalos: [
+                    innerRadius: 168,
+                    outerRadius: 236,
+                    petals: [
                         {
-                            tipo: "petalo",
-                            radioInterior: 168,
-                            radioExterior: 236,
+                            type: "petal",
+                            innerRadius: 168,
+                            outerRadius: 236,
                             ancho: 0.6,
-                            inicio: MEDIO_GIRO / 8,
+                            start: HALF_TURN / 8,
                         },
                     ],
                 },
                 {
-                    radioInterior: 236,
-                    radioExterior: 290,
-                    petalos: [{ tipo: "cuna", radioInterior: 236, radioExterior: 290, ancho: 0.6 }],
+                    innerRadius: 236,
+                    outerRadius: 290,
+                    petals: [{ type: "wedge", innerRadius: 236, outerRadius: 290, ancho: 0.6 }],
                 },
             ],
-            centro: { radio: 12 },
+            center: { radius: 12 },
         },
         {
             id: "sol",
-            nombre: "Sol radiante",
-            simetria: 12,
-            bandas: [
+            name: "Sol radiante",
+            symmetry: 12,
+            bands: [
                 {
-                    radioInterior: 0,
-                    radioExterior: 62,
-                    petalos: [{ tipo: "cuna", radioInterior: 0, radioExterior: 62 }],
+                    innerRadius: 0,
+                    outerRadius: 62,
+                    petals: [{ type: "wedge", innerRadius: 0, outerRadius: 62 }],
                 },
                 {
-                    radioInterior: 62,
-                    radioExterior: 132,
-                    petalos: [{ tipo: "petalo", radioInterior: 62, radioExterior: 132, ancho: 1 }],
+                    innerRadius: 62,
+                    outerRadius: 132,
+                    petals: [{ type: "petal", innerRadius: 62, outerRadius: 132, ancho: 1 }],
                 },
                 {
-                    radioInterior: 132,
-                    radioExterior: 205,
-                    petalos: [
+                    innerRadius: 132,
+                    outerRadius: 205,
+                    petals: [
                         {
-                            tipo: "gota",
-                            radioInterior: 132,
-                            radioExterior: 205,
+                            type: "drop",
+                            innerRadius: 132,
+                            outerRadius: 205,
                             ancho: 0.5,
-                            inicio: MEDIO_GIRO / 12,
+                            start: HALF_TURN / 12,
                         },
                     ],
                 },
                 {
-                    radioInterior: 205,
-                    radioExterior: 290,
-                    petalos: [
+                    innerRadius: 205,
+                    outerRadius: 290,
+                    petals: [
                         {
-                            tipo: "cuna",
-                            radioInterior: 205,
-                            radioExterior: 290,
+                            type: "wedge",
+                            innerRadius: 205,
+                            outerRadius: 290,
                             ancho: 0.35,
-                            inicio: CUARTO_GIRO / 3,
+                            start: QUARTER_TURN / 3,
                         },
                     ],
                 },
             ],
-            centro: { radio: 14 },
+            center: { radius: 14 },
         },
         {
             id: "abstracto",
-            nombre: "Abstracto",
-            simetria: 6,
-            bandas: [
+            name: "Abstracto",
+            symmetry: 6,
+            bands: [
                 {
-                    radioInterior: 22,
-                    radioExterior: 92,
-                    petalos: [{ tipo: "gota", radioInterior: 22, radioExterior: 92, ancho: 0.45 }],
+                    innerRadius: 22,
+                    outerRadius: 92,
+                    petals: [{ type: "drop", innerRadius: 22, outerRadius: 92, ancho: 0.45 }],
                 },
                 {
-                    radioInterior: 92,
-                    radioExterior: 162,
-                    petalos: [
+                    innerRadius: 92,
+                    outerRadius: 162,
+                    petals: [
                         {
-                            tipo: "petalo",
-                            radioInterior: 92,
-                            radioExterior: 162,
+                            type: "petal",
+                            innerRadius: 92,
+                            outerRadius: 162,
                             ancho: 0.9,
-                            inicio: MEDIO_GIRO / 6,
+                            start: HALF_TURN / 6,
                         },
                     ],
                 },
                 {
-                    radioInterior: 162,
-                    radioExterior: 235,
-                    petalos: [{ tipo: "cuna", radioInterior: 162, radioExterior: 235, ancho: 0.7 }],
+                    innerRadius: 162,
+                    outerRadius: 235,
+                    petals: [{ type: "wedge", innerRadius: 162, outerRadius: 235, ancho: 0.7 }],
                 },
                 {
-                    radioInterior: 235,
-                    radioExterior: 290,
-                    petalos: [
+                    innerRadius: 235,
+                    outerRadius: 290,
+                    petals: [
                         {
-                            tipo: "gota",
-                            radioInterior: 235,
-                            radioExterior: 290,
+                            type: "drop",
+                            innerRadius: 235,
+                            outerRadius: 290,
                             ancho: 0.4,
-                            inicio: CUARTO_GIRO / 3,
+                            start: QUARTER_TURN / 3,
                         },
                     ],
                 },
             ],
-            centro: { radio: 12 },
+            center: { radius: 12 },
         },
         {
             id: "estrella",
-            nombre: "Estrella",
-            simetria: 5,
-            bandas: [
+            name: "Estrella",
+            symmetry: 5,
+            bands: [
                 {
-                    radioInterior: 0,
-                    radioExterior: 60,
-                    petalos: [{ tipo: "cuna", radioInterior: 0, radioExterior: 60 }],
+                    innerRadius: 0,
+                    outerRadius: 60,
+                    petals: [{ type: "wedge", innerRadius: 0, outerRadius: 60 }],
                 },
                 {
-                    radioInterior: 60,
-                    radioExterior: 130,
-                    petalos: [{ tipo: "cuna", radioInterior: 60, radioExterior: 130, ancho: 0.45 }],
+                    innerRadius: 60,
+                    outerRadius: 130,
+                    petals: [{ type: "wedge", innerRadius: 60, outerRadius: 130, ancho: 0.45 }],
                 },
                 {
-                    radioInterior: 130,
-                    radioExterior: 200,
-                    petalos: [
+                    innerRadius: 130,
+                    outerRadius: 200,
+                    petals: [
                         {
-                            tipo: "gota",
-                            radioInterior: 130,
-                            radioExterior: 200,
+                            type: "drop",
+                            innerRadius: 130,
+                            outerRadius: 200,
                             ancho: 0.5,
-                            inicio: MEDIO_GIRO / 5,
+                            start: HALF_TURN / 5,
                         },
                     ],
                 },
                 {
-                    radioInterior: 200,
-                    radioExterior: 290,
-                    petalos: [
+                    innerRadius: 200,
+                    outerRadius: 290,
+                    petals: [
                         {
-                            tipo: "diamante",
-                            radioInterior: 200,
-                            radioExterior: 290,
+                            type: "diamond",
+                            innerRadius: 200,
+                            outerRadius: 290,
                             ancho: 0.5,
-                            inicio: MEDIO_GIRO / 10,
+                            start: HALF_TURN / 10,
                         },
                     ],
                 },
@@ -259,180 +255,174 @@
         },
         {
             id: "petalos-dobles",
-            nombre: "Pétalos dobles",
-            simetria: 8,
-            bandas: [
+            name: "Pétalos dobles",
+            symmetry: 8,
+            bands: [
                 {
-                    radioInterior: 14,
-                    radioExterior: 92,
-                    petalos: [{ tipo: "petalo", radioInterior: 14, radioExterior: 92, ancho: 0.8 }],
+                    innerRadius: 14,
+                    outerRadius: 92,
+                    petals: [{ type: "petal", innerRadius: 14, outerRadius: 92, ancho: 0.8 }],
                 },
                 {
-                    radioInterior: 92,
-                    radioExterior: 150,
-                    petalos: [
+                    innerRadius: 92,
+                    outerRadius: 150,
+                    petals: [
                         {
-                            tipo: "petalo",
-                            radioInterior: 92,
-                            radioExterior: 150,
+                            type: "petal",
+                            innerRadius: 92,
+                            outerRadius: 150,
                             ancho: 0.55,
-                            inicio: MEDIO_GIRO / 8,
+                            start: HALF_TURN / 8,
                         },
                     ],
                 },
                 {
-                    radioInterior: 150,
-                    radioExterior: 225,
-                    petalos: [{ tipo: "gota", radioInterior: 150, radioExterior: 225, ancho: 0.5 }],
+                    innerRadius: 150,
+                    outerRadius: 225,
+                    petals: [{ type: "drop", innerRadius: 150, outerRadius: 225, ancho: 0.5 }],
                 },
                 {
-                    radioInterior: 225,
-                    radioExterior: 290,
-                    petalos: [
+                    innerRadius: 225,
+                    outerRadius: 290,
+                    petals: [
                         {
-                            tipo: "petalo",
-                            radioInterior: 225,
-                            radioExterior: 290,
+                            type: "petal",
+                            innerRadius: 225,
+                            outerRadius: 290,
                             ancho: 0.6,
-                            inicio: MEDIO_GIRO / 8,
+                            start: HALF_TURN / 8,
                         },
                     ],
                 },
             ],
-            centro: { radio: 10 },
+            center: { radius: 10 },
         },
         {
             id: "nacar",
-            nombre: "Nácar",
-            simetria: 12,
-            bandas: [
+            name: "Nácar",
+            symmetry: 12,
+            bands: [
                 {
-                    radioInterior: 18,
-                    radioExterior: 105,
-                    petalos: [{ tipo: "gota", radioInterior: 18, radioExterior: 105, ancho: 1.5 }],
+                    innerRadius: 18,
+                    outerRadius: 105,
+                    petals: [{ type: "drop", innerRadius: 18, outerRadius: 105, ancho: 1.5 }],
                 },
                 {
-                    radioInterior: 105,
-                    radioExterior: 180,
-                    petalos: [
+                    innerRadius: 105,
+                    outerRadius: 180,
+                    petals: [
                         {
-                            tipo: "gota",
-                            radioInterior: 105,
-                            radioExterior: 180,
+                            type: "drop",
+                            innerRadius: 105,
+                            outerRadius: 180,
                             ancho: 1.2,
-                            inicio: MEDIO_GIRO / 12,
+                            start: HALF_TURN / 12,
                         },
                     ],
                 },
                 {
-                    radioInterior: 180,
-                    radioExterior: 240,
-                    petalos: [{ tipo: "gota", radioInterior: 180, radioExterior: 240, ancho: 0.9 }],
+                    innerRadius: 180,
+                    outerRadius: 240,
+                    petals: [{ type: "drop", innerRadius: 180, outerRadius: 240, ancho: 0.9 }],
                 },
                 {
-                    radioInterior: 240,
-                    radioExterior: 290,
-                    petalos: [
+                    innerRadius: 240,
+                    outerRadius: 290,
+                    petals: [
                         {
-                            tipo: "gota",
-                            radioInterior: 240,
-                            radioExterior: 290,
+                            type: "drop",
+                            innerRadius: 240,
+                            outerRadius: 290,
                             ancho: 0.7,
-                            inicio: MEDIO_GIRO / 12,
+                            start: HALF_TURN / 12,
                         },
                     ],
                 },
             ],
-            centro: { radio: 12 },
+            center: { radius: 12 },
         },
         {
             id: "vainas",
-            nombre: "Vainas",
-            simetria: 6,
-            bandas: [
+            name: "Vainas",
+            symmetry: 6,
+            bands: [
                 {
-                    radioInterior: 0,
-                    radioExterior: 70,
-                    petalos: [
-                        { tipo: "diamante", radioInterior: 0, radioExterior: 70, ancho: 0.9 },
-                    ],
+                    innerRadius: 0,
+                    outerRadius: 70,
+                    petals: [{ type: "diamond", innerRadius: 0, outerRadius: 70, ancho: 0.9 }],
                 },
                 {
-                    radioInterior: 70,
-                    radioExterior: 140,
-                    petalos: [
+                    innerRadius: 70,
+                    outerRadius: 140,
+                    petals: [
                         {
-                            tipo: "cuna",
-                            radioInterior: 70,
-                            radioExterior: 140,
+                            type: "wedge",
+                            innerRadius: 70,
+                            outerRadius: 140,
                             ancho: 0.5,
-                            inicio: MEDIO_GIRO / 6,
+                            start: HALF_TURN / 6,
                         },
                     ],
                 },
                 {
-                    radioInterior: 140,
-                    radioExterior: 220,
-                    petalos: [
-                        { tipo: "diamante", radioInterior: 140, radioExterior: 220, ancho: 0.85 },
-                    ],
+                    innerRadius: 140,
+                    outerRadius: 220,
+                    petals: [{ type: "diamond", innerRadius: 140, outerRadius: 220, ancho: 0.85 }],
                 },
                 {
-                    radioInterior: 220,
-                    radioExterior: 290,
-                    petalos: [
+                    innerRadius: 220,
+                    outerRadius: 290,
+                    petals: [
                         {
-                            tipo: "cuna",
-                            radioInterior: 220,
-                            radioExterior: 290,
+                            type: "wedge",
+                            innerRadius: 220,
+                            outerRadius: 290,
                             ancho: 0.45,
-                            inicio: MEDIO_GIRO / 6,
+                            start: HALF_TURN / 6,
                         },
                     ],
                 },
             ],
-            centro: { radio: 12 },
+            center: { radius: 12 },
         },
         {
             id: "geometrico",
-            nombre: "Geométrico",
-            simetria: 4,
-            bandas: [
+            name: "Geométrico",
+            symmetry: 4,
+            bands: [
                 {
-                    radioInterior: 0,
-                    radioExterior: 80,
-                    petalos: [{ tipo: "cuna", radioInterior: 0, radioExterior: 80 }],
+                    innerRadius: 0,
+                    outerRadius: 80,
+                    petals: [{ type: "wedge", innerRadius: 0, outerRadius: 80 }],
                 },
                 {
-                    radioInterior: 80,
-                    radioExterior: 165,
-                    petalos: [
+                    innerRadius: 80,
+                    outerRadius: 165,
+                    petals: [
                         {
-                            tipo: "gota",
-                            radioInterior: 80,
-                            radioExterior: 165,
+                            type: "drop",
+                            innerRadius: 80,
+                            outerRadius: 165,
                             ancho: 0.6,
-                            inicio: MEDIO_GIRO / 4,
+                            start: HALF_TURN / 4,
                         },
                     ],
                 },
                 {
-                    radioInterior: 165,
-                    radioExterior: 240,
-                    petalos: [
-                        { tipo: "diamante", radioInterior: 165, radioExterior: 240, ancho: 0.8 },
-                    ],
+                    innerRadius: 165,
+                    outerRadius: 240,
+                    petals: [{ type: "diamond", innerRadius: 165, outerRadius: 240, ancho: 0.8 }],
                 },
                 {
-                    radioInterior: 240,
-                    radioExterior: 290,
-                    petalos: [
+                    innerRadius: 240,
+                    outerRadius: 290,
+                    petals: [
                         {
-                            tipo: "cuna",
-                            radioInterior: 240,
-                            radioExterior: 290,
+                            type: "wedge",
+                            innerRadius: 240,
+                            outerRadius: 290,
                             ancho: 0.9,
-                            inicio: MEDIO_GIRO / 4,
+                            start: HALF_TURN / 4,
                         },
                     ],
                 },
@@ -440,49 +430,47 @@
         },
         {
             id: "puntas",
-            nombre: "Puntas",
-            simetria: 16,
-            bandas: [
+            name: "Puntas",
+            symmetry: 16,
+            bands: [
                 {
-                    radioInterior: 0,
-                    radioExterior: 55,
-                    petalos: [{ tipo: "cuna", radioInterior: 0, radioExterior: 55 }],
+                    innerRadius: 0,
+                    outerRadius: 55,
+                    petals: [{ type: "wedge", innerRadius: 0, outerRadius: 55 }],
                 },
                 {
-                    radioInterior: 55,
-                    radioExterior: 130,
-                    petalos: [
+                    innerRadius: 55,
+                    outerRadius: 130,
+                    petals: [
                         {
-                            tipo: "diamante",
-                            radioInterior: 55,
-                            radioExterior: 130,
+                            type: "diamond",
+                            innerRadius: 55,
+                            outerRadius: 130,
                             ancho: 0.5,
-                            inicio: MEDIO_GIRO / 16,
+                            start: HALF_TURN / 16,
                         },
                     ],
                 },
                 {
-                    radioInterior: 130,
-                    radioExterior: 205,
-                    petalos: [
-                        { tipo: "gota", radioInterior: 130, radioExterior: 205, ancho: 0.45 },
-                    ],
+                    innerRadius: 130,
+                    outerRadius: 205,
+                    petals: [{ type: "drop", innerRadius: 130, outerRadius: 205, ancho: 0.45 }],
                 },
                 {
-                    radioInterior: 205,
-                    radioExterior: 290,
-                    petalos: [
+                    innerRadius: 205,
+                    outerRadius: 290,
+                    petals: [
                         {
-                            tipo: "cuna",
-                            radioInterior: 205,
-                            radioExterior: 290,
+                            type: "wedge",
+                            innerRadius: 205,
+                            outerRadius: 290,
                             ancho: 0.28,
-                            inicio: MEDIO_GIRO / 16,
+                            start: HALF_TURN / 16,
                         },
                     ],
                 },
             ],
-            centro: { radio: 12 },
+            center: { radius: 12 },
         },
     ];
 
@@ -491,29 +479,29 @@
      * ---------------------------------------------------------------------- */
 
     // Cantidad de variaciones generadas que completan el catálogo hasta 100.
-    const CANTIDAD_GENERADAS = 90;
+    const GENERATED_COUNT = 90;
 
     // Espacio paramétrico: simetrías válidas, tipos de pétalo y rangos de ancho
     // admitidos por el motor (ver mandala.js) para cada tipo.
-    const SIMETRIAS = [4, 5, 6, 8, 10, 12, 16];
-    const TIPOS_PETALO = ["cuna", "petalo", "gota", "diamante"];
-    const ANCHO_MINIMO = { cuna: 0.25, petalo: 0.5, gota: 0.4, diamante: 0.4 };
-    const ANCHO_MAXIMO = { cuna: 1, petalo: 1, gota: 1.5, diamante: 1 };
+    const SYMMETRIES = [4, 5, 6, 8, 10, 12, 16];
+    const PETAL_TYPES = ["wedge", "petal", "drop", "diamond"];
+    const MIN_WIDTH = { cuna: 0.25, petal: 0.5, drop: 0.4, diamante: 0.4 };
+    const MAX_WIDTH = { cuna: 1, petal: 1, drop: 1.5, diamante: 1 };
 
     // Número de bandas por plantilla generada.
-    const BANDAS_MINIMAS = 3;
-    const BANDAS_MAXIMAS = 4;
+    const MIN_BANDS = 3;
+    const MAX_BANDS = 4;
 
     // Grosor radial mínimo entre bandas consecutivas (evita aros degenerados).
-    const GROSOR_MINIMO_BANDA = 10;
+    const MIN_BAND_THICKNESS = 10;
 
     // Rango del radio del círculo de cierre (centro) cuando está presente.
-    const RADIO_CENTRO_MINIMO = 8;
-    const RADIO_CENTRO_MAXIMO = 16;
+    const MIN_CENTER_RADIUS = 8;
+    const MAX_CENTER_RADIUS = 16;
 
     // Léxicos para componer nombres propios únicos: 9 sustantivos × 10 adjetivos
     // = 90 combinaciones distintas que cubren las 90 variaciones.
-    const SUSTANTIVOS = [
+    const NOUNS = [
         "Flor",
         "Sol",
         "Rosas",
@@ -524,7 +512,7 @@
         "Ondas",
         "Campana",
     ];
-    const ADJETIVOS = [
+    const ADJECTIVES = [
         "serena",
         "fogosa",
         "luminosa",
@@ -541,132 +529,130 @@
      * Generador pseudoaleatorio determinista (mulberry32) sembrado por índice:
      * la misma semilla produce siempre la misma secuencia de números.
      */
-    function crearAleatorio(semilla) {
-        let estado = semilla >>> 0;
-        return function aleatorio() {
-            estado = (estado + 0x6d2b79f5) | 0;
-            let mezcla = Math.imul(estado ^ (estado >>> 15), 1 | estado);
-            mezcla = (mezcla + Math.imul(mezcla ^ (mezcla >>> 7), 61 | mezcla)) ^ mezcla;
-            return ((mezcla ^ (mezcla >>> 14)) >>> 0) / 4294967296;
+    function createRandom(seed) {
+        let state = seed >>> 0;
+        return function random() {
+            state = (state + 0x6d2b79f5) | 0;
+            let mix = Math.imul(state ^ (state >>> 15), 1 | state);
+            mix = (mix + Math.imul(mix ^ (mix >>> 7), 61 | mix)) ^ mix;
+            return ((mix ^ (mix >>> 14)) >>> 0) / 4294967296;
         };
     }
 
     /** Devuelve un entero aleatorio dentro del intervalo [minimo, maximo]. */
-    function enteroEntre(aleatorio, minimo, maximo) {
-        return minimo + Math.floor(aleatorio() * (maximo - minimo + 1));
+    function integerBetween(random, min, max) {
+        return min + Math.floor(random() * (max - min + 1));
     }
 
     /** Devuelve un real aleatorio dentro del intervalo [minimo, maximo). */
-    function realEntre(aleatorio, minimo, maximo) {
-        return minimo + aleatorio() * (maximo - minimo);
+    function realBetween(random, min, max) {
+        return min + random() * (max - min);
     }
 
     /** Redondea un número a dos decimales para mantener los datos compactos. */
-    function redondearDosDecimales(valor) {
-        return Math.round(valor * 100) / 100;
+    function roundTwoDecimals(value) {
+        return Math.round(value * 100) / 100;
     }
 
     /** Compone el id único de una variación (p. ej. "generada-05"). */
-    function idGenerado(indice) {
-        return `generada-${String(indice + 1).padStart(2, "0")}`;
+    function generatedId(index) {
+        return `generada-${String(index + 1).padStart(2, "0")}`;
     }
 
     /** Compone el nombre propio único de una variación (sustantivo + adjetivo). */
-    function nombreGenerado(indice) {
-        const sustantivo = SUSTANTIVOS[Math.floor(indice / ADJETIVOS.length)];
-        const adjetivo = ADJETIVOS[indice % ADJETIVOS.length];
-        return `${sustantivo} ${adjetivo}`;
+    function generatedName(index) {
+        const noun = NOUNS[Math.floor(index / ADJECTIVES.length)];
+        const adjective = ADJECTIVES[index % ADJECTIVES.length];
+        return `${noun} ${adjective}`;
     }
 
     /**
      * Reparte el radio máximo en las bandas mediante cortes aleatorios
      * ordenados, garantizando un grosor mínimo entre bandas consecutivas.
      */
-    function particionarRadios(aleatorio, cantidadBandas) {
-        const cortes = [];
-        for (let i = 0; i < cantidadBandas - 1; i += 1) {
-            cortes.push(aleatorio());
+    function partitionRadii(random, bandCount) {
+        const cuts = [];
+        for (let i = 0; i < bandCount - 1; i += 1) {
+            cuts.push(random());
         }
-        cortes.sort((a, b) => a - b);
+        cuts.sort((a, b) => a - b);
 
-        const limites = [];
-        let ultimo = 0;
-        for (const fraccion of cortes) {
-            let valor = Math.round(fraccion * RADIO_MAXIMO);
-            if (valor < ultimo + GROSOR_MINIMO_BANDA) {
-                valor = ultimo + GROSOR_MINIMO_BANDA;
+        const limits = [];
+        let last = 0;
+        for (const fraction of cuts) {
+            let value = Math.round(fraction * MAX_RADIUS);
+            if (value < last + MIN_BAND_THICKNESS) {
+                value = last + MIN_BAND_THICKNESS;
             }
-            if (valor > RADIO_MAXIMO - GROSOR_MINIMO_BANDA) {
-                valor = RADIO_MAXIMO - GROSOR_MINIMO_BANDA;
+            if (value > MAX_RADIUS - MIN_BAND_THICKNESS) {
+                value = MAX_RADIUS - MIN_BAND_THICKNESS;
             }
-            limites.push(valor);
-            ultimo = valor;
+            limits.push(value);
+            last = value;
         }
-        limites.push(RADIO_MAXIMO);
-        return limites;
+        limits.push(MAX_RADIUS);
+        return limits;
     }
 
     /** Genera una plantilla determinista a partir de su índice (misma semilla → mismo diseño). */
-    function generarPlantilla(indice) {
-        const aleatorio = crearAleatorio(indice + 1);
-        const simetria = SIMETRIAS[enteroEntre(aleatorio, 0, SIMETRIAS.length - 1)];
-        const cantidadBandas = enteroEntre(aleatorio, BANDAS_MINIMAS, BANDAS_MAXIMAS);
-        const limites = particionarRadios(aleatorio, cantidadBandas);
-        const conCentro = aleatorio() < 0.5;
+    function generateTemplate(index) {
+        const random = createRandom(index + 1);
+        const symmetry = SYMMETRIES[integerBetween(random, 0, SYMMETRIES.length - 1)];
+        const bandCount = integerBetween(random, MIN_BANDS, MAX_BANDS);
+        const limits = partitionRadii(random, bandCount);
+        const withCenter = random() < 0.5;
 
-        const bandas = [];
-        let radioInterior = 0;
-        for (let b = 0; b < cantidadBandas; b += 1) {
-            const radioExterior = limites[b];
-            const tipo = TIPOS_PETALO[enteroEntre(aleatorio, 0, TIPOS_PETALO.length - 1)];
-            const ancho = redondearDosDecimales(
-                realEntre(aleatorio, ANCHO_MINIMO[tipo], ANCHO_MAXIMO[tipo])
-            );
-            const inicio = aleatorio() < 0.5 ? 0 : MEDIO_GIRO / simetria;
-            bandas.push({
-                radioInterior,
-                radioExterior,
-                petalos: [
+        const bands = [];
+        let innerRadius = 0;
+        for (let b = 0; b < bandCount; b += 1) {
+            const outerRadius = limits[b];
+            const type = PETAL_TYPES[integerBetween(random, 0, PETAL_TYPES.length - 1)];
+            const ancho = roundTwoDecimals(realBetween(random, MIN_WIDTH[type], MAX_WIDTH[type]));
+            const start = random() < 0.5 ? 0 : HALF_TURN / symmetry;
+            bands.push({
+                innerRadius,
+                outerRadius,
+                petals: [
                     {
-                        tipo,
-                        radioInterior,
-                        radioExterior,
+                        type,
+                        innerRadius,
+                        outerRadius,
                         ancho,
-                        inicio,
+                        start,
                     },
                 ],
             });
-            radioInterior = radioExterior;
+            innerRadius = outerRadius;
         }
 
-        const plantilla = {
-            id: idGenerado(indice),
-            nombre: nombreGenerado(indice),
-            simetria,
-            bandas,
+        const template = {
+            id: generatedId(index),
+            name: generatedName(index),
+            symmetry,
+            bands,
         };
-        if (conCentro) {
-            plantilla.centro = {
-                radio: enteroEntre(aleatorio, RADIO_CENTRO_MINIMO, RADIO_CENTRO_MAXIMO),
+        if (withCenter) {
+            template.center = {
+                radius: integerBetween(random, MIN_CENTER_RADIUS, MAX_CENTER_RADIUS),
             };
         }
-        return plantilla;
+        return template;
     }
 
     // Construye el catálogo final: las 10 curadas seguidas de las 90 variaciones.
-    const PLANTILLAS_GENERADAS = [];
-    for (let i = 0; i < CANTIDAD_GENERADAS; i += 1) {
-        PLANTILLAS_GENERADAS.push(generarPlantilla(i));
+    const GENERATED_TEMPLATES = [];
+    for (let i = 0; i < GENERATED_COUNT; i += 1) {
+        GENERATED_TEMPLATES.push(generateTemplate(i));
     }
-    const PLANTILLAS = PLANTILLAS_BASE.concat(PLANTILLAS_GENERADAS);
+    const TEMPLATES = BASE_TEMPLATES.concat(GENERATED_TEMPLATES);
 
     /** Devuelve la plantilla con el id indicado (por defecto, la primera). */
-    function obtenerPorId(id) {
-        return PLANTILLAS.find((plantilla) => plantilla.id === id) || PLANTILLAS[0];
+    function getById(id) {
+        return TEMPLATES.find((template) => template.id === id) || TEMPLATES[0];
     }
 
     global.MandalaTemplates = {
-        lista: PLANTILLAS,
-        obtener: obtenerPorId,
+        list: TEMPLATES,
+        get: getById,
     };
 })(window);

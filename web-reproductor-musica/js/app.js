@@ -1,129 +1,127 @@
-const canciones = [
-    { titulo: "Gabito Ballesteros - A Puro Dolor", src: "assets/media/APuroDolor.mp3" },
-    { titulo: "Gabito Ballesteros - Chiquitita", src: "assets/media/Chiquitita.mp3" },
-    { titulo: "Fuerza Regida - Disculpe Usted", src: "assets/media/DisculpeUsted.mp3" },
-    { titulo: "Fuerza Regida - Los Sufrimientos", src: "assets/media/LosSufrimientos.mp3" },
-    { titulo: "Natanael Cano - Mi Bello Angel", src: "assets/media/MiBelloAngel.mp3" },
-    { titulo: "Fuerza Regida - Navidad Sin Ti", src: "assets/media/NavidadSinTi.mp3" },
-    { titulo: "Fuerza Regida - No Me Dejes Nunca", src: "assets/media/NoMeDejesNunca.mp3" },
-    { titulo: "Fuerza Regida - No Volvere", src: "assets/media/NoVolvere.mp3" },
-    { titulo: "Natanael Cano - O Me Voy O Te Vas", src: "assets/media/OMeVoyOTeVas.mp3" },
-    { titulo: "Gabito Ballesteros - Que Lloro", src: "assets/media/QueLloro.mp3" },
-    { titulo: "Fuerza Regida - Que Tal Se Siente", src: "assets/media/QueTalSeSiente.mp3" },
-    { titulo: "Fuerza Regida - Quien Es Usted", src: "assets/media/QuienEsUsted.mp3" },
-    { titulo: "Gabito Ballesteros - Te He Prometido", src: "assets/media/TeHePrometido.mp3" },
-    { titulo: "Fuerza Regida - Te Hubieras Ido Antes", src: "assets/media/TeHubierasIdoAntes.mp3" },
-    { titulo: "Fuerza Regida - Te Voy A Olvidar", src: "assets/media/TeVoyAOlvidar.mp3" },
-    { titulo: "Fuerza Regida - Tu Ventana", src: "assets/media/TuVentana.mp3" },
-    { titulo: "Fuerza Regida - Un Idiota", src: "assets/media/UnIdiota.mp3" },
-    { titulo: "Fuerza Regida - Vete Ya", src: "assets/media/VeteYa.mp3" },
+const songs = [
+    { title: "Gabito Ballesteros - A Puro Dolor", src: "assets/media/APuroDolor.mp3" },
+    { title: "Gabito Ballesteros - Chiquitita", src: "assets/media/Chiquitita.mp3" },
+    { title: "Fuerza Regida - Disculpe Usted", src: "assets/media/DisculpeUsted.mp3" },
+    { title: "Fuerza Regida - Los Sufrimientos", src: "assets/media/LosSufrimientos.mp3" },
+    { title: "Natanael Cano - Mi Bello Angel", src: "assets/media/MiBelloAngel.mp3" },
+    { title: "Fuerza Regida - Navidad Sin Ti", src: "assets/media/NavidadSinTi.mp3" },
+    { title: "Fuerza Regida - No Me Dejes Nunca", src: "assets/media/NoMeDejesNunca.mp3" },
+    { title: "Fuerza Regida - No Volvere", src: "assets/media/NoVolvere.mp3" },
+    { title: "Natanael Cano - O Me Voy O Te Vas", src: "assets/media/OMeVoyOTeVas.mp3" },
+    { title: "Gabito Ballesteros - Que Lloro", src: "assets/media/QueLloro.mp3" },
+    { title: "Fuerza Regida - Que Tal Se Siente", src: "assets/media/QueTalSeSiente.mp3" },
+    { title: "Fuerza Regida - Quien Es Usted", src: "assets/media/QuienEsUsted.mp3" },
+    { title: "Gabito Ballesteros - Te He Prometido", src: "assets/media/TeHePrometido.mp3" },
+    { title: "Fuerza Regida - Te Hubieras Ido Antes", src: "assets/media/TeHubierasIdoAntes.mp3" },
+    { title: "Fuerza Regida - Te Voy A Olvidar", src: "assets/media/TeVoyAOlvidar.mp3" },
+    { title: "Fuerza Regida - Tu Ventana", src: "assets/media/TuVentana.mp3" },
+    { title: "Fuerza Regida - Un Idiota", src: "assets/media/UnIdiota.mp3" },
+    { title: "Fuerza Regida - Vete Ya", src: "assets/media/VeteYa.mp3" },
 ];
 
-const reproductorAudio = new Audio();
-let cancionActual = 0;
+const audioPlayer = new Audio();
+let currentSong = 0;
 
-const cargarCancion = () => {
-    reproductorAudio.src = canciones[cancionActual].src;
-    const info = canciones[cancionActual].titulo.split("-");
-    document.getElementById("nombre-artista").textContent = info[0] ? info[0].trim() : "";
-    document.getElementById("titulo-cancion").textContent = info[1]
-        ? info[1].trim()
-        : info[0].trim();
+const loadSong = () => {
+    audioPlayer.src = songs[currentSong].src;
+    const info = songs[currentSong].title.split("-");
+    document.getElementById("artist-name").textContent = info[0] ? info[0].trim() : "";
+    document.getElementById("song-title").textContent = info[1] ? info[1].trim() : info[0].trim();
 };
 
-const contenedorReproductor = document.getElementById("contenedor-reproductor");
-const contenedorListado = document.getElementById("listado-canciones");
-const reproductor = document.getElementById("reproductor");
-const iconoVolver = document.querySelector(".volver");
-const iconoListado = document.querySelector(".icono-listado");
-const progreso = document.getElementById("progreso");
-const imagenCancion = document.getElementById("imagen-cancion");
-const botonReproducir = document.getElementById("reproducir");
-const botonPausar = document.getElementById("pausar");
-const botonSiguiente = document.getElementById("siguiente");
-const botonAnterior = document.getElementById("anterior");
+const playerContainer = document.getElementById("player-container");
+const playlistContainer = document.getElementById("song-list");
+const player = document.getElementById("player");
+const backIcon = document.querySelector(".back");
+const playlistIcon = document.querySelector(".playlist-icon");
+const progress = document.getElementById("progress");
+const songImage = document.getElementById("song-image");
+const playButton = document.getElementById("play");
+const pauseButton = document.getElementById("pausar");
+const nextButton = document.getElementById("next");
+const previousButton = document.getElementById("previous");
 
-const reproducirCancion = () => {
-    reproductorAudio.play();
-    imagenCancion.classList.add("reproduciendo");
-    botonReproducir.style.display = "none";
-    botonPausar.style.display = "block";
+const playSong = () => {
+    audioPlayer.play();
+    songImage.classList.add("playing");
+    playButton.style.display = "none";
+    pauseButton.style.display = "block";
 };
 
-const pausarCancion = () => {
-    reproductorAudio.pause();
-    imagenCancion.classList.remove("reproduciendo");
-    botonPausar.style.display = "none";
-    botonReproducir.style.display = "block";
+const pauseSong = () => {
+    audioPlayer.pause();
+    songImage.classList.remove("playing");
+    pauseButton.style.display = "none";
+    playButton.style.display = "block";
 };
 
-const siguienteCancion = () => {
-    cancionActual = (cancionActual + 1) % canciones.length;
-    cargarCancion();
-    reproducirCancion();
+const nextSong = () => {
+    currentSong = (currentSong + 1) % songs.length;
+    loadSong();
+    playSong();
 };
 
-const anteriorCancion = () => {
-    cancionActual = (cancionActual - 1 + canciones.length) % canciones.length;
-    cargarCancion();
-    reproducirCancion();
+const previousSong = () => {
+    currentSong = (currentSong - 1 + songs.length) % songs.length;
+    loadSong();
+    playSong();
 };
 
-const seleccionarCancion = (index) => {
-    cancionActual = index;
-    cargarCancion();
-    reproducirCancion();
-    contenedorListado.style.display = "none";
-    reproductor.style.display = "block";
-    iconoVolver.style.display = "none";
-    contenedorReproductor.style.overflowY = "hidden";
+const selectSong = (index) => {
+    currentSong = index;
+    loadSong();
+    playSong();
+    playlistContainer.style.display = "none";
+    player.style.display = "block";
+    backIcon.style.display = "none";
+    playerContainer.style.overflowY = "hidden";
 };
 
-iconoVolver.addEventListener("click", () => {
-    reproductor.style.display = "block";
-    iconoVolver.style.display = "none";
-    contenedorReproductor.style.overflowY = "hidden";
-    contenedorListado.style.display = "none";
+backIcon.addEventListener("click", () => {
+    player.style.display = "block";
+    backIcon.style.display = "none";
+    playerContainer.style.overflowY = "hidden";
+    playlistContainer.style.display = "none";
 });
 
-iconoListado.addEventListener("click", () => {
-    reproductor.style.display = "none";
-    iconoVolver.style.display = "block";
-    contenedorReproductor.style.overflowY = "auto";
-    contenedorListado.style.display = "block";
+playlistIcon.addEventListener("click", () => {
+    player.style.display = "none";
+    backIcon.style.display = "block";
+    playerContainer.style.overflowY = "auto";
+    playlistContainer.style.display = "block";
 
-    contenedorListado.replaceChildren();
+    playlistContainer.replaceChildren();
     const ul = document.createElement("ul");
-    ul.className = "listado-estilo";
+    ul.className = "playlist-style";
 
-    canciones.forEach((cancion, index) => {
+    songs.forEach((song, index) => {
         const li = document.createElement("li");
-        li.textContent = cancion.titulo;
-        li.addEventListener("click", () => seleccionarCancion(index));
+        li.textContent = song.title;
+        li.addEventListener("click", () => selectSong(index));
         ul.appendChild(li);
     });
 
-    contenedorListado.appendChild(ul);
+    playlistContainer.appendChild(ul);
 });
 
-botonReproducir.addEventListener("click", reproducirCancion);
-botonPausar.addEventListener("click", pausarCancion);
-botonSiguiente.addEventListener("click", siguienteCancion);
-botonAnterior.addEventListener("click", anteriorCancion);
+playButton.addEventListener("click", playSong);
+pauseButton.addEventListener("click", pauseSong);
+nextButton.addEventListener("click", nextSong);
+previousButton.addEventListener("click", previousSong);
 
-progreso.addEventListener("input", function () {
-    reproductorAudio.currentTime = (this.value * reproductorAudio.duration) / 100;
+progress.addEventListener("input", function () {
+    audioPlayer.currentTime = (this.value * audioPlayer.duration) / 100;
 });
 
-reproductorAudio.addEventListener("timeupdate", () => {
-    const porcentaje = (reproductorAudio.currentTime / reproductorAudio.duration) * 100;
+audioPlayer.addEventListener("timeupdate", () => {
+    const percentage = (audioPlayer.currentTime / audioPlayer.duration) * 100;
 
-    progreso.style.background = `linear-gradient(to right, #fe8d94 ${porcentaje}%, #ffffff ${porcentaje}%, #ffffff ${porcentaje}%)`;
-    progreso.value = porcentaje;
+    progress.style.background = `linear-gradient(to right, #fe8d94 ${percentage}%, #ffffff ${percentage}%, #ffffff ${percentage}%)`;
+    progress.value = percentage;
 
-    if (reproductorAudio.currentTime === reproductorAudio.duration) {
-        siguienteCancion();
+    if (audioPlayer.currentTime === audioPlayer.duration) {
+        nextSong();
     }
 });
 
-cargarCancion();
+loadSong();

@@ -1,14 +1,14 @@
 @layer base {
     :root {
-        --blanco: #ffffff;
-        --pista: #e0e0e0;
-        --separador: #f0f0f0;
-        --sombra-borde: #d1d9e6;
-        --color-acento: #4a90e2;
-        --color-fondo: #f0f4f8;
-        --color-primario: #2d3436;
-        --color-secundario: #636e72;
-        --sombra-suave: 0 10px 30px rgba(0, 0, 0, 0.05);
+        --white: #ffffff;
+        --track: #e0e0e0;
+        --separator: #f0f0f0;
+        --border-shadow: #d1d9e6;
+        --color-accent: #4a90e2;
+        --color-background: #f0f4f8;
+        --color-primary: #2d3436;
+        --color-secondary: #636e72;
+        --soft-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     }
 
     * {
@@ -16,8 +16,8 @@
     }
 
     body {
-        background-color: var(--color-fondo);
-        color: var(--color-primario);
+        background-color: var(--color-background);
+        color: var(--color-primary);
         font-family: "Montserrat", sans-serif;
         margin: 0;
         padding: 0;
@@ -30,10 +30,10 @@
         min-height: 100vh;
     }
 
-    #contenedor-reproductor {
-        background-color: var(--blanco);
+    #player-container {
+        background-color: var(--white);
         border-radius: 30px;
-        box-shadow: var(--sombra-suave);
+        box-shadow: var(--soft-shadow);
         height: 600px;
         overflow: hidden;
         padding: 30px;
@@ -42,26 +42,26 @@
         width: 380px;
     }
 
-    .icono-listado,
-    .volver {
+    .playlist-icon,
+    .back {
         cursor: pointer;
         height: 24px;
         transition: opacity 0.3s ease;
         width: 24px;
     }
 
-    .icono-listado:hover,
-    .volver:hover {
+    .playlist-icon:hover,
+    .back:hover {
         opacity: 0.7;
     }
 
-    .contenedor-icono-listado {
+    .playlist-icon-container {
         position: absolute;
         right: 30px;
         top: 30px;
     }
 
-    .volver {
+    .back {
         display: none;
         left: 30px;
         position: absolute;
@@ -69,13 +69,13 @@
         z-index: 10;
     }
 
-    .contenedor-cancion {
+    .song-container {
         align-items: center;
-        background: var(--blanco);
+        background: var(--white);
         border-radius: 50%;
         box-shadow:
-            10px 10px 20px var(--sombra-borde),
-            -10px -10px 20px var(--blanco);
+            10px 10px 20px var(--border-shadow),
+            -10px -10px 20px var(--white);
         display: flex;
         height: 220px;
         justify-content: center;
@@ -83,14 +83,14 @@
         width: 220px;
     }
 
-    #imagen-cancion {
+    #song-image {
         border-radius: 50%;
         height: 160px;
         object-fit: cover;
         width: 160px;
     }
 
-    #imagen-cancion.reproduciendo {
+    #song-image.playing {
         animation: rotar 10s linear infinite;
     }
 
@@ -104,33 +104,33 @@
         }
     }
 
-    .info-cancion {
+    .song-info {
         margin-bottom: 25px;
         text-align: center;
     }
 
-    #nombre-artista {
-        color: var(--color-secundario);
+    #artist-name {
+        color: var(--color-secondary);
         font-size: 0.9rem;
         font-weight: 500;
         margin-bottom: 5px;
     }
 
-    #titulo-cancion {
-        color: var(--color-primario);
+    #song-title {
+        color: var(--color-primary);
         font-size: 1.2rem;
         font-weight: 700;
     }
 
-    .barra-progreso {
+    .progress-bar {
         margin-bottom: 30px;
         padding: 0 10px;
     }
 
-    #progreso {
+    #progress {
         -webkit-appearance: none;
         appearance: none;
-        background: var(--pista);
+        background: var(--track);
         border-radius: 5px;
         cursor: pointer;
         height: 6px;
@@ -138,15 +138,15 @@
         width: 100%;
     }
 
-    #progreso::-webkit-slider-thumb {
+    #progress::-webkit-slider-thumb {
         -webkit-appearance: none;
-        background: var(--color-acento);
+        background: var(--color-accent);
         border-radius: 50%;
         height: 15px;
         width: 15px;
     }
 
-    .contenedor-icons {
+    .controls-container {
         align-items: center;
         display: flex;
         justify-content: space-around;
@@ -154,8 +154,8 @@
         padding: 0 20px;
     }
 
-    .contenedor-icons span {
-        color: var(--color-secundario);
+    .controls-container span {
+        color: var(--color-secondary);
         cursor: pointer;
         font-size: 2rem;
         line-height: 0;
@@ -165,17 +165,17 @@
         user-select: none;
     }
 
-    .contenedor-icons span:hover {
-        color: var(--color-acento);
+    .controls-container span:hover {
+        color: var(--color-accent);
     }
 
-    .contenedor-icons span:active {
+    .controls-container span:active {
         transform: scale(0.9);
     }
 
-    .contenedor-reproducir-pausar {
+    .play-pause-container {
         align-items: center;
-        background: var(--color-acento);
+        background: var(--color-accent);
         border-radius: 50%;
         box-shadow: 0 5px 15px rgba(74, 144, 226, 0.3);
         display: flex;
@@ -184,10 +184,10 @@
         width: 60px;
     }
 
-    #reproducir,
+    #play,
     #pausar {
         align-items: center;
-        color: var(--blanco);
+        color: var(--white);
         display: flex;
         font-size: 2.5rem;
         justify-content: center;
@@ -195,8 +195,8 @@
         text-align: center;
     }
 
-    #listado-canciones {
-        background: var(--blanco);
+    #song-list {
+        background: var(--white);
         display: none;
         height: 100%;
         left: 0;
@@ -207,64 +207,64 @@
         z-index: 5;
     }
 
-    .listado-estilo {
+    .playlist-style {
         list-style: none;
         margin: 0;
         padding: 0;
         text-align: left;
     }
 
-    .listado-estilo li {
-        border-bottom: 1px solid var(--separador);
+    .playlist-style li {
+        border-bottom: 1px solid var(--separator);
         cursor: pointer;
         font-size: 0.9rem;
         padding: 15px 0;
         transition: color 0.3s ease;
     }
 
-    .listado-estilo li:hover {
-        color: var(--color-acento);
+    .playlist-style li:hover {
+        color: var(--color-accent);
     }
 }
 
 @layer responsive {
-    #contenedor-reproductor {
+    #player-container {
         height: auto;
         margin: 20px auto;
         min-height: 600px;
         width: 90%;
     }
 
-    #imagen-cancion {
+    #song-image {
         height: 150px;
         width: 150px;
     }
 
-    .contenedor-cancion {
+    .song-container {
         height: 200px;
         width: 200px;
     }
 
     @media (min-width: 481px) {
-        #contenedor-reproductor {
+        #player-container {
             height: 600px;
             margin: auto;
             min-height: revert-layer;
             width: 380px;
         }
 
-        #imagen-cancion {
+        #song-image {
             height: 160px;
             width: 160px;
         }
 
-        .contenedor-cancion {
+        .song-container {
             height: 220px;
             width: 220px;
         }
     }
     @media (min-width: 1025px) {
-        #contenedor-reproductor {
+        #player-container {
             margin: revert-layer;
         }
     }

@@ -1,365 +1,369 @@
-const paises = [
+const countries = [
     {
         África: [
-            { nombre: "Angola", iso: "AO" },
-            { nombre: "Argelia", iso: "DZ" },
-            { nombre: "Benín", iso: "BJ" },
-            { nombre: "Botsuana", iso: "BW" },
-            { nombre: "Burkina Faso", iso: "BF" },
-            { nombre: "Burundi", iso: "BI" },
-            { nombre: "Cabo Verde", iso: "CV" },
-            { nombre: "Camerún", iso: "CM" },
-            { nombre: "Chad", iso: "TD" },
-            { nombre: "Comoras", iso: "KM" },
-            { nombre: "Congo", iso: "CG" },
-            { nombre: "República Democrática del Congo", iso: "CD" },
-            { nombre: "Costa de Marfil", iso: "CI" },
-            { nombre: "Egipto", iso: "EG" },
-            { nombre: "Eritrea", iso: "ER" },
-            { nombre: "Esuatini", iso: "SZ" },
-            { nombre: "Etiopía", iso: "ET" },
-            { nombre: "Gabón", iso: "GA" },
-            { nombre: "Gambia", iso: "GM" },
-            { nombre: "Ghana", iso: "GH" },
-            { nombre: "Guinea", iso: "GN" },
-            { nombre: "Guinea-Bisáu", iso: "GW" },
-            { nombre: "Guinea Ecuatorial", iso: "GQ" },
-            { nombre: "Kenia", iso: "KE" },
-            { nombre: "Lesoto", iso: "LS" },
-            { nombre: "Liberia", iso: "LR" },
-            { nombre: "Libia", iso: "LY" },
-            { nombre: "Madagascar", iso: "MG" },
-            { nombre: "Malawi", iso: "MW" },
-            { nombre: "Malí", iso: "ML" },
-            { nombre: "Marruecos", iso: "MA" },
-            { nombre: "Mauricio", iso: "MU" },
-            { nombre: "Mauritania", iso: "MR" },
-            { nombre: "Mozambique", iso: "MZ" },
-            { nombre: "Namibia", iso: "NA" },
-            { nombre: "Níger", iso: "NE" },
-            { nombre: "Nigeria", iso: "NG" },
-            { nombre: "Ruanda", iso: "RW" },
-            { nombre: "Santo Tomé y Príncipe", iso: "ST" },
-            { nombre: "Senegal", iso: "SN" },
-            { nombre: "Seychelles", iso: "SC" },
-            { nombre: "Sierra Leona", iso: "SL" },
-            { nombre: "Somalia", iso: "SO" },
-            { nombre: "Sudáfrica", iso: "ZA" },
-            { nombre: "Sudán", iso: "SD" },
-            { nombre: "Sudán del Sur", iso: "SS" },
-            { nombre: "Tanzania", iso: "TZ" },
-            { nombre: "Togo", iso: "TG" },
-            { nombre: "Túnez", iso: "TN" },
-            { nombre: "Uganda", iso: "UG" },
-            { nombre: "Yibuti", iso: "DJ" },
-            { nombre: "Zambia", iso: "ZM" },
-            { nombre: "Zimbabue", iso: "ZW" },
+            { name: "Angola", iso: "AO" },
+            { name: "Argelia", iso: "DZ" },
+            { name: "Benín", iso: "BJ" },
+            { name: "Botsuana", iso: "BW" },
+            { name: "Burkina Faso", iso: "BF" },
+            { name: "Burundi", iso: "BI" },
+            { name: "Cabo Verde", iso: "CV" },
+            { name: "Camerún", iso: "CM" },
+            { name: "Chad", iso: "TD" },
+            { name: "Comoras", iso: "KM" },
+            { name: "Congo", iso: "CG" },
+            { name: "República Democrática del Congo", iso: "CD" },
+            { name: "Costa de Marfil", iso: "CI" },
+            { name: "Egipto", iso: "EG" },
+            { name: "Eritrea", iso: "ER" },
+            { name: "Esuatini", iso: "SZ" },
+            { name: "Etiopía", iso: "ET" },
+            { name: "Gabón", iso: "GA" },
+            { name: "Gambia", iso: "GM" },
+            { name: "Ghana", iso: "GH" },
+            { name: "Guinea", iso: "GN" },
+            { name: "Guinea-Bisáu", iso: "GW" },
+            { name: "Guinea Ecuatorial", iso: "GQ" },
+            { name: "Kenia", iso: "KE" },
+            { name: "Lesoto", iso: "LS" },
+            { name: "Liberia", iso: "LR" },
+            { name: "Libia", iso: "LY" },
+            { name: "Madagascar", iso: "MG" },
+            { name: "Malawi", iso: "MW" },
+            { name: "Malí", iso: "ML" },
+            { name: "Marruecos", iso: "MA" },
+            { name: "Mauricio", iso: "MU" },
+            { name: "Mauritania", iso: "MR" },
+            { name: "Mozambique", iso: "MZ" },
+            { name: "Namibia", iso: "NA" },
+            { name: "Níger", iso: "NE" },
+            { name: "Nigeria", iso: "NG" },
+            { name: "Ruanda", iso: "RW" },
+            { name: "Santo Tomé y Príncipe", iso: "ST" },
+            { name: "Senegal", iso: "SN" },
+            { name: "Seychelles", iso: "SC" },
+            { name: "Sierra Leona", iso: "SL" },
+            { name: "Somalia", iso: "SO" },
+            { name: "Sudáfrica", iso: "ZA" },
+            { name: "Sudán", iso: "SD" },
+            { name: "Sudán del Sur", iso: "SS" },
+            { name: "Tanzania", iso: "TZ" },
+            { name: "Togo", iso: "TG" },
+            { name: "Túnez", iso: "TN" },
+            { name: "Uganda", iso: "UG" },
+            { name: "Yibuti", iso: "DJ" },
+            { name: "Zambia", iso: "ZM" },
+            { name: "Zimbabue", iso: "ZW" },
         ],
         Asia: [
-            { nombre: "Afganistán", iso: "AF" },
-            { nombre: "Arabia Saudita", iso: "SA" },
-            { nombre: "Armenia", iso: "AM" },
-            { nombre: "Azerbaiyán", iso: "AZ" },
-            { nombre: "Bahréin", iso: "BH" },
-            { nombre: "Bangladés", iso: "BD" },
-            { nombre: "Birmania", iso: "MM" },
-            { nombre: "Brunéi", iso: "BN" },
-            { nombre: "Bután", iso: "BT" },
-            { nombre: "Camboya", iso: "KH" },
-            { nombre: "Catar", iso: "QA" },
-            { nombre: "China", iso: "CN" },
-            { nombre: "Chipre", iso: "CY" },
-            { nombre: "Corea del Norte", iso: "KP" },
-            { nombre: "Corea del Sur", iso: "KR" },
-            { nombre: "Emiratos Árabes Unidos", iso: "AE" },
-            { nombre: "Filipinas", iso: "PH" },
-            { nombre: "Georgia", iso: "GE" },
-            { nombre: "India", iso: "IN" },
-            { nombre: "Indonesia", iso: "ID" },
-            { nombre: "Irak", iso: "IQ" },
-            { nombre: "Irán", iso: "IR" },
-            { nombre: "Israel", iso: "IL" },
-            { nombre: "Japón", iso: "JP" },
-            { nombre: "Jordania", iso: "JO" },
-            { nombre: "Kazajistán", iso: "KZ" },
-            { nombre: "Kirguistán", iso: "KG" },
-            { nombre: "Kuwait", iso: "KW" },
-            { nombre: "Laos", iso: "LA" },
-            { nombre: "Líbano", iso: "LB" },
-            { nombre: "Malasia", iso: "MY" },
-            { nombre: "Maldivas", iso: "MV" },
-            { nombre: "Mongolia", iso: "MN" },
-            { nombre: "Nepal", iso: "NP" },
-            { nombre: "Omán", iso: "OM" },
-            { nombre: "Pakistán", iso: "PK" },
-            { nombre: "Palestina", iso: "PS" },
-            { nombre: "Rusia", iso: "RU" },
-            { nombre: "Singapur", iso: "SG" },
-            { nombre: "Siria", iso: "SY" },
-            { nombre: "Sri Lanka", iso: "LK" },
-            { nombre: "Tayikistán", iso: "TJ" },
-            { nombre: "Tailandia", iso: "TH" },
-            { nombre: "Timor Oriental", iso: "TL" },
-            { nombre: "Turquía", iso: "TR" },
-            { nombre: "Turkmenistán", iso: "TM" },
-            { nombre: "Uzbekistán", iso: "UZ" },
-            { nombre: "Vietnam", iso: "VN" },
-            { nombre: "Yemen", iso: "YE" },
+            { name: "Afganistán", iso: "AF" },
+            { name: "Arabia Saudita", iso: "SA" },
+            { name: "Armenia", iso: "AM" },
+            { name: "Azerbaiyán", iso: "AZ" },
+            { name: "Bahréin", iso: "BH" },
+            { name: "Bangladés", iso: "BD" },
+            { name: "Birmania", iso: "MM" },
+            { name: "Brunéi", iso: "BN" },
+            { name: "Bután", iso: "BT" },
+            { name: "Camboya", iso: "KH" },
+            { name: "Catar", iso: "QA" },
+            { name: "China", iso: "CN" },
+            { name: "Chipre", iso: "CY" },
+            { name: "Corea del Norte", iso: "KP" },
+            { name: "Corea del Sur", iso: "KR" },
+            { name: "Emiratos Árabes Unidos", iso: "AE" },
+            { name: "Filipinas", iso: "PH" },
+            { name: "Georgia", iso: "GE" },
+            { name: "India", iso: "IN" },
+            { name: "Indonesia", iso: "ID" },
+            { name: "Irak", iso: "IQ" },
+            { name: "Irán", iso: "IR" },
+            { name: "Israel", iso: "IL" },
+            { name: "Japón", iso: "JP" },
+            { name: "Jordania", iso: "JO" },
+            { name: "Kazajistán", iso: "KZ" },
+            { name: "Kirguistán", iso: "KG" },
+            { name: "Kuwait", iso: "KW" },
+            { name: "Laos", iso: "LA" },
+            { name: "Líbano", iso: "LB" },
+            { name: "Malasia", iso: "MY" },
+            { name: "Maldivas", iso: "MV" },
+            { name: "Mongolia", iso: "MN" },
+            { name: "Nepal", iso: "NP" },
+            { name: "Omán", iso: "OM" },
+            { name: "Pakistán", iso: "PK" },
+            { name: "Palestina", iso: "PS" },
+            { name: "Rusia", iso: "RU" },
+            { name: "Singapur", iso: "SG" },
+            { name: "Siria", iso: "SY" },
+            { name: "Sri Lanka", iso: "LK" },
+            { name: "Tayikistán", iso: "TJ" },
+            { name: "Tailandia", iso: "TH" },
+            { name: "Timor Oriental", iso: "TL" },
+            { name: "Turquía", iso: "TR" },
+            { name: "Turkmenistán", iso: "TM" },
+            { name: "Uzbekistán", iso: "UZ" },
+            { name: "Vietnam", iso: "VN" },
+            { name: "Yemen", iso: "YE" },
         ],
         Europa: [
-            { nombre: "Albania", iso: "AL" },
-            { nombre: "Alemania", iso: "DE" },
-            { nombre: "Andorra", iso: "AD" },
-            { nombre: "Armenia", iso: "AM" },
-            { nombre: "Austria", iso: "AT" },
-            { nombre: "Azerbaiyán", iso: "AZ" },
-            { nombre: "Bélgica", iso: "BE" },
-            { nombre: "Bielorrusia", iso: "BY" },
-            { nombre: "Bosnia y Herzegovina", iso: "BA" },
-            { nombre: "Bulgaria", iso: "BG" },
-            { nombre: "Chipre", iso: "CY" },
-            { nombre: "Croacia", iso: "HR" },
-            { nombre: "Dinamarca", iso: "DK" },
-            { nombre: "Eslovaquia", iso: "SK" },
-            { nombre: "Eslovenia", iso: "SI" },
-            { nombre: "España", iso: "ES" },
-            { nombre: "Estonia", iso: "EE" },
-            { nombre: "Finlandia", iso: "FI" },
-            { nombre: "Francia", iso: "FR" },
-            { nombre: "Georgia", iso: "GE" },
-            { nombre: "Grecia", iso: "GR" },
-            { nombre: "Hungría", iso: "HU" },
-            { nombre: "Irlanda", iso: "IE" },
-            { nombre: "Islandia", iso: "IS" },
-            { nombre: "Italia", iso: "IT" },
-            { nombre: "Kazajistán", iso: "KZ" },
-            { nombre: "Kosovo", iso: "XK" },
-            { nombre: "Letonia", iso: "LV" },
-            { nombre: "Liechtenstein", iso: "LI" },
-            { nombre: "Lituania", iso: "LT" },
-            { nombre: "Luxemburgo", iso: "LU" },
-            { nombre: "Macedonia del Norte", iso: "MK" },
-            { nombre: "Malta", iso: "MT" },
-            { nombre: "Moldavia", iso: "MD" },
-            { nombre: "Mónaco", iso: "MC" },
-            { nombre: "Montenegro", iso: "ME" },
-            { nombre: "Noruega", iso: "NO" },
-            { nombre: "Países Bajos", iso: "NL" },
-            { nombre: "Polonia", iso: "PL" },
-            { nombre: "Portugal", iso: "PT" },
-            { nombre: "Reino Unido", iso: "GB" },
-            { nombre: "República Checa", iso: "CZ" },
-            { nombre: "Rumanía", iso: "RO" },
-            { nombre: "Rusia", iso: "RU" },
-            { nombre: "San Marino", iso: "SM" },
-            { nombre: "Serbia", iso: "RS" },
-            { nombre: "Suecia", iso: "SE" },
-            { nombre: "Suiza", iso: "CH" },
-            { nombre: "Turquía", iso: "TR" },
-            { nombre: "Ucrania", iso: "UA" },
-            { nombre: "Ciudad del Vaticano", iso: "VA" },
+            { name: "Albania", iso: "AL" },
+            { name: "Alemania", iso: "DE" },
+            { name: "Andorra", iso: "AD" },
+            { name: "Armenia", iso: "AM" },
+            { name: "Austria", iso: "AT" },
+            { name: "Azerbaiyán", iso: "AZ" },
+            { name: "Bélgica", iso: "BE" },
+            { name: "Bielorrusia", iso: "BY" },
+            { name: "Bosnia y Herzegovina", iso: "BA" },
+            { name: "Bulgaria", iso: "BG" },
+            { name: "Chipre", iso: "CY" },
+            { name: "Croacia", iso: "HR" },
+            { name: "Dinamarca", iso: "DK" },
+            { name: "Eslovaquia", iso: "SK" },
+            { name: "Eslovenia", iso: "SI" },
+            { name: "España", iso: "ES" },
+            { name: "Estonia", iso: "EE" },
+            { name: "Finlandia", iso: "FI" },
+            { name: "Francia", iso: "FR" },
+            { name: "Georgia", iso: "GE" },
+            { name: "Grecia", iso: "GR" },
+            { name: "Hungría", iso: "HU" },
+            { name: "Irlanda", iso: "IE" },
+            { name: "Islandia", iso: "IS" },
+            { name: "Italia", iso: "IT" },
+            { name: "Kazajistán", iso: "KZ" },
+            { name: "Kosovo", iso: "XK" },
+            { name: "Letonia", iso: "LV" },
+            { name: "Liechtenstein", iso: "LI" },
+            { name: "Lituania", iso: "LT" },
+            { name: "Luxemburgo", iso: "LU" },
+            { name: "Macedonia del Norte", iso: "MK" },
+            { name: "Malta", iso: "MT" },
+            { name: "Moldavia", iso: "MD" },
+            { name: "Mónaco", iso: "MC" },
+            { name: "Montenegro", iso: "ME" },
+            { name: "Noruega", iso: "NO" },
+            { name: "Países Bajos", iso: "NL" },
+            { name: "Polonia", iso: "PL" },
+            { name: "Portugal", iso: "PT" },
+            { name: "Reino Unido", iso: "GB" },
+            { name: "República Checa", iso: "CZ" },
+            { name: "Rumanía", iso: "RO" },
+            { name: "Rusia", iso: "RU" },
+            { name: "San Marino", iso: "SM" },
+            { name: "Serbia", iso: "RS" },
+            { name: "Suecia", iso: "SE" },
+            { name: "Suiza", iso: "CH" },
+            { name: "Turquía", iso: "TR" },
+            { name: "Ucrania", iso: "UA" },
+            { name: "Ciudad del Vaticano", iso: "VA" },
         ],
         América: [
-            { nombre: "Antigua y Barbuda", iso: "AG" },
-            { nombre: "Argentina", iso: "AR" },
-            { nombre: "Bahamas", iso: "BS" },
-            { nombre: "Barbados", iso: "BB" },
-            { nombre: "Belice", iso: "BZ" },
-            { nombre: "Bolivia", iso: "BO" },
-            { nombre: "Brasil", iso: "BR" },
-            { nombre: "Canadá", iso: "CA" },
-            { nombre: "Chile", iso: "CL" },
-            { nombre: "Colombia", iso: "CO" },
-            { nombre: "Costa Rica", iso: "CR" },
-            { nombre: "Cuba", iso: "CU" },
-            { nombre: "Dominica", iso: "DM" },
-            { nombre: "Ecuador", iso: "EC" },
-            { nombre: "El Salvador", iso: "SV" },
-            { nombre: "Estados Unidos", iso: "US" },
-            { nombre: "Granada", iso: "GD" },
-            { nombre: "Guatemala", iso: "GT" },
-            { nombre: "Guyana", iso: "GY" },
-            { nombre: "Haití", iso: "HT" },
-            { nombre: "Honduras", iso: "HN" },
-            { nombre: "Jamaica", iso: "JM" },
-            { nombre: "México", iso: "MX" },
-            { nombre: "Nicaragua", iso: "NI" },
-            { nombre: "Panamá", iso: "PA" },
-            { nombre: "Paraguay", iso: "PY" },
-            { nombre: "Perú", iso: "PE" },
-            { nombre: "República Dominicana", iso: "DO" },
-            { nombre: "San Cristóbal y Nieves", iso: "KN" },
-            { nombre: "Santa Lucía", iso: "LC" },
-            { nombre: "San Vicente y las Granadinas", iso: "VC" },
-            { nombre: "Surinam", iso: "SR" },
-            { nombre: "Trinidad y Tobago", iso: "TT" },
-            { nombre: "Uruguay", iso: "UY" },
-            { nombre: "Venezuela", iso: "VE" },
+            { name: "Antigua y Barbuda", iso: "AG" },
+            { name: "Argentina", iso: "AR" },
+            { name: "Bahamas", iso: "BS" },
+            { name: "Barbados", iso: "BB" },
+            { name: "Belice", iso: "BZ" },
+            { name: "Bolivia", iso: "BO" },
+            { name: "Brasil", iso: "BR" },
+            { name: "Canadá", iso: "CA" },
+            { name: "Chile", iso: "CL" },
+            { name: "Colombia", iso: "CO" },
+            { name: "Costa Rica", iso: "CR" },
+            { name: "Cuba", iso: "CU" },
+            { name: "Dominica", iso: "DM" },
+            { name: "Ecuador", iso: "EC" },
+            { name: "El Salvador", iso: "SV" },
+            { name: "Estados Unidos", iso: "US" },
+            { name: "Granada", iso: "GD" },
+            { name: "Guatemala", iso: "GT" },
+            { name: "Guyana", iso: "GY" },
+            { name: "Haití", iso: "HT" },
+            { name: "Honduras", iso: "HN" },
+            { name: "Jamaica", iso: "JM" },
+            { name: "México", iso: "MX" },
+            { name: "Nicaragua", iso: "NI" },
+            { name: "Panamá", iso: "PA" },
+            { name: "Paraguay", iso: "PY" },
+            { name: "Perú", iso: "PE" },
+            { name: "República Dominicana", iso: "DO" },
+            { name: "San Cristóbal y Nieves", iso: "KN" },
+            { name: "Santa Lucía", iso: "LC" },
+            { name: "San Vicente y las Granadinas", iso: "VC" },
+            { name: "Surinam", iso: "SR" },
+            { name: "Trinidad y Tobago", iso: "TT" },
+            { name: "Uruguay", iso: "UY" },
+            { name: "Venezuela", iso: "VE" },
         ],
         Oceanía: [
-            { nombre: "Australia", iso: "AU" },
-            { nombre: "Fiyi", iso: "FJ" },
-            { nombre: "Islas Marshall", iso: "MH" },
-            { nombre: "Islas Salomón", iso: "SB" },
-            { nombre: "Kiribati", iso: "KI" },
-            { nombre: "Micronesia", iso: "FM" },
-            { nombre: "Nauru", iso: "NR" },
-            { nombre: "Nueva Zelanda", iso: "NZ" },
-            { nombre: "Palaos", iso: "PW" },
-            { nombre: "Papúa Nueva Guinea", iso: "PG" },
-            { nombre: "Samoa", iso: "WS" },
-            { nombre: "Tonga", iso: "TO" },
-            { nombre: "Tuvalu", iso: "TV" },
-            { nombre: "Vanuatu", iso: "VU" },
+            { name: "Australia", iso: "AU" },
+            { name: "Fiyi", iso: "FJ" },
+            { name: "Islas Marshall", iso: "MH" },
+            { name: "Islas Salomón", iso: "SB" },
+            { name: "Kiribati", iso: "KI" },
+            { name: "Micronesia", iso: "FM" },
+            { name: "Nauru", iso: "NR" },
+            { name: "Nueva Zelanda", iso: "NZ" },
+            { name: "Palaos", iso: "PW" },
+            { name: "Papúa Nueva Guinea", iso: "PG" },
+            { name: "Samoa", iso: "WS" },
+            { name: "Tonga", iso: "TO" },
+            { name: "Tuvalu", iso: "TV" },
+            { name: "Vanuatu", iso: "VU" },
         ],
     },
 ];
 
-const obtenerVisitados = () => {
-    return JSON.parse(localStorage.getItem("paisesVisitados")) || [];
+// Clave de localStorage. Se conserva el valor original para no perder
+// los países ya marcados por quienes visitaron la web.
+const STORAGE_KEY = "paisesVisitados";
+
+const getVisited = () => {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
 };
 
-const guardarVisitados = (visitados) => {
-    localStorage.setItem("paisesVisitados", JSON.stringify(visitados));
+const saveVisited = (visited) => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(visited));
 };
 
-paises.forEach((data) => {
-    const contenedorPaises = document.getElementById("contenedor-paises");
-    const inputBuscar = document.getElementById("buscador");
+countries.forEach((data) => {
+    const countriesContainer = document.getElementById("countries-container");
+    const searchInput = document.getElementById("search");
 
-    const mostrarPaisesPorContinente = (data) => {
-        contenedorPaises.replaceChildren();
+    const showCountriesByContinent = (data) => {
+        countriesContainer.replaceChildren();
 
-        const paisesVisitados = [];
+        const visitedCountries = [];
 
-        for (const continente in data) {
-            for (const pais of data[continente]) {
-                if (pais.visitado) {
-                    paisesVisitados.push({ ...pais, continente });
+        for (const continent in data) {
+            for (const country of data[continent]) {
+                if (country.visited) {
+                    visitedCountries.push({ ...country, continent });
                 }
             }
         }
 
-        if (paisesVisitados.length > 0) {
-            const tituloVisitados = document.createElement("h2");
-            tituloVisitados.textContent = "Visitados";
-            contenedorPaises.appendChild(tituloVisitados);
+        if (visitedCountries.length > 0) {
+            const visitedTitle = document.createElement("h2");
+            visitedTitle.textContent = "Visitados";
+            countriesContainer.appendChild(visitedTitle);
 
-            paisesVisitados.forEach((pais) => {
+            visitedCountries.forEach((country) => {
                 const div = document.createElement("div");
                 const p = document.createElement("p");
-                p.textContent = pais.nombre;
+                p.textContent = country.name;
                 div.appendChild(p);
 
-                const icono = document.createElement("i");
-                icono.className = "fa-solid fa-check icono";
-                div.appendChild(icono);
+                const icon = document.createElement("i");
+                icon.className = "fa-solid fa-check icono";
+                div.appendChild(icon);
 
                 const img = document.createElement("img");
-                img.src = `assets/images/${pais.iso.toLowerCase()}.png`;
-                img.alt = `Bandera de ${pais.nombre}`;
-                img.classList.add("bandera-img");
+                img.src = `assets/images/${country.iso.toLowerCase()}.png`;
+                img.alt = `Bandera de ${country.name}`;
+                img.classList.add("flag-img");
                 div.appendChild(img);
 
-                div.classList.add("pais");
-                contenedorPaises.appendChild(div);
+                div.classList.add("country");
+                countriesContainer.appendChild(div);
             });
         }
 
-        for (const continente in data) {
-            let paises = data[continente].filter((p) => !p.origen && !p.visitado);
+        for (const continent in data) {
+            let countries = data[continent].filter((p) => !p.origin && !p.visited);
 
-            if (paises.length === 0) continue;
+            if (countries.length === 0) continue;
 
             const h2 = document.createElement("h2");
-            h2.textContent = continente;
-            contenedorPaises.appendChild(h2);
+            h2.textContent = continent;
+            countriesContainer.appendChild(h2);
 
-            paises.forEach((pais) => {
+            countries.forEach((country) => {
                 const div = document.createElement("div");
                 const p = document.createElement("p");
 
-                p.textContent = pais.nombre;
+                p.textContent = country.name;
                 div.appendChild(p);
 
                 const button = document.createElement("button");
                 button.textContent = "Visitado";
-                button.classList.add("boton");
+                button.classList.add("button");
                 div.appendChild(button);
 
                 const img = document.createElement("img");
-                img.src = `assets/images/${pais.iso.toLowerCase()}.png`;
-                img.alt = `Bandera de ${pais.nombre}`;
-                img.classList.add("bandera-img");
+                img.src = `assets/images/${country.iso.toLowerCase()}.png`;
+                img.alt = `Bandera de ${country.name}`;
+                img.classList.add("flag-img");
                 div.appendChild(img);
 
-                div.classList.add("pais");
-                contenedorPaises.appendChild(div);
+                div.classList.add("country");
+                countriesContainer.appendChild(div);
             });
         }
     };
 
-    const visitadosGuardados = obtenerVisitados();
-    for (const continente in data) {
-        data[continente].forEach((pais) => {
-            if (visitadosGuardados.includes(pais.iso.toLowerCase())) {
-                pais.visitado = true;
+    const savedVisited = getVisited();
+    for (const continent in data) {
+        data[continent].forEach((country) => {
+            if (savedVisited.includes(country.iso.toLowerCase())) {
+                country.visited = true;
             }
         });
     }
 
-    mostrarPaisesPorContinente(data);
+    showCountriesByContinent(data);
 
-    inputBuscar.addEventListener("input", function () {
-        const busqueda = inputBuscar.value.trim().toLowerCase();
+    searchInput.addEventListener("input", function () {
+        const search = searchInput.value.trim().toLowerCase();
 
-        if (busqueda === "") {
-            mostrarPaisesPorContinente(data);
+        if (search === "") {
+            showCountriesByContinent(data);
             return;
         }
 
-        const continenteEncontrado = Object.keys(data).find((continente) =>
-            continente.toLowerCase().startsWith(busqueda)
+        const foundContinent = Object.keys(data).find((continent) =>
+            continent.toLowerCase().startsWith(search)
         );
 
-        if (continenteEncontrado) {
-            const resultado = {};
-            resultado[continenteEncontrado] = data[continenteEncontrado];
-            mostrarPaisesPorContinente(resultado);
+        if (foundContinent) {
+            const result = {};
+            result[foundContinent] = data[foundContinent];
+            showCountriesByContinent(result);
         } else {
-            const paisesFiltrados = Object.values(data)
+            const filteredCountries = Object.values(data)
                 .flat()
-                .filter((pais) => pais.nombre.toLowerCase().startsWith(busqueda));
+                .filter((country) => country.name.toLowerCase().startsWith(search));
 
-            mostrarPaisesPorContinente({ "": paisesFiltrados });
+            showCountriesByContinent({ "": filteredCountries });
         }
     });
 
-    contenedorPaises.addEventListener("click", function (event) {
+    countriesContainer.addEventListener("click", function (event) {
         const target = event.target;
 
-        if (target && target.classList.contains("boton")) {
-            const paisNombre = target.parentElement.querySelector("p").textContent;
-            let isoPais = null;
+        if (target && target.classList.contains("button")) {
+            const countryName = target.parentElement.querySelector("p").textContent;
+            let countryIso = null;
 
-            for (const continente in data) {
-                const pais = data[continente].find((p) => p.nombre === paisNombre);
-                if (pais) {
-                    pais.visitado = true;
-                    isoPais = pais.iso.toLowerCase();
+            for (const continent in data) {
+                const country = data[continent].find((p) => p.name === countryName);
+                if (country) {
+                    country.visited = true;
+                    countryIso = country.iso.toLowerCase();
                     break;
                 }
             }
 
-            if (isoPais) {
-                const visitados = obtenerVisitados();
-                if (!visitados.includes(isoPais)) {
-                    visitados.push(isoPais);
-                    guardarVisitados(visitados);
+            if (countryIso) {
+                const visited = getVisited();
+                if (!visited.includes(countryIso)) {
+                    visited.push(countryIso);
+                    saveVisited(visited);
                 }
             }
 
-            mostrarPaisesPorContinente(data);
+            showCountriesByContinent(data);
         }
     });
 });

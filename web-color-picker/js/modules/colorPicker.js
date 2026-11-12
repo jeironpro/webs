@@ -12,10 +12,10 @@ let saturation = 100;
 let value = 100;
 
 /* Estado del selector de formato */
-const formatos = ["hex", "rgb", "cmyk", "hsv", "hsl"];
-let indiceFormato = 0;
-let formatoActual = formatos[0];
-let editandoFormato = false;
+const formats = ["hex", "rgb", "cmyk", "hsv", "hsl"];
+let formatIndex = 0;
+let currentFormat = formats[0];
+let editingFormat = false;
 
 /* Referencias al DOM */
 let svCanvas;
@@ -48,18 +48,18 @@ let copyButtons;
  * Inicializa el color picker
  */
 export function initColorPicker() {
-    obtenerReferenciasDOM();
-    ajustarCanvases();
-    dibujarCanvasHue();
-    dibujarCanvasSV();
-    actualizarDesdeHSV(hue, saturation, value);
-    asignarEventos();
+    getDomReferences();
+    resizeCanvases();
+    drawHueCanvas();
+    drawSvCanvas();
+    updateFromHsv(hue, saturation, value);
+    assignEvents();
 }
 
 /**
  * Obtiene todas las referencias a elementos del DOM
  */
-function obtenerReferenciasDOM() {
+function getDomReferences() {
     svCanvas = $("#svCanvas");
     hueCanvas = $("#hueCanvas");
     svCtx = svCanvas.getContext("2d");
@@ -85,7 +85,7 @@ function obtenerReferenciasDOM() {
 /**
  * Ajusta las dimensiones de los canvas al tamano de su contenedor
  */
-function ajustarCanvases() {
+function resizeCanvases() {
     const rect = svCanvas.getBoundingClientRect();
     const size = Math.floor(rect.width);
 
@@ -99,7 +99,7 @@ function ajustarCanvases() {
 /**
  * Dibuja la barra de matiz (hue) en el canvas correspondiente
  */
-function dibujarCanvasHue() {
+function drawHueCanvas() {
     const { width, height } = hueCanvas;
     const gradient = hueCtx.createLinearGradient(0, 0, width, 0);
 
@@ -132,7 +132,7 @@ function dibujarCanvasHue() {
 /**
  * Dibuja el canvas de saturacion-valor para el matiz actual
  */
-function dibujarCanvasSV() {
+function drawSvCanvas() {
     const { width, height } = svCanvas;
     const imageData = svCtx.createImageData(width, height);
     const data = imageData.data;
@@ -172,7 +172,7 @@ function dibujarCanvasSV() {
 /**
  * Actualiza toda la interfaz a partir de valores HSV
  */
-function actualizarDesdeHSV(newH, newS, newV) {
+function updateFromHsv(newH, newS, newV) {
     if (isUpdating) return;
     if (!isFinite(newH) || !isFinite(newS) || !isFinite(newV)) return;
 
@@ -183,9 +183,9 @@ function actualizarDesdeHSV(newH, newS, newV) {
     value = newV;
 
     const { r, g, b } = hsvToRgb(hue, saturation, value);
-    dibujarCanvasSV();
-    dibujarCanvasHue();
-    actualizarTodaLaInterfaz(r, g, b);
+    drawSvCanvas();
+    drawHueCanvas();
+    updateWholeInterface(r, g, b);
 
     isUpdating = false;
 }
@@ -193,7 +193,7 @@ function actualizarDesdeHSV(newH, newS, newV) {
 /**
  * Actualiza toda la interfaz a partir de valores RGB
  */
-function actualizarDesdeRGB(r, g, b) {
+function updateFromRgb(r, g, b) {
     if (isUpdating) return;
     if (!isFinite(r) || !isFinite(g) || !isFinite(b)) return;
     isUpdating = true;
@@ -204,10 +204,10 @@ function actualizarDesdeRGB(r, g, b) {
     saturation = newS;
     value = newV;
 
-    dibujarCanvasSV();
-    dibujarCanvasHue();
+    drawSvCanvas();
+    drawHueCanvas();
 
-    actualizarTodaLaInterfaz(r, g, b);
+    updateWholeInterface(r, g, b);
 
     isUpdating = false;
 }
@@ -215,8 +215,8 @@ function actualizarDesdeRGB(r, g, b) {
 /**
  * Obtiene el valor formateado para un espacio de color
  */
-function obtenerValorFormateado(formato, r, g, b) {
-    switch (formato) {
+function getFormattedValue(format, r, g, b) {
+    switch (format) {
         case "hex":
             return rgbToHex(r, g, b);
         case "rgb":
@@ -236,8 +236,8 @@ function obtenerValorFormateado(formato, r, g, b) {
     }
 }
 
-function obtenerPlaceholder(formato) {
-    switch (formato) {
+function getPlaceholder(format) {
+    switch (format) {
         case "hex":
             return "#RRGGBB";
         case "rgb":
@@ -256,7 +256,7 @@ function obtenerPlaceholder(formato) {
 /**
  * Actualiza todos los elementos visuales con los valores RGB actuales
  */
-function actualizarTodaLaInterfaz(r, g, b) {
+function updateWholeInterface(r, g, b) {
     colorDisplay.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
 
     const luminance = getLuminance(r, g, b);
@@ -266,7 +266,7 @@ function actualizarTodaLaInterfaz(r, g, b) {
     const hex = rgbToHex(r, g, b);
     hexDisplay.textContent = hex;
 
-    if (!editandoFormato) formatInput.value = obtenerValorFormateado(formatoActual, r, g, b);
+    if (!editingFormat) formatInput.value = getFormattedValue(currentFormat, r, g, b);
 
     redSlider.value = r;
     greenSlider.value = g;
@@ -367,18 +367,18 @@ function parseHsl(text) {
     };
 }
 
-function parsearFormato(formato, texto) {
-    switch (formato) {
+function parseFormat(format, text) {
+    switch (format) {
         case "hex":
-            return hexToRgb(texto);
+            return hexToRgb(text);
         case "rgb":
-            return parseRgb(texto);
+            return parseRgb(text);
         case "cmyk":
-            return parseCmyk(texto);
+            return parseCmyk(text);
         case "hsv":
-            return parseHsv(texto);
+            return parseHsv(text);
         case "hsl":
-            return parseHsl(texto);
+            return parseHsl(text);
         default:
             return null;
     }
@@ -387,7 +387,7 @@ function parsearFormato(formato, texto) {
 /**
  * Obtiene la posicion del cursor relativa al canvas, escalada correctamente
  */
-function obtenerPosicionCanvas(canvas, clientX, clientY) {
+function getCanvasPosition(canvas, clientX, clientY) {
     const rect = canvas.getBoundingClientRect();
     if (rect.width === 0 || rect.height === 0) return { x: 0, y: 0 };
 
@@ -403,53 +403,53 @@ function obtenerPosicionCanvas(canvas, clientX, clientY) {
 /**
  * Maneja la interaccion en el canvas de saturacion-valor
  */
-function manejarInteraccionSV(event) {
+function handleSvInteraction(event) {
     const clientX = event.clientX || event.touches?.[0]?.clientX;
     const clientY = event.clientY || event.touches?.[0]?.clientY;
 
     if (clientX === undefined) return;
 
-    const { x, y } = obtenerPosicionCanvas(svCanvas, clientX, clientY);
+    const { x, y } = getCanvasPosition(svCanvas, clientX, clientY);
     if (svCanvas.width === 0 || svCanvas.height === 0) return;
 
     const newS = (x / svCanvas.width) * 100;
     const newV = (1 - y / svCanvas.height) * 100;
 
-    actualizarDesdeHSV(hue, newS, newV);
+    updateFromHsv(hue, newS, newV);
 }
 
 /**
  * Maneja la interaccion en el canvas de matiz
  */
-function manejarInteraccionHue(event) {
+function handleHueInteraction(event) {
     const clientX = event.clientX || event.touches?.[0]?.clientX;
     const clientY = event.clientY || event.touches?.[0]?.clientY;
 
     if (clientX === undefined) return;
 
-    const { x } = obtenerPosicionCanvas(hueCanvas, clientX, clientY);
+    const { x } = getCanvasPosition(hueCanvas, clientX, clientY);
     if (hueCanvas.width === 0) return;
 
     const newH = (x / hueCanvas.width) * 360;
 
     if (Math.round(newH) !== Math.round(hue)) {
         hue = newH;
-        dibujarCanvasSV();
-        dibujarCanvasHue();
-        actualizarDesdeHSV(hue, saturation, value);
+        drawSvCanvas();
+        drawHueCanvas();
+        updateFromHsv(hue, saturation, value);
     }
 }
 
 /* Manejadores de eventos de los canvas */
 
 function onSVMouseDown(event) {
-    manejarInteraccionSV(event);
+    handleSvInteraction(event);
     document.addEventListener("mousemove", onSVMouseMove);
     document.addEventListener("mouseup", onSVMouseUp);
 }
 
 function onSVMouseMove(event) {
-    manejarInteraccionSV(event);
+    handleSvInteraction(event);
 }
 
 function onSVMouseUp() {
@@ -459,7 +459,7 @@ function onSVMouseUp() {
 
 function onSVTouchStart(event) {
     event.preventDefault();
-    manejarInteraccionSV(event);
+    handleSvInteraction(event);
     svCanvas.addEventListener("touchmove", onSVTouchMove, { passive: false });
     svCanvas.addEventListener("touchend", onSVTouchUp);
     svCanvas.addEventListener("touchcancel", onSVTouchUp);
@@ -467,7 +467,7 @@ function onSVTouchStart(event) {
 
 function onSVTouchMove(event) {
     event.preventDefault();
-    manejarInteraccionSV(event);
+    handleSvInteraction(event);
 }
 
 function onSVTouchUp() {
@@ -477,13 +477,13 @@ function onSVTouchUp() {
 }
 
 function onHueMouseDown(event) {
-    manejarInteraccionHue(event);
+    handleHueInteraction(event);
     document.addEventListener("mousemove", onHueMouseMove);
     document.addEventListener("mouseup", onHueMouseUp);
 }
 
 function onHueMouseMove(event) {
-    manejarInteraccionHue(event);
+    handleHueInteraction(event);
 }
 
 function onHueMouseUp() {
@@ -493,7 +493,7 @@ function onHueMouseUp() {
 
 function onHueTouchStart(event) {
     event.preventDefault();
-    manejarInteraccionHue(event);
+    handleHueInteraction(event);
     hueCanvas.addEventListener("touchmove", onHueTouchMove, { passive: false });
     hueCanvas.addEventListener("touchend", onHueTouchUp);
     hueCanvas.addEventListener("touchcancel", onHueTouchUp);
@@ -501,7 +501,7 @@ function onHueTouchStart(event) {
 
 function onHueTouchMove(event) {
     event.preventDefault();
-    manejarInteraccionHue(event);
+    handleHueInteraction(event);
 }
 
 function onHueTouchUp() {
@@ -518,47 +518,47 @@ function onSliderChange() {
     const g = parseInt(greenSlider.value, 10);
     const b = parseInt(blueSlider.value, 10);
 
-    actualizarDesdeRGB(r, g, b);
+    updateFromRgb(r, g, b);
 }
 
 /**
  * Cicla al siguiente formato de color
  */
-function ciclarFormato() {
-    indiceFormato = (indiceFormato + 1) % formatos.length;
-    formatoActual = formatos[indiceFormato];
-    formatLabel.textContent = formatoActual.toUpperCase();
+function cycleFormat() {
+    formatIndex = (formatIndex + 1) % formats.length;
+    currentFormat = formats[formatIndex];
+    formatLabel.textContent = currentFormat.toUpperCase();
 
     const { r, g, b } = hsvToRgb(hue, saturation, value);
-    formatInput.value = obtenerValorFormateado(formatoActual, r, g, b);
-    formatInput.placeholder = obtenerPlaceholder(formatoActual);
+    formatInput.value = getFormattedValue(currentFormat, r, g, b);
+    formatInput.placeholder = getPlaceholder(currentFormat);
 }
 
 /**
  * Procesa la edicion del input de formato unificado
  */
 function onFormatInput() {
-    editandoFormato = false;
-    const texto = formatInput.value.trim();
-    if (!texto) return;
+    editingFormat = false;
+    const text = formatInput.value.trim();
+    if (!text) return;
 
-    const rgb = parsearFormato(formatoActual, texto);
+    const rgb = parseFormat(currentFormat, text);
 
     if (rgb) {
-        actualizarDesdeRGB(rgb.r, rgb.g, rgb.b);
+        updateFromRgb(rgb.r, rgb.g, rgb.b);
     } else {
         const r = parseInt(redSlider.value, 10);
         const g = parseInt(greenSlider.value, 10);
         const b = parseInt(blueSlider.value, 10);
-        formatInput.value = obtenerValorFormateado(formatoActual, r, g, b);
+        formatInput.value = getFormattedValue(currentFormat, r, g, b);
     }
 }
 
 /**
  * Muestra un tooltip temporal con un mensaje
  */
-function mostrarTooltip(mensaje) {
-    tooltip.textContent = mensaje;
+function showTooltip(message) {
+    tooltip.textContent = message;
     tooltip.classList.add("tooltip--visible");
 
     setTimeout(() => {
@@ -570,63 +570,63 @@ function mostrarTooltip(mensaje) {
  * Respaldo del portapapeles para navegadores sin permisos: selecciona el texto
  * en un textarea oculto y lanza el copiado clásico.
  */
-function copiarConTextarea(texto) {
+function copyWithTextarea(text) {
     const textarea = document.createElement("textarea");
-    textarea.value = texto;
+    textarea.value = text;
     textarea.style.position = "fixed";
     textarea.style.opacity = "0";
     document.body.appendChild(textarea);
     textarea.select();
 
-    let copiado = false;
+    let copied = false;
     try {
-        copiado = document.execCommand("copy");
+        copied = document.execCommand("copy");
     } catch (error) {
         console.error("El portapapeles clásico tampoco está disponible", error);
     }
 
     document.body.removeChild(textarea);
-    return copiado;
+    return copied;
 }
 
 /**
  * Copia un texto al portapapeles, con respaldo clásico si la API falla.
  */
-async function copiarTexto(texto) {
+async function copyText(text) {
     try {
-        await navigator.clipboard.writeText(texto);
+        await navigator.clipboard.writeText(text);
         return true;
     } catch (error) {
         console.error("No se pudo copiar con la API del portapapeles", error);
-        return copiarConTextarea(texto);
+        return copyWithTextarea(text);
     }
 }
 
 /**
  * Copia el valor de un espacio de color de la barra flotante al portapapeles
  */
-async function copiarValor(type) {
+async function copyValue(type) {
     const el = document.getElementById(type + "Values");
-    const texto = el.textContent;
+    const text = el.textContent;
 
-    await copiarTexto(texto);
-    mostrarTooltip("Copiado: " + texto);
+    await copyText(text);
+    showTooltip("Copiado: " + text);
 }
 
 /**
  * Copia el valor hexadecimal al portapapeles
  */
-async function copiarHexAlPortapapeles() {
+async function copyHexToClipboard() {
     const hex = hexDisplay.textContent;
 
-    await copiarTexto(hex);
-    mostrarTooltip("Copiado: " + hex);
+    await copyText(hex);
+    showTooltip("Copiado: " + hex);
 }
 
 /**
  * Asigna todos los eventos a los elementos del DOM
  */
-function asignarEventos() {
+function assignEvents() {
     /* Eventos del canvas SV */
     svCanvas.addEventListener("mousedown", onSVMouseDown);
     svCanvas.addEventListener("touchstart", onSVTouchStart, { passive: false });
@@ -643,18 +643,18 @@ function asignarEventos() {
     /* Click en el label de formato para ciclar */
     formatLabel.addEventListener("pointerdown", (e) => {
         e.preventDefault();
-        ciclarFormato();
+        cycleFormat();
     });
     formatLabel.addEventListener("keydown", (e) => {
         if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
-            ciclarFormato();
+            cycleFormat();
         }
     });
 
     /* Eventos del input de formato unificado */
     formatInput.addEventListener("focus", () => {
-        editandoFormato = true;
+        editingFormat = true;
     });
     formatInput.addEventListener("blur", onFormatInput);
     formatInput.addEventListener("keydown", (e) => {
@@ -662,22 +662,22 @@ function asignarEventos() {
     });
 
     /* Click en el panel izquierdo para copiar HEX */
-    colorDisplay.addEventListener("click", copiarHexAlPortapapeles);
+    colorDisplay.addEventListener("click", copyHexToClipboard);
 
     /* Click en los botones de copia de la barra flotante */
     copyButtons.forEach((btn) => {
-        btn.addEventListener("click", () => copiarValor(btn.dataset.type));
+        btn.addEventListener("click", () => copyValue(btn.dataset.type));
     });
 
     /* Reajuste de canvas al redimensionar la ventana o cambiar orientacion */
-    function redimensionarCanvas() {
-        ajustarCanvases();
-        dibujarCanvasHue();
-        dibujarCanvasSV();
+    function resizeCanvas() {
+        resizeCanvases();
+        drawHueCanvas();
+        drawSvCanvas();
     }
 
-    window.addEventListener("resize", redimensionarCanvas);
+    window.addEventListener("resize", resizeCanvas);
     window.addEventListener("orientationchange", () => {
-        setTimeout(redimensionarCanvas, 200);
+        setTimeout(resizeCanvas, 200);
     });
 }

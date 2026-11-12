@@ -1,312 +1,312 @@
 const $ = (id) => document.getElementById(id);
 
 const CIRCUNFERENCIA = 2 * Math.PI * 120;
-const MINUTOS_FOCO = 25;
-const MINUTOS_DESCANSO = 5;
+const FOCUS_MINUTES = 25;
+const BREAK_MINUTES = 5;
 
-const elementos = {
-    estrellas: $("estrellas"),
-    infoAbrir: $("info-abrir"),
+const elements = {
+    estrellas: $("stars"),
+    infoOpen: $("info-open"),
     info: $("info"),
-    infoCerrar: $("info-cerrar"),
-    selectorModo: $("selector-modo"),
-    modoFocus: $("modo-focus"),
-    modoBreak: $("modo-break"),
-    selectorDuracion: $("selector-duracion"),
-    minutos: $("minutos"),
-    menosMinutos: $("menos-minutos"),
-    masMinutos: $("mas-minutos"),
+    infoClose: $("info-close"),
+    modeSelector: $("mode-selector"),
+    focusModeButton: $("focus-mode"),
+    breakModeButton: $("break-mode"),
+    durationSelector: $("duration-selector"),
+    minutes: $("minutes"),
+    minusMinutes: $("minus-minutes"),
+    plusMinutes: $("plus-minutes"),
     presets: $("presets"),
-    botonesPreset: [...document.querySelectorAll(".preset")],
-    progreso: $("progreso"),
-    tiempo: $("tiempo"),
-    tiempoLabel: $("tiempo-label"),
-    titulo: $("titulo"),
-    tituloActivo: $("titulo-activo"),
-    tituloTexto: $("titulo-texto"),
-    tituloEdicion: $("titulo-edicion"),
-    editarTitulo: $("editar-titulo"),
-    principal: $("principal"),
-    iconoPlay: $("icono-play"),
-    iconoPause: $("icono-pause"),
-    reiniciar: $("reiniciar"),
-    contador: $("contador"),
-    puntosContador: [...document.querySelectorAll(".contador-punto")],
-    contadorCompleto: $("contador-completo"),
-    dialogo: $("dialogo"),
-    dialogoIcono: $("dialogo-icono"),
-    dialogoTitulo: $("dialogo-titulo"),
-    dialogoTexto: $("dialogo-texto"),
-    dialogoPrincipal: $("dialogo-principal"),
-    dialogoSecundario: $("dialogo-secundario"),
+    presetButtons: [...document.querySelectorAll(".preset")],
+    progress: $("progress"),
+    tiempo: $("time"),
+    timeLabel: $("time-label"),
+    title: $("title"),
+    titleActive: $("title-active"),
+    titleText: $("title-text"),
+    titleEdit: $("title-edit"),
+    editTitle: $("edit-title"),
+    primaryButton: $("primary"),
+    playIcon: $("play-icon"),
+    pauseIcon: $("pause-icon"),
+    reiniciar: $("restart"),
+    counter: $("counter"),
+    counterDots: [...document.querySelectorAll(".counter-dot")],
+    counterComplete: $("counter-complete"),
+    dialog: $("dialog"),
+    dialogIcon: $("dialog-icon"),
+    dialogTitle: $("dialog-title"),
+    dialogText: $("dialog-text"),
+    dialogPrimary: $("dialog-primary"),
+    dialogSecondary: $("dialog-secondary"),
 };
 
-const estado = {
-    modo: "focus",
-    minutosFoco: MINUTOS_FOCO,
-    minutosDescanso: MINUTOS_DESCANSO,
+const state = {
+    mode: "focus",
+    focusMinutes: FOCUS_MINUTES,
+    breakMinutes: BREAK_MINUTES,
     pomodoros: 0,
-    titulo: "",
-    haEmpezado: false,
-    dialogo: false,
-    editando: false,
-    restante: MINUTOS_FOCO * 60,
-    duracion: MINUTOS_FOCO * 60,
-    corriendo: false,
-    pausado: false,
-    terminado: false,
-    intervalo: null,
+    title: "",
+    hasStarted: false,
+    dialog: false,
+    editing: false,
+    remaining: FOCUS_MINUTES * 60,
+    duration: FOCUS_MINUTES * 60,
+    running: false,
+    paused: false,
+    finished: false,
+    interval: null,
 };
 
 let audioContext = null;
 
 function acento() {
-    return estado.modo === "focus" ? "#00d4ff" : "#f59e0b";
+    return state.mode === "focus" ? "#00d4ff" : "#f59e0b";
 }
 
-function minutosActuales() {
-    return estado.modo === "focus" ? estado.minutosFoco : estado.minutosDescanso;
+function currentMinutes() {
+    return state.mode === "focus" ? state.focusMinutes : state.breakMinutes;
 }
 
-function formatear(segundos) {
-    const minutos = Math.floor(segundos / 60);
-    const resto = segundos % 60;
-    return `${String(minutos).padStart(2, "0")}:${String(resto).padStart(2, "0")}`;
+function format(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const resto = seconds % 60;
+    return `${String(minutes).padStart(2, "0")}:${String(resto).padStart(2, "0")}`;
 }
 
-function mostrar(elemento, visible) {
-    elemento.classList.toggle("hidden", !visible);
+function show(element, visible) {
+    element.classList.toggle("hidden", !visible);
 }
 
 function pararIntervalo() {
-    if (estado.intervalo !== null) {
-        window.clearInterval(estado.intervalo);
-        estado.intervalo = null;
+    if (state.interval !== null) {
+        window.clearInterval(state.interval);
+        state.interval = null;
     }
 }
 
-function iniciarIntervalo() {
+function startInterval() {
     pararIntervalo();
-    estado.intervalo = window.setInterval(tick, 1000);
+    state.interval = window.setInterval(tick, 1000);
 }
 
 function tick() {
-    if (estado.restante <= 1) {
-        estado.restante = 0;
-        estado.corriendo = false;
-        estado.pausado = false;
-        estado.terminado = true;
+    if (state.remaining <= 1) {
+        state.remaining = 0;
+        state.running = false;
+        state.paused = false;
+        state.finished = true;
         pararIntervalo();
         finalizar();
         return;
     }
-    estado.restante -= 1;
-    pintarTemporizador();
+    state.remaining -= 1;
+    renderTimer();
 }
 
 function finalizar() {
     reanudarAudio();
-    reproducirFin();
-    if (estado.modo === "focus") {
-        estado.pomodoros = Math.min(estado.pomodoros + 1, 4);
+    playEndSound();
+    if (state.mode === "focus") {
+        state.pomodoros = Math.min(state.pomodoros + 1, 4);
     }
-    estado.titulo = "";
-    estado.dialogo = true;
-    estado.editando = false;
-    pintar();
-    elementos.dialogoPrincipal.focus({ preventScroll: true });
+    state.title = "";
+    state.dialog = true;
+    state.editing = false;
+    render();
+    elements.dialogPrimary.focus({ preventScroll: true });
 }
 
 function iniciar() {
-    if (estado.corriendo) return;
-    if (estado.terminado) {
-        estado.restante = estado.duracion;
-        estado.terminado = false;
+    if (state.running) return;
+    if (state.finished) {
+        state.remaining = state.duration;
+        state.finished = false;
     }
     reanudarAudio();
-    estado.haEmpezado = true;
-    estado.corriendo = true;
-    estado.pausado = false;
-    iniciarIntervalo();
-    pintar();
+    state.hasStarted = true;
+    state.running = true;
+    state.paused = false;
+    startInterval();
+    render();
 }
 
 function pausar() {
     pararIntervalo();
-    estado.corriendo = false;
-    estado.pausado = true;
-    pintar();
+    state.running = false;
+    state.paused = true;
+    render();
 }
 
 function detener() {
     pararIntervalo();
-    estado.corriendo = false;
-    estado.pausado = false;
-    estado.terminado = false;
-    estado.restante = estado.duracion;
-    estado.haEmpezado = false;
-    estado.dialogo = false;
-    estado.editando = false;
-    estado.titulo = "";
-    pintar();
+    state.running = false;
+    state.paused = false;
+    state.finished = false;
+    state.remaining = state.duration;
+    state.hasStarted = false;
+    state.dialog = false;
+    state.editing = false;
+    state.title = "";
+    render();
 }
 
-function cambiarModo(modo) {
-    if (estado.corriendo || estado.pausado) return;
+function switchMode(mode) {
+    if (state.running || state.paused) return;
     pararIntervalo();
-    estado.modo = modo;
-    estado.haEmpezado = false;
-    estado.dialogo = false;
-    estado.editando = false;
-    estado.titulo = "";
-    estado.duracion = (modo === "focus" ? MINUTOS_FOCO : MINUTOS_DESCANSO) * 60;
-    estado.restante = estado.duracion;
-    estado.corriendo = false;
-    estado.pausado = false;
-    estado.terminado = false;
-    pintar();
+    state.mode = mode;
+    state.hasStarted = false;
+    state.dialog = false;
+    state.editing = false;
+    state.title = "";
+    state.duration = (mode === "focus" ? FOCUS_MINUTES : BREAK_MINUTES) * 60;
+    state.remaining = state.duration;
+    state.running = false;
+    state.paused = false;
+    state.finished = false;
+    render();
 }
 
-function fijarMinutos(valor) {
-    if (estado.corriendo || estado.pausado) return;
-    const minutos = Math.max(1, Math.min(99, Number(valor) || 1));
-    if (estado.modo === "focus") estado.minutosFoco = minutos;
-    else estado.minutosDescanso = minutos;
+function setMinutes(value) {
+    if (state.running || state.paused) return;
+    const minutes = Math.max(1, Math.min(99, Number(value) || 1));
+    if (state.mode === "focus") state.focusMinutes = minutes;
+    else state.breakMinutes = minutes;
     pararIntervalo();
-    estado.haEmpezado = false;
-    estado.dialogo = false;
-    estado.editando = false;
-    estado.duracion = minutos * 60;
-    estado.restante = estado.duracion;
-    estado.corriendo = false;
-    estado.pausado = false;
-    estado.terminado = false;
-    pintar();
+    state.hasStarted = false;
+    state.dialog = false;
+    state.editing = false;
+    state.duration = minutes * 60;
+    state.remaining = state.duration;
+    state.running = false;
+    state.paused = false;
+    state.finished = false;
+    render();
 }
 
-function ajustarMinutos(delta) {
-    fijarMinutos(minutosActuales() + delta);
+function adjustMinutes(delta) {
+    setMinutes(currentMinutes() + delta);
 }
 
-function pintarModo() {
-    const focus = estado.modo === "focus";
-    const activo = focus ? elementos.modoFocus : elementos.modoBreak;
-    const inactivo = focus ? elementos.modoBreak : elementos.modoFocus;
+function renderMode() {
+    const focus = state.mode === "focus";
+    const active = focus ? elements.focusModeButton : elements.breakModeButton;
+    const inactivo = focus ? elements.breakModeButton : elements.focusModeButton;
 
-    elementos.modoFocus.style.backgroundColor = focus ? "#00d4ff" : "transparent";
-    elementos.modoFocus.style.color = focus ? "#0c1222" : "#64748b";
-    elementos.modoFocus.style.boxShadow = focus ? "0 0 12px rgba(0,212,255,0.3)" : "none";
-    elementos.modoBreak.style.backgroundColor = focus ? "transparent" : "#f59e0b";
-    elementos.modoBreak.style.color = focus ? "#64748b" : "#0c1222";
-    elementos.modoBreak.style.boxShadow = focus ? "none" : "0 0 12px rgba(245,158,11,0.3)";
-    elementos.modoFocus.setAttribute("aria-pressed", String(focus));
-    elementos.modoBreak.setAttribute("aria-pressed", String(!focus));
-    elementos.modoFocus.disabled = estado.corriendo || estado.pausado;
-    elementos.modoBreak.disabled = estado.corriendo || estado.pausado;
-    activo.setAttribute("aria-pressed", "true");
+    elements.focusModeButton.style.backgroundColor = focus ? "#00d4ff" : "transparent";
+    elements.focusModeButton.style.color = focus ? "#0c1222" : "#64748b";
+    elements.focusModeButton.style.boxShadow = focus ? "0 0 12px rgba(0,212,255,0.3)" : "none";
+    elements.breakModeButton.style.backgroundColor = focus ? "transparent" : "#f59e0b";
+    elements.breakModeButton.style.color = focus ? "#64748b" : "#0c1222";
+    elements.breakModeButton.style.boxShadow = focus ? "none" : "0 0 12px rgba(245,158,11,0.3)";
+    elements.focusModeButton.setAttribute("aria-pressed", String(focus));
+    elements.breakModeButton.setAttribute("aria-pressed", String(!focus));
+    elements.focusModeButton.disabled = state.running || state.paused;
+    elements.breakModeButton.disabled = state.running || state.paused;
+    active.setAttribute("aria-pressed", "true");
     inactivo.setAttribute("aria-pressed", "false");
 }
 
-function pintarDuracion() {
-    const minutos = minutosActuales();
-    elementos.minutos.value = String(minutos);
-    elementos.minutos.style.textShadow = `0 0 20px ${acento()}33`;
-    elementos.selectorDuracion.classList.toggle("hidden", estado.haEmpezado);
-    elementos.botonesPreset.forEach((boton) => {
-        const activo = Number(boton.dataset.minutos) === minutos;
-        boton.style.backgroundColor = activo ? acento() : "transparent";
-        boton.style.color = activo ? "#0c1222" : "#94a3b8";
-        boton.setAttribute("aria-pressed", String(activo));
+function renderDuration() {
+    const minutes = currentMinutes();
+    elements.minutes.value = String(minutes);
+    elements.minutes.style.textShadow = `0 0 20px ${acento()}33`;
+    elements.durationSelector.classList.toggle("hidden", state.hasStarted);
+    elements.presetButtons.forEach((button) => {
+        const active = Number(button.dataset.minutes) === minutes;
+        button.style.backgroundColor = active ? acento() : "transparent";
+        button.style.color = active ? "#0c1222" : "#94a3b8";
+        button.setAttribute("aria-pressed", String(active));
     });
 }
 
-function pintarTemporizador() {
-    const progreso = estado.duracion > 0 ? estado.restante / estado.duracion : 0;
+function renderTimer() {
+    const progress = state.duration > 0 ? state.remaining / state.duration : 0;
     const color = acento();
-    elementos.progreso.setAttribute(
+    elements.progress.setAttribute(
         "stroke-dasharray",
-        `${CIRCUNFERENCIA * progreso} ${CIRCUNFERENCIA}`
+        `${CIRCUNFERENCIA * progress} ${CIRCUNFERENCIA}`
     );
-    elementos.progreso.setAttribute("stroke", color);
-    elementos.progreso.setAttribute("filter", estado.terminado ? "none" : "url(#ringGlow)");
-    elementos.tiempo.textContent = formatear(estado.restante);
-    elementos.tiempo.style.textShadow = `0 0 30px ${color}33, 0 0 60px ${color}11`;
-    elementos.tiempoLabel.style.color = color;
-    mostrar(elementos.tiempoLabel, estado.terminado);
+    elements.progress.setAttribute("stroke", color);
+    elements.progress.setAttribute("filter", state.finished ? "none" : "url(#ringGlow)");
+    elements.tiempo.textContent = format(state.remaining);
+    elements.tiempo.style.textShadow = `0 0 30px ${color}33, 0 0 60px ${color}11`;
+    elements.timeLabel.style.color = color;
+    show(elements.timeLabel, state.finished);
 }
 
-function pintarTitulo() {
-    const activo = estado.haEmpezado && !estado.terminado && !estado.editando;
-    const editando = estado.haEmpezado && !estado.terminado && estado.editando;
-    mostrar(elementos.titulo, !activo && !editando);
-    mostrar(elementos.tituloActivo, activo);
-    mostrar(elementos.tituloEdicion, editando);
-    elementos.tituloTexto.textContent = estado.titulo || "Sin título";
+function renderTitle() {
+    const active = state.hasStarted && !state.finished && !state.editing;
+    const editing = state.hasStarted && !state.finished && state.editing;
+    show(elements.title, !active && !editing);
+    show(elements.titleActive, active);
+    show(elements.titleEdit, editing);
+    elements.titleText.textContent = state.title || "Sin título";
 
-    if (!activo && !editando) {
-        elementos.titulo.value = estado.titulo;
+    if (!active && !editing) {
+        elements.title.value = state.title;
     }
 }
 
-function pintarControles() {
-    mostrar(elementos.reiniciar, estado.haEmpezado);
-    mostrar(elementos.iconoPlay, !estado.corriendo);
-    mostrar(elementos.iconoPause, estado.corriendo);
-    elementos.principal.style.backgroundColor = estado.corriendo ? "#1e293b" : "#00d4ff";
-    elementos.principal.style.boxShadow = estado.corriendo
+function renderControls() {
+    show(elements.reiniciar, state.hasStarted);
+    show(elements.playIcon, !state.running);
+    show(elements.pauseIcon, state.running);
+    elements.primaryButton.style.backgroundColor = state.running ? "#1e293b" : "#00d4ff";
+    elements.primaryButton.style.boxShadow = state.running
         ? "0 0 0 2px rgba(148,163,184,0.2)"
         : "0 0 20px rgba(0,212,255,0.3)";
-    elementos.principal.setAttribute(
+    elements.primaryButton.setAttribute(
         "aria-label",
-        estado.corriendo ? "Pausar" : estado.pausado ? "Reanudar" : "Iniciar"
+        state.running ? "Pausar" : state.paused ? "Reanudar" : "Iniciar"
     );
 }
 
-function pintarContador() {
-    const visible = estado.haEmpezado && !estado.terminado;
-    mostrar(elementos.contador, visible);
-    elementos.puntosContador.forEach((punto, indice) => {
-        const activo = indice < estado.pomodoros;
-        punto.style.backgroundColor = activo ? "#00d4ff" : "rgba(148,163,184,0.12)";
-        punto.style.boxShadow = activo ? "0 0 8px rgba(0,212,255,0.4)" : "none";
+function renderCounter() {
+    const visible = state.hasStarted && !state.finished;
+    show(elements.counter, visible);
+    elements.counterDots.forEach((dot, index) => {
+        const active = index < state.pomodoros;
+        dot.style.backgroundColor = active ? "#00d4ff" : "rgba(148,163,184,0.12)";
+        dot.style.boxShadow = active ? "0 0 8px rgba(0,212,255,0.4)" : "none";
     });
-    mostrar(elementos.contadorCompleto, estado.pomodoros >= 4);
+    show(elements.counterComplete, state.pomodoros >= 4);
 }
 
-function pintarDialogo() {
-    mostrar(elementos.dialogo, estado.dialogo);
-    const focus = estado.modo === "focus";
+function renderDialog() {
+    show(elements.dialog, state.dialog);
+    const focus = state.mode === "focus";
     const color = focus ? "#f59e0b" : "#00d4ff";
-    elementos.dialogoIcono.style.backgroundColor = focus ? "#00d4ff" : "#f59e0b";
-    elementos.dialogoIcono.style.boxShadow = focus
+    elements.dialogIcon.style.backgroundColor = focus ? "#00d4ff" : "#f59e0b";
+    elements.dialogIcon.style.boxShadow = focus
         ? "0 0 20px rgba(0,212,255,0.3)"
         : "0 0 20px rgba(245,158,11,0.3)";
-    elementos.dialogoTitulo.textContent = focus ? "¡Pomodoro completado!" : "Descanso terminado";
-    elementos.dialogoTexto.textContent = focus
+    elements.dialogTitle.textContent = focus ? "¡Pomodoro completado!" : "Descanso terminado";
+    elements.dialogText.textContent = focus
         ? "¿Quieres tomar un descanso de 5 minutos?"
         : "¿Listo para volver al trabajo?";
-    elementos.dialogoPrincipal.textContent = focus ? "Sí, descansar" : "Sí, trabajar";
-    elementos.dialogoPrincipal.style.backgroundColor = color;
-    elementos.dialogoPrincipal.style.boxShadow = focus
+    elements.dialogPrimary.textContent = focus ? "Sí, descansar" : "Sí, trabajar";
+    elements.dialogPrimary.style.backgroundColor = color;
+    elements.dialogPrimary.style.boxShadow = focus
         ? "0 0 16px rgba(245,158,11,0.3)"
         : "0 0 16px rgba(0,212,255,0.3)";
-    elementos.dialogoSecundario.textContent = focus ? "No, seguir" : "No, descansar más";
+    elements.dialogSecondary.textContent = focus ? "No, seguir" : "No, descansar más";
 }
 
-function pintar() {
-    pintarModo();
-    pintarDuracion();
-    pintarTemporizador();
-    pintarTitulo();
-    pintarControles();
-    pintarContador();
-    pintarDialogo();
+function render() {
+    renderMode();
+    renderDuration();
+    renderTimer();
+    renderTitle();
+    renderControls();
+    renderCounter();
+    renderDialog();
 }
 
-function guardarTitulo() {
-    estado.titulo = elementos.tituloEdicion.value.trim();
-    estado.editando = false;
-    pintarTitulo();
+function saveTitle() {
+    state.title = elements.titleEdit.value.trim();
+    state.editing = false;
+    renderTitle();
 }
 
 function getAudioContext() {
@@ -317,135 +317,134 @@ function getAudioContext() {
 }
 
 function reanudarAudio() {
-    const contexto = getAudioContext();
-    if (contexto.state === "suspended") contexto.resume();
+    const context = getAudioContext();
+    if (context.state === "suspended") context.resume();
 }
 
-function reproducirFin() {
-    const contexto = getAudioContext();
-    const ahora = contexto.currentTime;
-    [523.25, 659.25, 783.99].forEach((frecuencia, indice) => {
-        const oscilador = contexto.createOscillator();
-        const ganancia = contexto.createGain();
+function playEndSound() {
+    const context = getAudioContext();
+    const ahora = context.currentTime;
+    [523.25, 659.25, 783.99].forEach((frecuencia, index) => {
+        const oscilador = context.createOscillator();
+        const ganancia = context.createGain();
         oscilador.type = "sine";
         oscilador.frequency.value = frecuencia;
-        ganancia.gain.setValueAtTime(0.3, ahora + indice * 0.15);
-        ganancia.gain.exponentialRampToValueAtTime(0.001, ahora + indice * 0.15 + 0.4);
+        ganancia.gain.setValueAtTime(0.3, ahora + index * 0.15);
+        ganancia.gain.exponentialRampToValueAtTime(0.001, ahora + index * 0.15 + 0.4);
         oscilador.connect(ganancia);
-        ganancia.connect(contexto.destination);
-        oscilador.start(ahora + indice * 0.15);
-        oscilador.stop(ahora + indice * 0.15 + 0.4);
+        ganancia.connect(context.destination);
+        oscilador.start(ahora + index * 0.15);
+        oscilador.stop(ahora + index * 0.15 + 0.4);
     });
 }
 
-function crearEstrellas() {
-    const contenedor = elementos.estrellas;
-    const estrella =
-        "polygon(50% 0%, 40% 40%, 0% 50%, 40% 60%, 50% 100%, 60% 60%, 100% 50%, 60% 40%)";
-    const aleatorio = (min, max) => Math.random() * (max - min) + min;
+function createStars() {
+    const container = elements.estrellas;
+    const star = "polygon(50% 0%, 40% 40%, 0% 50%, 40% 60%, 50% 100%, 60% 60%, 100% 50%, 60% 40%)";
+    const random = (min, max) => Math.random() * (max - min) + min;
 
     for (let i = 0; i < 80; i += 1) {
-        const tamano = aleatorio(1.5, 3.5);
-        const tamanoSvg = tamano * 4;
+        const size = random(1.5, 3.5);
+        const svgSize = size * 4;
         const color = i % 7 === 0 ? "#f59e0b" : "#ffffff";
-        const opacidad = aleatorio(0.2, 0.9);
-        const brillo = document.createElement("div");
-        brillo.style.cssText = `
-            position:absolute;left:${aleatorio(0, 100)}%;top:${aleatorio(0, 100)}%;
-            width:${tamanoSvg}px;height:${tamanoSvg}px;margin-left:-${tamanoSvg / 2}px;margin-top:-${tamanoSvg / 2}px;
-            border-radius:50%;background:radial-gradient(circle,${color} ${tamano * 0.8}px,transparent ${tamano * 2.5}px);
-            opacity:${opacidad * 0.4};animation:twinkle ${aleatorio(3, 7)}s ease-in-out infinite;
-            animation-delay:${aleatorio(0, 8)}s;`;
-        contenedor.appendChild(brillo);
+        const opacidad = random(0.2, 0.9);
+        const glow = document.createElement("div");
+        glow.style.cssText = `
+            position:absolute;left:${random(0, 100)}%;top:${random(0, 100)}%;
+            width:${svgSize}px;height:${svgSize}px;margin-left:-${svgSize / 2}px;margin-top:-${svgSize / 2}px;
+            border-radius:50%;background:radial-gradient(circle,${color} ${size * 0.8}px,transparent ${size * 2.5}px);
+            opacity:${opacidad * 0.4};animation:twinkle ${random(3, 7)}s ease-in-out infinite;
+            animation-delay:${random(0, 8)}s;`;
+        container.appendChild(glow);
 
-        const punto = document.createElement("div");
-        punto.style.cssText = `
-            position:absolute;left:${aleatorio(0, 100)}%;top:${aleatorio(0, 100)}%;
-            width:${tamanoSvg}px;height:${tamanoSvg}px;margin-left:-${tamanoSvg / 2}px;margin-top:-${tamanoSvg / 2}px;
-            background:${color};clip-path:${estrella};opacity:${opacidad};
-            animation:twinkle ${aleatorio(3, 7)}s ease-in-out infinite;animation-delay:${aleatorio(0, 8)}s;`;
-        contenedor.appendChild(punto);
+        const dot = document.createElement("div");
+        dot.style.cssText = `
+            position:absolute;left:${random(0, 100)}%;top:${random(0, 100)}%;
+            width:${svgSize}px;height:${svgSize}px;margin-left:-${svgSize / 2}px;margin-top:-${svgSize / 2}px;
+            background:${color};clip-path:${star};opacity:${opacidad};
+            animation:twinkle ${random(3, 7)}s ease-in-out infinite;animation-delay:${random(0, 8)}s;`;
+        container.appendChild(dot);
     }
 
     for (let i = 0; i < 3; i += 1) {
         const meteoro = document.createElement("div");
-        const brillo = document.createElement("div");
-        brillo.style.cssText =
+        const glow = document.createElement("div");
+        glow.style.cssText =
             "position:absolute;top:-5px;left:-5px;width:12px;height:12px;border-radius:50%;background:radial-gradient(circle,rgba(0,212,255,0.5) 0%,transparent 100%)";
-        const cabeza = document.createElement("div");
-        cabeza.style.cssText = `position:absolute;top:-6px;left:-6px;width:14px;height:14px;background:#ffffff;clip-path:${estrella};box-shadow:0 0 6px #00d4ff;`;
-        meteoro.append(brillo, cabeza);
-        meteoro.style.cssText = `position:absolute;left:${aleatorio(65, 100)}%;top:${aleatorio(5, 35)}%;width:2px;height:2px;animation:shooting-cycle 30s ease-out infinite;animation-delay:${i * 10}s;`;
-        contenedor.appendChild(meteoro);
+        const head = document.createElement("div");
+        head.style.cssText = `position:absolute;top:-6px;left:-6px;width:14px;height:14px;background:#ffffff;clip-path:${star};box-shadow:0 0 6px #00d4ff;`;
+        meteoro.append(glow, head);
+        meteoro.style.cssText = `position:absolute;left:${random(65, 100)}%;top:${random(5, 35)}%;width:2px;height:2px;animation:shooting-cycle 30s ease-out infinite;animation-delay:${i * 10}s;`;
+        container.appendChild(meteoro);
     }
 }
 
-elementos.modoFocus.addEventListener("click", () => cambiarModo("focus"));
-elementos.modoBreak.addEventListener("click", () => cambiarModo("break"));
-elementos.menosMinutos.addEventListener("click", () => ajustarMinutos(-1));
-elementos.masMinutos.addEventListener("click", () => ajustarMinutos(1));
-elementos.principal.addEventListener("click", () => {
-    if (estado.corriendo) pausar();
+elements.focusModeButton.addEventListener("click", () => switchMode("focus"));
+elements.breakModeButton.addEventListener("click", () => switchMode("break"));
+elements.minusMinutes.addEventListener("click", () => adjustMinutes(-1));
+elements.plusMinutes.addEventListener("click", () => adjustMinutes(1));
+elements.primaryButton.addEventListener("click", () => {
+    if (state.running) pausar();
     else iniciar();
 });
-elementos.reiniciar.addEventListener("click", detener);
-elementos.minutos.addEventListener("focus", () => mostrar(elementos.presets, true));
-elementos.minutos.addEventListener("input", (evento) => {
-    const valor = evento.target.value === "" ? 1 : Number(evento.target.value);
-    fijarMinutos(valor);
+elements.reiniciar.addEventListener("click", detener);
+elements.minutes.addEventListener("focus", () => show(elements.presets, true));
+elements.minutes.addEventListener("input", (evento) => {
+    const value = evento.target.value === "" ? 1 : Number(evento.target.value);
+    setMinutes(value);
 });
-elementos.botonesPreset.forEach((boton) => {
-    boton.addEventListener("click", () => {
-        fijarMinutos(Number(boton.dataset.minutos));
-        mostrar(elementos.presets, false);
+elements.presetButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+        setMinutes(Number(button.dataset.minutes));
+        show(elements.presets, false);
     });
 });
 document.addEventListener("pointerdown", (evento) => {
-    if (!elementos.selectorDuracion.contains(evento.target)) {
-        mostrar(elementos.presets, false);
+    if (!elements.durationSelector.contains(evento.target)) {
+        show(elements.presets, false);
     }
 });
 
-elementos.titulo.addEventListener("input", (evento) => {
-    estado.titulo = evento.target.value;
+elements.title.addEventListener("input", (evento) => {
+    state.title = evento.target.value;
 });
-elementos.titulo.addEventListener("focus", (evento) => {
+elements.title.addEventListener("focus", (evento) => {
     evento.target.style.borderColor = "#00d4ff";
 });
-elementos.titulo.addEventListener("blur", (evento) => {
+elements.title.addEventListener("blur", (evento) => {
     evento.target.style.borderColor = "rgba(148, 163, 184, 0.2)";
 });
-elementos.editarTitulo.addEventListener("click", () => {
-    estado.editando = true;
-    elementos.tituloEdicion.value = estado.titulo;
-    pintarTitulo();
-    elementos.tituloEdicion.focus();
-    elementos.tituloEdicion.select();
+elements.editTitle.addEventListener("click", () => {
+    state.editing = true;
+    elements.titleEdit.value = state.title;
+    renderTitle();
+    elements.titleEdit.focus();
+    elements.titleEdit.select();
 });
-elementos.tituloEdicion.addEventListener("blur", guardarTitulo);
-elementos.tituloEdicion.addEventListener("keydown", (evento) => {
+elements.titleEdit.addEventListener("blur", saveTitle);
+elements.titleEdit.addEventListener("keydown", (evento) => {
     if (evento.key === "Enter") {
         evento.preventDefault();
-        guardarTitulo();
+        saveTitle();
     }
     if (evento.key === "Escape") {
-        estado.editando = false;
-        pintarTitulo();
+        state.editing = false;
+        renderTitle();
     }
 });
 
-elementos.infoAbrir.addEventListener("click", () => mostrar(elementos.info, true));
-elementos.infoCerrar.addEventListener("click", () => mostrar(elementos.info, false));
-elementos.info.addEventListener("click", (evento) => {
-    if (evento.target === elementos.info) mostrar(elementos.info, false);
+elements.infoOpen.addEventListener("click", () => show(elements.info, true));
+elements.infoClose.addEventListener("click", () => show(elements.info, false));
+elements.info.addEventListener("click", (evento) => {
+    if (evento.target === elements.info) show(elements.info, false);
 });
 
-elementos.dialogoPrincipal.addEventListener("click", () => {
-    cambiarModo(estado.modo === "focus" ? "break" : "focus");
+elements.dialogPrimary.addEventListener("click", () => {
+    switchMode(state.mode === "focus" ? "break" : "focus");
 });
-elementos.dialogoSecundario.addEventListener("click", () => {
-    cambiarModo(estado.modo);
+elements.dialogSecondary.addEventListener("click", () => {
+    switchMode(state.mode);
 });
 
-crearEstrellas();
-pintar();
+createStars();
+render();

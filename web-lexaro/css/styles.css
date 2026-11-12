@@ -99,7 +99,7 @@
     }
 
     /* Estilos del Encabezado mejorados */
-    .encabezado {
+    .header {
         background: var(--surface);
         background: var(--gradient-surface);
         border-bottom: 1px solid var(--border-light);
@@ -110,7 +110,7 @@
         backdrop-filter: blur(10px);
     }
 
-    .contenido-encabezado {
+    .header-content {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -141,17 +141,17 @@
         letter-spacing: -0.5px;
     }
 
-    .acciones-encabezado {
+    .header-actions {
         display: flex;
         align-items: center;
         gap: var(--spacing-md);
     }
 
-    .menu-usuario {
+    .user-menu {
         position: relative;
     }
 
-    .avatar-usuario {
+    .user-avatar {
         width: 32px;
         height: 32px;
         border-radius: 50%;
@@ -167,7 +167,7 @@
         position: relative;
     }
 
-    .avatar-usuario::before {
+    .user-avatar::before {
         content: "";
         position: absolute;
         top: -2px;
@@ -181,18 +181,18 @@
         z-index: -1;
     }
 
-    .avatar-usuario:hover {
+    .user-avatar:hover {
         border-color: var(--primary-color);
         color: white;
         transform: scale(1.1);
     }
 
-    .avatar-usuario:hover::before {
+    .user-avatar:hover::before {
         opacity: 1;
     }
 
     /* Estilos de Botones */
-    .boton {
+    .button {
         display: inline-flex;
         align-items: center;
         gap: var(--spacing-xs);
@@ -209,14 +209,14 @@
         overflow: hidden;
     }
 
-    .boton-primario {
+    .button-primary {
         background: var(--gradient-primary);
         color: white;
         position: relative;
         overflow: hidden;
     }
 
-    .boton-primario::before {
+    .button-primary::before {
         content: "";
         position: absolute;
         top: 0;
@@ -227,46 +227,46 @@
         transition: left 0.5s;
     }
 
-    .boton-primario:hover::before {
+    .button-primary:hover::before {
         left: 100%;
     }
 
-    .boton-primario:hover {
+    .button-primary:hover {
         transform: translateY(-2px);
         box-shadow: var(--shadow-colored);
         filter: brightness(1.05);
     }
 
-    .boton-secundario {
+    .button-secondary {
         background-color: var(--surface);
         color: var(--text-primary);
         border: 1px solid var(--border);
     }
 
-    .boton-secundario:hover {
+    .button-secondary:hover {
         background-color: var(--background);
         border-color: var(--text-secondary);
     }
 
-    .boton-peligro {
+    .button-danger {
         background-color: var(--danger-color);
         color: white;
         border: none;
     }
 
-    .boton-peligro:hover {
+    .button-danger:hover {
         background-color: var(--danger-dark);
         transform: translateY(-1px);
         box-shadow: var(--shadow-md);
     }
 
     /* Contenido Principal */
-    .contenido-principal {
+    .main-content {
         padding: var(--spacing-lg);
         max-width: 100%;
     }
 
-    .encabezado-tablero {
+    .board-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -275,24 +275,24 @@
         gap: var(--spacing-md);
     }
 
-    .titulo-tablero h2 {
+    .board-title h2 {
         font-size: 24px;
         font-weight: 600;
         color: var(--text-primary);
         margin-bottom: var(--spacing-xs);
     }
 
-    .estadisticas-tablero {
+    .board-stats {
         color: var(--text-secondary);
         font-size: 14px;
     }
 
-    .filtros-tablero {
+    .board-filters {
         display: flex;
         gap: var(--spacing-sm);
     }
 
-    .boton-filtro {
+    .filter-button {
         padding: var(--spacing-xs) var(--spacing-md);
         border: 1px solid var(--border);
         background-color: var(--surface);
@@ -312,14 +312,14 @@
         justify-content: center;
     }
 
-    .boton-filtro:hover {
+    .filter-button:hover {
         background-color: var(--background);
         border-color: var(--text-secondary);
         transform: translateY(-1px);
         box-shadow: var(--shadow-sm);
     }
 
-    .boton-filtro.activo {
+    .filter-button.active {
         background: var(--gradient-primary);
         color: white;
         border-color: var(--primary-color);
@@ -328,14 +328,14 @@
     }
 
     /* Tablero Kanban */
-    .tablero-kanban {
+    .kanban-board {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: var(--spacing-lg);
         min-height: 600px;
     }
 
-    .columna {
+    .column {
         background: var(--gradient-card);
         border-radius: var(--radius-lg);
         border: 1px solid var(--border-light);
@@ -347,7 +347,7 @@
         overflow: hidden;
     }
 
-    .columna::before {
+    .column::before {
         content: "";
         position: absolute;
         top: 0;
@@ -359,15 +359,15 @@
         transition: opacity 0.3s ease;
     }
 
-    .columna:hover::before {
+    .column:hover::before {
         opacity: 1;
     }
 
-    .columna:hover {
+    .column:hover {
         box-shadow: var(--shadow-md);
     }
 
-    .encabezado-columna {
+    .column-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -375,19 +375,19 @@
         border-bottom: 1px solid var(--border);
     }
 
-    .titulo-columna {
+    .column-title {
         display: flex;
         align-items: center;
         gap: var(--spacing-sm);
     }
 
-    .titulo-columna h3 {
+    .column-title h3 {
         font-size: 16px;
         font-weight: 600;
         color: var(--text-primary);
     }
 
-    .contador-tareas {
+    .task-counter {
         background-color: var(--background);
         color: var(--text-secondary);
         padding: 2px 8px;
@@ -396,7 +396,7 @@
         font-weight: 500;
     }
 
-    .menu-columna {
+    .column-menu {
         background: none;
         border: none;
         color: var(--text-tertiary);
@@ -406,12 +406,12 @@
         transition: all 0.2s ease;
     }
 
-    .menu-columna:hover {
+    .column-menu:hover {
         background-color: var(--background);
         color: var(--text-secondary);
     }
 
-    .contenido-columna {
+    .column-content {
         flex: 1;
         padding: var(--spacing-sm);
         overflow-y: auto;
@@ -421,7 +421,7 @@
     }
 
     /* Tarjetas de Tarea mejoradas */
-    .tarjeta-tarea {
+    .task-card {
         background: var(--gradient-card);
         border: 1px solid var(--border-light);
         border-radius: var(--radius-md);
@@ -432,7 +432,7 @@
         overflow: hidden;
     }
 
-    .tarjeta-tarea::before {
+    .task-card::before {
         content: "";
         position: absolute;
         top: 0;
@@ -447,38 +447,38 @@
         transform: scaleX(0);
     }
 
-    .tarjeta-tarea:hover::before {
+    .task-card:hover::before {
         opacity: 1;
         transform: scaleX(1);
     }
 
-    .tarjeta-tarea:hover {
+    .task-card:hover {
         box-shadow: var(--shadow-hover);
         transform: translateY(-4px) scale(1.02);
         border-color: var(--primary-color);
     }
 
-    .tarjeta-tarea.arrastrando {
+    .task-card.dragging {
         opacity: 0.7;
         transform: rotate(3deg) scale(0.95);
         box-shadow: var(--shadow-xl);
         z-index: 1000;
     }
 
-    .encabezado-tarea {
+    .task-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin-bottom: var(--spacing-sm);
     }
 
-    .id-tarea {
+    .task-id {
         color: var(--text-tertiary);
         font-size: 12px;
         font-weight: 500;
     }
 
-    .prioridad-tarea {
+    .task-priority {
         width: 10px;
         height: 10px;
         border-radius: 50%;
@@ -486,7 +486,7 @@
         animation: pulse 2s infinite;
     }
 
-    .prioridad-tarea::before {
+    .task-priority::before {
         content: "";
         position: absolute;
         top: -4px;
@@ -499,76 +499,76 @@
         animation: ping 2s infinite;
     }
 
-    .prioridad-alta {
+    .priority-high {
         background-color: var(--priority-high);
     }
 
-    .prioridad-media {
+    .priority-medium {
         background-color: var(--priority-medium);
     }
 
-    .prioridad-baja {
+    .priority-low {
         background-color: var(--priority-low);
     }
 
     /* Estilos especiales para filtros de prioridad */
-    .boton-filtro[data-filtro="todas"]:hover {
+    .filter-button[data-filtro="todas"]:hover {
         background-color: var(--primary-light);
         border-color: var(--primary-color);
         color: var(--text-primary);
         font-weight: 600;
     }
 
-    .boton-filtro[data-filtro="todas"].activo {
+    .filter-button[data-filtro="todas"].active {
         background: var(--gradient-primary);
         border-color: var(--primary-color);
         color: white;
         font-weight: 600;
     }
 
-    .boton-filtro[data-filtro="alta"]:hover {
+    .filter-button[data-filtro="alta"]:hover {
         background-color: var(--danger-light);
         border-color: var(--danger-color);
         color: var(--text-primary);
         font-weight: 600;
     }
 
-    .boton-filtro[data-filtro="alta"].activo {
+    .filter-button[data-filtro="alta"].active {
         background: linear-gradient(135deg, var(--danger-color), var(--danger-dark));
         border-color: var(--danger-color);
         color: white;
         font-weight: 600;
     }
 
-    .boton-filtro[data-filtro="media"]:hover {
+    .filter-button[data-filtro="media"]:hover {
         background-color: var(--warning-light);
         border-color: var(--warning-color);
         color: var(--text-primary);
         font-weight: 600;
     }
 
-    .boton-filtro[data-filtro="media"].activo {
+    .filter-button[data-filtro="media"].active {
         background: linear-gradient(135deg, var(--warning-color), var(--warning-dark));
         border-color: var(--warning-color);
         color: white;
         font-weight: 600;
     }
 
-    .boton-filtro[data-filtro="baja"]:hover {
+    .filter-button[data-filtro="baja"]:hover {
         background-color: var(--success-light);
         border-color: var(--success-color);
         color: var(--text-primary);
         font-weight: 600;
     }
 
-    .boton-filtro[data-filtro="baja"].activo {
+    .filter-button[data-filtro="baja"].active {
         background: linear-gradient(135deg, var(--success-color), var(--success-dark));
         border-color: var(--success-color);
         color: white;
         font-weight: 600;
     }
 
-    .titulo-tarea {
+    .task-title {
         font-size: 14px;
         font-weight: 600;
         color: var(--text-primary);
@@ -576,21 +576,21 @@
         line-height: 1.3;
     }
 
-    .descripcion-tarea {
+    .task-description {
         color: var(--text-secondary);
         font-size: 13px;
         line-height: 1.4;
         margin-bottom: var(--spacing-md);
     }
 
-    .fechas-tarea {
+    .task-dates {
         display: flex;
         flex-direction: column;
         gap: var(--spacing-xs);
         margin-bottom: var(--spacing-md);
     }
 
-    .fecha-item {
+    .date-item {
         display: flex;
         align-items: center;
         gap: var(--spacing-xs);
@@ -602,89 +602,89 @@
         border: 1px solid var(--border);
     }
 
-    .fecha-item i {
+    .date-item i {
         font-size: 10px;
         color: var(--text-tertiary);
         min-width: 10px;
     }
 
-    .fecha-item:has(i.fa-check-circle) {
+    .date-item:has(i.fa-check-circle) {
         border-color: var(--success-color);
         background-color: rgba(54, 179, 126, 0.1);
         color: var(--success-color);
     }
 
-    .fecha-item:has(i.fa-check-circle) i {
+    .date-item:has(i.fa-check-circle) i {
         color: var(--success-color);
     }
 
     /* Indicadores de estado  de fecha limite */
-    .fechas-tarea.vencida {
+    .task-dates.overdue {
         border-left: 3px solid var(--danger-color);
         background-color: rgba(222, 53, 11, 0.05);
     }
 
-    .fechas-tarea.vence-hoy {
+    .task-dates.due-today {
         border-left: 3px solid var(--warning-color);
         background-color: rgba(255, 171, 0, 0.05);
     }
 
-    .fechas-tarea.vence-manana {
+    .task-dates.due-tomorrow {
         border-left: 3px solid var(--warning-color);
         background-color: rgba(255, 171, 0, 0.02);
     }
 
-    .fechas-tarea.vence-pronto {
+    .task-dates.due-soon {
         border-left: 3px solid var(--warning-bright);
         background-color: rgba(255, 165, 0, 0.02);
     }
 
-    .fecha-item.fecha-fin.vencida {
+    .date-item.end-date.overdue {
         border-color: var(--danger-color);
         background-color: rgba(222, 53, 11, 0.1);
         color: var(--danger-color);
         font-weight: 600;
     }
 
-    .fecha-item.fecha-fin.vence-hoy {
+    .date-item.end-date.due-today {
         border-color: var(--warning-color);
         background-color: rgba(255, 171, 0, 0.1);
         color: var(--warning-color);
         font-weight: 600;
     }
 
-    .fecha-item.fecha-fin.vence-manana {
+    .date-item.end-date.due-tomorrow {
         border-color: var(--warning-color);
         background-color: rgba(255, 171, 0, 0.05);
         color: var(--warning-color);
     }
 
-    .fecha-item.fecha-fin.vence-pronto {
+    .date-item.end-date.due-soon {
         border-color: var(--warning-bright);
         background-color: rgba(255, 165, 0, 0.05);
         color: var(--warning-bright);
     }
 
     /* Indicadores de urgencia de la tarjeta de tareas */
-    .tarjeta-tarea.vencida {
+    .task-card.overdue {
         border-color: var(--danger-color);
         box-shadow: 0 0 0 1px rgba(222, 53, 11, 0.3);
     }
 
-    .tarjeta-tarea.vence-hoy {
+    .task-card.due-today {
         border-color: var(--warning-color);
         box-shadow: 0 0 0 1px rgba(255, 171, 0, 0.3);
     }
 
-    .tarjeta-tarea.vence-manana {
+    .task-card.due-tomorrow {
         border-color: var(--warning-color);
     }
 
-    .tarjeta-tarea.vence-pronto {
+    .task-card.due-soon {
         border-color: var(--warning-bright);
     }
 
-    .pie-tarea {
+    .task-footer {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -692,7 +692,7 @@
         flex-wrap: wrap;
     }
 
-    .etiquetas-tarea {
+    .task-tags {
         display: flex;
         gap: var(--spacing-xs);
         flex-wrap: wrap;
@@ -700,7 +700,7 @@
         justify-content: flex-start;
     }
 
-    .etiqueta {
+    .tag {
         padding: 6px 10px;
         border-radius: var(--radius-sm);
         font-size: 11px;
@@ -714,63 +714,63 @@
         box-sizing: border-box;
     }
 
-    .etiqueta-design {
+    .tag-design {
         background-color: var(--tag-design);
     }
 
-    .etiqueta-frontend {
+    .tag-frontend {
         background-color: var(--tag-frontend);
     }
 
-    .etiqueta-backend {
+    .tag-backend {
         background-color: var(--tag-backend);
     }
 
-    .etiqueta-docs {
+    .tag-docs {
         background-color: var(--tag-docs);
     }
 
-    .etiqueta-research {
+    .tag-research {
         background-color: var(--tag-research);
     }
 
-    .etiqueta-security {
+    .tag-security {
         background-color: var(--tag-security);
     }
 
-    .etiqueta-performance {
+    .tag-performance {
         background-color: var(--tag-performance);
     }
 
-    .etiqueta-testing {
+    .tag-testing {
         background-color: var(--tag-testing);
     }
 
-    .etiqueta-review {
+    .tag-review {
         background-color: var(--tag-review);
     }
 
-    .etiqueta-maintenance {
+    .tag-maintenance {
         background-color: var(--tag-maintenance);
     }
 
-    .etiqueta-devops {
+    .tag-devops {
         background-color: var(--tag-devops);
     }
 
-    .etiqueta-setup {
+    .tag-setup {
         background-color: var(--tag-setup);
     }
 
-    .etiqueta-architecture {
+    .tag-architecture {
         background-color: var(--tag-architecture);
     }
 
-    .etiqueta-meeting {
+    .tag-meeting {
         background-color: var(--tag-meeting);
     }
 
-    .asignado-tarea {
+    .task-assignee {
         width: 32px;
         height: 32px;
         border-radius: 50%;
@@ -784,7 +784,7 @@
         transition: all 0.2s ease;
     }
 
-    .asignado-tarea:hover {
+    .task-assignee:hover {
         border-color: var(--primary-color);
         color: var(--primary-color);
     }
@@ -804,14 +804,14 @@
         transition: opacity 0.3s ease;
     }
 
-    .modal.activo {
+    .modal.active {
         display: flex;
         justify-content: center;
         align-items: center;
         opacity: 1;
     }
 
-    .contenido-modal {
+    .modal-content {
         background: var(--gradient-card);
         border-radius: var(--radius-lg);
         width: 90%;
@@ -825,11 +825,11 @@
         border: 1px solid var(--border-light);
     }
 
-    .modal.activo .contenido-modal {
+    .modal.active .modal-content {
         transform: scale(1) translateY(0);
     }
 
-    .encabezado-modal {
+    .modal-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -837,14 +837,14 @@
         border-bottom: 1px solid var(--border);
     }
 
-    .encabezado-modal h3 {
+    .modal-header h3 {
         font-size: 20px;
         font-weight: 700;
         color: var(--text-primary);
         letter-spacing: -0.5px;
     }
 
-    .cerrar-modal {
+    .close-modal {
         background: none;
         border: none;
         color: var(--text-tertiary);
@@ -854,29 +854,29 @@
         transition: all 0.2s ease;
     }
 
-    .cerrar-modal:hover {
+    .close-modal:hover {
         background-color: var(--background);
         color: var(--text-secondary);
     }
 
-    .formulario-tarea {
+    .task-form {
         padding: var(--spacing-lg);
     }
 
-    .grupo-formulario {
+    .form-group {
         margin-bottom: var(--spacing-md);
     }
 
-    .grupo-formulario label {
+    .form-group label {
         display: block;
         margin-bottom: var(--spacing-xs);
         font-weight: 500;
         color: var(--text-primary);
     }
 
-    .grupo-formulario input,
-    .grupo-formulario textarea,
-    .grupo-formulario select {
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
         width: 100%;
         padding: var(--spacing-sm);
         border: 1px solid var(--border-light);
@@ -886,22 +886,22 @@
         background: var(--surface);
     }
 
-    .grupo-formulario input:focus,
-    .grupo-formulario textarea:focus,
-    .grupo-formulario select:focus {
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
         outline: none;
         border-color: var(--primary-color);
         box-shadow: 0 0 0 3px var(--primary-light);
         transform: translateY(-1px);
     }
 
-    .grupo-formulario input:hover,
-    .grupo-formulario textarea:hover,
-    .grupo-formulario select:hover {
+    .form-group input:hover,
+    .form-group textarea:hover,
+    .form-group select:hover {
         border-color: var(--border);
     }
 
-    .acciones-formulario {
+    .form-actions {
         display: flex;
         gap: var(--spacing-sm);
         justify-content: flex-end;
@@ -909,7 +909,7 @@
     }
 
     /* Estilos de Arrastrar y Soltar */
-    .arrastrar-sobre {
+    .drag-over {
         background-color: rgba(0, 82, 204, 0.1);
         border-color: var(--primary-color);
     }
@@ -927,7 +927,7 @@
         }
     }
 
-    .tarjeta-tarea {
+    .task-card {
         animation: fadeIn 0.3s ease;
     }
 
@@ -941,38 +941,38 @@
         }
     }
 
-    .modal.activo .contenido-modal {
+    .modal.active .modal-content {
         animation: slideIn 0.3s ease;
     }
 
     /* Estilos de barra de desplazamiento */
-    .contenido-columna::-webkit-scrollbar {
+    .column-content::-webkit-scrollbar {
         width: 6px;
     }
 
-    .contenido-columna::-webkit-scrollbar-track {
+    .column-content::-webkit-scrollbar-track {
         background: var(--background);
         border-radius: var(--radius-sm);
     }
 
-    .contenido-columna::-webkit-scrollbar-thumb {
+    .column-content::-webkit-scrollbar-thumb {
         background: var(--border);
         border-radius: var(--radius-sm);
     }
 
-    .contenido-columna::-webkit-scrollbar-thumb:hover {
+    .column-content::-webkit-scrollbar-thumb:hover {
         background: var(--text-tertiary);
     }
 
     /* Estados de carga y vacío mejorados */
-    .estado-vacio {
+    .empty-state {
         text-align: center;
         padding: var(--spacing-xl);
         color: var(--text-tertiary);
         position: relative;
     }
 
-    .estado-vacio::before {
+    .empty-state::before {
         content: "📋";
         font-size: 64px;
         display: block;
@@ -982,21 +982,21 @@
         animation: float 3s ease-in-out infinite;
     }
 
-    .estado-vacio h3 {
+    .empty-state h3 {
         font-size: 18px;
         font-weight: 600;
         color: var(--text-secondary);
         margin-bottom: var(--spacing-sm);
     }
 
-    .estado-vacio p {
+    .empty-state p {
         font-size: 14px;
         color: var(--text-tertiary);
         max-width: 300px;
         margin: 0 auto;
     }
 
-    .cargando {
+    .loading {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -1029,7 +1029,7 @@
         animation: spin 1.5s linear infinite reverse;
     }
 
-    .cargando .texto-carga {
+    .loading .loading-text {
         font-size: 14px;
         color: var(--text-secondary);
         font-weight: 500;
@@ -1056,38 +1056,38 @@
     }
 
     /* Estilos modales de confirmación genéricos */
-    .modal-confirmacion {
+    .confirmation-modal {
         max-width: 400px;
     }
 
-    .modal-confirmacion .cuerpo-modal {
+    .confirmation-modal .modal-body {
         text-align: center;
         padding: var(--spacing-xl) var(--spacing-lg);
     }
 
-    .icono-confirmacion {
+    .confirmation-icon {
         margin-bottom: var(--spacing-lg);
     }
 
-    .icono-confirmacion i {
+    .confirmation-icon i {
         font-size: 48px;
         color: var(--warning-color);
         animation: pulse 1.5s infinite;
     }
 
-    .icono-confirmacion.danger i {
+    .confirmation-icon.danger i {
         color: var(--danger-color);
     }
 
-    .icono-confirmacion.success i {
+    .confirmation-icon.success i {
         color: var(--success-color);
     }
 
-    .icono-confirmacion.info i {
+    .confirmation-icon.info i {
         color: var(--primary-color);
     }
 
-    .mensaje-confirmacion {
+    .confirmation-message {
         font-size: 16px;
         font-weight: 600;
         color: var(--text-primary);
@@ -1095,13 +1095,13 @@
         line-height: 1.4;
     }
 
-    .descripcion-confirmacion {
+    .confirmation-description {
         font-size: 14px;
         color: var(--text-secondary);
         margin: 0;
     }
 
-    .modal-confirmacion .pie-modal {
+    .confirmation-modal .modal-footer {
         display: flex;
         gap: var(--spacing-sm);
         justify-content: center;
@@ -1109,28 +1109,28 @@
         border-top: 1px solid var(--border);
     }
 
-    .modal-confirmacion .boton-peligro {
+    .confirmation-modal .button-danger {
         background-color: var(--danger-color);
         color: white;
         border: none;
     }
 
-    .modal-confirmacion .boton-peligro:hover {
+    .confirmation-modal .button-danger:hover {
         background-color: var(--danger-dark);
         transform: translateY(-1px);
         box-shadow: var(--shadow-md);
     }
 
     /* Opciones de estilos modales */
-    .modal-opciones {
+    .options-modal {
         max-width: 500px;
     }
 
-    .modal-opciones .cuerpo-modal {
+    .options-modal .modal-body {
         padding: 0;
     }
 
-    .modal-opciones .cuerpo-modal h4 {
+    .options-modal .modal-body h4 {
         background-color: var(--background);
         padding: var(--spacing-lg);
         margin: 0;
@@ -1140,12 +1140,12 @@
         color: var(--text-primary);
     }
 
-    .lista-opciones {
+    .options-list {
         display: flex;
         flex-direction: column;
     }
 
-    .opcion-menu {
+    .menu-option {
         display: flex;
         align-items: flex-start;
         gap: var(--spacing-md);
@@ -1158,22 +1158,22 @@
         border-bottom: 1px solid var(--border);
     }
 
-    .opcion-menu:last-child {
+    .menu-option:last-child {
         border-bottom: none;
     }
 
-    .opcion-menu:hover {
+    .menu-option:hover {
         background-color: var(--background);
     }
 
-    .opcion-menu i {
+    .menu-option i {
         font-size: 18px;
         color: var(--text-secondary);
         margin-top: 2px;
         min-width: 18px;
     }
 
-    .opcion-menu span {
+    .menu-option span {
         display: block;
         font-size: 14px;
         font-weight: 600;
@@ -1181,20 +1181,20 @@
         margin-bottom: var(--spacing-xs);
     }
 
-    .opcion-menu small {
+    .menu-option small {
         display: block;
         font-size: 12px;
         color: var(--text-secondary);
         line-height: 1.3;
     }
 
-    .opcion-cancelar {
+    .option-cancel {
         background-color: var(--background);
         border-top: 1px solid var(--border);
         margin-top: var(--spacing-sm);
     }
 
-    .opcion-cancelar:hover {
+    .option-cancel:hover {
         background-color: var(--border);
     }
 
@@ -1223,13 +1223,13 @@
     }
 
     /* Acciones de tarea mejoradas */
-    .acciones-tarea {
+    .task-actions {
         display: flex;
         align-items: center;
         gap: var(--spacing-sm);
     }
 
-    .boton-eliminar-tarea {
+    .task-delete-button {
         background: none;
         border: none;
         color: var(--text-tertiary);
@@ -1246,11 +1246,11 @@
         box-sizing: border-box;
     }
 
-    .tarjeta-tarea:hover .boton-eliminar-tarea {
+    .task-card:hover .task-delete-button {
         opacity: 1;
     }
 
-    .boton-eliminar-tarea:hover {
+    .task-delete-button:hover {
         background-color: var(--danger-color);
         color: white;
         transform: scale(1.1);
@@ -1258,7 +1258,7 @@
 
     /* En dispositivos táctiles, mostrar siempre el botón */
     @media (hover: none) and (pointer: coarse) {
-        .boton-eliminar-tarea {
+        .task-delete-button {
             opacity: 1;
         }
     }
@@ -1266,17 +1266,17 @@
 
 @layer responsive {
     /* Base: hasta 400 px */
-    #boton-agregar-tarea {
+    #add-task-button {
         min-height: 30px;
         padding: 6px var(--spacing-sm);
         font-size: 12px;
     }
 
-    #boton-agregar-tarea i {
+    #add-task-button i {
         font-size: 12px;
     }
 
-    .acciones-tarea {
+    .task-actions {
         flex-shrink: 0;
         align-self: flex-end;
         display: flex;
@@ -1284,7 +1284,7 @@
         gap: var(--spacing-sm);
     }
 
-    .asignado-tarea {
+    .task-assignee {
         min-width: 30px;
         min-height: 30px;
         flex-shrink: 0;
@@ -1292,14 +1292,14 @@
         height: 28px;
     }
 
-    .boton {
+    .button {
         -webkit-tap-highlight-color: transparent;
         min-height: 40px;
         padding: var(--spacing-xs) var(--spacing-sm);
         font-size: 13px;
     }
 
-    .boton-eliminar-tarea {
+    .task-delete-button {
         min-width: 30px;
         min-height: 30px;
         flex-shrink: 0;
@@ -1311,7 +1311,7 @@
         opacity: 1;
     }
 
-    .boton-filtro {
+    .filter-button {
         flex: 1;
         min-width: 80px;
         max-width: 100px;
@@ -1320,61 +1320,61 @@
         height: 30px;
     }
 
-    .boton-primario {
+    .button-primary {
         font-size: 12px;
         padding: var(--spacing-xs) var(--spacing-sm);
         min-height: 36px;
     }
 
-    .cerrar-modal {
+    .close-modal {
         min-width: 36px;
         min-height: 36px;
     }
 
-    .columna {
+    .column {
         min-height: 400px;
     }
 
-    .contenido-columna {
+    .column-content {
         padding: var(--spacing-md);
     }
 
-    .contenido-encabezado {
+    .header-content {
         padding: 0 var(--spacing-sm);
     }
 
-    .contenido-modal {
+    .modal-content {
         max-height: 95vh;
         width: 95%;
         margin: var(--spacing-md);
     }
 
-    .contenido-principal {
+    .main-content {
         padding: var(--spacing-sm);
     }
 
-    .descripcion-tarea {
+    .task-description {
         font-size: 13px;
         line-height: 1.5;
     }
 
-    .encabezado-tablero {
+    .board-header {
         flex-direction: column;
         align-items: flex-start;
         gap: var(--spacing-md);
     }
 
-    .estadisticas-tablero {
+    .board-stats {
         font-size: 13px;
     }
 
-    .etiqueta {
+    .tag {
         font-size: 10px;
         padding: 4px 8px;
         height: 28px;
     }
 
-    .etiquetas-tarea {
+    .task-tags {
         display: flex;
         flex-wrap: wrap;
         gap: var(--spacing-xs);
@@ -1385,23 +1385,23 @@
         margin-right: var(--spacing-sm);
     }
 
-    .fecha-item {
+    .date-item {
         font-size: 10px;
         padding: 2px 6px;
         border-radius: 3px;
     }
 
-    .fecha-item i {
+    .date-item i {
         font-size: 9px;
         min-width: 9px;
     }
 
-    .fechas-tarea {
+    .task-dates {
         margin-bottom: var(--spacing-sm);
         gap: 2px;
     }
 
-    .filtros-tablero {
+    .board-filters {
         -webkit-overflow-scrolling: touch;
         width: 100%;
         overflow-x: auto;
@@ -1418,35 +1418,35 @@
         font-size: 24px;
     }
 
-    .menu-columna {
+    .column-menu {
         min-width: 36px;
         min-height: 36px;
     }
 
-    .modal-opciones {
+    .options-modal {
         width: 95%;
         margin: var(--spacing-sm);
     }
 
-    .opcion-menu {
+    .menu-option {
         padding: var(--spacing-md);
         gap: var(--spacing-sm);
     }
 
-    .opcion-menu i {
+    .menu-option i {
         font-size: 16px;
         min-width: 16px;
     }
 
-    .opcion-menu small {
+    .menu-option small {
         font-size: 11px;
     }
 
-    .opcion-menu span {
+    .menu-option span {
         font-size: 13px;
     }
 
-    .pie-tarea {
+    .task-footer {
         flex-direction: row;
         align-items: flex-start;
         justify-content: space-between;
@@ -1454,12 +1454,12 @@
         flex-wrap: nowrap;
     }
 
-    .tablero-kanban {
+    .kanban-board {
         grid-template-columns: 1fr;
         gap: var(--spacing-md);
     }
 
-    .tarjeta-tarea {
+    .task-card {
         cursor: grab;
         user-select: none;
         -webkit-user-select: none;
@@ -1468,51 +1468,51 @@
         padding: var(--spacing-sm);
     }
 
-    .tarjeta-tarea .pie-tarea {
+    .task-card .task-footer {
         padding-top: var(--spacing-sm);
         border-top: 1px solid var(--border-light);
         margin-top: var(--spacing-sm);
     }
 
-    .tarjeta-tarea:active {
+    .task-card:active {
         cursor: grabbing;
         transform: scale(0.98);
     }
 
-    .titulo-tablero h2 {
+    .board-title h2 {
         font-size: 20px;
     }
 
-    .titulo-tarea {
+    .task-title {
         font-size: 15px;
         line-height: 1.4;
     }
 
     @media (min-width: 401px) {
-        .etiqueta {
+        .tag {
             padding: 6px 10px;
             font-size: 11px;
             height: 32px;
         }
     }
     @media (min-width: 481px) {
-        /* En anchos mayores hereda el tamaño de .boton y .boton-primario */
-        #boton-agregar-tarea {
+        /* En anchos mayores hereda el tamaño de .button y .button-primary */
+        #add-task-button {
             font-size: 13px;
             min-height: 40px;
             padding: var(--spacing-xs) var(--spacing-sm);
         }
 
-        #boton-agregar-tarea i {
+        #add-task-button i {
             font-size: 13px;
         }
 
-        .acciones-tarea {
+        .task-actions {
             align-self: revert-layer;
             flex-shrink: revert-layer;
         }
 
-        .asignado-tarea {
+        .task-assignee {
             width: 32px;
             height: 32px;
             flex-shrink: revert-layer;
@@ -1520,83 +1520,83 @@
             min-width: revert-layer;
         }
 
-        .boton {
+        .button {
             font-size: 14px;
             min-height: 44px;
             padding: var(--spacing-sm) var(--spacing-md);
         }
 
-        .boton-eliminar-tarea {
+        .task-delete-button {
             flex-shrink: revert-layer;
             min-height: revert-layer;
             min-width: revert-layer;
         }
 
-        .boton-filtro {
+        .filter-button {
             min-width: 100px;
             max-width: 120px;
             font-size: 13px;
             height: 36px;
         }
 
-        .boton-primario {
+        .button-primary {
             min-height: 40px;
             font-size: 13px;
         }
 
-        .cerrar-modal {
+        .close-modal {
             min-height: revert-layer;
             min-width: revert-layer;
         }
 
-        .columna {
+        .column {
             min-height: 500px;
         }
 
-        .contenido-encabezado {
+        .header-content {
             padding: 0 var(--spacing-md);
         }
 
-        .contenido-modal {
+        .modal-content {
             max-height: 90vh;
         }
 
-        .contenido-principal {
+        .main-content {
             padding: var(--spacing-md);
         }
 
-        .descripcion-tarea {
+        .task-description {
             line-height: 1.4;
         }
 
-        .estadisticas-tablero {
+        .board-stats {
             font-size: 14px;
         }
 
-        .etiquetas-tarea {
+        .task-tags {
             flex: revert-layer;
             margin-bottom: revert-layer;
             margin-right: revert-layer;
             min-width: revert-layer;
         }
 
-        .fecha-item {
+        .date-item {
             font-size: 11px;
             padding: var(--spacing-xs) var(--spacing-sm);
             border-radius: var(--radius-sm);
         }
 
-        .fecha-item i {
+        .date-item i {
             font-size: 10px;
             min-width: 10px;
         }
 
-        .fechas-tarea {
+        .task-dates {
             gap: var(--spacing-xs);
             margin-bottom: var(--spacing-md);
         }
 
-        .filtros-tablero {
+        .board-filters {
             gap: var(--spacing-sm);
             padding-bottom: revert-layer;
         }
@@ -1609,76 +1609,76 @@
             font-size: 28px;
         }
 
-        .menu-columna {
+        .column-menu {
             min-height: revert-layer;
             min-width: revert-layer;
         }
 
-        .modal-opciones {
+        .options-modal {
             margin: revert-layer;
             width: revert-layer;
         }
 
-        .opcion-menu {
+        .menu-option {
             gap: var(--spacing-md);
             padding: var(--spacing-lg);
         }
 
-        .opcion-menu i {
+        .menu-option i {
             font-size: 18px;
             min-width: 18px;
         }
 
-        .opcion-menu small {
+        .menu-option small {
             font-size: 12px;
         }
 
-        .opcion-menu span {
+        .menu-option span {
             font-size: 14px;
         }
 
-        .pie-tarea {
+        .task-footer {
             align-items: center;
             flex-wrap: wrap;
             flex-direction: revert-layer;
         }
 
-        .tarjeta-tarea {
+        .task-card {
             padding: var(--spacing-md);
         }
 
-        .tarjeta-tarea .pie-tarea {
+        .task-card .task-footer {
             border-top: revert-layer;
             margin-top: revert-layer;
             padding-top: revert-layer;
         }
 
-        .titulo-tablero h2 {
+        .board-title h2 {
             font-size: 24px;
         }
 
-        .titulo-tarea {
+        .task-title {
             font-size: 14px;
             line-height: 1.3;
         }
     }
     @media (min-width: 769px) {
-        #boton-agregar-tarea {
+        #add-task-button {
             font-size: 14px;
             min-height: auto;
             padding: var(--spacing-sm) var(--spacing-md);
         }
 
-        #boton-agregar-tarea i {
+        #add-task-button i {
             font-size: 14px;
         }
 
-        .boton {
+        .button {
             -webkit-tap-highlight-color: revert-layer;
             min-height: revert-layer;
         }
 
-        .boton-filtro {
+        .filter-button {
             padding: var(--spacing-xs) var(--spacing-md);
             font-size: 14px;
             min-width: 120px;
@@ -1686,47 +1686,47 @@
             height: 40px;
         }
 
-        .boton-primario {
+        .button-primary {
             font-size: revert-layer;
             min-height: revert-layer;
             padding: revert-layer;
         }
 
-        .contenido-columna {
+        .column-content {
             padding: var(--spacing-sm);
         }
 
-        .contenido-encabezado {
+        .header-content {
             padding: 0 var(--spacing-lg);
         }
 
-        .contenido-modal {
+        .modal-content {
             width: 90%;
             margin: revert-layer;
         }
 
-        .contenido-principal {
+        .main-content {
             padding: var(--spacing-lg);
         }
 
-        .encabezado-tablero {
+        .board-header {
             align-items: center;
             flex-direction: revert-layer;
         }
 
-        .filtros-tablero {
+        .board-filters {
             -webkit-overflow-scrolling: revert-layer;
             justify-content: revert-layer;
             overflow-x: revert-layer;
             width: revert-layer;
         }
 
-        .tablero-kanban {
+        .kanban-board {
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: var(--spacing-lg);
         }
 
-        .tarjeta-tarea {
+        .task-card {
             cursor: move;
             -webkit-user-select: revert-layer;
             margin-bottom: revert-layer;
@@ -1734,7 +1734,7 @@
             user-select: revert-layer;
         }
 
-        .tarjeta-tarea:active {
+        .task-card:active {
             cursor: revert-layer;
             transform: revert-layer;
         }

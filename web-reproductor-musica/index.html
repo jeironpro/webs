@@ -14,45 +14,45 @@
     </head>
     <body>
         <main>
-            <div id="contenedor-reproductor">
-                <span class="material-icons volver">arrow_back</span>
-                <div id="reproductor">
-                    <div class="contenedor-icono-listado">
+            <div id="player-container">
+                <span class="material-icons back">arrow_back</span>
+                <div id="player">
+                    <div class="playlist-icon-container">
                         <img
                             src="assets/images/lista_reproduccion.png"
                             alt="LISTADO"
-                            class="icono-listado"
+                            class="playlist-icon"
                         />
                     </div>
-                    <div class="contenedor-cancion">
-                        <img src="assets/images/musica.png" alt="CANCION" id="imagen-cancion" />
+                    <div class="song-container">
+                        <img src="assets/images/musica.png" alt="CANCION" id="song-image" />
                     </div>
-                    <div class="info-cancion">
-                        <div id="nombre-artista"></div>
-                        <div id="titulo-cancion"></div>
+                    <div class="song-info">
+                        <div id="artist-name"></div>
+                        <div id="song-title"></div>
                     </div>
-                    <div class="barra-progreso">
+                    <div class="progress-bar">
                         <input
                             type="range"
-                            id="progreso"
+                            id="progress"
                             min="0"
                             max="100"
                             value="0"
                             aria-label="Progreso de la canción"
                         />
                     </div>
-                    <div class="contenedor-icons">
-                        <span class="material-icons" id="anterior">skip_previous</span>
-                        <div class="contenedor-reproducir-pausar">
-                            <span class="material-icons" id="reproducir">play_arrow</span>
+                    <div class="controls-container">
+                        <span class="material-icons" id="previous">skip_previous</span>
+                        <div class="play-pause-container">
+                            <span class="material-icons" id="play">play_arrow</span>
                             <span class="material-icons" id="pausar" style="display: none"
                                 >pause</span
                             >
                         </div>
-                        <span class="material-icons" id="siguiente">skip_next</span>
+                        <span class="material-icons" id="next">skip_next</span>
                     </div>
                 </div>
-                <div id="listado-canciones">
+                <div id="song-list">
                     <!-- Dinámico -->
                 </div>
             </div>

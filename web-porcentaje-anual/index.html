@@ -13,35 +13,33 @@
     </head>
     <body>
         <main>
-            <div class="contenedor-principal">
-                <header class="encabezado-tarjeta">
-                    <div class="informacion-encabezado">
-                        <h1 class="titulo">Año <span id="anio-actual-texto"></span></h1>
-                        <span class="subtitulo">Progreso Anual</span>
+            <div class="main-container">
+                <header class="card-header">
+                    <div class="header-info">
+                        <h1 class="title">Año <span id="current-year-text"></span></h1>
+                        <span class="subtitle">Progreso Anual</span>
                     </div>
-                    <div class="etiqueta-dias">
-                        <span id="dias-restantes">0</span> días restantes
-                    </div>
+                    <div class="days-badge"><span id="remaining-days">0</span> días restantes</div>
                 </header>
 
-                <div class="cuerpo-tarjeta">
-                    <div id="grid-dias" class="grid-dias">
+                <div class="card-body">
+                    <div id="days-grid" class="days-grid">
                         <!-- Los puntos se generarán con JavaScript -->
                     </div>
                 </div>
 
-                <footer class="pie-tarjeta">
-                    <div class="contenedor-estadisticas">
-                        <div class="fila-estadistica">
-                            <span class="etiqueta-estadistica">Completado</span>
-                            <div class="indicador-porcentaje">
-                                <span id="valor-porcentaje">0</span
-                                ><span class="simbolo-porcentaje">%</span>
+                <footer class="card-footer">
+                    <div class="stats-container">
+                        <div class="stat-row">
+                            <span class="stat-label">Completado</span>
+                            <div class="percentage-indicator">
+                                <span id="percentage-value">0</span
+                                ><span class="percentage-symbol">%</span>
                             </div>
                         </div>
-                        <div class="fila-progreso">
-                            <div class="contenedor-barra">
-                                <div id="barra-progreso" class="barra-progreso"></div>
+                        <div class="progress-row">
+                            <div class="bar-container">
+                                <div id="progress-bar" class="progress-bar"></div>
                             </div>
                         </div>
                     </div>

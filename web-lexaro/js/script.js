@@ -1,9 +1,9 @@
 // Clase de administrador de notificaciones
-class GestorNotificaciones {
+class NotificationManager {
     constructor() {
-        this.permisoNotificacion = "default";
-        this.verificacionInterval = null;
-        this.tareasNotificadas = new Set();
+        this.notificationPermission = "default";
+        this.verificationInterval = null;
+        this.notifiedTasks = new Set();
 
         this.init();
     }
@@ -11,771 +11,806 @@ class GestorNotificaciones {
     async init() {
         // Solicitar permiso de notificaciones
         if ("Notification" in window) {
-            await this.solicitarPermiso();
-            this.iniciarVerificacionPeriodica();
+            await this.requestPermission();
+            this.startPeriodicVerification();
         }
     }
 
-    async solicitarPermiso() {
+    async requestPermission() {
         if (Notification.permission === "default") {
             const permiso = await Notification.requestPermission();
-            this.permisoNotificacion = permiso;
+            this.notificationPermission = permiso;
 
             if (permiso === "granted") {
-                this.crearNotificacion(
+                this.createNotification(
                     "Sistema de notificaciones activado",
                     "Recibirás alertas un día antes de que venzan tus tareas."
                 );
             }
         } else if (Notification.permission === "granted") {
-            this.permisoNotificacion = "granted";
-            this.iniciarVerificacionPeriodica();
+            this.notificationPermission = "granted";
+            this.startPeriodicVerification();
         }
     }
 
-    iniciarVerificacionPeriodica() {
+    startPeriodicVerification() {
         // Verificar cada 30 minutos
-        this.verificacionInterval = setInterval(
+        this.verificationInterval = setInterval(
             () => {
-                this.verificarTareasProximas();
+                this.checkUpcomingTasks();
             },
             30 * 60 * 1000
         );
 
         // Verificación inicial
-        this.verificarTareasProximas();
+        this.checkUpcomingTasks();
     }
 
-    verificarTareasProximas() {
-        if (this.permisoNotificacion !== "granted") return;
+    checkUpcomingTasks() {
+        if (this.notificationPermission !== "granted") return;
 
         const ahora = new Date();
-        const manana = new Date(ahora.getTime() + 24 * 60 * 60 * 1000);
-        const despuesDeManana = new Date(ahora.getTime() + 48 * 60 * 60 * 1000);
+        const tomorrow = new Date(ahora.getTime() + 24 * 60 * 60 * 1000);
+        const dayAfterTomorrow = new Date(ahora.getTime() + 48 * 60 * 60 * 1000);
 
         // Obtener tareas del tablero
-        if (window.tableroKanban) {
-            const tareas = window.tableroKanban.tareas;
+        if (window.kanbanBoard) {
+            const tasks = window.kanbanBoard.tasks;
 
-            tareas.forEach((tarea) => {
-                if (tarea.fechaFin && !this.tareasNotificadas.has(tarea.id)) {
-                    const fechaFin = new Date(tarea.fechaFin);
+            tasks.forEach((task) => {
+                if (task.endDate && !this.notifiedTasks.has(task.id)) {
+                    const endDate = new Date(task.endDate);
 
                     // Si la tarea vence mañana y no se ha notificado
-                    if (fechaFin >= manana && fechaFin < despuesDeManana) {
-                        this.programarNotificacion(tarea);
+                    if (endDate >= tomorrow && endDate < dayAfterTomorrow) {
+                        this.scheduleNotification(task);
                     }
                 }
             });
         }
     }
 
-    programarNotificacion(tarea) {
-        const fechaFin = new Date(tarea.fechaFin);
+    scheduleNotification(task) {
+        const endDate = new Date(task.endDate);
         const ahora = new Date();
-        const tiempoHastaManana = new Date(fechaFin);
-        tiempoHastaManana.setDate(tiempoHastaManana.getDate() - 1); // Un día antes
-        tiempoHastaManana.setHours(9, 0, 0, 0); // A las 9 AM
+        const timeUntilTomorrow = new Date(endDate);
+        timeUntilTomorrow.setDate(timeUntilTomorrow.getDate() - 1); // Un día antes
+        timeUntilTomorrow.setHours(9, 0, 0, 0); // A las 9 AM
 
-        const tiempoNotificacion = tiempoHastaManana.getTime() - ahora.getTime();
+        const notificationDelay = timeUntilTomorrow.getTime() - ahora.getTime();
 
-        if (tiempoNotificacion > 0) {
+        if (notificationDelay > 0) {
             setTimeout(() => {
-                this.enviarNotificacionVencimiento(tarea);
-                this.tareasNotificadas.add(tarea.id);
-            }, tiempoNotificacion);
-        } else if (fechaFin > ahora && fechaFin < new Date(ahora.getTime() + 24 * 60 * 60 * 1000)) {
+                this.sendDueNotification(task);
+                this.notifiedTasks.add(task.id);
+            }, notificationDelay);
+        } else if (endDate > ahora && endDate < new Date(ahora.getTime() + 24 * 60 * 60 * 1000)) {
             // Si ya es mañana pero antes de las 9 AM
-            this.enviarNotificacionVencimiento(tarea);
-            this.tareasNotificadas.add(tarea.id);
+            this.sendDueNotification(task);
+            this.notifiedTasks.add(task.id);
         }
     }
 
-    enviarNotificacionVencimiento(tarea) {
-        const fechaFinFormateada = this.formatearFecha(tarea.fechaFin);
-        const mensajeNotificacion = `"${tarea.titulo}"\nFecha límite: ${fechaFinFormateada}\n\nHaz clic para ver detalles`;
-        const iconoNotificacion =
+    sendDueNotification(task) {
+        const formattedEndDate = this.formatDate(task.endDate);
+        const notificationMessage = `"${task.title}"\nFecha límite: ${formattedEndDate}\n\nHaz clic para ver detalles`;
+        const notificationIcon =
             'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><defs><linearGradient id="a" x1="0" y1="0" x2="32" y2="32"><stop offset="0" stop-color="%23FFAB00"/><stop offset="1" stop-color="%23DE350B"/></linearGradient></defs><rect width="32" height="32" rx="6" fill="url(%23a)"/><text x="16" y="22" text-anchor="middle" fill="white" font-size="20" font-weight="bold">!</text></svg>';
 
-        const notificacion = new Notification("⏰ Tarea por vencer mañana", {
-            body: mensajeNotificacion,
-            icon: iconoNotificacion,
-            tag: `tarea-${tarea.id}`,
+        const notification = new Notification("⏰ Tarea por vencer mañana", {
+            body: notificationMessage,
+            icon: notificationIcon,
+            tag: `tarea-${task.id}`,
             requireInteraction: true,
         });
 
         // Al hacer clic en la notificación
-        notificacion.onclick = () => {
+        notification.onclick = () => {
             window.focus();
-            notificacion.close();
+            notification.close();
             // Buscar y resaltar la tarea
-            const tarjetaTarea = document.querySelector(`[data-id="${tarea.id}"]`);
-            if (tarjetaTarea) {
-                tarjetaTarea.scrollIntoView({ behavior: "smooth", block: "center" });
-                tarjetaTarea.style.animation = "pulse 2s ease-in-out";
+            const taskCard = document.querySelector(`[data-id="${task.id}"]`);
+            if (taskCard) {
+                taskCard.scrollIntoView({ behavior: "smooth", block: "center" });
+                taskCard.style.animation = "pulse 2s ease-in-out";
             }
         };
 
         // Auto-cerrar después de 10 segundos
         setTimeout(() => {
-            notificacion.close();
+            notification.close();
         }, 10000);
     }
 
-    mostrarNotificacion(titulo, opciones = {}) {
-        if (this.permisoNotificacion !== "granted") return;
+    showNotification(title, options = {}) {
+        if (this.notificationPermission !== "granted") return;
 
-        this.crearNotificacion(titulo, opciones.body || "", opciones.icon);
+        this.createNotification(title, options.body || "", options.icon);
     }
 
-    crearNotificacion(titulo, mensaje, iconoCustom = null) {
-        if (this.permisoNotificacion !== "granted") return;
+    createNotification(title, message, customIcon = null) {
+        if (this.notificationPermission !== "granted") return;
 
-        const iconoPorDefecto =
+        const defaultIcon =
             'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="%230052CC"/><text x="16" y="22" text-anchor="middle" fill="white" font-size="20">ℹ</text></svg>';
-        const iconoFinal = iconoCustom || iconoPorDefecto;
+        const finalIcon = customIcon || defaultIcon;
 
-        const notificacion = new Notification(titulo, {
-            body: mensaje,
-            icon: iconoFinal,
+        const notification = new Notification(title, {
+            body: message,
+            icon: finalIcon,
         });
 
         setTimeout(() => {
-            notificacion.close();
+            notification.close();
         }, 5000);
     }
 
-    formatearFecha(fechaISO) {
-        if (!fechaISO) return "";
+    formatDate(dateISO) {
+        if (!dateISO) return "";
 
-        const fecha = new Date(fechaISO);
-        const opciones = {
+        const date = new Date(dateISO);
+        const options = {
             weekday: "long",
             day: "2-digit",
             month: "long",
             year: "numeric",
         };
 
-        return fecha.toLocaleDateString("es-ES", opciones);
+        return date.toLocaleDateString("es-ES", options);
     }
 
-    limpiarNotificaciones() {
-        this.tareasNotificadas.clear();
+    clearNotifications() {
+        this.notifiedTasks.clear();
     }
 }
 
+// Traduce las tareas guardadas con las claves y valores antiguos en español
+// para que el tablero siga mostrando la información previa tras la migración.
+const TASK_FIELD_MAP = {
+    titulo: "title",
+    descripcion: "description",
+    prioridad: "priority",
+    estado: "status",
+    etiquetas: "tags",
+    idTarea: "taskId",
+    fechaInicio: "startDate",
+    fechaFin: "endDate",
+};
+
+const TASK_VALUE_MAP = {
+    priority: { alta: "high", media: "medium", baja: "low" },
+    status: {
+        hacer: "todo",
+        progreso: "in-progress",
+        revision: "review",
+        completado: "done",
+    },
+};
+
+function migrateTask(task) {
+    const migrated = { ...task };
+
+    for (const [oldField, newField] of Object.entries(TASK_FIELD_MAP)) {
+        if (oldField in migrated && !(newField in migrated)) {
+            migrated[newField] = migrated[oldField];
+        }
+        if (oldField !== newField) {
+            delete migrated[oldField];
+        }
+    }
+
+    for (const [field, values] of Object.entries(TASK_VALUE_MAP)) {
+        if (typeof migrated[field] === "string" && values[migrated[field]]) {
+            migrated[field] = values[migrated[field]];
+        }
+    }
+
+    return migrated;
+}
+
 // Tablero Kanban JavaScript con almacenamiento local
-class TableroKanban {
+class KanbanBoard {
     constructor() {
-        this.tareas = [];
-        this.filtroActual = "todas";
-        this.elementoArrastrado = null;
-        this.contadorIdTareas = 1;
-        this.confirmacionCallback = null;
+        this.tasks = [];
+        this.currentFilter = "all";
+        this.draggedElement = null;
+        this.taskIdCounter = 1;
+        this.confirmationCallback = null;
 
         this.init();
     }
 
     init() {
-        this.cargarTareasDesdeAlmacenamiento();
-        this.renderizarTodasTareas();
-        this.configurarEventListeners();
-        this.actualizarContadoresTareas();
+        this.loadTasksFromStorage();
+        this.renderAllTasks();
+        this.setupEventListeners();
+        this.updateTaskCounters();
     }
 
     // Métodos de almacenamiento local
-    cargarTareasDesdeAlmacenamiento() {
-        const tareasAlmacenadas = localStorage.getItem("tareasKanban");
-        const contadorAlmacenado = localStorage.getItem("contadorTareasKanban");
+    loadTasksFromStorage() {
+        const storedTasks = localStorage.getItem("tareasKanban");
+        const storedCounter = localStorage.getItem("contadorTareasKanban");
 
-        if (tareasAlmacenadas) {
+        if (storedTasks) {
             try {
-                this.tareas = JSON.parse(tareasAlmacenadas);
+                this.tasks = JSON.parse(storedTasks).map((task) => migrateTask(task));
             } catch (error) {
                 console.error("Error al cargar tareas desde almacenamiento:", error);
-                this.tareas = this.obtenerTareasPorDefecto();
-                this.guardarTareasEnAlmacenamiento();
+                this.tasks = this.getDefaultTasks();
+                this.saveTasksToStorage();
             }
         } else {
-            this.tareas = this.obtenerTareasPorDefecto();
-            this.guardarTareasEnAlmacenamiento();
+            this.tasks = this.getDefaultTasks();
+            this.saveTasksToStorage();
         }
 
-        if (contadorAlmacenado) {
-            this.contadorIdTareas = parseInt(contadorAlmacenado, 10);
+        if (storedCounter) {
+            this.taskIdCounter = parseInt(storedCounter, 10);
         } else {
-            this.contadorIdTareas =
-                this.tareas.length > 0
-                    ? Math.max(...this.tareas.map((t) => parseInt(t.id, 10))) + 1
+            this.taskIdCounter =
+                this.tasks.length > 0
+                    ? Math.max(...this.tasks.map((t) => parseInt(t.id, 10))) + 1
                     : 1;
         }
     }
 
-    guardarTareasEnAlmacenamiento() {
+    saveTasksToStorage() {
         try {
-            localStorage.setItem("tareasKanban", JSON.stringify(this.tareas));
-            localStorage.setItem("contadorTareasKanban", this.contadorIdTareas.toString());
+            localStorage.setItem("tareasKanban", JSON.stringify(this.tasks));
+            localStorage.setItem("contadorTareasKanban", this.taskIdCounter.toString());
         } catch (error) {
             console.error("Error al guardar tareas en almacenamiento:", error);
-            this.mostrarNotificacion("Error al guardar las tareas");
+            this.showNotification("Error al guardar las tareas");
         }
     }
 
-    obtenerTareasPorDefecto() {
+    getDefaultTasks() {
         return [];
     }
 
-    renderizarTodasTareas() {
+    renderAllTasks() {
         // Borrar todas las tareas existentes del DOM
-        document.querySelectorAll(".tarjeta-tarea").forEach((card) => card.remove());
+        document.querySelectorAll(".task-card").forEach((card) => card.remove());
 
         // Representar tareas en sus respectivas columnas
-        this.tareas.forEach((tarea) => {
-            this.renderizarTarea(tarea);
+        this.tasks.forEach((task) => {
+            this.renderTask(task);
         });
     }
 
-    configurarEventListeners() {
+    setupEventListeners() {
         // Controles modales
-        const botonAgregarTarea = document.getElementById("boton-agregar-tarea");
-        const modalTarea = document.getElementById("modal-tarea");
-        const cerrarModal = document.getElementById("cerrar-modal");
-        const botonCancelar = document.getElementById("boton-cancelar");
-        const formularioTarea = document.querySelector(".formulario-tarea");
+        const addTaskButton = document.getElementById("add-task-button");
+        const taskModal = document.getElementById("task-modal");
+        const closeModal = document.getElementById("close-modal");
+        const cancelButton = document.getElementById("cancel-button");
+        const taskForm = document.querySelector(".task-form");
 
         // Controles modales de confirmación
-        const modalConfirmacion = document.getElementById("modal-confirmacion");
-        const cerrarModalConfirmacion = document.getElementById("cerrar-modal-confirmacion");
-        const botonCancelarConfirmacion = document.getElementById("boton-cancelar-confirmacion");
-        const botonConfirmarConfirmacion = document.getElementById("boton-confirmar-confirmacion");
+        const confirmationModal = document.getElementById("confirmation-modal");
+        const closeConfirmationModal = document.getElementById("close-confirmation-modal");
+        const cancelConfirmationButton = document.getElementById("cancel-confirmation-button");
+        const confirmConfirmationButton = document.getElementById("confirm-confirmation-button");
 
-        botonAgregarTarea.addEventListener("click", () => this.abrirModal());
-        cerrarModal.addEventListener("click", () => this.cerrarModal());
-        botonCancelar.addEventListener("click", () => this.cerrarModal());
+        addTaskButton.addEventListener("click", () => this.openModal());
+        closeModal.addEventListener("click", () => this.closeModal());
+        cancelButton.addEventListener("click", () => this.closeModal());
 
-        modalTarea.addEventListener("click", (e) => {
-            if (e.target === modalTarea) {
-                this.cerrarModal();
+        taskModal.addEventListener("click", (e) => {
+            if (e.target === taskModal) {
+                this.closeModal();
             }
         });
 
         // Escuchadores de eventos modales de confirmación
-        cerrarModalConfirmacion.addEventListener("click", () => this.cerrarModalConfirmacion());
-        botonCancelarConfirmacion.addEventListener("click", () => this.cerrarModalConfirmacion());
+        closeConfirmationModal.addEventListener("click", () => this.closeConfirmationModal());
+        cancelConfirmationButton.addEventListener("click", () => this.closeConfirmationModal());
 
-        modalConfirmacion.addEventListener("click", (e) => {
-            if (e.target === modalConfirmacion) {
-                this.cerrarModalConfirmacion();
+        confirmationModal.addEventListener("click", (e) => {
+            if (e.target === confirmationModal) {
+                this.closeConfirmationModal();
             }
         });
 
-        botonConfirmarConfirmacion.addEventListener("click", () => {
-            if (this.confirmacionCallback) {
-                this.confirmacionCallback();
-                this.cerrarModalConfirmacion();
+        confirmConfirmationButton.addEventListener("click", () => {
+            if (this.confirmationCallback) {
+                this.confirmationCallback();
+                this.closeConfirmationModal();
             }
         });
 
-        formularioTarea.addEventListener("submit", (e) => {
+        taskForm.addEventListener("submit", (e) => {
             e.preventDefault();
-            const idEdicion = formularioTarea.dataset.idEdicion;
-            if (idEdicion) {
-                this.actualizarTarea(idEdicion);
+            const editId = taskForm.dataset.editId;
+            if (editId) {
+                this.updateTask(editId);
             } else {
-                this.crearTarea();
+                this.createTask();
             }
         });
 
         // Botones de filtro
-        const botonesFiltro = document.querySelectorAll(".boton-filtro");
-        botonesFiltro.forEach((boton) => {
-            boton.addEventListener("click", () => {
-                botonesFiltro.forEach((b) => b.classList.remove("activo"));
-                boton.classList.add("activo");
-                this.filtroActual = boton.dataset.filtro;
-                this.aplicarFiltro();
+        const filterButtons = document.querySelectorAll(".filter-button");
+        filterButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                filterButtons.forEach((b) => b.classList.remove("active"));
+                button.classList.add("active");
+                this.currentFilter = button.dataset.filter;
+                this.applyFilter();
             });
         });
 
         // Arrastrar y soltar
-        this.configurarArrastrarSoltar();
+        this.setupDragAndDrop();
 
         // Menús de columnas
-        const menusColumna = document.querySelectorAll(".menu-columna");
-        menusColumna.forEach((menu) => {
+        const columnMenus = document.querySelectorAll(".column-menu");
+        columnMenus.forEach((menu) => {
             menu.addEventListener("click", (e) => {
                 e.stopPropagation();
-                this.mostrarMenuColumna(menu);
+                this.showColumnMenu(menu);
             });
         });
 
         // Interacciones de la tarjeta de tareas
         document.addEventListener("click", (e) => {
-            if (e.target.closest(".tarjeta-tarea")) {
-                const tarjetaTarea = e.target.closest(".tarjeta-tarea");
+            if (e.target.closest(".task-card")) {
+                const taskCard = e.target.closest(".task-card");
                 // No abre el modo de edición si hace clic en el botón Eliminar, en el asignado o en las etiquetas
                 if (
-                    !e.target.closest(".asignado-tarea") &&
-                    !e.target.closest(".etiquetas-tarea") &&
-                    !e.target.closest(".boton-eliminar-tarea")
+                    !e.target.closest(".task-assignee") &&
+                    !e.target.closest(".task-tags") &&
+                    !e.target.closest(".task-delete-button")
                 ) {
-                    this.editarTarea(tarjetaTarea);
+                    this.editTask(taskCard);
                 }
             }
         });
     }
 
-    configurarArrastrarSoltar() {
-        const columnas = document.querySelectorAll(".columna");
+    setupDragAndDrop() {
+        const columns = document.querySelectorAll(".column");
 
-        columnas.forEach((columna) => {
-            const contenidoColumna = columna.querySelector(".contenido-columna");
+        columns.forEach((column) => {
+            const columnContent = column.querySelector(".column-content");
 
-            contenidoColumna.addEventListener("dragover", (e) => {
+            columnContent.addEventListener("dragover", (e) => {
                 e.preventDefault();
                 e.dataTransfer.dropEffect = "move";
 
-                if (
-                    this.elementoArrastrado &&
-                    !contenidoColumna.contains(this.elementoArrastrado)
-                ) {
-                    columna.classList.add("arrastrar-sobre");
+                if (this.draggedElement && !columnContent.contains(this.draggedElement)) {
+                    column.classList.add("drag-over");
                 }
             });
 
-            contenidoColumna.addEventListener("dragleave", () => {
-                columna.classList.remove("arrastrar-sobre");
+            columnContent.addEventListener("dragleave", () => {
+                column.classList.remove("drag-over");
             });
 
-            contenidoColumna.addEventListener("drop", (e) => {
+            columnContent.addEventListener("drop", (e) => {
                 e.preventDefault();
-                columna.classList.remove("arrastrar-sobre");
+                column.classList.remove("drag-over");
 
-                if (this.elementoArrastrado) {
-                    const nuevoEstado = columna.dataset.estado;
-                    this.moverTarea(this.elementoArrastrado, nuevoEstado);
+                if (this.draggedElement) {
+                    const newStatus = column.dataset.status;
+                    this.moveTask(this.draggedElement, newStatus);
                 }
             });
         });
     }
 
-    moverTarea(tarjetaTarea, nuevoEstado) {
-        const nuevaColumna = document.querySelector(
-            `[data-estado="${nuevoEstado}"] .contenido-columna`
-        );
+    moveTask(taskCard, newStatus) {
+        const newColumn = document.querySelector(`[data-estado="${newStatus}"] .contenido-columna`);
 
-        if (nuevaColumna && !nuevaColumna.contains(tarjetaTarea)) {
-            nuevaColumna.appendChild(tarjetaTarea);
+        if (newColumn && !newColumn.contains(taskCard)) {
+            newColumn.appendChild(taskCard);
 
             // Actualizar datos de la tarea
-            const idTarea = tarjetaTarea.dataset.id;
-            const tarea = this.tareas.find((t) => t.id === idTarea);
-            if (tarea) {
-                tarea.estado = nuevoEstado;
-                this.guardarTareasEnAlmacenamiento();
+            const taskId = taskCard.dataset.id;
+            const task = this.tasks.find((t) => t.id === taskId);
+            if (task) {
+                task.status = newStatus;
+                this.saveTasksToStorage();
             }
 
-            this.actualizarContadoresTareas();
-            this.mostrarNotificacion("Tarea movida exitosamente");
+            this.updateTaskCounters();
+            this.showNotification("Tarea movida exitosamente");
         }
     }
 
-    abrirModal(datosTarea = null) {
-        const modalTarea = document.getElementById("modal-tarea");
-        const tituloModal = modalTarea.querySelector("h3");
-        const formulario = document.querySelector(".formulario-tarea");
+    openModal(taskData = null) {
+        const taskModal = document.getElementById("task-modal");
+        const modalTitle = taskModal.querySelector("h3");
+        const form = document.querySelector(".task-form");
 
-        if (datosTarea) {
-            tituloModal.textContent = "Editar Tarea";
-            document.getElementById("titulo-tarea").value = datosTarea.titulo;
-            document.getElementById("descripcion-tarea").value = datosTarea.descripcion;
-            document.getElementById("prioridad-tarea").value = datosTarea.prioridad;
-            document.getElementById("estado-tarea").value = datosTarea.estado;
-            document.getElementById("etiquetas-tarea").value = datosTarea.etiquetas.join(", ");
-            document.getElementById("fecha-inicio-tarea").value = datosTarea.fechaInicio || "";
-            document.getElementById("fecha-fin-tarea").value = datosTarea.fechaFin || "";
-            formulario.dataset.idEdicion = datosTarea.id;
+        if (taskData) {
+            modalTitle.textContent = "Editar Tarea";
+            document.getElementById("task-title").value = taskData.title;
+            document.getElementById("task-description").value = taskData.description;
+            document.getElementById("task-priority").value = taskData.priority;
+            document.getElementById("task-status").value = taskData.status;
+            document.getElementById("task-tags").value = taskData.tags.join(", ");
+            document.getElementById("task-start-date").value = taskData.startDate || "";
+            document.getElementById("task-end-date").value = taskData.endDate || "";
+            form.dataset.editId = taskData.id;
 
             // Cambiar texto del botón a "Actualizar Tarea"
-            const botonSubmit = formulario.querySelector('button[type="submit"]');
-            botonSubmit.textContent = "Actualizar Tarea";
+            const submitButton = form.querySelector('button[type="submit"]');
+            submitButton.textContent = "Actualizar Tarea";
         } else {
-            tituloModal.textContent = "Crear Nueva Tarea";
-            formulario.reset();
-            delete formulario.dataset.idEdicion;
+            modalTitle.textContent = "Crear Nueva Tarea";
+            form.reset();
+            delete form.dataset.editId;
 
             // Cambiar texto del botón a "Crear Tarea"
-            const botonSubmit = formulario.querySelector('button[type="submit"]');
-            botonSubmit.textContent = "Crear Tarea";
+            const submitButton = form.querySelector('button[type="submit"]');
+            submitButton.textContent = "Crear Tarea";
         }
 
-        modalTarea.classList.add("activo");
+        taskModal.classList.add("active");
     }
 
-    cerrarModal() {
-        const modalTarea = document.getElementById("modal-tarea");
-        modalTarea.classList.remove("activo");
+    closeModal() {
+        const taskModal = document.getElementById("task-modal");
+        taskModal.classList.remove("active");
     }
 
-    crearTarea() {
-        const titulo = document.getElementById("titulo-tarea").value;
-        const descripcion = document.getElementById("descripcion-tarea").value;
-        const prioridad = document.getElementById("prioridad-tarea").value;
-        const estado = document.getElementById("estado-tarea").value;
-        const etiquetas = document
-            .getElementById("etiquetas-tarea")
+    createTask() {
+        const title = document.getElementById("task-title").value;
+        const description = document.getElementById("task-description").value;
+        const priority = document.getElementById("task-priority").value;
+        const status = document.getElementById("task-status").value;
+        const tags = document
+            .getElementById("task-tags")
             .value.split(",")
-            .map((etiqueta) => etiqueta.trim())
-            .filter((etiqueta) => etiqueta);
-        const fechaInicio = document.getElementById("fecha-inicio-tarea").value;
-        const fechaFin = document.getElementById("fecha-fin-tarea").value;
+            .map((tag) => tag.trim())
+            .filter((tag) => tag);
+        const startDate = document.getElementById("task-start-date").value;
+        const endDate = document.getElementById("task-end-date").value;
 
-        const datosTarea = {
-            id: this.contadorIdTareas.toString(),
-            titulo,
-            descripcion,
-            prioridad,
-            estado,
-            etiquetas,
-            idTarea: `PROJ-${String(this.contadorIdTareas).padStart(3, "0")}`,
-            fechaInicio,
-            fechaFin,
+        const taskData = {
+            id: this.taskIdCounter.toString(),
+            title,
+            description,
+            priority,
+            status,
+            tags,
+            taskId: `PROJ-${String(this.taskIdCounter).padStart(3, "0")}`,
+            startDate,
+            endDate,
         };
 
-        this.tareas.push(datosTarea);
-        this.renderizarTarea(datosTarea);
-        this.actualizarContadoresTareas();
-        this.guardarTareasEnAlmacenamiento();
-        this.cerrarModal();
-        this.mostrarNotificacion("Tarea creada exitosamente");
+        this.tasks.push(taskData);
+        this.renderTask(taskData);
+        this.updateTaskCounters();
+        this.saveTasksToStorage();
+        this.closeModal();
+        this.showNotification("Tarea creada exitosamente");
 
         // Verificar si se necesita programar notificación
-        if (window.gestorNotificaciones && datosTarea.fechaFin) {
-            window.gestorNotificaciones.verificarTareasProximas();
+        if (window.notificationManager && taskData.endDate) {
+            window.notificationManager.checkUpcomingTasks();
         }
 
-        this.contadorIdTareas++;
+        this.taskIdCounter++;
     }
 
-    actualizarTarea(idTarea) {
-        const tarea = this.tareas.find((t) => t.id === idTarea);
-        if (!tarea) return;
+    updateTask(taskId) {
+        const task = this.tasks.find((t) => t.id === taskId);
+        if (!task) return;
 
-        const titulo = document.getElementById("titulo-tarea").value;
-        const descripcion = document.getElementById("descripcion-tarea").value;
-        const prioridad = document.getElementById("prioridad-tarea").value;
-        const estado = document.getElementById("estado-tarea").value;
-        const etiquetas = document
-            .getElementById("etiquetas-tarea")
+        const title = document.getElementById("task-title").value;
+        const description = document.getElementById("task-description").value;
+        const priority = document.getElementById("task-priority").value;
+        const status = document.getElementById("task-status").value;
+        const tags = document
+            .getElementById("task-tags")
             .value.split(",")
-            .map((etiqueta) => etiqueta.trim())
-            .filter((etiqueta) => etiqueta);
-        const fechaInicio = document.getElementById("fecha-inicio-tarea").value;
-        const fechaFin = document.getElementById("fecha-fin-tarea").value;
+            .map((tag) => tag.trim())
+            .filter((tag) => tag);
+        const startDate = document.getElementById("task-start-date").value;
+        const endDate = document.getElementById("task-end-date").value;
 
-        tarea.titulo = titulo;
-        tarea.descripcion = descripcion;
-        tarea.prioridad = prioridad;
-        tarea.estado = estado;
-        tarea.etiquetas = etiquetas;
-        tarea.fechaInicio = fechaInicio;
-        tarea.fechaFin = fechaFin;
+        task.title = title;
+        task.description = description;
+        task.priority = priority;
+        task.status = status;
+        task.tags = tags;
+        task.startDate = startDate;
+        task.endDate = endDate;
 
-        this.guardarTareasEnAlmacenamiento();
-        this.renderizarTodasTareas();
-        this.actualizarContadoresTareas();
-        this.cerrarModal();
-        this.mostrarNotificacion("Tarea actualizada exitosamente");
+        this.saveTasksToStorage();
+        this.renderAllTasks();
+        this.updateTaskCounters();
+        this.closeModal();
+        this.showNotification("Tarea actualizada exitosamente");
 
         // Verificar si se necesita programar notificación
-        if (window.gestorNotificaciones && fechaFin) {
-            window.gestorNotificaciones.verificarTareasProximas();
+        if (window.notificationManager && endDate) {
+            window.notificationManager.checkUpcomingTasks();
         }
     }
 
-    editarTarea(tarjetaTarea) {
-        const idTarea = tarjetaTarea.dataset.id;
-        const tarea = this.tareas.find((t) => t.id === idTarea);
+    editTask(taskCard) {
+        const taskId = taskCard.dataset.id;
+        const task = this.tasks.find((t) => t.id === taskId);
 
-        if (tarea) {
-            this.abrirModal(tarea);
+        if (task) {
+            this.openModal(task);
         }
     }
 
-    eliminarTarea(idTarea) {
-        const tarea = this.tareas.find((t) => t.id === idTarea);
+    deleteTask(taskId) {
+        const task = this.tasks.find((t) => t.id === taskId);
 
-        if (tarea) {
-            this.mostrarModalConfirmacion(
+        if (task) {
+            this.showConfirmationModal(
                 "Eliminar Tarea",
-                `¿Estás seguro de que quieres eliminar la tarea "${tarea.titulo}"?`,
+                `¿Estás seguro de que quieres eliminar la tarea "${task.title}"?`,
                 "Esta acción no se puede deshacer.",
                 "danger",
                 "Eliminar Tarea",
                 () => {
-                    this.tareas = this.tareas.filter((t) => t.id !== idTarea);
-                    this.reorganizarIdsTareas();
-                    this.renderizarTodasTareas();
-                    this.actualizarContadoresTareas();
-                    this.mostrarNotificacion("Tarea eliminada exitosamente");
+                    this.tasks = this.tasks.filter((t) => t.id !== taskId);
+                    this.reorganizeTaskIds();
+                    this.renderAllTasks();
+                    this.updateTaskCounters();
+                    this.showNotification("Tarea eliminada exitosamente");
                 }
             );
         }
     }
 
-    reorganizarIdsTareas() {
+    reorganizeTaskIds() {
         // Ordenar tareas por su ID numérico actual
-        this.tareas.sort((a, b) => parseInt(a.id) - parseInt(b.id));
+        this.tasks.sort((a, b) => parseInt(a.id) - parseInt(b.id));
 
         // Reasignar IDs continuos
-        this.tareas.forEach((tarea, indice) => {
-            const nuevoId = (indice + 1).toString();
-            const nuevoIdTarea = `PROJ-${String(indice + 1).padStart(3, "0")}`;
+        this.tasks.forEach((task, index) => {
+            const newId = (index + 1).toString();
+            const newTaskId = `PROJ-${String(index + 1).padStart(3, "0")}`;
 
             // Actualizar la tarea con los nuevos IDs
-            tarea.id = nuevoId;
-            tarea.idTarea = nuevoIdTarea;
+            task.id = newId;
+            task.taskId = newTaskId;
         });
 
         // Actualizar el contador al siguiente ID disponible
-        this.contadorIdTareas = this.tareas.length + 1;
+        this.taskIdCounter = this.tasks.length + 1;
 
         // Guardar cambios en localStorage
-        this.guardarTareasEnAlmacenamiento();
+        this.saveTasksToStorage();
     }
 
-    mostrarModalConfirmacion(
-        titulo,
-        mensaje,
-        descripcion,
-        tipo = "warning",
-        textoBoton = "Confirmar",
+    showConfirmationModal(
+        title,
+        message,
+        description,
+        type = "warning",
+        buttonText = "Confirmar",
         callback
     ) {
-        const modalConfirmacion = document.getElementById("modal-confirmacion");
-        const tituloConfirmacion = document.getElementById("titulo-confirmacion");
-        const mensajeConfirmacion = document.getElementById("mensaje-confirmacion");
-        const descripcionConfirmacion = document.getElementById("descripcion-confirmacion");
-        const iconoConfirmacion = document.getElementById("icono-confirmacion");
-        const textoBotonConfirmar = document.getElementById("texto-boton-confirmar");
-        const botonConfirmar = document.getElementById("boton-confirmar-confirmacion");
+        const confirmationModal = document.getElementById("confirmation-modal");
+        const confirmationTitle = document.getElementById("confirmation-title");
+        const confirmationMessage = document.getElementById("confirmation-message");
+        const confirmationDescription = document.getElementById("confirmation-description");
+        const confirmationIcon = document.getElementById("confirmation-icon");
+        const confirmButtonText = document.getElementById("confirm-button-text");
+        const confirmButton = document.getElementById("confirm-confirmation-button");
 
         // Establecer contenido
-        tituloConfirmacion.textContent = titulo;
-        mensajeConfirmacion.textContent = mensaje;
-        descripcionConfirmacion.textContent = descripcion;
-        textoBotonConfirmar.textContent = textoBoton;
+        confirmationTitle.textContent = title;
+        confirmationMessage.textContent = message;
+        confirmationDescription.textContent = description;
+        confirmButtonText.textContent = buttonText;
 
         // Establecer el estilo de icono y botón
-        iconoConfirmacion.className = `icono-confirmacion ${tipo}`;
-        botonConfirmar.className = `boton ${tipo === "danger" ? "boton-peligro" : "boton-primario"}`;
+        confirmationIcon.className = `confirmation-icon ${type}`;
+        confirmButton.className = `button ${type === "danger" ? "button-danger" : "button-primary"}`;
 
         // Establecer devolución de llamada
-        this.confirmacionCallback = callback;
+        this.confirmationCallback = callback;
 
         // Mostrar modal
-        modalConfirmacion.classList.add("activo");
+        confirmationModal.classList.add("active");
     }
 
-    cerrarModalConfirmacion() {
-        const modalConfirmacion = document.getElementById("modal-confirmacion");
-        modalConfirmacion.classList.remove("activo");
-        this.confirmacionCallback = null;
+    closeConfirmationModal() {
+        const confirmationModal = document.getElementById("confirmation-modal");
+        confirmationModal.classList.remove("active");
+        this.confirmationCallback = null;
     }
 
-    renderizarTarea(datosTarea) {
-        const contenidoColumna = document.querySelector(
-            `[data-estado="${datosTarea.estado}"] .contenido-columna`
+    renderTask(taskData) {
+        const columnContent = document.querySelector(
+            `[data-estado="${taskData.status}"] .contenido-columna`
         );
 
-        const tarjetaTarea = document.createElement("div");
-        tarjetaTarea.className = "tarjeta-tarea";
-        tarjetaTarea.draggable = true;
-        tarjetaTarea.dataset.id = datosTarea.id;
-        tarjetaTarea.dataset.prioridad = datosTarea.prioridad;
+        const taskCard = document.createElement("div");
+        taskCard.className = "task-card";
+        taskCard.draggable = true;
+        taskCard.dataset.id = taskData.id;
+        taskCard.dataset.priority = taskData.priority;
 
-        const clasePrioridad = `prioridad-${datosTarea.prioridad}`;
-        const elementosEtiqueta = datosTarea.etiquetas.map((etiqueta) => {
-            const claseEtiqueta = this.obtenerClaseEtiqueta(etiqueta);
-            const etiquetaElement = document.createElement("span");
-            etiquetaElement.className = `etiqueta etiqueta-${claseEtiqueta}`;
-            etiquetaElement.textContent = etiqueta;
-            return etiquetaElement;
+        const priorityClass = `priority-${taskData.priority}`;
+        const tagElements = taskData.tags.map((tag) => {
+            const tagClass = this.getTagClass(tag);
+            const tagElement = document.createElement("span");
+            tagElement.className = `tag tag-${tagClass}`;
+            tagElement.textContent = tag;
+            return tagElement;
         });
 
         // Crear estructura de la tarjeta usando createElement
-        const encabezadoTarea = document.createElement("div");
-        encabezadoTarea.className = "encabezado-tarea";
+        const taskHeader = document.createElement("div");
+        taskHeader.className = "task-header";
 
-        const idTareaSpan = document.createElement("span");
-        idTareaSpan.className = "id-tarea";
-        idTareaSpan.textContent = datosTarea.idTarea;
+        const taskIdSpan = document.createElement("span");
+        taskIdSpan.className = "task-id";
+        taskIdSpan.textContent = taskData.taskId;
 
-        const prioridadTarea = document.createElement("div");
-        prioridadTarea.className = `prioridad-tarea ${clasePrioridad}`;
+        const taskPriority = document.createElement("div");
+        taskPriority.className = `task-priority ${priorityClass}`;
 
-        encabezadoTarea.appendChild(idTareaSpan);
-        encabezadoTarea.appendChild(prioridadTarea);
+        taskHeader.appendChild(taskIdSpan);
+        taskHeader.appendChild(taskPriority);
 
-        const tituloTarea = document.createElement("h4");
-        tituloTarea.className = "titulo-tarea";
-        tituloTarea.textContent = datosTarea.titulo;
+        const taskTitle = document.createElement("h4");
+        taskTitle.className = "task-title";
+        taskTitle.textContent = taskData.title;
 
-        const descripcionTarea = document.createElement("p");
-        descripcionTarea.className = "descripcion-tarea";
-        descripcionTarea.textContent = datosTarea.descripcion;
+        const taskDescription = document.createElement("p");
+        taskDescription.className = "task-description";
+        taskDescription.textContent = taskData.description;
 
         // Añadir fechas si existen
-        const fechaInicioFormateada = datosTarea.fechaInicio
-            ? this.formatearFecha(datosTarea.fechaInicio)
-            : "";
-        const fechaFinFormateada = datosTarea.fechaFin
-            ? this.formatearFecha(datosTarea.fechaFin)
-            : "";
+        const formattedStartDate = taskData.startDate ? this.formatDate(taskData.startDate) : "";
+        const formattedEndDate = taskData.endDate ? this.formatDate(taskData.endDate) : "";
 
-        if (fechaInicioFormateada || fechaFinFormateada) {
-            const estadoVencimiento = this.obtenerEstadoVencimiento(datosTarea.fechaFin);
-            const claseVencimiento = estadoVencimiento.clase;
-            const iconoVencimiento = estadoVencimiento.icono;
+        if (formattedStartDate || formattedEndDate) {
+            const dueStatus = this.getDueStatus(taskData.endDate);
+            const dueClass = dueStatus.className;
+            const dueIcon = dueStatus.icon;
 
-            const fechasTarea = document.createElement("div");
-            fechasTarea.className = `fechas-tarea ${claseVencimiento}`;
+            const taskDates = document.createElement("div");
+            taskDates.className = `task-dates ${dueClass}`;
 
-            if (fechaInicioFormateada) {
-                const fechaInicioItem = document.createElement("div");
-                fechaInicioItem.className = "fecha-item";
+            if (formattedStartDate) {
+                const startDateItem = document.createElement("div");
+                startDateItem.className = "date-item";
 
-                const iconoInicio = document.createElement("i");
-                iconoInicio.className = "fas fa-calendar-alt";
-                iconoInicio.textContent = ` ${fechaInicioFormateada}`;
+                const startIcon = document.createElement("i");
+                startIcon.className = "fas fa-calendar-alt";
+                startIcon.textContent = ` ${formattedStartDate}`;
 
-                fechaInicioItem.appendChild(iconoInicio);
-                fechasTarea.appendChild(fechaInicioItem);
+                startDateItem.appendChild(startIcon);
+                taskDates.appendChild(startDateItem);
             }
 
-            if (fechaFinFormateada) {
-                const fechaFinItem = document.createElement("div");
-                fechaFinItem.className = `fecha-item fecha-fin ${claseVencimiento}`;
+            if (formattedEndDate) {
+                const endDateItem = document.createElement("div");
+                endDateItem.className = `date-item end-date ${dueClass}`;
 
-                const iconoFin = document.createElement("i");
-                iconoFin.className = `fas ${iconoVencimiento}`;
-                iconoFin.textContent = ` ${fechaFinFormateada}`;
+                const endIcon = document.createElement("i");
+                endIcon.className = `fas ${dueIcon}`;
+                endIcon.textContent = ` ${formattedEndDate}`;
 
-                fechaFinItem.appendChild(iconoFin);
-                fechasTarea.appendChild(fechaFinItem);
+                endDateItem.appendChild(endIcon);
+                taskDates.appendChild(endDateItem);
             }
 
-            tarjetaTarea.appendChild(fechasTarea);
+            taskCard.appendChild(taskDates);
         }
 
         // Añadir títulos y descripción
-        tarjetaTarea.appendChild(encabezadoTarea);
-        tarjetaTarea.appendChild(tituloTarea);
-        tarjetaTarea.appendChild(descripcionTarea);
+        taskCard.appendChild(taskHeader);
+        taskCard.appendChild(taskTitle);
+        taskCard.appendChild(taskDescription);
 
         // Añadir pie con etiquetas y acciones
-        const pieTarea = document.createElement("div");
-        pieTarea.className = "pie-tarea";
+        const taskFooter = document.createElement("div");
+        taskFooter.className = "task-footer";
 
-        const etiquetasTarea = document.createElement("div");
-        etiquetasTarea.className = "etiquetas-tarea";
+        const taskTags = document.createElement("div");
+        taskTags.className = "task-tags";
 
         // Añadir etiquetas
-        elementosEtiqueta.forEach((etiquetaElement) => {
-            etiquetasTarea.appendChild(etiquetaElement);
+        tagElements.forEach((tagElement) => {
+            taskTags.appendChild(tagElement);
         });
 
-        const accionesTarea = document.createElement("div");
-        accionesTarea.className = "acciones-tarea";
+        const taskActions = document.createElement("div");
+        taskActions.className = "task-actions";
 
-        const asignadoTarea = document.createElement("div");
-        asignadoTarea.className = "asignado-tarea";
+        const taskAssignee = document.createElement("div");
+        taskAssignee.className = "task-assignee";
 
-        const iconoUsuario = document.createElement("i");
-        iconoUsuario.className = "fas fa-user";
-        asignadoTarea.appendChild(iconoUsuario);
+        const userIcon = document.createElement("i");
+        userIcon.className = "fas fa-user";
+        taskAssignee.appendChild(userIcon);
 
-        const botonEliminar = document.createElement("button");
-        botonEliminar.className = "boton-eliminar-tarea";
-        botonEliminar.onclick = () => this.eliminarTarea(datosTarea.id);
+        const deleteButton = document.createElement("button");
+        deleteButton.className = "task-delete-button";
+        deleteButton.onclick = () => this.deleteTask(taskData.id);
 
-        const iconoEliminar = document.createElement("i");
-        iconoEliminar.className = "fas fa-trash";
+        const deleteIcon = document.createElement("i");
+        deleteIcon.className = "fas fa-trash";
 
-        botonEliminar.appendChild(iconoEliminar);
+        deleteButton.appendChild(deleteIcon);
 
-        accionesTarea.appendChild(asignadoTarea);
-        accionesTarea.appendChild(botonEliminar);
+        taskActions.appendChild(taskAssignee);
+        taskActions.appendChild(deleteButton);
 
-        pieTarea.appendChild(etiquetasTarea);
-        pieTarea.appendChild(accionesTarea);
+        taskFooter.appendChild(taskTags);
+        taskFooter.appendChild(taskActions);
 
-        tarjetaTarea.appendChild(pieTarea);
+        taskCard.appendChild(taskFooter);
 
-        contenidoColumna.appendChild(tarjetaTarea);
+        columnContent.appendChild(taskCard);
 
         // Reconfigurar la función de arrastrar y soltar para la nueva tarjeta
-        tarjetaTarea.addEventListener("dragstart", (e) => {
-            this.elementoArrastrado = tarjetaTarea;
-            tarjetaTarea.classList.add("arrastrando");
+        taskCard.addEventListener("dragstart", (e) => {
+            this.draggedElement = taskCard;
+            taskCard.classList.add("dragging");
             e.dataTransfer.effectAllowed = "move";
         });
 
-        tarjetaTarea.addEventListener("dragend", () => {
-            tarjetaTarea.classList.remove("arrastrando");
-            this.elementoArrastrado = null;
+        taskCard.addEventListener("dragend", () => {
+            taskCard.classList.remove("dragging");
+            this.draggedElement = null;
         });
     }
 
-    formatearFecha(fechaISO) {
-        if (!fechaISO) return "";
+    formatDate(dateISO) {
+        if (!dateISO) return "";
 
-        const fecha = new Date(fechaISO);
-        const opciones = {
+        const date = new Date(dateISO);
+        const options = {
             day: "2-digit",
             month: "short",
             year: "numeric",
         };
 
-        return fecha.toLocaleDateString("es-ES", opciones);
+        return date.toLocaleDateString("es-ES", options);
     }
 
-    obtenerEstadoVencimiento(fechaFinISO) {
-        if (!fechaFinISO) {
-            return { clase: "", icono: "fa-check-circle" };
+    getDueStatus(endDateISO) {
+        if (!endDateISO) {
+            return { className: "", icon: "fa-check-circle" };
         }
 
         const ahora = new Date();
-        const fechaFin = new Date(fechaFinISO);
-        const manana = new Date(ahora.getTime() + 24 * 60 * 60 * 1000);
-        const tresDias = new Date(ahora.getTime() + 3 * 24 * 60 * 60 * 1000);
+        const endDate = new Date(endDateISO);
+        const tomorrow = new Date(ahora.getTime() + 24 * 60 * 60 * 1000);
+        const threeDays = new Date(ahora.getTime() + 3 * 24 * 60 * 60 * 1000);
 
         // Vencida
-        if (fechaFin < ahora) {
-            return { clase: "vencida", icono: "fa-exclamation-circle" };
+        if (endDate < ahora) {
+            return { className: "overdue", icon: "fa-exclamation-circle" };
         }
 
         // Vence hoy
-        if (fechaFin.toDateString() === ahora.toDateString()) {
-            return { clase: "vence-hoy", icono: "fa-clock" };
+        if (endDate.toDateString() === ahora.toDateString()) {
+            return { className: "due-today", icon: "fa-clock" };
         }
 
         // Vence mañana
-        if (fechaFin <= manana) {
-            return { clase: "vence-manana", icono: "fa-exclamation-triangle" };
+        if (endDate <= tomorrow) {
+            return { className: "due-tomorrow", icon: "fa-exclamation-triangle" };
         }
 
         // Vence en menos de 3 días
-        if (fechaFin <= tresDias) {
-            return { clase: "vence-pronto", icono: "fa-bell" };
+        if (endDate <= threeDays) {
+            return { className: "due-soon", icon: "fa-bell" };
         }
 
         // Normal
-        return { clase: "normal", icono: "fa-check-circle" };
+        return { className: "normal", icon: "fa-check-circle" };
     }
 
-    obtenerClaseEtiqueta(etiqueta) {
-        const mapaEtiquetas = {
+    getTagClass(tag) {
+        const tagMap = {
             diseño: "design",
             frontend: "frontend",
             backend: "backend",
@@ -794,229 +829,229 @@ class TableroKanban {
             reunión: "meeting",
         };
 
-        return mapaEtiquetas[etiqueta.toLowerCase()] || "design";
+        return tagMap[tag.toLowerCase()] || "design";
     }
 
-    actualizarContadoresTareas() {
-        const columnas = document.querySelectorAll(".columna");
+    updateTaskCounters() {
+        const columns = document.querySelectorAll(".column");
 
-        columnas.forEach((columna) => {
-            const contadorTareas = columna.querySelectorAll(".tarjeta-tarea").length;
-            const elementoContador = columna.querySelector(".contador-tareas");
-            elementoContador.textContent = contadorTareas;
+        columns.forEach((column) => {
+            const taskCount = column.querySelectorAll(".task-card").length;
+            const counterElement = column.querySelector(".task-counter");
+            counterElement.textContent = taskCount;
         });
 
         // Actualizar las estadísticas del tablero
-        const totalTareas = document.querySelectorAll(".tarjeta-tarea").length;
-        const estadisticasTablero = document.querySelector(".estadisticas-tablero");
-        estadisticasTablero.textContent = `${totalTareas} tareas`;
+        const totalTasks = document.querySelectorAll(".task-card").length;
+        const boardStats = document.querySelector(".board-stats");
+        boardStats.textContent = `${totalTasks} tareas`;
     }
 
-    aplicarFiltro() {
-        const tarjetasTarea = document.querySelectorAll(".tarjeta-tarea");
+    applyFilter() {
+        const taskCards = document.querySelectorAll(".task-card");
 
-        tarjetasTarea.forEach((tarjeta) => {
-            const prioridad = tarjeta.dataset.prioridad;
+        taskCards.forEach((card) => {
+            const priority = card.dataset.priority;
 
-            if (this.filtroActual === "todas") {
-                tarjeta.style.display = "block";
-            } else if (this.filtroActual === "alta" && prioridad === "alta") {
-                tarjeta.style.display = "block";
-            } else if (this.filtroActual === "media" && prioridad === "media") {
-                tarjeta.style.display = "block";
-            } else if (this.filtroActual === "baja" && prioridad === "baja") {
-                tarjeta.style.display = "block";
+            if (this.currentFilter === "all") {
+                card.style.display = "block";
+            } else if (this.currentFilter === "high" && priority === "high") {
+                card.style.display = "block";
+            } else if (this.currentFilter === "medium" && priority === "medium") {
+                card.style.display = "block";
+            } else if (this.currentFilter === "low" && priority === "low") {
+                card.style.display = "block";
             } else {
-                tarjeta.style.display = "none";
+                card.style.display = "none";
             }
         });
     }
 
-    mostrarMenuColumna(botonMenu) {
-        const columna = botonMenu.closest(".columna");
-        const tituloColumna = columna.querySelector(".titulo-columna h3").textContent;
+    showColumnMenu(menuButton) {
+        const column = menuButton.closest(".column");
+        const columnTitle = column.querySelector(".column-title h3").textContent;
 
         // Crear opciones modales
-        const opcionesModal = document.createElement("div");
-        opcionesModal.className = "modal activo";
+        const modalOptions = document.createElement("div");
+        modalOptions.className = "modal active";
 
         // Crear contenido modal usando createElement
-        const contenidoModal = document.createElement("div");
-        contenidoModal.className = "contenido-modal modal-opciones";
+        const modalContent = document.createElement("div");
+        modalContent.className = "modal-content options-modal";
 
         // Encabezado modal
-        const encabezadoModal = document.createElement("div");
-        encabezadoModal.className = "encabezado-modal";
+        const modalHeader = document.createElement("div");
+        modalHeader.className = "modal-header";
 
-        const tituloModal = document.createElement("h3");
-        tituloModal.textContent = "Acciones de Columna";
+        const modalTitle = document.createElement("h3");
+        modalTitle.textContent = "Acciones de Columna";
 
-        const botonCerrar = document.createElement("button");
-        botonCerrar.className = "cerrar-modal";
+        const closeButton = document.createElement("button");
+        closeButton.className = "close-modal";
 
-        const iconoCerrar = document.createElement("i");
-        iconoCerrar.className = "fas fa-times";
+        const closeIcon = document.createElement("i");
+        closeIcon.className = "fas fa-times";
 
-        botonCerrar.appendChild(iconoCerrar);
-        encabezadoModal.appendChild(tituloModal);
-        encabezadoModal.appendChild(botonCerrar);
+        closeButton.appendChild(closeIcon);
+        modalHeader.appendChild(modalTitle);
+        modalHeader.appendChild(closeButton);
 
         // Cuerpo modal
-        const cuerpoModal = document.createElement("div");
-        cuerpoModal.className = "cuerpo-modal";
+        const modalBody = document.createElement("div");
+        modalBody.className = "modal-body";
 
-        const tituloColumnaH4 = document.createElement("h4");
-        tituloColumnaH4.textContent = `Columna: ${tituloColumna}`;
+        const columnTitleHeading = document.createElement("h4");
+        columnTitleHeading.textContent = `Columna: ${columnTitle}`;
 
-        const listaOpciones = document.createElement("div");
-        listaOpciones.className = "lista-opciones";
+        const optionsList = document.createElement("div");
+        optionsList.className = "options-list";
 
         // Opción: Limpiar columna
-        const opcionLimpiar = document.createElement("button");
-        opcionLimpiar.className = "opcion-menu";
-        opcionLimpiar.dataset.accion = "limpiar";
+        const clearOption = document.createElement("button");
+        clearOption.className = "menu-option";
+        clearOption.dataset.action = "clear";
 
-        const iconoLimpiar = document.createElement("i");
-        iconoLimpiar.className = "fas fa-broom";
+        const clearIcon = document.createElement("i");
+        clearIcon.className = "fas fa-broom";
 
-        const spanLimpiar = document.createElement("span");
-        spanLimpiar.textContent = "Limpiar columna";
+        const clearSpan = document.createElement("span");
+        clearSpan.textContent = "Limpiar columna";
 
-        const smallLimpiar = document.createElement("small");
-        smallLimpiar.textContent = "Eliminar todas las tareas de esta columna";
+        const clearSmall = document.createElement("small");
+        clearSmall.textContent = "Eliminar todas las tareas de esta columna";
 
-        opcionLimpiar.appendChild(iconoLimpiar);
-        opcionLimpiar.appendChild(spanLimpiar);
-        opcionLimpiar.appendChild(smallLimpiar);
+        clearOption.appendChild(clearIcon);
+        clearOption.appendChild(clearSpan);
+        clearOption.appendChild(clearSmall);
 
         // Opción: Exportar tareas
-        const opcionExportar = document.createElement("button");
-        opcionExportar.className = "opcion-menu";
-        opcionExportar.dataset.accion = "exportar";
+        const exportOption = document.createElement("button");
+        exportOption.className = "menu-option";
+        exportOption.dataset.action = "export";
 
-        const iconoExportar = document.createElement("i");
-        iconoExportar.className = "fas fa-download";
+        const exportIcon = document.createElement("i");
+        exportIcon.className = "fas fa-download";
 
-        const spanExportar = document.createElement("span");
-        spanExportar.textContent = "Exportar tareas";
+        const exportSpan = document.createElement("span");
+        exportSpan.textContent = "Exportar tareas";
 
-        const smallExportar = document.createElement("small");
-        smallExportar.textContent = "Descargar todas las tareas en formato JSON";
+        const exportSmall = document.createElement("small");
+        exportSmall.textContent = "Descargar todas las tareas en formato JSON";
 
-        opcionExportar.appendChild(iconoExportar);
-        opcionExportar.appendChild(spanExportar);
-        opcionExportar.appendChild(smallExportar);
+        exportOption.appendChild(exportIcon);
+        exportOption.appendChild(exportSpan);
+        exportOption.appendChild(exportSmall);
 
         // Opción: Cancelar
-        const opcionCancelar = document.createElement("button");
-        opcionCancelar.className = "opcion-menu opcion-cancelar";
-        opcionCancelar.dataset.accion = "cancelar";
+        const cancelOption = document.createElement("button");
+        cancelOption.className = "menu-option option-cancel";
+        cancelOption.dataset.action = "cancel";
 
-        const iconoCancelar = document.createElement("i");
-        iconoCancelar.className = "fas fa-times";
+        const cancelIcon = document.createElement("i");
+        cancelIcon.className = "fas fa-times";
 
-        const spanCancelar = document.createElement("span");
-        spanCancelar.textContent = "Cancelar";
+        const cancelSpan = document.createElement("span");
+        cancelSpan.textContent = "Cancelar";
 
-        const smallCancelar = document.createElement("small");
-        smallCancelar.textContent = "Cerrar este menú";
+        const cancelSmall = document.createElement("small");
+        cancelSmall.textContent = "Cerrar este menú";
 
-        opcionCancelar.appendChild(iconoCancelar);
-        opcionCancelar.appendChild(spanCancelar);
-        opcionCancelar.appendChild(smallCancelar);
+        cancelOption.appendChild(cancelIcon);
+        cancelOption.appendChild(cancelSpan);
+        cancelOption.appendChild(cancelSmall);
 
         // Ensamblar estructura
-        listaOpciones.appendChild(opcionLimpiar);
-        listaOpciones.appendChild(opcionExportar);
-        listaOpciones.appendChild(opcionCancelar);
+        optionsList.appendChild(clearOption);
+        optionsList.appendChild(exportOption);
+        optionsList.appendChild(cancelOption);
 
-        cuerpoModal.appendChild(tituloColumnaH4);
-        cuerpoModal.appendChild(listaOpciones);
+        modalBody.appendChild(columnTitleHeading);
+        modalBody.appendChild(optionsList);
 
-        contenidoModal.appendChild(encabezadoModal);
-        contenidoModal.appendChild(cuerpoModal);
+        modalContent.appendChild(modalHeader);
+        modalContent.appendChild(modalBody);
 
-        opcionesModal.appendChild(contenidoModal);
+        modalOptions.appendChild(modalContent);
 
-        document.body.appendChild(opcionesModal);
+        document.body.appendChild(modalOptions);
 
         // Agregar detectores de eventos
-        const botonesOpcion = [opcionLimpiar, opcionExportar, opcionCancelar];
+        const optionButtons = [clearOption, exportOption, cancelOption];
 
-        botonCerrar.addEventListener("click", () => {
-            opcionesModal.remove();
+        closeButton.addEventListener("click", () => {
+            modalOptions.remove();
         });
 
-        opcionesModal.addEventListener("click", (e) => {
-            if (e.target === opcionesModal) {
-                opcionesModal.remove();
+        modalOptions.addEventListener("click", (e) => {
+            if (e.target === modalOptions) {
+                modalOptions.remove();
             }
         });
 
-        botonesOpcion.forEach((boton) => {
-            boton.addEventListener("click", () => {
-                const accion = boton.dataset.accion;
+        optionButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                const action = button.dataset.action;
 
-                switch (accion) {
-                    case "limpiar":
-                        this.limpiarColumna(columna);
+                switch (action) {
+                    case "clear":
+                        this.clearColumn(column);
                         break;
-                    case "exportar":
-                        this.exportarTareas();
+                    case "export":
+                        this.exportTasks();
                         break;
-                    case "cancelar":
+                    case "cancel":
                     default:
                         break;
                 }
 
-                opcionesModal.remove();
+                modalOptions.remove();
             });
         });
 
         // Cerrar al escapar
         const handleEscape = (e) => {
             if (e.key === "Escape") {
-                opcionesModal.remove();
+                modalOptions.remove();
                 document.removeEventListener("keydown", handleEscape);
             }
         };
         document.addEventListener("keydown", handleEscape);
     }
 
-    limpiarColumna(columna) {
-        const tituloColumna = columna.querySelector(".titulo-columna h3").textContent;
+    clearColumn(column) {
+        const columnTitle = column.querySelector(".column-title h3").textContent;
 
-        this.mostrarModalConfirmacion(
+        this.showConfirmationModal(
             "Limpiar Columna",
-            `¿Deseas limpiar la columna "${tituloColumna}"?`,
+            `¿Deseas limpiar la columna "${columnTitle}"?`,
             "Esta acción eliminará todas las tareas de esta columna y no se puede deshacer.",
             "danger",
             "Limpiar Columna",
             () => {
-                const contenidoColumna = columna.querySelector(".contenido-columna");
-                const tareas = contenidoColumna.querySelectorAll(".tarjeta-tarea");
-                const idsTareas = Array.from(tareas).map((tarea) => tarea.dataset.id);
+                const columnContent = column.querySelector(".column-content");
+                const tasks = columnContent.querySelectorAll(".task-card");
+                const taskIds = Array.from(tasks).map((task) => task.dataset.id);
 
                 // Eliminar tareas de los datos
-                this.tareas = this.tareas.filter((tarea) => !idsTareas.includes(tarea.id));
+                this.tasks = this.tasks.filter((task) => !taskIds.includes(task.id));
 
                 // Reorganizar IDs para mantener continuidad
-                this.reorganizarIdsTareas();
+                this.reorganizeTaskIds();
 
                 // Eliminar del DOM
-                tareas.forEach((tarea) => tarea.remove());
+                tasks.forEach((task) => task.remove());
 
-                this.renderizarTodasTareas();
-                this.actualizarContadoresTareas();
-                this.mostrarNotificacion("Columna limpiada");
+                this.renderAllTasks();
+                this.updateTaskCounters();
+                this.showNotification("Columna limpiada");
             }
         );
     }
 
-    mostrarNotificacion(mensaje) {
+    showNotification(message) {
         // Crear una notificación sencilla
-        const notificacion = document.createElement("div");
-        notificacion.style.cssText = `
+        const notification = document.createElement("div");
+        notification.style.cssText = `
             position: fixed;
             bottom: 20px;
             right: 20px;
@@ -1030,74 +1065,72 @@ class TableroKanban {
             font-weight: 500;
             animation: slideIn 0.3s ease;
         `;
-        notificacion.textContent = mensaje;
+        notification.textContent = message;
 
-        document.body.appendChild(notificacion);
+        document.body.appendChild(notification);
 
         setTimeout(() => {
-            notificacion.style.animation = "fadeOut 0.3s ease";
+            notification.style.animation = "fadeOut 0.3s ease";
             setTimeout(() => {
-                notificacion.remove();
+                notification.remove();
             }, 300);
         }, 3000);
     }
 
     // Funciones adicionales
-    exportarTareas() {
-        const datosStr = JSON.stringify(this.tareas, null, 2);
-        const datosUri = "data:application/json;charset=utf-8," + encodeURIComponent(datosStr);
+    exportTasks() {
+        const dataString = JSON.stringify(this.tasks, null, 2);
+        const dataUri = "data:application/json;charset=utf-8," + encodeURIComponent(dataString);
 
-        const nombreArchivoPorDefecto = "tareas-kanban.json";
+        const defaultFileName = "tareas-kanban.json";
 
-        const elementoEnlace = document.createElement("a");
-        elementoEnlace.setAttribute("href", datosUri);
-        elementoEnlace.setAttribute("download", nombreArchivoPorDefecto);
-        elementoEnlace.click();
+        const linkElement = document.createElement("a");
+        linkElement.setAttribute("href", dataUri);
+        linkElement.setAttribute("download", defaultFileName);
+        linkElement.click();
 
-        this.mostrarNotificacion("Tareas exportadas");
+        this.showNotification("Tareas exportadas");
     }
 
-    importarTareas(archivo) {
-        const lector = new FileReader();
-        lector.onload = (e) => {
+    importTasks(file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
             try {
-                const tareasImportadas = JSON.parse(e.target.result);
-                this.tareas = [...this.tareas, ...tareasImportadas];
-                this.guardarTareasEnAlmacenamiento();
-                this.renderizarTodasTareas();
-                this.actualizarContadoresTareas();
+                const importedTasks = JSON.parse(e.target.result);
+                this.tasks = [...this.tasks, ...importedTasks];
+                this.saveTasksToStorage();
+                this.renderAllTasks();
+                this.updateTaskCounters();
 
-                this.mostrarNotificacion("Tareas importadas exitosamente");
+                this.showNotification("Tareas importadas exitosamente");
             } catch {
-                this.mostrarNotificacion("Error al importar tareas");
+                this.showNotification("Error al importar tareas");
             }
         };
-        lector.readAsText(archivo);
+        reader.readAsText(file);
     }
 
     // Funcionalidad de búsqueda
-    buscarTareas(consulta) {
-        const tarjetasTarea = document.querySelectorAll(".tarjeta-tarea");
+    searchTasks(query) {
+        const taskCards = document.querySelectorAll(".task-card");
 
-        tarjetasTarea.forEach((tarjeta) => {
-            const titulo = tarjeta.querySelector(".titulo-tarea").textContent.toLowerCase();
-            const descripcion = tarjeta
-                .querySelector(".descripcion-tarea")
-                .textContent.toLowerCase();
-            const idTarea = tarjeta.querySelector(".id-tarea").textContent.toLowerCase();
+        taskCards.forEach((card) => {
+            const title = card.querySelector(".task-title").textContent.toLowerCase();
+            const description = card.querySelector(".task-description").textContent.toLowerCase();
+            const taskId = card.querySelector(".task-id").textContent.toLowerCase();
 
-            const coincideBusqueda =
-                titulo.includes(consulta.toLowerCase()) ||
-                descripcion.includes(consulta.toLowerCase()) ||
-                idTarea.includes(consulta.toLowerCase());
+            const matchesSearch =
+                title.includes(query.toLowerCase()) ||
+                description.includes(query.toLowerCase()) ||
+                taskId.includes(query.toLowerCase());
 
-            tarjeta.style.display = coincideBusqueda ? "block" : "none";
+            card.style.display = matchesSearch ? "block" : "none";
         });
     }
 
     // Borrar todos los datos
-    limpiarTodosDatos() {
-        this.mostrarModalConfirmacion(
+    clearAllData() {
+        this.showConfirmationModal(
             "Eliminar Todas las Tareas",
             "¿Estás seguro de que quieres eliminar todas las tareas?",
             "Esta acción no se puede deshacer y eliminará permanentemente todos los datos del tablero.",
@@ -1106,11 +1139,11 @@ class TableroKanban {
             () => {
                 localStorage.removeItem("tareasKanban");
                 localStorage.removeItem("contadorTareasKanban");
-                this.tareas = [];
-                this.contadorIdTareas = 1;
-                this.renderizarTodasTareas();
-                this.actualizarContadoresTareas();
-                this.mostrarNotificacion("Todos los datos han sido eliminados");
+                this.tasks = [];
+                this.taskIdCounter = 1;
+                this.renderAllTasks();
+                this.updateTaskCounters();
+                this.showNotification("Todos los datos han sido eliminados");
             }
         );
     }
@@ -1118,49 +1151,49 @@ class TableroKanban {
 
 // Inicializar el tablero Kanban cuando se carga el DOM
 document.addEventListener("DOMContentLoaded", () => {
-    const tableroKanban = new TableroKanban();
+    const kanbanBoard = new KanbanBoard();
 
     // Inicializar gestor de notificaciones
-    window.gestorNotificaciones = new GestorNotificaciones();
+    window.notificationManager = new NotificationManager();
 
     // Agregar atajos de teclado
     document.addEventListener("keydown", (e) => {
         // Ctrl/Cmd + N: Nueva tarea
         if ((e.ctrlKey || e.metaKey) && e.key === "n") {
             e.preventDefault();
-            document.getElementById("boton-agregar-tarea").click();
+            document.getElementById("add-task-button").click();
         }
 
         // Escape: Cerrar modal
         if (e.key === "Escape") {
-            const modalTarea = document.getElementById("modal-tarea");
-            const modalConfirmacion = document.getElementById("modal-confirmacion");
-            if (modalTarea.classList.contains("activo")) {
-                tableroKanban.cerrarModal();
+            const taskModal = document.getElementById("task-modal");
+            const confirmationModal = document.getElementById("confirmation-modal");
+            if (taskModal.classList.contains("active")) {
+                kanbanBoard.closeModal();
             }
-            if (modalConfirmacion.classList.contains("activo")) {
-                tableroKanban.cerrarModalConfirmacion();
+            if (confirmationModal.classList.contains("active")) {
+                kanbanBoard.closeConfirmationModal();
             }
         }
 
         // Ctrl/Cmd + E: Exportar tareas
         if ((e.ctrlKey || e.metaKey) && e.key === "e") {
             e.preventDefault();
-            tableroKanban.exportarTareas();
+            kanbanBoard.exportTasks();
         }
 
         // Ctrl/Cmd + Shift + C: Borrar todos los datos
         if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === "C") {
             e.preventDefault();
-            tableroKanban.limpiarTodosDatos();
+            kanbanBoard.clearAllData();
         }
 
         // Ctrl/Cmd + R: Comprobar notificaciones manualmente
         if ((e.ctrlKey || e.metaKey) && e.key === "r") {
             e.preventDefault();
-            if (window.gestorNotificaciones) {
-                window.gestorNotificaciones.verificarTareasProximas();
-                tableroKanban.mostrarNotificacion("Verificación de notificaciones realizada");
+            if (window.notificationManager) {
+                window.notificationManager.checkUpcomingTasks();
+                kanbanBoard.showNotification("Verificación de notificaciones realizada");
             }
         }
     });
@@ -1184,17 +1217,17 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("resize", () => {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(() => {
-            tableroKanban.actualizarContadoresTareas();
+            kanbanBoard.updateTaskCounters();
         }, 250);
     });
 
     // Hacer que tableroKanban sea accesible globalmente para la depuración
-    window.tableroKanban = tableroKanban;
+    window.kanbanBoard = kanbanBoard;
 });
 
 // Agregue algunos CSS adicionales dinámicamente
-const estilo = document.createElement("style");
-estilo.textContent = `
+const style = document.createElement("style");
+style.textContent = `
     @keyframes fadeOut {
         from { opacity: 1; transform: translateY(0); }
         to { opacity: 0; transform: translateY(10px); }
@@ -1218,4 +1251,4 @@ estilo.textContent = `
         animation: fadeIn 0.2s ease;
     }
 `;
-document.head.appendChild(estilo);
+document.head.appendChild(style);

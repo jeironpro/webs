@@ -4,10 +4,10 @@ body {
     padding: 0;
     width: 100%;
     overflow-x: clip;
-    background: linear-gradient(to top, var(--cielo-azul), var(--cielo-claro));
+    background: linear-gradient(to top, var(--sky-blue), var(--sky-light));
 }
 
-.nube {
+.cloud {
     position: fixed;
     background-image: url('data:image/svg+xml;utf8,<svg width="200" height="120" xmlns="http://www.w3.org/2000/svg"><g fill="%23ffffff" opacity="0.8"><ellipse cx="60" cy="60" rx="60" ry="30"/><ellipse cx="100" cy="50" rx="50" ry="25"/><ellipse cx="130" cy="65" rx="40" ry="20"/></g></svg>');
     background-size: cover;
@@ -25,7 +25,7 @@ body {
     }
 }
 
-#avion-wrapper {
+#plane-wrapper {
     position: fixed;
     left: 50%;
     top: 50%;
@@ -35,14 +35,14 @@ body {
     pointer-events: none;
 }
 
-#avion {
+#plane {
     width: 100%;
     height: 100%;
     transform-origin: center center;
     transition: transform 0.1s linear;
 }
 
-.estela {
+.trail {
     position: fixed;
     width: 24px;
     height: 12px;

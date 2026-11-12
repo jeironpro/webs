@@ -34,7 +34,7 @@ main {
     box-sizing: border-box;
 }
 
-.contenedor-principal {
+.main-container {
     background-color: var(--color-surface);
     border-radius: 24px;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
@@ -49,7 +49,7 @@ main {
     width: 100%;
 }
 
-.encabezado-tarjeta {
+.card-header {
     align-items: center;
     border-bottom: 1px solid var(--color-border);
     display: flex;
@@ -60,13 +60,13 @@ main {
     padding: 16px 24px;
 }
 
-.informacion-encabezado {
+.header-info {
     display: flex;
     flex-direction: column;
     gap: 4px;
 }
 
-.titulo {
+.title {
     color: var(--color-text-strong);
     font-size: 1.5rem;
     font-weight: 700;
@@ -74,13 +74,13 @@ main {
     letter-spacing: -0.02em;
 }
 
-.subtitulo {
+.subtitle {
     color: var(--color-text-muted);
     font-size: 0.875rem;
     font-weight: 500;
 }
 
-.etiqueta-dias {
+.days-badge {
     align-self: center;
     background-color: var(--color-accent-soft);
     border-radius: 9999px;
@@ -91,7 +91,7 @@ main {
 }
 
 /* --- Body / Cuerpo (Grid) --- */
-.cuerpo-tarjeta {
+.card-body {
     flex-grow: 1;
     padding: 32px;
     overflow: hidden; /* Evitar scroll si no es necesario, o auto si se prefiere */
@@ -100,7 +100,7 @@ main {
     justify-content: center;
 }
 
-.grid-dias {
+.days-grid {
     display: grid;
     /* Mobile-first: puntos pequenos para que quepan los 366 */
     gap: 6px;
@@ -113,15 +113,15 @@ main {
 
 /* Tablet en adelante: la tarjeta crece y la cabecera respira */
 @media (min-width: 481px) {
-    .contenedor-principal {
+    .main-container {
         max-height: 70vh;
     }
 
-    .encabezado-tarjeta {
+    .card-header {
         padding: 24px 32px;
     }
 
-    .grid-dias {
+    .days-grid {
         gap: 8px;
         grid-template-columns: repeat(auto-fill, minmax(10px, 1fr));
     }
@@ -129,24 +129,24 @@ main {
 
 /* Escritorio: cabecera en fila y puntos mas grandes */
 @media (min-width: 769px) {
-    .contenedor-principal {
+    .main-container {
         max-height: 60vh;
     }
 
-    .encabezado-tarjeta {
+    .card-header {
         flex-direction: row;
     }
 
-    .etiqueta-dias {
+    .days-badge {
         align-self: auto;
     }
 
-    .grid-dias {
+    .days-grid {
         grid-template-columns: repeat(auto-fill, minmax(12px, 1fr));
     }
 }
 
-.punto-dia {
+.day-dot {
     aspect-ratio: 1;
     background-color: var(--color-bg);
     border-radius: 50%;
@@ -158,15 +158,15 @@ main {
     cursor: pointer;
 }
 
-.punto-dia:hover {
+.day-dot:hover {
     transform: scale(1.1);
 }
 
-.punto-dia.completado {
+.day-dot.completed {
     background-color: var(--color-accent);
 }
 
-.punto-dia::after {
+.day-dot::after {
     content: attr(data-tooltip);
     position: absolute;
     bottom: 100%;
@@ -188,30 +188,30 @@ main {
     z-index: 10;
 }
 
-.punto-dia:hover::after {
+.day-dot:hover::after {
     opacity: 1;
     visibility: visible;
 }
 
-.pie-tarjeta {
+.card-footer {
     background-color: var(--color-surface-alt);
     border-top: 1px solid var(--color-border);
     padding: 32px;
 }
 
-.contenedor-estadisticas {
+.stats-container {
     display: flex;
     flex-direction: column;
     gap: 16px;
 }
 
-.fila-estadistica {
+.stat-row {
     align-items: flex-end;
     display: flex;
     justify-content: space-between;
 }
 
-.etiqueta-estadistica {
+.stat-label {
     color: var(--color-text-muted);
     font-size: 0.875rem;
     font-weight: 600;
@@ -220,32 +220,32 @@ main {
     margin-bottom: 8px;
 }
 
-.indicador-porcentaje {
+.percentage-indicator {
     align-items: baseline;
     color: var(--color-text);
     display: flex;
     line-height: 1;
 }
 
-#valor-porcentaje {
+#percentage-value {
     font-size: 3.5rem;
     font-weight: 800;
     letter-spacing: -0.03em;
     color: var(--color-text-strong);
 }
 
-.simbolo-porcentaje {
+.percentage-symbol {
     color: var(--color-text-soft);
     font-size: 1.5rem;
     font-weight: 600;
     margin-left: 4px;
 }
 
-.fila-progreso {
+.progress-row {
     width: 100%;
 }
 
-.contenedor-barra {
+.bar-container {
     background-color: var(--color-track);
     border-radius: 9999px;
     height: 12px;
@@ -253,7 +253,7 @@ main {
     width: 100%;
 }
 
-.barra-progreso {
+.progress-bar {
     background-image: linear-gradient(90deg, var(--color-accent) 0%, var(--color-accent-alt) 100%);
     border-radius: 9999px;
     height: 100%;

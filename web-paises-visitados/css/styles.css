@@ -1,9 +1,9 @@
 :root {
-    --cielo-claro: #e0f7ff;
-    --verde-exito: #16a34a;
-    --cielo-azul: #87ceeb;
-    --texto-dark: #1e293b;
-    --texto-light: #64748b;
+    --sky-light: #e0f7ff;
+    --green-success: #16a34a;
+    --sky-blue: #87ceeb;
+    --text-dark: #1e293b;
+    --text-light: #64748b;
     --border-color: rgba(255, 255, 255, 0.5);
     --accent: #2563eb;
 
@@ -20,7 +20,7 @@
 }
 
 body {
-    color: var(--texto-dark);
+    color: var(--text-dark);
     display: flex;
     flex-direction: column;
     font-family: "Fredoka", sans-serif;
@@ -44,7 +44,7 @@ header h1 {
     font-size: 2.5rem;
     font-weight: 700;
     text-align: center;
-    color: var(--texto-dark);
+    color: var(--text-dark);
     letter-spacing: 2px;
 }
 
@@ -56,17 +56,17 @@ main {
     width: 100%;
 }
 
-.contenedor-filtro {
+.filter-container {
     margin-bottom: 4rem;
     display: flex;
     justify-content: center;
 }
 
-#buscador {
+#search {
     background: rgba(255, 255, 255, 0.2);
     border: 1px solid var(--border-color);
     border-radius: 0;
-    color: var(--texto-dark);
+    color: var(--text-dark);
     font-family: inherit;
     font-size: 1.1rem;
     max-width: 500px;
@@ -76,18 +76,18 @@ main {
     backdrop-filter: blur(4px);
 }
 
-#buscador:focus {
+#search:focus {
     background: rgba(255, 255, 255, 0.4);
     outline: none;
-    border-color: var(--texto-dark);
+    border-color: var(--text-dark);
 }
 
-#buscador::placeholder {
+#search::placeholder {
     color: rgba(30, 41, 59, 0.6);
 }
 
 h2 {
-    color: var(--texto-dark);
+    color: var(--text-dark);
     font-size: 2.2rem;
     font-weight: 700;
     margin: 8rem 0 3rem;
@@ -95,17 +95,17 @@ h2 {
     text-transform: uppercase;
     letter-spacing: 5px;
     grid-column: 1 / -1;
-    border-bottom: 3px solid var(--texto-dark);
+    border-bottom: 3px solid var(--text-dark);
     padding-bottom: 1.5rem;
 }
 
-#contenedor-paises {
+#countries-container {
     display: grid;
     gap: 3rem;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
 }
 
-.pais {
+.country {
     border: 1px solid var(--border-color);
     display: flex;
     flex-direction: column;
@@ -118,19 +118,19 @@ h2 {
     transition: var(--transition);
 }
 
-.pais:hover {
-    border-color: var(--texto-dark);
+.country:hover {
+    border-color: var(--text-dark);
 }
 
-.pais p {
+.country p {
     font-size: 1.2rem;
     font-weight: 700;
-    color: var(--texto-dark);
+    color: var(--text-dark);
     margin-bottom: 1.5rem;
     text-transform: uppercase;
 }
 
-.bandera-img {
+.flag-img {
     display: block;
     width: 100px;
     height: auto;
@@ -141,15 +141,15 @@ h2 {
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
-.pais:hover::before {
+.country:hover::before {
     transform: scale(1.1);
 }
 
-.boton {
+.button {
     background: transparent;
-    border: 1px solid var(--texto-dark);
+    border: 1px solid var(--text-dark);
     border-radius: 0;
-    color: var(--texto-dark);
+    color: var(--text-dark);
     cursor: pointer;
     font-family: inherit;
     font-size: 0.8rem;
@@ -160,27 +160,27 @@ h2 {
     text-transform: uppercase;
 }
 
-.boton:hover {
-    background: var(--texto-dark);
+.button:hover {
+    background: var(--text-dark);
     color: white;
 }
 
-.icono {
-    color: var(--verde-exito);
+.icon {
+    color: var(--green-success);
     font-size: 1.8rem;
     z-index: 2;
 }
 
 footer {
     border-top: 1px solid var(--border-color);
-    color: var(--texto-light);
+    color: var(--text-light);
     font-size: 0.9rem;
     margin-top: 6rem;
     padding: 4rem 1rem;
     text-align: center;
 }
 
-#contenedor-paises {
+#countries-container {
     gap: 1rem;
     grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
 }
@@ -190,13 +190,13 @@ header h1 {
 }
 
 @media (min-width: 401px) {
-    #contenedor-paises {
+    #countries-container {
         grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
     }
 }
 
 @media (min-width: 769px) {
-    #contenedor-paises {
+    #countries-container {
         gap: 3rem;
         grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     }
