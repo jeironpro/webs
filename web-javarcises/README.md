@@ -26,10 +26,10 @@ Abrir **http://localhost:4173** (si el puerto está ocupado, se usa el siguiente
 
 ## Regenerar los datos
 
-`data/ejercicios.js` se genera a partir de los markdown de `triviales/` y `problemas-diseno/`:
+`data/exercises.js` se genera a partir de los markdown de `triviales/` y `problemas-diseno/`:
 
 ```bash
-npm run generar   # parsea los .md y escribe data/ejercicios.js
+npm run generate   # parsea los .md y escribe data/exercises.js
 ```
 
 ## Calidad de código
@@ -42,7 +42,7 @@ npm run format:check        # Prettier (solo verificación)
 pre-commit run --all-files  # hooks de pre-commit
 ```
 
-El CI (GitHub Actions) ejecuta lint y tests en cada push/PR a `main`.
+Ejecuta lint y tests antes de publicar cambios.
 
 ## Estructura
 
@@ -53,14 +53,14 @@ El CI (GitHub Actions) ejecuta lint y tests en cada push/PR a `main`.
 | `css/styles.css`                  | Estilos con tokens (tema Lumen claro)          |
 | `js/app.js`                       | Estado, filtros, paginación y routing por hash |
 | `js/render.js`                    | Renderizado seguro a DOM (sin `innerHTML`)     |
-| `js/paginacion.js`                | Lógica pura de paginación                      |
-| `data/ejercicios.js`              | Catálogo generado (no editar a mano)           |
-| `scripts/extraer-datos.js`        | Parser markdown → datos estructurados          |
-| `scripts/servir.js`               | Servidor estático de desarrollo                |
+| `js/pagination.js`                | Lógica pura de paginación                      |
+| `data/exercises.js`               | Catálogo generado (no editar a mano)           |
+| `scripts/extract-data.js`         | Parser markdown → datos estructurados          |
+| `scripts/serve.js`                | Servidor estático de desarrollo                |
 | `docs/style-guide.md`             | Libro de estilo                                |
 | `triviales/`, `problemas-diseno/` | Contenido fuente (markdown)                    |
 
 ## Licencia
 
 Este proyecto está bajo la licencia **MIT**.
-Consulta el archivo [LICENSE](LICENSE) para más detalles.
+Consulta el archivo [LICENSE](../LICENSE) para más detalles.

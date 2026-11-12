@@ -1526,18 +1526,19 @@
 
 @layer accesibilidad {
     @media (prefers-reduced-motion: reduce) {
-            html {
-                scroll-behavior: auto;
-            }
+        html {
+            scroll-behavior: auto;
+        }
 
-            *,
-            *::before,
-            *::after {
-                transition-duration: 0.01ms;
-                animation-duration: 0.01ms;
-            }
+        *,
+        *::before,
+        *::after {
+            transition-duration: 0.01ms;
+            animation-duration: 0.01ms;
+        }
 
-            em::after {
-                animation: none;
-            }    }
+        em::after {
+            animation: none;
+        }
+    }
 }

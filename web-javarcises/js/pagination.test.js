@@ -1,11 +1,11 @@
-// Tests de la lógica pura de paginación (js/paginacion.js) con node --test.
+// Tests de la lógica pura de paginación (js/pagination.js) con node --test.
 // Se ejecutan con: npm test
 
 import assert from "node:assert/strict";
 import test from "node:test";
-import { pageNumbers, paginate, PER_PAGE } from "./paginacion.js";
+import { pageNumbers, paginate, PER_PAGE } from "./pagination.js";
 
-test("paginate corta la lista por página", () => {
+test("paginate slices the list by page", () => {
     const list = Array.from({ length: 81 }, (_, i) => i + 1);
     const first = paginate(list, 1);
     assert.equal(first.items.length, PER_PAGE);
@@ -21,13 +21,13 @@ test("paginate corta la lista por página", () => {
     assert.equal(last.to, 81);
 });
 
-test("paginate acota la página fuera de rango", () => {
+test("paginate clamps out-of-range pages", () => {
     const list = Array.from({ length: 10 }, (_, i) => i + 1);
     assert.equal(paginate(list, 0).page, 1);
     assert.equal(paginate(list, 99).page, 1);
 });
 
-test("paginate con lista vacía no rompe", () => {
+test("paginate handles an empty list", () => {
     const result = paginate([], 1);
     assert.equal(result.items.length, 0);
     assert.equal(result.totalPages, 1);
@@ -35,7 +35,7 @@ test("paginate con lista vacía no rompe", () => {
     assert.equal(result.to, 0);
 });
 
-test("pageNumbers muestra todas las páginas si hay pocas", () => {
+test("pageNumbers shows every page when there are few", () => {
     const sequence = pageNumbers(4, 7);
     assert.deepEqual(
         sequence.map((entry) => (entry.type === "ellipsis" ? "…" : entry.number)),
@@ -43,7 +43,7 @@ test("pageNumbers muestra todas las páginas si hay pocas", () => {
     );
 });
 
-test("pageNumbers usa elipsis para rangos largos", () => {
+test("pageNumbers uses ellipses for long ranges", () => {
     const sequence = pageNumbers(10, 20);
     assert.deepEqual(
         sequence.map((entry) => (entry.type === "ellipsis" ? "…" : entry.number)),
@@ -51,7 +51,7 @@ test("pageNumbers usa elipsis para rangos largos", () => {
     );
 });
 
-test("pageNumbers siempre incluye primera y última página", () => {
+test("pageNumbers always includes the first and last page", () => {
     const sequence = pageNumbers(1, 20);
     const numbers = sequence.filter((entry) => entry.type === "page").map((entry) => entry.number);
     assert.equal(numbers[0], 1);

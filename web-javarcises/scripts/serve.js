@@ -1,5 +1,5 @@
 // Servidor estático local (cero dependencias) para desarrollo.
-// Uso: npm run dev  (equivale a: node scripts/servir.js)
+// Usage: npm run dev  (same as: node scripts/serve.js)
 //
 // Los ES Modules no cargan con file://, por lo que el proyecto se sirve
 // por HTTP. Puerto por defecto: 4173 (se puede cambiar con PORT).
@@ -36,14 +36,14 @@ async function handleRequest(req, res) {
     const file = normalize(join(ROOT_DIR, path));
     if (!file.startsWith(SAFE_ROOT)) {
         res.writeHead(403, { "Content-Type": "text/plain; charset=utf-8" });
-        res.end("403 — Prohibido");
+        res.end("403 — Forbidden");
         return;
     }
 
     try {
         const info = await stat(file);
         if (!info.isFile()) {
-            throw new Error("No es un archivo");
+            throw new Error("Not a file");
         }
         const content = await readFile(file);
         res.writeHead(200, {
@@ -52,7 +52,7 @@ async function handleRequest(req, res) {
         res.end(content);
     } catch {
         res.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
-        res.end("404 — No encontrado");
+        res.end("404 — Not found");
     }
 }
 
@@ -62,12 +62,12 @@ function start(port) {
         if (error.code === "EADDRINUSE" && port < INITIAL_PORT + 10) {
             start(port + 1);
         } else {
-            console.error("Error al iniciar el servidor:", error.message);
+            console.error("Error starting server:", error.message);
             process.exitCode = 1;
         }
     });
     server.listen(port, () => {
-        console.log(`Javarcises disponible en http://localhost:${port}`);
+        console.log(`Javarcises available at http://localhost:${port}`);
     });
 }
 
