@@ -7,12 +7,13 @@ Generador de códigos QR a partir de una URL, mediante la API pública de QRcode
 - Campo de texto para introducir la URL que se quiere codificar.
 - Generación del QR llamando a la API de QRcode Monkey (`api.qrcode-monkey.com`) con el tamaño por defecto.
 - Inserción de la imagen del código generado en la propia página.
-- Validación de entrada con mensaje de error si el campo esta vacío.
+- Validación de entrada con mensaje de error si el campo está vacío.
+- Manejo de errores si la API no puede cargar la imagen.
 
 ## Tecnologías
 
 - HTML5, CSS3 y JavaScript (ES6+).
-- API externa: QRcode Monkey para generar los códigos QR.
+- API externa: QRcode Monkey para generar los códigos QR. La generación requiere conexión a internet.
 
 ## Uso
 
@@ -32,4 +33,4 @@ web-generador-codigo-qr/
 
 ## Licencia
 Este proyecto está bajo la licencia **MIT**.  
-Consulta el archivo [LICENSE](LICENSE) para más detalles.
+Consulta el archivo [LICENSE](../LICENSE) para más detalles.
