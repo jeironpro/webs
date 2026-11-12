@@ -9,15 +9,15 @@ El sitio esta construido con HTML, CSS y JavaScript puro, sin frameworks ni paso
 - 100 ejercicios de Python (`json/python.json`).
 - 100 ejercicios de Java (`json/java.json`).
 - Diagramas UML en SVG para los ejercicios de Java (`img/uml/`).
-- Soluciones de ejemplo para 57 ejercicios, distribuidas en `soluciones/` (6 de Python y 51 de Java).
+- Soluciones de ejemplo para 57 ejercicios, distribuidas en `solutions/` (6 de Python y 51 de Java).
 
 ## Funcionalidades
 
 - Pagina de inicio con acceso a las colecciones de Python y Java.
-- Listado paginado (10 ejercicios por pagina), ordenado primero por paradigma y despues por nivel de dificultad.
-- Etiquetas de nivel (facil, medio, dificil) y de tipo (elementos basicos, programacion orientada a objetos).
+- Listado paginado (10 ejercicios por página), ordenado primero por tipo y después por nivel de dificultad.
+- Etiquetas de nivel (fácil, medio, difícil) y de tipo (elementos básicos, básicos con `sys.argv`, orientada a objetos).
 - Boton "Ver solucion" en cada ejercicio: abre una modal con el codigo de la solucion resaltado con sintaxis, numeros de linea y cierre con ESC, clic en el fondo o en el boton de cerrar.
-- Los ejercicios que aun no tienen solucion muestran el aviso "Solucion proximamente".
+- Los ejercicios que aun no tienen solucion muestran el aviso "Solución próximamente".
 - Cabecera fija con efecto de desplazamiento y diseno adaptable a moviles.
 
 ## Estructura del proyecto
@@ -30,20 +30,23 @@ El sitio esta construido con HTML, CSS y JavaScript puro, sin frameworks ni paso
 ├── css/
 │   └── styles.css          Estilos de todas las paginas
 ├── js/
-│   ├── script.js           Efecto de desplazamiento de la cabecera
-│   ├── ejercicios.js       Renderizado, paginacion y modal de soluciones
-│   └── resaltador.js       Resaltado de sintaxis para Python y Java
+│   ├── script.js           Efecto de desplazamiento y año del pie
+│   ├── exercises.js        Renderizado, paginación y modal de soluciones
+│   └── highlighter.js      Resaltado de sintaxis para Python y Java
 ├── json/
 │   ├── python.json         Ejercicios de Python
 │   ├── java.json           Ejercicios de Java
-│   └── soluciones.json     Manifest que asocia cada ejercicio con sus archivos de solucion
+│   └── solutions.json      Manifest que asocia cada ejercicio con sus archivos
 ├── img/                    Logos de los lenguajes y diagramas UML
-├── soluciones/
-│   ├── python/             Soluciones de Python (una carpeta por ejercicio)
-│   └── java/               Soluciones de Java (una carpeta por ejercicio)
-│       └── Entrada.java   Utilidad compartida de lectura de la entrada estandar
+├── solutions/
+│   ├── python/
+│   │   └── basics/         Soluciones de Python (una carpeta por ejercicio)
+│   └── java/
+│       ├── basics/         Soluciones Java de elementos básicos
+│       ├── object-oriented/ Soluciones Java orientadas a objetos
+│       └── Entrada.java    Utilidad compartida de lectura de la entrada estándar
 └── scripts/
-    └── generar-soluciones.py   Regenera json/soluciones.json a partir de soluciones/
+    └── generate-solutions.py  Regenera json/solutions.json
 ```
 
 ## Formato de los ejercicios
@@ -51,13 +54,13 @@ El sitio esta construido con HTML, CSS y JavaScript puro, sin frameworks ni paso
 Cada ejercicio de `json/python.json` y `json/java.json` contiene:
 
 - `id`: identificador numerico de dos digitos.
-- `titulo`: titulo del ejercicio.
-- `nivel`: facil, medio o dificil.
-- `tipo`: elemento basico o programacion orientada a objetos.
-- `enunciado`: descripcion del problema.
-- `tareas`: lista de requisitos que debe cumplir el programa.
-- `pistas`: sugerencias para resolverlo.
-- `ejemplo`: entrada y salida de ejemplo.
+- `title`: título del ejercicio.
+- `level`: easy, medium o hard.
+- `type`: basic, basic-cli u oop.
+- `statement`: descripción del problema.
+- `tasks`: lista de requisitos que debe cumplir el programa.
+- `hints`: sugerencias para resolverlo.
+- `example`: input y output de ejemplo.
 - `uml` (solo ejercicios de Java): ruta al diagrama UML en SVG.
 
 ## Como ejecutar el sitio
@@ -72,19 +75,19 @@ Y abrir `http://localhost:8000` en el navegador.
 
 ## Como agregar una solucion
 
-1. Crear la carpeta de la solucion en `soluciones/python/` o `soluciones/java/` con el nombre `<id>_<slug>`, donde `<id>` coincide con el campo `id` del ejercicio (por ejemplo, `02_cifrado_escalonado`).
+1. Crear la carpeta de la solucion en `solutions/python/` o `solutions/java/` con el nombre `<id>_<slug>`, donde `<id>` coincide con el campo `id` del ejercicio (por ejemplo, `02_cifrado_escalonado`).
 2. Regenerar el manifest:
 
 ```bash
-python3 scripts/generar-soluciones.py
+python3 scripts/generate-solutions.py
 ```
 
 3. Confirmar los cambios.
 
-El manifest `json/soluciones.json` se genera a partir de las carpetas presentes en `soluciones/`; los ejercicios sin carpeta muestran "Solucion proximamente" en el sitio.
+El manifest `json/solutions.json` se genera a partir de las carpetas presentes en `solutions/`; los ejercicios sin carpeta muestran "Solución próximamente" en el sitio.
 
-Las soluciones de Java que leen datos del usuario usan una utilidad compartida, `soluciones/java/Entrada.java` (un unico archivo para todas). Al ser comun, no se incluye en el manifest ni se muestra en la modal, que muestra unicamente los archivos propios de cada solucion.
+Las soluciones de Java que leen datos del usuario usan una utilidad compartida, `solutions/java/Entrada.java` (un unico archivo para todas). Al ser comun, no se incluye en el manifest ni se muestra en la modal, que muestra unicamente los archivos propios de cada solucion.
 
 ## Licencia
 
-Este proyecto esta bajo la licencia MIT. Consulta el archivo [LICENSE](LICENSE) para mas detalles.
+Este proyecto esta bajo la licencia MIT. Consulta el archivo [LICENSE](../LICENSE) para mas detalles.

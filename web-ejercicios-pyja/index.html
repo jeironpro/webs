@@ -12,22 +12,22 @@
 </head>
 <body>
     <header>
-        <h1 class="titulo-principal">Ejercicios PyJa</h1>
+        <h1 class="main-title">Ejercicios PyJa</h1>
     </header>
     <main>
-        <div class="contenedor-principal">
-            <a href="python.html" class="tarjeta">
-                <div class="lenguaje">
+        <div class="main-container">
+            <a href="python.html" class="card">
+                <div class="language">
                     <h2>Python</h2>
-                    <div class="imagen">
+                    <div class="image">
                         <img src="img/python.png" alt="Logo del lenguaje de programación Python" />
                     </div>
                 </div>
             </a>
-            <a href="java.html" class="tarjeta">
-                <div class="lenguaje">
+            <a href="java.html" class="card">
+                <div class="language">
                     <h2>Java</h2>
-                    <div class="imagen">
+                    <div class="image">
                         <img src="img/java.png" alt="Logo del lenguaje de programación Java" />
                     </div>
                 </div>
@@ -35,13 +35,8 @@
         </div>
     </main>
     <footer>
-        <p>© Todos los derechos reservados. PyJa <span data-anio>2026</span>.</p>
+        <p>© Todos los derechos reservados. PyJa <span data-year>2026</span>.</p>
     </footer>
     <script src="js/script.js"></script>
-    <script>
-        document.querySelectorAll("[data-anio]").forEach((nodo) => {
-            nodo.textContent = new Date().getFullYear();
-        });
-    </script>
 </body>
 </html>
