@@ -1,9 +1,0 @@
-# Condicionals
-
-
-```{toctree}
-:maxdepth: 1
-:caption: Contenidos
-
-/java/teoria/elements-basics-de-la-programacio/condicionals/condicionals
-```

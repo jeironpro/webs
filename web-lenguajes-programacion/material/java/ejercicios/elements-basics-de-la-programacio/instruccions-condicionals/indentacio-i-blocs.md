@@ -1,1 +1,0 @@
-# Ejercicios — Indentacio i blocs
