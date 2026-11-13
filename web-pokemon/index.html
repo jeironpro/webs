@@ -1,109 +1,108 @@
 <!doctype html>
 <html lang="es">
     <head>
-        <!-- Punto de entrada HTML de la aplicación estática. -->
-        <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZTPH1017ZF"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag() {
-                dataLayer.push(arguments);
-            }
-            gtag('js', new Date());
-            gtag('config', 'G-ZTPH1017ZF');
-        </script>
         <meta charset="UTF-8" />
-        <link rel="icon" type="image/png" href="./public/pokemon.png" />
-        <script>
-            // GitHub Pages sirve el 404.html raiz en subrutas de la SPA (p. ej.
-            // /web-pokemon/generation/1); ese fallback redirige aqui con la subruta
-            // en la query (?/generation/1) y este script la restaura en la barra de
-            // direcciones para que la app la resuelva sin recargar.
-            (function () {
-                var busqueda = window.location.search;
-                if (busqueda.indexOf('?/') === 0) {
-                    var resta = busqueda.slice(2);
-                    var amp = resta.indexOf('&');
-                    if (amp !== -1) resta = resta.slice(0, amp) + '?' + resta.slice(amp + 1);
-                    window.history.replaceState(
-                        null,
-                        '',
-                        window.location.pathname.replace(/index\.html$/, '') +
-                            resta +
-                            window.location.hash,
-                    );
-                }
-            })();
-        </script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Consulta Pokémon por generación, tipo y nombre, con estadísticas y descripciones."
+        />
+        <title>Pokémon</title>
+        <link rel="icon" type="image/svg+xml" href="./assets/icons/favicon.svg" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
             rel="stylesheet"
         />
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-        <link rel="stylesheet" href="./styles.css" />
-        <title>Pokémon</title>
+        <link rel="stylesheet" href="./css/styles.css" />
     </head>
     <body>
         <div id="app">
-            <section id="splash" class="splash-body">
-                <div class="contenedor-logo-titulo">
-                    <img src="./public/pokemon-logo.png" alt="Logo Pokemon" data-logo />
-                    <h1>Pokémon</h1>
-                    <p class="splash-subtitulo">Todas las generaciones</p>
+            <section id="splash" class="splash">
+                <div class="splash__pokemones" aria-hidden="true">
+                    <span class="splash__pokemon"></span>
+                    <span class="splash__pokemon"></span>
+                    <span class="splash__pokemon"></span>
+                    <span class="splash__pokemon"></span>
+                    <span class="splash__pokemon"></span>
+                    <span class="splash__pokemon"></span>
+                    <span class="splash__pokemon"></span>
+                    <span class="splash__pokemon"></span>
+                    <span class="splash__pokemon"></span>
+                </div>
+                <div class="splash__content">
+                    <img
+                        class="splash__logo"
+                        src="./assets/images/pokemon-logo.png"
+                        alt="Logo Pokémon"
+                        data-logo
+                    />
+                    <h1 class="splash__title">Pokémon</h1>
+                    <p class="splash__subtitle">Todas las generaciones</p>
                 </div>
             </section>
 
-            <div id="layout" class="layout-principal oculto">
-                <header id="cabecera">
-                    <nav>
-                        <div class="contenedor-logo">
-                            <a href="./" id="logo-inicio">
-                                <img src="./public/pokemon-logo.png" alt="Logo Pokemon" data-logo />
-                                <h1>Pokémon</h1>
+            <div id="layout" class="main-layout is-hidden">
+                <header class="site-header">
+                    <nav class="site-nav" aria-label="Navegación principal">
+                        <div class="site-nav__brand">
+                            <a href="./" id="home-logo" class="site-nav__link">
+                                <img
+                                    class="site-nav__logo"
+                                    src="./assets/images/pokemon-logo.png"
+                                    alt="Logo Pokémon"
+                                    data-logo
+                                />
+                                <span class="site-nav__title">Pokémon</span>
                             </a>
                         </div>
                         <button
-                            class="hamburger"
+                            class="site-nav__toggle"
                             id="hamburger"
-                            aria-label="Menu de navegacion"
+                            type="button"
+                            aria-label="Menú de navegación"
                             aria-expanded="false"
+                            aria-controls="nav-generations"
                         >
                             <span class="material-icons" id="hamburger-icon">menu</span>
                         </button>
-                        <div class="nav-generaciones" id="nav-generaciones">
-                            <a data-generacion="1" href="./?/generation/1">1 Generación</a>
-                            <a data-generacion="2" href="./?/generation/2">2 Generación</a>
-                            <a data-generacion="3" href="./?/generation/3">3 Generación</a>
-                            <a data-generacion="4" href="./?/generation/4">4 Generación</a>
-                            <a data-generacion="5" href="./?/generation/5">5 Generación</a>
-                            <a data-generacion="6" href="./?/generation/6">6 Generación</a>
-                            <a data-generacion="7" href="./?/generation/7">7 Generación</a>
-                            <a data-generacion="8" href="./?/generation/8">8 Generación</a>
-                            <a data-generacion="9" href="./?/generation/9">9 Generación</a>
+                        <div class="site-nav__list" id="nav-generations">
+                            <a data-generation="1" href="./?/generation/1">1 Generación</a>
+                            <a data-generation="2" href="./?/generation/2">2 Generación</a>
+                            <a data-generation="3" href="./?/generation/3">3 Generación</a>
+                            <a data-generation="4" href="./?/generation/4">4 Generación</a>
+                            <a data-generation="5" href="./?/generation/5">5 Generación</a>
+                            <a data-generation="6" href="./?/generation/6">6 Generación</a>
+                            <a data-generation="7" href="./?/generation/7">7 Generación</a>
+                            <a data-generation="8" href="./?/generation/8">8 Generación</a>
+                            <a data-generation="9" href="./?/generation/9">9 Generación</a>
                         </div>
-                        <div class="overlay oculto" id="menu-overlay"></div>
+                        <div
+                            class="site-nav__overlay is-hidden"
+                            id="menu-overlay"
+                            aria-hidden="true"
+                        ></div>
                     </nav>
                 </header>
 
-                <main id="contenido"></main>
+                <main id="content" class="site-main"></main>
 
-                <footer>
-                    <p>&copy; Todos los derechos reservados <span data-anio>2025</span> - JeironPro</p>
+                <footer class="site-footer">
+                    <p class="site-footer__text">
+                        &copy; Todos los derechos reservados
+                        <span data-year>2026</span> - JeironPro
+                    </p>
                 </footer>
             </div>
 
-            <section id="no-encontrado" class="pagina-no-encontrada oculto">
-                <h1>404 - Pagina no encontrada</h1>
-                <p>La pagina que buscas no existe.</p>
-                <a href="./" id="volver-inicio">Volver al inicio</a>
+            <section id="not-found" class="not-found is-hidden">
+                <h1 class="not-found__title">404 - Página no encontrada</h1>
+                <p class="not-found__text">La página que buscas no existe.</p>
+                <a class="not-found__link" href="./" id="back-home">Volver al inicio</a>
             </section>
         </div>
-        <script src="./app.js"></script>
-        <script>
-        document.querySelectorAll("[data-anio]").forEach((nodo) => {
-            nodo.textContent = new Date().getFullYear();
-        });
-    </script>
-</body>
+        <script type="module" src="./js/app.js"></script>
+    </body>
 </html>

@@ -1,75 +1,82 @@
 <!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Registra ingresos y gastos y consulta el balance neto de tu presupuesto." />
-    <title>Gestión de Presupuesto</title>
-    <link rel="icon" href="icon/budget.png" />
-    <link rel="stylesheet" href="css/styles.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Outfit:wght@400;700&display=swap" rel="stylesheet" />
-</head>
-<body>
-    <main class="page">
-        <header class="page-header">
-            <h1 class="page-header__title">Gestión de Presupuesto</h1>
-        </header>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Registra ingresos y gastos y consulta el balance neto de tu presupuesto."
+        />
+        <title>Gestión de Presupuesto</title>
+        <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg" />
+        <link rel="stylesheet" href="css/tokens.css" />
+        <link rel="stylesheet" href="css/styles.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Outfit:wght@400;700&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <main class="page">
+            <header class="page-header">
+                <h1 class="page-header__title">Gestión de Presupuesto</h1>
+            </header>
 
-        <section class="entries" aria-label="Registrar movimientos">
-            <article class="entry-card">
-                <h2 class="entry-card__title">Ingresos</h2>
-                <form class="entry-form" id="income-form">
-                    <input
-                        class="entry-form__input"
-                        type="number"
-                        id="income-input"
-                        placeholder="Monto del ingreso"
-                        aria-label="Ingresar monto de ingresos"
-                        inputmode="decimal"
-                        min="0.01"
-                        step="0.01"
-                        required
-                    />
-                    <button class="primary-button" type="submit">Agregar Ingresos</button>
-                </form>
-            </article>
+            <section class="entries" aria-label="Registrar movimientos">
+                <article class="entry-card">
+                    <h2 class="entry-card__title">Ingresos</h2>
+                    <form class="entry-form" id="income-form">
+                        <input
+                            class="entry-form__input"
+                            type="number"
+                            id="income-input"
+                            placeholder="Monto del ingreso"
+                            aria-label="Ingresar monto de ingresos"
+                            inputmode="decimal"
+                            min="0.01"
+                            step="0.01"
+                            required
+                        />
+                        <button class="btn btn--primary" type="submit">Agregar Ingresos</button>
+                    </form>
+                </article>
 
-            <article class="entry-card">
-                <h2 class="entry-card__title">Gastos</h2>
-                <form class="entry-form" id="expense-form">
-                    <input
-                        class="entry-form__input"
-                        type="number"
-                        id="expense-input"
-                        placeholder="Monto del gasto"
-                        aria-label="Ingresar monto de gastos"
-                        inputmode="decimal"
-                        min="0.01"
-                        step="0.01"
-                        required
-                    />
-                    <button class="primary-button" type="submit">Agregar Gastos</button>
-                </form>
-            </article>
-        </section>
+                <article class="entry-card">
+                    <h2 class="entry-card__title">Gastos</h2>
+                    <form class="entry-form" id="expense-form">
+                        <input
+                            class="entry-form__input"
+                            type="number"
+                            id="expense-input"
+                            placeholder="Monto del gasto"
+                            aria-label="Ingresar monto de gastos"
+                            inputmode="decimal"
+                            min="0.01"
+                            step="0.01"
+                            required
+                        />
+                        <button class="btn btn--primary" type="submit">Agregar Gastos</button>
+                    </form>
+                </article>
+            </section>
 
-        <section class="summary" aria-label="Resumen del presupuesto" aria-live="polite">
-            <article class="summary-card summary-card--income">
-                <p class="summary-card__label">Ingresos Totales</p>
-                <p class="summary-card__value" id="total-income">0</p>
-            </article>
-            <article class="summary-card summary-card--expense">
-                <p class="summary-card__label">Gastos Totales</p>
-                <p class="summary-card__value" id="total-expenses">0</p>
-            </article>
-            <article class="summary-card summary-card--balance">
-                <p class="summary-card__label">Balance Neto</p>
-                <p class="summary-card__value" id="net-balance">0</p>
-            </article>
-        </section>
-    </main>
-    <script src="js/app.js"></script>
-</body>
+            <section class="summary" aria-label="Resumen del presupuesto" aria-live="polite">
+                <article class="summary-card summary-card--income">
+                    <p class="summary-card__label">Ingresos Totales</p>
+                    <p class="summary-card__value" id="total-income">0</p>
+                </article>
+                <article class="summary-card summary-card--expense">
+                    <p class="summary-card__label">Gastos Totales</p>
+                    <p class="summary-card__value" id="total-expenses">0</p>
+                </article>
+                <article class="summary-card summary-card--balance">
+                    <p class="summary-card__label">Balance Neto</p>
+                    <p class="summary-card__value" id="net-balance">0</p>
+                </article>
+            </section>
+        </main>
+        <script type="module" src="js/app.js"></script>
+    </body>
 </html>

@@ -8,7 +8,8 @@
             name="description"
             content="Colección de algoritmos clásicos de búsqueda, ordenación, grafos y compresión explicados en tarjetas que se giran."
         />
-        <link rel="shortcut icon" href="icon/algorithms.png" type="image/x-icon" />
+        <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
+        <meta name="theme-color" content="#5b53d6" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -22,32 +23,27 @@
         <link rel="stylesheet" href="css/styles.css" />
     </head>
     <body>
-        <header class="header">
-            <div class="header__content">
-                <p class="header__eyebrow">colección</p>
-                <h1 class="header__title">Algoritmos</h1>
-                <p class="header__subtitle">
+        <header class="algorithms-header">
+            <div class="algorithms-header__content">
+                <p class="algorithms-header__eyebrow">colección</p>
+                <h1 class="algorithms-header__title">Algoritmos</h1>
+                <p class="algorithms-header__subtitle">
                     Búsqueda, ordenación, grafos y compresión en tarjetas. Pasa el cursor para
                     girarlas.
                 </p>
             </div>
         </header>
 
-        <main class="main">
-            <section class="catalog" aria-label="Lista de algoritmos">
-                <div class="cards" id="cards"></div>
+        <main class="algorithms-main">
+            <section class="algorithms-catalog" aria-label="Lista de algoritmos">
+                <div class="algorithms-cards" id="cards"></div>
             </section>
         </main>
 
-        <footer class="footer">
+        <footer class="algorithms-footer">
             &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
         </footer>
 
-        <script src="js/cards.js"></script>
-        <script>
-            document.querySelectorAll("[data-year]").forEach((node) => {
-                node.textContent = new Date().getFullYear();
-            });
-        </script>
+        <script type="module" src="js/cards.js"></script>
     </body>
 </html>

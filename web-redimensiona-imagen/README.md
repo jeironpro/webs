@@ -1,35 +1,48 @@
-# web-redimensiona-imagen
+# Redimensionar imagen
 
-Herramienta para redimensionar imagenes en el navegador: se carga una imagen local, se ajusta su tamaño y se descarga el resultado.
+Herramienta para redimensionar imágenes en el navegador: se carga una imagen local, se ajusta su tamaño y se descarga el resultado.
 
 ## Características
 
-- Carga de una imagen local mediante FileReader.
-- Redimension de la imagen en un lienzo (canvas) con las nuevas dimensiones.
-- Previsualizacion del resultado antes de descargar.
-- Descarga de la imagen procesada con un solo clic.
+- Carga de una imagen local mediante selector o arrastrando el archivo.
+- Redimensionado proporcional en un canvas, respetando el ancho y alto máximos indicados.
+- Previsualización de la imagen antes de descargar.
+- Descarga del resultado en PNG.
+- Validación del archivo y mensajes de error accesibles.
+- Procesado completamente local, sin subir la imagen a ningún servidor.
 
-## Tecnologías
+## Stack
 
-- HTML5, CSS3 y JavaScript (ES6+).
-- API FileReader y elemento canvas para el procesado.
+- HTML5 semántico, CSS3 con tokens y BEM, y JavaScript ES6+ en módulos.
+- API FileReader y canvas para la lectura y el procesado.
+- Google Fonts (Poppins).
+- ESLint + Prettier.
 
 ## Uso
 
-1. Clona el repositorio.
-2. Abre `index.html` en el navegador o sirve la carpeta con un servidor estático local.
-3. Selecciona una imagen y pulsa el botón para descargarla redimensionada.
+Abre `index.html` en el navegador o sirve la carpeta con un servidor estático:
 
-## Estructura del proyecto
-
+```bash
+python3 -m http.server 8000
 ```
+
+Selecciona una imagen, indica el ancho y el alto máximos en píxeles y pulsa «Descargar imagen». Si dejas una dimensión vacía se usa la original; la imagen nunca se amplía por encima de su tamaño natural.
+
+## Estructura
+
+```text
 web-redimensiona-imagen/
 ├── index.html
-├── css/                   # estilos de la herramienta
-├── js/                    # lógica de redimensión
-└── icon/                  # favicon
+├── css/
+│   ├── tokens.css
+│   └── styles.css
+├── js/
+│   └── app.js
+└── assets/
+    └── icons/
+        └── favicon.svg
 ```
 
 ## Licencia
-Este proyecto está bajo la licencia **MIT**.  
-Consulta el archivo [LICENSE](LICENSE) para más detalles.
+
+MIT. Consulta el archivo [LICENSE](../LICENSE).

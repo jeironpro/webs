@@ -1,17 +1,15 @@
-'use strict';
-
 const BOARD_SIZE = 13;
 const BLACK_CELL_COUNT = 25;
 const MAX_WHITE_SEQUENCE = 10;
 const MAX_GENERATION_ATTEMPTS = 20000;
 const PATTERN_COUNT = 100;
-const BLACK_CELL = '#';
-const WHITE_CELL = '';
+const BLACK_CELL = "#";
+const WHITE_CELL = "";
 const CENTER_INDEX = Math.floor(BOARD_SIZE / 2);
 const MIRRORED_PAIRS = (BLACK_CELL_COUNT - 1) / 2;
 
-const generateButton = document.getElementById('generate-button');
-const statusMessage = document.getElementById('status-message');
+const generateButton = document.getElementById("generate-button");
+const statusMessage = document.getElementById("status-message");
 
 function buildHalfPositions() {
     const positions = [];
@@ -115,9 +113,7 @@ function hasConnectedWhiteCells(board) {
 
     if (totalWhiteCells === 0) return true;
 
-    const visited = Array.from({ length: BOARD_SIZE }, () =>
-        Array(BOARD_SIZE).fill(false)
-    );
+    const visited = Array.from({ length: BOARD_SIZE }, () => Array(BOARD_SIZE).fill(false));
     const directions = [
         [1, 0],
         [-1, 0],
@@ -200,11 +196,11 @@ function generatePattern() {
 }
 
 function getBoardSignature(board) {
-    return board.map((row) => row.join('')).join('|');
+    return board.map((row) => row.join("")).join("|");
 }
 
 async function generateAndDownload() {
-    statusMessage.textContent = 'Generando patrones, espera por favor...';
+    statusMessage.textContent = "Generando patrones, espera por favor...";
     generateButton.disabled = true;
 
     try {
@@ -216,7 +212,7 @@ async function generateAndDownload() {
 
             const board = generatePattern();
             if (!board) {
-                throw new Error('No se pudo generar un patrón válido.');
+                throw new Error("No se pudo generar un patrón válido.");
             }
 
             const signature = getBoardSignature(board);
@@ -227,28 +223,27 @@ async function generateAndDownload() {
         }
 
         const jsonText = JSON.stringify(patterns, null, 4);
-        const blob = new Blob([jsonText], { type: 'application/json' });
+        const blob = new Blob([jsonText], { type: "application/json" });
         const url = URL.createObjectURL(blob);
-        const anchor = document.createElement('a');
+        const anchor = document.createElement("a");
 
         anchor.href = url;
-        anchor.download = 'crosswords.json';
+        anchor.download = "crosswords.json";
         document.body.append(anchor);
         anchor.click();
         anchor.remove();
         setTimeout(() => URL.revokeObjectURL(url), 1000);
 
         statusMessage.textContent = `Descarga completada. Generados ${patterns.length} patrones.`;
-    } catch (error) {
-        console.error(error);
-        statusMessage.textContent = 'No se pudieron generar los patrones. Inténtalo de nuevo.';
+    } catch {
+        statusMessage.textContent = "No se pudieron generar los patrones. Inténtalo de nuevo.";
     } finally {
         generateButton.disabled = false;
     }
 }
 
-document.querySelectorAll('[data-year]').forEach((node) => {
+document.querySelectorAll("[data-year]").forEach((node) => {
     node.textContent = String(new Date().getFullYear());
 });
 
-generateButton.addEventListener('click', generateAndDownload);
+generateButton.addEventListener("click", generateAndDownload);

@@ -17,7 +17,7 @@ El proyecto es un sitio web estático de una sola página construido con **HTML,
 │     │   ├── js/modules/counter.js   lógica de conteo        │
 │     │   ├── js/modules/uploader.js  lectura de archivos     │
 │     │   └── js/utils/dom.js         helpers de DOM          │
-│     └── assets/favicon.svg    icono de la página            │
+│     └── assets/icons/favicon.svg    icono de la página            │
 │                                                            │
 │  Flujo: HTML estructura el DOM → CSS aplica estilos →       │
 │  JS escucha eventos, recalcula las métricas y lee archivos  │
@@ -35,14 +35,14 @@ El proyecto es un sitio web estático de una sola página construido con **HTML,
 
 ## Piezas y responsabilidades
 
-| Pieza | Responsabilidad |
-|---|---|
-| `index.html` | Estructura semántica de la página (header, título, área de texto, métricas, subida, footer) |
-| `js/modules/counter.js` | Palabras, caracteres y caracteres sin espacios de un texto dado |
-| `js/modules/uploader.js` | Lee archivos de texto plano como UTF-8 vía `FileReader` |
-| `js/utils/dom.js` | Helper de selección de elementos |
-| `js/app.js` | Orquesta el resto: eventos, render de métricas y subida |
-| `css/*` | Estilos por capas: tokens, base, componentes y layout de página |
+| Pieza                    | Responsabilidad                                                                             |
+| ------------------------ | ------------------------------------------------------------------------------------------- |
+| `index.html`             | Estructura semántica de la página (header, título, área de texto, métricas, subida, footer) |
+| `js/modules/counter.js`  | Palabras, caracteres y caracteres sin espacios de un texto dado                             |
+| `js/modules/uploader.js` | Lee archivos de texto plano como UTF-8 vía `FileReader`                                     |
+| `js/utils/dom.js`        | Helper de selección de elementos                                                            |
+| `js/app.js`              | Orquesta el resto: eventos, render de métricas y subida                                     |
+| `css/*`                  | Estilos por capas: tokens, base, componentes y layout de página                             |
 
 ## Diagrama de flujo entre piezas
 

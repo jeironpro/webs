@@ -35,10 +35,10 @@ Zona de subida → arrastra archivo (dragenter/dragover/drop)
 
 ## Estado de los controles
 
-| Texto | Limpiar | Copiar | Ejemplo |
-|---|---|---|---|
-| Vacío | Deshabilitado | Deshabilitado | Habilitado |
-| Con contenido | Habilitado | Habilitado | Habilitado |
+| Texto         | Limpiar       | Copiar        | Ejemplo    |
+| ------------- | ------------- | ------------- | ---------- |
+| Vacío         | Deshabilitado | Deshabilitado | Habilitado |
+| Con contenido | Habilitado    | Habilitado    | Habilitado |
 
 ## Accesibilidad del flujo
 

@@ -6,8 +6,8 @@ El proyecto es 100 % estático; no hay build step. Se despliegan los archivos de
 
 ## GitHub Pages
 
-1. En el repositorio, ve a *Settings → Pages*.
-2. En *Source*, elige **Deploy from a branch**.
+1. En el repositorio, ve a _Settings → Pages_.
+2. En _Source_, elige **Deploy from a branch**.
 3. Selecciona la rama `main` y la carpeta raíz (`/`).
 4. Guarda. La página estará disponible en `https://<usuario>.github.io/web-contador-palabras/`.
 

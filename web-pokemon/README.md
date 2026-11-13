@@ -4,9 +4,11 @@ Aplicación web estática para consultar información de Pokémon por generació
 
 ## Stack
 
-- HTML, CSS y JavaScript vanilla
-- Sin backend
-- Datos y sprites servidos desde `public/api/pokemones.json` y `public/pokemon-images/`
+- HTML5 semántico, CSS3 con tokens y BEM, y JavaScript ES6+ en módulos.
+- Sin backend.
+- Datos y sprites servidos desde `data/pokemones.json` y `assets/images/pokemon/`.
+- Google Fonts (Kanit) y Material Icons.
+- ESLint + Prettier.
 
 ## Uso
 
@@ -26,20 +28,25 @@ La pantalla de bienvenida redirige automáticamente a la primera generación. De
 
 ## Rutas
 
-La app conserva las rutas `/generation/:id`. El `404.html` de la raíz redirige las rutas profundas a `web-pokemon/?/generation/:id`, y el script de entrada restaura la URL antes de renderizar.
+La app conserva las rutas `/generation/:id`. El `404.html` de la raíz redirige las rutas profundas a `web-pokemon/?/generation/:id`, y el módulo de entrada restaura la URL antes de renderizar.
 
 ## Estructura
 
 ```text
 web-pokemon/
 ├── index.html
-├── styles.css
-├── app.js
-└── public/
-    ├── api/pokemones.json
-    ├── pokemon-logo.png
-    ├── pokemon.png
-    └── pokemon-images/
+├── css/
+│   ├── tokens.css
+│   └── styles.css
+├── js/
+│   └── app.js
+├── data/
+│   └── pokemones.json
+└── assets/
+    ├── icons/favicon.svg
+    └── images/
+        ├── pokemon-logo.png
+        └── pokemon/
 ```
 
 ## Créditos
@@ -48,4 +55,4 @@ Pokémon y los sprites pertenecen a Nintendo, Game Freak y The Pokémon Company.
 
 ## Licencia
 
-MIT
+MIT. Consulta el archivo [LICENSE](../LICENSE).

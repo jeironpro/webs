@@ -1,36 +1,50 @@
 # web-convertidor-moneda
 
-Convertidor de monedas que obtiene las tasas de cambio en tiempo real desde una API publica y calcula la conversión entre dos divisas.
+Convertidor de monedas que obtiene las tasas de cambio desde una API pública y calcula la conversión entre dos divisas.
 
 ## Características
 
-- Selección de la divisa de origen y de la divisa de destino mediante listas desplegables.
-- Tasas de cambio actualizadas desde la API pública open.er-api.com (`/v6/latest`).
-- Conversion calculada al pulsar el botón correspondiente.
-- Resultado mostrado con el importe convertido.
-- Interfaz en español con diseño responsive.
+- Selección de la divisa de origen y de destino mediante listas desplegables.
+- Tasas de cambio desde la API pública `open.er-api.com` (`/v6/latest`).
+- Conversión al pulsar el botón correspondiente.
+- Intercambio rápido de las divisas seleccionadas.
+- Resultado con el importe convertido y manejo de errores de red.
+- Interfaz responsive en español.
 
 ## Tecnologías
 
-- HTML5, CSS3 y JavaScript (ES6+).
-- API externa: open.er-api.com para las tasas de cambio.
+- HTML5 semántico.
+- CSS3 con custom properties, mobile-first y nomenclatura BEM.
+- JavaScript como módulo ES nativo.
+- API externa: `open.er-api.com`.
 
 ## Uso
 
 1. Clona el repositorio.
-2. Abre `index.html` en el navegador o sirve la carpeta con un servidor estático local.
-3. Selecciona las monedas e indica el importe; la conversión usa las tasas más recientes de la API.
+2. Sirve la carpeta con un servidor estático local:
 
-## Estructura del proyecto
+```bash
+python3 -m http.server 8000
+```
+
+3. Abre `http://localhost:8000/web-convertidor-moneda/`.
+
+Los módulos ES requieren abrir la página mediante HTTP, no con `file://`.
+
+## Estructura
 
 ```
 web-convertidor-moneda/
 ├── index.html
-├── css/                   # estilos de la interfaz
-├── js/                    # lógica de conversión y consulta a la API
-└── icon/                  # favicon
+├── css/
+│   └── styles.css
+├── js/
+│   └── app.js
+└── assets/
+    └── icons/
+        └── favicon.svg
 ```
 
 ## Licencia
-Este proyecto está bajo la licencia **MIT**.  
-Consulta el archivo [LICENSE](LICENSE) para más detalles.
+
+Este proyecto está bajo la licencia **MIT**. Consulta el archivo [LICENSE](../LICENSE) para más detalles.

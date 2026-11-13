@@ -1,171 +1,211 @@
-const display = document.getElementById("display");
-const keypad = document.querySelector(".keypad");
+const display = document.querySelector("#display");
+const keypad = document.querySelector("#keypad");
 
-let operator = "";
-let firstOperand = "";
-let secondOperand = "";
-let operatorSelected = false;
-
-function enterDigit(value) {
-    if (operator === "") {
-        if (firstOperand === "" && value === ".") {
-            firstOperand += "0.";
-            display.value += "0.";
-        } else if (firstOperand === "" && value === "0") {
-            return;
-        } else if (value === "-" && firstOperand === "") {
-            firstOperand += value;
-            display.value += value;
-        } else {
-            firstOperand += value;
-            if (operatorSelected) {
-                display.value = "";
-                operatorSelected = false;
-            }
-            display.value += value;
-        }
-    } else {
-        if (secondOperand === "" && value === ".") {
-            secondOperand += "0";
-        } else if (secondOperand === "0" && value !== ".") {
-            secondOperand = "";
-        }
-        secondOperand += value;
-        display.value = "";
-    }
-    display.value += secondOperand;
+if (!display || !keypad) {
+    throw new Error("No se encontraron los elementos de la calculadora");
 }
 
-function selectOperator(nextOperator) {
-    if (secondOperand !== "") {
+const state = {
+    operator: "",
+    firstOperand: "",
+    secondOperand: "",
+    resultShown: false,
+};
+
+const setDisplay = (value) => {
+    display.textContent = String(value);
+};
+
+const clearOperatorSelection = () => {
+    keypad.querySelectorAll(".calculator__button--selected").forEach((button) => {
+        button.classList.remove("calculator__button--selected");
+    });
+};
+
+const markOperator = (operator) => {
+    clearOperatorSelection();
+    const button = [...keypad.querySelectorAll("[data-operator]")].find(
+        (candidate) => candidate.dataset.operator === operator
+    );
+    button?.classList.add("calculator__button--selected");
+};
+
+const appendValue = (current, value) => {
+    if (value === ".") {
+        return current.includes(".") ? current : current === "" ? "0." : `${current}.`;
+    }
+    return current === "0" ? value : `${current}${value}`;
+};
+
+const enterDigit = (value) => {
+    if (state.resultShown && state.operator === "") {
+        state.firstOperand = "";
+        state.resultShown = false;
+    }
+
+    if (state.operator === "") {
+        state.firstOperand = appendValue(state.firstOperand, value);
+        setDisplay(state.firstOperand || "0");
+        return;
+    }
+
+    state.secondOperand = appendValue(state.secondOperand, value);
+    setDisplay(state.secondOperand || "0");
+};
+
+const evaluate = (left, operation, right) => {
+    switch (operation) {
+        case "+":
+            return left + right;
+        case "-":
+            return left - right;
+        case "*":
+            return left * right;
+        case "/":
+            return left / right;
+        case "%":
+            return left / 100;
+        case "√":
+            return Math.sqrt(left);
+        default:
+            return left;
+    }
+};
+
+const calculate = () => {
+    if (state.operator === "") {
+        return;
+    }
+
+    const left = Number.parseFloat(state.firstOperand);
+    const right = Number.parseFloat(state.secondOperand);
+    const result = evaluate(left, state.operator, right);
+
+    clearOperatorSelection();
+    state.operator = "";
+    state.secondOperand = "";
+    state.resultShown = true;
+
+    if (!Number.isFinite(result)) {
+        state.firstOperand = "";
+        setDisplay("Error");
+        return;
+    }
+
+    const normalized = Number(result.toPrecision(12));
+    state.firstOperand = String(normalized);
+    setDisplay(normalized);
+};
+
+const selectOperator = (operator) => {
+    if (state.secondOperand !== "") {
         calculate();
     }
 
-    operator = nextOperator;
-    operatorSelected = true;
+    state.operator = operator;
+    state.resultShown = false;
+    markOperator(operator);
+};
 
-    keypad.querySelectorAll(".button--operator").forEach((button) => {
-        button.classList.remove("is-selected");
-    });
-
-    const operatorButton = keypad.querySelector(`button[data-operator="${operator}"]`);
-    if (operatorButton) {
-        operatorButton.classList.add("is-selected");
-    }
-}
-
-function evaluate(left, operation, right) {
-    const a = parseFloat(left);
-    const b = parseFloat(right);
-
-    switch (operation) {
-        case "+":
-            return a + b;
-        case "-":
-            return a - b;
-        case "*":
-            return a * b;
-        case "/":
-            return a / b;
-        default:
-            return b ? NaN : a;
-    }
-}
-
-function calculate() {
-    const operatorButton = keypad.querySelector(`button[data-operator="${operator}"]`);
-    if (operatorButton) {
-        operatorButton.classList.remove("is-selected");
+const clearEntry = () => {
+    if (state.resultShown) {
+        clearAll();
+        return;
     }
 
-    let result;
-    if (operator === "%") {
-        result = parseFloat(firstOperand) / 100;
-    } else if (operator === "√") {
-        result = Math.sqrt(firstOperand);
+    const nextValue = display.textContent.length > 1 ? display.textContent.slice(0, -1) : "0";
+    setDisplay(nextValue);
+
+    if (state.operator === "") {
+        state.firstOperand = nextValue === "0" ? "" : nextValue;
     } else {
-        result = evaluate(firstOperand, operator, secondOperand);
+        state.secondOperand = nextValue === "0" ? "" : nextValue;
+    }
+};
+
+const clearAll = () => {
+    state.operator = "";
+    state.firstOperand = "";
+    state.secondOperand = "";
+    state.resultShown = false;
+    clearOperatorSelection();
+    setDisplay("0");
+};
+
+const handleKeyboard = (event) => {
+    if (event.ctrlKey || event.metaKey || event.altKey) {
+        return;
     }
 
-    if (!Number.isFinite(result)) {
-        result = "Error";
+    const { key } = event;
+    const isButton = event.target instanceof Element && event.target.closest("button");
+
+    if (isButton && key === "Enter") {
+        return;
     }
 
-    display.value = result;
-    operator = "";
-    firstOperand = result.toString();
-    secondOperand = "";
-    operatorSelected = false;
-}
-
-function clearEntry() {
-    const currentValue = display.value;
-    display.value = currentValue.slice(0, -1);
-    if (operator === "") {
-        firstOperand = display.value;
-    } else {
-        secondOperand = display.value;
-    }
-}
-
-function clearAll() {
-    display.value = "";
-    operator = "";
-    firstOperand = "";
-    secondOperand = "";
-    operatorSelected = false;
-
-    keypad.querySelectorAll(".button--operator").forEach((button) => {
-        button.classList.remove("is-selected");
-    });
-}
-
-function handleKeyboard(event) {
-    const key = event.key;
     if (/^[0-9]$/.test(key)) {
         enterDigit(key);
         return;
     }
+
     if (key === "." || key === ",") {
+        event.preventDefault();
         enterDigit(".");
         return;
     }
-    if (key === "+" || key === "-" || key === "*" || key === "/") {
+
+    if (["+", "-", "*", "/", "%"].includes(key)) {
+        event.preventDefault();
         selectOperator(key);
         return;
     }
-    if (key === "%") {
-        selectOperator("%");
-        return;
-    }
+
     if (key === "Enter" || key === "=") {
         event.preventDefault();
         calculate();
         return;
     }
+
     if (key === "Backspace") {
         event.preventDefault();
         clearEntry();
         return;
     }
+
     if (key === "Escape" || key === "Delete") {
         clearAll();
     }
-}
+};
 
 keypad.addEventListener("click", (event) => {
     const button = event.target.closest("button");
-    if (!button) return;
+
+    if (!button) {
+        return;
+    }
 
     if (button.dataset.digit !== undefined) {
         enterDigit(button.dataset.digit);
-    } else if (button.dataset.operator !== undefined) {
+        return;
+    }
+
+    if (button.dataset.operator !== undefined) {
         selectOperator(button.dataset.operator);
-    } else if (button.dataset.action === "equals") {
+        return;
+    }
+
+    if (button.dataset.action === "equals") {
         calculate();
-    } else if (button.dataset.action === "clear") {
+        return;
+    }
+
+    if (button.dataset.action === "clear") {
         clearEntry();
-    } else if (button.dataset.action === "clear-all") {
+        return;
+    }
+
+    if (button.dataset.action === "clear-all") {
         clearAll();
     }
 });

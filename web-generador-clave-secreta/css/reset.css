@@ -1,4 +1,3 @@
-/* Normalizacion basica: elimina margenes y paddings por defecto */
 *,
 *::before,
 *::after {
@@ -7,13 +6,11 @@
     padding: 0;
 }
 
-/* Navegacion suave y prevencion de ajuste de texto en movil */
 html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
 }
 
-/* Altura minima de pantalla completa y anti-aliasing */
 body {
     min-height: 100vh;
     line-height: 1.5;
@@ -21,7 +18,6 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* Los inputs heredan la tipografia del body */
 input,
 button,
 textarea,
@@ -30,21 +26,35 @@ select {
     color: inherit;
 }
 
-/* Reset de boton: sin borde ni fondo por defecto */
 button {
     cursor: pointer;
     border: none;
     background: none;
 }
 
-/* Los enlaces heredan el color del texto padre */
 a {
     color: inherit;
     text-decoration: none;
 }
 
-/* Las etiquetas de codigo usan fuente monospace */
 code,
 pre {
     font-family: var(--font-mono, monospace);
+}
+
+:focus-visible {
+    outline: var(--border-width-strong) solid var(--color-accent);
+    outline-offset: var(--focus-offset);
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 0.0625rem;
+    height: 0.0625rem;
+    padding: 0;
+    margin: -0.0625rem;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }

@@ -1,36 +1,56 @@
-# web-reproductor-musica
+# Reproductor de música
 
-Reproductor de música en el navegador con lista de canciones incluidas y controles de reproducción.
+Reproductor de música en el navegador con 18 canciones incluidas y controles de reproducción.
 
 ## Características
 
-- Listado de canciones con sus carátulas.
-- Controles de reproducción: reproducir, pausar, anterior y siguiente.
-- Carga de las pistas de audio incluidas en la carpeta `canciones`.
-- Avance automático al terminar cada canción.
+- Lista de canciones con artista y título.
+- Controles accesibles de reproducir, pausar, anterior y siguiente.
+- Portada genérica para las pistas, que gira mientras suena la música.
+- Barra de progreso con búsqueda dentro de la canción.
+- Avance automático al terminar cada pista.
+- Reproducción local sin subir archivos ni depender de servicios externos.
 
-## Tecnologías
+## Stack
 
-- HTML5, CSS3 y JavaScript (ES6+).
+- HTML5 semántico, CSS3 con tokens y BEM, y JavaScript ES6+ en módulos.
 - Elemento de audio HTML5 con archivos MP3 incluidos.
+- Google Fonts (Montserrat).
+- ESLint + Prettier.
 
 ## Uso
 
-1. Clona el repositorio.
-2. Abre `index.html` en el navegador o sirve la carpeta con un servidor estático local.
-3. Elige una canción de la lista y usa los controles para reproducirla.
+Abre `index.html` en el navegador o sirve la carpeta con un servidor estático:
 
-## Estructura del proyecto
-
+```bash
+python3 -m http.server 8000
 ```
+
+Pulsa el botón de lista para elegir una canción y usa los controles inferiores para reproducir, pausar o cambiar de pista. La barra permite saltar a cualquier punto de la canción.
+
+## Estructura
+
+```text
 web-reproductor-musica/
 ├── index.html
-├── css/                   # estilos del reproductor
-├── js/                    # lógica de reproducción
-├── canciones/             # pistas de audio (MP3)
-└── img/                   # carátulas de las canciones
+├── css/
+│   ├── tokens.css
+│   └── styles.css
+├── js/
+│   └── app.js
+└── assets/
+    ├── icons/
+    │   └── favicon.svg
+    ├── images/
+    │   └── music.png
+    └── media/
+        └── 18 pistas MP3
 ```
 
+## Créditos
+
+Las canciones pertenecen a sus respectivos artistas y sellos. Este proyecto es una demostración local sin ánimo de lucro.
+
 ## Licencia
-Este proyecto está bajo la licencia **MIT**.  
-Consulta el archivo [LICENSE](LICENSE) para más detalles.
+
+MIT. Consulta el archivo [LICENSE](../LICENSE).

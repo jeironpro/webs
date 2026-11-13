@@ -1,127 +1,224 @@
-const canciones = [
-    { titulo: "Gabito Ballesteros - A Puro Dolor", src: "canciones/APuroDolor.mp3" },
-    { titulo: "Gabito Ballesteros - Chiquitita", src: "canciones/Chiquitita.mp3" },
-    { titulo: "Fuerza Regida - Disculpe Usted", src: "canciones/DisculpeUsted.mp3" },
-    { titulo: "Fuerza Regida - Los Sufrimientos", src: "canciones/LosSufrimientos.mp3" },
-    { titulo: "Natanael Cano - Mi Bello Angel", src: "canciones/MiBelloAngel.mp3" },
-    { titulo: "Fuerza Regida - Navidad Sin Ti", src: "canciones/NavidadSinTi.mp3" },
-    { titulo: "Fuerza Regida - No Me Dejes Nunca", src: "canciones/NoMeDejesNunca.mp3" },
-    { titulo: "Fuerza Regida - No Volvere", src: "canciones/NoVolvere.mp3" },
-    { titulo: "Natanael Cano - O Me Voy O Te Vas", src: "canciones/OMeVoyOTeVas.mp3" },
-    { titulo: "Gabito Ballesteros - Que Lloro", src: "canciones/QueLloro.mp3" },
-    { titulo: "Fuerza Regida - Que Tal Se Siente", src: "canciones/QueTalSeSiente.mp3" },
-    { titulo: "Fuerza Regida - Quien Es Usted", src: "canciones/QuienEsUsted.mp3" },
-    { titulo: "Gabito Ballesteros - Te He Prometido", src: "canciones/TeHePrometido.mp3" },
-    { titulo: "Fuerza Regida - Te Hubieras Ido Antes", src: "canciones/TeHubierasIdoAntes.mp3" },
-    { titulo: "Fuerza Regida - Te Voy A Olvidar", src: "canciones/TeVoyAOlvidar.mp3" },
-    { titulo: "Fuerza Regida - Tu Ventana", src: "canciones/TuVentana.mp3" },
-    { titulo: "Fuerza Regida - Un Idiota", src: "canciones/UnIdiota.mp3" },
-    { titulo: "Fuerza Regida - Vete Ya", src: "canciones/VeteYa.mp3" },
+const songs = [
+    {
+        artist: "Gabito Ballesteros",
+        title: "A Puro Dolor",
+        src: "./assets/media/APuroDolor.mp3",
+    },
+    { artist: "Gabito Ballesteros", title: "Chiquitita", src: "./assets/media/Chiquitita.mp3" },
+    {
+        artist: "Fuerza Regida",
+        title: "Disculpe Usted",
+        src: "./assets/media/DisculpeUsted.mp3",
+    },
+    {
+        artist: "Fuerza Regida",
+        title: "Los Sufrimientos",
+        src: "./assets/media/LosSufrimientos.mp3",
+    },
+    {
+        artist: "Natanael Cano",
+        title: "Mi Bello Angel",
+        src: "./assets/media/MiBelloAngel.mp3",
+    },
+    {
+        artist: "Fuerza Regida",
+        title: "Navidad Sin Ti",
+        src: "./assets/media/NavidadSinTi.mp3",
+    },
+    {
+        artist: "Fuerza Regida",
+        title: "No Me Dejes Nunca",
+        src: "./assets/media/NoMeDejesNunca.mp3",
+    },
+    { artist: "Fuerza Regida", title: "No Volvere", src: "./assets/media/NoVolvere.mp3" },
+    {
+        artist: "Natanael Cano",
+        title: "O Me Voy O Te Vas",
+        src: "./assets/media/OMeVoyOTeVas.mp3",
+    },
+    {
+        artist: "Gabito Ballesteros",
+        title: "Que Lloro (En Vivo)",
+        src: "./assets/media/QueLloro.mp3",
+    },
+    {
+        artist: "Fuerza Regida",
+        title: "Que Tal Se Siente",
+        src: "./assets/media/QueTalSeSiente.mp3",
+    },
+    {
+        artist: "Fuerza Regida",
+        title: "Quien Es Usted",
+        src: "./assets/media/QuienEsUsted.mp3",
+    },
+    {
+        artist: "Gabito Ballesteros",
+        title: "Te He Prometido",
+        src: "./assets/media/TeHePrometido.mp3",
+    },
+    {
+        artist: "Fuerza Regida",
+        title: "Te Hubieras Ido Antes",
+        src: "./assets/media/TeHubierasIdoAntes.mp3",
+    },
+    {
+        artist: "Fuerza Regida",
+        title: "Te Voy A Olvidar",
+        src: "./assets/media/TeVoyAOlvidar.mp3",
+    },
+    { artist: "Fuerza Regida", title: "Tu Ventana", src: "./assets/media/TuVentana.mp3" },
+    { artist: "Fuerza Regida", title: "Un Idiota", src: "./assets/media/UnIdiota.mp3" },
+    { artist: "Fuerza Regida", title: "Vete Ya", src: "./assets/media/VeteYa.mp3" },
 ];
 
-const reproductorAudio = new Audio();
-let cancionActual = 0;
+const audioPlayer = new Audio();
+audioPlayer.preload = "metadata";
 
-const cargarCancion = () => {
-    reproductorAudio.src = canciones[cancionActual].src;
-    const info = canciones[cancionActual].titulo.split("-");
-    document.getElementById("nombre-artista").textContent = info[0] ? info[0].trim() : "";
-    document.getElementById("titulo-cancion").textContent = info[1] ? info[1].trim() : info[0].trim();
+const playerContainer = document.querySelector("#player-container");
+const playlistToggle = document.querySelector("#playlist-toggle");
+const playlistBack = document.querySelector("#playlist-back");
+const playlistList = document.querySelector("#playlist-list");
+const artistName = document.querySelector("#artist-name");
+const songTitle = document.querySelector("#song-title");
+const songImage = document.querySelector("#song-image");
+const progress = document.querySelector("#progress");
+const progressFill = document.querySelector("#progress-fill");
+const playToggle = document.querySelector("#play-toggle");
+const playIcon = document.querySelector("#play-icon");
+const pauseIcon = document.querySelector("#pause-icon");
+const nextButton = document.querySelector("#next");
+const previousButton = document.querySelector("#previous");
+
+let currentSong = 0;
+
+const updatePlaylistSelection = () => {
+    playlistList.querySelectorAll(".playlist__item").forEach((button) => {
+        const active = Number(button.dataset.index) === currentSong;
+        button.classList.toggle("is-active", active);
+        if (active) {
+            button.setAttribute("aria-current", "true");
+        } else {
+            button.removeAttribute("aria-current");
+        }
+    });
 };
 
-const contenedorReproductor = document.getElementById("contenedor-reproductor");
-const contenedorListado = document.getElementById("listado-canciones");
-const reproductor = document.getElementById("reproductor");
-const iconoVolver = document.querySelector(".volver");
-const iconoListado = document.querySelector(".icono-listado");
-const progreso = document.getElementById("progreso");
-const imagenCancion = document.getElementById("imagen-cancion");
-const botonReproducir = document.getElementById("reproducir");
-const botonPausar = document.getElementById("pausar");
-const botonSiguiente = document.getElementById("siguiente");
-const botonAnterior = document.getElementById("anterior");
-
-const reproducirCancion = () => {
-    reproductorAudio.play();
-    imagenCancion.classList.add("reproduciendo");
-    botonReproducir.style.display = 'none';
-    botonPausar.style.display = 'block';
+const loadSong = () => {
+    const song = songs[currentSong];
+    audioPlayer.src = song.src;
+    audioPlayer.load();
+    artistName.textContent = song.artist;
+    songTitle.textContent = song.title;
+    progress.value = "0";
+    progressFill.value = 0;
+    progress.setAttribute("aria-valuetext", "0%");
+    updatePlaylistSelection();
 };
 
-const pausarCancion = () => {
-    reproductorAudio.pause();
-    imagenCancion.classList.remove("reproduciendo");
-    botonPausar.style.display = 'none';
-    botonReproducir.style.display = 'block';
+const setPlaying = (playing) => {
+    songImage.classList.toggle("is-playing", playing);
+    playIcon.classList.toggle("is-hidden", playing);
+    pauseIcon.classList.toggle("is-hidden", !playing);
+    playToggle.setAttribute("aria-label", playing ? "Pausar" : "Reproducir");
+    playToggle.setAttribute("aria-pressed", String(playing));
 };
 
-const siguienteCancion = () => {
-    cancionActual = (cancionActual + 1) % canciones.length;
-    cargarCancion();
-    reproducirCancion();
+const playCurrent = () => {
+    audioPlayer.play().catch(() => {
+        setPlaying(false);
+    });
 };
 
-const anteriorCancion = () => {
-    cancionActual = (cancionActual - 1 + canciones.length) % canciones.length;
-    cargarCancion();
-    reproducirCancion();
+const nextSong = () => {
+    currentSong = (currentSong + 1) % songs.length;
+    loadSong();
+    playCurrent();
 };
 
-const seleccionarCancion = (index) => {
-    cancionActual = index;
-    cargarCancion();
-    reproducirCancion();
-    contenedorListado.style.display = 'none';
-    reproductor.style.display = 'block';
-    iconoVolver.style.display = 'none';
-    contenedorReproductor.style.overflowY = 'hidden';
+const previousSong = () => {
+    currentSong = (currentSong - 1 + songs.length) % songs.length;
+    loadSong();
+    playCurrent();
 };
 
-iconoVolver.addEventListener('click', () => {
-    reproductor.style.display = 'block';
-    iconoVolver.style.display = 'none';
-    contenedorReproductor.style.overflowY = 'hidden';
-    contenedorListado.style.display = 'none';
-});
+const closePlaylist = (restoreFocus = true) => {
+    playerContainer.classList.remove("is-playlist-open");
+    playlistToggle.setAttribute("aria-expanded", "false");
+    if (restoreFocus) {
+        playlistToggle.focus();
+    }
+};
 
-iconoListado.addEventListener('click', () => {
-    reproductor.style.display = 'none';
-    iconoVolver.style.display = 'block';
-    contenedorReproductor.style.overflowY = 'auto';
-    contenedorListado.style.display = 'block';
+const selectSong = (index) => {
+    currentSong = index;
+    loadSong();
+    playCurrent();
+    closePlaylist(false);
+    playToggle.focus();
+};
 
-    contenedorListado.replaceChildren();
-    const ul = document.createElement("ul");
-    ul.className = "listado-estilo";
+const buildPlaylist = () => {
+    const fragment = document.createDocumentFragment();
 
-    canciones.forEach((cancion, index) => {
-        const li = document.createElement("li");
-        li.textContent = cancion.titulo;
-        li.addEventListener("click", () => seleccionarCancion(index));
-        ul.appendChild(li);
+    songs.forEach((song, index) => {
+        const item = document.createElement("li");
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "playlist__item";
+        button.dataset.index = String(index);
+        button.textContent = `${song.artist} - ${song.title}`;
+        button.addEventListener("click", () => selectSong(index));
+        item.append(button);
+        fragment.append(item);
     });
 
-    contenedorListado.appendChild(ul);
+    playlistList.replaceChildren(fragment);
+};
+
+playlistToggle.addEventListener("click", () => {
+    playerContainer.classList.add("is-playlist-open");
+    playlistToggle.setAttribute("aria-expanded", "true");
+    playlistBack.focus();
 });
 
-botonReproducir.addEventListener("click", reproducirCancion);
-botonPausar.addEventListener("click", pausarCancion);
-botonSiguiente.addEventListener("click", siguienteCancion);
-botonAnterior.addEventListener("click", anteriorCancion);
+playlistBack.addEventListener("click", () => closePlaylist());
 
-progreso.addEventListener("input", function () {
-    reproductorAudio.currentTime = (this.value * reproductorAudio.duration) / 100;
-});
-
-reproductorAudio.addEventListener("timeupdate", () => {
-    const porcentaje = (reproductorAudio.currentTime / reproductorAudio.duration) * 100;
-
-    progreso.style.background = `linear-gradient(to right, #fe8d94 ${porcentaje}%, #ffffff ${porcentaje}%, #ffffff ${porcentaje}%)`;
-    progreso.value = porcentaje;
-
-    if (reproductorAudio.currentTime === reproductorAudio.duration) {
-        siguienteCancion();
+playToggle.addEventListener("click", () => {
+    if (audioPlayer.paused) {
+        playCurrent();
+    } else {
+        audioPlayer.pause();
     }
 });
 
-cargarCancion();
+nextButton.addEventListener("click", nextSong);
+previousButton.addEventListener("click", previousSong);
+
+progress.addEventListener("input", () => {
+    if (!Number.isFinite(audioPlayer.duration) || audioPlayer.duration <= 0) {
+        return;
+    }
+    audioPlayer.currentTime = (Number(progress.value) / 100) * audioPlayer.duration;
+});
+
+audioPlayer.addEventListener("play", () => setPlaying(true));
+audioPlayer.addEventListener("pause", () => setPlaying(false));
+audioPlayer.addEventListener("ended", nextSong);
+audioPlayer.addEventListener("timeupdate", () => {
+    if (!Number.isFinite(audioPlayer.duration) || audioPlayer.duration <= 0) {
+        return;
+    }
+    const percentage = Math.min(100, (audioPlayer.currentTime / audioPlayer.duration) * 100);
+    progress.value = String(percentage);
+    progressFill.value = percentage;
+    progress.setAttribute("aria-valuetext", `${Math.round(percentage)}%`);
+});
+
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && playerContainer.classList.contains("is-playlist-open")) {
+        closePlaylist();
+    }
+});
+
+buildPlaylist();
+loadSong();

@@ -1,46 +1,95 @@
 :root {
-    --bg-color: #fafafa;
-    --border-color: #e0e0e0;
-    --card-bg: #ffffff;
-    --font-main: 'Inter', system-ui, -apple-system, sans-serif;
-    --primary-btn: #000000;
-    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-    --text-primary: #1a1a1a;
-    --text-secondary: #757575;
-    --btn-text: #ffffff;
+    --font-family-base: "Inter", system-ui, -apple-system, sans-serif;
+    --font-size-title: 1.5rem;
+    --font-size-title-medium: 1.6rem;
+    --font-size-title-large: 1.8rem;
+    --font-size-subtitle: 0.9rem;
+    --font-size-label: 0.85rem;
+    --font-size-input: 1rem;
+    --font-size-button: 0.95rem;
+    --font-size-result: 1.1rem;
+    --font-weight-light: 300;
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --letter-spacing-title: -0.03125rem;
+    --line-height-body: 1.5;
+
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.625rem;
+    --space-4: 0.75rem;
+    --space-5: 0.8rem;
+    --space-6: 0.9rem;
+    --space-7: 1rem;
+    --space-8: 1.25rem;
+    --space-9: 1.5rem;
+    --space-10: 2rem;
+    --space-11: 2.5rem;
+    --space-12: 3rem;
+
+    --radius-sm: 0.5rem;
+    --radius-md: 0.75rem;
+    --border-width: 0.0625rem;
+    --shadow-card:
+        0 0.25rem 0.375rem -0.0625rem rgba(0, 0, 0, 0.05),
+        0 0.125rem 0.25rem -0.0625rem rgba(0, 0, 0, 0.03);
+    --focus-ring: 0.125rem solid var(--color-ink);
+    --outline-offset: 0.125rem;
+
+    --color-background: #fafafa;
+    --color-surface: #ffffff;
+    --color-border: #e0e0e0;
+    --color-ink: #1a1a1a;
+    --color-muted: #757575;
+    --color-inverse: #ffffff;
+    --color-accent: #e05d44;
+
+    --card-width: 26.25rem;
+    --card-width-small: 95%;
+    --card-width-medium: 90%;
+    --result-min-height: 3.75rem;
+    --duration-enter: 0.4s;
+    --easing-enter: ease-out;
+    --translate-enter: 0.625rem;
+    --opacity-hover: 0.9;
+    --transition-fast: 0.2s ease;
 }
 
-* {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
 }
 
 body {
     align-items: center;
-    background-color: var(--bg-color);
-    color: var(--text-primary);
+    background-color: var(--color-background);
+    color: var(--color-ink);
     display: flex;
-    font-family: var(--font-main);
+    font-family: var(--font-family-base);
     justify-content: center;
-    min-height: 100vh;
+    margin: 0;
+    min-height: 100dvh;
+    padding: var(--space-8);
 }
 
-.app {
-    animation: fadeIn 0.4s ease-out;
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    box-shadow: var(--shadow);
-    max-width: 420px;
-    padding: 3rem;
-    width: 90%;
+.age-calculator {
+    animation: age-calculator-enter var(--duration-enter) var(--easing-enter);
+    background: var(--color-surface);
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    max-width: var(--card-width);
+    padding: var(--space-9);
+    width: var(--card-width-small);
 }
 
-@keyframes fadeIn {
+@keyframes age-calculator-enter {
     from {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateY(var(--translate-enter));
     }
 
     to {
@@ -49,141 +98,148 @@ body {
     }
 }
 
-.header {
-    margin-bottom: 2.5rem;
+.age-calculator__header {
+    margin-bottom: var(--space-10);
     text-align: center;
 }
 
-.header h1 {
-    font-size: 1.8rem;
-    font-weight: 600;
-    letter-spacing: -0.5px;
-    margin-bottom: 0.5rem;
+.age-calculator__title {
+    font-size: var(--font-size-title);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-title);
+    line-height: 1.2;
+    margin: 0 0 var(--space-2);
 }
 
-.subtitle {
-    color: var(--text-secondary);
-    font-size: 0.9rem;
+.age-calculator__subtitle {
+    color: var(--color-muted);
+    font-size: var(--font-size-subtitle);
+    margin: 0;
 }
 
-.field-group {
+.age-calculator__field {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
+    gap: var(--space-2);
+    margin-bottom: var(--space-9);
 }
 
-.field-group label {
-    color: var(--text-secondary);
-    font-size: 0.85rem;
-    font-weight: 500;
+.age-calculator__label {
+    color: var(--color-muted);
+    font-size: var(--font-size-label);
+    font-weight: var(--font-weight-medium);
 }
 
-input[type="date"] {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    color: var(--text-primary);
+.age-calculator__input {
+    background: var(--color-surface);
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--radius-sm);
+    color: var(--color-ink);
     font-family: inherit;
-    font-size: 1rem;
-    outline: none;
-    padding: 0.8rem 1rem;
-    transition: border-color 0.2s;
+    font-size: var(--font-size-input);
+    min-width: 0;
+    padding: var(--space-4);
+    transition: border-color var(--transition-fast);
     width: 100%;
 }
 
-input[type="date"]:focus {
-    border-color: var(--text-primary);
+.age-calculator__input:focus-visible {
+    border-color: var(--color-ink);
+    outline: var(--focus-ring);
+    outline-offset: var(--outline-offset);
 }
 
-.button {
-    background: var(--primary-btn);
-    border: none;
-    border-radius: 8px;
-    color: var(--btn-text);
+.age-calculator__input[aria-invalid="true"] {
+    border-color: var(--color-accent);
+}
+
+.age-calculator__error {
+    color: var(--color-accent);
+    font-size: var(--font-size-label);
+    margin: 0;
+}
+
+.age-calculator__button {
+    background: var(--color-ink);
+    border: 0;
+    border-radius: var(--radius-sm);
+    color: var(--color-inverse);
     cursor: pointer;
-    font-size: 0.95rem;
-    font-weight: 500;
-    padding: 0.9rem;
-    transition: opacity 0.2s;
+    font-family: inherit;
+    font-size: var(--font-size-button);
+    font-weight: var(--font-weight-medium);
+    padding: var(--space-5);
+    transition: opacity var(--transition-fast);
     width: 100%;
 }
 
-.button:hover {
-    opacity: 0.9;
+.age-calculator__button:hover {
+    opacity: var(--opacity-hover);
 }
 
-.result-section {
-    margin-top: 2rem;
-    min-height: 60px;
+.age-calculator__button:focus-visible {
+    outline: var(--focus-ring);
+    outline-offset: var(--outline-offset);
 }
 
-.result-card {
-    border-top: 1px solid var(--border-color);
-    padding-top: 1.5rem;
+.age-calculator__result {
+    margin-top: var(--space-10);
+    min-height: var(--result-min-height);
+}
+
+.age-calculator__result-card {
+    border-top: var(--border-width) solid var(--color-border);
+    padding-top: var(--space-9);
     text-align: center;
 }
 
-.result-text {
-    font-size: 1.1rem;
-    font-weight: 500;
+.age-calculator__result-text {
+    font-size: var(--font-size-result);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-body);
+    margin: 0;
 }
 
-.is-hidden {
-    display: none;
-}
-
-
-.button {
-    padding: 0.8rem;
-}
-
-.app {
-    padding: 1.5rem;
-    width: 95%;
-}
-
-.header {
-    margin-bottom: 2rem;
-}
-
-.header h1 {
-    font-size: 1.5rem;
-}
-
-input[type="date"] {
-    padding: 0.7rem;
-}
-
-@media (min-width: 481px) {
-    .button {
-        padding: 0.9rem;
+@media (min-width: 30.0625rem) {
+    .age-calculator {
+        padding: var(--space-11);
+        width: var(--card-width-medium);
     }
 
-    .app {
-        padding: 2.5rem;
-        width: 90%;
+    .age-calculator__header {
+        margin-bottom: var(--space-11);
     }
 
-    .header {
-        margin-bottom: 2.5rem;
+    .age-calculator__title {
+        font-size: var(--font-size-title-medium);
     }
 
-    .header h1 {
-        font-size: 1.6rem;
+    .age-calculator__button {
+        padding: var(--space-6);
     }
 
-    input[type="date"] {
-        padding: 0.8rem 1rem;
+    .age-calculator__input {
+        padding: var(--space-5) var(--space-7);
     }
 }
 
-@media (min-width: 769px) {
-    .app {
-        padding: 3rem;
+@media (min-width: 48.0625rem) {
+    .age-calculator {
+        padding: var(--space-12);
     }
 
-    .header h1 {
-        font-size: 1.8rem;
+    .age-calculator__title {
+        font-size: var(--font-size-title-large);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .age-calculator {
+        animation: none;
+    }
+
+    .age-calculator__button,
+    .age-calculator__input {
+        transition: none;
     }
 }

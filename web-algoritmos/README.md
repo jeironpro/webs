@@ -6,30 +6,46 @@ Página web con tarjetas de repaso de algoritmos clásicos de programación: cad
 
 - Catálogo de algoritmos conocidos (compresión, búsqueda, estructuras de datos, etc.).
 - Tarjetas interactivas tipo flashcard que se voltean para consultar la descripción.
-- Cada tarjeta incluye icono ilustrativo asociado al algoritmo.
+- Navegación con ratón, teclado y pantalla táctil.
+- Estado de cada tarjeta anunciado con `aria-expanded`.
 - Interfaz sencilla en español, sin necesidad de registro.
 
 ## Tecnologías
 
-- HTML5, CSS3 y JavaScript (ES6+), sin dependencias externas.
+- HTML5 semántico.
+- CSS3 con custom properties, diseño mobile-first y movimiento reducido.
+- JavaScript moderno con módulos ES.
+- Google Fonts (Fredoka) y Material Symbols.
 
 ## Uso
 
-1. Clona el repositorio.
-2. Abre `index.html` en el navegador o sirve la carpeta con un servidor estático local.
+Los módulos ES no funcionan abriendo `index.html` con `file://`. Sirve la carpeta por HTTP:
 
-No requiere instalación ni compilación.
+```bash
+python3 -m http.server 8000
+# o
+npx serve .
+```
+
+Después abre <http://localhost:8000>.
+
+No requiere instalación, compilación ni dependencias de ejecución.
 
 ## Estructura del proyecto
 
 ```
 web-algoritmos/
 ├── index.html
-├── css/                   # estilos de las tarjetas
-├── js/                    # datos de algoritmos y lógica de las tarjetas
-└── icon/                  # favicon
+├── css/
+│   └── styles.css
+├── js/
+│   └── cards.js
+├── assets/
+│   └── icons/
+│       └── favicon.svg
+└── README.md
 ```
 
 ## Licencia
-Este proyecto está bajo la licencia **MIT**.  
-Consulta el archivo [LICENSE](LICENSE) para más detalles.
+
+Este proyecto está bajo la licencia **MIT**. Consulta el archivo [LICENSE](../LICENSE) para más detalles.

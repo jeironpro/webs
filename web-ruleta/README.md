@@ -1,81 +1,53 @@
-# Web Ruleta
+# Ruleta
 
-Ruleta interactiva en una sola pagina. Configura numeros o nombres personalizados desde el panel lateral y haz girar la ruleta.
+Ruleta interactiva de una sola página. Configura números o nombres personalizados desde el panel lateral y haz girar la ruleta.
 
-## Estructura del proyecto
+## Características
 
-```
-web-ruleta/
-├── index.html            # Pagina principal (onepage)
-├── favicon.svg           # Icono SVG de la ruleta
-├── robots.txt            # Configuracion para crawlers
-├── sitemap.xml           # Mapa del sitio
-├── eslint.config.js      # Configuracion de ESLint (tab 4, incluye HTML)
-├── package.json          # Dependencias y scripts
-│
-├── css/
-│   ├── reset.css         # Normalizacion de estilos entre navegadores
-│   ├── variables.css     # Custom properties (colores, fuentes, spacing, etc.)
-│   └── style.css         # Estilos globales y de componentes
-│
-├── js/
-│   ├── app.js            # Entry point, orquesta modulos
-│   ├── modules/
-│   │   ├── roulette.js   # Ruleta: Canvas, dibujo de segmentos, animacion con desaceleracion
-│   │   └── sidebar.js    # Panel lateral: tabs Numeros/Nombres, CRUD de nombres
-│   └── utils/
-│       └── dom.js        # Helpers de DOM ($, $$)
-│
-└── assets/
-    └── images/           # Recursos graficos
-```
+- Dos modos de configuración: rango numérico, con opción de incluir el 0, o lista de nombres.
+- Panel lateral accesible con pestañas, cierre con Escape y foco controlado.
+- Ruleta dibujada con Canvas y animación de desaceleración.
+- Resultado anunciado mediante región `aria-live`.
+- Diseño responsive para móvil, tablet y escritorio.
+- Procesado local, sin dependencias de ejecución ni servicios externos.
 
 ## Stack
 
-- HTML5 semantico
-- CSS3 (Flexbox, Custom Properties, Media Queries)
-- JavaScript ES6+ (modulos, Canvas API)
-- Sin bundlers ni frameworks
-
-## Caracteristicas
-
-- **Dos modos de configuracion**: Numeros (rango personalizable con opcion de incluir 0) o Nombres (anyade nombres, cada uno es un segmento)
-- **Panel lateral flotante**: Se abre/cierra desde el boton en la esquina superior derecha
-- **Ruleta animada**: Dibujada con Canvas, animacion con desaceleracion natural
-- **Responsive**: Funciona en dispositivos moviles y desktop
-- **HTML semantico**: Estructura accesible y limpia
+- HTML5 semántico, CSS3 con tokens y BEM, y JavaScript ES6+ en módulos.
+- Canvas API.
+- Google Fonts (Inter).
+- ESLint + Prettier.
 
 ## Uso
 
-Servir con un servidor local (requerido para modulos ES6):
+Sirve la carpeta con un servidor estático, necesario para los módulos ES:
 
 ```bash
-# Python
-python -m http.server 8000
-
-# Node
-npx serve .
+python3 -m http.server 8000
 ```
 
-Luego abrir `http://localhost:8000`.
+Abre `http://localhost:8000`, pulsa el botón de configuración y elige el modo Números o Nombres. Aplica la configuración y pulsa «Girar». El resultado aparece bajo la ruleta.
 
-### Como funciona
+## Estructura
 
-1. Abre el panel lateral con el boton de ajustes (esquina superior derecha)
-2. Elige el modo "Numeros" o "Nombres"
-3. Configura los valores y presiona "Aplicar"
-4. Presiona "Girar" para hacer girar la ruleta
-5. El resultado se muestra debajo de la ruleta
-
-## Reglas del proyecto
-
-- No se usa `innerHTML` ni ninguna inyeccion insegura de HTML
-- CSS con media queries para responsive
-- HTML con estructura semantica
-- Comentarios en espanol en el codigo
-- Iconos de Material Symbols en lugar de emojis
-- ESLint + Stylelint + Prettier para calidad de codigo
+```text
+web-ruleta/
+├── index.html
+├── css/
+│   ├── tokens.css
+│   └── style.css
+├── js/
+│   ├── app.js
+│   ├── modules/
+│   │   ├── roulette.js
+│   │   └── sidebar.js
+│   └── utils/
+│       └── dom.js
+└── assets/
+    └── icons/
+        └── favicon.svg
+```
 
 ## Licencia
 
-MIT
+MIT. Consulta el archivo [LICENSE](../LICENSE).

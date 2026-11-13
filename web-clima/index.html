@@ -8,12 +8,206 @@
             name="description"
             content="Consulta el clima e información de cualquier ubicación del mundo: temperatura, pronóstico y datos del lugar al instante."
         />
-        <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
-        <link rel="stylesheet" href="./styles.css" />
+        <link rel="icon" type="image/svg+xml" href="./assets/icons/favicon.svg" />
+        <link rel="stylesheet" href="./css/styles.css" />
         <title>Clima° — el tiempo de cualquier lugar</title>
     </head>
     <body>
-        <div id="root"></div>
-        <script src="./app.js"></script>
+        <div id="root">
+            <div class="app-app">
+                <div class="rays-canvas" aria-hidden="true">
+                    <div class="light-rays-container"></div>
+                </div>
+                <div class="app-scrim" aria-hidden="true"></div>
+                <header class="navbar-header">
+                    <nav class="navbar-pill" aria-label="Navegación principal">
+                        <a class="navbar-brand" href="#" aria-label="clima — inicio">
+                            <span class="navbar-brandMark">Clima</span>
+                            <span class="navbar-brandDegree" aria-hidden="true">°</span>
+                        </a>
+                        <div class="navbar-actions">
+                            <button type="button" class="navbar-geo" aria-label="Usar mi ubicación">
+                                <svg
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                >
+                                    <path
+                                        d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"
+                                    />
+                                    <circle cx="12" cy="9" r="2" />
+                                </svg>
+                            </button>
+                            <button
+                                type="button"
+                                class="navbar-unitToggle"
+                                aria-label="Cambiar a F°"
+                            >
+                                C°
+                            </button>
+                        </div>
+                    </nav>
+                </header>
+                <main class="app-main" id="main-content" tabindex="-1">
+                    <div class="home-page">
+                        <section class="home-hero" aria-labelledby="hero-title">
+                            <h1 id="hero-title" class="home-heroTitle">
+                                El tiempo de <span class="home-heroAccent">cualquier lugar</span>.
+                            </h1>
+                            <div class="home-toolbar">
+                                <div class="search-root">
+                                    <label class="search-label" for="search-input"
+                                        >Buscar una ciudad o lugar</label
+                                    >
+                                    <div class="search-field">
+                                        <input
+                                            id="search-input"
+                                            class="search-input"
+                                            type="search"
+                                            role="combobox"
+                                            autocomplete="off"
+                                            spellcheck="false"
+                                            aria-autocomplete="list"
+                                            aria-expanded="false"
+                                            aria-controls="search-listbox"
+                                            placeholder="p. ej. Madrid, Buenos Aires, Lisboa…"
+                                        />
+                                        <span
+                                            class="search-spinner"
+                                            aria-hidden="true"
+                                            hidden
+                                        ></span>
+                                        <button
+                                            type="button"
+                                            class="search-clear"
+                                            aria-label="Limpiar la búsqueda"
+                                            hidden
+                                        >
+                                            ×
+                                        </button>
+                                    </div>
+                                    <p
+                                        id="search-status"
+                                        class="search-status"
+                                        role="status"
+                                        hidden
+                                    ></p>
+                                    <p
+                                        id="search-status-error"
+                                        class="search-statusError"
+                                        role="alert"
+                                        hidden
+                                    ></p>
+                                    <ul
+                                        id="search-listbox"
+                                        role="listbox"
+                                        class="search-listbox"
+                                        hidden
+                                    ></ul>
+                                </div>
+                            </div>
+                            <div id="hero-content"></div>
+                        </section>
+                        <div id="page-sections"></div>
+                        <section class="home-statement">
+                            <p>El tiempo cambia. Las coordenadas, no.</p>
+                            <p>
+                                Clima&nbsp;° trae la previsión y los datos de cada lugar a tu
+                                pantalla.
+                            </p>
+                        </section>
+                    </div>
+                </main>
+                <footer class="weather-footer">
+                    <div class="weather-footer__shell">
+                        <span class="weather-footer__meta">clima&nbsp;° · MIT</span>
+                        <span class="weather-footer__meta">Datos: Open-Meteo · CC BY 4.0</span>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <section
+            class="storage-consent"
+            id="storage-consent"
+            aria-label="Consentimiento de almacenamiento local"
+            aria-live="polite"
+            hidden
+        >
+            <div class="storage-consent__panel">
+                <div class="storage-consent__copy" data-consent-initial>
+                    <p class="storage-consent__eyebrow">Privacidad · Clima°</p>
+                    <h2 class="storage-consent__title">Tu clima, guardado solo aquí</h2>
+                    <p class="storage-consent__text">
+                        Clima° usa almacenamiento local para recordar tu última ciudad y tu unidad
+                        de temperatura. No usa cookies ni envía tus datos a ningún servidor. Al
+                        aceptar, la página se recargará para aplicar el guardado.
+                    </p>
+                </div>
+                <div class="storage-consent__copy" data-consent-declined hidden>
+                    <p class="storage-consent__eyebrow">Privacidad · sin guardado</p>
+                    <h2 class="storage-consent__title">El clima funcionará sin memoria</h2>
+                    <p class="storage-consent__text">
+                        Puedes consultar el tiempo durante esta visita, pero tu última ciudad y la
+                        unidad volverán a los valores iniciales al recargar. No se guardará nada en
+                        tu navegador. Puedes activar el guardado desde «Privacidad».
+                    </p>
+                </div>
+                <div class="storage-consent__copy" data-consent-active hidden>
+                    <p class="storage-consent__eyebrow">Privacidad · guardado activo</p>
+                    <h2 class="storage-consent__title">El almacenamiento local está activo</h2>
+                    <p class="storage-consent__text">
+                        Clima° recuerda tu unidad y tu última ciudad en este navegador. Puedes
+                        retirar el permiso y borrar esos datos cuando quieras.
+                    </p>
+                </div>
+                <div class="storage-consent__copy" data-consent-confirm hidden>
+                    <p class="storage-consent__eyebrow">Privacidad · borrar datos</p>
+                    <h2 class="storage-consent__title">¿Borrar los datos de Clima°?</h2>
+                    <p class="storage-consent__text">
+                        Se eliminarán la unidad, la última ciudad y la preferencia de consentimiento
+                        de este navegador. La página se recargará y el aviso volverá a aparecer.
+                    </p>
+                </div>
+                <div class="storage-consent__actions">
+                    <button
+                        class="storage-consent__accept"
+                        id="storage-consent-accept"
+                        type="button"
+                    >
+                        Aceptar y guardar
+                    </button>
+                    <button
+                        class="storage-consent__decline"
+                        id="storage-consent-decline"
+                        type="button"
+                    >
+                        Ahora no
+                    </button>
+                    <button
+                        class="storage-consent__revoke"
+                        id="storage-consent-revoke"
+                        type="button"
+                        hidden
+                    >
+                        Retirar consentimiento y borrar datos
+                    </button>
+                </div>
+                <p class="storage-consent__error" data-consent-error role="alert" hidden>
+                    El navegador bloquea el almacenamiento local. No se pudo completar la operación.
+                </p>
+            </div>
+        </section>
+
+        <button class="storage-consent__reopen" id="storage-consent-reopen" type="button" hidden>
+            Privacidad
+        </button>
+
+        <script src="./js/consent.js"></script>
+        <script src="./js/app.js"></script>
     </body>
 </html>

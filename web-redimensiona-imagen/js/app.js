@@ -1,86 +1,97 @@
-const zonaCarga = document.getElementById('zona-carga');
-const previsualizacion = document.getElementById('previsualizacion');
+const fileInput = document.querySelector("#file-input");
+const dropZone = document.querySelector("#drop-zone");
+const preview = document.querySelector("#preview");
+const widthInput = document.querySelector("#width");
+const heightInput = document.querySelector("#height");
+const downloadButton = document.querySelector("#download-button");
+const status = document.querySelector("#status");
 
-function cargarImagen(archivo) {
-    if (archivo && archivo.type.startsWith('image/')) {
-        const lector = new FileReader();
-        lector.onload = function (e) {
-            previsualizacion.src = e.target.result;
-            previsualizacion.style.display = 'block';
-        }
-        lector.readAsDataURL(archivo);
+const setStatus = (message) => {
+    status.textContent = message;
+};
+
+const loadImage = (file) => {
+    if (!file) {
+        return;
     }
-}
-
-zonaCarga.addEventListener('click', function () {
-    const selectorArchivos = document.createElement('input');
-    selectorArchivos.type = 'file';
-    selectorArchivos.accept = 'image/*';
-    selectorArchivos.style.display = 'none';
-
-    selectorArchivos.addEventListener('change', function () {
-        const archivo = selectorArchivos.files[0];
-        cargarImagen(archivo);
-        document.body.removeChild(selectorArchivos);
-    });
-
-    document.body.appendChild(selectorArchivos);
-    selectorArchivos.click();
-});
-
-// Soporte para Arrastrar y Soltar (Drag and Drop)
-zonaCarga.addEventListener('dragover', (e) => {
-    e.preventDefault();
-    zonaCarga.classList.add('dragover');
-});
-
-zonaCarga.addEventListener('dragleave', () => {
-    zonaCarga.classList.remove('dragover');
-});
-
-zonaCarga.addEventListener('drop', (e) => {
-    e.preventDefault();
-    zonaCarga.classList.remove('dragover');
-    const archivo = e.dataTransfer.files[0];
-    cargarImagen(archivo);
-});
-
-document.getElementById('boton-descargar').addEventListener('click', function () {
-    const imagen = document.getElementById('previsualizacion');
-
-    // Validación para evitar el error de "broken state"
-    if (!imagen.src || imagen.src === window.location.href || imagen.naturalWidth === 0) {
-        alert('Por favor, selecciona una imagen válida antes de descargar.');
+    if (!file.type.startsWith("image/")) {
+        setStatus("El archivo seleccionado no es una imagen válida.");
         return;
     }
 
-    const lienzo = document.createElement('canvas');
-    const contexto = lienzo.getContext('2d');
-    const anchoMaximo = parseInt(document.getElementById('ancho').value) || imagen.naturalWidth;
-    const largoMaximo = parseInt(document.getElementById('largo').value) || imagen.naturalHeight;
-
-    let ancho = imagen.naturalWidth;
-    let largo = imagen.naturalHeight;
-
-    if (ancho > largo) {
-        if (ancho > anchoMaximo) {
-            largo *= anchoMaximo / ancho;
-            ancho = anchoMaximo;
+    const reader = new FileReader();
+    reader.addEventListener("load", () => {
+        if (typeof reader.result !== "string") {
+            setStatus("No se pudo leer la imagen seleccionada.");
+            return;
         }
-    } else {
-        if (largo > largoMaximo) {
-            ancho *= largoMaximo / largo;
-            largo = largoMaximo;
-        }
+        preview.src = reader.result;
+        preview.classList.remove("is-hidden");
+        widthInput.value = "";
+        heightInput.value = "";
+        setStatus("");
+    });
+    reader.addEventListener("error", () => {
+        setStatus("No se pudo leer la imagen seleccionada.");
+    });
+    reader.readAsDataURL(file);
+};
+
+fileInput.addEventListener("change", (event) => {
+    loadImage(event.target.files[0]);
+    fileInput.value = "";
+});
+
+dropZone.addEventListener("dragover", (event) => {
+    event.preventDefault();
+    dropZone.classList.add("is-dragover");
+});
+
+dropZone.addEventListener("dragleave", () => {
+    dropZone.classList.remove("is-dragover");
+});
+
+dropZone.addEventListener("drop", (event) => {
+    event.preventDefault();
+    dropZone.classList.remove("is-dragover");
+    loadImage(event.dataTransfer.files[0]);
+});
+
+downloadButton.addEventListener("click", () => {
+    const naturalWidth = preview.naturalWidth;
+    const naturalHeight = preview.naturalHeight;
+
+    if (!preview.getAttribute("src") || naturalWidth === 0 || naturalHeight === 0) {
+        setStatus("Selecciona una imagen válida antes de descargar.");
+        fileInput.focus();
+        return;
     }
 
-    lienzo.width = ancho;
-    lienzo.height = largo;
+    const requestedWidth = Number.parseInt(widthInput.value, 10);
+    const requestedHeight = Number.parseInt(heightInput.value, 10);
+    const maxWidth = requestedWidth > 0 ? requestedWidth : naturalWidth;
+    const maxHeight = requestedHeight > 0 ? requestedHeight : naturalHeight;
+    const scale = Math.min(1, maxWidth / naturalWidth, maxHeight / naturalHeight);
+    const width = Math.max(1, Math.round(naturalWidth * scale));
+    const height = Math.max(1, Math.round(naturalHeight * scale));
 
-    contexto.drawImage(imagen, 0, 0, ancho, largo);
+    const canvas = document.createElement("canvas");
+    const context = canvas.getContext("2d");
 
-    const enlace = document.createElement('a');
-    enlace.download = 'imagen_redimensionada.png';
-    enlace.href = lienzo.toDataURL('image/png');
-    enlace.click();
+    if (!context) {
+        setStatus("El navegador no pudo procesar la imagen.");
+        return;
+    }
+
+    canvas.width = width;
+    canvas.height = height;
+    context.drawImage(preview, 0, 0, width, height);
+
+    const link = document.createElement("a");
+    link.download = "imagen-redimensionada.png";
+    link.href = canvas.toDataURL("image/png");
+    document.body.append(link);
+    link.click();
+    link.remove();
+    setStatus("");
 });

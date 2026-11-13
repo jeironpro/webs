@@ -1,183 +1,186 @@
-/* Modulo: Ruleta - dibujo, animacion y logica de giro */
-
-// Paleta de colores para los segmentos
-const COLORS = [
-	'#e74c3c', '#3498db', '#2ecc71', '#f39c12', '#9b59b6',
-	'#1abc9c', '#e67e22', '#e84393', '#00b894', '#6c5ce7',
-	'#fd79a8', '#0984e3', '#00cec9', '#d63031', '#fdcb6e',
-	'#a29bfe', '#55a3e8', '#74b9ff', '#ff7675', '#fab1a0',
-	'#81ecec', '#ffeaa7', '#dfe6e9', '#636e72', '#e17055',
-	'#00b894', '#6c5ce7', '#fd79a8', '#0984e3', '#00cec9',
-];
+const COLOR_COUNT = 18;
 
 export class Roulette {
-	constructor(canvasId) {
-		this.canvas = document.getElementById(canvasId);
-		this.ctx = this.canvas.getContext('2d');
-		this.segments = [];
-		this.currentAngle = 0;
-		this.isSpinning = false;
-		this.onComplete = null;
-		this._animationId = null;
+    constructor(canvasId) {
+        this.canvas = document.getElementById(canvasId);
+        this.ctx = this.canvas.getContext("2d");
+        this.segments = [];
+        this.currentAngle = 0;
+        this.isSpinning = false;
+        this.onComplete = null;
+        this._animationId = null;
+        this._size = 0;
 
-		this._resizeCanvas();
-		window.addEventListener('resize', () => this._resizeCanvas());
-	}
+        const styles = getComputedStyle(document.documentElement);
+        const read = (name) => styles.getPropertyValue(name).trim();
+        this._colors = Array.from({ length: COLOR_COUNT }, (_, index) =>
+            read(`--wheel-color-${index + 1}`)
+        );
+        this._emptyColor = read("--color-wheel-empty");
+        this._borderColor = read("--color-wheel-border");
+        this._separatorColor = read("--color-wheel-separator");
+        this._textColor = read("--color-white");
+        this._centerColor = read("--color-wheel-center");
+        this._shadowColor = read("--color-wheel-shadow");
+        this._fontFamily = read("--font-primary");
 
-	_resizeCanvas() {
-		const rect = this.canvas.getBoundingClientRect();
-		const size = Math.min(rect.width, rect.height);
-		if (size > 0) {
-			this.canvas.width = size * (window.devicePixelRatio || 1);
-			this.canvas.height = size * (window.devicePixelRatio || 1);
-			this.canvas.style.width = `${size}px`;
-			this.canvas.style.height = `${size}px`;
-			this._scale = window.devicePixelRatio || 1;
-			this._size = size;
-			this.draw();
-		}
-	}
+        this._handleResize = () => this._resizeCanvas();
+        window.addEventListener("resize", this._handleResize);
+        this._resizeCanvas();
+    }
 
-	setSegments(segments) {
-		this.segments = segments;
-		this.currentAngle = 0;
-		this.draw();
-	}
+    _resizeCanvas() {
+        const rect = this.canvas.getBoundingClientRect();
+        const size = rect.width;
+        if (size <= 0) {
+            return;
+        }
+        const scale = window.devicePixelRatio || 1;
+        this.canvas.width = Math.round(size * scale);
+        this.canvas.height = Math.round(size * scale);
+        this._size = size;
+        this._scale = scale;
+        this.draw();
+    }
 
-	getColor(index) {
-		return COLORS[index % COLORS.length];
-	}
+    setSegments(segments) {
+        this._cancelAnimation();
+        this.segments = segments;
+        this.currentAngle = 0;
+        this.isSpinning = false;
+        this.canvas.setAttribute("aria-label", `Ruleta con ${segments.length} opciones`);
+        this.draw();
+    }
 
-	draw() {
-		const ctx = this.ctx;
-		const size = this.canvas.width;
-		const cx = size / 2;
-		const cy = size / 2;
-		const radius = size / 2 - 4;
-		const count = this.segments.length;
-		const scale = this._scale || 1;
-		const cssRadius = (this._size || size) / 2 - 4;
+    getColor(index) {
+        return this._colors[index % this._colors.length];
+    }
 
-		ctx.clearRect(0, 0, size, size);
+    draw() {
+        if (!this.ctx || this._size <= 0) {
+            return;
+        }
+        const size = this._size;
+        const scale = this._scale;
+        const cx = size / 2;
+        const cy = size / 2;
+        const radius = size / 2 - 4;
+        const count = this.segments.length;
 
-		if (count === 0) {
-			// Dibujar circulo vacio
-			ctx.beginPath();
-			ctx.arc(cx, cy, radius, 0, Math.PI * 2);
-			ctx.fillStyle = '#2d3436';
-			ctx.fill();
-			ctx.strokeStyle = '#636e72';
-			ctx.lineWidth = 2;
-			ctx.stroke();
-			return;
-		}
+        this.ctx.setTransform(scale, 0, 0, scale, 0, 0);
+        this.ctx.clearRect(0, 0, size, size);
 
-		const arcSize = (Math.PI * 2) / count;
+        if (count === 0) {
+            this.ctx.beginPath();
+            this.ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+            this.ctx.fillStyle = this._emptyColor;
+            this.ctx.fill();
+            this.ctx.strokeStyle = this._borderColor;
+            this.ctx.lineWidth = 2;
+            this.ctx.stroke();
+            return;
+        }
 
-		ctx.save();
-		ctx.translate(cx, cy);
-		ctx.rotate(this.currentAngle);
+        const arcSize = (Math.PI * 2) / count;
 
-		for (let i = 0; i < count; i++) {
-			const startAngle = i * arcSize - Math.PI / 2;
-			const endAngle = startAngle + arcSize;
+        this.ctx.save();
+        this.ctx.translate(cx, cy);
+        this.ctx.rotate(this.currentAngle);
 
-			// Dibujar segmento
-			ctx.beginPath();
-			ctx.moveTo(0, 0);
-			ctx.arc(0, 0, radius, startAngle, endAngle);
-			ctx.closePath();
+        for (let index = 0; index < count; index += 1) {
+            const startAngle = index * arcSize - Math.PI / 2;
+            const endAngle = startAngle + arcSize;
 
-			ctx.fillStyle = this.getColor(i);
-			ctx.fill();
-			ctx.strokeStyle = 'rgba(255,255,255,0.2)';
-			ctx.lineWidth = 1.5;
-			ctx.stroke();
+            this.ctx.beginPath();
+            this.ctx.moveTo(0, 0);
+            this.ctx.arc(0, 0, radius, startAngle, endAngle);
+            this.ctx.closePath();
+            this.ctx.fillStyle = this.getColor(index);
+            this.ctx.fill();
+            this.ctx.strokeStyle = this._separatorColor;
+            this.ctx.lineWidth = 1.5;
+            this.ctx.stroke();
 
-			// Dibujar texto
-			ctx.save();
-			ctx.rotate(startAngle + arcSize / 2);
-			ctx.textAlign = 'right';
-			ctx.fillStyle = '#ffffff';
-			const fontSize = Math.max(11, Math.min(16, cssRadius / count * 1.2));
-			ctx.font = `bold ${Math.round(fontSize * scale)}px Inter, sans-serif`;
-			ctx.shadowColor = 'rgba(0,0,0,0.5)';
-			ctx.shadowBlur = 2;
+            if (arcSize * radius < 14) {
+                continue;
+            }
 
-			const textRadius = radius * 0.68;
-			const label = String(this.segments[i]);
-			const maxWidth = radius * 0.55;
+            this.ctx.save();
+            this.ctx.rotate(startAngle + arcSize / 2);
+            this.ctx.textAlign = "right";
+            this.ctx.fillStyle = this._textColor;
+            this.ctx.shadowColor = this._shadowColor;
+            this.ctx.shadowBlur = 2;
+            const fontSize = Math.max(11, Math.min(16, (radius / count) * 1.2));
+            this.ctx.font = `600 ${fontSize}px ${this._fontFamily}`;
 
-			if (ctx.measureText(label).width > maxWidth) {
-				const truncated = label.slice(0, 6) + '...';
-				ctx.fillText(truncated, textRadius, 5);
-			} else {
-				ctx.fillText(label, textRadius, 5);
-			}
+            const textRadius = radius * 0.68;
+            const maxWidth = radius * 0.55;
+            const label = String(this.segments[index]);
+            const text =
+                this.ctx.measureText(label).width > maxWidth ? `${label.slice(0, 6)}…` : label;
+            this.ctx.fillText(text, textRadius, 5);
+            this.ctx.restore();
+        }
 
-			ctx.restore();
-		}
+        this.ctx.beginPath();
+        this.ctx.arc(0, 0, radius * 0.12, 0, Math.PI * 2);
+        this.ctx.fillStyle = this._centerColor;
+        this.ctx.fill();
+        this.ctx.strokeStyle = this._borderColor;
+        this.ctx.lineWidth = 2;
+        this.ctx.stroke();
+        this.ctx.restore();
+    }
 
-		// Circulo central
-		ctx.beginPath();
-		ctx.arc(0, 0, radius * 0.12, 0, Math.PI * 2);
-		ctx.fillStyle = '#1a1a2e';
-		ctx.fill();
-		ctx.strokeStyle = '#636e72';
-		ctx.lineWidth = 2;
-		ctx.stroke();
+    spin() {
+        if (this.isSpinning || this.segments.length === 0) {
+            return;
+        }
+        this.isSpinning = true;
 
-		ctx.restore();
-	}
+        let speed = 0.3 + Math.random() * 0.2;
+        const friction = 0.985;
+        const minSpeed = 0.001;
 
-	spin() {
-		if (this.isSpinning || this.segments.length === 0) return;
-		this.isSpinning = true;
+        const animate = () => {
+            speed *= friction;
+            this.currentAngle += speed;
+            this.draw();
 
-		// Velocidad inicial aleatoria (radianes por frame)
-		const initialSpeed = 0.3 + Math.random() * 0.2;
-		let speed = initialSpeed;
+            if (speed > minSpeed) {
+                this._animationId = requestAnimationFrame(animate);
+            } else {
+                this._animationId = null;
+                this.isSpinning = false;
+                this._finishSpin();
+            }
+        };
 
-		// Desaceleracion
-		const friction = 0.985;
-		const minSpeed = 0.001;
+        this._animationId = requestAnimationFrame(animate);
+    }
 
-		const animate = () => {
-			speed *= friction;
-			this.currentAngle += speed;
-			this.draw();
+    _finishSpin() {
+        const count = this.segments.length;
+        const arcSize = (Math.PI * 2) / count;
+        const normalizedAngle = ((this.currentAngle % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
+        const relativeAngle = (Math.PI * 2 - normalizedAngle) % (Math.PI * 2);
+        const index = Math.floor(relativeAngle / arcSize) % count;
 
-			if (speed > minSpeed) {
-				this._animationId = requestAnimationFrame(animate);
-			} else {
-				this.isSpinning = false;
-				this._onSpinComplete();
-			}
-		};
+        if (this.onComplete) {
+            this.onComplete(this.segments[index], index);
+        }
+    }
 
-		this._animationId = requestAnimationFrame(animate);
-	}
+    _cancelAnimation() {
+        if (this._animationId) {
+            cancelAnimationFrame(this._animationId);
+            this._animationId = null;
+        }
+    }
 
-	_onSpinComplete() {
-		const count = this.segments.length;
-		const arcSize = (Math.PI * 2) / count;
-
-		// Calculamos el angulo relativo del puntero (parte superior) respecto al inicio del segmento 0
-		const normalizedAngle = ((this.currentAngle % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
-		const relativeAngle = ((Math.PI * 2) - normalizedAngle) % (Math.PI * 2);
-		const index = Math.floor(relativeAngle / arcSize) % count;
-
-		const result = this.segments[index];
-
-		if (this.onComplete) {
-			this.onComplete(result, index);
-		}
-	}
-
-	destroy() {
-		if (this._animationId) {
-			cancelAnimationFrame(this._animationId);
-		}
-		window.removeEventListener('resize', this._resizeCanvas);
-	}
+    destroy() {
+        this._cancelAnimation();
+        window.removeEventListener("resize", this._handleResize);
+    }
 }

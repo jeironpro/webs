@@ -1,268 +1,274 @@
-import { caposDroga, organizaciones } from './data.js';
+import { drugBosses, organizations } from "./data.js";
 
-const cuadriculaCapos = document.getElementById('cuadricula-capos');
-const cuadriculaOrganizaciones = document.getElementById('cuadricula-organizaciones');
-const vistaInicio = document.getElementById('vista-inicio');
-const vistaDetalle = document.getElementById('vista-detalle');
-const contenidoDetalle = document.getElementById('contenido-detalle');
-const botonVolver = document.getElementById('boton-volver');
-const navCapos = document.getElementById('nav-capos');
-const navOrganizaciones = document.getElementById('nav-organizaciones');
-const subtitulo = document.querySelector('.subtitulo');
+const bossesGrid = document.getElementById("bosses-grid");
+const organizationsGrid = document.getElementById("organizations-grid");
+const homeView = document.getElementById("home-view");
+const detailView = document.getElementById("detail-view");
+const detailContent = document.getElementById("detail-content");
+const backButton = document.getElementById("back-button");
+const bossesNav = document.getElementById("nav-bosses");
+const organizationsNav = document.getElementById("nav-organizations");
+const subtitle = document.querySelector(".home__subtitle");
 
-let seccionActual = 'capos'; // 'capos' o 'organizaciones'
-
-const crearElemento = (etiqueta, clase = '', contenido = '') => {
-    const el = document.createElement(etiqueta);
-    if (clase) el.className = clase;
-    if (contenido) el.textContent = contenido;
-    return el;
+const createElement = (tag, className = "", content = "") => {
+    const element = document.createElement(tag);
+    if (className) {
+        element.className = className;
+    }
+    if (content) {
+        element.textContent = content;
+    }
+    return element;
 };
 
-const limpiarApp = () => {
-    cuadriculaCapos.style.display = 'none';
-    cuadriculaOrganizaciones.style.display = 'none';
-    navCapos.classList.remove('activo');
-    navOrganizaciones.classList.remove('activo');
-};
-
-const renderizarCuadriculaCapos = () => {
-    cuadriculaCapos.replaceChildren();
-    caposDroga.forEach(capo => {
-        const tarjeta = crearTarjeta(capo, () => mostrarDetalleCapo(capo));
-        cuadriculaCapos.appendChild(tarjeta);
+const setNavState = (activeButton) => {
+    [bossesNav, organizationsNav].forEach((button) => {
+        const isActive = button === activeButton;
+        button.classList.toggle("is-active", isActive);
+        button.setAttribute("aria-pressed", String(isActive));
     });
 };
 
-const renderizarCuadriculaOrganizaciones = () => {
-    cuadriculaOrganizaciones.replaceChildren();
-    organizaciones.forEach(org => {
-        const tarjeta = crearTarjeta(org, () => mostrarDetalleOrganizacion(org), true);
-        cuadriculaOrganizaciones.appendChild(tarjeta);
+const clearApp = () => {
+    bossesGrid.hidden = true;
+    organizationsGrid.hidden = true;
+};
+
+const renderBossesGrid = () => {
+    bossesGrid.replaceChildren();
+    drugBosses.forEach((boss) => {
+        bossesGrid.appendChild(createCard(boss, () => showBossDetail(boss)));
     });
 };
 
-const crearTarjeta = (item, clickHandler, esOrg = false) => {
-    const tarjeta = crearElemento('div', 'tarjeta-capo');
-    
-    const contenedorImagen = crearElemento('div', 'tarjeta-capo__contenedor-imagen');
-    const imagen = document.createElement('img');
-    imagen.src = item.imagen;
-    imagen.alt = item.nombre;
-    imagen.className = 'tarjeta-capo__imagen';
-    imagen.loading = 'lazy';
-    contenedorImagen.appendChild(imagen);
+const renderOrganizationsGrid = () => {
+    organizationsGrid.replaceChildren();
+    organizations.forEach((organization) => {
+        organizationsGrid.appendChild(
+            createCard(organization, () => showOrganizationDetail(organization), true)
+        );
+    });
+};
 
-    const contenido = crearElemento('div', 'tarjeta-capo__contenido');
-    const nombre = crearElemento('h3', 'tarjeta-capo__nombre', item.nombre);
-    
-    const subinfo = crearElemento('div', 'tarjeta-capo__subinfo');
-    const origen = crearElemento('span', '', item.origen);
-    const badge = crearElemento('span', '', esOrg ? item.estado : `${item.edad} Años`);
-    subinfo.appendChild(origen);
+const createCard = (item, clickHandler, isOrganization = false) => {
+    const card = createElement("button", "boss-card");
+    card.type = "button";
+    card.setAttribute("aria-label", `Ver ficha de ${item.name}`);
+
+    const imageContainer = createElement("span", "boss-card__image-container");
+    const image = document.createElement("img");
+    image.src = item.image;
+    image.alt = item.name;
+    image.className = "boss-card__image";
+    image.loading = "lazy";
+    image.decoding = "async";
+    imageContainer.appendChild(image);
+
+    const content = createElement("span", "boss-card__content");
+    const name = createElement("span", "boss-card__name", item.name);
+
+    const subinfo = createElement("span", "boss-card__subinfo");
+    const origin = createElement("span", "", item.origin);
+    const badge = createElement("span", "", isOrganization ? item.status : `${item.age} años`);
+    subinfo.appendChild(origin);
     subinfo.appendChild(badge);
 
-    const descripcion = crearElemento('p', 'tarjeta-capo__descripcion', esOrg ? item.historia.substring(0, 100) + '...' : item.descripcionCorta);
+    const description = createElement(
+        "span",
+        "boss-card__description",
+        isOrganization ? `${item.history.substring(0, 100)}...` : item.shortDescription
+    );
 
-    contenido.appendChild(nombre);
-    contenido.appendChild(subinfo);
-    contenido.appendChild(descripcion);
+    content.appendChild(name);
+    content.appendChild(subinfo);
+    content.appendChild(description);
 
-    tarjeta.appendChild(contenedorImagen);
-    tarjeta.appendChild(contenido);
+    card.appendChild(imageContainer);
+    card.appendChild(content);
+    card.addEventListener("click", clickHandler);
 
-    tarjeta.addEventListener('click', clickHandler);
-    return tarjeta;
+    return card;
 };
 
-const mostrarDetalleCapo = (capo) => {
-    window.scrollTo({ top: 0, behavior: 'instant' });
-    contenidoDetalle.replaceChildren(); 
+const createInfoItem = (labelText, valueText, modifier = "") => {
+    const item = createElement("div", "info-item");
+    item.appendChild(createElement("span", "info-item__label", labelText));
+    const valueClass = modifier
+        ? `info-item__value info-item__value--${modifier}`
+        : "info-item__value";
+    item.appendChild(createElement("span", valueClass, valueText));
+    return item;
+};
 
-    const cabecera = crearCabeceraDetalle(capo.imagen, capo.nombre, capo.rol);
-    const cuadriculaInfo = crearElemento('div', 'cuadricula-info');
-    
-    const crearItemInfo = (labelStr, valorStr, colorPersonalizado = '') => {
-        const item = crearElemento('div', 'item-info');
-        item.appendChild(crearElemento('label', '', labelStr));
-        const span = crearElemento('span', '', valorStr);
-        if (colorPersonalizado) {
-            span.style.color = colorPersonalizado;
-            span.style.fontWeight = 'bold';
-        }
-        item.appendChild(span);
-        return item;
-    };
+const showBossDetail = (boss) => {
+    window.scrollTo({ top: 0, behavior: "auto" });
+    detailContent.replaceChildren();
 
-    cuadriculaInfo.appendChild(crearItemInfo('Nombre Completo', capo.nombreCompleto));
-    cuadriculaInfo.appendChild(crearItemInfo('Nacionalidad', capo.origen));
-    cuadriculaInfo.appendChild(crearItemInfo('Nacimiento', capo.fechaNacimiento));
-    cuadriculaInfo.appendChild(crearItemInfo('Estado / Muerte', capo.fechaMuerte));
-    cuadriculaInfo.appendChild(crearItemInfo('Organización', capo.organizacion, 'var(--acento-color)'));
-    cuadriculaInfo.appendChild(crearItemInfo('Fortuna Estimada', capo.fortunaEstimada, 'var(--dorado-acento)'));
+    const header = createDetailHeader(boss.image, boss.name, boss.role);
+    const infoGrid = createElement("div", "info-grid");
 
-    cabecera.querySelector('.detalle-info').appendChild(cuadriculaInfo);
-    contenidoDetalle.appendChild(cabecera);
+    infoGrid.appendChild(createInfoItem("Nombre completo", boss.fullName));
+    infoGrid.appendChild(createInfoItem("Nacionalidad", boss.origin));
+    infoGrid.appendChild(createInfoItem("Nacimiento", boss.birthDate));
+    infoGrid.appendChild(createInfoItem("Estado / muerte", boss.deathDate));
+    infoGrid.appendChild(createInfoItem("Organización", boss.organization, "accent"));
+    infoGrid.appendChild(createInfoItem("Fortuna estimada", boss.estimatedFortune, "gold"));
 
-    contenidoDetalle.appendChild(agregarSeccion('Historia', capo.historia));
-    
-    contenidoDetalle.appendChild(crearSeccionDoble(
-        'Modus Operandi', capo.modusOperandi,
-        'Territorio y Rutas', capo.territorio
-    ));
+    header.querySelector(".detail-info").appendChild(infoGrid);
+    detailContent.appendChild(header);
+    detailContent.appendChild(addSection("Historia", boss.history));
+    detailContent.appendChild(
+        createDoubleSection(
+            "Modus operandi",
+            boss.modusOperandi,
+            "Territorio y rutas",
+            boss.territory
+        )
+    );
+    detailContent.appendChild(createRelationsSection(boss.allies, boss.enemies));
+    detailContent.appendChild(addSection("Impacto y sociedad", boss.impact));
 
-    contenidoDetalle.appendChild(crearSeccionRelaciones(capo.aliados, capo.enemigos));
+    const endText = boss.deathDetails || boss.captureDetails;
+    const endTitle = boss.deathDetails
+        ? "Final: operativo de muerte"
+        : "Final: captura y sentencia";
+    detailContent.appendChild(addSection(endTitle, endText));
+    detailContent.appendChild(addSection("Legado y cultura", boss.culturalImpact));
 
-    contenidoDetalle.appendChild(agregarSeccion('Impacto y Sociedad', capo.impacto));
-    
-    const textoFin = capo.detallesMuerte || capo.detallesCaptura;
-    const tituloFin = capo.detallesMuerte ? 'Final: Operativo de Muerte' : 'Final: Captura y Sentencia';
-    contenidoDetalle.appendChild(agregarSeccion(tituloFin, textoFin));
-
-    contenidoDetalle.appendChild(agregarSeccion('Legado y Cultura', capo.impactoCultural));
-
-    if (capo.eventosNotables) {
-        contenidoDetalle.appendChild(agregarSeccion('Eventos Notables', '', true, capo.eventosNotables));
+    if (boss.notableEvents) {
+        detailContent.appendChild(addSection("Eventos notables", "", true, boss.notableEvents));
     }
 
-    alternarVistas(false);
+    toggleViews(false);
 };
 
-const mostrarDetalleOrganizacion = (org) => {
-    window.scrollTo({ top: 0, behavior: 'instant' });
-    contenidoDetalle.replaceChildren(); 
+const showOrganizationDetail = (organization) => {
+    window.scrollTo({ top: 0, behavior: "auto" });
+    detailContent.replaceChildren();
 
-    const cabecera = crearCabeceraDetalle(org.imagen, org.nombre, `Organización Criminal - ${org.estado}`);
-    const cuadriculaInfo = crearElemento('div', 'cuadricula-info');
-    
-    const crearItemInfo = (labelStr, valorStr, color = '') => {
-        const item = crearElemento('div', 'item-info');
-        item.appendChild(crearElemento('label', '', labelStr));
-        const span = crearElemento('span', '', valorStr);
-        if (color) { span.style.color = color; span.style.fontWeight = 'bold'; }
-        item.appendChild(span);
-        return item;
-    };
+    const header = createDetailHeader(
+        organization.image,
+        organization.name,
+        `Organización criminal - ${organization.status}`
+    );
+    const infoGrid = createElement("div", "info-grid");
 
-    cuadriculaInfo.appendChild(crearItemInfo('Fundación', org.fundacion));
-    cuadriculaInfo.appendChild(crearItemInfo('Disolución', org.disolucion));
-    cuadriculaInfo.appendChild(crearItemInfo('Origen', org.origen, 'var(--acento-color)'));
-    cuadriculaInfo.appendChild(crearItemInfo('Líderes', org.lideres.join(', ')));
+    infoGrid.appendChild(createInfoItem("Fundación", organization.founded));
+    infoGrid.appendChild(createInfoItem("Disolución", organization.dissolved));
+    infoGrid.appendChild(createInfoItem("Origen", organization.origin, "accent"));
+    infoGrid.appendChild(createInfoItem("Líderes", organization.leaders.join(", ")));
 
-    cabecera.querySelector('.detalle-info').appendChild(cuadriculaInfo);
-    contenidoDetalle.appendChild(cabecera);
+    header.querySelector(".detail-info").appendChild(infoGrid);
+    detailContent.appendChild(header);
+    detailContent.appendChild(addSection("Historia de la organización", organization.history));
+    detailContent.appendChild(
+        createDoubleSection(
+            "Modus operandi",
+            organization.modusOperandi,
+            "Control territorial",
+            organization.territory
+        )
+    );
+    detailContent.appendChild(createRelationsSection(organization.allies, organization.enemies));
 
-    contenidoDetalle.appendChild(agregarSeccion('Historia de la Organización', org.historia));
-    
-    contenidoDetalle.appendChild(crearSeccionDoble(
-        'Modus Operandi', org.modusOperandi,
-        'Control Territorial', org.territorio
-    ));
-
-    contenidoDetalle.appendChild(crearSeccionRelaciones(org.aliados, org.enemigos));
-
-    alternarVistas(false);
+    toggleViews(false);
 };
 
-// Helpers de UI
-const crearCabeceraDetalle = (imgUrl, nombreTxt, taglineTxt) => {
-    const cabecera = crearElemento('div', 'detalle-cabecera');
-    
-    const contenedorImagen = crearElemento('div', 'detalle-cabecera__contenedor-imagen');
-    const imagen = document.createElement('img');
-    imagen.src = imgUrl;
-    imagen.alt = nombreTxt;
-    imagen.className = 'detalle-cabecera__imagen';
-    contenedorImagen.appendChild(imagen);
+const createDetailHeader = (imageUrl, nameText, taglineText) => {
+    const header = createElement("div", "detail-header");
 
-    const info = crearElemento('div', 'detalle-info');
-    info.appendChild(crearElemento('h1', 'detalle-info__nombre', nombreTxt));
-    info.appendChild(crearElemento('p', 'detalle-info__tagline', taglineTxt));
-    
-    cabecera.appendChild(contenedorImagen);
-    cabecera.appendChild(info);
-    return cabecera;
+    const imageContainer = createElement("div", "detail-header__image-container");
+    const image = document.createElement("img");
+    image.src = imageUrl;
+    image.alt = nameText;
+    image.className = "detail-header__image";
+    imageContainer.appendChild(image);
+
+    const info = createElement("div", "detail-info");
+    info.appendChild(createElement("h1", "detail-info__name", nameText));
+    info.appendChild(createElement("p", "detail-info__tagline", taglineText));
+
+    header.appendChild(imageContainer);
+    header.appendChild(info);
+    return header;
 };
 
-const agregarSeccion = (titulo, contenidoTxt, esLista = false, items = []) => {
-    const seccion = crearElemento('div', 'detalle-seccion');
-    seccion.appendChild(crearElemento('h2', '', titulo));
-    
-    if (esLista) {
-        const lista = crearElemento('ul', 'lista-eventos');
-        items.forEach(item => lista.appendChild(crearElemento('li', '', item)));
-        seccion.appendChild(lista);
+const addSection = (title, contentText, isList = false, items = []) => {
+    const section = createElement("div", "detail-section");
+    section.appendChild(createElement("h2", "detail-section__title", title));
+
+    if (isList) {
+        const list = createElement("ul", "events");
+        items.forEach((item) => list.appendChild(createElement("li", "events__item", item)));
+        section.appendChild(list);
     } else {
-        seccion.appendChild(crearElemento('p', '', contenidoTxt));
+        section.appendChild(createElement("p", "detail-section__text", contentText));
     }
-    return seccion;
+
+    return section;
 };
 
-const crearSeccionDoble = (title1, content1, title2, content2) => {
-    const seccion = crearElemento('div', 'detalle-seccion');
-    const cuadricula = crearElemento('div', 'cuadricula-info');
-    
-    const item1 = crearElemento('div', 'item-info');
-    item1.appendChild(crearElemento('h2', '', title1));
-    item1.appendChild(crearElemento('p', '', content1));
-    
-    const item2 = crearElemento('div', 'item-info');
-    item2.appendChild(crearElemento('h2', '', title2));
-    item2.appendChild(crearElemento('p', '', content2));
-    
-    cuadricula.appendChild(item1);
-    cuadricula.appendChild(item2);
-    seccion.appendChild(cuadricula);
-    return seccion;
+const createDoubleSection = (title1, content1, title2, content2) => {
+    const section = createElement("div", "detail-section");
+    const grid = createElement("div", "info-grid");
+
+    const item1 = createElement("div", "info-item");
+    item1.appendChild(createElement("h2", "info-item__title", title1));
+    item1.appendChild(createElement("p", "detail-section__text", content1));
+
+    const item2 = createElement("div", "info-item");
+    item2.appendChild(createElement("h2", "info-item__title", title2));
+    item2.appendChild(createElement("p", "detail-section__text", content2));
+
+    grid.appendChild(item1);
+    grid.appendChild(item2);
+    section.appendChild(grid);
+    return section;
 };
 
-const crearSeccionRelaciones = (aliados, enemigos) => {
-    const seccion = crearElemento('div', 'detalle-seccion');
-    const cuadricula = crearElemento('div', 'cuadricula-info');
-    
-    const divAliados = crearElemento('div', 'item-info');
-    divAliados.appendChild(crearElemento('h2', '', 'Aliados Principales'));
-    const listaA = crearElemento('ul', 'lista-eventos');
-    aliados.forEach(a => listaA.appendChild(crearElemento('li', '', a)));
-    divAliados.appendChild(listaA);
+const createRelationsSection = (allies, enemies) => {
+    const section = createElement("div", "detail-section");
+    const grid = createElement("div", "info-grid");
 
-    const divEnemigos = crearElemento('div', 'item-info');
-    divEnemigos.appendChild(crearElemento('h2', '', 'Enemigos Clave'));
-    const listaE = crearElemento('ul', 'lista-eventos');
-    enemigos.forEach(e => listaE.appendChild(crearElemento('li', '', e)));
-    divEnemigos.appendChild(listaE);
+    const alliesBlock = createElement("div", "info-item");
+    alliesBlock.appendChild(createElement("h2", "info-item__title", "Aliados principales"));
+    const alliesList = createElement("ul", "events");
+    allies.forEach((ally) => alliesList.appendChild(createElement("li", "events__item", ally)));
+    alliesBlock.appendChild(alliesList);
 
-    cuadricula.appendChild(divAliados);
-    cuadricula.appendChild(divEnemigos);
-    seccion.appendChild(cuadricula);
-    return seccion;
+    const enemiesBlock = createElement("div", "info-item");
+    enemiesBlock.appendChild(createElement("h2", "info-item__title", "Enemigos clave"));
+    const enemiesList = createElement("ul", "events");
+    enemies.forEach((enemy) => enemiesList.appendChild(createElement("li", "events__item", enemy)));
+    enemiesBlock.appendChild(enemiesList);
+
+    grid.appendChild(alliesBlock);
+    grid.appendChild(enemiesBlock);
+    section.appendChild(grid);
+    return section;
 };
 
-const alternarVistas = (mostrarInicio) => {
-    vistaInicio.style.display = mostrarInicio ? 'block' : 'none';
-    vistaDetalle.style.display = mostrarInicio ? 'none' : 'block';
+const toggleViews = (showHome) => {
+    homeView.hidden = !showHome;
+    detailView.hidden = showHome;
 };
 
-// Navegación
-navCapos.addEventListener('click', () => {
-    seccionActual = 'capos';
-    limpiarApp();
-    navCapos.classList.add('activo');
-    cuadriculaCapos.style.display = 'grid';
-    subtitulo.textContent = 'Los 10 señores de la droga más impactantes de la historia';
-    renderizarCuadriculaCapos();
+bossesNav.addEventListener("click", () => {
+    clearApp();
+    setNavState(bossesNav);
+    bossesGrid.hidden = false;
+    subtitle.textContent = "Los 10 señores de la droga más impactantes de la historia";
+    renderBossesGrid();
 });
 
-navOrganizaciones.addEventListener('click', () => {
-    seccionActual = 'organizaciones';
-    limpiarApp();
-    navOrganizaciones.classList.add('activo');
-    cuadriculaOrganizaciones.style.display = 'grid';
-    subtitulo.textContent = 'Las 10 organizaciones de la droga más impactantes de la historia';
-    renderizarCuadriculaOrganizaciones();
+organizationsNav.addEventListener("click", () => {
+    clearApp();
+    setNavState(organizationsNav);
+    organizationsGrid.hidden = false;
+    subtitle.textContent = "Las 10 organizaciones de la droga más impactantes de la historia";
+    renderOrganizationsGrid();
 });
 
-botonVolver.addEventListener('click', () => alternarVistas(true));
+backButton.addEventListener("click", () => toggleViews(true));
 
-// Inicialización
-renderizarCuadriculaCapos();
+renderBossesGrid();

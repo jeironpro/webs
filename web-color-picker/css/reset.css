@@ -1,24 +1,22 @@
-/* Reinicio básico de estilos del navegador */
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 html {
-  font-size: 16px;
-  -webkit-text-size-adjust: 100%;
-  scroll-behavior: var(--scroll-behavior);
+    font-size: 1rem;
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: var(--scroll-behavior);
 }
 
 body {
-  min-height: 100vh;
-  min-height: 100dvh;
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    min-height: 100dvh;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 img,
@@ -26,55 +24,62 @@ picture,
 video,
 canvas,
 svg {
-  display: block;
-  max-width: 100%;
+    display: block;
+    max-width: 100%;
 }
 
 input,
 button,
 textarea,
 select {
-  font: inherit;
+    font: inherit;
 }
 
 a {
-  text-decoration: none;
-  color: inherit;
+    text-decoration: none;
+    color: inherit;
 }
 
-/* Estilos de foco visibles solo para teclado */
 :focus {
-  outline: none;
+    outline: none;
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 2px;
+    outline: var(--focus-width) solid var(--color-accent);
+    outline-offset: var(--focus-offset);
 }
 
-/* Clase utilitaria para contenido visualmente oculto pero accesible */
+.clipboard-helper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0.0625rem;
+    height: 0.0625rem;
+    padding: 0;
+    border: 0;
+    opacity: 0;
+    pointer-events: none;
+}
+
 .visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
+    position: absolute;
+    width: 0.0625rem;
+    height: 0.0625rem;
+    padding: 0;
+    margin: -0.0625rem;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
-/* Respetar preferencia de movimiento reducido.
- * Las animaciones y transiciones leen sus duraciones de estos tokens, así que
- * basta con anularlos aquí: no hace falta !important. */
 @media (prefers-reduced-motion: reduce) {
-  :root {
-    --duration-fast: 0.01ms;
-    --duration-normal: 0.01ms;
-    --duration-pulse: 0.01ms;
-    --duration-fade: 0.01ms;
-    --duration-tap: 0.01ms;
-    --scroll-behavior: auto;
-  }
+    :root {
+        --duration-fast: 0.01ms;
+        --duration-normal: 0.01ms;
+        --duration-pulse: 0.01ms;
+        --duration-fade: 0.01ms;
+        --duration-tap: 0.01ms;
+        --scroll-behavior: auto;
+    }
 }

@@ -4,11 +4,11 @@
 
 La aplicación calcula tres métricas sobre el texto del área de escritura:
 
-| Métrica | Definición | Regla |
-|---|---|---|
-| Palabras | Tokens separados por espacios | `trim().split(/\s+/).length`, con 0 para texto vacío |
-| Caracteres | Todos los caracteres del texto | `text.length` |
-| Caracteres sin espacios | Caracteres excluyendo espacios, tabulaciones y saltos de línea | `text.replace(/\s/g, "").length` |
+| Métrica                 | Definición                                                     | Regla                                                |
+| ----------------------- | -------------------------------------------------------------- | ---------------------------------------------------- |
+| Palabras                | Tokens separados por espacios                                  | `trim().split(/\s+/).length`, con 0 para texto vacío |
+| Caracteres              | Todos los caracteres del texto                                 | `text.length`                                        |
+| Caracteres sin espacios | Caracteres excluyendo espacios, tabulaciones y saltos de línea | `text.replace(/\s/g, "").length`                     |
 
 El conteo se recalcula cada vez que cambia el texto (evento `input`), por lo que las métricas se actualizan en vivo mientras el usuario escribe o pega contenido.
 

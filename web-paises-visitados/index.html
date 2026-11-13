@@ -1,42 +1,133 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paises visitados</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="img/paises.png">
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/animacion.css">
-</head>
-<body>
-    <div id="avion-wrapper">
-        <svg id="avion" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-            <polygon points="32,2 4,62 32,50 60,62" fill="white" stroke="#444" stroke-width="2"/>
-            <line x1="32" y1="2" x2="32" y2="50" stroke="#555" stroke-width="2"/>
-            <line x1="32" y1="50" x2="20" y2="35" stroke="#aaa" stroke-width="1"/>
-            <line x1="32" y1="50" x2="44" y2="35" stroke="#aaa" stroke-width="1"/>
-        </svg>
-    </div>
-    <header>
-        <h1>Paises visitados</h1>
-    </header>
-    <main>
-        <div class="contenedor-filtro">
-            <input type="search" name="buscador" id="buscador" placeholder="buscar país" autocomplete="off" aria-label="Buscar país">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Registro personal de países visitados, organizados por continente y con buscador."
+        />
+        <title>Países visitados</title>
+        <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&amp;display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="css/styles.css" />
+        <link rel="stylesheet" href="css/animation.css" />
+    </head>
+    <body>
+        <div id="plane-wrapper" class="plane-wrapper" aria-hidden="true">
+            <svg id="plane" class="plane" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                <polygon class="plane__body" points="32,2 4,62 32,50 60,62" />
+                <line class="plane__center" x1="32" y1="2" x2="32" y2="50" />
+                <line class="plane__detail" x1="32" y1="50" x2="20" y2="35" />
+                <line class="plane__detail" x1="32" y1="50" x2="44" y2="35" />
+            </svg>
         </div>
-        <div id="contenedor-paises"></div>
-    </main>
-    <footer>
-        <p>Todos los derechos reservados - JeironPro <span data-anio>2025</span></p>
-    </footer>
-    <script src="js/script.js"></script>
-    <script src="js/animacion.js"></script>
-    <script src="https://kit.fontawesome.com/25da21ab57.js" crossorigin="anonymous"></script>
-    <script>
-        document.querySelectorAll("[data-anio]").forEach((nodo) => {
-            nodo.textContent = new Date().getFullYear();
-        });
-    </script>
-</body>
+
+        <header class="site-header">
+            <h1 class="site-header__title">Países visitados</h1>
+        </header>
+
+        <main class="site-main">
+            <div class="search">
+                <input
+                    id="search"
+                    class="search__input"
+                    type="search"
+                    name="search"
+                    placeholder="Buscar país o continente"
+                    autocomplete="off"
+                    aria-label="Buscar país o continente"
+                />
+            </div>
+            <div id="countries-container" class="countries"></div>
+        </main>
+
+        <footer class="site-footer">
+            <p>Todos los derechos reservados - JeironPro <span data-year>2026</span></p>
+        </footer>
+
+        <section
+            class="storage-consent"
+            id="storage-consent"
+            aria-label="Consentimiento de almacenamiento local"
+            aria-live="polite"
+            hidden
+        >
+            <div class="storage-consent__panel">
+                <div class="storage-consent__copy" data-consent-initial>
+                    <p class="storage-consent__eyebrow">Privacidad</p>
+                    <h2 class="storage-consent__title">Tus países visitados se quedan aquí</h2>
+                    <p class="storage-consent__text">
+                        Esta web usa almacenamiento local para recordar qué países has marcado. No
+                        usa cookies, cuentas ni servidores. Al aceptar, la página se recargará para
+                        aplicar el guardado.
+                    </p>
+                </div>
+                <div class="storage-consent__copy" data-consent-declined hidden>
+                    <p class="storage-consent__eyebrow">Sin guardado local</p>
+                    <h2 class="storage-consent__title">La lista se perderá al recargar</h2>
+                    <p class="storage-consent__text">
+                        Puedes seguir marcando países durante esta visita, pero no se guardarán. Al
+                        recargar, la lista de visitados volverá a estar vacía. Puedes activar el
+                        guardado cuando quieras desde el botón «Privacidad».
+                    </p>
+                </div>
+                <div class="storage-consent__copy" data-consent-active hidden>
+                    <p class="storage-consent__eyebrow">Privacidad · guardado activo</p>
+                    <h2 class="storage-consent__title">El almacenamiento local está activo</h2>
+                    <p class="storage-consent__text">
+                        Esta web recuerda los países que has marcado en este navegador. Puedes
+                        retirar el permiso y borrar esa lista cuando quieras.
+                    </p>
+                </div>
+                <div class="storage-consent__copy" data-consent-confirm hidden>
+                    <p class="storage-consent__eyebrow">Privacidad · borrar datos</p>
+                    <h2 class="storage-consent__title">¿Borrar la lista de visitados?</h2>
+                    <p class="storage-consent__text">
+                        Se eliminarán los países visitados y la preferencia de consentimiento de
+                        este navegador. La página se recargará y el aviso volverá a aparecer.
+                    </p>
+                </div>
+                <div class="storage-consent__actions">
+                    <button
+                        class="storage-consent__accept"
+                        id="storage-consent-accept"
+                        type="button"
+                    >
+                        Aceptar y guardar
+                    </button>
+                    <button
+                        class="storage-consent__decline"
+                        id="storage-consent-decline"
+                        type="button"
+                    >
+                        Ahora no
+                    </button>
+                    <button
+                        class="storage-consent__revoke"
+                        id="storage-consent-revoke"
+                        type="button"
+                        hidden
+                    >
+                        Retirar consentimiento y borrar datos
+                    </button>
+                </div>
+                <p class="storage-consent__error" data-consent-error role="alert" hidden>
+                    El navegador bloquea el almacenamiento local. No se pudo completar la operación.
+                </p>
+            </div>
+        </section>
+
+        <button class="storage-consent__reopen" id="storage-consent-reopen" type="button" hidden>
+            Privacidad
+        </button>
+
+        <script type="module" src="js/script.js"></script>
+        <script type="module" src="js/animation.js"></script>
+    </body>
 </html>

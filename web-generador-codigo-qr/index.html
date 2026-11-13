@@ -1,36 +1,55 @@
 <!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Genera códigos QR a partir de una URL de forma rápida y sencilla.">
-    <title>Generador de código QR</title>
-    <link rel="icon" href="icon/qr-code.png">
-    <link rel="stylesheet" href="css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap" rel="stylesheet">
-</head>
-<body>
-    <main class="page">
-        <section class="generator-card" aria-labelledby="generator-title">
-            <h1 class="generator-card__title" id="generator-title">Generador QR</h1>
-            <form class="input-group" id="qr-form">
-                <label class="input-group__label" for="url-input">Dirección de la página</label>
-                <input
-                    type="text"
-                    id="url-input"
-                    class="input-group__input"
-                    name="url"
-                    placeholder="Introduce la URL aquí"
-                    autocomplete="url"
-                    inputmode="url"
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Genera códigos QR a partir de una URL de forma rápida y sencilla."
+        />
+        <title>Generador de código QR</title>
+        <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="css/tokens.css" />
+        <link rel="stylesheet" href="css/styles.css" />
+    </head>
+    <body>
+        <main class="page">
+            <section class="generator-card" aria-labelledby="generator-title">
+                <h1 class="generator-card__title" id="generator-title">Generador QR</h1>
+                <form class="input-group" id="qr-form">
+                    <label class="input-group__label" for="url-input">Dirección de la página</label>
+                    <input
+                        type="text"
+                        id="url-input"
+                        class="input-group__input"
+                        name="url"
+                        placeholder="Introduce la URL aquí"
+                        autocomplete="url"
+                        inputmode="url"
+                        autocapitalize="off"
+                        spellcheck="false"
+                    />
+                    <button class="btn btn--primary" id="generate-button" type="submit">
+                        Generar
+                    </button>
+                </form>
+                <div
+                    id="qr-container"
+                    class="qr"
+                    aria-live="polite"
+                    aria-atomic="true"
+                    aria-busy="false"
                 >
-                <button class="primary-button" id="generate-button" type="submit">Generar</button>
-            </form>
-            <div id="qr-container" class="qr-container" aria-live="polite" aria-busy="false">
-                <span class="empty-message">El código QR aparecerá aquí</span>
-            </div>
-        </section>
-    </main>
-    <script src="js/app.js"></script>
-</body>
+                    <span class="qr__empty">El código QR aparecerá aquí</span>
+                </div>
+            </section>
+        </main>
+        <script type="module" src="js/app.js"></script>
+    </body>
 </html>

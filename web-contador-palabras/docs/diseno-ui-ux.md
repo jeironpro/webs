@@ -9,26 +9,26 @@
 
 ## Tipografía (2+1)
 
-| Rol | Familia |
-|---|---|
-| Display | **Newsreader** (serif, 600/700) — títulos |
-| Cuerpo | **Source Serif 4** (serif, 400/600) — texto e interfaz |
+| Rol     | Familia                                                              |
+| ------- | -------------------------------------------------------------------- |
+| Display | **Newsreader** (serif, 600/700) — títulos                            |
+| Cuerpo  | **Source Serif 4** (serif, 400/600) — texto e interfaz               |
 | Outlier | **JetBrains Mono** (mono, 400/500) — etiquetas y números de métricas |
 
 Escala (mayor tercera, 1.25): `--text-xs` 0.7rem · `--text-base` 1rem · `--text-md` 1.25rem · `--text-lg` 1.5625rem · `--text-2xl` 2.4414rem · `--text-display` `clamp(2rem, 4vw + 0.75rem, 3.75rem)`.
 
 ## Color (OKLCH)
 
-| Token | Valor | Uso |
-|---|---|---|
-| `--color-paper` | `oklch(96.5% 0.012 75)` | Fondo principal (crema cálida) |
-| `--color-paper-2` | `oklch(93% 0.014 75)` | Superficies al pasar el cursor |
-| `--color-ink` | `oklch(19% 0.012 55)` | Texto principal |
-| `--color-ink-2` | `oklch(42% 0.012 65)` | Texto secundario |
-| `--color-rule` | `oklch(84% 0.012 75)` | Bordes y separadores |
-| `--color-accent` | `oklch(48% 0.12 35)` | Acento (enlaces, estado de arrastre) |
-| `--color-accent-deep` | `oklch(38% 0.11 35)` | Acento en hover |
-| `--color-focus` | `oklch(50% 0.13 300)` | Anillo de foco |
+| Token                 | Valor                   | Uso                                  |
+| --------------------- | ----------------------- | ------------------------------------ |
+| `--color-paper`       | `oklch(96.5% 0.012 75)` | Fondo principal (crema cálida)       |
+| `--color-paper-2`     | `oklch(93% 0.014 75)`   | Superficies al pasar el cursor       |
+| `--color-ink`         | `oklch(19% 0.012 55)`   | Texto principal                      |
+| `--color-ink-2`       | `oklch(42% 0.012 65)`   | Texto secundario                     |
+| `--color-rule`        | `oklch(84% 0.012 75)`   | Bordes y separadores                 |
+| `--color-accent`      | `oklch(48% 0.12 35)`    | Acento (enlaces, estado de arrastre) |
+| `--color-accent-deep` | `oklch(38% 0.11 35)`    | Acento en hover                      |
+| `--color-focus`       | `oklch(50% 0.13 300)`   | Anillo de foco                       |
 
 ## Espaciado
 

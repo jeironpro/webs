@@ -1,5 +1,3 @@
-"use strict";
-
 const filePicker = document.getElementById("file-picker");
 const fileTitle = document.getElementById("file-title");
 const fileInput = document.getElementById("file-input");
@@ -8,25 +6,39 @@ const resetButton = document.getElementById("reset-button");
 
 const READ_ERROR_MESSAGE = "No se pudo leer el archivo.";
 
+function showFile(name, content) {
+    fileContent.textContent = content;
+    fileContent.hidden = false;
+    fileTitle.textContent = name;
+    fileTitle.hidden = false;
+    filePicker.hidden = true;
+}
+
 function showReadError() {
     fileContent.textContent = READ_ERROR_MESSAGE;
-    fileContent.style.display = "block";
+    fileContent.hidden = false;
     fileTitle.textContent = "";
-    filePicker.style.display = "none";
+    fileTitle.hidden = true;
+    filePicker.hidden = true;
+}
+
+function resetViewer() {
+    fileContent.textContent = "";
+    fileContent.hidden = true;
+    fileTitle.textContent = "";
+    fileTitle.hidden = true;
+    filePicker.hidden = false;
+    fileInput.value = "";
 }
 
 fileInput.addEventListener("change", (event) => {
     const selectedFile = event.target.files[0];
-
     if (!selectedFile) return;
 
     const reader = new FileReader();
 
     reader.addEventListener("load", (loadEvent) => {
-        fileContent.textContent = loadEvent.target.result;
-        fileContent.style.display = "block";
-        fileTitle.textContent = selectedFile.name;
-        filePicker.style.display = "none";
+        showFile(selectedFile.name, loadEvent.target.result);
     });
 
     reader.addEventListener("error", showReadError);
@@ -34,18 +46,8 @@ fileInput.addEventListener("change", (event) => {
     reader.readAsText(selectedFile);
 });
 
-resetButton.addEventListener("click", () => {
-    fileContent.textContent = "";
-    fileContent.style.display = "none";
-    filePicker.style.display = "flex";
-    fileTitle.textContent = "";
-    fileInput.value = "";
+resetButton.addEventListener("click", resetViewer);
+
+document.querySelectorAll("[data-year]").forEach((node) => {
+    node.textContent = String(new Date().getFullYear());
 });
-
-function renderCurrentYear() {
-    document.querySelectorAll("[data-year]").forEach((node) => {
-        node.textContent = new Date().getFullYear();
-    });
-}
-
-renderCurrentYear();

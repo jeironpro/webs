@@ -1,12 +1,6 @@
 import { buildCatalog } from "./catalog.js";
 import { INVENTORY } from "./inventory.generated.js";
 
-/**
- * Punto de entrada de la web: construye el DOM a partir del catálogo
- * (niveles, unidades y materiales) y gestiona el panel lateral.
- * No se inyecta HTML: todo el DOM se crea con createElement.
- */
-
 const catalog = buildCatalog(INVENTORY);
 
 const DESKTOP_QUERY = "(min-width: 60rem)";
@@ -14,13 +8,6 @@ const desktopMq = window.matchMedia(DESKTOP_QUERY);
 
 const SVG_NS = "http://www.w3.org/2000/svg";
 
-/**
- * Crea un elemento del DOM con atributos y, opcionalmente, texto.
- * @param {string} tagName
- * @param {Record<string, string>} attributes
- * @param {Element[]} children
- * @returns {HTMLElement}
- */
 function createElement(tagName, attributes = {}, children = []) {
     const element = document.createElement(tagName);
     for (const [key, value] of Object.entries(attributes)) {
@@ -38,10 +25,6 @@ function createElement(tagName, attributes = {}, children = []) {
     return element;
 }
 
-/**
- * Aplica el estado de un acordeón (cabecera + panel + contenido interno).
- * Plegado: el contenido no debe ser enfocable ni anunciado.
- */
 function setAccordionState(button, panel, panelInner, expanded) {
     button.setAttribute("aria-expanded", String(expanded));
     panel.classList.toggle("is-collapsed", !expanded);
@@ -49,21 +32,16 @@ function setAccordionState(button, panel, panelInner, expanded) {
     panelInner.setAttribute("aria-hidden", String(!expanded));
 }
 
-/** Icono SVG local (icons/) reutilizable, coloreable con currentColor. */
 function createIcon(name) {
     const svg = document.createElementNS(SVG_NS, "svg");
     svg.setAttribute("class", "icon");
     svg.setAttribute("aria-hidden", "true");
     const use = document.createElementNS(SVG_NS, "use");
-    use.setAttribute("href", `icons/${name}.svg#icon`);
+    use.setAttribute("href", `assets/icons/${name}.svg#icon`);
     svg.append(use);
     return svg;
 }
 
-/**
- * Crea un acordeón (cabecera con chevron + panel plegable) que arranca
- * cerrado. Devuelve los elementos para completar el contenido del panel.
- */
 function createAccordion(className, labelNode, panelId) {
     const accordion = createElement("button", {
         class: className,
@@ -80,13 +58,11 @@ function createAccordion(className, labelNode, panelId) {
         const isExpanded = accordion.getAttribute("aria-expanded") === "true";
         setAccordionState(accordion, panel, panelInner, !isExpanded);
     });
-    // Todos los acordeones arrancan cerrados.
     setAccordionState(accordion, panel, panelInner, false);
 
     return { accordion, panel, panelInner };
 }
 
-/** Enlace de descarga (PDF) con icono. */
 function createDownloadLink(href, label, className) {
     const link = createElement("a", {
         class: className,
@@ -98,7 +74,6 @@ function createDownloadLink(href, label, className) {
     return link;
 }
 
-/** Elemento de lista con un enlace del panel que abre un recurso aparte. */
 function createSidebarItem(className, href, text) {
     return createElement("li", {}, [
         createElement("a", {
@@ -111,23 +86,15 @@ function createSidebarItem(className, href, text) {
     ]);
 }
 
-/** Grupo de una ficha de datos (dt + dd). */
 function createSpecGroup(label, value) {
     const group = createElement("div");
     group.append(
         createElement("dt", { text: label }),
-        createElement("dd", { text: String(value) }),
+        createElement("dd", { text: String(value) })
     );
     return group;
 }
 
-/**
- * Rellena el panel lateral con un menú acordeón: cada nivel es una cabecera
- * desplegable que contiene unidades → ejercicios y sus materiales; cada unidad
- * es a su vez un acordeón con sus ejercicios. Todos arrancan cerrados.
- * Devuelve el mapa id → elemento (botón o enlace) para el scrollspy y el mapa
- * unidad → nivel para resaltar el nivel padre.
- */
 function renderSidebar() {
     const sidebarLevels = document.getElementById("sidebar-levels");
     const navLinks = new Map();
@@ -143,7 +110,7 @@ function renderSidebar() {
                 class: "sidebar__accordion-label",
                 text: `${String(level.number).padStart(2, "0")} · ${level.label}`,
             }),
-            `panel-${levelId}`,
+            `panel-${levelId}`
         );
         levelItem.append(levelAccordion.accordion);
         navLinks.set(levelId, levelAccordion.accordion);
@@ -155,7 +122,7 @@ function renderSidebar() {
             const unitAccordion = createAccordion(
                 "sidebar__unit-accordion",
                 createElement("span", { text: `unitat ${unit.number}` }),
-                `panel-${unitId}`,
+                `panel-${unitId}`
             );
             const unitItem = createElement("li");
             unitItem.append(unitAccordion.accordion);
@@ -169,8 +136,8 @@ function renderSidebar() {
                         createSidebarItem(
                             "sidebar__exercise-link",
                             exercise.file,
-                            `exercici ${exercise.number}`,
-                        ),
+                            `exercici ${exercise.number}`
+                        )
                     );
                 }
                 unitAccordion.panelInner.append(exerciseList);
@@ -185,7 +152,7 @@ function renderSidebar() {
             const materialsList = createElement("ul", { class: "sidebar__materials" });
             for (const material of level.materials) {
                 materialsList.append(
-                    createSidebarItem("sidebar__material-link", material.file, material.label),
+                    createSidebarItem("sidebar__material-link", material.file, material.label)
                 );
             }
             levelAccordion.panelInner.append(materialsList);
@@ -202,7 +169,6 @@ function renderSidebar() {
     return { navLinks, parentLevels };
 }
 
-/** Rellena el resumen del catálogo (placa y estadísticas). */
 function renderSummary() {
     document.getElementById("plate-number").textContent = String(catalog.totals.exercises);
 
@@ -219,7 +185,6 @@ function renderSummary() {
     }
 }
 
-/** Construye las secciones de nivel con sus unidades y materiales. */
 function renderLevels() {
     const catalogContainer = document.getElementById("catalog");
 
@@ -235,7 +200,7 @@ function renderLevels() {
                 class: "level__meta",
                 text: `nivell ${level.number} · curs de català`,
             }),
-            createElement("h2", { class: "level__title", text: level.label }),
+            createElement("h2", { class: "level__title", text: level.label })
         );
 
         const exercisesCount = level.units.reduce((sum, unit) => sum + unit.exercises.length, 0);
@@ -268,7 +233,7 @@ function renderLevels() {
                     createElement("span", {
                         class: "unit__count",
                         text: `${unit.exercises.length} exercicis`,
-                    }),
+                    })
                 );
 
                 const exerciseList = createElement("ol", { class: "unit__exercises" });
@@ -278,9 +243,9 @@ function renderLevels() {
                             createDownloadLink(
                                 exercise.file,
                                 exercise.label.toLowerCase(),
-                                "exercise-link",
+                                "exercise-link"
                             ),
-                        ]),
+                        ])
                     );
                 }
 
@@ -296,14 +261,14 @@ function renderLevels() {
                 createElement("h3", {
                     class: "level__materials-title",
                     text: "materials del nivell",
-                }),
+                })
             );
             const list = createElement("ul", { class: "materials-list" });
             for (const material of level.materials) {
                 list.append(
                     createElement("li", {}, [
                         createDownloadLink(material.file, material.label, "material-link"),
-                    ]),
+                    ])
                 );
             }
             materials.append(list);
@@ -314,7 +279,6 @@ function renderLevels() {
     }
 }
 
-/** Gestiona el panel lateral como drawer en móvil y fijo en escritorio. */
 function initSidebarBehavior() {
     const sidebar = document.getElementById("sidebar");
     const scrim = document.getElementById("scrim");
@@ -343,7 +307,6 @@ function initSidebarBehavior() {
     }
 
     function applyDesktopState() {
-        // En escritorio el panel siempre está visible; se limpia el estado del drawer.
         sidebar.classList.remove("is-open");
         sidebar.inert = false;
         sidebar.setAttribute("aria-hidden", "false");
@@ -360,8 +323,6 @@ function initSidebarBehavior() {
     document.addEventListener("keydown", (event) => {
         if (event.key === "Escape") setSidebarOpen(false);
     });
-
-    // Al navegar con un enlace del panel, se cierra el drawer en móvil.
     sidebar.addEventListener("click", (event) => {
         if (event.target.closest("a")) setSidebarOpen(false);
     });
@@ -377,14 +338,6 @@ function initSidebarBehavior() {
     }
 }
 
-/**
- * Sincroniza el scroll con el panel: marca como activo el nivel o la unidad
- * cuya cabecera esté más arriba de la línea de referencia, y también el nivel
- * padre cuando una de sus unidades es la activa. Se recalcula por posición en
- * cada frame (no por IntersectionObserver) para no saltarse secciones en
- * scrolls rápidos. La relación unidad → nivel es explícita (mapa), evitando
- * colisiones de prefijo tipo unit-1 / unit-10.
- */
 function initScrollSpy({ navLinks, parentLevels }) {
     const sections = [
         ...document.querySelectorAll("#catalog section.level, #catalog article.unit"),

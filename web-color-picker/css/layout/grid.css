@@ -1,36 +1,31 @@
-/* Layout principal: mobile-first, una sola columna apilada */
 .main-layout {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 3fr;
-  width: 100%;
-  min-height: 100vh;
-  min-height: 100dvh;
-  height: auto;
-  overflow: hidden;
-}
-
-/* Movil en horizontal: el lienzo de color ocupa el alto disponible */
-@media (max-height: 500px) and (orientation: landscape) {
-  .main-layout {
+    display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr;
-  }
-}
 
-/* Tablet: dos columnas, con mas espacio para el selector */
-@media (min-width: 769px) {
-  .main-layout {
-    grid-template-columns: 35fr 65fr;
-    grid-template-rows: 1fr;
-    height: 100vh;
+    grid-template-rows: minmax(auto, 1fr) minmax(0, 3fr);
+    width: 100%;
+    min-height: 100dvh;
     height: 100dvh;
-  }
+    overflow: hidden;
 }
 
-/* Escritorio: reparto 40/60 a pantalla completa */
-@media (min-width: 1025px) {
-  .main-layout {
-    grid-template-columns: 40fr 60fr;
-  }
+@media (max-height: 31.25rem) and (orientation: landscape) {
+    .main-layout {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+    }
+}
+
+@media (min-width: 48.0625rem) {
+    .main-layout {
+        grid-template-columns: 35fr 65fr;
+        grid-template-rows: minmax(0, 1fr);
+        height: 100dvh;
+    }
+}
+
+@media (min-width: 64.0625rem) {
+    .main-layout {
+        grid-template-columns: 40fr 60fr;
+    }
 }

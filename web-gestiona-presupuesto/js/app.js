@@ -1,17 +1,15 @@
-'use strict';
-
 let totalIncomeCents = 0;
 let totalExpenseCents = 0;
 
-const incomeForm = document.getElementById('income-form');
-const expenseForm = document.getElementById('expense-form');
-const incomeInput = document.getElementById('income-input');
-const expenseInput = document.getElementById('expense-input');
-const totalIncome = document.getElementById('total-income');
-const totalExpenses = document.getElementById('total-expenses');
-const netBalance = document.getElementById('net-balance');
+const incomeForm = document.getElementById("income-form");
+const expenseForm = document.getElementById("expense-form");
+const incomeInput = document.getElementById("income-input");
+const expenseInput = document.getElementById("expense-input");
+const totalIncome = document.getElementById("total-income");
+const totalExpenses = document.getElementById("total-expenses");
+const netBalance = document.getElementById("net-balance");
 
-const amountFormatter = new Intl.NumberFormat('es-ES', {
+const amountFormatter = new Intl.NumberFormat("es-ES", {
     maximumFractionDigits: 2,
 });
 
@@ -25,13 +23,13 @@ function updateSummary() {
     totalIncome.textContent = formatCents(totalIncomeCents);
     totalExpenses.textContent = formatCents(totalExpenseCents);
     netBalance.textContent = formatCents(netCents);
-    netBalance.classList.toggle('is-negative', netCents < 0);
+    netBalance.classList.toggle("summary-card__value--negative", netCents < 0);
 }
 
 function addAmount(event, type) {
     event.preventDefault();
 
-    const isIncome = type === 'income';
+    const isIncome = type === "income";
     const input = isIncome ? incomeInput : expenseInput;
     const amount = Number.parseFloat(input.value);
 
@@ -45,12 +43,12 @@ function addAmount(event, type) {
         totalExpenseCents += cents;
     }
 
-    input.value = '';
+    input.value = "";
     updateSummary();
     input.focus();
 }
 
-incomeForm.addEventListener('submit', (event) => addAmount(event, 'income'));
-expenseForm.addEventListener('submit', (event) => addAmount(event, 'expense'));
+incomeForm.addEventListener("submit", (event) => addAmount(event, "income"));
+expenseForm.addEventListener("submit", (event) => addAmount(event, "expense"));
 
 updateSummary();

@@ -1,35 +1,44 @@
-# web-narcopedia
+# Narcopedia
 
-Página web informativa que recoge el ranking de los mayores imperios del narcotráfico de la historia, con fichas de detalle de cada organización.
+Página informativa que recoge un ranking de los mayores imperios del narcotráfico de la historia, con fichas de detalle de cada capo y organización.
 
 ## Características
 
-- Listado de las organizaciones más relevantes del narcotráfico.
-- Fichas de detalle con información historica de cada organización.
+- Listado de capos y organizaciones relevantes del narcotráfico.
+- Fichas de detalle con información histórica de cada organización.
 - Navegación entre las secciones Capos y Organizaciones.
 - Vistas de listado y de detalle generadas dinámicamente.
 - Contenido con fines informativos y documentales.
 
 ## Tecnologías
 
-- HTML5, CSS3 y JavaScript (ES6+).
+- HTML5 semántico, CSS3 con tokens y BEM, y JavaScript ES6+ en módulos.
 - Recursos de imagen incluidos en el repositorio.
+- Google Fonts (Inter).
+- ESLint + Prettier.
 
 ## Uso
 
-1. Clona el repositorio.
-2. Abre `index.html` en el navegador o sirve la carpeta con un servidor estático local.
+Sirve la carpeta con un servidor HTTP, por ejemplo `python3 -m http.server 8000`, y abre <http://localhost:8000/web-narcopedia/>. También puedes abrir `index.html` desde un servidor estático local.
 
-## Estructura del proyecto
+## Estructura
 
 ```
 web-narcopedia/
-├── index.html
-├── assets/                # recursos graficos
-├── css/                   # estilos de la página
-└── js/                    # datos y lógica de la interfaz
+  index.html
+  assets/
+    icons/
+      favicon.svg
+    images/
+  css/
+    tokens.css
+    styles.css
+  js/
+    data.js
+    script.js
+  README.md
 ```
 
 ## Licencia
-Este proyecto está bajo la licencia **MIT**.  
-Consulta el archivo [LICENSE](LICENSE) para más detalles.
+
+Este proyecto está bajo la licencia **MIT**. Consulta el archivo [LICENSE](../LICENSE) para más detalles.

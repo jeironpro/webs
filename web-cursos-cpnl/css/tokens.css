@@ -1,9 +1,4 @@
-/* tokens.css — sistema de diseño de la web de cursos CPNL (tema Grid-senyera).
-   Todos los colores, tipografías, espaciados y movimientos del proyecto se
-   referencian desde aquí mediante custom properties. No repetir valores sueltos. */
-
 :root {
-    /* ---------- Colores (OKLCH, acento de la senyera) ---------- */
     --color-paper: oklch(98.5% 0.004 60);
     --color-paper-2: oklch(96% 0.006 60);
     --color-paper-3: oklch(93% 0.008 60);
@@ -15,7 +10,6 @@
     --color-focus: var(--color-accent);
     --color-scrim: oklch(18% 0.012 40 / 0.45);
 
-    /* ---------- Tipografía ---------- */
     --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
     --font-body: "Archivo", "Helvetica Neue", Arial, sans-serif;
     --font-label: "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
@@ -23,7 +17,6 @@
     --tracking-display: -0.045em;
     --tracking-label: 0.08em;
 
-    /* ---------- Escala de texto (ratio 1.25) ---------- */
     --text-xs: 0.64rem;
     --text-sm: 0.8rem;
     --text-base: 1rem;
@@ -34,7 +27,6 @@
     --text-4xl: 3.8147rem;
     --text-display: clamp(2.75rem, 5vw + 1rem, 5.25rem);
 
-    /* ---------- Espaciado (escala 4pt) ---------- */
     --space-3xs: 0.125rem;
     --space-2xs: 0.25rem;
     --space-xs: 0.5rem;
@@ -45,25 +37,22 @@
     --space-2xl: 4rem;
     --space-3xl: 6rem;
 
-    /* ---------- Grilla y contenedores ---------- */
     --gutter: clamp(1rem, 2.5vw, 2rem);
-    --shell-max: 1280px;
+    --shell-max: 80rem;
     --sidebar-width: 15rem;
     --sidebar-width-narrow: 16rem;
 
-    /* ---------- Reglas y radios ---------- */
-    --rule-1: 1px;
-    --rule-2: 2px;
-    --radius-sm: 2px;
+    --rule-1: 0.0625rem;
+    --rule-2: 0.125rem;
+    --focus-offset: 0.1875rem;
+    --radius-sm: 0.125rem;
 
-    /* ---------- Movimiento ---------- */
     --dur-micro: 120ms;
     --dur-short: 220ms;
     --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
     --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
     --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
 
-    /* ---------- Z-index (seis niveles) ---------- */
     --z-base: 1;
     --z-raised: 10;
     --z-dropdown: 100;

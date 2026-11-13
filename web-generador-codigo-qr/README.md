@@ -1,36 +1,45 @@
-# web-generador-codigo-qr
+# Generador de código QR
 
-Generador de códigos QR a partir de una URL, mediante la API pública de QRcode Monkey.
+Generador de códigos QR a partir de una URL mediante la API pública de QRcode Monkey.
 
 ## Características
 
-- Campo de texto para introducir la URL que se quiere codificar.
-- Generación del QR llamando a la API de QRcode Monkey (`api.qrcode-monkey.com`) con el tamaño por defecto.
-- Inserción de la imagen del código generado en la propia página.
-- Validación de entrada con mensaje de error si el campo está vacío.
+- Campo para introducir la URL que se quiere codificar.
+- Generación del QR con la API de QRcode Monkey (`api.qrcode-monkey.com`).
+- Inserción de la imagen generada en la propia página.
+- Validación de entrada con mensaje si el campo está vacío.
 - Manejo de errores si la API no puede cargar la imagen.
+- Interfaz responsive y accesible.
 
-## Tecnologías
+## Stack
 
-- HTML5, CSS3 y JavaScript (ES6+).
-- API externa: QRcode Monkey para generar los códigos QR. La generación requiere conexión a internet.
+- HTML5 semántico
+- CSS3 (tokens, BEM, Flexbox)
+- JavaScript ES6+ (módulo ES)
+- API externa de QRcode Monkey; la generación requiere conexión a internet
+- Google Fonts (Fredoka)
+- ESLint + Prettier
 
-## Uso
-
-1. Clona el repositorio.
-2. Abre `index.html` en el navegador o sirve la carpeta con un servidor estático local.
-3. Introduce la URL y pulsa el botón para generar el código QR.
-
-## Estructura del proyecto
+## Estructura
 
 ```
 web-generador-codigo-qr/
-├── index.html
-├── css/                   # estilos del generador
-├── js/                    # lógica de generación
-└── icon/                  # favicon
+  index.html
+  assets/
+    icons/
+      favicon.svg
+  css/
+    tokens.css
+    styles.css
+  js/
+    app.js
+  README.md
 ```
 
+## Uso
+
+Sirve la carpeta con un servidor HTTP, por ejemplo `python3 -m http.server 8000`, y abre <http://localhost:8000/web-generador-codigo-qr/>. Introduce una URL y pulsa **Generar**.
+
 ## Licencia
-Este proyecto está bajo la licencia **MIT**.  
+
 Consulta el archivo [LICENSE](../LICENSE) para más detalles.

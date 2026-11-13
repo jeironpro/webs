@@ -1,30 +1,152 @@
 const algorithms = [
-    { name: "Huffman-coding-compression", description: "Algoritmo de compresión sin pérdida que asigna códigos más cortos a símbolos más frecuentes.", icon: "compress" },
-    { name: "Euclid's", description: "Calcula el máximo común divisor (MCD) de dos números mediante restas o divisiones sucesivas.", icon: "calculate" },
-    { name: "Union-find", description: "Estructura para manejar conjuntos disjuntos, útil para detectar ciclos o agrupar elementos relacionados.", icon: "merge" },
-    { name: "Kadone's", description: "Encuentra la subcadena contigua con la suma máxima dentro de un arreglo de números.", icon: "trending_up" },
-    { name: "Floyd's-cycle-detection", description: "Detecta ciclos en estructuras enlazadas mediante punteros lento y rápido.", icon: "loop" },
-    { name: "Kmp", description: "Algoritmo eficiente para buscar patrones en texto usando coincidencias parciales.", icon: "find_replace" },
-    { name: "Quick-select", description: "Encuentra el k-ésimo elemento más pequeño de una lista sin ordenarla completamente.", icon: "filter_alt" },
-    { name: "Boyer-moore", description: "Algoritmo rápido de búsqueda de patrones que salta partes del texto usando heurísticas.", icon: "text_snippet" },
-    { name: "Linear-search", description: "Busca un elemento recorriendo secuencialmente todos los elementos de la lista.", icon: "search" },
-    { name: "Binary-search", description: "Busca eficientemente en listas ordenadas dividiendo el rango de búsqueda a la mitad.", icon: "splitscreen" },
-    { name: "Jump-search", description: "Busca en listas ordenadas saltando bloques y luego haciendo búsqueda lineal dentro del bloque.", icon: "skip_next" },
-    { name: "Interpolation-search", description: "Versión mejorada de la búsqueda binaria que estima la posición del elemento según su valor.", icon: "timeline" },
-    { name: "Exponential-search", description: "Combina búsqueda exponencial y binaria para encontrar elementos en listas ordenadas.", icon: "rocket_launch" },
-    { name: "Bubble-sort", description: "Ordena comparando y cambiando elementos adyacentes repetidamente hasta que todo esté ordenado.", icon: "bubble_chart" },
-    { name: "Selection-sort", description: "Ordena seleccionando repetidamente el elemento más pequeño y colocándolo en su posición correcta.", icon: "select_all" },
-    { name: "Insertion-sort", description: "Construye una lista ordenada insertando cada elemento en la posición adecuada.", icon: "input" },
-    { name: "Merge-sort", description: "Divide la lista en mitades, las ordena recursivamente y luego las combina en orden.", icon: "merge" },
-    { name: "Quick-sort", description: "Ordena usando el método divide y vencerás al elegir un pivote y particionar la lista.", icon: "bolt" },
-    { name: "Dijkstra's", description: "Encuentra las rutas más cortas desde un nodo origen en un grafo con pesos positivos.", icon: "route" },
-    { name: "Bellman-ford", description: "Calcula caminos mínimos incluso con pesos negativos en un grafo dirigido.", icon: "alt_route" },
-    { name: "Floyd-warshall", description: "Encuentra las distancias más cortas entre todos los pares de nodos en un grafo.", icon: "lan" },
-    { name: "Prim's", description: "Construye un árbol de expansión mínima añadiendo aristas de menor peso sin formar ciclos.", icon: "account_tree" },
-    { name: "Kruskal's", description: "Forma un árbol de expansión mínima uniendo los vértices con las aristas más ligeras posibles.", icon: "device_hub" }
+    {
+        name: "Huffman coding",
+        description:
+            "Algoritmo de compresión sin pérdida que asigna códigos más cortos a símbolos más frecuentes.",
+        icon: "compress",
+    },
+    {
+        name: "Euclid's algorithm",
+        description:
+            "Calcula el máximo común divisor (MCD) de dos números mediante restas o divisiones sucesivas.",
+        icon: "calculate",
+    },
+    {
+        name: "Union-find",
+        description:
+            "Estructura para manejar conjuntos disjuntos, útil para detectar ciclos o agrupar elementos relacionados.",
+        icon: "merge",
+    },
+    {
+        name: "Kadane's algorithm",
+        description:
+            "Encuentra la subcadena contigua con la suma máxima dentro de un arreglo de números.",
+        icon: "trending_up",
+    },
+    {
+        name: "Floyd's cycle detection",
+        description: "Detecta ciclos en estructuras enlazadas mediante punteros lento y rápido.",
+        icon: "loop",
+    },
+    {
+        name: "KMP",
+        description:
+            "Algoritmo eficiente para buscar patrones en texto usando coincidencias parciales.",
+        icon: "find_replace",
+    },
+    {
+        name: "Quickselect",
+        description:
+            "Encuentra el k-ésimo elemento más pequeño de una lista sin ordenarla completamente.",
+        icon: "filter_alt",
+    },
+    {
+        name: "Boyer-Moore",
+        description:
+            "Algoritmo rápido de búsqueda de patrones que salta partes del texto usando heurísticas.",
+        icon: "text_snippet",
+    },
+    {
+        name: "Linear search",
+        description:
+            "Busca un elemento recorriendo secuencialmente todos los elementos de la lista.",
+        icon: "search",
+    },
+    {
+        name: "Binary search",
+        description:
+            "Busca eficientemente en listas ordenadas dividiendo el rango de búsqueda a la mitad.",
+        icon: "splitscreen",
+    },
+    {
+        name: "Jump search",
+        description:
+            "Busca en listas ordenadas saltando bloques y luego haciendo búsqueda lineal dentro del bloque.",
+        icon: "skip_next",
+    },
+    {
+        name: "Interpolation search",
+        description:
+            "Versión mejorada de la búsqueda binaria que estima la posición del elemento según su valor.",
+        icon: "timeline",
+    },
+    {
+        name: "Exponential search",
+        description:
+            "Combina búsqueda exponencial y binaria para encontrar elementos en listas ordenadas.",
+        icon: "rocket_launch",
+    },
+    {
+        name: "Bubble sort",
+        description:
+            "Ordena comparando y cambiando elementos adyacentes repetidamente hasta que todo esté ordenado.",
+        icon: "bubble_chart",
+    },
+    {
+        name: "Selection sort",
+        description:
+            "Ordena seleccionando repetidamente el elemento más pequeño y colocándolo en su posición correcta.",
+        icon: "select_all",
+    },
+    {
+        name: "Insertion sort",
+        description:
+            "Construye una lista ordenada insertando cada elemento en la posición adecuada.",
+        icon: "input",
+    },
+    {
+        name: "Merge sort",
+        description:
+            "Divide la lista en mitades, las ordena recursivamente y luego las combina en orden.",
+        icon: "merge",
+    },
+    {
+        name: "Quick sort",
+        description:
+            "Ordena usando el método divide y vencerás al elegir un pivote y particionar la lista.",
+        icon: "bolt",
+    },
+    {
+        name: "Dijkstra's algorithm",
+        description:
+            "Encuentra las rutas más cortas desde un nodo origen en un grafo con pesos positivos.",
+        icon: "route",
+    },
+    {
+        name: "Bellman-Ford",
+        description: "Calcula caminos mínimos incluso con pesos negativos en un grafo dirigido.",
+        icon: "alt_route",
+    },
+    {
+        name: "Floyd-Warshall",
+        description:
+            "Encuentra las distancias más cortas entre todos los pares de nodos en un grafo.",
+        icon: "lan",
+    },
+    {
+        name: "Prim's algorithm",
+        description:
+            "Construye un árbol de expansión mínima añadiendo aristas de menor peso sin formar ciclos.",
+        icon: "account_tree",
+    },
+    {
+        name: "Kruskal's algorithm",
+        description:
+            "Forma un árbol de expansión mínima uniendo los vértices con las aristas más ligeras posibles.",
+        icon: "device_hub",
+    },
 ];
 
-const cardsContainer = document.getElementById("cards");
+const cardsContainer = document.querySelector("#cards");
+
+if (!cardsContainer) {
+    throw new Error("Cards container not found");
+}
+
+const setExpanded = (card, expanded) => {
+    card.classList.toggle("algorithm-card--flipped", expanded);
+    card.setAttribute("aria-expanded", String(expanded));
+};
 
 const createCard = (algorithm) => {
     const card = document.createElement("div");
@@ -35,39 +157,55 @@ const createCard = (algorithm) => {
     const cardBack = document.createElement("div");
     const description = document.createElement("p");
 
-    card.classList.add("card");
+    card.classList.add("algorithm-card");
     card.tabIndex = 0;
     card.setAttribute("role", "button");
+    card.setAttribute("aria-expanded", "false");
     card.setAttribute("aria-label", `${algorithm.name}: ${algorithm.description}`);
-    cardInner.classList.add("card__inner");
-    cardFront.classList.add("card__face", "card__front");
-    cardBack.classList.add("card__face", "card__back");
-    icon.classList.add("material-symbols-outlined");
+    cardInner.classList.add("algorithm-card__inner");
+    cardFront.classList.add("algorithm-card__face", "algorithm-card__front");
+    cardBack.classList.add("algorithm-card__face", "algorithm-card__back");
+    icon.classList.add("material-symbols-outlined", "algorithm-card__icon");
+    title.classList.add("algorithm-card__title");
+    description.classList.add("algorithm-card__description");
 
-    icon.textContent = `${algorithm.icon}`;
-    title.textContent = `${algorithm.name}`;
-    description.textContent = `${algorithm.description}`;
+    icon.textContent = algorithm.icon;
+    title.textContent = algorithm.name;
+    description.textContent = algorithm.description;
 
-    cardFront.appendChild(icon);
-    cardFront.appendChild(title);
-    cardBack.appendChild(description);
-    cardInner.appendChild(cardFront);
-    cardInner.appendChild(cardBack);
-    card.appendChild(cardInner);
-    const flip = () => card.classList.toggle("is-flipped");
-    card.addEventListener("click", flip);
+    cardFront.append(icon, title);
+    cardBack.append(description);
+    cardInner.append(cardFront, cardBack);
+    card.append(cardInner);
+
+    const toggle = () => {
+        setExpanded(card, !card.classList.contains("algorithm-card--flipped"));
+    };
+
+    card.addEventListener("click", toggle);
     card.addEventListener("keydown", (event) => {
         if (event.key === "Enter" || event.key === " ") {
             event.preventDefault();
-            flip();
+            toggle();
         }
     });
 
-    cardsContainer.appendChild(card);
+    return card;
 };
 
-const initCards = () => {
-    algorithms.forEach((algorithm) => createCard(algorithm));
+const renderCards = () => {
+    const fragment = document.createDocumentFragment();
+    algorithms.forEach((algorithm) => fragment.append(createCard(algorithm)));
+    cardsContainer.replaceChildren(fragment);
 };
 
-initCards();
+const setCurrentYear = () => {
+    document.querySelectorAll("[data-year]").forEach((node) => {
+        node.textContent = String(new Date().getFullYear());
+    });
+};
+
+renderCards();
+setCurrentYear();
+
+export { algorithms, createCard, renderCards };

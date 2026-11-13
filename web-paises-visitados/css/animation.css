@@ -1,0 +1,197 @@
+html {
+    overflow-x: clip;
+}
+
+.site-header,
+.site-main,
+.site-footer {
+    position: relative;
+    z-index: 1;
+}
+
+.cloud {
+    position: fixed;
+    left: -15rem;
+    z-index: 0;
+    border-radius: 50%;
+    background: var(--color-cloud);
+    opacity: 0.7;
+    animation: mover-nube linear infinite;
+    pointer-events: none;
+}
+
+.cloud::before,
+.cloud::after {
+    position: absolute;
+    border-radius: 50%;
+    background: inherit;
+    content: "";
+}
+
+.cloud::before {
+    top: -30%;
+    left: 15%;
+    width: 55%;
+    height: 110%;
+}
+
+.cloud::after {
+    top: -15%;
+    right: 10%;
+    width: 45%;
+    height: 90%;
+}
+
+.cloud--sm {
+    width: 6rem;
+    height: 2.5rem;
+}
+
+.cloud--md {
+    width: 9rem;
+    height: 3.75rem;
+}
+
+.cloud--lg {
+    width: 12rem;
+    height: 5rem;
+}
+
+.cloud--row-1 {
+    top: 5%;
+}
+
+.cloud--row-2 {
+    top: 16%;
+}
+
+.cloud--row-3 {
+    top: 27%;
+}
+
+.cloud--row-4 {
+    top: 38%;
+}
+
+.cloud--row-5 {
+    top: 49%;
+}
+
+.cloud--row-6 {
+    top: 60%;
+}
+
+.cloud--row-7 {
+    top: 71%;
+}
+
+.cloud--row-8 {
+    top: 82%;
+}
+
+.cloud--speed-1 {
+    animation-duration: 55s;
+}
+
+.cloud--speed-2 {
+    animation-duration: 70s;
+}
+
+.cloud--speed-3 {
+    animation-duration: 85s;
+}
+
+.cloud--speed-4 {
+    animation-duration: 100s;
+}
+
+.cloud--delay-1 {
+    animation-delay: -12s;
+}
+
+.cloud--delay-2 {
+    animation-delay: -24s;
+}
+
+.cloud--delay-3 {
+    animation-delay: -36s;
+}
+
+.cloud--delay-4 {
+    animation-delay: -48s;
+}
+
+@keyframes mover-nube {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(125vw);
+    }
+}
+
+.plane-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: var(--plane-size);
+    height: var(--plane-size);
+    animation: flotar 6s ease-in-out infinite;
+    pointer-events: none;
+    will-change: transform;
+}
+
+.plane {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.plane__body {
+    fill: var(--color-plane);
+    stroke: var(--color-plane-line);
+    stroke-width: 0.125rem;
+}
+
+.plane__center {
+    stroke: var(--color-plane-line);
+    stroke-width: 0.125rem;
+}
+
+.plane__detail {
+    stroke: var(--color-plane-detail);
+    stroke-width: 0.0625rem;
+}
+
+.plane-wrapper::after {
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    width: var(--trail-width);
+    height: var(--trail-height);
+    border-radius: 50%;
+    background: var(--color-trail);
+    content: "";
+    filter: blur(0.1875rem);
+    transform: translateX(-50%);
+}
+
+@keyframes flotar {
+    0%,
+    100% {
+        margin-top: 0;
+    }
+
+    50% {
+        margin-top: -0.5rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cloud,
+    .plane-wrapper {
+        display: none;
+    }
+}

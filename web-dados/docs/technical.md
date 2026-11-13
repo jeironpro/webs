@@ -9,9 +9,8 @@ Aplicacion web interactiva de dados desarrollada con HTML semantico, CSS3 y Java
 - **HTML5** - Estructura semantica
 - **CSS3** - Flexbox, CSS Grid, Custom Properties, Media Queries, animaciones
 - **JavaScript ES6+** - Modulos, Promesas, Arrow functions
-- **Vitest** - Framework de testing con entorno jsdom
+- **Vitest** - Framework de testing con entorno jsdom (raíz del repositorio)
 - **ESLint** - Analisis estatico de JS
-- **Stylelint** - Analisis estatico de CSS
 - **Prettier** - Formateo de codigo
 
 ## Estructura del proyecto
@@ -19,13 +18,9 @@ Aplicacion web interactiva de dados desarrollada con HTML semantico, CSS3 y Java
 ```
 web-dados/
 ├── index.html              # Pagina principal
-├── favicon.svg             # Favicon en SVG
-├── robots.txt              # Configuracion para motores de busqueda
-├── sitemap.xml             # Mapa del sitio
-├── package.json            # Dependencias y scripts
-├── eslint.config.js        # Configuracion ESLint (flat config)
-├── .stylelintrc.json       # Configuracion Stylelint
-├── .prettierrc             # Configuracion Prettier
+├── assets/
+│   └── icons/
+│       └── favicon.svg     # Favicon en SVG
 ├── css/
 │   ├── style.css           # Hoja principal (imports)
 │   ├── reset.css           # Reset CSS
@@ -43,13 +38,12 @@ web-dados/
 │   │   └── diceService.js  # Logica de generacion de valores aleatorios
 │   └── utils/
 │       └── dom.js          # Funciones auxiliares de manipulacion del DOM
-├── docs/
-│   ├── style-guide.md      # Libro de estilo
-│   └── technical.md        # Documentacion tecnica (este archivo)
-└── tests/
-    ├── diceService.test.js # Tests del servicio de dados
-    └── dice.test.js        Tests del modulo de dados
+├── STYLE-GUIDE.md          # Libro de estilo
+└── docs/
+    └── technical.md        # Documentacion tecnica (este archivo)
 ```
+
+Los tests viven en `tests/web-dados/` (raíz del repositorio).
 
 ## Arquitectura
 
@@ -123,27 +117,29 @@ Toda manipulacion del DOM usa: `createElement()`, `textContent`, `appendChild()`
 
 ## Scripts disponibles
 
+Ejecutados desde la raíz del repositorio:
+
 ```bash
 npm test         # Ejecutar tests (Vitest)
 npm run test:watch  # Tests en modo watch
 npm run lint     # Analizar JS con ESLint
-npm run lint:css # Analizar CSS con Stylelint
 npm run format   # Formatear codigo con Prettier
 npm run format:check  # Verificar formato
 ```
 
 ## Testing
 
-Los tests usan Vitest con entorno jsdom para simular el navegador.
+Los tests usan Vitest con entorno jsdom para simular el navegador. Viven en
+`tests/web-dados/`.
 
-### `tests/diceService.test.js`
+### `tests/web-dados/diceService.test.js`
 
 - roll() devuelve valores entre 1 y 6
 - roll() devuelve solo enteros
 - rollMultiple(n) devuelve array de longitud n
 - rollMultiple(n) contiene solo valores validos
 
-### `tests/dice.test.js`
+### `tests/web-dados/dice.test.js`
 
 - DiceManager crea la cantidad correcta de dados
 - DiceManager limpia y recrea al cambiar cantidad
