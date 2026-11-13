@@ -40,7 +40,13 @@
                 ["GET", "/pokemones/tipo/{tipo}", "Filtrar por tipo"],
                 ["POST", "/pokemones/{id}/imagen", "Subir imagen"],
             ],
-            env: ["DATABASE_URL", "API_KEY", "SUPABASE_URL", "SUPABASE_SERVICE_KEY", "FRONTEND_URL"],
+            env: [
+                "DATABASE_URL",
+                "API_KEY",
+                "SUPABASE_URL",
+                "SUPABASE_SERVICE_KEY",
+                "FRONTEND_URL",
+            ],
         },
         {
             slug: "api-naruto",
@@ -155,7 +161,15 @@
                 ["POST", "/enviar_correo", "Correo en texto plano"],
                 ["POST", "/enviar_correo_html", "Correo con plantilla HTML"],
             ],
-            env: ["MAIL_SERVER", "MAIL_PORT", "MAIL_SENDER", "MAIL_USERNAME", "MAIL_PASSWORD", "MAIL_USE_TLS", "MAIL_USE_SSL"],
+            env: [
+                "MAIL_SERVER",
+                "MAIL_PORT",
+                "MAIL_SENDER",
+                "MAIL_USERNAME",
+                "MAIL_PASSWORD",
+                "MAIL_USE_TLS",
+                "MAIL_USE_SSL",
+            ],
         },
     ];
 
@@ -163,10 +177,11 @@
     const featured = CATALOG.find((a) => a.featured) || CATALOG[0];
 
     /* ── Helpers ─────────────────────────────────────── */
-    function esc(s) {
-        return String(s).replace(/[&<>"']/g, (c) => ({
-            "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
-        }[c]));
+    function element(tag, className, text) {
+        const node = document.createElement(tag);
+        if (className) node.className = className;
+        if (text !== undefined) node.textContent = text;
+        return node;
     }
 
     function isLightSurface(surface) {
@@ -177,55 +192,105 @@
         return "mth--" + method.toLowerCase();
     }
 
+    function codeBlock(lines, copyValue, withPrompt) {
+        const code = element("div", "code");
+        const copy = element("button", "code__copy", "Copiar");
+        copy.type = "button";
+        copy.dataset.copy = copyValue;
+        const pre = element("pre");
+        lines.forEach((line, index) => {
+            if (index > 0) pre.append(document.createTextNode("\n"));
+            if (withPrompt) pre.append(element("span", "c-mute", "$ "));
+            pre.append(document.createTextNode(line));
+        });
+        code.append(copy, pre);
+        return code;
+    }
+
     /* ── Render: hero feature card ───────────────────── */
     function renderFeature() {
         const slot = document.getElementById("featureSlot");
         if (!slot) return;
-        const dark = isLightSurface(featured.surface) ? " is-dark" : "";
-        slot.innerHTML = `
-      <a class="feature-card" href="#" data-open="${featured.slug}"
-         aria-label="Ver documentación de ${esc(featured.name)}">
-        <div class="surface surface--${featured.surface}"></div>
-        <div class="zellige${dark ? " zellige--dark" : ""}" aria-hidden="true"></div>
-        <div class="feature-card__body${dark}">
-          <span class="feature-card__tag">★ Destacada · 01/${String(CATALOG.length).padStart(2, "0")}</span>
-          <div>
-            <div class="feature-card__title">${esc(featured.name)}</div>
-            <div class="feature-card__row" style="margin-top:.5rem">
-              <div class="feature-card__price">${esc(featured.price)} <small>${esc(featured.priceUnit)}</small></div>
-              <span class="feature-card__cta" aria-hidden="true">↗</span>
-            </div>
-          </div>
-        </div>
-      </a>`;
+        const dark = isLightSurface(featured.surface);
+        const link = element("a", "feature-card");
+        link.href = "#";
+        link.dataset.open = featured.slug;
+        link.setAttribute("aria-label", `Ver documentación de ${featured.name}`);
+
+        const surface = element("div", `surface surface--${featured.surface}`);
+        const zellige = element("div", "zellige");
+        if (dark) zellige.classList.add("zellige--dark");
+        zellige.setAttribute("aria-hidden", "true");
+
+        const body = element("div", "feature-card__body");
+        if (dark) body.classList.add("is-dark");
+        const tag = element(
+            "span",
+            "feature-card__tag",
+            `★ Destacada · 01/${String(CATALOG.length).padStart(2, "0")}`
+        );
+        const title = element("div", "feature-card__title", featured.name);
+        const row = element("div", "feature-card__row feature-card__row--tight");
+        const price = element("div", "feature-card__price", featured.price);
+        price.append(element("small", undefined, featured.priceUnit));
+        const cta = element("span", "feature-card__cta", "↗");
+        cta.setAttribute("aria-hidden", "true");
+        row.append(price, cta);
+        body.append(tag, title, row);
+        link.append(surface, zellige, body);
+        slot.replaceChildren(link);
     }
 
     /* ── Render: collection grid ─────────────────────── */
     function renderCollection() {
         const grid = document.getElementById("collection");
         if (!grid) return;
-        grid.innerHTML = CATALOG.map((a) => {
-            const dark = isLightSurface(a.surface);
-            const badgeClass = a.badgeClass ? ` product__badge--${a.badgeClass}` : "";
-            return `
-      <article class="product" role="listitem">
-        <div class="product__media" data-open="${a.slug}" tabindex="0" role="button"
-             aria-label="Ver documentación de ${esc(a.name)}">
-          <div class="surface surface--${a.surface}"></div>
-          <div class="zellige${dark ? " zellige--dark" : ""}" aria-hidden="true"></div>
-          <span class="product__badge${badgeClass}">${esc(a.badge)}</span>
-          <button class="product__quick" data-download="${a.slug}">Descargar .zip</button>
-        </div>
-        <div class="product__row">
-          <div style="min-width:0">
-            <h3 class="product__name"><a href="#" data-open="${a.slug}">${esc(a.name)}</a></h3>
-            <p class="product__meta">${esc(a.stack)} · ${esc(a.db)}</p>
-          </div>
-          <p class="product__price">${esc(a.routesLabel)}</p>
-        </div>
-        <button class="product__download" data-open="${a.slug}">Ver documentación →</button>
-      </article>`;
-        }).join("");
+        const cards = CATALOG.map((api) => {
+            const dark = isLightSurface(api.surface);
+            const card = element("article", "product");
+            card.setAttribute("role", "listitem");
+
+            const media = element("div", "product__media");
+            media.dataset.open = api.slug;
+            media.tabIndex = 0;
+            media.setAttribute("role", "button");
+            media.setAttribute("aria-label", `Ver documentación de ${api.name}`);
+
+            const surface = element("div", `surface surface--${api.surface}`);
+            const zellige = element("div", "zellige");
+            if (dark) zellige.classList.add("zellige--dark");
+            zellige.setAttribute("aria-hidden", "true");
+
+            const badge = element(
+                "span",
+                "product__badge" + (api.badgeClass ? ` product__badge--${api.badgeClass}` : ""),
+                api.badge
+            );
+            const quick = element("button", "product__quick", "Descargar .zip");
+            quick.type = "button";
+            quick.dataset.download = api.slug;
+            media.append(surface, zellige, badge, quick);
+
+            const row = element("div", "product__row");
+            const copy = element("div", "product__row-copy");
+            const name = element("h3", "product__name");
+            const link = element("a", undefined, api.name);
+            link.href = "#";
+            link.dataset.open = api.slug;
+            name.append(link);
+            const meta = element("p", "product__meta", `${api.stack} · ${api.db}`);
+            copy.append(name, meta);
+            const routes = element("p", "product__price", api.routesLabel);
+            row.append(copy, routes);
+
+            const download = element("button", "product__download", "Ver documentación →");
+            download.type = "button";
+            download.dataset.open = api.slug;
+
+            card.append(media, row, download);
+            return card;
+        });
+        grid.replaceChildren(...cards);
     }
 
     /* ── Render: drawer ──────────────────────────────── */
@@ -235,43 +300,42 @@
         const download = document.getElementById("drawerDownload");
         title.textContent = api.name;
 
-        const endpointRows = api.endpoints.map(([m, route, desc]) => `
-      <li class="ep__row">
-        <span class="mth ${methodClass(m)}">${esc(m)}</span>
-        <code class="ep__route">${esc(route)}</code>
-        <span class="ep__desc">${esc(desc)}</span>
-      </li>`).join("");
+        const tagline = element("p", "drawer__tagline", api.tagline);
+        const chips = element("div", "chips");
+        chips.append(
+            element("span", "chip chip--accent", api.stack),
+            element("span", "chip", api.db),
+            element("span", "chip", api.auth),
+            element("span", "chip chip--ink", "MIT")
+        );
 
-        body.innerHTML = `
-      <p class="drawer__tagline">${esc(api.tagline)}</p>
-      <div class="chips">
-        <span class="chip chip--accent">${esc(api.stack)}</span>
-        <span class="chip">${esc(api.db)}</span>
-        <span class="chip">${esc(api.auth)}</span>
-        <span class="chip chip--ink">MIT</span>
-      </div>
+        const endpointsSection = element("div", "drawer__section");
+        const endpointsTitle = element("h4", "drawer__h", "Endpoints");
+        endpointsTitle.append(element("small", undefined, api.routesLabel));
+        const endpoints = element("ul", "ep");
+        for (const [method, route, description] of api.endpoints) {
+            const item = element("li", "ep__row");
+            item.append(
+                element("span", `mth ${methodClass(method)}`, method),
+                element("code", "ep__route", route),
+                element("span", "ep__desc", description)
+            );
+            endpoints.append(item);
+        }
+        endpointsSection.append(endpointsTitle, endpoints);
 
-      <div class="drawer__section">
-        <h4 class="drawer__h">Endpoints <small>${esc(api.routesLabel)}</small></h4>
-        <ul class="ep">${endpointRows}</ul>
-      </div>
+        const installSection = element("div", "drawer__section");
+        const installTitle = element("h4", "drawer__h", "Arranque local");
+        installTitle.append(element("small", undefined, "terminal"));
+        installSection.append(installTitle, codeBlock(api.install, api.install.join("\n"), true));
 
-      <div class="drawer__section">
-        <h4 class="drawer__h">Arranque local <small>terminal</small></h4>
-        <div class="code">
-          <button class="code__copy" data-copy="${esc(api.install.join("\n"))}">Copiar</button>
-          <pre>${api.install.map((l) => `<span class="c-mute">$ </span>${esc(l)}`).join("\n")}</pre>
-        </div>
-      </div>
+        const envSection = element("div", "drawer__section");
+        const envTitle = element("h4", "drawer__h", "Variables de entorno");
+        envTitle.append(element("small", undefined, ".env"));
+        const envLines = api.env.map((variable) => variable + "=");
+        envSection.append(envTitle, codeBlock(envLines, envLines.join("\n"), false));
 
-      <div class="drawer__section">
-        <h4 class="drawer__h">Variables de entorno <small>.env</small></h4>
-        <div class="code">
-          <button class="code__copy" data-copy="${esc(api.env.map((v) => v + "=").join("\n"))}">Copiar</button>
-          <pre>${api.env.map((v) => esc(v) + "=").join("\n")}</pre>
-        </div>
-      </div>`;
-
+        body.replaceChildren(tagline, chips, endpointsSection, installSection, envSection);
         download.dataset.download = api.slug;
     }
 
@@ -375,7 +439,7 @@
             const zip = window.Zip.buildZip(entries);
             saveZip(zip, slug + ".zip");
             toast("Descargando " + api.name + "…");
-        } catch (err) {
+        } catch {
             toast("No se pudo preparar la descarga. Revisa tu conexión.");
         } finally {
             busy = false;
@@ -397,7 +461,7 @@
             const zip = window.Zip.buildZip(entries);
             saveZip(zip, "apis.zip");
             toast("Descargando todas las APIs…");
-        } catch (err) {
+        } catch {
             toast("No se pudo preparar la descarga. Revisa tu conexión.");
         } finally {
             busy = false;
@@ -415,7 +479,7 @@
                 btn.textContent = original;
                 btn.classList.remove("is-copied");
             }, 1600);
-        } catch (err) {
+        } catch {
             toast("No se pudo copiar al portapapeles");
         }
     }

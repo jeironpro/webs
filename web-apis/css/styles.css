@@ -8,7 +8,6 @@
      * pre-emit critique: P5 H4 E5 S4 R4 V5
      */
 
-
     /* ── Reset ─────────────────────────────────────────── */
     *,
     *::before,
@@ -73,6 +72,12 @@
     code,
     pre {
         font-family: var(--font-mono);
+    }
+
+    .noscript {
+        padding: var(--space-6);
+        text-align: center;
+        color: var(--color-ink-soft);
     }
 
     /* Focus ring · instant, no animation, visible against any band */
@@ -213,7 +218,7 @@
         will-change: transform;
     }
 
-    .marquee__track>span {
+    .marquee__track > span {
         display: inline-flex;
         align-items: center;
         gap: var(--space-7);
@@ -224,9 +229,18 @@
         width: 18px;
         height: 18px;
         background: currentColor;
-        clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%,
-                79% 91%, 50% 70%, 21% 91%, 32% 57%,
-                2% 35%, 39% 35%);
+        clip-path: polygon(
+            50% 0%,
+            61% 35%,
+            98% 35%,
+            68% 57%,
+            79% 91%,
+            50% 70%,
+            21% 91%,
+            32% 57%,
+            2% 35%,
+            39% 35%
+        );
     }
 
     @keyframes scroll-x {
@@ -276,7 +290,6 @@
     }
 
     @keyframes blink {
-
         0%,
         100% {
             opacity: 1;
@@ -367,6 +380,10 @@
         color: var(--color-paper);
     }
 
+    .btn--lg {
+        min-height: 44px;
+    }
+
     .btn__arrow {
         display: inline-block;
         transition: transform var(--dur-base) var(--ease-out);
@@ -415,14 +432,14 @@
 
     .surface--bone {
         background:
-            radial-gradient(circle at 70% 20%, oklch(96% 0.020 80) 0%, transparent 55%),
-            linear-gradient(160deg, oklch(91% 0.025 75) 0%, oklch(82% 0.030 70) 100%);
+            radial-gradient(circle at 70% 20%, oklch(96% 0.02 80) 0%, transparent 55%),
+            linear-gradient(160deg, oklch(91% 0.025 75) 0%, oklch(82% 0.03 70) 100%);
     }
 
     .surface--ink {
         background:
             radial-gradient(circle at 25% 30%, oklch(36% 0.04 60) 0%, transparent 60%),
-            linear-gradient(150deg, oklch(22% 0.025 55) 0%, oklch(14% 0.020 55) 100%);
+            linear-gradient(150deg, oklch(22% 0.025 55) 0%, oklch(14% 0.02 55) 100%);
     }
 
     .surface--saffron {
@@ -433,7 +450,7 @@
 
     .surface--marine {
         background:
-            radial-gradient(circle at 25% 25%, oklch(48% 0.10 240) 0%, transparent 60%),
+            radial-gradient(circle at 25% 25%, oklch(48% 0.1 240) 0%, transparent 60%),
             linear-gradient(150deg, oklch(34% 0.09 240) 0%, oklch(22% 0.06 240) 100%);
     }
 
@@ -444,11 +461,18 @@
         z-index: 1;
         opacity: 0.18;
         mix-blend-mode: overlay;
-        background-image:
-            conic-gradient(from 45deg at 50% 50%,
-                transparent 0deg, currentColor 45deg, transparent 90deg,
-                currentColor 135deg, transparent 180deg, currentColor 225deg,
-                transparent 270deg, currentColor 315deg, transparent 360deg);
+        background-image: conic-gradient(
+            from 45deg at 50% 50%,
+            transparent 0deg,
+            currentColor 45deg,
+            transparent 90deg,
+            currentColor 135deg,
+            transparent 180deg,
+            currentColor 225deg,
+            transparent 270deg,
+            currentColor 315deg,
+            transparent 360deg
+        );
         background-size: 48px 48px;
         color: var(--color-paper);
         -webkit-mask-image: radial-gradient(ellipse at center, black 0%, transparent 75%);
@@ -502,6 +526,10 @@
         font-size: var(--text-2xl);
         line-height: 1;
         letter-spacing: var(--track-tight);
+    }
+
+    .feature-card__row--tight {
+        margin-top: var(--space-2);
     }
 
     .feature-card__row {
@@ -602,6 +630,10 @@
         border-bottom: var(--rule-thin) solid var(--color-ink);
         padding-bottom: 2px;
         white-space: nowrap;
+    }
+
+    .section__action {
+        margin-top: var(--space-3);
     }
 
     .collection {
@@ -709,6 +741,10 @@
         min-width: 0;
     }
 
+    .product__row-copy {
+        min-width: 0;
+    }
+
     .product__name {
         font-family: var(--font-display);
         font-weight: 700;
@@ -770,24 +806,25 @@
         background:
             radial-gradient(circle at 20% 10%, oklch(70% 0.18 38) 0%, transparent 50%),
             radial-gradient(circle at 80% 90%, oklch(34% 0.09 240) 0%, transparent 55%),
-            linear-gradient(150deg, oklch(48% 0.20 32) 0%, oklch(28% 0.08 30) 100%);
+            linear-gradient(150deg, oklch(48% 0.2 32) 0%, oklch(28% 0.08 30) 100%);
     }
 
     .editorial__bg::after {
         content: "";
         position: absolute;
         inset: 0;
-        background-image:
-            conic-gradient(from 0deg at 50% 50%,
-                transparent 0deg 40deg,
-                var(--color-paper) 40deg 50deg,
-                transparent 50deg 130deg,
-                var(--color-paper) 130deg 140deg,
-                transparent 140deg 220deg,
-                var(--color-paper) 220deg 230deg,
-                transparent 230deg 310deg,
-                var(--color-paper) 310deg 320deg,
-                transparent 320deg 360deg);
+        background-image: conic-gradient(
+            from 0deg at 50% 50%,
+            transparent 0deg 40deg,
+            var(--color-paper) 40deg 50deg,
+            transparent 50deg 130deg,
+            var(--color-paper) 130deg 140deg,
+            transparent 140deg 220deg,
+            var(--color-paper) 220deg 230deg,
+            transparent 230deg 310deg,
+            var(--color-paper) 310deg 320deg,
+            transparent 320deg 360deg
+        );
         background-size: 64px 64px;
         opacity: 0.06;
     }
@@ -818,6 +855,13 @@
         display: inline-block;
         margin-inline-end: 0.05em;
         color: var(--color-saffron);
+    }
+
+    .editorial__copy {
+        max-width: 36ch;
+        opacity: 0.9;
+        line-height: 1.5;
+        font-size: var(--text-md);
     }
 
     .editorial__byline {
@@ -1037,7 +1081,7 @@
     .footer__brand span {
         color: var(--color-accent);
         margin-inline-start: 8px;
-        font-size: .6em;
+        font-size: 0.6em;
     }
 
     .footer__tag {
@@ -1287,7 +1331,9 @@
         align-items: center;
         justify-content: center;
         gap: 10px;
-        transition: transform var(--dur-fast) var(--ease-out), background-color var(--dur-fast) var(--ease-out);
+        transition:
+            transform var(--dur-fast) var(--ease-out),
+            background-color var(--dur-fast) var(--ease-out);
         min-height: 56px;
         white-space: nowrap;
     }
@@ -1322,7 +1368,9 @@
         white-space: nowrap;
         opacity: 0;
         pointer-events: none;
-        transition: opacity var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out);
+        transition:
+            opacity var(--dur-base) var(--ease-out),
+            transform var(--dur-base) var(--ease-out);
     }
 
     .toast.is-visible {
@@ -1379,12 +1427,14 @@
 
 @layer accesibilidad {
     @media (prefers-reduced-motion: reduce) {
-            .marquee__track {
-                animation: none;
-                transform: translateX(0);
-            }    }
+        .marquee__track {
+            animation: none;
+            transform: translateX(0);
+        }
+    }
     @media (prefers-reduced-motion: reduce) {
-            .hero__meta b {
-                animation: none;
-            }    }
+        .hero__meta b {
+            animation: none;
+        }
+    }
 }

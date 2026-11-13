@@ -1,4 +1,4 @@
-# apis
+# web-apis
 
 ## Descripción
 
@@ -8,13 +8,25 @@ demostrar buenas prácticas de programación, organización y documentación en 
 
 ## APIs incluidas
 
-| Proyecto | Stack | Descripción | Base de datos | Despliegue |
-|----------|-------|-------------|---------------|------------|
-| [api-biblia](catalog/api-biblia/) | FastAPI + SQLModel | CRUD de la Biblia (biblias, testamentos, libros, capítulos, versículos) con patrón de servicios separados por verbo HTTP | MySQL | — |
-| [api-pokemon](catalog/api-pokemon/) | FastAPI + SQLModel | Colección de los 1025 Pokémon con tipos, estadísticas, imágenes y filtros | PostgreSQL | — |
-| [api-naruto](catalog/api-naruto/) | FastAPI + SQLModel | Personajes de Naruto con habilidades, debilidades, fortalezas, estadísticas y filtros | PostgreSQL | — |
-| [api-juego-preguntas-respuestas](catalog/api-juego-preguntas-respuestas/) | Flask + SQLAlchemy | Juego de trivia con 350 preguntas en 7 categorías: CRUD, pregunta aleatoria y validación de respuestas (Swagger incluido) | PostgreSQL | — |
-| [api-correo-smtp-flask](catalog/api-correo-smtp-flask/) | Flask + Flask-Mail | Envío de correos electrónicos por SMTP, en texto plano o con plantilla HTML | — | — |
+| Proyecto                                                                  | Stack              | Descripción                                                                                                               | Base de datos | Despliegue |
+| ------------------------------------------------------------------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------- | ------------- | ---------- |
+| [api-biblia](catalog/api-biblia/)                                         | FastAPI + SQLModel | CRUD de la Biblia (biblias, testamentos, libros, capítulos, versículos) con patrón de servicios separados por verbo HTTP  | MySQL         | —          |
+| [api-pokemon](catalog/api-pokemon/)                                       | FastAPI + SQLModel | Colección de los 1025 Pokémon con tipos, estadísticas, imágenes y filtros                                                 | PostgreSQL    | —          |
+| [api-naruto](catalog/api-naruto/)                                         | FastAPI + SQLModel | Personajes de Naruto con habilidades, debilidades, fortalezas, estadísticas y filtros                                     | PostgreSQL    | —          |
+| [api-juego-preguntas-respuestas](catalog/api-juego-preguntas-respuestas/) | Flask + SQLAlchemy | Juego de trivia con 350 preguntas en 7 categorías: CRUD, pregunta aleatoria y validación de respuestas (Swagger incluido) | PostgreSQL    | —          |
+| [api-correo-smtp-flask](catalog/api-correo-smtp-flask/)                   | Flask + Flask-Mail | Envío de correos electrónicos por SMTP, en texto plano o con plantilla HTML                                               | —             | —          |
+
+## Estructura
+
+```
+index.html                 Portal del catálogo
+css/styles.css            Estilos del portal
+css/tokens.css            Tokens de diseño
+js/app.js                 Catálogo, descargas y drawer
+js/zip.js                 Generador ZIP en el cliente
+assets/icons/             Favicons del portal
+catalog/                  Las 5 APIs descargables
+```
 
 ## Portal web
 
@@ -24,7 +36,7 @@ cada API como `.zip`** — o todas a la vez — directamente desde el navegador.
 
 El diseño sigue la referencia de Hallmark [`NAJM`](https://www.usehallmark.com/examples/najm/):
 Bricolage Grotesque + Inter + JetBrains Mono, paleta cálida (crema + terracota) y
-macrostructure *Marquee Hero*.
+macrostructure _Marquee Hero_.
 
 ### Cómo funcionan las descargas
 
@@ -46,8 +58,10 @@ python3 -m http.server 8080
 
 ### Tests
 
+El test vive en la suite central del monorepo:
+
 ```bash
-node --test "test/*.test.js"
+npm test
 ```
 
 ### Añadir una API
@@ -80,4 +94,4 @@ Tecnologías comunes en todo el repositorio:
 ## Licencia
 
 Este proyecto está bajo la licencia **MIT**.
-Consulta el archivo [LICENSE](LICENSE) para más detalles.
+Consulta el archivo [LICENSE](../LICENSE) para más detalles.

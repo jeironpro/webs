@@ -15,6 +15,7 @@ cd webs/web-apis/catalog/api-correo-smtp-flask
 ```
 
 Crear y activar entorno virtual:
+
 ```bash
 python -m venv venv
 
