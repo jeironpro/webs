@@ -44,7 +44,8 @@ web-clima/
 ├── css/
 │   └── styles.css            # Tokens y estilos globales
 └── js/
-    └── app.js                # Render de la web y clientes de Open-Meteo
+    ├── app.js                # Render de la web y clientes de Open-Meteo
+    └── consent.js            # Consentimiento y bloqueo del almacenamiento local
 ```
 
 ## Licencia

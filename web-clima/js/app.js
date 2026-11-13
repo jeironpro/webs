@@ -128,7 +128,14 @@ function createFragment(markup) {
     return fragment;
 }
 
+function storageAllowed() {
+    return Boolean(window.StorageConsent?.hasConsent());
+}
+
 function readStorage(key, initialValue) {
+    if (!storageAllowed()) {
+        return initialValue;
+    }
     try {
         const stored = window.localStorage.getItem(key);
         return stored === null ? initialValue : JSON.parse(stored);
@@ -138,6 +145,9 @@ function readStorage(key, initialValue) {
 }
 
 function writeStorage(key, value) {
+    if (!storageAllowed()) {
+        return;
+    }
     try {
         if (value === null || value === undefined) {
             window.localStorage.removeItem(key);

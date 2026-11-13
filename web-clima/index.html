@@ -131,6 +131,59 @@
                 </footer>
             </div>
         </div>
+        <section
+            class="storage-consent"
+            id="storage-consent"
+            aria-label="Consentimiento de almacenamiento local"
+            aria-live="polite"
+            hidden
+        >
+            <div class="storage-consent__panel">
+                <div class="storage-consent__copy" data-consent-initial>
+                    <p class="storage-consent__eyebrow">Privacidad · Clima°</p>
+                    <h2 class="storage-consent__title">Tu clima, guardado solo aquí</h2>
+                    <p class="storage-consent__text">
+                        Clima° usa almacenamiento local para recordar tu última ciudad y tu unidad
+                        de temperatura. No usa cookies ni envía tus datos a ningún servidor. Al
+                        aceptar, la página se recargará para aplicar el guardado.
+                    </p>
+                </div>
+                <div class="storage-consent__copy" data-consent-declined hidden>
+                    <p class="storage-consent__eyebrow">Privacidad · sin guardado</p>
+                    <h2 class="storage-consent__title">El clima funcionará sin memoria</h2>
+                    <p class="storage-consent__text">
+                        Puedes consultar el tiempo durante esta visita, pero tu última ciudad y la
+                        unidad volverán a los valores iniciales al recargar. No se guardará nada en
+                        tu navegador. Puedes activar el guardado desde «Privacidad».
+                    </p>
+                </div>
+                <div class="storage-consent__actions">
+                    <button
+                        class="storage-consent__accept"
+                        id="storage-consent-accept"
+                        type="button"
+                    >
+                        Aceptar y guardar
+                    </button>
+                    <button
+                        class="storage-consent__decline"
+                        id="storage-consent-decline"
+                        type="button"
+                    >
+                        Ahora no
+                    </button>
+                </div>
+                <p class="storage-consent__error" data-consent-error role="alert" hidden>
+                    El navegador bloquea el almacenamiento local. No se puede activar el guardado.
+                </p>
+            </div>
+        </section>
+
+        <button class="storage-consent__reopen" id="storage-consent-reopen" type="button" hidden>
+            Privacidad
+        </button>
+
+        <script src="./js/consent.js"></script>
         <script src="./js/app.js"></script>
     </body>
 </html>
