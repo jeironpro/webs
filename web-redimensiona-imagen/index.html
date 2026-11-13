@@ -3,50 +3,96 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Redimensionar Imagenes</title>
-        <link rel="icon" href="assets/icons/redimensionar_imagen.png" />
-        <link rel="stylesheet" href="css/styles.css" />
+        <meta name="color-scheme" content="light" />
+        <meta
+            name="description"
+            content="Redimensiona imágenes localmente en el navegador y descarga el resultado en PNG."
+        />
+        <link rel="icon" type="image/svg+xml" href="./assets/icons/favicon.svg" />
+        <title>Redimensionar imágenes</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
             rel="stylesheet"
         />
+        <link rel="stylesheet" href="./css/tokens.css" />
+        <link rel="stylesheet" href="./css/styles.css" />
     </head>
-    <body>
-        <main>
-            <div class="main-container">
-                <h1>Redimensionar Imagen</h1>
-                <div class="input-container">
-                    <div class="drop-zone" id="drop-zone">
-                        <img src="assets/icons/carpeta.png" alt="SUBIR" class="upload-icon" />
-                        <span class="selection-text">Selecciona una imagen</span>
-                        <img src="" alt="Previsualización" id="preview" class="preview" />
-                    </div>
+    <body class="page">
+        <main class="main">
+            <section class="tool-card" aria-labelledby="tool-card-title">
+                <h1 id="tool-card-title" class="tool-card__title">Redimensionar imagen</h1>
+
+                <div class="upload">
+                    <input
+                        id="file-input"
+                        class="file-input"
+                        type="file"
+                        accept="image/*"
+                        aria-label="Seleccionar imagen"
+                        aria-describedby="upload-hint"
+                    />
+                    <label id="drop-zone" class="drop-zone" for="file-input">
+                        <svg
+                            class="drop-zone__icon"
+                            viewBox="0 0 64 64"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="4"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                        >
+                            <path d="M32 40V12m0 0L20 24m12-12 12 12" />
+                            <path d="M12 40v10a4 4 0 0 0 4 4h32a4 4 0 0 0 4-4V40" />
+                        </svg>
+                        <span class="drop-zone__text">Selecciona una imagen</span>
+                        <span id="upload-hint" class="drop-zone__hint"> o arrástrala aquí </span>
+                        <img
+                            id="preview"
+                            class="preview is-hidden"
+                            alt="Previsualización de la imagen seleccionada"
+                        />
+                    </label>
                 </div>
-                <div class="dimension-controls">
-                    <div class="width-field">
-                        <span>ANCHO</span>
+
+                <div class="dimensions">
+                    <label class="field">
+                        <span class="field__label">Ancho (px)</span>
                         <input
-                            type="number"
                             id="width"
-                            class="width-input"
-                            aria-label="Ancho en píxeles"
-                        />
-                    </div>
-                    <div class="height-field">
-                        <span>LARGO</span>
-                        <input
+                            class="field__input"
                             type="number"
-                            id="height"
-                            class="height-input"
-                            aria-label="Largo en píxeles"
+                            min="1"
+                            step="1"
+                            inputmode="numeric"
+                            placeholder="Original"
                         />
-                    </div>
+                    </label>
+                    <label class="field">
+                        <span class="field__label">Alto (px)</span>
+                        <input
+                            id="height"
+                            class="field__input"
+                            type="number"
+                            min="1"
+                            step="1"
+                            inputmode="numeric"
+                            placeholder="Original"
+                        />
+                    </label>
                 </div>
-                <div class="button-container">
-                    <button id="download-button">Descargar imagen</button>
+
+                <p id="status" class="status" role="status" aria-live="polite"></p>
+
+                <div class="actions">
+                    <button id="download-button" class="actions__button" type="button">
+                        Descargar imagen
+                    </button>
                 </div>
-            </div>
+            </section>
         </main>
-        <script src="js/app.js"></script>
+        <script type="module" src="./js/app.js"></script>
     </body>
 </html>
