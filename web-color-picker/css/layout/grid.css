@@ -2,11 +2,13 @@
 .main-layout {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 3fr;
+    /* minmax(0, ...) permite que el panel se encoja y haga scroll por dentro */
+    grid-template-rows: minmax(auto, 1fr) minmax(0, 3fr);
     width: 100%;
     min-height: 100vh;
     min-height: 100dvh;
-    height: auto;
+    height: 100vh;
+    height: 100dvh;
     overflow: hidden;
 }
 
@@ -22,7 +24,7 @@
 @media (min-width: 769px) {
     .main-layout {
         grid-template-columns: 35fr 65fr;
-        grid-template-rows: 1fr;
+        grid-template-rows: minmax(0, 1fr);
         height: 100vh;
         height: 100dvh;
     }

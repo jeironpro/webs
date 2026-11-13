@@ -54,6 +54,7 @@ export function initColorPicker() {
     drawSvCanvas();
     updateFromHsv(hue, saturation, value);
     assignEvents();
+    syncBarHeight();
 }
 
 /**
@@ -557,8 +558,9 @@ function onFormatInput() {
 /**
  * Muestra un tooltip temporal con un mensaje
  */
-function showTooltip(message) {
+function showTooltip(message, isError = false) {
     tooltip.textContent = message;
+    tooltip.classList.toggle("tooltip--error", isError);
     tooltip.classList.add("tooltip--visible");
 
     setTimeout(() => {
@@ -569,14 +571,35 @@ function showTooltip(message) {
 /**
  * Respaldo del portapapeles para navegadores sin permisos: selecciona el texto
  * en un textarea oculto y lanza el copiado clásico.
+ *
+ * En iOS Safari hay que marcar el rango de seleccion a mano: select() no basta
+ * y el campo no puede quedar en solo lectura.
  */
 function copyWithTextarea(text) {
     const textarea = document.createElement("textarea");
     textarea.value = text;
     textarea.style.position = "fixed";
+    textarea.style.top = "0";
+    textarea.style.left = "0";
+    textarea.style.width = "1px";
+    textarea.style.height = "1px";
+    textarea.style.padding = "0";
+    textarea.style.border = "none";
+    textarea.style.outline = "none";
+    textarea.style.boxShadow = "none";
+    textarea.style.background = "transparent";
     textarea.style.opacity = "0";
     document.body.appendChild(textarea);
-    textarea.select();
+
+    textarea.contentEditable = "true";
+    textarea.readOnly = false;
+
+    const range = document.createRange();
+    range.selectNodeContents(textarea);
+    const selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+    textarea.setSelectionRange(0, text.length);
 
     let copied = false;
     try {
@@ -593,12 +616,27 @@ function copyWithTextarea(text) {
  * Copia un texto al portapapeles, con respaldo clásico si la API falla.
  */
 async function copyText(text) {
-    try {
-        await navigator.clipboard.writeText(text);
-        return true;
-    } catch (error) {
-        console.error("No se pudo copiar con la API del portapapeles", error);
-        return copyWithTextarea(text);
+    if (navigator.clipboard && typeof navigator.clipboard.writeText === "function") {
+        try {
+            await navigator.clipboard.writeText(text);
+            return true;
+        } catch (error) {
+            console.error("No se pudo copiar con la API del portapapeles", error);
+        }
+    }
+    return copyWithTextarea(text);
+}
+
+/**
+ * Copia un texto al portapapeles y avisa del resultado real de la operacion
+ */
+async function copyAndNotify(text) {
+    const copied = await copyText(text);
+
+    if (copied) {
+        showTooltip("Copiado: " + text);
+    } else {
+        showTooltip("No se pudo copiar. Selecciona el valor y copialo a mano.", true);
     }
 }
 
@@ -609,8 +647,7 @@ async function copyValue(type) {
     const el = document.getElementById(type + "Values");
     const text = el.textContent;
 
-    await copyText(text);
-    showTooltip("Copiado: " + text);
+    await copyAndNotify(text);
 }
 
 /**
@@ -619,8 +656,7 @@ async function copyValue(type) {
 async function copyHexToClipboard() {
     const hex = hexDisplay.textContent;
 
-    await copyText(hex);
-    showTooltip("Copiado: " + hex);
+    await copyAndNotify(hex);
 }
 
 /**
@@ -674,10 +710,25 @@ function assignEvents() {
         resizeCanvases();
         drawHueCanvas();
         drawSvCanvas();
+        syncBarHeight();
     }
 
     window.addEventListener("resize", resizeCanvas);
     window.addEventListener("orientationchange", () => {
         setTimeout(resizeCanvas, 200);
     });
+}
+
+/**
+ * Publica la altura real de la barra flotante para que el tooltip y el relleno
+ * del panel se ajusten cuando la barra se envuelve en varias filas (movil).
+ * Se usa una variable aparte del alto de diseño para no crear un ciclo: el
+ * alto de la barra en escritorio se define con --floating-bar-height.
+ */
+function syncBarHeight() {
+    const bar = document.querySelector(".floating-bar");
+    if (!bar) return;
+
+    const height = Math.round(bar.getBoundingClientRect().height);
+    document.documentElement.style.setProperty("--floating-bar-offset", `${height}px`);
 }

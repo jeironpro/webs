@@ -27,7 +27,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 2px var(--spacing-xs);
+    padding: 0 var(--spacing-xs);
     min-width: 0;
     border-bottom: 1px solid var(--color-border);
 }
@@ -46,7 +46,8 @@
     text-transform: uppercase;
     letter-spacing: 0.12em;
     color: var(--color-text-secondary);
-    margin-bottom: 2px;
+    margin-bottom: 0;
+    line-height: 1.1;
 }
 
 .floating-bar__row {
@@ -60,16 +61,20 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: var(--spacing-xs);
+    width: 100%;
+    /* Objetivo tactil minimo de 44x44 px (WCAG 2.5.5) */
+    min-height: 44px;
+    padding: 0 var(--spacing-xs);
     background: none;
     border: none;
-    padding: 0;
-    margin: 0;
     border-radius: var(--border-radius-sm);
     cursor: pointer;
     color: var(--color-text);
     transition: background var(--transition-fast);
     flex-shrink: 0;
     min-width: 0;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .floating-bar__copy-btn:hover {
@@ -80,9 +85,12 @@
     background: var(--color-surface-hover);
 }
 
+.floating-bar__copy-btn:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: -2px;
+}
+
 .floating-bar__icon {
-    /* En movil muy pequeno el icono se oculta para no romper la fila */
-    display: none;
     flex-shrink: 0;
     opacity: 0.5;
     transition: opacity var(--transition-fast);
@@ -103,11 +111,15 @@
     color: var(--color-text);
     text-align: center;
     flex: 1;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* ─── Mobile-first: la barra se reorganiza al crecer ─── */
 
-/* Movil grande: iconos visibles y mas padding */
+/* Movil grande: mas padding y texto algo mayor */
 @media (min-width: 481px) {
     .floating-bar {
         padding: var(--spacing-sm);
@@ -122,13 +134,8 @@
     }
 
     .floating-bar__icon {
-        display: block;
         width: 12px;
         height: 12px;
-    }
-
-    .floating-bar__copy-btn {
-        padding: 2px;
     }
 }
 
@@ -170,6 +177,12 @@
     .floating-bar__icon {
         width: auto;
         height: auto;
+    }
+
+    /* La barra pasa a una sola fila: el alto lo marca la propia barra */
+    .floating-bar__copy-btn {
+        min-height: 0;
+        padding: 0;
     }
 }
 
