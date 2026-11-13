@@ -1,5 +1,3 @@
-"use strict";
-
 let totalIncomeCents = 0;
 let totalExpenseCents = 0;
 
@@ -25,7 +23,7 @@ function updateSummary() {
     totalIncome.textContent = formatCents(totalIncomeCents);
     totalExpenses.textContent = formatCents(totalExpenseCents);
     netBalance.textContent = formatCents(netCents);
-    netBalance.classList.toggle("is-negative", netCents < 0);
+    netBalance.classList.toggle("summary-card__value--negative", netCents < 0);
 }
 
 function addAmount(event, type) {

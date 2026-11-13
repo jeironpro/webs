@@ -1,4 +1,4 @@
-# web-gestiona-presupuesto
+# Gestión de presupuesto
 
 Gestor de presupuesto personal en el navegador: registra ingresos y gastos y consulta el balance neto resultante.
 
@@ -8,28 +8,36 @@ Gestor de presupuesto personal en el navegador: registra ingresos y gastos y con
 - Totales parciales de ingresos y de gastos.
 - Cálculo automático del balance neto, incluso cuando es negativo.
 - Interfaz en español con formularios separados para cada tipo de movimiento.
+- Formato monetario localizado para `es-ES`.
 
-## Tecnologías
+## Stack
 
-- HTML5, CSS3 y JavaScript (ES6+), sin librerías externas.
-- Tipografía desde Google Fonts.
+- HTML5 semántico
+- CSS3 (tokens, BEM, Flexbox)
+- JavaScript ES6+ (módulo ES)
+- Google Fonts (Arvo y Outfit)
+- ESLint + Prettier
 
-## Uso
-
-1. Clona el repositorio.
-2. Abre `index.html` en el navegador o sirve la carpeta con un servidor estático local.
-
-## Estructura del proyecto
+## Estructura
 
 ```
 web-gestiona-presupuesto/
-├── index.html
-├── css/                   # estilos de la interfaz
-├── js/                    # lógica de registros y balance
-└── assets/icons/                  # favicon
+  index.html
+  assets/
+    icons/
+      favicon.svg
+  css/
+    tokens.css
+    styles.css
+  js/
+    app.js
+  README.md
 ```
+
+## Uso
+
+Sirve la carpeta con un servidor HTTP, por ejemplo `python3 -m http.server 8000`, y abre <http://localhost:8000/web-gestiona-presupuesto/>. Añade importes en cualquiera de los dos formularios para actualizar el resumen.
 
 ## Licencia
 
-Este proyecto está bajo la licencia **MIT**.  
 Consulta el archivo [LICENSE](../LICENSE) para más detalles.
