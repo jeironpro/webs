@@ -8,7 +8,7 @@ const ROOT = new URL("..", import.meta.url).pathname;
 
 const writeLine = (message = "") => process.stdout.write(`${message}\n`);
 const writeWarning = (message) => process.stderr.write(`${message}\n`);
-const writeError = (message) => process.stderr.write(`${message}\n`);
+const writeFailure = (message) => process.stderr.write(`${message}\n`);
 
 function parseArguments(cli) {
     const args = {};
@@ -69,19 +69,19 @@ function parseJson(content) {
 }
 
 function validateAgainstCatalog(books, flatCatalog) {
-    const errors = [];
+    const validationIssues = [];
     const byId = new Map(flatCatalog.map((book) => [book.id, book]));
     for (const bookId of Object.keys(books)) {
         const book = byId.get(bookId);
         if (!book) {
-            errors.push(`libro desconocido en la entrada: ${bookId}`);
+            validationIssues.push(`libro desconocido en la entrada: ${bookId}`);
             continue;
         }
         const chapters = Object.keys(books[bookId]).map(Number);
         const declaredChapters = Array.from({ length: book.chapters }, (_, i) => i + 1);
         for (const chapter of chapters) {
             if (chapter < 1 || chapter > book.chapters) {
-                errors.push(
+                validationIssues.push(
                     `${bookId}: capítulo ${chapter} fuera de rango (máx. ${book.chapters})`
                 );
             }
@@ -91,7 +91,7 @@ function validateAgainstCatalog(books, flatCatalog) {
             writeWarning(`  ${bookId}: faltan capítulos ${missing.join(", ")}`);
         }
     }
-    return errors;
+    return validationIssues;
 }
 
 function run() {
@@ -101,7 +101,7 @@ function run() {
     const catalogPath = args.catalog || join(ROOT, "js", "data", "catalog.js");
 
     if (!input) {
-        writeError(
+        writeFailure(
             "Falta --input. Uso: node scripts/import_bible.mjs --input <directorio|archivo> [--output ruta] [--catalog ruta]"
         );
         process.exit(1);
@@ -149,10 +149,10 @@ function run() {
     }
 
     writeLine("");
-    const errors = validateAgainstCatalog(books, flatCatalog);
-    if (errors.length) {
-        writeError("Errores de validación:");
-        for (const error of errors) writeError(`  - ${error}`);
+    const validationIssues = validateAgainstCatalog(books, flatCatalog);
+    if (validationIssues.length) {
+        writeFailure("Errores de validación:");
+        for (const issue of validationIssues) writeFailure(`  - ${issue}`);
         process.exit(1);
     }
 
