@@ -1,5 +1,3 @@
-// Generado por scripts/build-inventory.mjs — no editar a mano.
-// Lista de rutas de los PDF presentes en cpnl/.
 export const INVENTORY = [
     "cpnl/basic_1_a/activitats_basic_1.pdf",
     "cpnl/basic_1_a/quadern_activitats_basic_1.pdf",

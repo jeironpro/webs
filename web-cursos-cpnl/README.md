@@ -25,7 +25,7 @@ python3 -m http.server 8000
 # o: npx serve .
 ```
 
-Abrir <http://localhost:8000>.
+Abrir <http://localhost:8000/web-cursos-cpnl/>.
 
 ## Scripts
 
@@ -76,4 +76,4 @@ drawer en móvil) y acentos de la senyera. 100 % responsive (320 / 375 / 414 /
 ## Licencia
 
 Este proyecto está bajo la licencia MIT.
-Consulta el archivo [LICENSE](LICENSE) para más detalles.
+Consulta el archivo [LICENSE](../LICENSE) para más detalles.

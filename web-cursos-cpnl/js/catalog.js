@@ -1,24 +1,9 @@
-/**
- * Lógica pura del catálogo de materiales.
- *
- * A partir del inventario de rutas (generado por scripts/build-inventory.mjs)
- * agrupa los PDF por nivel y por unidad, extrae el número de cada ejercicio y
- * filtra la lista de ficheros ocultos: los materiales que el usuario quiere
- * mantener en el repositorio (llegan al remoto) pero que no se muestran en la
- * web.
- */
-
-/** Niveles del curso: directorio, número y etiqueta visible. */
 export const LEVELS = [
     { dir: "basic_1_a", number: 1, label: "Bàsic 1" },
     { dir: "basic_2_b", number: 2, label: "Bàsic 2" },
     { dir: "basic_3_a", number: 3, label: "Bàsic 3" },
 ];
 
-/**
- * Ficheros que no se muestran en la web pero que deben llegar al remoto.
- * Clave: directorio del nivel; valor: nombres de fichero.
- */
 export const HIDDEN_FILES = {
     basic_1_a: [
         "activitats_basic_1.pdf",
@@ -42,7 +27,6 @@ export const HIDDEN_FILES = {
     ],
 };
 
-/** Etiquetas legibles para los materiales de la raíz de cada nivel. */
 const MATERIAL_LABELS = {
     "quadern_activitats_basic_1.pdf": "Quadern d’activitats",
     "audios_basic_2.pdf": "Àudios",
@@ -52,24 +36,20 @@ const MATERIAL_LABELS = {
 const PDF_EXTENSION = ".pdf";
 const LEVEL_PREFIX = "cpnl/";
 
-/** Indica si un fichero de un nivel está en la lista de ocultos. */
 function isHidden(levelDir, fileName) {
     return HIDDEN_FILES[levelDir]?.includes(fileName) === true;
 }
 
-/** Extrae el número de unidad de una ruta tipo cpnl/basic_1_a/unitat_2_a/. */
 function parseUnitNumber(relativePath) {
     const match = relativePath.match(/^unitat_(\d+)_a\//);
     return match ? Number(match[1]) : null;
 }
 
-/** Extrae el número de ejercicio del nombre del fichero (p. ej. ex_02 o Ex_02). */
 function parseExerciseNumber(fileName) {
     const match = fileName.match(/ex[-_]?(\d+)/i);
     return match ? Number(match[1]) : null;
 }
 
-/** Convierte un nombre de fichero en una etiqueta legible por defecto. */
 function prettifyFileName(fileName) {
     return fileName
         .replace(new RegExp(`\\${PDF_EXTENSION}$`, "i"), "")
@@ -77,18 +57,11 @@ function prettifyFileName(fileName) {
         .trim();
 }
 
-/** Devuelve el nombre de fichero (última parte de la ruta). */
 function baseName(filePath) {
     return filePath.split("/").at(-1);
 }
 
-/**
- * Construye el catálogo a partir del inventario de rutas.
- * @param {string[]} inventory Rutas relativas de los PDFs
- * @returns {{ levels: object[], totals: object }}
- */
 export function buildCatalog(inventory) {
-    // Se descartan rutas duplicadas para que el catálogo sea determinista.
     const uniqueInventory = [...new Set(inventory)];
 
     const levels = LEVELS.map((level) => {
@@ -101,8 +74,6 @@ export function buildCatalog(inventory) {
 
             const relativePath = filePath.slice(prefix.length);
             const name = baseName(relativePath);
-
-            // Los ficheros ocultos se omiten por completo de la web.
             if (isHidden(level.dir, name)) continue;
 
             const unitNumber = parseUnitNumber(relativePath);
