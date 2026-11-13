@@ -1,6 +1,7 @@
 import { loadState, saveState } from "./services/storage.js";
 import { el, byId, clear } from "./utils/dom.js";
 import { initToast, showToast } from "./utils/toast.js";
+import { initStorageConsent } from "./utils/consent.js";
 import {
     partyRules,
     validatePartyInput,
@@ -281,6 +282,7 @@ roster.addEventListener("input", (event) => {
     renderAll();
 });
 
+initStorageConsent();
 initToast();
 syncSidebarMode();
 nameInput.maxLength = partyRules.maxLength;

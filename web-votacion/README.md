@@ -8,7 +8,7 @@ La papeleta ocupa el viewport: las filas de partidos, sus barras de porcentaje y
 
 - Un voto por persona, modificable: al cambiar de partido se descuenta el anterior.
 - El partido en cabeza se señala en la papeleta y en la mesa de escrutinio.
-- Persistencia local con `localStorage`, sin servidores ni cuentas.
+- Persistencia local con `localStorage` y consentimiento previo, sin servidores ni cuentas.
 - Padrón lateral convertido en cajón accesible en móvil, con foco controlado y cierre con Escape.
 - Paleta de campaña con diez colores y selector de color libre.
 - Diseño editorial responsive con Fraunces, Source Serif 4 e IBM Plex Mono.
@@ -44,7 +44,8 @@ web-votacion/
 │       ├── buttons.css
 │       ├── forms.css
 │       ├── sidebar.css
-│       └── toast.css
+│       ├── toast.css
+│       └── consent.css
 ├── js/
 │   ├── app.js
 │   ├── modules/
@@ -54,6 +55,7 @@ web-votacion/
 │   ├── services/
 │   │   └── storage.js
 │   └── utils/
+│       ├── consent.js
 │       ├── dom.js
 │       ├── id.js
 │       └── toast.js

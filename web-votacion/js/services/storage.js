@@ -1,3 +1,5 @@
+import { hasStorageConsent } from "../utils/consent.js";
+
 const STORAGE_KEY = "lapapeleta:estado:v1";
 const STATE_VERSION = 1;
 
@@ -23,6 +25,9 @@ function isSane(state) {
 }
 
 export function loadState() {
+    if (!hasStorageConsent()) {
+        return defaultState();
+    }
     try {
         const raw = localStorage.getItem(STORAGE_KEY);
         if (!raw) {
@@ -36,6 +41,9 @@ export function loadState() {
 }
 
 export function saveState(state) {
+    if (!hasStorageConsent()) {
+        return;
+    }
     try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     } catch {
