@@ -1,35 +1,43 @@
-# web-generador-contrasena
+# Generador de Contraseñas
 
-Generador de contraseñas seguras y aleatorias al instante, desde el navegador.
+Generador de contraseñas seguras y aleatorias al instante, directamente en el navegador.
 
 ## Características
 
 - Generación de una contraseña aleatoria con un solo clic.
-- Contraseñas formadas por combinaciones seguras de caracteres, generadas con `crypto.getRandomValues()` y rejection sampling.
-- Campo de solo lectura donde se muestra el resultado para copiarlo.
-- Mensajes de estado que informan sobre la última acción realizada.
+- Contraseñas de entre 12 y 16 caracteres con letras, números y símbolos.
+- Generación con `crypto.getRandomValues()` y rejection sampling.
+- Campo de solo lectura donde se muestra el resultado.
+- Mensajes de estado accesibles sobre la última acción.
 
-## Tecnologías
+## Stack
 
-- HTML5, CSS3 y JavaScript (ES6+), sin dependencias externas.
+- HTML5 semántico
+- CSS3 (tokens, BEM, Flexbox)
+- JavaScript ES6+ (módulo ES)
+- Google Fonts (Poppins)
+- ESLint + Prettier
 
-## Uso
-
-1. Clona el repositorio.
-2. Abre `index.html` en el navegador o sirve la carpeta con un servidor estático local.
-3. Pulsa el botón Generar para obtener una contraseña nueva.
-
-## Estructura del proyecto
+## Estructura
 
 ```
 web-generador-contrasena/
-├── index.html
-├── css/                   # estilos del generador
-├── js/                    # lógica de generación
-└── assets/icons/                  # favicon
+  index.html
+  assets/
+    icons/
+      favicon.svg
+  css/
+    tokens.css
+    styles.css
+  js/
+    app.js
+  README.md
 ```
+
+## Uso
+
+Sirve la carpeta con un servidor HTTP, por ejemplo `python3 -m http.server 8000`, y abre <http://localhost:8000/web-generador-contrasena/>. Pulsa **Generar** para obtener una contraseña nueva.
 
 ## Licencia
 
-Este proyecto está bajo la licencia **MIT**.  
 Consulta el archivo [LICENSE](../LICENSE) para más detalles.
