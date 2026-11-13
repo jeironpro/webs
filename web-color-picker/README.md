@@ -42,9 +42,8 @@ web-color-picker/
 │   └── utils/
 │       ├── dom.js
 │       └── format.js
-├── assets/
-│   └── icons/favicon.svg
-└── STYLE-GUIDE.md
+└── assets/
+    └── icons/favicon.svg
 ```
 
 ## Uso
