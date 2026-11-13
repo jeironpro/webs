@@ -1,9 +1,4 @@
-/*
- * Estilos especificos de la pagina principal
- * Configura el layout de pantalla completa y la cuadricula de dados
- */
-
-#app {
+.app {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -11,9 +6,8 @@
     min-height: 100vh;
     min-height: 100dvh;
 
-    /* Mobile-first: menos aire alrededor del tablero */
     padding: var(--spacing-md);
-    padding-top: calc(var(--spacing-sm) + 48px);
+    padding-top: calc(var(--spacing-sm) + 3rem);
     background:
         radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.06) 0%, transparent 60%),
         linear-gradient(135deg, var(--color-bg), var(--color-bg-secondary));
@@ -24,7 +18,6 @@
     touch-action: manipulation;
 }
 
-/* Enlace para saltar navegacion */
 .skip-link {
     position: absolute;
     top: -100%;
@@ -43,27 +36,23 @@
     top: var(--spacing-sm);
 }
 
-/* Cuadricula contenedora de los dados */
 .dice-grid {
     display: grid;
     gap: var(--spacing-md);
     padding: var(--spacing-sm);
     width: 100%;
-    max-width: 900px;
+    max-width: 56.25rem;
     flex: 1;
     align-content: center;
     justify-items: center;
 }
 
-/* Estilos de foco visibles para teclado */
 :focus-visible {
-    outline: 2px solid var(--color-dice-bg);
-    outline-offset: 2px;
+    outline: var(--focus-width) solid var(--color-dice-bg);
+    outline-offset: var(--focus-offset);
     border-radius: var(--border-radius-sm);
 }
 
-/* Respetar preferencia de movimiento reducido: basta con anular las duraciones,
- * que es de donde leen las animaciones y transiciones. */
 @media (prefers-reduced-motion: reduce) {
     :root {
         --duration-fast: 0.01ms;
@@ -72,12 +61,9 @@
     }
 }
 
-/* ─── Mobile-first: cada banda amplia el tablero ─── */
-
-/* Movil grande */
-@media (min-width: 481px) {
-    #app {
-        padding-top: calc(var(--spacing-md) + 52px);
+@media (min-width: 30rem) {
+    .app {
+        padding-top: calc(var(--spacing-md) + 3.25rem);
     }
 
     .dice-grid {
@@ -86,11 +72,10 @@
     }
 }
 
-/* Tablet y escritorio */
-@media (min-width: 769px) {
-    #app {
+@media (min-width: 48rem) {
+    .app {
         padding: var(--spacing-xl);
-        padding-top: calc(var(--spacing-xl) + 56px);
+        padding-top: calc(var(--spacing-xl) + 3.5rem);
     }
 
     .dice-grid {

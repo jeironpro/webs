@@ -1,23 +1,22 @@
 # web-dados
 
-Aplicacion web interactiva de dados con seleccion multiple (1-12), animaciones, diseno responsive y soporte tactil para movil.
+Aplicación web interactiva de dados con selección múltiple (1-12), animaciones, diseño responsive y soporte táctil para móvil.
 
-## Caracteristicas
+## Características
 
 - Lanzamiento de 1 a 12 dados de 6 caras
-- Cuadricula adaptativa segun la cantidad de dados
-- Animacion de agitado al lanzar con parpadeo de valores
-- Diseno responsive (escritorio, tablet, movil)
-- Interaccion por click, touch y teclado (Enter/Space)
-- Barra de controles flotante con slider de cantidad
-- Accesibilidad: skip link, focus-visible, aria-live, reduced-motion
-- Sin uso de innerHTML (manipulacion DOM segura)
+- Cuadrícula adaptativa según la cantidad de dados
+- Animación de agitado al lanzar con parpadeo de valores
+- Diseño responsive (escritorio, tablet, móvil)
+- Interacción por clic, toque y teclado (Enter/Espacio)
+- Barra de controles flotante con deslizador de cantidad
+- Accesibilidad: enlace de salto, foco visible, `aria-live` y movimiento reducido
 
 ## Stack
 
-- HTML5 semantico
-- CSS3 (Grid, Flexbox, Custom Properties, Media Queries, animaciones)
-- JavaScript ES6+ (modulos, promesas)
+- HTML5 semántico
+- CSS3 (Grid, Flexbox, custom properties, media queries, animaciones)
+- JavaScript ES6+ (módulos ES)
 - Sora (Google Fonts)
 - Vitest + jsdom (tests, desde la raíz del repositorio)
 - ESLint + Prettier
@@ -26,7 +25,7 @@ Aplicacion web interactiva de dados con seleccion multiple (1-12), animaciones, 
 
 ```
 web-dados/
-  index.html          Pagina principal
+  index.html          Página principal
   assets/
     icons/
       favicon.svg     Favicon
@@ -37,24 +36,25 @@ web-dados/
     components/       Estilos de componentes
       dice.css        Dado
       controls.css    Controles
-    pages/            Estilos por pagina
-      home.css        Pagina principal
+    pages/            Estilos por página
+      home.css        Página principal
   js/
     app.js            Punto de entrada
-    modules/          Modulos
+    modules/          Módulos
       dice.js         Gestor de dados
     services/         Servicios
-      diceService.js  Logica de dados
+      diceService.js  Lógica de dados
     utils/            Utilidades
-      dom.js          Manipulacion DOM
-  STYLE-GUIDE.md      Libro de estilo
-  docs/
-    technical.md      Documentacion tecnica
+      dom.js          Manipulación DOM
 ```
 
 Los tests viven en `tests/web-dados/` y se ejecutan desde la raíz del
 repositorio con `npm test`.
 
+## Uso
+
+Abrir <http://localhost:8000/web-dados/>.
+
 ## Licencia
 
-MIT
+Consulta el archivo [LICENSE](../LICENSE) para más detalles.
