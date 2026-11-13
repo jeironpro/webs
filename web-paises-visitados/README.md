@@ -7,7 +7,7 @@ Página web para registrar y consultar los países visitados, organizados por co
 - Catálogo de países del mundo agrupados por continente con su código ISO.
 - Buscador por país o continente, insensible a mayúsculas y tildes.
 - Selección de los países visitados para llevar el registro personal.
-- Persistencia de la selección en `localStorage`.
+- Persistencia de la selección en `localStorage`, con consentimiento revocable y borrado desde «Privacidad».
 - Animación de avión con estela y nubes de fondo, respetuosa con `prefers-reduced-motion`.
 
 ## Tecnologías

@@ -277,7 +277,8 @@ body {
 }
 
 .storage-consent__accept,
-.storage-consent__decline {
+.storage-consent__decline,
+.storage-consent__revoke {
     min-height: 2.75rem;
     padding: 0.5rem 1rem;
     border: 0.125rem solid var(--color-text);
@@ -305,6 +306,20 @@ body {
 
 .storage-consent__decline:hover {
     background: var(--color-text);
+    color: var(--color-white);
+}
+
+.storage-consent__revoke {
+    flex: 1 1 100%;
+    border-color: var(--color-danger);
+    background: transparent;
+    color: var(--color-danger);
+}
+
+.storage-consent__revoke:hover,
+.storage-consent[data-phase="confirm"] .storage-consent__revoke {
+    border-color: var(--color-danger);
+    background: var(--color-danger);
     color: var(--color-white);
 }
 
