@@ -810,12 +810,10 @@ async function showCapture({ language, id, ratio }) {
     document.title = "Captura · Codelang Quiz";
     stopTimer();
     closeMenu();
-    const target = ASPECT_RATIOS[ratio] || ASPECT_RATIOS["4-5"];
+    const captureRatio = ASPECT_RATIOS[ratio] ? ratio : "4-5";
     elements.app.classList.add("is-hidden");
     elements.capture.classList.remove("is-hidden");
-    elements.capture.className = "capture capture--loading";
-    elements.capture.style.width = `${target.width}px`;
-    elements.capture.style.height = `${target.height}px`;
+    elements.capture.className = `capture capture--${captureRatio} capture--loading`;
     elements.capture.replaceChildren();
 
     try {
@@ -830,7 +828,7 @@ async function showCapture({ language, id, ratio }) {
         const languageMeta = LANGUAGES.find((item) => item.id === language);
         const chipColor = PALETTE[language] || "accent";
         const columns = ratio === "1-91" ? 2 : 1;
-        elements.capture.className = "capture";
+        elements.capture.className = `capture capture--${captureRatio}`;
         elements.capture.dataset.fit = "busy";
         setMarkup(
             elements.capture,
