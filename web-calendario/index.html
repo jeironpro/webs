@@ -8,7 +8,8 @@
             name="description"
             content="Calendario anual con los doce meses, la semana de lunes a domingo y el día de hoy destacado."
         />
-        <link rel="icon" href="assets/icons/calendar.png" />
+        <meta name="theme-color" content="#f6f1e7" />
+        <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -18,20 +19,20 @@
         <link rel="stylesheet" href="css/styles.css" />
     </head>
     <body>
-        <header class="header">
-            <p class="header__eyebrow">doce meses</p>
-            <h1 class="title" id="calendarTitle">Calendario</h1>
-            <p class="header__subtitle">Vista anual con el día de hoy destacado.</p>
+        <header class="calendar-header">
+            <p class="calendar-header__eyebrow">doce meses</p>
+            <h1 class="calendar-header__title" id="calendar-title">Calendario</h1>
+            <p class="calendar-header__subtitle">Vista anual con el día de hoy destacado.</p>
         </header>
 
-        <main class="main-content">
-            <div class="calendar" id="calendar"></div>
+        <main class="calendar-main" aria-labelledby="calendar-title">
+            <div class="calendar" id="calendar" aria-label="Calendario anual"></div>
         </main>
 
-        <footer class="footer">
-            &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
+        <footer class="calendar-footer">
+            &copy; Todos los derechos reservados <span data-year>2026</span> - JeironPro
         </footer>
 
-        <script src="js/app.js"></script>
+        <script type="module" src="js/app.js"></script>
     </body>
 </html>
