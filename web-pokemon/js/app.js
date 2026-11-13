@@ -114,12 +114,36 @@ function generationUrl(id) {
 }
 
 function updateNav(generationId) {
+    let activeLink = null;
+
     document.querySelectorAll("[data-generation]").forEach((link) => {
         const active = Number(link.dataset.generation) === Number(generationId);
         link.classList.toggle("active", active);
-        if (active) link.setAttribute("aria-current", "page");
-        else link.removeAttribute("aria-current");
+        if (active) {
+            link.setAttribute("aria-current", "page");
+            activeLink = link;
+        } else {
+            link.removeAttribute("aria-current");
+        }
     });
+
+    revealActiveLink(activeLink);
+}
+
+/* Cuando la barra de generaciones se desplaza horizontalmente, la generación
+   activa debe quedar a la vista sin que el usuario tenga que arrastrarla. */
+function revealActiveLink(link) {
+    const nav = elements.nav;
+    if (!link || !nav || nav.scrollWidth <= nav.clientWidth) return;
+
+    const linkBox = link.getBoundingClientRect();
+    const navBox = nav.getBoundingClientRect();
+
+    if (linkBox.left < navBox.left) {
+        nav.scrollLeft -= navBox.left - linkBox.left;
+    } else if (linkBox.right > navBox.right) {
+        nav.scrollLeft += linkBox.right - navBox.right;
+    }
 }
 
 function closeMenu() {

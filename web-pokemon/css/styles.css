@@ -274,6 +274,9 @@ main {
 .generation-navigation {
     align-items: center;
     display: flex;
+    /* En pantallas muy estrechas la barra baja a su propia linea en vez de
+       desbordar la pagina. */
+    flex-wrap: wrap;
     gap: 8px;
     justify-content: center;
     padding: 12px 0;
@@ -708,6 +711,9 @@ header {
     left: 0;
     position: sticky;
     top: 0;
+    /* Sin min-width: 0 la cabecera no puede encogerse por debajo del ancho
+       mínimo de sus enlaces y empuja la página a scrolls más anchos. */
+    min-width: 0;
     width: 100%;
     z-index: 100;
 }
