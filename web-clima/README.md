@@ -9,7 +9,7 @@ Aplicación web del tiempo (SPA) que muestra el clima actual y el pronóstico de
 - Clima actual: condición, sensación térmica, viento, humedad, radiación UV, presión y visibilidad.
 - Pronóstico horario (gráfica SVG) y pronóstico para los próximos días.
 - Ficha de la ubicación: coordenadas, elevación, zona horaria, hora local y población.
-- Conversor de unidades y persistencia de la última ubicación consultada.
+- Conversor de unidades y persistencia de la última ubicación consultada, con consentimiento revocable desde «Privacidad».
 - Diseño responsive y accesible, con fondo animado y soporte de `prefers-reduced-motion`.
 
 ## Stack

@@ -157,6 +157,22 @@
                         tu navegador. Puedes activar el guardado desde «Privacidad».
                     </p>
                 </div>
+                <div class="storage-consent__copy" data-consent-active hidden>
+                    <p class="storage-consent__eyebrow">Privacidad · guardado activo</p>
+                    <h2 class="storage-consent__title">El almacenamiento local está activo</h2>
+                    <p class="storage-consent__text">
+                        Clima° recuerda tu unidad y tu última ciudad en este navegador. Puedes
+                        retirar el permiso y borrar esos datos cuando quieras.
+                    </p>
+                </div>
+                <div class="storage-consent__copy" data-consent-confirm hidden>
+                    <p class="storage-consent__eyebrow">Privacidad · borrar datos</p>
+                    <h2 class="storage-consent__title">¿Borrar los datos de Clima°?</h2>
+                    <p class="storage-consent__text">
+                        Se eliminarán la unidad, la última ciudad y la preferencia de consentimiento
+                        de este navegador. La página se recargará y el aviso volverá a aparecer.
+                    </p>
+                </div>
                 <div class="storage-consent__actions">
                     <button
                         class="storage-consent__accept"
@@ -172,9 +188,17 @@
                     >
                         Ahora no
                     </button>
+                    <button
+                        class="storage-consent__revoke"
+                        id="storage-consent-revoke"
+                        type="button"
+                        hidden
+                    >
+                        Retirar consentimiento y borrar datos
+                    </button>
                 </div>
                 <p class="storage-consent__error" data-consent-error role="alert" hidden>
-                    El navegador bloquea el almacenamiento local. No se puede activar el guardado.
+                    El navegador bloquea el almacenamiento local. No se pudo completar la operación.
                 </p>
             </div>
         </section>
