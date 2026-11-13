@@ -3,60 +3,181 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Reproductor de Música</title>
-        <link rel="icon" href="assets/images/reproductor_musica.png" />
-        <link rel="stylesheet" href="css/styles.css" />
+        <meta name="color-scheme" content="light" />
+        <meta
+            name="description"
+            content="Reproductor de música local con lista de canciones y controles de reproducción."
+        />
+        <link rel="icon" type="image/svg+xml" href="./assets/icons/favicon.svg" />
+        <title>Reproductor de música</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
             rel="stylesheet"
         />
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+        <link rel="stylesheet" href="./css/tokens.css" />
+        <link rel="stylesheet" href="./css/styles.css" />
     </head>
-    <body>
-        <main>
-            <div id="player-container">
-                <span class="material-icons back">arrow_back</span>
-                <div id="player">
-                    <div class="playlist-icon-container">
+    <body class="page">
+        <main class="main">
+            <h1 class="sr-only">Reproductor de música</h1>
+
+            <div id="player-container" class="player">
+                <button
+                    id="playlist-toggle"
+                    class="player__menu"
+                    type="button"
+                    aria-label="Abrir lista de canciones"
+                    aria-controls="song-list"
+                    aria-expanded="false"
+                >
+                    <svg
+                        class="player__icon"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        aria-hidden="true"
+                    >
+                        <path d="M4 6h16M4 12h10M4 18h7" />
+                    </svg>
+                </button>
+
+                <button
+                    id="playlist-back"
+                    class="player__back"
+                    type="button"
+                    aria-label="Cerrar lista de canciones"
+                >
+                    <svg
+                        class="player__icon"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                    >
+                        <path d="M19 12H5m7-7-7 7 7 7" />
+                    </svg>
+                </button>
+
+                <div class="player__view">
+                    <div class="song">
                         <img
-                            src="assets/images/lista_reproduccion.png"
-                            alt="LISTADO"
-                            class="playlist-icon"
+                            id="song-image"
+                            class="song__image"
+                            src="./assets/images/music.png"
+                            alt="Portada de la canción"
                         />
                     </div>
-                    <div class="song-container">
-                        <img src="assets/images/musica.png" alt="CANCION" id="song-image" />
+
+                    <div class="song__info" aria-live="polite">
+                        <div id="artist-name" class="song__artist"></div>
+                        <div id="song-title" class="song__title"></div>
                     </div>
-                    <div class="song-info">
-                        <div id="artist-name"></div>
-                        <div id="song-title"></div>
-                    </div>
-                    <div class="progress-bar">
+
+                    <div class="progress">
+                        <progress
+                            id="progress-fill"
+                            class="progress__fill"
+                            max="100"
+                            value="0"
+                            aria-hidden="true"
+                        ></progress>
                         <input
-                            type="range"
                             id="progress"
+                            class="progress__input"
+                            type="range"
                             min="0"
                             max="100"
                             value="0"
                             aria-label="Progreso de la canción"
                         />
                     </div>
-                    <div class="controls-container">
-                        <span class="material-icons" id="previous">skip_previous</span>
-                        <div class="play-pause-container">
-                            <span class="material-icons" id="play">play_arrow</span>
-                            <span class="material-icons" id="pausar" style="display: none"
-                                >pause</span
+
+                    <div class="controls">
+                        <button
+                            id="previous"
+                            class="controls__button"
+                            type="button"
+                            aria-label="Canción anterior"
+                        >
+                            <svg
+                                class="controls__icon"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true"
                             >
-                        </div>
-                        <span class="material-icons" id="next">skip_next</span>
+                                <path d="M19 20 9 12l10-8v16Z" fill="currentColor" />
+                                <path d="M5 19V5" />
+                            </svg>
+                        </button>
+
+                        <button
+                            id="play-toggle"
+                            class="controls__play"
+                            type="button"
+                            aria-label="Reproducir"
+                            aria-pressed="false"
+                        >
+                            <svg
+                                id="play-icon"
+                                class="controls__icon"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                                aria-hidden="true"
+                            >
+                                <path d="M8 5v14l11-7z" />
+                            </svg>
+                            <svg
+                                id="pause-icon"
+                                class="controls__icon is-hidden"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                                aria-hidden="true"
+                            >
+                                <rect x="7" y="5" width="4" height="14" rx="1" />
+                                <rect x="14" y="5" width="4" height="14" rx="1" />
+                            </svg>
+                        </button>
+
+                        <button
+                            id="next"
+                            class="controls__button"
+                            type="button"
+                            aria-label="Canción siguiente"
+                        >
+                            <svg
+                                class="controls__icon"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true"
+                            >
+                                <path d="M5 4l10 8-10 8V4Z" fill="currentColor" />
+                                <path d="M19 5v14" />
+                            </svg>
+                        </button>
                     </div>
                 </div>
-                <div id="song-list">
-                    <!-- Dinámico -->
-                </div>
+
+                <section id="song-list" class="playlist" aria-labelledby="playlist-title">
+                    <h2 id="playlist-title" class="playlist__title">Canciones</h2>
+                    <ul id="playlist-list" class="playlist__list"></ul>
+                </section>
             </div>
         </main>
-        <script src="js/app.js"></script>
+        <script type="module" src="./js/app.js"></script>
     </body>
 </html>
