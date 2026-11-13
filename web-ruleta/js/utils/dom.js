@@ -1,4 +1,3 @@
-/* Utilidades: Manipulacion del DOM */
 export function $(selector, context = document) {
     return context.querySelector(selector);
 }
