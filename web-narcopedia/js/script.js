@@ -8,62 +8,75 @@ const detailContent = document.getElementById("detail-content");
 const backButton = document.getElementById("back-button");
 const bossesNav = document.getElementById("nav-bosses");
 const organizationsNav = document.getElementById("nav-organizations");
-const subtitle = document.querySelector(".subtitle");
+const subtitle = document.querySelector(".home__subtitle");
 
 const createElement = (tag, className = "", content = "") => {
-    const el = document.createElement(tag);
-    if (className) el.className = className;
-    if (content) el.textContent = content;
-    return el;
+    const element = document.createElement(tag);
+    if (className) {
+        element.className = className;
+    }
+    if (content) {
+        element.textContent = content;
+    }
+    return element;
+};
+
+const setNavState = (activeButton) => {
+    [bossesNav, organizationsNav].forEach((button) => {
+        const isActive = button === activeButton;
+        button.classList.toggle("is-active", isActive);
+        button.setAttribute("aria-pressed", String(isActive));
+    });
 };
 
 const clearApp = () => {
-    bossesGrid.style.display = "none";
-    organizationsGrid.style.display = "none";
-    bossesNav.classList.remove("active");
-    organizationsNav.classList.remove("active");
+    bossesGrid.hidden = true;
+    organizationsGrid.hidden = true;
 };
 
 const renderBossesGrid = () => {
     bossesGrid.replaceChildren();
     drugBosses.forEach((boss) => {
-        const card = createCard(boss, () => showBossDetail(boss));
-        bossesGrid.appendChild(card);
+        bossesGrid.appendChild(createCard(boss, () => showBossDetail(boss)));
     });
 };
 
 const renderOrganizationsGrid = () => {
     organizationsGrid.replaceChildren();
-    organizations.forEach((org) => {
-        const card = createCard(org, () => showOrganizationDetail(org), true);
-        organizationsGrid.appendChild(card);
+    organizations.forEach((organization) => {
+        organizationsGrid.appendChild(
+            createCard(organization, () => showOrganizationDetail(organization), true)
+        );
     });
 };
 
-const createCard = (item, clickHandler, isOrg = false) => {
-    const card = createElement("div", "boss-card");
+const createCard = (item, clickHandler, isOrganization = false) => {
+    const card = createElement("button", "boss-card");
+    card.type = "button";
+    card.setAttribute("aria-label", `Ver ficha de ${item.name}`);
 
-    const imageContainer = createElement("div", "boss-card__image-container");
+    const imageContainer = createElement("span", "boss-card__image-container");
     const image = document.createElement("img");
     image.src = item.image;
     image.alt = item.name;
     image.className = "boss-card__image";
     image.loading = "lazy";
+    image.decoding = "async";
     imageContainer.appendChild(image);
 
-    const content = createElement("div", "boss-card__content");
-    const name = createElement("h3", "boss-card__name", item.name);
+    const content = createElement("span", "boss-card__content");
+    const name = createElement("span", "boss-card__name", item.name);
 
-    const subinfo = createElement("div", "boss-card__subinfo");
+    const subinfo = createElement("span", "boss-card__subinfo");
     const origin = createElement("span", "", item.origin);
-    const badge = createElement("span", "", isOrg ? item.status : `${item.age} Años`);
+    const badge = createElement("span", "", isOrganization ? item.status : `${item.age} años`);
     subinfo.appendChild(origin);
     subinfo.appendChild(badge);
 
     const description = createElement(
-        "p",
+        "span",
         "boss-card__description",
-        isOrg ? item.history.substring(0, 100) + "..." : item.shortDescription
+        isOrganization ? `${item.history.substring(0, 100)}...` : item.shortDescription
     );
 
     content.appendChild(name);
@@ -72,116 +85,95 @@ const createCard = (item, clickHandler, isOrg = false) => {
 
     card.appendChild(imageContainer);
     card.appendChild(content);
-
     card.addEventListener("click", clickHandler);
+
     return card;
 };
 
+const createInfoItem = (labelText, valueText, modifier = "") => {
+    const item = createElement("div", "info-item");
+    item.appendChild(createElement("span", "info-item__label", labelText));
+    const valueClass = modifier
+        ? `info-item__value info-item__value--${modifier}`
+        : "info-item__value";
+    item.appendChild(createElement("span", valueClass, valueText));
+    return item;
+};
+
 const showBossDetail = (boss) => {
-    window.scrollTo({ top: 0, behavior: "instant" });
+    window.scrollTo({ top: 0, behavior: "auto" });
     detailContent.replaceChildren();
 
     const header = createDetailHeader(boss.image, boss.name, boss.role);
     const infoGrid = createElement("div", "info-grid");
 
-    const createInfoItem = (labelText, valueText, customColor = "") => {
-        const item = createElement("div", "info-item");
-        item.appendChild(createElement("label", "", labelText));
-        const span = createElement("span", "", valueText);
-        if (customColor) {
-            span.style.color = customColor;
-            span.style.fontWeight = "bold";
-        }
-        item.appendChild(span);
-        return item;
-    };
-
-    infoGrid.appendChild(createInfoItem("Nombre Completo", boss.fullName));
+    infoGrid.appendChild(createInfoItem("Nombre completo", boss.fullName));
     infoGrid.appendChild(createInfoItem("Nacionalidad", boss.origin));
     infoGrid.appendChild(createInfoItem("Nacimiento", boss.birthDate));
-    infoGrid.appendChild(createInfoItem("Estado / Muerte", boss.deathDate));
-    infoGrid.appendChild(createInfoItem("Organización", boss.organization, "var(--accent-color)"));
-    infoGrid.appendChild(
-        createInfoItem("Fortuna Estimada", boss.estimatedFortune, "var(--gold-accent)")
-    );
+    infoGrid.appendChild(createInfoItem("Estado / muerte", boss.deathDate));
+    infoGrid.appendChild(createInfoItem("Organización", boss.organization, "accent"));
+    infoGrid.appendChild(createInfoItem("Fortuna estimada", boss.estimatedFortune, "gold"));
 
     header.querySelector(".detail-info").appendChild(infoGrid);
     detailContent.appendChild(header);
-
     detailContent.appendChild(addSection("Historia", boss.history));
-
     detailContent.appendChild(
         createDoubleSection(
-            "Modus Operandi",
+            "Modus operandi",
             boss.modusOperandi,
-            "Territorio y Rutas",
+            "Territorio y rutas",
             boss.territory
         )
     );
-
     detailContent.appendChild(createRelationsSection(boss.allies, boss.enemies));
-
-    detailContent.appendChild(addSection("Impacto y Sociedad", boss.impact));
+    detailContent.appendChild(addSection("Impacto y sociedad", boss.impact));
 
     const endText = boss.deathDetails || boss.captureDetails;
     const endTitle = boss.deathDetails
-        ? "Final: Operativo de Muerte"
-        : "Final: Captura y Sentencia";
+        ? "Final: operativo de muerte"
+        : "Final: captura y sentencia";
     detailContent.appendChild(addSection(endTitle, endText));
-
-    detailContent.appendChild(addSection("Legado y Cultura", boss.culturalImpact));
+    detailContent.appendChild(addSection("Legado y cultura", boss.culturalImpact));
 
     if (boss.notableEvents) {
-        detailContent.appendChild(addSection("Eventos Notables", "", true, boss.notableEvents));
+        detailContent.appendChild(addSection("Eventos notables", "", true, boss.notableEvents));
     }
 
     toggleViews(false);
 };
 
-const showOrganizationDetail = (org) => {
-    window.scrollTo({ top: 0, behavior: "instant" });
+const showOrganizationDetail = (organization) => {
+    window.scrollTo({ top: 0, behavior: "auto" });
     detailContent.replaceChildren();
 
-    const header = createDetailHeader(org.image, org.name, `Organización Criminal - ${org.status}`);
+    const header = createDetailHeader(
+        organization.image,
+        organization.name,
+        `Organización criminal - ${organization.status}`
+    );
     const infoGrid = createElement("div", "info-grid");
 
-    const createInfoItem = (labelText, valueText, color = "") => {
-        const item = createElement("div", "info-item");
-        item.appendChild(createElement("label", "", labelText));
-        const span = createElement("span", "", valueText);
-        if (color) {
-            span.style.color = color;
-            span.style.fontWeight = "bold";
-        }
-        item.appendChild(span);
-        return item;
-    };
-
-    infoGrid.appendChild(createInfoItem("Fundación", org.founded));
-    infoGrid.appendChild(createInfoItem("Disolución", org.dissolved));
-    infoGrid.appendChild(createInfoItem("Origen", org.origin, "var(--accent-color)"));
-    infoGrid.appendChild(createInfoItem("Líderes", org.leaders.join(", ")));
+    infoGrid.appendChild(createInfoItem("Fundación", organization.founded));
+    infoGrid.appendChild(createInfoItem("Disolución", organization.dissolved));
+    infoGrid.appendChild(createInfoItem("Origen", organization.origin, "accent"));
+    infoGrid.appendChild(createInfoItem("Líderes", organization.leaders.join(", ")));
 
     header.querySelector(".detail-info").appendChild(infoGrid);
     detailContent.appendChild(header);
-
-    detailContent.appendChild(addSection("Historia de la Organización", org.history));
-
+    detailContent.appendChild(addSection("Historia de la organización", organization.history));
     detailContent.appendChild(
         createDoubleSection(
-            "Modus Operandi",
-            org.modusOperandi,
-            "Control Territorial",
-            org.territory
+            "Modus operandi",
+            organization.modusOperandi,
+            "Control territorial",
+            organization.territory
         )
     );
-
-    detailContent.appendChild(createRelationsSection(org.allies, org.enemies));
+    detailContent.appendChild(createRelationsSection(organization.allies, organization.enemies));
 
     toggleViews(false);
 };
 
-// Helpers de UI
 const createDetailHeader = (imageUrl, nameText, taglineText) => {
     const header = createElement("div", "detail-header");
 
@@ -203,15 +195,16 @@ const createDetailHeader = (imageUrl, nameText, taglineText) => {
 
 const addSection = (title, contentText, isList = false, items = []) => {
     const section = createElement("div", "detail-section");
-    section.appendChild(createElement("h2", "", title));
+    section.appendChild(createElement("h2", "detail-section__title", title));
 
     if (isList) {
-        const list = createElement("ul", "events-list");
-        items.forEach((item) => list.appendChild(createElement("li", "", item)));
+        const list = createElement("ul", "events");
+        items.forEach((item) => list.appendChild(createElement("li", "events__item", item)));
         section.appendChild(list);
     } else {
-        section.appendChild(createElement("p", "", contentText));
+        section.appendChild(createElement("p", "detail-section__text", contentText));
     }
+
     return section;
 };
 
@@ -220,12 +213,12 @@ const createDoubleSection = (title1, content1, title2, content2) => {
     const grid = createElement("div", "info-grid");
 
     const item1 = createElement("div", "info-item");
-    item1.appendChild(createElement("h2", "", title1));
-    item1.appendChild(createElement("p", "", content1));
+    item1.appendChild(createElement("h2", "info-item__title", title1));
+    item1.appendChild(createElement("p", "detail-section__text", content1));
 
     const item2 = createElement("div", "info-item");
-    item2.appendChild(createElement("h2", "", title2));
-    item2.appendChild(createElement("p", "", content2));
+    item2.appendChild(createElement("h2", "info-item__title", title2));
+    item2.appendChild(createElement("p", "detail-section__text", content2));
 
     grid.appendChild(item1);
     grid.appendChild(item2);
@@ -238,15 +231,15 @@ const createRelationsSection = (allies, enemies) => {
     const grid = createElement("div", "info-grid");
 
     const alliesBlock = createElement("div", "info-item");
-    alliesBlock.appendChild(createElement("h2", "", "Aliados Principales"));
-    const alliesList = createElement("ul", "events-list");
-    allies.forEach((ally) => alliesList.appendChild(createElement("li", "", ally)));
+    alliesBlock.appendChild(createElement("h2", "info-item__title", "Aliados principales"));
+    const alliesList = createElement("ul", "events");
+    allies.forEach((ally) => alliesList.appendChild(createElement("li", "events__item", ally)));
     alliesBlock.appendChild(alliesList);
 
     const enemiesBlock = createElement("div", "info-item");
-    enemiesBlock.appendChild(createElement("h2", "", "Enemigos Clave"));
-    const enemiesList = createElement("ul", "events-list");
-    enemies.forEach((enemy) => enemiesList.appendChild(createElement("li", "", enemy)));
+    enemiesBlock.appendChild(createElement("h2", "info-item__title", "Enemigos clave"));
+    const enemiesList = createElement("ul", "events");
+    enemies.forEach((enemy) => enemiesList.appendChild(createElement("li", "events__item", enemy)));
     enemiesBlock.appendChild(enemiesList);
 
     grid.appendChild(alliesBlock);
@@ -256,28 +249,26 @@ const createRelationsSection = (allies, enemies) => {
 };
 
 const toggleViews = (showHome) => {
-    homeView.style.display = showHome ? "block" : "none";
-    detailView.style.display = showHome ? "none" : "block";
+    homeView.hidden = !showHome;
+    detailView.hidden = showHome;
 };
 
-// Navegación
 bossesNav.addEventListener("click", () => {
     clearApp();
-    bossesNav.classList.add("active");
-    bossesGrid.style.display = "grid";
+    setNavState(bossesNav);
+    bossesGrid.hidden = false;
     subtitle.textContent = "Los 10 señores de la droga más impactantes de la historia";
     renderBossesGrid();
 });
 
 organizationsNav.addEventListener("click", () => {
     clearApp();
-    organizationsNav.classList.add("active");
-    organizationsGrid.style.display = "grid";
+    setNavState(organizationsNav);
+    organizationsGrid.hidden = false;
     subtitle.textContent = "Las 10 organizaciones de la droga más impactantes de la historia";
     renderOrganizationsGrid();
 });
 
 backButton.addEventListener("click", () => toggleViews(true));
 
-// Inicialización
 renderBossesGrid();

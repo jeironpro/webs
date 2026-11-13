@@ -3,46 +3,59 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="shortcut icon" href="assets/images/cocaina.png" type="image/x-icon" />
+        <meta
+            name="description"
+            content="Ranking informativo de los mayores imperios del narcotráfico y fichas de sus organizaciones."
+        />
         <title>Imperios del Narco | Top 10</title>
-        <link rel="stylesheet" href="css/styles.css" />
+        <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&amp;display=swap"
             rel="stylesheet"
         />
+        <link rel="stylesheet" href="css/styles.css" />
     </head>
     <body>
-        <div id="app" class="container">
-            <!-- Vista de Inicio -->
-            <section id="home-view">
-                <header>
-                    <h1 class="title">IMPERIOS DEL NARCO</h1>
-                    <p class="subtitle">
+        <main id="app" class="app">
+            <section id="home-view" class="home">
+                <header class="home__header">
+                    <h1 class="home__title">Imperios del Narco</h1>
+                    <p class="home__subtitle">
                         Los 10 señores de la droga más impactantes de la historia
                     </p>
-
-                    <nav class="main-nav">
-                        <button id="nav-bosses" class="nav-button active">Capos</button>
-                        <button id="nav-organizations" class="nav-button">Organizaciones</button>
+                    <nav class="nav" aria-label="Secciones del ranking">
+                        <button
+                            id="nav-bosses"
+                            type="button"
+                            class="nav__button is-active"
+                            aria-pressed="true"
+                        >
+                            Capos
+                        </button>
+                        <button
+                            id="nav-organizations"
+                            type="button"
+                            class="nav__button"
+                            aria-pressed="false"
+                        >
+                            Organizaciones
+                        </button>
                     </nav>
                 </header>
 
-                <main id="bosses-grid" class="bosses-grid">
-                    <!-- Las tarjetas de capos se inyectarán aquí mediante JS -->
-                </main>
+                <div id="bosses-grid" class="cards"></div>
+                <div id="organizations-grid" class="cards" hidden></div>
+            </section>
 
-                <main id="organizations-grid" class="bosses-grid" style="display: none">
-                    <!-- Las tarjetas de organizaciones se inyectarán aquí mediante JS -->
-                </main>
+            <section id="detail-view" class="detail" hidden>
+                <button id="back-button" type="button" class="detail__back">
+                    ← Volver a la lista
+                </button>
+                <div id="detail-content"></div>
             </section>
-            <!-- Vista de Detalle (Oculta por defecto) -->
-            <section id="detail-view" class="detail-view" style="display: none">
-                <button id="back-button" class="back-button">← Volver a la Lista</button>
-                <div id="detail-content">
-                    <!-- El contenido de detalle se inyectará aquí mediante JS -->
-                </div>
-            </section>
-        </div>
+        </main>
         <script type="module" src="js/script.js"></script>
     </body>
 </html>
