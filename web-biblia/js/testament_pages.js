@@ -100,7 +100,7 @@ const testamentContainer = oldTestamentContainer || newTestamentContainer;
 if (testamentContainer) {
     const isOldTestament = Boolean(oldTestamentContainer);
     const sections = isOldTestament ? oldTestamentSections : newTestamentSections;
-    const basePath = isOldTestament ? "html/old_testament" : "html/new_testament";
+    const basePath = isOldTestament ? "old_testament" : "new_testament";
 
     sections.forEach((section) => {
         const heading = document.createElement("h2");

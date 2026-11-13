@@ -10,7 +10,7 @@ partir de un catálogo único de libros.
 - 73 libros y 1189 capítulos con texto completo de la Biblia Latinoamérica
 - Sin servidor: contenido servido como sitio estático desde el dataset `js/data/verses.json`
 - Navegación entre libros y capítulos con recuentos validados contra el catálogo
-- Sistema editorial clásico (papel, tinta, encuadernación y oro) documentado en [docs/design.md](docs/design.md)
+- Sistema editorial clásico (papel, tinta, encuadernación y oro) documentado en [design.md](design.md)
 - Diseño responsive verificado en 320, 375, 414 y 768 px
 
 ## Estructura
@@ -24,13 +24,13 @@ partir de un catálogo único de libros.
 - `js/verses.js` — carga y renderizado de los versículos desde el dataset
 - `css/tokens.css` — tokens del sistema editorial; el resto de los CSS lo consumen
 - `scripts/import_bible.mjs` — conversión y validación del dataset contra el catálogo
-- `docs/design.md` — sistema editorial y decisiones visuales
+- `design.md` — sistema editorial y decisiones visuales
 
 ## Sistema editorial
 
 La interfaz aplica un sistema editorial clásico. El documento de diseño
 (principios, paleta, tipografía y componentes) está en
-[docs/design.md](docs/design.md).
+[design.md](design.md).
 
 ## Contenido bíblico
 
