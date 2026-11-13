@@ -1,5 +1,3 @@
-"use strict";
-
 const QR_API_URL = "https://api.qrcode-monkey.com/qr/custom";
 const QR_SIZE = 250;
 
@@ -8,26 +6,32 @@ const urlInput = document.getElementById("url-input");
 const qrContainer = document.getElementById("qr-container");
 const generateButton = document.getElementById("generate-button");
 
-function setLoading(isLoading) {
-    generateButton.disabled = isLoading;
-    qrContainer.setAttribute("aria-busy", String(isLoading));
+let isLoading = false;
+
+function setLoading(value) {
+    isLoading = value;
+    generateButton.disabled = value;
+    qrContainer.setAttribute("aria-busy", String(value));
 }
 
-function showMessage(message, className) {
+function showMessage(message, type) {
     const messageElement = document.createElement("p");
-
-    messageElement.className = className;
+    messageElement.className = `qr__${type}`;
     messageElement.textContent = message;
     qrContainer.replaceChildren(messageElement);
 }
 
 function generateQrCode(url) {
-    const qrUrl = `${QR_API_URL}?size=${QR_SIZE}&data=${encodeURIComponent(url)}`;
+    const params = new URLSearchParams({
+        size: String(QR_SIZE),
+        data: url,
+    });
     const image = document.createElement("img");
 
+    image.className = "qr__image";
     image.alt = "Código QR generado";
     setLoading(true);
-    showMessage("Generando código QR...", "empty-message");
+    showMessage("Generando código QR...", "empty");
 
     image.addEventListener("load", () => {
         qrContainer.replaceChildren(image);
@@ -35,20 +39,20 @@ function generateQrCode(url) {
     });
 
     image.addEventListener("error", () => {
-        showMessage("No se pudo generar el código QR. Inténtalo de nuevo.", "error-message");
+        showMessage("No se pudo generar el código QR. Inténtalo de nuevo.", "error");
         setLoading(false);
     });
 
-    image.src = qrUrl;
+    image.src = `${QR_API_URL}?${params.toString()}`;
 }
 
 qrForm.addEventListener("submit", (event) => {
     event.preventDefault();
+    if (isLoading) return;
 
     const url = urlInput.value.trim();
-
     if (url === "") {
-        showMessage("Introduce una URL para generar el código QR.", "error-message");
+        showMessage("Introduce una URL para generar el código QR.", "error");
         urlInput.focus();
         return;
     }

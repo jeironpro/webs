@@ -8,12 +8,15 @@
             content="Genera códigos QR a partir de una URL de forma rápida y sencilla."
         />
         <title>Generador de código QR</title>
-        <link rel="icon" href="assets/icons/qr-code.png" />
-        <link rel="stylesheet" href="css/styles.css" />
+        <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
             href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap"
             rel="stylesheet"
         />
+        <link rel="stylesheet" href="css/tokens.css" />
+        <link rel="stylesheet" href="css/styles.css" />
     </head>
     <body>
         <main class="page">
@@ -29,16 +32,24 @@
                         placeholder="Introduce la URL aquí"
                         autocomplete="url"
                         inputmode="url"
+                        autocapitalize="off"
+                        spellcheck="false"
                     />
-                    <button class="primary-button" id="generate-button" type="submit">
+                    <button class="btn btn--primary" id="generate-button" type="submit">
                         Generar
                     </button>
                 </form>
-                <div id="qr-container" class="qr-container" aria-live="polite" aria-busy="false">
-                    <span class="empty-message">El código QR aparecerá aquí</span>
+                <div
+                    id="qr-container"
+                    class="qr"
+                    aria-live="polite"
+                    aria-atomic="true"
+                    aria-busy="false"
+                >
+                    <span class="qr__empty">El código QR aparecerá aquí</span>
                 </div>
             </section>
         </main>
-        <script src="js/app.js"></script>
+        <script type="module" src="js/app.js"></script>
     </body>
 </html>
