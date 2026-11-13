@@ -1,24 +1,10 @@
-/* ============================================================
-   Estilos de página del coloreador de mandalas
-   ------------------------------------------------------------
-   Emplea únicamente tokens definidos en tokens.css.
-   Diseño mobile-first: la base es para móvil y los refinamientos
-   de pantallas medianas/grandes se declaran con min-width.
-   ============================================================ */
 @import "tokens.css";
 
-/* ------------------------------------------------------------
-   En móvil el documento se desplaza verticalmente (scroll de página);
-   solo se recorta el desbordamiento horizontal.
-   ------------------------------------------------------------ */
 html,
 body {
     overflow-x: clip;
 }
 
-/* ------------------------------------------------------------
-   Reset básico de caja y márgenes
-   ------------------------------------------------------------ */
 *,
 *::before,
 *::after {
@@ -31,11 +17,7 @@ body {
     padding: 0;
 }
 
-/* ------------------------------------------------------------
-   Base del documento
-   ------------------------------------------------------------ */
 body {
-    /* Columna flexible que permite centrar el contenedor principal. */
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -48,42 +30,27 @@ body {
     background-color: var(--color-paper);
 }
 
-/* ------------------------------------------------------------
-   Enfoque visible inmediato (nunca animado)
-   ------------------------------------------------------------ */
 :focus-visible {
     outline: var(--focus-width) solid var(--color-focus);
     outline-offset: var(--focus-offset);
 }
 
-/* ------------------------------------------------------------
-   Utilidades
-   ------------------------------------------------------------ */
-
-/* Texto visible solo para lectores de pantalla. */
 .sr-only {
     position: absolute;
-    width: 1px;
-    height: 1px;
+    width: 0.0625rem;
+    height: 0.0625rem;
     padding: 0;
-    margin: -1px;
+    margin: -0.0625rem;
     overflow: hidden;
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border: 0;
 }
 
-/* ------------------------------------------------------------
-   Contenedor principal (macroestructura Workbench)
-   ------------------------------------------------------------
-   En móvil fluye en columna y se desplaza con la página (scroll
-   en body). En escritorio la rejilla de dos columnas que ocupa el
-   viewport se define en el media de min-width.
-   ------------------------------------------------------------ */
 .workshop {
     width: 100%;
     max-width: var(--max-width);
-    /* Centra horizontalmente; en móvil no fija el alto (scroll de página). */
+
     margin: 0 auto;
     padding: 0 var(--space-lateral) var(--space-4xl);
 
@@ -92,35 +59,24 @@ body {
     gap: var(--space-2xl);
 }
 
-/* ------------------------------------------------------------
-   Panel
-   ------------------------------------------------------------ */
 .panel {
     background: var(--color-paper);
     border: var(--rule-hairline);
     border-radius: var(--radius-md);
     padding: var(--space-lg);
-    /* Permite que los paneles se encogan dentro de la rejilla. */
+
     min-width: 0;
 }
 
-/* ------------------------------------------------------------
-   Panel de herramientas (nav)
-   ------------------------------------------------------------
-   Alto natural (auto): en móvil el contenido fluye y la página hace
-   scroll; el pie queda anclado al fondo del panel.
-   ------------------------------------------------------------ */
 .panel--tools {
     display: flex;
     flex-direction: column;
-    /* En móvil: sin borde exterior, separado del borde superior del
-     viewport y con línea divisora inferior hacia la section. */
+
     margin-top: var(--space-lateral);
     border: 0;
     border-bottom: var(--rule-hairline);
 }
 
-/* Identidad: título display y subtítulo monoespaciado. */
 .panel__title {
     margin: 0;
     font-family: var(--font-display);
@@ -138,7 +94,6 @@ body {
     color: var(--color-muted);
 }
 
-/* Separación entre grupos de herramientas (regla superior). */
 .panel__subtitle + .tools__group,
 .tools__group + .tools__group {
     margin-top: var(--space-lg);
@@ -146,7 +101,6 @@ body {
     border-top: var(--rule-hairline);
 }
 
-/* Rótulo de cada grupo de herramientas. */
 .tools__caption {
     margin: 0 0 var(--space-xs);
     font-family: var(--font-outlier);
@@ -157,7 +111,6 @@ body {
     color: var(--color-muted);
 }
 
-/* Selector de plantilla: altura de diana táctil (44 px). */
 .tools__select {
     min-height: var(--touch-size);
     width: 100%;
@@ -171,7 +124,6 @@ body {
     cursor: pointer;
 }
 
-/* Paleta de colores predefinidos: rejilla adaptable al ancho. */
 .palette {
     display: grid;
     grid-template-columns: repeat(auto-fill, var(--touch-size));
@@ -182,25 +134,63 @@ body {
     width: var(--touch-size);
     height: var(--touch-size);
     padding: 0;
-    border: 1px solid var(--color-rule);
+    border: var(--rule-hairline);
     border-radius: var(--radius-sm);
     background-color: var(--color-paper);
     cursor: pointer;
+}
+
+.palette__color--rojo {
+    background-color: var(--color-paleta-rojo);
+}
+
+.palette__color--naranja {
+    background-color: var(--color-paleta-naranja);
+}
+
+.palette__color--amarillo {
+    background-color: var(--color-paleta-amarillo);
+}
+
+.palette__color--verde {
+    background-color: var(--color-paleta-verde);
+}
+
+.palette__color--turquesa {
+    background-color: var(--color-paleta-turquesa);
+}
+
+.palette__color--azul {
+    background-color: var(--color-paleta-azul);
+}
+
+.palette__color--violeta {
+    background-color: var(--color-paleta-violeta);
+}
+
+.palette__color--rosa {
+    background-color: var(--color-paleta-rosa);
+}
+
+.palette__color--marron {
+    background-color: var(--color-paleta-marron);
+}
+
+.palette__color--gris {
+    background-color: var(--color-paleta-gris);
 }
 
 .palette__color:hover {
     border-color: var(--color-neutral);
 }
 
-/* Ficha de color seleccionada: anillo de acento. */
 .palette__color--active {
     border-color: var(--color-accent);
     box-shadow:
-        0 0 0 2px var(--color-paper) inset,
-        0 0 0 1px var(--color-accent);
+        0 0 0 0.125rem var(--color-paper) inset,
+        0 0 0 0.0625rem var(--color-accent);
 }
 
-/* Selector de color personalizado (etiqueta + input[type=color]). */
 .tools__custom {
     display: flex;
     align-items: center;
@@ -215,7 +205,7 @@ body {
     width: var(--touch-size);
     height: var(--touch-size);
     padding: 0;
-    border: 1px solid var(--color-rule);
+    border: var(--rule-hairline);
     border-radius: var(--radius-sm);
     background: var(--color-paper);
     cursor: pointer;
@@ -223,13 +213,11 @@ body {
     appearance: none;
 }
 
-/* Controla el color de acento de los controles nativos. */
 .tools__select,
 .tools__color {
     accent-color: var(--color-accent);
 }
 
-/* Botones de acción: rejilla adaptable con dianas de 44 px. */
 .tools__actions {
     display: grid;
     grid-template-columns: repeat(auto-fill, var(--touch-size));
@@ -243,7 +231,7 @@ body {
     width: var(--touch-size);
     height: var(--touch-size);
     padding: 0;
-    border: 1px solid var(--color-rule);
+    border: var(--rule-hairline);
     border-radius: var(--radius-sm);
     background: var(--color-paper);
     color: var(--color-ink);
@@ -265,16 +253,12 @@ body {
     cursor: not-allowed;
 }
 
-/* Botón activo (p. ej. borrador encendido). */
 .tool--active {
     background: var(--color-paper-2);
     border-color: var(--color-accent);
     color: var(--color-accent-deep);
 }
 
-/* Pie del panel (Web Mandala).
-   En móvil su regla superior conserva la misma separación que los
-   demás grupos; en escritorio el margin-top:auto la ancla al fondo. */
 .panel__footer {
     margin: var(--space-lg) 0 0;
     padding-top: var(--space-md);
@@ -286,12 +270,6 @@ body {
     color: var(--color-muted);
 }
 
-/* ------------------------------------------------------------
-   Lienzo (superficie de trabajo)
-   ------------------------------------------------------------
-   En móvil fluye tras el nav y la página hace scroll; sin borde
-   exterior de sección.
-   ------------------------------------------------------------ */
 .panel--canvas {
     display: flex;
     flex-direction: column;
@@ -310,7 +288,6 @@ body {
     padding: var(--space-md);
 }
 
-/* SVG del mandala: ocupa el ancho disponible manteniendo la proporción. */
 .canvas__svg {
     display: block;
     width: 100%;
@@ -327,7 +304,6 @@ body {
     color: var(--color-muted);
 }
 
-/* Barra de estado accesible (reserva altura para evitar saltos). */
 .status {
     min-height: var(--space-lg);
     margin: var(--space-sm) 0 0;
@@ -336,17 +312,7 @@ body {
     color: var(--color-muted);
 }
 
-/* ============================================================
-   Pantallas medianas y grandes (mobile-first, min-width)
-   ------------------------------------------------------------
-   Dos columnas: herramientas + lienzo, con ambos paneles de la
-   misma altura ocupando el 100 % del alto del viewport. Cada
-   panel gestiona su propio desplazamiento para no recortar
-   contenido en pantallas cortas.
-   ============================================================ */
 @media (min-width: 40rem) {
-    /* En escritorio el workbench es de altura fija: el documento no
-     scrolla y cada panel gestiona su propio desplazamiento. */
     html,
     body {
         overflow: hidden;
@@ -367,14 +333,14 @@ body {
 
     .panel--tools {
         grid-area: herramientas;
-        /* Restaura el borde completo y sin separación superior en escritorio. */
+
         margin-top: 0;
         border: var(--rule-hairline);
-        /* Desplazamiento propio cuando el contenido excede la altura. */
+
         min-height: 0;
         overflow-y: auto;
         overscroll-behavior-y: contain;
-        /* Esquinas rectas al pegar al borde del viewport. */
+
         border-radius: 0;
     }
 
@@ -383,30 +349,25 @@ body {
         min-height: 0;
         overflow-y: auto;
         overscroll-behavior-y: contain;
-        /* Esquinas rectas al pegar al borde del viewport. */
+
         border-radius: 0;
     }
 
-    /* El pie vuelve a anclarse al fondo del nav en escritorio. */
     .panel__footer {
         margin-top: auto;
     }
 
-    /* La figura se centra con margen automático: permite hacer scroll
-     correcto hasta el inicio cuando el contenido supera la altura. */
     .panel--canvas .canvas {
         width: 100%;
         margin: auto;
     }
 
-    /* El mandala conserva un tamaño cómodo y se centra en su panel. */
     .canvas__surface {
         width: 100%;
         max-width: var(--mandala-width);
         margin-inline: auto;
     }
 
-    /* Leyenda y estado se alinean con el ancho del mandala. */
     .canvas__caption,
     .status {
         max-width: var(--mandala-width);
@@ -414,12 +375,6 @@ body {
     }
 }
 
-/* ============================================================
-   Impresión
-   ------------------------------------------------------------
-   La hoja imprime únicamente el mandala coloreado, centrado
-   sobre una hoja en blanco, sin el panel de herramientas.
-   ============================================================ */
 @page {
     size: auto;
     margin: 12mm;
@@ -440,7 +395,6 @@ body {
         background: var(--color-imprimir);
     }
 
-    /* Se oculta todo lo que no es el mandala en sí. */
     .panel--tools,
     .status,
     .canvas__caption {

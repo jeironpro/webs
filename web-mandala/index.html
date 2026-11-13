@@ -1,12 +1,6 @@
 <!doctype html>
-<!--
-  web-mandala · coloreador de mandalas en línea.
-  Estructura de la macroestructura Workbench: panel de herramientas (nav) y
-  lienzo (section). Los scripts se cargan en orden: motor → plantillas → app.
--->
 <html lang="es">
     <head>
-        <!-- Metadatos básicos: codificación, viewport móvil y descripción. -->
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Mandalas en l&iacute;nea</title>
@@ -15,7 +9,6 @@
             content="Colorea mandalas generados proceduralmente en tu navegador y gu&aacute;rdalos en PNG o SVG o impr&iacute;melos."
         />
 
-        <!-- Recursos: favicon, fuentes tipográficas y estilos del proyecto. -->
         <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -31,19 +24,16 @@
     </head>
     <body>
         <main class="workshop">
-            <!-- Panel de herramientas: identidad, plantillas, colores y acciones. -->
             <nav class="panel panel--tools" aria-label="Herramientas de coloreado">
                 <h1 class="panel__title">Mandalas</h1>
                 <p class="panel__subtitle">Colorea, guarda e imprime. Sin registro.</p>
 
-                <!-- Selección de plantilla del catálogo (poblado por templates.js). -->
                 <section class="tools__group">
                     <h2 class="tools__caption">Plantilla</h2>
                     <label class="sr-only" for="template-select">Plantilla del mandala</label>
                     <select id="template-select" class="tools__select"></select>
                 </section>
 
-                <!-- Paleta predefinida y selector de color personalizado. -->
                 <section class="tools__group">
                     <h2 class="tools__caption">Colores</h2>
                     <div id="palette" class="palette"></div>
@@ -54,7 +44,6 @@
                     </label>
                 </section>
 
-                <!-- Acciones: borrador, deshacer/rehacer, limpiar, imprimir y exportar. -->
                 <section class="tools__group">
                     <h2 class="tools__caption">Acciones</h2>
                     <div class="tools__actions">
@@ -133,11 +122,9 @@
                     </div>
                 </section>
 
-                <!-- Pie del panel (Web Mandala). -->
                 <p class="panel__footer">Web Mandala</p>
             </nav>
 
-            <!-- Lienzo: superficie del mandala, leyenda y barra de estado. -->
             <section class="panel panel--canvas" aria-label="Mandala para colorear">
                 <figure class="canvas">
                     <div id="mandala-container" class="canvas__surface"></div>
@@ -147,9 +134,6 @@
             </section>
         </main>
 
-        <!-- Motor → catálogo → lógica de interacción (este orden importa). -->
-        <script src="js/mandala.js"></script>
-        <script src="js/templates.js"></script>
-        <script src="js/app.js"></script>
+        <script type="module" src="js/app.js"></script>
     </body>
 </html>

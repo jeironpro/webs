@@ -41,11 +41,11 @@ Las 90 variaciones se componen combinando simetrías (4, 5, 6, 8, 10, 12, 16), d
 
 ## Cómo funciona el generador
 
-- `js/mandala.js` — motor que construye el SVG con `document.createElementNS` (sin inyección de HTML). Crea tres tipos de región:
+- `js/mandala.js` — motor que construye el SVG con `document.createElementNS` (sin inyección de HTML) y exporta `createSvg`. Crea tres tipos de región:
   - **Aros**: bandas anulares concéntricas (fill-rule `evenodd`).
   - **Pétalos**: figuras replicadas N veces; tipos disponibles `cuna`, `petalo`, `gota`, `diamante`.
   - **Centro**: círculo opcional de cierre.
-- `js/templates.js` — define las plantillas (simetría, bandas, pétalos). Las 10 curadas se definen en `PLANTILLAS_BASE`; las 90 variaciones restantes se generan de forma determinista (`generarPlantilla`). Para añadir una curada, agrega un objeto a `PLANTILLAS_BASE`:
+- `js/templates.js` — define las plantillas (simetría, bandas, pétalos) y exporta el catálogo `TEMPLATES`. Las 10 curadas se definen en `BASE_TEMPLATES`; las 90 variaciones restantes se generan de forma determinista (`generateTemplate`). Para añadir una curada, agrega un objeto a `BASE_TEMPLATES`:
   ```js
   {
     id: 'mi-plantilla',
@@ -66,10 +66,9 @@ Las 90 variaciones se componen combinando simetrías (4, 5, 6, 8, 10, 12, 16), d
 
 ## Diseño (Hallmark)
 
-El diseño sigue la skill **Hallmark**: tema **Newsprint** (papel crema, tinta, acento cálido, metáfora de imprenta), macroestructura **Workbench**, tipografía de pares _Instrument Serif_ (display) + _IBM Plex Sans_ (cuerpo) + _IBM Plex Mono_ (etiquetas). Las decisiones y el registro están en:
+El diseño sigue el tema **Newsprint** (papel crema, tinta, acento cálido, metáfora de imprenta), macroestructura **Workbench**, tipografía de pares _Instrument Serif_ (display) + _IBM Plex Sans_ (cuerpo) + _IBM Plex Mono_ (etiquetas). Las decisiones visuales están centralizadas en:
 
-- `css/tokens.css` — sistema de tokens (colores OKLCH, tipografía, escala 4 pt, movimiento).
-- `.hallmark/log.json` — memoria de proyecto (diversificación de macroestructuras).
+- `css/tokens.css` — sistema de tokens (colores OKLCH, tipografía, escala 4 pt, movimiento y paleta de colores).
 
 ## Interfaz
 
@@ -80,7 +79,7 @@ El diseño sigue la skill **Hallmark**: tema **Newsprint** (papel crema, tinta, 
 
 - HTML semántico y accesible (`lang="es"`, `aria-label`, `aria-pressed`, `role="status"`).
 - CSS con custom properties centralizadas, convención BEM y diseño **mobile-first** (`min-width`).
-- JavaScript con `const`/`let`, comparaciones estrictas, `async/await` con `try/catch` y sin `innerHTML`.
+- JavaScript organizado en módulos ES (`type="module"`), con `const`/`let`, comparaciones estrictas, `async/await` con `try/catch` y sin `innerHTML`.
 - Iconos de **Material Symbols** y fuentes de Google Fonts (únicas dependencias externas).
 
 ## Validación
@@ -90,4 +89,4 @@ El diseño sigue la skill **Hallmark**: tema **Newsprint** (papel crema, tinta, 
 
 ## Licencia
 
-MIT. Consulta el archivo [LICENSE](LICENSE).
+MIT. Consulta el archivo [LICENSE](../LICENSE).

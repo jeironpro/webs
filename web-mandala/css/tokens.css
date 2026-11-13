@@ -1,10 +1,4 @@
-/* Hallmark · genre: editorial · macrostructure: Workbench · theme: Newsprint
- * enrichment: none · nav: N9 (edge-aligned minimal) · footer: Ft2 (inline rule)
- * pre-emit critique: P5 H4 E5 S4 R5 V5
- * axes: paper-band = light · display = roman-serif (Instrument Serif) · accent hue = warm
- */
 :root {
-    /* ---- Color (OKLCH, ancla cálida) ---- */
     --color-paper: oklch(97% 0.012 85);
     --color-paper-2: oklch(93% 0.014 85);
     --color-paper-3: oklch(89% 0.015 85);
@@ -15,9 +9,18 @@
     --color-accent: oklch(58% 0.19 35);
     --color-accent-deep: oklch(45% 0.16 35);
     --color-focus: oklch(55% 0.19 55);
-    --color-imprimir: #ffffff; /* papel blanco de la hoja al imprimir */
+    --color-imprimir: oklch(100% 0 0);
+    --color-paleta-rojo: rgb(230, 69, 79);
+    --color-paleta-naranja: rgb(242, 140, 40);
+    --color-paleta-amarillo: rgb(244, 194, 13);
+    --color-paleta-verde: rgb(92, 184, 92);
+    --color-paleta-turquesa: rgb(60, 179, 167);
+    --color-paleta-azul: rgb(74, 144, 217);
+    --color-paleta-violeta: rgb(123, 92, 184);
+    --color-paleta-rosa: rgb(230, 120, 154);
+    --color-paleta-marron: rgb(166, 107, 79);
+    --color-paleta-gris: rgb(140, 140, 140);
 
-    /* ---- Tipografía ---- */
     --font-display: "Instrument Serif", "Georgia", ui-serif, serif;
     --font-body: "IBM Plex Sans", system-ui, sans-serif;
     --font-outlier: "IBM Plex Mono", ui-monospace, monospace;
@@ -35,7 +38,6 @@
     --tracking-tight: -0.02em;
     --tracking-wide: 0.1em;
 
-    /* ---- Espaciado (escala 4 pt) ---- */
     --space-3xs: 0.125rem;
     --space-2xs: 0.25rem;
     --space-xs: 0.5rem;
@@ -47,7 +49,6 @@
     --space-3xl: 6rem;
     --space-4xl: 9rem;
 
-    /* ---- Movimiento (Newsprint = estático; canon de easing) ---- */
     --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
     --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
     --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
@@ -55,25 +56,21 @@
     --duration-short: 100ms;
     --duration-medium: 180ms;
 
-    /* ---- Reglas ---- */
-    --rule-hairline: 1px solid var(--color-rule);
-    --rule-strong: 2px solid var(--color-ink);
+    --rule-hairline: 0.0625rem solid var(--color-rule);
+    --rule-strong: 0.125rem solid var(--color-ink);
 
-    /* ---- Radios ---- */
     --radius-sm: 0.25rem;
     --radius-md: 0.5rem;
 
-    /* ---- Profundidad y z-index ---- */
-    --shadow-whisper: 0 1px 2px oklch(20% 0.01 70 / 0.05);
+    --shadow-whisper: 0 0.0625rem 0.125rem oklch(20% 0.01 70 / 0.05);
     --z-base: 1;
     --z-sticky: 200;
 
-    /* ---- Accesibilidad / dianas ---- */
-    --touch-size: 2.75rem; /* 44 px */
-    --focus-width: 2px;
-    --focus-offset: 3px;
+    --touch-size: 2.75rem;
+    --focus-width: 0.125rem;
+    --focus-offset: 0.1875rem;
     --max-width: 68rem;
-    --mandala-width: 42rem; /* tamaño máximo del mandala dentro del lienzo */
+    --mandala-width: 42rem;
     --measure-text: 65ch;
     --space-lateral: clamp(1rem, 4vw, 1.5rem);
 }
