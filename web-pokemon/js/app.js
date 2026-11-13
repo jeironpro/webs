@@ -2,7 +2,6 @@ const BASE = new URL("../", import.meta.url);
 const BASE_PATH = BASE.pathname;
 const DATASET_URL = new URL("data/pokemones.json", BASE);
 const LOGO_URL = new URL("assets/images/pokemon-logo.png", BASE).href;
-const GA_ID = "G-ZTPH1017ZF";
 
 const GENERATIONS = [
     { id: 1, name: "primera" },
@@ -690,16 +689,6 @@ const updateYear = () => {
     });
 };
 
-const initAnalytics = () => {
-    window.dataLayer = window.dataLayer || [];
-    window.gtag = (...args) => {
-        window.dataLayer.push(args);
-    };
-    window.gtag("js", new Date());
-    window.gtag("config", GA_ID);
-};
-
 setupLinks();
 route();
 updateYear();
-initAnalytics();
