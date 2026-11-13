@@ -1,34 +1,47 @@
-# web-porcentaje-anual
+# Porcentaje del año
 
-Indicador del porcentaje del año transcurrido con barra de progreso, día actual y días restantes, teniendo en cuenta los años bisiestos.
+Indicador del porcentaje del año transcurrido, con barra de progreso y días restantes, teniendo en cuenta los años bisiestos.
 
 ## Características
 
 - Cálculo del porcentaje del año transcurrido en tiempo real.
-- Barra de progreso visual actualizada automáticamente.
-- Indicación del día del año y de los días restantes.
-- Gestion correcta de los años bisiestos.
+- Barra de progreso nativa actualizada automáticamente.
+- Indicación de los días restantes.
+- Gestión correcta de los años bisiestos.
+- Rejilla de 365 o 366 puntos con el día correspondiente al pasar el cursor.
 
-## Tecnologías
+## Stack
 
-- HTML5, CSS3 y JavaScript (ES6+), sin dependencias externas.
+- HTML5 semántico, CSS3 con tokens y BEM, y JavaScript ES6+ en módulos.
+- Sin frameworks ni dependencias de ejecución.
+- Google Fonts (Inter).
+- ESLint + Prettier.
 
 ## Uso
 
-1. Clona el repositorio.
-2. Abre `index.html` en el navegador o sirve la carpeta con un servidor estático local.
+Abre `index.html` en el navegador o sirve la carpeta con un servidor estático:
 
-## Estructura del proyecto
-
+```bash
+python3 -m http.server 8000
 ```
+
+El progreso se calcula al cargar la página a partir de la fecha local del navegador y se expresa en UTC para evitar desfases por el horario de verano.
+
+## Estructura
+
+```text
 web-porcentaje-anual/
 ├── index.html
-├── css/                   # estilos del indicador
-├── js/                    # calculo del progreso
-└── assets/icons/                  # favicon
+├── css/
+│   ├── tokens.css
+│   └── styles.css
+├── js/
+│   └── app.js
+└── assets/
+    └── icons/
+        └── favicon.svg
 ```
 
 ## Licencia
 
-Este proyecto está bajo la licencia **MIT**.  
-Consulta el archivo [LICENSE](LICENSE) para más detalles.
+MIT. Consulta el archivo [LICENSE](../LICENSE).
