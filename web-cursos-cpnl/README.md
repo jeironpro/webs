@@ -52,7 +52,6 @@ js/                           # Módulos de la web
 ├── catalog.js                # Lógica pura del catálogo + ficheros ocultos
 └── inventory.generated.js    # Inventario de PDFs (generado)
 assets/icons/                 # Iconos y favicons locales (SVG/PNG)
-STYLE-GUIDE.md                # Libro de estilo
 index.html                    # Estructura semántica de la página
 scripts/build-inventory.mjs   # Genera el inventario desde cpnl/
 ```
