@@ -51,6 +51,58 @@
             <p>Todos los derechos reservados - JeironPro <span data-year>2026</span></p>
         </footer>
 
+        <section
+            class="storage-consent"
+            id="storage-consent"
+            aria-label="Consentimiento de almacenamiento local"
+            aria-live="polite"
+            hidden
+        >
+            <div class="storage-consent__panel">
+                <div class="storage-consent__copy" data-consent-initial>
+                    <p class="storage-consent__eyebrow">Privacidad</p>
+                    <h2 class="storage-consent__title">Tus países visitados se quedan aquí</h2>
+                    <p class="storage-consent__text">
+                        Esta web usa almacenamiento local para recordar qué países has marcado. No
+                        usa cookies, cuentas ni servidores. Al aceptar, la página se recargará para
+                        aplicar el guardado.
+                    </p>
+                </div>
+                <div class="storage-consent__copy" data-consent-declined hidden>
+                    <p class="storage-consent__eyebrow">Sin guardado local</p>
+                    <h2 class="storage-consent__title">La lista se perderá al recargar</h2>
+                    <p class="storage-consent__text">
+                        Puedes seguir marcando países durante esta visita, pero no se guardarán. Al
+                        recargar, la lista de visitados volverá a estar vacía. Puedes activar el
+                        guardado cuando quieras desde el botón «Privacidad».
+                    </p>
+                </div>
+                <div class="storage-consent__actions">
+                    <button
+                        class="storage-consent__accept"
+                        id="storage-consent-accept"
+                        type="button"
+                    >
+                        Aceptar y guardar
+                    </button>
+                    <button
+                        class="storage-consent__decline"
+                        id="storage-consent-decline"
+                        type="button"
+                    >
+                        Ahora no
+                    </button>
+                </div>
+                <p class="storage-consent__error" data-consent-error role="alert" hidden>
+                    El navegador bloquea el almacenamiento local. No se puede activar el guardado.
+                </p>
+            </div>
+        </section>
+
+        <button class="storage-consent__reopen" id="storage-consent-reopen" type="button" hidden>
+            Privacidad
+        </button>
+
         <script type="module" src="js/script.js"></script>
         <script type="module" src="js/animation.js"></script>
     </body>

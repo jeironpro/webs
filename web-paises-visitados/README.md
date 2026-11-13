@@ -38,6 +38,7 @@ web-paises-visitados/
   js/
     script.js
     animation.js
+    consent.js
   README.md
 ```
 

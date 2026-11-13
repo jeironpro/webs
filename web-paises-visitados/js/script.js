@@ -214,12 +214,17 @@ const countries = [
         ],
     },
 ];
+import { hasStorageConsent, initStorageConsent } from "./consent.js";
+
 const STORAGE_KEY = "paisesVisitados";
 const catalog = countries[0];
 const countriesContainer = document.getElementById("countries-container");
 const searchInput = document.getElementById("search");
 
 const getVisited = () => {
+    if (!hasStorageConsent()) {
+        return [];
+    }
     try {
         return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
     } catch {
@@ -228,6 +233,9 @@ const getVisited = () => {
 };
 
 const saveVisited = (visited) => {
+    if (!hasStorageConsent()) {
+        return;
+    }
     localStorage.setItem(STORAGE_KEY, JSON.stringify(visited));
 };
 
@@ -323,6 +331,8 @@ const markVisited = (iso) => {
             }
         });
 };
+
+initStorageConsent();
 
 const savedVisited = getVisited();
 Object.values(catalog)
