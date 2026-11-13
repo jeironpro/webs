@@ -1604,74 +1604,20 @@ void main() {
     });
 }
 
-function renderShell(root) {
-    root.innerHTML = `<div class="app-app">
-        <div class="rays-canvas" aria-hidden="true"><div class="light-rays-container"></div></div>
-        <div class="app-scrim" aria-hidden="true"></div>
-        <header class="navbar-header">
-            <nav class="navbar-pill" aria-label="Navegación principal">
-                <a class="navbar-brand" href="#" aria-label="clima — inicio">
-                    <span class="navbar-brandMark">Clima</span>
-                    <span class="navbar-brandDegree" aria-hidden="true">°</span>
-                </a>
-                <div class="navbar-actions">
-                    <button type="button" class="navbar-geo" aria-label="Usar mi ubicación">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
-                            <circle cx="12" cy="9" r="2" />
-                        </svg>
-                    </button>
-                    <button type="button" class="navbar-unitToggle" aria-label="Cambiar a F°">C°</button>
-                </div>
-            </nav>
-        </header>
-        <main class="app-main" id="contenido" tabindex="-1">
-            <div class="home-page">
-                <section class="home-hero" aria-labelledby="titulo-hero">
-                    <h1 id="titulo-hero" class="home-heroTitle">El tiempo de <span class="home-heroAccent">cualquier lugar</span>.</h1>
-                    <div class="home-toolbar">
-                        <div class="search-root">
-                            <label class="search-label" for="search-input">Buscar una ciudad o lugar</label>
-                            <div class="search-field">
-                                <input id="search-input" class="search-input" type="search" role="combobox" autocomplete="off" spellcheck="false" aria-autocomplete="list" aria-expanded="false" aria-controls="search-listbox" placeholder="p. ej. Madrid, Buenos Aires, Lisboa…" />
-                                <span class="search-spinner" aria-hidden="true" hidden></span>
-                                <button type="button" class="search-clear" aria-label="Limpiar la búsqueda" hidden>×</button>
-                            </div>
-                            <p id="search-status" class="search-status" role="status" hidden></p>
-                            <p id="search-status-error" class="search-statusError" role="alert" hidden></p>
-                            <ul id="search-listbox" role="listbox" class="search-listbox" hidden></ul>
-                        </div>
-                    </div>
-                    <div id="hero-content"></div>
-                </section>
-                <div id="page-sections" style="display: contents"></div>
-                <section class="home-statement">
-                    <p>El tiempo cambia. Las coordenadas, no.</p>
-                    <p>Clima&nbsp;° trae la previsión y los datos de cada lugar a tu pantalla.</p>
-                </section>
-            </div>
-        </main>
-        <footer class="footer-footer">
-            <div class="footer-shell">
-                <span class="footer-meta">clima&nbsp;° · MIT</span>
-                <span class="footer-meta">Datos: Open-Meteo · CC BY 4.0</span>
-            </div>
-        </footer>
-    </div>`;
-
+function cacheElements() {
     elements = {
-        root,
-        hero: root.querySelector("#hero-content"),
-        sections: root.querySelector("#page-sections"),
-        toolbar: root.querySelector(".home-toolbar"),
-        geoButton: root.querySelector(".navbar-geo"),
-        unitToggle: root.querySelector(".navbar-unitToggle"),
-        searchInput: root.querySelector("#search-input"),
-        spinner: root.querySelector(".search-spinner"),
-        clearButton: root.querySelector(".search-clear"),
-        status: root.querySelector("#search-status"),
-        statusError: root.querySelector("#search-status-error"),
-        listbox: root.querySelector("#search-listbox"),
+        root: document.getElementById("root"),
+        hero: document.querySelector("#hero-content"),
+        sections: document.querySelector("#page-sections"),
+        toolbar: document.querySelector(".home-toolbar"),
+        geoButton: document.querySelector(".navbar-geo"),
+        unitToggle: document.querySelector(".navbar-unitToggle"),
+        searchInput: document.querySelector("#search-input"),
+        spinner: document.querySelector(".search-spinner"),
+        clearButton: document.querySelector(".search-clear"),
+        status: document.querySelector("#search-status"),
+        statusError: document.querySelector("#search-status-error"),
+        listbox: document.querySelector("#search-listbox"),
         geoError: null,
     };
 }
@@ -1723,8 +1669,7 @@ function startClock() {
 }
 
 function init() {
-    const root = document.getElementById("root");
-    renderShell(root);
+    cacheElements();
     bindEvents();
     renderNavbar();
     renderSearch();
@@ -1735,4 +1680,4 @@ function init() {
     startClock();
 }
 
-init();
+document.addEventListener("DOMContentLoaded", init);
