@@ -105,23 +105,6 @@ export default [
         },
     },
     {
-        files: ["web-codi-wiki/js/data.js"],
-        languageOptions: {
-            sourceType: "script",
-        },
-        rules: {
-            "no-unused-vars": "off",
-        },
-    },
-    {
-        files: ["web-codi-wiki/js/app.js"],
-        languageOptions: {
-            globals: {
-                wikiData: "readonly",
-            },
-        },
-    },
-    {
         files: ["web-mandala/js/app.js"],
         languageOptions: {
             globals: {

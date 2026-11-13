@@ -3,33 +3,33 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Wiki de lenguajes de programación y paradigmas: historia, ventajas, desventajas, usos y ejemplos de código."
+        />
+        <meta name="theme-color" content="#f8fafc" />
         <title>Codi Wiki</title>
+        <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
         <link
             href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&family=Fira+Code:wght@400;500&display=swap"
             rel="stylesheet"
         />
         <link rel="stylesheet" href="css/styles.css" />
-        <link rel="icon" href="assets/icons/codi_wiki.ico" />
     </head>
     <body>
         <div class="app-container">
             <aside class="sidebar">
                 <div class="brand">
-                    <h1>Codi<span class="dot">.</span>Wiki</h1>
+                    <p class="brand__name">Codi<span class="brand__dot">.</span>Wiki</p>
                 </div>
-                <nav class="navigation">
+                <nav class="navigation" aria-label="Temas de la wiki">
                     <div class="nav-section">
-                        <h3 class="section-title">Lenguajes</h3>
-                        <div id="language-list" class="nav-list">
-                            <!-- Inyectado por JS -->
-                        </div>
+                        <p class="section-title">Lenguajes</p>
+                        <div id="language-list" class="nav-list"></div>
                     </div>
-
                     <div class="nav-section">
-                        <h3 class="section-title">Paradigmas</h3>
-                        <div id="paradigm-list" class="nav-list">
-                            <!-- Inyectado por JS -->
-                        </div>
+                        <p class="section-title">Paradigmas</p>
+                        <div id="paradigm-list" class="nav-list"></div>
                     </div>
                 </nav>
                 <div class="sidebar-footer">
@@ -37,11 +37,11 @@
                 </div>
             </aside>
 
-            <main class="main-content">
-                <div class="content">
+            <main class="main-content" id="main-content">
+                <div class="wiki-content">
                     <div id="welcome-screen" class="view-active">
                         <header class="hero-header">
-                            <div class="hero-badge">Documentación Técnica</div>
+                            <p class="hero-badge">Documentación Técnica</p>
                             <h1>
                                 El Arte de la <br /><span class="gradient-text">Programación</span>
                             </h1>
@@ -51,33 +51,30 @@
                             </p>
                         </header>
 
-                        <div class="card-grid">
-                            <div class="info-card">
-                                <div class="card-icon">➜</div>
-                                <h3>Lenguajes Modernos</h3>
+                        <section class="info-card-grid" aria-label="Temas de la wiki">
+                            <article class="info-card">
+                                <div class="info-card__icon">➜</div>
+                                <h2>Lenguajes Modernos</h2>
                                 <p>
                                     Desde los fundamentos de C hasta la seguridad de Rust y la
                                     versatilidad de Python.
                                 </p>
-                            </div>
-                            <div class="info-card">
-                                <div class="card-icon">∞</div>
-                                <h3>Paradigmas Teóricos</h3>
+                            </article>
+                            <article class="info-card">
+                                <div class="info-card__icon">∞</div>
+                                <h2>Paradigmas Teóricos</h2>
                                 <p>
                                     Explora la POO, la programación funcional y los modelos
                                     imperativos.
                                 </p>
-                            </div>
-                        </div>
+                            </article>
+                        </section>
                     </div>
 
-                    <div id="detail-view" class="is-hidden">
-                        <!-- Contenido Dinámico -->
-                    </div>
+                    <div id="detail-view" class="is-hidden"></div>
                 </div>
             </main>
         </div>
-        <script src="js/data.js"></script>
-        <script src="js/app.js"></script>
+        <script type="module" src="js/app.js"></script>
     </body>
 </html>

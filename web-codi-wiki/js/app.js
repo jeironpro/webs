@@ -1,123 +1,111 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const languageList = document.getElementById("language-list");
-    const paradigmList = document.getElementById("paradigm-list");
-    const welcomeScreen = document.getElementById("welcome-screen");
-    const detailView = document.getElementById("detail-view");
-    const mainContent = document.querySelector(".main-content");
+import { wikiData } from "./data.js";
 
-    function createElement(tag, className, text) {
-        const element = document.createElement(tag);
-        if (className) element.className = className;
-        if (text !== undefined) element.textContent = text;
-        return element;
-    }
+const languageList = document.querySelector("#language-list");
+const paradigmList = document.querySelector("#paradigm-list");
+const welcomeScreen = document.querySelector("#welcome-screen");
+const detailView = document.querySelector("#detail-view");
+const mainContent = document.querySelector("#main-content");
 
-    function renderMenu() {
-        const sections = [
-            { items: wikiData.languages, type: "language", container: languageList },
-            { items: wikiData.paradigms, type: "paradigm", container: paradigmList },
-        ];
+if (!languageList || !paradigmList || !welcomeScreen || !detailView || !mainContent) {
+    throw new Error("No se encontraron los elementos de la wiki");
+}
 
-        sections.forEach(({ items, type, container }) => {
-            items.forEach((item) => {
-                const button = document.createElement("button");
-                button.type = "button";
-                button.className = "nav-item";
-                button.textContent = item.name;
-                button.dataset.id = item.id;
-                button.dataset.type = type;
-                button.addEventListener("click", () => showContent(item));
-                container.appendChild(button);
-            });
+const createElement = (tag, className, text) => {
+    const element = document.createElement(tag);
+    if (className) element.className = className;
+    if (text !== undefined) element.textContent = text;
+    return element;
+};
+
+const renderMenu = () => {
+    const sections = [
+        { items: wikiData.languages, type: "language", container: languageList },
+        { items: wikiData.paradigms, type: "paradigm", container: paradigmList },
+    ];
+
+    sections.forEach(({ items, type, container }) => {
+        items.forEach((item) => {
+            const button = document.createElement("button");
+            button.type = "button";
+            button.className = "nav-item";
+            button.textContent = item.name;
+            button.dataset.id = item.id;
+            button.dataset.type = type;
+            button.addEventListener("click", () => showContent(item));
+            container.append(button);
         });
-    }
+    });
+};
 
-    function showContent(item) {
-        // Gestionar estado activo del menú
-        document.querySelectorAll(".nav-item").forEach((element) => {
-            element.classList.remove("is-active");
-        });
-        const activeItem = document.querySelector(`.nav-item[data-id="${item.id}"]`);
-        if (activeItem) activeItem.classList.add("is-active");
+const showContent = (item) => {
+    document.querySelectorAll(".nav-item").forEach((element) => {
+        element.classList.remove("is-active");
+    });
+    document.querySelector(`.nav-item[data-id="${item.id}"]`)?.classList.add("is-active");
 
-        // Transición de pantallas
-        welcomeScreen.style.display = "none";
-        detailView.classList.remove("is-hidden");
-        detailView.classList.add("view-active");
+    welcomeScreen.classList.add("is-hidden");
+    detailView.classList.remove("is-hidden");
+    mainContent.scrollTop = 0;
+    detailView.replaceChildren();
 
-        // Scroll al inicio
-        mainContent.scrollTop = 0;
+    const header = createElement("header", "detail-header");
+    header.append(
+        createElement("span", "type-label", item.label),
+        createElement("h2", "detail-title", item.name),
+        createElement("p", "detail-description", item.description)
+    );
+    detailView.append(header);
 
-        // Limpiar vista anterior
-        detailView.replaceChildren();
+    const historyBlock = createElement("section", "section-block");
+    historyBlock.append(
+        createElement("h3", null, "Historia y Origen"),
+        createElement("p", null, item.history)
+    );
+    detailView.append(historyBlock);
 
-        // 1. Header
-        const header = createElement("header", "detail-header");
-        header.append(
-            createElement("span", "type-label", item.label),
-            createElement("h1", "detail-title", item.name),
-            createElement("p", "detail-description", item.description)
-        );
-        detailView.appendChild(header);
+    const usesList = createElement("ul", "uses-list");
+    item.uses.forEach((use) => {
+        usesList.append(createElement("li", null, use));
+    });
 
-        // 2. Historia
-        const historyBlock = createElement("div", "section-block");
-        historyBlock.append(
-            createElement("h2", null, "Historia y Origen"),
-            createElement("p", null, item.history)
-        );
-        detailView.appendChild(historyBlock);
+    const usesBlock = createElement("section", "section-block");
+    usesBlock.append(createElement("h3", null, "Usos Principales"), usesList);
+    detailView.append(usesBlock);
 
-        // 3. Usos principales
-        const usesList = document.createElement("ul");
-        usesList.style.paddingLeft = "1.5rem";
-        item.uses.forEach((use) => {
-            usesList.appendChild(createElement("li", null, use));
-        });
+    const prosList = createElement("ul", "check-list");
+    item.pros.forEach((pro) => {
+        prosList.append(createElement("li", null, pro));
+    });
 
-        const usesBlock = createElement("div", "section-block");
-        usesBlock.append(createElement("h2", null, "Usos Principales"), usesList);
-        detailView.appendChild(usesBlock);
+    const consList = createElement("ul", "cross-list");
+    item.cons.forEach((con) => {
+        consList.append(createElement("li", null, con));
+    });
 
-        // 4. Análisis (pros y contras)
-        const prosList = createElement("ul", "check-list");
-        item.pros.forEach((pro) => {
-            prosList.appendChild(createElement("li", null, pro));
-        });
+    const prosColumn = createElement("div", "column");
+    prosColumn.append(createElement("h4", null, "Ventajas"), prosList);
 
-        const consList = createElement("ul", "cross-list");
-        item.cons.forEach((con) => {
-            consList.appendChild(createElement("li", null, con));
-        });
+    const consColumn = createElement("div", "column");
+    consColumn.append(createElement("h4", null, "Desventajas"), consList);
 
-        const prosColumn = createElement("div", "column");
-        prosColumn.append(createElement("h4", null, "Ventajas"), prosList);
+    const prosCons = createElement("div", "pros-cons");
+    prosCons.append(prosColumn, consColumn);
 
-        const consColumn = createElement("div", "column");
-        consColumn.append(createElement("h4", null, "Desventajas"), consList);
+    const analysisBlock = createElement("section", "section-block");
+    analysisBlock.append(createElement("h3", null, "Análisis"), prosCons);
+    detailView.append(analysisBlock);
 
-        const prosCons = createElement("div", "pros-cons");
-        prosCons.append(prosColumn, consColumn);
+    const code = createElement("code", null, item.example);
+    const pre = createElement("pre", "code-block");
+    pre.append(code);
 
-        const analysisBlock = createElement("div", "section-block");
-        analysisBlock.append(createElement("h2", null, "Análisis"), prosCons);
-        detailView.appendChild(analysisBlock);
+    const codeBlock = createElement("section", "section-block");
+    codeBlock.append(createElement("h3", null, "Código de Ejemplo"), pre);
+    detailView.append(codeBlock);
 
-        // 5. Código de ejemplo
-        const code = createElement("code", null, item.example);
-        const pre = createElement("pre", "code-block");
-        pre.appendChild(code);
+    detailView.classList.remove("view-active");
+    void detailView.offsetWidth;
+    detailView.classList.add("view-active");
+};
 
-        const codeBlock = createElement("div", "section-block");
-        codeBlock.append(createElement("h2", null, "Código de Ejemplo"), pre);
-        detailView.appendChild(codeBlock);
-
-        // Reiniciar animación
-        detailView.style.animation = "none";
-        void detailView.offsetHeight; /* fuerza reflow */
-        detailView.style.animation = "fadeIn 0.5s ease forwards";
-    }
-
-    // Inicializar
-    renderMenu();
-});
+renderMenu();

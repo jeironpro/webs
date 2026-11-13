@@ -1,4 +1,4 @@
-const wikiData = {
+export const wikiData = {
     languages: [
         {
             id: "python",

@@ -8,28 +8,42 @@ Wiki de lenguajes de programación y paradigmas: consulta la historia, las venta
 - Fichas con descripción, historia, ventajas y desventajas, usos habituales y ejemplos de código.
 - Menú lateral para navegar entre los temas.
 - Vista de detalle generada dinámicamente desde los datos.
+- Jerarquía de encabezados y navegación accesible por teclado.
 
 ## Tecnologías
 
-- HTML5, CSS3 y JavaScript (ES6+).
-- Contenido estructurado en datos JavaScript (JS).
+- HTML5 semántico.
+- CSS3 con custom properties, mobile-first y nomenclatura BEM.
+- JavaScript como módulos ES, sin dependencias de ejecución.
 
 ## Uso
 
 1. Clona el repositorio.
-2. Abre `index.html` en el navegador o sirve la carpeta con un servidor estático local.
+2. Sirve la carpeta con un servidor estático local:
+
+```bash
+python3 -m http.server 8000
+```
+
+3. Abre `http://localhost:8000/web-codi-wiki/`.
+
+Los módulos ES requieren abrir la página mediante HTTP, no con `file://`.
 
 ## Estructura del proyecto
 
 ```
 web-codi-wiki/
 ├── index.html
-├── css/                   # estilos de la wiki
-├── js/                    # datos de contenido y lógica de la interfaz
-└── assets/icons/                  # favicon
+├── css/
+│   └── styles.css
+├── js/
+│   ├── app.js
+│   └── data.js
+└── assets/
+    └── icons/
+        └── favicon.svg
 ```
 
 ## Licencia
 
-Este proyecto está bajo la licencia **MIT**.  
-Consulta el archivo [LICENSE](LICENSE) para más detalles.
+Este proyecto está bajo la licencia **MIT**. Consulta el archivo [LICENSE](../LICENSE) para más detalles.
