@@ -4,35 +4,48 @@ Conversor de unidades en el navegador que permite convertir valores entre más d
 
 ## Características
 
-- 14 categorías disponibles: consumo de combustible, energía, frecuencia, longitud, masa, presión, tamaño de datos, tasa de transmisión de datos, temperatura, tiempo, velocidad, volumen, ángulo plano y área.
-- Menú lateral para elegir la categoría y dos listas desplegables para la unidad de origen y la de destino.
-- Conversion automática mientras se escribe el valor, sin recargar la página.
+- 14 categorías: consumo de combustible, energía, frecuencia, longitud, masa, presión, tamaño de datos, tasa de transmisión de datos, temperatura, tiempo, velocidad, volumen, ángulo plano y área.
+- Menú lateral para elegir la categoría y listas desplegables para la unidad de origen y destino.
+- Conversión automática mientras se escribe, sin recargar la página.
 - Resultado formateado con dos decimales y separador de miles.
-- Datos de conversión declarativos: cada unidad define su factor sobre la unidad base de la categoría.
+- Datos declarativos: cada unidad define su factor sobre la unidad base de su categoría.
 
 ## Tecnologías
 
-- HTML5, CSS3 y JavaScript (ES6+), sin dependencias externas.
-- Tipografia Montserrat (Google Fonts).
+- HTML5 semántico.
+- CSS3 con custom properties, mobile-first y nomenclatura BEM.
+- JavaScript como módulos ES nativos, sin dependencias de ejecución.
+- Tipografía Montserrat de Google Fonts.
 
 ## Uso
 
 1. Clona el repositorio.
-2. Abre `index.html` en el navegador o usa un servidor estático local (por ejemplo, `python -m http.server`).
+2. Sirve la carpeta con un servidor estático local:
 
-No requiere instalación ni compilación.
+```bash
+python3 -m http.server 8000
+```
 
-## Estructura del proyecto
+3. Abre `http://localhost:8000/web-conversor-universal/`.
+
+Los módulos ES requieren abrir la página mediante HTTP, no con `file://`.
+
+## Estructura
 
 ```
 web-conversor-universal/
 ├── index.html
-├── css/                   # estilos de la interfaz
-├── js/                    # unidades y lógica de conversión
-└── assets/icons/                  # favicon y logo
+├── css/
+│   └── styles.css
+├── js/
+│   ├── app.js
+│   └── data.js
+└── assets/
+    └── icons/
+        ├── conversion.png
+        └── favicon.svg
 ```
 
 ## Licencia
 
-Este proyecto está bajo la licencia **MIT**.  
-Consulta el archivo [LICENSE](LICENSE) para más detalles.
+Este proyecto está bajo la licencia **MIT**. Consulta el archivo [LICENSE](../LICENSE) para más detalles.
