@@ -6,8 +6,8 @@ Aplicación web del tiempo (SPA) que muestra el clima actual y el pronóstico de
 
 - Búsqueda de ciudades mediante el geocodificador de Open-Meteo.
 - Uso de la ubicación del dispositivo (geolocalización).
-- Clima actual: condición, sensación termica, viento, humedad, radiación UV, presión y visibilidad.
-- Pronóstico horario (gráfica SVG) y pronóstico para los proximos días.
+- Clima actual: condición, sensación térmica, viento, humedad, radiación UV, presión y visibilidad.
+- Pronóstico horario (gráfica SVG) y pronóstico para los próximos días.
 - Ficha de la ubicación: coordenadas, elevación, zona horaria, hora local y población.
 - Conversor de unidades y persistencia de la última ubicación consultada.
 - Diseño responsive y accesible, con fondo animado y soporte de `prefers-reduced-motion`.
@@ -18,7 +18,7 @@ Aplicación web del tiempo (SPA) que muestra el clima actual y el pronóstico de
 | --------- | ---------------------------------------------------------------------- |
 | Framework | HTML / CSS / JavaScript vanilla                                        |
 | Build     | Ninguno (estático, sin bundler)                                        |
-| Estilo    | CSS con variables y tokens OKLCH                                       |
+| Estilo    | CSS con variables y tokens de color                                    |
 | Tests     | Vitest (raíz del repositorio)                                          |
 | Datos     | Datos meteorologicos de Open-Meteo (geocoding, forecast y air quality) |
 
@@ -50,4 +50,4 @@ web-clima/
 ## Licencia
 
 Este proyecto está bajo la licencia **MIT**.  
-Consulta el archivo [LICENSE](LICENSE) para más detalles.
+Consulta el archivo [LICENSE](../LICENSE) para más detalles.

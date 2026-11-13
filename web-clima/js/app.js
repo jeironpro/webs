@@ -119,6 +119,14 @@ const state = {
 };
 
 let elements = {};
+const markupParser = new DOMParser();
+
+function createFragment(markup) {
+    const fragment = document.createDocumentFragment();
+    const parsed = markupParser.parseFromString(markup, "text/html");
+    fragment.append(...parsed.body.childNodes);
+    return fragment;
+}
 
 function readStorage(key, initialValue) {
     try {
@@ -519,7 +527,7 @@ async function fetchAirQuality(place, { signal } = {}) {
     };
 }
 
-function loadWeather() {
+async function loadWeather() {
     const place = getActivePlace();
     const attempt = (state.weather.attempt += 1);
     state.weather.loading = true;
@@ -534,23 +542,22 @@ function loadWeather() {
 
     renderDynamic();
 
-    fetchWeather(place)
-        .then((result) => {
-            if (attempt !== state.weather.attempt) return;
-            state.weather.data = result;
-        })
-        .catch((error) => {
-            if (attempt !== state.weather.attempt) return;
-            state.weather.error = error;
-        })
-        .finally(() => {
-            if (attempt !== state.weather.attempt) return;
+    try {
+        const result = await fetchWeather(place);
+        if (attempt !== state.weather.attempt) return;
+        state.weather.data = result;
+    } catch (error) {
+        if (attempt !== state.weather.attempt) return;
+        state.weather.error = error;
+    } finally {
+        if (attempt === state.weather.attempt) {
             state.weather.loading = false;
             renderDynamic();
-        });
+        }
+    }
 }
 
-function loadAirQuality() {
+async function loadAirQuality() {
     const place = getActivePlace();
     const attempt = (state.airQuality.attempt += 1);
     state.airQuality.loading = true;
@@ -565,22 +572,21 @@ function loadAirQuality() {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), AIR_QUALITY_TIMEOUT_MS);
 
-    fetchAirQuality(place, { signal: controller.signal })
-        .then((result) => {
-            if (attempt !== state.airQuality.attempt) return;
-            state.airQuality.data = result;
-        })
-        .catch((error) => {
-            if (attempt !== state.airQuality.attempt) return;
-            if (error?.name === "AbortError") return;
-            state.airQuality.error = error;
-        })
-        .finally(() => {
-            clearTimeout(timer);
-            if (attempt !== state.airQuality.attempt) return;
+    try {
+        const result = await fetchAirQuality(place, { signal: controller.signal });
+        if (attempt !== state.airQuality.attempt) return;
+        state.airQuality.data = result;
+    } catch (error) {
+        if (attempt !== state.airQuality.attempt) return;
+        if (error?.name === "AbortError") return;
+        state.airQuality.error = error;
+    } finally {
+        clearTimeout(timer);
+        if (attempt === state.airQuality.attempt) {
             state.airQuality.loading = false;
             renderDynamic();
-        });
+        }
+    }
 }
 
 function loadAll() {
@@ -741,7 +747,7 @@ function statHTML({ label, value, unit = "", caption, loading = false }) {
         return `<div class="stat-card">
             <span class="stat-label">${escapeHtml(label)}</span>
             <div class="stat-valueLoading">
-                <span aria-hidden="true" class="skeleton-skeleton" style="width:4.5rem;height:2.5rem"></span>
+                <span aria-hidden="true" class="skeleton-skeleton stat-skeleton"></span>
             </div>
         </div>`;
     }
@@ -849,7 +855,9 @@ function hourlySectionHTML(hourly, timezone, unit, now) {
 
     if (points.length === 0) return "";
 
-    const temps = points.map((point) => point.temp).filter((value) => value != null);
+    const temps = points
+        .map((point) => point.temp)
+        .filter((value) => value !== null && value !== undefined);
     const minTemp = Math.min(...temps);
     const maxTemp = Math.max(...temps);
     const chartW = 300;
@@ -951,7 +959,10 @@ function locationHTML(place, meta, now) {
     const name = place?.name;
     const country = place?.country;
     const population = place?.population;
-    const offset = meta?.utcOffsetSeconds != null ? formatOffset(meta.utcOffsetSeconds) : null;
+    const offset =
+        meta?.utcOffsetSeconds !== null && meta?.utcOffsetSeconds !== undefined
+            ? formatOffset(meta.utcOffsetSeconds)
+            : null;
     const elevation = place?.elevation ?? meta?.elevation;
 
     const coordinates = `${
@@ -978,7 +989,7 @@ function locationHTML(place, meta, now) {
                 <dd class="location-value">${escapeHtml(coordinates)}</dd>
             </div>
             ${
-                elevation != null
+                elevation !== null && elevation !== undefined
                     ? `<div class="location-item">
                         <dt class="location-label">Elevación</dt>
                         <dd class="location-value">${formatNumber(elevation)} m</dd>
@@ -994,7 +1005,7 @@ function locationHTML(place, meta, now) {
                 <dd class="location-value">${escapeHtml(localDateTime ?? "")}</dd>
             </div>
             ${
-                population != null
+                population !== null && population !== undefined
                     ? `<div class="location-item">
                         <dt class="location-label">Población</dt>
                         <dd class="location-value">${formatNumber(population)}</dd>
@@ -1019,12 +1030,7 @@ function pageSectionsHTML(activePlace, weather, airQuality, unit, now) {
     }
 
     if (showHourly) {
-        sections += `<section>${sectionTitle(null, "Pronóstico por horas")}${hourlySectionHTML(
-            data.hourly,
-            data.meta.timezone,
-            unit,
-            now
-        )}</section>`;
+        sections += hourlySectionHTML(data.hourly, data.meta.timezone, unit, now);
     }
 
     if (showWeekly) {
@@ -1041,13 +1047,11 @@ function pageSectionsHTML(activePlace, weather, airQuality, unit, now) {
 function renderDynamic() {
     if (!elements.hero || !elements.sections) return;
     const activePlace = getActivePlace();
-    elements.hero.innerHTML = heroHTML(activePlace, state.weather, state.unit);
-    elements.sections.innerHTML = pageSectionsHTML(
-        activePlace,
-        state.weather,
-        state.airQuality,
-        state.unit,
-        state.now
+    elements.hero.replaceChildren(createFragment(heroHTML(activePlace, state.weather, state.unit)));
+    elements.sections.replaceChildren(
+        createFragment(
+            pageSectionsHTML(activePlace, state.weather, state.airQuality, state.unit, state.now)
+        )
     );
 }
 
@@ -1132,22 +1136,31 @@ function renderSearch() {
 
     if (hasOptions) {
         elements.listbox.hidden = false;
-        elements.listbox.innerHTML = search.places
-            .map(
-                (place, index) =>
-                    `<li id="search-option-${index}" role="option" aria-selected="${
-                        index === search.activeIndex
-                    }" class="search-option${
-                        index === search.activeIndex ? " search-optionActive" : ""
-                    }" data-index="${index}">
-                        <span class="search-optionName">${escapeHtml(place.name)}</span>
-                        <span class="search-optionMeta">${escapeHtml(place.country)}</span>
-                    </li>`
-            )
-            .join("");
+        elements.listbox.replaceChildren(
+            ...search.places.map((place, index) => {
+                const option = document.createElement("li");
+                const name = document.createElement("span");
+                const country = document.createElement("span");
+                const isActive = index === search.activeIndex;
+
+                option.id = `search-option-${index}`;
+                option.className = isActive ? "search-option search-optionActive" : "search-option";
+                option.dataset.index = String(index);
+                option.setAttribute("role", "option");
+                option.setAttribute("aria-selected", String(isActive));
+
+                name.className = "search-optionName";
+                name.textContent = place.name ?? "";
+                country.className = "search-optionMeta";
+                country.textContent = place.country ?? "";
+
+                option.append(name, country);
+                return option;
+            })
+        );
     } else {
         elements.listbox.hidden = true;
-        elements.listbox.innerHTML = "";
+        elements.listbox.replaceChildren();
     }
 }
 
@@ -1157,7 +1170,7 @@ function cancelSearchRequest() {
     state.search.controller = null;
 }
 
-function runSearch() {
+async function runSearch() {
     const query = state.search.query.trim();
 
     if (query.length < MIN_QUERY_LENGTH) {
@@ -1177,22 +1190,21 @@ function runSearch() {
     state.search.error = null;
     renderSearch();
 
-    searchPlaces(query, { signal: controller.signal })
-        .then((places) => {
-            if (request !== state.search.request) return;
-            state.search.places = places ?? [];
-        })
-        .catch((error) => {
-            if (request !== state.search.request) return;
-            if (error?.name === "AbortError") return;
-            state.search.places = [];
-            state.search.error = error;
-        })
-        .finally(() => {
-            if (request !== state.search.request) return;
+    try {
+        const places = await searchPlaces(query, { signal: controller.signal });
+        if (request !== state.search.request) return;
+        state.search.places = places ?? [];
+    } catch (error) {
+        if (request !== state.search.request) return;
+        if (error?.name === "AbortError") return;
+        state.search.places = [];
+        state.search.error = error;
+    } finally {
+        if (request === state.search.request) {
             state.search.loading = false;
             renderSearch();
-        });
+        }
+    }
 }
 
 function scheduleSearch() {
@@ -1435,7 +1447,7 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
   fragColor.y *= 0.3 + brightness * 0.6;
   fragColor.z *= 0.5 + brightness * 0.5;
 
-  if (saturation != 1.0) {
+  if (saturation < 0.9999 || saturation > 1.0001) {
     float gray = dot(fragColor.rgb, vec3(0.299, 0.587, 0.114));
     fragColor.rgb = mix(vec3(gray), fragColor.rgb, saturation);
   }
@@ -1454,7 +1466,6 @@ void main() {
         gl.shaderSource(shader, source);
         gl.compileShader(shader);
         if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-            console.warn("WebGL shader error:", gl.getShaderInfoLog(shader));
             gl.deleteShader(shader);
             return null;
         }
@@ -1470,7 +1481,6 @@ void main() {
     gl.attachShader(program, fragmentShader);
     gl.linkProgram(program);
     if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
-        console.warn("WebGL program error:", gl.getProgramInfoLog(program));
         return;
     }
     gl.useProgram(program);
@@ -1568,8 +1578,8 @@ void main() {
         try {
             draw(time);
             animationId = requestAnimationFrame(loop);
-        } catch (error) {
-            console.warn("WebGL rendering error:", error);
+        } catch {
+            animationId = null;
         }
     };
 
