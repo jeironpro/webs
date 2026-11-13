@@ -214,156 +214,165 @@ const countries = [
         ],
     },
 ];
-
-// Clave de localStorage. Se conserva el valor original para no perder
-// los países ya marcados por quienes visitaron la web.
 const STORAGE_KEY = "paisesVisitados";
+const catalog = countries[0];
+const countriesContainer = document.getElementById("countries-container");
+const searchInput = document.getElementById("search");
 
 const getVisited = () => {
-    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+    try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+    } catch {
+        return [];
+    }
 };
 
 const saveVisited = (visited) => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(visited));
 };
 
-countries.forEach((data) => {
-    const countriesContainer = document.getElementById("countries-container");
-    const searchInput = document.getElementById("search");
+const normalize = (value) =>
+    value
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase();
 
-    const showCountriesByContinent = (data) => {
-        countriesContainer.replaceChildren();
+const createTitle = (text) => {
+    const title = document.createElement("h2");
+    title.className = "countries__title";
+    title.textContent = text;
+    return title;
+};
 
-        const visitedCountries = [];
+const createCountryCard = (country) => {
+    const card = document.createElement("article");
+    card.className = "country";
 
-        for (const continent in data) {
-            for (const country of data[continent]) {
-                if (country.visited) {
-                    visitedCountries.push({ ...country, continent });
-                }
+    const image = document.createElement("img");
+    image.src = `assets/images/${country.iso.toLowerCase()}.png`;
+    image.alt = `Bandera de ${country.name}`;
+    image.className = "country__flag";
+    image.loading = "lazy";
+
+    const name = document.createElement("p");
+    name.className = "country__name";
+    name.textContent = country.name;
+
+    card.appendChild(image);
+    card.appendChild(name);
+
+    if (country.visited) {
+        const check = document.createElement("span");
+        check.className = "country__check";
+        check.textContent = "✓";
+        check.setAttribute("aria-hidden", "true");
+        card.appendChild(check);
+    } else {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "country__button";
+        button.textContent = "Visitado";
+        button.dataset.iso = country.iso.toLowerCase();
+        card.appendChild(button);
+    }
+
+    return card;
+};
+
+const showCountries = (data) => {
+    countriesContainer.replaceChildren();
+
+    const visited = new Map();
+    Object.values(data).forEach((list) => {
+        list.forEach((country) => {
+            if (country.visited) {
+                visited.set(country.iso, country);
             }
-        }
+        });
+    });
 
-        if (visitedCountries.length > 0) {
-            const visitedTitle = document.createElement("h2");
-            visitedTitle.textContent = "Visitados";
-            countriesContainer.appendChild(visitedTitle);
-
-            visitedCountries.forEach((country) => {
-                const div = document.createElement("div");
-                const p = document.createElement("p");
-                p.textContent = country.name;
-                div.appendChild(p);
-
-                const icon = document.createElement("i");
-                icon.className = "fa-solid fa-check icono";
-                div.appendChild(icon);
-
-                const img = document.createElement("img");
-                img.src = `assets/images/${country.iso.toLowerCase()}.png`;
-                img.alt = `Bandera de ${country.name}`;
-                img.classList.add("flag-img");
-                div.appendChild(img);
-
-                div.classList.add("country");
-                countriesContainer.appendChild(div);
-            });
-        }
-
-        for (const continent in data) {
-            let countries = data[continent].filter((p) => !p.origin && !p.visited);
-
-            if (countries.length === 0) continue;
-
-            const h2 = document.createElement("h2");
-            h2.textContent = continent;
-            countriesContainer.appendChild(h2);
-
-            countries.forEach((country) => {
-                const div = document.createElement("div");
-                const p = document.createElement("p");
-
-                p.textContent = country.name;
-                div.appendChild(p);
-
-                const button = document.createElement("button");
-                button.textContent = "Visitado";
-                button.classList.add("button");
-                div.appendChild(button);
-
-                const img = document.createElement("img");
-                img.src = `assets/images/${country.iso.toLowerCase()}.png`;
-                img.alt = `Bandera de ${country.name}`;
-                img.classList.add("flag-img");
-                div.appendChild(img);
-
-                div.classList.add("country");
-                countriesContainer.appendChild(div);
-            });
-        }
-    };
-
-    const savedVisited = getVisited();
-    for (const continent in data) {
-        data[continent].forEach((country) => {
-            if (savedVisited.includes(country.iso.toLowerCase())) {
-                country.visited = true;
-            }
+    if (visited.size > 0) {
+        countriesContainer.appendChild(createTitle("Visitados"));
+        visited.forEach((country) => {
+            countriesContainer.appendChild(createCountryCard(country));
         });
     }
 
-    showCountriesByContinent(data);
-
-    searchInput.addEventListener("input", function () {
-        const search = searchInput.value.trim().toLowerCase();
-
-        if (search === "") {
-            showCountriesByContinent(data);
+    Object.entries(data).forEach(([continent, list]) => {
+        const pending = list.filter((country) => !country.visited);
+        if (pending.length === 0) {
             return;
         }
 
-        const foundContinent = Object.keys(data).find((continent) =>
-            continent.toLowerCase().startsWith(search)
-        );
-
-        if (foundContinent) {
-            const result = {};
-            result[foundContinent] = data[foundContinent];
-            showCountriesByContinent(result);
-        } else {
-            const filteredCountries = Object.values(data)
-                .flat()
-                .filter((country) => country.name.toLowerCase().startsWith(search));
-
-            showCountriesByContinent({ "": filteredCountries });
+        if (continent) {
+            countriesContainer.appendChild(createTitle(continent));
         }
+
+        pending.forEach((country) => {
+            countriesContainer.appendChild(createCountryCard(country));
+        });
+    });
+};
+
+const markVisited = (iso) => {
+    Object.values(catalog)
+        .flat()
+        .forEach((country) => {
+            if (country.iso.toLowerCase() === iso) {
+                country.visited = true;
+            }
+        });
+};
+
+const savedVisited = getVisited();
+Object.values(catalog)
+    .flat()
+    .forEach((country) => {
+        country.visited = savedVisited.includes(country.iso.toLowerCase());
     });
 
-    countriesContainer.addEventListener("click", function (event) {
-        const target = event.target;
+showCountries(catalog);
 
-        if (target && target.classList.contains("button")) {
-            const countryName = target.parentElement.querySelector("p").textContent;
-            let countryIso = null;
+searchInput.addEventListener("input", () => {
+    const search = normalize(searchInput.value.trim());
 
-            for (const continent in data) {
-                const country = data[continent].find((p) => p.name === countryName);
-                if (country) {
-                    country.visited = true;
-                    countryIso = country.iso.toLowerCase();
-                    break;
-                }
-            }
+    if (search === "") {
+        showCountries(catalog);
+        return;
+    }
 
-            if (countryIso) {
-                const visited = getVisited();
-                if (!visited.includes(countryIso)) {
-                    visited.push(countryIso);
-                    saveVisited(visited);
-                }
-            }
+    const continent = Object.keys(catalog).find((name) => normalize(name).startsWith(search));
 
-            showCountriesByContinent(data);
-        }
-    });
+    if (continent) {
+        showCountries({ [continent]: catalog[continent] });
+        return;
+    }
+
+    const filtered = Object.values(catalog)
+        .flat()
+        .filter((country) => normalize(country.name).startsWith(search));
+
+    showCountries({ "": filtered });
+});
+
+countriesContainer.addEventListener("click", (event) => {
+    const button = event.target.closest(".country__button");
+    if (!button) {
+        return;
+    }
+
+    const iso = button.dataset.iso;
+    markVisited(iso);
+
+    const visited = getVisited();
+    if (!visited.includes(iso)) {
+        visited.push(iso);
+        saveVisited(visited);
+    }
+
+    showCountries(catalog);
+});
+
+document.querySelectorAll("[data-year]").forEach((node) => {
+    node.textContent = new Date().getFullYear();
 });

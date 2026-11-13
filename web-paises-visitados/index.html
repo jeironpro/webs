@@ -3,55 +3,55 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Paises visitados</title>
-        <link rel="icon" type="image/png" sizes="32x32" href="assets/images/paises.png" />
+        <meta
+            name="description"
+            content="Registro personal de países visitados, organizados por continente y con buscador."
+        />
+        <title>Países visitados</title>
+        <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&amp;display=swap"
             rel="stylesheet"
         />
         <link rel="stylesheet" href="css/styles.css" />
-        <link rel="stylesheet" href="css/animacion.css" />
+        <link rel="stylesheet" href="css/animation.css" />
     </head>
     <body>
-        <div id="plane-wrapper">
-            <svg id="plane" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                <polygon
-                    points="32,2 4,62 32,50 60,62"
-                    fill="white"
-                    stroke="#444"
-                    stroke-width="2"
-                />
-                <line x1="32" y1="2" x2="32" y2="50" stroke="#555" stroke-width="2" />
-                <line x1="32" y1="50" x2="20" y2="35" stroke="#aaa" stroke-width="1" />
-                <line x1="32" y1="50" x2="44" y2="35" stroke="#aaa" stroke-width="1" />
+        <div id="plane-wrapper" class="plane-wrapper" aria-hidden="true">
+            <svg id="plane" class="plane" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                <polygon class="plane__body" points="32,2 4,62 32,50 60,62" />
+                <line class="plane__center" x1="32" y1="2" x2="32" y2="50" />
+                <line class="plane__detail" x1="32" y1="50" x2="20" y2="35" />
+                <line class="plane__detail" x1="32" y1="50" x2="44" y2="35" />
             </svg>
         </div>
-        <header>
-            <h1>Paises visitados</h1>
+
+        <header class="site-header">
+            <h1 class="site-header__title">Países visitados</h1>
         </header>
-        <main>
-            <div class="filter-container">
+
+        <main class="site-main">
+            <div class="search">
                 <input
+                    id="search"
+                    class="search__input"
                     type="search"
                     name="search"
-                    id="search"
-                    placeholder="buscar país"
+                    placeholder="Buscar país o continente"
                     autocomplete="off"
-                    aria-label="Buscar país"
+                    aria-label="Buscar país o continente"
                 />
             </div>
-            <div id="countries-container"></div>
+            <div id="countries-container" class="countries"></div>
         </main>
-        <footer>
-            <p>Todos los derechos reservados - JeironPro <span data-year>2025</span></p>
+
+        <footer class="site-footer">
+            <p>Todos los derechos reservados - JeironPro <span data-year>2026</span></p>
         </footer>
-        <script src="js/script.js"></script>
-        <script src="js/animacion.js"></script>
-        <script src="https://kit.fontawesome.com/25da21ab57.js" crossorigin="anonymous"></script>
-        <script>
-            document.querySelectorAll("[data-year]").forEach((node) => {
-                node.textContent = new Date().getFullYear();
-            });
-        </script>
+
+        <script type="module" src="js/script.js"></script>
+        <script type="module" src="js/animation.js"></script>
     </body>
 </html>
