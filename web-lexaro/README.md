@@ -1,38 +1,47 @@
-# web-lexaro
+# Lexaro
 
 Tablero de tareas (kanban) en el navegador con columnas por estado, prioridades, arrastrar y soltar y persistencia local.
 
 ## Características
 
-- Tablero kanban con las columnas To Do, En Progreso, En Revision y Completado.
-- Creación de tareas con título y prioridad (alta, media o baja).
+- Tablero kanban con las columnas To Do, En Progreso, En Revisión y Completado.
+- Creación de tareas con título, descripción, prioridad, etiquetas y fechas.
 - Arrastrar y soltar para mover las tareas entre columnas.
 - Filtros por prioridad (Todas, Alta, Media y Baja).
 - Edición y eliminación de tareas con confirmación.
 - Persistencia de las tareas en `localStorage` para conservarlas entre sesiones.
+- Notificaciones del navegador para tareas próximas a vencer.
 
-## Tecnologías
+## Stack
 
-- HTML5, CSS3 y JavaScript (ES6+), sin dependencias externas.
-- API localStorage para la persistencia.
+- HTML5 semántico
+- CSS3 (tokens, BEM, Grid y Flexbox)
+- JavaScript ES6+ (módulo ES)
+- Google Fonts (Inter)
+- Font Awesome
+- APIs `localStorage` y Notification
+- ESLint + Prettier
 
-## Uso
-
-1. Clona el repositorio.
-2. Abre `index.html` en el navegador o sirve la carpeta con un servidor estático local.
-3. Crea tareas, asignales prioridad y arrastralas entre columnas segun su estado.
-
-## Estructura del proyecto
+## Estructura
 
 ```
 web-lexaro/
-├── index.html
-├── css/                   # estilos del tablero
-├── js/                    # lógica del kanban
-└── LICENSE
+  index.html
+  assets/
+    icons/
+      favicon.svg
+  css/
+    tokens.css
+    styles.css
+  js/
+    app.js
+  README.md
 ```
+
+## Uso
+
+Sirve la carpeta con un servidor HTTP, por ejemplo `python3 -m http.server 8000`, y abre <http://localhost:8000/web-lexaro/>. Crea tareas, asígnales prioridad y arrástralas entre columnas según su estado.
 
 ## Licencia
 
-Este proyecto está bajo la licencia **MIT**.  
-Consulta el archivo [LICENSE](LICENSE) para más detalles.
+Consulta el archivo [LICENSE](../LICENSE) para más detalles.

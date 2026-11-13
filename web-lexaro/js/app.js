@@ -1,6 +1,6 @@
-// Clase de administrador de notificaciones
 class NotificationManager {
-    constructor() {
+    constructor(board) {
+        this.board = board;
         this.notificationPermission = "default";
         this.verificationInterval = null;
         this.notifiedTasks = new Set();
@@ -9,7 +9,6 @@ class NotificationManager {
     }
 
     async init() {
-        // Solicitar permiso de notificaciones
         if ("Notification" in window) {
             await this.requestPermission();
             this.startPeriodicVerification();
@@ -34,7 +33,6 @@ class NotificationManager {
     }
 
     startPeriodicVerification() {
-        // Verificar cada 30 minutos
         this.verificationInterval = setInterval(
             () => {
                 this.checkUpcomingTasks();
@@ -42,7 +40,6 @@ class NotificationManager {
             30 * 60 * 1000
         );
 
-        // Verificación inicial
         this.checkUpcomingTasks();
     }
 
@@ -53,15 +50,13 @@ class NotificationManager {
         const tomorrow = new Date(ahora.getTime() + 24 * 60 * 60 * 1000);
         const dayAfterTomorrow = new Date(ahora.getTime() + 48 * 60 * 60 * 1000);
 
-        // Obtener tareas del tablero
-        if (window.kanbanBoard) {
-            const tasks = window.kanbanBoard.tasks;
+        if (this.board) {
+            const tasks = this.board.tasks;
 
             tasks.forEach((task) => {
                 if (task.endDate && !this.notifiedTasks.has(task.id)) {
                     const endDate = new Date(task.endDate);
 
-                    // Si la tarea vence mañana y no se ha notificado
                     if (endDate >= tomorrow && endDate < dayAfterTomorrow) {
                         this.scheduleNotification(task);
                     }
@@ -74,8 +69,8 @@ class NotificationManager {
         const endDate = new Date(task.endDate);
         const ahora = new Date();
         const timeUntilTomorrow = new Date(endDate);
-        timeUntilTomorrow.setDate(timeUntilTomorrow.getDate() - 1); // Un día antes
-        timeUntilTomorrow.setHours(9, 0, 0, 0); // A las 9 AM
+        timeUntilTomorrow.setDate(timeUntilTomorrow.getDate() - 1);
+        timeUntilTomorrow.setHours(9, 0, 0, 0);
 
         const notificationDelay = timeUntilTomorrow.getTime() - ahora.getTime();
 
@@ -85,7 +80,6 @@ class NotificationManager {
                 this.notifiedTasks.add(task.id);
             }, notificationDelay);
         } else if (endDate > ahora && endDate < new Date(ahora.getTime() + 24 * 60 * 60 * 1000)) {
-            // Si ya es mañana pero antes de las 9 AM
             this.sendDueNotification(task);
             this.notifiedTasks.add(task.id);
         }
@@ -104,19 +98,18 @@ class NotificationManager {
             requireInteraction: true,
         });
 
-        // Al hacer clic en la notificación
         notification.onclick = () => {
             window.focus();
             notification.close();
-            // Buscar y resaltar la tarea
+
             const taskCard = document.querySelector(`[data-id="${task.id}"]`);
             if (taskCard) {
                 taskCard.scrollIntoView({ behavior: "smooth", block: "center" });
-                taskCard.style.animation = "pulse 2s ease-in-out";
+                taskCard.classList.add("is-highlighted");
+                setTimeout(() => taskCard.classList.remove("is-highlighted"), 2000);
             }
         };
 
-        // Auto-cerrar después de 10 segundos
         setTimeout(() => {
             notification.close();
         }, 10000);
@@ -164,8 +157,6 @@ class NotificationManager {
     }
 }
 
-// Traduce las tareas guardadas con las claves y valores antiguos en español
-// para que el tablero siga mostrando la información previa tras la migración.
 const TASK_FIELD_MAP = {
     titulo: "title",
     descripcion: "description",
@@ -208,7 +199,6 @@ function migrateTask(task) {
     return migrated;
 }
 
-// Tablero Kanban JavaScript con almacenamiento local
 class KanbanBoard {
     constructor() {
         this.tasks = [];
@@ -216,6 +206,7 @@ class KanbanBoard {
         this.draggedElement = null;
         this.taskIdCounter = 1;
         this.confirmationCallback = null;
+        this.notificationManager = null;
 
         this.init();
     }
@@ -227,7 +218,6 @@ class KanbanBoard {
         this.updateTaskCounters();
     }
 
-    // Métodos de almacenamiento local
     loadTasksFromStorage() {
         const storedTasks = localStorage.getItem("tareasKanban");
         const storedCounter = localStorage.getItem("contadorTareasKanban");
@@ -235,8 +225,7 @@ class KanbanBoard {
         if (storedTasks) {
             try {
                 this.tasks = JSON.parse(storedTasks).map((task) => migrateTask(task));
-            } catch (error) {
-                console.error("Error al cargar tareas desde almacenamiento:", error);
+            } catch {
                 this.tasks = this.getDefaultTasks();
                 this.saveTasksToStorage();
             }
@@ -259,8 +248,7 @@ class KanbanBoard {
         try {
             localStorage.setItem("tareasKanban", JSON.stringify(this.tasks));
             localStorage.setItem("contadorTareasKanban", this.taskIdCounter.toString());
-        } catch (error) {
-            console.error("Error al guardar tareas en almacenamiento:", error);
+        } catch {
             this.showNotification("Error al guardar las tareas");
         }
     }
@@ -270,24 +258,20 @@ class KanbanBoard {
     }
 
     renderAllTasks() {
-        // Borrar todas las tareas existentes del DOM
-        document.querySelectorAll(".task-card").forEach((card) => card.remove());
+        document.querySelectorAll(".task").forEach((card) => card.remove());
 
-        // Representar tareas en sus respectivas columnas
         this.tasks.forEach((task) => {
             this.renderTask(task);
         });
     }
 
     setupEventListeners() {
-        // Controles modales
         const addTaskButton = document.getElementById("add-task-button");
         const taskModal = document.getElementById("task-modal");
         const closeModal = document.getElementById("close-modal");
         const cancelButton = document.getElementById("cancel-button");
         const taskForm = document.querySelector(".task-form");
 
-        // Controles modales de confirmación
         const confirmationModal = document.getElementById("confirmation-modal");
         const closeConfirmationModal = document.getElementById("close-confirmation-modal");
         const cancelConfirmationButton = document.getElementById("cancel-confirmation-button");
@@ -303,7 +287,6 @@ class KanbanBoard {
             }
         });
 
-        // Escuchadores de eventos modales de confirmación
         closeConfirmationModal.addEventListener("click", () => this.closeConfirmationModal());
         cancelConfirmationButton.addEventListener("click", () => this.closeConfirmationModal());
 
@@ -330,22 +313,22 @@ class KanbanBoard {
             }
         });
 
-        // Botones de filtro
-        const filterButtons = document.querySelectorAll(".filter-button");
-        filterButtons.forEach((button) => {
-            button.addEventListener("click", () => {
-                filterButtons.forEach((b) => b.classList.remove("active"));
-                button.classList.add("active");
-                this.currentFilter = button.dataset.filter;
+        const filterButtons = document.querySelectorAll(".filter");
+        filterButtons.forEach((filterButton) => {
+            filterButton.addEventListener("click", () => {
+                filterButtons.forEach((item) => item.classList.remove("is-active"));
+                filterButton.classList.add("is-active");
+                filterButtons.forEach((item) => {
+                    item.setAttribute("aria-pressed", String(item === filterButton));
+                });
+                this.currentFilter = filterButton.dataset.filter;
                 this.applyFilter();
             });
         });
 
-        // Arrastrar y soltar
         this.setupDragAndDrop();
 
-        // Menús de columnas
-        const columnMenus = document.querySelectorAll(".column-menu");
+        const columnMenus = document.querySelectorAll(".column__menu");
         columnMenus.forEach((menu) => {
             menu.addEventListener("click", (e) => {
                 e.stopPropagation();
@@ -353,15 +336,14 @@ class KanbanBoard {
             });
         });
 
-        // Interacciones de la tarjeta de tareas
         document.addEventListener("click", (e) => {
-            if (e.target.closest(".task-card")) {
-                const taskCard = e.target.closest(".task-card");
-                // No abre el modo de edición si hace clic en el botón Eliminar, en el asignado o en las etiquetas
+            if (e.target.closest(".task")) {
+                const taskCard = e.target.closest(".task");
+
                 if (
-                    !e.target.closest(".task-assignee") &&
-                    !e.target.closest(".task-tags") &&
-                    !e.target.closest(".task-delete-button")
+                    !e.target.closest(".task__assignee") &&
+                    !e.target.closest(".task__tags") &&
+                    !e.target.closest(".task__delete")
                 ) {
                     this.editTask(taskCard);
                 }
@@ -373,24 +355,24 @@ class KanbanBoard {
         const columns = document.querySelectorAll(".column");
 
         columns.forEach((column) => {
-            const columnContent = column.querySelector(".column-content");
+            const columnContent = column.querySelector(".column__content");
 
             columnContent.addEventListener("dragover", (e) => {
                 e.preventDefault();
                 e.dataTransfer.dropEffect = "move";
 
                 if (this.draggedElement && !columnContent.contains(this.draggedElement)) {
-                    column.classList.add("drag-over");
+                    column.classList.add("is-drag-over");
                 }
             });
 
             columnContent.addEventListener("dragleave", () => {
-                column.classList.remove("drag-over");
+                column.classList.remove("is-drag-over");
             });
 
             columnContent.addEventListener("drop", (e) => {
                 e.preventDefault();
-                column.classList.remove("drag-over");
+                column.classList.remove("is-drag-over");
 
                 if (this.draggedElement) {
                     const newStatus = column.dataset.status;
@@ -401,12 +383,11 @@ class KanbanBoard {
     }
 
     moveTask(taskCard, newStatus) {
-        const newColumn = document.querySelector(`[data-status="${newStatus}"] .column-content`);
+        const newColumn = document.querySelector(`[data-status="${newStatus}"] .column__content`);
 
         if (newColumn && !newColumn.contains(taskCard)) {
             newColumn.appendChild(taskCard);
 
-            // Actualizar datos de la tarea
             const taskId = taskCard.dataset.id;
             const task = this.tasks.find((t) => t.id === taskId);
             if (task) {
@@ -435,7 +416,6 @@ class KanbanBoard {
             document.getElementById("task-end-date").value = taskData.endDate || "";
             form.dataset.editId = taskData.id;
 
-            // Cambiar texto del botón a "Actualizar Tarea"
             const submitButton = form.querySelector('button[type="submit"]');
             submitButton.textContent = "Actualizar Tarea";
         } else {
@@ -443,17 +423,16 @@ class KanbanBoard {
             form.reset();
             delete form.dataset.editId;
 
-            // Cambiar texto del botón a "Crear Tarea"
             const submitButton = form.querySelector('button[type="submit"]');
             submitButton.textContent = "Crear Tarea";
         }
 
-        taskModal.classList.add("active");
+        taskModal.classList.add("is-active");
     }
 
     closeModal() {
         const taskModal = document.getElementById("task-modal");
-        taskModal.classList.remove("active");
+        taskModal.classList.remove("is-active");
     }
 
     createTask() {
@@ -488,9 +467,8 @@ class KanbanBoard {
         this.closeModal();
         this.showNotification("Tarea creada exitosamente");
 
-        // Verificar si se necesita programar notificación
-        if (window.notificationManager && taskData.endDate) {
-            window.notificationManager.checkUpcomingTasks();
+        if (this.notificationManager && taskData.endDate) {
+            this.notificationManager.checkUpcomingTasks();
         }
 
         this.taskIdCounter++;
@@ -526,9 +504,8 @@ class KanbanBoard {
         this.closeModal();
         this.showNotification("Tarea actualizada exitosamente");
 
-        // Verificar si se necesita programar notificación
-        if (window.notificationManager && endDate) {
-            window.notificationManager.checkUpcomingTasks();
+        if (this.notificationManager && endDate) {
+            this.notificationManager.checkUpcomingTasks();
         }
     }
 
@@ -563,23 +540,18 @@ class KanbanBoard {
     }
 
     reorganizeTaskIds() {
-        // Ordenar tareas por su ID numérico actual
         this.tasks.sort((a, b) => parseInt(a.id) - parseInt(b.id));
 
-        // Reasignar IDs continuos
         this.tasks.forEach((task, index) => {
             const newId = (index + 1).toString();
             const newTaskId = `PROJ-${String(index + 1).padStart(3, "0")}`;
 
-            // Actualizar la tarea con los nuevos IDs
             task.id = newId;
             task.taskId = newTaskId;
         });
 
-        // Actualizar el contador al siguiente ID disponible
         this.taskIdCounter = this.tasks.length + 1;
 
-        // Guardar cambios en localStorage
         this.saveTasksToStorage();
     }
 
@@ -599,76 +571,68 @@ class KanbanBoard {
         const confirmButtonText = document.getElementById("confirm-button-text");
         const confirmButton = document.getElementById("confirm-confirmation-button");
 
-        // Establecer contenido
         confirmationTitle.textContent = title;
         confirmationMessage.textContent = message;
         confirmationDescription.textContent = description;
         confirmButtonText.textContent = buttonText;
 
-        // Establecer el estilo de icono y botón
-        confirmationIcon.className = `confirmation-icon ${type}`;
-        confirmButton.className = `button ${type === "danger" ? "button-danger" : "button-primary"}`;
+        confirmationIcon.className = `confirm__icon confirm__icon--${type}`;
+        confirmButton.className = `btn ${type === "danger" ? "btn--danger" : "btn--primary"}`;
 
-        // Establecer devolución de llamada
         this.confirmationCallback = callback;
 
-        // Mostrar modal
-        confirmationModal.classList.add("active");
+        confirmationModal.classList.add("is-active");
     }
 
     closeConfirmationModal() {
         const confirmationModal = document.getElementById("confirmation-modal");
-        confirmationModal.classList.remove("active");
+        confirmationModal.classList.remove("is-active");
         this.confirmationCallback = null;
     }
 
     renderTask(taskData) {
         const columnContent = document.querySelector(
-            `[data-status="${taskData.status}"] .column-content`
+            `[data-status="${taskData.status}"] .column__content`
         );
 
-        // Una tarea con un estado que no corresponde a ninguna columna no debe
-        // romper el renderizado del resto del tablero.
         if (!columnContent) return;
 
         const taskCard = document.createElement("div");
-        taskCard.className = "task-card";
+        taskCard.className = "task";
         taskCard.draggable = true;
         taskCard.dataset.id = taskData.id;
         taskCard.dataset.priority = taskData.priority;
 
-        const priorityClass = `priority-${taskData.priority}`;
+        const priorityClass = `task__priority--${taskData.priority}`;
         const tagElements = taskData.tags.map((tag) => {
             const tagClass = this.getTagClass(tag);
             const tagElement = document.createElement("span");
-            tagElement.className = `tag tag-${tagClass}`;
+            tagElement.className = `tag tag--${tagClass}`;
             tagElement.textContent = tag;
             return tagElement;
         });
 
-        // Crear estructura de la tarjeta usando createElement
         const taskHeader = document.createElement("div");
-        taskHeader.className = "task-header";
+        taskHeader.className = "task__header";
 
         const taskIdSpan = document.createElement("span");
-        taskIdSpan.className = "task-id";
+        taskIdSpan.className = "task__id";
         taskIdSpan.textContent = taskData.taskId;
 
         const taskPriority = document.createElement("div");
-        taskPriority.className = `task-priority ${priorityClass}`;
+        taskPriority.className = `task__priority ${priorityClass}`;
 
         taskHeader.appendChild(taskIdSpan);
         taskHeader.appendChild(taskPriority);
 
         const taskTitle = document.createElement("h4");
-        taskTitle.className = "task-title";
+        taskTitle.className = "task__title";
         taskTitle.textContent = taskData.title;
 
         const taskDescription = document.createElement("p");
-        taskDescription.className = "task-description";
+        taskDescription.className = "task__description";
         taskDescription.textContent = taskData.description;
 
-        // Añadir fechas si existen
         const formattedStartDate = taskData.startDate ? this.formatDate(taskData.startDate) : "";
         const formattedEndDate = taskData.endDate ? this.formatDate(taskData.endDate) : "";
 
@@ -678,11 +642,11 @@ class KanbanBoard {
             const dueIcon = dueStatus.icon;
 
             const taskDates = document.createElement("div");
-            taskDates.className = `task-dates ${dueClass}`;
+            taskDates.className = `task__dates ${dueClass}`;
 
             if (formattedStartDate) {
                 const startDateItem = document.createElement("div");
-                startDateItem.className = "date-item";
+                startDateItem.className = "task__date";
 
                 const startIcon = document.createElement("i");
                 startIcon.className = "fas fa-calendar-alt";
@@ -694,7 +658,7 @@ class KanbanBoard {
 
             if (formattedEndDate) {
                 const endDateItem = document.createElement("div");
-                endDateItem.className = `date-item end-date ${dueClass}`;
+                endDateItem.className = `task__date task__date--end ${dueClass}`;
 
                 const endIcon = document.createElement("i");
                 endIcon.className = `fas ${dueIcon}`;
@@ -707,35 +671,32 @@ class KanbanBoard {
             taskCard.appendChild(taskDates);
         }
 
-        // Añadir títulos y descripción
         taskCard.appendChild(taskHeader);
         taskCard.appendChild(taskTitle);
         taskCard.appendChild(taskDescription);
 
-        // Añadir pie con etiquetas y acciones
         const taskFooter = document.createElement("div");
-        taskFooter.className = "task-footer";
+        taskFooter.className = "task__footer";
 
         const taskTags = document.createElement("div");
-        taskTags.className = "task-tags";
+        taskTags.className = "task__tags";
 
-        // Añadir etiquetas
         tagElements.forEach((tagElement) => {
             taskTags.appendChild(tagElement);
         });
 
         const taskActions = document.createElement("div");
-        taskActions.className = "task-actions";
+        taskActions.className = "task__actions";
 
         const taskAssignee = document.createElement("div");
-        taskAssignee.className = "task-assignee";
+        taskAssignee.className = "task__assignee";
 
         const userIcon = document.createElement("i");
         userIcon.className = "fas fa-user";
         taskAssignee.appendChild(userIcon);
 
         const deleteButton = document.createElement("button");
-        deleteButton.className = "task-delete-button";
+        deleteButton.className = "task__delete";
         deleteButton.onclick = () => this.deleteTask(taskData.id);
 
         const deleteIcon = document.createElement("i");
@@ -753,15 +714,14 @@ class KanbanBoard {
 
         columnContent.appendChild(taskCard);
 
-        // Reconfigurar la función de arrastrar y soltar para la nueva tarjeta
         taskCard.addEventListener("dragstart", (e) => {
             this.draggedElement = taskCard;
-            taskCard.classList.add("dragging");
+            taskCard.classList.add("is-dragging");
             e.dataTransfer.effectAllowed = "move";
         });
 
         taskCard.addEventListener("dragend", () => {
-            taskCard.classList.remove("dragging");
+            taskCard.classList.remove("is-dragging");
             this.draggedElement = null;
         });
     }
@@ -789,28 +749,23 @@ class KanbanBoard {
         const tomorrow = new Date(ahora.getTime() + 24 * 60 * 60 * 1000);
         const threeDays = new Date(ahora.getTime() + 3 * 24 * 60 * 60 * 1000);
 
-        // Vencida
         if (endDate < ahora) {
-            return { className: "overdue", icon: "fa-exclamation-circle" };
+            return { className: "is-overdue", icon: "fa-exclamation-circle" };
         }
 
-        // Vence hoy
         if (endDate.toDateString() === ahora.toDateString()) {
-            return { className: "due-today", icon: "fa-clock" };
+            return { className: "is-due-today", icon: "fa-clock" };
         }
 
-        // Vence mañana
         if (endDate <= tomorrow) {
-            return { className: "due-tomorrow", icon: "fa-exclamation-triangle" };
+            return { className: "is-due-tomorrow", icon: "fa-exclamation-triangle" };
         }
 
-        // Vence en menos de 3 días
         if (endDate <= threeDays) {
-            return { className: "due-soon", icon: "fa-bell" };
+            return { className: "is-due-soon", icon: "fa-bell" };
         }
 
-        // Normal
-        return { className: "normal", icon: "fa-check-circle" };
+        return { className: "", icon: "fa-check-circle" };
     }
 
     getTagClass(tag) {
@@ -840,58 +795,45 @@ class KanbanBoard {
         const columns = document.querySelectorAll(".column");
 
         columns.forEach((column) => {
-            const taskCount = column.querySelectorAll(".task-card").length;
-            const counterElement = column.querySelector(".task-counter");
+            const taskCount = column.querySelectorAll(".task").length;
+            const counterElement = column.querySelector(".column__counter");
             counterElement.textContent = taskCount;
         });
 
-        // Actualizar las estadísticas del tablero
-        const totalTasks = document.querySelectorAll(".task-card").length;
-        const boardStats = document.querySelector(".board-stats");
+        const totalTasks = document.querySelectorAll(".task").length;
+        const boardStats = document.querySelector(".board__stats");
         boardStats.textContent = `${totalTasks} tareas`;
     }
 
     applyFilter() {
-        const taskCards = document.querySelectorAll(".task-card");
+        const taskCards = document.querySelectorAll(".task");
 
         taskCards.forEach((card) => {
             const priority = card.dataset.priority;
 
-            if (this.currentFilter === "all") {
-                card.style.display = "block";
-            } else if (this.currentFilter === "high" && priority === "high") {
-                card.style.display = "block";
-            } else if (this.currentFilter === "medium" && priority === "medium") {
-                card.style.display = "block";
-            } else if (this.currentFilter === "low" && priority === "low") {
-                card.style.display = "block";
-            } else {
-                card.style.display = "none";
-            }
+            const matchesPriority = this.currentFilter === "all" || priority === this.currentFilter;
+            card.hidden = !matchesPriority;
         });
     }
 
     showColumnMenu(menuButton) {
         const column = menuButton.closest(".column");
-        const columnTitle = column.querySelector(".column-title h3").textContent;
+        const columnTitle = column.querySelector(".column__title h3").textContent;
 
-        // Crear opciones modales
         const modalOptions = document.createElement("div");
-        modalOptions.className = "modal active";
+        modalOptions.className = "modal is-active";
 
-        // Crear contenido modal usando createElement
         const modalContent = document.createElement("div");
-        modalContent.className = "modal-content options-modal";
+        modalContent.className = "modal__content modal--options";
 
-        // Encabezado modal
         const modalHeader = document.createElement("div");
-        modalHeader.className = "modal-header";
+        modalHeader.className = "modal__header";
 
         const modalTitle = document.createElement("h3");
         modalTitle.textContent = "Acciones de Columna";
 
         const closeButton = document.createElement("button");
-        closeButton.className = "close-modal";
+        closeButton.className = "modal__close";
 
         const closeIcon = document.createElement("i");
         closeIcon.className = "fas fa-times";
@@ -900,19 +842,17 @@ class KanbanBoard {
         modalHeader.appendChild(modalTitle);
         modalHeader.appendChild(closeButton);
 
-        // Cuerpo modal
         const modalBody = document.createElement("div");
-        modalBody.className = "modal-body";
+        modalBody.className = "modal__body";
 
         const columnTitleHeading = document.createElement("h4");
         columnTitleHeading.textContent = `Columna: ${columnTitle}`;
 
         const optionsList = document.createElement("div");
-        optionsList.className = "options-list";
+        optionsList.className = "options__list";
 
-        // Opción: Limpiar columna
         const clearOption = document.createElement("button");
-        clearOption.className = "menu-option";
+        clearOption.className = "options__item";
         clearOption.dataset.action = "clear";
 
         const clearIcon = document.createElement("i");
@@ -928,9 +868,8 @@ class KanbanBoard {
         clearOption.appendChild(clearSpan);
         clearOption.appendChild(clearSmall);
 
-        // Opción: Exportar tareas
         const exportOption = document.createElement("button");
-        exportOption.className = "menu-option";
+        exportOption.className = "options__item";
         exportOption.dataset.action = "export";
 
         const exportIcon = document.createElement("i");
@@ -946,9 +885,8 @@ class KanbanBoard {
         exportOption.appendChild(exportSpan);
         exportOption.appendChild(exportSmall);
 
-        // Opción: Cancelar
         const cancelOption = document.createElement("button");
-        cancelOption.className = "menu-option option-cancel";
+        cancelOption.className = "options__item options__item--cancel";
         cancelOption.dataset.action = "cancel";
 
         const cancelIcon = document.createElement("i");
@@ -964,7 +902,6 @@ class KanbanBoard {
         cancelOption.appendChild(cancelSpan);
         cancelOption.appendChild(cancelSmall);
 
-        // Ensamblar estructura
         optionsList.appendChild(clearOption);
         optionsList.appendChild(exportOption);
         optionsList.appendChild(cancelOption);
@@ -979,7 +916,6 @@ class KanbanBoard {
 
         document.body.appendChild(modalOptions);
 
-        // Agregar detectores de eventos
         const optionButtons = [clearOption, exportOption, cancelOption];
 
         closeButton.addEventListener("click", () => {
@@ -992,9 +928,9 @@ class KanbanBoard {
             }
         });
 
-        optionButtons.forEach((button) => {
-            button.addEventListener("click", () => {
-                const action = button.dataset.action;
+        optionButtons.forEach((optionButton) => {
+            optionButton.addEventListener("click", () => {
+                const action = optionButton.dataset.action;
 
                 switch (action) {
                     case "clear":
@@ -1012,7 +948,6 @@ class KanbanBoard {
             });
         });
 
-        // Cerrar al escapar
         const handleEscape = (e) => {
             if (e.key === "Escape") {
                 modalOptions.remove();
@@ -1023,7 +958,7 @@ class KanbanBoard {
     }
 
     clearColumn(column) {
-        const columnTitle = column.querySelector(".column-title h3").textContent;
+        const columnTitle = column.querySelector(".column__title h3").textContent;
 
         this.showConfirmationModal(
             "Limpiar Columna",
@@ -1032,17 +967,14 @@ class KanbanBoard {
             "danger",
             "Limpiar Columna",
             () => {
-                const columnContent = column.querySelector(".column-content");
-                const tasks = columnContent.querySelectorAll(".task-card");
+                const columnContent = column.querySelector(".column__content");
+                const tasks = columnContent.querySelectorAll(".task");
                 const taskIds = Array.from(tasks).map((task) => task.dataset.id);
 
-                // Eliminar tareas de los datos
                 this.tasks = this.tasks.filter((task) => !taskIds.includes(task.id));
 
-                // Reorganizar IDs para mantener continuidad
                 this.reorganizeTaskIds();
 
-                // Eliminar del DOM
                 tasks.forEach((task) => task.remove());
 
                 this.renderAllTasks();
@@ -1053,35 +985,17 @@ class KanbanBoard {
     }
 
     showNotification(message) {
-        // Crear una notificación sencilla
         const notification = document.createElement("div");
-        notification.style.cssText = `
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: var(--success-color);
-            color: white;
-            padding: 12px 20px;
-            border-radius: 8px;
-            box-shadow: var(--shadow-lg);
-            z-index: 2000;
-            font-size: 14px;
-            font-weight: 500;
-            animation: slideIn 0.3s ease;
-        `;
+        notification.className = "toast";
         notification.textContent = message;
-
         document.body.appendChild(notification);
 
         setTimeout(() => {
-            notification.style.animation = "fadeOut 0.3s ease";
-            setTimeout(() => {
-                notification.remove();
-            }, 300);
+            notification.classList.add("toast--hiding");
+            setTimeout(() => notification.remove(), 300);
         }, 3000);
     }
 
-    // Funciones adicionales
     exportTasks() {
         const dataString = JSON.stringify(this.tasks, null, 2);
         const dataUri = "data:application/json;charset=utf-8," + encodeURIComponent(dataString);
@@ -1114,25 +1028,23 @@ class KanbanBoard {
         reader.readAsText(file);
     }
 
-    // Funcionalidad de búsqueda
     searchTasks(query) {
-        const taskCards = document.querySelectorAll(".task-card");
+        const taskCards = document.querySelectorAll(".task");
 
         taskCards.forEach((card) => {
-            const title = card.querySelector(".task-title").textContent.toLowerCase();
-            const description = card.querySelector(".task-description").textContent.toLowerCase();
-            const taskId = card.querySelector(".task-id").textContent.toLowerCase();
+            const title = card.querySelector(".task__title").textContent.toLowerCase();
+            const description = card.querySelector(".task__description").textContent.toLowerCase();
+            const taskId = card.querySelector(".task__id").textContent.toLowerCase();
 
             const matchesSearch =
                 title.includes(query.toLowerCase()) ||
                 description.includes(query.toLowerCase()) ||
                 taskId.includes(query.toLowerCase());
 
-            card.style.display = matchesSearch ? "block" : "none";
+            card.hidden = !matchesSearch;
         });
     }
 
-    // Borrar todos los datos
     clearAllData() {
         this.showConfirmationModal(
             "Eliminar Todas las Tareas",
@@ -1153,56 +1065,47 @@ class KanbanBoard {
     }
 }
 
-// Inicializar el tablero Kanban cuando se carga el DOM
 document.addEventListener("DOMContentLoaded", () => {
     const kanbanBoard = new KanbanBoard();
 
-    // Inicializar gestor de notificaciones
-    window.notificationManager = new NotificationManager();
+    kanbanBoard.notificationManager = new NotificationManager(kanbanBoard);
 
-    // Agregar atajos de teclado
     document.addEventListener("keydown", (e) => {
-        // Ctrl/Cmd + N: Nueva tarea
         if ((e.ctrlKey || e.metaKey) && e.key === "n") {
             e.preventDefault();
             document.getElementById("add-task-button").click();
         }
 
-        // Escape: Cerrar modal
         if (e.key === "Escape") {
             const taskModal = document.getElementById("task-modal");
             const confirmationModal = document.getElementById("confirmation-modal");
-            if (taskModal.classList.contains("active")) {
+            if (taskModal.classList.contains("is-active")) {
                 kanbanBoard.closeModal();
             }
-            if (confirmationModal.classList.contains("active")) {
+            if (confirmationModal.classList.contains("is-active")) {
                 kanbanBoard.closeConfirmationModal();
             }
         }
 
-        // Ctrl/Cmd + E: Exportar tareas
         if ((e.ctrlKey || e.metaKey) && e.key === "e") {
             e.preventDefault();
             kanbanBoard.exportTasks();
         }
 
-        // Ctrl/Cmd + Shift + C: Borrar todos los datos
         if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === "C") {
             e.preventDefault();
             kanbanBoard.clearAllData();
         }
 
-        // Ctrl/Cmd + R: Comprobar notificaciones manualmente
         if ((e.ctrlKey || e.metaKey) && e.key === "r") {
             e.preventDefault();
-            if (window.notificationManager) {
-                window.notificationManager.checkUpcomingTasks();
+            if (kanbanBoard.notificationManager) {
+                kanbanBoard.notificationManager.checkUpcomingTasks();
                 kanbanBoard.showNotification("Verificación de notificaciones realizada");
             }
         }
     });
 
-    // Añade un toque de elegancia con un desplazamiento suave
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         anchor.addEventListener("click", function (e) {
             e.preventDefault();
@@ -1216,7 +1119,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Agregar un controlador de cambio de tamaño de ventana para un comportamiento responsivo
     let resizeTimer;
     window.addEventListener("resize", () => {
         clearTimeout(resizeTimer);
@@ -1224,35 +1126,4 @@ document.addEventListener("DOMContentLoaded", () => {
             kanbanBoard.updateTaskCounters();
         }, 250);
     });
-
-    // Hacer que tableroKanban sea accesible globalmente para la depuración
-    window.kanbanBoard = kanbanBoard;
 });
-
-// Agregue algunos CSS adicionales dinámicamente
-const style = document.createElement("style");
-style.textContent = `
-    @keyframes fadeOut {
-        from { opacity: 1; transform: translateY(0); }
-        to { opacity: 0; transform: translateY(10px); }
-    }
-    
-    .tarjeta-tarea {
-        transition: all 0.2s ease;
-    }
-    
-    .tarjeta-tarea:hover {
-        transform: translateY(-2px);
-        box-shadow: var(--shadow-md);
-    }
-    
-    .columna.arrastrar-sobre {
-        background-color: rgba(0, 82, 204, 0.05);
-        border-color: var(--primary-color);
-    }
-    
-    .modal.activo {
-        animation: fadeIn 0.2s ease;
-    }
-`;
-document.head.appendChild(style);

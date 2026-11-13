@@ -3,8 +3,14 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Lexaro</title>
-        <link rel="stylesheet" href="css/styles.css" />
+        <meta
+            name="description"
+            content="Tablero kanban local para organizar tareas por estado, prioridad y fechas."
+        />
+        <title>Lexaro · Tablero de tareas</title>
+        <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
             href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
             rel="stylesheet"
@@ -13,128 +19,152 @@
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         />
-        <link
-            rel="icon"
-            href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><linearGradient id='a' x1='0' y1='0' x2='32' y2='32'><stop offset='0' stop-color='%230052CC'/><stop offset='1' stop-color='%236554C0'/></linearGradient></defs><rect width='32' height='32' rx='6' fill='url(%23a)'/><rect x='4' y='4' width='24' height='6' rx='1' fill='white'/><rect x='4' y='12' width='24' height='6' rx='1' fill='white' opacity='0.9'/><rect x='4' y='20' width='24' height='6' rx='1' fill='white' opacity='0.8'/></svg>"
-        />
+        <link rel="stylesheet" href="css/tokens.css" />
+        <link rel="stylesheet" href="css/styles.css" />
     </head>
     <body>
-        <header class="header">
-            <div class="header-content">
-                <div class="logo">
-                    <i class="fas fa-th-large"></i>
-                    <h1>Lexaro</h1>
+        <header class="site-header">
+            <div class="site-header__inner">
+                <div class="brand">
+                    <i class="brand__icon fas fa-th-large" aria-hidden="true"></i>
+                    <h1 class="brand__title">Lexaro</h1>
                 </div>
-                <div class="header-actions">
-                    <button class="button button-primary" id="add-task-button">
-                        <i class="fas fa-plus"></i>
+                <div class="site-header__actions">
+                    <button class="btn btn--primary" id="add-task-button" type="button">
+                        <i class="fas fa-plus" aria-hidden="true"></i>
                         Crear Tarea
                     </button>
-                    <div class="user-menu">
-                        <div class="user-avatar">
-                            <i class="fas fa-user"></i>
+                    <div class="user">
+                        <div class="user__avatar">
+                            <i class="fas fa-user" aria-hidden="true"></i>
                         </div>
                     </div>
                 </div>
             </div>
         </header>
 
-        <main class="main-content">
-            <div class="board-header">
-                <div class="board-title">
-                    <h2>Tablero de tareas</h2>
-                    <span class="board-stats">0 tareas</span>
+        <main class="main">
+            <div class="board__header">
+                <div class="board__title">
+                    <h2 class="board__heading">Tablero de tareas</h2>
+                    <span class="board__stats">0 tareas</span>
                 </div>
-                <div class="board-filters">
-                    <button class="filter-button active" data-filter="all">Todas</button>
-                    <button class="filter-button" data-filter="high">Alta Prioridad</button>
-                    <button class="filter-button" data-filter="medium">Media Prioridad</button>
-                    <button class="filter-button" data-filter="low">Baja Prioridad</button>
+                <div class="board__filters" aria-label="Filtrar tareas por prioridad">
+                    <button
+                        class="filter is-active"
+                        type="button"
+                        data-filter="all"
+                        aria-pressed="true"
+                    >
+                        Todas
+                    </button>
+                    <button class="filter" type="button" data-filter="high" aria-pressed="false">
+                        Alta Prioridad
+                    </button>
+                    <button class="filter" type="button" data-filter="medium" aria-pressed="false">
+                        Media Prioridad
+                    </button>
+                    <button class="filter" type="button" data-filter="low" aria-pressed="false">
+                        Baja Prioridad
+                    </button>
                 </div>
             </div>
 
-            <div class="kanban-board">
+            <div class="board">
                 <div class="column" data-status="todo">
-                    <div class="column-header">
-                        <div class="column-title">
-                            <h3>To Do</h3>
-                            <span class="task-counter">0</span>
+                    <div class="column__header">
+                        <div class="column__title">
+                            <h3 class="column__heading">To Do</h3>
+                            <span class="column__counter">0</span>
                         </div>
-                        <button class="column-menu">
-                            <i class="fas fa-ellipsis-h"></i>
+                        <button
+                            class="column__menu"
+                            type="button"
+                            aria-label="Acciones de la columna To Do"
+                        >
+                            <i class="fas fa-ellipsis-h" aria-hidden="true"></i>
                         </button>
                     </div>
-                    <div class="column-content">
-                        <!-- Tasks will be dynamically created here -->
-                    </div>
+                    <div class="column__content"></div>
                 </div>
 
                 <div class="column" data-status="in-progress">
-                    <div class="column-header">
-                        <div class="column-title">
-                            <h3>En Progreso</h3>
-                            <span class="task-counter">0</span>
+                    <div class="column__header">
+                        <div class="column__title">
+                            <h3 class="column__heading">En Progreso</h3>
+                            <span class="column__counter">0</span>
                         </div>
-                        <button class="column-menu">
-                            <i class="fas fa-ellipsis-h"></i>
+                        <button
+                            class="column__menu"
+                            type="button"
+                            aria-label="Acciones de la columna En Progreso"
+                        >
+                            <i class="fas fa-ellipsis-h" aria-hidden="true"></i>
                         </button>
                     </div>
-                    <div class="column-content">
-                        <!-- Tasks will be dynamically created here -->
-                    </div>
+                    <div class="column__content"></div>
                 </div>
 
                 <div class="column" data-status="review">
-                    <div class="column-header">
-                        <div class="column-title">
-                            <h3>En Revisión</h3>
-                            <span class="task-counter">0</span>
+                    <div class="column__header">
+                        <div class="column__title">
+                            <h3 class="column__heading">En Revisión</h3>
+                            <span class="column__counter">0</span>
                         </div>
-                        <button class="column-menu">
-                            <i class="fas fa-ellipsis-h"></i>
+                        <button
+                            class="column__menu"
+                            type="button"
+                            aria-label="Acciones de la columna En Revisión"
+                        >
+                            <i class="fas fa-ellipsis-h" aria-hidden="true"></i>
                         </button>
                     </div>
-                    <div class="column-content">
-                        <!-- Tasks will be dynamically created here -->
-                    </div>
+                    <div class="column__content"></div>
                 </div>
 
                 <div class="column" data-status="done">
-                    <div class="column-header">
-                        <div class="column-title">
-                            <h3>Completado</h3>
-                            <span class="task-counter">0</span>
+                    <div class="column__header">
+                        <div class="column__title">
+                            <h3 class="column__heading">Completado</h3>
+                            <span class="column__counter">0</span>
                         </div>
-                        <button class="column-menu">
-                            <i class="fas fa-ellipsis-h"></i>
+                        <button
+                            class="column__menu"
+                            type="button"
+                            aria-label="Acciones de la columna Completado"
+                        >
+                            <i class="fas fa-ellipsis-h" aria-hidden="true"></i>
                         </button>
                     </div>
-                    <div class="column-content">
-                        <!-- Tasks will be dynamically created here -->
-                    </div>
+                    <div class="column__content"></div>
                 </div>
             </div>
         </main>
 
-        <!-- Modal para crear/editar tareas -->
-        <div class="modal" id="task-modal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3>Crear Nueva Tarea</h3>
-                    <button class="close-modal" id="close-modal">
-                        <i class="fas fa-times"></i>
+        <div
+            class="modal"
+            id="task-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="task-modal-title"
+        >
+            <div class="modal__content">
+                <div class="modal__header">
+                    <h3 class="modal__heading" id="task-modal-title">Crear Nueva Tarea</h3>
+                    <button class="modal__close" id="close-modal" type="button" aria-label="Cerrar">
+                        <i class="fas fa-times" aria-hidden="true"></i>
                     </button>
                 </div>
                 <form class="task-form">
-                    <div class="form-group">
+                    <div class="task-form__group">
                         <label for="task-title">Título</label>
                         <input type="text" id="task-title" required />
                     </div>
-                    <div class="form-group">
+                    <div class="task-form__group">
                         <label for="task-description">Descripción</label>
                         <textarea id="task-description" rows="3"></textarea>
                     </div>
-                    <div class="form-group">
+                    <div class="task-form__group">
                         <label for="task-priority">Prioridad</label>
                         <select id="task-priority">
                             <option value="low">Baja</option>
@@ -142,7 +172,7 @@
                             <option value="high">Alta</option>
                         </select>
                     </div>
-                    <div class="form-group">
+                    <div class="task-form__group">
                         <label for="task-status">Estado</label>
                         <select id="task-status">
                             <option value="todo">To Do</option>
@@ -151,67 +181,73 @@
                             <option value="done">Completado</option>
                         </select>
                     </div>
-                    <div class="form-group">
+                    <div class="task-form__group">
                         <label for="task-tags">Etiquetas (separadas por comas)</label>
                         <input type="text" id="task-tags" placeholder="Ej: frontend, diseño" />
                     </div>
-                    <div class="form-group">
+                    <div class="task-form__group">
                         <label for="task-start-date">Fecha de Inicio</label>
                         <input type="date" id="task-start-date" />
                     </div>
-                    <div class="form-group">
+                    <div class="task-form__group">
                         <label for="task-end-date">Fecha de Fin</label>
                         <input type="date" id="task-end-date" />
                     </div>
-                    <div class="form-actions">
-                        <button type="button" class="button button-secondary" id="cancel-button">
+                    <div class="task-form__actions">
+                        <button class="btn btn--secondary" id="cancel-button" type="button">
                             Cancelar
                         </button>
-                        <button type="submit" class="button button-primary">Crear Tarea</button>
+                        <button class="btn btn--primary" type="submit">Crear Tarea</button>
                     </div>
                 </form>
             </div>
         </div>
 
-        <!-- Modal de Confirmación Genérica -->
-        <div class="modal" id="confirmation-modal">
-            <div class="modal-content confirmation-modal">
-                <div class="modal-header">
-                    <h3 id="confirmation-title">Confirmar Acción</h3>
-                    <button class="close-modal" id="close-confirmation-modal">
-                        <i class="fas fa-times"></i>
+        <div
+            class="modal modal--confirmation"
+            id="confirmation-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="confirmation-title"
+        >
+            <div class="modal__content">
+                <div class="modal__header">
+                    <h3 class="modal__heading" id="confirmation-title">Confirmar Acción</h3>
+                    <button
+                        class="modal__close"
+                        id="close-confirmation-modal"
+                        type="button"
+                        aria-label="Cerrar"
+                    >
+                        <i class="fas fa-times" aria-hidden="true"></i>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <div class="confirmation-icon" id="confirmation-icon">
-                        <i class="fas fa-exclamation-triangle"></i>
+                <div class="modal__body">
+                    <div class="confirm__icon" id="confirmation-icon">
+                        <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
                     </div>
-                    <p class="confirmation-message" id="confirmation-message">
+                    <p class="confirm__message" id="confirmation-message">
                         ¿Estás seguro de que quieres realizar esta acción?
                     </p>
-                    <p class="confirmation-description" id="confirmation-description">
+                    <p class="confirm__description" id="confirmation-description">
                         Esta acción no se puede deshacer.
                     </p>
                 </div>
-                <div class="modal-footer">
+                <div class="modal__footer">
                     <button
-                        type="button"
-                        class="button button-secondary"
+                        class="btn btn--secondary"
                         id="cancel-confirmation-button"
+                        type="button"
                     >
                         Cancelar
                     </button>
-                    <button
-                        type="button"
-                        class="button button-primary"
-                        id="confirm-confirmation-button"
-                    >
+                    <button class="btn btn--primary" id="confirm-confirmation-button" type="button">
                         <span id="confirm-button-text">Confirmar</span>
                     </button>
                 </div>
             </div>
         </div>
 
-        <script src="js/app.js"></script>
+        <script type="module" src="js/app.js"></script>
     </body>
 </html>
