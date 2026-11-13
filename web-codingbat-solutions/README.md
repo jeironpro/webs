@@ -16,7 +16,7 @@ es simplemente una forma de resolver el ejercicio, no la única ni la correcta p
 
 ```
 ├── index.html              # Página principal de la web
-├── tokens.css              # Tokens del tema (sistema Hallmark · tema Cobalt)
+├── css/tokens.css          # Tokens del tema (sistema Hallmark · tema Cobalt)
 ├── assets/icons/favicon.svg # Favicon del sitio
 ├── css/style.css           # Estilos (tema Cobalt, responsive)
 ├── js/app.js               # Tarjetas, ver solución, búsqueda, filtros, paginación y paleta ⌘K
