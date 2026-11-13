@@ -1,6 +1,18 @@
-/* Base tipográfica y de superficie. Todo lo demás lo aporta cada capa. */
 :root {
     color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
 html,
@@ -13,6 +25,43 @@ body {
     background: var(--color-paper);
     color: var(--color-ink);
     font-size: var(--text-base);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+img,
+picture,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+    font: inherit;
+    color: inherit;
+}
+
+button {
+    background: none;
+    border: 0;
+    cursor: pointer;
+}
+
+ul[class],
+ol[class] {
+    list-style: none;
+}
+
+hr {
+    border: 0;
+}
+
+summary {
+    cursor: pointer;
 }
 
 ::selection {
@@ -20,17 +69,16 @@ body {
     color: var(--color-paper);
 }
 
-/* — Foco visible, universal: debe aparecer al instante, nunca animado — */
 :focus {
     outline: none;
 }
+
 :focus-visible {
-    outline: 2px solid var(--color-focus);
-    outline-offset: 2px;
+    outline: 0.125rem solid var(--color-focus);
+    outline-offset: 0.125rem;
     border-radius: var(--radius-sm);
 }
 
-/* — Tipografía base — */
 h1,
 h2,
 h3 {
@@ -55,16 +103,12 @@ p {
     font-variant-numeric: tabular-nums;
 }
 
-/* — Todos los affordances de una sola línea (gate 49) — — */
-.btn,
-.icon-btn,
+.action,
+.icon-button,
 .roster__delete {
     white-space: nowrap;
 }
 
-/* — Movimiento reducido: cruce por opacidad (≤150 ms).
- *   Las transiciones ya leen las duraciones de los tokens, así que se acortan
- *   aquí en vez de forzarlas con !important. — — */
 @media (prefers-reduced-motion: reduce) {
     :root {
         --dur-short: 150ms;

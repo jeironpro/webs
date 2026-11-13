@@ -9,8 +9,6 @@
             content="Papeleta digital: vota por un partido, sigue el escrutinio en directo y descubre al ganador. Datos guardados en tu navegador."
         />
         <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
-        <link rel="icon" href="assets/icons/favicon-32.png" sizes="32x32" type="image/png" />
-        <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" />
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -19,15 +17,14 @@
             rel="stylesheet"
         />
 
-        <link rel="stylesheet" href="css/reset.css" />
         <link rel="stylesheet" href="css/tokens.css" />
+        <link rel="stylesheet" href="css/style.css" />
         <link rel="stylesheet" href="css/layout/app.css" />
         <link rel="stylesheet" href="css/components/buttons.css" />
         <link rel="stylesheet" href="css/components/forms.css" />
         <link rel="stylesheet" href="css/components/ballot.css" />
         <link rel="stylesheet" href="css/components/sidebar.css" />
         <link rel="stylesheet" href="css/components/toast.css" />
-        <link rel="stylesheet" href="css/style.css" />
     </head>
     <body>
         <header class="mast">
@@ -35,7 +32,7 @@
             <div class="mast__row">
                 <p class="mast__name">La Papeleta</p>
                 <button
-                    class="btn btn--ghost btn--compact mast__open-sidebar"
+                    class="action action--ghost action--compact mast__open-sidebar"
                     id="open-sidebar"
                     type="button"
                     aria-controls="sidebar"
@@ -76,20 +73,28 @@
                     <p class="bureau__note" id="bureau-note">—</p>
                 </div>
 
-                <section class="ballot__list" id="party-list" aria-label="Partidos en liza">
-                    <!-- filas de partidos, renderizadas de forma segura por JS -->
-                </section>
+                <section
+                    class="ballot__list"
+                    id="party-list"
+                    aria-label="Partidos en liza"
+                ></section>
 
                 <p class="ballot__hint">
                     Los datos viven en este navegador. Recarga y el escrutinio permanece.
                 </p>
             </main>
 
-            <aside class="sidebar" id="sidebar" aria-label="Padrón: gestionar partidos">
+            <aside
+                class="sidebar"
+                id="sidebar"
+                aria-label="Padrón: gestionar partidos"
+                aria-hidden="true"
+                inert
+            >
                 <div class="sidebar__head">
                     <h2 class="sidebar__title">El padrón</h2>
                     <button
-                        class="icon-btn sidebar__close"
+                        class="icon-button sidebar__close"
                         id="close-sidebar"
                         type="button"
                         aria-label="Cerrar el padrón"
@@ -109,6 +114,7 @@
                             id="party-name"
                             name="name"
                             type="text"
+                            maxlength="40"
                             placeholder="Ej. Partido del Sol"
                             autocomplete="off"
                             aria-describedby="party-name-helper"
@@ -123,23 +129,19 @@
                             id="swatches"
                             role="radiogroup"
                             aria-label="Color de campaña"
-                        >
-                            <!-- swatches generados por JS -->
-                        </div>
+                        ></div>
                     </fieldset>
 
-                    <button class="btn btn--primary" type="submit">Inscribir partido</button>
+                    <button class="action action--primary" type="submit">Inscribir partido</button>
                 </form>
 
                 <section class="sidebar__roster" aria-label="Partidos inscritos">
                     <h3 class="sidebar__roster-title">Inscritos</h3>
-                    <ul class="roster" id="roster">
-                        <!-- filas del padrón generadas por JS -->
-                    </ul>
+                    <ul class="roster" id="roster"></ul>
                 </section>
 
                 <p class="sidebar__note">
-                    El patrón solo existe localmente: al limpiar datos del navegador, se reinicia la
+                    El padrón solo existe localmente: al limpiar datos del navegador, se reinicia la
                     votación.
                 </p>
             </aside>

@@ -1,12 +1,11 @@
-/* Botones: la voz tipográfica de la papeleta, con sus 8 estados. */
-.btn {
+.action {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: var(--space-2xs);
-    min-height: 44px;
+    min-height: 2.75rem;
     padding: 0.55rem 1rem;
-    border: 1px solid transparent;
+    border: 0.0625rem solid transparent;
     border-radius: var(--radius-sm);
     font-family: var(--font-mono);
     font-size: var(--text-sm);
@@ -23,59 +22,58 @@
         transform 100ms var(--ease-out);
 }
 
-.btn:active {
-    transform: translateY(1px);
+.action:active {
+    transform: translateY(0.0625rem);
 }
 
-.btn:focus-visible {
-    outline: 2px solid var(--color-focus);
-    outline-offset: 2px;
+.action:focus-visible {
+    outline: 0.125rem solid var(--color-focus);
+    outline-offset: 0.125rem;
 }
 
-.btn:disabled,
-.btn[aria-disabled="true"] {
+.action:disabled,
+.action[aria-disabled="true"] {
     opacity: 0.5;
     cursor: not-allowed;
 }
 
-.btn--primary {
+.action--primary {
     background: var(--color-accent);
     color: var(--color-accent-ink);
 }
 
 @media (hover: hover) {
-    .btn--primary:hover {
+    .action--primary:hover {
         background: var(--color-ink);
         color: var(--color-paper);
     }
 }
 
-.btn--ghost {
+.action--ghost {
     border-color: var(--color-rule-2);
     background: transparent;
     color: var(--color-ink);
 }
 
 @media (hover: hover) {
-    .btn--ghost:hover {
+    .action--ghost:hover {
         border-color: var(--color-ink);
         background: var(--color-paper-3);
     }
 }
 
-.btn--compact {
-    min-height: 40px;
+.action--compact {
+    min-height: 2.5rem;
     padding: 0.35rem 0.75rem;
     font-size: var(--text-xs);
 }
 
-/* Botón de icono (cerrar cajón). */
-.icon-btn {
+.icon-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 44px;
-    min-width: 44px;
+    min-height: 2.75rem;
+    min-width: 2.75rem;
     padding: 0 0.5rem;
     border-radius: var(--radius-sm);
     font-family: var(--font-mono);
@@ -85,12 +83,12 @@
 }
 
 @media (hover: hover) {
-    .icon-btn:hover {
+    .icon-button:hover {
         color: var(--color-ink);
     }
 }
 
-.icon-btn:focus-visible {
-    outline: 2px solid var(--color-focus);
-    outline-offset: 2px;
+.icon-button:focus-visible {
+    outline: 0.125rem solid var(--color-focus);
+    outline-offset: 0.125rem;
 }

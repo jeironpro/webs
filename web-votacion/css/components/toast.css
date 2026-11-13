@@ -1,8 +1,7 @@
-/* Avisos: solo para errores y acciones reversibles; exitoso es silencioso. */
 .toast {
     position: fixed;
     inset-inline-end: var(--gutter);
-    bottom: calc(var(--gutter) + env(safe-area-inset-bottom, 0px));
+    bottom: calc(var(--gutter) + env(safe-area-inset-bottom, 0));
     z-index: var(--z-toast);
     display: flex;
     align-items: center;
@@ -14,7 +13,7 @@
     font-family: var(--font-mono);
     font-size: var(--text-sm);
     border-radius: var(--radius-sm);
-    box-shadow: 0 0 0 1px oklch(0 0 0 / 0.15);
+    box-shadow: 0 0 0 0.0625rem var(--color-shadow-strong);
     transition:
         opacity var(--dur-short) var(--ease-out),
         transform var(--dur-short) var(--ease-out);
@@ -42,12 +41,12 @@
     text-transform: uppercase;
     color: inherit;
     text-decoration: underline;
-    text-underline-offset: 3px;
-    min-height: 44px;
+    text-underline-offset: 0.1875rem;
+    min-height: 2.75rem;
     padding-inline: var(--space-2xs);
 }
 
 .toast__action:focus-visible {
-    outline: 2px solid var(--color-focus);
-    outline-offset: 2px;
+    outline: 0.125rem solid var(--color-focus);
+    outline-offset: 0.125rem;
 }

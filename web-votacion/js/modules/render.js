@@ -1,11 +1,6 @@
-/**
- * Pintura de la interfaz: padrón, papeleta y escrutinio.
- * Las plantillas reciben la raíz y el estado; nada se guarda aquí.
- */
 import { el, clear } from "../utils/dom.js";
 import { partyRules, normalizeColor, HEX_RE } from "./parties.js";
 
-/* — Colores de campaña como --chip: variable de paleta o hex directo — */
 function isHex(value) {
     return typeof value === "string" && value.startsWith("#");
 }
@@ -24,8 +19,6 @@ function partyChip(token) {
     return node;
 }
 
-/* — Selector de color a elección (padrón y alta de partidos): popup propio
-   anclado al contenedor posicionado (el sidebar), centrado en él. — */
 export function campaignColorPicker({
     id,
     value,
@@ -35,18 +28,24 @@ export function campaignColorPicker({
     const details = el("details", { className: "roster-color swatch-custom" });
     const trigger = el("summary", { className: "roster-color__trigger swatch-custom__trigger" });
     trigger.style.setProperty("--chip", chipOf(value));
-    trigger.setAttribute("aria-label", "Elegir color");
+    trigger.setAttribute("aria-label", "Elegir color de campaña");
     const swatches = el("span", { className: "roster-color__swatches" });
-    for (const c of partyRules.palette) {
+
+    for (const color of partyRules.palette) {
+        const selected = color.token === value;
         const swatch = el("button", {
-            className:
-                c.token === value ? "roster-color__swatch is-active" : "roster-color__swatch",
-            attrs: { type: "button", "aria-label": c.name, title: c.name },
+            className: selected ? "roster-color__swatch is-active" : "roster-color__swatch",
+            attrs: {
+                type: "button",
+                "aria-label": color.name,
+                "aria-pressed": String(selected),
+                title: color.name,
+            },
         });
-        swatch.style.setProperty("--chip", chipOf(c.token));
+        swatch.style.setProperty("--chip", chipOf(color.token));
         swatch.dataset.action = action;
         swatch.dataset.id = id ?? "";
-        swatch.dataset.color = c.token;
+        swatch.dataset.color = color.token;
         swatches.append(swatch);
     }
 
@@ -62,7 +61,6 @@ export function campaignColorPicker({
     return details;
 }
 
-/* — Padrón (listado de inscritos) — */
 export function renderRoster(root, parties) {
     clear(root);
     if (parties.length === 0) {
@@ -70,47 +68,46 @@ export function renderRoster(root, parties) {
         return;
     }
 
-    for (const p of parties) {
-        const del = el("button", {
+    for (const party of parties) {
+        const removeButton = el("button", {
             className: "roster__delete",
-            attrs: { type: "button", "aria-label": `Retirar ${p.name} del padrón` },
+            attrs: { type: "button", "aria-label": `Retirar ${party.name} del padrón` },
             text: "×",
         });
-        del.dataset.id = p.id;
+        removeButton.dataset.id = party.id;
 
         root.append(
             el("li", {
                 className: "roster__item",
                 children: [
                     campaignColorPicker({
-                        id: p.id,
-                        value: p.color,
+                        id: party.id,
+                        value: party.color,
                         action: "repaint",
                         customAction: "repaint-custom",
                     }),
-                    el("span", { className: "roster__name", text: p.name }),
-                    el("span", { className: "roster__votes tabular", text: `${p.votes}` }),
-                    del,
+                    el("span", { className: "roster__name", text: party.name }),
+                    el("span", { className: "roster__votes tabular", text: `${party.votes}` }),
+                    removeButton,
                 ],
             })
         );
     }
 }
 
-/* — Cálculos del escrutinio — */
 function totalVotes(parties) {
-    return parties.reduce((acc, p) => acc + p.votes, 0);
+    return parties.reduce((acc, party) => acc + party.votes, 0);
 }
 
-/** Devuelve el id del líder único, o null si no hay total o si hay empate. */
 function leaderId(parties) {
-    const max = Math.max(0, ...parties.map((p) => p.votes));
-    if (max === 0) return null;
-    const leaders = parties.filter((p) => p.votes === max);
+    const max = Math.max(0, ...parties.map((party) => party.votes));
+    if (max === 0) {
+        return null;
+    }
+    const leaders = parties.filter((party) => party.votes === max);
     return leaders.length === 1 ? leaders[0].id : null;
 }
 
-/* — Papeleta: ranking vivo con barras y botón de voto — */
 export function renderBallot(root, state) {
     clear(root);
     if (state.parties.length === 0) {
@@ -138,69 +135,75 @@ export function renderBallot(root, state) {
         (a, b) => b.votes - a.votes || a.name.localeCompare(b.name, "es")
     );
 
-    for (const [index, p] of sorted.entries()) {
-        const isLeader = p.id === lead;
+    for (const [index, party] of sorted.entries()) {
+        const isLeader = party.id === lead;
         const rank = el("span", {
             className: "party__rank tabular",
             text: String(index + 1).padStart(2, "0"),
         });
 
         const namegroupChildren = [
-            partyChip(p.color),
-            el("h3", { className: "party__name", text: p.name }),
+            partyChip(party.color),
+            el("h3", { className: "party__name", text: party.name }),
         ];
         if (isLeader) {
             namegroupChildren.push(el("span", { className: "party__lead", text: "Va en cabeza" }));
         }
-        const namegroup = el("div", { className: "party__namegroup", children: namegroupChildren });
+        const namegroup = el("div", {
+            className: "party__namegroup",
+            children: namegroupChildren,
+        });
 
         const tally = el("span", {
             className: "party__tally tabular",
             children: [
-                el("span", { className: "party__count", text: String(p.votes) }),
+                el("span", { className: "party__count", text: String(party.votes) }),
                 el("span", {
                     className: "party__unit",
-                    text: ` ${p.votes === 1 ? "voto" : "votos"}${total ? ` · ${Math.round((p.votes / total) * 100)}%` : ""}`,
+                    text: ` ${party.votes === 1 ? "voto" : "votos"}${
+                        total ? ` · ${Math.round((party.votes / total) * 100)}%` : ""
+                    }`,
                 }),
             ],
         });
 
-        const voteBtn = el("button", {
-            className: `btn btn--ghost btn--compact party__vote${p.id === state.voteId ? " is-voted" : ""}`,
+        const isVoted = party.id === state.voteId;
+        const voteButton = el("button", {
+            className: `action action--ghost action--compact party__vote${
+                isVoted ? " is-voted" : ""
+            }`,
             attrs: {
                 type: "button",
-                "aria-pressed": p.id === state.voteId,
+                "aria-pressed": String(isVoted),
             },
-            text: p.id === state.voteId ? "Tu voto" : "Votar",
+            text: isVoted ? "Tu voto" : "Votar",
         });
-        voteBtn.dataset.action = "vote";
-        voteBtn.dataset.id = p.id;
-        const act = el("div", { className: "party__act", children: [voteBtn] });
+        voteButton.dataset.action = "vote";
+        voteButton.dataset.id = party.id;
+        const actionCell = el("div", { className: "party__act", children: [voteButton] });
 
         const bar = el("div", { className: "party__bar" });
         const fill = el("span", { className: "party__bar-fill" });
-        fill.style.setProperty("--pct", String(total ? p.votes / total : 0));
+        fill.style.setProperty("--pct", String(total ? party.votes / total : 0));
         bar.append(fill);
 
         root.append(
             el("article", {
                 className: isLeader ? "party party--leader" : "party",
-                children: [rank, namegroup, tally, act, bar],
+                children: [rank, namegroup, tally, actionCell, bar],
             })
         );
     }
 }
 
-/* — Resumen del escrutinio — */
 export function renderTally(projectors, state) {
     const total = totalVotes(state.parties);
     projectors.parties.textContent = String(state.parties.length);
     projectors.votes.textContent = String(total);
-    const voted = state.parties.find((p) => p.id === state.voteId);
+    const voted = state.parties.find((party) => party.id === state.voteId);
     projectors.mine.textContent = voted ? voted.name : "—";
 }
 
-/* — Cabecera de la mesa: quién va en cabeza — */
 export function renderBureau(root, projectors, state) {
     const total = totalVotes(state.parties);
     const lead = leaderId(state.parties);
@@ -209,8 +212,10 @@ export function renderBureau(root, projectors, state) {
         return;
     }
 
-    const leader = state.parties.find((p) => p.id === lead);
+    const leader = state.parties.find((party) => party.id === lead);
     projectors.who.textContent = leader.name;
-    projectors.note.textContent = `${leader.votes} ${leader.votes === 1 ? "voto" : "votos"} hasta ahora.`;
+    projectors.note.textContent = `${leader.votes} ${
+        leader.votes === 1 ? "voto" : "votos"
+    } hasta ahora.`;
     root.hidden = false;
 }

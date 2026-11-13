@@ -1,5 +1,3 @@
-/* Galería del app: la papeleta ocupa todo el viewport, con masthead y colofón
- * y un padrón lateral que se vuelve panel deslizable en móvil. */
 :root {
     --gutter: clamp(1rem, 4vw, 1.5rem);
     --sidebar-w: clamp(17rem, 26vw, 21rem);
@@ -16,7 +14,6 @@ body {
     height: 100dvh;
 }
 
-/* — Masthead (N6, papeleta) — */
 .mast {
     display: grid;
     gap: var(--space-2xs);
@@ -59,11 +56,10 @@ body {
 .mast__rule {
     border-top: var(--rule-hair) solid var(--color-rule);
     border-bottom: var(--rule-hair) solid var(--color-rule);
-    height: 4px;
+    height: 0.25rem;
     margin-bottom: 0;
 }
 
-/* — Shell: columna principal + padrón derecha — */
 .shell {
     display: flex;
     min-height: 0;
@@ -78,7 +74,6 @@ body {
     overscroll-behavior: contain;
 }
 
-/* — Padrón: panel derecho (móvil: cajón deslizante) — */
 .sidebar {
     position: fixed;
     top: 0;
@@ -104,12 +99,11 @@ body {
     overflow: hidden;
 }
 
-/* Scrim para el cajón (solo visible en móvil). */
 .scrim {
     position: fixed;
     inset: 0;
     z-index: calc(var(--z-modal) - 10);
-    background: oklch(0.18 0.02 55 / 0.4);
+    background: var(--color-overlay);
     opacity: 0;
     pointer-events: none;
     transition: opacity var(--dur-short) var(--ease-in-out);
@@ -120,7 +114,6 @@ body {
     pointer-events: auto;
 }
 
-/* — Colofón (Ft4) — */
 .foot {
     border-block-start: var(--rule-hair) solid var(--color-rule);
     padding: var(--space-sm) var(--gutter);
@@ -135,7 +128,6 @@ body {
     max-width: 100%;
 }
 
-/* — ≥ 60rem: el padrón vuelve a ser columna fija — */
 @media (min-width: 60rem) {
     .sidebar {
         position: relative;
@@ -146,8 +138,6 @@ body {
         padding-block: var(--space-xl);
     }
 
-    /* Los selectores anidados ganan a las utilidades .btn/.icon-btn, que se
-     cargan después y también fijan display. */
     .mast .mast__open-sidebar,
     .sidebar .sidebar__close,
     .scrim {

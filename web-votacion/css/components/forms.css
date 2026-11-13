@@ -1,4 +1,3 @@
-/* Formulario del padrón: etiquetas visibles, cajón de color y sus 8 estados. */
 .form {
     display: grid;
     gap: var(--space-md);
@@ -18,17 +17,16 @@
     color: var(--color-muted);
 }
 
-/* — Input: el grosor de borde nunca cambia (sin salto de layout) — */
 .input {
     width: 100%;
-    height: 44px;
+    height: 2.75rem;
     padding-inline: var(--space-sm);
-    border: 1px solid var(--color-rule-2);
+    border: 0.0625rem solid var(--color-rule-2);
     border-radius: var(--radius-sm);
     background: var(--color-paper);
     color: var(--color-ink);
-    outline: 2px solid transparent;
-    outline-offset: 1px;
+    outline: 0.125rem solid transparent;
+    outline-offset: 0.0625rem;
     transition:
         background-color var(--dur-short) var(--ease-out),
         border-color var(--dur-short) var(--ease-out);
@@ -46,8 +44,8 @@
 }
 
 .input:focus-visible {
-    outline: 2px solid var(--color-focus);
-    outline-offset: 1px;
+    outline: 0.125rem solid var(--color-focus);
+    outline-offset: 0.0625rem;
     border-color: var(--color-ink-2);
     background: var(--color-paper);
 }
@@ -65,7 +63,6 @@
     border-color: var(--color-error);
 }
 
-/* Línea de ayuda reservada: el error la reemplaza sin empujar el layout. */
 .field__helper {
     min-height: 1lh;
     font-size: var(--text-sm);
@@ -76,7 +73,6 @@
     color: var(--color-error);
 }
 
-/* — Paleta de campaña (radios transformados en sellos) — */
 .swatches {
     display: flex;
     flex-wrap: wrap;
@@ -89,8 +85,8 @@
 
 .swatch-label {
     position: relative;
-    width: 40px;
-    height: 40px;
+    width: 2.5rem;
+    height: 2.5rem;
     display: block;
 }
 
@@ -108,30 +104,30 @@
     display: block;
     width: 100%;
     height: 100%;
-    padding: 5px;
+    padding: 0.3125rem;
     border-radius: var(--radius-md);
     background: var(--chip);
     background-clip: content-box;
-    border: 1px solid oklch(0.2 0.02 55 / 0.14);
+    border: 0.0625rem solid var(--color-border-soft);
     transition: transform var(--dur-short) var(--ease-out);
 }
 
 @media (hover: hover) {
     .swatch-label:hover .swatch {
-        transform: translateY(-1px);
+        transform: translateY(-0.0625rem);
     }
 }
 
 .swatch-input:focus-visible + .swatch {
-    outline: 2px solid var(--color-focus);
-    outline-offset: 2px;
+    outline: 0.125rem solid var(--color-focus);
+    outline-offset: 0.125rem;
 }
 
 .swatch-input:checked + .swatch {
     border-color: var(--color-ink);
     box-shadow:
-        0 0 0 2px var(--color-paper),
-        0 0 0 4px var(--color-ink);
+        0 0 0 0.125rem var(--color-paper),
+        0 0 0 0.25rem var(--color-ink);
 }
 
 .swatch-input:disabled + .swatch {
@@ -139,16 +135,14 @@
     cursor: not-allowed;
 }
 
-/* — Color a elección: swatch nativo sustituido por un popup propio
-  centrado en el sidebar (el contenedor posicionado del formulario). — */
 .swatches .swatch-custom {
-    width: 40px;
-    height: 40px;
+    width: 2.5rem;
+    height: 2.5rem;
 }
 
 .swatches .swatch-custom__trigger {
-    width: 40px;
-    height: 40px;
+    width: 2.5rem;
+    height: 2.5rem;
     border-radius: var(--radius-md);
     background: var(--gradient-swatch-wheel), var(--color-rule-2);
 }
@@ -158,6 +152,6 @@
 }
 
 .swatches .swatch-custom__trigger:focus-visible {
-    outline: 2px solid var(--color-focus);
-    outline-offset: 2px;
+    outline: 0.125rem solid var(--color-focus);
+    outline-offset: 0.125rem;
 }

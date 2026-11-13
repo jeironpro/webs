@@ -1,7 +1,3 @@
-/**
- * Dominio de partidos: paleta de campaña, validación y alta/baja.
- * La lista de votos pertenece al dominio de votos (votes.js).
- */
 import { uid } from "../utils/id.js";
 
 const PALETTE = Object.freeze([
@@ -27,27 +23,28 @@ function normalizeName(name) {
 
 function isDuplicate(state, name) {
     const wanted = name.toLocaleLowerCase("es");
-    return state.parties.some((p) => p.name.toLocaleLowerCase("es") === wanted);
+    return state.parties.some((party) => party.name.toLocaleLowerCase("es") === wanted);
 }
 
 function isPaletteToken(token) {
-    return PALETTE.some((c) => c.token === token);
+    return PALETTE.some((color) => color.token === token);
 }
 
-/** Un color es válido si es de la paleta o un hex (#rgb / #rrggbb). */
 function isColor(value) {
     return typeof value === "string" && (isPaletteToken(value) || HEX_RE.test(value));
 }
 
-/** Normaliza un color a token de paleta o a hex de 6 dígitos en minúsculas. */
 export function normalizeColor(value) {
-    if (!isColor(value)) return null;
-    if (isPaletteToken(value)) return value;
+    if (!isColor(value)) {
+        return null;
+    }
+    if (isPaletteToken(value)) {
+        return value;
+    }
     const hex = value.toLowerCase();
     return hex.length === 4 ? `#${hex[1]}${hex[1]}${hex[2]}${hex[2]}${hex[3]}${hex[3]}` : hex;
 }
 
-/** Valida los datos de un partido nuevo. Devuelve { error } o { name, color }. */
 export function validatePartyInput(state, { name, color }) {
     const cleaned = normalizeName(name);
     if (!cleaned) {
@@ -66,28 +63,33 @@ export function validatePartyInput(state, { name, color }) {
     return { name: cleaned, color: normalizedColor };
 }
 
-/** Añade un partido al estado y lo devuelve. No valida (usa validateParty antes). */
 export function addParty(state, { name, color }) {
     const party = { id: uid(), name, color, votes: 0 };
     state.parties.push(party);
     return party;
 }
 
-/** Retira un partido del estado y lo devuelve (para poder deshacerlo). */
 export function removeParty(state, id) {
-    const index = state.parties.findIndex((p) => p.id === id);
-    if (index === -1) return null;
+    const index = state.parties.findIndex((party) => party.id === id);
+    if (index === -1) {
+        return null;
+    }
     const [removed] = state.parties.splice(index, 1);
-    if (state.voteId === id) state.voteId = null;
+    if (state.voteId === id) {
+        state.voteId = null;
+    }
     return removed;
 }
 
-/** Cambia el color de campaña de un partido ya inscrito. */
 export function changePartyColor(state, id, value) {
     const color = normalizeColor(value);
-    if (!color) return null;
-    const party = state.parties.find((p) => p.id === id);
-    if (!party) return null;
+    if (!color) {
+        return null;
+    }
+    const party = state.parties.find((item) => item.id === id);
+    if (!party) {
+        return null;
+    }
     party.color = color;
     return party;
 }
