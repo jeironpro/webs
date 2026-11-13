@@ -401,7 +401,7 @@ class KanbanBoard {
     }
 
     moveTask(taskCard, newStatus) {
-        const newColumn = document.querySelector(`[data-estado="${newStatus}"] .contenido-columna`);
+        const newColumn = document.querySelector(`[data-status="${newStatus}"] .column-content`);
 
         if (newColumn && !newColumn.contains(taskCard)) {
             newColumn.appendChild(taskCard);
@@ -624,8 +624,12 @@ class KanbanBoard {
 
     renderTask(taskData) {
         const columnContent = document.querySelector(
-            `[data-estado="${taskData.status}"] .contenido-columna`
+            `[data-status="${taskData.status}"] .column-content`
         );
+
+        // Una tarea con un estado que no corresponde a ninguna columna no debe
+        // romper el renderizado del resto del tablero.
+        if (!columnContent) return;
 
         const taskCard = document.createElement("div");
         taskCard.className = "task-card";
