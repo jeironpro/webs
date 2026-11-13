@@ -1,17 +1,11 @@
-/* Portal de APIs — catálogo, descargas en el cliente y drawer de documentación.
- * Sin frameworks ni backend: fetch a los archivos del repo en GitHub y ZIP en
- * memoria (ver zip.js). El catálogo vive aquí, en un solo lugar.
- */
 (function () {
     "use strict";
 
-    /* ── Origen de los archivos ──────────────────────── */
     const REPO = { owner: "jeironpro", repo: "webs", branch: "main" };
     const RAW_BASE = `https://raw.githubusercontent.com/${REPO.owner}/${REPO.repo}/${REPO.branch}/`;
     const TREE_URL = `https://api.github.com/repos/${REPO.owner}/${REPO.repo}/git/trees/${REPO.branch}?recursive=1`;
-    const CATALOG_DIR = "web-apis/catalog"; // carpeta del repo donde viven las APIs
+    const CATALOG_DIR = "web-apis/catalog";
 
-    /* ── Catálogo ────────────────────────────────────── */
     const CATALOG = [
         {
             slug: "api-pokemon",
@@ -176,7 +170,6 @@
     const bySlug = Object.fromEntries(CATALOG.map((a) => [a.slug, a]));
     const featured = CATALOG.find((a) => a.featured) || CATALOG[0];
 
-    /* ── Helpers ─────────────────────────────────────── */
     function element(tag, className, text) {
         const node = document.createElement(tag);
         if (className) node.className = className;
@@ -207,7 +200,6 @@
         return code;
     }
 
-    /* ── Render: hero feature card ───────────────────── */
     function renderFeature() {
         const slot = document.getElementById("featureSlot");
         if (!slot) return;
@@ -241,7 +233,6 @@
         slot.replaceChildren(link);
     }
 
-    /* ── Render: collection grid ─────────────────────── */
     function renderCollection() {
         const grid = document.getElementById("collection");
         if (!grid) return;
@@ -293,7 +284,6 @@
         grid.replaceChildren(...cards);
     }
 
-    /* ── Render: drawer ──────────────────────────────── */
     function renderDrawer(api) {
         const title = document.getElementById("drawerTitle");
         const body = document.getElementById("drawerBody");
@@ -339,7 +329,6 @@
         download.dataset.download = api.slug;
     }
 
-    /* ── Drawer open/close ───────────────────────────── */
     const drawer = document.getElementById("drawer");
     const scrim = document.getElementById("scrim");
     let lastFocus = null;
@@ -367,7 +356,6 @@
         if (lastFocus && lastFocus.focus) lastFocus.focus();
     }
 
-    /* ── Toast ───────────────────────────────────────── */
     let toastTimer = null;
     function toast(msg) {
         const el = document.getElementById("toast");
@@ -378,7 +366,6 @@
         toastTimer = setTimeout(() => el.classList.remove("is-visible"), 3000);
     }
 
-    /* ── Descargas (cliente) ─────────────────────────── */
     let treeCache = null;
     let busy = false;
 
@@ -403,7 +390,7 @@
         for (const node of nodes) {
             const name =
                 strip && node.path.startsWith(strip) ? node.path.slice(strip.length) : node.path;
-            // Los ficheros vacíos (__init__.py) a veces responden 501 en raw: se crean sin pedirlos.
+
             const data = node.size === 0 ? new Uint8Array(0) : await fetchFile(node.path);
             entries.push({ path: name, data });
         }
@@ -468,7 +455,6 @@
         }
     }
 
-    /* ── Copy ────────────────────────────────────────── */
     async function copyText(text, btn) {
         try {
             await navigator.clipboard.writeText(text);
@@ -484,7 +470,6 @@
         }
     }
 
-    /* ── Event delegation ────────────────────────────── */
     document.addEventListener("click", function (e) {
         const downloadAllEl = e.target.closest("[data-download-all]");
         if (downloadAllEl) {
@@ -532,7 +517,6 @@
         }
     });
 
-    /* ── Init ────────────────────────────────────────── */
     function applyCounts() {
         const total = CATALOG.length;
         document.querySelectorAll(".js-count").forEach((el) => {
