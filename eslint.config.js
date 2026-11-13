@@ -4,6 +4,7 @@ import globals from "globals";
 const WEBS_CANONICAS = [
     "web-algoritmos",
     "web-apis",
+    "web-biblia",
     "web-calculadora",
     "web-calculadora-edad",
     "web-calendario",
@@ -36,7 +37,6 @@ const WEBS_CANONICAS = [
 ];
 
 const WEBS_PENDIENTES = [
-    "web-biblia",
     "web-calificaciones-escolares",
     "web-codelang-quiz",
     "web-codingbat-solutions",

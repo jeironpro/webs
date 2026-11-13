@@ -1,13 +1,10 @@
-/* Hallmark · designed-as-app */
-/* Índice de capítulos: numerales en caja con filete — ver design.md */
-
 #chapters {
     display: grid;
-    gap: 10px;
-    grid-template-columns: repeat(auto-fill, minmax(48px, 1fr));
+    gap: 0.625rem;
+    grid-template-columns: repeat(auto-fill, minmax(3rem, 1fr));
     margin: 0 auto;
     max-width: var(--max-width);
-    padding: 8px 0;
+    padding: 0.5rem 0;
 }
 
 .chapter {
@@ -15,14 +12,16 @@
     border: var(--rule);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
-    height: 56px;
+    height: 3.5rem;
     overflow: hidden;
-    transition: border-color var(--transition), transform var(--transition);
+    transition:
+        border-color var(--transition),
+        transform var(--transition);
 }
 
 .chapter:hover {
     border-color: var(--line-strong);
-    transform: translateY(-2px);
+    transform: translateY(-0.125rem);
 }
 
 .chapter a {
@@ -30,7 +29,7 @@
     color: var(--ink);
     display: flex;
     font-family: var(--font-title);
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 600;
     height: 100%;
     justify-content: center;
@@ -43,25 +42,23 @@
     color: var(--maroon);
 }
 
-/* ---------- Responsive ---------- */
-
-@media (min-width: 321px) {
+@media (min-width: 20.0625rem) {
     #chapters {
-        grid-template-columns: repeat(auto-fill, minmax(56px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(3.5rem, 1fr));
     }
 }
 
-@media (min-width: 481px) {
+@media (min-width: 30.0625rem) {
     #chapters {
-        gap: 12px;
-        grid-template-columns: repeat(auto-fill, minmax(76px, 1fr));
+        gap: 0.75rem;
+        grid-template-columns: repeat(auto-fill, minmax(4.75rem, 1fr));
     }
 
     .chapter {
-        height: 72px;
+        height: 4.5rem;
     }
 
     .chapter a {
-        font-size: 20px;
+        font-size: 1.25rem;
     }
 }

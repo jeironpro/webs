@@ -5,9 +5,8 @@ sustituye el lenguaje visual anterior (tipografía redondeada y degradados
 vivos) por una puesta en página cercana al libro impreso clásico: papel,
 tinta, encuadernación y oro.
 
-Sello de autoría: `/* Hallmark · designed-as-app */`. Todo archivo CSS del
-sistema lleva este sello en su primera línea de comentario y el registro de
-aplicación se mantiene en `.hallmark/log.json`.
+El sistema se aplica en `css/tokens.css`, `css/styles.css` y las hojas
+específicas de portada, libros, capítulos y lectura.
 
 ## Principios
 
@@ -30,16 +29,16 @@ aplicación se mantiene en `.hallmark/log.json`.
 
 ## Paleta
 
-| Token            | Valor      | Uso                                   |
-| ---------------- | ---------- | ------------------------------------- |
-| `--paper`        | `#f6efe3`  | Fondo general (papel antiguo)         |
-| `--paper-raised`   | `#fffdf7`  | Superficies (cabeceras, tarjetas)     |
-| `--ink`        | `#2b211a`  | Texto principal (tinta)               |
-| `--ink-muted`  | `#7a6a5a`  | Texto secundario y pies               |
-| `--maroon`      | `#7d2a24`  | Acento principal (encuadernación)     |
-| `--gold`          | `#a8843c`  | Acento secundario (detalles)          |
-| `--line`        | `#e0d5c2`  | Filetes y bordes                      |
-| `--line-strong` | `#c9b99b`  | Filetes en estados destacados         |
+| Token            | Valor     | Uso                               |
+| ---------------- | --------- | --------------------------------- |
+| `--paper`        | `#f6efe3` | Fondo general (papel antiguo)     |
+| `--paper-raised` | `#fffdf7` | Superficies (cabeceras, tarjetas) |
+| `--ink`          | `#2b211a` | Texto principal (tinta)           |
+| `--ink-muted`    | `#7a6a5a` | Texto secundario y pies           |
+| `--maroon`       | `#7d2a24` | Acento principal (encuadernación) |
+| `--gold`         | `#a8843c` | Acento secundario (detalles)      |
+| `--line`         | `#e0d5c2` | Filetes y bordes                  |
+| `--line-strong`  | `#c9b99b` | Filetes en estados destacados     |
 
 ## Tipografía
 
@@ -64,7 +63,7 @@ aplicación se mantiene en `.hallmark/log.json`.
 ## Iconos
 
 Iconos SVG de trazo fino (1.6px), tamaño 22px, heredan `currentColor`.
-Favicon: `icons/biblia.svg` (libro abierto en granate y oro).
+Favicon: `assets/icons/favicon.svg` (libro abierto en granate y oro).
 
 ## Responsive
 
