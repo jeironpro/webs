@@ -1,62 +1,107 @@
-const birthDateInput = document.getElementById("birthDate");
-const calculateButton = document.getElementById("calculateButton");
-const resultCard = document.getElementById("resultCard");
-const ageText = document.getElementById("ageText");
+const form = document.querySelector("#age-form");
+const birthDateInput = document.querySelector("#birth-date");
+const errorMessage = document.querySelector("#form-error");
+const resultCard = document.querySelector("#result-card");
+const ageText = document.querySelector("#age-text");
 
-function parseDate(value) {
+if (!form || !birthDateInput || !errorMessage || !resultCard || !ageText) {
+    throw new Error("No se encontraron los elementos de la calculadora");
+}
+
+const MILLISECONDS_PER_DAY = 86_400_000;
+
+const formatUnit = (value, singular, plural) => `${value} ${value === 1 ? singular : plural}`;
+
+const parseDate = (value) => {
     const [year, month, day] = value.split("-").map(Number);
     return new Date(year, month - 1, day);
-}
+};
 
-function getAge(birthDate, currentDate) {
-    let years = currentDate.getFullYear() - birthDate.getFullYear();
-    let months = currentDate.getMonth() - birthDate.getMonth();
-    let days = currentDate.getDate() - birthDate.getDate();
+const addMonths = (date, months) => {
+    const target = new Date(date.getFullYear(), date.getMonth() + months, 1);
+    const daysInTargetMonth = new Date(target.getFullYear(), target.getMonth() + 1, 0).getDate();
+    target.setDate(Math.min(date.getDate(), daysInTargetMonth));
+    return target;
+};
 
-    if (days < 0) {
+const getAge = (birthDate, currentDate) => {
+    let months =
+        (currentDate.getFullYear() - birthDate.getFullYear()) * 12 +
+        currentDate.getMonth() -
+        birthDate.getMonth();
+    let anchor = addMonths(birthDate, months);
+
+    if (anchor > currentDate) {
         months -= 1;
-        days += new Date(birthDate.getFullYear(), birthDate.getMonth() + 1, 0).getDate();
+        anchor = addMonths(birthDate, months);
     }
 
-    if (months < 0) {
-        years -= 1;
-        months += 12;
-    }
+    const days = Math.round((currentDate - anchor) / MILLISECONDS_PER_DAY);
 
-    return { years, months, days };
-}
+    return {
+        years: Math.floor(months / 12),
+        months: months % 12,
+        days,
+    };
+};
 
-function formatUnit(value, singular, plural) {
-    return `${value} ${value === 1 ? singular : plural}`;
-}
+const hideResult = () => {
+    resultCard.hidden = true;
+    ageText.textContent = "";
+};
 
-function hideResult() {
-    resultCard.classList.remove("is-visible");
-    resultCard.classList.add("is-hidden");
-}
+const showError = (message) => {
+    errorMessage.textContent = message;
+    errorMessage.hidden = false;
+    birthDateInput.setAttribute("aria-invalid", "true");
+    birthDateInput.focus();
+    hideResult();
+};
 
-function calculateAge() {
+const clearError = () => {
+    errorMessage.textContent = "";
+    errorMessage.hidden = true;
+    birthDateInput.setAttribute("aria-invalid", "false");
+};
+
+const calculateAge = (event) => {
+    event.preventDefault();
+
     if (!birthDateInput.value) {
-        alert("Por favor selecciona una fecha de nacimiento");
+        showError("Selecciona una fecha de nacimiento.");
         return;
     }
 
     const birthDate = parseDate(birthDateInput.value);
     const currentDate = new Date();
+    currentDate.setHours(0, 0, 0, 0);
 
     if (birthDate > currentDate) {
-        alert("La fecha de nacimiento no puede ser futura");
-        hideResult();
+        showError("La fecha de nacimiento no puede ser futura.");
         return;
     }
 
+    clearError();
+
     const { years, months, days } = getAge(birthDate, currentDate);
+    ageText.textContent = `Tienes ${formatUnit(years, "año", "años")}, ${formatUnit(
+        months,
+        "mes",
+        "meses"
+    )} y ${formatUnit(days, "día", "días")}.`;
+    resultCard.hidden = false;
+};
 
-    ageText.textContent = `Tienes ${formatUnit(years, "año", "años")}, ${formatUnit(months, "mes", "meses")} y ${formatUnit(days, "día", "días")}`;
+const setMaxDate = () => {
+    const today = new Date();
+    const offset = today.getTimezoneOffset() * 60_000;
+    birthDateInput.max = new Date(today.getTime() - offset).toISOString().slice(0, 10);
+};
 
-    resultCard.classList.remove("is-hidden");
-    resultCard.classList.add("is-visible");
-}
+setMaxDate();
 
-calculateButton.addEventListener("click", calculateAge);
-birthDateInput.addEventListener("input", hideResult);
+form.addEventListener("submit", calculateAge);
+birthDateInput.addEventListener("input", () => {
+    clearError();
+    hideResult();
+});
