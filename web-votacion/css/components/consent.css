@@ -62,7 +62,8 @@
 }
 
 .storage-consent__accept,
-.storage-consent__decline {
+.storage-consent__decline,
+.storage-consent__revoke {
     min-height: 2.75rem;
     padding: 0.55rem 1rem;
     border: var(--rule-hair) solid var(--color-ink);
@@ -95,6 +96,20 @@
 
 .storage-consent__decline:hover {
     background: var(--color-paper-3);
+}
+
+.storage-consent__revoke {
+    flex: 1 1 100%;
+    border-color: var(--color-error);
+    background: transparent;
+    color: var(--color-error);
+}
+
+.storage-consent__revoke:hover,
+.storage-consent[data-phase="confirm"] .storage-consent__revoke {
+    border-color: var(--color-error);
+    background: var(--color-error);
+    color: var(--color-error-ink);
 }
 
 .storage-consent__error {
