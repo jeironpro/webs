@@ -5,10 +5,12 @@ const WEBS_CANONICAS = [
     "web-algoritmos",
     "web-apis",
     "web-biblia",
+    "web-calificaciones-escolares",
     "web-calculadora",
     "web-calculadora-edad",
     "web-calendario",
     "web-clima",
+    "web-codelang-quiz",
     "web-codi-wiki",
     "web-codigos-http",
     "web-color-picker",
@@ -37,8 +39,6 @@ const WEBS_CANONICAS = [
 ];
 
 const WEBS_PENDIENTES = [
-    "web-calificaciones-escolares",
-    "web-codelang-quiz",
     "web-codingbat-solutions",
     "web-continguts-daw",
     "web-curso-dcs",

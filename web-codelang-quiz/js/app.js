@@ -1,7 +1,5 @@
 const currentScript = document.currentScript;
-const BASE = currentScript
-    ? new URL("../", currentScript.src)
-    : new URL("./", document.baseURI);
+const BASE = currentScript ? new URL("../", currentScript.src) : new URL("./", document.baseURI);
 const BASE_PATH = BASE.pathname;
 
 const LANGUAGES = [
@@ -105,8 +103,13 @@ function escapeHtml(value) {
                 ">": "&gt;",
                 '"': "&quot;",
                 "'": "&#39;",
-            })[character],
+            })[character]
     );
+}
+
+function setMarkup(element, markup) {
+    const parsed = new DOMParser().parseFromString(markup, "text/html");
+    element.replaceChildren(...parsed.body.childNodes);
 }
 
 function readNumber(key, fallback) {
@@ -131,7 +134,7 @@ function saveToStorage(key, value) {
     try {
         window.localStorage.setItem(key, JSON.stringify(value));
     } catch {
-        /* sin persistencia disponible */
+        return;
     }
 }
 
@@ -150,9 +153,7 @@ function prepareQuestion(question) {
     OPTIONS.forEach((letter, index) => {
         options[letter] = texts[index];
     });
-    const answer = OPTIONS.find(
-        (letter) => options[letter] === question.options[question.answer],
-    );
+    const answer = OPTIONS.find((letter) => options[letter] === question.options[question.answer]);
     return { ...question, options, answer, order: OPTIONS };
 }
 
@@ -166,10 +167,7 @@ function applyAnswer(total, difficulty, isCorrect) {
 }
 
 function scoreOf(answers) {
-    return answers.reduce(
-        (total, item) => applyAnswer(total, item.difficulty, item.isCorrect),
-        0,
-    );
+    return answers.reduce((total, item) => applyAnswer(total, item.difficulty, item.isCorrect), 0);
 }
 
 function formatPoints(value) {
@@ -198,17 +196,18 @@ function saveRound({ correct, wrong, points, total, language, difficulty }) {
 
 async function loadAllQuestions() {
     if (!datasetPromise) {
-        datasetPromise = Promise.allSettled(
-            LANGUAGES.map(async (language) => {
-                const response = await fetch(new URL(`data/${language.id}.json`, BASE));
-                if (!response.ok) throw new Error(`Error HTTP ${response.status}`);
-                return { language: language.id, questions: await response.json() };
-            }),
-        ).then((results) =>
-            results
+        datasetPromise = (async () => {
+            const results = await Promise.allSettled(
+                LANGUAGES.map(async (language) => {
+                    const response = await fetch(new URL(`data/${language.id}.json`, BASE));
+                    if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+                    return { language: language.id, questions: await response.json() };
+                })
+            );
+            return results
                 .filter((result) => result.status === "fulfilled")
-                .map((result) => result.value),
-        );
+                .map((result) => result.value);
+        })();
     }
     return datasetPromise;
 }
@@ -277,13 +276,16 @@ function openModal({ title, content, actions = [] }) {
     closeModal();
     const previous = document.activeElement;
     elements.modal.classList.remove("is-hidden");
-    elements.modal.innerHTML = `<div class="modal__overlay" data-modal-overlay>
+    setMarkup(
+        elements.modal,
+        `<div class="modal__overlay" data-modal-overlay>
         <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1">
             <h2 id="modal-title" class="modal__title">${escapeHtml(title)}</h2>
             <div class="modal__text">${content}</div>
             <div class="modal__actions"></div>
         </div>
-    </div>`;
+    </div>`
+    );
 
     const overlay = elements.modal.querySelector("[data-modal-overlay]");
     const dialog = elements.modal.querySelector(".modal__dialog");
@@ -302,7 +304,7 @@ function openModal({ title, content, actions = [] }) {
 
     overlay.addEventListener("click", close);
     dialog.addEventListener("click", (event) => event.stopPropagation());
-    document.body.style.overflow = "hidden";
+    document.body.classList.add("is-locked");
     elements.modal.querySelectorAll(".nav__info, .nav__menu-info").forEach((button) => {
         button.setAttribute("aria-expanded", "true");
     });
@@ -314,7 +316,7 @@ function openModal({ title, content, actions = [] }) {
         }
         if (event.key !== "Tab") return;
         const focusable = dialog.querySelectorAll(
-            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
         );
         if (focusable.length === 0) return;
         const first = focusable[0];
@@ -336,13 +338,13 @@ function openModal({ title, content, actions = [] }) {
 function closeModal() {
     if (!modalState) {
         elements.modal.classList.add("is-hidden");
-        elements.modal.innerHTML = "";
+        elements.modal.replaceChildren();
         return;
     }
     document.removeEventListener("keydown", modalState.onKeyDown);
-    document.body.style.overflow = "";
+    document.body.classList.remove("is-locked");
     elements.modal.classList.add("is-hidden");
-    elements.modal.innerHTML = "";
+    elements.modal.replaceChildren();
     elements.menuInfo.setAttribute("aria-expanded", "false");
     elements.navInfo.setAttribute("aria-expanded", "false");
     const previous = modalState.previous;
@@ -363,9 +365,6 @@ function currentRoute() {
     else if (route.startsWith(base)) route = route.slice(base.length);
     route = route.replace(/^\/+|\/+$/g, "");
 
-    // GitHub Pages sirve el 404.html raiz en subrutas de la SPA y redirige aqui
-    // con la subruta en la query (?/quiz). Se resuelve antes de mirar el path
-    // para que la app cargue sus scripts desde la base del proyecto.
     const query = window.location.search.match(/^\?\/([^&]+)/);
     if (query) {
         const subroute = decodeURIComponent(query[1]).replace(/\/+$/, "");
@@ -450,10 +449,12 @@ function renderHome() {
         })
         .join("");
 
-    elements.main.innerHTML = `<div class="home">
+    setMarkup(
+        elements.main,
+        `<div class="home">
         <section class="section home__hero">
             <p class="eyebrow mono-label">Practica con código real</p>
-            <h1 class="hero-title">Pon a prueba lo que <em>sabes</em> de código.</h1>
+            <h2 class="hero-title">Pon a prueba lo que <em>sabes</em> de código.</h2>
             <p class="home__lead">Elige tu lenguaje y nivel. Resuelve problemáticas de código con opciones de respuesta y gana puntos según la dificultad.</p>
         </section>
         <section class="section home__config" aria-label="Configuración de la partida">
@@ -478,7 +479,8 @@ function renderHome() {
             ${homeError ? `<p class="home__error" role="alert">${escapeHtml(homeError)}</p>` : ""}
             <button type="button" class="btn btn--lg" id="start" ${isLoading ? "disabled" : ""}>${isLoading ? "Preparando..." : "Empezar partida"}</button>
         </section>
-    </div>`;
+    </div>`
+    );
 
     elements.main.querySelectorAll("[data-filter]").forEach((button) => {
         button.addEventListener("click", () => {
@@ -500,12 +502,12 @@ async function startGame() {
     try {
         const dataset = await loadAllQuestions();
         if (token !== startToken || currentRoute().view !== "home") return;
-        if (dataset.length === 0) throw new Error("sin datos");
+        if (dataset.length === 0) throw new Error("no data");
         const available = dataset.flatMap((entry) =>
             filterQuestions(entry, homeFilters).map((question) => ({
                 ...question,
                 language: entry.language,
-            })),
+            }))
         );
         if (available.length === 0) {
             isLoading = false;
@@ -537,17 +539,20 @@ async function startGame() {
 function renderQuiz() {
     const previous = quiz;
     if (!previous || !previous.questions.length) {
-        elements.main.innerHTML = `<div class="home"><section class="section">
+        setMarkup(
+            elements.main,
+            `<div class="home"><section class="section">
             <p class="home__error">Aún no has configurado una partida.</p>
             <button type="button" class="btn" id="back-home">Volver al inicio</button>
-        </section></div>`;
+        </section></div>`
+        );
         document.getElementById("back-home").addEventListener("click", () => navigate(""));
         return;
     }
 
     const question = previous.questions[previous.index];
     if (!question) {
-        elements.main.innerHTML = '<div class="section mono-label">Partida terminada.</div>';
+        setMarkup(elements.main, '<div class="section mono-label">Partida terminada.</div>');
         return;
     }
 
@@ -584,7 +589,9 @@ function renderQuiz() {
         feedback += `<button type="button" class="btn btn--coral" id="continue">${previous.index >= previous.questions.length - 1 ? "Ver resultados" : "Siguiente"}</button>`;
     }
 
-    elements.main.innerHTML = `<div class="quiz">
+    setMarkup(
+        elements.main,
+        `<div class="quiz">
         <section class="section quiz__header" aria-label="Progreso">
             <div class="quiz__progress">
                 <span class="mono-label">Pregunta ${previous.index + 1} de ${previous.questions.length}</span>
@@ -593,7 +600,7 @@ function renderQuiz() {
             <span class="quiz__score" aria-label="Score de la partida">${formatPoints(roundScore)}</span>
         </section>
         <section class="section quiz__body">
-            <div class="card quiz__question">
+            <div class="panel-card quiz__question">
                 <span class="mono-label quiz__tag">${currentLanguage ? `${currentLanguage} · ` : ""}${QUESTION_TYPES[question.type] || question.type} · ${DIFFICULTIES[question.difficulty]?.label || question.difficulty}</span>
                 <h2 class="quiz__question-text">${escapeHtml(question.question)}</h2>
                 ${question.code ? `<div class="code-card">${previous.filters.language ? `<span class="code-card__lang mono-label">${escapeHtml(previous.filters.language)}</span>` : ""}<pre class="code-card__pre"><code>${escapeHtml(question.code)}</code></pre></div>` : ""}
@@ -604,7 +611,8 @@ function renderQuiz() {
             </div>
             ${feedback ? `<div class="quiz__feedback">${feedback}</div>` : ""}
         </section>
-    </div>`;
+    </div>`
+    );
 
     elements.main.querySelectorAll("[data-letter]").forEach((button) => {
         button.addEventListener("click", () => answer(button.dataset.letter));
@@ -741,42 +749,48 @@ function showResults() {
                         <span class="mono-label history__date">${escapeHtml(new Date(round.date).toLocaleString())}</span>
                         <span class="history__summary">${round.correct}/${round.total} aciertos</span>
                         <span class="history__points">${round.points} pt</span>
-                    </li>`,
+                    </li>`
                   )
                   .join("")}</ul>`
             : "";
 
-    elements.main.innerHTML = `<div class="results">
+    setMarkup(
+        elements.main,
+        `<div class="results">
         <section class="section results__hero">
             <p class="eyebrow mono-label">Resultados</p>
-            <h1 class="hero-title">Tu rendimiento, de un vistazo.</h1>
+            <h2 class="hero-title">Tu rendimiento, de un vistazo.</h2>
         </section>
         <section class="section results__stats" aria-label="Estadísticas">
-            <div class="card card__tint stat stat--pear"><span class="mono-label">Score acumulado</span><strong class="stat__num">${totalScore}</strong></div>
-            <div class="card card__tint stat stat--cyan"><span class="mono-label">Partidas</span><strong class="stat__num">${roundHistory.length}</strong></div>
+            <div class="panel-card panel-card__tint stat stat--pear"><span class="mono-label">Score acumulado</span><strong class="stat__num">${totalScore}</strong></div>
+            <div class="panel-card panel-card__tint stat stat--cyan"><span class="mono-label">Partidas</span><strong class="stat__num">${roundHistory.length}</strong></div>
         </section>
         <section class="section" aria-label="Historial de partidas">
             <h2 class="section-title">Historial</h2>
             ${
                 last
-                    ? `<div class="card results__last"><p class="mono-label">Última partida · ${escapeHtml(language)}</p><p class="results__summary">${last.correct} aciertos · ${last.wrong} fallos · ${last.points} puntos</p></div>`
+                    ? `<div class="panel-card results__last"><p class="mono-label">Última partida · ${escapeHtml(language)}</p><p class="results__summary">${last.correct} aciertos · ${last.wrong} fallos · ${last.points} puntos</p></div>`
                     : '<p class="results__empty">Aún no has jugado ninguna partida.</p>'
             }
             ${historyHtml}
             <button type="button" class="btn btn--lg" id="new-game">Nueva partida</button>
         </section>
-    </div>`;
+    </div>`
+    );
     document.getElementById("new-game").addEventListener("click", () => navigate(""));
 }
 
 function showNotFound() {
     document.title = "Página no encontrada · Codelang Quiz";
-    elements.main.innerHTML = `<div class="home"><section class="section">
+    setMarkup(
+        elements.main,
+        `<div class="home"><section class="section">
         <p class="mono-label">404</p>
-        <h1 class="hero-title">Esa ruta no existe.</h1>
+        <h2 class="hero-title">Esa ruta no existe.</h2>
         <p>La página que buscas no está en esta app.</p>
         <a href="${BASE_PATH}" class="btn btn--mint" id="back-home">Volver al inicio</a>
-    </section></div>`;
+    </section></div>`
+    );
     document.getElementById("back-home").addEventListener("click", (event) => {
         event.preventDefault();
         navigate("");
@@ -786,7 +800,8 @@ function showNotFound() {
 function captureOptionsHtml(question, columns) {
     return `<div class="capture__options${columns === 2 ? " capture__options--cols2" : ""}" role="group" aria-label="Opciones">
         ${OPTIONS.map(
-            (letter) => `<div class="option"><span class="option__letter mono-label">${letter}</span><span class="option__text">${escapeHtml(question.options[letter])}</span></div>`,
+            (letter) =>
+                `<div class="option"><span class="option__letter mono-label">${letter}</span><span class="option__text">${escapeHtml(question.options[letter])}</span></div>`
         ).join("")}
     </div>`;
 }
@@ -801,7 +816,7 @@ async function showCapture({ language, id, ratio }) {
     elements.capture.className = "capture capture--loading";
     elements.capture.style.width = `${target.width}px`;
     elements.capture.style.height = `${target.height}px`;
-    elements.capture.innerHTML = "";
+    elements.capture.replaceChildren();
 
     try {
         const dataset = await loadAllQuestions();
@@ -809,7 +824,7 @@ async function showCapture({ language, id, ratio }) {
         const question = entry?.questions.find((item) => item.id === id);
         if (!question) {
             elements.capture.className = "capture capture--error";
-            elements.capture.innerHTML = '<p class="mono-label">No encontrada</p>';
+            setMarkup(elements.capture, '<p class="mono-label">No encontrada</p>');
             return;
         }
         const languageMeta = LANGUAGES.find((item) => item.id === language);
@@ -817,10 +832,12 @@ async function showCapture({ language, id, ratio }) {
         const columns = ratio === "1-91" ? 2 : 1;
         elements.capture.className = "capture";
         elements.capture.dataset.fit = "busy";
-        elements.capture.innerHTML = `<div class="capture__frame"><div class="capture__fill">
+        setMarkup(
+            elements.capture,
+            `<div class="capture__frame"><div class="capture__fill">
             <header class="capture__header">
                 <span class="capture__brand mono-label">Codelang · Quiz</span>
-                <span class="capture__chip mono-label" style="background:var(--color-${chipColor});color:var(--color-ink)">${escapeHtml(languageMeta?.name || language)} · ${CAPTURE_TYPE_LABELS[question.type] || question.type} · ${CAPTURE_DIFFICULTY_LABELS[question.difficulty] || question.difficulty}</span>
+                <span class="capture__chip capture__chip--${chipColor} mono-label">${escapeHtml(languageMeta?.name || language)} · ${CAPTURE_TYPE_LABELS[question.type] || question.type} · ${CAPTURE_DIFFICULTY_LABELS[question.difficulty] || question.difficulty}</span>
             </header>
             <div class="capture__columns">
                 <article class="capture__question">
@@ -834,7 +851,8 @@ async function showCapture({ language, id, ratio }) {
                 ${captureOptionsHtml(question, columns)}
             </div>
             <footer class="capture__footer mono-label" aria-hidden="true">codelang.quiz</footer>
-        </div></div>`;
+        </div></div>`
+        );
         await document.fonts.ready;
         window.requestAnimationFrame(() => {
             window.requestAnimationFrame(() => {
@@ -845,7 +863,7 @@ async function showCapture({ language, id, ratio }) {
         });
     } catch {
         elements.capture.className = "capture capture--error";
-        elements.capture.innerHTML = '<p class="mono-label">No encontrada</p>';
+        setMarkup(elements.capture, '<p class="mono-label">No encontrada</p>');
     }
 }
 
