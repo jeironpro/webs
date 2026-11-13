@@ -6,33 +6,33 @@ Esta PR es el contenedor de la migración completa de las 25 webs que quedaron f
 
 Auditoría real del 2026-11-13: análisis estático de todo el HTML/CSS/JS versionado y carga en Chromium de 1–3 páginas por web en escritorio y móvil. El informe completo está en `docs/auditoria-25-webs.html`.
 
-| Web                            |  HTML   | CSS |   JS    | Navegador | Limpieza | Favicon | README  | Inglés  |
-| ------------------------------ | :-----: | :-: | :-----: | :-------: | :------: | :-----: | :-----: | :-----: |
-| `web-apis`                     |   No    | No  |   No    |    Sí     |    No    |   Sí    | Parcial |   No    |
-| `web-biblia`                   |   Sí    | No  |   No    |    Sí     |    No    | Parcial | Parcial |   No    |
-| `web-calificaciones-escolares` |   Sí    | No  |   No    |    Sí     |    No    |   Sí    | Parcial |   Sí    |
-| `web-codelang-quiz`            | Parcial | No  |   No    |    Sí     |    No    |   Sí    |   Sí    |   No    |
-| `web-codingbat-solutions`      |   Sí    | No  |   No    |    Sí     |    No    |   Sí    | Parcial |   No    |
-| `web-continguts-daw`           |   Sí    | No  |   No    |  Parcial  |    No    |   Sí    | Parcial |   No    |
-| `web-curso-dcs`                |   No    | No  |   Sí    |    Sí     |    No    | Parcial |   Sí    |   No    |
-| `web-curso-git`                |   Sí    | No  | Parcial |    Sí     |    No    | Parcial | Parcial |   No    |
-| `web-curso-sql`                |   Sí    | No  |   Sí    |    Sí     |    No    | Parcial | Parcial |   No    |
-| `web-dashboards`               |   No    | No  |   No    |    Sí     |    No    |   Sí    | Parcial |   No    |
-| `web-daw`                      |   No    | No  |   No    |    Sí     |    No    | Parcial | Parcial |   No    |
-| `web-ejercicios-pyja`          | Parcial | No  |   No    |    Sí     |    No    | Parcial |   Sí    |   No    |
-| `web-exerciness`               |   No    | No  |   No    |    Sí     |    No    |   Sí    | Parcial |   No    |
-| `web-frontend`                 |   No    | No  |   No    |  Parcial  |    No    |   Sí    | Parcial |   Sí    |
-| `web-generador-cv`             |   No    | No  |   No    |    Sí     |    No    | Parcial |   Sí    |   No    |
-| `web-instruccion-login-google` | Parcial | No  |   No    |    Sí     |    No    | Parcial |   Sí    |   No    |
-| `web-javarcises`               |   Sí    | No  |   No    |    Sí     |    No    |   Sí    |   Sí    |   No    |
-| `web-juegos`                   |   No    | No  |   No    |    Sí     |    No    |   Sí    | Parcial |   No    |
-| `web-naruto`                   |   Sí    | Sí  |   No    |    Sí     | Parcial  | Parcial |   Sí    |   No    |
-| `web-oracle-academy-dpsql`     | Parcial | No  |   No    |    Sí     |    No    |   Sí    | Parcial |   Sí    |
-| `web-programmer-day`           |   Sí    | No  |   No    |    No     |    No    |   Sí    | Parcial |   No    |
-| `web-pythoncises`              |   Sí    | No  |   No    |  Parcial  |    No    |   Sí    | Parcial |   No    |
-| `web-refprog`                  |   Sí    | No  |   No    |    Sí     |    No    |   Sí    | Parcial | Parcial |
-| `web-reloj`                    |   No    | No  |   No    |    Sí     |    No    |   Sí    | Parcial |   Sí    |
-| `web-tests-daw`                |   Sí    | No  |   No    |    Sí     |    No    | Parcial | Parcial |   No    |
+| Web                            |  HTML   |   CSS   |   JS    | Navegador | Limpieza | Favicon | README  | Inglés  |
+| ------------------------------ | :-----: | :-----: | :-----: | :-------: | :------: | :-----: | :-----: | :-----: |
+| `web-apis`                     |   Sí    | Parcial |   Sí    |    Sí     |    Sí    |   Sí    |   Sí    |   No    |
+| `web-biblia`                   |   Sí    |   No    |   No    |    Sí     |    No    | Parcial | Parcial |   No    |
+| `web-calificaciones-escolares` |   Sí    |   No    |   No    |    Sí     |    No    |   Sí    | Parcial |   Sí    |
+| `web-codelang-quiz`            | Parcial |   No    |   No    |    Sí     |    No    |   Sí    |   Sí    |   No    |
+| `web-codingbat-solutions`      |   Sí    |   No    |   No    |    Sí     |    No    |   Sí    | Parcial |   No    |
+| `web-continguts-daw`           |   Sí    |   No    |   No    |  Parcial  |    No    |   Sí    | Parcial |   No    |
+| `web-curso-dcs`                |   No    |   No    |   Sí    |    Sí     |    No    | Parcial |   Sí    |   No    |
+| `web-curso-git`                |   Sí    |   No    | Parcial |    Sí     |    No    | Parcial | Parcial |   No    |
+| `web-curso-sql`                |   Sí    |   No    |   Sí    |    Sí     |    No    | Parcial | Parcial |   No    |
+| `web-dashboards`               |   No    |   No    |   No    |    Sí     |    No    |   Sí    | Parcial |   No    |
+| `web-daw`                      |   No    |   No    |   No    |    Sí     |    No    | Parcial | Parcial |   No    |
+| `web-ejercicios-pyja`          | Parcial |   No    |   No    |    Sí     |    No    | Parcial |   Sí    |   No    |
+| `web-exerciness`               |   No    |   No    |   No    |    Sí     |    No    |   Sí    | Parcial |   No    |
+| `web-frontend`                 |   No    |   No    |   No    |  Parcial  |    No    |   Sí    | Parcial |   Sí    |
+| `web-generador-cv`             |   No    |   No    |   No    |    Sí     |    No    | Parcial |   Sí    |   No    |
+| `web-instruccion-login-google` | Parcial |   No    |   No    |    Sí     |    No    | Parcial |   Sí    |   No    |
+| `web-javarcises`               |   Sí    |   No    |   No    |    Sí     |    No    |   Sí    |   Sí    |   No    |
+| `web-juegos`                   |   No    |   No    |   No    |    Sí     |    No    |   Sí    | Parcial |   No    |
+| `web-naruto`                   |   Sí    |   Sí    |   No    |    Sí     | Parcial  | Parcial |   Sí    |   No    |
+| `web-oracle-academy-dpsql`     | Parcial |   No    |   No    |    Sí     |    No    |   Sí    | Parcial |   Sí    |
+| `web-programmer-day`           |   Sí    |   No    |   No    |    No     |    No    |   Sí    | Parcial |   No    |
+| `web-pythoncises`              |   Sí    |   No    |   No    |  Parcial  |    No    |   Sí    | Parcial |   No    |
+| `web-refprog`                  |   Sí    |   No    |   No    |    Sí     |    No    |   Sí    | Parcial | Parcial |
+| `web-reloj`                    |   No    |   No    |   No    |    Sí     |    No    |   Sí    | Parcial |   Sí    |
+| `web-tests-daw`                |   Sí    |   No    |   No    |    Sí     |    No    | Parcial | Parcial |   No    |
 
 ## Fases
 
