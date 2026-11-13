@@ -1,68 +1,12 @@
-/* Variables globales de diseño — colores, sombras, transiciones y bordes */
-:root {
-    --color-red: #e63946;
-    --color-red-dark: #c1121f;
-    --color-background: #f0f0f0;
-    --color-text: #1d1d1d;
-    --color-text-secondary: #555;
-    --color-white: #fff;
-    --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.1);
-    --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.15);
-    --shadow-strong: 0 8px 32px rgba(0, 0, 0, 0.2);
-    --border-radius: 12px;
-    --transition-fast: 0.2s ease;
-    --transition-medium: 0.3s ease;
+@import "tokens.css";
 
-    /* — Tonos de rojo del degradado de cabecera y la barra de progreso — */
-    --color-red-tint: #ff6b6b;
-    --color-red-shadow: #b71c1c;
-    --color-black: #000;
-
-    /* — Grises de superficies, bordes y esqueletos de carga — */
-    --color-gray-light: #e0e0e0;
-    --color-gray-medium: #ccc;
-    --color-gray-soft: #e8e8e8;
-    --color-gray-deep: #d0d0d0;
-
-    /* — Colores de tipo de Pokémon (fondo de la barra de estadísticas) — */
-    --color-type-grass: #baffb4;
-    --color-type-fire: #ffd09d;
-    --color-type-water: #b3d5ff;
-    --color-type-psychic: #e1b3ff;
-    --color-type-normal: #d1d1d1;
-    --color-type-ice: #b3f0ff;
-
-    /* — Degradados decorativos — */
-    --gradient-header: linear-gradient(
-        135deg,
-        var(--color-red) 0%,
-        var(--color-red-shadow) 50%,
-        var(--color-red-dark) 100%
-    );
-    --gradient-progress: linear-gradient(90deg, var(--color-red), var(--color-red-tint));
-    --gradient-skeleton: linear-gradient(
-        90deg,
-        var(--color-gray-light) 25%,
-        var(--color-background) 50%,
-        var(--color-gray-light) 75%
-    );
-    --gradient-avatar: linear-gradient(
-        135deg,
-        var(--color-gray-soft) 0%,
-        var(--color-gray-deep) 100%
-    );
-    --gradient-footer: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-}
-
-/* Reset global — fuente Kanit, sin márgenes ni paddings, box-sizing consistente */
 * {
-    font-family: "Kanit", sans-serif;
+    font-family: var(--font-primary);
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Body — altura dinámica con dvh, oculta desborde horizontal */
 body {
     min-height: 100dvh;
     overflow-x: hidden;
@@ -70,30 +14,27 @@ body {
     color: var(--color-text);
 }
 
-/* Root de React — hereda altura mínima del body */
 #app {
     min-height: 100dvh;
 }
 
-/* Layout principal — columna centrada y ancho completo */
-main {
+.site-main {
     align-items: center;
     display: flex;
     flex-direction: column;
     width: 100%;
 }
-/* Animación de flotación para los Pokémon de fondo */
+
 @keyframes float {
     0%,
     100% {
         transform: translateY(0) scale(1);
     }
     50% {
-        transform: translateY(-15px) scale(1.05);
+        transform: translateY(-0.9375rem) scale(1.05);
     }
 }
 
-/* Animación de aparición del logo y título */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -105,7 +46,6 @@ main {
     }
 }
 
-/* Animación de latido para el logo de la Pokéball */
 @keyframes pulse {
     0%,
     100% {
@@ -116,12 +56,12 @@ main {
     }
 }
 
-/* Pantalla de splash — fondo degradado rojo, ocupa todo el viewport */
-.splash-body {
+.splash {
     align-items: center;
     background: var(--gradient-header);
     display: flex;
     height: 100vh;
+    height: 100dvh;
     justify-content: center;
     margin: 0;
     overflow: hidden;
@@ -129,80 +69,71 @@ main {
     width: 100%;
 }
 
-/* Contenedor central del logo y título — aparece con fadeIn, por encima de los Pokémon */
-.logo-title-container {
+.splash__content {
     align-items: center;
     animation: fadeIn 0.8s ease both;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 1.25rem;
     justify-content: center;
     position: relative;
     z-index: 10;
 }
 
-/* Imagen de la Pokéball — animación de latido infinita */
-.logo-title-container img {
+.splash__logo {
     animation: pulse 3s ease-in-out infinite;
-    height: 120px;
-    width: 120px;
+    height: 7.5rem;
+    width: 7.5rem;
 }
 
-/* Título principal — blanco con sombra para legibilidad */
-.logo-title-container h1 {
+.splash__title {
     color: var(--color-white);
-    font-size: 28px;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    font-size: 1.75rem;
+    text-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.3);
 }
 
-/* Subtítulo semitransparente debajo del título */
-.splash-subtitle {
+.splash__subtitle {
     color: rgba(255, 255, 255, 0.8);
-    font-size: 16px;
-    margin-top: -10px;
+    font-size: 1rem;
+    margin-top: -0.625rem;
 }
 
-/* Contenedor absoluto para los Pokémon flotantes de fondo */
-.pokemones {
+.splash__pokemones {
     height: 100%;
     position: absolute;
     width: 100%;
     z-index: 1;
 }
 
-/* Cada Pokémon flotante — posicionado absolutamente con sombra */
-.pokemon {
-    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3));
-    height: 70px;
+.splash__pokemon {
+    filter: drop-shadow(0 0.5rem 1rem rgba(0, 0, 0, 0.3));
+    height: 4.375rem;
     position: absolute;
-    width: 70px;
+    width: 4.375rem;
 }
 
-/* Cada Pokémon usa una imagen de fondo distinta según su generación */
-.pokemon:nth-child(1),
-.pokemon:nth-child(2),
-.pokemon:nth-child(3),
-.pokemon:nth-child(4),
-.pokemon:nth-child(5),
-.pokemon:nth-child(6),
-.pokemon:nth-child(7),
-.pokemon:nth-child(8),
-.pokemon:nth-child(9) {
+.splash__pokemon:nth-child(1),
+.splash__pokemon:nth-child(2),
+.splash__pokemon:nth-child(3),
+.splash__pokemon:nth-child(4),
+.splash__pokemon:nth-child(5),
+.splash__pokemon:nth-child(6),
+.splash__pokemon:nth-child(7),
+.splash__pokemon:nth-child(8),
+.splash__pokemon:nth-child(9) {
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
 }
 
-/* Bulbasaur — Gen 1, esquina superior izquierda */
-.pokemon:nth-child(1) {
+.splash__pokemon:nth-child(1) {
     animation: float 4s ease-in-out infinite;
     background-image: url("../assets/images/pokemon/primera_generacion/Bulbasaur.png");
     left: 8%;
     top: 8%;
 }
 
-/* Chikorita — Gen 2, centro izquierda */
-.pokemon:nth-child(2) {
+.splash__pokemon:nth-child(2) {
     animation: float 5s ease-in-out infinite 0.5s;
     background-image: url("../assets/images/pokemon/segunda_generacion/Chikorita.png");
     left: 3%;
@@ -210,16 +141,14 @@ main {
     transform: translateY(-50%);
 }
 
-/* Treecko — Gen 3, inferior izquierda */
-.pokemon:nth-child(3) {
+.splash__pokemon:nth-child(3) {
     animation: float 4.5s ease-in-out infinite 1s;
     background-image: url("../assets/images/pokemon/tercera_generacion/Treecko.png");
     left: 8%;
     top: 75%;
 }
 
-/* Turtwig — Gen 4, centro superior */
-.pokemon:nth-child(4) {
+.splash__pokemon:nth-child(4) {
     animation: float 5.5s ease-in-out infinite 0.3s;
     background-image: url("../assets/images/pokemon/cuarta_generacion/Turtwig.png");
     left: 50%;
@@ -227,8 +156,7 @@ main {
     transform: translateX(-50%);
 }
 
-/* Victini — Gen 5, centro derecho */
-.pokemon:nth-child(5) {
+.splash__pokemon:nth-child(5) {
     animation: float 4s ease-in-out infinite 0.8s;
     background-image: url("../assets/images/pokemon/quinta_generacion/Victini.png");
     left: 55%;
@@ -236,8 +164,7 @@ main {
     transform: translateY(-50%);
 }
 
-/* Chespin — Gen 6, centro inferior */
-.pokemon:nth-child(6) {
+.splash__pokemon:nth-child(6) {
     animation: float 5s ease-in-out infinite 1.3s;
     background-image: url("../assets/images/pokemon/sexta_generacion/Chespin.png");
     bottom: 8%;
@@ -245,16 +172,14 @@ main {
     transform: translateX(-50%);
 }
 
-/* Rowlet — Gen 7, esquina superior derecha */
-.pokemon:nth-child(7) {
+.splash__pokemon:nth-child(7) {
     animation: float 4.5s ease-in-out infinite 0.6s;
     background-image: url("../assets/images/pokemon/septima_generacion/Rowlet.png");
     right: 8%;
     top: 8%;
 }
 
-/* Grookey — Gen 8, centro derecha */
-.pokemon:nth-child(8) {
+.splash__pokemon:nth-child(8) {
     animation: float 5s ease-in-out infinite 1.1s;
     background-image: url("../assets/images/pokemon/octava_generacion/Grookey.png");
     right: 3%;
@@ -262,41 +187,37 @@ main {
     transform: translateY(-50%);
 }
 
-/* Sprigatito — Gen 9, inferior derecha */
-.pokemon:nth-child(9) {
+.splash__pokemon:nth-child(9) {
     animation: float 4s ease-in-out infinite 0.2s;
     background-image: url("../assets/images/pokemon/novena_generacion/Sprigatito.png");
     right: 8%;
     top: 75%;
 }
 
-/* Navegación entre generaciones — botones Anterior/Siguiente con barra de progreso */
 .generation-navigation {
     align-items: center;
     display: flex;
-    /* En pantallas muy estrechas la barra baja a su propia linea en vez de
-       desbordar la pagina. */
+
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 0.5rem;
     justify-content: center;
-    padding: 12px 0;
+    padding: 0.75rem 0;
     width: 100%;
 }
 
-/* Botones de navegación — fondo rojo con hover más oscuro */
 .generation-btn {
     align-items: center;
     background: var(--color-red);
     border: none;
-    border-radius: 8px;
+    border-radius: 0.5rem;
     color: var(--color-white);
     cursor: pointer;
     display: flex;
-    font-family: "Kanit", sans-serif;
-    font-size: 14px;
+    font-family: var(--font-primary);
+    font-size: 0.875rem;
     font-weight: 600;
-    gap: 6px;
-    padding: 8px 12px;
+    gap: 0.375rem;
+    padding: 0.5rem 0.75rem;
     transition:
         background var(--transition-fast),
         opacity var(--transition-fast);
@@ -306,44 +227,49 @@ main {
     background: var(--color-red-dark);
 }
 
-/* Botón deshabilitado — sin interacción y semitransparente */
 .generation-btn:disabled {
     cursor: default;
     opacity: 0.4;
 }
 
-/* Indicador de progreso — número de generación actual y barra */
 .generation-progress {
     align-items: center;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 0.25rem;
 }
 
-.generation-progress span {
+.generation-progress__text {
     color: var(--color-text-secondary);
-    font-size: 12px;
+    font-size: 0.75rem;
     font-weight: 600;
 }
 
-/* Barra de progresión — contenedor gris claro */
-.generation-bar {
-    background: var(--color-gray-light);
-    border-radius: 4px;
-    height: 6px;
+.generation-progress__bar {
+    width: 5rem;
+    height: 0.375rem;
     overflow: hidden;
-    width: 80px;
+    border: 0;
+    border-radius: 0.25rem;
+    appearance: none;
+    background: var(--color-gray-light);
 }
 
-/* Relleno de la barra — degradado rojo con transición suave */
-.generation-bar-inner {
+.generation-progress__bar::-webkit-progress-bar {
+    border-radius: 0.25rem;
+    background: var(--color-gray-light);
+}
+
+.generation-progress__bar::-webkit-progress-value {
+    border-radius: 0.25rem;
     background: var(--gradient-progress);
-    border-radius: 4px;
-    height: 100%;
-    transition: width 0.3s ease;
 }
 
-/* Animación de brillo para el esqueleto de carga (skeleton) */
+.generation-progress__bar::-moz-progress-bar {
+    border-radius: 0.25rem;
+    background: var(--gradient-progress);
+}
+
 @keyframes shimmer {
     0% {
         background-position: -200% 0;
@@ -353,134 +279,126 @@ main {
     }
 }
 
-/* Esqueleto de carga — grid placeholder mientras se obtienen los datos */
-.skeleton-grid {
+.skeletons {
     align-items: center;
     display: flex;
     flex-wrap: wrap;
-    gap: 24px;
+    gap: 1.5rem;
     justify-content: center;
-    max-width: 1200px;
-    padding: 10px;
+    max-width: 75rem;
+    padding: 0.625rem;
     width: 100%;
 }
 
-.skeleton-card {
+.skeleton {
     background: var(--color-white);
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-soft);
-    height: 700px;
+    height: 43.75rem;
     overflow: hidden;
     width: 100%;
 }
 
-.skeleton-image {
+.skeleton__image {
     background: var(--gradient-skeleton);
     background-size: 200% 100%;
     animation: shimmer 1.5s ease-in-out infinite;
     height: 55%;
 }
 
-.skeleton-content {
+.skeleton__content {
     height: 45%;
-    padding: 14px 16px;
+    padding: 0.875rem 1rem;
 }
 
-.skeleton-line {
+.skeleton__line {
     background: var(--gradient-skeleton);
     background-size: 200% 100%;
     animation: shimmer 1.5s ease-in-out infinite;
-    border-radius: 4px;
-    height: 16px;
-    margin-bottom: 10px;
+    border-radius: 0.25rem;
+    height: 1rem;
+    margin-bottom: 0.625rem;
 }
 
-/* Variantes de ancho para simular texto de distinto tamaño */
-.skeleton-line.short {
+.skeleton__line--short {
     width: 60%;
 }
 
-.skeleton-line.medium {
+.skeleton__line--medium {
     width: 80%;
 }
 
-/* Filtros — buscador por nombre y selector de tipo */
 .filters {
     align-items: center;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 0.5rem;
     justify-content: center;
-    margin-bottom: 20px;
-    max-width: 600px;
-    padding: 0 12px;
+    margin-bottom: 1.25rem;
+    max-width: 37.5rem;
+    padding: 0 0.75rem;
     width: 100%;
 }
 
-/* Input de búsqueda — borde gris que se vuelve rojo al enfocar */
-.search-input {
-    border: 1px solid var(--color-gray-medium);
-    border-radius: 8px;
-    font-family: "Kanit", sans-serif;
-    font-size: 14px;
+.filters__search {
+    border: 0.0625rem solid var(--color-gray-medium);
+    border-radius: 0.5rem;
+    font-family: var(--font-primary);
+    font-size: 0.875rem;
     outline: none;
-    padding: 8px 14px;
+    padding: 0.5rem 0.875rem;
     transition: border-color var(--transition-fast);
     width: 100%;
 }
 
-.search-input:focus {
+.filters__search:focus {
     border-color: var(--color-red);
 }
 
-/* Selector desplegable de tipo Pokémon */
-.type-filter {
+.filters__select {
     background: var(--color-white);
-    border: 1px solid var(--color-gray-medium);
-    border-radius: 8px;
+    border: 0.0625rem solid var(--color-gray-medium);
+    border-radius: 0.5rem;
     cursor: pointer;
-    font-family: "Kanit", sans-serif;
-    font-size: 14px;
+    font-family: var(--font-primary);
+    font-size: 0.875rem;
     outline: none;
-    padding: 8px 14px;
+    padding: 0.5rem 0.875rem;
     transition: border-color var(--transition-fast);
     width: 100%;
 }
 
-.type-filter:focus {
+.filters__select:focus {
     border-color: var(--color-red);
 }
 
-/* Mensaje cuando no hay Pokémon que coincidan con los filtros */
-.no-results {
+.results__empty {
     color: var(--color-text-secondary);
-    font-size: 16px;
-    margin-top: 40px;
+    font-size: 1rem;
+    margin-top: 2.5rem;
     text-align: center;
 }
 
-/* Paginación — controles para navegar entre páginas de Pokémon */
 .pagination {
     align-items: center;
     display: flex;
-    gap: 16px;
+    gap: 1rem;
     justify-content: center;
-    margin-top: 24px;
-    padding: 10px;
+    margin-top: 1.5rem;
+    padding: 0.625rem;
     width: 100%;
 }
 
-.pagination-info {
+.pagination__info {
     color: var(--color-text-secondary);
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 600;
 }
 
-/* Animación de entrada — las cartas aparecen desde abajo */
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(1.875rem);
     }
     to {
         opacity: 1;
@@ -488,46 +406,53 @@ main {
     }
 }
 
-/* Contenedor principal de la página de generación */
-.generation-content {
+.generation {
     align-items: center;
     display: flex;
     flex: 1;
     flex-direction: column;
     justify-content: flex-start;
-    padding: 20px 12px;
+    padding: 1.25rem 0.75rem;
     width: 100%;
 }
 
-/* Título de la generación — capitalizado automáticamente */
-.generation-content h2 {
-    font-size: 28px;
-    margin: 10px 0 20px;
+.generation__title {
+    font-size: 1.75rem;
+    margin: 0.625rem 0 1.25rem;
     text-align: center;
-    text-transform: capitalize;
 }
 
-/* Grid de cartas — flex-wrap centrado con ancho máximo de 1200px */
-.cards-container {
+.generation__text {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.cards {
     align-items: center;
     display: flex;
     flex-wrap: wrap;
-    gap: 16px;
+    gap: 1rem;
     justify-content: center;
-    max-width: 1200px;
+    max-width: 75rem;
     padding: 0;
     width: 100%;
 }
 
-/* Tarjeta individual de Pokémon — efecto 3D con perspective en hover */
-.card {
+.poke-card {
+    --type-color: var(--color-type-normal);
     animation: fadeInUp 0.4s ease both;
+    background: var(--color-white);
+    background: linear-gradient(
+        135deg,
+        color-mix(in srgb, var(--type-color) 13%, transparent),
+        color-mix(in srgb, var(--type-color) 7%, transparent)
+    );
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-soft);
     cursor: pointer;
-    height: 700px;
+    height: 43.75rem;
     overflow: hidden;
-    perspective: 1000px;
+    perspective: 62.5rem;
     position: relative;
     transition:
         transform var(--transition-medium),
@@ -536,236 +461,226 @@ main {
     width: 100%;
 }
 
-/* Hover — levanta la carta y la inclina ligeramente en 3D */
-.card:hover {
+.poke-card:hover {
     box-shadow: var(--shadow-strong);
-    transform: translateY(-8px) rotateY(2deg);
+    transform: translateY(-0.5rem) rotateY(2deg);
 }
 
-/* Contrarrotación de la imagen para mantenerla frontal */
-.card:hover .card-image img {
+.poke-card:hover .poke-card__image img {
     transform: scale(1.1) rotateY(-2deg);
 }
 
-/* Parte superior de la carta — fondo degradado gris con la imagen del Pokémon */
-.card-image {
+.poke-card__image {
     align-items: center;
     background: var(--gradient-avatar);
+    background: linear-gradient(
+        135deg,
+        color-mix(in srgb, var(--type-color) 22%, var(--color-gray-soft)),
+        var(--color-gray-deep)
+    );
     display: flex;
     height: 50%;
     justify-content: center;
-    padding: 20px;
+    padding: 1.25rem;
     position: relative;
     transition: height var(--transition-medium);
 }
 
-/* Imagen del Pokémon — sombra drop-shadow y escala en hover */
-.card-image img {
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+.poke-card__image img {
+    filter: drop-shadow(0 0.25rem 0.5rem rgba(0, 0, 0, 0.3));
     height: 100%;
     object-fit: contain;
     transition: transform var(--transition-medium);
     width: 100%;
 }
 
-.card-image img {
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+.poke-card__image img {
+    filter: drop-shadow(0 0.25rem 0.5rem rgba(0, 0, 0, 0.3));
     height: 100%;
     object-fit: contain;
     transition: transform var(--transition-medium);
     width: 100%;
 }
 
-.card:hover .card-image img {
+.poke-card:hover .poke-card__image img {
     transform: scale(1.1);
 }
 
-/* Parte inferior de la carta — fondo blanco con nombre, tipos, descripción y stats */
-.card-content {
+.poke-card__content {
     background: var(--color-white);
+    background: color-mix(in srgb, var(--type-color) 5%, var(--color-white));
     display: flex;
     flex-direction: column;
     height: 50%;
-    padding: 14px 16px;
+    padding: 0.875rem 1rem;
     position: relative;
 }
 
-/* Nombre del Pokémon + ID alineados a los extremos */
-.card-header {
+.poke-card__header {
     align-items: flex-start;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 4px;
+    margin-bottom: 0.25rem;
 }
 
-.card-name {
+.poke-card__name {
     color: var(--color-text);
-    font-size: 18px;
+    font-size: 1.125rem;
     font-weight: 700;
     line-height: 1.2;
 }
 
-.card-id {
+.poke-card__id {
     color: var(--color-text-secondary);
-    font-size: 15px;
+    font-size: 0.9375rem;
     font-weight: 500;
     white-space: nowrap;
 }
 
-/* Badges de tipo Pokémon — colores definidos dinámicamente en línea */
-.card-types {
+.poke-card__types {
     display: flex;
-    gap: 4px;
-    margin-bottom: 6px;
+    gap: 0.25rem;
+    margin-bottom: 0.375rem;
 }
 
-.type-badge {
-    border-radius: 4px;
+.poke-card__type {
+    border-radius: 0.25rem;
+    background: var(--type-color);
     color: var(--color-white);
-    font-size: 13px;
+    font-size: 0.8125rem;
     font-weight: 600;
-    padding: 3px 12px;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    padding: 0.1875rem 0.75rem;
+    text-shadow: 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.3);
     text-transform: uppercase;
 }
 
-/* Descripción corta del Pokémon */
-.card-description {
+.poke-card__description {
     color: var(--color-text-secondary);
-    font-size: 13px;
+    font-size: 0.8125rem;
     line-height: 1.4;
-    margin-bottom: 6px;
+    margin-bottom: 0.375rem;
 }
 
-/* Estadísticas base — fila con label, barra de estrellas y valor numérico */
-.card-stats {
+.poke-card__stats {
     display: flex;
     flex-direction: column;
-    gap: 3px;
+    gap: 0.1875rem;
     margin-top: auto;
 }
 
 .stat {
     align-items: center;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 4px;
+    border: 0.0625rem solid rgba(0, 0, 0, 0.1);
+    border-radius: 0.25rem;
     display: flex;
     justify-content: space-between;
-    padding: 2px 6px;
+    padding: 0.125rem 0.375rem;
 }
 
-.stat-label {
+.stat__label {
     color: var(--color-text-secondary);
-    font-size: 12px;
+    font-size: 0.75rem;
     font-weight: 600;
-    min-width: 50px;
+    min-width: 3.125rem;
 }
 
-/* Barra visual de estrellas con puntos suspensivos si desborda */
-.stat-stars {
+.stat__stars {
     color: var(--color-black);
-    font-size: 14px;
-    letter-spacing: 1px;
+    font-size: 0.875rem;
+    letter-spacing: 0.0625rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
-.stat-value {
+.stat__value {
     color: var(--color-text-secondary);
-    font-size: 13px;
+    font-size: 0.8125rem;
     font-weight: 600;
-    min-width: 26px;
+    min-width: 1.625rem;
     text-align: right;
 }
 
-/* Colores de fondo para cada estadística — código de colores por tipo de stat */
-.hp {
-    background-color: var(--color-type-grass);
+.stat--hp {
+    background-color: var(--color-stat-grass);
 }
 
-.attack {
-    background-color: var(--color-type-fire);
+.stat--attack {
+    background-color: var(--color-stat-fire);
 }
 
-.defense {
-    background-color: var(--color-type-water);
+.stat--defense {
+    background-color: var(--color-stat-water);
 }
 
-.sp-atk {
-    background-color: var(--color-type-psychic);
+.stat--sp-atk {
+    background-color: var(--color-stat-psychic);
 }
 
-.sp-def {
-    background-color: var(--color-type-normal);
+.stat--sp-def {
+    background-color: var(--color-stat-normal);
 }
 
-.speed {
-    background-color: var(--color-type-ice);
+.stat--speed {
+    background-color: var(--color-stat-ice);
 }
 
-/* Barra de navegación superior — sticky, degradado rojo, sombra */
-header {
+.site-header {
     background: linear-gradient(135deg, var(--color-red) 0%, var(--color-red-dark) 100%);
     box-shadow: var(--shadow-medium);
     left: 0;
     position: sticky;
     top: 0;
-    /* Sin min-width: 0 la cabecera no puede encogerse por debajo del ancho
-       mínimo de sus enlaces y empuja la página a scrolls más anchos. */
+
     min-width: 0;
     width: 100%;
     z-index: 100;
 }
 
-/* Contenedor interno — centrado, ancho máximo de 1200px */
-header nav {
+.site-nav {
     align-items: center;
     display: flex;
-    gap: 16px;
-    height: 64px;
+    gap: 1rem;
+    height: 4rem;
     justify-content: space-between;
     margin: 0 auto;
-    max-width: 1200px;
-    padding: 0 20px;
+    max-width: 75rem;
+    padding: 0 1.25rem;
 }
 
-/* Logo — enlace sin decoración con ícono y texto */
-header nav .logo-container a {
+.site-nav .site-nav__brand a {
     align-items: center;
     cursor: pointer;
     display: flex;
-    gap: 8px;
+    gap: 0.5rem;
     text-decoration: none;
 }
 
-header nav .logo-container img {
-    height: 36px;
-    width: 36px;
+.site-nav .site-nav__brand img {
+    height: 2.25rem;
+    width: 2.25rem;
 }
 
-header nav .logo-container h1 {
+.site-nav .site-nav__brand h1 {
     color: var(--color-white);
     display: none;
-    font-size: 20px;
+    font-size: 1.25rem;
 }
 
-/* Botón hamburguesa — oculto en desktop, visible en móviles */
-.hamburger {
+.site-nav__toggle {
     background: transparent;
     border: none;
     color: var(--color-white);
     cursor: pointer;
     display: block;
-    padding: 4px;
+    padding: 0.25rem;
 }
 
-.hamburger .material-icons {
-    font-size: 28px;
+.site-nav__toggle .material-icons {
+    font-size: 1.75rem;
 }
 
-/* Enlaces de generaciones — scroll horizontal, scrollbar oculta */
-header nav .nav-generations {
+.site-nav .site-nav__list {
     background: var(--color-red-dark);
     display: flex;
     flex-direction: column;
@@ -777,30 +692,28 @@ header nav .nav-generations {
     pointer-events: none;
     position: absolute;
     scrollbar-width: none;
-    top: 64px;
+    top: 4rem;
     transition: opacity var(--transition-medium);
     width: 100%;
     -ms-overflow-style: none;
 }
 
-/* Clase .abierto la añade el JS al desplegar el menú */
-header nav .nav-generations.open {
+.site-nav .site-nav__list.is-open {
     opacity: 1;
     pointer-events: auto;
 }
 
-header nav .nav-generations::-webkit-scrollbar {
+.site-nav .site-nav__list::-webkit-scrollbar {
     display: none;
 }
 
-/* Cada enlace de generación — semitransparente, se ilumina en hover */
-header nav .nav-generations a {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+.site-nav .site-nav__list a {
+    border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.1);
     border-radius: 0;
     color: rgba(255, 255, 255, 0.8);
-    font-size: 13px;
+    font-size: 0.8125rem;
     font-weight: 500;
-    padding: 12px 20px;
+    padding: 0.75rem 1.25rem;
     text-decoration: none;
     transition:
         background var(--transition-fast),
@@ -808,37 +721,33 @@ header nav .nav-generations a {
     white-space: nowrap;
 }
 
-header nav .nav-generations a:hover {
+.site-nav .site-nav__list a:hover {
     background: rgba(255, 255, 255, 0.15);
     color: var(--color-white);
 }
 
-/* El último enlace del menú desplegable no lleva borde */
-header nav .nav-generations a:last-child {
+.site-nav .site-nav__list a:last-child {
     border-bottom: none;
 }
 
-/* Enlace activo — fondo más marcado y texto en negrita */
-header nav .nav-generations a.active {
+.site-nav .site-nav__list a.is-active {
     background: rgba(255, 255, 255, 0.25);
     color: var(--color-white);
     font-weight: 700;
 }
 
-/* Pie de página — fondo oscuro degradado, texto centrado */
-footer {
+.site-footer {
     background: var(--gradient-footer);
-    padding: 14px;
+    padding: 0.875rem;
     text-align: center;
 }
 
-footer p {
+.site-footer__text {
     color: rgba(255, 255, 255, 0.7);
-    font-size: 12px;
+    font-size: 0.75rem;
     font-weight: 400;
 }
 
-/* Layout estático y utilidades de visibilidad */
 #app {
     min-height: 100dvh;
 }
@@ -849,121 +758,117 @@ footer p {
     min-height: 100dvh;
 }
 
-.hidden {
+.is-hidden {
     display: none;
 }
 
-.not-found-page {
+.not-found {
     align-items: center;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 1.25rem;
     height: 100vh;
+    height: 100dvh;
     justify-content: center;
-    padding: 20px;
+    padding: 1.25rem;
     text-align: center;
 }
 
-.not-found-page a {
+.not-found__link {
     color: var(--color-red);
-    font-size: 18px;
+    font-size: 1.125rem;
     font-weight: 600;
     text-decoration: none;
 }
 
-.not-found-page a:hover {
+.not-found__link:hover {
     text-decoration: underline;
 }
 
-/* — Responsive mobile-first: la base ya es el diseño compacto y cada banda
- *   devuelve progresivamente los tamaños de escritorio. — */
-
-/* Móviles pequeños y tablets verticales */
-@media (min-width: 481px) {
-    .pokemon {
-        height: 100px;
-        width: 100px;
+@media (min-width: 30rem) {
+    .splash__pokemon {
+        height: 6.25rem;
+        width: 6.25rem;
     }
 
-    .logo-title-container img {
-        height: 160px;
-        width: 160px;
+    .splash__logo {
+        height: 10rem;
+        width: 10rem;
     }
 
-    .logo-title-container h1 {
-        font-size: 36px;
+    .splash__title {
+        font-size: 2.25rem;
     }
 
-    footer p {
-        font-size: 14px;
+    .site-footer__text {
+        font-size: 0.875rem;
     }
 }
 
-/* Tablets y móviles grandes: vuelve la navegación horizontal */
-@media (min-width: 601px) {
-    .skeleton-card {
-        width: 300px;
+@media (min-width: 37.5rem) {
+    .skeleton {
+        width: 18.75rem;
     }
 
-    .generation-bar {
-        width: 140px;
+    .generation-progress__bar {
+        width: 8.75rem;
     }
 
     .generation-navigation {
-        gap: 16px;
-        padding: 16px 20px;
+        gap: 1rem;
+        padding: 1rem 1.25rem;
     }
 
-    .generation-progress span {
-        font-size: 14px;
+    .generation-progress__text {
+        font-size: 0.875rem;
     }
 
     .generation-btn {
-        padding: 8px 20px;
+        padding: 0.5rem 1.25rem;
     }
 
     .filters {
         flex-direction: row;
-        gap: 12px;
+        gap: 0.75rem;
         padding: 0;
     }
 
-    .type-filter {
+    .filters__select {
         width: auto;
     }
 
-    .cards-container {
-        gap: 18px;
+    .cards {
+        gap: 1.125rem;
     }
 
-    .card {
-        width: 300px;
+    .poke-card {
+        width: 18.75rem;
     }
 
-    .generation-content {
-        padding: 20px;
+    .generation {
+        padding: 1.25rem;
     }
 
-    .card-image {
+    .poke-card__image {
         height: 55%;
     }
 
-    .card-content {
+    .poke-card__content {
         height: 45%;
     }
 
-    .hamburger {
+    .site-nav__toggle {
         display: none;
     }
 
-    header nav .logo-container h1 {
+    .site-nav .site-nav__brand h1 {
         display: block;
     }
 
-    header nav .nav-generations {
+    .site-nav .site-nav__list {
         background: transparent;
         flex-direction: row;
-        gap: 4px;
+        gap: 0.25rem;
         left: auto;
         opacity: 1;
         overflow-x: auto;
@@ -973,124 +878,242 @@ footer p {
         width: auto;
     }
 
-    header nav .nav-generations a {
+    .site-nav .site-nav__list a {
         border-bottom: none;
-        border-radius: 6px;
-        padding: 6px 12px;
+        border-radius: 0.375rem;
+        padding: 0.375rem 0.75rem;
     }
 
-    /* El overlay solo acompaña al menú desplegable */
-    header nav .overlay {
+    .site-nav .site-nav__overlay {
         display: none;
     }
 }
 
-/* Escritorio compacto */
-@media (min-width: 769px) {
-    .pokemon {
-        height: 130px;
-        width: 130px;
+@media (min-width: 48rem) {
+    .splash__pokemon {
+        height: 8.125rem;
+        width: 8.125rem;
     }
 
-    .logo-title-container img {
-        height: 220px;
-        width: 220px;
+    .splash__logo {
+        height: 13.75rem;
+        width: 13.75rem;
     }
 
-    .logo-title-container h1 {
-        font-size: 52px;
+    .splash__title {
+        font-size: 3.25rem;
     }
 
-    .skeleton-card {
-        height: 760px;
-        width: 350px;
+    .skeleton {
+        height: 47.5rem;
+        width: 21.875rem;
     }
 
-    .generation-bar {
-        width: 200px;
+    .generation-progress__bar {
+        width: 12.5rem;
     }
 
-    .cards-container {
-        gap: 24px;
-        padding: 10px;
+    .cards {
+        gap: 1.5rem;
+        padding: 0.625rem;
     }
 
-    .card {
-        height: 760px;
-        width: 350px;
+    .poke-card {
+        height: 47.5rem;
+        width: 21.875rem;
     }
 
-    .card-name {
-        font-size: 20px;
-    }
-}
-
-/* Escritorio amplio */
-@media (min-width: 1025px) {
-    .pokemon {
-        height: 160px;
-        width: 160px;
+    .poke-card__name {
+        font-size: 1.25rem;
     }
 }
 
-/* ── Cartas de altura fluida y rejilla adaptable ──
-   Las cartas tenían 700–760 px fijos, así que en móvil ocupaban más de una
-   pantalla y en escritorio quedaban desproporcionadas. */
-.card,
-.skeleton-card {
+@media (min-width: 64rem) {
+    .splash__pokemon {
+        height: 10rem;
+        width: 10rem;
+    }
+}
+
+.poke-card,
+.skeleton {
     height: auto;
     min-height: 0;
 }
 
-.card {
+.poke-card {
     display: flex;
     flex-direction: column;
     width: 100%;
 }
 
-.card-image {
+.poke-card__image {
     aspect-ratio: 1 / 1;
     flex: 0 0 auto;
     height: auto;
 }
 
-.card-image img {
+.poke-card__image img {
     height: 100%;
     object-fit: contain;
     width: 100%;
 }
 
-.card-content {
+.poke-card__content {
     flex: 1 1 auto;
     min-height: 0;
 }
 
-.card-description {
+.poke-card__description {
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 4;
     display: -webkit-box;
     overflow: hidden;
 }
 
-@media (min-width: 481px) {
-    .card,
-    .skeleton-card {
-        max-width: 340px;
-        width: calc(50% - 18px);
+@media (min-width: 30rem) {
+    .poke-card,
+    .skeleton {
+        max-width: 21.25rem;
+        width: calc(50% - 1.125rem);
     }
 }
 
-@media (min-width: 769px) {
-    .card,
-    .skeleton-card {
-        max-width: 350px;
-        width: 320px;
+@media (min-width: 48rem) {
+    .poke-card,
+    .skeleton {
+        max-width: 21.875rem;
+        width: 20rem;
     }
 }
 
-@media (min-width: 1025px) {
-    .card,
-    .skeleton-card {
-        width: 330px;
+@media (min-width: 64rem) {
+    .poke-card,
+    .skeleton {
+        width: 20.625rem;
+    }
+}
+
+.site-nav__overlay {
+    position: fixed;
+    inset: 4rem 0 0;
+    z-index: 1;
+    background: var(--color-overlay);
+}
+
+.site-nav__brand,
+.site-nav__toggle {
+    position: relative;
+    z-index: 3;
+}
+
+.site-nav .site-nav__list {
+    z-index: 2;
+}
+
+.type--acero {
+    --type-color: var(--color-type-acero);
+}
+
+.type--agua {
+    --type-color: var(--color-type-agua);
+}
+
+.type--bicho {
+    --type-color: var(--color-type-bicho);
+}
+
+.type--dragon {
+    --type-color: var(--color-type-dragon);
+}
+
+.type--electrico {
+    --type-color: var(--color-type-electrico);
+}
+
+.type--fantasma {
+    --type-color: var(--color-type-fantasma);
+}
+
+.type--fuego {
+    --type-color: var(--color-type-fuego);
+}
+
+.type--hada {
+    --type-color: var(--color-type-hada);
+}
+
+.type--hielo {
+    --type-color: var(--color-type-hielo);
+}
+
+.type--lucha {
+    --type-color: var(--color-type-lucha);
+}
+
+.type--normal {
+    --type-color: var(--color-type-normal);
+}
+
+.type--planta {
+    --type-color: var(--color-type-planta);
+}
+
+.type--psiquico {
+    --type-color: var(--color-type-psiquico);
+}
+
+.type--roca {
+    --type-color: var(--color-type-roca);
+}
+
+.type--siniestro {
+    --type-color: var(--color-type-siniestro);
+}
+
+.type--tierra {
+    --type-color: var(--color-type-tierra);
+}
+
+.type--veneno {
+    --type-color: var(--color-type-veneno);
+}
+
+.type--volador {
+    --type-color: var(--color-type-volador);
+}
+
+.poke-card__no-image {
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+}
+
+.poke-card:nth-child(6n + 2) {
+    animation-delay: 40ms;
+}
+
+.poke-card:nth-child(6n + 3) {
+    animation-delay: 80ms;
+}
+
+.poke-card:nth-child(6n + 4) {
+    animation-delay: 120ms;
+}
+
+.poke-card:nth-child(6n + 5) {
+    animation-delay: 160ms;
+}
+
+.poke-card:nth-child(6n) {
+    animation-delay: 200ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .splash__pokemon,
+    .splash__logo,
+    .poke-card,
+    .skeleton__image,
+    .skeleton__line {
+        animation: none;
     }
 }

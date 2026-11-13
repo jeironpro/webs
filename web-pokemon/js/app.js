@@ -1,10 +1,8 @@
-const currentScript = document.currentScript || document.querySelector('script[src$="app.js"]');
-const BASE = currentScript
-    ? new URL("../", currentScript.src)
-    : new URL(location.pathname.replace(/\/(?:generation\/\d+\/?)?$/, "/"), location.origin);
+const BASE = new URL("../", import.meta.url);
 const BASE_PATH = BASE.pathname;
 const DATASET_URL = new URL("data/pokemones.json", BASE);
 const LOGO_URL = new URL("assets/images/pokemon-logo.png", BASE).href;
+const GA_ID = "G-ZTPH1017ZF";
 
 const GENERATIONS = [
     { id: 1, name: "primera" },
@@ -18,27 +16,48 @@ const GENERATIONS = [
     { id: 9, name: "novena" },
 ];
 
-const AVAILABLE_TYPES = [
-    "Acero",
-    "Agua",
-    "Bicho",
-    "Dragón",
-    "Electrico",
-    "Eléctrico",
-    "Fantasma",
-    "Fuego",
-    "Hada",
-    "Hielo",
-    "Lucha",
-    "Normal",
-    "Planta",
-    "Psíquico",
-    "Roca",
-    "Siniestro",
-    "Tierra",
-    "Veneno",
-    "Volador",
+const TYPES = [
+    { name: "Acero", slug: "acero" },
+    { name: "Agua", slug: "agua" },
+    { name: "Bicho", slug: "bicho" },
+    { name: "Dragón", slug: "dragon" },
+    { name: "Eléctrico", slug: "electrico" },
+    { name: "Fantasma", slug: "fantasma" },
+    { name: "Fuego", slug: "fuego" },
+    { name: "Hada", slug: "hada" },
+    { name: "Hielo", slug: "hielo" },
+    { name: "Lucha", slug: "lucha" },
+    { name: "Normal", slug: "normal" },
+    { name: "Planta", slug: "planta" },
+    { name: "Psíquico", slug: "psiquico" },
+    { name: "Roca", slug: "roca" },
+    { name: "Siniestro", slug: "siniestro" },
+    { name: "Tierra", slug: "tierra" },
+    { name: "Veneno", slug: "veneno" },
+    { name: "Volador", slug: "volador" },
 ];
+
+const TYPE_SLUGS = {
+    Acero: "acero",
+    Agua: "agua",
+    Bicho: "bicho",
+    Dragón: "dragon",
+    Electrico: "electrico",
+    Eléctrico: "electrico",
+    Fantasma: "fantasma",
+    Fuego: "fuego",
+    Hada: "hada",
+    Hielo: "hielo",
+    Lucha: "lucha",
+    Normal: "normal",
+    Planta: "planta",
+    Psíquico: "psiquico",
+    Roca: "roca",
+    Siniestro: "siniestro",
+    Tierra: "tierra",
+    Veneno: "veneno",
+    Volador: "volador",
+};
 
 const PER_PAGE = 24;
 const STATISTICS = [
@@ -79,46 +98,43 @@ let searchTimer = null;
 let splashTimer = null;
 let menuOpen = false;
 
-function escapeHtml(value) {
-    return String(value ?? "").replace(
-        /[&<>"']/g,
-        (char) =>
-            ({
-                "&": "&amp;",
-                "<": "&lt;",
-                ">": "&gt;",
-                '"': "&quot;",
-                "'": "&#39;",
-            })[char]
-    );
-}
+const createElement = (tag, className = "", content = "") => {
+    const element = document.createElement(tag);
+    if (className) {
+        element.className = className;
+    }
+    if (content) {
+        element.textContent = content;
+    }
+    return element;
+};
 
-function formatName(name) {
+const formatName = (name) => {
     let formatted = String(name).replace(/_/g, " ");
-    if (formatted.endsWith("-f")) formatted = `${formatted.slice(0, -2)}\u2640`;
-    else if (formatted.endsWith("-m")) formatted = `${formatted.slice(0, -2)}\u2642`;
-    else if (formatted.endsWith("hd")) formatted = `${formatted.slice(0, -1)}'d`;
+    if (formatted.endsWith("-f")) {
+        formatted = `${formatted.slice(0, -2)}\u2640`;
+    } else if (formatted.endsWith("-m")) {
+        formatted = `${formatted.slice(0, -2)}\u2642`;
+    } else if (formatted.endsWith("hd")) {
+        formatted = `${formatted.slice(0, -1)}'d`;
+    }
     return formatted;
-}
+};
 
-function formatId(index) {
-    return String(Number(index) + 1).padStart(4, "0");
-}
+const formatId = (index) => String(Number(index) + 1).padStart(4, "0");
 
-function estrellas(value) {
-    return "\u2605".repeat(Math.max(0, Number(value) || 0));
-}
+const estrellas = (value) => "\u2605".repeat(Math.max(0, Number(value) || 0));
 
-function generationUrl(id) {
-    return new URL(`generation/${id}`, BASE);
-}
+const typeSlug = (name) => TYPE_SLUGS[name] || "normal";
 
-function updateNav(generationId) {
+const generationUrl = (id) => new URL(`generation/${id}`, BASE);
+
+const updateNav = (generationId) => {
     let activeLink = null;
 
     document.querySelectorAll("[data-generation]").forEach((link) => {
         const active = Number(link.dataset.generation) === Number(generationId);
-        link.classList.toggle("active", active);
+        link.classList.toggle("is-active", active);
         if (active) {
             link.setAttribute("aria-current", "page");
             activeLink = link;
@@ -128,13 +144,13 @@ function updateNav(generationId) {
     });
 
     revealActiveLink(activeLink);
-}
+};
 
-/* Cuando la barra de generaciones se desplaza horizontalmente, la generación
-   activa debe quedar a la vista sin que el usuario tenga que arrastrarla. */
-function revealActiveLink(link) {
+const revealActiveLink = (link) => {
     const nav = elements.nav;
-    if (!link || !nav || nav.scrollWidth <= nav.clientWidth) return;
+    if (!link || !nav || nav.scrollWidth <= nav.clientWidth) {
+        return;
+    }
 
     const linkBox = link.getBoundingClientRect();
     const navBox = nav.getBoundingClientRect();
@@ -144,274 +160,428 @@ function revealActiveLink(link) {
     } else if (linkBox.right > navBox.right) {
         nav.scrollLeft += linkBox.right - navBox.right;
     }
-}
+};
 
-function closeMenu() {
+const closeMenu = () => {
     menuOpen = false;
-    elements.nav.classList.remove("open");
-    elements.overlay.classList.add("hidden");
+    elements.nav.classList.remove("is-open");
+    elements.overlay.classList.add("is-hidden");
     elements.hamburgerIcon.textContent = "menu";
     elements.hamburger.setAttribute("aria-expanded", "false");
-}
+};
 
-function toggleMenu() {
+const toggleMenu = () => {
     menuOpen = !menuOpen;
-    elements.nav.classList.toggle("open", menuOpen);
-    elements.overlay.classList.toggle("hidden", !menuOpen);
+    elements.nav.classList.toggle("is-open", menuOpen);
+    elements.overlay.classList.toggle("is-hidden", !menuOpen);
     elements.hamburgerIcon.textContent = menuOpen ? "close" : "menu";
     elements.hamburger.setAttribute("aria-expanded", String(menuOpen));
-}
+};
 
-function clearSplash() {
+const clearSplash = () => {
     if (splashTimer !== null) {
         window.clearTimeout(splashTimer);
         splashTimer = null;
     }
-}
+};
 
-function scheduleSplash() {
+const scheduleSplash = () => {
     clearSplash();
     splashTimer = window.setTimeout(() => {
-        if (currentView === "home") navigate("generation/1");
+        if (currentView === "home") {
+            navigate("generation/1");
+        }
     }, 5000);
-}
+};
 
-function showSplash() {
+const showSplash = () => {
     currentView = "home";
     clearSplash();
     requestToken += 1;
     closeMenu();
     updateNav(null);
-    elements.layout.classList.add("hidden");
-    elements.notFound.classList.add("hidden");
-    elements.splash.classList.remove("hidden");
-    elements.content.innerHTML = "";
+    elements.layout.classList.add("is-hidden");
+    elements.notFound.classList.add("is-hidden");
+    elements.splash.classList.remove("is-hidden");
+    elements.content.replaceChildren();
     document.title = "Pokémon";
     scheduleSplash();
-}
+};
 
-function showLayout() {
-    elements.splash.classList.add("hidden");
-    elements.layout.classList.remove("hidden");
-    elements.notFound.classList.add("hidden");
-}
+const showLayout = () => {
+    elements.splash.classList.add("is-hidden");
+    elements.layout.classList.remove("is-hidden");
+    elements.notFound.classList.add("is-hidden");
+};
 
-function show404() {
+const show404 = () => {
     currentView = "404";
     clearSplash();
     requestToken += 1;
     closeMenu();
     updateNav(null);
-    elements.splash.classList.add("hidden");
-    elements.layout.classList.add("hidden");
-    elements.notFound.classList.remove("hidden");
-    elements.content.innerHTML = "";
+    elements.splash.classList.add("is-hidden");
+    elements.layout.classList.add("is-hidden");
+    elements.notFound.classList.remove("is-hidden");
+    elements.content.replaceChildren();
     document.title = "Página no encontrada · Pokémon";
-}
+};
 
-function navigate(path) {
+const navigate = (path) => {
     const url = path ? generationUrl(path.split("/").pop()) : new URL(BASE);
     window.history.pushState(null, "", url.pathname);
-    if (!path) showSplash();
-    else showGeneration(Number(path.split("/").pop()));
-}
+    if (!path) {
+        showSplash();
+    } else {
+        showGeneration(Number(path.split("/").pop()));
+    }
+};
 
-function currentRoute() {
+const currentRoute = () => {
     const base = BASE_PATH.endsWith("/") ? BASE_PATH : `${BASE_PATH}/`;
-    let path = decodeURIComponent(window.location.pathname);
+    const query = window.location.search.match(/^\?\/(generation\/(\d+))(?:&|\/|$)/);
 
-    if (path === base.replace(/\/$/, "")) path = "";
-    else if (path.startsWith(base)) path = path.slice(base.length);
-
-    path = path.replace(/^\/+|\/+$/g, "");
-
-    if (path === "" || path === "index.html") return { view: "home" };
-
-    const generation = path.match(/^generation\/(\d+)$/);
-    if (generation) return { view: "generation", id: Number(generation[1]) };
-
-    const query = window.location.search.match(/^\?\/(generation\/(\d+))(?:\/|&|$)/);
     if (query) {
         window.history.replaceState(null, "", `${base}${query[1]}`);
         return { view: "generation", id: Number(query[2]) };
     }
 
+    let path = decodeURIComponent(window.location.pathname);
+
+    if (path === base.replace(/\/$/, "")) {
+        path = "";
+    } else if (path.startsWith(base)) {
+        path = path.slice(base.length);
+    }
+
+    path = path.replace(/^\/+|\/+$/g, "");
+
+    if (path === "" || path === "index.html") {
+        return { view: "home" };
+    }
+
+    const generation = path.match(/^generation\/(\d+)$/);
+    if (generation) {
+        return { view: "generation", id: Number(generation[1]) };
+    }
+
     return { view: "404" };
-}
+};
 
-function route() {
+const route = () => {
     const path = currentRoute();
-    if (path.view === "home") showSplash();
-    else if (path.view === "generation") showGeneration(path.id);
-    else show404();
-}
+    if (path.view === "home") {
+        showSplash();
+    } else if (path.view === "generation") {
+        showGeneration(path.id);
+    } else {
+        show404();
+    }
+};
 
-async function loadDataset() {
+const fetchDataset = async () => {
+    try {
+        const response = await fetch(DATASET_URL);
+        if (!response.ok) {
+            throw new Error(`Error HTTP ${response.status}`);
+        }
+        const { data } = await response.json();
+        return data.map((pokemon) => ({
+            ...pokemon,
+            image_url: new URL(
+                `assets/images/pokemon${pokemon.image_url.replace(/^\/pokemon-images/, "")}`,
+                BASE
+            ).href,
+        }));
+    } catch (error) {
+        datasetPromise = null;
+        throw error;
+    }
+};
+
+const loadDataset = () => {
     if (!datasetPromise) {
-        datasetPromise = fetch(DATASET_URL)
-            .then((response) => {
-                if (!response.ok) throw new Error(`Error HTTP ${response.status}`);
-                return response.json();
-            })
-            .then(({ data }) =>
-                data.map((pokemon) => ({
-                    ...pokemon,
-                    image_url: new URL(
-                        `assets/images/pokemon${pokemon.image_url.replace(/^\/pokemon-images/, "")}`,
-                        BASE
-                    ).href,
-                }))
-            )
-            .catch((error) => {
-                datasetPromise = null;
-                throw error;
-            });
+        datasetPromise = fetchDataset();
     }
     return datasetPromise;
-}
+};
 
-function filterPokemon(data) {
+const filterPokemon = (data) => {
     let list = data.filter((pokemon) => pokemon.generation === state.generation);
+
     if (state.search) {
         const term = state.search.toLowerCase().trim();
         list = list.filter((pokemon) => pokemon.name.toLowerCase().includes(term));
     }
+
     if (state.type) {
         list = list.filter((pokemon) =>
-            pokemon.types?.some((type) => type.name?.toLowerCase() === state.type.toLowerCase())
+            pokemon.types?.some((type) => typeSlug(type.name) === state.type)
         );
     }
+
     return list;
-}
+};
 
-function skeletonHTML() {
-    return `<div class="skeleton-grid">${Array.from(
-        { length: 6 },
-        () => `<div class="skeleton-card">
-            <div class="skeleton-image"></div>
-            <div class="skeleton-content">
-                <div class="skeleton-line short"></div>
-                <div class="skeleton-line medium"></div>
-                <div class="skeleton-line"></div>
-                <div class="skeleton-line short"></div>
-            </div>
-        </div>`
-    ).join("")}</div>`;
-}
+const createSkeleton = () => {
+    const skeleton = createElement("div", "skeleton");
+    skeleton.appendChild(createElement("div", "skeleton__image"));
 
-function statsHTML(stats) {
-    if (!stats) return "";
-    return STATISTICS.map(([label, key, className]) => {
-        const value = Number(stats[key]) || 0;
-        return `<div class="stat ${className}">
-            <span class="stat-label">${label}</span>
-            <span class="stat-stars">${estrellas(value)}</span>
-            <span class="stat-value">${value}</span>
-        </div>`;
-    }).join("");
-}
+    const content = createElement("div", "skeleton__content");
+    ["skeleton__line--short", "skeleton__line--medium", "", "skeleton__line--short"].forEach(
+        (modifier) => {
+            content.appendChild(
+                createElement("div", `skeleton__line${modifier ? ` ${modifier}` : ""}`)
+            );
+        }
+    );
+    skeleton.appendChild(content);
+    return skeleton;
+};
 
-function cardHTML(pokemon, delay) {
+const skeletonGrid = () => {
+    const grid = createElement("div", "skeletons");
+    Array.from({ length: 6 }, () => grid.appendChild(createSkeleton()));
+    return grid;
+};
+
+const createStat = (label, key, modifier, stats) => {
+    const value = Number(stats[key]) || 0;
+    const stat = createElement("div", `stat stat--${modifier}`);
+
+    stat.appendChild(createElement("span", "stat__label", label));
+    stat.appendChild(createElement("span", "stat__stars", estrellas(value)));
+    stat.appendChild(createElement("span", "stat__value", String(value)));
+
+    return stat;
+};
+
+const createCard = (pokemon) => {
+    const card = createElement("article", "poke-card");
+    const primaryType = pokemon.types?.[0];
+    if (primaryType) {
+        card.classList.add(`type--${typeSlug(primaryType.name)}`);
+    }
+
+    const imageContainer = createElement("div", "poke-card__image");
+    if (pokemon.image_url) {
+        const image = document.createElement("img");
+        image.src = pokemon.image_url;
+        image.alt = formatName(pokemon.name);
+        image.loading = "lazy";
+        imageContainer.appendChild(image);
+    } else {
+        imageContainer.appendChild(createElement("span", "poke-card__no-image", "Sin imagen"));
+    }
+
+    const content = createElement("div", "poke-card__content");
+    const header = createElement("div", "poke-card__header");
     const name = formatName(pokemon.name);
-    const typeColor = pokemon.types?.[0]?.color || "#f0f0f0";
-    const types = (pokemon.types || [])
-        .map(
-            (type) =>
-                `<span class="type-badge" style="background-color:${escapeHtml(
-                    type.color || "#666"
-                )}">${escapeHtml(type.name)}</span>`
-        )
-        .join("");
+    header.appendChild(createElement("h3", "poke-card__name", name));
+    header.appendChild(
+        createElement("span", "poke-card__id", `N.${"\u00A0"}${formatId(pokemon.global_index)}`)
+    );
 
-    return `<article class="card" style="animation-delay:${delay}ms;background:linear-gradient(135deg, ${typeColor}22 0%, ${typeColor}11 100%)">
-        <div class="card-image">
-            ${
-                pokemon.image_url
-                    ? `<img src="${escapeHtml(pokemon.image_url)}" alt="${escapeHtml(
-                          name
-                      )}" loading="lazy" />`
-                    : '<div style="color:#999;font-size:14px">Sin imagen</div>'
-            }
-        </div>
-        <div class="card-content">
-            <div class="card-header">
-                <h3 class="card-name">${escapeHtml(name)}</h3>
-                <span class="card-id">N.\u00A0${formatId(pokemon.global_index)}</span>
-            </div>
-            <div class="card-types">${types}</div>
-            <p class="card-description">${escapeHtml(pokemon.description)}</p>
-            <div class="card-stats">${statsHTML(pokemon.stats)}</div>
-        </div>
-    </article>`;
-}
+    const types = createElement("div", "poke-card__types");
+    (pokemon.types || []).forEach((type) => {
+        const badge = createElement(
+            "span",
+            `poke-card__type type--${typeSlug(type.name)}`,
+            type.name
+        );
+        types.appendChild(badge);
+    });
 
-function paginationHTML() {
-    return `<div class="pagination">
-        <button class="generation-btn" data-page="anterior" ${
-            state.page <= 1 ? "disabled" : ""
-        } aria-label="Página anterior">
-            <span class="material-icons">chevron_left</span>
-        </button>
-        <span class="pagination-info">${state.page} de ${state.totalPages} (${state.total} pokemon)</span>
-        <button class="generation-btn" data-page="siguiente" ${
-            state.page >= state.totalPages ? "disabled" : ""
-        } aria-label="Página siguiente">
-            <span class="material-icons">chevron_right</span>
-        </button>
-    </div>`;
-}
+    const description = createElement("p", "poke-card__description", pokemon.description || "");
 
-function renderResults(list) {
+    const stats = createElement("div", "poke-card__stats");
+    STATISTICS.forEach(([label, key, modifier]) => {
+        stats.appendChild(createStat(label, key, modifier, pokemon.stats || {}));
+    });
+
+    content.appendChild(header);
+    content.appendChild(types);
+    content.appendChild(description);
+    content.appendChild(stats);
+
+    card.appendChild(imageContainer);
+    card.appendChild(content);
+    return card;
+};
+
+const createPagination = () => {
+    const pagination = createElement("div", "pagination");
+
+    const previous = createElement("button", "generation-btn");
+    previous.type = "button";
+    previous.dataset.page = "anterior";
+    previous.disabled = state.page <= 1;
+    previous.setAttribute("aria-label", "Página anterior");
+    previous.appendChild(createElement("span", "material-icons", "chevron_left"));
+
+    const info = createElement(
+        "span",
+        "pagination__info",
+        `${state.page} de ${state.totalPages} (${state.total} pokemon)`
+    );
+
+    const next = createElement("button", "generation-btn");
+    next.type = "button";
+    next.dataset.page = "siguiente";
+    next.disabled = state.page >= state.totalPages;
+    next.setAttribute("aria-label", "Página siguiente");
+    next.appendChild(createElement("span", "material-icons", "chevron_right"));
+
+    pagination.appendChild(previous);
+    pagination.appendChild(info);
+    pagination.appendChild(next);
+    return pagination;
+};
+
+const renderResults = (list) => {
     const total = list.length;
     state.total = total;
     state.totalPages = Math.max(1, Math.ceil(total / PER_PAGE));
     state.page = Math.min(state.page, state.totalPages) || 1;
 
-    const inicio = (state.page - 1) * PER_PAGE;
-    const page = list.slice(inicio, inicio + PER_PAGE);
+    const start = (state.page - 1) * PER_PAGE;
+    const page = list.slice(start, start + PER_PAGE);
     const results = document.getElementById("results");
-    if (!results) return;
-
-    if (page.length === 0) {
-        results.innerHTML = '<p class="no-results">No se encontraron pokemon con esos filtros.</p>';
+    if (!results) {
         return;
     }
 
-    results.innerHTML = `<div class="cards-container">${page
-        .map((pokemon, index) => cardHTML(pokemon, (index % 20) * 40))
-        .join("")}</div>${state.totalPages > 1 ? paginationHTML() : ""}`;
-}
+    if (page.length === 0) {
+        results.replaceChildren(
+            createElement("p", "results__empty", "No se encontraron pokemon con esos filtros.")
+        );
+        return;
+    }
 
-async function loadResults() {
+    const cards = createElement("div", "cards");
+    page.forEach((pokemon) => cards.appendChild(createCard(pokemon)));
+    results.replaceChildren(cards);
+
+    if (state.totalPages > 1) {
+        results.appendChild(createPagination());
+    }
+};
+
+const loadResults = async () => {
     const results = document.getElementById("results");
-    if (!results) return;
+    if (!results) {
+        return;
+    }
+
     const token = ++requestToken;
-    results.innerHTML = skeletonHTML();
+    results.replaceChildren(skeletonGrid());
 
     try {
         const data = await loadDataset();
-        if (token !== requestToken) return;
+        if (token !== requestToken) {
+            return;
+        }
         renderResults(filterPokemon(data));
     } catch (error) {
-        if (token !== requestToken) return;
-        results.innerHTML = `<div class="generation-content"><h2>Error</h2><p>${escapeHtml(
-            error.message
-        )}</p></div>`;
+        if (token !== requestToken) {
+            return;
+        }
+        const container = createElement("div", "generation");
+        container.appendChild(createElement("h2", "generation__title", "Error"));
+        container.appendChild(createElement("p", "generation__text", error.message));
+        results.replaceChildren(container);
     }
-}
+};
 
-function scheduleLoad(delay) {
-    if (searchTimer !== null) window.clearTimeout(searchTimer);
+const scheduleLoad = (delay) => {
+    if (searchTimer !== null) {
+        window.clearTimeout(searchTimer);
+    }
     searchTimer = window.setTimeout(loadResults, delay);
-}
+};
 
-function typeOptionsHTML() {
-    return AVAILABLE_TYPES.map(
-        (type) => `<option value="${escapeHtml(type)}">${escapeHtml(type)}</option>`
-    ).join("");
-}
+const createGenerationButton = (iconName, text, disabled) => {
+    const button = createElement("button", "generation-btn");
+    button.type = "button";
+    button.disabled = disabled;
 
-function showGeneration(id) {
+    const icon = createElement("span", "material-icons", iconName);
+    icon.setAttribute("aria-hidden", "true");
+    button.appendChild(icon);
+    button.appendChild(createElement("span", "generation-btn__text", text));
+    return button;
+};
+
+const buildGenerationView = (id) => {
+    const generation = GENERATIONS.find((item) => item.id === id);
+    const container = createElement("div", "generation");
+
+    const navigation = createElement("div", "generation-navigation");
+    const previous = createGenerationButton("arrow_back", "Anterior", id <= 1);
+    previous.id = "btn-gen-previous";
+    const next = createGenerationButton("arrow_forward", "Siguiente", id >= GENERATIONS.length);
+    next.id = "btn-gen-next";
+
+    const progress = createElement("div", "generation-progress");
+    progress.appendChild(
+        createElement(
+            "span",
+            "generation-progress__text",
+            `Generación ${id} de ${GENERATIONS.length}`
+        )
+    );
+    const bar = document.createElement("progress");
+    bar.className = "generation-progress__bar";
+    bar.max = GENERATIONS.length;
+    bar.value = id;
+    bar.setAttribute("aria-label", "Progreso de generaciones");
+    progress.appendChild(bar);
+
+    navigation.appendChild(previous);
+    navigation.appendChild(progress);
+    navigation.appendChild(next);
+
+    container.appendChild(navigation);
+    container.appendChild(
+        createElement("h2", "generation__title", `Pokémon de la ${generation.name} generación`)
+    );
+
+    const filters = createElement("div", "filters");
+    const search = document.createElement("input");
+    search.className = "filters__search";
+    search.id = "search";
+    search.type = "search";
+    search.placeholder = "Buscar pokemon...";
+    search.setAttribute("aria-label", "Buscar Pokémon por nombre");
+
+    const select = document.createElement("select");
+    select.className = "filters__select";
+    select.id = "type-filter";
+    select.setAttribute("aria-label", "Filtrar por tipo");
+    const allOption = document.createElement("option");
+    allOption.value = "";
+    allOption.textContent = "Todos los tipos";
+    select.appendChild(allOption);
+    TYPES.forEach((type) => {
+        const option = document.createElement("option");
+        option.value = type.slug;
+        option.textContent = type.name;
+        select.appendChild(option);
+    });
+
+    filters.appendChild(search);
+    filters.appendChild(select);
+
+    const results = createElement("div", "results");
+    results.id = "results";
+    results.appendChild(skeletonGrid());
+
+    container.appendChild(filters);
+    container.appendChild(results);
+    return container;
+};
+
+const showGeneration = (id) => {
     currentView = "generation";
     clearSplash();
     closeMenu();
@@ -428,53 +598,31 @@ function showGeneration(id) {
     const generation = GENERATIONS.find((item) => item.id === id);
     if (!generation) {
         document.title = "Generación no válida · Pokémon";
-        elements.content.innerHTML = `<div class="generation-content">
-            <h2>Generacion no valida</h2>
-            <p>Selecciona una generacion del menu de navegacion.</p>
-        </div>`;
+        const container = createElement("div", "generation");
+        container.appendChild(createElement("h2", "generation__title", "Generación no válida"));
+        container.appendChild(
+            createElement(
+                "p",
+                "generation__text",
+                "Selecciona una generación del menú de navegación."
+            )
+        );
+        elements.content.replaceChildren(container);
         return;
     }
 
     document.title = `Pokémon · ${generation.name} generación`;
-    const progress = (id / GENERATIONS.length) * 100;
-    elements.content.innerHTML = `<div class="generation-content">
-        <div class="generation-navigation">
-            <button class="generation-btn" id="btn-gen-previous" ${id <= 1 ? "disabled" : ""}>
-                <span class="material-icons">arrow_back</span>
-                <span>Anterior</span>
-            </button>
-            <div class="generation-progress">
-                <span>Generacion ${id} de ${GENERATIONS.length}</span>
-                <div class="generation-bar">
-                    <div class="generation-bar-inner" style="width:${progress}%"></div>
-                </div>
-            </div>
-            <button class="generation-btn" id="btn-gen-next" ${
-                id >= GENERATIONS.length ? "disabled" : ""
-            }>
-                <span>Siguiente</span>
-                <span class="material-icons">arrow_forward</span>
-            </button>
-        </div>
-
-        <h2>Pokemon de ${escapeHtml(generation.name)} generacion</h2>
-
-        <div class="filters">
-            <input class="search-input" id="search" type="text" placeholder="Buscar pokemon..." />
-            <select class="type-filter" id="type-filter">
-                <option value="">Todos los tipos</option>
-                ${typeOptionsHTML()}
-            </select>
-        </div>
-
-        <div id="results">${skeletonHTML()}</div>
-    </div>`;
+    elements.content.replaceChildren(buildGenerationView(id));
 
     document.getElementById("btn-gen-previous").addEventListener("click", () => {
-        if (id > 1) navigate(`generation/${id - 1}`);
+        if (id > 1) {
+            navigate(`generation/${id - 1}`);
+        }
     });
     document.getElementById("btn-gen-next").addEventListener("click", () => {
-        if (id < GENERATIONS.length) navigate(`generation/${id + 1}`);
+        if (id < GENERATIONS.length) {
+            navigate(`generation/${id + 1}`);
+        }
     });
     document.getElementById("search").addEventListener("input", (event) => {
         state.search = event.target.value;
@@ -488,7 +636,9 @@ function showGeneration(id) {
     });
     document.getElementById("results").addEventListener("click", (event) => {
         const button = event.target.closest("[data-page]");
-        if (!button) return;
+        if (!button) {
+            return;
+        }
         if (button.dataset.page === "anterior" && state.page > 1) {
             state.page -= 1;
             loadResults();
@@ -500,9 +650,13 @@ function showGeneration(id) {
     });
 
     loadResults();
-}
+};
 
-function setupLinks() {
+const setupLinks = () => {
+    const favicon = document.querySelector('link[rel="icon"]');
+    if (favicon) {
+        favicon.href = new URL("assets/icons/favicon.svg", BASE).href;
+    }
     document.querySelectorAll("[data-logo]").forEach((image) => {
         image.src = LOGO_URL;
     });
@@ -528,7 +682,24 @@ function setupLinks() {
     elements.hamburger.addEventListener("click", toggleMenu);
     elements.overlay.addEventListener("click", closeMenu);
     window.addEventListener("popstate", route);
-}
+};
+
+const updateYear = () => {
+    document.querySelectorAll("[data-year]").forEach((node) => {
+        node.textContent = new Date().getFullYear();
+    });
+};
+
+const initAnalytics = () => {
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = (...args) => {
+        window.dataLayer.push(args);
+    };
+    window.gtag("js", new Date());
+    window.gtag("config", GA_ID);
+};
 
 setupLinks();
 route();
+updateYear();
+initAnalytics();
