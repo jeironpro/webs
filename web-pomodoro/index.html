@@ -20,69 +20,62 @@
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
         />
+        <link rel="stylesheet" href="./css/tokens.css" />
         <link rel="stylesheet" href="./css/styles.css" />
+        <script type="module" src="./js/app.js"></script>
     </head>
-    <body>
-        <div
-            class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
-        >
-            <div
-                id="stars"
-                class="fixed inset-0 overflow-hidden pointer-events-none z-0"
-                aria-hidden="true"
-            ></div>
-
-            <div
-                class="fixed z-20"
-                style="top: calc(env(safe-area-inset-top, 16px) + 8px); right: 16px"
-            >
-                <button
-                    id="info-open"
-                    class="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 hover:bg-white/10"
-                    type="button"
-                    style="color: #64748b"
-                    aria-label="Cómo funciona Pomodoro"
-                    aria-haspopup="dialog"
-                >
-                    <span class="material-symbols-rounded text-xl" aria-hidden="true">info</span>
-                </button>
+    <body class="page">
+        <div class="app">
+            <div id="stars" class="stars" aria-hidden="true">
+                <span class="stars__meteor"></span>
+                <span class="stars__meteor"></span>
+                <span class="stars__meteor"></span>
             </div>
 
-            <main class="relative z-10 flex flex-col items-center gap-8">
-                <div class="flex items-center justify-center gap-2">
+            <button
+                id="info-open"
+                class="info-button"
+                type="button"
+                aria-label="Cómo funciona Pomodoro"
+                aria-haspopup="dialog"
+            >
+                <span class="material-symbols-rounded" aria-hidden="true">info</span>
+            </button>
+
+            <main class="pomodoro">
+                <h1 class="sr-only">Pomodoro</h1>
+
+                <div class="mode">
                     <div
                         id="mode-selector"
-                        class="flex rounded-full p-0.5"
-                        style="
-                            background-color: #1a2332;
-                            border: 1px solid rgba(148, 163, 184, 0.12);
-                        "
+                        class="mode__selector"
                         role="group"
                         aria-label="Modo del temporizador"
                     >
                         <button
                             id="focus-mode"
-                            class="px-6 py-1.5 rounded-full text-sm font-semibold transition-all duration-300"
+                            class="mode__button"
                             type="button"
+                            aria-pressed="true"
                         >
                             Focus
                         </button>
                         <button
                             id="break-mode"
-                            class="px-6 py-1.5 rounded-full text-sm font-semibold transition-all duration-300"
+                            class="mode__button"
                             type="button"
+                            aria-pressed="false"
                         >
                             Break
                         </button>
                     </div>
                 </div>
 
-                <div id="duration-selector" class="relative flex items-center gap-4">
+                <div id="duration-selector" class="duration">
                     <button
                         id="minus-minutes"
-                        class="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200 hover:bg-white/10"
+                        class="duration__step"
                         type="button"
-                        style="color: #94a3b8"
                         aria-label="Disminuir minutos"
                     >
                         <svg
@@ -99,30 +92,24 @@
                         </svg>
                     </button>
 
-                    <div class="relative flex flex-col items-center">
+                    <div class="duration__field">
                         <input
                             id="minutes"
+                            class="duration__input"
                             type="number"
                             min="1"
                             max="99"
                             value="25"
                             inputmode="numeric"
-                            class="text-5xl font-bold font-mono bg-transparent border-none text-center outline-none"
-                            style="color: #f1f5f9; text-shadow: 0 0 20px rgba(0, 212, 255, 0.2)"
                             aria-label="Minutos del temporizador"
                         />
-                        <span
-                            class="block text-xs font-semibold uppercase tracking-widest mt-0.5"
-                            style="color: #64748b"
-                            >minutos</span
-                        >
+                        <span class="duration__label">minutos</span>
                     </div>
 
                     <button
                         id="plus-minutes"
-                        class="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200 hover:bg-white/10"
+                        class="duration__step"
                         type="button"
-                        style="color: #94a3b8"
                         aria-label="Aumentar minutos"
                     >
                         <svg
@@ -141,133 +128,116 @@
 
                     <div
                         id="presets"
-                        class="absolute top-full left-1/2 -translate-x-1/2 mt-3 p-2 rounded-2xl z-20 animate-fade-in flex gap-1.5 hidden"
-                        style="
-                            background-color: #1a2332;
-                            border: 1px solid rgba(148, 163, 184, 0.15);
-                            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-                        "
+                        class="duration__presets is-hidden"
                         role="group"
                         aria-label="Duraciones predefinidas"
                     >
                         <button
+                            class="duration__preset"
                             type="button"
-                            class="preset px-3 py-1.5 rounded-xl text-sm font-semibold transition-all duration-200"
                             data-minutes="5"
+                            aria-pressed="false"
                         >
                             5
                         </button>
                         <button
+                            class="duration__preset"
                             type="button"
-                            class="preset px-3 py-1.5 rounded-xl text-sm font-semibold transition-all duration-200"
                             data-minutes="15"
+                            aria-pressed="false"
                         >
                             15
                         </button>
                         <button
+                            class="duration__preset"
                             type="button"
-                            class="preset px-3 py-1.5 rounded-xl text-sm font-semibold transition-all duration-200"
                             data-minutes="25"
+                            aria-pressed="true"
                         >
                             25
                         </button>
                         <button
+                            class="duration__preset"
                             type="button"
-                            class="preset px-3 py-1.5 rounded-xl text-sm font-semibold transition-all duration-200"
                             data-minutes="30"
+                            aria-pressed="false"
                         >
                             30
                         </button>
                         <button
+                            class="duration__preset"
                             type="button"
-                            class="preset px-3 py-1.5 rounded-xl text-sm font-semibold transition-all duration-200"
                             data-minutes="60"
+                            aria-pressed="false"
                         >
                             60
                         </button>
                     </div>
                 </div>
 
-                <div class="flex flex-col items-center gap-6">
-                    <div class="relative mt-4">
-                        <div class="relative">
-                            <svg width="300" height="300" viewBox="0 0 300 300" aria-hidden="true">
-                                <defs>
-                                    <filter id="ringGlow">
-                                        <feDropShadow
-                                            dx="0"
-                                            dy="0"
-                                            stdDeviation="6"
-                                            flood-color="#00d4ff"
-                                            flood-opacity="0.4"
-                                        />
-                                    </filter>
-                                </defs>
-                                <g transform="translate(300, 0) scale(-1, 1)">
-                                    <g transform="rotate(-90, 150, 150)">
-                                        <circle
-                                            cx="150"
-                                            cy="150"
-                                            r="120"
-                                            fill="none"
-                                            stroke="rgba(148, 163, 184, 0.08)"
-                                            stroke-width="8"
-                                        />
-                                        <circle
-                                            id="progress"
-                                            cx="150"
-                                            cy="150"
-                                            r="120"
-                                            fill="none"
-                                            stroke="#00d4ff"
-                                            stroke-width="8"
-                                            stroke-linecap="round"
-                                            stroke-dasharray="753.98 753.98"
-                                            filter="url(#ringGlow)"
-                                        />
-                                    </g>
+                <div class="timer-area">
+                    <div class="timer">
+                        <svg
+                            class="timer__ring"
+                            viewBox="0 0 300 300"
+                            role="img"
+                            aria-label="Progreso del temporizador"
+                        >
+                            <defs>
+                                <filter id="ringGlow">
+                                    <feDropShadow
+                                        class="timer__glow"
+                                        dx="0"
+                                        dy="0"
+                                        stdDeviation="6"
+                                    />
+                                </filter>
+                            </defs>
+                            <g transform="translate(300, 0) scale(-1, 1)">
+                                <g transform="rotate(-90, 150, 150)">
+                                    <circle
+                                        class="timer__track"
+                                        cx="150"
+                                        cy="150"
+                                        r="120"
+                                        stroke-width="8"
+                                    />
+                                    <circle
+                                        id="progress"
+                                        class="timer__progress"
+                                        cx="150"
+                                        cy="150"
+                                        r="120"
+                                        stroke-width="8"
+                                        stroke-linecap="round"
+                                        stroke-dasharray="753.98 753.98"
+                                        filter="url(#ringGlow)"
+                                    />
                                 </g>
-                            </svg>
+                            </g>
+                        </svg>
 
-                            <div class="absolute inset-0 flex flex-col items-center justify-center">
-                                <span
-                                    id="time"
-                                    class="font-mono text-6xl font-bold tracking-wider"
-                                    style="color: #f1f5f9"
-                                    aria-live="polite"
-                                    >25:00</span
-                                >
-                                <span
-                                    id="time-label"
-                                    class="mt-1 text-xs font-semibold uppercase tracking-widest animate-pulse-ring hidden"
-                                    style="color: #00d4ff"
-                                    >Tiempo</span
-                                >
-                            </div>
+                        <div class="timer__content">
+                            <span id="time" class="timer__time" aria-live="polite">25:00</span>
+                            <span id="time-label" class="timer__label is-hidden">Tiempo</span>
                         </div>
                     </div>
 
-                    <div id="title-area" class="w-full max-w-xs animate-slide-up mx-auto px-4">
+                    <div id="title-area" class="task">
                         <input
                             id="title"
+                            class="task__input"
                             type="text"
                             aria-label="¿En qué vas a trabajar?"
                             placeholder="¿En qué vas a trabajar?"
-                            class="w-full bg-transparent border-b-2 text-center text-lg text-[#f1f5f9] placeholder-[#64748b] outline-none transition-all duration-300"
-                            style="border-color: rgba(148, 163, 184, 0.2)"
                             autocomplete="off"
                         />
-                        <div
-                            id="title-active"
-                            class="flex items-center justify-center gap-1.5 w-full hidden"
-                        >
-                            <span id="title-text" class="text-lg text-[#f1f5f9]/80 truncate"
-                                >Sin título</span
-                            >
+                        <div id="title-active" class="task__display is-hidden">
+                            <span id="title-text" class="task__text">Sin título</span>
                             <button
                                 id="edit-title"
+                                class="task__edit"
                                 type="button"
-                                class="shrink-0 p-0.5 rounded transition-all duration-200 hover:bg-white/10"
                                 aria-label="Editar título"
                             >
                                 <svg
@@ -275,7 +245,7 @@
                                     height="16"
                                     viewBox="0 0 24 24"
                                     fill="none"
-                                    stroke="#00d4ff"
+                                    stroke="currentColor"
                                     stroke-width="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
@@ -287,42 +257,38 @@
                         </div>
                         <input
                             id="title-edit"
+                            class="task__input task__input--edit is-hidden"
                             type="text"
-                            class="w-full bg-transparent border-b-2 text-center text-lg text-[#f1f5f9] outline-none hidden"
-                            style="border-color: rgba(0, 212, 255, 0.3)"
                             aria-label="Editar título de la tarea"
                         />
                     </div>
                 </div>
 
-                <div class="flex items-center justify-center gap-5">
+                <div class="controls">
                     <button
                         id="primary"
-                        class="w-16 h-16 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95"
+                        class="controls__primary"
                         type="button"
-                        style="
-                            background-color: #00d4ff;
-                            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
-                        "
                         aria-label="Iniciar"
                     >
                         <svg
                             id="play-icon"
+                            class="controls__icon"
                             width="22"
                             height="22"
                             viewBox="0 0 24 24"
-                            fill="#0c1222"
+                            fill="currentColor"
                             aria-hidden="true"
                         >
                             <polygon points="6 3 20 12 6 21 6 3" />
                         </svg>
                         <svg
                             id="pause-icon"
-                            class="hidden"
+                            class="controls__icon is-hidden"
                             width="22"
                             height="22"
                             viewBox="0 0 24 24"
-                            fill="#f1f5f9"
+                            fill="currentColor"
                             aria-hidden="true"
                         >
                             <rect x="6" y="4" width="4" height="16" rx="1" />
@@ -332,12 +298,8 @@
 
                     <button
                         id="restart"
-                        class="w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 hidden"
+                        class="controls__stop is-hidden"
                         type="button"
-                        style="
-                            background-color: #1e293b;
-                            border: 1px solid rgba(148, 163, 184, 0.15);
-                        "
                         aria-label="Detener"
                     >
                         <svg
@@ -345,7 +307,7 @@
                             height="16"
                             viewBox="0 0 24 24"
                             fill="none"
-                            stroke="#94a3b8"
+                            stroke="currentColor"
                             stroke-width="2"
                             stroke-linecap="round"
                             aria-hidden="true"
@@ -355,142 +317,79 @@
                     </button>
                 </div>
 
-                <div
-                    id="counter"
-                    class="flex items-center gap-2 hidden"
-                    aria-label="Pomodoros completados"
-                >
-                    <span
-                        class="counter-dot w-3 h-3 rounded-full transition-all duration-500"
-                        style="background-color: rgba(148, 163, 184, 0.12)"
-                    ></span>
-                    <span
-                        class="counter-dot w-3 h-3 rounded-full transition-all duration-500"
-                        style="background-color: rgba(148, 163, 184, 0.12)"
-                    ></span>
-                    <span
-                        class="counter-dot w-3 h-3 rounded-full transition-all duration-500"
-                        style="background-color: rgba(148, 163, 184, 0.12)"
-                    ></span>
-                    <span
-                        class="counter-dot w-3 h-3 rounded-full transition-all duration-500"
-                        style="background-color: rgba(148, 163, 184, 0.12)"
-                    ></span>
-                    <span
-                        id="counter-complete"
-                        class="ml-2 text-xs font-semibold text-[#f59e0b] tracking-wide hidden"
-                        >★ Completo</span
-                    >
+                <div id="counter" class="counter is-hidden" aria-label="Pomodoros completados">
+                    <span class="counter__dot"></span>
+                    <span class="counter__dot"></span>
+                    <span class="counter__dot"></span>
+                    <span class="counter__dot"></span>
+                    <span id="counter-complete" class="counter__complete is-hidden">
+                        ★ Completo
+                    </span>
                 </div>
             </main>
 
             <div
                 id="dialog"
-                class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm animate-fade-in hidden"
+                class="modal is-hidden"
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby="dialog-title"
+                data-next-mode="break"
             >
-                <div
-                    class="rounded-3xl p-10 mx-4 max-w-sm w-full animate-slide-up"
-                    style="
-                        background-color: #1a2332;
-                        border: 1px solid rgba(148, 163, 184, 0.12);
-                        box-shadow: 0 0 60px rgba(0, 212, 255, 0.08);
-                    "
-                >
-                    <div class="flex flex-col items-center text-center gap-6">
-                        <div
-                            id="dialog-icon"
-                            class="w-20 h-20 rounded-full flex items-center justify-center"
-                            style="
-                                background-color: #00d4ff;
-                                box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
-                            "
+                <div class="modal__panel">
+                    <div id="dialog-icon" class="modal__icon">
+                        <svg
+                            width="36"
+                            height="36"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                            aria-hidden="true"
                         >
-                            <svg
-                                width="36"
-                                height="36"
-                                viewBox="0 0 24 24"
-                                fill="#0c1222"
-                                aria-hidden="true"
-                            >
-                                <polygon
-                                    points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
-                                />
-                            </svg>
-                        </div>
-                        <div>
-                            <h2 id="dialog-title" class="text-2xl font-bold" style="color: #f1f5f9">
-                                ¡Pomodoro completado!
-                            </h2>
-                            <p id="dialog-text" class="mt-2 text-sm" style="color: #94a3b8">
-                                ¿Quieres tomar un descanso de 5 minutos?
-                            </p>
-                        </div>
-                        <div class="flex gap-3 w-full">
-                            <button
-                                id="dialog-primary"
-                                type="button"
-                                class="flex-1 py-3 rounded-2xl font-bold text-sm transition-all duration-300 hover:scale-105 active:scale-95"
-                                style="
-                                    background-color: #f59e0b;
-                                    color: #0c1222;
-                                    box-shadow: 0 0 16px rgba(245, 158, 11, 0.3);
-                                "
-                            >
-                                Sí, descansar
-                            </button>
-                            <button
-                                id="dialog-secondary"
-                                type="button"
-                                class="flex-1 py-3 rounded-2xl font-bold text-sm transition-all duration-300 hover:scale-105 active:scale-95"
-                                style="
-                                    background-color: transparent;
-                                    color: #94a3b8;
-                                    border: 1px solid rgba(148, 163, 184, 0.15);
-                                "
-                            >
-                                No, seguir
-                            </button>
-                        </div>
+                            <polygon
+                                points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
+                            />
+                        </svg>
+                    </div>
+                    <h2 id="dialog-title" class="modal__title">¡Pomodoro completado!</h2>
+                    <p id="dialog-text" class="modal__text">
+                        ¿Quieres tomar un descanso de 5 minutos?
+                    </p>
+                    <div class="modal__actions">
+                        <button
+                            id="dialog-primary"
+                            class="modal__button modal__button--primary"
+                            type="button"
+                        >
+                            Sí, descansar
+                        </button>
+                        <button
+                            id="dialog-secondary"
+                            class="modal__button modal__button--secondary"
+                            type="button"
+                        >
+                            No, seguir
+                        </button>
                     </div>
                 </div>
             </div>
 
             <div
                 id="info"
-                class="fixed inset-0 z-50 flex items-center justify-center animate-fade-in p-4 hidden"
+                class="modal is-hidden"
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby="info-title"
             >
-                <div
-                    class="w-full max-w-sm p-6 rounded-2xl animate-slide-up"
-                    style="
-                        background-color: #1a2332;
-                        border: 1px solid rgba(148, 163, 184, 0.12);
-                        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-                    "
-                >
-                    <div class="flex items-center justify-between mb-4">
-                        <h3
-                            id="info-title"
-                            class="text-sm font-bold text-[#f1f5f9] flex items-center gap-2"
-                        >
-                            <span
-                                class="material-symbols-rounded text-base"
-                                style="color: #00d4ff"
-                                aria-hidden="true"
-                                >timer</span
-                            >
+                <div class="modal__panel modal__panel--info">
+                    <div class="info__header">
+                        <h3 id="info-title" class="info__title">
+                            <span class="material-symbols-rounded" aria-hidden="true">timer</span>
                             ¿Cómo funciona?
                         </h3>
                         <button
                             id="info-close"
+                            class="info__close"
                             type="button"
-                            class="w-7 h-7 rounded-full flex items-center justify-center hover:bg-white/10 transition-all"
-                            style="color: #64748b"
                             aria-label="Cerrar"
                         >
                             <svg
@@ -507,68 +406,52 @@
                             </svg>
                         </button>
                     </div>
-                    <div class="flex flex-col gap-3">
-                        <div class="flex gap-2">
-                            <div
-                                class="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0"
-                                style="background-color: #00d4ff"
-                            ></div>
+                    <ul class="info__list">
+                        <li class="info__item">
+                            <span class="info__bullet" aria-hidden="true"></span>
                             <div>
-                                <p class="text-xs font-semibold text-[#f1f5f9]">1. Planifica</p>
-                                <p class="text-xs mt-0.5" style="color: #94a3b8">
+                                <p class="info__step">1. Planifica</p>
+                                <p class="info__text">
                                     Elige una tarea específica en la que quieras trabajar.
                                 </p>
                             </div>
-                        </div>
-                        <div class="flex gap-2">
-                            <div
-                                class="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0"
-                                style="background-color: #00d4ff"
-                            ></div>
+                        </li>
+                        <li class="info__item">
+                            <span class="info__bullet" aria-hidden="true"></span>
                             <div>
-                                <p class="text-xs font-semibold text-[#f1f5f9]">2. Enfoque</p>
-                                <p class="text-xs mt-0.5" style="color: #94a3b8">
+                                <p class="info__step">2. Enfoque</p>
+                                <p class="info__text">
                                     Trabaja sin interrupciones durante el tiempo del pomodoro (por
                                     defecto 25 min).
                                 </p>
                             </div>
-                        </div>
-                        <div class="flex gap-2">
-                            <div
-                                class="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0"
-                                style="background-color: #00d4ff"
-                            ></div>
+                        </li>
+                        <li class="info__item">
+                            <span class="info__bullet" aria-hidden="true"></span>
                             <div>
-                                <p class="text-xs font-semibold text-[#f1f5f9]">3. Descanso</p>
-                                <p class="text-xs mt-0.5" style="color: #94a3b8">
+                                <p class="info__step">3. Descanso</p>
+                                <p class="info__text">
                                     Cuando el timer suene, tómate un descanso corto de 5 minutos.
                                 </p>
                             </div>
-                        </div>
-                        <div class="flex gap-2">
-                            <div
-                                class="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0"
-                                style="background-color: #00d4ff"
-                            ></div>
+                        </li>
+                        <li class="info__item">
+                            <span class="info__bullet" aria-hidden="true"></span>
                             <div>
-                                <p class="text-xs font-semibold text-[#f1f5f9]">4. Repite</p>
-                                <p class="text-xs mt-0.5" style="color: #94a3b8">
+                                <p class="info__step">4. Repite</p>
+                                <p class="info__text">
                                     Cada 4 pomodoros completados, tómate un descanso largo de 15-30
                                     min.
                                 </p>
                             </div>
-                        </div>
-                    </div>
-                    <div class="mt-4 pt-3" style="border-top: 1px solid rgba(148, 163, 184, 0.08)">
-                        <p class="text-xs" style="color: #64748b">
-                            Creada por Francesco Cirillo en los 80.<br />«Pomodoro» significa
-                            «tomate» en italiano.
-                        </p>
-                    </div>
+                        </li>
+                    </ul>
+                    <p class="info__footer">
+                        Creada por Francesco Cirillo en los 80.<br />«Pomodoro» significa «tomate»
+                        en italiano.
+                    </p>
                 </div>
             </div>
         </div>
-
-        <script src="./js/app.js"></script>
     </body>
 </html>
