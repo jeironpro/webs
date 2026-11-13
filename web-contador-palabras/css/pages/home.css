@@ -1,9 +1,8 @@
 @layer base {
-    /* ── Layout de página (Workbench, una tarea) ──────── */
     .site {
         display: flex;
         flex-direction: column;
-        min-height: 100vh;
+        min-height: 100dvh;
     }
 
     .site-main {
@@ -17,9 +16,8 @@
         gap: var(--space-xl);
     }
 
-    /* ── Cabecera ─────────────────────────────────────── */
     .site-header {
-        border-bottom: 1px solid var(--color-rule);
+        border-bottom: var(--border-width) solid var(--color-rule);
     }
 
     .nav {
@@ -74,7 +72,6 @@
         display: block;
     }
 
-    /* ── Título de página ─────────────────────────────── */
     .page-head {
         max-width: 62ch;
         display: flex;
@@ -96,16 +93,14 @@
         line-height: 1.5;
     }
 
-    /* ── Bloque del formulario ────────────────────────── */
     .form-block {
         display: flex;
         flex-direction: column;
         gap: var(--space-lg);
     }
 
-    /* ── Pie (colophon, Ft4) ──────────────────────────── */
     .site-footer {
-        border-top: 1px solid var(--color-rule);
+        border-top: var(--border-width) solid var(--color-rule);
     }
 
     .foot {

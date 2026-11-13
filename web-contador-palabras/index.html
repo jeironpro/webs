@@ -65,16 +65,16 @@
                 </section>
 
                 <section class="form-block">
-                    <div class="text-area">
+                    <div class="editor">
                         <label class="mono-label" for="text">Tu texto</label>
                         <textarea
-                            class="text-area__field"
+                            class="editor__field"
                             id="text"
                             name="text"
                             rows="12"
                             placeholder="Escribe o pega aquí tu texto, o suelta un archivo en la zona de subida…"
                         ></textarea>
-                        <div class="text-area__toolbar">
+                        <div class="editor__toolbar">
                             <button type="button" class="btn btn--accent" id="clear" disabled>
                                 Limpiar
                             </button>
@@ -98,13 +98,7 @@
                         </p>
                     </div>
 
-                    <div
-                        class="dropzone"
-                        id="dropzone"
-                        role="button"
-                        tabindex="0"
-                        aria-controls="file"
-                    >
+                    <label class="dropzone" id="dropzone" for="file">
                         <input
                             class="dropzone__input"
                             type="file"
@@ -117,7 +111,7 @@
                             o pulsa para elegirlo. Cualquier archivo de texto plano (.txt, .md,
                             .html, .csv…).
                         </p>
-                    </div>
+                    </label>
                 </section>
             </main>
 

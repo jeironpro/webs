@@ -1,11 +1,10 @@
 @layer base {
-    /* ── Panel de métricas ────────────────────────────── */
     .stats {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 1px;
+        gap: var(--border-width);
         background: var(--color-rule);
-        border: 1px solid var(--color-rule);
+        border: var(--border-width) solid var(--color-rule);
         border-radius: var(--radius-field);
         overflow: hidden;
     }
@@ -40,7 +39,7 @@
         grid-template-columns: 1fr;
     }
 
-    @media (min-width: 561px) {
+    @media (min-width: 35.0625rem) {
         .stats {
             grid-template-columns: repeat(3, 1fr);
         }

@@ -5,9 +5,6 @@
 @import url("components/dropzone.css");
 @import url("pages/home.css");
 @layer base {
-    /* Hallmark · theme: Newsprint · entrada principal: base + sistema de control */
-
-    /* ── Base ─────────────────────────────────────────── */
     html,
     body {
         overflow-x: clip;
@@ -33,8 +30,8 @@
 
     a {
         color: var(--color-accent);
-        text-underline-offset: 3px;
-        text-decoration-thickness: 1px;
+        text-underline-offset: 0.1875rem;
+        text-decoration-thickness: var(--border-width);
     }
 
     a:hover {
@@ -42,11 +39,10 @@
     }
 
     :focus-visible {
-        outline: 3px solid var(--color-focus);
-        outline-offset: 3px;
+        outline: var(--focus-width) solid var(--color-focus);
+        outline-offset: var(--focus-offset);
     }
 
-    /* ── Texto de etiqueta (outlier) ──────────────────── */
     .mono-label {
         font-family: var(--font-outlier);
         font-size: var(--text-xs);
@@ -62,7 +58,7 @@
         background: var(--color-paper-2);
         color: var(--color-ink);
         padding: var(--space-xs) var(--space-md);
-        border: 1px solid var(--color-rule);
+        border: var(--border-width) solid var(--color-rule);
         z-index: 1000;
     }
 
@@ -70,7 +66,6 @@
         transform: none;
     }
 
-    /* ── Botones ──────────────────────────────────────── */
     .btn {
         display: inline-flex;
         align-items: center;
@@ -80,7 +75,7 @@
         padding: 0.6rem 1.1rem;
         font-family: var(--font-body);
         font-weight: 600;
-        border: 1px solid var(--color-rule);
+        border: var(--border-width) solid var(--color-rule);
         border-radius: var(--radius-input);
         background: var(--color-paper);
         color: var(--color-ink);
@@ -96,7 +91,7 @@
     }
 
     .btn:active {
-        transform: translateY(1px);
+        transform: translateY(0.0625rem);
     }
 
     .btn--accent {
