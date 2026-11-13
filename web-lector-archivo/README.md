@@ -1,37 +1,44 @@
-# web-lector-archivo
+# Lector de archivos
 
 Lector de archivos locales en el navegador que muestra el contenido del archivo seleccionado sin subirlo a ningún servidor.
 
 ## Características
 
 - Selección de un archivo local mediante el selector del navegador.
-- Lectura del contenido con la API FileReader del navegador.
-- Visualización del texto leído en pantalla.
+- Lectura del contenido con la API `FileReader`.
+- Visualización del texto leído en pantalla, con opción de vaciarlo.
 - Interfaz en español; los identificadores del código están en inglés.
 - Todo el procesamiento ocurre de forma local.
 
-## Tecnologías
+## Stack
 
-- HTML5, CSS3 y JavaScript (ES6+).
-- API FileReader para la lectura de archivos.
+- HTML5 semántico
+- CSS3 (tokens, BEM, Flexbox)
+- JavaScript ES6+ (módulo ES)
+- Google Fonts (Inter e IBM Plex Mono)
+- Material Symbols
+- ESLint + Prettier
 
-## Uso
-
-1. Clona el repositorio.
-2. Abre `index.html` en el navegador o sirve la carpeta con un servidor estático local.
-3. Selecciona un archivo de texto y su contenido se mostrará en pantalla.
-
-## Estructura del proyecto
+## Estructura
 
 ```
 web-lector-archivo/
-├── index.html
-├── css/                   # estilos de la interfaz
-├── js/                    # lógica de lectura de archivos
-└── assets/icons/                  # favicon
+  index.html
+  assets/
+    icons/
+      favicon.svg
+  css/
+    tokens.css
+    styles.css
+  js/
+    app.js
+  README.md
 ```
+
+## Uso
+
+Sirve la carpeta con un servidor HTTP, por ejemplo `python3 -m http.server 8000`, y abre <http://localhost:8000/web-lector-archivo/>. Selecciona un archivo de texto y su contenido se mostrará en pantalla.
 
 ## Licencia
 
-Este proyecto está bajo la licencia **MIT**.  
 Consulta el archivo [LICENSE](../LICENSE) para más detalles.
