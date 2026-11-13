@@ -1,15 +1,3 @@
-/**
- * Modulo de conversion entre espacios de color:
- * RGB, HSV, HSL y CMYK
- */
-
-/**
- * Convierte de HSV a RGB
- * @param {number} h - Matiz (0-360)
- * @param {number} s - Saturacion (0-100)
- * @param {number} v - Valor/Brillo (0-100)
- * @returns {{r: number, g: number, b: number}}
- */
 export function hsvToRgb(h, s, v) {
     s /= 100;
     v /= 100;
@@ -60,13 +48,6 @@ export function hsvToRgb(h, s, v) {
     };
 }
 
-/**
- * Convierte de RGB a HSV
- * @param {number} r - Rojo (0-255)
- * @param {number} g - Verde (0-255)
- * @param {number} b - Azul (0-255)
- * @returns {{h: number, s: number, v: number}}
- */
 export function rgbToHsv(r, g, b) {
     r /= 255;
     g /= 255;
@@ -99,13 +80,6 @@ export function rgbToHsv(r, g, b) {
     };
 }
 
-/**
- * Convierte de RGB a HSL
- * @param {number} r - Rojo (0-255)
- * @param {number} g - Verde (0-255)
- * @param {number} b - Azul (0-255)
- * @returns {{h: number, s: number, l: number}}
- */
 export function rgbToHsl(r, g, b) {
     r /= 255;
     g /= 255;
@@ -138,13 +112,6 @@ export function rgbToHsl(r, g, b) {
     };
 }
 
-/**
- * Convierte de RGB a CMYK
- * @param {number} r - Rojo (0-255)
- * @param {number} g - Verde (0-255)
- * @param {number} b - Azul (0-255)
- * @returns {{c: number, m: number, y: number, k: number}}
- */
 export function rgbToCmyk(r, g, b) {
     const cr = r / 255;
     const cg = g / 255;

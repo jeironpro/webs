@@ -4,22 +4,20 @@ Selector de color interactivo con visualización en RGB, CMYK, HSV y HSL. Constr
 
 ## Características
 
-- Selección por canvas SV (saturación/valor) y barra de matiz
-- Sliders RGB con valores numéricos
-- Selector de formato clickeable: HEX → RGB → CMYK → HSV → HSL
-- Entrada editable en el formato seleccionado con parseo automático
-- Visualización en floating bar con valores en RGB, CMYK, HSV y HSL
-- Copia al portapapeles de cualquier valor con tooltip de feedback
-- Diseño responsivo: desktop (40/60), tablet, móvil, móvil pequeño
-- Accesibilidad: skip link, `:focus-visible`, `prefers-reduced-motion`, roles ARIA
-- SEO: meta tags, canonical, structured data (WebApplication)
-- Tema neutro medio con backdrop-filter
+- Selección por canvas SV (saturación/valor) y barra de matiz.
+- Sliders RGB con valores numéricos.
+- Selector de formato pulsable: HEX → RGB → CMYK → HSV → HSL.
+- Entrada editable en el formato seleccionado con parseo automático.
+- Barra flotante con los valores en RGB, CMYK, HSV y HSL.
+- Copia al portapapeles de cualquier valor con tooltip de confirmación.
+- Diseño responsive para escritorio, tablet y móvil.
+- Accesibilidad: skip link, botones nativos, `:focus-visible` y `prefers-reduced-motion`.
 
 ## Stack
 
-- **HTML5** semántico
-- **CSS3** (Flexbox, Grid, Custom Properties, Media Queries)
-- **JavaScript ES6+** (módulos nativos, sin bundler)
+- HTML5 semántico.
+- CSS3 con Flexbox, Grid, custom properties y media queries.
+- JavaScript como módulos ES nativos, sin bundler.
 
 ## Estructura
 
@@ -27,32 +25,38 @@ Selector de color interactivo con visualización en RGB, CMYK, HSV y HSL. Constr
 web-color-picker/
 ├── index.html
 ├── css/
-│   ├── style.css           # Entry point (imports)
-│   ├── reset.css           # Reset + accesibilidad
-│   ├── variables.css       # Variables de diseño
-│   ├── layout/grid.css     # Grid responsivo 40/60
-│   ├── components/         # color-display, color-picker, floating-bar
-│   └── pages/home.css      # Tooltip y animaciones
+│   ├── style.css
+│   ├── reset.css
+│   ├── variables.css
+│   ├── layout/grid.css
+│   ├── components/
+│   │   ├── color-display.css
+│   │   ├── color-picker.css
+│   │   └── floating-bar.css
+│   └── pages/home.css
 ├── js/
-│   ├── app.js              # Entry point
-│   ├── modules/            # colorPicker.js, colorConverter.js
-│   └── utils/              # dom.js, format.js
+│   ├── app.js
+│   ├── modules/
+│   │   ├── colorPicker.js
+│   │   └── colorConverter.js
+│   └── utils/
+│       ├── dom.js
+│       └── format.js
 ├── assets/
-│   └── icons/favicon.svg   # Favicon SVG
-├── ARQUITECTURA.md         # Documentación técnica
-└── STYLE-GUIDE.md          # Libro de estilo
+│   └── icons/favicon.svg
+└── STYLE-GUIDE.md
 ```
 
 ## Uso
 
-Servir con cualquier servidor HTTP estático (no funciona con file:// por los módulos ES6):
+Sirve la carpeta con un servidor HTTP estático; los módulos ES no funcionan con `file://`:
 
 ```bash
-npx serve .
-# o
 python3 -m http.server 8080
 ```
 
+Abre `http://localhost:8080/web-color-picker/`.
+
 ## Licencia
 
-MIT
+Este proyecto está bajo la licencia **MIT**. Consulta el archivo [LICENSE](../LICENSE) para más detalles.

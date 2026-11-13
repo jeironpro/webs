@@ -12,7 +12,6 @@
         <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg" />
         <title>Color Picker</title>
 
-        <!-- Google Fonts: DM Sans + JetBrains Mono -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -20,7 +19,6 @@
             rel="stylesheet"
         />
 
-        <!-- Structured Data: WebApplication -->
         <script type="application/ld+json">
             {
                 "@context": "https://schema.org",
@@ -33,29 +31,34 @@
             }
         </script>
 
-        <!-- Estilos principales -->
         <link rel="stylesheet" href="css/style.css" />
     </head>
 
     <body>
-        <!-- Skip link para navegacion por teclado -->
         <a href="#colorPicker" class="visually-hidden skip-link">Saltar al selector de color</a>
-        <!-- Tooltip para feedback de copiado -->
+        <header class="app-header">
+            <h1 class="visually-hidden">Color Picker</h1>
+        </header>
         <div class="tooltip" id="tooltip" role="status" aria-live="polite"></div>
 
-        <!-- Layout principal: dos columnas 40/60 -->
         <main class="main-layout">
-            <!-- Panel izquierdo (40%): muestra el color seleccionado -->
             <section class="color-display" id="colorDisplay" aria-label="Color seleccionado">
-                <div class="color-display__info">
+                <button
+                    type="button"
+                    class="color-display__info"
+                    aria-label="Copiar color hexadecimal"
+                >
                     <span class="color-display__label">HEX</span>
                     <span class="color-display__hex" id="hexValue">#FF0000</span>
-                </div>
+                </button>
             </section>
 
-            <!-- Panel derecho (60%): selector de color -->
-            <section class="color-picker" id="colorPicker" aria-label="Selector de color">
-                <!-- Canvas de saturacion-valor y matiz -->
+            <section
+                class="color-picker"
+                id="colorPicker"
+                tabindex="-1"
+                aria-label="Selector de color"
+            >
                 <div class="color-picker__canvas-wrapper">
                     <canvas
                         class="sv-canvas"
@@ -69,7 +72,6 @@
                     ></canvas>
                 </div>
 
-                <!-- Sliders RGB -->
                 <div class="color-picker__sliders">
                     <div class="slider-group">
                         <span class="slider-group__label">R</span>
@@ -111,17 +113,16 @@
                     </div>
                 </div>
 
-                <!-- Input de color con selector de formato -->
                 <div class="color-picker__hex-input">
                     <div class="hex-input-group">
-                        <span
+                        <button
+                            type="button"
                             class="hex-input-group__label"
                             id="formatLabel"
-                            tabindex="0"
-                            role="button"
                             aria-label="Cambiar formato de color"
-                            >HEX</span
                         >
+                            HEX
+                        </button>
                         <input
                             type="text"
                             class="hex-input-group__input"
@@ -135,7 +136,6 @@
             </section>
         </main>
 
-        <!-- Barra flotante inferior con valores en distintos espacios de color -->
         <footer class="floating-bar" aria-label="Valores del color">
             <div class="floating-bar__group">
                 <span class="floating-bar__label">RGB</span>
@@ -254,7 +254,6 @@
             </div>
         </footer>
 
-        <!-- Script principal (ES6 module) -->
         <script type="module" src="js/app.js"></script>
     </body>
 </html>

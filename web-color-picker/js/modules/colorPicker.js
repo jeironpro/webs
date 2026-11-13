@@ -1,23 +1,16 @@
-/**
- * Modulo principal del Color Picker
- * Gestiona los canvas de seleccion, sliders RGB, selector de formato y actualizacion de valores
- */
 import { hsvToRgb, rgbToHsv, rgbToHsl, rgbToCmyk } from "./colorConverter.js";
 import { rgbToHex, hexToRgb, getLuminance } from "../utils/format.js";
 import { $, $$ } from "../utils/dom.js";
 
-/* Estado interno del color actual en HSV */
 let hue = 0;
 let saturation = 100;
 let value = 100;
 
-/* Estado del selector de formato */
 const formats = ["hex", "rgb", "cmyk", "hsv", "hsl"];
 let formatIndex = 0;
 let currentFormat = formats[0];
 let editingFormat = false;
 
-/* Referencias al DOM */
 let svCanvas;
 let hueCanvas;
 let svCtx;
@@ -38,15 +31,10 @@ let hsvValuesDisplay;
 let hslValuesDisplay;
 let tooltip;
 
-/* Flag para evitar bucles infinitos */
 let isUpdating = false;
 
-/* Referencias a botones de copia */
 let copyButtons;
 
-/**
- * Inicializa el color picker
- */
 export function initColorPicker() {
     getDomReferences();
     resizeCanvases();
@@ -57,9 +45,6 @@ export function initColorPicker() {
     syncBarHeight();
 }
 
-/**
- * Obtiene todas las referencias a elementos del DOM
- */
 function getDomReferences() {
     svCanvas = $("#svCanvas");
     hueCanvas = $("#hueCanvas");
@@ -83,9 +68,6 @@ function getDomReferences() {
     copyButtons = $$(".floating-bar__copy-btn");
 }
 
-/**
- * Ajusta las dimensiones de los canvas al tamano de su contenedor
- */
 function resizeCanvases() {
     const rect = svCanvas.getBoundingClientRect();
     const size = Math.floor(rect.width);
@@ -97,9 +79,6 @@ function resizeCanvases() {
     hueCanvas.height = 28;
 }
 
-/**
- * Dibuja la barra de matiz (hue) en el canvas correspondiente
- */
 function drawHueCanvas() {
     const { width, height } = hueCanvas;
     const gradient = hueCtx.createLinearGradient(0, 0, width, 0);
@@ -130,9 +109,6 @@ function drawHueCanvas() {
     hueCtx.stroke();
 }
 
-/**
- * Dibuja el canvas de saturacion-valor para el matiz actual
- */
 function drawSvCanvas() {
     const { width, height } = svCanvas;
     const imageData = svCtx.createImageData(width, height);
@@ -170,12 +146,9 @@ function drawSvCanvas() {
     svCtx.stroke();
 }
 
-/**
- * Actualiza toda la interfaz a partir de valores HSV
- */
 function updateFromHsv(newH, newS, newV) {
     if (isUpdating) return;
-    if (!isFinite(newH) || !isFinite(newS) || !isFinite(newV)) return;
+    if (!Number.isFinite(newH) || !Number.isFinite(newS) || !Number.isFinite(newV)) return;
 
     isUpdating = true;
 
@@ -191,12 +164,9 @@ function updateFromHsv(newH, newS, newV) {
     isUpdating = false;
 }
 
-/**
- * Actualiza toda la interfaz a partir de valores RGB
- */
 function updateFromRgb(r, g, b) {
     if (isUpdating) return;
-    if (!isFinite(r) || !isFinite(g) || !isFinite(b)) return;
+    if (!Number.isFinite(r) || !Number.isFinite(g) || !Number.isFinite(b)) return;
     isUpdating = true;
 
     const { h: newH, s: newS, v: newV } = rgbToHsv(r, g, b);
@@ -213,9 +183,6 @@ function updateFromRgb(r, g, b) {
     isUpdating = false;
 }
 
-/**
- * Obtiene el valor formateado para un espacio de color
- */
 function getFormattedValue(format, r, g, b) {
     switch (format) {
         case "hex":
@@ -254,15 +221,11 @@ function getPlaceholder(format) {
     }
 }
 
-/**
- * Actualiza todos los elementos visuales con los valores RGB actuales
- */
 function updateWholeInterface(r, g, b) {
     colorDisplay.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
 
     const luminance = getLuminance(r, g, b);
-    const textColor = luminance > 0.5 ? "#1a1a1a" : "#ffffff";
-    hexDisplay.style.color = textColor;
+    hexDisplay.classList.toggle("color-display__hex--dark", luminance > 0.5);
 
     const hex = rgbToHex(r, g, b);
     hexDisplay.textContent = hex;
@@ -284,8 +247,6 @@ function updateWholeInterface(r, g, b) {
     hsvValuesDisplay.textContent = `${Math.round(hue)}°, ${Math.round(saturation)}%, ${Math.round(value)}%`;
     hslValuesDisplay.textContent = `${hslH}°, ${hslS}%, ${hslL}%`;
 }
-
-/* Funciones de parseo para cada espacio de color */
 
 function parseRgb(text) {
     const nums = text.split(",").map((s) => parseInt(s.trim(), 10));
@@ -385,9 +346,6 @@ function parseFormat(format, text) {
     }
 }
 
-/**
- * Obtiene la posicion del cursor relativa al canvas, escalada correctamente
- */
 function getCanvasPosition(canvas, clientX, clientY) {
     const rect = canvas.getBoundingClientRect();
     if (rect.width === 0 || rect.height === 0) return { x: 0, y: 0 };
@@ -401,9 +359,6 @@ function getCanvasPosition(canvas, clientX, clientY) {
     };
 }
 
-/**
- * Maneja la interaccion en el canvas de saturacion-valor
- */
 function handleSvInteraction(event) {
     const clientX = event.clientX || event.touches?.[0]?.clientX;
     const clientY = event.clientY || event.touches?.[0]?.clientY;
@@ -419,9 +374,6 @@ function handleSvInteraction(event) {
     updateFromHsv(hue, newS, newV);
 }
 
-/**
- * Maneja la interaccion en el canvas de matiz
- */
 function handleHueInteraction(event) {
     const clientX = event.clientX || event.touches?.[0]?.clientX;
     const clientY = event.clientY || event.touches?.[0]?.clientY;
@@ -440,8 +392,6 @@ function handleHueInteraction(event) {
         updateFromHsv(hue, saturation, value);
     }
 }
-
-/* Manejadores de eventos de los canvas */
 
 function onSVMouseDown(event) {
     handleSvInteraction(event);
@@ -511,9 +461,6 @@ function onHueTouchUp() {
     hueCanvas.removeEventListener("touchcancel", onHueTouchUp);
 }
 
-/**
- * Maneja el cambio en los sliders RGB
- */
 function onSliderChange() {
     const r = parseInt(redSlider.value, 10);
     const g = parseInt(greenSlider.value, 10);
@@ -522,9 +469,6 @@ function onSliderChange() {
     updateFromRgb(r, g, b);
 }
 
-/**
- * Cicla al siguiente formato de color
- */
 function cycleFormat() {
     formatIndex = (formatIndex + 1) % formats.length;
     currentFormat = formats[formatIndex];
@@ -535,9 +479,6 @@ function cycleFormat() {
     formatInput.placeholder = getPlaceholder(currentFormat);
 }
 
-/**
- * Procesa la edicion del input de formato unificado
- */
 function onFormatInput() {
     editingFormat = false;
     const text = formatInput.value.trim();
@@ -555,9 +496,6 @@ function onFormatInput() {
     }
 }
 
-/**
- * Muestra un tooltip temporal con un mensaje
- */
 function showTooltip(message, isError = false) {
     tooltip.textContent = message;
     tooltip.classList.toggle("tooltip--error", isError);
@@ -568,27 +506,10 @@ function showTooltip(message, isError = false) {
     }, 1500);
 }
 
-/**
- * Respaldo del portapapeles para navegadores sin permisos: selecciona el texto
- * en un textarea oculto y lanza el copiado clásico.
- *
- * En iOS Safari hay que marcar el rango de seleccion a mano: select() no basta
- * y el campo no puede quedar en solo lectura.
- */
 function copyWithTextarea(text) {
     const textarea = document.createElement("textarea");
+    textarea.className = "clipboard-helper";
     textarea.value = text;
-    textarea.style.position = "fixed";
-    textarea.style.top = "0";
-    textarea.style.left = "0";
-    textarea.style.width = "1px";
-    textarea.style.height = "1px";
-    textarea.style.padding = "0";
-    textarea.style.border = "none";
-    textarea.style.outline = "none";
-    textarea.style.boxShadow = "none";
-    textarea.style.background = "transparent";
-    textarea.style.opacity = "0";
     document.body.appendChild(textarea);
 
     textarea.contentEditable = "true";
@@ -604,32 +525,26 @@ function copyWithTextarea(text) {
     let copied = false;
     try {
         copied = document.execCommand("copy");
-    } catch (error) {
-        console.error("El portapapeles clásico tampoco está disponible", error);
+    } catch {
+        copied = false;
     }
 
     document.body.removeChild(textarea);
     return copied;
 }
 
-/**
- * Copia un texto al portapapeles, con respaldo clásico si la API falla.
- */
 async function copyText(text) {
     if (navigator.clipboard && typeof navigator.clipboard.writeText === "function") {
         try {
             await navigator.clipboard.writeText(text);
             return true;
-        } catch (error) {
-            console.error("No se pudo copiar con la API del portapapeles", error);
+        } catch {
+            return copyWithTextarea(text);
         }
     }
     return copyWithTextarea(text);
 }
 
-/**
- * Copia un texto al portapapeles y avisa del resultado real de la operacion
- */
 async function copyAndNotify(text) {
     const copied = await copyText(text);
 
@@ -640,55 +555,32 @@ async function copyAndNotify(text) {
     }
 }
 
-/**
- * Copia el valor de un espacio de color de la barra flotante al portapapeles
- */
 async function copyValue(type) {
-    const el = document.getElementById(type + "Values");
-    const text = el.textContent;
+    const element = document.getElementById(`${type}Values`);
+    if (!element) return;
 
-    await copyAndNotify(text);
+    await copyAndNotify(element.textContent);
 }
 
-/**
- * Copia el valor hexadecimal al portapapeles
- */
 async function copyHexToClipboard() {
     const hex = hexDisplay.textContent;
 
     await copyAndNotify(hex);
 }
 
-/**
- * Asigna todos los eventos a los elementos del DOM
- */
 function assignEvents() {
-    /* Eventos del canvas SV */
     svCanvas.addEventListener("mousedown", onSVMouseDown);
     svCanvas.addEventListener("touchstart", onSVTouchStart, { passive: false });
 
-    /* Eventos del canvas de matiz */
     hueCanvas.addEventListener("mousedown", onHueMouseDown);
     hueCanvas.addEventListener("touchstart", onHueTouchStart, { passive: false });
 
-    /* Eventos de los sliders RGB */
     redSlider.addEventListener("input", onSliderChange);
     greenSlider.addEventListener("input", onSliderChange);
     blueSlider.addEventListener("input", onSliderChange);
 
-    /* Click en el label de formato para ciclar */
-    formatLabel.addEventListener("pointerdown", (e) => {
-        e.preventDefault();
-        cycleFormat();
-    });
-    formatLabel.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            cycleFormat();
-        }
-    });
+    formatLabel.addEventListener("click", cycleFormat);
 
-    /* Eventos del input de formato unificado */
     formatInput.addEventListener("focus", () => {
         editingFormat = true;
     });
@@ -697,15 +589,12 @@ function assignEvents() {
         if (e.key === "Enter") formatInput.blur();
     });
 
-    /* Click en el panel izquierdo para copiar HEX */
     colorDisplay.addEventListener("click", copyHexToClipboard);
 
-    /* Click en los botones de copia de la barra flotante */
     copyButtons.forEach((btn) => {
         btn.addEventListener("click", () => copyValue(btn.dataset.type));
     });
 
-    /* Reajuste de canvas al redimensionar la ventana o cambiar orientacion */
     function resizeCanvas() {
         resizeCanvases();
         drawHueCanvas();
@@ -719,12 +608,6 @@ function assignEvents() {
     });
 }
 
-/**
- * Publica la altura real de la barra flotante para que el tooltip y el relleno
- * del panel se ajusten cuando la barra se envuelve en varias filas (movil).
- * Se usa una variable aparte del alto de diseño para no crear un ciclo: el
- * alto de la barra en escritorio se define con --floating-bar-height.
- */
 function syncBarHeight() {
     const bar = document.querySelector(".floating-bar");
     if (!bar) return;
