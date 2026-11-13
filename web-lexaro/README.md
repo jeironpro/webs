@@ -9,7 +9,7 @@ Tablero de tareas (kanban) en el navegador con columnas por estado, prioridades,
 - Arrastrar y soltar para mover las tareas entre columnas.
 - Filtros por prioridad (Todas, Alta, Media y Baja).
 - Edición y eliminación de tareas con confirmación.
-- Persistencia de las tareas en `localStorage`, previo consentimiento, para conservarlas entre sesiones.
+- Persistencia de las tareas en `localStorage`, previo consentimiento revocable desde «Privacidad», para conservarlas entre sesiones.
 - Notificaciones del navegador para tareas próximas a vencer.
 
 ## Stack
