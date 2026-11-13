@@ -11,6 +11,7 @@ const WEBS_CANONICAS = [
     "web-calendario",
     "web-clima",
     "web-codelang-quiz",
+    "web-codingbat-solutions",
     "web-codi-wiki",
     "web-codigos-http",
     "web-color-picker",
@@ -39,7 +40,6 @@ const WEBS_CANONICAS = [
 ];
 
 const WEBS_PENDIENTES = [
-    "web-codingbat-solutions",
     "web-continguts-daw",
     "web-curso-dcs",
     "web-curso-git",
