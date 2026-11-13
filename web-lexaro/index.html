@@ -27,7 +27,10 @@
             <div class="site-header__inner">
                 <div class="brand">
                     <i class="brand__icon fas fa-th-large" aria-hidden="true"></i>
-                    <h1 class="brand__title">Lexaro</h1>
+                    <div class="brand__lockup">
+                        <h1 class="brand__title">Lexaro</h1>
+                        <p class="brand__subtitle">Espacio de trabajo personal</p>
+                    </div>
                 </div>
                 <div class="site-header__actions">
                     <button class="btn btn--primary" id="add-task-button" type="button">
@@ -46,7 +49,11 @@
         <main class="main">
             <div class="board__header">
                 <div class="board__title">
+                    <p class="board__eyebrow">Vista general</p>
                     <h2 class="board__heading">Tablero de tareas</h2>
+                    <p class="board__subtitle">
+                        Arrastra cada tarjeta por su estado y mantén el foco en lo que toca.
+                    </p>
                     <span class="board__stats">0 tareas</span>
                 </div>
                 <div class="board__filters" aria-label="Filtrar tareas por prioridad">
@@ -247,6 +254,58 @@
                 </div>
             </div>
         </div>
+
+        <section
+            class="storage-consent"
+            id="storage-consent"
+            aria-label="Consentimiento de almacenamiento local"
+            aria-live="polite"
+            hidden
+        >
+            <div class="storage-consent__panel">
+                <div class="storage-consent__copy" data-consent-initial>
+                    <p class="storage-consent__eyebrow">Privacidad · Lexaro</p>
+                    <h2 class="storage-consent__title">Tus tareas viven en este navegador</h2>
+                    <p class="storage-consent__text">
+                        Lexaro usa almacenamiento local para conservar tu tablero. No usa cookies,
+                        cuentas ni servidores. Al aceptar, la página se recargará para aplicar el
+                        guardado.
+                    </p>
+                </div>
+                <div class="storage-consent__copy" data-consent-declined hidden>
+                    <p class="storage-consent__eyebrow">Privacidad · sin guardado</p>
+                    <h2 class="storage-consent__title">El tablero se vacía al recargar</h2>
+                    <p class="storage-consent__text">
+                        Puedes crear y organizar tareas durante esta visita, pero no se guardarán.
+                        Al recargar, el tablero volverá a estar vacío. Puedes activar el guardado
+                        desde el botón «Privacidad».
+                    </p>
+                </div>
+                <div class="storage-consent__actions">
+                    <button
+                        class="storage-consent__accept"
+                        id="storage-consent-accept"
+                        type="button"
+                    >
+                        Aceptar y guardar
+                    </button>
+                    <button
+                        class="storage-consent__decline"
+                        id="storage-consent-decline"
+                        type="button"
+                    >
+                        Ahora no
+                    </button>
+                </div>
+                <p class="storage-consent__error" data-consent-error role="alert" hidden>
+                    El navegador bloquea el almacenamiento local. No se puede activar el guardado.
+                </p>
+            </div>
+        </section>
+
+        <button class="storage-consent__reopen" id="storage-consent-reopen" type="button" hidden>
+            Privacidad
+        </button>
 
         <script type="module" src="js/app.js"></script>
     </body>

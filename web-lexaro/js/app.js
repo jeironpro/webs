@@ -1,3 +1,5 @@
+import { hasStorageConsent, initStorageConsent } from "./consent.js";
+
 class NotificationManager {
     constructor(board) {
         this.board = board;
@@ -219,6 +221,12 @@ class KanbanBoard {
     }
 
     loadTasksFromStorage() {
+        if (!hasStorageConsent()) {
+            this.tasks = [];
+            this.taskIdCounter = 1;
+            return;
+        }
+
         const storedTasks = localStorage.getItem("tareasKanban");
         const storedCounter = localStorage.getItem("contadorTareasKanban");
 
@@ -245,6 +253,9 @@ class KanbanBoard {
     }
 
     saveTasksToStorage() {
+        if (!hasStorageConsent()) {
+            return;
+        }
         try {
             localStorage.setItem("tareasKanban", JSON.stringify(this.tasks));
             localStorage.setItem("contadorTareasKanban", this.taskIdCounter.toString());
@@ -1053,8 +1064,10 @@ class KanbanBoard {
             "danger",
             "Eliminar Todo",
             () => {
-                localStorage.removeItem("tareasKanban");
-                localStorage.removeItem("contadorTareasKanban");
+                if (hasStorageConsent()) {
+                    localStorage.removeItem("tareasKanban");
+                    localStorage.removeItem("contadorTareasKanban");
+                }
                 this.tasks = [];
                 this.taskIdCounter = 1;
                 this.renderAllTasks();
@@ -1066,6 +1079,7 @@ class KanbanBoard {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    initStorageConsent();
     const kanbanBoard = new KanbanBoard();
 
     kanbanBoard.notificationManager = new NotificationManager(kanbanBoard);
