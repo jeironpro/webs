@@ -1,5 +1,3 @@
-"use strict";
-
 const BOARD_SIZE = 13;
 const BLACK_CELL_COUNT = 25;
 const MAX_WHITE_SEQUENCE = 10;
@@ -237,8 +235,7 @@ async function generateAndDownload() {
         setTimeout(() => URL.revokeObjectURL(url), 1000);
 
         statusMessage.textContent = `Descarga completada. Generados ${patterns.length} patrones.`;
-    } catch (error) {
-        console.error(error);
+    } catch {
         statusMessage.textContent = "No se pudieron generar los patrones. Inténtalo de nuevo.";
     } finally {
         generateButton.disabled = false;

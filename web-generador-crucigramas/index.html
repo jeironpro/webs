@@ -8,13 +8,14 @@
             name="description"
             content="Genera y descarga un paquete de 100 patrones de crucigramas listos para imprimir."
         />
-        <link rel="shortcut icon" href="assets/icons/crossword.png" type="image/x-icon" />
+        <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
             href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
             rel="stylesheet"
         />
+        <link rel="stylesheet" href="css/tokens.css" />
         <link rel="stylesheet" href="css/styles.css" />
     </head>
     <body>
@@ -26,24 +27,32 @@
             </p>
         </header>
 
-        <main class="main-content">
+        <main class="site-main">
             <section class="panel" aria-labelledby="panel-title">
                 <h2 class="panel__title" id="panel-title">100 patrones en un solo archivo</h2>
                 <p class="panel__text">
                     Cada patrón trae su cuadrícula en blanco. La descarga se genera en tu navegador,
                     sin subir nada a ningún servidor.
                 </p>
-                <button class="primary-button" id="generate-button" type="button">
+                <button class="btn btn--primary" id="generate-button" type="button">
                     Generar y descargar 100 patrones
                 </button>
-                <p class="status-message" id="status-message" role="status" aria-live="polite"></p>
+                <p
+                    class="panel__status"
+                    id="status-message"
+                    role="status"
+                    aria-live="polite"
+                    aria-atomic="true"
+                ></p>
             </section>
         </main>
 
         <footer class="site-footer">
-            &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
+            <p class="site-footer__text">
+                &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
+            </p>
         </footer>
 
-        <script src="js/generator.js"></script>
+        <script type="module" src="js/generator.js"></script>
     </body>
 </html>
