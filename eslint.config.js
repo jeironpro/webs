@@ -52,15 +52,14 @@ const WEBS_CANONICAS = [
     "web-reproductor-musica",
     "web-ruleta",
     "web-votacion",
-];
-
-const WEBS_PENDIENTES = [
     "web-dashboards",
     "web-exerciness",
     "web-generador-cv",
     "web-programmer-day",
     "web-reloj",
 ];
+
+const WEBS_PENDIENTES = [];
 
 const ARCHIVOS_CANONICOS = WEBS_CANONICAS.flatMap((web) => [`${web}/**/*.js`, `${web}/**/*.mjs`]);
 

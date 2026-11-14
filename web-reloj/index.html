@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="es">
-        <head>
+    <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Reloj</title>
@@ -19,9 +19,9 @@
         <link rel="stylesheet" href="./css/styles.css" />
     </head>
     <body>
-                <a class="skip-link" href="#main">Saltar al contenido</a>
+        <a class="skip-link" href="#main">Saltar al contenido</a>
 
-                <header class="nav" id="nav">
+        <header class="nav" id="nav">
             <div class="nav__inner">
                 <a
                     class="nav__wordmark"
@@ -91,7 +91,8 @@
         </header>
 
         <main class="stage" id="main">
-                                    <section class="view" id="view-reloj" aria-labelledby="reloj-title">
+            <h1 class="sr-only">Reloj</h1>
+            <section class="view" id="view-reloj" aria-labelledby="reloj-title">
                 <p class="view__eyebrow" id="reloj-title">Hora actual</p>
                 <div class="clock">
                     <div class="clock__canvas" id="clockMount" aria-hidden="true"></div>
@@ -102,7 +103,7 @@
                 </div>
             </section>
 
-                        <section class="view" id="view-temporizador" hidden aria-labelledby="timer-title">
+            <section class="view" id="view-temporizador" hidden aria-labelledby="timer-title">
                 <p class="view__eyebrow" id="timer-title">Temporizador</p>
                 <div class="timer">
                     <div class="timer__inputs" id="timerInputs">
@@ -191,7 +192,7 @@
                 </div>
             </section>
 
-                        <section class="view" id="view-cronometro" hidden aria-labelledby="stopwatch-title">
+            <section class="view" id="view-cronometro" hidden aria-labelledby="stopwatch-title">
                 <p class="view__eyebrow" id="stopwatch-title">Cronómetro</p>
                 <div class="stopwatch">
                     <time class="stopwatch__time" id="stopwatchDisplay">00:00.00</time>
@@ -209,6 +210,6 @@
             </section>
         </main>
 
-        <script type="module" src="./vendor/reloj.js"></script>
+        <script type="module" src="./js/app.js"></script>
     </body>
 </html>

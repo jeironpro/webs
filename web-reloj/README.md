@@ -7,7 +7,7 @@ Reloj web con un reloj analógico animado en 3D, temporizador y cronómetro.
 ```
 index.html      Página única con las tres vistas
 css/styles.css  Estilos
-vendor/reloj.js Bundle compilado con Three.js
+js/app.js       Aplicación con Three.js
 favicon.svg     Icono
 ```
 

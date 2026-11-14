@@ -8,7 +8,8 @@
     --background-7: #c2ffd0;
     --background-8: #f00;
     --background-9: #ffcfcf;
-    --text-color: #fff;
+    --surface: #fff;
+    --text-color: var(--surface);
     --text-color-2: #155724;
     --text-color-3: #000;
 }
@@ -61,7 +62,7 @@
     }
 
     .month {
-        background: #fff;
+        background: var(--surface);
         border-radius: 0.5rem;
         box-shadow: 0 0.125rem 0.375rem rgb(0 0 0 / 10%);
         min-height: 23.75rem;
@@ -116,7 +117,7 @@
 
     .day.holiday {
         background: var(--background-8);
-        color: #fff;
+        color: var(--surface);
         font-weight: 700;
         position: relative;
     }

@@ -1,38 +1,653 @@
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>programmer-day — Día del Programador · 256</title>
-    <meta name="description" content="Cuenta atrás en vivo hacia el día 256 del año y celebración interactiva con un byte 3D cuando llega el Día del Programador." />
-    <meta name="theme-color" content="#05090f" />
-    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="css/styles.css" />
-  </head>
-  <body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>programmer-day — Día del Programador · 256</title>
+        <meta
+            name="description"
+            content="Cuenta atrás en vivo hacia el día 256 del año y celebración interactiva con un byte 3D cuando llega el Día del Programador."
+        />
+        <meta name="theme-color" content="#05090f" />
+        <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="css/styles.css" />
+    </head>
+    <body>
+        <div id="root">
+            <div class="parallax-bg" aria-hidden="true">
+                <div class="bg-glow"></div>
+                <svg
+                    class="bg-stars"
+                    width="100%"
+                    height="100%"
+                    preserveAspectRatio="xMidYMid slice"
+                >
+                    <defs>
+                        <radialGradient id="star-dot">
+                            <stop
+                                offset="0%"
+                                stop-color="var(--color-accent)"
+                                stop-opacity="0.9"
+                            ></stop>
+                            <stop
+                                offset="100%"
+                                stop-color="var(--color-accent)"
+                                stop-opacity="0"
+                            ></stop>
+                        </radialGradient>
+                    </defs>
+                    <circle
+                        cx="0.00%"
+                        cy="0.00%"
+                        r="1"
+                        fill="url(#star-dot)"
+                        opacity="0.35"
+                    ></circle>
+                    <circle
+                        cx="37.51%"
+                        cy="61.80%"
+                        r="1.8"
+                        fill="url(#star-dot)"
+                        opacity="0.35"
+                    ></circle>
+                    <circle
+                        cx="75.02%"
+                        cy="23.61%"
+                        r="2.6"
+                        fill="url(#star-dot)"
+                        opacity="0.35"
+                    ></circle>
+                    <circle
+                        cx="12.52%"
+                        cy="85.41%"
+                        r="1"
+                        fill="url(#star-dot)"
+                        opacity="0.35"
+                    ></circle>
+                    <circle
+                        cx="50.03%"
+                        cy="47.21%"
+                        r="1.8"
+                        fill="url(#star-dot)"
+                        opacity="0.35"
+                    ></circle>
+                    <circle
+                        cx="87.54%"
+                        cy="9.01%"
+                        r="2.6"
+                        fill="url(#star-dot)"
+                        opacity="0.35"
+                    ></circle>
+                    <circle
+                        cx="25.05%"
+                        cy="70.82%"
+                        r="1"
+                        fill="url(#star-dot)"
+                        opacity="0.35"
+                    ></circle>
+                    <circle
+                        cx="62.56%"
+                        cy="32.62%"
+                        r="1.8"
+                        fill="url(#star-dot)"
+                        opacity="0.35"
+                    ></circle>
+                    <circle
+                        cx="0.06%"
+                        cy="94.42%"
+                        r="2.6"
+                        fill="url(#star-dot)"
+                        opacity="0.35"
+                    ></circle>
+                    <circle
+                        cx="37.57%"
+                        cy="56.23%"
+                        r="1"
+                        fill="url(#star-dot)"
+                        opacity="0.35"
+                    ></circle>
+                    <circle
+                        cx="75.08%"
+                        cy="18.03%"
+                        r="1.8"
+                        fill="url(#star-dot)"
+                        opacity="0.35"
+                    ></circle>
+                    <circle
+                        cx="12.59%"
+                        cy="79.83%"
+                        r="2.6"
+                        fill="url(#star-dot)"
+                        opacity="0.35"
+                    ></circle>
+                    <circle
+                        cx="50.10%"
+                        cy="41.64%"
+                        r="1"
+                        fill="url(#star-dot)"
+                        opacity="0.35"
+                    ></circle>
+                    <circle
+                        cx="87.60%"
+                        cy="3.44%"
+                        r="1.8"
+                        fill="url(#star-dot)"
+                        opacity="0.35"
+                    ></circle>
+                    <circle
+                        cx="25.11%"
+                        cy="65.24%"
+                        r="2.6"
+                        fill="url(#star-dot)"
+                        opacity="0.35"
+                    ></circle>
+                    <circle
+                        cx="62.62%"
+                        cy="27.04%"
+                        r="1"
+                        fill="url(#star-dot)"
+                        opacity="0.35"
+                    ></circle>
+                    <circle
+                        cx="0.13%"
+                        cy="88.85%"
+                        r="1.8"
+                        fill="url(#star-dot)"
+                        opacity="0.35"
+                    ></circle>
+                    <circle
+                        cx="37.64%"
+                        cy="50.65%"
+                        r="2.6"
+                        fill="url(#star-dot)"
+                        opacity="0.35"
+                    ></circle>
+                    <circle
+                        cx="75.14%"
+                        cy="12.45%"
+                        r="1"
+                        fill="url(#star-dot)"
+                        opacity="0.35"
+                    ></circle>
+                    <circle
+                        cx="12.65%"
+                        cy="74.26%"
+                        r="1.8"
+                        fill="url(#star-dot)"
+                        opacity="0.35"
+                    ></circle>
+                    <circle
+                        cx="50.16%"
+                        cy="36.06%"
+                        r="2.6"
+                        fill="url(#star-dot)"
+                        opacity="0.35"
+                    ></circle>
+                    <circle
+                        cx="87.67%"
+                        cy="97.86%"
+                        r="1"
+                        fill="url(#star-dot)"
+                        opacity="0.35"
+                    ></circle>
+                    <circle
+                        cx="25.18%"
+                        cy="59.67%"
+                        r="1.8"
+                        fill="url(#star-dot)"
+                        opacity="0.35"
+                    ></circle>
+                    <circle
+                        cx="62.68%"
+                        cy="21.47%"
+                        r="2.6"
+                        fill="url(#star-dot)"
+                        opacity="0.35"
+                    ></circle>
+                    <circle
+                        cx="0.19%"
+                        cy="83.27%"
+                        r="1"
+                        fill="url(#star-dot)"
+                        opacity="0.35"
+                    ></circle>
+                    <circle
+                        cx="37.70%"
+                        cy="45.07%"
+                        r="1.8"
+                        fill="url(#star-dot)"
+                        opacity="0.35"
+                    ></circle>
+                    <circle
+                        cx="75.21%"
+                        cy="6.88%"
+                        r="2.6"
+                        fill="url(#star-dot)"
+                        opacity="0.35"
+                    ></circle>
+                    <circle
+                        cx="12.72%"
+                        cy="68.68%"
+                        r="1"
+                        fill="url(#star-dot)"
+                        opacity="0.35"
+                    ></circle>
+                    <circle
+                        cx="50.22%"
+                        cy="30.48%"
+                        r="1.8"
+                        fill="url(#star-dot)"
+                        opacity="0.35"
+                    ></circle>
+                    <circle
+                        cx="87.73%"
+                        cy="92.29%"
+                        r="2.6"
+                        fill="url(#star-dot)"
+                        opacity="0.35"
+                    ></circle>
+                    <circle
+                        cx="25.24%"
+                        cy="54.09%"
+                        r="1"
+                        fill="url(#star-dot)"
+                        opacity="0.35"
+                    ></circle>
+                    <circle
+                        cx="62.75%"
+                        cy="15.89%"
+                        r="1.8"
+                        fill="url(#star-dot)"
+                        opacity="0.35"
+                    ></circle>
+                    <circle
+                        cx="0.26%"
+                        cy="77.70%"
+                        r="2.6"
+                        fill="url(#star-dot)"
+                        opacity="0.35"
+                    ></circle>
+                    <circle
+                        cx="37.76%"
+                        cy="39.50%"
+                        r="1"
+                        fill="url(#star-dot)"
+                        opacity="0.35"
+                    ></circle>
+                    <circle
+                        cx="75.27%"
+                        cy="1.30%"
+                        r="1.8"
+                        fill="url(#star-dot)"
+                        opacity="0.35"
+                    ></circle>
+                    <circle
+                        cx="12.78%"
+                        cy="63.11%"
+                        r="2.6"
+                        fill="url(#star-dot)"
+                        opacity="0.35"
+                    ></circle>
+                    <circle
+                        cx="50.29%"
+                        cy="24.91%"
+                        r="1"
+                        fill="url(#star-dot)"
+                        opacity="0.35"
+                    ></circle>
+                    <circle
+                        cx="87.80%"
+                        cy="86.71%"
+                        r="1.8"
+                        fill="url(#star-dot)"
+                        opacity="0.35"
+                    ></circle>
+                    <circle
+                        cx="25.30%"
+                        cy="48.51%"
+                        r="2.6"
+                        fill="url(#star-dot)"
+                        opacity="0.35"
+                    ></circle>
+                    <circle
+                        cx="62.81%"
+                        cy="10.32%"
+                        r="1"
+                        fill="url(#star-dot)"
+                        opacity="0.35"
+                    ></circle>
+                    <circle
+                        cx="0.32%"
+                        cy="72.12%"
+                        r="1.8"
+                        fill="url(#star-dot)"
+                        opacity="0.35"
+                    ></circle>
+                    <circle
+                        cx="37.83%"
+                        cy="33.92%"
+                        r="2.6"
+                        fill="url(#star-dot)"
+                        opacity="0.35"
+                    ></circle>
+                    <circle
+                        cx="75.34%"
+                        cy="95.73%"
+                        r="1"
+                        fill="url(#star-dot)"
+                        opacity="0.35"
+                    ></circle>
+                    <circle
+                        cx="12.84%"
+                        cy="57.53%"
+                        r="1.8"
+                        fill="url(#star-dot)"
+                        opacity="0.35"
+                    ></circle>
+                    <circle
+                        cx="50.35%"
+                        cy="19.33%"
+                        r="2.6"
+                        fill="url(#star-dot)"
+                        opacity="0.35"
+                    ></circle>
+                    <circle
+                        cx="87.86%"
+                        cy="81.13%"
+                        r="1"
+                        fill="url(#star-dot)"
+                        opacity="0.35"
+                    ></circle>
+                </svg>
+                <div class="bg-fog">
+                    <span class="fog-line">01101100 01101001 01101110 01100101</span
+                    ><span class="fog-line">while (year) { day++; compile(); }</span
+                    ><span class="fog-line">0xFF 0x1F 0x8B 0x00 0xA2</span
+                    ><span class="fog-line">git commit -m "day 256"</span
+                    ><span class="fog-line">2**8 === 256 // true</span
+                    ><span class="fog-line">0b11111111</span
+                    ><span class="fog-line">if (today === day256) celebrate();</span
+                    ><span class="fog-line">sudo make me a byte</span>
+                </div>
+            </div>
+            <header class="nav-wrap">
+                <nav class="nav-pill" aria-label="principal">
+                    <a class="nav-mark" href="#top" aria-label="Ir al inicio"
+                        ><span class="nav-prompt">~/</span>programmer-day</a
+                    >
+                    <div class="nav-links">
+                        <a href="#why-256" id="nav-link-why">por-que-256</a
+                        ><a href="#the-byte" id="nav-link-byte">el-byte</a>
+                    </div>
+                    <span class="nav-tag"
+                        ><span class="nav-dot" aria-hidden="true"></span
+                        ><span id="nav-tag-text">EN VIVO</span></span
+                    ><button
+                        type="button"
+                        class="nav-lang"
+                        title="Cambiar a inglés"
+                        aria-label="Cambiar a inglés"
+                    >
+                        EN
+                    </button>
+                </nav>
+            </header>
+            <main>
+                <section class="hero shell" id="top">
+                    <p class="hero-meta" id="hero-meta" data-hero-reveal="true">
+                        <span class="hero-meta-accent">256</span
+                        ><span class="hero-meta-sep">·</span>año 2026 · 318/365 días
+                    </p>
+                    <p class="hero-eyebrow" id="hero-eyebrow" data-hero-reveal="true">
+                        cuenta atrás
+                    </p>
+                    <h1
+                        class="hero-count"
+                        id="hero-count"
+                        data-hero-reveal="true"
+                        aria-label="302 días 15 horas 20 min 54 seg"
+                    >
+                        <span class="count-group"
+                            ><span class="count-digits" aria-hidden="true"
+                                ><span class="digit">3</span><span class="digit">0</span
+                                ><span class="digit">2</span></span
+                            ><span class="count-label">días</span></span
+                        ><span class="count-sep" aria-hidden="true">:</span
+                        ><span class="count-group"
+                            ><span class="count-digits" aria-hidden="true"
+                                ><span class="digit">1</span><span class="digit">5</span></span
+                            ><span class="count-label">horas</span></span
+                        ><span class="count-sep" aria-hidden="true">:</span
+                        ><span class="count-group"
+                            ><span class="count-digits" aria-hidden="true"
+                                ><span class="digit">2</span><span class="digit">0</span></span
+                            ><span class="count-label">min</span></span
+                        ><span class="count-sep" aria-hidden="true">:</span
+                        ><span class="count-group"
+                            ><span class="count-digits" aria-hidden="true"
+                                ><span class="digit">5</span><span class="digit">4</span></span
+                            ><span class="count-label">seg</span></span
+                        >
+                    </h1>
+                    <p class="hero-sub" id="hero-sub" data-hero-reveal="true">para el día 256</p>
+                    <a class="hero-cta" href="#why-256" data-hero-reveal="true"
+                        ><span>desliza para compilar</span
+                        ><span class="hero-cta-arrow" aria-hidden="true">↓</span></a
+                    >
+                </section>
+                <section class="section shell" id="why-256">
+                    <div class="reveal">
+                        <div class="section-head">
+                            <p class="eyebrow" id="why-eyebrow">por qué 256</p>
+                            <h2 class="section-title" id="why-title">
+                                Porque un byte se escribe una vez al año
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="reveal">
+                        <div class="prose">
+                            <p id="why-p1">
+                                El 13 de septiembre es el día 256 de un año común: 2⁸, el número de
+                                valores que cabe en un byte. Un byte completo, de 00000000 a
+                                11111111. Los bisiestos lo celebran un día antes, el 12 de
+                                septiembre.
+                            </p>
+                            <p id="why-p2">
+                                La propuesta partió de Valentin Balt en 2002, recogiendo firmas para
+                                que Rusia reconociera oficialmente el Día del Programador. Lo logró
+                                en 2009, y desde entonces la fecha se celebra en todo el mundo.
+                            </p>
+                            <p id="why-p3">
+                                <strong
+                                    >¿Por qué importa un número? Porque detrás de cada byte hay
+                                    alguien que escribe, depura y compila. Hoy es su día.</strong
+                                >
+                            </p>
+                        </div>
+                    </div>
+                    <div class="reveal">
+                        <figure class="byte-facts">
+                            <figcaption class="byte-facts-title" id="facts-title">
+                                2⁸ en memoria
+                            </figcaption>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td class="byte-facts-bits">00000000</td>
+                                        <td class="byte-facts-eq">=</td>
+                                        <td class="byte-facts-value">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="byte-facts-bits">00010000</td>
+                                        <td class="byte-facts-eq">=</td>
+                                        <td class="byte-facts-value">16</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="byte-facts-bits">10000000</td>
+                                        <td class="byte-facts-eq">=</td>
+                                        <td class="byte-facts-value">128</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="byte-facts-bits">11111111</td>
+                                        <td class="byte-facts-eq">=</td>
+                                        <td class="byte-facts-value">255</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p class="byte-facts-caption" id="facts-caption">
+                                cuatro bytes, cuatro valores: así de simple y así de enorme
+                            </p>
+                        </figure>
+                    </div>
+                </section>
+                <section class="section shell" id="the-byte">
+                    <div class="reveal">
+                        <div class="section-head">
+                            <p class="eyebrow" id="byte-eyebrow">el byte</p>
+                            <h2 class="section-title" id="byte-title">Ocho bits, un día entero</h2>
+                        </div>
+                    </div>
+                    <div class="reveal">
+                        <p class="byte-hint" id="byte-hint">
+                            recorre los bits con el cursor para encenderlos
+                        </p>
+                    </div>
+                    <div class="reveal">
+                        <div class="byte-row" role="group" aria-label="byte de la sesión">
+                            <button
+                                type="button"
+                                class="bit"
+                                aria-pressed="false"
+                                aria-label="0 — apagado (2^7)"
+                            >
+                                <span class="bit-value">0</span
+                                ><span class="bit-weight">2^7</span></button
+                            ><button
+                                type="button"
+                                class="bit"
+                                aria-pressed="false"
+                                aria-label="0 — apagado (2^6)"
+                            >
+                                <span class="bit-value">0</span
+                                ><span class="bit-weight">2^6</span></button
+                            ><button
+                                type="button"
+                                class="bit"
+                                aria-pressed="false"
+                                aria-label="0 — apagado (2^5)"
+                            >
+                                <span class="bit-value">0</span
+                                ><span class="bit-weight">2^5</span></button
+                            ><button
+                                type="button"
+                                class="bit"
+                                aria-pressed="false"
+                                aria-label="0 — apagado (2^4)"
+                            >
+                                <span class="bit-value">0</span
+                                ><span class="bit-weight">2^4</span></button
+                            ><button
+                                type="button"
+                                class="bit"
+                                aria-pressed="false"
+                                aria-label="0 — apagado (2^3)"
+                            >
+                                <span class="bit-value">0</span
+                                ><span class="bit-weight">2^3</span></button
+                            ><button
+                                type="button"
+                                class="bit"
+                                aria-pressed="false"
+                                aria-label="0 — apagado (2^2)"
+                            >
+                                <span class="bit-value">0</span
+                                ><span class="bit-weight">2^2</span></button
+                            ><button
+                                type="button"
+                                class="bit"
+                                aria-pressed="false"
+                                aria-label="0 — apagado (2^1)"
+                            >
+                                <span class="bit-value">0</span
+                                ><span class="bit-weight">2^1</span></button
+                            ><button
+                                type="button"
+                                class="bit"
+                                aria-pressed="false"
+                                aria-label="0 — apagado (2^0)"
+                            >
+                                <span class="bit-value">0</span><span class="bit-weight">2^0</span>
+                            </button>
+                        </div>
+                        <p class="byte-readout" aria-live="polite">
+                            0b00000000 = <strong>0</strong>
+                        </p>
+                    </div>
+                    <div class="reveal">
+                        <p class="byte-cta" id="byte-cta">vuelve el 13 de septiembre</p>
+                    </div>
+                </section>
+            </main>
+            <footer class="footer">
+                <div class="shell footer-inner">
+                    <p class="footer-statement" id="footer-statement">
+                        Compilado con cariño por un programador, para los programadores.
+                    </p>
+                    <p class="footer-sub" id="footer-sub">
+                        Día del Programador · día 256 del año · 2⁸ = 256
+                    </p>
+                    <button type="button" class="footer-lang" aria-label="Cambiar idioma">
+                        English
+                    </button>
+                </div>
+            </footer>
+        </div>
 
-    <div id="root"><div class="parallax-bg" aria-hidden="true"><div class="bg-glow"></div><svg class="bg-stars" width="100%" height="100%" preserveAspectRatio="xMidYMid slice"><defs><radialGradient id="star-dot"><stop offset="0%" stop-color="var(--color-accent)" stop-opacity="0.9"></stop><stop offset="100%" stop-color="var(--color-accent)" stop-opacity="0"></stop></radialGradient></defs><circle cx="0.00%" cy="0.00%" r="1" fill="url(#star-dot)" opacity="0.35"></circle><circle cx="37.51%" cy="61.80%" r="1.8" fill="url(#star-dot)" opacity="0.35"></circle><circle cx="75.02%" cy="23.61%" r="2.6" fill="url(#star-dot)" opacity="0.35"></circle><circle cx="12.52%" cy="85.41%" r="1" fill="url(#star-dot)" opacity="0.35"></circle><circle cx="50.03%" cy="47.21%" r="1.8" fill="url(#star-dot)" opacity="0.35"></circle><circle cx="87.54%" cy="9.01%" r="2.6" fill="url(#star-dot)" opacity="0.35"></circle><circle cx="25.05%" cy="70.82%" r="1" fill="url(#star-dot)" opacity="0.35"></circle><circle cx="62.56%" cy="32.62%" r="1.8" fill="url(#star-dot)" opacity="0.35"></circle><circle cx="0.06%" cy="94.42%" r="2.6" fill="url(#star-dot)" opacity="0.35"></circle><circle cx="37.57%" cy="56.23%" r="1" fill="url(#star-dot)" opacity="0.35"></circle><circle cx="75.08%" cy="18.03%" r="1.8" fill="url(#star-dot)" opacity="0.35"></circle><circle cx="12.59%" cy="79.83%" r="2.6" fill="url(#star-dot)" opacity="0.35"></circle><circle cx="50.10%" cy="41.64%" r="1" fill="url(#star-dot)" opacity="0.35"></circle><circle cx="87.60%" cy="3.44%" r="1.8" fill="url(#star-dot)" opacity="0.35"></circle><circle cx="25.11%" cy="65.24%" r="2.6" fill="url(#star-dot)" opacity="0.35"></circle><circle cx="62.62%" cy="27.04%" r="1" fill="url(#star-dot)" opacity="0.35"></circle><circle cx="0.13%" cy="88.85%" r="1.8" fill="url(#star-dot)" opacity="0.35"></circle><circle cx="37.64%" cy="50.65%" r="2.6" fill="url(#star-dot)" opacity="0.35"></circle><circle cx="75.14%" cy="12.45%" r="1" fill="url(#star-dot)" opacity="0.35"></circle><circle cx="12.65%" cy="74.26%" r="1.8" fill="url(#star-dot)" opacity="0.35"></circle><circle cx="50.16%" cy="36.06%" r="2.6" fill="url(#star-dot)" opacity="0.35"></circle><circle cx="87.67%" cy="97.86%" r="1" fill="url(#star-dot)" opacity="0.35"></circle><circle cx="25.18%" cy="59.67%" r="1.8" fill="url(#star-dot)" opacity="0.35"></circle><circle cx="62.68%" cy="21.47%" r="2.6" fill="url(#star-dot)" opacity="0.35"></circle><circle cx="0.19%" cy="83.27%" r="1" fill="url(#star-dot)" opacity="0.35"></circle><circle cx="37.70%" cy="45.07%" r="1.8" fill="url(#star-dot)" opacity="0.35"></circle><circle cx="75.21%" cy="6.88%" r="2.6" fill="url(#star-dot)" opacity="0.35"></circle><circle cx="12.72%" cy="68.68%" r="1" fill="url(#star-dot)" opacity="0.35"></circle><circle cx="50.22%" cy="30.48%" r="1.8" fill="url(#star-dot)" opacity="0.35"></circle><circle cx="87.73%" cy="92.29%" r="2.6" fill="url(#star-dot)" opacity="0.35"></circle><circle cx="25.24%" cy="54.09%" r="1" fill="url(#star-dot)" opacity="0.35"></circle><circle cx="62.75%" cy="15.89%" r="1.8" fill="url(#star-dot)" opacity="0.35"></circle><circle cx="0.26%" cy="77.70%" r="2.6" fill="url(#star-dot)" opacity="0.35"></circle><circle cx="37.76%" cy="39.50%" r="1" fill="url(#star-dot)" opacity="0.35"></circle><circle cx="75.27%" cy="1.30%" r="1.8" fill="url(#star-dot)" opacity="0.35"></circle><circle cx="12.78%" cy="63.11%" r="2.6" fill="url(#star-dot)" opacity="0.35"></circle><circle cx="50.29%" cy="24.91%" r="1" fill="url(#star-dot)" opacity="0.35"></circle><circle cx="87.80%" cy="86.71%" r="1.8" fill="url(#star-dot)" opacity="0.35"></circle><circle cx="25.30%" cy="48.51%" r="2.6" fill="url(#star-dot)" opacity="0.35"></circle><circle cx="62.81%" cy="10.32%" r="1" fill="url(#star-dot)" opacity="0.35"></circle><circle cx="0.32%" cy="72.12%" r="1.8" fill="url(#star-dot)" opacity="0.35"></circle><circle cx="37.83%" cy="33.92%" r="2.6" fill="url(#star-dot)" opacity="0.35"></circle><circle cx="75.34%" cy="95.73%" r="1" fill="url(#star-dot)" opacity="0.35"></circle><circle cx="12.84%" cy="57.53%" r="1.8" fill="url(#star-dot)" opacity="0.35"></circle><circle cx="50.35%" cy="19.33%" r="2.6" fill="url(#star-dot)" opacity="0.35"></circle><circle cx="87.86%" cy="81.13%" r="1" fill="url(#star-dot)" opacity="0.35"></circle></svg><div class="bg-fog"><span class="fog-line">01101100 01101001 01101110 01100101</span><span class="fog-line">while (year) { day++; compile(); }</span><span class="fog-line">0xFF 0x1F 0x8B 0x00 0xA2</span><span class="fog-line">git commit -m "day 256"</span><span class="fog-line">2**8 === 256 // true</span><span class="fog-line">0b11111111</span><span class="fog-line">if (today === day256) celebrate();</span><span class="fog-line">sudo make me a byte</span></div></div><header class="nav-wrap"><nav class="nav-pill" aria-label="principal"><a class="nav-mark" href="#top" aria-label="Ir al inicio"><span class="nav-prompt">~/</span>programmer-day</a><div class="nav-links"><a href="#why-256" id="nav-link-why">por-que-256</a><a href="#the-byte" id="nav-link-byte">el-byte</a></div><span class="nav-tag"><span class="nav-dot" aria-hidden="true"></span><span id="nav-tag-text">EN VIVO</span></span><button type="button" class="nav-lang" title="Cambiar a inglés" aria-label="Cambiar a inglés">EN</button></nav></header><main><section class="hero shell" id="top"><p class="hero-meta" id="hero-meta" data-hero-reveal="true"><span class="hero-meta-accent">256</span><span class="hero-meta-sep">·</span>año 2026 · 318/365 días</p><p class="hero-eyebrow" id="hero-eyebrow" data-hero-reveal="true">cuenta atrás</p><h1 class="hero-count" id="hero-count" data-hero-reveal="true" aria-label="302 días 15 horas 20 min 54 seg"><span class="count-group"><span class="count-digits" aria-hidden="true"><span class="digit">3</span><span class="digit">0</span><span class="digit">2</span></span><span class="count-label">días</span></span><span class="count-sep" aria-hidden="true">:</span><span class="count-group"><span class="count-digits" aria-hidden="true"><span class="digit">1</span><span class="digit">5</span></span><span class="count-label">horas</span></span><span class="count-sep" aria-hidden="true">:</span><span class="count-group"><span class="count-digits" aria-hidden="true"><span class="digit">2</span><span class="digit">0</span></span><span class="count-label">min</span></span><span class="count-sep" aria-hidden="true">:</span><span class="count-group"><span class="count-digits" aria-hidden="true"><span class="digit">5</span><span class="digit">4</span></span><span class="count-label">seg</span></span></h1><p class="hero-sub" id="hero-sub" data-hero-reveal="true">para el día 256</p><a class="hero-cta" href="#why-256" data-hero-reveal="true"><span>desliza para compilar</span><span class="hero-cta-arrow" aria-hidden="true">↓</span></a></section><section class="section shell" id="why-256"><div class="reveal "><div class="section-head"><p class="eyebrow" id="why-eyebrow">por qué 256</p><h2 class="section-title" id="why-title">Porque un byte se escribe una vez al año</h2></div></div><div class="reveal "><div class="prose"><p id="why-p1">El 13 de septiembre es el día 256 de un año común: 2⁸, el número de valores que cabe en un byte. Un byte completo, de 00000000 a 11111111. Los bisiestos lo celebran un día antes, el 12 de septiembre.</p><p id="why-p2">La propuesta partió de Valentin Balt en 2002, recogiendo firmas para que Rusia reconociera oficialmente el Día del Programador. Lo logró en 2009, y desde entonces la fecha se celebra en todo el mundo.</p><p id="why-p3"><strong>¿Por qué importa un número? Porque detrás de cada byte hay alguien que escribe, depura y compila. Hoy es su día.</strong></p></div></div><div class="reveal "><figure class="byte-facts"><figcaption class="byte-facts-title" id="facts-title">2⁸ en memoria</figcaption><table><tbody><tr><td class="byte-facts-bits">00000000</td><td class="byte-facts-eq">=</td><td class="byte-facts-value">0</td></tr><tr><td class="byte-facts-bits">00010000</td><td class="byte-facts-eq">=</td><td class="byte-facts-value">16</td></tr><tr><td class="byte-facts-bits">10000000</td><td class="byte-facts-eq">=</td><td class="byte-facts-value">128</td></tr><tr><td class="byte-facts-bits">11111111</td><td class="byte-facts-eq">=</td><td class="byte-facts-value">255</td></tr></tbody></table><p class="byte-facts-caption" id="facts-caption">cuatro bytes, cuatro valores: así de simple y así de enorme</p></figure></div></section><section class="section shell" id="the-byte"><div class="reveal "><div class="section-head"><p class="eyebrow" id="byte-eyebrow">el byte</p><h2 class="section-title" id="byte-title">Ocho bits, un día entero</h2></div></div><div class="reveal "><p class="byte-hint" id="byte-hint">recorre los bits con el cursor para encenderlos</p></div><div class="reveal "><div class="byte-row" role="group" aria-label="byte de la sesión"><button type="button" class="bit " aria-pressed="false" aria-label="0 — apagado (2^7)"><span class="bit-value">0</span><span class="bit-weight">2^7</span></button><button type="button" class="bit " aria-pressed="false" aria-label="0 — apagado (2^6)"><span class="bit-value">0</span><span class="bit-weight">2^6</span></button><button type="button" class="bit " aria-pressed="false" aria-label="0 — apagado (2^5)"><span class="bit-value">0</span><span class="bit-weight">2^5</span></button><button type="button" class="bit " aria-pressed="false" aria-label="0 — apagado (2^4)"><span class="bit-value">0</span><span class="bit-weight">2^4</span></button><button type="button" class="bit " aria-pressed="false" aria-label="0 — apagado (2^3)"><span class="bit-value">0</span><span class="bit-weight">2^3</span></button><button type="button" class="bit " aria-pressed="false" aria-label="0 — apagado (2^2)"><span class="bit-value">0</span><span class="bit-weight">2^2</span></button><button type="button" class="bit " aria-pressed="false" aria-label="0 — apagado (2^1)"><span class="bit-value">0</span><span class="bit-weight">2^1</span></button><button type="button" class="bit " aria-pressed="false" aria-label="0 — apagado (2^0)"><span class="bit-value">0</span><span class="bit-weight">2^0</span></button></div><p class="byte-readout" aria-live="polite">0b00000000 = <strong>0</strong></p></div><div class="reveal "><p class="byte-cta" id="byte-cta">vuelve el 13 de septiembre</p></div></section></main><footer class="footer"><div class="shell footer-inner"><p class="footer-statement" id="footer-statement">Compilado con cariño por un programador, para los programadores.</p><p class="footer-sub" id="footer-sub">Día del Programador · día 256 del año · 2⁸ = 256</p><button type="button" class="footer-lang" aria-label="Cambiar idioma">English</button></div></footer></div>
-    
-  
-
-<div class="celebration" id="celebration" hidden role="dialog" aria-label="¡Feliz Día del Programador!">
-      <div class="confetti" id="confetti" aria-hidden="true"></div>
-      <div class="cele-scene" aria-hidden="true"><canvas id="byte-canvas"></canvas></div>
-      <div class="cele-byte cele-byte--hidden" aria-hidden="true">
-        <span class="cele-bit">0</span><span class="cele-bit">1</span><span class="cele-bit">0</span><span class="cele-bit">1</span><span class="cele-bit">0</span><span class="cele-bit">1</span><span class="cele-bit">0</span><span class="cele-bit">1</span>
-      </div>
-      <h2 class="cele-title">¡Feliz Día del Programador!</h2>
-      <p class="cele-tag">256 — 2⁸</p>
-      <p class="cele-sub">ensamblando el byte…</p>
-      <button type="button" class="sound-toggle" aria-pressed="true" aria-label="Silenciar fanfarria" title="Silenciar fanfarria">
-        <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 6h3l4-3.5v11L5 10H2z" fill="currentColor"></path><path d="M11 5.2a4 4 0 010 5.6M12.8 3.4a6.5 6.5 0 010 9.2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" fill="none"></path></svg>
-        <span>sonido</span>
-      </button>
-    </div>
-    <button type="button" id="cele-dismiss" class="cele-dismiss" hidden>✕ Ver la página</button>
-    <script type="module" src="js/app.js"></script>
-  </body>
+        <div
+            class="celebration"
+            id="celebration"
+            hidden
+            role="dialog"
+            aria-label="¡Feliz Día del Programador!"
+        >
+            <div class="confetti" id="confetti" aria-hidden="true"></div>
+            <div class="cele-scene" aria-hidden="true"><canvas id="byte-canvas"></canvas></div>
+            <div class="cele-byte cele-byte--hidden" aria-hidden="true">
+                <span class="cele-bit">0</span><span class="cele-bit">1</span
+                ><span class="cele-bit">0</span><span class="cele-bit">1</span
+                ><span class="cele-bit">0</span><span class="cele-bit">1</span
+                ><span class="cele-bit">0</span><span class="cele-bit">1</span>
+            </div>
+            <h2 class="cele-title">¡Feliz Día del Programador!</h2>
+            <p class="cele-tag">256 — 2⁸</p>
+            <p class="cele-sub">ensamblando el byte…</p>
+            <button
+                type="button"
+                class="sound-toggle"
+                aria-pressed="true"
+                aria-label="Silenciar fanfarria"
+                title="Silenciar fanfarria"
+            >
+                <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
+                    <path d="M2 6h3l4-3.5v11L5 10H2z" fill="currentColor"></path>
+                    <path
+                        d="M11 5.2a4 4 0 010 5.6M12.8 3.4a6.5 6.5 0 010 9.2"
+                        stroke="currentColor"
+                        stroke-width="1.4"
+                        stroke-linecap="round"
+                        fill="none"
+                    ></path>
+                </svg>
+                <span>sonido</span>
+            </button>
+        </div>
+        <button type="button" id="cele-dismiss" class="cele-dismiss" hidden>✕ Ver la página</button>
+        <script type="module" src="js/app.js"></script>
+    </body>
 </html>

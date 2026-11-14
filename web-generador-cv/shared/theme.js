@@ -4,29 +4,29 @@
 
 export const theme = {
     page: {
-        size: 'A4',
+        size: "A4",
         width: 595.28,
         height: 841.89,
-        margin: 60
+        margin: 60,
     },
     leftPanel: {
         width: 200,
-        bg: '#eef2f6',
-        text: '#1a2a4a',
-        accent: '#2b6cb0',
-        muted: '#5a6b7d'
+        bg: "#eef2f6",
+        text: "#1a2a4a",
+        accent: "#2b6cb0",
+        muted: "#5a6b7d",
     },
     rightPanel: {
-        bg: '#ffffff',
-        heading: '#1a2a4a',
-        accent: '#2b6cb0',
-        text: '#2d2d2d',
-        muted: '#5a6b7d',
-        border: '#d0d5dd'
+        bg: "#ffffff",
+        heading: "#1a2a4a",
+        accent: "#2b6cb0",
+        text: "#2d2d2d",
+        muted: "#5a6b7d",
+        border: "#d0d5dd",
     },
     fonts: {
-        heading: 'Helvetica-Bold',
-        body: 'Helvetica',
-        mono: 'Courier'
-    }
+        heading: "Helvetica-Bold",
+        body: "Helvetica",
+        mono: "Courier",
+    },
 };

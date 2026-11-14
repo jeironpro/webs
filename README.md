@@ -135,7 +135,7 @@ npm run lint
 npm run format:check
 ```
 
-`pre-commit` se instala con `pre-commit install`; las carpetas `web-*`, `vendor/` y `assets/` quedan excluidas de lint y formato.
+`pre-commit` se instala con `pre-commit install`; todas las webs `web-*` se lintan y formatean. Solo quedan fuera las dependencias de terceros en `vendor/` y los binarios de `assets/`.
 
 Para desarrollar una SPA del monorepo (`web-codelang-quiz`): entra en su carpeta, ejecuta `yarn install` y `yarn dev` (o `yarn build && yarn preview` para probar el build). El despliegue compila esa app automáticamente en cada push a `main` (`.github/workflows/deploy.yml`).
 

@@ -25,7 +25,9 @@ function getTableState(table) {
 
 function applyTableState(table) {
     const state = getTableState(table);
-    const headers = [...table.querySelectorAll("thead th")].map((cell) => cell.textContent.trim().toLowerCase());
+    const headers = [...table.querySelectorAll("thead th")].map((cell) =>
+        cell.textContent.trim().toLowerCase()
+    );
     const rows = [...table.querySelectorAll("tbody tr")];
     const matched = rows.filter((row) => {
         const text = row.textContent.toLowerCase();
@@ -48,10 +50,21 @@ function applyTableState(table) {
             row.hidden = !pageRows.has(row);
         });
         const main = table.closest("main");
-        const pager = main ? [...main.querySelectorAll("button")].filter((button) => /^(Anterior|Siguiente)$/.test(button.textContent.trim())) : [];
-        const label = main ? [...main.querySelectorAll("span")].find((span) => /^\d+\s*\/\s*\d+$/.test(span.textContent.trim())) : null;
+        const pager = main
+            ? [...main.querySelectorAll("button")].filter((button) =>
+                  /^(Anterior|Siguiente)$/.test(button.textContent.trim())
+              )
+            : [];
+        const label = main
+            ? [...main.querySelectorAll("span")].find((span) =>
+                  /^\d+\s*\/\s*\d+$/.test(span.textContent.trim())
+              )
+            : null;
         pager.forEach((button) => {
-            button.disabled = button.textContent.trim() === "Anterior" ? state.page <= 1 : state.page >= totalPages;
+            button.disabled =
+                button.textContent.trim() === "Anterior"
+                    ? state.page <= 1
+                    : state.page >= totalPages;
         });
         if (label) label.textContent = `${state.page} / ${totalPages}`;
         return;
@@ -143,7 +156,11 @@ function setupOverlays() {
             form.addEventListener("submit", (event) => {
                 event.preventDefault();
                 const name = panel.dataset.overlayPanel;
-                showToast(name === "new-ticket" ? "Ticket creado correctamente" : "Usuario creado correctamente");
+                showToast(
+                    name === "new-ticket"
+                        ? "Ticket creado correctamente"
+                        : "Usuario creado correctamente"
+                );
                 closeOverlays();
             });
         });
@@ -194,12 +211,22 @@ function finishMotion(element) {
 }
 
 function setupMobileMenu() {
-    const triggers = [...document.querySelectorAll('button[aria-label="Abrir menú"], button[aria-label="Abrir menú de navegación"]')];
+    const triggers = [
+        ...document.querySelectorAll(
+            'button[aria-label="Abrir menú"], button[aria-label="Abrir menú de navegación"]'
+        ),
+    ];
     if (triggers.length === 0) return;
-    const nativeAside = [...document.querySelectorAll("aside")].find((aside) => aside.classList.contains("lg:hidden"));
+    const nativeAside = [...document.querySelectorAll("aside")].find((aside) =>
+        aside.classList.contains("lg:hidden")
+    );
     const nativeNav = document.querySelector("[data-mobile-nav]");
     const backdrop = document.createElement("div");
-    backdrop.className = nativeAside ? "mobile-backdrop mobile-backdrop-admin" : nativeNav ? "mobile-backdrop mobile-backdrop-soporte" : "mobile-backdrop";
+    backdrop.className = nativeAside
+        ? "mobile-backdrop mobile-backdrop-admin"
+        : nativeNav
+          ? "mobile-backdrop mobile-backdrop-soporte"
+          : "mobile-backdrop";
     backdrop.hidden = true;
     document.body.append(backdrop);
     let drawer = null;
@@ -260,9 +287,13 @@ function setupMobileMenu() {
     triggers.forEach((trigger) => trigger.addEventListener("click", open));
     backdrop.addEventListener("click", close);
     drawer.querySelectorAll("a[href]").forEach((link) => link.addEventListener("click", close));
-    drawer.querySelectorAll('button[aria-label="Cerrar menú"], button[aria-label="Cerrar menú de navegación"], button[aria-label="Colapsar sidebar"]').forEach((button) => {
-        button.addEventListener("click", close);
-    });
+    drawer
+        .querySelectorAll(
+            'button[aria-label="Cerrar menú"], button[aria-label="Cerrar menú de navegación"], button[aria-label="Colapsar sidebar"]'
+        )
+        .forEach((button) => {
+            button.addEventListener("click", close);
+        });
     document.addEventListener("keydown", (event) => {
         if (event.key === "Escape") close();
     });
@@ -271,10 +302,18 @@ function setupMobileMenu() {
 function filterInvoices(label) {
     const table = document.querySelector("main table");
     if (!table) return;
-    const headers = [...table.querySelectorAll("thead th")].map((cell) => cell.textContent.trim().toLowerCase());
+    const headers = [...table.querySelectorAll("thead th")].map((cell) =>
+        cell.textContent.trim().toLowerCase()
+    );
     const statusIndex = headers.indexOf("estado");
     if (statusIndex < 0) return;
-    const wanted = label.startsWith("Pendientes") ? "Pendiente" : label.startsWith("Exitosas") ? "Pagada" : label.startsWith("Fallidas") ? "Fallida" : "";
+    const wanted = label.startsWith("Pendientes")
+        ? "Pendiente"
+        : label.startsWith("Exitosas")
+          ? "Pagada"
+          : label.startsWith("Fallidas")
+            ? "Fallida"
+            : "";
     [...table.querySelectorAll("tbody tr")].forEach((row) => {
         const status = row.children[statusIndex]?.textContent.trim() ?? "";
         row.hidden = wanted.length > 0 && status !== wanted;
@@ -282,19 +321,39 @@ function filterInvoices(label) {
 }
 
 function filterLogs(label) {
-    const section = [...document.querySelectorAll("section")].find((item) => item.textContent.includes("Errores recientes"));
+    const section = [...document.querySelectorAll("section")].find((item) =>
+        item.textContent.includes("Errores recientes")
+    );
     if (!section) return;
-    const rows = [...section.querySelectorAll("li")].filter((row) => /Crítico|Error|Excepción|Advertencia/.test(row.textContent));
-    const wanted = label.startsWith("Críticos") ? "Crítico" : label.startsWith("Errores") ? "Error" : label.startsWith("Excepciones") ? "Excepción" : label.startsWith("Avisos") ? "Advertencia" : "";
+    const rows = [...section.querySelectorAll("li")].filter((row) =>
+        /Crítico|Error|Excepción|Advertencia/.test(row.textContent)
+    );
+    const wanted = label.startsWith("Críticos")
+        ? "Crítico"
+        : label.startsWith("Errores")
+          ? "Error"
+          : label.startsWith("Excepciones")
+            ? "Excepción"
+            : label.startsWith("Avisos")
+              ? "Advertencia"
+              : "";
     rows.forEach((row) => {
         row.hidden = wanted.length > 0 && !row.textContent.includes(wanted);
     });
 }
 
 function showTrend(label) {
-    const section = [...document.querySelectorAll("section")].find((item) => item.querySelector("[data-trend-panel]"));
+    const section = [...document.querySelectorAll("section")].find((item) =>
+        item.querySelector("[data-trend-panel]")
+    );
     if (!section) return;
-    const key = label.startsWith("Diario") ? "diario" : label.startsWith("Semanal") ? "semanal" : label.startsWith("Mensual") ? "mensual" : "";
+    const key = label.startsWith("Diario")
+        ? "diario"
+        : label.startsWith("Semanal")
+          ? "semanal"
+          : label.startsWith("Mensual")
+            ? "mensual"
+            : "";
     if (!key) return;
     const panels = [...section.querySelectorAll("[data-trend-panel]")];
     const selected = panels.find((panel) => panel.dataset.trendPanel === key);
@@ -315,9 +374,13 @@ function setupTabs() {
                     item.setAttribute("aria-selected", String(active));
                     item.dataset.state = active ? "active" : "inactive";
                 });
-                const panels = tabs.map((item) => document.getElementById(item.getAttribute("aria-controls") ?? ""));
+                const panels = tabs.map((item) =>
+                    document.getElementById(item.getAttribute("aria-controls") ?? "")
+                );
                 if (panels.some(Boolean)) {
-                    const selected = document.getElementById(tab.getAttribute("aria-controls") ?? "");
+                    const selected = document.getElementById(
+                        tab.getAttribute("aria-controls") ?? ""
+                    );
                     panels.forEach((panel) => {
                         if (!panel) return;
                         panel.hidden = panel !== selected;
@@ -335,17 +398,19 @@ function setupTabs() {
 }
 
 function setupSearch() {
-    document.querySelectorAll('input[type="search"], input[placeholder*="Buscar"]').forEach((input) => {
-        if (input.closest("[data-overlay-panel]")) return;
-        const table = findTable(input);
-        if (!table) return;
-        input.addEventListener("input", () => {
-            const state = getTableState(table);
-            state.query = input.value.trim().toLowerCase();
-            state.page = 1;
-            applyTableState(table);
+    document
+        .querySelectorAll('input[type="search"], input[placeholder*="Buscar"]')
+        .forEach((input) => {
+            if (input.closest("[data-overlay-panel]")) return;
+            const table = findTable(input);
+            if (!table) return;
+            input.addEventListener("input", () => {
+                const state = getTableState(table);
+                state.query = input.value.trim().toLowerCase();
+                state.page = 1;
+                applyTableState(table);
+            });
         });
-    });
 }
 
 function openFilterMenu(trigger, column, table) {
@@ -353,7 +418,13 @@ function openFilterMenu(trigger, column, table) {
     const headers = [...table.querySelectorAll("thead th")].map((cell) => cell.textContent.trim());
     const index = headers.findIndex((header) => header.toLowerCase() === column.toLowerCase());
     if (index < 0) return;
-    const values = [...new Set([...table.querySelectorAll("tbody tr")].map((row) => row.children[index]?.textContent.trim()).filter(Boolean))];
+    const values = [
+        ...new Set(
+            [...table.querySelectorAll("tbody tr")]
+                .map((row) => row.children[index]?.textContent.trim())
+                .filter(Boolean)
+        ),
+    ];
     const menu = document.createElement("div");
     menu.className = "filter-menu";
     ["Todos", ...values].forEach((value) => {
@@ -385,11 +456,11 @@ function setupFilters() {
     const columns = {
         "Filtrar por rol": "Rol",
         "Filtrar por estado": "Estado",
-        "Estado": "Estado",
-        "Prioridad": "Prioridad",
-        "Categoría": "Categoría",
-        "Región": "Región",
-        "Canal": "Canal",
+        Estado: "Estado",
+        Prioridad: "Prioridad",
+        Categoría: "Categoría",
+        Región: "Región",
+        Canal: "Canal",
     };
     document.querySelectorAll('button[role="combobox"]').forEach((trigger) => {
         const column = columns[trigger.getAttribute("aria-label") ?? ""];
@@ -410,7 +481,8 @@ function setupFilters() {
         });
     });
     document.addEventListener("click", (event) => {
-        if (event.target.closest(".filter-menu") || event.target.closest('button[role="combobox"]')) return;
+        if (event.target.closest(".filter-menu") || event.target.closest('button[role="combobox"]'))
+            return;
         closeFilterMenu();
     });
     document.addEventListener("keydown", (event) => {
@@ -422,7 +494,9 @@ function setupPagination() {
     document.querySelectorAll("table[data-page-size]").forEach((table) => {
         const main = table.closest("main");
         if (!main) return;
-        const buttons = [...main.querySelectorAll("button")].filter((button) => /^(Anterior|Siguiente)$/.test(button.textContent.trim()));
+        const buttons = [...main.querySelectorAll("button")].filter((button) =>
+            /^(Anterior|Siguiente)$/.test(button.textContent.trim())
+        );
         const previous = buttons.find((button) => button.textContent.trim() === "Anterior");
         const next = buttons.find((button) => button.textContent.trim() === "Siguiente");
         previous?.addEventListener("click", () => {
@@ -440,18 +514,26 @@ function setupPagination() {
 }
 
 function setupRefresh() {
-    document.querySelectorAll('button[aria-label="Refrescar datos"], button[aria-label="Actualizar datos"]').forEach((button) => {
-        button.addEventListener("click", () => {
-            const icon = button.querySelector("svg");
-            icon?.classList.add("animate-spin");
-            window.setTimeout(() => icon?.classList.remove("animate-spin"), 800);
-            showToast("Datos actualizados");
+    document
+        .querySelectorAll(
+            'button[aria-label="Refrescar datos"], button[aria-label="Actualizar datos"]'
+        )
+        .forEach((button) => {
+            button.addEventListener("click", () => {
+                const icon = button.querySelector("svg");
+                icon?.classList.add("animate-spin");
+                window.setTimeout(() => icon?.classList.remove("animate-spin"), 800);
+                showToast("Datos actualizados");
+            });
         });
-    });
 }
 
 function downloadTable(table, name) {
-    const rows = [...table.querySelectorAll("tr")].map((row) => [...row.children].map((cell) => `"${cell.textContent.trim().replace(/"/g, '""')}"`).join(","));
+    const rows = [...table.querySelectorAll("tr")].map((row) =>
+        [...row.children]
+            .map((cell) => `"${cell.textContent.trim().replace(/"/g, '""')}"`)
+            .join(",")
+    );
     const blob = new Blob([`\ufeff${rows.join("\n")}`], { type: "text/csv;charset=utf-8" });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
