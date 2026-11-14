@@ -1,8 +1,3 @@
-// Tokenizador de sintaxis para Java (seguro: usa createElement/textContent).
-// No inyecta HTML; crea nodos DOM con clases CSS para el coloreado.
-// Uso: highlightJava(codeString) → DocumentFragment con spans coloreados.
-
-// Palabras clave de Java (reservadas)
 const JAVA_KEYWORDS = new Set([
     "abstract",
     "assert",
@@ -56,7 +51,6 @@ const JAVA_KEYWORDS = new Set([
     "while",
 ]);
 
-// Tipos comunes de Java
 const JAVA_TYPES = new Set([
     "String",
     "Scanner",
@@ -108,19 +102,16 @@ const JAVA_TYPES = new Set([
     "Map.Entry",
 ]);
 
-// Tokeniza una línea de Java en una lista de tokens con tipo y texto.
 function tokenizeLine(line) {
     const tokens = [];
     let i = 0;
 
     while (i < line.length) {
-        // Comentario de línea //
         if (line[i] === "/" && line[i + 1] === "/") {
             tokens.push({ type: "comment", text: line.slice(i) });
             break;
         }
 
-        // Comentario de bloque /* ... */ (solo apertura en esta línea)
         if (line[i] === "/" && line[i + 1] === "*") {
             const end = line.indexOf("*/", i + 2);
             if (end !== -1) {
@@ -133,7 +124,6 @@ function tokenizeLine(line) {
             continue;
         }
 
-        // String (doble comilla)
         if (line[i] === '"') {
             let j = i + 1;
             while (j < line.length && line[j] !== '"') {
@@ -145,7 +135,6 @@ function tokenizeLine(line) {
             continue;
         }
 
-        // Carácter (comilla simple)
         if (line[i] === "'") {
             let j = i + 1;
             while (j < line.length && line[j] !== "'") {
@@ -157,13 +146,11 @@ function tokenizeLine(line) {
             continue;
         }
 
-        // Número
         if (
             /[0-9]/.test(line[i]) ||
             (line[i] === "." && i + 1 < line.length && /[0-9]/.test(line[i + 1]))
         ) {
             let j = i;
-            // hexadecimal
             if (line[j] === "0" && (line[j + 1] === "x" || line[j + 1] === "X")) {
                 j += 2;
                 while (j < line.length && /[0-9a-fA-F_]/.test(line[j])) j++;
@@ -179,14 +166,12 @@ function tokenizeLine(line) {
                     while (j < line.length && /[0-9_]/.test(line[j])) j++;
                 }
             }
-            // sufijos
             while (j < line.length && /[fFdDlL]/.test(line[j])) j++;
             tokens.push({ type: "number", text: line.slice(i, j) });
             i = j;
             continue;
         }
 
-        // Identificador o palabra clave
         if (/[a-zA-Z_$]/.test(line[i])) {
             let j = i;
             while (j < line.length && /[a-zA-Z0-9_$]/.test(line[j])) j++;
@@ -203,7 +188,6 @@ function tokenizeLine(line) {
             continue;
         }
 
-        // Operadores y puntuación
         if (/[+\-*/%=<>!&|^~?:]/.test(line[i])) {
             let j = i;
             while (j < line.length && /[+\-*/%=<>!&|^~?:]/.test(line[j])) j++;
@@ -212,7 +196,6 @@ function tokenizeLine(line) {
             continue;
         }
 
-        // Espacios en blanco
         if (/\s/.test(line[i])) {
             let j = i;
             while (j < line.length && /\s/.test(line[j])) j++;
@@ -221,7 +204,6 @@ function tokenizeLine(line) {
             continue;
         }
 
-        // Otros caracteres (puntuación, llaves, etc.)
         tokens.push({ type: "punctuation", text: line[i] });
         i++;
     }
@@ -229,7 +211,6 @@ function tokenizeLine(line) {
     return tokens;
 }
 
-// Crea un nodo DOM a partir de un token.
 function createTokenNode(token) {
     const span = document.createElement("span");
     span.className = `token token--${token.type}`;
@@ -237,11 +218,6 @@ function createTokenNode(token) {
     return span;
 }
 
-/**
- * Resalta código Java y devuelve un DocumentFragment con nodos DOM coloreados.
- * @param {string} code Código Java sin formato.
- * @returns {DocumentFragment}
- */
 export function highlightJava(code) {
     const fragment = document.createDocumentFragment();
     const lines = code.split("\n");
@@ -254,7 +230,6 @@ export function highlightJava(code) {
             fragment.append(createTokenNode(token));
         }
 
-        // Agregar salto de línea (excepto en la última línea)
         if (lineIdx < lines.length - 1) {
             fragment.append(document.createTextNode("\n"));
         }
@@ -263,11 +238,6 @@ export function highlightJava(code) {
     return fragment;
 }
 
-/**
- * Resalta código Java y lo inserta en un elemento pre existente.
- * @param {HTMLPreElement} preElement Elemento <pre> donde insertar el código coloreado.
- * @param {string} code Código Java sin formato.
- */
 export function highlightJavaInto(preElement, code) {
     const fragment = highlightJava(code);
     preElement.replaceChildren(fragment);

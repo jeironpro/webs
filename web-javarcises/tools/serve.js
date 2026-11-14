@@ -1,9 +1,3 @@
-// Servidor estático local (cero dependencias) para desarrollo.
-// Usage: npm run dev  (same as: node scripts/serve.js)
-//
-// Los ES Modules no cargan con file://, por lo que el proyecto se sirve
-// por HTTP. Puerto por defecto: 4173 (se puede cambiar con PORT).
-
 import { createServer } from "node:http";
 import { readFile, stat } from "node:fs/promises";
 import { dirname, extname, join, normalize, sep } from "node:path";
@@ -62,12 +56,12 @@ function start(port) {
         if (error.code === "EADDRINUSE" && port < INITIAL_PORT + 10) {
             start(port + 1);
         } else {
-            console.error("Error starting server:", error.message);
+            process.stderr.write(`Error starting server: ${error.message}\n`);
             process.exitCode = 1;
         }
     });
     server.listen(port, () => {
-        console.log(`Javarcises available at http://localhost:${port}`);
+        process.stdout.write(`Javarcises available at http://localhost:${port}\n`);
     });
 }
 

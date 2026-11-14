@@ -1,13 +1,5 @@
-// Lógica pura de paginación: no depende del DOM, por lo que se puede
-// testear con node --test (js/pagination.test.js).
-
 export const PER_PAGE = 12;
 
-/**
- * Corta una lista para la página indicada.
- * Devuelve los ítems de la página, el número de página seguro (dentro de
- * rango) y los contadores "desde–hasta de total".
- */
 export function paginate(list, page, perPage = PER_PAGE) {
     const totalPages = Math.max(1, Math.ceil(list.length / perPage));
     const safePage = Math.min(Math.max(1, page), totalPages);
@@ -23,11 +15,6 @@ export function paginate(list, page, perPage = PER_PAGE) {
     };
 }
 
-/**
- * Calcula la secuencia de páginas a mostrar en el paginador: primera y
- * última siempre visibles, la actual con una vecina a cada lado, y "…"
- * donde haya un salto.
- */
 export function pageNumbers(currentPage, totalPages) {
     if (totalPages <= 7) {
         return range(1, totalPages).map((number) => ({ type: "page", number }));
