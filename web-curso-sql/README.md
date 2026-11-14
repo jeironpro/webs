@@ -4,8 +4,8 @@ Sitio web estático con un curso completo de SQL organizado por temas: desde la 
 
 ## Características
 
-- Temario progresivo: introducción, DDL, inserción, consultas, operadores, orden y limites.
-- Temas intermedios: agregados, joins, subconsultas, vistas e indices.
+- Temario progresivo: introducción, DDL, inserción, consultas, operadores, orden y límites.
+- Temas intermedios: agregados, joins, subconsultas, vistas e índices.
 - Temas avanzados: transacciones, disparadores (triggers), procedimientos, seguridad y restricciones.
 - Prueba final para validar los conocimientos adquiridos.
 - Navegación clara entre temas con contenido estático.
@@ -27,9 +27,10 @@ web-curso-sql/
 ├── html/                  # página por tema del curso
 ├── css/                   # estilos del curso
 ├── js/                    # lógica de la interfaz
-└── icon/                  # iconos
+└── assets/icons/         # favicon e iconos
 ```
 
 ## Licencia
+
 Este proyecto está bajo la licencia **MIT**.  
-Consulta el archivo [LICENSE](LICENSE) para más detalles.
+Consulta el archivo [LICENSE](../LICENSE) para más detalles.

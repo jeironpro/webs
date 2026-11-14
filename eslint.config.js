@@ -21,6 +21,7 @@ const WEBS_CANONICAS = [
     "web-convertidor-moneda",
     "web-curso-dcs",
     "web-curso-git",
+    "web-curso-sql",
     "web-cursos-cpnl",
     "web-dados",
     "web-generador-clave-secreta",
@@ -43,7 +44,6 @@ const WEBS_CANONICAS = [
 ];
 
 const WEBS_PENDIENTES = [
-    "web-curso-sql",
     "web-dashboards",
     "web-daw",
     "web-ejercicios-pyja",

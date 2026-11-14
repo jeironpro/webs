@@ -1,52 +1,62 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../icon/sql.png" type="image/x-icon">
-    <title>Seguridad - Curso SQL</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/styles.css">
-</head>
-<body>
-    <header class="site-header">
-        <div class="brand">
-            <img src="../icon/sql.png" alt="SQL Logo">
-            <span>Curso SQL</span>
-        </div>
-    </header>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg" />
+        <link rel="icon" href="../assets/icons/sql.png" type="image/x-icon" />
+        <title>Seguridad - Curso SQL</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="../css/styles.css" />
+    </head>
+    <body>
+        <header class="site-header">
+            <div class="brand">
+                <img src="../assets/icons/sql.png" alt="SQL Logo" />
+                <span>Curso SQL</span>
+            </div>
+        </header>
 
-    <main class="main-content">
-        <section class="lesson">
-            <h1>Seguridad y Permisos</h1>
-            
-            <h2>Gestión de Usuarios</h2>
-            <p>Es fundamental controlar quién tiene acceso a la base de datos y qué puede hacer.</p>
-            
-            <h3>Crear Usuario</h3>
-            <pre>CREATE USER 'nuevo_usuario'@'localhost' IDENTIFIED BY 'contraseña_segura';</pre>
+        <main class="main-content">
+            <section class="lesson">
+                <h1>Seguridad y Permisos</h1>
 
-            <h2>Permisos (GRANT y REVOKE)</h2>
-            
-            <h3>Dar Permisos (GRANT)</h3>
-            <pre>-- Dar permiso de lectura en todas las tablas
+                <h2>Gestión de Usuarios</h2>
+                <p>
+                    Es fundamental controlar quién tiene acceso a la base de datos y qué puede
+                    hacer.
+                </p>
+
+                <h3>Crear Usuario</h3>
+                <pre>
+CREATE USER 'nuevo_usuario'@'localhost' IDENTIFIED BY 'contraseña_segura';</pre>
+
+                <h2>Permisos (GRANT y REVOKE)</h2>
+
+                <h3>Dar Permisos (GRANT)</h3>
+                <pre>
+-- Dar permiso de lectura en todas las tablas
 GRANT SELECT ON mi_base_datos.* TO 'nuevo_usuario'@'localhost';
 
 -- Dar todos los permisos
 GRANT ALL PRIVILEGES ON *.* TO 'admin'@'localhost';</pre>
 
-            <h3>Quitar Permisos (REVOKE)</h3>
-            <pre>REVOKE INSERT, UPDATE ON mi_base_datos.* FROM 'nuevo_usuario'@'localhost';</pre>
+                <h3>Quitar Permisos (REVOKE)</h3>
+                <pre>
+REVOKE INSERT, UPDATE ON mi_base_datos.* FROM 'nuevo_usuario'@'localhost';</pre>
 
-            <h3>Aplicar Cambios</h3>
-            <pre>FLUSH PRIVILEGES;</pre>
+                <h3>Aplicar Cambios</h3>
+                <pre>FLUSH PRIVILEGES;</pre>
 
-            <a href="../index.html" class="back-link">Volver al Inicio</a>
-        </section>
-    </main>
-    <footer class="site-footer">
-        <p>&copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro</p>
-    </footer>
-    <script src="../js/common.js"></script>
-</body>
+                <a href="../index.html" class="back-link">Volver al Inicio</a>
+            </section>
+        </main>
+        <footer class="site-footer">
+            <p>&copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro</p>
+        </footer>
+        <script src="../js/common.js"></script>
+    </body>
 </html>

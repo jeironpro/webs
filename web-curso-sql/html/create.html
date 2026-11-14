@@ -1,63 +1,89 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../icon/sql.png" type="image/x-icon">
-    <title>Create (INSERT) - Curso SQL</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/styles.css">
-</head>
-<body>
-    <header class="site-header">
-        <div class="brand">
-            <img src="../icon/sql.png" alt="SQL Logo">
-            <span>Curso SQL</span>
-        </div>
-    </header>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg" />
+        <link rel="icon" href="../assets/icons/sql.png" type="image/x-icon" />
+        <title>Create (INSERT) - Curso SQL</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="../css/styles.css" />
+    </head>
+    <body>
+        <header class="site-header">
+            <div class="brand">
+                <img src="../assets/icons/sql.png" alt="SQL Logo" />
+                <span>Curso SQL</span>
+            </div>
+        </header>
 
-    <main class="main-content">
-        <section class="lesson">
-            <h1>Create: Insertar Datos</h1>
-            
-            <h2>La sentencia INSERT</h2>
-            <p>La operación <strong>Create</strong> en SQL se realiza principalmente mediante la sentencia <code>INSERT INTO</code>. Esta sentencia permite agregar nuevas filas a una tabla.</p>
-            
-            <h3>Sintaxis Básica</h3>
-            <pre>INSERT INTO nombre_tabla (columna1, columna2, columna3, ...)
+        <main class="main-content">
+            <section class="lesson">
+                <h1>Create: Insertar Datos</h1>
+
+                <h2>La sentencia INSERT</h2>
+                <p>
+                    La operación <strong>Create</strong> en SQL se realiza principalmente mediante
+                    la sentencia <code>INSERT INTO</code>. Esta sentencia permite agregar nuevas
+                    filas a una tabla.
+                </p>
+
+                <h3>Sintaxis Básica</h3>
+                <pre>
+INSERT INTO nombre_tabla (columna1, columna2, columna3, ...)
 VALUES (valor1, valor2, valor3, ...);</pre>
 
-            <h3>Ejemplo</h3>
-            <p>Supongamos que tenemos una tabla llamada <code>usuarios</code> con las columnas <code>nombre</code> y <code>email</code>.</p>
-            <pre>INSERT INTO usuarios (nombre, email)
+                <h3>Ejemplo</h3>
+                <p>
+                    Supongamos que tenemos una tabla llamada <code>usuarios</code> con las columnas
+                    <code>nombre</code> y <code>email</code>.
+                </p>
+                <pre>
+INSERT INTO usuarios (nombre, email)
 VALUES ('Juan Perez', 'juan@example.com');</pre>
-            
-            <p>También es posible insertar múltiples filas a la vez:</p>
-            <pre>INSERT INTO usuarios (nombre, email)
+
+                <p>También es posible insertar múltiples filas a la vez:</p>
+                <pre>
+INSERT INTO usuarios (nombre, email)
 VALUES 
 ('Maria Garcia', 'maria@example.com'),
 ('Carlos Lopez', 'carlos@example.com');</pre>
 
-            <h3>Buenas Prácticas</h3>
-            <ul>
-                <li>Especifica siempre las columnas en el <code>INSERT</code>. Aunque es opcional si insertas valores para todas las columnas, es más seguro y legible especificarlas.</li>
-                <li>Usa transacciones para inserciones masivas críticas.</li>
-            </ul>
+                <h3>Buenas Prácticas</h3>
+                <ul>
+                    <li>
+                        Especifica siempre las columnas en el <code>INSERT</code>. Aunque es
+                        opcional si insertas valores para todas las columnas, es más seguro y
+                        legible especificarlas.
+                    </li>
+                    <li>Usa transacciones para inserciones masivas críticas.</li>
+                </ul>
 
-            <h3>Errores Comunes</h3>
-            <ul>
-                <li>Intentar insertar un duplicado en una columna con restricción <code>UNIQUE</code> o <code>PRIMARY KEY</code>.</li>
-                <li>No coincidir el número de valores con el número de columnas especificadas.</li>
-                <li>Intentar insertar <code>NULL</code> en una columna definida como <code>NOT NULL</code>.</li>
-            </ul>
+                <h3>Errores Comunes</h3>
+                <ul>
+                    <li>
+                        Intentar insertar un duplicado en una columna con restricción
+                        <code>UNIQUE</code> o <code>PRIMARY KEY</code>.
+                    </li>
+                    <li>
+                        No coincidir el número de valores con el número de columnas especificadas.
+                    </li>
+                    <li>
+                        Intentar insertar <code>NULL</code> en una columna definida como
+                        <code>NOT NULL</code>.
+                    </li>
+                </ul>
 
-            <a href="../index.html" class="back-link">Volver al Inicio</a>
-        </section>
-    </main>
-    
-    <footer class="site-footer">
-        <p>&copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro</p>
-    </footer>
-    <script src="../js/common.js"></script>
-</body>
+                <a href="../index.html" class="back-link">Volver al Inicio</a>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <p>&copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro</p>
+        </footer>
+        <script src="../js/common.js"></script>
+    </body>
 </html>

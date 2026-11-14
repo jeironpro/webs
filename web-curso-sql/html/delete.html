@@ -1,62 +1,83 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../icon/sql.png" type="image/x-icon">
-    <title>Delete (DELETE) - Curso SQL</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/styles.css">
-</head>
-<body>
-    <header class="site-header">
-        <div class="brand">
-            <img src="../icon/sql.png" alt="SQL Logo">
-            <span>Curso SQL</span>
-        </div>
-    </header>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg" />
+        <link rel="icon" href="../assets/icons/sql.png" type="image/x-icon" />
+        <title>Delete (DELETE) - Curso SQL</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="../css/styles.css" />
+    </head>
+    <body>
+        <header class="site-header">
+            <div class="brand">
+                <img src="../assets/icons/sql.png" alt="SQL Logo" />
+                <span>Curso SQL</span>
+            </div>
+        </header>
 
-    <main class="main-content">
-        <section class="lesson">
-            <h1>Delete: Eliminar Datos</h1>
-            
-            <h2>La sentencia DELETE</h2>
-            <p>La operación <strong>Delete</strong> se utiliza para eliminar registros de una tabla.</p>
-            
-            <h3>Sintaxis Básica</h3>
-            <pre>DELETE FROM nombre_tabla
+        <main class="main-content">
+            <section class="lesson">
+                <h1>Delete: Eliminar Datos</h1>
+
+                <h2>La sentencia DELETE</h2>
+                <p>
+                    La operación <strong>Delete</strong> se utiliza para eliminar registros de una
+                    tabla.
+                </p>
+
+                <h3>Sintaxis Básica</h3>
+                <pre>
+DELETE FROM nombre_tabla
 WHERE condicion;</pre>
 
-            <h3>Ejemplo</h3>
-            <p>Para eliminar un usuario específico:</p>
-            <pre>DELETE FROM usuarios
+                <h3>Ejemplo</h3>
+                <p>Para eliminar un usuario específico:</p>
+                <pre>
+DELETE FROM usuarios
 WHERE nombre = 'Juan Perez';</pre>
 
-            <div class="warning">
-                <strong>¡Peligro!</strong> Al igual que con <code>UPDATE</code>, si omites la cláusula <code>WHERE</code>, se eliminarán <strong>TODOS</strong> los registros de la tabla.
-            </div>
-            <pre>-- ¡Esto borrará TODOS los usuarios!
+                <div class="warning">
+                    <strong>¡Peligro!</strong> Al igual que con <code>UPDATE</code>, si omites la
+                    cláusula <code>WHERE</code>, se eliminarán <strong>TODOS</strong> los registros
+                    de la tabla.
+                </div>
+                <pre>
+-- ¡Esto borrará TODOS los usuarios!
 DELETE FROM usuarios;</pre>
 
-            <h3>Buenas Prácticas</h3>
-            <ul>
-                <li>Al igual que con <code>UPDATE</code>, verifica tu <code>WHERE</code> con un <code>SELECT</code> primero.</li>
-                <li>Considera usar "Soft Delete" (marcar como inactivo en lugar de borrar físicamente) si necesitas mantener un historial.</li>
-            </ul>
+                <h3>Buenas Prácticas</h3>
+                <ul>
+                    <li>
+                        Al igual que con <code>UPDATE</code>, verifica tu <code>WHERE</code> con un
+                        <code>SELECT</code> primero.
+                    </li>
+                    <li>
+                        Considera usar "Soft Delete" (marcar como inactivo en lugar de borrar
+                        físicamente) si necesitas mantener un historial.
+                    </li>
+                </ul>
 
-            <h3>Errores Comunes</h3>
-            <ul>
-                <li>Olvidar el <code>WHERE</code> y borrar toda la tabla.</li>
-                <li>Borrar registros que tienen dependencias (claves foráneas) sin configurar <code>ON DELETE CASCADE</code>, lo que causará un error.</li>
-            </ul>
+                <h3>Errores Comunes</h3>
+                <ul>
+                    <li>Olvidar el <code>WHERE</code> y borrar toda la tabla.</li>
+                    <li>
+                        Borrar registros que tienen dependencias (claves foráneas) sin configurar
+                        <code>ON DELETE CASCADE</code>, lo que causará un error.
+                    </li>
+                </ul>
 
-            <a href="../index.html" class="back-link">Volver al Inicio</a>
-        </section>
-    </main>
-    
-    <footer class="site-footer">
-        <p>&copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro</p>
-    </footer>
-    <script src="../js/common.js"></script>
-</body>
+                <a href="../index.html" class="back-link">Volver al Inicio</a>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <p>&copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro</p>
+        </footer>
+        <script src="../js/common.js"></script>
+    </body>
 </html>
