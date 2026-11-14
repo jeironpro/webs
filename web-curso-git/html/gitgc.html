@@ -1,57 +1,72 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../icon/curso_git.png" type="image/x-icon">
-    <title>Git gc</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/git.css">
-</head>
-<body>
-    <header>
-        <h1>Git gc</h1>
-    </header>
-    <main class="course-content">
-        <section class="course-section">
-            <article class="command-definition">
-                <div class="definition">
-                    <h2>Definición</h2>
-                    <p>
-                        El comando <code>git gc</code> (garbage collection) se utiliza para optimizar el repositorio Git.
-                        Combina objetos sueltos, comprime datos y limpia referencias innecesarias, mejorando el rendimiento y reduciendo el tamaño del repositorio.
-                        Es recomendable ejecutarlo periódicamente, especialmente en repositorios grandes.
-                    </p>
-                </div>
-                <div class="commands">
-                    <h2>Comandos</h2>
-                    <ul>
-                        <li>
-                            <code><span>git gc</span></code>
-                            <p>Realiza una recolección de basura estándar optimizando el repositorio.</p>
-                        </li>
-                        <li>
-                            <code><span>git gc --aggressive</span></code>
-                            <p>Ejecuta una recolección más exhaustiva y agresiva, optimizando aún más el repositorio a costa de más tiempo de ejecución.</p>
-                        </li>
-                        <li>
-                            <code><span>git gc --prune=now</span></code>
-                            <p>Elimina inmediatamente objetos inalcanzables sin esperar el tiempo de retención por defecto.</p>
-                        </li>
-                    </ul>
-                </div>
-            </article>
-            <article class="practice">
-                <div class="run-block">
-                    <h3> Ejecutar</h3>
-                    <pre><code>$ git branch
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg" />
+        <link rel="shortcut icon" href="../assets/icons/curso_git.png" type="image/x-icon" />
+        <title>Git gc</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="../css/git.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Git gc</h1>
+        </header>
+        <main class="course-content">
+            <section class="course-section">
+                <article class="command-definition">
+                    <div class="definition">
+                        <h2>Definición</h2>
+                        <p>
+                            El comando <code>git gc</code> (garbage collection) se utiliza para
+                            optimizar el repositorio Git. Combina objetos sueltos, comprime datos y
+                            limpia referencias innecesarias, mejorando el rendimiento y reduciendo
+                            el tamaño del repositorio. Es recomendable ejecutarlo periódicamente,
+                            especialmente en repositorios grandes.
+                        </p>
+                    </div>
+                    <div class="commands">
+                        <h2>Comandos</h2>
+                        <ul>
+                            <li>
+                                <code><span>git gc</span></code>
+                                <p>
+                                    Realiza una recolección de basura estándar optimizando el
+                                    repositorio.
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git gc --aggressive</span></code>
+                                <p>
+                                    Ejecuta una recolección más exhaustiva y agresiva, optimizando
+                                    aún más el repositorio a costa de más tiempo de ejecución.
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git gc --prune=now</span></code>
+                                <p>
+                                    Elimina inmediatamente objetos inalcanzables sin esperar el
+                                    tiempo de retención por defecto.
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+                <article class="practice">
+                    <div class="run-block">
+                        <h3>Ejecutar</h3>
+                        <pre><code>$ git branch
 $ git checkout main
 $ git push
 $ git gc</code></pre>
-                </div>
-                <div class="result-block">
-                    <h3> Resultado</h3>
-                    <pre><code>* backend
+                    </div>
+                    <div class="result-block">
+                        <h3>Resultado</h3>
+                        <pre><code>* backend
 main
 
 Cambiado a rama 'main'
@@ -75,14 +90,13 @@ Compresión delta usando hasta 6 hilos
 Comprimiendo objetos: 100% (4/4), listo.
 Escribiendo objetos: 100% (8/8), listo.
 Total 8 (delta 1), reused 0 (delta 0), pack-reused 0 (from 0)</code></pre>
-                </div>
-
-            </article>
-        </section>
-    </main>
-    <footer>
-        &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
-    </footer>
-    <script src="../js/header.js"></script>
-</body>
+                    </div>
+                </article>
+            </section>
+        </main>
+        <footer>
+            &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
+        </footer>
+        <script src="../js/header.js"></script>
+    </body>
 </html>

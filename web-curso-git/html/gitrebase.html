@@ -1,54 +1,69 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../icon/curso_git.png" type="image/x-icon">
-    <title>Git rebase</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/git.css">
-</head>
-<body>
-    <header>
-        <h1>Git rebase</h1>
-    </header>
-    <main class="course-content">
-        <section class="course-section">
-            <article class="command-definition">
-                <div class="definition">
-                    <h2>Definición</h2>
-                    <p>
-                        El comando <code>git rebase</code> se utiliza para aplicar los cambios de una rama sobre otra, reescribiendo el historial de commits.
-                        Permite mantener un historial lineal y limpio, evitando merges innecesarios y facilitando la revisión de cambios.
-                        Es especialmente útil antes de hacer un push de ramas de características a la rama principal.
-                    </p>
-                </div>
-                <div class="commands">
-                    <h2>Comandos</h2>
-                    <ul>
-                        <li>
-                            <code><span>git rebase main</span></code>
-                            <p>Aplica los commits de la rama actual sobre la rama main.</p>
-                        </li>
-                        <li>
-                            <code><span>git rebase -i HEAD~3</span></code>
-                            <p>Rebase interactivo de los últimos 3 commits para editar, combinar o reordenar.</p>
-                        </li>
-                        <li>
-                            <code><span>git rebase --continue</span></code>
-                            <p>Continúa un rebase que se ha detenido por conflictos después de resolverlos.</p>
-                        </li>
-                        <li>
-                            <code><span>git rebase --abort</span></code>
-                            <p>Aborta el rebase y regresa al estado original antes de iniciarlo.</p>
-                        </li>
-                    </ul>
-                </div>
-            </article>
-            <article class="practice">
-                <div class="run-block">
-                    <h3> Ejecutar</h3>
-                    <pre><code>$ git branch
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg" />
+        <link rel="shortcut icon" href="../assets/icons/curso_git.png" type="image/x-icon" />
+        <title>Git rebase</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="../css/git.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Git rebase</h1>
+        </header>
+        <main class="course-content">
+            <section class="course-section">
+                <article class="command-definition">
+                    <div class="definition">
+                        <h2>Definición</h2>
+                        <p>
+                            El comando <code>git rebase</code> se utiliza para aplicar los cambios
+                            de una rama sobre otra, reescribiendo el historial de commits. Permite
+                            mantener un historial lineal y limpio, evitando merges innecesarios y
+                            facilitando la revisión de cambios. Es especialmente útil antes de hacer
+                            un push de ramas de características a la rama principal.
+                        </p>
+                    </div>
+                    <div class="commands">
+                        <h2>Comandos</h2>
+                        <ul>
+                            <li>
+                                <code><span>git rebase main</span></code>
+                                <p>Aplica los commits de la rama actual sobre la rama main.</p>
+                            </li>
+                            <li>
+                                <code><span>git rebase -i HEAD~3</span></code>
+                                <p>
+                                    Rebase interactivo de los últimos 3 commits para editar,
+                                    combinar o reordenar.
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git rebase --continue</span></code>
+                                <p>
+                                    Continúa un rebase que se ha detenido por conflictos después de
+                                    resolverlos.
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git rebase --abort</span></code>
+                                <p>
+                                    Aborta el rebase y regresa al estado original antes de
+                                    iniciarlo.
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+                <article class="practice">
+                    <div class="run-block">
+                        <h3>Ejecutar</h3>
+                        <pre><code>$ git branch
 $ git checkout backend
 $ echo "GitHub no depende de Git" > github.txt
 $ git status
@@ -64,10 +79,10 @@ $ git rebase main
 $ git log --oneline
 $ git push
 $ git push --set-upstream origin backend</code></pre>
-                </div>
-                <div class="result-block">
-                    <h3> Resultado</h3>
-                    <pre><code>backend
+                    </div>
+                    <div class="result-block">
+                        <h3>Resultado</h3>
+                        <pre><code>backend
 * main
 
 Cambiado a rama 'backend'
@@ -128,21 +143,20 @@ Compresión delta usando hasta 6 hilos
 Comprimiendo objetos: 100% (5/5), listo.
 Escribiendo objetos: 100% (6/6), 661 bytes | 661.00 KiB/s, listo.
 Total 6 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
-remote: 
+remote:
 remote: Create a pull request for 'backend' on GitHub by visiting:
 remote:      https://github.com/usuario/mi-proyecto/pull/new/backend
-remote: 
+remote:
 To github.com:usuario/mi-proyecto.git
  * [new branch]      backend -> backend
 rama 'backend' configurada para rastrear 'origin/backend'.</code></pre>
-                </div>
-
-            </article>
-        </section>
-    </main>
-    <footer>
-        &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
-    </footer>
-    <script src="../js/header.js"></script>
-</body>
+                    </div>
+                </article>
+            </section>
+        </main>
+        <footer>
+            &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
+        </footer>
+        <script src="../js/header.js"></script>
+    </body>
 </html>

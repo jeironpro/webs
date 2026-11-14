@@ -1,61 +1,80 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../icon/curso_git.png" type="image/x-icon">
-    <title>Git restore</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/git.css">
-</head>
-<body>
-    <header>
-        <h1>Git restore</h1>
-    </header>
-    <main class="course-content">
-        <section class="course-section">
-            <article class="command-definition">
-                <div class="definition">
-                    <h2>Definición</h2>
-                    <p>
-                        El comando <code>git restore</code> se utiliza para descartar cambios en archivos del área de trabajo o del área de preparación.
-                        Permite volver al último estado guardado en Git, ya sea en el último commit o en la versión que está actualmente registrada en el área de preparación.
-                        Es una herramienta útil para revertir errores antes de hacer un commit, sin afectar el historial del repositorio.
-                    </p>
-                </div>
-                <div class="commands">
-                    <h2>Comandos</h2>
-                    <ul>
-                        <li>
-                            <code><span>git restore &lt;archivo&gt;</span></code>
-                            <p>Descarta los cambios locales del archivo que aún no has hecho commit.</p>
-                        </li>
-                        <li>
-                            <code><span>git restore --staged &lt;archivo&gt;</span></code>
-                            <p>Saca un archivo del área de preparación, sin perder los cambios en el directorio de trabajo.</p>
-                        </li>
-                        <li>
-                            <code><span>git restore --source=&lt;commit&gt; &lt;archivo&gt;</span></code>
-                            <p>Restaura el archivo desde un commit específico.</p>
-                        </li>
-                        <li>
-                            <code><span>git restore .</span></code>
-                            <p>Descarta todos los cambios no confirmados en el proyecto actual.</p>
-                        </li>
-                    </ul>
-                </div>
-            </article>
-            <article class="practice">
-                <div class="run-block">
-                    <h3> Ejecutar</h3>
-                    <pre><code>$ echo "console.log('Git es impresionante');" > main.js
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg" />
+        <link rel="shortcut icon" href="../assets/icons/curso_git.png" type="image/x-icon" />
+        <title>Git restore</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="../css/git.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Git restore</h1>
+        </header>
+        <main class="course-content">
+            <section class="course-section">
+                <article class="command-definition">
+                    <div class="definition">
+                        <h2>Definición</h2>
+                        <p>
+                            El comando <code>git restore</code> se utiliza para descartar cambios en
+                            archivos del área de trabajo o del área de preparación. Permite volver
+                            al último estado guardado en Git, ya sea en el último commit o en la
+                            versión que está actualmente registrada en el área de preparación. Es
+                            una herramienta útil para revertir errores antes de hacer un commit, sin
+                            afectar el historial del repositorio.
+                        </p>
+                    </div>
+                    <div class="commands">
+                        <h2>Comandos</h2>
+                        <ul>
+                            <li>
+                                <code><span>git restore &lt;archivo&gt;</span></code>
+                                <p>
+                                    Descarta los cambios locales del archivo que aún no has hecho
+                                    commit.
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git restore --staged &lt;archivo&gt;</span></code>
+                                <p>
+                                    Saca un archivo del área de preparación, sin perder los cambios
+                                    en el directorio de trabajo.
+                                </p>
+                            </li>
+                            <li>
+                                <code
+                                    ><span
+                                        >git restore --source=&lt;commit&gt; &lt;archivo&gt;</span
+                                    ></code
+                                >
+                                <p>Restaura el archivo desde un commit específico.</p>
+                            </li>
+                            <li>
+                                <code><span>git restore .</span></code>
+                                <p>
+                                    Descarta todos los cambios no confirmados en el proyecto actual.
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+                <article class="practice">
+                    <div class="run-block">
+                        <h3>Ejecutar</h3>
+                        <pre><code>$ echo "console.log('Git es impresionante');" > main.js
 $ git status
 $ git restore app.js
 $ git status</code></pre>
-                </div>
-                <div class="result-block">
-                    <h3> Resultado</h3>
-                    <pre><code>En la rama main
+                    </div>
+                    <div class="result-block">
+                        <h3>Resultado</h3>
+                        <pre><code>En la rama main
 
 No hay commits todavía
 
@@ -75,14 +94,13 @@ No hay commits todavía
 Cambios a ser confirmados:
   (usa "git rm --cached &lt;archivo&gt;..." para sacar del área de stage)
 	nuevos archivos: main.js</code></pre>
-                </div>
-
-            </article>
-        </section>
-    </main>
-    <footer>
-        &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
-    </footer>
-    <script src="../js/header.js"></script>
-</body>
+                    </div>
+                </article>
+            </section>
+        </main>
+        <footer>
+            &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
+        </footer>
+        <script src="../js/header.js"></script>
+    </body>
 </html>

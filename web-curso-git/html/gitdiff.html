@@ -1,66 +1,81 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../icon/curso_git.png" type="image/x-icon">
-    <title>Git diff</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/git.css">
-</head>
-<body>
-    <header>
-        <h1>Git diff</h1>
-    </header>
-    <main class="course-content">
-        <section class="course-section">
-            <article class="command-definition">
-                <div class="definition">
-                    <h2>Definición</h2>
-                    <p>
-                        El comando <code>git diff</code> muestra las diferencias entre los cambios realizados en tu proyecto.
-                        Permite comparar lo que ha cambiado en los archivos antes de preparar (staging) o entre commits específicos.
-                        Es ideal para revisar el código antes de confirmar los cambios con <code>git commit</code>.
-                    </p>
-                </div>
-                <div class="commands">
-                    <h2>Comandos</h2>
-                    <ul>
-                        <li>
-                            <code><span>git diff</span></code>
-                            <p>Muestra las diferencias entre archivos en tu directorio de trabajo y el staging area, o entre commits.</p>
-                        </li>
-                        <li>
-                            <code><span>git diff --cached</span></code>
-                            <p>Muestra las diferencias entre el área de trabajo y el área de preparación (staging area).</p>
-                        </li>
-                        <li>
-                            <code><span>git diff --staged</span></code>
-                            <p>Compara los cambios ya añadidos al área de preparación con el último commit.</p>
-                        </li>
-                        <li>
-                            <code><span>git diff HEAD</span></code>
-                            <p>Compara el estado actual del proyecto con el último commit.</p>
-                        </li>
-                        <li>
-                            <code><span>git diff &lt;commit1&gt; &lt;commit2&gt;</span></code>
-                            <p>Muestra las diferencias entre dos commits específicos.</p>
-                        </li>
-                    </ul>
-                </div>
-            </article>
-            <article class="practice">
-                <div class="run-block">
-                    <h3> Ejecutar</h3>
-                    <pre><code>echo "console.log('Las diferencias en Git');" >> main.js
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg" />
+        <link rel="shortcut icon" href="../assets/icons/curso_git.png" type="image/x-icon" />
+        <title>Git diff</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="../css/git.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Git diff</h1>
+        </header>
+        <main class="course-content">
+            <section class="course-section">
+                <article class="command-definition">
+                    <div class="definition">
+                        <h2>Definición</h2>
+                        <p>
+                            El comando <code>git diff</code> muestra las diferencias entre los
+                            cambios realizados en tu proyecto. Permite comparar lo que ha cambiado
+                            en los archivos antes de preparar (staging) o entre commits específicos.
+                            Es ideal para revisar el código antes de confirmar los cambios con
+                            <code>git commit</code>.
+                        </p>
+                    </div>
+                    <div class="commands">
+                        <h2>Comandos</h2>
+                        <ul>
+                            <li>
+                                <code><span>git diff</span></code>
+                                <p>
+                                    Muestra las diferencias entre archivos en tu directorio de
+                                    trabajo y el staging area, o entre commits.
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git diff --cached</span></code>
+                                <p>
+                                    Muestra las diferencias entre el área de trabajo y el área de
+                                    preparación (staging area).
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git diff --staged</span></code>
+                                <p>
+                                    Compara los cambios ya añadidos al área de preparación con el
+                                    último commit.
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git diff HEAD</span></code>
+                                <p>Compara el estado actual del proyecto con el último commit.</p>
+                            </li>
+                            <li>
+                                <code><span>git diff &lt;commit1&gt; &lt;commit2&gt;</span></code>
+                                <p>Muestra las diferencias entre dos commits específicos.</p>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+                <article class="practice">
+                    <div class="run-block">
+                        <h3>Ejecutar</h3>
+                        <pre><code>echo "console.log('Las diferencias en Git');" >> main.js
 $ git diff
 $ git status
 $ git add main.js
 $ git commit -m "Modificando una nueva vez main.js"</code></pre>
-                </div>
-                <div class="result-block">
-                    <h3> Resultado</h3>
-                    <pre><code>diff --git a/main.js b/main.js
+                    </div>
+                    <div class="result-block">
+                        <h3>Resultado</h3>
+                        <pre><code>diff --git a/main.js b/main.js
 index f9949dd..7811c9a 100644
 --- a/main.js
 +++ b/main.js
@@ -80,14 +95,13 @@ sin cambios agregados al commit (usa "git add" y/o "git commit -a")
 
 [main 2eb568f] Modificando una nueva vez main.js
  1 file changed, 1 insertion(+)</code></pre>
-                </div>
-
-            </article>
-        </section>
-    </main>
-    <footer>
-        &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
-    </footer>
-    <script src="../js/header.js"></script>
-</body>
+                    </div>
+                </article>
+            </section>
+        </main>
+        <footer>
+            &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
+        </footer>
+        <script src="../js/header.js"></script>
+    </body>
 </html>

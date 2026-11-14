@@ -1,72 +1,86 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../icon/curso_git.png" type="image/x-icon">
-    <title>Git fetch</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/git.css">
-</head>
-<body>
-    <header>
-        <h1>Git fetch</h1>
-    </header>
-    <main class="course-content">
-        <section class="course-section">
-            <article class="command-definition">
-                <div class="definition">
-                    <h2>Definición</h2>
-                    <p>
-                        El comando <code>git fetch</code> se utiliza para descargar los cambios de un repositorio remoto sin fusionarlos automáticamente con la rama local.
-                        Permite actualizar referencias remotas y obtener commits recientes, tags y ramas sin modificar tu directorio de trabajo.
-                        Es útil para inspeccionar cambios remotos antes de integrarlos.
-                    </p>
-                </div>
-                <div class="commands">
-                    <h2>Comandos</h2>
-                    <ul>
-                        <li>
-                            <code><span>git fetch</span></code>
-                            <p>Descarga todos los cambios del repositorio remoto configurado (por defecto 'origin').</p>
-                        </li>
-                        <li>
-                            <code><span>git fetch origin main</span></code>
-                            <p>Descarga los cambios de la rama main del remoto origin sin fusionarlos.</p>
-                        </li>
-                        <li>
-                            <code><span>git fetch --all</span></code>
-                            <p>Descarga los cambios de todos los remotos configurados.</p>
-                        </li>
-                        <li>
-                            <code><span>git fetch --prune</span></code>
-                            <p>Elimina referencias remotas que ya no existen en el servidor al realizar la descarga.</p>
-                        </li>
-                    </ul>
-                </div>
-            </article>
-            <article class="practice">
-                <div class="run-block">
-                    <h3> Ejecutar</h3>
-                    <pre><code>$ git fetch origin</code></pre>
-                </div>
-                <div class="result-block">
-                    <h3> Resultado</h3>
-                    <pre><code>remote: Enumerating objects: 5, done.
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg" />
+        <link rel="shortcut icon" href="../assets/icons/curso_git.png" type="image/x-icon" />
+        <title>Git fetch</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="../css/git.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Git fetch</h1>
+        </header>
+        <main class="course-content">
+            <section class="course-section">
+                <article class="command-definition">
+                    <div class="definition">
+                        <h2>Definición</h2>
+                        <p>
+                            El comando <code>git fetch</code> se utiliza para descargar los cambios
+                            de un repositorio remoto sin fusionarlos automáticamente con la rama
+                            local. Permite actualizar referencias remotas y obtener commits
+                            recientes, tags y ramas sin modificar tu directorio de trabajo. Es útil
+                            para inspeccionar cambios remotos antes de integrarlos.
+                        </p>
+                    </div>
+                    <div class="commands">
+                        <h2>Comandos</h2>
+                        <ul>
+                            <li>
+                                <code><span>git fetch</span></code>
+                                <p>
+                                    Descarga todos los cambios del repositorio remoto configurado
+                                    (por defecto 'origin').
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git fetch origin main</span></code>
+                                <p>
+                                    Descarga los cambios de la rama main del remoto origin sin
+                                    fusionarlos.
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git fetch --all</span></code>
+                                <p>Descarga los cambios de todos los remotos configurados.</p>
+                            </li>
+                            <li>
+                                <code><span>git fetch --prune</span></code>
+                                <p>
+                                    Elimina referencias remotas que ya no existen en el servidor al
+                                    realizar la descarga.
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+                <article class="practice">
+                    <div class="run-block">
+                        <h3>Ejecutar</h3>
+                        <pre><code>$ git fetch origin</code></pre>
+                    </div>
+                    <div class="result-block">
+                        <h3>Resultado</h3>
+                        <pre><code>remote: Enumerating objects: 5, done.
 remote: Counting objects: 100% (5/5), done.
 remote: Compressing objects: 100% (3/3), done.
 remote: Total 3 (delta 2), reused 0 (delta 0), pack-reused 0
 Unpacking objects: 100% (3/3), 957 bytes | 957.00 KiB/s, done.
 From github.com:usuario/mi-proyecto
    a1b2c3d..e4f5g6h  main       -> origin/main</code></pre>
-                </div>
-
-            </article>
-        </section>
-    </main>
-    <footer>
-        &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
-    </footer>
-    <script src="../js/header.js"></script>
-</body>
+                    </div>
+                </article>
+            </section>
+        </main>
+        <footer>
+            &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
+        </footer>
+        <script src="../js/header.js"></script>
+    </body>
 </html>

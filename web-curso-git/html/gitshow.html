@@ -1,78 +1,97 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../icon/curso_git.png" type="image/x-icon">
-    <title>Git show</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/git.css">
-</head>
-<body>
-    <header>
-        <h1>Git show</h1>
-    </header>
-    <main class="course-content">
-        <section class="course-section">
-            <article class="command-definition">
-                <div class="definition">
-                    <h2>Definición</h2>
-                    <p>
-                        El comando <code>git show</code> se utiliza para mostrar información detallada de un commit específico.
-                        Permite ver el mensaje del commit, los cambios realizados, y las diferencias (diff) en los archivos modificados.
-                        Es útil para inspeccionar un commit individual sin navegar todo el historial.
-                    </p>
-                </div>
-                <div class="commands">
-                    <h2>Comandos</h2>
-                    <ul>
-                        <li>
-                            <code><span>git show &lt;hash_del_commit&gt;</span></code>
-                            <p>Muestra los detalles de un commit específico identificado por su hash.</p>
-                        </li>
-                        <li>
-                            <code><span>git show --name-only &lt;hash_del_commit&gt;</span></code>
-                            <p>Muestra únicamente los nombres de los archivos modificados en ese commit.</p>
-                        </li>
-                        <li>
-                            <code><span>git show --stat &lt;hash_del_commit&gt;</span></code>
-                            <p>Muestra un resumen de los archivos modificados y líneas añadidas o eliminadas en el commit.</p>
-                        </li>
-                        <li>
-                            <code><span>git show --patch &lt;hash_del_commit&gt;</span></code>
-                            <p>Muestra los cambios completos (diff) introducidos por el commit.</p>
-                        </li>
-                    </ul>
-                </div>
-            </article>
-            <article class="practice">
-                <div class="run-block">
-                    <h3> Ejecutar</h3>
-                    <pre><code>$ git log
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg" />
+        <link rel="shortcut icon" href="../assets/icons/curso_git.png" type="image/x-icon" />
+        <title>Git show</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="../css/git.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Git show</h1>
+        </header>
+        <main class="course-content">
+            <section class="course-section">
+                <article class="command-definition">
+                    <div class="definition">
+                        <h2>Definición</h2>
+                        <p>
+                            El comando <code>git show</code> se utiliza para mostrar información
+                            detallada de un commit específico. Permite ver el mensaje del commit,
+                            los cambios realizados, y las diferencias (diff) en los archivos
+                            modificados. Es útil para inspeccionar un commit individual sin navegar
+                            todo el historial.
+                        </p>
+                    </div>
+                    <div class="commands">
+                        <h2>Comandos</h2>
+                        <ul>
+                            <li>
+                                <code><span>git show &lt;hash_del_commit&gt;</span></code>
+                                <p>
+                                    Muestra los detalles de un commit específico identificado por su
+                                    hash.
+                                </p>
+                            </li>
+                            <li>
+                                <code
+                                    ><span>git show --name-only &lt;hash_del_commit&gt;</span></code
+                                >
+                                <p>
+                                    Muestra únicamente los nombres de los archivos modificados en
+                                    ese commit.
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git show --stat &lt;hash_del_commit&gt;</span></code>
+                                <p>
+                                    Muestra un resumen de los archivos modificados y líneas añadidas
+                                    o eliminadas en el commit.
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git show --patch &lt;hash_del_commit&gt;</span></code>
+                                <p>
+                                    Muestra los cambios completos (diff) introducidos por el commit.
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+                <article class="practice">
+                    <div class="run-block">
+                        <h3>Ejecutar</h3>
+                        <pre><code>$ git log
 $ git show b572aa5b1959526fe7d8f0361a81e97e90d53082</code></pre>
-                </div>
-                <div class="result-block">
-                    <h3> Resultado</h3>
-                    <pre><code>commit 2eb568fb597a0da612df5575adb5604a4130caa7 (HEAD -> main)
-Author: jeironprogrammer <jeironprogrammer@gmail.com>
+                    </div>
+                    <div class="result-block">
+                        <h3>Resultado</h3>
+                        <pre><code>commit 2eb568fb597a0da612df5575adb5604a4130caa7 (HEAD -> main)
+Author: jeironprogrammer &lt;jeironprogrammer@gmail.com&gt;
 Date:   Sun Oct 19 21:19:04 2025 +0200
 
     Modificando una nueva vez main.js
 
 commit b572aa5b1959526fe7d8f0361a81e97e90d53082
-Author: jeironprogrammer <jeironprogrammer@gmail.com>
+Author: jeironprogrammer &lt;jeironprogrammer@gmail.com&gt;
 Date:   Sun Oct 19 21:12:25 2025 +0200
 
     Modificando main.js
 
 commit 507479aeaada94cbab522cdfcccd3f02cc809aaf
-Author: jeironprogrammer <jeironprogrammer@gmail.com>
+Author: jeironprogrammer &lt;jeironprogrammer@gmail.com&gt;
 Date:   Sun Oct 19 20:51:33 2025 +0200
 
     Mi primer commit
 
 commit b572aa5b1959526fe7d8f0361a81e97e90d53082
-Author: jeironprogrammer <jeironprogrammer@gmail.com>
+Author: jeironprogrammer &lt;jeironprogrammer@gmail.com&gt;
 Date:   Sun Oct 19 21:12:25 2025 +0200
 
     Modificando main.js
@@ -85,14 +104,13 @@ index 000ec37..f9949dd 100644
  console.log('Hola Git');
  console.log('Probando git diff');
 +console.log('Un stash');</code></pre>
-                </div>
-
-            </article>
-        </section>
-    </main>
-    <footer>
-        &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
-    </footer>
-    <script src="../js/header.js"></script>
-</body>
+                    </div>
+                </article>
+            </section>
+        </main>
+        <footer>
+            &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
+        </footer>
+        <script src="../js/header.js"></script>
+    </body>
 </html>

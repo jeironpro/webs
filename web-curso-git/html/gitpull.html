@@ -1,58 +1,73 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../icon/curso_git.png" type="image/x-icon">
-    <title>Git pull</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/git.css">
-</head>
-<body>
-    <header>
-        <h1>Git pull</h1>
-    </header>
-    <main class="course-content">
-        <section class="course-section">
-            <article class="command-definition">
-                <div class="definition">
-                    <h2>Definición</h2>
-                    <p>
-                        El comando <code>git pull</code> se utiliza para actualizar la rama actual con los cambios del repositorio remoto.
-                        Combina automáticamente <code>git fetch</code> (descargar cambios) y <code>git merge</code> (fusionarlos).
-                        Es útil para mantener tu repositorio local sincronizado con el remoto.
-                    </p>
-                </div>
-                <div class="commands">
-                    <h2>Comandos</h2>
-                    <ul>
-                        <li>
-                            <code><span>git pull</span></code>
-                            <p>Actualiza la rama actual desde su remoto configurado (por defecto origin).</p>
-                        </li>
-                        <li>
-                            <code><span>git pull origin main</span></code>
-                            <p>Trae y fusiona los cambios de la rama main del remoto origin.</p>
-                        </li>
-                        <li>
-                            <code><span>git pull --rebase</span></code>
-                            <p>Actualiza la rama actual aplicando tus commits locales sobre los cambios remotos (rebase).</p>
-                        </li>
-                        <li>
-                            <code><span>git pull --ff-only</span></code>
-                            <p>Actualiza solo si se puede hacer un avance rápido; evita fusiones automáticas.</p>
-                        </li>
-                    </ul>
-                </div>
-            </article>
-            <article class="practice">
-                <div class="run-block">
-                    <h3> Ejecutar</h3>
-                    <pre><code>$ git pull origin main</code></pre>
-                </div>
-                <div class="result-block">
-                    <h3> Resultado</h3>
-                    <pre><code>remote: Enumerating objects: 5, done.
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg" />
+        <link rel="shortcut icon" href="../assets/icons/curso_git.png" type="image/x-icon" />
+        <title>Git pull</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="../css/git.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Git pull</h1>
+        </header>
+        <main class="course-content">
+            <section class="course-section">
+                <article class="command-definition">
+                    <div class="definition">
+                        <h2>Definición</h2>
+                        <p>
+                            El comando <code>git pull</code> se utiliza para actualizar la rama
+                            actual con los cambios del repositorio remoto. Combina automáticamente
+                            <code>git fetch</code> (descargar cambios) y
+                            <code>git merge</code> (fusionarlos). Es útil para mantener tu
+                            repositorio local sincronizado con el remoto.
+                        </p>
+                    </div>
+                    <div class="commands">
+                        <h2>Comandos</h2>
+                        <ul>
+                            <li>
+                                <code><span>git pull</span></code>
+                                <p>
+                                    Actualiza la rama actual desde su remoto configurado (por
+                                    defecto origin).
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git pull origin main</span></code>
+                                <p>Trae y fusiona los cambios de la rama main del remoto origin.</p>
+                            </li>
+                            <li>
+                                <code><span>git pull --rebase</span></code>
+                                <p>
+                                    Actualiza la rama actual aplicando tus commits locales sobre los
+                                    cambios remotos (rebase).
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git pull --ff-only</span></code>
+                                <p>
+                                    Actualiza solo si se puede hacer un avance rápido; evita
+                                    fusiones automáticas.
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+                <article class="practice">
+                    <div class="run-block">
+                        <h3>Ejecutar</h3>
+                        <pre><code>$ git pull origin main</code></pre>
+                    </div>
+                    <div class="result-block">
+                        <h3>Resultado</h3>
+                        <pre><code>remote: Enumerating objects: 5, done.
 remote: Counting objects: 100% (5/5), done.
 remote: Compressing objects: 100% (3/3), done.
 remote: Total 3 (delta 2), reused 0 (delta 0), pack-reused 0
@@ -64,14 +79,13 @@ Updating a1b2c3d..e4f5g6h
 Fast-forward
  README.md | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)</code></pre>
-                </div>
-
-            </article>
-        </section>
-    </main>
-    <footer>
-        &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
-    </footer>
-    <script src="../js/header.js"></script>
-</body>
+                    </div>
+                </article>
+            </section>
+        </main>
+        <footer>
+            &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
+        </footer>
+        <script src="../js/header.js"></script>
+    </body>
 </html>

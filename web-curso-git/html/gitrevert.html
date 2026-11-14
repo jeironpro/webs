@@ -1,67 +1,79 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../icon/curso_git.png" type="image/x-icon">
-    <title>Git revert</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/git.css">
-</head>
-<body>
-    <header>
-        <h1>Git revert</h1>
-    </header>
-    <main class="course-content">
-        <section class="course-section">
-            <article class="command-definition">
-                <div class="definition">
-                    <h2>Definición</h2>
-                    <p>
-                        El comando <code>git revert</code> se utiliza para crear un nuevo commit que deshace los cambios introducidos por un commit anterior.
-                        A diferencia de <code>git reset</code>, <code>git revert</code> no altera el historial de la rama, por lo que es seguro para usar en ramas compartidas.
-                        Es útil para corregir errores o revertir cambios sin reescribir el historial.
-                    </p>
-                </div>
-                <div class="commands">
-                    <h2>Comandos</h2>
-                    <ul>
-                        <li>
-                            <code><span>git revert HEAD</span></code>
-                            <p>Revierte el último commit realizado en la rama actual.</p>
-                        </li>
-                        <li>
-                            <code><span>git revert -n &lt;hash&gt;</span></code>
-                            <p>Prepara la reversión en el área de staging sin crear inmediatamente un commit.</p>
-                        </li>
-                        <li>
-                            <code><span>git revert --no-edit &lt;hash&gt;</span></code>
-                            <p>Revierte un commit usando el mensaje por defecto sin abrir el editor.</p>
-                        </li>
-                    </ul>
-                </div>
-            </article>
-            <article class="practice">
-                <div class="run-block">
-                    <h3> Ejecutar</h3>
-                    <pre><code>$ git log --oneline
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg" />
+        <link rel="shortcut icon" href="../assets/icons/curso_git.png" type="image/x-icon" />
+        <title>Git revert</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="../css/git.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Git revert</h1>
+        </header>
+        <main class="course-content">
+            <section class="course-section">
+                <article class="command-definition">
+                    <div class="definition">
+                        <h2>Definición</h2>
+                        <p>
+                            El comando <code>git revert</code> se utiliza para crear un nuevo commit
+                            que deshace los cambios introducidos por un commit anterior. A
+                            diferencia de <code>git reset</code>, <code>git revert</code> no altera
+                            el historial de la rama, por lo que es seguro para usar en ramas
+                            compartidas. Es útil para corregir errores o revertir cambios sin
+                            reescribir el historial.
+                        </p>
+                    </div>
+                    <div class="commands">
+                        <h2>Comandos</h2>
+                        <ul>
+                            <li>
+                                <code><span>git revert HEAD</span></code>
+                                <p>Revierte el último commit realizado en la rama actual.</p>
+                            </li>
+                            <li>
+                                <code><span>git revert -n &lt;hash&gt;</span></code>
+                                <p>
+                                    Prepara la reversión en el área de staging sin crear
+                                    inmediatamente un commit.
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git revert --no-edit &lt;hash&gt;</span></code>
+                                <p>
+                                    Revierte un commit usando el mensaje por defecto sin abrir el
+                                    editor.
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+                <article class="practice">
+                    <div class="run-block">
+                        <h3>Ejecutar</h3>
+                        <pre><code>$ git log --oneline
 $ git revert b572aa5</code></pre>
-                </div>
-                <div class="result-block">
-                    <h3> Resultado</h3>
-                    <pre><code>b572aa5 (HEAD -> main) Modificando main.js
+                    </div>
+                    <div class="result-block">
+                        <h3>Resultado</h3>
+                        <pre><code>b572aa5 (HEAD -> main) Modificando main.js
 507479a Mi primer commit
 
 [main 40254e2] Revert "Modificando main.js"
  1 file changed, 1 deletion(-)</code></pre>
-                </div>
-
-            </article>
-        </section>
-    </main>
-    <footer>
-        &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
-    </footer>
-    <script src="../js/header.js"></script>
-</body>
+                    </div>
+                </article>
+            </section>
+        </main>
+        <footer>
+            &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
+        </footer>
+        <script src="../js/header.js"></script>
+    </body>
 </html>

@@ -1,7 +1,5 @@
 let treeData = [];
 const treeElement = document.getElementById("tree");
-
-// Pinta un nodo por comando en la página principal
 function renderTree() {
     treeElement.replaceChildren();
 

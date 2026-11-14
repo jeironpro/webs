@@ -9,9 +9,26 @@
     --border: #232b38;
 }
 
-*,
-*::before,
-*::after {
+html,
+body,
+div,
+span,
+header,
+main,
+footer,
+section,
+article,
+a,
+h1,
+h2,
+h3,
+p,
+ul,
+ol,
+li,
+code,
+pre,
+img {
     box-sizing: border-box;
 }
 
@@ -27,11 +44,11 @@ body {
 }
 
 .site-header {
-    border-bottom: 1px solid var(--border);
+    border-bottom: 0.0625rem solid var(--border);
     padding: clamp(2.2rem, 7vw, 3.6rem) 1.25rem clamp(1.8rem, 4vw, 2.4rem);
 }
 
-.header-eyebrow {
+.masthead-eyebrow {
     color: var(--text-muted);
     font-size: 0.7rem;
     letter-spacing: 0.2em;
@@ -39,12 +56,12 @@ body {
     text-transform: uppercase;
 }
 
-.header-eyebrow::before {
+.masthead-eyebrow::before {
     color: var(--accent);
     content: "❯ ";
 }
 
-.header-title {
+.masthead-title {
     font-size: clamp(1.7rem, 6.5vw, 2.9rem);
     font-weight: 700;
     letter-spacing: -0.02em;
@@ -56,7 +73,7 @@ body {
     color: var(--accent);
 }
 
-.header-subtitle {
+.masthead-subtitle {
     color: var(--text-muted);
     font-size: clamp(0.88rem, 2.5vw, 0.98rem);
     line-height: 1.7;
@@ -64,11 +81,11 @@ body {
     max-width: 64ch;
 }
 
-.header-subtitle code {
+.masthead-subtitle code {
     color: var(--accent-warm);
 }
 
-.header-note {
+.masthead-note {
     color: var(--text-muted);
     font-size: 0.74rem;
     letter-spacing: 0.1em;
@@ -79,7 +96,7 @@ body {
 .main-content {
     flex: 1;
     margin: 0 auto;
-    max-width: 760px;
+    max-width: 47.5rem;
     padding: clamp(1.8rem, 5vw, 2.8rem) 1.25rem clamp(2.5rem, 6vw, 3.6rem);
     width: 100%;
 }
@@ -100,14 +117,14 @@ body {
 
 .command-tree {
     background: var(--panel);
-    border: 1px solid var(--border);
+    border: 0.0625rem solid var(--border);
     display: grid;
     grid-template-columns: 1fr;
 }
 
 .tree-item {
     align-items: center;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 0.0625rem solid var(--border);
     color: var(--text);
     display: flex;
     gap: 0.7rem;
@@ -140,12 +157,12 @@ body {
 
 .tree-item:hover::after {
     color: var(--accent);
-    transform: translateX(3px);
+    transform: translateX(0.1875rem);
 }
 
 .tree-item:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: -2px;
+    outline: 0.125rem solid var(--accent);
+    outline-offset: -0.125rem;
 }
 
 .tree-title {
@@ -154,7 +171,7 @@ body {
 }
 
 .site-footer {
-    border-top: 1px solid var(--border);
+    border-top: 0.0625rem solid var(--border);
     color: var(--text-muted);
     font-size: 0.7rem;
     letter-spacing: 0.08em;
@@ -162,7 +179,7 @@ body {
     text-align: center;
 }
 
-@media (min-width: 700px) {
+@media (min-width: 43.75rem) {
     .command-tree {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -172,7 +189,7 @@ body {
     }
 
     .tree-item:nth-child(odd) {
-        border-right: 1px solid var(--border);
+        border-right: 0.0625rem solid var(--border);
     }
 }
 

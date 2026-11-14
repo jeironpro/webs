@@ -1,54 +1,73 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../icon/curso_git.png" type="image/x-icon">
-    <title>Git reset</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/git.css">
-</head>
-<body>
-    <header>
-        <h1>Git reset</h1>
-    </header>
-    <main class="course-content">
-        <section class="course-section">
-            <article class="command-definition">
-                <div class="definition">
-                    <h2>Definición</h2>
-                    <p>
-                        El comando <code>git reset</code> se utiliza para deshacer cambios en el área de preparación (staging) o en los commits locales.
-                        Permite mover HEAD a un commit anterior y opcionalmente modificar el índice y el directorio de trabajo según el modo usado.
-                        Es útil para corregir errores recientes o reorganizar commits antes de hacer push.
-                    </p>
-                </div>
-                <div class="commands">
-                    <h2>Comandos</h2>
-                    <ul>
-                        <li>
-                            <code><span>git reset --soft &lt;hash&gt;</span></code>
-                            <p>Mueve HEAD a un commit anterior, manteniendo los cambios en staging.</p>
-                        </li>
-                        <li>
-                            <code><span>git reset --mixed &lt;hash&gt;</span></code>
-                            <p>Mueve HEAD a un commit anterior y quita los cambios del área de staging, pero los mantiene en el directorio de trabajo (por defecto).</p>
-                        </li>
-                        <li>
-                            <code><span>git reset --hard &lt;hash&gt;</span></code>
-                            <p>Mueve HEAD a un commit anterior y descarta todos los cambios en staging y directorio de trabajo. Usar con precaución.</p>
-                        </li>
-                        <li>
-                            <code><span>git reset HEAD &lt;archivo&gt;</span></code>
-                            <p>Quita un archivo específico del área de staging, manteniendo los cambios en el directorio de trabajo.</p>
-                        </li>
-                    </ul>
-                </div>
-            </article>
-            <article class="practice">
-                <div class="run-block">
-                    <h3> Ejecutar</h3>
-                    <pre><code>$ echo "import os" > script.py
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg" />
+        <link rel="shortcut icon" href="../assets/icons/curso_git.png" type="image/x-icon" />
+        <title>Git reset</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="../css/git.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Git reset</h1>
+        </header>
+        <main class="course-content">
+            <section class="course-section">
+                <article class="command-definition">
+                    <div class="definition">
+                        <h2>Definición</h2>
+                        <p>
+                            El comando <code>git reset</code> se utiliza para deshacer cambios en el
+                            área de preparación (staging) o en los commits locales. Permite mover
+                            HEAD a un commit anterior y opcionalmente modificar el índice y el
+                            directorio de trabajo según el modo usado. Es útil para corregir errores
+                            recientes o reorganizar commits antes de hacer push.
+                        </p>
+                    </div>
+                    <div class="commands">
+                        <h2>Comandos</h2>
+                        <ul>
+                            <li>
+                                <code><span>git reset --soft &lt;hash&gt;</span></code>
+                                <p>
+                                    Mueve HEAD a un commit anterior, manteniendo los cambios en
+                                    staging.
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git reset --mixed &lt;hash&gt;</span></code>
+                                <p>
+                                    Mueve HEAD a un commit anterior y quita los cambios del área de
+                                    staging, pero los mantiene en el directorio de trabajo (por
+                                    defecto).
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git reset --hard &lt;hash&gt;</span></code>
+                                <p>
+                                    Mueve HEAD a un commit anterior y descarta todos los cambios en
+                                    staging y directorio de trabajo. Usar con precaución.
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git reset HEAD &lt;archivo&gt;</span></code>
+                                <p>
+                                    Quita un archivo específico del área de staging, manteniendo los
+                                    cambios en el directorio de trabajo.
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+                <article class="practice">
+                    <div class="run-block">
+                        <h3>Ejecutar</h3>
+                        <pre><code>$ echo "import os" > script.py
 $ git status
 $ git add script.py
 $ git status
@@ -57,10 +76,10 @@ $ git reset --soft b572aa5
 $ git status
 $ git reset --hard b572aa5
 $ git status</code></pre>
-                </div>
-                <div class="result-block">
-                    <h3> Resultado</h3>
-                    <pre><code>En la rama main
+                    </div>
+                    <div class="result-block">
+                        <h3>Resultado</h3>
+                        <pre><code>En la rama main
 Archivos sin seguimiento:
   (usa "git add &lt;archivo&gt;..." para incluirlo a lo que será confirmado)
 	script.py
@@ -69,7 +88,7 @@ no hay nada agregado al commit pero hay archivos sin seguimiento presentes (usa 
 
 En la rama main
 Cambios a ser confirmados:
-  (usa "git restore --staged <archivo>..." para sacar del área de stage)
+  (usa "git restore --staged &lt;archivo&gt;..." para sacar del área de stage)
 	nuevos archivos: script.py
 
 2eb568f (HEAD -> main) Modificando una nueva vez main.js
@@ -78,7 +97,7 @@ b572aa5 Modificando main.js
 
 En la rama main
 Cambios a ser confirmados:
-  (usa "git restore --staged <archivo>..." para sacar del área de stage)
+  (usa "git restore --staged &lt;archivo&gt;..." para sacar del área de stage)
 	modificados:     main.js
 	nuevos archivos: script.py
 
@@ -86,14 +105,13 @@ HEAD está ahora en b572aa5 Modificando main.js
 
 En la rama main
 nada para hacer commit, el árbol de trabajo está limpio</code></pre>
-                </div>
-
-            </article>
-        </section>
-    </main>
-    <footer>
-        &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
-    </footer>
-    <script src="../js/header.js"></script>
-</body>
+                    </div>
+                </article>
+            </section>
+        </main>
+        <footer>
+            &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
+        </footer>
+        <script src="../js/header.js"></script>
+    </body>
 </html>

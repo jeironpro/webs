@@ -1,60 +1,86 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../icon/curso_git.png" type="image/x-icon">
-    <title>Git archive</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/git.css">
-</head>
-<body>
-    <header>
-        <h1>Git archive</h1>
-    </header>
-    <main class="course-content">
-        <section class="course-section">
-            <article class="command-definition">
-                <div class="definition">
-                    <h2>Definición</h2>
-                    <p>
-                        El comando <code>git archive</code> se utiliza para crear un archivo comprimido (por ejemplo, .zip o .tar) del contenido de un commit o rama.
-                        Permite exportar el proyecto sin incluir el historial de Git, ideal para distribuciones o respaldos de código.
-                    </p>
-                </div>
-                <div class="commands">
-                    <h2>Comandos</h2>
-                    <ul>
-                        <li>
-                            <code><span>git archive --format=zip HEAD -o proyecto.zip</span></code>
-                            <p>Crea un archivo zip del commit actual (HEAD) y lo guarda como proyecto.zip.</p>
-                        </li>
-                        <li>
-                            <code><span>git archive --format=tar main | gzip &gt; proyecto.tar.gz</span></code>
-                            <p>Crea un archivo tar.gz del contenido de la rama main.</p>
-                        </li>
-                        <li>
-                            <code><span>git archive --prefix=proyecto/ HEAD | tar -cvf proyecto.tar -</span></code>
-                            <p>Crea un tar con un prefijo de carpeta dentro del archivo.</p>
-                        </li>
-                        <li>
-                            <code><span>git archive --output=backup.zip HEAD</span></code>
-                            <p>Exporta el commit actual a backup.zip usando la opción de salida.</p>
-                        </li>
-                    </ul>
-                </div>
-            </article>
-            <article class="practice">
-                <div class="run-block">
-                    <h3> Ejecutar</h3>
-                    <pre><code>$ git archive --format=zip main -o mi-proyecto.zip
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg" />
+        <link rel="shortcut icon" href="../assets/icons/curso_git.png" type="image/x-icon" />
+        <title>Git archive</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="../css/git.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Git archive</h1>
+        </header>
+        <main class="course-content">
+            <section class="course-section">
+                <article class="command-definition">
+                    <div class="definition">
+                        <h2>Definición</h2>
+                        <p>
+                            El comando <code>git archive</code> se utiliza para crear un archivo
+                            comprimido (por ejemplo, .zip o .tar) del contenido de un commit o rama.
+                            Permite exportar el proyecto sin incluir el historial de Git, ideal para
+                            distribuciones o respaldos de código.
+                        </p>
+                    </div>
+                    <div class="commands">
+                        <h2>Comandos</h2>
+                        <ul>
+                            <li>
+                                <code
+                                    ><span
+                                        >git archive --format=zip HEAD -o proyecto.zip</span
+                                    ></code
+                                >
+                                <p>
+                                    Crea un archivo zip del commit actual (HEAD) y lo guarda como
+                                    proyecto.zip.
+                                </p>
+                            </li>
+                            <li>
+                                <code
+                                    ><span
+                                        >git archive --format=tar main | gzip &gt;
+                                        proyecto.tar.gz</span
+                                    ></code
+                                >
+                                <p>Crea un archivo tar.gz del contenido de la rama main.</p>
+                            </li>
+                            <li>
+                                <code
+                                    ><span
+                                        >git archive --prefix=proyecto/ HEAD | tar -cvf proyecto.tar
+                                        -</span
+                                    ></code
+                                >
+                                <p>Crea un tar con un prefijo de carpeta dentro del archivo.</p>
+                            </li>
+                            <li>
+                                <code><span>git archive --output=backup.zip HEAD</span></code>
+                                <p>
+                                    Exporta el commit actual a backup.zip usando la opción de
+                                    salida.
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+                <article class="practice">
+                    <div class="run-block">
+                        <h3>Ejecutar</h3>
+                        <pre><code>$ git archive --format=zip main -o mi-proyecto.zip
 $ git status
 $ unzip mi-proyecto.zip -d mi-proyecto-copy
 $ git status</code></pre>
-                </div>
-                <div class="result-block">
-                    <h3> Resultado</h3>
-                    <pre><code>En la rama main
+                    </div>
+                    <div class="result-block">
+                        <h3>Resultado</h3>
+                        <pre><code>En la rama main
 Tu rama está actualizada con 'origin/main'.
 
 Archivos sin seguimiento:
@@ -65,7 +91,7 @@ no hay nada agregado al commit pero hay archivos sin seguimiento presentes (usa 
 
 Archive:  mi-proyecto.zip
 3e26d6bfad8ab3b94af24934cd3d5b4899f262ec
-  inflating: mi-proyecto-copy/main.js  
+  inflating: mi-proyecto-copy/main.js
   inflating: mi-proyecto-copy/script.py
 
 En la rama main
@@ -77,14 +103,13 @@ Archivos sin seguimiento:
 	mi-proyecto.zip
 
 no hay nada agregado al commit pero hay archivos sin seguimiento presentes (usa "git add" para hacerles seguimiento)</code></pre>
-                </div>
-
-            </article>
-        </section>
-    </main>
-    <footer>
-        &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
-    </footer>
-    <script src="../js/header.js"></script>
-</body>
+                    </div>
+                </article>
+            </section>
+        </main>
+        <footer>
+            &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
+        </footer>
+        <script src="../js/header.js"></script>
+    </body>
 </html>

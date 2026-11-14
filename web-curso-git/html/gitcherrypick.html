@@ -1,62 +1,81 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../icon/curso_git.png" type="image/x-icon">
-    <title>Git cherry-pick</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/git.css">
-</head>
-<body>
-    <header>
-        <h1>Git cherry-pick</h1>
-    </header>
-    <main class="course-content">
-        <section class="course-section">
-            <article class="command-definition">
-                <div class="definition">
-                    <h2>Definición</h2>
-                    <p>
-                        El comando <code>git cherry-pick</code> se utiliza para aplicar un commit específico de otra rama sobre la rama actual.
-                        Permite seleccionar cambios puntuales sin fusionar ramas completas, facilitando la incorporación de correcciones o mejoras aisladas.
-                        Es útil para aplicar hotfixes o cambios específicos sin afectar el historial general.
-                    </p>
-                </div>
-                <div class="commands">
-                    <h2>Comandos</h2>
-                    <ul>
-                        <li>
-                            <code><span>git cherry-pick &lt;hash&gt;</span></code>
-                            <p>Aplica el commit especificado por su hash sobre la rama actual.</p>
-                        </li>
-                        <li>
-                            <code><span>git cherry-pick &lt;hash1&gt; &lt;hash2&gt;</span></code>
-                            <p>Aplica múltiples commits consecutivos en orden sobre la rama actual.</p>
-                        </li>
-                        <li>
-                            <code><span>git cherry-pick -x &lt;hash&gt;</span></code>
-                            <p>Aplica un commit e incluye en el mensaje de commit la referencia al commit original.</p>
-                        </li>
-                        <li>
-                            <code><span>git cherry-pick --abort</span></code>
-                            <p>Detiene un cherry-pick en conflicto y revierte los cambios aplicados hasta el momento.</p>
-                        </li>
-                    </ul>
-                </div>
-            </article>
-            <article class="practice">
-                <div class="run-block">
-                    <h3> Ejecutar</h3>
-                    <pre><code>$ git branch
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg" />
+        <link rel="shortcut icon" href="../assets/icons/curso_git.png" type="image/x-icon" />
+        <title>Git cherry-pick</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="../css/git.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Git cherry-pick</h1>
+        </header>
+        <main class="course-content">
+            <section class="course-section">
+                <article class="command-definition">
+                    <div class="definition">
+                        <h2>Definición</h2>
+                        <p>
+                            El comando <code>git cherry-pick</code> se utiliza para aplicar un
+                            commit específico de otra rama sobre la rama actual. Permite seleccionar
+                            cambios puntuales sin fusionar ramas completas, facilitando la
+                            incorporación de correcciones o mejoras aisladas. Es útil para aplicar
+                            hotfixes o cambios específicos sin afectar el historial general.
+                        </p>
+                    </div>
+                    <div class="commands">
+                        <h2>Comandos</h2>
+                        <ul>
+                            <li>
+                                <code><span>git cherry-pick &lt;hash&gt;</span></code>
+                                <p>
+                                    Aplica el commit especificado por su hash sobre la rama actual.
+                                </p>
+                            </li>
+                            <li>
+                                <code
+                                    ><span>git cherry-pick &lt;hash1&gt; &lt;hash2&gt;</span></code
+                                >
+                                <p>
+                                    Aplica múltiples commits consecutivos en orden sobre la rama
+                                    actual.
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git cherry-pick -x &lt;hash&gt;</span></code>
+                                <p>
+                                    Aplica un commit e incluye en el mensaje de commit la referencia
+                                    al commit original.
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git cherry-pick --abort</span></code>
+                                <p>
+                                    Detiene un cherry-pick en conflicto y revierte los cambios
+                                    aplicados hasta el momento.
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+                <article class="practice">
+                    <div class="run-block">
+                        <h3>Ejecutar</h3>
+                        <pre><code>$ git branch
 $ git log --oneline
 $ git checkout backend
 $ git status
 $ git cherry-pick b572aa5</code></pre>
-                </div>
-                <div class="result-block">
-                    <h3> Resultado</h3>
-                    <pre><code>backend
+                    </div>
+                    <div class="result-block">
+                        <h3>Resultado</h3>
+                        <pre><code>backend
 * main
 
 a2b40ef (HEAD -> main, tag: v1.0, origin/main, backend) Otro commit bueno
@@ -74,14 +93,13 @@ nada para hacer commit, el árbol de trabajo está limpio
 [backend 9441eeb] Modificando main.js
  Date: Sun Oct 19 21:12:25 2025 +0200
  1 file changed, 1 insertion(+)</code></pre>
-                </div>
-
-            </article>
-        </section>
-    </main>
-    <footer>
-        &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
-    </footer>
-    <script src="../js/header.js"></script>
-</body>
+                    </div>
+                </article>
+            </section>
+        </main>
+        <footer>
+            &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
+        </footer>
+        <script src="../js/header.js"></script>
+    </body>
 </html>

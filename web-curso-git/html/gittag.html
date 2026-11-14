@@ -1,67 +1,75 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../icon/curso_git.png" type="image/x-icon">
-    <title>Git tag</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/git.css">
-</head>
-<body>
-    <header>
-        <h1>Git tag</h1>
-    </header>
-    <main class="course-content">
-        <section class="course-section">
-            <article class="command-definition">
-                <div class="definition">
-                    <h2>Definición</h2>
-                    <p>
-                        El comando <code>git tag</code> se utiliza para crear, listar o eliminar etiquetas (tags) en un repositorio de Git.
-                        Las etiquetas son referencias fijas a commits específicos y suelen usarse para marcar versiones o hitos importantes.
-                        Es útil para versionar y distribuir releases de manera clara.
-                    </p>
-                </div>
-                <div class="commands">
-                    <h2>Comandos</h2>
-                    <ul>
-                        <li>
-                            <code><span>git tag</span></code>
-                            <p>Muestra todas las etiquetas (tags) que existen en el repositorio.</p>
-                        </li>
-                        <li>
-                            <code><span>git tag v1.0</span></code>
-                            <p>Crea una etiqueta ligera llamada v1.0 en el commit actual.</p>
-                        </li>
-                        <li>
-                            <code><span>git tag -a v1.0 -m "Versión 1.0"</span></code>
-                            <p>Crea una etiqueta anotada con mensaje explicativo.</p>
-                        </li>
-                        <li>
-                            <code><span>git tag -d v1.0</span></code>
-                            <p>Elimina una etiqueta localmente.</p>
-                        </li>
-                    </ul>
-                </div>
-            </article>
-            <article class="practice">
-                <div class="run-block">
-                    <h3> Ejecutar</h3>
-                    <pre><code>$ git tag v1.0 -m "Versión 1.0"
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg" />
+        <link rel="shortcut icon" href="../assets/icons/curso_git.png" type="image/x-icon" />
+        <title>Git tag</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="../css/git.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Git tag</h1>
+        </header>
+        <main class="course-content">
+            <section class="course-section">
+                <article class="command-definition">
+                    <div class="definition">
+                        <h2>Definición</h2>
+                        <p>
+                            El comando <code>git tag</code> se utiliza para crear, listar o eliminar
+                            etiquetas (tags) en un repositorio de Git. Las etiquetas son referencias
+                            fijas a commits específicos y suelen usarse para marcar versiones o
+                            hitos importantes. Es útil para versionar y distribuir releases de
+                            manera clara.
+                        </p>
+                    </div>
+                    <div class="commands">
+                        <h2>Comandos</h2>
+                        <ul>
+                            <li>
+                                <code><span>git tag</span></code>
+                                <p>
+                                    Muestra todas las etiquetas (tags) que existen en el
+                                    repositorio.
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git tag v1.0</span></code>
+                                <p>Crea una etiqueta ligera llamada v1.0 en el commit actual.</p>
+                            </li>
+                            <li>
+                                <code><span>git tag -a v1.0 -m "Versión 1.0"</span></code>
+                                <p>Crea una etiqueta anotada con mensaje explicativo.</p>
+                            </li>
+                            <li>
+                                <code><span>git tag -d v1.0</span></code>
+                                <p>Elimina una etiqueta localmente.</p>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+                <article class="practice">
+                    <div class="run-block">
+                        <h3>Ejecutar</h3>
+                        <pre><code>$ git tag v1.0 -m "Versión 1.0"
 $ git tag</code></pre>
-                </div>
-                <div class="result-block">
-                    <h3> Resultado</h3>
-                    <pre><code>v1.0</code></pre>
-                </div>
-
-            </article>
-        </section>
-    </main>
-    <footer>
-        &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
-    </footer>
-    <script src="../js/header.js"></script>
-</body>
+                    </div>
+                    <div class="result-block">
+                        <h3>Resultado</h3>
+                        <pre><code>v1.0</code></pre>
+                    </div>
+                </article>
+            </section>
+        </main>
+        <footer>
+            &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
+        </footer>
+        <script src="../js/header.js"></script>
+    </body>
 </html>

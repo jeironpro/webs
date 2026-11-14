@@ -1,56 +1,75 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../icon/curso_git.png" type="image/x-icon">
-    <title>Git mv</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/git.css">
-</head>
-<body>
-    <header>
-        <h1>Git mv</h1>
-    </header>
-    <main class="course-content">
-        <section class="course-section">
-            <article class="command-definition">
-                <div class="definition">
-                    <h2>Definición</h2>
-                    <p>
-                        El comando <code>git mv</code> se utiliza para mover o renombrar archivos y directorios dentro de un repositorio de Git.
-                        Combina de forma automática los pasos de mover el archivo, eliminar el anterior y agregar el nuevo al área de preparación.
-                        Es preferible usar <code>git mv</code> en lugar de comandos del sistema (como <code>mv</code> o <code>rename</code>), ya que Git mantiene el historial y detecta correctamente el cambio.
-                    </p>
-                </div>
-                <div class="commands">
-                    <h2>Comandos</h2>
-                    <ul>
-                        <li>
-                            <code><span>git mv &lt;archivo&gt; &lt;nuevo_nombre_archivo&gt;</span></code>
-                            <p>Renombra el archivo dentro del repositorio.</p>
-                        </li>
-                        <li>
-                            <code><span>git mv &lt;archivo&gt; &lt;directorio&gt;/</span></code>
-                            <p>Mueve el archivo a otro directorio dentro del proyecto.</p>
-                        </li>
-                        <li>
-                            <code><span>git mv -f &lt;archivo&gt; &lt;nuevo_nombre&gt;</span></code>
-                            <p>Forza el renombrado o movimiento si el archivo de destino ya existe.</p>
-                        </li>
-                    </ul>
-                </div>
-            </article>
-            <article class="practice">
-                <div class="run-block">
-                    <h3> Ejecutar</h3>
-                    <pre><code>$ ls
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg" />
+        <link rel="shortcut icon" href="../assets/icons/curso_git.png" type="image/x-icon" />
+        <title>Git mv</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="../css/git.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Git mv</h1>
+        </header>
+        <main class="course-content">
+            <section class="course-section">
+                <article class="command-definition">
+                    <div class="definition">
+                        <h2>Definición</h2>
+                        <p>
+                            El comando <code>git mv</code> se utiliza para mover o renombrar
+                            archivos y directorios dentro de un repositorio de Git. Combina de forma
+                            automática los pasos de mover el archivo, eliminar el anterior y agregar
+                            el nuevo al área de preparación. Es preferible usar
+                            <code>git mv</code> en lugar de comandos del sistema (como
+                            <code>mv</code> o <code>rename</code>), ya que Git mantiene el historial
+                            y detecta correctamente el cambio.
+                        </p>
+                    </div>
+                    <div class="commands">
+                        <h2>Comandos</h2>
+                        <ul>
+                            <li>
+                                <code
+                                    ><span
+                                        >git mv &lt;archivo&gt; &lt;nuevo_nombre_archivo&gt;</span
+                                    ></code
+                                >
+                                <p>Renombra el archivo dentro del repositorio.</p>
+                            </li>
+                            <li>
+                                <code><span>git mv &lt;archivo&gt; &lt;directorio&gt;/</span></code>
+                                <p>Mueve el archivo a otro directorio dentro del proyecto.</p>
+                            </li>
+                            <li>
+                                <code
+                                    ><span
+                                        >git mv -f &lt;archivo&gt; &lt;nuevo_nombre&gt;</span
+                                    ></code
+                                >
+                                <p>
+                                    Forza el renombrado o movimiento si el archivo de destino ya
+                                    existe.
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+                <article class="practice">
+                    <div class="run-block">
+                        <h3>Ejecutar</h3>
+                        <pre><code>$ ls
 $ git mv app.js main.js
 $ git status</code></pre>
-                </div>
-                <div class="result-block">
-                    <h3> Resultado</h3>
-                    <pre><code>app.js
+                    </div>
+                    <div class="result-block">
+                        <h3>Resultado</h3>
+                        <pre><code>app.js
 En la rama main
 
 No hay commits todavía
@@ -58,14 +77,13 @@ No hay commits todavía
 Cambios a ser confirmados:
   (usa "git rm --cached &lt;archivo&gt;..." para sacar del área de stage)
 	nuevos archivos: main.js</code></pre>
-                </div>
-
-            </article>
-        </section>
-    </main>
-    <footer>
-        &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
-    </footer>
-    <script src="../js/header.js"></script>
-</body>
+                    </div>
+                </article>
+            </section>
+        </main>
+        <footer>
+            &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
+        </footer>
+        <script src="../js/header.js"></script>
+    </body>
 </html>

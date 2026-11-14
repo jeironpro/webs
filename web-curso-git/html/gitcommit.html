@@ -1,59 +1,77 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../icon/curso_git.png" type="image/x-icon">
-    <title>Git commit</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/git.css">
-</head>
-<body>
-    <header>
-        <h1>Git commit</h1>
-    </header>
-    <main class="course-content">
-        <section class="course-section">
-            <article class="command-definition">
-                <div class="definition">
-                    <h2>Definición</h2>
-                    <p>
-                        El comando <code>git commit</code> se utiliza para guardar los cambios en el historial del
-                        repositorio.Crea un nuevo commit que registra los cambios añadidos al área de preparación
-                        (staging area) y permite describirlos mediante un mensaje.
-                        Es un paso esencial para mantener un historial claro y comprensible de tu proyecto.
-                    </p>
-                </div>
-                <div class="commands">
-                    <h2>Comandos</h2>
-                    <ul>
-                        <li> <code><span>git commit -m "mensaje"</span></code>
-                            <p>Crea un commit con todos los cambios que estén en el staging area.</p>
-                        </li>
-                        <li> <code><span>git commit -a -m "mensaje"</span></code>
-                            <p>Hace commit de todos los archivos modificados y rastreados, saltándose git add.</p>
-                        </li>
-                        <li>
-                            <code><span>git commit --amend</span></code>
-                            <p>Modifica el último commit, ya sea para cambiar el mensaje o agregar cambios adicionales.
-                            </p>
-                        </li>
-                        <li>
-                            <code><span>git commit -v</span></code>
-                            <p>Muestra los cambios que serán incluidos en el commit dentro del editor de mensaje.</p>
-                        </li>
-                    </ul>
-                </div>
-            </article>
-            <article class="practice">
-                <div class="run-block">
-                    <h3> Ejecutar</h3>
-                    <pre><code>$ git status
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg" />
+        <link rel="shortcut icon" href="../assets/icons/curso_git.png" type="image/x-icon" />
+        <title>Git commit</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="../css/git.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Git commit</h1>
+        </header>
+        <main class="course-content">
+            <section class="course-section">
+                <article class="command-definition">
+                    <div class="definition">
+                        <h2>Definición</h2>
+                        <p>
+                            El comando <code>git commit</code> se utiliza para guardar los cambios
+                            en el historial del repositorio.Crea un nuevo commit que registra los
+                            cambios añadidos al área de preparación (staging area) y permite
+                            describirlos mediante un mensaje. Es un paso esencial para mantener un
+                            historial claro y comprensible de tu proyecto.
+                        </p>
+                    </div>
+                    <div class="commands">
+                        <h2>Comandos</h2>
+                        <ul>
+                            <li>
+                                <code><span>git commit -m "mensaje"</span></code>
+                                <p>
+                                    Crea un commit con todos los cambios que estén en el staging
+                                    area.
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git commit -a -m "mensaje"</span></code>
+                                <p>
+                                    Hace commit de todos los archivos modificados y rastreados,
+                                    saltándose git add.
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git commit --amend</span></code>
+                                <p>
+                                    Modifica el último commit, ya sea para cambiar el mensaje o
+                                    agregar cambios adicionales.
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git commit -v</span></code>
+                                <p>
+                                    Muestra los cambios que serán incluidos en el commit dentro del
+                                    editor de mensaje.
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+                <article class="practice">
+                    <div class="run-block">
+                        <h3>Ejecutar</h3>
+                        <pre><code>$ git status
 $ git commit -m "Mi primer commit"</code></pre>
-                </div>
-                <div class="result-block">
-                    <h3> Resultado</h3>
-                    <pre><code>En la rama main
+                    </div>
+                    <div class="result-block">
+                        <h3>Resultado</h3>
+                        <pre><code>En la rama main
 
 No hay commits todavía
 
@@ -64,14 +82,13 @@ Cambios a ser confirmados:
 [main (commit-raíz) 507479a] Mi primer commit
  1 file changed, 2 insertions(+)
  create mode 100644 main.js</code></pre>
-                </div>
-
-            </article>
-        </section>
-    </main>
-    <footer>
-        &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
-    </footer>
-    <script src="../js/header.js"></script>
-</body>
+                    </div>
+                </article>
+            </section>
+        </main>
+        <footer>
+            &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
+        </footer>
+        <script src="../js/header.js"></script>
+    </body>
 </html>

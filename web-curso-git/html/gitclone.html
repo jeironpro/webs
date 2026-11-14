@@ -1,75 +1,94 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../icon/curso_git.png" type="image/x-icon">
-    <title>Git clone</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/git.css">
-</head>
-<body>
-    <header>
-        <h1>Git clone</h1>
-    </header>
-    <main class="course-content">
-        <section class="course-section">
-            <article class="command-definition">
-                <div class="definition">
-                    <h2>Definición</h2>
-                    <p>
-                        El comando <code>git clone</code> se utiliza para crear una copia exacta de un repositorio remoto en tu máquina local.
-                        Este comando descarga todo el historial de versiones, ramas y archivos del proyecto, permitiéndote trabajar de forma local con una réplica completa del repositorio original.
-                    </p>
-                </div>
-                <div class="commands">
-                    <h2>Comandos</h2>
-                    <ul>
-                        <li>
-                            <code><span>git clone &lt;url&gt;</span></code>
-                            <p>Copia un repositorio remoto completo a tu máquina local.</p>
-                        </li>
-                        <li>
-                            <code><span>git clone &lt;url&gt; &lt;directorio&gt;</span></code>
-                            <p>Clona el repositorio en un directorio específico, en lugar de usar el nombre por defecto.</p>
-                        </li>
-                        <li>
-                            <code><span>git clone --branch &lt;nombre_rama&gt; &lt;url&gt;</span></code>
-                            <p>Clona únicamente una rama específica del repositorio remoto.</p>
-                        </li>
-                        <li>
-                            <code><span>git clone --depth &lt;n&gt; &lt;url&gt;</span></code>
-                            <p>Realiza una clonación superficial con solo los últimos numeros de commits (ideal para ahorrar espacio o tiempo).</p>
-                        </li>
-                        <li>
-                            <code><span>git clone --bare &lt;url&gt;</span></code>
-                            <p>Crea un clon sin área de trabajo (solo los metadatos del repositorio, útil para servidores).</p>
-                        </li>
-                    </ul>
-                </div>
-            </article>
-            <article class="practice">
-                <div class="run-block">
-                    <h3> Ejecutar</h3>
-                    <pre><code>$ git clone https://github.com/usuario/mi-proyecto.git</code></pre>
-                </div>
-                <div class="result-block">
-                    <h3> Resultado</h3>
-                    <pre><code>Clonando en 'mi-proyecto'...
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg" />
+        <link rel="shortcut icon" href="../assets/icons/curso_git.png" type="image/x-icon" />
+        <title>Git clone</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="../css/git.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Git clone</h1>
+        </header>
+        <main class="course-content">
+            <section class="course-section">
+                <article class="command-definition">
+                    <div class="definition">
+                        <h2>Definición</h2>
+                        <p>
+                            El comando <code>git clone</code> se utiliza para crear una copia exacta
+                            de un repositorio remoto en tu máquina local. Este comando descarga todo
+                            el historial de versiones, ramas y archivos del proyecto, permitiéndote
+                            trabajar de forma local con una réplica completa del repositorio
+                            original.
+                        </p>
+                    </div>
+                    <div class="commands">
+                        <h2>Comandos</h2>
+                        <ul>
+                            <li>
+                                <code><span>git clone &lt;url&gt;</span></code>
+                                <p>Copia un repositorio remoto completo a tu máquina local.</p>
+                            </li>
+                            <li>
+                                <code><span>git clone &lt;url&gt; &lt;directorio&gt;</span></code>
+                                <p>
+                                    Clona el repositorio en un directorio específico, en lugar de
+                                    usar el nombre por defecto.
+                                </p>
+                            </li>
+                            <li>
+                                <code
+                                    ><span
+                                        >git clone --branch &lt;nombre_rama&gt; &lt;url&gt;</span
+                                    ></code
+                                >
+                                <p>Clona únicamente una rama específica del repositorio remoto.</p>
+                            </li>
+                            <li>
+                                <code><span>git clone --depth &lt;n&gt; &lt;url&gt;</span></code>
+                                <p>
+                                    Realiza una clonación superficial con solo los últimos numeros
+                                    de commits (ideal para ahorrar espacio o tiempo).
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git clone --bare &lt;url&gt;</span></code>
+                                <p>
+                                    Crea un clon sin área de trabajo (solo los metadatos del
+                                    repositorio, útil para servidores).
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+                <article class="practice">
+                    <div class="run-block">
+                        <h3>Ejecutar</h3>
+                        <pre><code>$ git clone https://github.com/usuario/mi-proyecto.git</code></pre>
+                    </div>
+                    <div class="result-block">
+                        <h3>Resultado</h3>
+                        <pre><code>Clonando en 'mi-proyecto'...
 remote: Enumerating objects: 10, done.
 remote: Counting objects: 100% (10/10), done.
 remote: Compressing objects: 100% (8/8), done.
 remote: Total 10 (delta 2), reused 10 (delta 2), pack-reused 0
 Recibiendo objetos: 100% (10/10), done.
 Resolviendo deltas: 100% (2/2), done.</code></pre>
-                </div>
-
-            </article>
-        </section>
-    </main>
-    <footer>
-        &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
-    </footer>
-    <script src="../js/header.js"></script>
-</body>
+                    </div>
+                </article>
+            </section>
+        </main>
+        <footer>
+            &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
+        </footer>
+        <script src="../js/header.js"></script>
+    </body>
 </html>
