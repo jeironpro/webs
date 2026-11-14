@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diseno y Creacion de Software - Portafolio del Curso</title>
     <meta name="description" content="Portafolio completo del curso de Diseno y Creacion de Software - INFOTEP 2022">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232563eb'%3E%3Cpath d='M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z'/%3E%3C/svg%3E">
+    <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,21 +14,21 @@
         rel="stylesheet">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body class="bg-gray-50 text-gray-900 antialiased">
-    <!-- Navegacion -->
+
     <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-200 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
-                <a href="index.html" class="flex items-center gap-2 font-bold text-lg text-gray-900">
+                <a href="../index.html" class="flex items-center gap-2 font-bold text-lg text-gray-900">
                     <span class="material-symbols-outlined text-blue-600">school</span>
                     <span class="hidden sm:inline">DCS</span>
                 </a>
                 <div class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-600">
-                    <a href="index.html" class="hover:text-blue-600 transition-colors">Inicio</a>
-                    <a href="index.html#herramientas" class="hover:text-blue-600 transition-colors">Herramientas</a>
-                    <a href="index.html#itinerario" class="hover:text-blue-600 transition-colors">Itinerario</a>
+                    <a href="../index.html" class="hover:text-blue-600 transition-colors">Inicio</a>
+                    <a href="../index.html#tools" class="hover:text-blue-600 transition-colors">Herramientas</a>
+                    <a href="../index.html#roadmap" class="hover:text-blue-600 transition-colors">Itinerario</a>
                     <a href="primer_cuatrimestre.html" class="hover:text-blue-600 transition-colors">I Cuatrimestre</a>
                     <a href="segundo_cuatrimestre.html" class="hover:text-blue-600 transition-colors">II Cuatrimestre</a>
                     <a href="tercer_cuatrimestre.html" class="hover:text-blue-600 transition-colors">III Cuatrimestre</a>
@@ -41,10 +41,10 @@
         </div>
         <div id="mobile-menu" class="hidden md:hidden border-t border-gray-200 bg-white">
             <div class="px-4 py-3 space-y-2 text-sm font-medium">
-                <a href="index.html" class="block px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors">Inicio</a>
-                <a href="index.html#herramientas"
+                <a href="../index.html" class="block px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors">Inicio</a>
+                <a href="../index.html#tools"
                     class="block px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors">Herramientas</a>
-                <a href="index.html#itinerario"
+                <a href="../index.html#roadmap"
                     class="block px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors">Itinerario</a>
                 <a href="primer_cuatrimestre.html" class="block px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors">I
                     Cuatrimestre</a>
@@ -55,11 +55,12 @@
             </div>
         </div>
     </nav>
+    <main>
 
-    <!-- Mini Hero - Segundo Cuatrimestre -->
+
     <section class="hero-gradient py-20 pt-24">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-            <a href="index.html" class="inline-flex items-center gap-1 text-gray-300 hover:text-white text-sm mb-4 transition-colors">
+            <a href="../index.html" class="inline-flex items-center gap-1 text-gray-300 hover:text-white text-sm mb-4 transition-colors">
                 <span class="material-symbols-outlined text-base">arrow_back</span> Volver al inicio
             </a>
             <h1 class="text-3xl sm:text-4xl font-extrabold">Segundo Cuatrimestre</h1>
@@ -67,8 +68,8 @@
         </div>
     </section>
 
-    <!-- SEGUNDO CUATRIMESTRE -->
-    <section id="segundo-cuatrimestre" class="py-20 bg-gray-50">
+
+    <section id="second-semester" class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 fade-in">
                 <span
@@ -79,10 +80,10 @@
                     Node.js</p>
             </div>
 
-            <!-- ========== HTML ========== -->
+
             <div class="mb-8 fade-in">
                 <button data-accordion
-                    class="w-full flex items-center justify-between p-6 bg-gradient-to-r from-green-50 to-green-100/50 rounded-2xl border border-green-200 card-hover text-left"
+                    class="w-full flex items-center justify-between p-6 bg-gradient-to-r from-green-50 to-green-100/50 rounded-2xl border border-green-200 lift-card text-left"
                     aria-expanded="false">
                     <div class="flex items-center gap-4">
                         <span class="material-symbols-outlined text-3xl text-green-600">code</span>
@@ -685,7 +686,7 @@
                 &lt;/aside&gt;
             &lt;/div&gt;
         &lt;/section&gt;
-    &lt;/main&gt;    
+    &lt;/main&gt;
     &lt;footer&gt;
         &lt;p&gt;&amp;copy;Todos los Derechos Reservados - Jolmav Web Design <span data-anio>2023</span>&lt;/p&gt;
     &lt;/footer&gt;
@@ -766,12 +767,12 @@
                                 &lt;textarea name="name" id="mensaje" cols="80" rows="8"&gt;&lt;/textarea&gt;
                             &lt;/div&gt;
                             &lt;button type="submit" class="button1"&gt;Enviar&lt;/button&gt;
-                        &lt;/form&gt;                        
+                        &lt;/form&gt;
                     &lt;/div&gt;
                 &lt;/aside&gt;
             &lt;/div&gt;
         &lt;/section&gt;
-    &lt;/main&gt;    
+    &lt;/main&gt;
     &lt;footer&gt;
         &lt;p&gt;&amp;copy;Todos los Derechos Reservados - Jolmav Web Design <span data-anio>2023</span>&lt;/p&gt;
     &lt;/footer&gt;
@@ -836,7 +837,7 @@
                     &lt;p&gt;Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis, corrupti sit! Dolor libero in accusamus repellat. Vitae error esse eaque modi consequatur doloremque distinctio ex qui, repudiandae reiciendis cumque quasi!&lt;/p&gt;
                     &lt;p&gt;Itaque aut facere magni sit sed odio quidem doloremque quis numquam, nihil blanditiis sint beatae. Possimus, architecto voluptate? Dolor mollitia pariatur totam distinctio explicabo iure in nobis consequuntur quo corporis!&lt;/p&gt;
                 &lt;/article&gt;
-            &lt;/div&gt;            
+            &lt;/div&gt;
         &lt;/section&gt;
         &lt;aside&gt;
             &lt;h1&gt;Enlaces Recomendados&lt;/h1&gt;
@@ -1553,9 +1554,9 @@
     &lt;aside&gt;
         &lt;h3&gt;Aceptamos Tarjeras de Debito/Credito&lt;/h3&gt;
         &lt;figure&gt;
-            &lt;img src="imagenes/logos/visa.png" alt="" width="60" height="40"&gt; 
+            &lt;img src="imagenes/logos/visa.png" alt="" width="60" height="40"&gt;
             &lt;img src="imagenes/logos/tarjeta1.png" alt="" width="60" height="40"&gt;
-             &lt;img src="imagenes/logos/veriphone.webp" alt="" width="60" height="40"&gt; 
+             &lt;img src="imagenes/logos/veriphone.webp" alt="" width="60" height="40"&gt;
         &lt;/figure&gt;
     &lt;/aside&gt;
     &lt;footer&gt;
@@ -1628,9 +1629,9 @@
     &lt;aside&gt;
         &lt;h3&gt;Aceptamos Tarjeras de Debito/Credito&lt;/h3&gt;
         &lt;figure&gt;
-            &lt;img src="imagenes/logos/visa.png" alt="" width="60" height="40"&gt; 
+            &lt;img src="imagenes/logos/visa.png" alt="" width="60" height="40"&gt;
             &lt;img src="imagenes/logos/tarjeta1.png" alt="" width="60" height="40"&gt;
-             &lt;img src="imagenes/logos/veriphone.webp" alt="" width="60" height="40"&gt; 
+             &lt;img src="imagenes/logos/veriphone.webp" alt="" width="60" height="40"&gt;
         &lt;/figure&gt;
     &lt;/aside&gt;
     &lt;footer&gt;
@@ -1936,9 +1937,9 @@
     &lt;aside&gt;
         &lt;h3&gt;Aceptamos Tarjeras de Debito/Credito&lt;/h3&gt;
         &lt;figure&gt;
-            &lt;img src="imagenes/logos/visa.png" alt="" width="60" height="40"&gt; 
+            &lt;img src="imagenes/logos/visa.png" alt="" width="60" height="40"&gt;
             &lt;img src="imagenes/logos/tarjeta1.png" alt="" width="60" height="40"&gt;
-             &lt;img src="imagenes/logos/veriphone.webp" alt="" width="60" height="40"&gt; 
+             &lt;img src="imagenes/logos/veriphone.webp" alt="" width="60" height="40"&gt;
         &lt;/figure&gt;
     &lt;/aside&gt;
     &lt;footer&gt;
@@ -2008,9 +2009,9 @@
     &lt;aside&gt;
         &lt;h3&gt;Aceptamos Tarjeras de Debito/Credito&lt;/h3&gt;
         &lt;figure&gt;
-            &lt;img src="imagenes/logos/visa.png" alt="" width="60" height="40"&gt; 
+            &lt;img src="imagenes/logos/visa.png" alt="" width="60" height="40"&gt;
             &lt;img src="imagenes/logos/tarjeta1.png" alt="" width="60" height="40"&gt;
-             &lt;img src="imagenes/logos/veriphone.webp" alt="" width="60" height="40"&gt; 
+             &lt;img src="imagenes/logos/veriphone.webp" alt="" width="60" height="40"&gt;
         &lt;/figure&gt;
     &lt;/aside&gt;
     &lt;footer&gt;
@@ -2307,9 +2308,9 @@
     &lt;aside&gt;
         &lt;h3&gt;Aceptamos Tarjeras de Debito/Credito&lt;/h3&gt;
         &lt;figure&gt;
-            &lt;img src="imagenes/logos/visa.png" alt="" width="60" height="40"&gt; 
+            &lt;img src="imagenes/logos/visa.png" alt="" width="60" height="40"&gt;
             &lt;img src="imagenes/logos/tarjeta1.png" alt="" width="60" height="40"&gt;
-             &lt;img src="imagenes/logos/veriphone.webp" alt="" width="60" height="40"&gt; 
+             &lt;img src="imagenes/logos/veriphone.webp" alt="" width="60" height="40"&gt;
         &lt;/figure&gt;
     &lt;/aside&gt;
     &lt;footer&gt;
@@ -2379,9 +2380,9 @@
     &lt;aside&gt;
         &lt;h3&gt;Aceptamos Tarjeras de Debito/Credito&lt;/h3&gt;
         &lt;figure&gt;
-            &lt;img src="imagenes/logos/visa.png" alt="" width="60" height="40"&gt; 
+            &lt;img src="imagenes/logos/visa.png" alt="" width="60" height="40"&gt;
             &lt;img src="imagenes/logos/tarjeta1.png" alt="" width="60" height="40"&gt;
-             &lt;img src="imagenes/logos/veriphone.webp" alt="" width="60" height="40"&gt; 
+             &lt;img src="imagenes/logos/veriphone.webp" alt="" width="60" height="40"&gt;
         &lt;/figure&gt;
     &lt;/aside&gt;
     &lt;footer&gt;
@@ -2616,9 +2617,9 @@
                 &lt;p class="parrafo"&gt;HTML (Lenguaje de Marcas de Hipertexto, del inglés HyperText Markup Language) es el componente más básico de la Web. Define el significado y la estructura del contenido web. Además de HTML, generalmente se utilizan otras tecnologías para describir la apariencia/presentación de una página web (CSS) o la funcionalidad/comportamiento (JavaScript).
 
                     "Hipertexto" hace referencia a los enlaces que conectan páginas web entre sí, ya sea dentro de un único sitio web o entre sitios web. Los enlaces son un aspecto fundamental de la Web. Al subir contenido a Internet y vincularlo a las páginas creadas por otras personas, te conviertes en un participante activo en la «World Wide Web» (Red Informática Mundial).
-                    
+
                     HTML utiliza "marcas" para etiquetar texto, imágenes y otro contenido para mostrarlo en un navegador Web. Las marcas HTML incluyen "elementos" especiales como head, title, body, header, footer, article, section, p, div, span, img, aside, audio, canvas, datalist, details, embed, nav, output (en-US), progress, video, ul, ol, li y muchos otros.
-                    
+
                     Un elemento HTML se distingue de otro texto en un documento mediante "etiquetas", que consisten en el nombre del elemento rodeado por abridor y cerrador. El nombre de un elemento dentro de una etiqueta no distingue entre mayúsculas y minúsculas. Es decir, se puede escribir en mayúsculas, minúsculas o una mezcla. Por ejemplo, la etiqueta title se puede escribir como Title, TITLE o de cualquier otra forma.&lt;/p&gt;
             &lt;/article&gt;
         &lt;/div&gt;
@@ -2631,15 +2632,15 @@
                 &lt;p class="parrafo"&gt;Hojas de Estilo en Cascada (del inglés Cascading Style Sheets) o CSS es el lenguaje de estilos utilizado para describir la presentación de documentos HTML o XML (en-US) (incluyendo varios lenguajes basados en XML como SVG, MathML o XHTML). CSS describe como debe ser renderizado el elemento estructurado en la pantalla, en papel, en el habla o en otros medios.
 
                     CSS es uno de los lenguajes base de la Open Web y posee una especificación estandarizada por parte del W3C. Anteriormente , el desarrollo de varias partes de las especificaciones de CSS era realizado de manera sincrónica, lo que permitía el versionado de las recomendaciones. Probablemente habrás escuchado acerca de CSS1, CSS2.1, CSS3. Sin embargo, CSS4 nunca se ha lanzado como una versión oficial.
-                    
+
                     Desde CSS3, el alcance de las especificaciones se incrementó de forma significativa y el progreso de los diferentes módulos de CSS comenzó a mostrar varias diferencias, lo que hizo más efectivo desarrollar y publicar recomendaciones separadas por módulos. En vez de versionar las especificaciones de CSS, la W3C actualmente realiza una captura de las ultimas espcificaciones estables de CSS.
-                    
+
                     Introducción a CSS
                     Si eres nuevo en el desarrollo web, asegúrate de leer nuestro artículo de conceptos básicos de CSS para saber qué es CSS y cómo usarlo.
-                    
+
                     Tutoriales CSS
                     Nuestra área de aprendizaje de CSS contiene una gran cantidad de tutoriales que te llevan desde el nivel de principiante hasta el nivel de competencia, cubriendo todos los aspectos fundamentales.
-                    
+
                     Referencia CSS
                     Nuestra exhaustiva referencia de CSS para desarrolladores web experimentados describe cada propiedad y concepto de CSS.&lt;/p&gt;
             &lt;/article&gt;
@@ -2653,9 +2654,9 @@
                 &lt;p class="parrafo"&gt;JavaScript (JS) es un lenguaje de programación ligero, interpretado, o compilado justo-a-tiempo (just-in-time) con funciones de primera clase. Si bien es más conocido como un lenguaje de scripting (secuencias de comandos) para páginas web, y es usado en muchos entornos fuera del navegador, tal como Node.js, Apache CouchDB y Adobe Acrobat JavaScript es un lenguaje de programación basada en prototipos, multiparadigma, de un solo hilo, dinámico, con soporte para programación orientada a objetos, imperativa y declarativa (por ejemplo programación funcional). Lee más en acerca de JavaScript.
 
                     Esta sección está dedicada al lenguaje JavaScript en sí, y no a las partes que son específicas de las páginas web u otros entornos host. Para información acerca de APIs específicas para páginas Web, consulta APIs Web y DOM.
-                    
+
                     El estándar para JavaScript es ECMAScript (ECMA-262) y la especificación de la API para la Internacionalización de ECMAScript (ECMA-402). La documentación en MDN está basada enteramente en las últimas versiones preliminares de ECMA-262 y ECMA-402. Y en algunos casos donde algunas propuestas para nuevas funciones para ECMAScript ya hayan sido implementadas en los navegadores, la documentación y algunos artículos de MDN pueden hacer uso de algunas de estas funciones.
-                    
+
                     No confundas JavaScript con el lenguaje de programación Java. Ambos "Java" y "JavaScript" son marcas o marcas registradas de Oracle en los Estados Unidos y otros países, Sin embargo, los dos lenguajes de programación tienen sintaxis, semántica y usos muy diferentes.&lt;/p&gt;
             &lt;/article&gt;
         &lt;/div&gt;
@@ -3052,7 +3053,7 @@ aside {
     justify-content: center;
     display: flex;
     padding-inline-end: 12px;
-    margin: 15px 12px; 
+    margin: 15px 12px;
 }
 
 h3 {
@@ -3313,7 +3314,7 @@ footer {
         &lt;title&gt;Introduccion a HTML 5&lt;/title&gt;
         &lt;!-- &lt;meta name="description", muestra una descripcion de la pagina en el buscador--&gt;
         &lt;meta name="description" content="Este sitio esta especializado en creacion de sitios web con..."&gt;
-        &lt;!--  La etiqueta &lt;link&gt;, con su atributo rel="icon" + href="", agrega un favicon a la pestaña del navegador.  --&gt; 
+        &lt;!--  La etiqueta &lt;link&gt;, con su atributo rel="icon" + href="", agrega un favicon a la pestaña del navegador.  --&gt;
         &lt;link rel="icon" href="assets/images/bise.jpg"&gt;
     &lt;/head&gt;
     &lt;!--  La etiqueta &lt;body&gt;, muestra el contenido de la pagina web en el navegador  --&gt;
@@ -3754,10 +3755,10 @@ footer {
                     </div>
                 </div>
             </div>
-            <!-- ========== CSS ========== -->
+
             <div class="mb-8 fade-in">
                 <button data-accordion
-                    class="w-full flex items-center justify-between p-6 bg-gradient-to-r from-green-50 to-green-100/50 rounded-2xl border border-green-200 card-hover text-left"
+                    class="w-full flex items-center justify-between p-6 bg-gradient-to-r from-green-50 to-green-100/50 rounded-2xl border border-green-200 lift-card text-left"
                     aria-expanded="false">
                     <div class="flex items-center gap-4">
                         <span class="material-symbols-outlined text-3xl text-green-600">palette</span>
@@ -3792,13 +3793,13 @@ footer {
                                 versión o niveles, como CSS Color Module Level 5.</p>
                         </div>
 
-                        <!-- Imagen: Diagrama de Flexbox -->
+
                         <h5 class="font-semibold text-gray-900 mt-6">Diagrama de Flexbox</h5>
-                        <img src="assets/img/flexblox.png"
+                        <img src="../assets/img/flexblox.png"
                             alt="Diagrama de Flexbox"
                             class="w-full max-w-2xl rounded-lg shadow-md border border-gray-200">
 
-                        <!-- CSS: display_flex.css -->
+
                         <h5 class="font-semibold text-gray-900 mt-6">
                             css_80/mis_practicas_css/flexbox/css/display_flex.css</h5>
                         <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code>.contenedor {
@@ -3813,7 +3814,7 @@ footer {
   margin: 5px;
 }</code></pre>
 
-                        <!-- CSS: justify-content -->
+
                         <h5 class="font-semibold text-gray-900 mt-6">
                             css_80/mis_practicas_css/flexbox/css/justifycontent.css</h5>
                         <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code>.contenedor {
@@ -3823,7 +3824,7 @@ footer {
   padding: 10px;
 }</code></pre>
 
-                        <!-- CSS: Grid -->
+
                         <h5 class="font-semibold text-gray-900 mt-6">
                             css_80/mis_practicas_css/introduccion_css_grid/css/introduccion_grid.css</h5>
                         <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code>.grid {
@@ -3842,10 +3843,10 @@ footer {
                     </div>
                 </div>
             </div>
-            <!-- ========== JavaScript ========== -->
+
             <div class="mb-8 fade-in">
                 <button data-accordion
-                    class="w-full flex items-center justify-between p-6 bg-gradient-to-r from-green-50 to-green-100/50 rounded-2xl border border-green-200 card-hover text-left"
+                    class="w-full flex items-center justify-between p-6 bg-gradient-to-r from-green-50 to-green-100/50 rounded-2xl border border-green-200 lift-card text-left"
                     aria-expanded="false">
                     <div class="flex items-center gap-4">
                         <span class="material-symbols-outlined text-3xl text-green-600">javascript</span>
@@ -3919,7 +3920,7 @@ footer {
         var alimentos = ["Platanos con salami","Yuca con Queso Frito","Arroz con Camarones"];
 
         alert(alimentos.length);
-        
+
         alert(alimentos[1]);
 
         var alimentos = new Array("Platanos con salami","Yuca con Queso Frito","Arroz con Camarones");
@@ -4128,7 +4129,7 @@ footer {
                 alert("El gasoil es mas barato que la gasolina.");
                 break;
             case "GLP":
-                alert("El GLP es el mas barato de todos los combustibles.");    
+                alert("El GLP es el mas barato de todos los combustibles.");
                 break;
             default:
                 alert("El valor introducido no existe. Intente de nuevo.")
@@ -4153,7 +4154,7 @@ footer {
         alert("El resultado es " + resultado);
 
         // Ciclo o Bucle Do
-        
+
     &lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
@@ -4314,7 +4315,7 @@ footer {
         var num5 = 9;
 
         resPreIncremento = ++num4 + num5;
-        
+
         // alert("El resultado del PreIncremento es " + resPreIncremento);
 
         // PostDecremento (variable--)
@@ -4372,7 +4373,7 @@ footer {
 
         alert("El resultado del operador Menor que, es " + resMenor);
 
-        // Operador Diferente que (!=) 
+        // Operador Diferente que (!=)
         var numDiferente1 = 120;
         var numDiferente2 = 80;
         resDiferente = numDiferente1 != numDiferente2;
@@ -4492,40 +4493,40 @@ footer {
 
         function suma() {
             alert("Usted presiono el boton sumar");
-            // las variables no van dentro de comillas. 
-            // el &lt;p&gt; cerrador debe quedar fuera de los parentesis porque las variable no pueden terminar dentro de comillas. 
+            // las variables no van dentro de comillas.
+            // el &lt;p&gt; cerrador debe quedar fuera de los parentesis porque las variable no pueden terminar dentro de comillas.
             document.write("&lt;p&gt;La suma de " + numeroUno + "+" + numeroDos + ", es = " + (numeroUno + numeroDos)) + "&lt;p&gt;";
         }
-        // document.write("&lt;p&gt;La suma de " + numeroUno + "+" + numeroDos + ", es = " + (numeroUno + numeroDos)) + "&lt;p&gt;";        
+        // document.write("&lt;p&gt;La suma de " + numeroUno + "+" + numeroDos + ", es = " + (numeroUno + numeroDos)) + "&lt;p&gt;";
 
         function resta() {
             alert("Usted presiono el boton restar");
-            // las variables no van dentro de comillas. 
-            // el &lt;p&gt; cerrador debe quedar fuera de los parentesis porque las variable no pueden terminar dentro de comillas. 
+            // las variables no van dentro de comillas.
+            // el &lt;p&gt; cerrador debe quedar fuera de los parentesis porque las variable no pueden terminar dentro de comillas.
             document.write("&lt;p&gt;La resta de " + numeroUno + "-" + numeroDos + ", es = " + (numeroUno - numeroDos)) + "&lt;p&gt;";
         }
         // document.write("&lt;p&gt;La resta de " + numeroUno + "-" + numeroDos + ", es = " + (numeroUno - numeroDos)) + "&lt;p&gt;";
 
         function division() {
             alert("Usted presiono el boton dividir");
-            // las variables no van dentro de comillas. 
-            // el &lt;p&gt; cerrador debe quedar fuera de los parentesis porque las variable no pueden terminar dentro de comillas. 
+            // las variables no van dentro de comillas.
+            // el &lt;p&gt; cerrador debe quedar fuera de los parentesis porque las variable no pueden terminar dentro de comillas.
             document.write("&lt;p&gt;La division de " + numeroUno + "/" + numeroDos + ", es = " + (numeroUno / numeroDos)) + "&lt;p&gt;";
         }
         // document.write("&lt;p&gt;La division de " + numeroUno + "/" + numeroDos + ", es = " + (numeroUno / numeroDos)) + "&lt;p&gt;";
 
         function multiplicacion() {
             alert("Usted presiono el boton multiplicar");
-            // las variables no van dentro de comillas. 
-            // el &lt;p&gt; cerrador debe quedar fuera de los parentesis porque las variable no pueden terminar dentro de comillas. 
+            // las variables no van dentro de comillas.
+            // el &lt;p&gt; cerrador debe quedar fuera de los parentesis porque las variable no pueden terminar dentro de comillas.
             document.write("&lt;p&gt;La multiplicacion de " + numeroUno + "*" + numeroDos + ", es = " + (numeroUno * numeroDos)) + "&lt;p&gt;";
         }
         // document.write("&lt;p&gt;La multiplicacion de " + numeroUno + "*" + numeroDos + ", es = " + (numeroUno * numeroDos)) + "&lt;p&gt;";
 
         function residuo() {
             alert("Usted presiono el boton residuo");
-            // las variables no van dentro de comillas. 
-            // el &lt;p&gt; cerrador debe quedar fuera de los parentesis porque las variable no pueden terminar dentro de comillas. 
+            // las variables no van dentro de comillas.
+            // el &lt;p&gt; cerrador debe quedar fuera de los parentesis porque las variable no pueden terminar dentro de comillas.
             document.write("&lt;p&gt;El residuo de " + numeroUno + "%" + numeroDos + ", es = " + (numeroUno % numeroDos)) + "&lt;p&gt;";
         }
         // document.write("&lt;p&gt;El residuo de " + numeroUno + "%" + numeroDos + ", es = " + (numeroUno % numeroDos)) + "&lt;p&gt;";
@@ -4560,7 +4561,7 @@ footer {
     &lt;script src="js/variablesjs.js"&gt;&lt;/script&gt;
 &lt;/head&gt;
 &lt;body&gt;
-    
+
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
 
@@ -4655,7 +4656,7 @@ footer {
     &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
     &lt;title&gt;Manajando innerHTML&lt;/title&gt;
     &lt;script&gt;
-        /* 
+        /*
         innerHTML: es una propiedad que permite leer un dato o asignarlo al contenido de un div o bien, del mismo control. Facilita la asignacion de valores a controles.
         */
 
@@ -4680,7 +4681,7 @@ footer {
                 var segundoParrafo = parrafo[1].innerHTML = " ";
 
                 // Ocultar el boton luego de hacer clic.
-                document.getElementById("ocultar").style.visibility = "hidden"; 
+                document.getElementById("ocultar").style.visibility = "hidden";
             }
 
             // if(confirmacion == false) {
@@ -4697,7 +4698,7 @@ footer {
             //     // Oculta las palabras luego de ser unidas.
             //     var primerParrafo = parrafo[0].innerHTML = " ";
             //     var segundoParrafo = parrafo[1].innerHTML = " ";
-            // }    
+            // }
         }
     &lt;/script&gt;
 &lt;/head&gt;
@@ -4757,7 +4758,7 @@ footer {
             document.getElementById("cuadrado").style.backgroundColor = col;
         }
     &lt;/script&gt;
-    
+
     &lt;a href="#" onmouseover="pintar('#ff0000')" onmouseout="pintar('#ffffff')"&gt;Rojo&lt;/a&gt;
     &lt;a href="#" onmouseover="pintar('#00ff00')" onmouseout="pintar('#ffffff')"&gt;Verde&lt;/a&gt;
     &lt;a href="#" onmouseover="pintar('#0000ff')" onmouseout="pintar('#ffffff')"&gt;Azul&lt;/a&gt;
@@ -4970,7 +4971,7 @@ footer {
         // Exponente
         document.write("El exponente es " + Math.pow(2,3) + "&lt;br&gt;");
 
-        // Raiz cuadrada 
+        // Raiz cuadrada
         document.write("La raiz cuadrada del numero introducido es " + Math.sqrt(25) + "&lt;br&gt;");
 
         // Valor aleatorio
@@ -5006,7 +5007,7 @@ footer {
         // listaDiaN = new Array("1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30");
         listaDia = new Array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado");
         listaMes = new Array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Diciembre");
-        
+
         hoy = new Date();
         diaN = hoy.getDate();
         // diaN = listaDiaN[hoy.getDate()];
@@ -5055,12 +5056,12 @@ footer {
 
         // Iniciar la ejecucion del reloj
         var intervalo = setInterval(miReloj, 1000);
-        
+
         function miReloj() {
             var d = new Date();
             var t = d.toLocaleTimeString();
             document.getElementById("hora").innerHTML = t;
-        } 
+        }
 
         // Detener la ejecucion del reloj
         function detenerFuncion() {
@@ -5252,10 +5253,10 @@ document.write("Su nombre completo es " + nombreCompleto);
                     </div>
                 </div>
             </div>
-            <!-- ========== Node.js ========== -->
+
             <div class="mb-8 fade-in">
                 <button data-accordion
-                    class="w-full flex items-center justify-between p-6 bg-gradient-to-r from-green-50 to-green-100/50 rounded-2xl border border-green-200 card-hover text-left"
+                    class="w-full flex items-center justify-between p-6 bg-gradient-to-r from-green-50 to-green-100/50 rounded-2xl border border-green-200 lift-card text-left"
                     aria-expanded="false">
                     <div class="flex items-center gap-4">
                         <span class="material-symbols-outlined text-3xl text-green-600">dns</span>
@@ -5469,7 +5470,7 @@ function suma(num1,num2) {
 }
 
 console.log("La suma es igual a " + suma(7,5));
- 
+
 function resta(num1,num2) {
     return num1 - num2;
 }
@@ -10107,7 +10108,7 @@ app.listen(4000, () =&gt; {
 const router = Router();
 
 router.get('/test', (req, res) =&gt; {
-    const data = { 
+    const data = {
         "name": "Jeiron",
         "age": "20"
     };
@@ -10146,7 +10147,7 @@ router.post('/', (req, res) =&gt; {
         res.status(500).json({error: 'peticion erronea'});
     }
     // console.log(res.body);
-    // res.send('recibido'); 
+    // res.send('recibido');
 });
 
 router.put('/:id', (req, res) =&gt; {
@@ -11334,7 +11335,7 @@ router.put('/:id', (req, res) =&gt; {
                 lenguajeP.lenguaje = lenguaje;
                 lenguajeP.creador = creador;
             };
-        }); 
+        });
         res.json(lenguajes);
     } else {
         res.status(500).json({error: 'Peticion Erronea'});
@@ -11361,7 +11362,7 @@ const httpServer = createServer((req, res) =&gt; {
     console.log("peticion");
 
     res.end("recibida");
-}) 
+})
 
 httpServer.listen(3000);</code></pre>
 
@@ -11784,7 +11785,9 @@ httpServer.listen(3000);</code></pre>
 
         </div>
     </section>
-    <!-- Footer -->
+
+    </main>
+
     <footer class="bg-gray-900 text-white py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -11817,12 +11820,7 @@ httpServer.listen(3000);</code></pre>
         </div>
     </footer>
 
-    <script src="js/app.js"></script>
-    <script>
-        document.querySelectorAll("[data-anio]").forEach((nodo) => {
-            nodo.textContent = new Date().getFullYear();
-        });
-    </script>
+    <script src="../js/app.js"></script>
 </body>
 
 </html>

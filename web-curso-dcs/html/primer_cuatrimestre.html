@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diseno y Creacion de Software - Portafolio del Curso</title>
     <meta name="description" content="Portafolio completo del curso de Diseno y Creacion de Software - INFOTEP 2022">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232563eb'%3E%3Cpath d='M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z'/%3E%3C/svg%3E">
+    <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,21 +14,21 @@
         rel="stylesheet">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body class="bg-gray-50 text-gray-900 antialiased">
-    <!-- Navegacion -->
+
     <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-200 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
-                <a href="index.html" class="flex items-center gap-2 font-bold text-lg text-gray-900">
+                <a href="../index.html" class="flex items-center gap-2 font-bold text-lg text-gray-900">
                     <span class="material-symbols-outlined text-blue-600">school</span>
                     <span class="hidden sm:inline">DCS</span>
                 </a>
                 <div class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-600">
-                    <a href="index.html" class="hover:text-blue-600 transition-colors">Inicio</a>
-                    <a href="index.html#herramientas" class="hover:text-blue-600 transition-colors">Herramientas</a>
-                    <a href="index.html#itinerario" class="hover:text-blue-600 transition-colors">Itinerario</a>
+                    <a href="../index.html" class="hover:text-blue-600 transition-colors">Inicio</a>
+                    <a href="../index.html#tools" class="hover:text-blue-600 transition-colors">Herramientas</a>
+                    <a href="../index.html#roadmap" class="hover:text-blue-600 transition-colors">Itinerario</a>
                     <a href="primer_cuatrimestre.html" class="hover:text-blue-600 transition-colors">I Cuatrimestre</a>
                     <a href="segundo_cuatrimestre.html" class="hover:text-blue-600 transition-colors">II Cuatrimestre</a>
                     <a href="tercer_cuatrimestre.html" class="hover:text-blue-600 transition-colors">III Cuatrimestre</a>
@@ -41,10 +41,10 @@
         </div>
         <div id="mobile-menu" class="hidden md:hidden border-t border-gray-200 bg-white">
             <div class="px-4 py-3 space-y-2 text-sm font-medium">
-                <a href="index.html" class="block px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors">Inicio</a>
-                <a href="index.html#herramientas"
+                <a href="../index.html" class="block px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors">Inicio</a>
+                <a href="../index.html#tools"
                     class="block px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors">Herramientas</a>
-                <a href="index.html#itinerario"
+                <a href="../index.html#roadmap"
                     class="block px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors">Itinerario</a>
                 <a href="primer_cuatrimestre.html" class="block px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors">I
                     Cuatrimestre</a>
@@ -55,11 +55,12 @@
             </div>
         </div>
     </nav>
+    <main>
 
-    <!-- Mini Hero - Primer Cuatrimestre -->
+
   <section class="hero-gradient py-20 pt-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-      <a href="index.html" class="inline-flex items-center gap-1 text-gray-300 hover:text-white text-sm mb-4 transition-colors">
+      <a href="../index.html" class="inline-flex items-center gap-1 text-gray-300 hover:text-white text-sm mb-4 transition-colors">
         <span class="material-symbols-outlined text-base">arrow_back</span> Volver al inicio
       </a>
       <h1 class="text-3xl sm:text-4xl font-extrabold">Primer Cuatrimestre</h1>
@@ -67,7 +68,7 @@
     </div>
   </section>
 
-  <section id="primer-cuatrimestre" class="py-20 bg-white">
+  <section id="first-semester" class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16 fade-in">
         <span class="inline-block px-3 py-1 bg-blue-100 text-blue-700 text-xs font-semibold uppercase tracking-wider rounded-full mb-4">Cuatrimestre I</span>
@@ -75,9 +76,9 @@
         <p class="mt-3 text-gray-500 max-w-2xl mx-auto">Los cimientos del desarrollo de software: Linux, Python, Git, diseno UI/UX</p>
       </div>
 
-      <!-- ========== Diseno UI/UX ========== -->
+
       <div class="mb-8 fade-in">
-        <button data-accordion class="w-full flex items-center justify-between p-6 bg-gradient-to-r from-blue-50 to-blue-100/50 rounded-2xl border border-blue-200 card-hover text-left" aria-expanded="false">
+        <button data-accordion class="w-full flex items-center justify-between p-6 bg-gradient-to-r from-blue-50 to-blue-100/50 rounded-2xl border border-blue-200 lift-card text-left" aria-expanded="false">
           <div class="flex items-center gap-4">
             <span class="material-symbols-outlined text-3xl text-blue-600">design_services</span>
             <div><h3 class="text-xl font-bold text-gray-900">Diseno UI y UX</h3><p class="text-sm text-gray-500">50 horas - Principios de diseno de interfaces y experiencia de usuario</p></div>
@@ -87,7 +88,7 @@
         <div class="subject-content bg-white rounded-b-2xl border-x border-b border-gray-200">
           <div class="p-6 space-y-6">
 
-            <!-- Archivo: diseno_ui_ux_86/diseno_ui_ux.txt -->
+
             <h4 class="text-lg font-bold text-gray-900 border-b pb-2">Teoria: Diseno UI/UX</h4>
             <div class="prose max-w-none text-gray-600">
               <p>El diseno es un proceso de prefiguracion mental, de planificacion creativa en el que se persigue la solucion para un problema en concreto. Abarca aspectos como la forma, la funcionalidad, la operatividad y vida util del producto.</p>
@@ -132,17 +133,17 @@
               </ul>
             </div>
 
-            <!-- PDF: prestamos_taveras.pdf -->
+
             <h5 class="font-semibold text-gray-900 mt-6">Proyecto UX: Sistema de Prestamos (PDF)</h5>
-            <embed src="assets/pdf/prestamos_taveras.pdf" type="application/pdf" class="w-full h-96 rounded-lg border border-gray-200">
+            <embed src="../assets/pdf/prestamos_taveras.pdf" type="application/pdf" class="w-full h-96 rounded-lg border border-gray-200">
 
           </div>
         </div>
       </div>
 
-      <!-- ========== Fundamentos de Programacion en Python ========== -->
+
       <div class="mb-8 fade-in">
-        <button data-accordion class="w-full flex items-center justify-between p-6 bg-gradient-to-r from-blue-50 to-indigo-100/50 rounded-2xl border border-indigo-200 card-hover text-left" aria-expanded="false">
+        <button data-accordion class="w-full flex items-center justify-between p-6 bg-gradient-to-r from-blue-50 to-indigo-100/50 rounded-2xl border border-indigo-200 lift-card text-left" aria-expanded="false">
           <div class="flex items-center gap-4">
             <span class="material-symbols-outlined text-3xl text-blue-600">code</span>
             <div><h3 class="text-xl font-bold text-gray-900">Fundamentos de Programacion en Python</h3><p class="text-sm text-gray-500">60 horas - Logica de programacion con Python</p></div>
@@ -152,7 +153,7 @@
         <div class="subject-content bg-white rounded-b-2xl border-x border-b border-gray-200">
           <div class="p-6 space-y-6">
 
-            <!-- Teoria: fundamentos_programacion_python.txt -->
+
             <h4 class="text-lg font-bold text-gray-900 border-b pb-2">Teoria: Fundamentos de Python</h4>
             <div class="prose max-w-none text-gray-600">
               <p>Python es un lenguaje de programacion de proposito general, interpretado, orientado a objetos, dinamico y multiplataforma. Creado por Guido van Rossum a finales de los ochenta. Se caracteriza por su sintaxis clara y legible. Es un lenguaje de alto nivel que permite desarrollar todo tipo de aplicaciones: web, escritorio, cientificas, inteligencia artificial, etc.</p>
@@ -185,7 +186,7 @@
               <p><strong>Asignacion:</strong> =, +=, -=, *=, /=</p>
             </div>
 
-            <!-- Archivo: variables.py -->
+
             <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">variables.py</h4>
             <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Variable de tipo string
 nombre = "Jeiron"
@@ -207,7 +208,7 @@ print(es_estudiante)
 x, y, z = 10, 20, 30
 print(x, y, z)</code></pre>
 
-            <!-- Archivo: entrada_datos.py -->
+
             <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">entrada_datos.py</h4>
             <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Entrada de datos con input()
 nombre = input("Introduce tu nombre: ")
@@ -219,7 +220,7 @@ print(f"Tienes {edad} anos.")
 altura = float(input("Introduce tu altura: "))
 print(f"Mides {altura} metros.")</code></pre>
 
-            <!-- Archivo: salida_datos.py -->
+
             <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">salida_datos.py</h4>
             <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Salida de datos con print()
 print("Hola Mundo")
@@ -236,7 +237,7 @@ print("Manzana", "Pera", "Naranja", sep=", ")
 print("Hola", end=" ")
 print("Mundo")</code></pre>
 
-            <!-- Archivo: operadores_aritmeticos.py -->
+
             <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">operadores_aritmeticos.py</h4>
             <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Operadores aritmeticos
 a = 10
@@ -258,7 +259,7 @@ print(f"Division entera: {division_entera}")
 print(f"Modulo: {modulo}")
 print(f"Potencia: {potencia}")</code></pre>
 
-            <!-- Archivo: operadores_logicos.py -->
+
             <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">operadores_logicos.py</h4>
             <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Operadores logicos: and, or, not
 a = True
@@ -277,7 +278,7 @@ if edad >= 18 and tiene_licencia:
 else:
     print("No puede conducir")</code></pre>
 
-            <!-- Archivo: operadores_relacionales.py -->
+
             <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">operadores_relacionales.py</h4>
             <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Operadores relacionales
 a = 10
@@ -290,7 +291,7 @@ print(f"{a} < {b}: {a < b}")
 print(f"{a} >= {b}: {a >= b}")
 print(f"{a} <= {b}: {a <= b}")</code></pre>
 
-            <!-- Archivo: condicional_if.py -->
+
             <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">condicional_if.py</h4>
             <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Condicional if
 edad = 18
@@ -300,7 +301,7 @@ if edad >= 18:
 else:
     print("Eres menor de edad")</code></pre>
 
-            <!-- Archivo: condicional_anidada.py -->
+
             <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">condicional_anidada.py</h4>
             <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Condicional anidada
 nota = 85
@@ -316,7 +317,7 @@ elif nota >= 60:
 else:
     print("Reprobado")</code></pre>
 
-            <!-- Archivo: bucle_for.py -->
+
             <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">bucle_for.py</h4>
             <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Bucle for
 # Iterar sobre una lista
@@ -336,7 +337,7 @@ for letra in "Python":
 for i in range(0, 10, 2):
     print(i)</code></pre>
 
-            <!-- Archivo: bucle_while.py -->
+
             <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">bucle_while.py</h4>
             <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Bucle while
 contador = 0
@@ -354,7 +355,7 @@ while True:
         break
     print(i)</code></pre>
 
-            <!-- Archivo: funciones.py -->
+
             <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">funciones.py</h4>
             <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Funciones
 def saludar(nombre):
@@ -371,7 +372,7 @@ print(saludar("Jeiron"))
 print(sumar(10, 5))
 presentar("Jeiron", 25)</code></pre>
 
-            <!-- Archivo: funcion_lambda.py -->
+
             <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">funcion_lambda.py</h4>
             <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Funcion lambda
 sumar = lambda a, b: a + b
@@ -385,7 +386,7 @@ personas = [("Juan", 25), ("Ana", 30), ("Luis", 20)]
 personas_ordenadas = sorted(personas, key=lambda p: p[1])
 print(personas_ordenadas)</code></pre>
 
-            <!-- Archivo: funcion_map.py -->
+
             <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">funcion_map.py</h4>
             <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Funcion map
 numeros = [1, 2, 3, 4, 5]
@@ -400,7 +401,7 @@ nombres = ["juan", "ana", "luis"]
 mayusculas = list(map(convertir_a_mayuscula, nombres))
 print(mayusculas)</code></pre>
 
-            <!-- Archivo: funcion_filter.py -->
+
             <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">funcion_filter.py</h4>
             <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Funcion filter
 numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
@@ -415,7 +416,7 @@ edades = [15, 22, 17, 30, 12, 18]
 mayores = list(filter(es_mayor_de_edad, edades))
 print(mayores)</code></pre>
 
-            <!-- Archivo: funcion_zip.py -->
+
             <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">funcion_zip.py</h4>
             <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Funcion zip
 nombres = ["Juan", "Ana", "Luis"]
@@ -429,7 +430,7 @@ print(combinado)
 diccionario = dict(zip(nombres, edades))
 print(diccionario)</code></pre>
 
-            <!-- Archivo: listas.py -->
+
             <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">listas.py</h4>
             <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Listas
 lista = [1, 2, 3, 4, 5]
@@ -449,7 +450,7 @@ print(lista[1:3])
 print(lista[:3])
 print(lista[2:])</code></pre>
 
-            <!-- Archivo: tuplas.py -->
+
             <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">tuplas.py</h4>
             <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Tuplas - inmutables
 tupla = (1, 2, 3, 4, 5)
@@ -467,7 +468,7 @@ print(a, b, c, d, e)
 print(tupla.count(3))
 print(tupla.index(4))</code></pre>
 
-            <!-- Archivo: diccionario.py -->
+
             <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">diccionario.py</h4>
             <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Diccionarios
 persona = {
@@ -490,7 +491,7 @@ print(persona)
 for clave, valor in persona.items():
     print(f"{clave}: {valor}")</code></pre>
 
-            <!-- Archivo: conjuntos.py -->
+
             <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">conjuntos.py</h4>
             <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Conjuntos (sets)
 conjunto_a = {1, 2, 3, 4, 5}
@@ -507,7 +508,7 @@ conjunto_a.add(6)
 conjunto_a.remove(1)
 print(conjunto_a)</code></pre>
 
-            <!-- Archivo: args_kwargs.py -->
+
             <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">args_kwargs.py</h4>
             <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># *args y **kwargs
 def sumar_todos(*args):
@@ -520,7 +521,7 @@ def mostrar_info(**kwargs):
 print(sumar_todos(1, 2, 3, 4, 5))
 mostrar_info(nombre="Jeiron", edad=25, ciudad="Madrid")</code></pre>
 
-            <!-- Archivo: excepciones.py -->
+
             <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">excepciones.py</h4>
             <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Manejo de excepciones
 try:
@@ -536,7 +537,7 @@ except Exception as e:
 finally:
     print("Bloque finally siempre se ejecuta")</code></pre>
 
-            <!-- Archivo: ambito_variable.py -->
+
             <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">ambito_variable.py</h4>
             <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Ambito de variables
 variable_global = "Soy global"
@@ -556,7 +557,7 @@ def modificar_global():
 modificar_global()
 print(variable_global)</code></pre>
 
-            <!-- Archivo: pilas_stacks.py -->
+
             <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">pilas_stacks.py</h4>
             <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Pilas (Stacks) - LIFO (Last In, First Out)
 pila = []
@@ -575,7 +576,7 @@ print(f"Pila despues de pop: {pila}")
 # Ver tope de la pila
 print(f"Tope de la pila: {pila[-1]}")</code></pre>
 
-            <!-- Archivo: filas_colas.py -->
+
             <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">filas_colas.py</h4>
             <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Colas (Queues) - FIFO (First In, First Out)
 from collections import deque
@@ -593,7 +594,7 @@ elemento = cola.popleft()
 print(f"Elemento desencolado: {elemento}")
 print(f"Cola despues de popleft: {cola}")</code></pre>
 
-            <!-- Archivo: operador_ternario.py -->
+
             <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">operador_ternario.py</h4>
             <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Operador ternario
 edad = 18
@@ -605,7 +606,7 @@ numeros = [1, 2, 3, 4, 5, 6]
 pares_impares = ["Par" if n % 2 == 0 else "Impar" for n in numeros]
 print(pares_impares)</code></pre>
 
-            <!-- Archivo: repaso_python.py -->
+
             <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-6">repaso_python.py</h4>
             <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code># Repaso general de Python
 
@@ -634,7 +635,7 @@ def saludar(nombre):
 
 print(saludar("Jeiron"))</code></pre>
 
-            <!-- ====== EJERCICIOS ====== -->
+
             <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-8">Ejercicios de Tipos de Datos Simples</h4>
 
             <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 1</h5>
@@ -704,7 +705,7 @@ radio = float(input("Radio del circulo: "))
 area = math.pi * radio ** 2
 print(f"Area del circulo: {area:.2f}")</code></pre>
 
-            <!-- Ejercicios Condicionales -->
+
             <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-8">Ejercicios de Condicionales</h4>
 
             <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 1</h5>
@@ -834,7 +835,7 @@ elif (jugador1 == "piedra" and jugador2 == "tijera") or (jugador1 == "papel" and
 else:
     print("Gana Jugador 2")</code></pre>
 
-            <!-- Ejercicios de Bucles -->
+
             <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-8">Ejercicios de Bucles</h4>
 
             <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 1</h5>
@@ -954,7 +955,7 @@ for i in range(1, 11):
         print(f"{i} x {j} = {i * j}")
     print()</code></pre>
 
-            <!-- Ejercicios de Cadenas -->
+
             <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-8">Ejercicios de Cadenas</h4>
 
             <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 1</h5>
@@ -1027,7 +1028,7 @@ if "@" in email and "." in email:
 else:
     print("Email invalido")</code></pre>
 
-            <!-- Ejercicios Listas y Tuplas -->
+
             <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-8">Ejercicios de Listas y Tuplas</h4>
 
             <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 1</h5>
@@ -1114,7 +1115,7 @@ matriz = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 for fila in matriz:
     print(fila)</code></pre>
 
-            <!-- Ejercicios Diccionarios -->
+
             <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-8">Ejercicios de Diccionarios</h4>
 
             <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 1</h5>
@@ -1206,7 +1207,7 @@ if nombre in contactos:
 else:
     print("Contacto no encontrado")</code></pre>
 
-            <!-- Ejercicios Funciones -->
+
             <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-8">Ejercicios de Funciones</h4>
 
             <h5 class="font-semibold text-gray-900 mt-4">Ejercicio 1</h5>
@@ -1246,7 +1247,7 @@ def sumar_todos(*args):
 print(sumar_todos(1, 2, 3, 4, 5))
 print(sumar_todos(10, 20))</code></pre>
 
-            <!-- Ejercicios Tareas -->
+
             <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-8">Ejercicios de Tareas</h4>
 
             <h5 class="font-semibold text-gray-900 mt-4">Tarea 1</h5>
@@ -1316,7 +1317,7 @@ while True:
     elif opcion == "4":
         break</code></pre>
 
-            <!-- Evaluacion Practica Final Python -->
+
             <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-8">Evaluacion Practica Final Python</h4>
 
             <h5 class="font-semibold text-gray-900 mt-4">Evaluacion Final</h5>
@@ -1333,9 +1334,9 @@ while True:
           </div>
         </div>
       </div>
-      <!-- ========== Manejo de Linux ========== -->
+
       <div class="mb-8 fade-in">
-        <button data-accordion class="w-full flex items-center justify-between p-6 bg-gradient-to-r from-blue-50 to-blue-100/50 rounded-2xl border border-blue-200 card-hover text-left" aria-expanded="false">
+        <button data-accordion class="w-full flex items-center justify-between p-6 bg-gradient-to-r from-blue-50 to-blue-100/50 rounded-2xl border border-blue-200 lift-card text-left" aria-expanded="false">
           <div class="flex items-center gap-4">
             <span class="material-symbols-outlined text-3xl text-blue-600">terminal</span>
             <div><h3 class="text-xl font-bold text-gray-900">Manejo de Linux</h3><p class="text-sm text-gray-500">50 horas - Sistema operativo Linux, comandos, shell scripts</p></div>
@@ -1346,46 +1347,46 @@ while True:
           <div class="p-6 space-y-6">
             <h5 class="font-semibold text-gray-900 mt-4">Manejo Linux</h5>
             <div class="prose max-w-none text-gray-600">
-              <p>Concepto de Linux  
-Linux es un sistema operativo compuesto por software libre y de código abierto parecido a Unix, creado por el filandes Linus Torvalds. Su software libre implica que cualquier persona puede ver el código fuente y modificarlo para crear distribuciones que derivan de Linux y usarla en computadoras, servidores, mainframes y dispositivos móviles. Linux como tal es solo un kernel y el sistema está compuesto por una gran cantidad de componentes de terceros, que van desde compiladores hasta entorno de escritorio. 
- 
-Concepto de software libre y gestor de paquete 
-Concepto de software libre 
-Software libre es un software cuyo código fuente puede ser utilizado por cualquier persona y para sus propios fines. El software libre puede ser estudiado, modificado y redistribuido con cambios o mejoras. El software libre es creado por el activista y experto informático Richard Stallman bajo su fundación la free software fundation.</p>              <p>Concepto de gestor de paquete  
-El gestor de paquetes es una interfaz formada por una colección de herramientas que asiste al usuario automatizando los procesos de instalación, actualización, configuración y eliminación de paquete de software.</p>              <p>Tipos de formatos de los paquetes 
-tgz (archivos tar gzip): que básicamente son archivos con el código fuente. Pueden tener todo lo que el responsable del paquete considera útil. Además del formato de archivo propio, necesario para extraer los archivos, no hay nada estándar sobre el contenido de un archivo tgz. Tienen que ser compilados para poder ejecutar el software. 
-Rpm (rpm package manager): que son archivos pre-compilados. Creados por Red Hat Linux y estandarizado por el LSB, se utiliza en la actualidad por muchas distribuciones de Linux como sistema de empaquetado de su software, incluyendo openSUSE. 
-deb: (Debian) Son archivos precompilados utilizados por Debian u otros de los sistemas derivados de este (Ubuntu, Mint, etc.) 
- 
-Núcleo o kernel 
-Núcleo o kernel es el corazón de un sistema operativo que se encargar de medir entre los procesos del usuario y el hardware disponible, es decir le concede el acceso al hardware para el software que lo solicite de manera segura. El kernel es también responsable de los controladores más importantes que pueden acceder directamente al hardware y gestionar sus recursos de la manera más eficiente. 
- 
-El Shell 
-El Shell es un intérprete de comandos de un sistema operativo que provee una interfaz de usuario para acceder a los servicios del sistema, mediante las instrucciones que aporta el intérprete, el usuario puede comunicarse con el núcleo. 
-Shell es cualquier interprete que los usuarios usen para escribir comandos. Los comandos que aportan los intérpretes, pueden usarse a modo de guion si se escriben en ficheros ejecutables denominados Shell-scripts, de este modo, cuando el usuario necesita hacer uso de varios comandos o combinación de comandos con herramientas, escribe en un fichero de texto, marcado como ejecutable, las operaciones que posteriormente, línea por línea, el intérprete traducirá al núcleo para que las realice. 
- 
-Sistema de archivos 
-El sistema de archivos es una estructura de directorios completa que contiene un directorio raíz y un subdirectorio que maneja los archivos y controla como se almacenan y recuperan los datos. Sin un sistema de archivos, los datos colocados en un medio de almacenamiento serían un gran cuerpo de datos sin manera de saber dónde termina un dato y comienza el siguiente. 
-El sistema de archivos le permite al usuario identificar la ubicación de los archivos y poder acceder a ellos de manera segura, también se encarga de administrar y facilitar el uso de las memorias periféricas, la asignación de espacios a los archivos, la administración del espacio libre y del acceso a los datos resguardados. Los sistemas de archivos proveen métodos para crear, mover, renombrar y eliminar tanto archivos como directorios. 
- 
-Diferencia de Linux con otros sistemas operativos 
-La principal diferencia es que Linux es libre y gratis, mientras que los 
-demás son privativos y de pago. Linux necesita un menor mantenimiento ante los demás sistemas operativos. Linux es más seguro ya que es libre y cualquiera puede tener acceso a su código fuente y modificarlo como quiera, en cambio Windows es más atacado por los hackers. 
-Linux es multitarea real, multiusuario y posee un esquema de seguridad donde los usuarios son los que dan permiso de lectura, escritura y ejecución a los archivos y directorios. Ante Mac, Linux es más simple en cuanto a control para los usuarios. 
- 
-Estructura de directorios 
-La estructura de directorios suele ser la de un árbol, dentro de ese árbol los directorios se ordenan de forma jerárquica. Cada directorio puede tener uno o más subdirectorios. En cada subdirectorio podemos encontrar ficheros con idéntico nombre, también en algunos sistemas está permitido que un mismo fichero este en varios directorios. 
-/dev, Contiene archivos especiales para dispositivos de E/S. 
-/etc, Contiene archivos para la inicialización del sistema y la gestión del sistema. 
-/home, Contiene directorios de inicio de sesión para los usuarios del sistema. 
-/tmp, Contiene archivos que son temporales y que se suprimen automáticamente después de un número especificado de días. 
-/usr, Contiene lpp, include y otros directorios del sistema. 
-/usr/bin, Contiene programas ejecutables de usuario. 
-  
-Interprete de comandos 
-Un intérprete de comandos es un programa informático que tiene la capacidad de traducir las órdenes que introducen los usuarios, mediante un conjunto de instrucciones facilitadas por el mismo directamente al núcleo y al conjunto de herramientas que forman el sistema operativo. El intérprete de comando permite la comunicación entre el sistema y el usuario. 
- 
-Existen muchos intérpretes de comandos: 
+              <p>Concepto de Linux
+Linux es un sistema operativo compuesto por software libre y de código abierto parecido a Unix, creado por el filandes Linus Torvalds. Su software libre implica que cualquier persona puede ver el código fuente y modificarlo para crear distribuciones que derivan de Linux y usarla en computadoras, servidores, mainframes y dispositivos móviles. Linux como tal es solo un kernel y el sistema está compuesto por una gran cantidad de componentes de terceros, que van desde compiladores hasta entorno de escritorio.
+
+Concepto de software libre y gestor de paquete
+Concepto de software libre
+Software libre es un software cuyo código fuente puede ser utilizado por cualquier persona y para sus propios fines. El software libre puede ser estudiado, modificado y redistribuido con cambios o mejoras. El software libre es creado por el activista y experto informático Richard Stallman bajo su fundación la free software fundation.</p>              <p>Concepto de gestor de paquete
+El gestor de paquetes es una interfaz formada por una colección de herramientas que asiste al usuario automatizando los procesos de instalación, actualización, configuración y eliminación de paquete de software.</p>              <p>Tipos de formatos de los paquetes
+tgz (archivos tar gzip): que básicamente son archivos con el código fuente. Pueden tener todo lo que el responsable del paquete considera útil. Además del formato de archivo propio, necesario para extraer los archivos, no hay nada estándar sobre el contenido de un archivo tgz. Tienen que ser compilados para poder ejecutar el software.
+Rpm (rpm package manager): que son archivos pre-compilados. Creados por Red Hat Linux y estandarizado por el LSB, se utiliza en la actualidad por muchas distribuciones de Linux como sistema de empaquetado de su software, incluyendo openSUSE.
+deb: (Debian) Son archivos precompilados utilizados por Debian u otros de los sistemas derivados de este (Ubuntu, Mint, etc.)
+
+Núcleo o kernel
+Núcleo o kernel es el corazón de un sistema operativo que se encargar de medir entre los procesos del usuario y el hardware disponible, es decir le concede el acceso al hardware para el software que lo solicite de manera segura. El kernel es también responsable de los controladores más importantes que pueden acceder directamente al hardware y gestionar sus recursos de la manera más eficiente.
+
+El Shell
+El Shell es un intérprete de comandos de un sistema operativo que provee una interfaz de usuario para acceder a los servicios del sistema, mediante las instrucciones que aporta el intérprete, el usuario puede comunicarse con el núcleo.
+Shell es cualquier interprete que los usuarios usen para escribir comandos. Los comandos que aportan los intérpretes, pueden usarse a modo de guion si se escriben en ficheros ejecutables denominados Shell-scripts, de este modo, cuando el usuario necesita hacer uso de varios comandos o combinación de comandos con herramientas, escribe en un fichero de texto, marcado como ejecutable, las operaciones que posteriormente, línea por línea, el intérprete traducirá al núcleo para que las realice.
+
+Sistema de archivos
+El sistema de archivos es una estructura de directorios completa que contiene un directorio raíz y un subdirectorio que maneja los archivos y controla como se almacenan y recuperan los datos. Sin un sistema de archivos, los datos colocados en un medio de almacenamiento serían un gran cuerpo de datos sin manera de saber dónde termina un dato y comienza el siguiente.
+El sistema de archivos le permite al usuario identificar la ubicación de los archivos y poder acceder a ellos de manera segura, también se encarga de administrar y facilitar el uso de las memorias periféricas, la asignación de espacios a los archivos, la administración del espacio libre y del acceso a los datos resguardados. Los sistemas de archivos proveen métodos para crear, mover, renombrar y eliminar tanto archivos como directorios.
+
+Diferencia de Linux con otros sistemas operativos
+La principal diferencia es que Linux es libre y gratis, mientras que los
+demás son privativos y de pago. Linux necesita un menor mantenimiento ante los demás sistemas operativos. Linux es más seguro ya que es libre y cualquiera puede tener acceso a su código fuente y modificarlo como quiera, en cambio Windows es más atacado por los hackers.
+Linux es multitarea real, multiusuario y posee un esquema de seguridad donde los usuarios son los que dan permiso de lectura, escritura y ejecución a los archivos y directorios. Ante Mac, Linux es más simple en cuanto a control para los usuarios.
+
+Estructura de directorios
+La estructura de directorios suele ser la de un árbol, dentro de ese árbol los directorios se ordenan de forma jerárquica. Cada directorio puede tener uno o más subdirectorios. En cada subdirectorio podemos encontrar ficheros con idéntico nombre, también en algunos sistemas está permitido que un mismo fichero este en varios directorios.
+/dev, Contiene archivos especiales para dispositivos de E/S.
+/etc, Contiene archivos para la inicialización del sistema y la gestión del sistema.
+/home, Contiene directorios de inicio de sesión para los usuarios del sistema.
+/tmp, Contiene archivos que son temporales y que se suprimen automáticamente después de un número especificado de días.
+/usr, Contiene lpp, include y otros directorios del sistema.
+/usr/bin, Contiene programas ejecutables de usuario.
+
+Interprete de comandos
+Un intérprete de comandos es un programa informático que tiene la capacidad de traducir las órdenes que introducen los usuarios, mediante un conjunto de instrucciones facilitadas por el mismo directamente al núcleo y al conjunto de herramientas que forman el sistema operativo. El intérprete de comando permite la comunicación entre el sistema y el usuario.
+
+Existen muchos intérpretes de comandos:
 Unix: Korn Shell (ksh), C Shell (csh), Bourne Shell (sh), Bourne Again Shell (bash), Tcsh, Z Shell (zsh); Windows: command.com, cmd.exe, MSH Windows PowerShell.</p>
             </div>
 
@@ -1428,7 +1429,7 @@ esac</code></pre>
             <pre class="bg-gray-900 text-green-400 p-4 rounded-xl overflow-x-auto text-sm leading-relaxed"><code>#!/bin/bash
 for i in {A..Z};
 do
-echo "$i" 
+echo "$i"
 done</code></pre>
 
             <h5 class="font-semibold text-gray-900 mt-4">mayor</h5>
@@ -1557,9 +1558,9 @@ devuelva el residuo.</p>
         </div>
       </div>
 
-      <!-- ========== Sistemas de Control de Versiones (Git/GitHub) ========== -->
+
       <div class="mb-8 fade-in">
-        <button data-accordion class="w-full flex items-center justify-between p-6 bg-gradient-to-r from-blue-50 to-blue-100/50 rounded-2xl border border-blue-200 card-hover text-left" aria-expanded="false">
+        <button data-accordion class="w-full flex items-center justify-between p-6 bg-gradient-to-r from-blue-50 to-blue-100/50 rounded-2xl border border-blue-200 lift-card text-left" aria-expanded="false">
           <div class="flex items-center gap-4">
             <span class="material-symbols-outlined text-3xl text-blue-600">commit</span>
             <div><h3 class="text-xl font-bold text-gray-900">Sistemas de Control de Versiones (Git/GitHub)</h3><p class="text-sm text-gray-500">50 horas - Git, GitHub, control de versiones</p></div>
@@ -1570,49 +1571,49 @@ devuelva el residuo.</p>
           <div class="p-6 space-y-6">
             <h5 class="font-semibold text-gray-900 mt-4">Sistema Control Versiones Git Github</h5>
             <div class="prose max-w-none text-gray-600">
-              <p>Concepto de sistema de control de versiones 
-Los sistemas de control de versiones son software que permite hacer seguimientos a cambios realizados a un código de un proyecto que mientras se edita el código, el sistema de control de versiones toma instantánea de los archivos. Estos softwares ayudan a grupos de desarrolladores a gestionar los cambios de un código fuente y que todos puedan darle seguimiento al trabajo de cada uno y así poder aportar a su propio trabajo como al de los demás.  Las versiones de los proyectos están sujetas a una revisión y edición viendo así el estado en el que se encuentran. Los sistemas de control de versiones cuentan con repositorio local y remoto. En el local los cambios no se comparten con nadie y el remoto donde el código es encontrado en un servidor.</p>              <p>Concepto de Git 
-Git es un sistema de control de versiones distribuido creado por Linus Torvalds, que se ha convertido en el control de versiones más popular y usado. Git es distribuido lo que significa que un clon local del proyecto es un repositorio de control de versiones completo.  Git fue creado para ser eficiente, confiable y compatible, su propósito es llevar registros de los cambios en archivos de un proyecto.  Git almacena y maneja la información de forma muy diferente a otros sistemas, a pesar de que su interfaz de usuario es bastante similar. Git cuenta con tres secciones principales de un proyecto: el directorio de Git (Git directory), el directorio de trabajo (working directory) y el área de preparación (staging area).</p>              <p>Concepto de GitHub 
-GitHub es una plataforma de desarrollo colaborativo para alojar proyectos utilizando el sistema de control de versiones Git. GitHub permite que los desarrolladores alojen proyectos creando repositorio de forma gratuita, pero para subir gratis los proyectos deberán ser de código abierto. GitHub ofrece una serie de herramientas propias como la opción de poder crear una wiki para cada proyecto, también tiene un sistema de seguimiento de problemas, para que otras personas puedan hacer mejoras, sugerencias y optimizaciones en los proyectos, también ofrece una herramienta de revisión de código para así dejar anotaciones para que el proyecto pueda ser revisado por ti o los demás y por último se pueden crear discusiones alrededor de las anotaciones para mejorar y optimizar el código.</p>              <p>Comandos básicos de Git  
+              <p>Concepto de sistema de control de versiones
+Los sistemas de control de versiones son software que permite hacer seguimientos a cambios realizados a un código de un proyecto que mientras se edita el código, el sistema de control de versiones toma instantánea de los archivos. Estos softwares ayudan a grupos de desarrolladores a gestionar los cambios de un código fuente y que todos puedan darle seguimiento al trabajo de cada uno y así poder aportar a su propio trabajo como al de los demás.  Las versiones de los proyectos están sujetas a una revisión y edición viendo así el estado en el que se encuentran. Los sistemas de control de versiones cuentan con repositorio local y remoto. En el local los cambios no se comparten con nadie y el remoto donde el código es encontrado en un servidor.</p>              <p>Concepto de Git
+Git es un sistema de control de versiones distribuido creado por Linus Torvalds, que se ha convertido en el control de versiones más popular y usado. Git es distribuido lo que significa que un clon local del proyecto es un repositorio de control de versiones completo.  Git fue creado para ser eficiente, confiable y compatible, su propósito es llevar registros de los cambios en archivos de un proyecto.  Git almacena y maneja la información de forma muy diferente a otros sistemas, a pesar de que su interfaz de usuario es bastante similar. Git cuenta con tres secciones principales de un proyecto: el directorio de Git (Git directory), el directorio de trabajo (working directory) y el área de preparación (staging area).</p>              <p>Concepto de GitHub
+GitHub es una plataforma de desarrollo colaborativo para alojar proyectos utilizando el sistema de control de versiones Git. GitHub permite que los desarrolladores alojen proyectos creando repositorio de forma gratuita, pero para subir gratis los proyectos deberán ser de código abierto. GitHub ofrece una serie de herramientas propias como la opción de poder crear una wiki para cada proyecto, también tiene un sistema de seguimiento de problemas, para que otras personas puedan hacer mejoras, sugerencias y optimizaciones en los proyectos, también ofrece una herramienta de revisión de código para así dejar anotaciones para que el proyecto pueda ser revisado por ti o los demás y por último se pueden crear discusiones alrededor de las anotaciones para mejorar y optimizar el código.</p>              <p>Comandos básicos de Git
 git add -&gt; agregar contenido de archivo al índice.
 git am -&gt; aplicar una serie de parches desde un buzón.
 git archive -&gt; crear un archivo de archivos a partir de un árbol con nombre.
-git bisect -&gt; use la búsqueda binaria para encontrar la confirmación que introdujo un error.  
-git branch -&gt; enumerar, crear o eliminar sucursales. 
-git bundle -&gt; mover objetos y referencias por archivo.  
-git checkout -&gt; cambie de rama o restaure los archivos del árbol de trabajo.  
-git cherry pick -&gt; aplicar los cambios introducidos por algunos commits existentes.  
-git citool -&gt; alternativa gráfica a git commit.  
-git clean -&gt; eliminar archivos sin seguimiento del árbol de trabajo  git clon -&gt; clonar un repositorio en un nuevo directorio.  
-git commit -&gt; registrar cambios en el repositorio.  
-git describe -&gt; dar a un objeto un nombre legible por humanos basado en una referencia disponible.  
-git diff -&gt; Mostrar cambios entre confirmaciones, confirmación y árbol de trabajo, etc.  
-git fetch -&gt; descargar objetos y referencias de otro repositorio.  
-git format patch -&gt; preparar parches para enviar por correo electrónico.  
-git gc -&gt; limpie archivos innecesarios y optimice el repositorio local.  
-git grep -&gt; imprimir líneas que coincidan con un patrón.  
-git gui -&gt; una interfaz gráfica portátil para Git.  
-git init -&gt; cree un repositorio Git vacío o reinicie uno existente.  git log -&gt; mostrar registros de confirmación.  
-git maintenance -&gt; ejecute tareas para optimizar los datos del repositorio de Git.  
-git merge -&gt; unir dos o más historias de desarrollo juntas.  
-git mv -&gt; mover o cambiar el nombre de un archivo, un directorio o un enlace simbólico.  
-git notes -&gt; agregar o inspeccionar notas de objetos.  
-git pull -&gt; obtenga e integre con otro repositorio o una sucursal local.  
+git bisect -&gt; use la búsqueda binaria para encontrar la confirmación que introdujo un error.
+git branch -&gt; enumerar, crear o eliminar sucursales.
+git bundle -&gt; mover objetos y referencias por archivo.
+git checkout -&gt; cambie de rama o restaure los archivos del árbol de trabajo.
+git cherry pick -&gt; aplicar los cambios introducidos por algunos commits existentes.
+git citool -&gt; alternativa gráfica a git commit.
+git clean -&gt; eliminar archivos sin seguimiento del árbol de trabajo  git clon -&gt; clonar un repositorio en un nuevo directorio.
+git commit -&gt; registrar cambios en el repositorio.
+git describe -&gt; dar a un objeto un nombre legible por humanos basado en una referencia disponible.
+git diff -&gt; Mostrar cambios entre confirmaciones, confirmación y árbol de trabajo, etc.
+git fetch -&gt; descargar objetos y referencias de otro repositorio.
+git format patch -&gt; preparar parches para enviar por correo electrónico.
+git gc -&gt; limpie archivos innecesarios y optimice el repositorio local.
+git grep -&gt; imprimir líneas que coincidan con un patrón.
+git gui -&gt; una interfaz gráfica portátil para Git.
+git init -&gt; cree un repositorio Git vacío o reinicie uno existente.  git log -&gt; mostrar registros de confirmación.
+git maintenance -&gt; ejecute tareas para optimizar los datos del repositorio de Git.
+git merge -&gt; unir dos o más historias de desarrollo juntas.
+git mv -&gt; mover o cambiar el nombre de un archivo, un directorio o un enlace simbólico.
+git notes -&gt; agregar o inspeccionar notas de objetos.
+git pull -&gt; obtenga e integre con otro repositorio o una sucursal local.
  git push -&gt; actualizar referencias remotas junto con objetos asociados.
-git range diff -&gt; compara dos rangos de confirmación (por ejemplo, dos versiones de una rama).  
-git rebase -&gt; vuelva a aplicar compromisos encima de otro consejo base.  
+git range diff -&gt; compara dos rangos de confirmación (por ejemplo, dos versiones de una rama).
+git rebase -&gt; vuelva a aplicar compromisos encima de otro consejo base.
 git reset -&gt; restablecer HEAD actual al estado especificado.
-git restore -&gt; restaurar archivos de árbol de trabajo.  
-git rever -&gt; revertir algunas confirmaciones existentes.  
-git rm -&gt; eliminar archivos del árbol de trabajo y del índice.  
-git shortlog -&gt; resumir la salida del registro de git.  git show -&gt; mostrar varios tipos de objetos.  
-git sparse checkout -&gt; reduzca su árbol de trabajo a un subconjunto de archivos rastreados.  
-git stash -&gt; guarde los cambios en un directorio de trabajo sucio.  
-git status -&gt; mostrar el estado del árbol de trabajo.  
-git submodule -&gt; inicializar, actualizar o inspeccionar submódulos.  
-git switch -&gt; cambiar de sucursal.  
-git tag -&gt; cree, enumere, elimine o verifique un objeto de etiqueta firmado con GPG.  
-git worktree -&gt; administrar múltiples árboles de trabajo.  
+git restore -&gt; restaurar archivos de árbol de trabajo.
+git rever -&gt; revertir algunas confirmaciones existentes.
+git rm -&gt; eliminar archivos del árbol de trabajo y del índice.
+git shortlog -&gt; resumir la salida del registro de git.  git show -&gt; mostrar varios tipos de objetos.
+git sparse checkout -&gt; reduzca su árbol de trabajo a un subconjunto de archivos rastreados.
+git stash -&gt; guarde los cambios en un directorio de trabajo sucio.
+git status -&gt; mostrar el estado del árbol de trabajo.
+git submodule -&gt; inicializar, actualizar o inspeccionar submódulos.
+git switch -&gt; cambiar de sucursal.
+git tag -&gt; cree, enumere, elimine o verifique un objeto de etiqueta firmado con GPG.
+git worktree -&gt; administrar múltiples árboles de trabajo.
 gitk -&gt; el navegador del repositorio Git.
 escalar -&gt; una herramienta para gestionar grandes repositorios Git .</p>
             </div>
@@ -1620,51 +1621,51 @@ escalar -&gt; una herramienta para gestionar grandes repositorios Git .</p>
             <h4 class="text-lg font-bold text-gray-900 border-b pb-2 mt-8">Practica Final Git</h4>
             <h5 class="font-semibold text-gray-900 mt-4">Practicas Git Final</h5>
             <div class="prose max-w-none text-gray-600">
-              <p>INSTITUTO NACIONAL DE FORMACIÓN TÉCNICO PROFESIONAL 
-INFOTEP 
-TÉCNICO EN DISEÑO Y CREACIÓN DE SOFTWARE 
-PRÁCTICAS GIT &amp; GITHUB 
- 
-Ejercicio 1: 
-    1. Configurar Git definiendo el nombre del usuario y el correo electrónico. Mostrar la configuración final. 
-    2. Crear un repositorio nuevo con el nombre menú y mostrar su contenido. 
-    3. Comprobar el estado del repositorio. 
-    4. Crear un archivo platos.txt con el siguiente contenido: 
-        ◦ Arroz con camarones 
-        ◦ Mofongo clásico 
-        ◦ Costillitas a la BBQ 
-    5. Comprobar de nuevo el estado del repositorio 
-    6. Añadir el archivo a la zona de intercambio temporal 
-    7. Volver a comprobar una vez más el estado del repositorio 
-    8. Realizar un commit de los últimos cambios con el mensaje “Agregado los platos al menú” 9. Mostrar su estado. 
-    10. Modificar el archivo platos.txt con el siguiente contenido: 
-        ◦ Arroz con camarones 
-        ◦ Mofongo clásico 
-        ◦ Yuca con Chicharrón 
-        ◦ Costillitas a la BBQ 
-    11. Mostrar los cambios con respecto a la última versión guardada en el repositorio. 
-    12. Hacer un commit de los cambios con el mensaje “Agregado Yuca con Chicharrón al menú” 13. Mostrar el historial de cambios del repositorio 
-    14. Crear la carpeta entradas y dentro de ella el archivo aperitivos.txt con el siguiente contenido:  Palitos de queso 
-        ◦ Sopa de hueso 
-    15. Añadir los cambios a la zona de intercambio temporal 
-    16. Hacer un commit de los cambios con el mensaje “Agregados aperitivos” 
-    17. Mostrar de nuevo el historial de cambios del repositorio 
-    18. Crear una nueva rama con el nombre menu2 y mostrar las ramas existentes 
-    19. Crear el archivo pizzas.txt con el siguiente contenido: 
-        ◦ Pizza con Pepperoni 
-        ◦ Pizza jamón y queso 
-    20. Añadir los cambios a la zona de intercambio temporal 
-    21. Hacer un commit con el mensaje “Pizzas agregadas” 
-    22. Mostrar el historial del repositorio incluyendo todas sus ramas. 
-    23. Cambiar a la rama menu2 
-    24. Agregar el archivo hamburguesas.txt con el siguiente contenido: 
-        ◦ Hamburguesa de pollo 
-        ◦ Cheeseburguer 
-    25. Añadir los cambios a la zona de intercambio temporal 
-    26. Hacer un commit con el mensaje “Hamburguesas agregadas” 27. Mostrar el historial del repositorio incluyendo todas las ramas 
-    28. Fusionar la rama menu2 con la rama menu. 
-    29. Mostrar el historial del repositorio incluyendo todas las ramas 
-    30. Eliminar la rama menu2 
+              <p>INSTITUTO NACIONAL DE FORMACIÓN TÉCNICO PROFESIONAL
+INFOTEP
+TÉCNICO EN DISEÑO Y CREACIÓN DE SOFTWARE
+PRÁCTICAS GIT &amp; GITHUB
+
+Ejercicio 1:
+    1. Configurar Git definiendo el nombre del usuario y el correo electrónico. Mostrar la configuración final.
+    2. Crear un repositorio nuevo con el nombre menú y mostrar su contenido.
+    3. Comprobar el estado del repositorio.
+    4. Crear un archivo platos.txt con el siguiente contenido:
+        ◦ Arroz con camarones
+        ◦ Mofongo clásico
+        ◦ Costillitas a la BBQ
+    5. Comprobar de nuevo el estado del repositorio
+    6. Añadir el archivo a la zona de intercambio temporal
+    7. Volver a comprobar una vez más el estado del repositorio
+    8. Realizar un commit de los últimos cambios con el mensaje “Agregado los platos al menú” 9. Mostrar su estado.
+    10. Modificar el archivo platos.txt con el siguiente contenido:
+        ◦ Arroz con camarones
+        ◦ Mofongo clásico
+        ◦ Yuca con Chicharrón
+        ◦ Costillitas a la BBQ
+    11. Mostrar los cambios con respecto a la última versión guardada en el repositorio.
+    12. Hacer un commit de los cambios con el mensaje “Agregado Yuca con Chicharrón al menú” 13. Mostrar el historial de cambios del repositorio
+    14. Crear la carpeta entradas y dentro de ella el archivo aperitivos.txt con el siguiente contenido:  Palitos de queso
+        ◦ Sopa de hueso
+    15. Añadir los cambios a la zona de intercambio temporal
+    16. Hacer un commit de los cambios con el mensaje “Agregados aperitivos”
+    17. Mostrar de nuevo el historial de cambios del repositorio
+    18. Crear una nueva rama con el nombre menu2 y mostrar las ramas existentes
+    19. Crear el archivo pizzas.txt con el siguiente contenido:
+        ◦ Pizza con Pepperoni
+        ◦ Pizza jamón y queso
+    20. Añadir los cambios a la zona de intercambio temporal
+    21. Hacer un commit con el mensaje “Pizzas agregadas”
+    22. Mostrar el historial del repositorio incluyendo todas sus ramas.
+    23. Cambiar a la rama menu2
+    24. Agregar el archivo hamburguesas.txt con el siguiente contenido:
+        ◦ Hamburguesa de pollo
+        ◦ Cheeseburguer
+    25. Añadir los cambios a la zona de intercambio temporal
+    26. Hacer un commit con el mensaje “Hamburguesas agregadas” 27. Mostrar el historial del repositorio incluyendo todas las ramas
+    28. Fusionar la rama menu2 con la rama menu.
+    29. Mostrar el historial del repositorio incluyendo todas las ramas
+    30. Eliminar la rama menu2
     31. Mostrar de nuevo el historial del repositorio incluyendo todas las ramas.</p>
             </div>
 
@@ -1675,9 +1676,11 @@ Ejercicio 1:
     </div>
   </section>
 
-  <!-- ======================================================================== -->
-  <!-- SEGUNDO CUATRIMESTRE                                                   -->
-  <!-- ======================================================================== -->
+
+
+
+
+    </main>
 
   <footer class="bg-gray-900 text-white py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1711,7 +1714,7 @@ Ejercicio 1:
         </div>
     </footer>
 
-    <script src="js/app.js"></script>
+    <script src="../js/app.js"></script>
 </body>
 
 </html>
