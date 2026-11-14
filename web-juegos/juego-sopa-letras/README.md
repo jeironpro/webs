@@ -8,7 +8,7 @@ Sopa de letras en el navegador: encuentra todas las palabras de la lista ocultas
 - Selección de las letras con el ratón o la pantalla táctil para marcar una palabra.
 - Barra de progreso y contador de palabras encontradas.
 - Modal de victoria al completar todas las palabras de la sopa.
-- Sopas de letras cargadas desde `json/sopas_letras.json`.
+- Sopas de letras cargadas desde `data/sopas_letras.json`.
 
 ## Tecnologías
 
@@ -34,5 +34,6 @@ juego-sopa-letras/
 ```
 
 ## Licencia
+
 Este proyecto está bajo la licencia **MIT**.  
 Consulta el archivo [LICENSE](LICENSE) para más detalles.

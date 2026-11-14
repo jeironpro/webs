@@ -2,11 +2,11 @@
 
 ## C01 · Jugar una partida
 
-| Campo | Valor |
-|---|---|
-| Actor | Visitante del sitio |
+| Campo        | Valor                                         |
+| ------------ | --------------------------------------------- |
+| Actor        | Visitante del sitio                           |
 | Precondición | Página cargada con un número secreto generado |
-| Disparador | El usuario escribe su primera suposición |
+| Disparador   | El usuario escribe su primera suposición      |
 
 **Flujo principal**
 
@@ -22,9 +22,9 @@
 
 ## C02 · Suposición fuera de rango
 
-| Campo | Valor |
-|---|---|
-| Actor | Visitante del sitio |
+| Campo      | Valor                                 |
+| ---------- | ------------------------------------- |
+| Actor      | Visitante del sitio                   |
 | Disparador | El usuario escribe un valor no válido |
 
 **Flujo alternativo**
@@ -37,9 +37,9 @@
 
 ## C03 · Nuevo juego
 
-| Campo | Valor |
-|---|---|
-| Actor | Visitante del sitio |
+| Campo      | Valor                                     |
+| ---------- | ----------------------------------------- |
+| Actor      | Visitante del sitio                       |
 | Disparador | El usuario pulsa el botón **Nuevo juego** |
 
 **Flujo principal**
@@ -53,9 +53,9 @@
 
 ## C04 · Mejorar el récord
 
-| Campo | Valor |
-|---|---|
-| Actor | Visitante del sitio |
+| Campo        | Valor                                       |
+| ------------ | ------------------------------------------- |
+| Actor        | Visitante del sitio                         |
 | Precondición | Existe un récord guardado en `localStorage` |
 
 **Flujo principal**

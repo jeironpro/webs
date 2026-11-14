@@ -234,7 +234,7 @@ function rellenarStats() {
 }
 
 async function iniciar() {
-    const respuesta = await fetch("./assets/projects.json");
+    const respuesta = await fetch("./data/projects.json");
     const datos = await respuesta.json();
     estado.juegos = datos.juegos;
     estado.generos = [...new Set(estado.juegos.flatMap((j) => j.categorias))];
@@ -277,8 +277,7 @@ async function iniciar() {
     renderizar();
 }
 
-iniciar().catch((error) => {
+iniciar().catch(() => {
     elGraella.replaceChildren();
     elComptador.textContent = "No se pudo cargar el catálogo.";
-    console.error(error);
 });

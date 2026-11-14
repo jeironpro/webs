@@ -15,7 +15,7 @@ import {
     Scene,
     SRGBColorSpace,
     SphereGeometry,
-} from "three/webgpu";
+} from "../../vendor/three/three.webgpu.js";
 import { crearAzar } from "./utilidades.js";
 
 export function crearEscena() {
@@ -26,14 +26,10 @@ export function crearEscena() {
     const ambiente = new HemisphereLight(0x8aa6ff, 0x141d33, 2.3);
     escena.add(ambiente);
 
-    // Relleno sin sombras desde el lado opuesto: separa el coche del asfalto en
-    // las curvas donde la luz principal queda de espaldas.
     const relleno = new DirectionalLight(0x6f8bff, 0.9);
     relleno.position.set(-140, 90, -120);
     escena.add(relleno);
 
-    // Luz direccional sin sombras: el coche lleva su propia sombra de contacto
-    // y así el asfalto no recibe auto-sombreado.
     const luna = new DirectionalLight(0xcfe0ff, 3.4);
     luna.position.set(60, 95, 40);
     escena.add(luna);
@@ -75,11 +71,7 @@ function crearEstrellas() {
     for (let i = 0; i < cantidad; i += 1) {
         const angulo = azar() * Math.PI * 2;
         const radio = 520 + azar() * 320;
-        matriz.position.set(
-            Math.cos(angulo) * radio,
-            90 + azar() * 300,
-            Math.sin(angulo) * radio
-        );
+        matriz.position.set(Math.cos(angulo) * radio, 90 + azar() * 300, Math.sin(angulo) * radio);
         const escala = 0.6 + azar() * 1.4;
         matriz.scale.setScalar(escala);
         matriz.updateMatrix();
@@ -90,11 +82,6 @@ function crearEstrellas() {
     return estrellas;
 }
 
-/**
- * Fachada procedural en dos mapas: el muro con sus ventanas apagadas y, aparte,
- * solo las ventanas encendidas. Así la emisión ilumina únicamente los huecos y
- * el edificio no se convierte en una masa beige al alejarse la cámara.
- */
 function texturaFachada() {
     const azar = crearAzar(53);
     const ancho = 128;
@@ -113,11 +100,9 @@ function texturaFachada() {
     emision.fillStyle = "#000000";
     emision.fillRect(0, 0, ancho, alto);
 
-    // Rejilla de 5x5 ventanas por baldosa: huecos grandes y separados, para que
-    // la fachada se lea como un edificio y no como una trama de puntos.
     for (let fila = 0; fila < 5; fila += 1) {
         const y = 5 + fila * 26;
-        // Losa de forjado entre plantas: da escala al edificio.
+
         contexto.fillStyle = "#1e2b44";
         contexto.fillRect(0, y - 4, ancho, 2);
 

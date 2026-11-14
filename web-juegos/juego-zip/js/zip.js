@@ -99,8 +99,6 @@ function avisarGuardado() {
     }, 1400);
 }
 
-/* Récords ------------------------------------------------------------- */
-
 function leerRecords() {
     return leer(CLAVE_RECORDS) || {};
 }
@@ -146,8 +144,6 @@ function guardarRecord(ms) {
     return records[estado.n].mejor;
 }
 
-/* Progreso ------------------------------------------------------------ */
-
 function guardarProgreso() {
     if (!estado.tablero || estado.resuelto) return;
     const ms = estado.arranque ? Date.now() - estado.arranque : estado.transcurrido;
@@ -165,7 +161,7 @@ function borrarProgreso() {
     try {
         localStorage.removeItem(CLAVE_PROGRESO);
     } catch {
-        /* sin almacenamiento */
+        void 0;
     }
 }
 
@@ -223,8 +219,6 @@ function restaurarProgreso() {
     return true;
 }
 
-/* Reloj --------------------------------------------------------------- */
-
 function pintarReloj() {
     elTiempo.textContent = formatearTiempo(estado.arranque ? Date.now() - estado.arranque : 0);
 }
@@ -249,8 +243,6 @@ function reiniciarReloj() {
     estado.transcurrido = 0;
     elTiempo.textContent = "0:00";
 }
-
-/* Tablero ------------------------------------------------------------- */
 
 function construirTablero() {
     const { n, numeros, muros: listaMuros } = estado.tablero;
@@ -337,9 +329,7 @@ function pintarCamino() {
         celdas[cabeza].classList.add("celda--cabeza");
         elCamino.setAttribute(
             "points",
-            camino
-                .map((i) => `${(i % n) * 100 + 50},${Math.floor(i / n) * 100 + 50}`)
-                .join(" ")
+            camino.map((i) => `${(i % n) * 100 + 50},${Math.floor(i / n) * 100 + 50}`).join(" ")
         );
         elCabeza.setAttribute("cx", String((cabeza % n) * 100 + 50));
         elCabeza.setAttribute("cy", String(Math.floor(cabeza / n) * 100 + 50));
@@ -357,8 +347,6 @@ function pintarCamino() {
     elBarra.setAttribute("aria-valuemax", String(total));
     elBarra.setAttribute("aria-valuenow", String(camino.length));
 }
-
-/* Partida ------------------------------------------------------------- */
 
 function ganar() {
     estado.resuelto = true;
@@ -500,8 +488,6 @@ function arrancar(n = estado.n) {
     avisar(PISTA, 0);
 }
 
-/* Eventos ------------------------------------------------------------- */
-
 elTablero.addEventListener("pointerdown", (evento) => {
     if (evento.button !== undefined && evento.button !== 0) return;
     const celda = evento.target.closest?.(".celda");
@@ -512,7 +498,7 @@ elTablero.addEventListener("pointerdown", (evento) => {
     try {
         elTablero.setPointerCapture(evento.pointerId);
     } catch {
-        /* puntero sintético o ya liberado */
+        void 0;
     }
     moverA(Number(celda.dataset.i));
 });
@@ -579,7 +565,7 @@ $("#olvidar").addEventListener("click", () => {
         localStorage.removeItem(CLAVE_PROGRESO);
         localStorage.removeItem(CLAVE_RECORDS);
     } catch {
-        /* sin almacenamiento */
+        void 0;
     }
     estado.resuelto = false;
     arrancar(estado.n);
@@ -597,11 +583,9 @@ document.addEventListener("keydown", (evento) => {
     if (evento.key === "Escape" && !elModal.hidden) elModal.hidden = true;
 });
 
-/* Arranque ------------------------------------------------------------ */
-
 async function iniciar() {
     try {
-        const respuesta = await fetch("json/tableros.json");
+        const respuesta = await fetch("data/tableros.json");
         if (!respuesta.ok) throw new Error(`HTTP ${respuesta.status}`);
         const datos = await respuesta.json();
         biblioteca = Array.isArray(datos.tableros) ? datos.tableros : [];
@@ -617,8 +601,7 @@ async function iniciar() {
         } else {
             pintarRecords();
         }
-    } catch (error) {
-        console.error("Zip:", error);
+    } catch {
         elEstado.textContent = "No se pudieron cargar los tableros. Recarga la página.";
         elBiblioteca.textContent = "Error al cargar la biblioteca";
         elTablero.setAttribute("aria-label", "No se pudieron cargar los tableros");

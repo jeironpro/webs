@@ -119,7 +119,7 @@ function pintarTablero() {
         celda.disabled = estado.terminada || estado.ocupado;
         celda.setAttribute(
             "aria-label",
-            valor ? `Casilla ${indice + 1}, ${valor}` : `Casilla ${indice + 1}, vacía`,
+            valor ? `Casilla ${indice + 1}, ${valor}` : `Casilla ${indice + 1}, vacía`
         );
 
         if (valor) {
@@ -135,11 +135,11 @@ function actualizarMarcador() {
 
     elementos.ladoX.classList.toggle(
         "marcador__lado--activo",
-        !estado.terminada && estado.turno === "X",
+        !estado.terminada && estado.turno === "X"
     );
     elementos.ladoO.classList.toggle(
         "marcador__lado--activo",
-        !estado.terminada && estado.turno === "O",
+        !estado.terminada && estado.turno === "O"
     );
 
     if (estado.terminada) {

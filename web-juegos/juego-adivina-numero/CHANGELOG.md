@@ -27,6 +27,7 @@ El formato se basa en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/
 - Estado de derrota al agotar los globos: se revela el número secreto y se deshabilita el formulario.
 
 ### Changed
+
 - El juego pasa de permitir un número ilimitado de intentos a un máximo de **10 intentos por partida**.
 - El mensaje inicial y el lede del hero explican el nuevo límite de 10 globos.
 

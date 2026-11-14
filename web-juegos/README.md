@@ -1,16 +1,12 @@
 # juegos
 
-Monorepo que agrupa los juegos de jeironpro como una **sala de máquinas**. En la raíz vive un **catálogo** que indexa los 20 juegos; cada juego ocupa su propio subdirectorio (`juego-*`) y se sirve de forma independiente como página estática.
+Catálogo estático de los 20 juegos de jeironpro. La raíz contiene la sala de máquinas y cada juego vive en su propia carpeta `juego-*`, servido como página independiente.
 
 ## Catálogo
 
-El catálogo es vanilla HTML, CSS y JavaScript (sin frameworks), con la identidad arcade-neon definida en [docs/style-guide.md](docs/style-guide.md):
+HTML, CSS y JavaScript sin frameworks. Incluye tarjetas con captura, género, stack y estado, filtros por género y búsqueda, iconos Material Symbols y soporte de `prefers-reduced-motion`.
 
-- Tarjetas (cartuchos) por juego con captura, género, stack y estado.
-- Filtros por género, destacados y búsqueda por título, descripción, etiquetas o stack.
-- Iconos Material Symbols, sin emojis; accesible y con `prefers-reduced-motion`.
-
-Abre `index.html` de la raíz (o despliega el repositorio en GitHub Pages: el catálogo queda en `https://jeironpro.github.io/webs/web-juegos/` y cada juego en su subruta `./<id>/`).
+Abre `index.html` en la raíz o publica el repositorio en GitHub Pages: el catálogo queda en `https://jeironpro.github.io/webs/web-juegos/` y cada juego en `./<id>/`.
 
 | Proyecto                                        | Título            | Género   | Stack                   |
 | ----------------------------------------------- | ----------------- | -------- | ----------------------- |
@@ -35,29 +31,49 @@ Abre `index.html` de la raíz (o despliega el repositorio en GitHub Pages: el ca
 | [juego-yatzy](./juego-yatzy/)                   | Yatzy             | Lógica   | react, vite, javascript |
 | [juego-zip](./juego-zip/)                       | Zip               | Lógica   | html, css, javascript   |
 
-## Datos del catálogo
+## Estructura
 
-La fuente de verdad es `projects.yml` en la raíz. Los artefactos se regeneran con comandos npm:
+```text
+web-juegos/
+├── assets/            iconos y capturas del catálogo
+├── css/               estilos del catálogo
+├── data/              projects.yml, projects.json y datos de juego
+├── js/                lógica del catálogo
+├── juego-*/           cada juego
+│   ├── assets/        iconos e imágenes
+│   ├── css/           estilos
+│   ├── data/          tableros, palabras y diccionarios
+│   ├── js/            lógica del juego
+│   └── tools/         generadores reproducibles
+├── tools/             generación de datos y capturas
+└── index.html
+```
 
-- `npm run data:build` valida el esquema y genera `assets/projects.json` (datos ordenados que consume el catálogo).
-- `npm run data:screenshots` captura los 20 juegos en `assets/screenshots/*.webp` (Chrome headless sobre un servidor local).
-- `npm test` valida integridad de datos, esquema y generador.
+Las carpetas opcionales solo existen cuando el juego las necesita. `juego-carreras` conserva su propio `package.json` para compilar el núcleo AssemblyScript.
+
+## Datos
+
+`projects.yml` es la fuente de verdad del catálogo. `data/projects.json` es el artefacto ordenado que consume la interfaz.
+
+```sh
+node tools/build-data.mjs
+node tools/captura-screenshots.mjs
+```
+
+La captura de pantallas requiere Google Chrome y ImageMagick, y sirve el catálogo en `127.0.0.1:8941`.
 
 ## Desarrollo
 
-Requisito: Node 24 (ver `.nvmrc`).
+Desde la raíz del monorepo:
 
 ```sh
-npm install
-npm run data:build
-npm test
-npm run lint
-npm run format:check
+npx vitest run tests/web-juegos
+npx eslint web-juegos
+npx prettier --check web-juegos
 ```
 
-`pre-commit` se instala con `pre-commit install`; las carpetas `juego-*`, `vendor/` y `assets/` quedan excluidas de lint y formato.
+Los tests de los juegos viven en `tests/web-juegos` y comprueban los tableros, los generadores y el esquema del catálogo.
 
 ## Licencia
 
-Este proyecto está bajo la licencia **MIT**.
-Consulta el archivo [LICENSE](LICENSE) para más detalles.
+Este proyecto está bajo la licencia MIT. Consulta [LICENSE](../LICENSE) para más detalles.

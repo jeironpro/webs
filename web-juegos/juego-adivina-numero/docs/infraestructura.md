@@ -6,10 +6,10 @@ Sitio web estático de una sola página. No existe backend ni base de datos.
 
 ## Componentes en ejecución
 
-| Componente | Descripción |
-|---|---|
-| Navegador del usuario | Ejecuta HTML, CSS y JS del proyecto |
-| Servidor HTTP (estático) | Entrega los archivos al navegador |
+| Componente                   | Descripción                                           |
+| ---------------------------- | ----------------------------------------------------- |
+| Navegador del usuario        | Ejecuta HTML, CSS y JS del proyecto                   |
+| Servidor HTTP (estático)     | Entrega los archivos al navegador                     |
 | `localStorage` del navegador | Almacena el mejor récord (persistencia en el cliente) |
 
 El juego no requiere servicios externos en tiempo de ejecución. La única dependencia externa es la carga de las tipografías Plus Jakarta Sans y JetBrains Mono desde **Google Fonts** (solo estética; si falla, se usan fuentes de respaldo del sistema).

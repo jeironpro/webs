@@ -1,5 +1,3 @@
-import { vecinos4 } from "./queens-core.js";
-
 const $ = (selector) => document.querySelector(selector);
 
 const elTablero = $("#tablero");
@@ -83,8 +81,6 @@ function avisarGuardado() {
     }, 1400);
 }
 
-/* Récords ------------------------------------------------------------- */
-
 function leerRecords() {
     return leer(CLAVE_RECORDS) || {};
 }
@@ -138,8 +134,6 @@ function guardarRecord(ms) {
     return records[estado.n].mejor;
 }
 
-/* Progreso ------------------------------------------------------------ */
-
 function guardarProgreso() {
     if (!estado.tablero || estado.resuelto || !estado.celdas) return;
     const ms = estado.arranque ? Date.now() - estado.arranque : estado.transcurrido;
@@ -156,7 +150,7 @@ function borrarProgreso() {
     try {
         localStorage.removeItem(CLAVE_PROGRESO);
     } catch {
-        /* sin almacenamiento */
+        void 0;
     }
 }
 
@@ -198,8 +192,6 @@ function restaurarProgreso() {
     return true;
 }
 
-/* Reloj --------------------------------------------------------------- */
-
 function pintarReloj() {
     elTiempo.textContent = formatearTiempo(estado.arranque ? Date.now() - estado.arranque : 0);
 }
@@ -226,8 +218,6 @@ function reiniciarReloj() {
     estado.transcurrido = 0;
     elTiempo.textContent = "0:00";
 }
-
-/* Análisis del tablero ------------------------------------------------ */
 
 function analizar() {
     const { n, regiones } = estado.tablero;
@@ -287,8 +277,6 @@ function analizar() {
     return { reinas, choques, motivos, regionesConReina };
 }
 
-/* Tablero ------------------------------------------------------------- */
-
 function etiquetaCelda(i, valor, conflicto) {
     const n = estado.n;
     const fila = Math.floor(i / n) + 1;
@@ -328,7 +316,10 @@ function construirTablero() {
         celda.dataset.i = String(i);
         celda.dataset.region = String(regiones[i]);
         celda.tabIndex = i === estado.cursor ? 0 : -1;
-        celda.append(crearPieza("pieza-reina", "pieza--reina"), crearPieza("pieza-marca", "pieza--marca"));
+        celda.append(
+            crearPieza("pieza-reina", "pieza--reina"),
+            crearPieza("pieza-marca", "pieza--marca")
+        );
         fragmento.append(celda);
     }
     elTablero.replaceChildren(fragmento);
@@ -415,8 +406,6 @@ function pintarTablero() {
 
     return { reinas, choques };
 }
-
-/* Partida ------------------------------------------------------------- */
 
 function moverCursor(fila, columna) {
     const n = estado.n;
@@ -521,8 +510,6 @@ function arrancar(n = estado.n) {
     avisar(PISTA, 0);
 }
 
-/* Eventos ------------------------------------------------------------- */
-
 elTablero.addEventListener("click", (evento) => {
     const celda = evento.target.closest?.(".celda");
     if (!celda) return;
@@ -576,7 +563,7 @@ $("#olvidar").addEventListener("click", () => {
         localStorage.removeItem(CLAVE_PROGRESO);
         localStorage.removeItem(CLAVE_RECORDS);
     } catch {
-        /* sin almacenamiento */
+        void 0;
     }
     estado.resuelto = false;
     arrancar(estado.n);
@@ -598,11 +585,9 @@ document.addEventListener("visibilitychange", () => {
     if (document.visibilityState === "hidden") guardarProgreso();
 });
 
-/* Arranque ------------------------------------------------------------ */
-
 async function iniciar() {
     try {
-        const respuesta = await fetch("json/tableros.json");
+        const respuesta = await fetch("data/tableros.json");
         if (!respuesta.ok) throw new Error(`HTTP ${respuesta.status}`);
         const datos = await respuesta.json();
         biblioteca = Array.isArray(datos.tableros) ? datos.tableros : [];
@@ -611,8 +596,7 @@ async function iniciar() {
         if (!restaurarProgreso()) arrancar(7);
         pintarRecords();
         pintarMejor();
-    } catch (error) {
-        console.error("Queens:", error);
+    } catch {
         elEstado.textContent = "No se pudieron cargar los tableros. Recarga la página.";
     }
 }

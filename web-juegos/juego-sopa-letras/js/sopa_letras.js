@@ -55,7 +55,7 @@ function normalizar(palabra) {
 
 function elegirPalabras() {
     const validas = [...new Set(todasLasPalabras.map(normalizar))].filter(
-        (palabra) => palabra.length >= 3 && palabra.length <= TAMANO,
+        (palabra) => palabra.length >= 3 && palabra.length <= TAMANO
     );
     const seleccion = mezclar(validas).slice(0, PALABRAS_POR_PARTIDA);
     return seleccion.sort((a, b) => b.length - a.length);
@@ -152,7 +152,10 @@ function crearCelda(fila, columna) {
     celda.dataset.fila = String(fila);
     celda.dataset.columna = String(columna);
     celda.textContent = tablero[fila][columna];
-    celda.setAttribute("aria-label", `Letra ${tablero[fila][columna]}, fila ${fila + 1}, columna ${columna + 1}`);
+    celda.setAttribute(
+        "aria-label",
+        `Letra ${tablero[fila][columna]}, fila ${fila + 1}, columna ${columna + 1}`
+    );
     return celda;
 }
 
@@ -185,7 +188,9 @@ function renderizarPalabras() {
 }
 
 function obtenerCelda(fila, columna) {
-    return elementos.tablero.querySelector(`.celda[data-fila="${fila}"][data-columna="${columna}"]`);
+    return elementos.tablero.querySelector(
+        `.celda[data-fila="${fila}"][data-columna="${columna}"]`
+    );
 }
 
 function limpiarSeleccion() {
@@ -259,9 +264,7 @@ function finalizarSeleccion() {
 
     const texto = seleccionadas.map((celda) => celda.textContent).join("");
     const invertida = [...texto].reverse().join("");
-    const encontrada = palabras.find(
-        ({ palabra }) => palabra === texto || palabra === invertida,
-    );
+    const encontrada = palabras.find(({ palabra }) => palabra === texto || palabra === invertida);
 
     if (encontrada && !encontradas.has(encontrada.palabra)) {
         marcarEncontrada(encontrada);
@@ -347,14 +350,13 @@ function nuevaPartida() {
 
 async function cargarPalabras() {
     try {
-        const respuesta = await fetch("json/sopas_letras.json");
+        const respuesta = await fetch("data/sopas_letras.json");
         if (!respuesta.ok) throw new Error("No se pudo cargar el diccionario.");
         const datos = await respuesta.json();
         todasLasPalabras = datos.palabras ?? [];
         elementos.totalPalabras.textContent = `${todasLasPalabras.length.toLocaleString("es-ES")} palabras`;
         nuevaPartida();
-    } catch (error) {
-        console.error(error);
+    } catch {
         anunciar("No se pudo cargar la sopa de letras. Recarga la página.");
     }
 }

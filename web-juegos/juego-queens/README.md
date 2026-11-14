@@ -4,7 +4,7 @@ Puzle lógico de reinas: una reina en cada fila, cada columna y cada región de 
 
 ## Características
 
-- Tableros de 7×7, 8×8 y 9×9 cargados desde `json/tableros.json`: 60 tableros, cada uno con **solución única** verificada.
+- Tableros de 7×7, 8×8 y 9×9 cargados desde `data/tableros.json`: 60 tableros, cada uno con **solución única** verificada.
 - Regiones contiguas dibujadas con fronteras propias, para que el color no sea la única pista.
 - Toca una casilla para poner reina, otra vez para cambiarla por una X de descarte y una tercera para vaciarla.
 - Reinas en conflicto resaltadas al momento: misma fila, misma columna, misma región o casillas que se tocan.
@@ -16,7 +16,7 @@ Puzle lógico de reinas: una reina en cada fila, cada columna y cada región de 
 
 - HTML5, CSS3 y JavaScript (ES modules), sin dependencias externas ni compilación.
 - Tableros en JSON.
-- Generador reproducible en `scripts/generar-tableros.mjs` (semillas fijas).
+- Generador reproducible en `tools/generar-tableros.mjs` (semillas fijas).
 
 ## Cómo se genera un tablero
 
@@ -28,8 +28,8 @@ Puzle lógico de reinas: una reina en cada fila, cada columna y cada región de 
 Para regenerar los tableros:
 
 ```sh
-node scripts/generar-tableros.mjs        # 20 tableros por tamaño
-node scripts/generar-tableros.mjs 10     # otra cantidad
+node tools/generar-tableros.mjs        # 20 tableros por tamaño
+node tools/generar-tableros.mjs 10     # otra cantidad
 ```
 
 ## Uso
@@ -45,9 +45,9 @@ juego-queens/
 ├── js/
 │   ├── queens-core.js     # generación, solver y validación (sin DOM)
 │   └── queens.js          # interfaz y controles
-├── json/tableros.json     # tableros con su solución única
+├── data/tableros.json     # tableros con su solución única
 ├── icon/                  # favicon
-└── scripts/               # generador reproducible
+└── tools/                 # generador reproducible
 ```
 
 ## Licencia

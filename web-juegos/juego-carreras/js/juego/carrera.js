@@ -1,7 +1,3 @@
-/**
- * Envuelve la carrera que simula el núcleo wasm. Cada frame solo se cruza el
- * `dt` y el input; el estado se lee de la memoria lineal del módulo.
- */
 export function crearCarrera({ nucleo, dificultad = 1, vueltas = 3 }) {
     const totalRivales = nucleo.totalRivales();
     let estado = nucleo.estado();

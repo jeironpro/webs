@@ -72,15 +72,15 @@ cada frame.
 
 ## Controles
 
-| Acción   | Teclado            |
-| -------- | ------------------ |
-| Acelerar | `W` o `↑`          |
-| Frenar   | `S` o `↓`          |
+| Acción   | Teclado               |
+| -------- | --------------------- |
+| Acelerar | `W` o `↑`             |
+| Frenar   | `S` o `↓`             |
 | Girar    | `A` / `D` o `←` / `→` |
-| Derrape  | `Espacio` o `Shift` |
-| Pausa    | `P` o `Esc`        |
-| Reinicio | `R`                |
-| Pausa    | `P` o `Esc`        |
+| Derrape  | `Espacio` o `Shift`   |
+| Pausa    | `P` o `Esc`           |
+| Reinicio | `R`                   |
+| Pausa    | `P` o `Esc`           |
 
 También funciona un gamepad estándar: gatillo derecho acelera, izquierdo frena, stick o cruceta
 para girar, botón A para derrapar y Start para pausar. En pantallas táctiles aparecen botones
@@ -99,7 +99,7 @@ juego-carreras/
 ├── wasm/
 │   ├── nucleo.ts         # fuente AssemblyScript
 │   └── nucleo.wasm       # binario compilado y versionado
-├── scripts/              # compilación y validación del núcleo wasm
+├── tools/                # compilación y validación del núcleo wasm
 ├── icon/                 # favicon
 └── vendor/three/         # Three.js 0.187.0 (core, webgpu, tsl) + licencia
 ```

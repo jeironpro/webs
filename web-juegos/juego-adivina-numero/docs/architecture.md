@@ -36,16 +36,16 @@ El proyecto es un sitio web estático de una sola página construido con **HTML,
 
 ## Piezas y responsabilidades
 
-| Pieza | Responsabilidad |
-|---|---|
-| `index.html` | Estructura semántica de la página (header, main, secciones, footer) |
-| `js/modules/game.js` | Número secreto, intentos (máximo 10), validación y evaluación de suposiciones |
-| `js/modules/balloons.js` | Dibuja los 10 globos (SVG), reventón al fallar y vuelo al acertar |
-| `js/modules/modal.js` | Ciclo de vida del modal informativo: apertura, cierre, foco y scroll |
-| `js/utils/storage.js` | Lectura y escritura del mejor récord en `localStorage` |
-| `js/utils/dom.js` | Helpers de selección y creación de elementos (sin inyección de HTML) |
-| `js/app.js` | Orquesta el resto: eventos, feedback, animaciones y récord |
-| `css/*` | Estilos por capas: tokens, base, componentes y layout de página |
+| Pieza                    | Responsabilidad                                                               |
+| ------------------------ | ----------------------------------------------------------------------------- |
+| `index.html`             | Estructura semántica de la página (header, main, secciones, footer)           |
+| `js/modules/game.js`     | Número secreto, intentos (máximo 10), validación y evaluación de suposiciones |
+| `js/modules/balloons.js` | Dibuja los 10 globos (SVG), reventón al fallar y vuelo al acertar             |
+| `js/modules/modal.js`    | Ciclo de vida del modal informativo: apertura, cierre, foco y scroll          |
+| `js/utils/storage.js`    | Lectura y escritura del mejor récord en `localStorage`                        |
+| `js/utils/dom.js`        | Helpers de selección y creación de elementos (sin inyección de HTML)          |
+| `js/app.js`              | Orquesta el resto: eventos, feedback, animaciones y récord                    |
+| `css/*`                  | Estilos por capas: tokens, base, componentes y layout de página               |
 
 ## Diagrama de flujo entre piezas
 

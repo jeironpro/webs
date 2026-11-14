@@ -96,11 +96,11 @@ function pintarTablero() {
             casilla.textContent = valor;
             casilla.classList.toggle(
                 "casilla--activa",
-                fila === filaActual && !juegoTerminado && celdas[fila][columna].textContent === "",
+                fila === filaActual && !juegoTerminado && celdas[fila][columna].textContent === ""
             );
             casilla.setAttribute(
                 "aria-label",
-                `Fila ${fila + 1}, columna ${columna + 1}, ${valor || "vacía"}`,
+                `Fila ${fila + 1}, columna ${columna + 1}, ${valor || "vacía"}`
             );
         }
     }
@@ -147,7 +147,9 @@ function colorearFila(palabra) {
     for (let i = 0; i < COLUMNAS; i += 1) {
         if (resultado[i] === "verde") continue;
 
-        const posicion = secreta.findIndex((letra, indice) => letra === letras[i] && !usadas[indice]);
+        const posicion = secreta.findIndex(
+            (letra, indice) => letra === letras[i] && !usadas[indice]
+        );
 
         if (posicion !== -1) {
             resultado[i] = "amarillo";
@@ -158,7 +160,11 @@ function colorearFila(palabra) {
     resultado.forEach((color, columna) => {
         celdas[filaActual][columna].classList.add(`casilla--${color}`);
         const estadoActual = estadosTeclado.get(letras[columna]);
-        if (color === "verde" || (color === "amarillo" && estadoActual !== "verde") || !estadoActual) {
+        if (
+            color === "verde" ||
+            (color === "amarillo" && estadoActual !== "verde") ||
+            !estadoActual
+        ) {
             estadosTeclado.set(letras[columna], color);
         }
     });
@@ -276,7 +282,7 @@ function nuevaPartida() {
 
 async function cargarDiccionario() {
     try {
-        const respuesta = await fetch("json/palabras_ocultas.json");
+        const respuesta = await fetch("data/palabras_ocultas.json");
         if (!respuesta.ok) throw new Error("No se pudo cargar el diccionario.");
 
         const datos = await respuesta.json();
@@ -285,10 +291,13 @@ async function cargarDiccionario() {
         validas = new Set(lista.map((palabra) => palabra.toLowerCase()));
         elementos.total.textContent = `${lista.length.toLocaleString("es-ES")} palabras válidas`;
         nuevaPartida();
-    } catch (error) {
-        console.error(error);
+    } catch {
         anunciar("No se pudo cargar el diccionario. Recarga la página.");
-        mostrarMensaje("No se pudo cargar el juego. Revisa que el JSON esté disponible.", "error", true);
+        mostrarMensaje(
+            "No se pudo cargar el juego. Revisa que el JSON esté disponible.",
+            "error",
+            true
+        );
     }
 }
 

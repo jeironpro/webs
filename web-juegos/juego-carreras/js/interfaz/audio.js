@@ -1,8 +1,3 @@
-/**
- * Audio del motor sin assets: un oscilador con filtro para el motor y ruido
- * filtrado para los derrapes. Todo se crea tras el primer gesto del jugador,
- * porque los navegadores bloquean el audio hasta entonces.
- */
 export function crearAudio() {
     let contexto = null;
     let motor = null;

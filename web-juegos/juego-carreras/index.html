@@ -9,7 +9,7 @@
             content="Circuito Neón: carreras arcade 3D con WebGPU, Three.js y un núcleo de simulación en WebAssembly."
         />
         <title>Circuito Neón</title>
-        <link rel="icon" href="icon/bandera.svg" type="image/svg+xml" />
+        <link rel="icon" href="assets/icons/bandera.svg" type="image/svg+xml" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -19,14 +19,6 @@
         <link rel="stylesheet" href="css/tokens.css" />
         <link rel="stylesheet" href="css/estilos.css" />
         <link rel="stylesheet" href="css/interfaz.css" />
-        <script type="importmap">
-            {
-                "imports": {
-                    "three/webgpu": "./vendor/three/three.webgpu.js",
-                    "three/tsl": "./vendor/three/three.tsl.js"
-                }
-            }
-        </script>
     </head>
     <body>
         <a class="salto" href="#menu">Saltar al menú</a>
@@ -152,7 +144,12 @@
         </div>
 
         <div class="panel-juego" id="pausa" hidden>
-            <div class="panel-juego__caja" role="dialog" aria-modal="true" aria-labelledby="pausa-titulo">
+            <div
+                class="panel-juego__caja"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="pausa-titulo"
+            >
                 <h2 class="panel-juego__titulo" id="pausa-titulo">Pausa</h2>
                 <p class="panel-juego__texto">
                     La carrera está congelada. El cronómetro se detiene hasta que reanudes.
@@ -181,9 +178,7 @@
                 aria-modal="true"
                 aria-labelledby="resultado-titulo"
             >
-                <p class="panel-juego__meta" id="resultado-record" hidden>
-                    Nuevo récord de vuelta
-                </p>
+                <p class="panel-juego__meta" id="resultado-record" hidden>Nuevo récord de vuelta</p>
                 <h2 class="panel-juego__titulo" id="resultado-titulo">Bandera a cuadros</h2>
                 <dl class="resultado">
                     <div>

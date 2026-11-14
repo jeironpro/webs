@@ -10,7 +10,7 @@
             name="description"
             content="Tres en raya: juega contra otra persona o contra un bot con tres niveles de dificultad."
         />
-        <link rel="icon" href="icon/xo.png" />
+        <link rel="icon" href="assets/icons/xo.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -39,27 +39,40 @@
 
                     <div class="inicio__cuerpo">
                         <div class="modos" role="group" aria-label="Modo de juego">
-                            <button type="button" class="modo" data-modo="local" aria-pressed="false">
-                                <span class="material-symbols-rounded modo__icono" aria-hidden="true"
+                            <button
+                                type="button"
+                                class="modo"
+                                data-modo="local"
+                                aria-pressed="false"
+                            >
+                                <span
+                                    class="material-symbols-rounded modo__icono"
+                                    aria-hidden="true"
                                     >group</span
                                 >
                                 <span class="modo__texto">
                                     <strong>2 jugadores</strong>
                                     <small>Comparte el tablero con otra persona.</small>
                                 </span>
-                                <span class="material-symbols-rounded modo__flecha" aria-hidden="true"
+                                <span
+                                    class="material-symbols-rounded modo__flecha"
+                                    aria-hidden="true"
                                     >arrow_forward</span
                                 >
                             </button>
                             <button type="button" class="modo" data-modo="bot" aria-pressed="false">
-                                <span class="material-symbols-rounded modo__icono" aria-hidden="true"
+                                <span
+                                    class="material-symbols-rounded modo__icono"
+                                    aria-hidden="true"
                                     >smart_toy</span
                                 >
                                 <span class="modo__texto">
                                     <strong>Jugar contra el bot</strong>
                                     <small>Elige dificultad y juega con las X.</small>
                                 </span>
-                                <span class="material-symbols-rounded modo__flecha" aria-hidden="true"
+                                <span
+                                    class="material-symbols-rounded modo__flecha"
+                                    aria-hidden="true"
                                     >arrow_forward</span
                                 >
                             </button>
@@ -105,7 +118,7 @@
                     <header class="cabecera cabecera--partida">
                         <div>
                             <p class="eyebrow">TRES EN RAYA</p>
-                            <h1 id="titulo-partida">Duelo de mesa</h1>
+                            <h2 id="titulo-partida">Duelo de mesa</h2>
                         </div>
                         <button
                             id="menu-superior"
@@ -113,7 +126,9 @@
                             type="button"
                             aria-label="Volver al menú"
                         >
-                            <span class="material-symbols-rounded" aria-hidden="true">arrow_back</span>
+                            <span class="material-symbols-rounded" aria-hidden="true"
+                                >arrow_back</span
+                            >
                         </button>
                     </header>
 
@@ -124,7 +139,11 @@
                             <small id="nombre-x" class="marcador__nombre">Jugador 1</small>
                         </article>
                         <div class="marcador__centro">
-                            <span id="turno" class="marcador__turno" role="status" aria-live="polite"
+                            <span
+                                id="turno"
+                                class="marcador__turno"
+                                role="status"
+                                aria-live="polite"
                                 >Turno de X</span
                             >
                             <small id="modo-activo" class="marcador__modo">2 jugadores</small>
@@ -152,7 +171,9 @@
 
                     <div class="acciones">
                         <button id="reiniciar" class="btn btn--secundario" type="button">
-                            <span class="material-symbols-rounded" aria-hidden="true">restart_alt</span>
+                            <span class="material-symbols-rounded" aria-hidden="true"
+                                >restart_alt</span
+                            >
                             Reiniciar ronda
                         </button>
                         <button id="menu" class="btn btn--secundario" type="button">
@@ -172,7 +193,10 @@
                 aria-labelledby="modal-titulo"
                 aria-describedby="modal-texto"
             >
-                <span id="modal-icono" class="material-symbols-rounded modal__icono" aria-hidden="true"
+                <span
+                    id="modal-icono"
+                    class="material-symbols-rounded modal__icono"
+                    aria-hidden="true"
                     >emoji_events</span
                 >
                 <h2 id="modal-titulo">Ronda terminada</h2>

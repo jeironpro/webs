@@ -4,7 +4,7 @@ Juego de Sudoku clásico de 9x9 en el navegador: completa cada tablero sin repet
 
 ## Características
 
-- Tableros de 9x9 cargados desde `json/sudokus.json` y elegidos al azar.
+- Tableros de 9x9 cargados desde `data/sudokus.json` y elegidos al azar.
 - Selección de casilla con el ratón o el teclado y entrada de números con el teclado numerico en pantalla.
 - Resaltado de la casilla activa para facilitar la lectura de la fila, la columna y la region.
 - Comprobación de victoria al completar el tablero correctamente, con modal de felicitación.
@@ -34,5 +34,6 @@ juego-sudoku/
 ```
 
 ## Licencia
+
 Este proyecto está bajo la licencia **MIT**.  
 Consulta el archivo [LICENSE](LICENSE) para más detalles.

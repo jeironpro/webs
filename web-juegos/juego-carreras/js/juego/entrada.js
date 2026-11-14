@@ -16,10 +16,6 @@ const MAPA = new Map([
 
 const BLOQUEADAS = new Set(["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Space"]);
 
-/**
- * Teclado, gamepad estándar y botones táctiles comparten el mismo contrato:
- * acelerar/frenar en 0..1, giro en -1..1 y derrape booleano.
- */
 export function crearEntrada() {
     const teclas = new Set();
     const tactiles = new Set();
@@ -97,7 +93,7 @@ export function crearEntrada() {
         alAccion(accion, manejador) {
             acciones.set(accion, manejador);
         },
-        /** Suelta los botones táctiles al ocultarlos: si no, quedan pegados. */
+
         soltarTactiles() {
             if (tactiles.size === 0) return;
             tactiles.clear();

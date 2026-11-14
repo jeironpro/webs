@@ -1,22 +1,6 @@
-/**
- * Núcleo de Wend: generación, solver y validación de tableros.
- *
- * Un tablero es { n, letras, muros, solucion }:
- * - `letras[i]` es la letra de la casilla `i = fila * n + columna`. Todas las
- *   casillas tienen letra: el tablero está lleno.
- * - `muros` son aristas bloqueadas `[a, b]` entre dos casillas contiguas. No
- *   ocupan casillas: se dibujan sobre el borde que separa dos letras.
- * - `solucion` contiene una entrada por palabra: { palabra, celdas }, donde
- *   `celdas` es el camino ordenado que hay que trazar.
- *
- * Reglas: cada palabra es un camino ortogonal sin repetir casilla; todas las
- * casillas pertenecen a una palabra; los muros no se cruzan.
- */
-
 export const LARGO_MINIMO = 3;
 export const LARGO_MAXIMO = 8;
 
-/** Generador pseudoaleatorio determinista (mulberry32). */
 export function crearRng(semilla = 1) {
     let estado = semilla >>> 0;
     return () => {
@@ -72,7 +56,6 @@ function claveCanonica(celdas) {
     return directa < inversa ? directa : inversa;
 }
 
-/** Camino hamiltoniano aleatorio para partir el tablero en palabras. */
 function caminoHamiltoniano(n, rng, presupuesto = 400000) {
     const total = n * n;
     const usado = new Uint8Array(total);
@@ -101,28 +84,6 @@ function caminoHamiltoniano(n, rng, presupuesto = 400000) {
     return dfs(Math.floor(rng() * total)) ? camino : null;
 }
 
-function construirTablero(n, colocadas, muros = []) {
-    const letras = Array(n * n).fill(null);
-    for (const { palabra, celdas } of colocadas) {
-        celdas.forEach((i, k) => {
-            letras[i] = palabra[k];
-        });
-    }
-
-    const solucion = [...colocadas]
-        .sort(
-            (a, b) =>
-                a.palabra.length - b.palabra.length ||
-                a.palabra.localeCompare(b.palabra)
-        )
-        .map(({ palabra, celdas }) => ({ palabra, celdas: [...celdas] }));
-
-    return { n, letras, muros, solucion };
-}
-
-/**
- * Cuenta particiones válidas del tablero (hasta `limite`) usando el diccionario.
- */
 export function contarSoluciones(tablero, palabras, opciones = {}) {
     const limite = opciones.limite ?? 2;
     const presupuesto = opciones.presupuesto ?? 300000;
@@ -237,7 +198,6 @@ export function contarSoluciones(tablero, palabras, opciones = {}) {
     return { soluciones, agotado, nodos };
 }
 
-/** Comprueba que una palabra ocupa un camino ortogonal válido. */
 export function esCaminoDePalabra(tablero, palabra, celdas) {
     const { n, letras } = tablero;
     const bloqueados = conjuntoMuros(tablero);
@@ -257,22 +217,18 @@ export function esCaminoDePalabra(tablero, palabra, celdas) {
     return true;
 }
 
-/** Devuelve el índice de la palabra si la ruta coincide con una solución. */
 export function buscarPalabra(tablero, ruta) {
     if (!Array.isArray(ruta) || ruta.length < LARGO_MINIMO) return -1;
     for (let k = 0; k < tablero.solucion.length; k++) {
         const celdas = tablero.solucion[k].celdas;
         if (celdas.length !== ruta.length) continue;
         const directa = celdas.every((i, posicion) => ruta[posicion] === i);
-        const inversa = celdas.every(
-            (i, posicion) => ruta[ruta.length - 1 - posicion] === i
-        );
+        const inversa = celdas.every((i, posicion) => ruta[ruta.length - 1 - posicion] === i);
         if (directa || inversa) return k;
     }
     return -1;
 }
 
-/** Comprueba que todas las casillas están cubiertas por la solución. */
 export function solucionCubreTablero(tablero) {
     const { n, letras, solucion } = tablero;
     const cubiertas = new Uint8Array(n * n);
@@ -290,7 +246,6 @@ export function solucionCubreTablero(tablero) {
     return true;
 }
 
-/** Valida estructura, diccionario, muros y unicidad de un tablero. */
 export function validarTablero(tablero, palabras, opciones = {}) {
     const { n, letras, muros, solucion } = tablero;
     if (!Number.isInteger(n) || n < 3 || !Array.isArray(letras) || letras.length !== n * n) {
@@ -344,13 +299,6 @@ export function validarTablero(tablero, palabras, opciones = {}) {
     return true;
 }
 
-/**
- * Genera un tablero 6×6 completamente lleno de letras y cinco palabras.
- *
- * Se parte de un camino hamiltoniano, se corta en cinco tramos y se llena cada
- * tramo con una palabra. Después se colocan muros en las aristas que no usa la
- * solución y se retiran mientras el tablero siga teniendo una solución única.
- */
 export function generarPuzzle(n, palabras, opciones = {}) {
     const rng = opciones.rng ?? crearRng(Math.floor(Math.random() * 1e9) + 1);
     const intentos = opciones.intentos ?? 80;
@@ -415,9 +363,7 @@ export function generarPuzzle(n, palabras, opciones = {}) {
         }
         const solucion = [...colocadas]
             .sort(
-                (a, b) =>
-                    a.palabra.length - b.palabra.length ||
-                    a.palabra.localeCompare(b.palabra)
+                (a, b) => a.palabra.length - b.palabra.length || a.palabra.localeCompare(b.palabra)
             )
             .map(({ palabra, celdas }) => ({ palabra, celdas: [...celdas] }));
 

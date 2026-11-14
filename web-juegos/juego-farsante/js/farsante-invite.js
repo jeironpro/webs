@@ -14,10 +14,7 @@ function binarioABytes(binario) {
 
 function codificarBase64(binario) {
     if (typeof btoa === "function") {
-        return btoa(binario)
-            .replace(/\+/g, "-")
-            .replace(/\//g, "_")
-            .replace(/=+$/g, "");
+        return btoa(binario).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/g, "");
     }
     return Buffer.from(binario, "binary")
         .toString("base64")
@@ -82,9 +79,7 @@ export function leerInvitacion(codigo) {
     if (!codigo) throw new Error("Falta el código de invitación.");
     let payload;
     try {
-        payload = JSON.parse(
-            new TextDecoder().decode(binarioABytes(decodificarBase64(codigo)))
-        );
+        payload = JSON.parse(new TextDecoder().decode(binarioABytes(decodificarBase64(codigo))));
     } catch {
         throw new Error("La invitación no se puede leer.");
     }

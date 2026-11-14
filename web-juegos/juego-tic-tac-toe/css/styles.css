@@ -1,5 +1,4 @@
 @layer base {
-
     :root {
         --color: #201b17;
         --color-10: #f2d7d1;
@@ -15,10 +14,9 @@
         --color-9: #e9b949;
         --fondo: #f5eedf;
         --fondo-2: #f7f1e6;
-        --fondo-3: #fffdf8;
+        --fondo-3: whitedf8;
         --texto: #c9bcaa;
     }
-
 
     :root {
         --papel: var(--color-11);
@@ -37,10 +35,9 @@
         --display: "Fraunces", Georgia, serif;
         --cuerpo: "Archivo", system-ui, sans-serif;
         --mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
-        --radio: 2px;
-        --sombra: 0 18px 50px rgba(60, 45, 25, 0.1);
+        --radio: 0.125rem;
+        --sombra: 0 1.125rem 3.125rem rgba(60, 45, 25, 0.1);
     }
-
 
     *,
     *::before,
@@ -48,25 +45,27 @@
         box-sizing: border-box;
     }
 
-
     html {
-        min-width: 320px;
+        min-width: 20rem;
         background: var(--papel-hondo);
     }
-
 
     body {
         min-height: 100vh;
         margin: 0;
         color: var(--tinta);
         background:
-            linear-gradient(90deg, transparent 0 49.8%, rgba(32, 27, 23, 0.035) 49.8% 50.2%, transparent 50.2%),
+            linear-gradient(
+                90deg,
+                transparent 0 49.8%,
+                rgba(32, 27, 23, 0.035) 49.8% 50.2%,
+                transparent 50.2%
+            ),
             var(--papel);
         background-size: 8.4rem 8.4rem;
         font-family: var(--cuerpo);
         -webkit-font-smoothing: antialiased;
     }
-
 
     body::before {
         position: fixed;
@@ -74,28 +73,29 @@
         top: 0;
         right: 0;
         left: 0;
-        height: 5px;
-        background: linear-gradient(90deg, var(--rojo) 0 33.33%, var(--amarillo) 33.33% 66.66%, var(--verde) 66.66%);
+        height: 0.3125rem;
+        background: linear-gradient(
+            90deg,
+            var(--rojo) 0 33.33%,
+            var(--amarillo) 33.33% 66.66%,
+            var(--verde) 66.66%
+        );
         content: "";
     }
-
 
     button {
         color: inherit;
         font: inherit;
     }
 
-
     button:focus-visible {
-        outline: 2px solid var(--verde);
-        outline-offset: 4px;
+        outline: 0.125rem solid var(--verde);
+        outline-offset: 0.25rem;
     }
-
 
     .app {
         min-height: 100vh;
     }
-
 
     .pantalla {
         display: grid;
@@ -104,25 +104,21 @@
         place-items: center;
     }
 
-
     .pantalla[hidden] {
         display: none;
     }
 
-
     .hoja {
         width: min(100%, 68rem);
         padding: clamp(1.5rem, 4vw, 3.4rem);
-        border: 1px solid var(--linea);
+        border: 0.0625rem solid var(--linea);
         background: var(--papel-claro);
         box-shadow: var(--sombra);
     }
 
-
     .hoja--partida {
         width: min(100%, 52rem);
     }
-
 
     .eyebrow {
         margin: 0 0 1rem;
@@ -134,13 +130,11 @@
         line-height: 1.4;
     }
 
-
     h1,
     h2,
     p {
         margin-top: 0;
     }
-
 
     h1,
     h2 {
@@ -148,13 +142,11 @@
         font-weight: 600;
     }
 
-
     .cabecera--inicio {
         max-width: 38rem;
         padding-bottom: clamp(1.5rem, 4vw, 2.6rem);
-        border-bottom: 1px solid var(--linea);
+        border-bottom: 0.0625rem solid var(--linea);
     }
-
 
     .cabecera--inicio h1 {
         margin-bottom: 0.8rem;
@@ -163,7 +155,6 @@
         line-height: 0.92;
     }
 
-
     .entradilla {
         max-width: 34rem;
         margin-bottom: 1.5rem;
@@ -171,7 +162,6 @@
         font-size: clamp(1rem, 1.8vw, 1.16rem);
         line-height: 1.65;
     }
-
 
     .meta {
         display: flex;
@@ -185,13 +175,11 @@
         text-transform: uppercase;
     }
 
-
     .meta span {
         display: inline-flex;
         align-items: center;
         gap: 1.2rem;
     }
-
 
     .meta span:not(:last-child)::after {
         display: block;
@@ -202,7 +190,6 @@
         content: "";
     }
 
-
     .inicio__cuerpo {
         display: grid;
         max-width: 44rem;
@@ -210,12 +197,10 @@
         padding-top: clamp(1.7rem, 4vw, 2.8rem);
     }
 
-
     .modos {
         display: grid;
         gap: 0.7rem;
     }
-
 
     .modo {
         display: grid;
@@ -224,7 +209,7 @@
         gap: 1rem;
         width: 100%;
         padding: 1.15rem 1.25rem;
-        border: 1px solid var(--linea);
+        border: 0.0625rem solid var(--linea);
         border-radius: var(--radio);
         background: transparent;
         cursor: pointer;
@@ -235,13 +220,11 @@
             transform 160ms ease;
     }
 
-
     .modo:hover {
         border-color: var(--tinta);
         background: var(--fondo-3);
-        transform: translateX(2px);
+        transform: translateX(0.125rem);
     }
-
 
     .modo[aria-pressed="true"] {
         border-color: var(--tinta);
@@ -249,18 +232,15 @@
         color: var(--papel-claro);
     }
 
-
     .modo__texto {
         display: grid;
         gap: 0.25rem;
     }
 
-
     .modo__texto strong {
         font-size: 0.97rem;
         font-weight: 600;
     }
-
 
     .modo__texto small {
         color: var(--tinta-suave);
@@ -268,25 +248,21 @@
         line-height: 1.45;
     }
 
-
     .modo[aria-pressed="true"] .modo__texto small {
         color: var(--texto);
     }
-
 
     .dificultad {
         display: grid;
         gap: 0.7rem;
         padding: 1.1rem 1.2rem;
-        border-left: 3px solid var(--amarillo);
+        border-left: 0.1875rem solid var(--amarillo);
         background: var(--fondo);
     }
-
 
     .dificultad[hidden] {
         display: none;
     }
-
 
     .dificultad__titulo {
         margin: 0;
@@ -297,19 +273,17 @@
         text-transform: uppercase;
     }
 
-
     .chips {
         display: flex;
         flex-wrap: wrap;
         gap: 0.45rem;
     }
 
-
     .chip {
         min-height: 2.35rem;
         padding: 0.5rem 0.9rem;
-        border: 1px solid var(--linea);
-        border-radius: 999px;
+        border: 0.0625rem solid var(--linea);
+        border-radius: 62.4375rem;
         background: var(--papel-claro);
         color: var(--tinta-suave);
         cursor: pointer;
@@ -322,19 +296,16 @@
             color 160ms ease;
     }
 
-
     .chip:hover {
         border-color: var(--tinta);
         color: var(--tinta);
     }
-
 
     .chip--activo {
         border-color: var(--tinta);
         background: var(--tinta);
         color: var(--papel-claro);
     }
-
 
     .btn {
         display: inline-flex;
@@ -343,7 +314,7 @@
         gap: 0.55rem;
         min-height: 2.8rem;
         padding: 0.7rem 1.2rem;
-        border: 1px solid var(--tinta);
+        border: 0.0625rem solid var(--tinta);
         border-radius: var(--radio);
         background: transparent;
         cursor: pointer;
@@ -357,22 +328,18 @@
             transform 160ms ease;
     }
 
-
     .btn:hover:not(:disabled) {
-        transform: translateY(-1px);
+        transform: translateY(-0.0625rem);
     }
-
 
     .btn:active:not(:disabled) {
         transform: translateY(0);
     }
 
-
     .btn:disabled {
         cursor: not-allowed;
         opacity: 0.38;
     }
-
 
     .btn--primario {
         min-height: 3.1rem;
@@ -381,24 +348,20 @@
         font-size: 0.82rem;
     }
 
-
     .btn--primario:hover:not(:disabled) {
         background: var(--verde);
         border-color: var(--verde);
     }
-
 
     .btn--secundario {
         border-color: var(--linea);
         color: var(--tinta-suave);
     }
 
-
     .btn--secundario:hover:not(:disabled) {
         border-color: var(--tinta);
         color: var(--tinta);
     }
-
 
     .btn--icono {
         width: 2.6rem;
@@ -408,13 +371,11 @@
         border-radius: 50%;
     }
 
-
     #empezar {
         justify-self: start;
         min-width: 10rem;
         margin-top: 0.15rem;
     }
-
 
     .pie {
         display: flex;
@@ -422,7 +383,7 @@
         gap: 1rem;
         margin-top: clamp(2.5rem, 7vw, 5rem);
         padding-top: 1.1rem;
-        border-top: 1px solid var(--linea);
+        border-top: 0.0625rem solid var(--linea);
         color: var(--tinta-tenue);
         font-family: var(--mono);
         font-size: 0.59rem;
@@ -430,39 +391,34 @@
         text-transform: uppercase;
     }
 
-
     .cabecera--partida {
         display: flex;
         align-items: flex-start;
         justify-content: space-between;
         gap: 1rem;
         padding-bottom: 1.1rem;
-        border-bottom: 1px solid var(--linea);
+        border-bottom: 0.0625rem solid var(--linea);
     }
-
 
     .cabecera--partida .eyebrow {
         margin-bottom: 0.55rem;
     }
 
-
-    .cabecera--partida h1 {
+    .cabecera--partida h2 {
         margin: 0;
         font-size: clamp(1.7rem, 4vw, 2.7rem);
         letter-spacing: -0.035em;
         line-height: 1;
     }
 
-
     .marcador {
         display: grid;
         grid-template-columns: 1fr auto 1fr;
         align-items: stretch;
         margin: 1.5rem 0;
-        border: 1px solid var(--linea);
+        border: 0.0625rem solid var(--linea);
         background: var(--fondo-2);
     }
-
 
     .marcador__lado {
         display: grid;
@@ -474,17 +430,14 @@
         transition: background 180ms ease;
     }
 
-
     .marcador__lado--x {
-        border-right: 1px solid var(--linea);
+        border-right: 0.0625rem solid var(--linea);
     }
-
 
     .marcador__lado--o {
-        border-left: 1px solid var(--linea);
+        border-left: 0.0625rem solid var(--linea);
         text-align: right;
     }
-
 
     .marcador__lado--o .marcador__ficha {
         grid-column: 2;
@@ -492,18 +445,15 @@
         color: var(--verde);
     }
 
-
     .marcador__lado--o .marcador__puntos,
     .marcador__lado--o .marcador__nombre {
         grid-column: 1;
         justify-self: end;
     }
 
-
     .marcador__lado--o .marcador__puntos {
         grid-row: 1;
     }
-
 
     .marcador__ficha {
         grid-row: 1 / span 2;
@@ -513,14 +463,12 @@
         line-height: 1;
     }
 
-
     .marcador__puntos {
         font-family: var(--mono);
         font-size: 1.2rem;
         font-weight: 500;
         line-height: 1;
     }
-
 
     .marcador__nombre {
         overflow: hidden;
@@ -535,16 +483,13 @@
         white-space: nowrap;
     }
 
-
     .marcador__lado--activo {
         background: var(--papel-claro);
     }
 
-
     .marcador__lado--activo .marcador__puntos {
         color: var(--tinta);
     }
-
 
     .marcador__centro {
         display: grid;
@@ -556,14 +501,12 @@
         text-align: center;
     }
 
-
     .marcador__turno {
         color: var(--tinta);
         font-size: 0.73rem;
         font-weight: 600;
         line-height: 1.3;
     }
-
 
     .marcador__modo,
     .marcador__tablas {
@@ -575,25 +518,22 @@
         text-transform: uppercase;
     }
 
-
     .marco {
         width: min(100%, 29rem);
         margin: 0 auto;
         padding: 0.55rem;
-        border: 1px solid var(--tinta);
+        border: 0.0625rem solid var(--tinta);
         background: var(--papel-claro);
-        box-shadow: 6px 6px 0 var(--papel-hondo);
+        box-shadow: 0.375rem 0.375rem 0 var(--papel-hondo);
     }
-
 
     .tablero {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        border: 1px solid var(--tinta);
+        border: 0.0625rem solid var(--tinta);
         background: var(--tinta);
-        gap: 1px;
+        gap: 0.0625rem;
     }
-
 
     .celda {
         display: grid;
@@ -616,42 +556,34 @@
             transform 150ms ease;
     }
 
-
     .celda:hover:not(:disabled):not(.celda--ocupada) {
         background: var(--fondo);
     }
-
 
     .celda:active:not(:disabled) {
         transform: scale(0.985);
     }
 
-
     .celda--x {
         color: var(--rojo);
     }
 
-
     .celda--o {
         color: var(--verde);
     }
-
 
     .celda--ganadora {
         background: var(--amarillo);
         color: var(--tinta);
     }
 
-
     .celda:disabled {
         cursor: default;
     }
 
-
     .celda--ocupada {
         cursor: default;
     }
-
 
     .estado {
         min-height: 1.5rem;
@@ -664,7 +596,6 @@
         text-align: center;
     }
 
-
     .acciones {
         display: flex;
         flex-wrap: wrap;
@@ -672,7 +603,6 @@
         gap: 0.6rem;
         margin-top: 1.2rem;
     }
-
 
     .modal {
         position: fixed;
@@ -685,22 +615,19 @@
         animation: aparecer 180ms ease both;
     }
 
-
     .modal[hidden] {
         display: none;
     }
 
-
     .modal__caja {
         width: min(100%, 23rem);
         padding: 2rem 1.7rem 1.5rem;
-        border: 1px solid var(--tinta);
+        border: 0.0625rem solid var(--tinta);
         background: var(--papel-claro);
-        box-shadow: 8px 8px 0 rgba(32, 27, 23, 0.14);
+        box-shadow: 0.5rem 0.5rem 0 rgba(32, 27, 23, 0.14);
         text-align: center;
         animation: subir 200ms ease both;
     }
-
 
     .modal__caja h2 {
         margin-bottom: 0.7rem;
@@ -709,7 +636,6 @@
         line-height: 1.05;
     }
 
-
     .modal__caja p {
         margin-bottom: 1.4rem;
         color: var(--tinta-suave);
@@ -717,13 +643,11 @@
         line-height: 1.55;
     }
 
-
     .modal__acciones {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 0.55rem;
     }
-
 
     @keyframes aparecer {
         from {
@@ -734,11 +658,10 @@
         }
     }
 
-
     @keyframes subir {
         from {
             opacity: 0;
-            transform: translateY(8px);
+            transform: translateY(0.5rem);
         }
         to {
             opacity: 1;
@@ -748,7 +671,6 @@
 }
 
 @layer responsive {
-    /* Base móvil: hasta 640 px */
     .acciones .btn {
         flex: 1 1 auto;
     }
@@ -787,107 +709,87 @@
         padding: 0.65rem 0.7rem;
     }
 
-    .marcador__lado--o
- {
+    .marcador__lado--o {
         align-items: flex-end;
     }
-
 
     .marcador__lado--o .marcador__ficha {
         grid-column: auto;
         grid-row: auto;
     }
 
-
     .marcador__lado--o .marcador__nombre {
         grid-column: auto;
         grid-row: auto;
     }
-
 
     .marcador__lado--o .marcador__puntos {
         grid-column: auto;
         grid-row: auto;
     }
 
-
     .marcador__modo {
         font-size: 0.49rem;
     }
-
 
     .marcador__nombre {
         font-size: 0.5rem;
         max-width: 6.5rem;
     }
 
-
     .marcador__puntos {
         font-size: 1.05rem;
     }
-
 
     .marcador__tablas {
         font-size: 0.49rem;
     }
 
-
     .marcador__turno {
         font-size: 0.64rem;
     }
 
-
     .marco {
-        box-shadow: 4px 4px 0 var(--papel-hondo);
+        box-shadow: 0.25rem 0.25rem 0 var(--papel-hondo);
     }
-
 
     .meta span:not(:last-child)::after {
         display: none;
     }
 
-
     .modo {
         padding: 0.95rem;
     }
 
-
     .pantalla {
         padding: 1.2rem 0.8rem 1.6rem;
     }
-@media (min-width: 641px) {
-
+    @media (min-width: 40.0625rem) {
         .acciones .btn {
             flex: revert-layer;
         }
-
 
         .cabecera--inicio h1 {
             font-size: clamp(3.3rem, 9vw, 6.8rem);
         }
 
-
         .celda {
             font-size: clamp(3rem, 13vw, 6.3rem);
         }
 
-
         .hoja {
             padding: clamp(1.5rem, 4vw, 3.4rem);
         }
-
 
         .marcador__centro {
             min-width: 8.8rem;
             padding: 0.75rem 0.8rem;
         }
 
-
         .marcador__ficha {
             font-size: 1.65rem;
             grid-row: 1 / span 2;
         }
-
 
         .marcador__lado {
             align-items: center;
@@ -897,99 +799,82 @@
             padding: 0.8rem 1rem;
         }
 
-
         .marcador__lado--o {
             align-items: revert-layer;
         }
-
 
         .marcador__lado--o .marcador__ficha {
             grid-column: 2;
             grid-row: 1 / span 2;
         }
 
-
         .marcador__lado--o .marcador__nombre {
             grid-column: 1;
             grid-row: revert-layer;
         }
-
 
         .marcador__lado--o .marcador__puntos {
             grid-column: 1;
             grid-row: 1;
         }
 
-
         .marcador__modo {
             font-size: 0.55rem;
         }
-
 
         .marcador__nombre {
             font-size: 0.58rem;
             max-width: 9rem;
         }
 
-
         .marcador__puntos {
             font-size: 1.2rem;
         }
-
 
         .marcador__tablas {
             font-size: 0.55rem;
         }
 
-
         .marcador__turno {
             font-size: 0.73rem;
         }
 
-
         .marco {
-            box-shadow: 6px 6px 0 var(--papel-hondo);
+            box-shadow: 0.375rem 0.375rem 0 var(--papel-hondo);
         }
-
 
         .meta span:not(:last-child)::after {
             display: block;
         }
 
-
         .modo {
             padding: 1.15rem 1.25rem;
         }
 
-
         .pantalla {
             padding: clamp(1.5rem, 4vw, 4rem) clamp(1rem, 4vw, 3rem);
         }
-}
-
-}
-
-@layer accesibilidad {
-@media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-                scroll-behavior: auto;
-                animation-duration: 0.01ms;
-                animation-iteration-count: 1;
-                transition-duration: 0.01ms;
-            }
     }
 }
 
-/* La hoja externa de fuentes no usa capas: estas reglas de iconos se
-   quedan fuera para que sus tamaños sigan ganando. */
+@layer accesibilidad {
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            scroll-behavior: auto;
+            animation-duration: 0.01ms;
+            animation-iteration-count: 1;
+            transition-duration: 0.01ms;
+        }
+    }
+}
 
 .modo__icono {
     display: grid;
     width: 2.65rem;
     height: 2.65rem;
-    border: 1px solid currentColor;
+    border: 0.0625rem solid currentColor;
     border-radius: 50%;
     color: var(--rojo);
     font-size: 1.25rem;
@@ -1008,7 +893,7 @@
 
 .modo[aria-pressed="true"] .modo__flecha {
     color: var(--papel-claro);
-    transform: translateX(3px);
+    transform: translateX(0.1875rem);
 }
 
 .btn--icono .material-symbols-rounded {
@@ -1027,7 +912,7 @@
     width: 2.35rem;
 }
 
-@media (min-width: 641px) {
+@media (min-width: 40.0625rem) {
     .modo__icono {
         height: 2.65rem;
         width: 2.65rem;

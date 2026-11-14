@@ -10,7 +10,10 @@ export function crearMenu({ alIniciar }) {
         const semillaIntroducida = Number.parseInt(semilla.value, 10);
         return {
             dificultad: Number.parseInt(dificultad.value, 10) || 0,
-            semilla: Number.isFinite(semillaIntroducida) && semillaIntroducida > 0 ? semillaIntroducida : 2026,
+            semilla:
+                Number.isFinite(semillaIntroducida) && semillaIntroducida > 0
+                    ? semillaIntroducida
+                    : 2026,
             vueltas: Number.parseInt(vueltas.value, 10) || 3,
             sonido: sonido.checked,
         };

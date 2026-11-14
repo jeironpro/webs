@@ -7,7 +7,7 @@ Este repositorio puede publicarse en GitHub Pages sin configuración adicional, 
 ### Paso 1 · Publicar desde la rama `main`
 
 1. Ve a **Settings → Pages** del repositorio en GitHub.
-2. En **Build and deployment**, en *Source* selecciona **Deploy from a branch**.
+2. En **Build and deployment**, en _Source_ selecciona **Deploy from a branch**.
 3. Selecciona la rama `main` y la carpeta `/ (root)`.
 4. Pulsa **Save**.
 
@@ -46,4 +46,4 @@ Abrir luego `http://localhost:8090`.
 
 - **Netlify Drop**: arrastrar la carpeta del proyecto a https://app.netlify.com/drop.
 - **Vercel**: `npx vercel` desde la raíz del proyecto.
-- **Cloudflare Pages**: *Direct Upload* de la carpeta del proyecto.
+- **Cloudflare Pages**: _Direct Upload_ de la carpeta del proyecto.

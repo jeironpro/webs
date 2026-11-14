@@ -29,6 +29,7 @@ const WEBS_CANONICAS = [
     "web-frontend",
     "web-instruccion-login-google",
     "web-javarcises",
+    "web-juegos",
     "web-generador-clave-secreta",
     "web-generador-codigo-qr",
     "web-generador-contrasena",
@@ -52,7 +53,6 @@ const WEBS_PENDIENTES = [
     "web-dashboards",
     "web-exerciness",
     "web-generador-cv",
-    "web-juegos",
     "web-naruto",
     "web-oracle-academy-dpsql",
     "web-programmer-day",
@@ -70,7 +70,8 @@ export default [
             "**/node_modules/**",
             ...WEBS_PENDIENTES.map((web) => `${web}/**`),
             "web-continguts-daw/moduls_*/**",
-            "vendor/**",
+            "**/vendor/**",
+            "**/.rea/**",
             "assets/**",
             "coverage/**",
             ".hallmark/**",
@@ -94,6 +95,14 @@ export default [
         languageOptions: {
             globals: {
                 ...globals.browser,
+            },
+        },
+    },
+    {
+        files: ["web-juegos/**/tools/**/*.{js,mjs}", "web-juegos/tools/**/*.{js,mjs}"],
+        languageOptions: {
+            globals: {
+                ...globals.node,
             },
         },
     },

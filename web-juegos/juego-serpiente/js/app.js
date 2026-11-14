@@ -105,7 +105,7 @@ function dibujar() {
         comida.y * celda + celda / 2,
         celda * 0.32,
         0,
-        Math.PI * 2,
+        Math.PI * 2
     );
     contexto.fill();
 
@@ -119,7 +119,7 @@ function dibujar() {
             segmento.y * celda + margen,
             celda - margen * 2,
             celda - margen * 2,
-            radio,
+            radio
         );
         contexto.fill();
 
@@ -132,14 +132,14 @@ function dibujar() {
                 segmento.y * celda + celda * 0.4,
                 ojo,
                 0,
-                Math.PI * 2,
+                Math.PI * 2
             );
             contexto.arc(
                 segmento.x * celda + celda * 0.64,
                 segmento.y * celda + celda * 0.4,
                 ojo,
                 0,
-                Math.PI * 2,
+                Math.PI * 2
             );
             contexto.fill();
         }
@@ -162,7 +162,7 @@ function mover() {
     const comera = nuevaCabeza.x === comida.x && nuevaCabeza.y === comida.y;
     const cuerpoAComprobar = comera ? cuerpo : cuerpo.slice(0, -1);
     const choca = cuerpoAComprobar.some(
-        (segmento) => segmento.x === nuevaCabeza.x && segmento.y === nuevaCabeza.y,
+        (segmento) => segmento.x === nuevaCabeza.x && segmento.y === nuevaCabeza.y
     );
 
     if (choca) {

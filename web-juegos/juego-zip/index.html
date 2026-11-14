@@ -10,7 +10,7 @@
             name="description"
             content="Zip: dibuja un único camino que pase por los números en orden y llene todas las casillas sin cruzar muros."
         />
-        <link rel="icon" href="icon/zip.svg" type="image/svg+xml" />
+        <link rel="icon" href="assets/icons/zip.svg" type="image/svg+xml" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -143,8 +143,8 @@
                         <span class="ms" aria-hidden="true">shield</span>
                     </div>
                     <p>
-                        La partida en curso, los récords y los tableros resueltos se guardan solo
-                        en este navegador con <code>localStorage</code>. No se envían a ningún
+                        La partida en curso, los récords y los tableros resueltos se guardan solo en
+                        este navegador con <code>localStorage</code>. No se envían a ningún
                         servidor.
                     </p>
                     <button type="button" id="olvidar" class="btn btn--texto">
@@ -191,9 +191,18 @@
                 <h2 id="modal-titulo">¡Tablero resuelto!</h2>
                 <p id="modal-texto">Camino completo, en orden y sin cruzar muros.</p>
                 <dl class="modal__datos">
-                    <div><dt>Tiempo</dt><dd id="modal-tiempo">0:00</dd></div>
-                    <div><dt>Pasos</dt><dd id="modal-movimientos">0</dd></div>
-                    <div><dt>Récord</dt><dd id="modal-record">—</dd></div>
+                    <div>
+                        <dt>Tiempo</dt>
+                        <dd id="modal-tiempo">0:00</dd>
+                    </div>
+                    <div>
+                        <dt>Pasos</dt>
+                        <dd id="modal-movimientos">0</dd>
+                    </div>
+                    <div>
+                        <dt>Récord</dt>
+                        <dd id="modal-record">—</dd>
+                    </div>
                 </dl>
                 <div class="modal__acciones">
                     <button type="button" class="btn btn--secundario" data-accion="cerrar">

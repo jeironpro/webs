@@ -1,7 +1,4 @@
 @layer base {
-    /* Hallmark · v3.1.0 · genre: cuaderno técnico · theme: Cuaderno (papel cuadriculado, tinta azul y ámbar de subrayado) · shape: hoja de bloc con ficha de datos, tablero limpio y notas a dos columnas · nav: cabecera condensada sobre una regla graduada · footer: una línea · signature: la retícula impresa bajo toda la página y las casillas dadas con marco ámbar · waivers: none */
-    /* Hallmark · pre-emit critique: P4 H4 E4 S5 R4 V4 · weakest: H, la retícula y la regla graduada dan oficio técnico sin pedir ilustración; el reto es que el tablero siga siendo el foco y el ámbar no se lea como aviso */
-
     :root {
         color-scheme: light;
 
@@ -61,9 +58,9 @@
     body {
         background-color: var(--papel);
         background-image:
-            linear-gradient(to right, var(--rejilla) 1px, transparent 1px),
-            linear-gradient(to bottom, var(--rejilla) 1px, transparent 1px);
-        background-size: 22px 22px;
+            linear-gradient(to right, var(--rejilla) 0.0625rem, transparent 0.0625rem),
+            linear-gradient(to bottom, var(--rejilla) 0.0625rem, transparent 0.0625rem);
+        background-size: 1.375rem 1.375rem;
         color: var(--tinta-2);
         font-family: var(--cuerpo);
         font-size: var(--texto-m);
@@ -79,8 +76,8 @@
     }
 
     :focus-visible {
-        outline: 2px solid var(--foco);
-        outline-offset: 2px;
+        outline: 0.125rem solid var(--foco);
+        outline-offset: 0.125rem;
     }
 
     .sprite {
@@ -102,21 +99,23 @@
         width: 100%;
     }
 
-    /* Cabecera ------------------------------------------------------------- */
-
     .cabecera {
-        border-bottom: 2px solid var(--tinta);
+        border-bottom: 0.125rem solid var(--tinta);
         display: grid;
         gap: var(--esp-2);
-        padding-bottom: calc(var(--esp-4) + 10px);
+        padding-bottom: calc(var(--esp-4) + 0.625rem);
         position: relative;
     }
 
     .cabecera::after {
-        background: repeating-linear-gradient(90deg, var(--linea-2) 0 1px, transparent 1px 18px);
-        bottom: -9px;
+        background: repeating-linear-gradient(
+            90deg,
+            var(--linea-2) 0 0.0625rem,
+            transparent 0.0625rem 1.125rem
+        );
+        bottom: -0.5625rem;
         content: "";
-        height: 8px;
+        height: 0.5rem;
         left: 0;
         opacity: 0.7;
         position: absolute;
@@ -155,7 +154,7 @@
         margin: 0;
     }
 
-    @media (min-width: 760px) {
+    @media (min-width: 47.5rem) {
         .cabecera {
             align-items: end;
             column-gap: var(--esp-6);
@@ -188,8 +187,6 @@
         padding: 0.15rem 0.45rem;
     }
 
-    /* Ficha de datos ------------------------------------------------------- */
-
     .puzzle {
         margin: var(--esp-5) auto 0;
         max-width: 32rem;
@@ -197,14 +194,14 @@
 
     .registro {
         background: var(--papel);
-        border: 1px solid var(--tinta);
+        border: 0.0625rem solid var(--tinta);
         display: grid;
         grid-template-columns: repeat(4, minmax(0, 1fr));
         margin: 0 0 var(--esp-4);
     }
 
     .registro > div {
-        border-left: 1px solid var(--linea);
+        border-left: 0.0625rem solid var(--linea);
         display: grid;
         gap: var(--esp-1);
         min-width: 0;
@@ -238,15 +235,13 @@
         font-size: 0.95rem;
     }
 
-    /* Tablero -------------------------------------------------------------- */
-
     .marco {
         margin: 0 auto;
         max-width: 100%;
         width: 100%;
     }
 
-    @media (min-width: 720px) {
+    @media (min-width: 45rem) {
         .marco {
             max-width: min(100%, 32rem, calc(100dvh - 28rem));
         }
@@ -255,9 +250,9 @@
     .tablero {
         aspect-ratio: 1;
         background: var(--cuadricula);
-        border: 2px solid var(--tinta);
+        border: 0.125rem solid var(--tinta);
         display: grid;
-        gap: 1px;
+        gap: 0.0625rem;
         grid-template-columns: repeat(var(--n, 6), minmax(0, 1fr));
         grid-template-rows: repeat(var(--n, 6), minmax(0, 1fr));
         position: relative;
@@ -291,14 +286,14 @@
     }
 
     .celda:focus-visible {
-        outline: 2px solid var(--foco);
-        outline-offset: -2px;
+        outline: 0.125rem solid var(--foco);
+        outline-offset: -0.125rem;
         z-index: 2;
     }
 
     .celda--dada {
         background: var(--ambar-claro);
-        box-shadow: inset 0 0 0 3px var(--ambar);
+        box-shadow: inset 0 0 0 0.1875rem var(--ambar);
         color: var(--tinta);
         cursor: default;
     }
@@ -306,12 +301,12 @@
     .celda--dada:hover,
     .celda--dada:active {
         background: var(--ambar-claro);
-        box-shadow: inset 0 0 0 3px var(--ambar-2);
+        box-shadow: inset 0 0 0 0.1875rem var(--ambar-2);
     }
 
     .celda--conflicto {
-        outline: 2px solid var(--rojo);
-        outline-offset: -2px;
+        outline: 0.125rem solid var(--rojo);
+        outline-offset: -0.125rem;
         z-index: 2;
     }
 
@@ -351,8 +346,8 @@
     .relacion {
         align-items: center;
         background: var(--papel);
-        border: 1px solid var(--tinta);
-        border-radius: 2px;
+        border: 0.0625rem solid var(--tinta);
+        border-radius: 0.125rem;
         color: var(--tinta);
         display: flex;
         font-family: var(--mono);
@@ -365,8 +360,6 @@
         transform: translate(-50%, -50%);
         width: 1.4rem;
     }
-
-    /* Estado y mandos ------------------------------------------------------ */
 
     .estado {
         color: var(--apagado);
@@ -388,7 +381,7 @@
     }
 
     .mandos {
-        border-top: 1px solid var(--linea);
+        border-top: 0.0625rem solid var(--linea);
         display: grid;
         gap: var(--esp-3);
         margin-top: var(--esp-4);
@@ -415,13 +408,11 @@
         color: var(--tinta);
     }
 
-    /* Botones -------------------------------------------------------------- */
-
     .btn {
         align-items: center;
         background: transparent;
-        border: 1px solid var(--tinta);
-        border-radius: 2px;
+        border: 0.0625rem solid var(--tinta);
+        border-radius: 0.125rem;
         color: var(--tinta);
         cursor: pointer;
         display: inline-flex;
@@ -479,17 +470,15 @@
         text-decoration-color: var(--tinta);
     }
 
-    /* Notas ---------------------------------------------------------------- */
-
     .notas {
-        border-top: 2px solid var(--tinta);
+        border-top: 0.125rem solid var(--tinta);
         display: grid;
         gap: var(--esp-5);
         margin-top: var(--esp-7);
         padding-top: var(--esp-4);
     }
 
-    @media (min-width: 820px) {
+    @media (min-width: 51.25rem) {
         .notas {
             gap: var(--esp-6);
             grid-template-columns: 1.15fr 0.85fr;
@@ -517,7 +506,7 @@
 
     .reglas li {
         align-items: start;
-        border-bottom: 1px solid var(--linea);
+        border-bottom: 0.0625rem solid var(--linea);
         display: grid;
         gap: var(--esp-3);
         grid-template-columns: 1.5rem minmax(0, 1fr);
@@ -547,7 +536,7 @@
 
     .reglas__num {
         align-items: center;
-        border: 1px solid var(--linea-2);
+        border: 0.0625rem solid var(--linea-2);
         color: var(--apagado);
         display: flex;
         font-family: var(--mono);
@@ -568,7 +557,7 @@
 
     .record {
         align-items: baseline;
-        border-bottom: 1px solid var(--linea);
+        border-bottom: 0.0625rem solid var(--linea);
         display: flex;
         flex-wrap: wrap;
         gap: var(--esp-2) var(--esp-3);
@@ -616,10 +605,8 @@
         margin-top: var(--esp-2);
     }
 
-    /* Pie ------------------------------------------------------------------ */
-
     .pie {
-        border-top: 1px solid var(--linea);
+        border-top: 0.0625rem solid var(--linea);
         color: var(--apagado);
         display: flex;
         flex-wrap: wrap;
@@ -634,8 +621,6 @@
     .pie p {
         margin: 0;
     }
-
-    /* Modal ---------------------------------------------------------------- */
 
     .modal {
         align-items: center;
@@ -654,8 +639,8 @@
 
     .modal__caja {
         background: var(--papel);
-        border: 1px solid var(--tinta);
-        border-top: 6px solid var(--ambar);
+        border: 0.0625rem solid var(--tinta);
+        border-top: 0.375rem solid var(--ambar);
         display: grid;
         gap: var(--esp-3);
         max-width: 23rem;
@@ -682,8 +667,8 @@
     }
 
     .modal__datos {
-        border-bottom: 1px solid var(--linea);
-        border-top: 1px solid var(--linea);
+        border-bottom: 0.0625rem solid var(--linea);
+        border-top: 0.0625rem solid var(--linea);
         display: flex;
         gap: var(--esp-5);
         justify-content: center;
@@ -723,7 +708,6 @@
 }
 
 @layer responsive {
-    /* Base móvil: hasta 520 px */
     .registro {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -733,10 +717,10 @@
     }
 
     .registro > div:nth-child(n + 3) {
-        border-top: 1px solid var(--linea);
+        border-top: 0.0625rem solid var(--linea);
     }
 
-    @media (min-width: 521px) {
+    @media (min-width: 32.5625rem) {
         .registro {
             grid-template-columns: repeat(4, minmax(0, 1fr));
         }
@@ -752,12 +736,12 @@
 }
 
 @layer accesibilidad {
-@media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms;
-                transition-duration: 0.01ms;
-            }
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms;
+            transition-duration: 0.01ms;
+        }
     }
 }
