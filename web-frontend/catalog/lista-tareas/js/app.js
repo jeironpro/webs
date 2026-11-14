@@ -1,48 +1,51 @@
-const inputTarea = document.getElementById("tarea")
-const listadoTareas = document.getElementById("listadoTarea");
-let mensajeError = 'La tarea no puede estar vacía';
+const taskInput = document.getElementById("task-input");
+const taskList = document.getElementById("task-list");
+const errorMessage = "La tarea no puede estar vacía";
 
-function agregarTarea() {
-    let tarea = inputTarea.value;
-    const tareaElemento = document.createElement("li");
-    if (inputTarea.value === '') {
-        inputTarea.value = mensajeError;
-        inputTarea.style.color = 'red';
+function addTask() {
+    const task = taskInput.value;
+    const taskItem = document.createElement("li");
+
+    if (taskInput.value === "") {
+        taskInput.value = errorMessage;
+        taskInput.classList.add("is-invalid");
         setTimeout(() => {
-            limpiarMensajeError();
-        }, 2000)
+            clearError();
+        }, 2000);
     } else {
-        tareaElemento.append(document.createTextNode(tarea));
-        tareaElemento.append(crearBoton("editar", "edit", editarTarea));
-        tareaElemento.append(crearBoton("eliminar", "delete", eliminarTarea));
-        listadoTareas.appendChild(tareaElemento);
-        inputTarea.value = '';
+        taskItem.append(document.createTextNode(task));
+        taskItem.append(createActionButton("edit-task", "edit", editTask));
+        taskItem.append(createActionButton("delete-task", "delete", deleteTask));
+        taskList.appendChild(taskItem);
+        taskInput.value = "";
     }
 }
 
-function crearBoton(accion, icono, manejador) {
-    const boton = document.createElement("span");
-    boton.classList.add("material-symbols-outlined", accion);
-    boton.textContent = icono;
-    boton.addEventListener("click", () => manejador(boton));
-    return boton;
+function createActionButton(action, icon, handler) {
+    const button = document.createElement("span");
+    button.classList.add("material-symbols-outlined", action);
+    button.textContent = icon;
+    button.addEventListener("click", () => handler(button));
+    return button;
 }
 
-function editarTarea(elemento) {
-    const tareaEditar = elemento.parentElement.firstChild;
-    const tareaSeleccionada = tareaEditar.textContent;
-    inputTarea.value = tareaSeleccionada;
+function editTask(element) {
+    const taskText = element.parentElement.firstChild;
+    const selectedTask = taskText.textContent;
+    taskInput.value = selectedTask;
 
-    if (tareaSeleccionada) {
-        elemento.parentElement.remove();
+    if (selectedTask) {
+        element.parentElement.remove();
     }
 }
 
-function eliminarTarea(elemento) {
-    elemento.parentElement.remove();
+function deleteTask(element) {
+    element.parentElement.remove();
 }
 
-function limpiarMensajeError() {
-    inputTarea.value = '';
-    inputTarea.style.color = '';
+function clearError() {
+    taskInput.value = "";
+    taskInput.classList.remove("is-invalid");
 }
+
+document.getElementById("add-task").addEventListener("click", addTask);

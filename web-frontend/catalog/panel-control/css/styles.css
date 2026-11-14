@@ -1,201 +1,201 @@
 @layer base {
-:root {
-    --fondo: #3c0e5a;
-    --fondo-2: #9900ff;
-    --fondo-3: #ad32ff;
-    --texto: #fff;
-    --texto-2: #000;
-}
-
-body {
-    font-family: 'Quicksand', sans-serif;
-    margin: 0;
-    overflow: hidden;
-    padding: 0;
-}
-
-header {
-    background-color: var(--fondo-2);
-    border-radius: 0 5px 5px 0;
-    display: block;
-    height: 100%;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 250px;
-}
-
-.menu-burger {
-    color: var(--texto-2);
-    display: none;
-    font-size: 26px;
-    position: absolute;
-    right: 5%;
-}
-
-.menu-burger h1 {
-    display: none;
-    font-size: 26px;
-}
-
-.logo-titulo {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 0;
-    padding: 0;
-}
-
-.logo-titulo h2 {
-    color: var(--texto);
-    font-size: 28px;
-    font-weight: bolder;
-    margin-top: 20px;
-}
-
-.logo-titulo img {
-    filter: drop-shadow(3px -3px 3px);
-    height: 50px;
-    margin-top: -10px;
-    width: 50px;
-}
-
-.menu {
-    list-style-type: none;
-    margin: 35px 0 0 0;
-    padding: 0;
-    position: relative;
-}
-
-.menu li {
-    border-bottom: 1px solid var(--texto);
-    border-radius: 5px;
-    color: var(--texto);
-    cursor: pointer;
-    font-size: 18px;
-    font-weight: 600;
-    padding: 22.5px 10px;
-    position: relative;
-}
-
-.menu li .icono {
-    position: absolute;
-    right: 8%;
-}
-
-.menu .no-submenu:hover {
-    background-color: var(--fondo);
-}
-
-.menu .submenu {
-    display: none;
-    margin-right: 10px;
-    margin-top: 10px;
-}
-
-.menu .submenu .subelemento {
-    background-color: var(--fondo);
-    margin-top: 2px;
-}
-
-.menu li a, .menu .submenu .subelemento a {
-    color: var(--texto);
-    text-decoration: none;
-}
-
-.menu .submenu .subelemento:hover {
-    background-color: var(--fondo-3);
-}
-
-.menu li .subelemento {
-    font-size: 14px;
-    padding: 10px;
-}
-}
-
-@layer responsive {
-    /* Base móvil: hasta 500 px */
-    #logo-bar {
-        display: none;
-        height: 22px;
-        margin: 0 10px;
-        width: 22px;
+    :root {
+        --fondo: #3c0e5a;
+        --fondo-2: #9900ff;
+        --fondo-3: #ad32ff;
+        --texto: #fff;
+        --texto-2: #000;
     }
 
-    #titulo-bar {
-        font-size: 23px;
-        margin: -3px;
+    body {
+        font-family: "Quicksand", sans-serif;
+        margin: 0;
+        overflow: hidden;
+        padding: 0;
+    }
+
+    header {
+        background-color: var(--fondo-2);
+        border-radius: 0 0.3125rem 0.3125rem 0;
+        display: block;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 15.625rem;
+    }
+
+    .menu-burger {
+        color: var(--texto-2);
+        display: none;
+        font-size: 1.625rem;
+        position: absolute;
+        right: 5%;
+    }
+
+    .menu-burger h1 {
+        display: none;
+        font-size: 1.625rem;
     }
 
     .logo-titulo {
-        margin-top: 15px;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
     }
 
     .logo-titulo h2 {
-        font-size: 26px;
+        color: var(--texto);
+        font-size: 1.75rem;
+        font-weight: bolder;
+        margin-top: 1.25rem;
     }
 
     .logo-titulo img {
-        height: 45px;
-        width: 45px;
+        filter: drop-shadow(0.1875rem -0.1875rem 0.1875rem);
+        height: 3.125rem;
+        margin-top: -0.625rem;
+        width: 3.125rem;
     }
 
     .menu {
-        margin-top: 20px;
+        list-style-type: none;
+        margin: 2.1875rem 0 0 0;
+        padding: 0;
+        position: relative;
     }
 
     .menu li {
-        padding: 23px 10px;
+        border-bottom: 0.0625rem solid var(--texto);
+        border-radius: 0.3125rem;
+        color: var(--texto);
+        cursor: pointer;
+        font-size: 1.125rem;
+        font-weight: 600;
+        padding: 1.40625rem 0.625rem;
+        position: relative;
+    }
+
+    .menu li .icono {
+        position: absolute;
+        right: 8%;
+    }
+
+    .menu .no-submenu:hover {
+        background-color: var(--fondo);
+    }
+
+    .menu .submenu {
+        display: none;
+        margin-right: 0.625rem;
+        margin-top: 0.625rem;
+    }
+
+    .menu .submenu .subelemento {
+        background-color: var(--fondo);
+        margin-top: 0.125rem;
+    }
+
+    .menu li a,
+    .menu .submenu .subelemento a {
+        color: var(--texto);
+        text-decoration: none;
+    }
+
+    .menu .submenu .subelemento:hover {
+        background-color: var(--fondo-3);
+    }
+
+    .menu li .subelemento {
+        font-size: 0.875rem;
+        padding: 0.625rem;
+    }
+}
+
+@layer responsive {
+    #logo-bar {
+        display: none;
+        height: 1.375rem;
+        margin: 0 0.625rem;
+        width: 1.375rem;
+    }
+
+    #titulo-bar {
+        font-size: 1.4375rem;
+        margin: -0.1875rem;
+    }
+
+    .logo-titulo {
+        margin-top: 0.9375rem;
+    }
+
+    .logo-titulo h2 {
+        font-size: 1.625rem;
+    }
+
+    .logo-titulo img {
+        height: 2.8125rem;
+        width: 2.8125rem;
+    }
+
+    .menu {
+        margin-top: 1.25rem;
+    }
+
+    .menu li {
+        padding: 1.4375rem 0.625rem;
     }
 
     .menu-burger {
         color: var(--texto);
         display: flex;
-        margin: 10px 0;
+        margin: 0.625rem 0;
     }
 
     .menu-burger .fa-bars {
-        font-size: 22px;
+        font-size: 1.375rem;
     }
 
     .menu-burger .fa-x {
-        font-size: 20px;
-        margin: -5px;
+        font-size: 1.25rem;
+        margin: -0.3125rem;
     }
 
     body {
         overflow-y: hidden;
     }
 
-    @media (min-width: 501px) {
+    @media (min-width: 31.3125rem) {
         #logo-bar {
-            height: 25px;
-            width: 25px;
+            height: 1.5625rem;
+            width: 1.5625rem;
         }
 
         #titulo-bar {
-            font-size: 25px;
-            margin: -4px;
+            font-size: 1.5625rem;
+            margin: -0.25rem;
         }
 
         .logo-titulo {
-            margin-top: 20px;
+            margin-top: 1.25rem;
         }
 
         .menu li {
-            padding: 22.5px 10px;
+            padding: 1.40625rem 0.625rem;
         }
 
         .menu-burger .fa-bars {
-            font-size: 25px;
+            font-size: 1.5625rem;
         }
 
         .menu-burger .fa-x {
-            font-size: 18px;
+            font-size: 1.125rem;
         }
     }
-    @media (min-width: 1025px) {
+    @media (min-width: 64.0625rem) {
         #logo-bar {
             display: revert-layer;
             height: revert-layer;
@@ -213,12 +213,12 @@ header {
         }
 
         .logo-titulo h2 {
-            font-size: 28px;
+            font-size: 1.75rem;
         }
 
         .logo-titulo img {
-            height: 50px;
-            width: 50px;
+            height: 3.125rem;
+            width: 3.125rem;
         }
 
         .menu {

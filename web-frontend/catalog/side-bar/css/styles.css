@@ -1,3 +1,13 @@
+.visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 0.0625rem;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 0.0625rem;
+}
+
 :root {
     --fondo: #fff;
     --fondo-2: #f00;
@@ -15,7 +25,7 @@
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     margin: 0;
     overflow: hidden;
     padding: 0;
@@ -23,19 +33,19 @@ body {
 
 header {
     background-color: var(--fondo);
-    border-radius: 0 5px 5px 0;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 0 0.3125rem 0.3125rem 0;
+    box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.5);
     height: 100%;
     left: 0;
     position: absolute;
     top: 0;
     transition: width 0.2s ease-in-out;
-    width: 180px;
+    width: 11.25rem;
 }
 
 header .control {
     position: absolute;
-    right: -18px;
+    right: -1.125rem;
     text-align: center;
     top: 50%;
     transform: translateY(-50%);
@@ -46,8 +56,8 @@ header .control button {
     background-color: var(--fondo-2);
     border: none;
     border-radius: 25%;
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
-    padding: 5px 7px;
+    box-shadow: 0 0 0.3125rem rgba(255, 255, 255, 0.5);
+    padding: 0.3125rem 0.4375rem;
 }
 
 header .control i {
@@ -80,20 +90,20 @@ nav ul a:hover {
 nav ul li {
     cursor: pointer;
     display: flex;
-    padding: 20px 15px 15px 15px;
+    padding: 1.25rem 0.9375rem 0.9375rem 0.9375rem;
     text-align: center;
     transition: all 0.5s ease-in-out;
 }
 
 nav ul li i {
-    font-size: 20px;
-    height: 20px;
-    width: 20px;
+    font-size: 1.25rem;
+    height: 1.25rem;
+    width: 1.25rem;
 }
 
 nav ul li span {
-    font-size: 16px;
-    margin-left: 15px;
+    font-size: 1rem;
+    margin-left: 0.9375rem;
 }
 
 .fa-house {

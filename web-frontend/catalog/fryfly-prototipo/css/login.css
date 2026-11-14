@@ -1,0 +1,219 @@
+:root {
+    --borde: #000;
+    --fondo: #c61b0d;
+    --fondo-2: #34a853;
+    --fondo-3: #4285f4;
+    --fondo-4: #fbbc05;
+    --texto: #fff;
+    --texto-2: #1778f2;
+    --texto-3: #ea4335;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--fondo);
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.contenedor-login {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--texto);
+    width: 25rem;
+    height: 34.375rem;
+    border-radius: 0.625rem;
+    position: relative;
+}
+
+.contenedor-login .registro {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: var(--fondo);
+    box-shadow: 0 0 0.125rem rgba(0, 0, 0, 0.5);
+    border-radius: 0 0.625rem 0 0;
+    padding: 0.3125rem;
+}
+
+.contenedor-login .registro a {
+    text-decoration: none;
+    color: var(--texto);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.contenedor-login .registro a:hover {
+    text-decoration: underline;
+}
+
+.logo-titulo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-titulo figure img {
+    width: 6.25rem;
+    height: 6.25rem;
+}
+
+form {
+    margin-top: 0.625rem;
+}
+
+form .control {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1.875rem;
+    position: relative;
+}
+
+form .control label {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+form .control input {
+    width: 16.25rem;
+    height: 1.75rem;
+    background-color: var(--fondo);
+    border: 0.0625rem solid var(--texto);
+    color: var(--texto);
+    border-radius: 0.3125rem;
+    padding-left: 0.3125rem;
+}
+
+form .control input:focus {
+    outline: none;
+}
+
+form .control a {
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-left: 0.1875rem;
+    text-decoration: none;
+    color: var(--borde);
+}
+
+form .control a:hover {
+    text-decoration: underline;
+}
+
+form .control .mostrar-ocultar {
+    background: none;
+    border: 0;
+    color: var(--texto);
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0;
+    position: absolute;
+    right: 0.3125rem;
+    top: 1.5rem;
+}
+
+form .boton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.875rem;
+}
+
+form .boton button {
+    width: 7.5rem;
+    height: 1.875rem;
+    font-weight: 700;
+    font-size: 1rem;
+    background-color: var(--borde);
+    color: var(--texto);
+    border-radius: 0.3125rem;
+    border: none;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+form .boton button:hover {
+    transform: scale(0.95);
+    background-color: var(--fondo);
+}
+
+.registro-sociales {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 18.75rem;
+    margin-top: 1.25rem;
+}
+
+.registro-sociales span {
+    width: 100%;
+    text-align: center;
+    font-weight: 600;
+}
+
+.registro-sociales .linea-izquierda,
+.registro-sociales .linea-derecha {
+    border-top: 0.0625rem solid var(--borde);
+    width: 100%;
+}
+
+.enlaces-registro {
+    display: flex;
+    gap: 1.25rem;
+    margin-top: 1.25rem;
+}
+
+.enlaces-registro .enlace-google,
+.enlaces-registro .enlace-facebook {
+    border: 0.0625rem solid var(--borde);
+    border-radius: 50%;
+    padding: 0.75rem;
+    transition: transform 0.3s ease;
+}
+
+.enlaces-registro .enlace-google i {
+    color: var(--texto-3);
+    font-size: 1.25rem;
+}
+
+.enlaces-registro .enlace-facebook i {
+    color: var(--texto-2);
+    font-size: 1.25rem;
+}
+
+.enlaces-registro .enlace-google:hover {
+    background: conic-gradient(
+            from -45deg,
+            var(--texto-3) 110deg,
+            var(--fondo-3) 90deg 180deg,
+            var(--fondo-2) 180deg 270deg,
+            var(--fondo-4) 270deg
+        )
+        73% 55%/150% 150% no-repeat;
+    transform: scale(1.1);
+}
+
+.enlaces-registro .enlace-facebook:hover {
+    background-color: var(--texto-2);
+    transform: scale(1.1);
+}
+
+.enlaces-registro .enlace-google:hover i,
+.enlaces-registro .enlace-facebook:hover i {
+    color: var(--texto);
+}

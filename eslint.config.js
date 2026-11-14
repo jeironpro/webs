@@ -26,6 +26,7 @@ const WEBS_CANONICAS = [
     "web-dados",
     "web-daw",
     "web-ejercicios-pyja",
+    "web-frontend",
     "web-generador-clave-secreta",
     "web-generador-codigo-qr",
     "web-generador-contrasena",
@@ -48,7 +49,6 @@ const WEBS_CANONICAS = [
 const WEBS_PENDIENTES = [
     "web-dashboards",
     "web-exerciness",
-    "web-frontend",
     "web-generador-cv",
     "web-instruccion-login-google",
     "web-javarcises",

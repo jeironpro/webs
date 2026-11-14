@@ -1,54 +1,63 @@
+.visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 0.0625rem;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 0.0625rem;
+}
+
 @layer base {
-body {
-    margin: 0;
-    padding: 0;
-}
+    body {
+        margin: 0;
+        padding: 0;
+    }
 
-main {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    height: 100vh;
-}
+    main {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        height: 100vh;
+    }
 
-.contenedor {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    margin: auto;
-}
+    .contenedor {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        margin: auto;
+    }
 
-.estrellas {
-    display: inline-flex;
-    position: relative;
-}
+    .estrellas {
+        display: inline-flex;
+        position: relative;
+    }
 
-input {
-    cursor: pointer;
-    opacity: 0;
-}
+    input {
+        cursor: pointer;
+        opacity: 0;
+    }
 
-label {
-    background-image: url("../icon/estrella-vacia.png");
-    background-size: cover;
-    cursor: pointer;
-    display: inline-flex;
-    height: 40px;
-    width: 40px;
-}
+    label {
+        background-image: url("../icon/estrella-vacia.png");
+        background-size: cover;
+        cursor: pointer;
+        display: inline-flex;
+        height: 2.5rem;
+        width: 2.5rem;
+    }
 
-input:checked ~ label {
-    background-image: url("../icon/estrella-llena.png");
-}
+    input:checked ~ label {
+        background-image: url("../icon/estrella-llena.png");
+    }
 }
 
 @layer responsive {
-    /* Base móvil: hasta 500 px */
     .contenedor {
-        margin: 250px 100px;
+        margin: 15.625rem 6.25rem;
     }
 
-    @media (min-width: 501px) {
+    @media (min-width: 31.3125rem) {
         .contenedor {
             margin: auto;
         }
