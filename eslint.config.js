@@ -12,6 +12,7 @@ const WEBS_CANONICAS = [
     "web-clima",
     "web-codelang-quiz",
     "web-codingbat-solutions",
+    "web-continguts-daw",
     "web-codi-wiki",
     "web-codigos-http",
     "web-color-picker",
@@ -40,7 +41,6 @@ const WEBS_CANONICAS = [
 ];
 
 const WEBS_PENDIENTES = [
-    "web-continguts-daw",
     "web-curso-dcs",
     "web-curso-git",
     "web-curso-sql",
@@ -69,6 +69,7 @@ export default [
         ignores: [
             "**/node_modules/**",
             ...WEBS_PENDIENTES.map((web) => `${web}/**`),
+            "web-continguts-daw/moduls_*/**",
             "vendor/**",
             "assets/**",
             "coverage/**",

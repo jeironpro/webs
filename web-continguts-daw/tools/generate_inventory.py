@@ -123,7 +123,7 @@ def main():
             f"No se ha encontrado ningún fichero en {materials_root}. Revisa la ruta --materials."
         )
 
-    header = "// Generado por tools/generate_inventory.py — no editar a mano.\n"
+    header = ""
     body = (
         header
         + "export const FILES = "

@@ -1,8 +1,3 @@
-/* Entrar a mongosh 
-accedir a una base de dades: use pokemon
-i executar la comanda load('inserts_pokemon_ejer.js') 
-*/
-
 db.pokedex2.insertMany(
 [
     {

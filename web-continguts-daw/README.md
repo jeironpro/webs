@@ -24,11 +24,11 @@ Está construida con HTML, CSS y JavaScript en módulos ES, sin dependencias ext
 
 El selector de idioma del panel lateral (CA / ES / EN) cambia todos los textos de la interfaz. La preferencia se guarda en el navegador y, si no existe, se detecta el idioma del navegador.
 
-Los textos se cargan desde archivos JSON separados por idioma en la carpeta `lang/`:
+Los textos se cargan desde archivos JSON separados por idioma en la carpeta `data/lang/`:
 
-- `lang/ca.json` (catalán)
-- `lang/es.json` (español)
-- `lang/en.json` (inglés)
+- `data/lang/ca.json` (catalán)
+- `data/lang/es.json` (español)
+- `data/lang/en.json` (inglés)
 
 Para traducir o ajustar un texto solo hay que editar el JSON correspondiente; no hace falta tocar el código. Los nombres de los ficheros y de los módulos del material se mantienen intactos.
 
@@ -46,7 +46,7 @@ Los materiales docentes completos (`moduls_1er_curs_24_25/` y `moduls_2n_curs_25
 
 2. Abre `http://localhost:8000/` en el navegador.
 
-Las tarjetas abren los ficheros reales desde la propia carpeta del proyecto. Si en alguna instalación los materiales estuvieran en otra ubicación, se puede ajustar la constante `MATERIAL_DIRS` de `app.js` para indicar la ruta.
+Las tarjetas abren los ficheros reales desde la propia carpeta del proyecto. Si en alguna instalación los materiales estuvieran en otra ubicación, se puede ajustar la constante `MATERIAL_DIRS` de `js/app.js` para indicar la ruta.
 
 ### Regenerar el inventario
 
@@ -66,19 +66,19 @@ El generador no copia los ficheros: solo crea el catálogo con sus metadatos.
 
 ## Estructura del proyecto
 
-| Ruta | Descripción |
-| --- | --- |
-| `index.html` | Estructura de la página (panel lateral, buscador, cuadrícula y modal). |
-| `styles.css` | Hoja de estilos con el sistema de diseño depobudget. |
-| `app.js` | Lógica de la aplicación (navegación, filtros, visor). |
-| `i18n.js` | Carga de diccionarios y helpers de traducción. |
-| `lang/` | Diccionarios JSON de textos por idioma (ca, es, en). |
-| `data/files.js` | Inventario generado de ficheros de los materiales. |
-| `tools/generate_inventory.py` | Generador del inventario a partir de la carpeta de materiales. |
-| `moduls_1er_curs_24_25/` | Materiales docentes completos del primer curso. |
-| `moduls_2n_curs_25_26/` | Materiales docentes completos del segundo curso. |
-| `favicon.svg` | Icono de la página y de la marca del panel lateral. |
+| Ruta                          | Descripción                                                            |
+| ----------------------------- | ---------------------------------------------------------------------- |
+| `index.html`                  | Estructura de la página (panel lateral, buscador, cuadrícula y modal). |
+| `css/styles.css`              | Hoja de estilos con el sistema de diseño depobudget.                   |
+| `js/app.js`                   | Lógica de la aplicación (navegación, filtros, visor).                  |
+| `js/i18n.js`                  | Carga de diccionarios y helpers de traducción.                         |
+| `data/lang/`                  | Diccionarios JSON de textos por idioma (ca, es, en).                   |
+| `data/files.js`               | Inventario generado de ficheros de los materiales.                     |
+| `tools/generate_inventory.py` | Generador del inventario a partir de la carpeta de materiales.         |
+| `moduls_1er_curs_24_25/`      | Materiales docentes completos del primer curso.                        |
+| `moduls_2n_curs_25_26/`       | Materiales docentes completos del segundo curso.                       |
+| `assets/icons/favicon.svg`    | Icono de la página y de la marca del panel lateral.                    |
 
 ## Licencia
 
-Este proyecto se distribuye bajo la licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más detalles.
+Este proyecto se distribuye bajo la licencia MIT. Consulta el archivo [LICENSE](../LICENSE) para más detalles.
