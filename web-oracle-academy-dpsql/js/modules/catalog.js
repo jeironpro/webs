@@ -92,7 +92,7 @@ function renderTopicView(topic, state) {
             text: formatNumber(topic.number),
             aria: { hidden: "true" },
         }),
-        createElement("h1", { className: "topic-view__title", text: topic.title })
+        createElement("h2", { className: "topic-view__title", text: topic.title })
     );
     const count = createElement("p", {
         className: "topic-view__count",
@@ -125,7 +125,7 @@ function renderAllTopics(manifest, state) {
     const header = createElement("header", { className: "topic-view__header" });
     header.append(createElement("p", { className: "eyebrow", text: "Todos los temas" }));
     const row = createElement("div", { className: "topic-view__row" });
-    row.append(createElement("h1", { className: "topic-view__title", text: "El curso, completo" }));
+    row.append(createElement("h2", { className: "topic-view__title", text: "El curso, completo" }));
     header.append(row);
     header.append(
         createElement("p", {

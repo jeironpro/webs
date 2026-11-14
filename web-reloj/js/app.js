@@ -16161,7 +16161,6 @@ function qo(e, t, n) {
 
 			#define PI 3.14159265359
 
-			// Van der Corput radical inverse
 			float radicalInverse_VdC(uint bits) {
 				bits = (bits << 16u) | (bits >> 16u);
 				bits = ((bits & 0x55555555u) << 1u) | ((bits & 0xAAAAAAAAu) >> 1u);
@@ -16171,22 +16170,16 @@ function qo(e, t, n) {
 				return float(bits) * 2.3283064365386963e-10; // / 0x100000000
 			}
 
-			// Hammersley sequence
 			vec2 hammersley(uint i, uint N) {
 				return vec2(float(i) / float(N), radicalInverse_VdC(i));
 			}
 
-			// GGX VNDF importance sampling (Eric Heitz 2018)
-			// "Sampling the GGX Distribution of Visible Normals"
-			// https://jcgt.org/published/0007/04/01/
 			vec3 importanceSampleGGX_VNDF(vec2 Xi, vec3 V, float roughness) {
 				float alpha = roughness * roughness;
 
-				// Section 4.1: Orthonormal basis
 				vec3 T1 = vec3(1.0, 0.0, 0.0);
 				vec3 T2 = cross(V, T1);
 
-				// Section 4.2: Parameterization of projected area
 				float r = sqrt(Xi.x);
 				float phi = 2.0 * PI * Xi.y;
 				float t1 = r * cos(phi);
@@ -16194,10 +16187,8 @@ function qo(e, t, n) {
 				float s = 0.5 * (1.0 + V.z);
 				t2 = (1.0 - s) * sqrt(1.0 - t1 * t1) + s * t2;
 
-				// Section 4.3: Reprojection onto hemisphere
 				vec3 Nh = t1 * T1 + t2 * T2 + sqrt(max(0.0, 1.0 - t1 * t1 - t2 * t2)) * V;
 
-				// Section 3.4: Transform back to ellipsoid configuration
 				return normalize(vec3(alpha * Nh.x, alpha * Nh.y, max(0.0, Nh.z)));
 			}
 
@@ -16208,13 +16199,11 @@ function qo(e, t, n) {
 				vec3 prefilteredColor = vec3(0.0);
 				float totalWeight = 0.0;
 
-				// For very low roughness, just sample the environment directly
 				if (roughness < 0.001) {
 					gl_FragColor = vec4(bilinearCubeUV(envMap, N, mipInt), 1.0);
 					return;
 				}
 
-				// Tangent space basis for VNDF sampling
 				vec3 up = abs(N.z) < 0.999 ? vec3(0.0, 0.0, 1.0) : vec3(1.0, 0.0, 0.0);
 				vec3 tangent = normalize(cross(up, N));
 				vec3 bitangent = cross(N, tangent);
@@ -16222,22 +16211,16 @@ function qo(e, t, n) {
 				for(uint i = 0u; i < uint(GGX_SAMPLES); i++) {
 					vec2 Xi = hammersley(i, uint(GGX_SAMPLES));
 
-					// For PMREM, V = N, so in tangent space V is always (0, 0, 1)
 					vec3 H_tangent = importanceSampleGGX_VNDF(Xi, vec3(0.0, 0.0, 1.0), roughness);
 
-					// Transform H back to world space
 					vec3 H = normalize(tangent * H_tangent.x + bitangent * H_tangent.y + N * H_tangent.z);
 					vec3 L = normalize(2.0 * dot(V, H) * H - V);
 
 					float NdotL = max(dot(N, L), 0.0);
 
 					if(NdotL > 0.0) {
-						// Sample environment at fixed mip level
-						// VNDF importance sampling handles the distribution filtering
 						vec3 sampleColor = bilinearCubeUV(envMap, L, mipInt);
 
-						// Weight by NdotL for the split-sum approximation
-						// VNDF PDF naturally accounts for the visible microfacet distribution
 						prefilteredColor += sampleColor * NdotL;
 						totalWeight += NdotL;
 					}
@@ -16297,7 +16280,6 @@ function Jo(e, t, n) {
 			vec3 getSample( float theta, vec3 axis ) {
 
 				float cosTheta = cos( theta );
-				// Rodrigues' axis-angle rotation
 				vec3 sampleDirection = vOutputDirection * cosTheta
 					+ cross( axis, vOutputDirection ) * sin( theta )
 					+ axis * dot( axis, vOutputDirection ) * ( 1.0 - cosTheta );
@@ -16409,7 +16391,6 @@ function Zo() {
 
 		varying vec3 vOutputDirection;
 
-		// RH coordinate system; PMREM face-indexing convention
 		vec3 getDirection( vec2 uv, float face ) {
 
 			uv = 2.0 * uv - 1.0;

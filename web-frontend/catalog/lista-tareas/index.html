@@ -16,28 +16,30 @@
         />
     </head>
     <body>
-        <div class="task-container">
-            <div class="task-form">
-                <h1>Lista de Tareas</h1>
-                <input
-                    type="text"
-                    id="task-input"
-                    placeholder="Escribe la tarea"
-                    aria-label="Nueva tarea"
-                />
-                <div class="form-actions">
-                    <button id="add-task" type="button">Agregar Tarea</button>
+        <main>
+            <div class="task-container">
+                <div class="task-form">
+                    <h1>Lista de Tareas</h1>
+                    <input
+                        type="text"
+                        id="task-input"
+                        placeholder="Escribe la tarea"
+                        aria-label="Nueva tarea"
+                    />
+                    <div class="form-actions">
+                        <button id="add-task" type="button">Agregar Tarea</button>
+                    </div>
+                </div>
+                <div class="task-list-container">
+                    <div class="list-title">
+                        <h2>Listado</h2>
+                    </div>
+                    <div class="task-list">
+                        <ul id="task-list"></ul>
+                    </div>
                 </div>
             </div>
-            <div class="task-list-container">
-                <div class="list-title">
-                    <h2>Listado</h2>
-                </div>
-                <div class="task-list">
-                    <ul id="task-list"></ul>
-                </div>
-            </div>
-        </div>
-        <script src="js/app.js"></script>
+            <script src="js/app.js"></script>
+        </main>
     </body>
 </html>

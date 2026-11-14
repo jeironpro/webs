@@ -142,7 +142,12 @@ function createKunais() {
         <rect x="24" y="84" width="12" height="4" rx="1" fill="#6B7278"/><rect x="26" y="88" width="8" height="48" rx="2" fill="#8B8F94"/>
         <ellipse cx="30" cy="150" rx="8" ry="6" fill="none" stroke="#8B929A" stroke-width="3"/>
     </svg>`;
-    setMarkup($("#background-kunai"), svg.repeat(8));
+    setMarkup(
+        $("#background-kunai"),
+        Array.from({ length: 8 }, (_, index) =>
+            svg.replace(/kunai-blade/g, `kunai-blade-${index}`)
+        ).join("")
+    );
 }
 
 function renderOptions(values, allLabel) {

@@ -193,16 +193,15 @@ const updateCompareButton = (id) => {
 
 const updateFavoritesBadge = () => {
     document.querySelectorAll('a[href="favoritos.html"]').forEach((link) => {
-        let badge = link.querySelector("#favorites-badge");
+        let badge = link.querySelector(".favorites-badge");
         if (favorites.length === 0) {
             badge?.remove();
             return;
         }
         if (!badge) {
             badge = document.createElement("span");
-            badge.id = "favorites-badge";
             badge.className =
-                "ml-1.5 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-accent-3 px-1 text-xs font-bold text-paper";
+                "favorites-badge ml-1.5 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-accent-3 px-1 text-xs font-bold text-paper";
             link.append(badge);
         }
         badge.textContent = String(favorites.length);

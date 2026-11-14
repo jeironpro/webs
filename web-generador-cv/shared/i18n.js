@@ -1,5 +1,3 @@
-// Etiquetas de sección del CV por idioma (fuente única).
-// Usadas por el renderizador web (jsPDF) y la CLI (PDFKit).
 export const labels = {
     es: {
         workExperience: "EXPERIENCIA LABORAL",
