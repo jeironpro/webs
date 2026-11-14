@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block"
+      rel="stylesheet"
+    />
+    <meta name="description" content="Catálogo de ejercicios de gimnasio con búsqueda, filtros, favoritos y comparador." />
+    <title>favoritos</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body data-page="favoritos">
+
+    <div id="root"><div class="flex min-h-screen flex-col"><header class="border-b-2 border-rule bg-paper"><nav aria-label="Principal" class="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8"><a class="flex items-center gap-2 font-display text-lg font-bold uppercase tracking-wider text-ink no-underline" href="index.html"><span class="icon-22 material-symbols-rounded select-none text-accent" aria-hidden="true">fitness_center</span><span>EXERCINESS</span></a><ul class="hidden items-center gap-6 md:flex"><li><a class="text-sm font-medium uppercase tracking-wider no-underline transition-colors text-ink-2 hover:text-accent" href="index.html">Inicio</a></li><li><a class="text-sm font-medium uppercase tracking-wider no-underline transition-colors text-ink-2 hover:text-accent" href="ejercicios.html">Ejercicios</a></li><li><a aria-current="page" class="text-sm font-medium uppercase tracking-wider no-underline transition-colors text-accent" href="favoritos.html">Favoritos</a></li><li><a class="text-sm font-medium uppercase tracking-wider no-underline transition-colors text-ink-2 hover:text-accent" href="comparar.html">Comparar</a></li><li class="ml-2"><button data-theme-toggle type="button" class="inline-flex h-9 w-9 items-center justify-center rounded-input border border-rule bg-paper text-ink-2 transition-colors hover:border-accent hover:text-accent focus-visible:outline-2 focus-visible:outline-focus" aria-label="Activar modo oscuro" title="Activar modo oscuro"><span class="icon-20 material-symbols-rounded select-none " aria-hidden="true">dark_mode</span></button></li></ul><div class="flex items-center gap-2 md:hidden"><button data-theme-toggle type="button" class="inline-flex h-9 w-9 items-center justify-center rounded-input border border-rule bg-paper text-ink-2 transition-colors hover:border-accent hover:text-accent focus-visible:outline-2 focus-visible:outline-focus" aria-label="Activar modo oscuro" title="Activar modo oscuro"><span class="icon-20 material-symbols-rounded select-none " aria-hidden="true">dark_mode</span></button><button data-menu-toggle type="button" class="inline-flex h-9 w-9 items-center justify-center rounded-input border border-rule bg-paper text-ink-2 transition-colors hover:border-accent hover:text-accent" aria-expanded="false" aria-controls="nav-mobile-menu"><span class="icon-20 material-symbols-rounded select-none " role="img" aria-label="Abrir menú">menu</span></button></div></nav>
+        <div id="mobile-menu" class="mobile-menu" hidden>
+          <a href="index.html">Inicio</a>
+          <a href="ejercicios.html">Ejercicios</a>
+          <a href="favoritos.html">Favoritos</a>
+          <a href="comparar.html">Comparar</a>
+          <button type="button" data-theme-toggle class="btn btn--outline mt-2 w-full">Modo oscuro</button>
+        </div>
+        </header><main class="flex-1 "><section class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8"><header class="mb-8"><span class="font-mono text-xs font-medium uppercase tracking-widest text-ink-2">GUARDADOS</span><h1 class="font-display text-3xl font-semibold text-ink">Mis favoritos</h1><p class="mt-1 font-body text-sm text-ink-2">0 ejercicios guardados.</p></header><div id="favorites-grid" class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" hidden></div>
+            <div id="favorites-empty" class="flex flex-col items-center gap-3 py-16 text-center">
+              <span class="material-symbols-rounded select-none text-ink-2 icon-40" aria-hidden="true">favorite_border</span>
+              <h2 class="font-display text-lg font-semibold text-ink">Aún no tienes favoritos</h2>
+              <p class="max-w-md font-body text-sm text-ink-2">Marca ejercicios como favoritos para tenerlos siempre a mano.</p>
+              <a class="btn no-underline" href="ejercicios.html">Explorar ejercicios</a>
+            </div>
+          </section></main><footer class="border-t border-rule bg-paper-2"><div class="mx-auto max-w-7xl px-4 py-6 text-center sm:px-6 lg:px-8"><p class="font-body text-sm text-ink-2">© 2026 Exerciness — Todos los derechos reservados</p></div></footer></div></div>
+  
+
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>

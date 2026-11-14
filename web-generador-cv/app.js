@@ -373,35 +373,31 @@ const icono = (name, cls = '') => crear('span', { clase: ['material-symbols-outl
 
 function input(label, value, handler, type = 'text', placeholder = '', colSpan = 1) {
     const span = colSpan === 2 ? 'md:col-span-2' : '';
-    return crear('div', { clase: 'grid grid-cols-1 md:grid-cols-2 gap-4' }, [
-        crear('div', { clase: span }, [
-            crear('label', { clase: 'block' }, [
-                crear('span', { clase: 'label-base', texto: label }),
-                crear('input', {
-                    clase: 'input-base',
-                    type,
-                    value,
-                    placeholder,
-                    on: { input: (e) => handler(e.target.value) },
-                }),
-            ]),
-        ]),
+    return crear('label', { clase: ['block', span] }, [
+        crear('span', { clase: 'label-base', texto: label }),
+        crear('input', {
+            clase: 'input-base',
+            type,
+            value,
+            placeholder,
+            on: { input: (e) => handler(e.target.value) },
+        }),
     ]);
 }
 
-function arrayField(label, values, addHandler, removeHandler, placeholder) {
+function arrayField(label, values, updateHandler, addHandler, removeHandler, placeholder) {
     const items = values.map((v, i) => crear('div', { clase: 'array-item', style: `animation-delay:${i * 0.03}s` }, [
         crear('input', {
             clase: 'input-base flex-1',
             value: v,
             placeholder,
-            on: { input: (e) => window[addHandler](String(i), e.target.value) },
+            on: { input: (e) => updateHandler(i, e.target.value) },
         }),
         crear('button', {
             clase: 'remove-btn',
             type: 'button',
             texto: '\u00d7',
-            on: { click: () => window[removeHandler](i) },
+            on: { click: () => removeHandler(i) },
         }),
     ]));
     return crear('div', { clase: 'array-field' }, [
@@ -410,7 +406,7 @@ function arrayField(label, values, addHandler, removeHandler, placeholder) {
         crear('button', {
             clase: 'array-add-btn',
             type: 'button',
-            on: { click: () => window[addHandler]('new') },
+            on: { click: addHandler },
         }, [crear('span', { clase: 'plus-icon', texto: '+' }), ' Añadir']),
     ]);
 }
@@ -429,7 +425,7 @@ const botonAnadir = (texto, fn) => crear('button', {
 
 function degradado(color) {
     const [desde, hasta] = color.split(' ');
-    return `linear-gradient(135deg, var(--${desde.replace('from-', '')}), var(--${hasta}))`;
+    return `linear-gradient(135deg, var(--color-${desde.replace('from-', '')}), var(--color-${hasta.replace('to-', '')}))`;
 }
 
 function entryCard(title, color, children, onDelete) {
@@ -487,7 +483,9 @@ function renderSectionContent(sec, prof, idx) {
     switch (sec.key) {
         case 'intro':
             return fragmento(
-                input('Título profesional', prof.title, (v) => window.setProf('title', v), 'text', 'Ej: Desarrollador Full Stack'),
+                crear('div', { clase: 'grid grid-cols-1 gap-4' }, [
+                    input('Título profesional', prof.title, (v) => window.setProf('title', v), 'text', 'Ej: Desarrollador Full Stack'),
+                ]),
                 crear('div', { clase: 'mt-4' }, [
                     crear('label', { clase: 'block' }, [
                         crear('span', { clase: 'label-base', texto: 'Descripción corta' }),
@@ -512,7 +510,11 @@ function renderSectionContent(sec, prof, idx) {
                     input('Ocupación', w.occupation, (v) => window.setWorkField(i, 'occupation', v), 'text', 'Desarrollador Full Stack'),
                     input('Empleador', w.employer, (v) => window.setWorkField(i, 'employer', v), 'text', 'Empresa S.L.'),
                     input('Ubicación', w.location, (v) => window.setWorkField(i, 'location', v), 'text', 'Barcelona, España'),
-                    arrayField('Tareas', w.description, 'addWorkDesc', 'removeWork', 'Ej: Desarrollo de APIs REST')
+                    arrayField('Tareas', w.description,
+                        (item, value) => window.setWorkDesc(i, item, value),
+                        () => window.addWorkDesc(i),
+                        (item) => window.removeWorkDesc(i, item),
+                        'Ej: Desarrollo de APIs REST')
                 ), 'removeWork'));
             });
             nodos.push(botonAnadir('Añadir experiencia', () => window.addWork()));
@@ -536,7 +538,11 @@ function renderSectionContent(sec, prof, idx) {
         }
 
         case 'lang':
-            return arrayField('Idiomas', prof.languageSkills.map((l) => l.language), 'addLangSkill', 'removeLangSkill', 'Ej: Inglés C1 Avanzado');
+            return arrayField('Idiomas', prof.languageSkills.map((l) => l.language),
+                (i, value) => window.setLangSkill(i, value),
+                () => window.addLangSkill(),
+                (i) => window.removeLangSkill(i),
+                'Ej: Inglés C1 Avanzado');
 
         case 'skills': {
             const nodos = [];
@@ -546,7 +552,11 @@ function renderSectionContent(sec, prof, idx) {
             prof.digitalSkills.forEach((cat, i) => {
                 nodos.push(entryCard(`Categoría ${i + 1}`, sec.color, fragmento(
                     input('Categoría', cat.category, (v) => window.setDigitalSkillCat(i, v), 'text', 'Ej: Backend, Frontend...'),
-                    arrayField('Tecnologías', cat.items, 'addDigitalSkillItems', 'removeDigitalSkillItems', 'Ej: React, Node.js...')
+                    arrayField('Tecnologías', cat.items,
+                        (item, value) => window.setDigitalSkillItem(i, item, value),
+                        () => window.addDigitalSkillItem(i),
+                        (item) => window.removeDigitalSkillItem(i, item),
+                        'Ej: React, Node.js...')
                 ), 'removeDigitalSkill'));
             });
             nodos.push(botonAnadir('Añadir categoría', () => window.addDigitalSkill()));
@@ -563,12 +573,13 @@ function renderSectionContent(sec, prof, idx) {
 
 function navButtons(step, onPrev, onNext) {
     return crear('div', { clase: 'nav-buttons' }, [
-        crear('button', {
-            clase: 'nav-btn prev',
-            type: 'button',
-            disabled: step === 0,
-            on: { click: onPrev },
-        }, [icono('arrow_back', 'w-4 h-4'), ' Atrás']),
+        step === 0
+            ? crear('div', {})
+            : crear('button', {
+                clase: 'nav-btn prev',
+                type: 'button',
+                on: { click: onPrev },
+            }, [icono('arrow_back', 'w-4 h-4'), ' Atrás']),
         crear('button', {
             clase: 'nav-btn next',
             type: 'button',
@@ -592,10 +603,10 @@ function encabezadoPaso(color, name, titulo, subtitulo) {
 function renderStep0() {
     const d = store.data_;
     const social = d.socialLinks.length
-        ? fragmento(...d.socialLinks.map((s) => entryCard(null, null, fragmento(
-            input('Red', s.name, (v) => window.setSocialLinkName(v), 'text', 'LinkedIn, GitHub...'),
-            input('URL', s.url, (v) => window.setSocialLinkUrl(v), 'text', 'linkedin.com/in/usuario')
-        ), 'removeSocialLink')))
+        ? fragmento(...d.socialLinks.map((s, i) => entryCard(null, null, fragmento(
+            input('Red', s.name, (v) => window.setSocialLinkName(i, v), 'text', 'LinkedIn, GitHub...'),
+            input('URL', s.url, (v) => window.setSocialLinkUrl(i, v), 'text', 'linkedin.com/in/usuario')
+        ), () => window.removeSocialLink(i))))
         : crear('p', { clase: 'social-empty', texto: 'Aún no has añadido ninguna red social.' });
 
     const foto = d.photoPreview
@@ -608,7 +619,7 @@ function renderStep0() {
                 on: { click: () => window.removePhoto() },
             }),
         ])
-        : crear('div', { clase: 'photo-placeholder' }, [icono('person', 'w-10 h-10')]);
+        : crear('div', { clase: 'photo-placeholder' }, [icono('image', 'w-10 h-10')]);
 
     return crear('div', { clase: 'space-y-5 animate-fade-up' }, [
         crear('div', { clase: 'flex items-center gap-3 mb-1' }, [
@@ -620,13 +631,15 @@ function renderStep0() {
                 crear('p', { clase: 'text-xs text-slate-500', texto: 'Tus datos de contacto y redes sociales' }),
             ]),
         ]),
-        crear('div', { clase: 'glass-card p-6 space-y-5' }, [
-            input('Nombre completo', d.name, (v) => window.setDataName(v), 'text', 'Ej: María García López', 2),
-            input('Correo electrónico', d.email, (v) => window.setDataEmail(v), 'email', 'maria@ejemplo.com'),
-            input('Teléfono', d.telephone, (v) => window.setDataTelephone(v), 'text', '+34 600 000 000'),
-            input('Dirección', d.address, (v) => window.setDataAddress(v), 'text', '08001, Barcelona, España'),
-            input('Nacionalidad', d.nationality, (v) => window.setDataNationality(v), 'text', 'Española'),
-            input('Fecha de nacimiento', d.dateOfBirth, (v) => window.setDataDateOfBirth(v), 'date'),
+        crear('div', { clase: 'glass-card p-6' }, [
+            crear('div', { clase: 'grid grid-cols-1 md:grid-cols-2 gap-4' }, [
+                input('Nombre completo', d.name, (v) => window.setDataName(v), 'text', 'Ej: María García López', 2),
+                input('Correo electrónico', d.email, (v) => window.setDataEmail(v), 'email', 'maria@ejemplo.com'),
+                input('Teléfono', d.telephone, (v) => window.setDataTelephone(v), 'text', '+34 600 000 000'),
+                input('Dirección', d.address, (v) => window.setDataAddress(v), 'text', '08001, Barcelona, España'),
+                input('Nacionalidad', d.nationality, (v) => window.setDataNationality(v), 'text', 'Española'),
+                input('Fecha de nacimiento', d.dateOfBirth, (v) => window.setDataDateOfBirth(v), 'date'),
+            ]),
         ]),
         crear('div', { clase: 'glass-card p-6' }, [
             crear('div', { clase: 'flex items-center gap-6 flex-wrap' }, [
@@ -976,17 +989,17 @@ function renderIndicator() {
     }
 }
 
-window.setDataName = (v) => { store.data_.name = v; render(); };
-window.setDataEmail = (v) => { store.data_.email = v; render(); };
-window.setDataTelephone = (v) => { store.data_.telephone = v; render(); };
-window.setDataAddress = (v) => { store.data_.address = v; render(); };
-window.setDataNationality = (v) => { store.data_.nationality = v; render(); };
-window.setDataDateOfBirth = (v) => { store.data_.dateOfBirth = v; render(); };
+window.setDataName = (v) => { store.data_.name = v; };
+window.setDataEmail = (v) => { store.data_.email = v; };
+window.setDataTelephone = (v) => { store.data_.telephone = v; };
+window.setDataAddress = (v) => { store.data_.address = v; };
+window.setDataNationality = (v) => { store.data_.nationality = v; };
+window.setDataDateOfBirth = (v) => { store.data_.dateOfBirth = v; };
 
-window.setSocialLinkName = (v) => { store.data_.socialLinks[0].name = v; render(); };
-window.setSocialLinkUrl = (v) => { store.data_.socialLinks[0].url = v; render(); };
-window.removeSocialLink = () => {
-    store.data_.socialLinks = store.data_.socialLinks.slice(1);
+window.setSocialLinkName = (i, v) => { store.data_.socialLinks[i].name = v; };
+window.setSocialLinkUrl = (i, v) => { store.data_.socialLinks[i].url = v; };
+window.removeSocialLink = (i) => {
+    store.data_.socialLinks = store.data_.socialLinks.filter((_, index) => index !== i);
     render();
 };
 window.addSocialLink = () => {
@@ -1004,7 +1017,7 @@ window.handlePhotoUpload = (e) => {
     r.readAsDataURL(file);
 };
 
-window.setProf = (k, v) => { store.data_.profiles[store.activeLang_][k] = v; render(); };
+window.setProf = (k, v) => { store.data_.profiles[store.activeLang_][k] = v; };
 window.setActiveLang = (lang) => { store.activeLang_ = lang; render(); };
 window.toggleProfile = (key) => { store.profileExpanded_[key] = !store.profileExpanded_[key]; render(); };
 window.setReviewLang = (lang) => { store.reviewLang_ = lang; render(); };
@@ -1013,15 +1026,16 @@ window.setWorkField = (i, field, value) => {
     const we = store.data_.profiles[store.activeLang_].workExperience.map((x, j) => j === i ? structuredClone(x) : x);
     we[i][field] = value;
     store.data_.profiles[store.activeLang_].workExperience = we;
+};
+window.setWorkDesc = (workIndex, itemIndex, value) => {
+    store.data_.profiles[store.activeLang_].workExperience[workIndex].description[itemIndex] = value;
+};
+window.addWorkDesc = (workIndex) => {
+    store.data_.profiles[store.activeLang_].workExperience[workIndex].description.push('');
     render();
 };
-window.addWorkDesc = (i, value) => {
-    if (i === 'new') {
-        store.data_.profiles[store.activeLang_].workExperience.push(structuredClone(EMPTY_WORK));
-    } else {
-        const we = store.data_.profiles[store.activeLang_].workExperience;
-        we[i].description = value;
-    }
+window.removeWorkDesc = (workIndex, itemIndex) => {
+    store.data_.profiles[store.activeLang_].workExperience[workIndex].description.splice(itemIndex, 1);
     render();
 };
 window.removeWork = () => {
@@ -1038,7 +1052,6 @@ window.setEduField = (i, field, value) => {
     const ed = store.data_.profiles[store.activeLang_].education.map((x, j) => j === i ? structuredClone(x) : x);
     ed[i][field] = value;
     store.data_.profiles[store.activeLang_].education = ed;
-    render();
 };
 window.removeEdu = () => {
     const ed = store.data_.profiles[store.activeLang_].education;
@@ -1050,44 +1063,34 @@ window.addEdu = () => {
     render();
 };
 
-window.addLangSkill = (v) => {
-    if (v === 'new') {
-        store.data_.profiles[store.activeLang_].languageSkills.push({ language: '' });
-    } else {
-        const cur = store.data_.profiles[store.activeLang_].languageSkills.map(l => l.language);
-        store.data_.profiles[store.activeLang_].languageSkills = cur.map(l => ({ language: l }));
-    }
+window.setLangSkill = (i, value) => {
+    store.data_.profiles[store.activeLang_].languageSkills[i].language = value;
+};
+window.addLangSkill = () => {
+    store.data_.profiles[store.activeLang_].languageSkills.push({ language: '' });
     render();
 };
-window.removeLangSkill = () => {
-    const cur = store.data_.profiles[store.activeLang_].languageSkills;
-    cur.pop();
-    store.data_.profiles[store.activeLang_].languageSkills = cur.map(l => ({ language: l.language }));
+window.removeLangSkill = (i) => {
+    store.data_.profiles[store.activeLang_].languageSkills.splice(i, 1);
     render();
 };
 
 window.setDigitalSkillCat = (i, value) => {
-    const ds = store.data_.profiles[store.activeLang_].digitalSkills;
-    ds[i].category = value;
+    store.data_.profiles[store.activeLang_].digitalSkills[i].category = value;
+};
+window.setDigitalSkillItem = (categoryIndex, itemIndex, value) => {
+    store.data_.profiles[store.activeLang_].digitalSkills[categoryIndex].items[itemIndex] = value;
+};
+window.addDigitalSkillItem = (categoryIndex) => {
+    store.data_.profiles[store.activeLang_].digitalSkills[categoryIndex].items.push('');
     render();
 };
-window.addDigitalSkillItems = (i, value) => {
-    if (i === 'new') {
-        store.data_.profiles[store.activeLang_].digitalSkills.push({ category: '', items: [''] });
-    } else {
-        const ds = store.data_.profiles[store.activeLang_].digitalSkills;
-        ds[i].items = value;
-    }
+window.removeDigitalSkillItem = (categoryIndex, itemIndex) => {
+    store.data_.profiles[store.activeLang_].digitalSkills[categoryIndex].items.splice(itemIndex, 1);
     render();
 };
-window.removeDigitalSkillItems = () => {
-    const ds = store.data_.profiles[store.activeLang_].digitalSkills;
-    ds.pop();
-    render();
-};
-window.removeDigitalSkill = () => {
-    const ds = store.data_.profiles[store.activeLang_].digitalSkills;
-    ds.pop();
+window.removeDigitalSkill = (i) => {
+    store.data_.profiles[store.activeLang_].digitalSkills.splice(i, 1);
     render();
 };
 window.addDigitalSkill = () => {
@@ -1122,8 +1125,7 @@ window.downloadPDF = async (lang, evento) => {
     try {
         const doc = generateCV(store.data_, lang, store.data_.photoPreview);
         doc.save('curriculum-' + lang + '.pdf');
-    } catch (err) {
-        console.error('Error generando PDF:', err);
+    } catch {
         alert('Error al generar el PDF. Por favor, inténtalo de nuevo.');
     }
 
@@ -1132,7 +1134,7 @@ window.downloadPDF = async (lang, evento) => {
 };
 
 function init() {
-    PROFILE_SECTIONS.forEach(s => { store.profileExpanded_[s.key] = true; });
+    PROFILE_SECTIONS.forEach(s => { store.profileExpanded_[s.key] = false; });
     initParticles();
     render();
 }
