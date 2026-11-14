@@ -25,15 +25,14 @@ No requiere instalación ni compilación.
 ## Estructura del proyecto
 
 ```
-juego-sopa-letras/
-├── index.html
-├── css/                   # estilos de la cuadrícula
-├── js/                    # lógica del juego
-├── json/                  # sopas y listas de palabras
-└── icon/                  # favicon
+index.html
+css/sopa_letras.css    — Estilos de la cuadrícula
+js/sopa_letras.js      — Lógica del juego
+data/sopas_letras.json — Sopas y listas de palabras
+assets/icons/sopa_letras.png
 ```
 
 ## Licencia
 
 Este proyecto está bajo la licencia **MIT**.  
-Consulta el archivo [LICENSE](LICENSE) para más detalles.
+Consulta el archivo [LICENSE](../../LICENSE) para más detalles.

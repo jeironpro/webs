@@ -25,15 +25,14 @@ No requiere instalación ni compilación.
 ## Estructura del proyecto
 
 ```
-juego-sudoku/
-├── index.html
-├── css/                   # estilos del tablero
-├── js/                    # lógica del juego
-├── json/                  # tableros de sudoku
-└── icon/                  # favicon
+index.html
+css/sudoku.css         — Estilos del tablero
+js/sudoku.js           — Lógica del juego
+data/sudokus.json      — Tableros de sudoku
+assets/icons/sudoku.png
 ```
 
 ## Licencia
 
 Este proyecto está bajo la licencia **MIT**.  
-Consulta el archivo [LICENSE](LICENSE) para más detalles.
+Consulta el archivo [LICENSE](../../LICENSE) para más detalles.

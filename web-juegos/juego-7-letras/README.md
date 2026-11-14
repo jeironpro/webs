@@ -27,15 +27,14 @@ No requiere instalación ni compilación.
 ## Estructura del proyecto
 
 ```
-juego-7-letras/
-├── index.html
-├── css/                   # estilos del tablero en panal
-├── js/                    # lógica del juego
-├── json/                  # bloques de palabras de cada ronda
-└── icon/                  # favicon
+index.html
+css/siete_letras.css  — Estilos del panal y la interfaz
+js/siete_letras.js    — Lógica del juego
+data/siete_letras.json — Bloques de palabras de cada ronda
+assets/icons/siete_letras.png
 ```
 
 ## Licencia
 
 Este proyecto está bajo la licencia **MIT**.  
-Consulta el archivo [LICENSE](LICENSE) para más detalles.
+Consulta el archivo [LICENSE](../../LICENSE) para más detalles.

@@ -46,17 +46,14 @@ Abre `index.html` con un servidor estático (por ejemplo `python3 -m http.server
 ## Estructura del proyecto
 
 ```
-juego-wend/
-├── index.html
-├── css/                   # identidad azul hielo, coral y lima
-├── js/
-│   ├── wend-core.js       # generación, solver y validación (sin DOM)
-│   └── wend.js            # interfaz, arrastre, teclado y controles
-├── json/
-│   ├── palabras.json      # diccionario curado en español, hasta 8 letras
-│   └── tableros.json      # tableros llenos con su solución única
-├── icon/                  # favicon
-└── tools/                 # generador reproducible
+index.html
+css/wend.css           — Identidad azul hielo, coral y lima
+js/wend-core.js        — Generación, solver y validación
+js/wend.js             — Interfaz, arrastre, teclado y controles
+data/palabras.json     — Diccionario curado en español
+data/tableros.json     — Tableros con solución única
+assets/icons/wend.svg
+tools/                 — Generador reproducible
 ```
 
 ## Licencia

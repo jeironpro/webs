@@ -25,15 +25,14 @@ No requiere instalación ni compilación.
 ## Estructura del proyecto
 
 ```
-juego-palabra-oculta/
-├── index.html
-├── css/                   # estilos del tablero y el teclado
-├── js/                    # lógica del juego
-├── json/                  # banco de palabras
-└── icon/                  # favicon
+index.html
+css/palabra_oculta.css — Estilos del tablero y el teclado
+js/palabra_oculta.js   — Lógica del juego
+data/palabras_ocultas.json — Banco de palabras
+assets/icons/palabra_oculta.png
 ```
 
 ## Licencia
 
 Este proyecto está bajo la licencia **MIT**.  
-Consulta el archivo [LICENSE](LICENSE) para más detalles.
+Consulta el archivo [LICENSE](../../LICENSE) para más detalles.

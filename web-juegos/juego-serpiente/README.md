@@ -25,14 +25,13 @@ No requiere instalación ni compilación.
 ## Estructura del proyecto
 
 ```
-juego-serpiente/
-├── index.html
-├── css/                   # estilos del tablero y los controles
-├── js/                    # lógica del juego
-└── icon/                  # favicon
+index.html
+css/styles.css        — Estilos del tablero y los controles
+js/app.js             — Lógica del juego
+assets/icons/serpiente.png
 ```
 
 ## Licencia
 
 Este proyecto está bajo la licencia **MIT**.  
-Consulta el archivo [LICENSE](LICENSE) para más detalles.
+Consulta el archivo [LICENSE](../../LICENSE) para más detalles.

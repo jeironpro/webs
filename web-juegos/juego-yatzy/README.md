@@ -28,8 +28,12 @@ Abre `http://localhost:8000/juego-yatzy/`.
 ## Estructura
 
 ```
-index.html    — Entrada de la aplicación
-styles.css    — Estilos del diseño original
-app.js        — Reglas, bot, dados, scorecard y pantallas
-favicon.svg   — Icono
+index.html
+css/styles.css        — Estilos de la interfaz y los dados
+js/app.js             — Reglas, bot, dados, scorecard y pantallas
+assets/icons/favicon.svg
 ```
+
+## Licencia
+
+Este proyecto está bajo la licencia **MIT**. Consulta el archivo [LICENSE](../../LICENSE) para más detalles.

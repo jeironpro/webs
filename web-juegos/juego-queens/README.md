@@ -39,15 +39,13 @@ Abre `index.html` con un servidor estático (por ejemplo `python3 -m http.server
 ## Estructura del proyecto
 
 ```
-juego-queens/
-├── index.html
-├── css/                   # estilos de la hoja y del tablero
-├── js/
-│   ├── queens-core.js     # generación, solver y validación (sin DOM)
-│   └── queens.js          # interfaz y controles
-├── data/tableros.json     # tableros con su solución única
-├── icon/                  # favicon
-└── tools/                 # generador reproducible
+index.html
+css/queens.css         — Estilos de la hoja y del tablero
+js/queens-core.js      — Generación, solver y validación
+js/queens.js           — Interfaz y controles
+data/tableros.json     — Tableros con solución única
+assets/icons/queens.svg
+tools/                 — Generador reproducible
 ```
 
 ## Licencia

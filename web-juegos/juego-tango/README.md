@@ -39,15 +39,13 @@ Abre `index.html` con un servidor estático (por ejemplo `python3 -m http.server
 ## Estructura del proyecto
 
 ```
-juego-tango/
-├── index.html
-├── css/                   # estilos del cuaderno cuadriculado
-├── js/
-│   ├── tango-core.js      # generación, solver y validación (sin DOM)
-│   └── tango.js           # interfaz y controles
-├── data/tableros.json     # tableros con pistas y solución única
-├── icon/                  # favicon
-└── tools/                 # generador reproducible
+index.html
+css/tango.css          — Estilos del cuaderno cuadriculado
+js/tango-core.js       — Generación, solver y validación
+js/tango.js            — Interfaz y controles
+data/tableros.json     — Tableros con pistas y solución única
+assets/icons/tango.svg
+tools/                 — Generador reproducible
 ```
 
 ## Licencia

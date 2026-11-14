@@ -770,7 +770,7 @@ function vistaResultado() {
                                 ) => `<li class="recuento__fila ${fila.id === resultado.eliminadoId ? "recuento__fila--fuera" : ""}">
                                     <span class="recuento__avatar">${avatarSvg(state.jugadores.find((j) => j.id === fila.id)?.avatar || 0)}</span>
                                     <span class="recuento__nombre">${esc(fila.nombre)}</span>
-                                    <span class="recuento__barra" aria-hidden="true"><span style="width:${Math.round((fila.votos / maximo) * 100)}%"></span></span>
+                                    <span class="recuento__barra recuento__barra--${maximo ? Math.round((fila.votos / maximo) * 10) * 10 : 0}" aria-hidden="true"><span></span></span>
                                     <strong>${fila.votos}</strong>
                                 </li>`
                             )

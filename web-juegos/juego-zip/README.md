@@ -38,15 +38,13 @@ Abre `index.html` con un servidor estático (por ejemplo `python3 -m http.server
 ## Estructura del proyecto
 
 ```
-juego-zip/
-├── index.html
-├── css/                   # estilos del tablero y del HUD
-├── js/
-│   ├── zip-core.js        # generación, solver y validación (sin DOM)
-│   └── zip.js             # interfaz y controles
-├── data/tableros.json     # tableros con su solución única
-├── icon/                  # favicon
-└── tools/                 # generador reproducible
+index.html
+css/zip.css            — Estilos del tablero y del HUD
+js/zip-core.js         — Generación, solver y validación
+js/zip.js              — Interfaz y controles
+data/tableros.json     — Tableros con solución única
+assets/icons/zip.svg
+tools/                 — Generador reproducible
 ```
 
 ## Licencia
