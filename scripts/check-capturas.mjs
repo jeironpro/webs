@@ -84,12 +84,12 @@ for (const d of desfasadas) {
             ? `${d.pagina} cambió desde la captura del ${dia(d.fCaptura)}`
             : `${d.captura} es del ${dia(d.fCaptura)} y ${d.pagina} cambió el ${dia(d.fPagina)}`;
     console.log(`  ! ${d.id}: ${detalle}`);
-    if (enCI) console.log(`::warning file=${d.captura}::${detalle}`);
+    if (enCI) console.log(`::error file=${d.captura}::${detalle}`);
 }
 for (const id of sinCaptura) {
     const detalle = `${id} no tiene captura en assets/screenshots/${id}.webp`;
     console.log(`  ! ${detalle}`);
-    if (enCI) console.log(`::warning file=projects.yml::${detalle}`);
+    if (enCI) console.log(`::error file=projects.yml::${detalle}`);
 }
 
 console.log(
@@ -100,3 +100,5 @@ if (desfasadas.length > 0) {
         `Regenera con: npm run data:screenshots -- ${desfasadas.map((d) => d.id).join(" ")}`
     );
 }
+
+process.exitCode = desfasadas.length + sinCaptura.length > 0 ? 1 : 0;
