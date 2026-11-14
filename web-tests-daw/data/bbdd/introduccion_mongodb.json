@@ -1,0 +1,187 @@
+[
+  {
+    "question": "¿Qué es MongoDB?",
+    "options": [
+      "Un lenguaje de programación",
+      "Un servidor web",
+      "Una base de datos relacional",
+      "Una base de datos NoSQL orientada a documentos"
+    ],
+    "answer": 3,
+    "explanation": "Almacena datos en documentos flexibles tipo JSON."
+  },
+  {
+    "question": "¿Qué significa NoSQL?",
+    "options": ["New SQL", "No SQL allowed", "None SQL", "Not Only SQL (No solo SQL)"],
+    "answer": 3,
+    "explanation": "Abarca una amplia gama de tecnologías de bases de datos no relacionales."
+  },
+  {
+    "question": "¿En qué formato almacena MongoDB los datos internamente?",
+    "options": ["JSON", "CSV", "XML", "BSON (Binary JSON)"],
+    "answer": 3,
+    "explanation": "BSON es una representación binaria de JSON que incluye tipos de datos adicionales."
+  },
+  {
+    "question": "¿Qué es una Colección en MongoDB?",
+    "options": [
+      "Un grupo de documentos (equivalente a una tabla en SQL)",
+      "Una fila",
+      "Un índice",
+      "Una base de datos"
+    ],
+    "answer": 0,
+    "explanation": "Las colecciones no imponen un esquema rígido."
+  },
+  {
+    "question": "¿Qué es un Documento en MongoDB?",
+    "options": [
+      "Un registro de datos (equivalente a una fila en SQL)",
+      "Una tabla",
+      "Un archivo de texto",
+      "Una columna"
+    ],
+    "answer": 0,
+    "explanation": "Es la unidad básica de datos, compuesta por pares campo-valor."
+  },
+  {
+    "question": "¿Qué campo es obligatorio en todo documento MongoDB?",
+    "options": ["_id", "id", "primary_key", "key"],
+    "answer": 0,
+    "explanation": "Si no se proporciona, MongoDB genera uno automáticamente (ObjectId)."
+  },
+  {
+    "question": "¿Qué característica define a MongoDB como 'Schemaless' (sin esquema)?",
+    "options": [
+      "Los documentos en una misma colección pueden tener diferentes estructuras y campos",
+      "No usa SQL",
+      "No tiene tablas",
+      "No tiene seguridad"
+    ],
+    "answer": 0,
+    "explanation": "Permite flexibilidad y evolución rápida del modelo de datos."
+  },
+  {
+    "question": "¿Cuál es el lenguaje de consulta principal de MongoDB?",
+    "options": ["Java", "MQL (MongoDB Query Language)", "PL/SQL", "SQL"],
+    "answer": 1,
+    "explanation": "Usa métodos como find(), insert(), update(), etc."
+  },
+  {
+    "question": "¿Qué es un ObjectId?",
+    "options": [
+      "Una fecha",
+      "Un string aleatorio",
+      "Un número entero",
+      "Un identificador único de 12 bytes generado automáticamente"
+    ],
+    "answer": 3,
+    "explanation": "Contiene timestamp, identificador de máquina, proceso y contador."
+  },
+  {
+    "question": "¿Qué es el Shell de MongoDB (mongosh)?",
+    "options": [
+      "Una interfaz de línea de comandos interactiva para interactuar con MongoDB",
+      "Un servidor",
+      "Una GUI",
+      "Un driver"
+    ],
+    "answer": 0,
+    "explanation": "Permite ejecutar comandos y scripts JavaScript."
+  },
+  {
+    "question": "¿Qué es Compass?",
+    "options": [
+      "Un comando",
+      "La interfaz gráfica oficial (GUI) para MongoDB",
+      "Un tipo de índice",
+      "Una base de datos"
+    ],
+    "answer": 1,
+    "explanation": "Facilita la visualización y manipulación de datos sin usar comandos."
+  },
+  {
+    "question": "¿Qué es Atlas?",
+    "options": [
+      "El servicio de base de datos en la nube totalmente gestionado de MongoDB",
+      "Una versión antigua",
+      "Un mapa",
+      "Un libro"
+    ],
+    "answer": 0,
+    "explanation": "Permite desplegar clústeres en AWS, Azure o Google Cloud."
+  },
+  {
+    "question": "¿Qué teorema se aplica a las bases de datos distribuidas como MongoDB?",
+    "options": [
+      "Teorema CAP (Consistencia, Disponibilidad, Tolerancia a Particiones)",
+      "Ley de Moore",
+      "Teorema de Pitágoras",
+      "ACID"
+    ],
+    "answer": 0,
+    "explanation": "MongoDB prioriza CP (Consistencia y Tolerancia a Particiones) por defecto."
+  },
+  {
+    "question": "¿Qué es la replicación en MongoDB?",
+    "options": [
+      "Duplicar tablas",
+      "Hacer copias de seguridad",
+      "El proceso de sincronizar datos entre múltiples servidores (Replica Set)",
+      "Copiar archivos"
+    ],
+    "answer": 2,
+    "explanation": "Proporciona alta disponibilidad y redundancia."
+  },
+  {
+    "question": "¿Qué es el Sharding?",
+    "options": [
+      "Borrar datos",
+      "Encriptar datos",
+      "Distribuir datos a través de múltiples máquinas para escalar horizontalmente",
+      "Compartir datos"
+    ],
+    "answer": 2,
+    "explanation": "Permite manejar grandes volúmenes de datos y tráfico."
+  },
+  {
+    "question": "¿Qué tipo de datos NO soporta JSON pero sí BSON?",
+    "options": ["Boolean", "String", "Number", "Date (Fecha)"],
+    "answer": 3,
+    "explanation": "JSON almacena fechas como strings, BSON tiene un tipo Date nativo."
+  },
+  {
+    "question": "¿Cómo se representa una relación 1:N en MongoDB generalmente?",
+    "options": [
+      "Siempre con referencias",
+      "No se puede",
+      "Incrustando (Embedding) los documentos hijos dentro del padre o usando referencias",
+      "Siempre incrustando"
+    ],
+    "answer": 2,
+    "explanation": "La incrustación es preferida para lecturas rápidas si el documento no crece indefinidamente."
+  },
+  {
+    "question": "¿Qué es un documento incrustado?",
+    "options": [
+      "Un enlace",
+      "Un documento JSON dentro de otro documento",
+      "Un error",
+      "Un archivo adjunto"
+    ],
+    "answer": 1,
+    "explanation": "{ nombre: 'Juan', direccion: { calle: 'Falsa 123' } }"
+  },
+  {
+    "question": "¿Qué puerto usa MongoDB por defecto?",
+    "options": ["8080", "27017", "3306", "5432"],
+    "answer": 1,
+    "explanation": "Es el puerto estándar para conexiones de cliente."
+  },
+  {
+    "question": "¿Qué comando muestra las bases de datos existentes?",
+    "options": ["show databases", "show dbs", "list databases", "display dbs"],
+    "answer": 1,
+    "explanation": "Muestra las BDs que tienen al menos un documento."
+  }
+]

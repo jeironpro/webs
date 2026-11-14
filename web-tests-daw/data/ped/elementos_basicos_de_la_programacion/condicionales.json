@@ -1,0 +1,217 @@
+[
+  {
+    "question": "¿Qué es una estructura condicional?",
+    "options": [
+      "Permite ejecutar bloques de código diferentes según si se cumple una condición",
+      "Define variables",
+      "Repite código",
+      "Crea funciones"
+    ],
+    "answer": 0,
+    "explanation": "Toma de decisiones."
+  },
+  {
+    "question": "¿Cuál es la estructura condicional más básica?",
+    "options": ["if", "while", "switch", "for"],
+    "answer": 0,
+    "explanation": "Si (condición) entonces..."
+  },
+  {
+    "question": "¿Qué hace la cláusula 'else'?",
+    "options": [
+      "Ejecuta siempre",
+      "Ejecuta un bloque de código si la condición del 'if' es falsa",
+      "Repite el if",
+      "Termina el programa"
+    ],
+    "answer": 1,
+    "explanation": "Si no..."
+  },
+  {
+    "question": "¿Qué es un 'else if' o 'elif'?",
+    "options": [
+      "Es un error",
+      "Permite evaluar una nueva condición si la anterior fue falsa",
+      "Termina el if",
+      "Inicia un bucle"
+    ],
+    "answer": 1,
+    "explanation": "Para múltiples casos excluyentes."
+  },
+  {
+    "question": "¿Qué es el anidamiento de condicionales?",
+    "options": [
+      "Poner un if al final",
+      "Borrar un if",
+      "Poner un if dentro de otro if",
+      "Poner un if dentro de un for"
+    ],
+    "answer": 2,
+    "explanation": "Puede aumentar la complejidad ciclomática."
+  },
+  {
+    "question": "¿Qué es la estructura 'switch' o 'case'?",
+    "options": [
+      "Un interruptor",
+      "Selecciona un bloque de código a ejecutar entre múltiples opciones basándose en el valor de una variable",
+      "Una función",
+      "Un bucle"
+    ],
+    "answer": 1,
+    "explanation": "Más limpio que muchos if-else if."
+  },
+  {
+    "question": "¿Qué hace la instrucción 'break' en un switch?",
+    "options": [
+      "Rompe el PC",
+      "Sale del bloque switch para evitar ejecutar los siguientes casos (fall-through)",
+      "Pausa el programa",
+      "Reinicia el switch"
+    ],
+    "answer": 1,
+    "explanation": "Esencial en la mayoría de lenguajes tipo C."
+  },
+  {
+    "question": "¿Qué es el caso 'default' en un switch?",
+    "options": [
+      "La configuración",
+      "El primer caso",
+      "El bloque que se ejecuta si ninguno de los casos anteriores coincide",
+      "El error"
+    ],
+    "answer": 2,
+    "explanation": "Equivalente al 'else' final."
+  },
+  {
+    "question": "¿Qué tipo de dato suele evaluar un switch?",
+    "options": [
+      "Objetos complejos",
+      "Booleanos solo",
+      "Enteros, caracteres o strings (depende del lenguaje)",
+      "Arrays"
+    ],
+    "answer": 2,
+    "explanation": "No suele usarse para rangos o condiciones complejas."
+  },
+  {
+    "question": "¿Cómo se evalúa la condición de un if?",
+    "options": [
+      "Como un texto",
+      "Como un número",
+      "Como un valor booleano (true/false)",
+      "Como sea"
+    ],
+    "answer": 2,
+    "explanation": "Si no es booleano, se coerciona (truthy/falsy)."
+  },
+  {
+    "question": "¿Qué es un valor 'truthy'?",
+    "options": [
+      "True literal",
+      "Un valor que se evalúa como true en un contexto booleano (ej. 1, 'hola', [])",
+      "Un valor falso",
+      "Un error"
+    ],
+    "answer": 1,
+    "explanation": "Concepto importante en JS y Python."
+  },
+  {
+    "question": "¿Qué es un valor 'falsy'?",
+    "options": [
+      "Un valor que se evalúa como false (ej. 0, '', null, undefined)",
+      "False literal",
+      "Un error",
+      "Un valor verdadero"
+    ],
+    "answer": 0,
+    "explanation": "Cuidado con el 0."
+  },
+  {
+    "question": "¿Se pueden usar operadores lógicos en un if?",
+    "options": [
+      "Solo OR",
+      "Solo AND",
+      "No, solo una condición",
+      "Sí, para combinar condiciones (if (a > 5 && b < 10))"
+    ],
+    "answer": 3,
+    "explanation": "Permite lógica compleja."
+  },
+  {
+    "question": "¿Qué es mejor: muchos if anidados o un switch/polimorfismo?",
+    "options": [
+      "Da igual",
+      "If anidados siempre",
+      "Switch o polimorfismo suelen ser más legibles y mantenibles",
+      "No usar condicionales"
+    ],
+    "answer": 2,
+    "explanation": "Evitar el 'Arrow Anti-pattern' (código con mucha sangría)."
+  },
+  {
+    "question": "¿Qué es una guarda (guard clause)?",
+    "options": [
+      "Un error",
+      "Un guardia",
+      "Un bucle",
+      "Un if al principio de la función que retorna temprano si no se cumplen las condiciones, evitando anidamiento"
+    ],
+    "answer": 3,
+    "explanation": "if (!valido) return;"
+  },
+  {
+    "question": "¿El operador ternario puede sustituir a un if-else?",
+    "options": [
+      "Sí, para asignaciones simples o retornos",
+      "No, nunca",
+      "Solo para else",
+      "Solo para if"
+    ],
+    "answer": 0,
+    "explanation": "int max = (a > b) ? a : b;"
+  },
+  {
+    "question": "¿Qué pasa si olvidas las llaves {} en un if de varias líneas?",
+    "options": [
+      "Da error",
+      "Funciona igual",
+      "No compila",
+      "Solo la primera línea se considera dentro del if, el resto se ejecuta siempre"
+    ],
+    "answer": 3,
+    "explanation": "Error común y peligroso (Apple goto fail)."
+  },
+  {
+    "question": "¿Qué es la lógica booleana?",
+    "options": [
+      "Lógica difusa",
+      "Matemáticas avanzadas",
+      "La base matemática de las condiciones (Álgebra de Boole)",
+      "Filosofía"
+    ],
+    "answer": 2,
+    "explanation": "True/False."
+  },
+  {
+    "question": "¿Cuándo usar switch en lugar de if?",
+    "options": [
+      "Nunca",
+      "Cuando hay rangos (x > 5)",
+      "Cuando se compara una misma variable contra muchos valores constantes específicos",
+      "Cuando hay condiciones complejas"
+    ],
+    "answer": 2,
+    "explanation": "Mejora la legibilidad."
+  },
+  {
+    "question": "¿Qué es una tabla de verdad?",
+    "options": [
+      "Una tabla de datos",
+      "Un excel",
+      "Una tabla que muestra el resultado de una operación lógica para todas las combinaciones posibles de entradas",
+      "Una base de datos"
+    ],
+    "answer": 2,
+    "explanation": "Ayuda a diseñar condiciones complejas."
+  }
+]

@@ -1,0 +1,207 @@
+[
+  {
+    "question": "¿Qué es una Máquina Virtual (VM)?",
+    "options": [
+      "Un servidor web",
+      "Un juego",
+      "Un ordenador emulado por software que se ejecuta dentro de otro ordenador físico",
+      "Un robot"
+    ],
+    "answer": 2,
+    "explanation": "Permite ejecutar múltiples SO aislados en el mismo hardware."
+  },
+  {
+    "question": "¿Qué es el Host (Anfitrión) en virtualización?",
+    "options": [
+      "El invitado",
+      "El sistema operativo físico que ejecuta el software de virtualización",
+      "La máquina virtual",
+      "El servidor DNS"
+    ],
+    "answer": 1,
+    "explanation": "Es la máquina real."
+  },
+  {
+    "question": "¿Qué es el Guest (Invitado) en virtualización?",
+    "options": [
+      "El sistema operativo que se ejecuta dentro de la máquina virtual",
+      "El programa",
+      "El anfitrión",
+      "El usuario"
+    ],
+    "answer": 0,
+    "explanation": "Cree que tiene el hardware para él solo."
+  },
+  {
+    "question": "¿Qué es un Hipervisor?",
+    "options": [
+      "Una tarjeta gráfica",
+      "Un disco duro",
+      "Un super visor",
+      "El software que crea y gestiona las máquinas virtuales"
+    ],
+    "answer": 3,
+    "explanation": "Puede ser Tipo 1 (Nativo/Bare-metal) o Tipo 2 (Hosted)."
+  },
+  {
+    "question": "¿Qué es VirtualBox?",
+    "options": [
+      "Un sistema operativo",
+      "Un hipervisor de Tipo 2 gratuito y de código abierto desarrollado por Oracle",
+      "Un juego",
+      "Una caja virtual"
+    ],
+    "answer": 1,
+    "explanation": "Muy popular para entornos de escritorio y aprendizaje."
+  },
+  {
+    "question": "¿Qué es una ISO?",
+    "options": [
+      "Un comando",
+      "Un estándar de calidad",
+      "Una foto",
+      "Un archivo de imagen de disco que contiene una copia exacta de un CD/DVD, usado para instalar SO"
+    ],
+    "answer": 3,
+    "explanation": "Se monta como unidad óptica virtual para instalar el sistema."
+  },
+  {
+    "question": "¿Qué son las Guest Additions en VirtualBox?",
+    "options": [
+      "Juegos extra",
+      "Virus",
+      "Usuarios invitados",
+      "Drivers y utilidades que se instalan en el SO invitado para mejorar el rendimiento y la integración (pantalla, carpetas compartidas)"
+    ],
+    "answer": 3,
+    "explanation": "Esenciales para una buena experiencia de usuario (resolución dinámica, copy-paste)."
+  },
+  {
+    "question": "¿Qué es una Snapshot (Instantánea)?",
+    "options": [
+      "Una captura de pantalla",
+      "Una foto",
+      "Un estado guardado de la máquina virtual al que se puede revertir en cualquier momento",
+      "Un backup completo"
+    ],
+    "answer": 2,
+    "explanation": "Muy útil antes de hacer cambios arriesgados."
+  },
+  {
+    "question": "¿Qué modo de red 'NAT' hace en VirtualBox?",
+    "options": [
+      "La VM accede a internet a través del host, pero es invisible desde fuera (red privada)",
+      "La VM es parte de la red física",
+      "La VM no tiene red",
+      "La VM se conecta solo con el host"
+    ],
+    "answer": 0,
+    "explanation": "Es la configuración por defecto, fácil para navegar."
+  },
+  {
+    "question": "¿Qué modo de red 'Adaptador Puente' (Bridged) hace?",
+    "options": [
+      "No tiene red",
+      "Solo host",
+      "Usa NAT",
+      "La VM se conecta directamente a la red física como si fuera otro equipo independiente (recibe su propia IP del router)"
+    ],
+    "answer": 3,
+    "explanation": "Necesario si quieres que la VM sea un servidor accesible desde la red local."
+  },
+  {
+    "question": "¿Qué modo de red 'Red Interna' hace?",
+    "options": [
+      "Tienen internet",
+      "Las VMs se ven entre sí pero no ven al host ni a internet",
+      "Ven al host",
+      "Es una red wifi"
+    ],
+    "answer": 1,
+    "explanation": "Para laboratorios aislados y seguros."
+  },
+  {
+    "question": "¿Qué es el particionamiento de disco durante la instalación?",
+    "options": [
+      "Copiar archivos",
+      "Formatear",
+      "Romper el disco",
+      "Dividir el disco duro en secciones lógicas independientes"
+    ],
+    "answer": 3,
+    "explanation": "Permite separar sistema, datos, swap, etc."
+  },
+  {
+    "question": "¿Qué sistema de archivos usa Windows por defecto?",
+    "options": ["HFS+", "FAT32", "EXT4", "NTFS"],
+    "answer": 3,
+    "explanation": "New Technology File System."
+  },
+  {
+    "question": "¿Qué sistema de archivos usa Linux comúnmente?",
+    "options": ["EXT4", "NTFS", "FAT32", "APFS"],
+    "answer": 0,
+    "explanation": "Fourth Extended Filesystem."
+  },
+  {
+    "question": "¿Qué es la memoria Swap (Intercambio) en Linux?",
+    "options": [
+      "Memoria de vídeo",
+      "Espacio en disco usado como extensión de la memoria RAM cuando esta se llena",
+      "Un archivo temporal",
+      "Memoria rápida"
+    ],
+    "answer": 1,
+    "explanation": "Evita que el sistema colapse por falta de memoria."
+  },
+  {
+    "question": "¿Qué es el Bootloader (Gestor de arranque)?",
+    "options": [
+      "El programa que carga el sistema operativo al iniciar (ej. GRUB, Windows Boot Manager)",
+      "El login",
+      "La BIOS",
+      "El botón de encendido"
+    ],
+    "answer": 0,
+    "explanation": "Permite elegir SO en sistemas dual-boot."
+  },
+  {
+    "question": "¿Qué es un disco virtual dinámico (VDI dinámico)?",
+    "options": [
+      "Es un disco real",
+      "Ocupa todo el espacio desde el principio",
+      "Un archivo de disco que crece en tamaño físico a medida que se llena de datos, hasta un límite",
+      "Es un disco lento"
+    ],
+    "answer": 2,
+    "explanation": "Ahorra espacio en el disco del host."
+  },
+  {
+    "question": "¿Qué es un disco virtual de tamaño fijo?",
+    "options": [
+      "Reserva todo el espacio en el disco del host desde el momento de su creación",
+      "Es temporal",
+      "Crece dinámicamente",
+      "Es pequeño"
+    ],
+    "answer": 0,
+    "explanation": "Suele tener mejor rendimiento al evitar fragmentación."
+  },
+  {
+    "question": "¿Qué tecla se usa habitualmente para liberar el ratón de la VM en VirtualBox?",
+    "options": ["Esc", "Ctrl derecho (Host Key)", "F1", "Alt+F4"],
+    "answer": 1,
+    "explanation": "Configurable, pero Ctrl derecho es el default."
+  },
+  {
+    "question": "¿Qué es la virtualización anidada (Nested Virtualization)?",
+    "options": [
+      "Virtualizar discos",
+      "Ejecutar una máquina virtual dentro de otra máquina virtual",
+      "Un error",
+      "Virtualizar redes"
+    ],
+    "answer": 1,
+    "explanation": "Útil para laboratorios complejos (ej. GNS3 dentro de una VM)."
+  }
+]

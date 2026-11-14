@@ -1,0 +1,162 @@
+[
+  {
+    "question": "¿Qué significa DML?",
+    "options": [
+      "Data Manipulation Language",
+      "Data Management Language",
+      "Data Modeling Language",
+      "Data Mining Language"
+    ],
+    "answer": 0,
+    "explanation": "DML se utiliza para gestionar los datos dentro de los objetos de la base de datos."
+  },
+  {
+    "question": "¿Cuál es el comando para insertar datos?",
+    "options": ["INSERT", "ADD", "PUT", "CREATE"],
+    "answer": 0,
+    "explanation": "INSERT INTO tabla (columnas) VALUES (valores);"
+  },
+  {
+    "question": "¿Cuál es la sintaxis correcta para insertar un registro completo?",
+    "options": [
+      "INSERT tabla (val1, val2, ...);",
+      "ADD INTO tabla VALUES (val1, val2, ...);",
+      "INSERT TABLE tabla VALUES (val1, val2, ...);",
+      "INSERT INTO tabla VALUES (val1, val2, ...);"
+    ],
+    "answer": 3,
+    "explanation": "Si se omiten las columnas, se deben proporcionar valores para todas las columnas en orden."
+  },
+  {
+    "question": "¿Cómo se insertan solo algunos campos?",
+    "options": [
+      "INSERT (col1, col2) INTO tabla VALUES (val1, val2);",
+      "INSERT INTO tabla VALUES (val1, val2);",
+      "INSERT tabla SET col1=val1, col2=val2;",
+      "INSERT INTO tabla (col1, col2) VALUES (val1, val2);"
+    ],
+    "answer": 3,
+    "explanation": "Se deben especificar las columnas correspondientes a los valores proporcionados."
+  },
+  {
+    "question": "¿Qué comando modifica datos existentes?",
+    "options": ["CHANGE", "UPDATE", "MODIFY", "ALTER"],
+    "answer": 1,
+    "explanation": "UPDATE tabla SET columna = valor WHERE condicion;"
+  },
+  {
+    "question": "¿Qué pasa si ejecutas un UPDATE sin WHERE?",
+    "options": [
+      "Se actualiza solo el primer registro",
+      "Se actualizan TODOS los registros de la tabla",
+      "No pasa nada",
+      "Da un error"
+    ],
+    "answer": 1,
+    "explanation": "Es un error común muy peligroso; siempre se debe usar WHERE a menos que se quiera cambiar todo."
+  },
+  {
+    "question": "¿Qué comando elimina filas de una tabla?",
+    "options": ["DELETE", "REMOVE", "ERASE", "DROP"],
+    "answer": 0,
+    "explanation": "DELETE FROM tabla WHERE condicion;"
+  },
+  {
+    "question": "¿Qué pasa si ejecutas DELETE sin WHERE?",
+    "options": [
+      "Se borra la tabla",
+      "Se borran TODOS los registros de la tabla",
+      "Se borra el último registro",
+      "Da un error"
+    ],
+    "answer": 1,
+    "explanation": "La tabla queda vacía, pero su estructura permanece."
+  },
+  {
+    "question": "¿Qué operador lógico se usa para combinar condiciones en WHERE?",
+    "options": ["WITH", "PLUS", "AND", "ALSO"],
+    "answer": 2,
+    "explanation": "AND requiere que ambas condiciones sean verdaderas."
+  },
+  {
+    "question": "¿Qué operador lógico se usa para que se cumpla al menos una condición?",
+    "options": ["ANY", "OR", "EITHER", "MAYBE"],
+    "answer": 1,
+    "explanation": "OR devuelve verdadero si cualquiera de las condiciones es verdadera."
+  },
+  {
+    "question": "¿Qué operador invierte una condición?",
+    "options": ["NOT", "INVERT", "NO", "REVERSE"],
+    "answer": 0,
+    "explanation": "NOT (condicion) devuelve verdadero si la condición es falsa."
+  },
+  {
+    "question": "¿Qué operador comprueba si un valor está dentro de una lista?",
+    "options": ["IN", "WITHIN", "INSIDE", "LIST"],
+    "answer": 0,
+    "explanation": "WHERE columna IN (val1, val2, val3);"
+  },
+  {
+    "question": "¿Qué operador comprueba si un valor está dentro de un rango?",
+    "options": ["RANGE", "FROM TO", "BETWEEN", "WITHIN"],
+    "answer": 2,
+    "explanation": "WHERE columna BETWEEN val1 AND val2;"
+  },
+  {
+    "question": "¿Cómo se seleccionan todos los campos de una tabla?",
+    "options": [
+      "SELECT * FROM tabla;",
+      "GET * FROM tabla;",
+      "SELECT tabla.*;",
+      "SELECT ALL FROM tabla;"
+    ],
+    "answer": 0,
+    "explanation": "El asterisco (*) es el comodín para 'todas las columnas'."
+  },
+  {
+    "question": "¿Qué es un alias de columna?",
+    "options": [
+      "Un nombre permanente",
+      "Un tipo de dato",
+      "Un nombre temporal para una columna en el resultado",
+      "Una clave foránea"
+    ],
+    "answer": 2,
+    "explanation": "SELECT columna AS nuevo_nombre FROM tabla;"
+  },
+  {
+    "question": "¿Qué es un alias de tabla?",
+    "options": [
+      "Un índice",
+      "Una vista",
+      "Una copia de la tabla",
+      "Un nombre corto para la tabla usado en la consulta"
+    ],
+    "answer": 3,
+    "explanation": "SELECT t.col FROM tabla AS t; útil en JOINs."
+  },
+  {
+    "question": "¿Qué función cuenta el número de filas?",
+    "options": ["SUM()", "COUNT()", "TOTAL()", "NUMBER()"],
+    "answer": 1,
+    "explanation": "COUNT(*) cuenta todas las filas, COUNT(col) cuenta las no nulas."
+  },
+  {
+    "question": "¿Qué función suma los valores de una columna?",
+    "options": ["ADD()", "SUM()", "COUNT()", "TOTAL()"],
+    "answer": 1,
+    "explanation": "SUM(columna) devuelve la suma total."
+  },
+  {
+    "question": "¿Qué función calcula el promedio?",
+    "options": ["AVG()", "MEAN()", "MEDIAN()", "AVERAGE()"],
+    "answer": 0,
+    "explanation": "AVG(columna) calcula la media aritmética."
+  },
+  {
+    "question": "¿Qué función encuentra el valor máximo?",
+    "options": ["TOP()", "MAX()", "UPPER()", "HIGHEST()"],
+    "answer": 1,
+    "explanation": "MAX(columna) devuelve el valor más alto."
+  }
+]

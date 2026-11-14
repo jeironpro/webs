@@ -1,0 +1,192 @@
+[
+  {
+    "question": "¿Qué es un Diagrama de Estado (Máquina de Estados)?",
+    "options": [
+      "Diagrama de actividad",
+      "Diagrama que muestra los estados por los que pasa un objeto en respuesta a eventos a lo largo de su vida",
+      "Diagrama de clases",
+      "Nada"
+    ],
+    "answer": 1,
+    "explanation": "Ciclo de vida reactivo."
+  },
+  {
+    "question": "¿Qué representa un rectángulo con esquinas redondeadas (igual que actividad)?",
+    "options": ["Una actividad", "Un objeto", "Un Estado", "Nada"],
+    "answer": 2,
+    "explanation": "Condición o situación."
+  },
+  {
+    "question": "¿Qué es una Transición?",
+    "options": [
+      "Nada",
+      "Un estado",
+      "Un evento",
+      "Flecha que conecta dos estados, indicando el cambio de uno a otro"
+    ],
+    "answer": 3,
+    "explanation": "Cambio."
+  },
+  {
+    "question": "¿Qué etiqueta tiene una transición?",
+    "options": ["Nada", "Tipo", "Nombre", "Evento [Guarda] / Acción"],
+    "answer": 3,
+    "explanation": "Trigger [Condition] / Effect."
+  },
+  {
+    "question": "¿Qué es el Evento (Trigger)?",
+    "options": [
+      "Nada",
+      "La acción",
+      "El estímulo que dispara la transición (ej. botón pulsado)",
+      "El estado"
+    ],
+    "answer": 2,
+    "explanation": "Causa."
+  },
+  {
+    "question": "¿Qué es la Guarda?",
+    "options": [
+      "Nada",
+      "Un error",
+      "Condición booleana que debe ser verdadera para que ocurra la transición",
+      "Un guardia"
+    ],
+    "answer": 2,
+    "explanation": "[saldo > 0]."
+  },
+  {
+    "question": "¿Qué es la Acción (Effect)?",
+    "options": [
+      "Actividad atómica que se ejecuta durante la transición",
+      "El evento",
+      "El estado",
+      "Nada"
+    ],
+    "answer": 0,
+    "explanation": "/enviarEmail()."
+  },
+  {
+    "question": "¿Qué es un Estado Inicial?",
+    "options": ["Nada", "Círculo con borde", "Cuadrado", "Círculo negro sólido (punto de entrada)"],
+    "answer": 3,
+    "explanation": "Nacimiento."
+  },
+  {
+    "question": "¿Qué es un Estado Final?",
+    "options": ["Cuadrado", "Círculo negro", "Círculo negro con borde (ojo de buey)", "Nada"],
+    "answer": 2,
+    "explanation": "Muerte."
+  },
+  {
+    "question": "¿Qué es una actividad interna 'entry'?",
+    "options": ["Al estar", "Acción que se ejecuta al ENTRAR al estado", "Nada", "Al salir"],
+    "answer": 1,
+    "explanation": "entry / inicializar."
+  },
+  {
+    "question": "¿Qué es una actividad interna 'exit'?",
+    "options": ["Al entrar", "Al estar", "Nada", "Acción que se ejecuta al SALIR del estado"],
+    "answer": 3,
+    "explanation": "exit / limpiar."
+  },
+  {
+    "question": "¿Qué es una actividad interna 'do'?",
+    "options": [
+      "Al salir",
+      "Al entrar",
+      "Nada",
+      "Actividad duradera que se ejecuta MIENTRAS se está en el estado"
+    ],
+    "answer": 3,
+    "explanation": "do / procesar."
+  },
+  {
+    "question": "¿Qué es un Estado Compuesto (Superestado)?",
+    "options": [
+      "Un estado simple",
+      "Nada",
+      "Error",
+      "Un estado que contiene otros subestados dentro (jerarquía)"
+    ],
+    "answer": 3,
+    "explanation": "Simplifica diagramas complejos."
+  },
+  {
+    "question": "¿Qué es una transición interna?",
+    "options": [
+      "Cambio de estado",
+      "Nada",
+      "Error",
+      "Evento que causa una acción sin cambiar de estado (no dispara entry/exit)"
+    ],
+    "answer": 3,
+    "explanation": "Reacción local."
+  },
+  {
+    "question": "¿Qué es un Estado Histórico (H)?",
+    "options": [
+      "Nada",
+      "Pseudostado que recuerda el último subestado activo para volver a él",
+      "Historia",
+      "Error"
+    ],
+    "answer": 1,
+    "explanation": "Resume."
+  },
+  {
+    "question": "¿Qué es una transición automática (sin evento)?",
+    "options": [
+      "Nada",
+      "Error",
+      "Transición que ocurre en cuanto termina la actividad 'do' del estado",
+      "Nunca ocurre"
+    ],
+    "answer": 2,
+    "explanation": "Flujo natural."
+  },
+  {
+    "question": "¿Para qué sirve el diagrama de estado?",
+    "options": [
+      "Modelar bases de datos",
+      "Modelar redes",
+      "Nada",
+      "Modelar el ciclo de vida de objetos complejos (ej. Pedido, Conexión, Juego)"
+    ],
+    "answer": 3,
+    "explanation": "Objetos con comportamiento dependiente del estado."
+  },
+  {
+    "question": "¿Qué es la ortogonalidad (regiones concurrentes)?",
+    "options": [
+      "Línea recta",
+      "Nada",
+      "Error",
+      "Un estado compuesto dividido en regiones independientes que se ejecutan en paralelo"
+    ],
+    "answer": 3,
+    "explanation": "Multitarea dentro del estado."
+  },
+  {
+    "question": "¿Qué es un evento de tiempo (Time Event)?",
+    "options": [
+      "Nada",
+      "Error",
+      "Evento disparado por el paso del tiempo (ej. after(5s))",
+      "Reloj"
+    ],
+    "answer": 2,
+    "explanation": "Timeouts."
+  },
+  {
+    "question": "¿Qué es un evento de cambio (Change Event)?",
+    "options": [
+      "Cambio",
+      "Evento disparado cuando una condición se vuelve verdadera (ej. when(temp > 100))",
+      "Error",
+      "Nada"
+    ],
+    "answer": 1,
+    "explanation": "Vigilancia."
+  }
+]

@@ -1,0 +1,202 @@
+[
+  {
+    "question": "¿Qué método se usa para insertar un solo documento?",
+    "options": ["putOne()", "insertOne()", "insertMany()", "addOne()"],
+    "answer": 1,
+    "explanation": "db.coleccion.insertOne({ ... })"
+  },
+  {
+    "question": "¿Qué método se usa para insertar múltiples documentos?",
+    "options": ["putMany()", "insertOne()", "insertMany()", "addAll()"],
+    "answer": 2,
+    "explanation": "Recibe un array de documentos."
+  },
+  {
+    "question": "¿Qué pasa si insertas un documento sin campo _id?",
+    "options": [
+      "Da error",
+      "Pide confirmación",
+      "Se inserta sin id",
+      "MongoDB añade automáticamente un _id con un ObjectId único"
+    ],
+    "answer": 3,
+    "explanation": "El driver o el servidor lo generan."
+  },
+  {
+    "question": "¿Qué pasa si insertas un documento con un _id que ya existe?",
+    "options": [
+      "Crea una copia",
+      "Da un error de clave duplicada (duplicate key error)",
+      "Lo ignora",
+      "Sobrescribe el existente"
+    ],
+    "answer": 1,
+    "explanation": "El campo _id debe ser único en la colección."
+  },
+  {
+    "question": "¿El método insert() antiguo está obsoleto?",
+    "options": [
+      "Nunca existió",
+      "Sí, se recomienda usar insertOne() o insertMany()",
+      "Solo en Windows",
+      "No, es el mejor"
+    ],
+    "answer": 1,
+    "explanation": "Los nuevos métodos tienen semántica más clara de retorno."
+  },
+  {
+    "question": "¿Qué devuelve insertOne()?",
+    "options": [
+      "Null",
+      "El documento insertado",
+      "True",
+      "Un objeto con el estado de la operación y el insertedId"
+    ],
+    "answer": 3,
+    "explanation": "{ acknowledged: true, insertedId: ... }"
+  },
+  {
+    "question": "¿Qué es la opción 'ordered' en insertMany()?",
+    "options": [
+      "No existe",
+      "Ordena la colección",
+      "Si es true (default), se detiene al primer error; si es false, intenta insertar los restantes",
+      "Ordena los documentos"
+    ],
+    "answer": 2,
+    "explanation": "Permite inserciones masivas resilientes a errores individuales."
+  },
+  {
+    "question": "¿Se pueden insertar documentos con estructuras diferentes en la misma colección?",
+    "options": [
+      "Sí, MongoDB es flexible",
+      "Solo si tienen el mismo número de campos",
+      "No, deben ser iguales",
+      "Solo si el administrador lo permite"
+    ],
+    "answer": 0,
+    "explanation": "Es la naturaleza schemaless."
+  },
+  {
+    "question": "¿Qué es writeConcern?",
+    "options": [
+      "Un log",
+      "Preocupación por escribir",
+      "Un error de escritura",
+      "Configuración que define cuántas confirmaciones de réplicas se necesitan para considerar la escritura exitosa"
+    ],
+    "answer": 3,
+    "explanation": "w: 1 (solo primario), w: 'majority' (mayoría de réplicas)."
+  },
+  {
+    "question": "¿Cómo insertar una fecha actual?",
+    "options": ["currentDate()", "now()", "new Date()", "Date.now()"],
+    "answer": 2,
+    "explanation": "En el shell de JS, new Date() crea un objeto ISODate."
+  },
+  {
+    "question": "¿Se pueden insertar arrays dentro de un documento?",
+    "options": [
+      "No",
+      "Solo arrays de números",
+      "Sí, los arrays son tipos de datos de primera clase",
+      "Solo arrays de texto"
+    ],
+    "answer": 2,
+    "explanation": "{ tags: ['a', 'b', 'c'] }"
+  },
+  {
+    "question": "¿Se pueden insertar documentos anidados?",
+    "options": [
+      "Sí, profundidad ilimitada",
+      "No",
+      "Solo un nivel",
+      "Sí, hasta 100 niveles de profundidad"
+    ],
+    "answer": 3,
+    "explanation": "La profundidad máxima es 100."
+  },
+  {
+    "question": "¿Qué hace db.coleccion.save() (obsoleto)?",
+    "options": [
+      "Solo guarda",
+      "Solo actualiza",
+      "Si el documento tiene _id y existe, actualiza; si no, inserta (Upsert)",
+      "Solo inserta"
+    ],
+    "answer": 2,
+    "explanation": "Reemplazado por replaceOne con upsert."
+  },
+  {
+    "question": "¿Qué es una inserción atómica?",
+    "options": [
+      "Todas las inserciones son atómicas globalmente",
+      "No hay atomicidad",
+      "La inserción de un solo documento es atómica",
+      "La inserción de muchos documentos es atómica en bloque"
+    ],
+    "answer": 2,
+    "explanation": "En insertMany, cada documento es atómico individualmente, pero la operación en lote no lo es (a menos que sea en transacción)."
+  },
+  {
+    "question": "¿Cómo importar datos desde un archivo JSON externo?",
+    "options": [
+      "Copiar y pegar",
+      "No se puede",
+      "Con insertFile()",
+      "Usando la herramienta de línea de comandos mongoimport"
+    ],
+    "answer": 3,
+    "explanation": "mongoimport --db test --collection users --file users.json"
+  },
+  {
+    "question": "¿Qué formato de archivo usa mongoimport?",
+    "options": ["XML", "Excel", "SQL", "JSON, CSV, TSV"],
+    "answer": 3,
+    "explanation": "Muy versátil para migraciones."
+  },
+  {
+    "question": "¿Qué hace la opción --jsonArray en mongoimport?",
+    "options": [
+      "Indica que el archivo contiene un array de objetos JSON, no un objeto por línea",
+      "Convierte a array",
+      "Valida arrays",
+      "Importa arrays"
+    ],
+    "answer": 0,
+    "explanation": "Por defecto espera JSON Lines (un objeto por línea)."
+  },
+  {
+    "question": "¿Se pueden usar variables de JavaScript en insertOne dentro del shell?",
+    "options": [
+      "Solo constantes",
+      "No",
+      "Solo números",
+      "Sí, el shell es un intérprete JS completo"
+    ],
+    "answer": 3,
+    "explanation": "var doc = { ... }; db.col.insertOne(doc);"
+  },
+  {
+    "question": "¿Qué es el tipo de dato Null en BSON?",
+    "options": [
+      "Representa un valor nulo o inexistente",
+      "Es el número 0",
+      "Es un string vacío",
+      "Es un error"
+    ],
+    "answer": 0,
+    "explanation": "null"
+  },
+  {
+    "question": "¿Qué pasa si el nombre de la colección contiene espacios o caracteres especiales?",
+    "options": [
+      "Se usa db.'nombre raro'",
+      "No se permite",
+      "Se reemplazan por guiones",
+      "Se debe acceder usando db.getCollection('nombre raro')"
+    ],
+    "answer": 3,
+    "explanation": "La sintaxis de punto no funciona con nombres raros."
+  }
+]

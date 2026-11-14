@@ -45,6 +45,7 @@ const WEBS_CANONICAS = [
     "web-pokemon",
     "web-pomodoro",
     "web-pythoncises",
+    "web-tests-daw",
     "web-porcentaje-anual",
     "web-redimensiona-imagen",
     "web-refprog",
@@ -59,7 +60,6 @@ const WEBS_PENDIENTES = [
     "web-generador-cv",
     "web-programmer-day",
     "web-reloj",
-    "web-tests-daw",
 ];
 
 const ARCHIVOS_CANONICOS = WEBS_CANONICAS.flatMap((web) => [`${web}/**/*.js`, `${web}/**/*.mjs`]);

@@ -1,0 +1,207 @@
+[
+  {
+    "question": "¿Qué es la Herencia?",
+    "options": [
+      "Un error",
+      "Copiar código",
+      "Recibir dinero",
+      "Mecanismo por el cual una clase (hija) adquiere propiedades y métodos de otra (padre)"
+    ],
+    "answer": 3,
+    "explanation": "Relación Es-Un."
+  },
+  {
+    "question": "¿Qué palabra clave se usa para heredar en Java?",
+    "options": ["super", "inherits", "implements", "extends"],
+    "answer": 3,
+    "explanation": "class Perro extends Animal."
+  },
+  {
+    "question": "¿Qué es la Superclase (Clase Padre)?",
+    "options": [
+      "La clase hija",
+      "La clase final",
+      "La clase grande",
+      "La clase de la que se hereda (más general)"
+    ],
+    "answer": 3,
+    "explanation": "Animal."
+  },
+  {
+    "question": "¿Qué es la Subclase (Clase Hija)?",
+    "options": [
+      "La clase que hereda (más específica)",
+      "La clase padre",
+      "La clase pequeña",
+      "La clase base"
+    ],
+    "answer": 0,
+    "explanation": "Perro."
+  },
+  {
+    "question": "¿Qué es la sobrescritura de métodos (Overriding)?",
+    "options": [
+      "Redefinir en la subclase un método heredado de la superclase para cambiar su comportamiento",
+      "Sobrecargar",
+      "Borrar el método",
+      "Duplicar"
+    ],
+    "answer": 0,
+    "explanation": "@Override."
+  },
+  {
+    "question": "¿Qué es 'super'?",
+    "options": [
+      "Referencia a la superclase (para llamar a métodos o constructores del padre)",
+      "Un método",
+      "Un héroe",
+      "Una variable"
+    ],
+    "answer": 0,
+    "explanation": "super.metodo()."
+  },
+  {
+    "question": "¿Qué es la herencia múltiple?",
+    "options": [
+      "Heredar muchas veces",
+      "Heredar todo",
+      "Heredar rápido",
+      "Heredar de más de una clase a la vez (no soportado en Java/C# directamente)"
+    ],
+    "answer": 3,
+    "explanation": "C++ la tiene, Java usa Interfaces."
+  },
+  {
+    "question": "¿Qué es la clase Object en Java?",
+    "options": [
+      "Una clase vacía",
+      "Un error",
+      "Un objeto cualquiera",
+      "La raíz de toda la jerarquía de clases (todas heredan de ella implícitamente)"
+    ],
+    "answer": 3,
+    "explanation": "Provee toString(), equals(), hashCode()."
+  },
+  {
+    "question": "¿Qué modificador impide que una clase sea heredada?",
+    "options": ["const", "private", "final", "static"],
+    "answer": 2,
+    "explanation": "public final class String."
+  },
+  {
+    "question": "¿Qué modificador impide que un método sea sobrescrito?",
+    "options": ["static", "private", "final", "const"],
+    "answer": 2,
+    "explanation": "Garantiza comportamiento inmutable."
+  },
+  {
+    "question": "¿Qué es el polimorfismo (subtipado)?",
+    "options": [
+      "Muchas formas",
+      "La capacidad de tratar objetos de subclases como si fueran de la superclase (Animal a = new Perro())",
+      "Cambiar de forma",
+      "Un error"
+    ],
+    "answer": 1,
+    "explanation": "Clave para flexibilidad."
+  },
+  {
+    "question": "¿Qué es el enlace dinámico (Dynamic Binding)?",
+    "options": [
+      "Enlace roto",
+      "Enlace rápido",
+      "Enlace estático",
+      "Decidir en tiempo de ejecución qué método sobrescrito llamar (basado en el tipo real del objeto)"
+    ],
+    "answer": 3,
+    "explanation": "Permite el polimorfismo."
+  },
+  {
+    "question": "¿Qué es la generalización?",
+    "options": [
+      "Especialización",
+      "Hacer general",
+      "Copiar",
+      "El proceso de extraer características comunes de varias clases y ponerlas en una superclase"
+    ],
+    "answer": 3,
+    "explanation": "Bottom-up."
+  },
+  {
+    "question": "¿Qué es la especialización?",
+    "options": [
+      "Borrar",
+      "Generalización",
+      "Crear subclases más específicas a partir de una clase general",
+      "Hacer especial"
+    ],
+    "answer": 2,
+    "explanation": "Top-down."
+  },
+  {
+    "question": "¿Se heredan los miembros privados?",
+    "options": [
+      "Sí, y son públicos",
+      "No, se borran",
+      "Depende",
+      "Técnicamente sí (están en memoria), pero no son accesibles directamente desde la subclase"
+    ],
+    "answer": 3,
+    "explanation": "Usar getters/setters o protected."
+  },
+  {
+    "question": "¿Qué es el principio de sustitución de Liskov (LSP)?",
+    "options": [
+      "Las subclases deben poder sustituir a sus clases base sin romper el programa",
+      "Un principio físico",
+      "Sustituir código",
+      "Un error"
+    ],
+    "answer": 0,
+    "explanation": "SOLID."
+  },
+  {
+    "question": "¿Qué es una jerarquía de herencia profunda?",
+    "options": [
+      "Muchos niveles de herencia (A->B->C->D...), suele ser mala práctica (frágil)",
+      "Herencia rápida",
+      "Herencia buena",
+      "Herencia plana"
+    ],
+    "answer": 0,
+    "explanation": "Preferir composición."
+  },
+  {
+    "question": "¿Qué es 'protected' en herencia?",
+    "options": [
+      "Permite acceso a las subclases (y al paquete), pero no al mundo exterior",
+      "Global",
+      "Público",
+      "Privado"
+    ],
+    "answer": 0,
+    "explanation": "Diseñado para herencia."
+  },
+  {
+    "question": "¿Qué es el problema del diamante?",
+    "options": [
+      "Una joya",
+      "Ambigüedad en herencia múltiple cuando dos padres tienen el mismo método",
+      "Un error de sintaxis",
+      "Un dibujo"
+    ],
+    "answer": 1,
+    "explanation": "Por eso Java no tiene herencia múltiple de clases."
+  },
+  {
+    "question": "¿Qué es upcasting?",
+    "options": [
+      "Error",
+      "Tratar un objeto de una subclase como si fuera de la superclase (seguro, implícito)",
+      "Casting",
+      "Downcasting"
+    ],
+    "answer": 1,
+    "explanation": "Animal a = new Perro();"
+  }
+]

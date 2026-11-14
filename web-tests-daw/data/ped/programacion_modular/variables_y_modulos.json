@@ -1,0 +1,212 @@
+[
+  {
+    "question": "¿Qué es el ámbito (scope) global?",
+    "options": [
+      "Variables de un bucle",
+      "Variables secretas",
+      "Variables de una función",
+      "Variables accesibles desde cualquier parte del programa"
+    ],
+    "answer": 3,
+    "explanation": "Peligroso por colisiones de nombres."
+  },
+  {
+    "question": "¿Qué es el ámbito local?",
+    "options": [
+      "Variables globales",
+      "Variables públicas",
+      "Variables que solo existen dentro de la función o bloque donde se declararon",
+      "Variables estáticas"
+    ],
+    "answer": 2,
+    "explanation": "Se destruyen al salir."
+  },
+  {
+    "question": "¿Qué es el 'Shadowing' (Sombreado) de variables?",
+    "options": [
+      "Una sombra",
+      "Un error",
+      "Cuando una variable local tiene el mismo nombre que una global, ocultando la global",
+      "Borrar variables"
+    ],
+    "answer": 2,
+    "explanation": "Puede causar confusión."
+  },
+  {
+    "question": "¿Qué es una variable estática (static) dentro de una función?",
+    "options": [
+      "Es constante",
+      "Es global",
+      "Se borra siempre",
+      "Mantiene su valor entre llamadas sucesivas a la función"
+    ],
+    "answer": 3,
+    "explanation": "Vida de programa, ámbito local."
+  },
+  {
+    "question": "¿Qué modificador de acceso hace un miembro visible solo dentro de su clase/módulo?",
+    "options": ["public", "global", "protected", "private"],
+    "answer": 3,
+    "explanation": "Encapsulamiento fuerte."
+  },
+  {
+    "question": "¿Qué modificador hace un miembro visible para todos?",
+    "options": ["public", "protected", "hidden", "private"],
+    "answer": 0,
+    "explanation": "Interfaz pública."
+  },
+  {
+    "question": "¿Qué es el ámbito de bloque?",
+    "options": [
+      "Variables limitadas a las llaves {} donde están (ej. dentro de un if o for)",
+      "Ámbito global",
+      "Ámbito de función",
+      "Ámbito de archivo"
+    ],
+    "answer": 0,
+    "explanation": "let/const en JS, estándar en C++/Java."
+  },
+  {
+    "question": "¿Por qué se recomienda evitar variables globales?",
+    "options": [
+      "Ocupan mucha memoria",
+      "Son feas",
+      "Son lentas",
+      "Dificultan el rastreo de cambios de estado y crean dependencias ocultas"
+    ],
+    "answer": 3,
+    "explanation": "Spaghetti code."
+  },
+  {
+    "question": "¿Qué es una variable externa (extern) en C?",
+    "options": [
+      "Una variable de salida",
+      "Declara una variable que está definida en otro archivo/módulo",
+      "Un error",
+      "Una variable extra"
+    ],
+    "answer": 1,
+    "explanation": "Para compartir globales entre archivos."
+  },
+  {
+    "question": "¿Qué es el 'Hoisting' (Elevación) en JS?",
+    "options": [
+      "Un error",
+      "Subir volumen",
+      "Un ascensor",
+      "Comportamiento donde las declaraciones de variables/funciones se mueven al inicio de su ámbito"
+    ],
+    "answer": 3,
+    "explanation": "var y function."
+  },
+  {
+    "question": "¿Qué es una constante global?",
+    "options": [
+      "Una función",
+      "Un error",
+      "Un valor inmutable accesible por todos (ej. PI, MAX_USERS)",
+      "Una variable global"
+    ],
+    "answer": 2,
+    "explanation": "Uso aceptable de globales."
+  },
+  {
+    "question": "¿Qué es el encapsulamiento a nivel de módulo?",
+    "options": [
+      "Solo exportar lo necesario y mantener privadas las variables internas del módulo",
+      "Poner contraseña",
+      "Ocultar todo",
+      "Cerrar el archivo"
+    ],
+    "answer": 0,
+    "explanation": "Module Pattern."
+  },
+  {
+    "question": "¿Qué es el ciclo de vida de una variable?",
+    "options": [
+      "El tiempo que transcurre desde que se crea hasta que se destruye",
+      "Su tipo",
+      "Su valor",
+      "Su nombre"
+    ],
+    "answer": 0,
+    "explanation": "Stack vs Heap."
+  },
+  {
+    "question": "¿Qué es una variable de entorno?",
+    "options": [
+      "Un clima",
+      "Valores configurados en el sistema operativo accesibles por el programa (ej. PATH, API_KEY)",
+      "Una variable local",
+      "Una variable del entorno gráfico"
+    ],
+    "answer": 1,
+    "explanation": "Configuración externa."
+  },
+  {
+    "question": "¿Qué es 'protected'?",
+    "options": [
+      "Visible en la clase y sus subclases (herencia)",
+      "Protegido por contraseña",
+      "Público",
+      "Privado"
+    ],
+    "answer": 0,
+    "explanation": "Intermedio entre public y private."
+  },
+  {
+    "question": "¿Qué es el 'Name Mangling'?",
+    "options": [
+      "Borrar nombres",
+      "Destruir nombres",
+      "Crear nombres",
+      "Cambio de nombres de símbolos por el compilador para evitar colisiones (común en C++)"
+    ],
+    "answer": 3,
+    "explanation": "Permite sobrecarga."
+  },
+  {
+    "question": "¿Qué es una variable volátil (volatile)?",
+    "options": [
+      "Una variable temporal",
+      "Indica al compilador que la variable puede cambiar inesperadamente (ej. hardware), evitando optimizaciones",
+      "Una variable rápida",
+      "Una variable explosiva"
+    ],
+    "answer": 1,
+    "explanation": "Concurrencia y sistemas embebidos."
+  },
+  {
+    "question": "¿Qué es el Garbage Collector (GC)?",
+    "options": [
+      "Un virus",
+      "Un limpiador de pantalla",
+      "Un basurero",
+      "Sistema automático que libera la memoria de objetos que ya no son accesibles (no tienen referencias)"
+    ],
+    "answer": 3,
+    "explanation": "Java, Python, JS, C#."
+  },
+  {
+    "question": "¿Qué es una fuga de memoria (Memory Leak)?",
+    "options": [
+      "Un error de disco",
+      "Un agujero en la RAM",
+      "Un virus",
+      "Cuando el programa no libera memoria que ya no usa, agotando los recursos"
+    ],
+    "answer": 3,
+    "explanation": "Olvidar free() o referencias circulares."
+  },
+  {
+    "question": "¿Qué es 'this' en el contexto de un módulo/clase?",
+    "options": [
+      "Referencia global",
+      "Referencia nula",
+      "Referencia al módulo",
+      "Referencia a la instancia actual"
+    ],
+    "answer": 3,
+    "explanation": "Acceso a miembros propios."
+  }
+]

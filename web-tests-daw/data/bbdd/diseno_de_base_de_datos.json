@@ -1,0 +1,222 @@
+[
+  {
+    "question": "¿Qué es la Primera Forma Normal (1FN)?",
+    "options": [
+      "Eliminar grupos repetidos y asegurar que cada columna tenga valores atómicos",
+      "Eliminar dependencias transitivas",
+      "Crear claves primarias",
+      "Tener tablas separadas"
+    ],
+    "answer": 0,
+    "explanation": "No debe haber listas de valores en una sola celda."
+  },
+  {
+    "question": "¿Qué es la Segunda Forma Normal (2FN)?",
+    "options": [
+      "Eliminar columnas calculadas",
+      "Cumplir 1FN y que todos los atributos no clave dependan de la clave primaria completa",
+      "Tener índices",
+      "Cumplir 1FN y tener claves foráneas"
+    ],
+    "answer": 1,
+    "explanation": "Elimina dependencias parciales en claves compuestas."
+  },
+  {
+    "question": "¿Qué es la Tercera Forma Normal (3FN)?",
+    "options": [
+      "Tener todo en una tabla",
+      "Cumplir 2FN y tener 3 tablas",
+      "Cumplir 2FN y no tener dependencias transitivas (atributos no clave dependiendo de otros no clave)",
+      "Usar solo números"
+    ],
+    "answer": 2,
+    "explanation": "Todo atributo debe depender de la clave, toda la clave y nada más que la clave."
+  },
+  {
+    "question": "¿Qué es la Desnormalización?",
+    "options": [
+      "Perder datos",
+      "El proceso de introducir redundancia controlada para mejorar el rendimiento de lectura",
+      "Borrar la normalización",
+      "Hacer mal la base de datos"
+    ],
+    "answer": 1,
+    "explanation": "Se usa en Data Warehouses o sistemas con muchas lecturas y pocos cambios."
+  },
+  {
+    "question": "¿Qué es un modelo conceptual?",
+    "options": [
+      "Los archivos físicos",
+      "Una representación de alto nivel independiente del SGBD (ej. Diagrama ER)",
+      "El esquema SQL",
+      "El código fuente"
+    ],
+    "answer": 1,
+    "explanation": "Se centra en entidades y relaciones del negocio."
+  },
+  {
+    "question": "¿Qué es un modelo lógico?",
+    "options": [
+      "El diagrama ER",
+      "La memoria RAM",
+      "La traducción del modelo conceptual a estructuras de datos específicas (ej. Tablas relacionales)",
+      "El disco duro"
+    ],
+    "answer": 2,
+    "explanation": "Define tablas, columnas, claves y tipos de datos genéricos."
+  },
+  {
+    "question": "¿Qué es un modelo físico?",
+    "options": [
+      "La implementación específica en un SGBD concreto (MySQL, Oracle), incluyendo índices y particiones",
+      "El servidor",
+      "El hardware",
+      "El cableado"
+    ],
+    "answer": 0,
+    "explanation": "Optimizado para el motor de base de datos específico."
+  },
+  {
+    "question": "¿Qué es una relación recursiva?",
+    "options": [
+      "Un error de diseño",
+      "Un bucle infinito",
+      "Una entidad que se relaciona consigo misma (ej. Empleado - Jefe)",
+      "Una relación circular entre 3 tablas"
+    ],
+    "answer": 2,
+    "explanation": "Requiere una clave foránea que apunte a la clave primaria de la misma tabla."
+  },
+  {
+    "question": "¿Qué es la integridad de dominio?",
+    "options": [
+      "Integridad de usuario",
+      "Asegurar que los valores de una columna cumplan con el tipo de dato y restricciones definidos",
+      "Integridad de claves",
+      "Integridad de red"
+    ],
+    "answer": 1,
+    "explanation": "Ej: Una columna 'Edad' no puede tener letras."
+  },
+  {
+    "question": "¿Qué es la integridad de entidad?",
+    "options": [
+      "Las tablas deben tener datos",
+      "No debe haber tablas vacías",
+      "Las entidades deben tener nombre",
+      "Cada tabla debe tener una clave primaria y esta no puede ser nula"
+    ],
+    "answer": 3,
+    "explanation": "Garantiza que cada fila sea identificable."
+  },
+  {
+    "question": "¿Qué es una clave candidata?",
+    "options": [
+      "Una contraseña",
+      "Cualquier columna o conjunto de columnas que podría funcionar como clave primaria",
+      "Una clave foránea",
+      "Una clave secundaria"
+    ],
+    "answer": 1,
+    "explanation": "De las candidatas se elige una como Primaria, las otras pueden ser Unique."
+  },
+  {
+    "question": "¿Qué es una clave subrogada (Surrogate Key)?",
+    "options": [
+      "Una clave compuesta",
+      "Un identificador artificial (generalmente autoincremental) sin significado de negocio",
+      "Una clave foránea",
+      "Una clave natural"
+    ],
+    "answer": 1,
+    "explanation": "Útil cuando no hay una clave natural simple o esta puede cambiar."
+  },
+  {
+    "question": "¿Qué es una clave natural?",
+    "options": [
+      "Un atributo existente en el mundo real que identifica únicamente (ej. DNI, Email)",
+      "Un hash",
+      "Un número aleatorio",
+      "Un ID autoincremental"
+    ],
+    "answer": 0,
+    "explanation": "Tiene significado de negocio."
+  },
+  {
+    "question": "¿Qué problema resuelve la tabla puente o de unión?",
+    "options": [
+      "Las relaciones 1:1",
+      "Las relaciones Muchos a Muchos (N:M)",
+      "Las relaciones 1:N",
+      "La falta de espacio"
+    ],
+    "answer": 1,
+    "explanation": "Descompone N:M en dos relaciones 1:N."
+  },
+  {
+    "question": "¿Qué es la cardinalidad mínima?",
+    "options": [
+      "El mínimo de tablas",
+      "El número mínimo de veces que una instancia debe participar en una relación (0 o 1)",
+      "El mínimo de columnas",
+      "El valor más pequeño"
+    ],
+    "answer": 1,
+    "explanation": "Indica opcionalidad (0) u obligatoriedad (1)."
+  },
+  {
+    "question": "¿Qué es una dependencia funcional?",
+    "options": [
+      "Una dependencia de software",
+      "Una relación padre-hijo",
+      "Cuando el valor de un atributo determina el valor de otro (A -> B)",
+      "Una función de código"
+    ],
+    "answer": 2,
+    "explanation": "Base de la normalización."
+  },
+  {
+    "question": "¿Qué es el particionamiento horizontal?",
+    "options": [
+      "Dividir columnas",
+      "Dividir discos",
+      "Dividir bases de datos",
+      "Dividir una tabla en múltiples tablas con las mismas columnas pero diferentes filas"
+    ],
+    "answer": 3,
+    "explanation": "Sharding es una forma de esto."
+  },
+  {
+    "question": "¿Qué es el particionamiento vertical?",
+    "options": [
+      "Dividir servidores",
+      "Dividir usuarios",
+      "Dividir una tabla en múltiples tablas con las mismas filas pero diferentes columnas",
+      "Dividir filas"
+    ],
+    "answer": 2,
+    "explanation": "Útil para separar columnas de uso frecuente de las de uso raro (BLOBs, textos largos)."
+  },
+  {
+    "question": "¿Qué es OLTP?",
+    "options": [
+      "Oracle Long Transaction Process",
+      "Online Analytical Processing",
+      "Online Transaction Processing (Sistemas transaccionales operativos)",
+      "Old Table Protocol"
+    ],
+    "answer": 2,
+    "explanation": "Optimizado para muchas transacciones pequeñas y rápidas (INSERT, UPDATE)."
+  },
+  {
+    "question": "¿Qué es OLAP?",
+    "options": [
+      "Old Laptop Protocol",
+      "Oracle Large Analytical Process",
+      "Online Analytical Processing (Sistemas para análisis y toma de decisiones)",
+      "Online Transaction Processing"
+    ],
+    "answer": 2,
+    "explanation": "Optimizado para consultas complejas de lectura sobre grandes volúmenes de datos."
+  }
+]

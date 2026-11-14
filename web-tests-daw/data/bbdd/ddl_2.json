@@ -1,0 +1,212 @@
+[
+  {
+    "question": "¿Qué es una restricción (Constraint) en DDL?",
+    "options": [
+      "Un comando para borrar",
+      "Un tipo de índice",
+      "Un usuario",
+      "Una regla que limita el tipo de datos que pueden ir en una tabla"
+    ],
+    "answer": 3,
+    "explanation": "Las restricciones aseguran la precisión y fiabilidad de los datos en la tabla."
+  },
+  {
+    "question": "¿Qué hace la restricción CHECK?",
+    "options": [
+      "Limita el rango de valores que se pueden colocar en una columna",
+      "Comprueba la ortografía",
+      "Verifica si la tabla existe",
+      "Revisa permisos"
+    ],
+    "answer": 0,
+    "explanation": "Permite especificar una condición que debe ser verdadera para cada fila."
+  },
+  {
+    "question": "¿Cómo se añade una restricción CHECK a una tabla existente?",
+    "options": [
+      "INSERT CHECK (condicion) INTO tabla;",
+      "CREATE CHECK (condicion) ON tabla;",
+      "ALTER TABLE tabla ADD CHECK (condicion);",
+      "ALTER TABLE tabla ADD CONSTRAINT nombre CHECK (condicion);"
+    ],
+    "answer": 3,
+    "explanation": "Se usa ALTER TABLE ADD CONSTRAINT para añadir reglas de validación."
+  },
+  {
+    "question": "¿Qué es una VISTA (VIEW)?",
+    "options": [
+      "Una tabla virtual basada en el conjunto de resultados de una consulta SQL",
+      "Un gráfico de datos",
+      "Una copia de seguridad",
+      "Una tabla física temporal"
+    ],
+    "answer": 0,
+    "explanation": "Una vista no almacena datos por sí misma, sino que muestra datos de otras tablas."
+  },
+  {
+    "question": "¿Cuál es el comando para crear una vista?",
+    "options": [
+      "ADD VIEW nombre AS SELECT ...",
+      "MAKE VIEW nombre AS SELECT ...",
+      "NEW VIEW nombre AS SELECT ...",
+      "CREATE VIEW nombre AS SELECT ..."
+    ],
+    "answer": 3,
+    "explanation": "CREATE VIEW define la consulta que formará la vista."
+  },
+  {
+    "question": "¿Se pueden actualizar datos a través de una vista?",
+    "options": [
+      "Solo si el usuario es administrador",
+      "Sí, en ciertos casos simples",
+      "Sí, siempre",
+      "No, nunca"
+    ],
+    "answer": 1,
+    "explanation": "Las vistas simples (basadas en una sola tabla sin funciones de agregación) suelen ser actualizables."
+  },
+  {
+    "question": "¿Cómo se elimina una vista?",
+    "options": [
+      "DELETE VIEW nombre;",
+      "REMOVE VIEW nombre;",
+      "ERASE VIEW nombre;",
+      "DROP VIEW nombre;"
+    ],
+    "answer": 3,
+    "explanation": "DROP VIEW elimina la definición de la vista, pero no los datos subyacentes."
+  },
+  {
+    "question": "¿Qué es un índice único (UNIQUE INDEX)?",
+    "options": [
+      "Un índice que solo tiene un valor",
+      "Un índice que no permite valores duplicados en la columna indexada",
+      "Un índice primario",
+      "Un índice temporal"
+    ],
+    "answer": 1,
+    "explanation": "Combina la velocidad de un índice con la restricción de unicidad."
+  },
+  {
+    "question": "¿Qué comando se usa para borrar un índice?",
+    "options": [
+      "CLEAR INDEX nombre;",
+      "DELETE INDEX nombre;",
+      "REMOVE INDEX nombre;",
+      "DROP INDEX nombre ON tabla;"
+    ],
+    "answer": 3,
+    "explanation": "La sintaxis puede variar ligeramente entre SGBD, pero DROP INDEX es lo estándar."
+  },
+  {
+    "question": "¿Qué es AUTO_INCREMENT (o SERIAL/IDENTITY)?",
+    "options": [
+      "Un comando para aumentar el tamaño de la tabla",
+      "Una característica que genera un número único automáticamente al insertar un nuevo registro",
+      "Un bucle automático",
+      "Una actualización automática"
+    ],
+    "answer": 1,
+    "explanation": "Se usa comúnmente para claves primarias numéricas."
+  },
+  {
+    "question": "¿Cómo se define un valor por defecto para una columna?",
+    "options": [
+      "columna tipo SET valor",
+      "columna tipo VALUE valor",
+      "columna tipo DEFAULT valor",
+      "columna tipo = valor"
+    ],
+    "answer": 2,
+    "explanation": "La palabra clave DEFAULT especifica el valor inicial."
+  },
+  {
+    "question": "¿Qué sucede con los datos si cambias el tipo de dato de una columna con ALTER TABLE?",
+    "options": [
+      "Se borran todos los datos",
+      "No se permite cambiar el tipo si hay datos",
+      "Puede haber pérdida de datos o truncamiento si los tipos son incompatibles",
+      "Los datos se convierten automáticamente sin problemas siempre"
+    ],
+    "answer": 2,
+    "explanation": "Es una operación riesgosa que debe hacerse con cuidado."
+  },
+  {
+    "question": "¿Qué es una tabla temporal?",
+    "options": [
+      "Una tabla que se borra cada mes",
+      "Una tabla con datos de prueba",
+      "Una tabla que solo existe durante la sesión actual o transacción",
+      "Una tabla de sistema"
+    ],
+    "answer": 2,
+    "explanation": "CREATE TEMPORARY TABLE crea tablas volátiles útiles para cálculos intermedios."
+  },
+  {
+    "question": "¿Qué comando se usa para vaciar una tabla sin borrarla?",
+    "options": ["VOID TABLE", "TRUNCATE TABLE", "EMPTY TABLE", "BLANK TABLE"],
+    "answer": 1,
+    "explanation": "TRUNCATE es DDL y es más eficiente que DELETE para vaciar tablas."
+  },
+  {
+    "question": "¿Qué es el diccionario de datos?",
+    "options": [
+      "Un archivo de log",
+      "Un libro sobre SQL",
+      "Una lista de contraseñas",
+      "Un conjunto de tablas de solo lectura que contienen información sobre la base de datos (metadatos)"
+    ],
+    "answer": 3,
+    "explanation": "Contiene definiciones de tablas, columnas, índices, usuarios, etc."
+  },
+  {
+    "question": "¿Qué comando permite renombrar una columna (en MySQL/MariaDB)?",
+    "options": [
+      "Ambas son válidas (dependiendo de la versión)",
+      "ALTER TABLE tabla CHANGE antigua nueva tipo;",
+      "ALTER TABLE tabla RENAME COLUMN antigua TO nueva;",
+      "Ninguna es válida"
+    ],
+    "answer": 0,
+    "explanation": "CHANGE es la sintaxis clásica, RENAME COLUMN es más moderna y estándar."
+  },
+  {
+    "question": "¿Qué es una clave compuesta?",
+    "options": [
+      "Una clave foránea doble",
+      "Una clave encriptada",
+      "Una clave primaria formada por dos o más columnas",
+      "Una clave con números y letras"
+    ],
+    "answer": 2,
+    "explanation": "Se usa cuando una sola columna no es suficiente para identificar únicamente una fila."
+  },
+  {
+    "question": "¿Cómo se define una clave primaria compuesta?",
+    "options": [
+      "PRIMARY KEY (col1), PRIMARY KEY (col2)",
+      "KEY (col1 + col2)",
+      "COMPOSITE KEY (col1, col2)",
+      "PRIMARY KEY (col1, col2)"
+    ],
+    "answer": 3,
+    "explanation": "Se define al final de la creación de la tabla listando las columnas entre paréntesis."
+  },
+  {
+    "question": "¿Qué restricción impide borrar un registro si tiene hijos relacionados?",
+    "options": ["CHECK", "FOREIGN KEY (sin ON DELETE CASCADE)", "PRIMARY KEY", "UNIQUE"],
+    "answer": 1,
+    "explanation": "Por defecto, la integridad referencial impide borrar padres con hijos dependientes (RESTRICT)."
+  },
+  {
+    "question": "¿Qué es un esquema (SCHEMA)?",
+    "options": [
+      "Un archivo de configuración",
+      "Una colección lógica de objetos de base de datos (tablas, vistas, etc.)",
+      "Un diagrama ER",
+      "Un usuario"
+    ],
+    "answer": 1,
+    "explanation": "Ayuda a organizar y agrupar objetos, a menudo asociado a un usuario o aplicación."
+  }
+]

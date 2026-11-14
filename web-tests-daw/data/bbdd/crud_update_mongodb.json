@@ -1,0 +1,142 @@
+[
+  {
+    "question": "¿Qué método actualiza un solo documento?",
+    "options": ["updateMany()", "updateOne()", "changeOne()", "modifyOne()"],
+    "answer": 1,
+    "explanation": "Actualiza el primer documento que cumple el filtro."
+  },
+  {
+    "question": "¿Qué método actualiza todos los documentos que cumplen la condición?",
+    "options": ["updateOne()", "updateAll()", "updateMany()", "modifyAll()"],
+    "answer": 2,
+    "explanation": "db.coleccion.updateMany({ activo: true }, { $set: { verificado: true } })"
+  },
+  {
+    "question": "¿Qué método reemplaza un documento entero (excepto _id)?",
+    "options": ["replaceOne()", "setOne()", "overwrite()", "updateOne()"],
+    "answer": 0,
+    "explanation": "Sustituye todo el contenido del documento por el nuevo objeto proporcionado."
+  },
+  {
+    "question": "¿Qué operador se usa para modificar el valor de un campo específico sin borrar el resto?",
+    "options": ["$set", "$change", "$modify", "$update"],
+    "answer": 0,
+    "explanation": "{ $set: { campo: 'nuevo valor' } }"
+  },
+  {
+    "question": "¿Qué operador elimina un campo de un documento?",
+    "options": ["$remove", "$delete", "$unset", "$drop"],
+    "answer": 2,
+    "explanation": "{ $unset: { campo: '' } }"
+  },
+  {
+    "question": "¿Qué operador incrementa un valor numérico?",
+    "options": ["$sum", "$inc", "$add", "$plus"],
+    "answer": 1,
+    "explanation": "{ $inc: { visitas: 1 } }"
+  },
+  {
+    "question": "¿Qué operador multiplica un valor numérico?",
+    "options": ["$multiply", "$times", "$mul", "$prod"],
+    "answer": 2,
+    "explanation": "{ $mul: { precio: 1.21 } }"
+  },
+  {
+    "question": "¿Qué operador renombra un campo?",
+    "options": ["$rename", "$move", "$alias", "$name"],
+    "answer": 0,
+    "explanation": "{ $rename: { 'viejo': 'nuevo' } }"
+  },
+  {
+    "question": "¿Qué operador añade un elemento a un array solo si no existe?",
+    "options": ["$add", "$push", "$addToSet", "$append"],
+    "answer": 2,
+    "explanation": "Evita duplicados en arrays."
+  },
+  {
+    "question": "¿Qué operador añade un elemento a un array permitiendo duplicados?",
+    "options": ["$addToSet", "$push", "$insert", "$add"],
+    "answer": 1,
+    "explanation": "{ $push: { tags: 'nuevo' } }"
+  },
+  {
+    "question": "¿Qué operador elimina un elemento específico de un array?",
+    "options": ["$delete", "$pop", "$remove", "$pull"],
+    "answer": 3,
+    "explanation": "{ $pull: { tags: 'malo' } }"
+  },
+  {
+    "question": "¿Qué operador elimina el primer o último elemento de un array?",
+    "options": ["$slice", "$pop", "$shift", "$pull"],
+    "answer": 1,
+    "explanation": "{ $pop: { items: 1 } } (último) o -1 (primero)."
+  },
+  {
+    "question": "¿Qué es un Upsert?",
+    "options": [
+      "Una inserción rápida",
+      "Una operación que actualiza si el documento existe, o lo inserta si no existe",
+      "Una actualización forzada",
+      "Un error de actualización"
+    ],
+    "answer": 1,
+    "explanation": "updateOne(..., { upsert: true })"
+  },
+  {
+    "question": "¿Qué operador actualiza la fecha a la actual?",
+    "options": ["$timestamp", "$date", "$now", "$currentDate"],
+    "answer": 3,
+    "explanation": "{ $currentDate: { lastModified: true } }"
+  },
+  {
+    "question": "¿Qué operador selecciona el valor mínimo entre el existente y el nuevo?",
+    "options": ["$less", "$max", "$least", "$min"],
+    "answer": 3,
+    "explanation": "Solo actualiza si el nuevo valor es menor."
+  },
+  {
+    "question": "¿Cómo actualizar un elemento específico de un array por su posición?",
+    "options": ["No se puede", "array: 0", "array[0]", "Usando la notación de punto: 'array.0'"],
+    "answer": 3,
+    "explanation": "{ $set: { 'tags.0': 'primero' } }"
+  },
+  {
+    "question": "¿Qué es el operador posicional $ en update?",
+    "options": [
+      "Es el final del array",
+      "Identifica el primer elemento del array que coincidió con la condición de búsqueda",
+      "Es una variable",
+      "Es el símbolo de dólar"
+    ],
+    "answer": 1,
+    "explanation": "{ 'tags.$': 'editado' }"
+  },
+  {
+    "question": "¿Qué es el operador $[] (all positional)?",
+    "options": [
+      "Actualiza el primero",
+      "Actualiza al azar",
+      "Actualiza el último",
+      "Actualiza todos los elementos de un array"
+    ],
+    "answer": 3,
+    "explanation": "{ $set: { 'notas.$[]': 10 } }"
+  },
+  {
+    "question": "¿Qué es findOneAndUpdate?",
+    "options": [
+      "Busca, actualiza y devuelve el documento (antes o después del cambio)",
+      "Solo actualiza",
+      "Da error",
+      "Solo busca"
+    ],
+    "answer": 0,
+    "explanation": "Útil para operaciones atómicas de lectura-escritura."
+  },
+  {
+    "question": "¿Qué pasa si intentas actualizar un campo _id?",
+    "options": ["Crea uno nuevo", "Da error, el _id es inmutable", "Lo cambia", "Lo borra"],
+    "answer": 1,
+    "explanation": "Para cambiar el _id hay que borrar e insertar de nuevo."
+  }
+]

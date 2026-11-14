@@ -1,0 +1,217 @@
+[
+  {
+    "question": "¿Qué es un Diagrama de Casos de Uso?",
+    "options": [
+      "Diagrama de flujo",
+      "Diagrama que muestra las funcionalidades del sistema desde el punto de vista del usuario (qué hace, no cómo)",
+      "Nada",
+      "Diagrama de clases"
+    ],
+    "answer": 1,
+    "explanation": "Requisitos funcionales."
+  },
+  {
+    "question": "¿Qué representa un Actor?",
+    "options": [
+      "Rol que juega un usuario o sistema externo al interactuar con el sistema (muñeco de palo)",
+      "Una clase",
+      "Un actor de cine",
+      "Nada"
+    ],
+    "answer": 0,
+    "explanation": "Fuera del sistema."
+  },
+  {
+    "question": "¿Qué representa un Caso de Uso (el óvalo)?",
+    "options": [
+      "Un error",
+      "Una unidad de funcionalidad o servicio que el sistema ofrece al actor",
+      "Un huevo",
+      "Nada"
+    ],
+    "answer": 1,
+    "explanation": "Verbo + Sustantivo (ej. Login)."
+  },
+  {
+    "question": "¿Qué es el Límite del Sistema (System Boundary)?",
+    "options": [
+      "Una línea",
+      "Una pared",
+      "Nada",
+      "Rectángulo que encierra los casos de uso, separándolos de los actores"
+    ],
+    "answer": 3,
+    "explanation": "Scope."
+  },
+  {
+    "question": "¿Qué es la relación de Asociación (línea sólida)?",
+    "options": [
+      "Conecta un actor con un caso de uso (indica interacción)",
+      "Herencia",
+      "Error",
+      "Nada"
+    ],
+    "answer": 0,
+    "explanation": "Participación."
+  },
+  {
+    "question": "¿Qué es la relación <<include>>?",
+    "options": [
+      "El caso de uso base SIEMPRE incluye el comportamiento del incluido (obligatorio y compartido)",
+      "A veces",
+      "Opcional",
+      "Nada"
+    ],
+    "answer": 0,
+    "explanation": "Factorizar funcionalidad común."
+  },
+  {
+    "question": "¿Qué es la relación <<extend>>?",
+    "options": [
+      "Nada",
+      "Siempre",
+      "Obligatorio",
+      "El caso de uso extensor PUEDE añadir comportamiento al base bajo cierta condición (opcional)"
+    ],
+    "answer": 3,
+    "explanation": "Variaciones o flujos alternativos."
+  },
+  {
+    "question": "¿Hacia dónde apunta la flecha en <<include>>?",
+    "options": [
+      "Del incluido al base",
+      "Del base al incluido (Base --> Incluido)",
+      "A los dos",
+      "Ninguno"
+    ],
+    "answer": 1,
+    "explanation": "Yo incluyo a este."
+  },
+  {
+    "question": "¿Hacia dónde apunta la flecha en <<extend>>?",
+    "options": [
+      "Del base al extensor",
+      "Ninguno",
+      "Del extensor al base (Extensor --> Base)",
+      "A los dos"
+    ],
+    "answer": 2,
+    "explanation": "Yo extiendo a ese."
+  },
+  {
+    "question": "¿Puede haber herencia entre actores?",
+    "options": [
+      "Nunca",
+      "Sí, un actor hijo hereda los casos de uso del padre (Generalización)",
+      "A veces",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Admin es un Usuario."
+  },
+  {
+    "question": "¿Puede haber herencia entre casos de uso?",
+    "options": ["No", "Nunca", "Sí, un caso de uso hijo especializa al padre", "A veces"],
+    "answer": 2,
+    "explanation": "Pagar -> Pagar con Tarjeta."
+  },
+  {
+    "question": "¿Un actor puede ser un sistema externo?",
+    "options": [
+      "Nada",
+      "Solo humanos",
+      "Sí, como una API de pagos o un servidor de correo (se suele dibujar como actor o caja con estereotipo)",
+      "No"
+    ],
+    "answer": 2,
+    "explanation": "Cualquier interactuante."
+  },
+  {
+    "question": "¿Qué es un Actor Primario?",
+    "options": [
+      "Nada",
+      "El que inicia el caso de uso para lograr un objetivo (a la izquierda)",
+      "El secundario",
+      "El sistema"
+    ],
+    "answer": 1,
+    "explanation": "Usuario."
+  },
+  {
+    "question": "¿Qué es un Actor Secundario?",
+    "options": [
+      "El primario",
+      "El jefe",
+      "Nada",
+      "El que proporciona un servicio al sistema para que el caso de uso se complete (a la derecha)"
+    ],
+    "answer": 3,
+    "explanation": "Sistema externo."
+  },
+  {
+    "question": "¿El diagrama de casos de uso muestra el orden de los pasos?",
+    "options": [
+      "Sí",
+      "Siempre",
+      "No, solo qué se puede hacer. Para el orden se usa la descripción textual o diagramas de actividad/secuencia",
+      "A veces"
+    ],
+    "answer": 2,
+    "explanation": "Visión general."
+  },
+  {
+    "question": "¿Qué es un Escenario?",
+    "options": [
+      "Una instancia específica de un caso de uso (un camino concreto)",
+      "Un teatro",
+      "Un error",
+      "Nada"
+    ],
+    "answer": 0,
+    "explanation": "Flujo principal o alternativo."
+  },
+  {
+    "question": "¿Qué es el Flujo Básico (Happy Path)?",
+    "options": [
+      "El error",
+      "El camino ideal donde todo sale bien y no hay errores",
+      "El camino triste",
+      "Nada"
+    ],
+    "answer": 1,
+    "explanation": "Éxito principal."
+  },
+  {
+    "question": "¿Qué son los Flujos Alternativos?",
+    "options": [
+      "Error",
+      "Caminos felices",
+      "Nada",
+      "Caminos distintos al básico (errores, opciones, cancelaciones)"
+    ],
+    "answer": 3,
+    "explanation": "Excepciones."
+  },
+  {
+    "question": "¿Qué es una Precondición?",
+    "options": [
+      "Error",
+      "Nada",
+      "Postcondición",
+      "Estado que debe cumplir el sistema antes de iniciar el caso de uso"
+    ],
+    "answer": 3,
+    "explanation": "Estar logueado."
+  },
+  {
+    "question": "¿Qué es una Postcondición?",
+    "options": [
+      "Estado en el que queda el sistema tras finalizar el caso de uso",
+      "Error",
+      "Nada",
+      "Precondición"
+    ],
+    "answer": 0,
+    "explanation": "Pedido guardado."
+  }
+]

@@ -1,0 +1,222 @@
+[
+  {
+    "question": "¿Qué es un miembro de instancia?",
+    "options": [
+      "Un miembro global",
+      "Un error",
+      "Un atributo o método que pertenece a un objeto específico (cada objeto tiene su propia copia)",
+      "Un miembro estático"
+    ],
+    "answer": 2,
+    "explanation": "this.nombre."
+  },
+  {
+    "question": "¿Qué es un miembro de clase (estático)?",
+    "options": [
+      "Un atributo o método que pertenece a la clase en sí, compartido por todas las instancias",
+      "Un error",
+      "Un miembro privado",
+      "Un miembro único"
+    ],
+    "answer": 0,
+    "explanation": "static int contador."
+  },
+  {
+    "question": "¿Cómo se accede a un miembro estático?",
+    "options": [
+      "Usando new",
+      "No se puede",
+      "Usando this",
+      "Usando el nombre de la clase (Clase.miembro)"
+    ],
+    "answer": 3,
+    "explanation": "Math.PI."
+  },
+  {
+    "question": "¿Puede un método estático acceder a atributos de instancia?",
+    "options": [
+      "Sí, siempre",
+      "A veces",
+      "Solo si son públicos",
+      "No directamente, porque no hay 'this' en un contexto estático"
+    ],
+    "answer": 3,
+    "explanation": "Necesita una referencia explícita a un objeto."
+  },
+  {
+    "question": "¿Puede un método de instancia acceder a atributos estáticos?",
+    "options": [
+      "No",
+      "Solo si son privados",
+      "Sí, puede acceder a ambos",
+      "Solo si son constantes"
+    ],
+    "answer": 2,
+    "explanation": "El objeto conoce a su clase."
+  },
+  {
+    "question": "¿Para qué sirve una variable estática?",
+    "options": [
+      "Para ahorrar memoria",
+      "Para guardar datos únicos",
+      "Para compartir datos entre todos los objetos (ej. contador de instancias, configuración global)",
+      "Para nada"
+    ],
+    "answer": 2,
+    "explanation": "Memoria compartida."
+  },
+  {
+    "question": "¿Qué es una constante estática (static final / const)?",
+    "options": [
+      "Un valor inmutable compartido por toda la clase (ej. Math.PI)",
+      "Un error",
+      "Una variable variable",
+      "Una función"
+    ],
+    "answer": 0,
+    "explanation": "Convención: MAYUSCULAS."
+  },
+  {
+    "question": "¿Qué pasa si modificas una variable estática en un objeto?",
+    "options": [
+      "El cambio se refleja en todos los demás objetos y en la clase",
+      "No pasa nada",
+      "Da error",
+      "Solo cambia en ese objeto"
+    ],
+    "answer": 0,
+    "explanation": "Es la misma variable para todos."
+  },
+  {
+    "question": "¿Qué es un bloque estático?",
+    "options": [
+      "Un error",
+      "Un constructor",
+      "Un bucle",
+      "Código que se ejecuta una sola vez cuando la clase es cargada en memoria"
+    ],
+    "answer": 3,
+    "explanation": "static { ... }"
+  },
+  {
+    "question": "¿Cuándo usar métodos estáticos?",
+    "options": [
+      "Nunca",
+      "Siempre",
+      "Cuando la función no depende del estado de ningún objeto (ej. utilidades, matemáticas)",
+      "Para constructores"
+    ],
+    "answer": 2,
+    "explanation": "Funciones puras o helpers."
+  },
+  {
+    "question": "¿Qué es el patrón Singleton y cómo usa 'static'?",
+    "options": [
+      "Es un error",
+      "Usa una variable estática privada para guardar la única instancia y un método estático para acceder a ella",
+      "No usa static",
+      "Usa muchos static"
+    ],
+    "answer": 1,
+    "explanation": "getInstance()."
+  },
+  {
+    "question": "¿Se puede sobrescribir (override) un método estático?",
+    "options": [
+      "Depende",
+      "Sí",
+      "A veces",
+      "No, los métodos estáticos se ocultan (hiding), no se sobrescriben (no hay polimorfismo dinámico)"
+    ],
+    "answer": 3,
+    "explanation": "Binding estático."
+  },
+  {
+    "question": "¿Qué es 'this' en un método estático?",
+    "options": [
+      "Referencia a la clase",
+      "Referencia al objeto",
+      "Referencia a null",
+      "No existe, da error de compilación"
+    ],
+    "answer": 3,
+    "explanation": "No hay instancia asociada."
+  },
+  {
+    "question": "¿Qué es una clase estática (en Java)?",
+    "options": [
+      "Una clase constante",
+      "Un error",
+      "Solo aplica a clases internas (Nested Static Class), se comporta como una clase top-level",
+      "Una clase que no se puede instanciar"
+    ],
+    "answer": 2,
+    "explanation": "En C# 'static class' no se puede instanciar."
+  },
+  {
+    "question": "¿Qué es la importación estática (static import)?",
+    "options": [
+      "Un error",
+      "Permite usar miembros estáticos sin calificar con el nombre de la clase (ej. sqrt() en vez de Math.sqrt())",
+      "Importar rápido",
+      "Importar todo"
+    ],
+    "answer": 1,
+    "explanation": "Mejora legibilidad si se abusa poco."
+  },
+  {
+    "question": "¿Dónde se almacena la memoria de las variables estáticas?",
+    "options": [
+      "En el disco",
+      "En el Heap de cada objeto",
+      "En una zona especial (Metaspace/PermGen en Java, Data Segment en C)",
+      "En el Stack"
+    ],
+    "answer": 2,
+    "explanation": "Viven todo el programa."
+  },
+  {
+    "question": "¿Qué es un método de fábrica estático?",
+    "options": [
+      "Un error",
+      "Un método estático que crea y devuelve instancias (ej. LocalDate.now())",
+      "Una fábrica",
+      "Un constructor"
+    ],
+    "answer": 1,
+    "explanation": "Nombre descriptivo vs constructor."
+  },
+  {
+    "question": "¿Las interfaces pueden tener métodos estáticos (Java 8+)?",
+    "options": [
+      "No",
+      "Solo privados",
+      "Solo abstractos",
+      "Sí, para utilidades relacionadas con la interfaz"
+    ],
+    "answer": 3,
+    "explanation": "Evolución del lenguaje."
+  },
+  {
+    "question": "¿Qué pasa con los miembros estáticos en la herencia?",
+    "options": [
+      "Dan error",
+      "Se sobrescriben",
+      "No se heredan",
+      "Se heredan, pero si se redefinen se ocultan (shadowing), no hay dispatch dinámico"
+    ],
+    "answer": 3,
+    "explanation": "Cuidado con acceder vía subclase."
+  },
+  {
+    "question": "¿Es posible acceder a un miembro estático a través de una instancia (obj.staticVar)?",
+    "options": [
+      "No, da error",
+      "Sí, pero no es recomendable (confuso), mejor usar Clase.staticVar",
+      "Sí, es lo mejor",
+      "Solo en C++"
+    ],
+    "answer": 1,
+    "explanation": "El compilador lo traduce a acceso de clase."
+  }
+]

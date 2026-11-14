@@ -1,0 +1,207 @@
+[
+  {
+    "question": "¿Qué es la recursividad?",
+    "options": [
+      "Una repetición",
+      "Un bucle while",
+      "Un error",
+      "Una técnica donde una función se llama a sí misma para resolver un problema"
+    ],
+    "answer": 3,
+    "explanation": "Divide el problema en subproblemas más pequeños."
+  },
+  {
+    "question": "¿Qué es el caso base?",
+    "options": [
+      "El error",
+      "El inicio",
+      "La condición que detiene la recursión (no se llama a sí misma)",
+      "La base de datos"
+    ],
+    "answer": 2,
+    "explanation": "Sin él, Stack Overflow."
+  },
+  {
+    "question": "¿Qué es el caso recursivo?",
+    "options": [
+      "La parte donde la función se llama a sí misma con un problema más pequeño",
+      "El error",
+      "El bucle",
+      "El final"
+    ],
+    "answer": 0,
+    "explanation": "Acerca el problema al caso base."
+  },
+  {
+    "question": "¿Qué error ocurre si falta el caso base?",
+    "options": [
+      "Syntax Error",
+      "Stack Overflow (Desbordamiento de pila)",
+      "Null Pointer",
+      "Memory Leak"
+    ],
+    "answer": 1,
+    "explanation": "Recursión infinita."
+  },
+  {
+    "question": "¿Qué es el factorial de n (n!)?",
+    "options": [
+      "Una división",
+      "Una suma",
+      "Ejemplo clásico de recursión: n * factorial(n-1)",
+      "Una resta"
+    ],
+    "answer": 2,
+    "explanation": "5! = 5 * 4 * 3 * 2 * 1."
+  },
+  {
+    "question": "¿Qué es la sucesión de Fibonacci?",
+    "options": ["fib(n) = fib(n-1) + fib(n-2)", "Un array", "Una lista", "Una suma"],
+    "answer": 0,
+    "explanation": "Ineficiente si se hace recursivo ingenuo (O(2^n))."
+  },
+  {
+    "question": "¿Qué es la recursión de cola (Tail Recursion)?",
+    "options": [
+      "Recursión mala",
+      "Recursión al principio",
+      "Cuando la llamada recursiva es la última acción de la función (permite optimización)",
+      "Recursión lenta"
+    ],
+    "answer": 2,
+    "explanation": "El compilador puede convertirla en un bucle."
+  },
+  {
+    "question": "¿Qué ventaja tiene la iteración (bucles) sobre la recursión?",
+    "options": [
+      "Es más corta",
+      "Es más fácil",
+      "Suele consumir menos memoria (no llena el stack) y ser más rápida",
+      "Es más elegante"
+    ],
+    "answer": 2,
+    "explanation": "Eficiencia vs Legibilidad."
+  },
+  {
+    "question": "¿Qué ventaja tiene la recursión?",
+    "options": [
+      "Usa menos memoria",
+      "Es obligatoria",
+      "Soluciones más elegantes y simples para problemas jerárquicos (árboles, grafos)",
+      "Es más rápida"
+    ],
+    "answer": 2,
+    "explanation": "Recorrer directorios, XML, etc."
+  },
+  {
+    "question": "¿Qué es la recursión indirecta?",
+    "options": [
+      "A llama a B",
+      "Nadie llama a nadie",
+      "A se llama a A",
+      "Función A llama a B, y B llama a A"
+    ],
+    "answer": 3,
+    "explanation": "Ciclo de llamadas."
+  },
+  {
+    "question": "¿Qué es el 'Backtracking' (Vuelta atrás)?",
+    "options": [
+      "Borrar",
+      "Ir hacia atrás",
+      "Algoritmo recursivo que prueba caminos y retrocede si no encuentra solución (ej. laberinto)",
+      "Copiar"
+    ],
+    "answer": 2,
+    "explanation": "Fuerza bruta inteligente."
+  },
+  {
+    "question": "¿Qué es la memoización?",
+    "options": [
+      "Guardar resultados de llamadas recursivas previas para no recalcularlos (optimización)",
+      "Borrar",
+      "Memorizar",
+      "Olvidar"
+    ],
+    "answer": 0,
+    "explanation": "Hace Fibonacci recursivo eficiente (O(n))."
+  },
+  {
+    "question": "¿Qué estructura de datos usa el sistema para gestionar la recursión?",
+    "options": ["Árbol", "Grafo", "Cola (Queue)", "Pila (Stack)"],
+    "answer": 3,
+    "explanation": "LIFO (Last In First Out)."
+  },
+  {
+    "question": "¿Qué es un fractal?",
+    "options": [
+      "Un número",
+      "Un error",
+      "Objeto geométrico cuya estructura se repite a diferentes escalas (generado recursivamente)",
+      "Un dibujo"
+    ],
+    "answer": 2,
+    "explanation": "Triángulo de Sierpinski."
+  },
+  {
+    "question": "¿Cómo se convierte un algoritmo recursivo a iterativo?",
+    "options": [
+      "No se puede",
+      "Usando una pila explícita y un bucle",
+      "Borrando el código",
+      "Cambiando el nombre"
+    ],
+    "answer": 1,
+    "explanation": "Siempre es posible."
+  },
+  {
+    "question": "¿Qué es las Torres de Hanoi?",
+    "options": [
+      "Un juego de cartas",
+      "Una ciudad",
+      "Un edificio",
+      "Problema matemático clásico resuelto elegantemente con recursión"
+    ],
+    "answer": 3,
+    "explanation": "Mover discos entre postes."
+  },
+  {
+    "question": "¿Qué es la profundidad de recursión?",
+    "options": [
+      "El número máximo de llamadas anidadas activas al mismo tiempo",
+      "El tiempo",
+      "La dificultad",
+      "El tamaño del archivo"
+    ],
+    "answer": 0,
+    "explanation": "Limitada por el tamaño del stack."
+  },
+  {
+    "question": "¿Qué es un algoritmo 'Divide y Vencerás'?",
+    "options": [
+      "Pelear",
+      "Perder",
+      "Dividir el problema en subproblemas, resolverlos recursivamente y combinar resultados (MergeSort)",
+      "Ganar"
+    ],
+    "answer": 2,
+    "explanation": "Estrategia eficiente."
+  },
+  {
+    "question": "¿Cuándo NO usar recursión?",
+    "options": [
+      "Nunca",
+      "Siempre",
+      "En matemáticas",
+      "Cuando la profundidad es muy grande o el rendimiento es crítico"
+    ],
+    "answer": 3,
+    "explanation": "Riesgo de crash."
+  },
+  {
+    "question": "¿Qué es una función mutuamente recursiva?",
+    "options": ["A->B", "B->B", "Igual que recursión indirecta (A->B->A)", "A->A"],
+    "answer": 2,
+    "explanation": "Par/Impar."
+  }
+]
