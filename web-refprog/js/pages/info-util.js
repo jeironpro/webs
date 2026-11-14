@@ -76,6 +76,19 @@ function decodeScalar(value) {
     }
 }
 
+function appendScalar(parent, value) {
+    const decoded = decodeScalar(value);
+    const colonIndex = decoded.indexOf(": ");
+
+    if (colonIndex > 0) {
+        appendSpan(parent, "yaml-key", decoded.slice(0, colonIndex));
+        parent.append(document.createTextNode(`: ${decoded.slice(colonIndex + 2)}`));
+        return;
+    }
+
+    parent.append(document.createTextNode(decoded));
+}
+
 function appendHighlightedLine(parent, line) {
     const indent = line.match(/^\s*/)[0];
     const trimmed = line.trim();
@@ -94,7 +107,8 @@ function appendHighlightedLine(parent, line) {
     }
 
     if (isQuotedScalar(trimmed)) {
-        parent.append(document.createTextNode(`${decodeScalar(trimmed)}\n`));
+        appendScalar(parent, trimmed);
+        parent.append(document.createTextNode("\n"));
         return;
     }
 
@@ -112,7 +126,7 @@ function appendHighlightedLine(parent, line) {
         const colonIndex = rest.indexOf(": ");
 
         if (isQuotedScalar(rest)) {
-            parent.append(document.createTextNode(decodeScalar(rest)));
+            appendScalar(parent, rest);
         } else if (colonIndex > 0) {
             appendSpan(parent, "yaml-key", rest.slice(0, colonIndex));
             parent.append(document.createTextNode(`: ${decodeScalar(rest.slice(colonIndex + 2))}`));
