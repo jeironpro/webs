@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { generateManifest } from "../tools/generate-manifest.js";
+import { generateManifest } from "../../web-oracle-academy-dpsql/tools/generate-manifest.js";
 
 describe("manifiesto de contenido (integración)", () => {
     it("enumera los 21 temas y los 137 archivos del curso (incluye el instalador externo)", async () => {

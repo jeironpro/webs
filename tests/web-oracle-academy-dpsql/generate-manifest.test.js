@@ -8,7 +8,7 @@ import {
     humanizeName,
     parseFileName,
     sizeFromPointer,
-} from "../tools/generate-manifest.js";
+} from "../../web-oracle-academy-dpsql/tools/generate-manifest.js";
 
 describe("parseFileName", () => {
     it("reconoce una lección en PDF", () => {
@@ -61,7 +61,7 @@ describe("fileTitle", () => {
 
     it("marca el instalador de Data Modeler con su título", () => {
         expect(fileTitle("datamodeler_24_3_1_351_0831_x64.zip")).toBe(
-            "Oracle Data Modeler (instalador)",
+            "Oracle Data Modeler (instalador)"
         );
     });
 });
@@ -98,7 +98,7 @@ describe("githubRawUrl", () => {
     it("construye la URL raw del archivo desde el remoto", () => {
         const url = githubRawUrl("oracle_academy/curso/0_recursos/archivo.zip");
         expect(url).toBe(
-            "https://github.com/jeironpro/webs/raw/main/web-oracle-academy-dpsql/oracle_academy/curso/0_recursos/archivo.zip",
+            "https://github.com/jeironpro/webs/raw/main/web-oracle-academy-dpsql/oracle_academy/curso/0_recursos/archivo.zip"
         );
     });
 });

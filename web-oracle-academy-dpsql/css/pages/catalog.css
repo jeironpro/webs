@@ -1,5 +1,4 @@
 @layer base {
-    /* Item del panel lateral: número mono + título + conteo. */
     .side-panel__item {
         display: flex;
         align-items: center;
@@ -27,13 +26,13 @@
     }
 
     .side-panel__item:active {
-        transform: translateY(1px);
+        transform: translateY(0.0625rem);
     }
 
     .side-panel__item[aria-pressed="true"] {
         background: var(--color-accent);
         color: var(--color-ink);
-        box-shadow: 0 3px 0 0 var(--color-accent-deep);
+        box-shadow: 0 0.1875rem 0 0 var(--color-accent-deep);
     }
 
     .side-panel__item[aria-pressed="true"] .side-panel__item-number {
@@ -74,7 +73,6 @@
         color: var(--color-muted);
     }
 
-    /* Cabecera de tema en la vista individual. */
     .topic-view__header {
         margin-bottom: var(--space-xl);
     }
@@ -86,7 +84,6 @@
         margin-top: var(--space-xs);
     }
 
-    /* El número grande en coral: único momento de alta energía por página. */
     .topic-view__number {
         font-family: var(--font-display);
         font-size: var(--text-bignum);
@@ -125,7 +122,6 @@
         margin-left: auto;
     }
 
-    /* Vista "todos": secciones de tema con encabezado compacto. */
     .all-topics__topic {
         margin-bottom: var(--space-2xl);
     }
@@ -156,14 +152,12 @@
         white-space: nowrap;
     }
 
-    /* Grilla de tarjetas: columnas que crecen con la pantalla (mínimo legible 340 px). */
     .grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(min(100%, 21.25rem), 1fr));
         gap: var(--space-md);
     }
 
-    /* Menú para saltar a una lección o práctica dentro del tema. */
     .jump {
         position: relative;
     }
@@ -177,7 +171,7 @@
         font-weight: 600;
         color: var(--color-ink);
         background: var(--color-paper);
-        border: 1.5px solid var(--color-ink-soft);
+        border: 0.0938rem solid var(--color-ink-soft);
         border-radius: var(--radius-pill);
         padding: 0.5rem 1rem;
         cursor: pointer;
@@ -194,7 +188,7 @@
 
     .jump__button[aria-expanded="true"] {
         border-color: var(--color-accent-2-deep);
-        box-shadow: 0 0 0 3px var(--color-focus);
+        box-shadow: 0 0 0 0.1875rem var(--color-focus);
     }
 
     .jump__icon {
@@ -214,18 +208,18 @@
 
     .jump__menu {
         position: absolute;
-        top: calc(100% + 6px);
+        top: calc(100% + 0.375rem);
         left: 0;
         z-index: 30;
-        min-width: 280px;
-        max-width: min(340px, 85vw);
-        max-height: 320px;
+        min-width: 17.5rem;
+        max-width: min(21.25rem, 85vw);
+        max-height: 20rem;
         overflow-y: auto;
         margin: 0;
         padding: var(--space-2xs);
         list-style: none;
         background: var(--color-paper);
-        border: 1.5px solid var(--color-ink-soft);
+        border: 0.0938rem solid var(--color-ink-soft);
         border-radius: var(--radius-card);
         box-shadow: var(--shadow-card);
     }
@@ -272,15 +266,13 @@
         color: var(--color-accent-deep);
     }
 
-    /* Tarjeta resaltada brevemente al saltar desde el menú. */
     .card--highlighted {
-        outline: 3px solid var(--color-accent-2);
-        outline-offset: 2px;
-        transform: translateY(-4px);
+        outline: 0.1875rem solid var(--color-accent-2);
+        outline-offset: 0.125rem;
+        transform: translateY(-0.25rem);
         box-shadow: var(--shadow-card-hover);
     }
 
-    /* Estado vacío. */
     .empty {
         margin-top: var(--space-xl);
         padding: var(--space-2xl);
@@ -298,7 +290,6 @@
         color: var(--color-muted);
     }
 
-    /* Error de carga. */
     .error {
         padding: var(--space-xl);
         border-radius: var(--radius-card);

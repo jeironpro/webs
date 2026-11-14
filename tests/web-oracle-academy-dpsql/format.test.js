@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { formatSize, readableType } from "../js/utils/format.js";
+import { formatSize, readableType } from "../../web-oracle-academy-dpsql/js/utils/format.js";
 
 describe("formatSize", () => {
     it("formatea bytes, KB, MB y GB con separador español", () => {

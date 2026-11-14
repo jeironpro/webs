@@ -1,12 +1,9 @@
 @layer base {
-    /* Shell de aplicación a pantalla completa: barra superior + panel + contenido. */
-
-    /* Barra superior: botón menú, marca con logo y búsqueda. */
     .top-bar {
         display: flex;
         align-items: center;
         gap: var(--space-md);
-        height: var(--barra-alto);
+        height: var(--bar-height);
         padding: 0 var(--space-lg);
         border-bottom: var(--rule-hair);
         background: var(--color-paper);
@@ -15,13 +12,12 @@
         z-index: 10;
     }
 
-    /* Botón hamburguesa: solo visible en móvil (ver media query). */
     .menu-button {
         display: none;
         align-items: center;
         justify-content: center;
-        width: 40px;
-        height: 40px;
+        width: 2.5rem;
+        height: 2.5rem;
         padding: 0;
         border: 0;
         border-radius: var(--radius-md);
@@ -36,7 +32,7 @@
     }
 
     .menu-button:active {
-        transform: translateY(1px);
+        transform: translateY(0.0625rem);
     }
 
     .top-bar__brand-link {
@@ -48,10 +44,9 @@
         min-width: 0;
     }
 
-    /* Momento de carácter (movimiento #5 de Hum): la marca (favicon) late suavemente. */
     .brand__logo {
-        width: 28px;
-        height: 28px;
+        width: 1.75rem;
+        height: 1.75rem;
         flex-shrink: 0;
         animation: pulse 4s ease-in-out infinite;
     }
@@ -77,18 +72,16 @@
 
     .top-bar__search {
         flex: 1;
-        max-width: 560px;
+        max-width: 35rem;
         margin-inline: auto;
     }
 
-    /* Aplicación: panel izquierdo fijo + contenido con scroll propio. */
     .app-shell {
         display: grid;
-        grid-template-columns: var(--panel-ancho) minmax(0, 1fr);
-        height: calc(100vh - var(--barra-alto));
+        grid-template-columns: var(--panel-width) minmax(0, 1fr);
+        height: calc(100vh - var(--bar-height));
     }
 
-    /* Panel lateral: temas del curso. */
     .side-panel {
         background: var(--color-paper-2);
         border-right: var(--rule-hair);
@@ -108,12 +101,10 @@
         padding: var(--space-2xs) var(--space-md) var(--space-sm);
     }
 
-    /* Velo (fondo oscurecido) del panel en móvil: oculto en desktop. */
     .side-panel__backdrop {
         display: none;
     }
 
-    /* Contenido principal: ocupa todo el ancho y alto restantes. */
     .content {
         overflow-y: auto;
         padding: var(--space-2xl) var(--space-xl) var(--space-4xl);
@@ -121,7 +112,6 @@
         width: 100%;
     }
 
-    /* Colofón compacto de una sola fila: proyecto a la izquierda, autor a la derecha. */
     .colophon {
         margin-top: var(--space-3xl);
         padding-top: var(--space-lg);
@@ -158,7 +148,7 @@
         position: fixed;
         transform: translateX(-105%);
         transition: transform var(--dur-base) var(--ease-snap);
-        width: min(300px, 85vw);
+        width: min(18.75rem, 85vw);
         z-index: 40;
     }
 
@@ -204,10 +194,10 @@
         transform: translateX(0);
     }
 
-    @media (min-width: 769px) {
+    @media (min-width: 48.0625rem) {
         .app-shell {
-            grid-template-columns: var(--panel-ancho) minmax(0, 1fr);
-            height: calc(100vh - var(--barra-alto));
+            grid-template-columns: var(--panel-width) minmax(0, 1fr);
+            height: calc(100vh - var(--bar-height));
         }
 
         .content {
@@ -253,7 +243,7 @@
         .top-bar {
             flex-wrap: revert-layer;
             gap: var(--space-md);
-            height: var(--barra-alto);
+            height: var(--bar-height);
             padding-block: revert-layer;
         }
 
@@ -263,7 +253,7 @@
 
         .top-bar__search {
             flex-basis: revert-layer;
-            max-width: 560px;
+            max-width: 35rem;
             order: revert-layer;
         }
 

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { buildPagination, findFile } from "../js/modules/viewer.js";
+import { buildPagination, findFile } from "../../web-oracle-academy-dpsql/js/modules/viewer.js";
 
 const testManifest = {
     topics: [

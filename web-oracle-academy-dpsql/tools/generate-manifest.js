@@ -1,35 +1,20 @@
-/**
- * Genera `data/manifest.json` con la estructura del contenido de Oracle Academy.
- *
- * Recorre la carpeta `oracle_academy/`, extrae los temas del curso (carpetas
- * `N_nombre`), los archivos (lección, práctica, tipo y tamaño) y escribe el
- * manifiesto que consume la interfaz web.
- *
- * Uso:
- *   node tools/generate-manifest.js            # escribe data/manifest.json
- *   node tools/generate-manifest.js --check    # verifica que el manifiesto está al día
- */
-
 import { mkdir, readFile, readdir, stat, writeFile } from "node:fs/promises";
-import { join } from "node:path";
-import { pathToFileURL } from "node:url";
+import { dirname, join } from "node:path";
+import { fileURLToPath, pathToFileURL } from "node:url";
 
-const DEFAULT_ROOT_PATH = "oracle_academy";
-const MANIFEST_PATH = "data/manifest.json";
+const SITE_ROOT_PATH = fileURLToPath(new URL("..", import.meta.url));
+const DEFAULT_ROOT_PATH = join(SITE_ROOT_PATH, "oracle_academy");
+const MANIFEST_PATH = join(SITE_ROOT_PATH, "data/manifest.json");
+const PUBLIC_ROOT = "oracle_academy";
 
-/** Límite de un archivo en GitHub (100 MB); por encima, la web usa descarga externa. */
 const GITHUB_SIZE_LIMIT = 100 * 1024 * 1024;
 
-/** Primera línea de un pointer de Git LFS. */
 const LFS_POINTER_PREFIX = "version https://git-lfs.github.com/spec/v1\n";
 
-/** Rama base para construir URLs raw de GitHub (archivos LFS). */
 const BASE_BRANCH = "main";
 
-/** Carpeta del sitio dentro del monorepo (las rutas del manifiesto son relativas a ella). */
 const REPO_SUBPATH = "web-oracle-academy-dpsql";
 
-/** Títulos legibles de las carpetas de tema (derivados del nombre de carpeta del curso). */
 const FOLDER_TITLES = {
     "0_recursos": "Recursos",
     "1_introduccion": "Introducción",
@@ -54,7 +39,6 @@ const FOLDER_TITLES = {
     "20_garantia_consultas_calidad_parte_2": "Garantía de calidad de consultas (parte 2)",
 };
 
-/** Títulos descriptivos de los archivos de recursos (no siguen el patrón dp_X_Y). */
 const FILE_TITLES = {
     "dfo_course_objectives_esp.pdf": "Objetivos del curso",
     "dp_course_map_esp.pdf": "Mapa del curso",
@@ -67,7 +51,6 @@ const FILE_TITLES = {
     "sql_schema.zip": "Esquema SQL (ZIP)",
 };
 
-/** Metadatos del curso según el nombre de su carpeta raíz. */
 const KNOWN_COURSES = {
     programacion_base_datos_sql_47_50: {
         title: "Programación de Base de Datos SQL",
@@ -75,10 +58,8 @@ const KNOWN_COURSES = {
     },
 };
 
-/** Patrón de los archivos de lección/práctica del curso: dp_<tema>_<leccion>[_practice]_esp.<ext> */
 const LESSON_PATTERN = /^dp_(\d+)_(\d+)(?:_practice)?_esp\.(pdf|docx|zip)$/;
 
-/** Sustituye una palabra sin acentos por su forma correcta (fallback de humanización). */
 const ACCENTS = {
     garantia: "Garantía",
     introduccion: "Introducción",
@@ -95,7 +76,6 @@ const ACCENTS = {
     final: "Final",
 };
 
-/** Convierte un nombre con guiones bajos en texto legible con capitalización. */
 export function humanizeName(name) {
     const withoutExtension = name.replace(/\.[a-z0-9]+$/i, "");
     const withoutSuffix = withoutExtension.replace(/_esp$/, "");
@@ -106,15 +86,10 @@ export function humanizeName(name) {
         .join(" ");
 }
 
-/** Devuelve el título legible de una carpeta de tema a partir de su nombre. */
 export function folderTitle(name) {
     return FOLDER_TITLES[name] ?? humanizeName(name.replace(/^\d+_/, ""));
 }
 
-/**
- * Extrae la lección, si es práctica y el tipo de un archivo del curso.
- * @returns {{ lesson: string | null, isPractice: boolean, type: string }}
- */
 export function parseFileName(name) {
     const match = name.match(LESSON_PATTERN);
     if (match === null) {
@@ -125,7 +100,6 @@ export function parseFileName(name) {
     return { lesson: `${topic}.${lesson}`, isPractice: name.includes("practice"), type };
 }
 
-/** Devuelve el título legible de un archivo. */
 export function fileTitle(name, parsed = parseFileName(name)) {
     if (FILE_TITLES[name] !== undefined) {
         return FILE_TITLES[name];
@@ -139,13 +113,6 @@ export function fileTitle(name, parsed = parseFileName(name)) {
     return humanizeName(name);
 }
 
-/**
- * Lee el tamaño declarado en un pointer de Git LFS.
- * En CI, actions/checkout no descarga el contenido LFS y deja el pointer
- * (~130 bytes); el tamaño real viaja en la línea `size` del pointer.
- * @param {string} content Contenido del pointer.
- * @returns {number | null}
- */
 export function sizeFromPointer(content) {
     if (!content.startsWith(LFS_POINTER_PREFIX)) {
         return null;
@@ -154,13 +121,6 @@ export function sizeFromPointer(content) {
     return match === null ? null : Number.parseInt(match[1], 10);
 }
 
-/**
- * Devuelve el tamaño efectivo de un archivo: el real si es contenido LFS,
- * o el declarado por el pointer si el contenido no está descargado.
- * @param {string} path Ruta del archivo.
- * @param {number} statSize Tamaño según stat().
- * @returns {Promise<number>}
- */
 export async function effectiveSize(path, statSize) {
     if (statSize > 512) {
         return statSize;
@@ -173,7 +133,6 @@ export async function effectiveSize(path, statSize) {
     }
 }
 
-/** Devuelve los metadatos del curso a partir de la carpeta que lo contiene. */
 export function courseMetadata(folderName) {
     return (
         KNOWN_COURSES[folderName] ?? {
@@ -183,7 +142,6 @@ export function courseMetadata(folderName) {
     );
 }
 
-/** Ordena los archivos de un tema: por lección, lección antes que práctica, pdf antes que docx. */
 function compareFiles(a, b) {
     const lessonA = a.lesson ?? "999";
     const lessonB = b.lesson ?? "999";
@@ -197,7 +155,6 @@ function compareFiles(a, b) {
     return (TYPE_ORDER[a.type] ?? 3) - (TYPE_ORDER[b.type] ?? 3);
 }
 
-/** Recorre la carpeta raíz y construye la estructura completa del manifiesto. */
 export async function generateManifest(root = DEFAULT_ROOT_PATH) {
     const entries = await readdir(root, { withFileTypes: true });
     const courseFolder = entries
@@ -208,6 +165,7 @@ export async function generateManifest(root = DEFAULT_ROOT_PATH) {
     }
 
     const coursePath = join(root, courseFolder.name);
+    const publicCoursePath = `${PUBLIC_ROOT}/${courseFolder.name}`;
     const topicFolders = (await readdir(coursePath, { withFileTypes: true }))
         .filter((entry) => entry.isDirectory() && /^\d+_/.test(entry.name))
         .sort((a, b) => a.name.localeCompare(b.name, "es", { numeric: true }));
@@ -231,14 +189,14 @@ export async function generateManifest(root = DEFAULT_ROOT_PATH) {
             files.push({
                 name: fileName,
                 title: fileTitle(fileName, parsed),
-                path: `${coursePath}/${folder.name}/${fileName}`,
+                path: `${publicCoursePath}/${folder.name}/${fileName}`,
                 type: parsed.type,
                 size,
                 lesson: parsed.lesson,
                 isPractice: parsed.isPractice,
                 external: isExternal,
                 externalUrl: isExternal
-                    ? githubRawUrl(`${coursePath}/${folder.name}/${fileName}`)
+                    ? githubRawUrl(`${publicCoursePath}/${folder.name}/${fileName}`)
                     : null,
                 note: isExternal
                     ? "Archivo grande alojado con Git LFS; la descarga sale de GitHub."
@@ -252,7 +210,7 @@ export async function generateManifest(root = DEFAULT_ROOT_PATH) {
             id: folder.name,
             number: Number.parseInt(folder.name.split("_")[0], 10),
             title: folderTitle(folder.name),
-            path: coursePath + "/" + folder.name,
+            path: publicCoursePath + "/" + folder.name,
             totalFiles: files.length,
             files,
         });
@@ -260,33 +218,25 @@ export async function generateManifest(root = DEFAULT_ROOT_PATH) {
 
     return {
         generatedAt: new Date().toISOString(),
-        root: coursePath,
+        root: publicCoursePath,
         course: { ...courseMetadata(courseFolder.name), totalFiles, totalTopics: topics.length },
         topics,
     };
 }
 
-/**
- * Construye la URL raw de GitHub para un archivo LFS (GitHub Pages no sirve LFS).
- * @param {string} path Relativa a la carpeta del sitio dentro del monorepo.
- * @returns {string}
- */
 export function githubRawUrl(path) {
-    const remote =
-        process.env.GIT_REMOTE_ORIGIN ?? "git@github.com:jeironpro/webs.git";
+    const remote = process.env.GIT_REMOTE_ORIGIN ?? "git@github.com:jeironpro/webs.git";
     const match = remote.match(/(?:github\.com[:/])([^/]+)\/([^/]+?)(?:\.git)?$/);
     const owner = match?.[1] ?? "jeironpro";
     const repository = match?.[2] ?? "webs";
     return `https://github.com/${owner}/${repository}/raw/${BASE_BRANCH}/${REPO_SUBPATH}/${path}`;
 }
 
-/** Escribe el manifiesto en disco (pretty-printed). */
 export async function writeManifest(manifest, path = MANIFEST_PATH) {
-    await mkdir("data", { recursive: true });
+    await mkdir(dirname(path), { recursive: true });
     await writeFile(path, `${JSON.stringify(manifest, null, 4)}\n`, "utf8");
 }
 
-/** Lee el manifiesto actual desde disco (null si no existe o no es JSON válido). */
 async function readManifest() {
     try {
         return JSON.parse(await readFile(MANIFEST_PATH, "utf8"));
@@ -295,7 +245,6 @@ async function readManifest() {
     }
 }
 
-/** Punto de entrada CLI. */
 async function main() {
     const checkOnly = process.argv.includes("--check");
     try {
@@ -305,17 +254,19 @@ async function main() {
             const withoutDate = (m) => ({ ...m, generatedAt: "" });
             const matches =
                 JSON.stringify(withoutDate(current)) === JSON.stringify(withoutDate(manifest));
-            console.log(matches ? "Manifiesto al día." : "Manifiesto desactualizado.");
+            process.stdout.write(
+                `${matches ? "Manifiesto al día." : "Manifiesto desactualizado."}\n`
+            );
             process.exitCode = matches ? 0 : 1;
             return;
         }
         await writeManifest(manifest);
         const course = manifest.course;
-        console.log(
-            `Manifiesto generado: ${course.totalTopics} temas, ${course.totalFiles} archivos -> ${MANIFEST_PATH}`,
+        process.stdout.write(
+            `Manifiesto generado: ${course.totalTopics} temas, ${course.totalFiles} archivos -> ${MANIFEST_PATH}\n`
         );
     } catch (error) {
-        console.error(`Error al generar el manifiesto: ${error.message}`);
+        process.stderr.write(`Error al generar el manifiesto: ${error.message}\n`);
         process.exitCode = 1;
     }
 }

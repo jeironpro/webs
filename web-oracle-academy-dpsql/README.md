@@ -29,7 +29,7 @@ despliega como sitio estático en GitHub Pages.
 | Capa     | Tecnología                                                                                          |
 | -------- | --------------------------------------------------------------------------------------------------- |
 | Frontend | HTML5 semántico + CSS3 (custom properties, Grid/Flexbox, media queries) + JavaScript ES6+ (módulos) |
-| Tooling  | npm (eslint + prettier + vitest)                                                                    |
+| Tooling  | ESLint + Prettier + Vitest (dependencias del repositorio)                                           |
 | CI/CD    | GitHub Actions (lint + test en PR; despliegue en GitHub Pages en `main`)                            |
 | Hosting  | GitHub Pages                                                                                        |
 
@@ -39,11 +39,11 @@ y sin pasos de build.
 
 ## Diseño
 
-Sistema de diseño unificado definido en
-[`docs/style-guide.md`](docs/style-guide.md) con tokens centralizados en
-`tokens.css`. El tema visual **Hum** (rail lateral numerado, números
-grandes, acentos múltiples y botones con efecto push) se aplica de forma
-consistente al catálogo, al visor y a todos los estados de la interfaz.
+Sistema de diseño unificado con tokens centralizados en
+[`css/tokens.css`](css/tokens.css). El tema visual **Hum** (rail lateral
+numerado, números grandes, acentos múltiples y botones con efecto push)
+se aplica de forma consistente al catálogo, al visor y a todos los
+estados de la interfaz.
 
 Tipografía: Plus Jakarta Sans (interfaz) + JetBrains Mono (datos y
 etiquetas). Iconografía: Material Symbols.
@@ -52,51 +52,55 @@ etiquetas). Iconografía: Material Symbols.
 
 ```text
 .
-├── index.html              # Catálogo del curso (índice + búsqueda + filtros)
-├── visor.html              # Visor de PDF en el navegador
-├── 404.html
+├── index.html                    # Catálogo del curso (índice + búsqueda + filtros)
+├── 404.html                      # Página de error
+├── html/visor.html               # Visor de PDF en el navegador
+├── assets/icons/favicon.svg
 ├── css/
-│   ├── tokens.css          # Design tokens — raíz del sistema de diseño
-│   ├── base.css            # Reset y estilos base
-│   ├── layout.css          # Shell de aplicación: barra, panel lateral, contenido
-│   ├── components.css      # Botones, búsqueda, chips, tarjetas
+│   ├── tokens.css                # Design tokens
+│   ├── base.css                  # Reset y estilos base
+│   ├── layout.css                # Shell de aplicación
+│   ├── components.css            # Botones, búsqueda, chips, tarjetas
 │   └── pages/
 │       ├── catalog.css
-│       └── viewer.css
+│       ├── viewer.css
+│       └── error.css
 ├── js/
-│   ├── app.js              # Entrada del catálogo (enrutado por hash)
-│   ├── visor.js            # Entrada del visor
-│   ├── modules/            # catalog.js, search.js, viewer.js
-│   ├── services/           # manifest.js (carga y consulta del manifiesto)
-│   └── utils/              # dom.js, format.js
-├── data/manifest.json     # Manifiesto generado del contenido (fuente de la UI)
-├── tools/generate-manifest.js  # Genera data/manifest.json desde oracle_academy/
-├── tests/                  # Tests (vitest)
-├── docs/style-guide.md     # Libro de estilo
-└── oracle_academy/         # Contenido del curso (PDF, DOCX, ZIP)
+│   ├── app.js                    # Entrada del catálogo (enrutado por hash)
+│   ├── visor.js                  # Entrada del visor
+│   ├── modules/                  # catalog.js, search.js, viewer.js
+│   ├── services/                 # manifest.js (carga y consulta del manifiesto)
+│   └── utils/                    # dom.js, format.js
+├── data/manifest.json            # Manifiesto generado del contenido (fuente de la UI)
+├── tools/generate-manifest.js    # Genera data/manifest.json desde oracle_academy/
+└── oracle_academy/               # Contenido del curso (PDF, DOCX, ZIP)
 ```
+
+Los tests del sitio viven en `tests/web-oracle-academy-dpsql/`, dentro de
+la suite del repositorio.
 
 ## Desarrollo
 
+Desde la raíz del repositorio:
+
 ```bash
-npm install        # dependencias de desarrollo (lint, test)
-npm run generate   # regenera data/manifest.json tras añadir contenido
-npm run lint       # eslint
-npm run format     # prettier (escritura)
-npm test           # vitest
+node web-oracle-academy-dpsql/tools/generate-manifest.js   # regenera el manifiesto
+npx eslint web-oracle-academy-dpsql tests/web-oracle-academy-dpsql
+npx prettier --check web-oracle-academy-dpsql tests/web-oracle-academy-dpsql
+npx vitest run tests/web-oracle-academy-dpsql
 ```
 
-Para desarrollo local, servir la raíz del repositorio con cualquier
-servidor estático:
+Para desarrollo local, sirve la raíz del repositorio con cualquier
+servidor estático y abre `/web-oracle-academy-dpsql/`:
 
 ```bash
-npx serve .
+python3 -m http.server 8099
 ```
 
 ## Despliegue
 
-El workflow `ci/pages` (GitHub Actions) ejecuta lint + tests en cada
-pull request y despliega en **GitHub Pages** al hacer merge en `main`.
+El workflow de CI (GitHub Actions) ejecuta lint y tests en cada pull
+request y despliega en **GitHub Pages** al hacer merge en `main`.
 
 > El instalador `datamodeler_24_3_1_351_0831_x64.zip` (324 MB) supera el
 > límite de 100 MB por archivo de GitHub y se gestiona con **Git LFS**
@@ -105,4 +109,4 @@ pull request y despliega en **GitHub Pages** al hacer merge en `main`.
 
 ## Licencia
 
-MIT. Consulta el archivo [LICENSE](LICENSE).
+MIT. Consulta el archivo [LICENSE](../LICENSE).

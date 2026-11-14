@@ -57,7 +57,7 @@ async function init() {
     }
     if (elements.crumbTopic !== null) {
         elements.crumbTopic.textContent = topic.title;
-        elements.crumbTopic.setAttribute("href", `index.html#topic-${topic.id}`);
+        elements.crumbTopic.setAttribute("href", `../index.html#topic-${topic.id}`);
     }
     if (elements.crumbFile !== null) {
         elements.crumbFile.textContent = file.title;

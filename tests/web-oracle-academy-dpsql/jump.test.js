@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { jumpOptions } from "../js/modules/catalog.js";
+import { jumpOptions } from "../../web-oracle-academy-dpsql/js/modules/catalog.js";
 
 describe("jumpOptions", () => {
     const files = [

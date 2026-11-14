@@ -1,9 +1,6 @@
-const MANIFEST_PATH = "data/manifest.json";
+const SITE_ROOT = new URL("../../", import.meta.url);
+const MANIFEST_PATH = new URL("data/manifest.json", SITE_ROOT);
 
-/**
- * Carga el manifiesto del curso.
- * @returns {Promise<object>}
- */
 export async function loadManifest() {
     let response;
     try {
@@ -17,13 +14,12 @@ export async function loadManifest() {
     return response.json();
 }
 
-/** Devuelve la URL relativa codificada de un archivo. */
 export function fileUrl(file) {
-    return encodeURI(file.path);
+    return new URL(file.path, SITE_ROOT).href;
 }
 
-/** Devuelve la URL del visor para un archivo de un tema. */
 export function viewerUrl(file, topicId) {
-    const params = new URLSearchParams({ file: file.path, topic: topicId });
-    return `visor.html?${params.toString()}`;
+    const url = new URL("html/visor.html", SITE_ROOT);
+    url.search = new URLSearchParams({ file: file.path, topic: topicId }).toString();
+    return url.href;
 }

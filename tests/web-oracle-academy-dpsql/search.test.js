@@ -1,6 +1,10 @@
 import { describe, expect, it } from "vitest";
 
-import { filterFiles, filterManifest, normalizeText } from "../js/modules/search.js";
+import {
+    filterFiles,
+    filterManifest,
+    normalizeText,
+} from "../../web-oracle-academy-dpsql/js/modules/search.js";
 
 const testFiles = [
     {
