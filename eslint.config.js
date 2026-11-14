@@ -47,6 +47,7 @@ const WEBS_CANONICAS = [
     "web-pythoncises",
     "web-porcentaje-anual",
     "web-redimensiona-imagen",
+    "web-refprog",
     "web-reproductor-musica",
     "web-ruleta",
     "web-votacion",
@@ -57,7 +58,6 @@ const WEBS_PENDIENTES = [
     "web-exerciness",
     "web-generador-cv",
     "web-programmer-day",
-    "web-refprog",
     "web-reloj",
     "web-tests-daw",
 ];

@@ -1,26 +1,32 @@
-// Modulo de navegacion - menu movil y enlace activo
-
-import { qs, on, toggleClass } from '../utils/dom.js';
+import { qs, on } from "../utils/dom.js";
 
 export function initMobileMenu() {
-  const toggle = qs('.menu-toggle');
-  const nav = qs('.header-nav');
-  if (!toggle || !nav) return;
+    const toggle = qs(".menu-toggle");
+    const nav = qs(".header-nav");
+    if (!toggle || !nav) return;
 
-  on(toggle, 'click', function () { toggleClass(nav, 'open'); });
+    const closeMenu = () => {
+        nav.classList.remove("open");
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.setAttribute("aria-label", "Abrir menú");
+    };
 
-  on(document, 'click', function (e) {
-    if (!toggle.contains(e.target) && !nav.contains(e.target)) {
-      nav.classList.remove('open');
-    }
-  });
+    on(toggle, "click", () => {
+        const isOpen = nav.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", String(isOpen));
+        toggle.setAttribute("aria-label", isOpen ? "Cerrar menú" : "Abrir menú");
+    });
+
+    on(document, "click", (event) => {
+        if (!toggle.contains(event.target) && !nav.contains(event.target)) closeMenu();
+    });
 }
 
-// Marca el enlace de navegacion activo segun la URL actual
 export function initActiveNav() {
-  const path = window.location.pathname;
-  document.querySelectorAll('.header-nav a').forEach(function (link) {
-    const href = link.getAttribute('href');
-    if (href && path.endsWith(href)) link.classList.add('active');
-  });
+    const path = window.location.pathname;
+
+    document.querySelectorAll(".header-nav a").forEach((link) => {
+        const href = link.getAttribute("href");
+        if (href && path.endsWith(href)) link.classList.add("active");
+    });
 }
