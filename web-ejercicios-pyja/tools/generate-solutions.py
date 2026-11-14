@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-"""Generate json/solutions.json from the site's solutions directory.
+"""Generate data/solutions.json from the site's solutions directory.
 
 Usage:
-    python3 scripts/generate-solutions.py [--source DIR]
+    python3 tools/generate-solutions.py [--source DIR]
 
 By default it reads the "solutions/" directory at the project root and writes
-"json/solutions.json". Each solution folder must be named "<id>_<slug>", where
-<id> matches the "id" field of the exercises in json/python.json and
-json/java.json (for example, "02_cifrado_escalonado").
+"data/solutions.json". Each solution folder must be named "<id>_<slug>", where
+<id> matches the "id" field of the exercises in data/python.json and
+data/java.json (for example, "02_cifrado_escalonado").
 """
 
 import argparse
@@ -53,7 +53,7 @@ def main():
     args = parser.parse_args()
 
     solutions = list_solutions(args.source)
-    target = os.path.join(ROOT, "json", "solutions.json")
+    target = os.path.join(ROOT, "data", "solutions.json")
     with open(target, "w", encoding="utf-8") as file:
         json.dump(solutions, file, ensure_ascii=False, indent=2)
 
