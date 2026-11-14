@@ -1,7 +1,7 @@
 name: capturas
 
-# Avisa (sin bloquear) cuando una captura del catálogo es anterior a la página
-# que muestra. Las fechas salen de git, así que hace falta historial completo.
+# Bloquea la PR cuando una captura del catálogo es anterior a la página que
+# muestra o falta. Las fechas y huellas salen de git y del manifiesto.
 on:
   push:
     branches: [main]
@@ -21,5 +21,5 @@ jobs:
         with:
           node-version-file: .nvmrc
 
-      - name: Avisar de capturas desfasadas
+      - name: Comprobar capturas
         run: node scripts/check-capturas.mjs
