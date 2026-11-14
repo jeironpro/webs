@@ -1,5 +1,3 @@
-// Scroll reveal: each .phase and .band enters with a fade + rise.
-// gates: prefers-reduced-motion disables everything in CSS; here we only observe.
 const observer = new IntersectionObserver(
     (entries) => {
         for (const entry of entries) {
@@ -9,20 +7,14 @@ const observer = new IntersectionObserver(
             }
         }
     },
-    { threshold: 0.12 },
+    { threshold: 0.12 }
 );
 
-document
-    .querySelectorAll(".phase, .flow__steps li, .band__item, .closing__box")
-    .forEach((el) => {
-        el.classList.add("reveal");
-        observer.observe(el);
-    });
+document.querySelectorAll(".phase, .flow__steps li, .band__item, .closing__box").forEach((el) => {
+    el.classList.add("reveal");
+    observer.observe(el);
+});
 
-// ---------- Code modal ----------
-// The snippets live here as plain text (exact whitespace, without going through
-// the HTML parser) and are highlighted with a minimal tokenizer. The modal footer
-// links to the complete file in codigo/ so it can be downloaded.
 const SNIPPETS = {
     config: {
         name: "config.py",
@@ -34,7 +26,6 @@ from dotenv import load_dotenv
 
 # Load environment variables
 load_dotenv()
-
 
 class Config:
     """ Application environment variable configuration class """
@@ -170,7 +161,6 @@ def get_db() -> sqlite3.Connection:
 
     return g.db
 
-
 def init_db() -> None:
     """ Initialize the database by running the SQL schema """
     db = get_db()
@@ -178,13 +168,11 @@ def init_db() -> None:
         db.executescript(f.read().decode("utf-8"))
     db.commit()
 
-
 def close_db(e: Optional[BaseException] = None) -> None:
     """ Close the connection at the end of the context """
     db = g.pop("db", None)
     if db is not None:
         db.close()
-
 
 def register_db(app) -> None:
     """ Register the database teardown in the app context """
@@ -213,18 +201,12 @@ def logout():
     },
 };
 
-// Highlight comments, strings and keywords by building nodes (never HTML as
-// text), with a single tokenization pass: the alternation order avoids nested
-// substitutions.
 const KEYWORDS =
     "def|class|return|if|else|elif|for|while|import|from|as|with|in|is|not|and|or|None|True|False|pass|try|except|raise|CREATE|TABLE|IF|EXISTS|PRIMARY|KEY|UNIQUE|NOT|NULL|TEXT";
 
 function highlight(code) {
     const fragment = document.createDocumentFragment();
-    const pattern = new RegExp(
-        `(#[^\\n]*)|("(?:[^"\\\\]|\\\\.)*")|\\b(${KEYWORDS})\\b`,
-        "g",
-    );
+    const pattern = new RegExp(`(#[^\\n]*)|("(?:[^"\\\\]|\\\\.)*")|\\b(${KEYWORDS})\\b`, "g");
 
     let last = 0;
     for (const match of code.matchAll(pattern)) {
@@ -233,13 +215,7 @@ function highlight(code) {
             fragment.append(code.slice(last, match.index));
         }
 
-        const tokenClass = comment
-            ? "tok-com"
-            : string
-              ? "tok-str"
-              : word
-                ? "tok-key"
-                : "";
+        const tokenClass = comment ? "tok-com" : string ? "tok-str" : word ? "tok-key" : "";
         if (tokenClass) {
             const token = document.createElement("span");
             token.className = tokenClass;
@@ -279,8 +255,6 @@ document.querySelectorAll(".phase__view").forEach((button) => {
     });
 });
 
-// Close: ✕, Escape (native to dialog) and backdrop click — a click on the
-// dialog itself can only come from the backdrop, because the card covers it.
 modal.addEventListener("click", (event) => {
     if (event.target === modal) modal.close();
 });
