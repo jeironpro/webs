@@ -51,6 +51,31 @@ function appendSpan(parent, className, text) {
     parent.append(createElement("span", className, text));
 }
 
+function isQuotedScalar(value) {
+    const trimmed = value.trim();
+    return (
+        trimmed.length >= 2 &&
+        (trimmed.startsWith('"') || trimmed.startsWith("'")) &&
+        trimmed.endsWith(trimmed[0])
+    );
+}
+
+function decodeScalar(value) {
+    if (!isQuotedScalar(value)) return value;
+
+    const trimmed = value.trim();
+    const quote = trimmed[0];
+    const inner = trimmed.slice(1, -1);
+
+    if (quote === "'") return inner.replace(/''/g, "'");
+
+    try {
+        return JSON.parse(trimmed);
+    } catch {
+        return inner.replace(/\\"/g, '"').replace(/\\\\/g, "\\");
+    }
+}
+
 function appendHighlightedLine(parent, line) {
     const indent = line.match(/^\s*/)[0];
     const trimmed = line.trim();
@@ -68,6 +93,11 @@ function appendHighlightedLine(parent, line) {
         return;
     }
 
+    if (isQuotedScalar(trimmed)) {
+        parent.append(document.createTextNode(`${decodeScalar(trimmed)}\n`));
+        return;
+    }
+
     if (trimmed.startsWith("-")) {
         const afterDash = trimmed.slice(1);
         appendSpan(parent, "yaml-bullet", "-");
@@ -81,9 +111,11 @@ function appendHighlightedLine(parent, line) {
         const rest = afterDash.slice(1);
         const colonIndex = rest.indexOf(": ");
 
-        if (colonIndex > 0) {
+        if (isQuotedScalar(rest)) {
+            parent.append(document.createTextNode(decodeScalar(rest)));
+        } else if (colonIndex > 0) {
             appendSpan(parent, "yaml-key", rest.slice(0, colonIndex));
-            parent.append(document.createTextNode(`: ${rest.slice(colonIndex + 2)}`));
+            parent.append(document.createTextNode(`: ${decodeScalar(rest.slice(colonIndex + 2))}`));
         } else if (rest.endsWith(":")) {
             appendSpan(parent, "yaml-key", rest.slice(0, -1));
             parent.append(document.createTextNode(":"));
@@ -98,7 +130,7 @@ function appendHighlightedLine(parent, line) {
     const colonIndex = trimmed.indexOf(": ");
     if (colonIndex > 0) {
         appendSpan(parent, "yaml-key", trimmed.slice(0, colonIndex));
-        parent.append(document.createTextNode(`: ${trimmed.slice(colonIndex + 2)}`));
+        parent.append(document.createTextNode(`: ${decodeScalar(trimmed.slice(colonIndex + 2))}`));
     } else if (trimmed.endsWith(":")) {
         appendSpan(parent, "yaml-key", trimmed.slice(0, -1));
         parent.append(document.createTextNode(":"));
