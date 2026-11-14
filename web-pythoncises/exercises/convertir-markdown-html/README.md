@@ -3,21 +3,24 @@
 
 ---
 
-### 🧭 Sobre mí  
+### 🧭 Sobre mí
+
 <p align="center">Actualmente enfocado en <strong>backend development</strong>.</p>
 <p align="center">Me gusta escribir código limpio, estructurado y fácil de mantener.</p>
 <p align="center">Aprendiendo cada día más sobre <strong>Frameworks, APIs y bases de datos</strong>.</p>
 
 ---
 
-### 🌟 Habiilidades  
+### 🌟 Habiilidades
+
 <p align="center">
   <img src="https://skillicons.dev/icons?i=html,css,js,python,flask,django,java,mysql,git" />
 </p>
 
 ---
 
-### 📊 Estadísticas de GitHub  
+### 📊 Estadísticas de GitHub
+
 <p align="center">
   <img width="48%" src="https://github-readme-stats.vercel.app/api?username=jeironpro&show_icons=true&theme=tokyonight&hide_border=true" />
 </p>
@@ -32,6 +35,7 @@
 ---
 
 ### 🔗 Mis redes y portafolio
+
 <p align="center">
   <a href="https://instagram.com/jeironpro" target="_blank"><img src="https://img.shields.io/badge/Instagram-%23E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram"/></a>
   <a href="https://linkedin.com/in/jeironespinal" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-%230A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/></a>

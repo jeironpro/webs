@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Genera el sitio web a partir de las carpetas de ejercicios.
 
-Uso:  python3 script/build_site.py
+Uso:  python3 tools/build_site.py
 
 Produce:
 - index.html                  landing (hero, método, cifras, índice con tarjetas)
@@ -60,6 +60,7 @@ TOKEN = re.compile(
 
 def resalta_python(codigo):
     """Devuelve el código con <span class="tok-*"> para colorear la sintaxis."""
+    codigo = "\n".join(linea.rstrip() for linea in codigo.splitlines())
     salida = []
     pos = 0
     previo = None
@@ -67,23 +68,23 @@ def resalta_python(codigo):
         salida.append(escapa_html(codigo[pos:coincidencia.start()]))
         clase = None
         if coincidencia.group("comentario"):
-            clase = "tok-comentario"
+            clase = "token-comment"
         elif coincidencia.group("cadena"):
-            clase = "tok-cadena"
+            clase = "token-string"
         elif coincidencia.group("numero"):
-            clase = "tok-numero"
+            clase = "token-number"
         elif coincidencia.group("decorador"):
-            clase = "tok-decorador"
+            clase = "token-decorator"
         elif coincidencia.group("identificador"):
             nombre = coincidencia.group(0)
             if nombre in PALABRAS_CLAVE:
-                clase = "tok-palabra"
+                clase = "token-keyword"
             elif previo == "def":
-                clase = "tok-funcion"
+                clase = "token-function"
             elif previo == "class":
-                clase = "tok-clase"
+                clase = "token-class"
             elif nombre in BUILTINS:
-                clase = "tok-builtin"
+                clase = "token-builtin"
         token = escapa_html(coincidencia.group(0))
         salida.append(f'<span class="{clase}">{token}</span>' if clase else token)
         if coincidencia.group("identificador") or coincidencia.group("decorador"):
@@ -148,6 +149,18 @@ CATEGORIAS = [
     ]),
 ]
 
+CATEGORY_KEYS = {
+    "Juegos": "games",
+    "Patrones": "patterns",
+    "Calculadoras": "calculators",
+    "Web y API": "web-api",
+    "Texto y cadenas": "text-and-strings",
+    "Archivos y PDF": "files-and-pdf",
+    "Tiempo y hábitos": "time-and-habits",
+    "Visión por computador": "computer-vision",
+    "Correo": "email",
+}
+
 TITULOS = {
     "adivina-numero": "Adivina el número",
     "ahorcado": "El ahorcado",
@@ -184,10 +197,10 @@ TITULOS = {
 }
 
 SERPIENTE_SVG = """<svg viewBox="0 0 64 64">
-      <path class="snake__cuerpo" d="M14 22 C 26 22, 26 32, 32 32 C 38 32, 38 42, 50 42"
+      <path class="snake__body" d="M14 22 C 26 22, 26 32, 32 32 C 38 32, 38 42, 50 42"
             fill="none" stroke-width="6.5" stroke-linecap="round"/>
-      <circle class="snake__cabeza" cx="50" cy="42" r="4.8"/>
-      <path class="snake__lengua" d="M54.5 42 L 58.5 40.5 M54.5 42 L 58.5 43.5"
+      <circle class="snake__head" cx="50" cy="42" r="4.8"/>
+      <path class="snake__tongue" d="M54.5 42 L 58.5 40.5 M54.5 42 L 58.5 43.5"
             fill="none" stroke-width="1.8" stroke-linecap="round"/>
       <circle cx="48.6" cy="40.2" r="1.1" fill="var(--color-paper)"/>
     </svg>"""
@@ -250,7 +263,7 @@ def lee_ejercicios():
                 "codigo": codigo,
                 "salida": SALIDAS.get(slug),
                 "categoria": nombre_cat,
-                "cat_key": nombre_cat.lower(),
+                "cat_key": CATEGORY_KEYS[nombre_cat],
                 "accent": ACENTOS[idx_cat % len(ACENTOS)],
             }
             items.append(ejercicio)
@@ -268,14 +281,15 @@ def cabecera(rel, titulo, descripcion):
   <meta name="description" content="{escapa_html(descripcion)}">
   <meta name="theme-color" content="#faf6ee">
   <title>{escapa_html(titulo)}</title>
-  <link rel="icon" type="image/svg+xml" href="{rel}icons/favicon.svg">
-  <link rel="icon" type="image/png" sizes="32x32" href="{rel}icons/favicon-32.png">
-  <link rel="apple-touch-icon" href="{rel}icons/favicon-180.png">
+  <link rel="icon" type="image/svg+xml" href="{rel}assets/icons/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="{rel}assets/icons/favicon-32.png">
+  <link rel="apple-touch-icon" href="{rel}assets/icons/favicon-180.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{rel}css/tokens.css">
   <link rel="stylesheet" href="{rel}css/styles.css">
-  <script>document.documentElement.classList.add("js");</script>
+  <script src="{rel}js/boot.js"></script>
   <script src="{rel}js/app.js" defer></script>
 </head>
 <body>"""
@@ -356,11 +370,11 @@ def tarjeta_ejercicio(ejercicio):
         ejercicio["slug"],
         ejercicio["archivo"],
     ]).lower()
-    return f"""        <article class="tarjeta" data-accent="{ejercicio['accent']}" data-cat="{escapa_html(ejercicio['cat_key'])}" data-busqueda="{escapa_html(busqueda)}">
-          <span class="tarjeta-num" aria-hidden="true">{num}</span>
-          <h3 class="tarjeta-titulo"><a href="html/{escapa_html(ejercicio['slug'])}.html">{escapa_html(ejercicio['titulo'])}</a></h3>
-          <p class="tarjeta-desc">{escapa_html(ejercicio['descripcion'])}</p>
-          <p class="tarjeta-archivo">{escapa_html(ejercicio['archivo'])}</p>
+    return f"""        <article class="card" data-accent="{ejercicio['accent']}" data-category="{escapa_html(ejercicio['cat_key'])}" data-search="{escapa_html(busqueda)}">
+          <span class="card-number" aria-hidden="true">{num}</span>
+          <h3 class="card-title"><a href="html/{escapa_html(ejercicio['slug'])}.html">{escapa_html(ejercicio['titulo'])}</a></h3>
+          <p class="card-description">{escapa_html(ejercicio['descripcion'])}</p>
+          <p class="card-file">{escapa_html(ejercicio['archivo'])}</p>
         </article>"""
 
 
@@ -369,11 +383,11 @@ def genera_indice(categorias, plana, primer_slug):
     con_salida = sum(1 for e in plana if e["salida"])
 
     proceso = "".join([
-        '<span class="process__step"><span class="process__dot" style="background:var(--color-accent)"></span><span class="num">01</span> ver</span>',
+        '<span class="process__step"><span class="process__dot process__dot--accent-1"></span><span class="num">01</span> ver</span>',
         '<span class="process__link"></span>',
-        '<span class="process__step"><span class="process__dot" style="background:var(--color-accent-2)"></span><span class="num">02</span> copiar</span>',
+        '<span class="process__step"><span class="process__dot process__dot--accent-2"></span><span class="num">02</span> copiar</span>',
         '<span class="process__link"></span>',
-        '<span class="process__step"><span class="process__dot" style="background:var(--color-accent-3)"></span><span class="num">03</span> descargar</span>',
+        '<span class="process__step"><span class="process__dot process__dot--accent-3"></span><span class="num">03</span> descargar</span>',
     ])
 
     etapas = "\n".join([
@@ -406,9 +420,9 @@ def genera_indice(categorias, plana, primer_slug):
     ])
 
     chips = (
-        '<button class="filtro chip-activo" type="button" data-cat="todos" data-accent="pear">Todos</button>'
+        '<button class="filter-chip is-active" type="button" data-category="all" data-accent="pear">Todos</button>'
         + "\n".join(
-            f'<button class="filtro" type="button" data-cat="{escapa_html(nombre.lower())}" data-accent="{ACENTOS[i % len(ACENTOS)]}">{escapa_html(nombre)}</button>'
+            f'<button class="filter-chip" type="button" data-category="{escapa_html(CATEGORY_KEYS[nombre])}" data-accent="{ACENTOS[i % len(ACENTOS)]}">{escapa_html(nombre)}</button>'
             for i, (nombre, _items) in enumerate(categorias)
         )
     )
@@ -416,13 +430,14 @@ def genera_indice(categorias, plana, primer_slug):
     secciones = []
     for i, (nombre_cat, items) in enumerate(categorias):
         accent = ACENTOS[i % len(ACENTOS)]
+        category_key = CATEGORY_KEYS[nombre_cat]
         tarjetas = "\n".join(tarjeta_ejercicio(e) for e in items)
-        secciones.append(f"""    <section class="categoria" data-cat="{escapa_html(nombre_cat.lower())}" aria-labelledby="cat-{escapa_html(nombre_cat.lower().replace(' ', '-'))}">
-      <div class="categoria-cabecera" data-accent="{accent}">
-        <h2 class="categoria-nombre" id="cat-{escapa_html(nombre_cat.lower().replace(' ', '-'))}">{escapa_html(nombre_cat)}</h2>
-        <span class="categoria-conteo">{len(items)}</span>
+        secciones.append(f"""    <section class="category" data-category="{escapa_html(category_key)}" aria-labelledby="category-{escapa_html(category_key)}">
+      <div class="category-header" data-accent="{accent}">
+        <h2 class="category-name" id="category-{escapa_html(category_key)}">{escapa_html(nombre_cat)}</h2>
+        <span class="category-count">{len(items)}</span>
       </div>
-      <div class="tarjetas">
+      <div class="cards">
 {tarjetas}
       </div>
     </section>""")
@@ -439,8 +454,8 @@ def genera_indice(categorias, plana, primer_slug):
           <h1 class="hero__title" id="hero-title">Aprende Python con <em class="hl--pear">32 ejercicios</em>, uno a la vez.</h1>
           <p class="hero__lede">Estudiantes de programación y entusiastas de Python: aquí están los ejercicios para verlos, copiarlos y descargarlos. Cada uno en su propia página, con el código coloreado y su salida de ejemplo.</p>
           <div class="hero__cta">
-            <a class="btn btn--mint btn--lg" href="#indice" data-burst>Explorar ejercicios <span class="btn__arrow" aria-hidden="true">→</span></a>
-            <a class="btn btn--outline btn--lg btn--pear" href="#metodo">Cómo funciona</a>
+            <a class="btn btn--mint btn--lg" href="#index" data-burst>Explorar ejercicios <span class="btn__arrow" aria-hidden="true">→</span></a>
+            <a class="btn btn--outline btn--lg btn--pear" href="#method">Cómo funciona</a>
           </div>
           <p class="hero__note">Gratis · sin registro · funciona offline</p>
         </div>
@@ -460,10 +475,10 @@ def genera_indice(categorias, plana, primer_slug):
       </div>
     </section>
 
-    <section class="section" id="metodo" aria-labelledby="metodo-title">
+    <section class="section" id="method" aria-labelledby="method-title">
       <header class="section__head">
         <p class="eyebrow"><span class="eyebrow__dot eyebrow__dot--mint"></span> El método</p>
-        <h2 class="section__title" id="metodo-title">Ver, copiar, descargar. Y practicar.</h2>
+        <h2 class="section__title" id="method-title">Ver, copiar, descargar. Y practicar.</h2>
         <p class="section__lede">Tres clics, sin fricción. El sitio no te explica cómo programar: te pone el código delante y te deja hacer.</p>
       </header>
       <div class="stages">
@@ -471,41 +486,41 @@ def genera_indice(categorias, plana, primer_slug):
       </div>
     </section>
 
-    <section class="section section--band section--mint" id="cifras" aria-labelledby="cifras-title">
+    <section class="section section--band section--mint" id="numbers" aria-labelledby="numbers-title">
       <header class="section__head section__head--center">
         <p class="eyebrow"><span class="eyebrow__dot eyebrow__dot--pear"></span> Las cifras</p>
-        <h2 class="section__title" id="cifras-title">Mucho material, cero humo.</h2>
+        <h2 class="section__title" id="numbers-title">Mucho material, cero humo.</h2>
       </header>
       <div class="numbers">
 {cifras}
       </div>
     </section>
 
-    <section class="section" id="indice" aria-labelledby="indice-title">
+    <section class="section" id="index" aria-labelledby="index-title">
       <header class="section__head">
         <p class="eyebrow"><span class="eyebrow__dot eyebrow__dot--cyan"></span> El índice</p>
-        <h2 class="section__title" id="indice-title">Los 32 ejercicios.</h2>
+        <h2 class="section__title" id="index-title">Los 32 ejercicios.</h2>
         <p class="section__lede">Filtra por categoría o busca por nombre. Cada tarjeta abre la página del ejercicio.</p>
       </header>
-      <div class="buscar">
-        <label for="buscar">Buscar</label>
-        <input id="buscar" type="search" placeholder="ahorcado, pdf, rombo…" autocomplete="off" spellcheck="false">
+      <div class="search">
+        <label for="search">Buscar</label>
+        <input id="search" type="search" placeholder="ahorcado, pdf, rombo…" autocomplete="off" spellcheck="false">
       </div>
       <div class="chips" id="chips" aria-label="Filtrar por categoría">
         {chips}
       </div>
-      <div class="categorias">
+      <div class="categories">
 {chr(10).join(secciones)}
       </div>
-      <p class="sin-resultados" id="sin-resultados" hidden>Ningún ejercicio coincide con la búsqueda.</p>
+      <p class="no-results" id="no-results" hidden>Ningún ejercicio coincide con la búsqueda.</p>
     </section>
 
     <section class="section closer" aria-labelledby="closer-title">
       <h2 class="closer__title" id="closer-title">Empieza por el primero.</h2>
       <p class="closer__lede">Abre un ejercicio, copia el código, ejecútalo en tu máquina. Veinte minutos y ya estás aprendiendo Python de verdad.</p>
-      <div class="hero__cta" style="justify-content:center">
+      <div class="hero__cta hero__cta--center">
         <a class="btn btn--pear btn--lg" href="html/{escapa_html(primer_slug)}.html" data-burst>Empezar a practicar <span class="btn__arrow" aria-hidden="true">→</span></a>
-        <a class="btn btn--outline btn--lg btn--pear" href="#metodo">Volver al método</a>
+        <a class="btn btn--outline btn--lg btn--pear" href="#method">Volver al método</a>
       </div>
     </section>
   </main>
@@ -519,41 +534,41 @@ def pagina_ejercicio(ejercicio, anterior, siguiente):
         ejercicio["nombre"],
     ])
     accent = ejercicio["accent"]
-    nav_previo = (f'<a class="nav-ej nav-previo" href="{anterior["slug"]}.html">← {escapa_html(anterior["titulo"])}</a>'
+    nav_previo = (f'<a class="exercise-nav nav-previous" href="{anterior["slug"]}.html">← {escapa_html(anterior["titulo"])}</a>'
                   if anterior else "")
-    nav_siguiente = (f'<a class="nav-ej nav-siguiente" href="{siguiente["slug"]}.html">{escapa_html(siguiente["titulo"])} →</a>'
+    nav_siguiente = (f'<a class="exercise-nav nav-next" href="{siguiente["slug"]}.html">{escapa_html(siguiente["titulo"])} →</a>'
                      if siguiente else "")
     salida = ""
     if ejercicio["salida"]:
-        salida = f"""    <section class="salida" aria-labelledby="salida-{escapa_html(ejercicio['slug'])}">
-      <h2 class="salida-titulo" id="salida-{escapa_html(ejercicio['slug'])}">Salida de ejemplo</h2>
-      <pre class="salida-cuerpo">{escapa_html(ejercicio['salida'])}</pre>
+        salida = f"""    <section class="output" aria-labelledby="output-{escapa_html(ejercicio['slug'])}">
+      <h2 class="output-title" id="output-{escapa_html(ejercicio['slug'])}">Salida de ejemplo</h2>
+      <pre class="output-body">{escapa_html(ejercicio['salida'])}</pre>
     </section>
 """
     return f"""{cabecera("../", f"Pythoncises · {ejercicio['titulo']}", ejercicio['descripcion'])}
 {nav("../")}
-  <main class="detalle" data-accent="{accent}">
-    <a class="btn btn--outline btn--pear btn--sm detalle-volver" href="../index.html#indice">← Índice</a>
-    <p class="detalle-meta">
-      <span class="eyebrow__dot eyebrow__dot--{accent}" style="display:inline-block;margin-right:0.45em;vertical-align:middle"></span>
+  <main class="detail" data-accent="{accent}">
+    <a class="btn btn--outline btn--pear btn--sm detail-back" href="../index.html#index">← Índice</a>
+    <p class="detail-meta">
+      <span class="eyebrow__dot eyebrow__dot--{accent} eyebrow__dot--inline"></span>
       {escapa_html(meta)}
     </p>
-    <h1 class="detalle-titulo">{escapa_html(ejercicio['titulo'])}</h1>
-    <p class="detalle-desc">{escapa_html(ejercicio['descripcion'])}</p>
-    <div class="detalle-acciones">
-      <button class="btn btn--pear" type="button" data-accion="copiar" data-burst>Copiar</button>
-      <button class="btn btn--outline btn--pear" type="button" data-accion="descargar" data-nombre="{escapa_html(ejercicio['nombre'])}">Descargar</button>
+    <h1 class="detail-title">{escapa_html(ejercicio['titulo'])}</h1>
+    <p class="detail-description">{escapa_html(ejercicio['descripcion'])}</p>
+    <div class="detail-actions">
+      <button class="btn btn--pear" type="button" data-action="copy" data-burst>Copiar</button>
+      <button class="btn btn--outline btn--pear" type="button" data-action="download" data-name="{escapa_html(ejercicio['nombre'])}">Descargar</button>
     </div>
-    <div class="codigo-tarjeta">
-      <div class="codigo-barra">
-        <span class="codigo-punto" aria-hidden="true"></span>
-        <span class="codigo-punto" aria-hidden="true"></span>
-        <span class="codigo-punto" aria-hidden="true"></span>
-        <span class="codigo-archivo">{escapa_html(ejercicio['archivo'])}</span>
+    <div class="code-card">
+      <div class="code-bar">
+        <span class="code-dot" aria-hidden="true"></span>
+        <span class="code-dot" aria-hidden="true"></span>
+        <span class="code-dot" aria-hidden="true"></span>
+        <span class="code-file">{escapa_html(ejercicio['archivo'])}</span>
       </div>
       <pre><code>{resalta_python(ejercicio['codigo'])}</code></pre>
     </div>
-{salida}    <nav class="detalle-nav" aria-label="Navegación entre ejercicios">
+{salida}    <nav class="detail-nav" aria-label="Navegación entre ejercicios">
       {nav_previo}
       {nav_siguiente}
     </nav>
