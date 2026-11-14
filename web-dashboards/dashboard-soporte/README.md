@@ -1,125 +1,29 @@
-# Dashboard de Soporte
+# Soporte · Mesa de ayuda
 
-Panel de gestión de soporte técnico para e-commerce. Proyecto de portafolio que demuestra buenas prácticas de desarrollo frontend con React moderno.
+Panel de gestión de soporte técnico para e-commerce implementado como sitio
+estático en HTML, CSS y JavaScript vanilla. No usa React ni runtime de framework.
 
-## Stack tecnológica
+## Vistas
 
-| Capa        | Tecnología                          |
-| ----------- | ----------------------------------- |
-| Framework   | HTML / CSS / JavaScript vanilla             |
-| Bundler     | Vite 8                              |
-| Estilos     | Tokens OKLCH (CSS-first config)   |
-| Componentes | Vanilla JS components               |
-| Gráficos    | Three.js + GSAP                     |
-| Animaciones | GSAP                                |
-| Routing     | Vanilla JS routing                  |
-| Linter      | oxlint                              |
-| Testing     | Vitest + Testing Library + jest-axe |
+- **Panel**: tickets abiertos, en progreso y cerrados, CSAT y tiempo de respuesta.
+- **Tickets**: listado con búsqueda, filtros por estado, prioridad y categoría.
+- **Detalle de ticket**: conversación, mensajes y datos de la solicitud para los
+  22 tickets.
+- **Perfil**: datos del agente.
 
-## Instalación
+El listado enlaza a una página propia por ticket. El botón **Nuevo ticket** abre
+el diálogo original y el formulario de respuesta cierra el panel con confirmación.
 
-```bash
-# Clonar el repositorio
-git clone git@github.com:jeironpro/webs.git
-cd webs/web-dashboards/dashboard-soporte
+## Archivos
 
-# Instalar dependencias
-yarn install
+- `index.html`: panel de soporte.
+- `tickets.html`: listado completo.
+- `ticket-TK-1021.html` a `ticket-TK-1042.html`: detalle de cada ticket.
+- `perfil.html`: datos del agente.
+- `css/styles.css`: estilos compilados del diseño original.
+- `css/app.css`: ajustes de overlays, filtros y avisos.
+- `js/app.js`: navegación, menús, filtros, diálogos y exportaciones.
+- `assets/fonts/`: fuentes locales del diseño original.
+- `favicon.svg`: icono de la aplicación.
 
-# Iniciar servidor de desarrollo
-yarn dev
-```
-
-## Scripts disponibles
-
-| Comando           | Descripción                            |
-| ----------------- | -------------------------------------- |
-| `yarn dev`        | Servidor de desarrollo con hot reload  |
-| `yarn build`      | Build de producción (tsc + vite build) |
-| `yarn preview`    | Vista previa del build de producción   |
-| `yarn test`       | Ejecutar tests una vez                 |
-| `yarn test:watch` | Ejecutar tests en modo observación     |
-| `yarn coverage`   | Ejecutar tests con cobertura de código |
-| `yarn lint`       | Verificar código con oxlint            |
-| `yarn typecheck`  | Verificar tipos con TypeScript         |
-
-## Estructura del proyecto
-
-```
-src/
-├── main.tsx                    # Punto de entrada
-├── App.tsx                     # Configuración de rutas
-├── index.css                   # Tema de Tailwind + variables CSS
-│
-├── pages/                      # Páginas (rutas)
-│   ├── dashboard-page.tsx      # Dashboard principal con KPIs y gráficos
-│   ├── tickets-page.tsx        # Listado de tickets con búsqueda y filtros
-│   ├── ticket-detail-page.tsx  # Detalle de ticket con historial
-│   └── profile-page.tsx        # Perfil del agente
-│
-├── components/
-│   ├── layout/                 # Shell de la aplicación
-│   │   ├── app-shell.tsx       # Layout base (sidebar + header + contenido)
-│   │   ├── floating-sidebar.tsx # Sidebar flotante con navegación
-│   │   └── header.tsx          # Cabecera de página
-│   │
-│   ├── kpis/                   # Tarjetas de métricas
-│   │   └── kpi-card.tsx
-│   │
-│   ├── charts/                 # Gráficos reutilizables
-│   │   ├── tickets-por-dia-chart.tsx
-│   │   ├── distribucion-categoria-chart.tsx
-│   │   └── chart-tooltip.tsx
-│   │
-│   ├── tickets/                # Componentes de tickets
-│   │   ├── badges.tsx          # Badges de estado y prioridad
-│   │   ├── tickets-recientes.tsx
-│   │   ├── hilo-conversacion.tsx
-│   │   ├── message-composer.tsx
-│   │   └── nuevo-ticket-dialog.tsx
-│   │
-│   └── ui/                     # Componentes base (shadcn/base-nova)
-│       ├── button.tsx
-│       ├── card.tsx
-│       ├── dialog.tsx
-│       └── ... (17 componentes)
-│
-├── hooks/                      # Custom hooks
-│   └── use-mobile.ts           # Detección de dispositivo móvil
-│
-├── lib/                        # Utilidades y datos
-│   ├── types.ts                # Definiciones TypeScript
-│   ├── mock.ts                 # Datos mock y funciones de acceso
-│   ├── stats.ts                # Funciones de agregación
-│   ├── format.ts               # Formateo de fechas y números
-│   └── utils.ts                # Utilidad cn() para clases
-│
-└── data/                       # Datos JSON mock
-    ├── tickets.json
-    ├── customers.json
-    ├── agents.json
-    └── conversations.json
-```
-
-## Arquitectura
-
-### Rutas
-
-| Ruta                 | Página           | Descripción                                         |
-| -------------------- | ---------------- | --------------------------------------------------- |
-| `/`                  | DashboardPage    | KPIs, gráficos de tendencia y tickets recientes     |
-| `/tickets`           | TicketsPage      | Tabla completa con búsqueda, filtros y ordenamiento |
-| `/tickets/:ticketId` | TicketDetailPage | Detalle del ticket con conversación                 |
-| `/perfil`            | ProfilePage      | Información del agente                              |
-
-### Datos
-
-Todos los datos son mock (archivos JSON en `src/data/`). No hay backend ni autenticación. Las funciones en `src/lib/mock.ts` simulan consultas a base de datos.
-
-### Estilos
-
-El proyecto usa Tailwind CSS v4 con configuración CSS-first. Todos los tokens de diseño (colores, tipografía, espaciado) están definidos en `src/index.css` usando el espacio de color oklch.
-
-## Licencia
-
-MIT - Consulta el archivo [LICENSE](LICENSE) para más detalles.
+Los datos son un MOCK estático incluido en el HTML.
