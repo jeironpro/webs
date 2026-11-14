@@ -1,83 +1,84 @@
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Codelang Quiz: resuelve problemáticas de código y mide tu nivel. Categorizado por lenguaje, dificultad y tipo."
-    />
-    <link rel="icon" type="image/svg+xml" href="./icon/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./css/styles.css" />
-    <title>Codelang Quiz</title>
-  </head>
-  <body>
-    <div id="app">
-      <header class="nav">
-        <div class="nav__inner">
-          <a href="./" class="nav__brand" data-route="home">
-            codelang<span class="nav__dot">quiz</span>
-          </a>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Codelang Quiz: resuelve problemáticas de código y mide tu nivel. Categorizado por lenguaje, dificultad y tipo."
+        />
+        <link rel="icon" type="image/svg+xml" href="./assets/icons/favicon.svg" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="./css/styles.css" />
+        <title>Codelang Quiz</title>
+    </head>
+    <body>
+        <div id="app">
+            <header class="nav">
+                <div class="nav__inner">
+                    <h1 class="sr-only">Codelang Quiz</h1>
+                    <a href="./" class="nav__brand" data-route="home">
+                        codelang<span class="nav__dot">quiz</span>
+                    </a>
 
-          <button
-            type="button"
-            class="nav__toggle"
-            id="nav-toggle"
-            aria-label="Abrir menú"
-            aria-expanded="false"
-            aria-controls="nav-links"
-          >
-            <span class="nav__bar"></span>
-            <span class="nav__bar"></span>
-            <span class="nav__bar"></span>
-          </button>
+                    <button
+                        type="button"
+                        class="nav__toggle"
+                        id="nav-toggle"
+                        aria-label="Abrir menú"
+                        aria-expanded="false"
+                        aria-controls="nav-links"
+                    >
+                        <span class="nav__bar"></span>
+                        <span class="nav__bar"></span>
+                        <span class="nav__bar"></span>
+                    </button>
 
-          <nav id="nav-links" class="nav__links" aria-label="Principal">
-            <a class="nav__link" data-route="home" href="./">Inicio</a>
-            <a class="nav__link" data-route="results" href="./?/results">Resultados</a>
-            <button
-              type="button"
-              class="nav__link nav__menu-info"
-              id="menu-info"
-              aria-haspopup="dialog"
-              aria-expanded="false"
-            >
-              Información sobre tus datos
-            </button>
-          </nav>
+                    <nav id="nav-links" class="nav__links" aria-label="Principal">
+                        <a class="nav__link" data-route="home" href="./">Inicio</a>
+                        <a class="nav__link" data-route="results" href="./?/results">Resultados</a>
+                        <button
+                            type="button"
+                            class="nav__link nav__menu-info"
+                            id="menu-info"
+                            aria-haspopup="dialog"
+                            aria-expanded="false"
+                        >
+                            Información sobre tus datos
+                        </button>
+                    </nav>
 
-          <div class="nav__aside">
-            <button
-              type="button"
-              class="nav__info"
-              id="nav-info"
-              aria-label="Información sobre los datos guardados"
-              aria-haspopup="dialog"
-              aria-expanded="false"
-            >
-              ?
-            </button>
-          </div>
+                    <div class="nav__aside">
+                        <button
+                            type="button"
+                            class="nav__info"
+                            id="nav-info"
+                            aria-label="Información sobre los datos guardados"
+                            aria-haspopup="dialog"
+                            aria-expanded="false"
+                        >
+                            ?
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <main id="main-content"></main>
+
+            <footer class="site-footer" aria-label="Pie de pagina">
+                <p class="site-footer__tagline mono-label">Resuelve. Aprende. Repite.</p>
+                <p class="site-footer__copy">Codelang Quiz</p>
+            </footer>
         </div>
-      </header>
 
-      <main id="main-content"></main>
+        <div id="capture" class="capture is-hidden"></div>
+        <div id="modal-root" class="is-hidden"></div>
 
-      <footer class="footer" aria-label="Pie de pagina">
-        <p class="footer__tagline mono-label">Resuelve. Aprende. Repite.</p>
-        <p class="footer__copy">Codelang Quiz</p>
-      </footer>
-    </div>
-
-    <div id="capture" class="capture is-hidden"></div>
-    <div id="modal-root" class="is-hidden"></div>
-
-    <script src="./js/app.js"></script>
-  </body>
+        <script src="./js/app.js"></script>
+    </body>
 </html>

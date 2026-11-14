@@ -4,7 +4,7 @@ Juego de palabras tipo puzzle en el que cada ronda propone una letra central y s
 
 ## Características
 
-- Rondas aleatorias: cada partida elige al azar un bloque de palabras desde `json/siete_letras.json`.
+- Rondas aleatorias: cada partida elige al azar un bloque de palabras desde `data/siete_letras.json`.
 - Tablero en panal (colmena) con una letra central y seis letras laterales.
 - Reglas clásicas: la palabra debe tener al menos 3 letras, incluir la letra del centro y existir en el listado de la ronda.
 - Botones Borrar, Cambiar (baraja las letras laterales) y Aplicar (valida la palabra formada).
@@ -27,14 +27,14 @@ No requiere instalación ni compilación.
 ## Estructura del proyecto
 
 ```
-juego-7-letras/
-├── index.html
-├── css/                   # estilos del tablero en panal
-├── js/                    # lógica del juego
-├── json/                  # bloques de palabras de cada ronda
-└── icon/                  # favicon
+index.html
+css/siete_letras.css  — Estilos del panal y la interfaz
+js/siete_letras.js    — Lógica del juego
+data/siete_letras.json — Bloques de palabras de cada ronda
+assets/icons/siete_letras.png
 ```
 
 ## Licencia
+
 Este proyecto está bajo la licencia **MIT**.  
-Consulta el archivo [LICENSE](LICENSE) para más detalles.
+Consulta el archivo [LICENSE](../../LICENSE) para más detalles.

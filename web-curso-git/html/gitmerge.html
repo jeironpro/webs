@@ -1,54 +1,69 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../icon/curso_git.png" type="image/x-icon">
-    <title>Git merge</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/git.css">
-</head>
-<body>
-    <header>
-        <h1>Git merge</h1>
-    </header>
-    <main class="course-content">
-        <section class="course-section">
-            <article class="command-definition">
-                <div class="definition">
-                    <h2>Definición</h2>
-                    <p>
-                        El comando <code>git merge</code> se utiliza para combinar los cambios de una rama en la rama actual.
-                        Permite integrar desarrollos paralelos, manteniendo el historial de commits de ambas ramas.
-                        Dependiendo de los cambios, puede generar un merge automático o requerir resolver conflictos manualmente.
-                    </p>
-                </div>
-                <div class="commands">
-                    <h2>Comandos</h2>
-                    <ul>
-                        <li>
-                            <code><span>git merge &lt;rama&gt;</span></code>
-                            <p>Combina la rama especificada con la rama actual.</p>
-                        </li>
-                        <li>
-                            <code><span>git merge --no-ff &lt;rama&gt;</span></code>
-                            <p>Realiza un merge creando siempre un commit de merge, incluso si se podría hacer fast-forward.</p>
-                        </li>
-                        <li>
-                            <code><span>git merge --abort</span></code>
-                            <p>Detiene un merge en conflicto y regresa al estado anterior al merge.</p>
-                        </li>
-                        <li>
-                            <code><span>git merge --squash &lt;rama&gt;</span></code>
-                            <p>Combina los cambios de la rama especificada en un solo commit, sin crear un commit de merge.</p>
-                        </li>
-                    </ul>
-                </div>
-            </article>
-            <article class="practice">
-                <div class="run-block">
-                    <h3> Ejecutar</h3>
-                    <pre><code>$ git branch
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg" />
+        <link rel="shortcut icon" href="../assets/icons/curso_git.png" type="image/x-icon" />
+        <title>Git merge</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="../css/git.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Git merge</h1>
+        </header>
+        <main class="course-content">
+            <section class="course-section">
+                <article class="command-definition">
+                    <div class="definition">
+                        <h2>Definición</h2>
+                        <p>
+                            El comando <code>git merge</code> se utiliza para combinar los cambios
+                            de una rama en la rama actual. Permite integrar desarrollos paralelos,
+                            manteniendo el historial de commits de ambas ramas. Dependiendo de los
+                            cambios, puede generar un merge automático o requerir resolver
+                            conflictos manualmente.
+                        </p>
+                    </div>
+                    <div class="commands">
+                        <h2>Comandos</h2>
+                        <ul>
+                            <li>
+                                <code><span>git merge &lt;rama&gt;</span></code>
+                                <p>Combina la rama especificada con la rama actual.</p>
+                            </li>
+                            <li>
+                                <code><span>git merge --no-ff &lt;rama&gt;</span></code>
+                                <p>
+                                    Realiza un merge creando siempre un commit de merge, incluso si
+                                    se podría hacer fast-forward.
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git merge --abort</span></code>
+                                <p>
+                                    Detiene un merge en conflicto y regresa al estado anterior al
+                                    merge.
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git merge --squash &lt;rama&gt;</span></code>
+                                <p>
+                                    Combina los cambios de la rama especificada en un solo commit,
+                                    sin crear un commit de merge.
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+                <article class="practice">
+                    <div class="run-block">
+                        <h3>Ejecutar</h3>
+                        <pre><code>$ git branch
 $ echo "console.log('Fusion de ramas')" >> main.js
 $ git status
 $ git add main.js
@@ -58,10 +73,10 @@ $ git checkout main
 $ git branch
 $ git merge backend
 $ git push</code></pre>
-                </div>
-                <div class="result-block">
-                    <h3> Resultado</h3>
-                    <pre><code>* backend
+                    </div>
+                    <div class="result-block">
+                        <h3>Resultado</h3>
+                        <pre><code>* backend
 main
 
 En la rama backend
@@ -100,14 +115,13 @@ Total 6 (delta 1), reused 0 (delta 0), pack-reused 0 (from 0)
 remote: Resolving deltas: 100% (1/1), done.
 To github.com:jeironpro/pyja.git
    a2b40ef..10aa5be  main -> main</code></pre>
-                </div>
-
-            </article>
-        </section>
-    </main>
-    <footer>
-        &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
-    </footer>
-    <script src="../js/header.js"></script>
-</body>
+                    </div>
+                </article>
+            </section>
+        </main>
+        <footer>
+            &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
+        </footer>
+        <script src="../js/header.js"></script>
+    </body>
 </html>

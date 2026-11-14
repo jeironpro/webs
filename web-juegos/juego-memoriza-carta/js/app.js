@@ -143,7 +143,7 @@ function nuevaPartida() {
     elementos.tablero.style.setProperty("--columnas", String(columnas));
     elementos.tablero.setAttribute(
         "aria-label",
-        `Tablero de parejas, nivel ${nivel.etiqueta.toLowerCase()}`,
+        `Tablero de parejas, nivel ${nivel.etiqueta.toLowerCase()}`
     );
 
     mazo.forEach((figura) => {

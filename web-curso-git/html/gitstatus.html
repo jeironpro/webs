@@ -1,66 +1,77 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../icon/curso_git.png" type="image/x-icon">
-    <title>Git status</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/git.css">
-</head>
-<body>
-    <header>
-        <h1>Git status</h1>
-    </header>
-    <main class="course-content">
-        <section class="course-section">
-            <article class="command-definition">
-                <div class="definition">
-                    <h2>Definición</h2>
-                    <p>
-                        El comando <code>git status</code> muestra el estado actual del repositorio.
-                        Permite ver qué archivos han sido modificados, cuáles están listos para ser confirmados (staged) y cuáles no están siendo rastreados por Git (untracked).
-                        Es una de las herramientas más útiles para saber en qué punto se encuentra tu proyecto antes de hacer un commit o un push.
-                    </p>
-                </div>
-                <div class="commands">
-                    <h2>Comandos</h2>
-                    <ul>
-                        <li>
-                            <code><span>git status</span></code>
-                            <p>Muestra el estado actual del repositorio.</p>
-                        </li>
-                        <li>
-                            <code><span>git status -s</span></code>
-                            <p>Muestra el estado en formato corto, ideal para una vista más compacta.</p>
-                        </li>
-                        <li>
-                            <code><span>git status -b</span></code>
-                            <p>Incluye información sobre la rama actual y su relación con la rama remota.</p>
-                        </li>
-                    </ul>
-                </div>
-            </article>
-            <article class="practice">
-                <div class="run-block">
-                    <h3> Ejecutar</h3>
-                    <pre><code>$ git status</code></pre>
-                </div>
-                <div class="result-block">
-                    <h3> Resultado</h3>
-                    <pre><code>En la rama main
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg" />
+        <link rel="shortcut icon" href="../assets/icons/curso_git.png" type="image/x-icon" />
+        <title>Git status</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="../css/git.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Git status</h1>
+        </header>
+        <main class="course-content">
+            <section class="course-section">
+                <article class="command-definition">
+                    <div class="definition">
+                        <h2>Definición</h2>
+                        <p>
+                            El comando <code>git status</code> muestra el estado actual del
+                            repositorio. Permite ver qué archivos han sido modificados, cuáles están
+                            listos para ser confirmados (staged) y cuáles no están siendo rastreados
+                            por Git (untracked). Es una de las herramientas más útiles para saber en
+                            qué punto se encuentra tu proyecto antes de hacer un commit o un push.
+                        </p>
+                    </div>
+                    <div class="commands">
+                        <h2>Comandos</h2>
+                        <ul>
+                            <li>
+                                <code><span>git status</span></code>
+                                <p>Muestra el estado actual del repositorio.</p>
+                            </li>
+                            <li>
+                                <code><span>git status -s</span></code>
+                                <p>
+                                    Muestra el estado en formato corto, ideal para una vista más
+                                    compacta.
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git status -b</span></code>
+                                <p>
+                                    Incluye información sobre la rama actual y su relación con la
+                                    rama remota.
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+                <article class="practice">
+                    <div class="run-block">
+                        <h3>Ejecutar</h3>
+                        <pre><code>$ git status</code></pre>
+                    </div>
+                    <div class="result-block">
+                        <h3>Resultado</h3>
+                        <pre><code>En la rama main
 
 No hay commits todavía
 
 no hay nada para confirmar (crea/copia archivos y usa "git add" para hacerles seguimiento)</code></pre>
-                </div>
-
-            </article>
-        </section>
-    </main>
-    <footer>
-        &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
-    </footer>
-    <script src="../js/header.js"></script>
-</body>
+                    </div>
+                </article>
+            </section>
+        </main>
+        <footer>
+            &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
+        </footer>
+        <script src="../js/header.js"></script>
+    </body>
 </html>

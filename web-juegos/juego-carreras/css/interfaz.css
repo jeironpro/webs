@@ -1,8 +1,4 @@
 @layer base {
-    /* Interfaz de carrera: opciones, HUD, cuenta atrás, paneles y controles táctiles. */
-
-    /* ---------- Opciones del menú ---------- */
-
     :root {
         --fondo: #05070e;
     }
@@ -29,12 +25,12 @@
     .campo__control {
         appearance: none;
         background: var(--color-surface-soft);
-        border: 1px solid var(--color-line);
+        border: 0.0625rem solid var(--color-line);
         border-radius: var(--radius-sm);
         color: var(--color-ink);
         font-family: var(--font-mono);
         font-size: var(--text-mono);
-        min-height: 40px;
+        min-height: 2.5rem;
         padding: var(--space-2) var(--space-3);
         width: 100%;
     }
@@ -45,7 +41,7 @@
 
     .campo__control:focus-visible {
         outline: var(--anillo-foco);
-        outline-offset: 2px;
+        outline-offset: 0.125rem;
     }
 
     .interruptor {
@@ -68,10 +64,8 @@
 
     .interruptor input:focus-visible {
         outline: var(--anillo-foco);
-        outline-offset: 3px;
+        outline-offset: 0.1875rem;
     }
-
-    /* ---------- HUD ampliado ---------- */
 
     .hud {
         align-items: flex-end;
@@ -87,9 +81,9 @@
     }
 
     .hud__marcador {
-        backdrop-filter: blur(10px);
+        backdrop-filter: blur(0.625rem);
         background: color-mix(in oklab, var(--color-surface) 62%, transparent);
-        border: 1px solid color-mix(in oklab, var(--color-line) 75%, transparent);
+        border: 0.0625rem solid color-mix(in oklab, var(--color-line) 75%, transparent);
         border-radius: var(--radius-md);
         display: grid;
         gap: var(--space-1);
@@ -115,13 +109,11 @@
 
     .minimapa {
         background: color-mix(in oklab, var(--color-surface) 55%, transparent);
-        border: 1px solid color-mix(in oklab, var(--color-line) 75%, transparent);
+        border: 0.0625rem solid color-mix(in oklab, var(--color-line) 75%, transparent);
         border-radius: var(--radius-md);
-        height: 132px;
-        width: 132px;
+        height: 8.25rem;
+        width: 8.25rem;
     }
-
-    /* ---------- Cuenta atrás ---------- */
 
     .cuenta {
         align-items: center;
@@ -145,8 +137,8 @@
         font-weight: 700;
         letter-spacing: -0.04em;
         text-shadow:
-            0 0 32px color-mix(in oklab, var(--color-accent) 65%, transparent),
-            0 0 90px color-mix(in oklab, var(--color-primary) 45%, transparent);
+            0 0 2rem color-mix(in oklab, var(--color-accent) 65%, transparent),
+            0 0 5.625rem color-mix(in oklab, var(--color-primary) 45%, transparent);
     }
 
     @keyframes latido {
@@ -160,8 +152,6 @@
             transform: scale(0.94);
         }
     }
-
-    /* ---------- Paneles (pausa y resultados) ---------- */
 
     .panel-juego {
         align-items: center;
@@ -179,9 +169,9 @@
     }
 
     .panel-juego__caja {
-        backdrop-filter: blur(16px);
+        backdrop-filter: blur(1rem);
         background: color-mix(in oklab, var(--color-surface) 88%, transparent);
-        border: 1px solid color-mix(in oklab, var(--color-line) 85%, transparent);
+        border: 0.0625rem solid color-mix(in oklab, var(--color-line) 85%, transparent);
         border-radius: var(--radius-lg);
         display: grid;
         gap: var(--space-4);
@@ -229,7 +219,7 @@
 
     .btn--secundario {
         background: var(--color-surface-soft);
-        border: 1px solid var(--color-line);
+        border: 0.0625rem solid var(--color-line);
         color: var(--color-ink);
     }
 
@@ -245,7 +235,7 @@
 
     .resultado div {
         align-items: baseline;
-        border-bottom: 1px solid color-mix(in oklab, var(--color-line) 55%, transparent);
+        border-bottom: 0.0625rem solid color-mix(in oklab, var(--color-line) 55%, transparent);
         display: flex;
         justify-content: space-between;
         padding-bottom: var(--space-2);
@@ -265,12 +255,6 @@
         font-variant-numeric: tabular-nums;
         margin: 0;
     }
-
-    /* ---------- Controles táctiles ----------
-     * Cinco botones del mismo tamaño repartidos a todo el ancho. Los dos grupos se
-     * reparten la fila a partes iguales y el tamaño lo fija el grupo de tres, que es
-     * el más ancho: así los cinco quedan iguales y ninguno se sale de la pantalla.
-     * Solo aparecen mientras se conduce; `hidden` lo controla app.js. */
 
     .tactil {
         align-items: flex-end;
@@ -305,7 +289,7 @@
         align-items: center;
         aspect-ratio: 1;
         background: color-mix(in oklab, var(--color-surface) 70%, transparent);
-        border: 1px solid color-mix(in oklab, var(--color-line) 80%, transparent);
+        border: 0.0625rem solid color-mix(in oklab, var(--color-line) 80%, transparent);
         border-radius: var(--radius-full);
         color: var(--color-ink);
         display: flex;
@@ -363,7 +347,6 @@
 }
 
 @layer responsive {
-    /* Base móvil: hasta 720 px */
     .hud {
         align-items: flex-start;
         bottom: auto;
@@ -380,15 +363,15 @@
     }
 
     .minimapa {
-        height: 96px;
-        width: 96px;
+        height: 6rem;
+        width: 6rem;
     }
 
     .tactil {
         display: flex;
     }
 
-    @media (min-width: 721px) {
+    @media (min-width: 45.0625rem) {
         .hud {
             align-items: flex-end;
             bottom: revert-layer;
@@ -405,8 +388,8 @@
         }
 
         .minimapa {
-            height: 132px;
-            width: 132px;
+            height: 8.25rem;
+            width: 8.25rem;
         }
 
         .tactil {
@@ -416,9 +399,9 @@
 }
 
 @layer accesibilidad {
-@media (prefers-reduced-motion: reduce) {
-            .cuenta span {
-                animation: none;
-            }
+    @media (prefers-reduced-motion: reduce) {
+        .cuenta span {
+            animation: none;
+        }
     }
 }

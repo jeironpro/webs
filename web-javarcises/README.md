@@ -2,65 +2,78 @@
 
 ## Descripción
 
-Web estática (**HTML + CSS + JS vanilla**, sin frameworks) que muestra los ejercicios de programación en Java del proyecto:
+Web estática de HTML, CSS y JavaScript vanilla que reúne los ejercicios de programación en Java del proyecto:
 
-- **81 ejercicios** de `triviales/` (de Básico I a Experto I).
-- **30 problemas de diseño POO** de `problemas-diseno/` (de Modelado simple a Sistemas completos).
+- **81 ejercicios** de `triviales/`, desde Básico I hasta Experto I.
+- **30 problemas de diseño POO** de `problemas-diseno/`, desde Modelado simple hasta Sistemas completos.
 
-Incluye **listado paginado** (12 fichas por página), pestañas por colección, filtro por nivel, búsqueda por texto y una **vista de detalle** por ficha con enunciado, instrucciones, firma, ejemplos, casos límite y pistas ocultables.
+Incluye listado paginado de 12 fichas por página, pestañas por colección, filtro por nivel, búsqueda por texto y una vista de detalle con enunciado, instrucciones, firma, ejemplos, casos límite y pistas ocultables.
 
-El diseño adapta en **claro** el ejemplo lumen-01 de Hallmark: serif Instrument Serif + Geist + JetBrains Mono, acento latón, tarjetas con emisión radial, **estrellas de dificultad amarillas** y **badges de nivel con color distinto por nivel**. Los detalles viven en [`docs/style-guide.md`](docs/style-guide.md).
+La interfaz usa Instrument Serif, Geist y JetBrains Mono, con acento latón, estrellas de dificultad y badges de color por nivel.
 
 ## Cómo ejecutar
 
-Requiere **Node.js 20+** (para servir localmente y regenerar datos; el navegador no necesita nada más).
+Requiere Node.js 20 o superior. Desde esta carpeta:
 
 ```bash
-npm install   # instala las devDependencies (eslint, prettier)
-npm run dev   # servidor local de cero dependencias
+node tools/serve.js
 ```
 
-Abrir **http://localhost:4173** (si el puerto está ocupado, se usa el siguiente libre).
-
-> Los ES Modules no cargan con `file://`, por eso el proyecto se sirve por HTTP. También funciona en GitHub Pages u otro host estático.
-
-## Regenerar los datos
-
-`data/exercises.js` se genera a partir de los markdown de `triviales/` y `problemas-diseno/`:
+Abrir **http://localhost:4173**. Si el puerto está ocupado, se prueba el siguiente libre. También se puede servir la carpeta con cualquier servidor HTTP estático:
 
 ```bash
-npm run generate   # parsea los .md y escribe data/exercises.js
+python3 -m http.server 8000
 ```
+
+El catálogo se carga con `fetch`, así que los ES Modules y el JSON no funcionan abriendo `index.html` con `file://`.
+
+## Regenerar el catálogo
+
+`data/exercises.json` se genera a partir de los markdown de `triviales/` y `problemas-diseno/`:
+
+```bash
+node tools/extract-data.js
+```
+
+No editar `data/exercises.json` a mano.
 
 ## Calidad de código
 
-```bash
-npm test                    # node --test (parser + paginación)
-npm run lint                # ESLint
-npm run format              # Prettier (--write)
-npm run format:check        # Prettier (solo verificación)
-pre-commit run --all-files  # hooks de pre-commit
-```
+Desde la raíz del repositorio:
 
-Ejecuta lint y tests antes de publicar cambios.
+```bash
+npm test -- tests/web-javarcises
+npx eslint web-javarcises
+npx prettier --check web-javarcises
+```
 
 ## Estructura
 
-| Ruta                              | Descripción                                    |
-| --------------------------------- | ---------------------------------------------- |
-| `index.html`                      | Página principal (semántica, accesible)        |
-| `icons/favicon.svg`               | Favicon de la marca (taza de café de Java)     |
-| `css/styles.css`                  | Estilos con tokens (tema Lumen claro)          |
-| `js/app.js`                       | Estado, filtros, paginación y routing por hash |
-| `js/render.js`                    | Renderizado seguro a DOM (sin `innerHTML`)     |
-| `js/pagination.js`                | Lógica pura de paginación                      |
-| `data/exercises.js`               | Catálogo generado (no editar a mano)           |
-| `scripts/extract-data.js`         | Parser markdown → datos estructurados          |
-| `scripts/serve.js`                | Servidor estático de desarrollo                |
-| `docs/style-guide.md`             | Libro de estilo                                |
-| `triviales/`, `problemas-diseno/` | Contenido fuente (markdown)                    |
+```text
+web-javarcises/
+├── index.html
+├── css/
+│   └── styles.css
+├── js/
+│   ├── app.js
+│   ├── pagination.js
+│   ├── render.js
+│   └── syntax-highlight.js
+├── data/
+│   └── exercises.json
+├── assets/
+│   └── icons/
+│       └── favicon.svg
+├── tools/
+│   ├── extract-data.js
+│   └── serve.js
+├── triviales/
+├── problemas-diseno/
+└── README.md
+```
+
+`triviales/` y `problemas-diseno/` conservan los enunciados fuente en Markdown. Los tests del parser y de la paginación viven en `tests/web-javarcises/`.
 
 ## Licencia
 
-Este proyecto está bajo la licencia **MIT**.
-Consulta el archivo [LICENSE](../LICENSE) para más detalles.
+Este proyecto está bajo la licencia MIT. Consulta el archivo [LICENSE](../LICENSE) para más detalles.

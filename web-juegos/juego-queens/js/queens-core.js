@@ -1,15 +1,3 @@
-/**
- * Núcleo de Queens: generación de tableros, reparto de regiones, solver y validación.
- *
- * Un tablero es { n, regiones }:
- * - `regiones[i]` es el índice de la región (0..n-1) de la casilla
- *   `i = fila * n + columna`.
- *
- * Reglas: exactamente una reina por fila, columna y región, y dos reinas
- * nunca se tocan, ni siquiera en diagonal.
- */
-
-/** Generador pseudoaleatorio determinista (mulberry32) para reproducir tableros. */
 export function crearRng(semilla = 1) {
     let estado = semilla >>> 0;
     return () => {
@@ -21,7 +9,6 @@ export function crearRng(semilla = 1) {
     };
 }
 
-/** Casillas contiguas en cruz (sin diagonales). */
 export function vecinos4(i, n) {
     const fila = Math.floor(i / n);
     const col = i % n;
@@ -41,10 +28,6 @@ function barajar(lista, rng) {
     return lista;
 }
 
-/**
- * Reparte n reinas: una por fila y columna, sin que dos se toquen (las filas
- * contiguas no pueden quedar en columnas vecinas).
- */
 export function generarReinas(n, rng, presupuesto = 200000) {
     const columnas = new Int16Array(n).fill(-1);
     const usada = new Uint8Array(n);
@@ -68,11 +51,6 @@ export function generarReinas(n, rng, presupuesto = 200000) {
     return Array.from(columnas, (col, fila) => fila * n + col);
 }
 
-/**
- * Convierte las reinas en n regiones contiguas: cada reina nace en su propia
- * región y las regiones crecen por turnos hacia la más pequeña, así todas
- * acaban con un tamaño parecido.
- */
 export function repartirRegiones(n, reinas, rng) {
     const total = n * n;
     const regiones = new Int16Array(total).fill(-1);
@@ -123,7 +101,6 @@ export function repartirRegiones(n, reinas, rng) {
     return Array.from(regiones);
 }
 
-/** ¿Siguen contiguas todas las casillas de esa región? */
 function regionConexa(regiones, n, region) {
     const celdas = [];
     for (let i = 0; i < regiones.length; i++) {
@@ -145,11 +122,6 @@ function regionConexa(regiones, n, region) {
     return vistas.size === celdas.length;
 }
 
-/**
- * Deja una única solución moviendo reinas de las soluciones rivales a una
- * región vecina: esa colocación pasa a tener dos reinas en la misma región y
- * deja de valer, mientras la solución plantada no se toca.
- */
 export function repararRegiones(n, regiones, reinas, rng, presupuesto = 400000) {
     const total = n * n;
     const plantada = new Set(reinas);
@@ -164,8 +136,8 @@ export function repararRegiones(n, regiones, reinas, rng, presupuesto = 400000) 
         if (soluciones.length === 1) return regiones;
         if (soluciones.length === 0) return null;
 
-        const rival = soluciones.find(
-            (solucion) => solucion.some((col, fila) => col !== columnasPlantada[fila])
+        const rival = soluciones.find((solucion) =>
+            solucion.some((col, fila) => col !== columnasPlantada[fila])
         );
         if (!rival) return null;
 
@@ -181,7 +153,10 @@ export function repararRegiones(n, regiones, reinas, rng, presupuesto = 400000) 
 
             const vecinas = new Set();
             for (const v of vecinos4(celda, n)) vecinas.add(regiones[v]);
-            const destinos = barajar([...vecinas].filter((region) => region !== origen), rng);
+            const destinos = barajar(
+                [...vecinas].filter((region) => region !== origen),
+                rng
+            );
 
             for (const destino of destinos) {
                 regiones[celda] = destino;
@@ -200,10 +175,6 @@ export function repararRegiones(n, regiones, reinas, rng, presupuesto = 400000) 
     return null;
 }
 
-/**
- * Cuenta soluciones (hasta `limite`) con búsqueda fila a fila: columna libre,
- * región libre y sin reina en las diagonales de la fila anterior.
- */
 export function contarSoluciones(tablero, opciones = {}) {
     const limite = opciones.limite ?? 2;
     const presupuesto = opciones.presupuesto ?? 400000;
@@ -249,7 +220,6 @@ export function contarSoluciones(tablero, opciones = {}) {
     return { soluciones, agotado, nodos };
 }
 
-/** Comprueba que hay n regiones, todas contiguas y no vacías. */
 export function regionesValidas(tablero) {
     const { n, regiones } = tablero;
     if (!Array.isArray(regiones) || regiones.length !== n * n) return false;
@@ -279,7 +249,6 @@ export function regionesValidas(tablero) {
     return true;
 }
 
-/** Comprueba que una colocación de reinas cumple todas las reglas. */
 export function esSolucion(tablero, solucion) {
     const { n, regiones } = tablero;
     const total = n * n;
@@ -315,11 +284,6 @@ export function esSolucion(tablero, solucion) {
     return true;
 }
 
-/**
- * Genera un tablero de solución única: reinas al azar, regiones contiguas
- * alrededor de ellas y verificación con el solver. Devuelve null si no lo
- * consigue dentro de los intentos.
- */
 export function generarPuzzle(n, opciones = {}) {
     const rng = opciones.rng ?? crearRng(Math.floor(Math.random() * 1e9) + 1);
     const intentos = opciones.intentos ?? 120;

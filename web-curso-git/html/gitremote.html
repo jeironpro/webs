@@ -1,75 +1,101 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../icon/curso_git.png" type="image/x-icon">
-    <title>Git remote</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/git.css">
-</head>
-<body>
-    <header>
-        <h1>Git remote</h1>
-    </header>
-    <main class="course-content">
-        <section class="course-section">
-            <article class="command-definition">
-                <div class="definition">
-                    <h2>Definición</h2>
-                    <p>
-                        El comando <code>git remote</code> se utiliza para administrar las conexiones entre el repositorio local y los repositorios remotos.
-                        Permite agregar, eliminar, renombrar o listar los repositorios remotos asociados, facilitando la colaboración y la sincronización de cambios en proyectos compartidos.
-                    </p>
-                </div>
-                <div class="commands">
-                    <h2>Comandos</h2>
-                    <ul>
-                        <li>
-                            <code><span>git remote</span></code>
-                            <p>Muestra los repositorios remotos asociados a tu proyecto Git local.</p>
-                        </li>
-                        <li>
-                            <code><span>git remote -v</span></code>
-                            <p>Muestra una lista de los repositorios remotos configurados junto con sus URLs de lectura y escritura.</p>
-                        </li>
-                        <li>
-                            <code><span>git remote add &lt;nombre&gt; &lt;url&gt;</span></code>
-                            <p>Agrega un nuevo repositorio remoto con el nombre y la URL especificados.</p>
-                        </li>
-                        <li>
-                            <code><span>git remote remove &lt;nombre&gt;</span></code>
-                            <p>Elimina un repositorio remoto del listado de conexiones.</p>
-                        </li>
-                        <li>
-                            <code><span>git remote rename &lt;antiguo&gt; &lt;nuevo&gt;</span></code>
-                            <p>Cambia el nombre de un repositorio remoto existente.</p>
-                        </li>
-                        <li>
-                            <code><span>git remote set-url &lt;nombre&gt; &lt;nueva_url&gt;</span></code>
-                            <p>Modifica la URL de un remoto ya configurado (útil si la dirección del repositorio cambió).</p>
-                        </li>
-                    </ul>
-                </div>
-            </article>
-            <article class="practice">
-                <div class="run-block">
-                    <h3> Ejecutar</h3>
-                    <pre><code>$ git remote add origin https://github.com/usuario/mi-proyecto.git
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg" />
+        <link rel="shortcut icon" href="../assets/icons/curso_git.png" type="image/x-icon" />
+        <title>Git remote</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="../css/git.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Git remote</h1>
+        </header>
+        <main class="course-content">
+            <section class="course-section">
+                <article class="command-definition">
+                    <div class="definition">
+                        <h2>Definición</h2>
+                        <p>
+                            El comando <code>git remote</code> se utiliza para administrar las
+                            conexiones entre el repositorio local y los repositorios remotos.
+                            Permite agregar, eliminar, renombrar o listar los repositorios remotos
+                            asociados, facilitando la colaboración y la sincronización de cambios en
+                            proyectos compartidos.
+                        </p>
+                    </div>
+                    <div class="commands">
+                        <h2>Comandos</h2>
+                        <ul>
+                            <li>
+                                <code><span>git remote</span></code>
+                                <p>
+                                    Muestra los repositorios remotos asociados a tu proyecto Git
+                                    local.
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git remote -v</span></code>
+                                <p>
+                                    Muestra una lista de los repositorios remotos configurados junto
+                                    con sus URLs de lectura y escritura.
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git remote add &lt;nombre&gt; &lt;url&gt;</span></code>
+                                <p>
+                                    Agrega un nuevo repositorio remoto con el nombre y la URL
+                                    especificados.
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git remote remove &lt;nombre&gt;</span></code>
+                                <p>Elimina un repositorio remoto del listado de conexiones.</p>
+                            </li>
+                            <li>
+                                <code
+                                    ><span
+                                        >git remote rename &lt;antiguo&gt; &lt;nuevo&gt;</span
+                                    ></code
+                                >
+                                <p>Cambia el nombre de un repositorio remoto existente.</p>
+                            </li>
+                            <li>
+                                <code
+                                    ><span
+                                        >git remote set-url &lt;nombre&gt; &lt;nueva_url&gt;</span
+                                    ></code
+                                >
+                                <p>
+                                    Modifica la URL de un remoto ya configurado (útil si la
+                                    dirección del repositorio cambió).
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+                <article class="practice">
+                    <div class="run-block">
+                        <h3>Ejecutar</h3>
+                        <pre><code>$ git remote add origin https://github.com/usuario/mi-proyecto.git
 $ git remote -v</code></pre>
-                </div>
-                <div class="result-block">
-                    <h3> Resultado</h3>
-                    <pre><code>origin  git@github.com:usuario/mi-proyecto.git (fetch)
+                    </div>
+                    <div class="result-block">
+                        <h3>Resultado</h3>
+                        <pre><code>origin  git@github.com:usuario/mi-proyecto.git (fetch)
 origin  git@github.com:usuario/mi-proyecto.git (push)</code></pre>
-                </div>
-
-            </article>
-        </section>
-    </main>
-    <footer>
-        &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
-    </footer>
-    <script src="../js/header.js"></script>
-</body>
+                    </div>
+                </article>
+            </section>
+        </main>
+        <footer>
+            &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
+        </footer>
+        <script src="../js/header.js"></script>
+    </body>
 </html>

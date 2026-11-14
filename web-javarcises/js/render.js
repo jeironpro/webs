@@ -1,16 +1,6 @@
-// Renderizado seguro de los datos estructurados a DOM.
-// Regla del proyecto: nunca se inyecta HTML (innerHTML/insertAdjacentHTML);
-// todo se construye con createElement/textContent, por lo que el contenido
-// de los ejercicios (markdown ya parseado) no puede inyectar marcado.
-
 import { pageNumbers } from "./pagination.js";
 import { highlightJavaInto } from "./syntax-highlight.js";
 
-/**
- * Crea un icono de Material Symbols (decorativo: aria-hidden).
- * @param {string} name Nombre del glifo (p. ej. "star", "arrow_forward").
- * @returns {HTMLSpanElement}
- */
 export function createIcon(name) {
     const icon = document.createElement("span");
     icon.className = "material-symbols-outlined icon";
@@ -19,16 +9,8 @@ export function createIcon(name) {
     return icon;
 }
 
-/**
- * Convierte texto con marcas inline (`**negrita**` y `` `código` ``) en un
- * fragmento de nodos de texto/strong/code. La negrita se usa como énfasis
- * de lectura; el código se renderiza con la fuente monoespaciada.
- * @param {string} text
- * @returns {DocumentFragment}
- */
 export function renderRichText(text) {
     const fragment = document.createDocumentFragment();
-    // Divide el texto en tokens: negrita, itálica, código o texto plano.
     const tokens = text.split(/(\*\*[^*]+\*\*|`[^`]+`|\*[^*]+\*)/g);
     for (const token of tokens) {
         if (token === "") {
@@ -53,7 +35,6 @@ export function renderRichText(text) {
     return fragment;
 }
 
-/** Renderiza la dificultad (1–5) como cinco iconos de estrella. */
 export function renderStars(difficulty) {
     const container = document.createElement("span");
     container.className = "difficulty";
@@ -70,11 +51,6 @@ export function renderStars(difficulty) {
     return container;
 }
 
-/**
- * Renderiza un bloque de código como panel claro con hairline y, si se
- * indica una etiqueta (p. ej. el lenguaje), una cabecera sin chrome falso.
- * Para Java, aplica resaltado de sintaxis con nodos DOM seguros.
- */
 function renderCodeBlock(code, label = "") {
     const container = document.createElement("div");
     container.className = "block__code";
@@ -90,7 +66,6 @@ function renderCodeBlock(code, label = "") {
     pre.className = "block__code-body";
     const codeElement = document.createElement("code");
 
-    // Aplicar resaltado de sintaxis solo para Java.
     if (label.toLowerCase() === "java") {
         highlightJavaInto(pre, code);
     } else {
@@ -102,7 +77,6 @@ function renderCodeBlock(code, label = "") {
     return container;
 }
 
-/** Renderiza un bloque tipado (paragraph | list | code | example | hint). */
 export function renderBlock(block) {
     switch (block.type) {
         case "paragraph": {
@@ -146,12 +120,10 @@ export function renderBlock(block) {
             return details;
         }
         default:
-            // Bloque desconocido: no debería ocurrir con los datos generados.
             return document.createElement("p");
     }
 }
 
-/** Renderiza una lista de bloques en orden. */
 export function renderBlocks(blocks) {
     const fragment = document.createDocumentFragment();
     for (const block of blocks) {
@@ -160,48 +132,38 @@ export function renderBlocks(blocks) {
     return fragment;
 }
 
-/**
- * Renderiza la ficha (tarjeta) de un ejercicio. Toda la tarjeta es un único
- * enlace para que el teclado tenga un solo punto de tabulación.
- * @param {object} item Ítem estructurado (ver scripts/extract-data.js).
- * @returns {HTMLElement}
- */
 export function renderCard(item) {
     const article = document.createElement("article");
-    article.className = "card";
+    article.className = "exercise-card";
 
     const link = document.createElement("a");
-    link.className = "card__link";
+    link.className = "exercise-card__link";
     link.href = `#/card/${item.collection}/${item.number}`;
     link.setAttribute(
         "aria-label",
         `Ver ficha ${String(item.number).padStart(3, "0")}: ${item.title}`
     );
 
-    // Eyebrow: tipo de ficha + número (mono minúscula, acento).
     const eyebrow = document.createElement("p");
-    eyebrow.className = "card__eyebrow";
+    eyebrow.className = "exercise-card__eyebrow";
     eyebrow.textContent = `${item.collection === "exercises" ? "ejercicio" : "problema"} ${String(item.number).padStart(3, "0")}`;
     link.append(eyebrow);
 
     const title = document.createElement("h2");
-    title.className = "card__title";
+    title.className = "exercise-card__title";
     title.textContent = item.title;
     link.append(title);
 
-    // Metadatos: badge de nivel (con color por nivel) + dificultad.
     const meta = document.createElement("div");
-    meta.className = "card__meta";
+    meta.className = "exercise-card__meta";
     const level = document.createElement("span");
     level.className = `badge badge--level-${item.level}`;
     level.textContent = `Nivel ${item.level} · ${item.levelName}`;
     meta.append(level, renderStars(item.difficulty));
     link.append(meta);
 
-    // Fila de chips: en los ejercicios son los temas; en los problemas de diseño,
-    // la categoría. Así ambas fichas comparten exactamente la misma estructura.
     const topics = document.createElement("ul");
-    topics.className = "card__topics";
+    topics.className = "exercise-card__topics";
     const chips = item.collection === "problems" ? [item.category] : item.topics;
     for (const text of chips) {
         if (!text) {
@@ -215,7 +177,7 @@ export function renderCard(item) {
     link.append(topics);
 
     const footer = document.createElement("p");
-    footer.className = "card__footer";
+    footer.className = "exercise-card__footer";
     footer.append(document.createTextNode("ver ficha"), createIcon("arrow_forward"));
     link.append(footer);
 
@@ -223,11 +185,6 @@ export function renderCard(item) {
     return article;
 }
 
-/**
- * Renderiza el paginador: anterior, páginas (con elipsis) y siguiente.
- * @param {{page: number, totalPages: number, onGoToPage: Function}} options
- * @returns {HTMLElement}
- */
 export function renderPagination({ page, totalPages, onGoToPage }) {
     const nav = document.createElement("nav");
     nav.className = "pagination";
@@ -264,7 +221,6 @@ export function renderPagination({ page, totalPages, onGoToPage }) {
     return nav;
 }
 
-/** Botón del paginador: nativo, con icono opcional. */
 function createPaginationButton(label, icon, disabled, onClick) {
     const button = document.createElement("button");
     button.type = "button";
@@ -278,19 +234,10 @@ function createPaginationButton(label, icon, disabled, onClick) {
     return button;
 }
 
-/**
- * Renderiza la vista de detalle de un ejercicio con todas sus secciones.
- * @param {object} item Ítem actual.
- * @param {object} collection Colección a la que pertenece (para navegar).
- * @param {object|null} previous Ítem previo de la colección.
- * @param {object|null} next Ítem siguiente de la colección.
- * @returns {HTMLElement}
- */
 export function renderDetail(item, collection, previous, next) {
     const article = document.createElement("article");
     article.className = "detail";
 
-    // Cabecera de navegación: volver + miga de pan.
     const topNav = document.createElement("nav");
     topNav.className = "detail__top-nav";
     topNav.setAttribute("aria-label", "Navegación superior");
@@ -304,23 +251,21 @@ export function renderDetail(item, collection, previous, next) {
     topNav.append(backLink, breadcrumb);
     article.append(topNav);
 
-    // Encabezado de la ficha: eyebrow + titular serif + especificación.
     const header = document.createElement("header");
     header.className = "detail__header";
 
     const eyebrow = document.createElement("p");
-    eyebrow.className = "card__eyebrow";
+    eyebrow.className = "exercise-card__eyebrow";
     eyebrow.textContent = `${item.collection === "exercises" ? "ejercicio" : "problema"} ${String(item.number).padStart(3, "0")}`;
     header.append(eyebrow);
 
     const title = document.createElement("h1");
     title.className = "detail__title";
-    title.id = "card-title";
+    title.id = "detail-title";
     title.tabIndex = -1;
     title.textContent = item.title;
     header.append(title);
 
-    // Especificación de la ficha: pares clave/valor en mono.
     const spec = document.createElement("dl");
     spec.className = "spec";
 
@@ -389,7 +334,6 @@ export function renderDetail(item, collection, previous, next) {
     }
     article.append(header);
 
-    // Cuerpo: secciones.
     const body = document.createElement("div");
     body.className = "detail__body";
     for (const section of item.sections) {
@@ -397,7 +341,6 @@ export function renderDetail(item, collection, previous, next) {
         sectionElement.className = "detail__section";
         const sectionTitle = document.createElement("h2");
         sectionTitle.className = "detail__section-title";
-        // Se descartan los paréntesis de metadato del markdown (p. ej. "(opcional, ocultables)").
         sectionTitle.textContent = section.title.replace(/\s*\([^)]*\)\s*$/, "");
         const content = document.createElement("div");
         content.className = "detail__section-content";
@@ -407,7 +350,6 @@ export function renderDetail(item, collection, previous, next) {
     }
     article.append(body);
 
-    // Navegación entre fichas (anterior/siguiente).
     const cardNav = document.createElement("nav");
     cardNav.className = "detail__card-nav";
     cardNav.setAttribute("aria-label", "Fichas anterior y siguiente");
@@ -420,7 +362,6 @@ export function renderDetail(item, collection, previous, next) {
     return article;
 }
 
-/** Enlace "Anterior/Siguiente" de una ficha (o placeholder si no existe). */
 function createCardNavLink(item, label, icon, isPrevious) {
     const container = document.createElement("div");
     container.className = "detail__card-nav-item";
@@ -449,11 +390,6 @@ function createCardNavLink(item, label, icon, isPrevious) {
     return container;
 }
 
-/**
- * Estado vacío: sin resultados para los filtros actuales.
- * @param {{icon?: string, title?: string, message?: string, action?: {label: string, href?: string, onClick?: Function}}} options
- * @returns {HTMLElement}
- */
 export function renderEmpty({
     icon = "search_off",
     title = "Sin resultados",

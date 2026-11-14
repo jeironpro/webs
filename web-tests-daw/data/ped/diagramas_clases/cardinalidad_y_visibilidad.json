@@ -1,0 +1,147 @@
+[
+  {
+    "question": "¿Qué símbolo representa visibilidad pública?",
+    "options": ["-", "#", "+", "~"],
+    "answer": 2,
+    "explanation": "Accesible por todos."
+  },
+  {
+    "question": "¿Qué símbolo representa visibilidad privada?",
+    "options": ["~", "+", "#", "-"],
+    "answer": 3,
+    "explanation": "Solo la propia clase."
+  },
+  {
+    "question": "¿Qué símbolo representa visibilidad protegida?",
+    "options": ["+", "~", "-", "#"],
+    "answer": 3,
+    "explanation": "Clase y subclases."
+  },
+  {
+    "question": "¿Qué símbolo representa visibilidad de paquete (default)?",
+    "options": ["+", "-", "~", "#"],
+    "answer": 2,
+    "explanation": "Mismo paquete."
+  },
+  {
+    "question": "¿Qué significa la cardinalidad '1'?",
+    "options": ["Exactamente uno", "Cero", "Uno o más", "Cero o uno"],
+    "answer": 0,
+    "explanation": "Obligatorio y único."
+  },
+  {
+    "question": "¿Qué significa la cardinalidad '0..1'?",
+    "options": ["Infinito", "Cero o uno (Opcional)", "Uno", "Muchos"],
+    "answer": 1,
+    "explanation": "Puede ser null."
+  },
+  {
+    "question": "¿Qué significa la cardinalidad '*' o '0..*'?",
+    "options": ["Uno o muchos", "Todos", "Cero o muchos", "Ninguno"],
+    "answer": 2,
+    "explanation": "Lista vacía permitida."
+  },
+  {
+    "question": "¿Qué significa la cardinalidad '1..*'?",
+    "options": ["Uno", "Cero o muchos", "Todos", "Uno o muchos (al menos uno)"],
+    "answer": 3,
+    "explanation": "Lista no vacía."
+  },
+  {
+    "question": "¿Dónde se coloca la cardinalidad?",
+    "options": [
+      "En la clase",
+      "En los extremos de la línea de asociación",
+      "En el centro",
+      "En el nombre"
+    ],
+    "answer": 1,
+    "explanation": "Define cuántos del otro lado."
+  },
+  {
+    "question": "¿Qué significa la cardinalidad 'n' (donde n es un número, ej. 5)?",
+    "options": ["Nada", "n o más", "Exactamente n (ej. equipo de 5 jugadores)", "Hasta n"],
+    "answer": 2,
+    "explanation": "Array fijo."
+  },
+  {
+    "question": "¿Qué visibilidad es la más restrictiva?",
+    "options": ["Pública (+)", "Privada (-)", "Protegida (#)", "Paquete (~)"],
+    "answer": 1,
+    "explanation": "Encapsulamiento máximo."
+  },
+  {
+    "question": "¿Qué visibilidad es la menos restrictiva?",
+    "options": ["Paquete (~)", "Pública (+)", "Privada (-)", "Protegida (#)"],
+    "answer": 1,
+    "explanation": "API abierta."
+  },
+  {
+    "question": "¿Qué significa 'visibilidad' en UML?",
+    "options": [
+      "El tamaño",
+      "Quién puede acceder a un atributo o método",
+      "Si se ve en el diagrama",
+      "El color"
+    ],
+    "answer": 1,
+    "explanation": "Control de acceso."
+  },
+  {
+    "question": "¿Cómo se representa un argumento de método?",
+    "options": ["nombre : Tipo", "Tipo nombre", "nombre", "Tipo"],
+    "answer": 0,
+    "explanation": "UML usa notación Pascal-like."
+  },
+  {
+    "question": "¿Cómo se representa el retorno de un método?",
+    "options": ["void", "metodo()", "metodo() : Tipo", "Tipo metodo()"],
+    "answer": 2,
+    "explanation": "Al final, tras dos puntos."
+  },
+  {
+    "question": "¿Qué significa 'm..n'?",
+    "options": ["Nada", "Rango de m a n (inclusive)", "m o n", "m y n"],
+    "answer": 1,
+    "explanation": "2..4 ruedas."
+  },
+  {
+    "question": "¿La cardinalidad aplica a atributos?",
+    "options": [
+      "A veces",
+      "Sí, se puede poner entre corchetes [1] o [0..1] tras el tipo",
+      "Nunca",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Indica si es array o nullable."
+  },
+  {
+    "question": "¿Qué es la multiplicidad por defecto si no se pone nada?",
+    "options": ["Suele asumirse 1 (o indefinida según la herramienta)", "0..1", "0", "*"],
+    "answer": 0,
+    "explanation": "Mejor explicitarla."
+  },
+  {
+    "question": "¿Qué relación tiene cardinalidad * con Java?",
+    "options": [
+      "Se implementa con Colecciones (List, Set) o Arrays",
+      "Con un String",
+      "Con un int",
+      "Con nada"
+    ],
+    "answer": 0,
+    "explanation": "List<Alumno>."
+  },
+  {
+    "question": "¿Qué relación tiene cardinalidad 0..1 con Java?",
+    "options": [
+      "Nada",
+      "Referencia que puede ser null o Optional",
+      "Lista",
+      "Referencia obligatoria"
+    ],
+    "answer": 1,
+    "explanation": "Nullable."
+  }
+]

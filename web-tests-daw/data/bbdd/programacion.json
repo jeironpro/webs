@@ -1,0 +1,207 @@
+[
+  {
+    "question": "¿Qué es un Procedimiento Almacenado (Stored Procedure)?",
+    "options": [
+      "Un conjunto de instrucciones SQL guardadas bajo un nombre que se pueden ejecutar como una unidad",
+      "Un error guardado",
+      "Un script externo",
+      "Una tabla temporal"
+    ],
+    "answer": 0,
+    "explanation": "Permite encapsular lógica de negocio en la base de datos."
+  },
+  {
+    "question": "¿Qué es un Trigger (Disparador)?",
+    "options": [
+      "Un índice",
+      "Un código que se ejecuta automáticamente en respuesta a ciertos eventos en una tabla (INSERT, UPDATE, DELETE)",
+      "Una función manual",
+      "Un botón"
+    ],
+    "answer": 1,
+    "explanation": "Útil para auditoría, validaciones complejas o mantener integridad."
+  },
+  {
+    "question": "¿Qué es una Función de Usuario (UDF)?",
+    "options": [
+      "Una rutina que acepta parámetros, realiza acciones y devuelve un valor",
+      "Un procedimiento sin nombre",
+      "Una función del sistema",
+      "Una vista"
+    ],
+    "answer": 0,
+    "explanation": "Se puede usar dentro de sentencias SQL (ej. en el SELECT o WHERE)."
+  },
+  {
+    "question": "¿Cuál es la diferencia principal entre Función y Procedimiento?",
+    "options": [
+      "La función debe devolver un valor y se puede usar en expresiones; el procedimiento se invoca con CALL",
+      "El procedimiento es más rápido",
+      "La función no tiene parámetros",
+      "No hay diferencia"
+    ],
+    "answer": 0,
+    "explanation": "Los procedimientos pueden devolver múltiples resultados o ninguno."
+  },
+  {
+    "question": "¿Qué son los parámetros IN, OUT e INOUT?",
+    "options": [
+      "Permisos",
+      "Tipos de datos",
+      "Instrucciones de control",
+      "Modos de paso de parámetros: entrada, salida y entrada/salida"
+    ],
+    "answer": 3,
+    "explanation": "Definen cómo fluyen los datos hacia y desde el procedimiento."
+  },
+  {
+    "question": "¿Qué es un cursor en programación de bases de datos?",
+    "options": [
+      "Una estructura que permite recorrer fila por fila el resultado de una consulta",
+      "Un índice",
+      "El puntero del ratón",
+      "Una tabla"
+    ],
+    "answer": 0,
+    "explanation": "Necesario cuando se requiere procesamiento secuencial fila a fila."
+  },
+  {
+    "question": "¿Qué desventaja tienen los cursores?",
+    "options": [
+      "No funcionan en MySQL",
+      "Son difíciles de escribir",
+      "Suelen ser más lentos que las operaciones basadas en conjuntos (Set-based)",
+      "Ocupan mucho disco"
+    ],
+    "answer": 2,
+    "explanation": "Siempre se debe preferir la lógica de conjuntos si es posible."
+  },
+  {
+    "question": "¿Qué es PL/SQL?",
+    "options": [
+      "Un tipo de base de datos",
+      "La extensión procedimental de SQL propietaria de Oracle",
+      "Un estándar abierto",
+      "Un lenguaje web"
+    ],
+    "answer": 1,
+    "explanation": "Procedural Language/Structured Query Language."
+  },
+  {
+    "question": "¿Qué es T-SQL?",
+    "options": [
+      "La extensión procedimental de SQL de Microsoft SQL Server",
+      "Un tipo de té",
+      "Una tabla",
+      "Un comando de Linux"
+    ],
+    "answer": 0,
+    "explanation": "Transact-SQL."
+  },
+  {
+    "question": "¿Cuándo se ejecuta un Trigger BEFORE INSERT?",
+    "options": [
+      "Nunca",
+      "Al mismo tiempo",
+      "Después de insertar",
+      "Antes de que el nuevo registro se inserte físicamente en la tabla"
+    ],
+    "answer": 3,
+    "explanation": "Permite modificar los datos antes de guardarlos o cancelar la inserción."
+  },
+  {
+    "question": "¿Qué es la inyección SQL?",
+    "options": [
+      "Un tipo de join",
+      "Una vacuna para la base de datos",
+      "Una forma de insertar datos rápido",
+      "Una vulnerabilidad donde un atacante inserta código SQL malicioso en una consulta"
+    ],
+    "answer": 3,
+    "explanation": "El uso de Prepared Statements o Procedimientos Almacenados ayuda a prevenirla."
+  },
+  {
+    "question": "¿Qué son las variables locales?",
+    "options": [
+      "Variables declaradas dentro de un bloque de código (BEGIN...END) y solo visibles allí",
+      "Columnas de tabla",
+      "Variables globales",
+      "Parámetros"
+    ],
+    "answer": 0,
+    "explanation": "DECLARE var_name tipo [DEFAULT valor];"
+  },
+  {
+    "question": "¿Qué estructura de control permite ejecutar código condicionalmente?",
+    "options": ["IF ... THEN ... ELSE ... END IF", "WHILE", "SELECT", "FOR LOOP"],
+    "answer": 0,
+    "explanation": "Permite bifurcaciones en la lógica del procedimiento."
+  },
+  {
+    "question": "¿Qué estructura de control permite repetir código?",
+    "options": ["IF", "RETURN", "WHILE, REPEAT, LOOP", "CASE"],
+    "answer": 2,
+    "explanation": "Bucles para iteraciones."
+  },
+  {
+    "question": "¿Qué es un manejador de errores (Handler)?",
+    "options": [
+      "Código que captura y gestiona excepciones o errores específicos durante la ejecución",
+      "Un backup",
+      "Un log",
+      "Un usuario administrador"
+    ],
+    "answer": 0,
+    "explanation": "DECLARE CONTINUE HANDLER FOR SQLEXCEPTION ..."
+  },
+  {
+    "question": "¿Qué es SQL Dinámico?",
+    "options": [
+      "SQL que cambia de color",
+      "SQL rápido",
+      "SQL sin tablas",
+      "Construir sentencias SQL como cadenas de texto y ejecutarlas en tiempo de ejecución"
+    ],
+    "answer": 3,
+    "explanation": "PREPARE stmt FROM @sql; EXECUTE stmt;"
+  },
+  {
+    "question": "¿Qué riesgo tiene el SQL Dinámico?",
+    "options": [
+      "Mayor riesgo de Inyección SQL si no se sanean las entradas",
+      "Es muy lento",
+      "Borra datos",
+      "No funciona"
+    ],
+    "answer": 0,
+    "explanation": "Requiere precaución extrema."
+  },
+  {
+    "question": "¿Qué es NEW y OLD en un Trigger?",
+    "options": [
+      "Variables globales",
+      "Pseudorregistros que permiten acceder a los valores nuevos y antiguos de la fila afectada",
+      "Comandos",
+      "Tablas del sistema"
+    ],
+    "answer": 1,
+    "explanation": "En un UPDATE, OLD tiene el valor previo y NEW el valor nuevo."
+  },
+  {
+    "question": "¿Puede un Trigger llamar a un Procedimiento Almacenado?",
+    "options": ["No, nunca", "Sí, generalmente", "Solo en lunes", "Solo si es recursivo"],
+    "answer": 1,
+    "explanation": "Permite reutilizar lógica compleja."
+  },
+  {
+    "question": "¿Qué es una función determinista?",
+    "options": [
+      "Una función de fecha",
+      "Una función aleatoria",
+      "Una función que siempre devuelve el mismo resultado para los mismos parámetros de entrada",
+      "Una función rápida"
+    ],
+    "answer": 2,
+    "explanation": "Importante para la optimización y el uso en índices o columnas calculadas."
+  }
+]

@@ -1,54 +1,68 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../icon/curso_git.png" type="image/x-icon">
-    <title>Git bisect</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/git.css">
-</head>
-<body>
-    <header>
-        <h1>Git bisect</h1>
-    </header>
-    <main class="course-content">
-        <section class="course-section">
-            <article class="command-definition">
-                <div class="definition">
-                    <h2>Definición</h2>
-                    <p>
-                        El comando <code>git bisect</code> se utiliza para encontrar el commit que introdujo un error mediante búsqueda binaria.
-                        Permite identificar rápidamente el commit problemático dentro de un historial largo probando versiones “buenas” y “malas”.
-                        Es útil para depuración eficiente en proyectos grandes.
-                    </p>
-                </div>
-                <div class="commands">
-                    <h2>Comandos</h2>
-                    <ul>
-                        <li>
-                            <code><span>git bisect start</span></code>
-                            <p>Inicia el proceso de búsqueda binaria para localizar un commit problemático.</p>
-                        </li>
-                        <li>
-                            <code><span>git bisect bad</span></code>
-                            <p>Marca el commit actual como “malo”, es decir, que contiene el error.</p>
-                        </li>
-                        <li>
-                            <code><span>git bisect good &lt;hash&gt;</span></code>
-                            <p>Marca un commit conocido como “bueno”, que no contiene el error.</p>
-                        </li>
-                        <li>
-                            <code><span>git bisect reset</span></code>
-                            <p>Finaliza el proceso de búsqueda y regresa a la rama original.</p>
-                        </li>
-                    </ul>
-                </div>
-            </article>
-            <article class="practice">
-                <div class="run-block">
-                    <h3> Ejecutar</h3>
-                    <pre><code>$ echo "print('Hello world')" > script.py
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg" />
+        <link rel="shortcut icon" href="../assets/icons/curso_git.png" type="image/x-icon" />
+        <title>Git bisect</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="../css/git.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Git bisect</h1>
+        </header>
+        <main class="course-content">
+            <section class="course-section">
+                <article class="command-definition">
+                    <div class="definition">
+                        <h2>Definición</h2>
+                        <p>
+                            El comando <code>git bisect</code> se utiliza para encontrar el commit
+                            que introdujo un error mediante búsqueda binaria. Permite identificar
+                            rápidamente el commit problemático dentro de un historial largo probando
+                            versiones “buenas” y “malas”. Es útil para depuración eficiente en
+                            proyectos grandes.
+                        </p>
+                    </div>
+                    <div class="commands">
+                        <h2>Comandos</h2>
+                        <ul>
+                            <li>
+                                <code><span>git bisect start</span></code>
+                                <p>
+                                    Inicia el proceso de búsqueda binaria para localizar un commit
+                                    problemático.
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git bisect bad</span></code>
+                                <p>
+                                    Marca el commit actual como “malo”, es decir, que contiene el
+                                    error.
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git bisect good &lt;hash&gt;</span></code>
+                                <p>
+                                    Marca un commit conocido como “bueno”, que no contiene el error.
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git bisect reset</span></code>
+                                <p>Finaliza el proceso de búsqueda y regresa a la rama original.</p>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+                <article class="practice">
+                    <div class="run-block">
+                        <h3>Ejecutar</h3>
+                        <pre><code>$ echo "print('Hello world')" > script.py
 $ git status
 $ git add script.py
 $ git commit -m "Commit bueno"
@@ -67,10 +81,10 @@ $ git bisect good a417ad9
 $ git bisect bad
 $ git bisect run python script.py
 $ git bisect reset</code></pre>
-                </div>
-                <div class="result-block">
-                    <h3> Resultado</h3>
-                    <pre><code>En la rama main
+                    </div>
+                    <div class="result-block">
+                        <h3>Resultado</h3>
+                        <pre><code>En la rama main
 Archivos sin seguimiento:
   (usa "git add &lt;archivo&gt;..." para incluirlo a lo que será confirmado)
 	script.py
@@ -146,14 +160,13 @@ bisect encontró el primer mal commit
 
 La posición previa de HEAD era 67cd88d Commit malo. División por cero
 Cambiado a rama 'main'</code></pre>
-                </div>
-
-            </article>
-        </section>
-    </main>
-    <footer>
-        &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
-    </footer>
-    <script src="../js/header.js"></script>
-</body>
+                    </div>
+                </article>
+            </section>
+        </main>
+        <footer>
+            &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
+        </footer>
+        <script src="../js/header.js"></script>
+    </body>
 </html>

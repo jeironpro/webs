@@ -1,0 +1,222 @@
+[
+  {
+    "question": "¿Qué es la Composición?",
+    "options": [
+      "Una canción",
+      "Herencia",
+      "Una relación 'tiene-un' (Has-A) donde un objeto contiene a otros objetos como atributos",
+      "Una relación 'es-un'"
+    ],
+    "answer": 2,
+    "explanation": "Coche tiene Motor."
+  },
+  {
+    "question": "¿Qué es la Agregación?",
+    "options": [
+      "Un tipo de composición débil donde el objeto contenido puede existir independientemente del contenedor",
+      "Composición fuerte",
+      "Herencia",
+      "Suma"
+    ],
+    "answer": 0,
+    "explanation": "Aula tiene Alumnos (si borras Aula, Alumnos siguen existiendo)."
+  },
+  {
+    "question": "¿Qué es la Composición fuerte (Composición pura)?",
+    "options": [
+      "Agregación",
+      "Mezcla",
+      "Herencia",
+      "El objeto contenido no tiene sentido o no existe sin el contenedor (ciclo de vida ligado)"
+    ],
+    "answer": 3,
+    "explanation": "Casa tiene Habitaciones (si borras Casa, Habitaciones desaparecen)."
+  },
+  {
+    "question": "¿Por qué se dice 'Favorecer la composición sobre la herencia'?",
+    "options": [
+      "Porque la herencia es mala",
+      "Porque la composición es más flexible, menos acoplada y evita problemas de herencia compleja",
+      "Es mentira",
+      "Porque la composición es más rápida"
+    ],
+    "answer": 1,
+    "explanation": "Principio de diseño clave (GoF)."
+  },
+  {
+    "question": "¿Qué es la delegación?",
+    "options": [
+      "Herencia",
+      "Un error",
+      "Mandar",
+      "Cuando un objeto pasa la responsabilidad de ejecutar una tarea a otro objeto que contiene"
+    ],
+    "answer": 3,
+    "explanation": "coche.arrancar() -> motor.encender()."
+  },
+  {
+    "question": "¿Qué problema resuelve la composición frente a la herencia múltiple?",
+    "options": [
+      "Sintaxis",
+      "El problema del diamante y la complejidad de jerarquías profundas",
+      "Velocidad",
+      "Falta de memoria"
+    ],
+    "answer": 1,
+    "explanation": "Puedes tener múltiples componentes."
+  },
+  {
+    "question": "¿Cómo se implementa la composición?",
+    "options": [
+      "Declarando variables de instancia del tipo de la clase que quieres componer",
+      "Usando implements",
+      "Usando static",
+      "Usando extends"
+    ],
+    "answer": 0,
+    "explanation": "private Motor motor = new Motor();"
+  },
+  {
+    "question": "¿Qué es el acoplamiento en herencia vs composición?",
+    "options": [
+      "La herencia crea un acoplamiento fuerte (cambios en padre afectan hijo), la composición es más débil (interfaz)",
+      "No hay acoplamiento",
+      "La composición es más fuerte",
+      "Son iguales"
+    ],
+    "answer": 0,
+    "explanation": "White-box vs Black-box reuse."
+  },
+  {
+    "question": "¿Qué es un Mixin?",
+    "options": [
+      "Una batidora",
+      "Un objeto",
+      "Un error",
+      "Una clase que ofrece funcionalidad para ser 'mezclada' en otras clases (simula composición/herencia múltiple)"
+    ],
+    "answer": 3,
+    "explanation": "Traits en Scala/PHP."
+  },
+  {
+    "question": "¿Qué es la Ley de Demeter (Principio del menor conocimiento)?",
+    "options": [
+      "No hablar",
+      "Un objeto solo debe hablar con sus amigos cercanos (no encadenar llamadas a.getB().getC().do())",
+      "Saber todo",
+      "Hablar con todos"
+    ],
+    "answer": 1,
+    "explanation": "Reduce acoplamiento."
+  },
+  {
+    "question": "¿Qué es un objeto inmutable compuesto?",
+    "options": [
+      "Un objeto rápido",
+      "Un objeto roto",
+      "Un error",
+      "Un objeto inmutable cuyos componentes también son inmutables o están protegidos"
+    ],
+    "answer": 3,
+    "explanation": "Seguridad en hilos."
+  },
+  {
+    "question": "¿Qué es la inyección de dependencias en composición?",
+    "options": [
+      "Un virus",
+      "Pasar los objetos componentes al constructor en lugar de crearlos dentro (flexibilidad)",
+      "Un error",
+      "Inyectar código"
+    ],
+    "answer": 1,
+    "explanation": "Permite cambiar componentes (ej. MotorGasolina por MotorElectrico)."
+  },
+  {
+    "question": "¿Qué es el patrón Decorator?",
+    "options": [
+      "Decorar la casa",
+      "Usa composición para añadir funcionalidad a un objeto dinámicamente (envoltura)",
+      "Un error",
+      "Herencia"
+    ],
+    "answer": 1,
+    "explanation": "Alternativa flexible a la herencia."
+  },
+  {
+    "question": "¿Qué es el patrón Strategy?",
+    "options": [
+      "Estrategia de guerra",
+      "Herencia",
+      "Un juego",
+      "Usa composición para cambiar el algoritmo (comportamiento) de un objeto en tiempo de ejecución"
+    ],
+    "answer": 3,
+    "explanation": "Cambiar el 'Cerebro'."
+  },
+  {
+    "question": "¿Cuándo usar herencia?",
+    "options": [
+      "Para ahorrar escribir",
+      "Siempre",
+      "Nunca",
+      "Cuando hay una clara relación 'Es-Un' y se quiere reutilizar código base y polimorfismo"
+    ],
+    "answer": 3,
+    "explanation": "Perro ES-UN Animal."
+  },
+  {
+    "question": "¿Cuándo usar composición?",
+    "options": [
+      "Nunca",
+      "Para heredar",
+      "Siempre",
+      "Cuando hay una relación 'Tiene-Un' o se quiere extender funcionalidad sin heredar"
+    ],
+    "answer": 3,
+    "explanation": "Usuario TIENE-UN Rol."
+  },
+  {
+    "question": "¿Qué es un Wrapper (Envoltorio)?",
+    "options": [
+      "Un regalo",
+      "Un objeto que contiene a otro y expone una interfaz diferente o modificada",
+      "Un error",
+      "Un papel"
+    ],
+    "answer": 1,
+    "explanation": "Adapter, Proxy, Decorator."
+  },
+  {
+    "question": "¿Qué es la herencia de implementación vs herencia de interfaz?",
+    "options": [
+      "Implementación reutiliza código (extends), Interfaz solo firma (implements)",
+      "No existe",
+      "Es al revés",
+      "Son iguales"
+    ],
+    "answer": 0,
+    "explanation": "Composición favorece reutilizar implementación sin heredar jerarquía."
+  },
+  {
+    "question": "¿Qué es un objeto compuesto (Composite Pattern)?",
+    "options": [
+      "Patrón que permite tratar objetos individuales y composiciones de objetos de manera uniforme (árbol)",
+      "Un objeto mixto",
+      "Un error",
+      "Un objeto grande"
+    ],
+    "answer": 0,
+    "explanation": "Carpetas y Archivos."
+  },
+  {
+    "question": "¿Qué flexibilidad ofrece la composición en tiempo de ejecución?",
+    "options": [
+      "Menos que herencia",
+      "Es estática",
+      "Ninguna",
+      "Puedes cambiar el objeto componente (ej. cambiar arma en un juego)"
+    ],
+    "answer": 3,
+    "explanation": "La herencia es estática (compilación)."
+  }
+]

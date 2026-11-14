@@ -1,9 +1,5 @@
 <!doctype html>
 <html lang="es">
-    <!--
-        web-reloj — Reloj clásico en 3D con temporizador y cronómetro.
-        Estructura: navbar flotante + tres vistas intercambiadas por hash.
-    -->
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -20,14 +16,11 @@
             href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
             rel="stylesheet"
         />
-      <script type="module" crossorigin src="./assets/index-CIg64kyK.js"></script>
-      <link rel="stylesheet" crossorigin href="./assets/index-B2Ys-cbe.css">
+        <link rel="stylesheet" href="./css/styles.css" />
     </head>
     <body>
-        <!-- Enlace de accesibilidad: salta el navbar para ir directo al contenido -->
         <a class="skip-link" href="#main">Saltar al contenido</a>
 
-        <!-- Navbar flotante (píldora) con wordmark, opciones y menú hamburguesa -->
         <header class="nav" id="nav">
             <div class="nav__inner">
                 <a
@@ -98,8 +91,7 @@
         </header>
 
         <main class="stage" id="main">
-            <!-- Vista por defecto: reloj analógico 3D -->
-            <!-- Reloj -->
+            <h1 class="sr-only">Reloj</h1>
             <section class="view" id="view-reloj" aria-labelledby="reloj-title">
                 <p class="view__eyebrow" id="reloj-title">Hora actual</p>
                 <div class="clock">
@@ -111,7 +103,6 @@
                 </div>
             </section>
 
-            <!-- Temporizador -->
             <section class="view" id="view-temporizador" hidden aria-labelledby="timer-title">
                 <p class="view__eyebrow" id="timer-title">Temporizador</p>
                 <div class="timer">
@@ -201,7 +192,6 @@
                 </div>
             </section>
 
-            <!-- Cronómetro -->
             <section class="view" id="view-cronometro" hidden aria-labelledby="stopwatch-title">
                 <p class="view__eyebrow" id="stopwatch-title">Cronómetro</p>
                 <div class="stopwatch">
@@ -220,5 +210,6 @@
             </section>
         </main>
 
+        <script type="module" src="./js/app.js"></script>
     </body>
 </html>

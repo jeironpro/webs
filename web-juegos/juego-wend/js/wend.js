@@ -84,7 +84,7 @@ function borrarProgreso() {
     try {
         localStorage.removeItem(CLAVE_PROGRESO);
     } catch {
-        /* el navegador puede impedir el acceso al almacenamiento */
+        void 0;
     }
 }
 
@@ -92,7 +92,7 @@ function borrarRecords() {
     try {
         localStorage.removeItem(CLAVE_RECORDS);
     } catch {
-        /* igual que arriba */
+        void 0;
     }
 }
 
@@ -181,14 +181,8 @@ function pintarEstado() {
         return;
     }
     const quedan = total - encontradas;
-    const cola =
-        quedan === 1 ? "Queda 1 palabra." : `Quedan ${quedan} palabras.`;
+    const cola = quedan === 1 ? "Queda 1 palabra." : `Quedan ${quedan} palabras.`;
     elEstado.textContent = `${encontradas} de ${total} palabras encontradas. ${cola}`;
-}
-
-function pintarReloj() {
-    const ms = estado.arranque ? Date.now() - estado.arranque : estado.transcurrido;
-    elTiempo.textContent = formatearTiempo(ms);
 }
 
 function iniciarReloj(ms = 0) {
@@ -230,7 +224,7 @@ function tiempoActual() {
 }
 
 function esMuro(indice) {
-    return !estado.tablero || estado.tablero.letras[indice] == null;
+    return !estado.tablero || (estado.tablero.letras[indice] ?? null) === null;
 }
 
 function palabraEn(indice) {
@@ -251,7 +245,7 @@ function sonVecinas(a, b, n) {
 }
 
 function primerAbierto(tablero) {
-    const indice = tablero.letras.findIndex((letra) => letra != null);
+    const indice = tablero.letras.findIndex((letra) => (letra ?? null) !== null);
     return indice >= 0 ? indice : 0;
 }
 
@@ -298,7 +292,7 @@ function pintar(actualizarEstado = true) {
 
     for (let i = 0; i < celdas.length; i++) {
         const celda = celdas[i];
-        const muro = letras[i] == null;
+        const muro = (letras[i] ?? null) === null;
         const k = palabraEn(i);
         const hecha = k !== undefined && estado.encontradas.has(k);
         const enTrazo = estado.trazo.includes(i);
@@ -308,10 +302,7 @@ function pintar(actualizarEstado = true) {
         celda.classList.toggle("celda--trazo", enTrazo);
         celda.classList.toggle("celda--punta", esPunta);
         celda.classList.toggle("celda--error", Boolean(estado.errorCeldas?.has(i)));
-        celda.classList.toggle(
-            "celda--pista",
-            estado.pistaInicio === i && !hecha && !muro
-        );
+        celda.classList.toggle("celda--pista", estado.pistaInicio === i && !hecha && !muro);
         celda.classList.toggle("celda--cursor", !muro && estado.cursor === i);
 
         if (hecha) {
@@ -522,9 +513,7 @@ function esPrefijoDeSolucion(ruta) {
     return estado.tablero.solucion.some(({ celdas }) => {
         if (ruta.length > celdas.length) return false;
         const directo = ruta.every((indice, j) => celdas[j] === indice);
-        const inverso = ruta.every(
-            (indice, j) => celdas[celdas.length - 1 - j] === indice
-        );
+        const inverso = ruta.every((indice, j) => celdas[celdas.length - 1 - j] === indice);
         return directo || inverso;
     });
 }
@@ -582,10 +571,7 @@ function comprobarTrazo() {
 }
 
 function comprobarFin() {
-    if (
-        estado.tablero &&
-        estado.encontradas.size === estado.tablero.solucion.length
-    ) {
+    if (estado.tablero && estado.encontradas.size === estado.tablero.solucion.length) {
         ganar();
     }
 }
@@ -639,10 +625,7 @@ function deshacer() {
     estado.trazo = [];
     guardarProgreso();
     pintar();
-    avisar(
-        `«${estado.tablero.solucion[k].palabra}» vuelve al tablero.`,
-        2800
-    );
+    avisar(`«${estado.tablero.solucion[k].palabra}» vuelve al tablero.`, 2800);
 }
 
 function vaciar() {
@@ -672,16 +655,8 @@ function darPista() {
             celdas: entrada.celdas,
             pista: estado.pistas.get(k) || 0,
         }))
-        .filter(
-            ({ k, palabra, pista }) =>
-                !estado.encontradas.has(k) && pista < palabra.length
-        )
-        .sort(
-            (a, b) =>
-                a.palabra.length - b.palabra.length ||
-                a.pista - b.pista ||
-                a.k - b.k
-        );
+        .filter(({ k, palabra, pista }) => !estado.encontradas.has(k) && pista < palabra.length)
+        .sort((a, b) => a.palabra.length - b.palabra.length || a.pista - b.pista || a.k - b.k);
 
     if (!opciones.length) {
         avisar(
@@ -698,10 +673,7 @@ function darPista() {
     estado.pistaInicio = elegida.celdas[0];
     guardarProgreso();
     pintar();
-    avisar(
-        `Pista: ${elegida.pista + 1} de ${elegida.palabra.length} letras.`,
-        3200
-    );
+    avisar(`Pista: ${elegida.pista + 1} de ${elegida.palabra.length} letras.`, 3200);
 }
 
 function moverCursor(df, dc) {
@@ -839,12 +811,7 @@ function restaurarProgreso() {
         for (const entrada of datos.pistas) {
             if (!Array.isArray(entrada) || entrada.length !== 2) continue;
             const [k, cantidad] = entrada;
-            if (
-                !Number.isInteger(k) ||
-                k < 0 ||
-                k >= total ||
-                !Number.isInteger(cantidad)
-            ) {
+            if (!Number.isInteger(k) || k < 0 || k >= total || !Number.isInteger(cantidad)) {
                 continue;
             }
             const maximo = tablero.solucion[k].palabra.length;
@@ -862,7 +829,7 @@ function restaurarProgreso() {
         const encontrada = tablero.solucion.some(
             (entrada, k) => validas.includes(k) && entrada.celdas.includes(indice)
         );
-        if (tablero.letras[indice] != null && !encontrada) pistaInicio = indice;
+        if ((tablero.letras[indice] ?? null) !== null && !encontrada) pistaInicio = indice;
     }
 
     const ms = Number(datos.ms);
@@ -887,7 +854,7 @@ function restaurarProgreso() {
 
 async function iniciar() {
     try {
-        const respuesta = await fetch("json/tableros.json", { cache: "no-store" });
+        const respuesta = await fetch("data/tableros.json", { cache: "no-store" });
         if (!respuesta.ok) throw new Error(`HTTP ${respuesta.status}`);
         const datos = await respuesta.json();
         estado.biblioteca = Array.isArray(datos.tableros) ? datos.tableros : [];
@@ -923,7 +890,7 @@ elTablero.addEventListener("pointerdown", (evento) => {
     try {
         elTablero.setPointerCapture(evento.pointerId);
     } catch {
-        /* algunos punteros sintéticos no se pueden capturar */
+        void 0;
     }
     estado.puntero = evento.pointerId;
     iniciarTrazo(indice, true);
@@ -947,7 +914,7 @@ function terminarPuntero(evento) {
             elTablero.releasePointerCapture(evento.pointerId);
         }
     } catch {
-        /* nada que liberar */
+        void 0;
     }
     if (estado.trazo.length < 3) {
         estado.trazo = [];
@@ -972,7 +939,12 @@ elTablero.addEventListener("keydown", (evento) => {
     if (!estado.tablero) return;
     const tecla = evento.key;
 
-    if (tecla === "ArrowUp" || tecla === "ArrowDown" || tecla === "ArrowLeft" || tecla === "ArrowRight") {
+    if (
+        tecla === "ArrowUp" ||
+        tecla === "ArrowDown" ||
+        tecla === "ArrowLeft" ||
+        tecla === "ArrowRight"
+    ) {
         evento.preventDefault();
         if (tecla === "ArrowUp") moverCursor(-1, 0);
         if (tecla === "ArrowDown") moverCursor(1, 0);

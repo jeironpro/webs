@@ -1,71 +1,85 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../icon/curso_git.png" type="image/x-icon">
-    <title>Git init</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/git.css">
-</head>
-<body>
-    <header>
-        <h1>Git init</h1>
-    </header>
-    <main class="course-content">
-        <section class="course-section">
-            <article class="command-definition">
-                <div class="definition">
-                    <h2>Definición</h2>
-                    <p>
-                        El comando <code>git init</code> se utiliza para inicializar un nuevo repositorio de Git
-                        en un directorio. Esto crea una carpeta oculta <code>.git</code> que contiene toda la
-                        información necesaria para el control de versiones del proyecto.
-                    </p>
-                </div>
-                <div class="commands">
-                    <h2>Comandos</h2>
-                    <ul>
-                        <li>
-                            <code><span>git init</span></code>
-                            <p>Inicializa un repositorio Git vacío en el directorio actual.</p>
-                        </li>
-                        <li>
-                            <code><span>git init --bare</span></code>
-                            <p>Crea un repositorio sin área de trabajo (ideal para servidores remotos).</p>
-                        </li>
-                        <li>
-                            <code><span>git init --template=&lt;directorio&gt;</span></code>
-                            <p>Permite inicializar el repositorio usando una plantilla de configuración específica.</p>
-                        </li>
-                        <li>
-                            <code><span>git init --initial-branch=&lt;nombre&gt;</span></code>
-                            <p>Establece el nombre de la rama principal al crear el repositorio.</p>
-                        </li>
-                        <li>
-                            <code><span>git init --separate-git-dir=&lt;ruta&gt;</span></code>
-                            <p>Guarda los metadatos del repositorio en otro directorio.</p>
-                        </li>
-                    </ul>
-                </div>
-            </article>
-            <article class="practice">
-                <div class="run-block">
-                    <h3> Ejecutar</h3>
-                    <pre><code>$ mkdir mi-proyecto 
-$ cd mi-proyecto 
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg" />
+        <link rel="shortcut icon" href="../assets/icons/curso_git.png" type="image/x-icon" />
+        <title>Git init</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="../css/git.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Git init</h1>
+        </header>
+        <main class="course-content">
+            <section class="course-section">
+                <article class="command-definition">
+                    <div class="definition">
+                        <h2>Definición</h2>
+                        <p>
+                            El comando <code>git init</code> se utiliza para inicializar un nuevo
+                            repositorio de Git en un directorio. Esto crea una carpeta oculta
+                            <code>.git</code> que contiene toda la información necesaria para el
+                            control de versiones del proyecto.
+                        </p>
+                    </div>
+                    <div class="commands">
+                        <h2>Comandos</h2>
+                        <ul>
+                            <li>
+                                <code><span>git init</span></code>
+                                <p>Inicializa un repositorio Git vacío en el directorio actual.</p>
+                            </li>
+                            <li>
+                                <code><span>git init --bare</span></code>
+                                <p>
+                                    Crea un repositorio sin área de trabajo (ideal para servidores
+                                    remotos).
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git init --template=&lt;directorio&gt;</span></code>
+                                <p>
+                                    Permite inicializar el repositorio usando una plantilla de
+                                    configuración específica.
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git init --initial-branch=&lt;nombre&gt;</span></code>
+                                <p>
+                                    Establece el nombre de la rama principal al crear el
+                                    repositorio.
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git init --separate-git-dir=&lt;ruta&gt;</span></code>
+                                <p>Guarda los metadatos del repositorio en otro directorio.</p>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+                <article class="practice">
+                    <div class="run-block">
+                        <h3>Ejecutar</h3>
+                        <pre><code>$ mkdir mi-proyecto
+$ cd mi-proyecto
 $ git init</code></pre>
-                </div>
-                <div class="result-block">
-                    <h3> Resultado</h3>
-                    <pre><code>Inicializado repositorio Git vacío en /home/usuario/mi-proyecto/.git/</code></pre>
-                </div>
-            </article>
-        </section>
-    </main>
-    <footer>
-        &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
-    </footer>
-    <script src="../js/header.js"></script>
-</body>
+                    </div>
+                    <div class="result-block">
+                        <h3>Resultado</h3>
+                        <pre><code>Inicializado repositorio Git vacío en /home/usuario/mi-proyecto/.git/</code></pre>
+                    </div>
+                </article>
+            </section>
+        </main>
+        <footer>
+            &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
+        </footer>
+        <script src="../js/header.js"></script>
+    </body>
 </html>

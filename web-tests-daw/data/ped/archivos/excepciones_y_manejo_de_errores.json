@@ -1,0 +1,217 @@
+[
+  {
+    "question": "¿Qué es una Excepción?",
+    "options": [
+      "Un evento anómalo que ocurre durante la ejecución y altera el flujo normal (error)",
+      "Un archivo",
+      "Una regla",
+      "Un acierto"
+    ],
+    "answer": 0,
+    "explanation": "DivisionByZero, NullPointer."
+  },
+  {
+    "question": "¿Qué bloque se usa para capturar excepciones?",
+    "options": ["if-else", "switch-case", "try-catch", "for-loop"],
+    "answer": 2,
+    "explanation": "Intenta (try) y atrapa (catch)."
+  },
+  {
+    "question": "¿Qué código va dentro del bloque 'try'?",
+    "options": [
+      "El código que podría lanzar una excepción (código peligroso)",
+      "El código de manejo de error",
+      "El código final",
+      "Cualquier código"
+    ],
+    "answer": 0,
+    "explanation": "Protege la ejecución."
+  },
+  {
+    "question": "¿Qué código va dentro del bloque 'catch'?",
+    "options": [
+      "El código final",
+      "Nada",
+      "El código normal",
+      "El código que maneja el error si ocurre (recuperación, log)"
+    ],
+    "answer": 3,
+    "explanation": "Solo se ejecuta si hay error."
+  },
+  {
+    "question": "¿Qué hace el bloque 'finally'?",
+    "options": [
+      "Solo si no hay error",
+      "Se ejecuta siempre, ocurra o no una excepción (útil para limpieza)",
+      "Nunca",
+      "Solo si hay error"
+    ],
+    "answer": 1,
+    "explanation": "Cerrar archivos, liberar recursos."
+  },
+  {
+    "question": "¿Qué significa 'lanzar' (throw) una excepción?",
+    "options": [
+      "Ignorar el error",
+      "Generar explícitamente un error para que sea manejado por otro nivel",
+      "Tirar el ordenador",
+      "Borrar el error"
+    ],
+    "answer": 1,
+    "explanation": "throw new Exception('Error')."
+  },
+  {
+    "question": "¿Qué es una excepción no comprobada (Unchecked / Runtime)?",
+    "options": [
+      "Errores de programación que no obligan a usar try-catch (ej. NullPointer)",
+      "Errores de hardware",
+      "Errores de red",
+      "Errores fatales"
+    ],
+    "answer": 0,
+    "explanation": "Bugs lógicos."
+  },
+  {
+    "question": "¿Qué es una excepción comprobada (Checked)?",
+    "options": [
+      "Errores de sintaxis",
+      "Errores graves",
+      "Errores simples",
+      "Errores previsibles que el compilador obliga a manejar (ej. FileNotFound)"
+    ],
+    "answer": 3,
+    "explanation": "Java específico."
+  },
+  {
+    "question": "¿Qué es la propagación de excepciones?",
+    "options": [
+      "Si una función no maneja la excepción, esta sube al llamador hasta encontrar un catch o terminar el programa",
+      "Borrar la excepción",
+      "Copiar la excepción",
+      "Ocultar la excepción"
+    ],
+    "answer": 0,
+    "explanation": "Stack unwinding."
+  },
+  {
+    "question": "¿Qué es un Stack Trace (Traza de pila)?",
+    "options": [
+      "Un mapa",
+      "Un dibujo",
+      "Un archivo",
+      "Informe que muestra la secuencia de llamadas a funciones hasta el punto donde ocurrió el error"
+    ],
+    "answer": 3,
+    "explanation": "Vital para depurar."
+  },
+  {
+    "question": "¿Es buena práctica dejar el bloque catch vacío?",
+    "options": [
+      "Sí, siempre",
+      "Da igual",
+      "A veces",
+      "No, nunca (silencia errores y dificulta depurar)"
+    ],
+    "answer": 3,
+    "explanation": "Swallowing exceptions."
+  },
+  {
+    "question": "¿Qué es una excepción personalizada?",
+    "options": [
+      "Un error grave",
+      "Una clase de excepción creada por el programador para errores específicos del dominio",
+      "Un error estándar",
+      "Un error del sistema"
+    ],
+    "answer": 1,
+    "explanation": "extends Exception."
+  },
+  {
+    "question": "¿Qué diferencia hay entre Error y Exception en Java?",
+    "options": [
+      "Error es grave e irrecuperable (OutOfMemory), Exception es manejable",
+      "Son iguales",
+      "Exception es fatal",
+      "Error es leve"
+    ],
+    "answer": 0,
+    "explanation": "No intentes capturar Errors."
+  },
+  {
+    "question": "¿Qué es 'try-with-resources' (Java)?",
+    "options": [
+      "Un try rápido",
+      "Un error",
+      "Estructura que cierra automáticamente los recursos al terminar el try",
+      "Un try normal"
+    ],
+    "answer": 2,
+    "explanation": "AutoCloseable."
+  },
+  {
+    "question": "¿Qué es un error de sintaxis?",
+    "options": [
+      "Un error de usuario",
+      "Un error de ejecución",
+      "Un error lógico",
+      "Código mal escrito que impide la compilación (no es una excepción)"
+    ],
+    "answer": 3,
+    "explanation": "Falta punto y coma."
+  },
+  {
+    "question": "¿Qué es un error lógico?",
+    "options": [
+      "Un error de sintaxis",
+      "Un virus",
+      "El programa compila y corre, pero hace lo incorrecto (bugs)",
+      "Un crash"
+    ],
+    "answer": 2,
+    "explanation": "Los más difíciles de encontrar."
+  },
+  {
+    "question": "¿Qué significa 'catch (Exception e)'?",
+    "options": [
+      "Captura solo errores graves",
+      "Captura solo errores de red",
+      "No captura nada",
+      "Captura cualquier tipo de excepción (catch-all), usar con precaución"
+    ],
+    "answer": 3,
+    "explanation": "Puede ocultar bugs específicos."
+  },
+  {
+    "question": "¿Qué es el manejo defensivo?",
+    "options": [
+      "Anticipar posibles problemas y verificar condiciones antes de que causen errores",
+      "Pelear con el código",
+      "Usar antivirus",
+      "Ignorar errores"
+    ],
+    "answer": 0,
+    "explanation": "Validar inputs."
+  },
+  {
+    "question": "¿Qué es un 'panic' (Go/Rust)?",
+    "options": [
+      "Terminación abrupta del programa ante un error irrecuperable",
+      "Un aviso",
+      "Tener miedo",
+      "Una excepción suave"
+    ],
+    "answer": 0,
+    "explanation": "Similar a excepción no manejada."
+  },
+  {
+    "question": "¿Qué información debe tener un buen mensaje de error?",
+    "options": [
+      "Qué pasó, dónde pasó y posiblemente por qué pasó",
+      "Un código numérico solo",
+      "Solo 'Error'",
+      "Nada"
+    ],
+    "answer": 0,
+    "explanation": "Ayuda al usuario y al desarrollador."
+  }
+]

@@ -1,21 +1,7 @@
-/**
- * Núcleo de Zip: generación de tableros, resolución y validación.
- *
- * Un tablero es { n, numeros: [{ i, orden }], muros: [[a, b], ...] }:
- * - `i` es el índice de la casilla (fila * n + columna).
- * - `orden` empieza en 0 y se muestra al jugador como 1.
- * - cada muro es una arista entre dos casillas contiguas.
- *
- * Reglas: un solo camino ortogonal que empieza en el número 1, pasa por los
- * números en orden, visita todas las casillas exactamente una vez y termina
- * en el último número sin cruzar ningún muro.
- */
-
 export function claveMuro(a, b) {
     return a < b ? `${a}-${b}` : `${b}-${a}`;
 }
 
-/** Generador pseudoaleatorio determinista (mulberry32) para reproducir tableros. */
 export function crearRng(semilla = 1) {
     let estado = semilla >>> 0;
     return () => {
@@ -46,7 +32,6 @@ function barajar(lista, rng) {
     return lista;
 }
 
-/** Camino hamiltoniano aleatorio; la heurística de Warnsdorff evita callejones. */
 function caminoHamiltoniano(n, rng, presupuesto = 400000) {
     const total = n * n;
     const usado = new Uint8Array(total);
@@ -75,10 +60,6 @@ function caminoHamiltoniano(n, rng, presupuesto = 400000) {
     return dfs(Math.floor(rng() * total)) ? camino : null;
 }
 
-/**
- * Reparte los números a lo largo del camino: primero y último siempre, y el
- * resto con separación irregular para que ningún tablero se parezca a otro.
- */
 function colocarNumeros(camino, cantidad, rng) {
     const largo = camino.length;
     const paso = (largo - 1) / (cantidad - 1);
@@ -101,7 +82,6 @@ function colocarNumeros(camino, cantidad, rng) {
         .map((posicion, orden) => ({ i: camino[posicion], orden }));
 }
 
-/** Aristas que el camino no usa: los únicos muros que no lo bloquean. */
 function aristasLibres(n, camino) {
     const usadas = new Set();
     for (let k = 1; k < camino.length; k++) {
@@ -116,10 +96,6 @@ function aristasLibres(n, camino) {
     return salida;
 }
 
-/**
- * Cuenta soluciones del tablero (hasta `limite`) con poda de conectividad.
- * Devuelve también si se agotó el presupuesto de nodos.
- */
 export function contarSoluciones(tablero, opciones = {}) {
     const limite = opciones.limite ?? 2;
     const presupuesto = opciones.presupuesto ?? 300000;
@@ -149,7 +125,6 @@ export function contarSoluciones(tablero, opciones = {}) {
         return salida;
     }
 
-    /** Si alguna casilla pendiente queda aislada, la rama es imposible. */
     function todasAlcanzables(desde) {
         const alcanzado = new Uint8Array(total);
         const pila = libres(desde);
@@ -198,11 +173,6 @@ export function contarSoluciones(tablero, opciones = {}) {
     return { soluciones, agotado, nodos };
 }
 
-/**
- * Genera un tablero con solución única: parte de un camino hamiltoniano y
- * añade muros en aristas que el camino no usa hasta descartar las alternativas.
- * Devuelve null si no lo consigue dentro del presupuesto.
- */
 export function generarPuzzle(n, opciones = {}) {
     const rng = opciones.rng ?? crearRng(Math.floor(Math.random() * 1e9) + 1);
     const intentos = opciones.intentos ?? 40;
@@ -232,7 +202,6 @@ export function generarPuzzle(n, opciones = {}) {
     return null;
 }
 
-/** Comprueba que un camino cumple todas las reglas del tablero. */
 export function esSolucion(tablero, camino) {
     const { n, numeros, muros } = tablero;
     const total = n * n;

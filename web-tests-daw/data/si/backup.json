@@ -1,0 +1,222 @@
+[
+  {
+    "question": "¿Qué es un Backup?",
+    "options": [
+      "Una copia de seguridad de los datos para poder recuperarlos en caso de pérdida",
+      "Un disco duro",
+      "Un programa",
+      "Un archivo comprimido"
+    ],
+    "answer": 0,
+    "explanation": "Esencial para la continuidad del negocio."
+  },
+  {
+    "question": "¿Qué es un Backup Completo (Full)?",
+    "options": [
+      "Copia TODOS los datos seleccionados cada vez que se ejecuta",
+      "Copia solo lo modificado",
+      "No copia nada",
+      "Copia solo lo nuevo"
+    ],
+    "answer": 0,
+    "explanation": "Es el más lento y ocupa más espacio, pero el más rápido de restaurar."
+  },
+  {
+    "question": "¿Qué es un Backup Incremental?",
+    "options": [
+      "Copia al azar",
+      "Copia solo los datos que han cambiado desde el último backup (ya sea completo o incremental)",
+      "Copia desde el último completo",
+      "Copia todo"
+    ],
+    "answer": 1,
+    "explanation": "Es el más rápido y ocupa menos espacio, pero el más lento de restaurar (necesita el full + todos los incrementales)."
+  },
+  {
+    "question": "¿Qué es un Backup Diferencial?",
+    "options": [
+      "Copia todos los datos que han cambiado desde el último backup COMPLETO",
+      "Copia solo un archivo",
+      "Copia todo",
+      "Copia desde el último incremental"
+    ],
+    "answer": 0,
+    "explanation": "Restaura más rápido que el incremental (solo necesita full + último diferencial)."
+  },
+  {
+    "question": "¿Qué es la regla 3-2-1 de los backups?",
+    "options": [
+      "3 copias de los datos, en 2 medios diferentes, 1 de ellas fuera del sitio (off-site)",
+      "3 días, 2 horas, 1 minuto",
+      "Una cuenta atrás",
+      "3 discos, 2 ordenadores, 1 usuario"
+    ],
+    "answer": 0,
+    "explanation": "Estándar de oro para protección de datos."
+  },
+  {
+    "question": "¿Qué es un Snapshot (en almacenamiento)?",
+    "options": [
+      "Un backup completo",
+      "Una imagen instantánea del estado de los datos en un momento dado",
+      "Un virus",
+      "Una foto"
+    ],
+    "answer": 1,
+    "explanation": "No es un backup por sí mismo si se guarda en el mismo disco."
+  },
+  {
+    "question": "¿Qué es RPO (Recovery Point Objective)?",
+    "options": [
+      "El tiempo que se tarda en recuperar",
+      "La cantidad máxima de datos que se tolera perder (medido en tiempo, ej. datos de la última hora)",
+      "El coste del backup",
+      "El tamaño del disco"
+    ],
+    "answer": 1,
+    "explanation": "Define la frecuencia de los backups."
+  },
+  {
+    "question": "¿Qué es RTO (Recovery Time Objective)?",
+    "options": [
+      "El tiempo máximo que el sistema puede estar caído recuperándose",
+      "El tiempo de arranque",
+      "El tiempo de copia",
+      "La cantidad de datos perdidos"
+    ],
+    "answer": 0,
+    "explanation": "Define la velocidad de restauración necesaria."
+  },
+  {
+    "question": "¿Qué es la deduplicación?",
+    "options": [
+      "Duplicar datos",
+      "Comprimir datos",
+      "Técnica para eliminar copias duplicadas de datos repetidos para ahorrar espacio",
+      "Borrar datos"
+    ],
+    "answer": 2,
+    "explanation": "Muy efectiva en backups periódicos."
+  },
+  {
+    "question": "¿Qué es un backup en caliente (Hot Backup)?",
+    "options": [
+      "Backup en verano",
+      "Backup rápido",
+      "Realizar la copia mientras el sistema y las bases de datos están funcionando y accesibles",
+      "Backup de archivos temporales"
+    ],
+    "answer": 2,
+    "explanation": "No requiere tiempo de inactividad."
+  },
+  {
+    "question": "¿Qué es un backup en frío (Cold Backup)?",
+    "options": [
+      "Backup lento",
+      "Realizar la copia con el sistema o base de datos detenidos",
+      "Backup offline",
+      "Backup en invierno"
+    ],
+    "answer": 1,
+    "explanation": "Garantiza consistencia total pero requiere parada."
+  },
+  {
+    "question": "¿Qué es un soporte de cinta (Tape)?",
+    "options": [
+      "Un USB",
+      "Cinta adhesiva",
+      "Medio de almacenamiento magnético secuencial, barato y duradero, usado para archivado a largo plazo",
+      "Un disco duro"
+    ],
+    "answer": 2,
+    "explanation": "Sigue siendo muy usado en empresas (LTO)."
+  },
+  {
+    "question": "¿Qué es la retención de backups?",
+    "options": [
+      "Retener datos",
+      "Perder datos",
+      "La política que define cuánto tiempo se guardan las copias antes de borrarlas o sobrescribirlas",
+      "Guardar para siempre"
+    ],
+    "answer": 2,
+    "explanation": "Ejemplo: guardar diarios 1 semana, semanales 1 mes."
+  },
+  {
+    "question": "¿Qué es un backup off-site?",
+    "options": [
+      "Backup local",
+      "Guardar una copia en una ubicación física diferente a la principal (ej. nube, otra oficina)",
+      "Backup en disco",
+      "Backup en red"
+    ],
+    "answer": 1,
+    "explanation": "Protege contra desastres físicos (incendio, robo)."
+  },
+  {
+    "question": "¿Qué es la encriptación de backups?",
+    "options": [
+      "Ocultar archivos",
+      "Comprimir datos",
+      "Cifrar los datos de la copia para que sean ilegibles sin la clave",
+      "Borrar datos"
+    ],
+    "answer": 2,
+    "explanation": "Crucial para cumplir normativas (GDPR) y seguridad."
+  },
+  {
+    "question": "¿Qué es un Bare Metal Restore?",
+    "options": [
+      "Restaurar archivos",
+      "Restaurar un sistema completo desde cero en un hardware vacío (sin SO previo)",
+      "Instalar Windows",
+      "Restaurar metal"
+    ],
+    "answer": 1,
+    "explanation": "Recuperación total ante desastres."
+  },
+  {
+    "question": "¿Qué es la integridad del backup?",
+    "options": [
+      "La velocidad del backup",
+      "Verificar que los datos copiados son idénticos a los originales y no están corruptos",
+      "La honestidad del backup",
+      "El tamaño del backup"
+    ],
+    "answer": 1,
+    "explanation": "Un backup no verificado no sirve de nada."
+  },
+  {
+    "question": "¿Qué es el comando tar en Linux?",
+    "options": [
+      "Un navegador",
+      "Un programa de chat",
+      "Un editor",
+      "Herramienta para empaquetar múltiples archivos en uno solo (Tape ARchive), muy usada para backups"
+    ],
+    "answer": 3,
+    "explanation": "Suele usarse con gzip (tar.gz)."
+  },
+  {
+    "question": "¿Qué es rsync?",
+    "options": [
+      "Borrar archivos",
+      "Copiar todo",
+      "Herramienta para sincronización eficiente de archivos, transfiere solo las diferencias",
+      "Mover archivos"
+    ],
+    "answer": 2,
+    "explanation": "Estándar para backups en Linux."
+  },
+  {
+    "question": "¿Qué es RAID 1 (Mirroring)?",
+    "options": [
+      "Suma velocidad",
+      "Duplica los datos en dos discos en tiempo real (redundancia), pero NO es un backup",
+      "Es un backup",
+      "Divide datos"
+    ],
+    "answer": 1,
+    "explanation": "Si borras un archivo, se borra en ambos discos al instante."
+  }
+]

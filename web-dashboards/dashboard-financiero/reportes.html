@@ -1,0 +1,1002 @@
+<!doctype html> <!doctype html>
+<html lang="es" class="js" data-app="dashboard-financiero">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="theme-color" content="#f6f2e3" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap"
+            rel="stylesheet"
+        />
+        <title>Suma · Finanzas al día</title>
+
+        <link rel="stylesheet" href="./css/styles.css" />
+        <link rel="stylesheet" href="./css/app.css" />
+    </head>
+    <body data-page="reportes" data-route="reportes">
+        <div id="root">
+            <div class="min-h-dvh">
+                <aside
+                    aria-label="Navegación principal"
+                    class="app-chrome fixed inset-y-4 left-4 z-[var(--z-sticky)] hidden w-[var(--sidebar-width)] rounded-[var(--radius-xl)] border border-rule bg-card shadow-card lg:block"
+                >
+                    <div class="flex h-full flex-col">
+                        <a
+                            href="index.html"
+                            aria-label="Suma Labs, S.A. de C.V. — ir al resumen"
+                            class="flex items-center gap-2.5 px-4 pb-5 pt-5"
+                            ><img
+                                alt=""
+                                aria-hidden="true"
+                                class="size-8 shrink-0"
+                                src="./favicon.svg"
+                            /><span class="leading-tight"
+                                ><span
+                                    class="block font-display text-base font-semibold tracking-tight text-ink"
+                                    >Suma</span
+                                ><span class="block text-xs text-muted-foreground"
+                                    >finanzas al día</span
+                                ></span
+                            ></a
+                        >
+                        <nav class="flex-1 space-y-1 px-3" aria-label="Secciones del dashboard">
+                            <a
+                                href="index.html"
+                                class="group flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors duration-[var(--dur-short)] ease-[var(--ease-out)] text-ink-2 hover:bg-paper-2 hover:text-ink"
+                                ><svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="lucide lucide-layout-dashboard size-[18px] shrink-0 transition-colors text-ink-3 group-hover:text-ink-2"
+                                    aria-hidden="true"
+                                >
+                                    <rect width="7" height="9" x="3" y="3" rx="1"></rect>
+                                    <rect width="7" height="5" x="14" y="3" rx="1"></rect>
+                                    <rect width="7" height="9" x="14" y="12" rx="1"></rect>
+                                    <rect width="7" height="5" x="3" y="16" rx="1"></rect></svg
+                                ><span class="min-w-0"
+                                    ><span class="block truncate text-sm font-semibold"
+                                        >Resumen</span
+                                    ><span class="block truncate text-xs text-ink-3"
+                                        >KPIs y estado financiero</span
+                                    ></span
+                                ></a
+                            ><a
+                                href="facturacion.html"
+                                class="group flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors duration-[var(--dur-short)] ease-[var(--ease-out)] text-ink-2 hover:bg-paper-2 hover:text-ink"
+                                ><svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="lucide lucide-file-text size-[18px] shrink-0 transition-colors text-ink-3 group-hover:text-ink-2"
+                                    aria-hidden="true"
+                                >
+                                    <path
+                                        d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"
+                                    ></path>
+                                    <path d="M14 2v5a1 1 0 0 0 1 1h5"></path>
+                                    <path d="M10 9H8"></path>
+                                    <path d="M16 13H8"></path>
+                                    <path d="M16 17H8"></path></svg
+                                ><span class="min-w-0"
+                                    ><span class="block truncate text-sm font-semibold"
+                                        >Facturación</span
+                                    ><span class="block truncate text-xs text-ink-3"
+                                        >Facturas emitidas y cobros</span
+                                    ></span
+                                ></a
+                            ><a
+                                href="suscripciones.html"
+                                class="group flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors duration-[var(--dur-short)] ease-[var(--ease-out)] text-ink-2 hover:bg-paper-2 hover:text-ink"
+                                ><svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="lucide lucide-repeat size-[18px] shrink-0 transition-colors text-ink-3 group-hover:text-ink-2"
+                                    aria-hidden="true"
+                                >
+                                    <path d="m17 2 4 4-4 4"></path>
+                                    <path d="M3 11v-1a4 4 0 0 1 4-4h14"></path>
+                                    <path d="m7 22-4-4 4-4"></path>
+                                    <path d="M21 13v1a4 4 0 0 1-4 4H3"></path></svg
+                                ><span class="min-w-0"
+                                    ><span class="block truncate text-sm font-semibold"
+                                        >Suscripciones</span
+                                    ><span class="block truncate text-xs text-ink-3"
+                                        >Planes y MRR</span
+                                    ></span
+                                ></a
+                            ><a
+                                href="pagos.html"
+                                class="group flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors duration-[var(--dur-short)] ease-[var(--ease-out)] text-ink-2 hover:bg-paper-2 hover:text-ink"
+                                ><svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="lucide lucide-credit-card size-[18px] shrink-0 transition-colors text-ink-3 group-hover:text-ink-2"
+                                    aria-hidden="true"
+                                >
+                                    <rect width="20" height="14" x="2" y="5" rx="2"></rect>
+                                    <line x1="2" x2="22" y1="10" y2="10"></line></svg
+                                ><span class="min-w-0"
+                                    ><span class="block truncate text-sm font-semibold">Pagos</span
+                                    ><span class="block truncate text-xs text-ink-3"
+                                        >Estado de pagos y métodos</span
+                                    ></span
+                                ></a
+                            ><a
+                                href="reportes.html"
+                                class="group flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors duration-[var(--dur-short)] ease-[var(--ease-out)] bg-pear-soft text-ink"
+                                aria-current="page"
+                                ><svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="lucide lucide-receipt-text size-[18px] shrink-0 transition-colors text-pear-deep"
+                                    aria-hidden="true"
+                                >
+                                    <path d="M13 16H8"></path>
+                                    <path d="M14 8H8"></path>
+                                    <path d="M16 12H8"></path>
+                                    <path
+                                        d="M4 3a1 1 0 0 1 1-1 1.3 1.3 0 0 1 .7.2l.933.6a1.3 1.3 0 0 0 1.4 0l.934-.6a1.3 1.3 0 0 1 1.4 0l.933.6a1.3 1.3 0 0 0 1.4 0l.933-.6a1.3 1.3 0 0 1 1.4 0l.934.6a1.3 1.3 0 0 0 1.4 0l.933-.6A1.3 1.3 0 0 1 19 2a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1 1.3 1.3 0 0 1-.7-.2l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.934.6a1.3 1.3 0 0 1-1.4 0l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-1.4 0l-.934-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-.7.2 1 1 0 0 1-1-1z"
+                                    ></path></svg
+                                ><span class="min-w-0"
+                                    ><span class="block truncate text-sm font-semibold"
+                                        >Reportes</span
+                                    ><span class="block truncate text-xs text-ink-2"
+                                        >Fiscales y contables</span
+                                    ></span
+                                ></a
+                            >
+                        </nav>
+                        <div class="m-3 mt-4">
+                            <button
+                                type="button"
+                                class="flex w-full items-center gap-2.5 rounded-xl border p-3 text-left transition-colors duration-[var(--dur-short)] border-rule bg-card hover:bg-paper-2"
+                            >
+                                <span
+                                    aria-hidden="true"
+                                    class="inline-flex shrink-0 items-center justify-center rounded-full bg-pear-soft font-semibold text-ink size-8 text-xs"
+                                    >MQ</span
+                                ><span class="min-w-0"
+                                    ><span class="block truncate text-sm font-semibold text-ink"
+                                        >Mariana Quiroga</span
+                                    ><span class="block truncate text-xs text-muted-foreground"
+                                        >Directora de Finanzas</span
+                                    ></span
+                                >
+                            </button>
+                        </div>
+                    </div>
+                </aside>
+                <div class="lg:pl-[calc(var(--sidebar-width)+var(--space-lg))]">
+                    <header
+                        class="app-chrome sticky top-0 z-[var(--z-sticky-nav)] flex h-14 items-center gap-2 border-b border-rule bg-paper/85 px-4 backdrop-blur-sm sm:px-6 lg:px-8"
+                    >
+                        <button
+                            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-sm font-semibold transition-[transform,box-shadow,background-color] duration-[var(--dur-micro)] ease-[var(--ease-out)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-paper disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground size-9 lg:hidden"
+                            aria-label="Abrir menú de navegación"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="lucide lucide-menu size-5"
+                                aria-hidden="true"
+                            >
+                                <path d="M4 5h16"></path>
+                                <path d="M4 12h16"></path>
+                                <path d="M4 19h16"></path>
+                            </svg>
+                        </button>
+                        <div class="min-w-0 flex-1">
+                            <h1
+                                class="truncate font-display text-base font-semibold tracking-tight text-ink"
+                            >
+                                Reportes fiscales y contables
+                            </h1>
+                        </div>
+                        <span
+                            class="mono-label hidden items-center gap-1.5 rounded-full border border-rule bg-card px-3 py-1 sm:inline-flex"
+                            ><span class="live-dot" aria-hidden="true"></span>Nov 2026</span
+                        ><button
+                            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-sm font-semibold transition-[transform,box-shadow,background-color] duration-[var(--dur-micro)] ease-[var(--ease-out)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-paper disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground size-9"
+                            aria-label="Actualizar datos"
+                            data-state="closed"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="lucide lucide-refresh-cw size-4"
+                                aria-hidden="true"
+                            >
+                                <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
+                                <path d="M21 3v5h-5"></path>
+                                <path
+                                    d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"
+                                ></path>
+                                <path d="M8 16H3v5"></path>
+                            </svg></button
+                        ><button
+                            type="button"
+                            id="radix-_r_4_"
+                            aria-haspopup="menu"
+                            aria-expanded="false"
+                            data-state="closed"
+                            class="rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
+                            data-overlay-trigger="user-menu"
+                        >
+                            <span
+                                aria-hidden="true"
+                                class="inline-flex size-9 shrink-0 items-center justify-center rounded-full bg-pear-soft text-sm font-semibold text-ink"
+                                >MQ</span
+                            ><span class="sr-only">Abrir menú de usuario</span>
+                        </button>
+                    </header>
+                    <main class="print-main px-4 pb-4 pt-6 sm:px-6 lg:px-8">
+                        <div class="mx-auto max-w-[var(--page-max)]">
+                            <div>
+                                <div class="flex flex-wrap items-end justify-between gap-4">
+                                    <div data-reveal="true" class="mb-6" data-revealed="true">
+                                        <p class="eyebrow">05 · REPORTES</p>
+                                        <h2
+                                            class="mt-1.5 font-display text-2xl font-semibold tracking-[-0.025em] text-ink sm:text-3xl"
+                                        >
+                                            Reportes fiscales y contables
+                                        </h2>
+                                        <p
+                                            class="mt-2 max-w-2xl text-sm text-muted-foreground sm:text-base"
+                                        >
+                                            Suma Labs, S.A. de C.V. · RFC SUM1908123K4 · Ejercicio
+                                            2026 (Ene 2026 – Nov 2026).
+                                        </p>
+                                    </div>
+                                    <button
+                                        class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-sm font-semibold transition-[transform,box-shadow,background-color] duration-[var(--dur-micro)] ease-[var(--ease-out)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-paper disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input bg-card hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 no-print mb-6"
+                                        data-reveal="true"
+                                        data-revealed="true"
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="24"
+                                            height="24"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            class="lucide lucide-printer size-4"
+                                            aria-hidden="true"
+                                        >
+                                            <path
+                                                d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"
+                                            ></path>
+                                            <path
+                                                d="M6 9V3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6"
+                                            ></path>
+                                            <rect
+                                                x="6"
+                                                y="14"
+                                                width="12"
+                                                height="8"
+                                                rx="1"
+                                            ></rect></svg
+                                        >Exportar / imprimir
+                                    </button>
+                                </div>
+                                <div
+                                    data-reveal="true"
+                                    class="rounded-[var(--radius-xl)] border border-rule bg-card shadow-[var(--shadow-whisper)]"
+                                    data-revealed="true"
+                                >
+                                    <div class="p-4 sm:p-5">
+                                        <p
+                                            class="font-display text-base font-semibold tracking-tight text-ink"
+                                        >
+                                            IVA mensual · 16 %
+                                        </p>
+                                        <p class="mt-0.5 text-xs text-muted-foreground">
+                                            Trasladado sobre facturado, acreditable sobre gastos, a
+                                            pagar = diferencia.
+                                        </p>
+                                    </div>
+                                    <div class="relative w-full overflow-x-auto">
+                                        <table class="w-full caption-bottom text-sm">
+                                            <caption class="mt-4 px-4 text-left text-xs text-faint">
+                                                Declaración mensual de IVA del ejercicio.
+                                            </caption>
+                                            <thead class="[&amp;_tr]:border-b">
+                                                <tr
+                                                    class="border-b border-border transition-colors hover:bg-paper-2/60 data-[state=selected]:bg-paper-3"
+                                                >
+                                                    <th
+                                                        class="h-10 px-3 text-left align-middle text-xs font-medium uppercase tracking-[0.08em] text-faint"
+                                                    >
+                                                        Mes
+                                                    </th>
+                                                    <th
+                                                        class="h-10 px-3 align-middle text-xs font-medium uppercase tracking-[0.08em] text-faint text-right"
+                                                    >
+                                                        IVA trasladado
+                                                    </th>
+                                                    <th
+                                                        class="h-10 px-3 align-middle text-xs font-medium uppercase tracking-[0.08em] text-faint text-right"
+                                                    >
+                                                        IVA acreditable
+                                                    </th>
+                                                    <th
+                                                        class="h-10 px-3 align-middle text-xs font-medium uppercase tracking-[0.08em] text-faint text-right"
+                                                    >
+                                                        IVA a pagar
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="[&amp;_tr:last-child]:border-0">
+                                                <tr
+                                                    class="border-b border-border transition-colors hover:bg-paper-2/60 data-[state=selected]:bg-paper-3"
+                                                >
+                                                    <td
+                                                        class="px-3 py-3 align-middle font-medium text-ink"
+                                                    >
+                                                        Ene 2026
+                                                    </td>
+                                                    <td
+                                                        class="px-3 py-3 align-middle num text-right text-muted-foreground"
+                                                    >
+                                                        $31,488.00
+                                                    </td>
+                                                    <td
+                                                        class="px-3 py-3 align-middle num text-right text-muted-foreground"
+                                                    >
+                                                        $24,320.00
+                                                    </td>
+                                                    <td
+                                                        class="px-3 py-3 align-middle num text-right font-semibold text-warning"
+                                                    >
+                                                        $7,168.00
+                                                    </td>
+                                                </tr>
+                                                <tr
+                                                    class="border-b border-border transition-colors hover:bg-paper-2/60 data-[state=selected]:bg-paper-3"
+                                                >
+                                                    <td
+                                                        class="px-3 py-3 align-middle font-medium text-ink"
+                                                    >
+                                                        Feb 2026
+                                                    </td>
+                                                    <td
+                                                        class="px-3 py-3 align-middle num text-right text-muted-foreground"
+                                                    >
+                                                        $34,160.00
+                                                    </td>
+                                                    <td
+                                                        class="px-3 py-3 align-middle num text-right text-muted-foreground"
+                                                    >
+                                                        $25,344.00
+                                                    </td>
+                                                    <td
+                                                        class="px-3 py-3 align-middle num text-right font-semibold text-warning"
+                                                    >
+                                                        $8,816.00
+                                                    </td>
+                                                </tr>
+                                                <tr
+                                                    class="border-b border-border transition-colors hover:bg-paper-2/60 data-[state=selected]:bg-paper-3"
+                                                >
+                                                    <td
+                                                        class="px-3 py-3 align-middle font-medium text-ink"
+                                                    >
+                                                        Mar 2026
+                                                    </td>
+                                                    <td
+                                                        class="px-3 py-3 align-middle num text-right text-muted-foreground"
+                                                    >
+                                                        $36,992.00
+                                                    </td>
+                                                    <td
+                                                        class="px-3 py-3 align-middle num text-right text-muted-foreground"
+                                                    >
+                                                        $27,360.00
+                                                    </td>
+                                                    <td
+                                                        class="px-3 py-3 align-middle num text-right font-semibold text-warning"
+                                                    >
+                                                        $9,632.00
+                                                    </td>
+                                                </tr>
+                                                <tr
+                                                    class="border-b border-border transition-colors hover:bg-paper-2/60 data-[state=selected]:bg-paper-3"
+                                                >
+                                                    <td
+                                                        class="px-3 py-3 align-middle font-medium text-ink"
+                                                    >
+                                                        Abr 2026
+                                                    </td>
+                                                    <td
+                                                        class="px-3 py-3 align-middle num text-right text-muted-foreground"
+                                                    >
+                                                        $39,824.00
+                                                    </td>
+                                                    <td
+                                                        class="px-3 py-3 align-middle num text-right text-muted-foreground"
+                                                    >
+                                                        $28,240.00
+                                                    </td>
+                                                    <td
+                                                        class="px-3 py-3 align-middle num text-right font-semibold text-warning"
+                                                    >
+                                                        $11,584.00
+                                                    </td>
+                                                </tr>
+                                                <tr
+                                                    class="border-b border-border transition-colors hover:bg-paper-2/60 data-[state=selected]:bg-paper-3"
+                                                >
+                                                    <td
+                                                        class="px-3 py-3 align-middle font-medium text-ink"
+                                                    >
+                                                        May 2026
+                                                    </td>
+                                                    <td
+                                                        class="px-3 py-3 align-middle num text-right text-muted-foreground"
+                                                    >
+                                                        $42,768.00
+                                                    </td>
+                                                    <td
+                                                        class="px-3 py-3 align-middle num text-right text-muted-foreground"
+                                                    >
+                                                        $28,832.00
+                                                    </td>
+                                                    <td
+                                                        class="px-3 py-3 align-middle num text-right font-semibold text-warning"
+                                                    >
+                                                        $13,936.00
+                                                    </td>
+                                                </tr>
+                                                <tr
+                                                    class="border-b border-border transition-colors hover:bg-paper-2/60 data-[state=selected]:bg-paper-3"
+                                                >
+                                                    <td
+                                                        class="px-3 py-3 align-middle font-medium text-ink"
+                                                    >
+                                                        Jun 2026
+                                                    </td>
+                                                    <td
+                                                        class="px-3 py-3 align-middle num text-right text-muted-foreground"
+                                                    >
+                                                        $46,336.00
+                                                    </td>
+                                                    <td
+                                                        class="px-3 py-3 align-middle num text-right text-muted-foreground"
+                                                    >
+                                                        $29,824.00
+                                                    </td>
+                                                    <td
+                                                        class="px-3 py-3 align-middle num text-right font-semibold text-warning"
+                                                    >
+                                                        $16,512.00
+                                                    </td>
+                                                </tr>
+                                                <tr
+                                                    class="border-b border-border transition-colors hover:bg-paper-2/60 data-[state=selected]:bg-paper-3"
+                                                >
+                                                    <td
+                                                        class="px-3 py-3 align-middle font-medium text-ink"
+                                                    >
+                                                        Jul 2026
+                                                    </td>
+                                                    <td
+                                                        class="px-3 py-3 align-middle num text-right text-muted-foreground"
+                                                    >
+                                                        $48,816.00
+                                                    </td>
+                                                    <td
+                                                        class="px-3 py-3 align-middle num text-right text-muted-foreground"
+                                                    >
+                                                        $30,848.00
+                                                    </td>
+                                                    <td
+                                                        class="px-3 py-3 align-middle num text-right font-semibold text-warning"
+                                                    >
+                                                        $17,968.00
+                                                    </td>
+                                                </tr>
+                                                <tr
+                                                    class="border-b border-border transition-colors hover:bg-paper-2/60 data-[state=selected]:bg-paper-3"
+                                                >
+                                                    <td
+                                                        class="px-3 py-3 align-middle font-medium text-ink"
+                                                    >
+                                                        Ago 2026
+                                                    </td>
+                                                    <td
+                                                        class="px-3 py-3 align-middle num text-right text-muted-foreground"
+                                                    >
+                                                        $52,544.00
+                                                    </td>
+                                                    <td
+                                                        class="px-3 py-3 align-middle num text-right text-muted-foreground"
+                                                    >
+                                                        $31,936.00
+                                                    </td>
+                                                    <td
+                                                        class="px-3 py-3 align-middle num text-right font-semibold text-warning"
+                                                    >
+                                                        $20,608.00
+                                                    </td>
+                                                </tr>
+                                                <tr
+                                                    class="border-b border-border transition-colors hover:bg-paper-2/60 data-[state=selected]:bg-paper-3"
+                                                >
+                                                    <td
+                                                        class="px-3 py-3 align-middle font-medium text-ink"
+                                                    >
+                                                        Sep 2026
+                                                    </td>
+                                                    <td
+                                                        class="px-3 py-3 align-middle num text-right text-muted-foreground"
+                                                    >
+                                                        $56,288.00
+                                                    </td>
+                                                    <td
+                                                        class="px-3 py-3 align-middle num text-right text-muted-foreground"
+                                                    >
+                                                        $33,168.00
+                                                    </td>
+                                                    <td
+                                                        class="px-3 py-3 align-middle num text-right font-semibold text-warning"
+                                                    >
+                                                        $23,120.00
+                                                    </td>
+                                                </tr>
+                                                <tr
+                                                    class="border-b border-border transition-colors hover:bg-paper-2/60 data-[state=selected]:bg-paper-3"
+                                                >
+                                                    <td
+                                                        class="px-3 py-3 align-middle font-medium text-ink"
+                                                    >
+                                                        Oct 2026
+                                                    </td>
+                                                    <td
+                                                        class="px-3 py-3 align-middle num text-right text-muted-foreground"
+                                                    >
+                                                        $60,672.00
+                                                    </td>
+                                                    <td
+                                                        class="px-3 py-3 align-middle num text-right text-muted-foreground"
+                                                    >
+                                                        $34,384.00
+                                                    </td>
+                                                    <td
+                                                        class="px-3 py-3 align-middle num text-right font-semibold text-warning"
+                                                    >
+                                                        $26,288.00
+                                                    </td>
+                                                </tr>
+                                                <tr
+                                                    class="border-b border-border transition-colors hover:bg-paper-2/60 data-[state=selected]:bg-paper-3"
+                                                >
+                                                    <td
+                                                        class="px-3 py-3 align-middle font-medium text-ink"
+                                                    >
+                                                        Nov 2026
+                                                    </td>
+                                                    <td
+                                                        class="px-3 py-3 align-middle num text-right text-muted-foreground"
+                                                    >
+                                                        $65,244.00
+                                                    </td>
+                                                    <td
+                                                        class="px-3 py-3 align-middle num text-right text-muted-foreground"
+                                                    >
+                                                        $35,456.00
+                                                    </td>
+                                                    <td
+                                                        class="px-3 py-3 align-middle num text-right font-semibold text-warning"
+                                                    >
+                                                        $29,788.00
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr
+                                                    class="border-b transition-colors hover:bg-paper-2/60 data-[state=selected]:bg-paper-3 border-t-2 border-rule-strong"
+                                                >
+                                                    <td
+                                                        class="px-3 py-3 align-middle font-semibold text-ink"
+                                                    >
+                                                        Total ejercicio
+                                                    </td>
+                                                    <td
+                                                        class="px-3 py-3 align-middle num text-right font-semibold text-ink"
+                                                    >
+                                                        $515,132.00
+                                                    </td>
+                                                    <td
+                                                        class="px-3 py-3 align-middle num text-right font-semibold text-ink"
+                                                    >
+                                                        $329,712.00
+                                                    </td>
+                                                    <td
+                                                        class="px-3 py-3 align-middle num text-right font-bold text-warning"
+                                                    >
+                                                        $185,420.00
+                                                    </td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="mt-4 grid gap-4 lg:grid-cols-2">
+                                    <div
+                                        data-reveal="true"
+                                        class="rounded-[var(--radius-xl)] border border-rule bg-card p-5 shadow-[var(--shadow-whisper)]"
+                                        data-revealed="true"
+                                    >
+                                        <p
+                                            class="font-display text-base font-semibold tracking-tight text-ink"
+                                        >
+                                            Estado de resultados
+                                        </p>
+                                        <p class="mt-0.5 text-xs text-muted-foreground">
+                                            Ene 2026 – Nov 2026
+                                        </p>
+                                        <div class="mt-3">
+                                            <div
+                                                class="flex items-baseline justify-between gap-3 py-2"
+                                            >
+                                                <span class="text-sm text-muted-foreground"
+                                                    >Ingresos por servicios</span
+                                                ><span class="num text-sm text-ink"
+                                                    >$3,219,575.00</span
+                                                >
+                                            </div>
+                                            <div
+                                                class="flex items-baseline justify-between gap-3 py-2"
+                                            >
+                                                <span class="text-sm text-muted-foreground"
+                                                    >Gastos de operación</span
+                                                ><span class="num text-sm text-ink"
+                                                    >($2,060,700.00)</span
+                                                >
+                                            </div>
+                                            <div
+                                                class="flex items-baseline justify-between gap-3 py-2 border-t border-rule pt-2.5"
+                                            >
+                                                <span class="text-sm font-semibold text-ink"
+                                                    >Utilidad bruta</span
+                                                ><span
+                                                    class="num text-sm font-semibold text-success"
+                                                    >$1,158,875.00</span
+                                                >
+                                            </div>
+                                            <div
+                                                class="flex items-baseline justify-between gap-3 py-2"
+                                            >
+                                                <span class="text-sm text-muted-foreground"
+                                                    >ISR (30 %)</span
+                                                ><span class="num text-sm text-ink"
+                                                    >($347,663.00)</span
+                                                >
+                                            </div>
+                                            <div
+                                                class="flex items-baseline justify-between gap-3 py-2 border-t border-rule pt-2.5"
+                                            >
+                                                <span class="text-sm font-semibold text-ink"
+                                                    >Utilidad neta</span
+                                                ><span
+                                                    class="num text-sm font-semibold text-success"
+                                                    >$811,212.00</span
+                                                >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div
+                                        data-reveal="true"
+                                        class="rounded-[var(--radius-xl)] border border-rule bg-card p-5 shadow-[var(--shadow-whisper)]"
+                                        data-revealed="true"
+                                    >
+                                        <div class="flex items-start justify-between gap-2">
+                                            <div>
+                                                <p
+                                                    class="font-display text-base font-semibold tracking-tight text-ink"
+                                                >
+                                                    Balance general
+                                                </p>
+                                                <p class="mt-0.5 text-xs text-muted-foreground">
+                                                    Al 31 ago 2026
+                                                </p>
+                                            </div>
+                                            <span
+                                                class="inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 text-xs font-medium bg-coral-soft text-danger"
+                                                >No cuadra</span
+                                            >
+                                        </div>
+                                        <div>
+                                            <p class="eyebrow mt-4 first:mt-0">Activos</p>
+                                            <div class="mt-1">
+                                                <div
+                                                    class="flex items-baseline justify-between gap-3 py-1 text-sm"
+                                                >
+                                                    <span class="text-muted-foreground"
+                                                        >Caja y bancos</span
+                                                    ><span class="num text-ink">$1,934,500.00</span>
+                                                </div>
+                                                <div
+                                                    class="flex items-baseline justify-between gap-3 py-1 text-sm"
+                                                >
+                                                    <span class="text-muted-foreground"
+                                                        >Cuentas por cobrar</span
+                                                    ><span class="num text-ink">$96,480.00</span>
+                                                </div>
+                                                <div
+                                                    class="flex items-baseline justify-between gap-3 py-1 text-sm"
+                                                >
+                                                    <span class="text-muted-foreground"
+                                                        >Equipo de cómputo</span
+                                                    ><span class="num text-ink">$240,000.00</span>
+                                                </div>
+                                                <div
+                                                    class="flex items-baseline justify-between gap-3 border-t border-rule pt-1.5 text-sm"
+                                                >
+                                                    <span class="font-semibold text-ink"
+                                                        >Total activos</span
+                                                    ><span class="num font-semibold text-ink"
+                                                        >$2,270,980.00</span
+                                                    >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <p class="eyebrow mt-4 first:mt-0">Pasivos</p>
+                                            <div class="mt-1">
+                                                <div
+                                                    class="flex items-baseline justify-between gap-3 py-1 text-sm"
+                                                >
+                                                    <span class="text-muted-foreground"
+                                                        >Proveedores</span
+                                                    ><span class="num text-ink">$158,300.00</span>
+                                                </div>
+                                                <div
+                                                    class="flex items-baseline justify-between gap-3 py-1 text-sm"
+                                                >
+                                                    <span class="text-muted-foreground"
+                                                        >Impuestos por pagar</span
+                                                    ><span class="num text-ink">$145,620.00</span>
+                                                </div>
+                                                <div
+                                                    class="flex items-baseline justify-between gap-3 border-t border-rule pt-1.5 text-sm"
+                                                >
+                                                    <span class="font-semibold text-ink"
+                                                        >Total pasivos</span
+                                                    ><span class="num font-semibold text-ink"
+                                                        >$303,920.00</span
+                                                    >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <p class="eyebrow mt-4 first:mt-0">Capital contable</p>
+                                            <div class="mt-1">
+                                                <div
+                                                    class="flex items-baseline justify-between gap-3 py-1 text-sm"
+                                                >
+                                                    <span class="text-muted-foreground"
+                                                        >Capital social</span
+                                                    ><span class="num text-ink">$500,000.00</span>
+                                                </div>
+                                                <div
+                                                    class="flex items-baseline justify-between gap-3 py-1 text-sm"
+                                                >
+                                                    <span class="text-muted-foreground"
+                                                        >Utilidades retenidas</span
+                                                    ><span class="num text-ink">$767,918.00</span>
+                                                </div>
+                                                <div
+                                                    class="flex items-baseline justify-between gap-3 py-1 text-sm"
+                                                >
+                                                    <span class="text-muted-foreground"
+                                                        >Resultado del ejercicio</span
+                                                    ><span class="num text-ink">$811,212.00</span>
+                                                </div>
+                                                <div
+                                                    class="flex items-baseline justify-between gap-3 border-t border-rule pt-1.5 text-sm"
+                                                >
+                                                    <span class="font-semibold text-ink"
+                                                        >Total capital</span
+                                                    ><span class="num font-semibold text-ink"
+                                                        >$2,079,130.00</span
+                                                    >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="mt-4 flex items-baseline justify-between gap-3 rounded-xl bg-paper-2 px-3 py-2.5"
+                                        >
+                                            <span class="text-sm font-semibold text-ink"
+                                                >Activos = Pasivos + Capital</span
+                                            ><span class="num text-sm font-semibold text-success"
+                                                >$2,270,980.00 = $2,383,050.00</span
+                                            >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                    <footer class="app-chrome mt-14 border-t border-rule px-4 py-6 sm:px-6 lg:px-8">
+                        <div
+                            class="mx-auto flex max-w-[var(--page-max)] flex-col gap-1 text-sm sm:flex-row sm:items-center sm:justify-between"
+                        >
+                            <p class="font-display font-medium text-foreground">
+                                Suma · Cierre fiscal Nov 2026
+                            </p>
+                            <p class="text-xs text-faint">
+                                Datos de demostración (MOCK) · MXN · 2026
+                            </p>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+        </div>
+
+        <script type="module" src="./js/app.js"></script>
+        <div
+            data-radix-popper-content-wrapper=""
+            dir="ltr"
+            class="overlay-menu"
+            data-overlay-panel="user-menu"
+            hidden=""
+        >
+            <div
+                data-side="bottom"
+                data-align="end"
+                role="menu"
+                aria-orientation="vertical"
+                data-state="open"
+                data-radix-menu-content=""
+                dir="ltr"
+                class="z-[var(--z-dropdown)] min-w-[9rem] overflow-hidden rounded-[var(--radius-md)] border bg-card p-1 text-card-foreground shadow-[var(--shadow-whisper)] data-[state=open]:animate-[menu-in_180ms_var(--ease-out)] data-[state=closed]:animate-[menu-out_140ms_var(--ease-in)] w-60"
+                tabindex="-1"
+                data-orientation="vertical"
+            >
+                <div class="px-2 py-1.5 text-sm font-semibold flex flex-col gap-0.5">
+                    <span class="font-display text-sm font-semibold">Mariana Quiroga</span
+                    ><span class="text-xs font-normal text-muted-foreground"
+                        >mariana.quiroga@suma.mx</span
+                    >
+                </div>
+                <div
+                    role="separator"
+                    aria-orientation="horizontal"
+                    class="-mx-1 my-1 h-px bg-border"
+                ></div>
+                <div
+                    role="menuitem"
+                    class="relative flex cursor-default select-none items-center gap-2 rounded-[var(--radius-sm)] px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&amp;_svg]:size-4 [&amp;_svg]:shrink-0"
+                    tabindex="-1"
+                    data-orientation="vertical"
+                    data-radix-collection-item=""
+                    data-href="perfil.html"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="lucide lucide-user-round"
+                    >
+                        <circle cx="12" cy="8" r="5"></circle>
+                        <path d="M20 21a8 8 0 0 0-16 0"></path></svg
+                    >Mi perfil
+                </div>
+                <div
+                    role="menuitem"
+                    class="relative flex cursor-default select-none items-center gap-2 rounded-[var(--radius-sm)] px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&amp;_svg]:size-4 [&amp;_svg]:shrink-0"
+                    tabindex="-1"
+                    data-orientation="vertical"
+                    data-radix-collection-item=""
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="lucide lucide-settings"
+                    >
+                        <path
+                            d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"
+                        ></path>
+                        <circle cx="12" cy="12" r="3"></circle></svg
+                    >Configuración
+                </div>
+                <div
+                    role="separator"
+                    aria-orientation="horizontal"
+                    class="-mx-1 my-1 h-px bg-border"
+                ></div>
+                <div
+                    role="menuitem"
+                    class="relative flex cursor-default select-none items-center gap-2 rounded-[var(--radius-sm)] px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 text-danger"
+                    tabindex="-1"
+                    data-orientation="vertical"
+                    data-radix-collection-item=""
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="lucide lucide-log-out"
+                    >
+                        <path d="m16 17 5-5-5-5"></path>
+                        <path d="M21 12H9"></path>
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path></svg
+                    >Cerrar sesión
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

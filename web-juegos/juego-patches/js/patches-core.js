@@ -1,14 +1,3 @@
-/**
- * Núcleo de Patches: generación de tableros, pistas, solver y validación.
- *
- * Un tablero es { n, pistas, solucion }:
- * - `pistas` es una lista de { i, area, forma } con una pista por retal.
- * - `solucion` es una lista de rectángulos { r, c, w, h } que cubren el tablero.
- *
- * Reglas: cada retal es un rectángulo con exactamente una pista, su área es el
- * número de la pista y su proporción respeta la forma indicada.
- */
-
 export const CUADRADA = "cuadrada";
 export const ANCHA = "ancha";
 export const ALTA = "alta";
@@ -16,7 +5,6 @@ export const LIBRE = "libre";
 
 export const FORMAS = [CUADRADA, ANCHA, ALTA, LIBRE];
 
-/** Generador pseudoaleatorio determinista (mulberry32). */
 export function crearRng(semilla = 1) {
     let estado = semilla >>> 0;
     return () => {
@@ -28,21 +16,11 @@ export function crearRng(semilla = 1) {
     };
 }
 
-function barajar(lista, rng) {
-    for (let i = lista.length - 1; i > 0; i--) {
-        const j = Math.floor(rng() * (i + 1));
-        [lista[i], lista[j]] = [lista[j], lista[i]];
-    }
-    return lista;
-}
-
-/** Forma que corresponde a un rectángulo real. */
 export function formaDe(w, h) {
     if (w === h) return CUADRADA;
     return w > h ? ANCHA : ALTA;
 }
 
-/** Proporciones posibles para un área y una forma dadas. */
 export function proporciones(area, forma, n) {
     const salida = [];
     for (let h = 1; h <= n; h++) {
@@ -57,7 +35,6 @@ export function proporciones(area, forma, n) {
     return salida;
 }
 
-/** ¿El rectángulo contiene exactamente una pista? */
 function contieneSoloSuPista(rect, n, indices) {
     let cuenta = 0;
     for (let r = rect.r; r < rect.r + rect.h; r++) {
@@ -69,7 +46,6 @@ function contieneSoloSuPista(rect, n, indices) {
     return cuenta === 1;
 }
 
-/** Candidatos de cada pista: rectángulos válidos que solo la contienen a ella. */
 export function construirCandidatos(tablero) {
     const { n, pistas } = tablero;
     const indices = new Set(pistas.map((pista) => pista.i));
@@ -92,7 +68,6 @@ export function construirCandidatos(tablero) {
     });
 }
 
-/** Celdas de un rectángulo. */
 export function celdasDe({ r, c, w, h }, n) {
     const salida = [];
     for (let f = r; f < r + h; f++) {
@@ -101,7 +76,6 @@ export function celdasDe({ r, c, w, h }, n) {
     return salida;
 }
 
-/** ¿Las piezas cubren el tablero sin solapes y respetan sus pistas? */
 export function esSolucion(tablero, piezas) {
     const { n, pistas } = tablero;
     if (!Array.isArray(piezas) || piezas.length !== pistas.length) return false;
@@ -128,10 +102,6 @@ export function esSolucion(tablero, piezas) {
     return cubierta.every((valor) => valor === 1);
 }
 
-/**
- * Cuenta soluciones (hasta `limite`) con cobertura exacta: se toma la primera
- * casilla libre y se prueban los rectángulos candidatos que la cubren.
- */
 export function contarSoluciones(tablero, opciones = {}) {
     const limite = opciones.limite ?? 2;
     const presupuesto = opciones.presupuesto ?? 200000;
@@ -194,7 +164,6 @@ export function contarSoluciones(tablero, opciones = {}) {
     return { soluciones, agotado, nodos };
 }
 
-/** Reparte el tablero en `k` rectángulos cortando uno existente cada vez. */
 export function partirTablero(n, rng, k) {
     let rects = [{ r: 0, c: 0, w: n, h: n }];
     let guardia = 0;
@@ -233,10 +202,6 @@ export function partirTablero(n, rng, k) {
     return rects;
 }
 
-/**
- * Genera un tablero de solución única. Empieza con las formas exactas y, si el
- * tablero sigue teniendo una sola solución, relaja alguna pista a forma libre.
- */
 export function generarPuzzle(n, rng, opciones = {}) {
     const intentos = opciones.intentos ?? 120;
     const minimo = opciones.minimoRetales ?? 5;
@@ -264,7 +229,6 @@ export function generarPuzzle(n, rng, opciones = {}) {
         const { soluciones } = contarSoluciones(tablero);
         if (soluciones.length !== 1) continue;
 
-        // Relaja alguna forma exacta a libre sin perder la solución única.
         for (let k2 = 0; k2 < pistas.length; k2++) {
             if (pistas[k2].forma === LIBRE) continue;
             if (rng() > 0.35) continue;
@@ -284,7 +248,6 @@ export function generarPuzzle(n, rng, opciones = {}) {
     return null;
 }
 
-/** Pistas ordenadas por su índice de casilla. */
 export function ordenarPistas(pistas) {
     return [...pistas].sort((a, b) => a.i - b.i);
 }

@@ -41,34 +41,12 @@ Después abre `http://localhost:8000` (o el puerto que indique la herramienta) e
 ## Estructura del proyecto
 
 ```
-.
-├── index.html          # Página principal (estructura semántica)
-├── css/
-│   ├── tokens.css      # Libro de estilo en custom properties
-│   ├── reset.css       # Reseteo mínimo
-│   ├── style.css       # Entrada: base + sistema de botones
-│   ├── components/     # Componentes (tarjeta, modal de datos, globos)
-│   └── pages/          # Layout de la página
-├── js/
-│   ├── app.js          # Punto de entrada (ES Modules)
-│   ├── modules/        # Lógica del juego, globos y modal
-│   └── utils/          # Utilidades (DOM, localStorage)
-├── assets/
-│   └── favicon.svg
-└── docs/               # Documentación técnica
+index.html
+css/                  — Tokens, reset, componentes y layout
+js/                   — Punto de entrada, módulos y utilidades
+assets/icons/favicon.svg
 ```
-
-## Documentación
-
-- [Arquitectura](docs/architecture.md)
-- [Funcionamiento](docs/funcionamiento.md)
-- [Infraestructura](docs/infraestructura.md)
-- [Casos de uso](docs/casos-de-uso.md)
-- [Flujos y mapa de navegación](docs/flujos.md)
-- [Wireframes](docs/wireframes.md)
-- [Diseño UI/UX y libro de estilo](docs/diseno-ui-ux.md)
-- [Despliegue](docs/deployment.md)
 
 ## Licencia
 
-Este proyecto está bajo la licencia **MIT**. Consulta el archivo [LICENSE](LICENSE) para más detalles.
+Este proyecto está bajo la licencia **MIT**. Consulta el archivo [LICENSE](../../LICENSE) para más detalles.

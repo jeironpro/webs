@@ -1,0 +1,177 @@
+[
+  {
+    "question": "¿Qué es Javadoc?",
+    "options": [
+      "Un doctor",
+      "Un documento",
+      "Herramienta para generar documentación API en formato HTML a partir de comentarios en el código Java",
+      "Un código"
+    ],
+    "answer": 2,
+    "explanation": "Estándar de documentación."
+  },
+  {
+    "question": "¿Cómo empieza un comentario Javadoc?",
+    "options": ["#", "//", "/*", "/**"],
+    "answer": 3,
+    "explanation": "Doble asterisco."
+  },
+  {
+    "question": "¿Qué etiqueta describe un parámetro?",
+    "options": ["@input", "@arg", "@var", "@param"],
+    "answer": 3,
+    "explanation": "@param nombre descripción."
+  },
+  {
+    "question": "¿Qué etiqueta describe el valor de retorno?",
+    "options": ["@back", "@result", "@return", "@output"],
+    "answer": 2,
+    "explanation": "Para métodos no void."
+  },
+  {
+    "question": "¿Qué etiqueta describe una excepción lanzada?",
+    "options": ["@fail", "@bug", "@error", "@throws o @exception"],
+    "answer": 3,
+    "explanation": "Documentar errores esperados."
+  },
+  {
+    "question": "¿Qué etiqueta indica el autor?",
+    "options": ["@me", "@author", "@creator", "@dev"],
+    "answer": 1,
+    "explanation": "Metadatos."
+  },
+  {
+    "question": "¿Qué etiqueta indica la versión?",
+    "options": ["@date", "@rev", "@v", "@version"],
+    "answer": 3,
+    "explanation": "Control de cambios."
+  },
+  {
+    "question": "¿Qué etiqueta marca algo como obsoleto?",
+    "options": ["@bad", "@old", "@deprecated", "@stop"],
+    "answer": 2,
+    "explanation": "Avisa que será eliminado."
+  },
+  {
+    "question": "¿Qué etiqueta crea un enlace a otra parte de la documentación?",
+    "options": ["@url", "@href", "@see o {@link}", "@goto"],
+    "answer": 2,
+    "explanation": "Referencias cruzadas."
+  },
+  {
+    "question": "¿Se puede usar HTML dentro de Javadoc?",
+    "options": [
+      "Solo Markdown",
+      "Sí, se permite HTML básico (p, b, code, ul...)",
+      "No",
+      "Solo texto"
+    ],
+    "answer": 1,
+    "explanation": "Formato rico."
+  },
+  {
+    "question": "¿Qué es la descripción resumida?",
+    "options": [
+      "El final",
+      "El título",
+      "La primera frase del comentario Javadoc, usada en índices y resúmenes",
+      "Todo el texto"
+    ],
+    "answer": 2,
+    "explanation": "Debe ser concisa."
+  },
+  {
+    "question": "¿Para quién es la documentación Javadoc?",
+    "options": [
+      "Para otros desarrolladores que usarán tu código (API consumers)",
+      "Para el usuario final",
+      "Para nadie",
+      "Para el compilador"
+    ],
+    "answer": 0,
+    "explanation": "Interfaz pública."
+  },
+  {
+    "question": "¿Qué elementos deben tener Javadoc en una API pública?",
+    "options": [
+      "Métodos privados",
+      "Clases, Interfaces, Métodos y Campos públicos/protegidos",
+      "Todo",
+      "Variables locales"
+    ],
+    "answer": 1,
+    "explanation": "Lo privado no se expone."
+  },
+  {
+    "question": "¿Qué hace el comando 'javadoc'?",
+    "options": [
+      "Ejecuta la herramienta para generar los archivos HTML",
+      "Compila",
+      "Ejecuta",
+      "Borra"
+    ],
+    "answer": 0,
+    "explanation": "Parte del JDK."
+  },
+  {
+    "question": "¿Qué es {@code ...}?",
+    "options": [
+      "Etiqueta para formatear texto como código (fuente monoespaciada)",
+      "Nada",
+      "Un código",
+      "Un error"
+    ],
+    "answer": 0,
+    "explanation": "Evita interpretar HTML dentro."
+  },
+  {
+    "question": "¿Qué es {@inheritDoc}?",
+    "options": [
+      "Hereda código",
+      "Copia la documentación de la clase padre o interfaz (útil en sobrescritura)",
+      "Hereda error",
+      "Nada"
+    ],
+    "answer": 1,
+    "explanation": "Evita duplicar docs."
+  },
+  {
+    "question": "¿Qué es 'package-info.java'?",
+    "options": [
+      "Un paquete",
+      "Nada",
+      "Un error",
+      "Archivo especial para documentar el paquete completo"
+    ],
+    "answer": 3,
+    "explanation": "Descripción general."
+  },
+  {
+    "question": "¿Por qué es importante documentar?",
+    "options": [
+      "Para aprobar",
+      "Es obligatorio",
+      "Es bonito",
+      "Facilita el mantenimiento, uso y comprensión del código a largo plazo"
+    ],
+    "answer": 3,
+    "explanation": "El código se lee más de lo que se escribe."
+  },
+  {
+    "question": "¿Qué etiqueta se usa para indicar desde qué versión existe una función?",
+    "options": ["@since", "@version", "@from", "@start"],
+    "answer": 0,
+    "explanation": "@since 1.5."
+  },
+  {
+    "question": "¿Los comentarios Javadoc afectan al código compilado?",
+    "options": [
+      "Depende",
+      "Sí, ocupan espacio",
+      "No, son ignorados por el compilador (no van al .class, salvo anotaciones)",
+      "Sí, lo hacen lento"
+    ],
+    "answer": 2,
+    "explanation": "Son metadatos fuente."
+  }
+]

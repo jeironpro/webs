@@ -24,13 +24,14 @@ No requiere instalación ni compilación.
 ## Estructura del proyecto
 
 ```
-juego-tic-tac-toe/
-├── index.html
-├── css/                   # estilos del tablero
-├── js/                    # lógica del juego
-└── icon/                  # favicon
+index.html
+css/styles.css        — Estilos del tablero
+js/app.js             — Lógica del juego
+js/bot.js             — Estrategia del bot
+assets/icons/xo.png
 ```
 
 ## Licencia
+
 Este proyecto está bajo la licencia **MIT**.  
-Consulta el archivo [LICENSE](LICENSE) para más detalles.
+Consulta el archivo [LICENSE](../../LICENSE) para más detalles.

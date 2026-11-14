@@ -1,59 +1,72 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../icon/curso_git.png" type="image/x-icon">
-    <title>Git push</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/git.css">
-</head>
-<body>
-    <header>
-        <h1>Git push</h1>
-    </header>
-    <main class="course-content">
-        <section class="course-section">
-            <article class="command-definition">
-                <div class="definition">
-                    <h2>Definición</h2>
-                    <p>
-                        El comando <code>git push</code> se utiliza para enviar los commits de tu repositorio local al remoto.
-                        Actualiza la rama remota con tus cambios locales, permitiendo que otros colaboren y vean tus modificaciones.
-                        Es el paso final para sincronizar tu trabajo con el repositorio compartido.
-                    </p>
-                </div>
-                <div class="commands">
-                    <h2>Comandos</h2>
-                    <ul>
-                        <li>
-                            <code><span>git push</span></code>
-                            <p>Envía los commits de la rama actual al remoto configurado por defecto (origin).</p>
-                        </li>
-                        <li>
-                            <code><span>git push origin main</span></code>
-                            <p>Envía los commits de la rama main al remoto origin.</p>
-                        </li>
-                        <li>
-                            <code><span>git push -u origin main</span></code>
-                            <p>Establece la rama remota main como upstream y envía los cambios.</p>
-                        </li>
-                        <li>
-                            <code><span>git push --force</span></code>
-                            <p>Forza la actualización del remoto, sobrescribiendo cambios si es necesario. Usar con precaución.</p>
-                        </li>
-                    </ul>
-                </div>
-            </article>
-            <article class="practice">
-                <div class="run-block">
-                    <h3> Ejecutar</h3>
-                    <pre><code>$ git push
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg" />
+        <link rel="shortcut icon" href="../assets/icons/curso_git.png" type="image/x-icon" />
+        <title>Git push</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="../css/git.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Git push</h1>
+        </header>
+        <main class="course-content">
+            <section class="course-section">
+                <article class="command-definition">
+                    <div class="definition">
+                        <h2>Definición</h2>
+                        <p>
+                            El comando <code>git push</code> se utiliza para enviar los commits de
+                            tu repositorio local al remoto. Actualiza la rama remota con tus cambios
+                            locales, permitiendo que otros colaboren y vean tus modificaciones. Es
+                            el paso final para sincronizar tu trabajo con el repositorio compartido.
+                        </p>
+                    </div>
+                    <div class="commands">
+                        <h2>Comandos</h2>
+                        <ul>
+                            <li>
+                                <code><span>git push</span></code>
+                                <p>
+                                    Envía los commits de la rama actual al remoto configurado por
+                                    defecto (origin).
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git push origin main</span></code>
+                                <p>Envía los commits de la rama main al remoto origin.</p>
+                            </li>
+                            <li>
+                                <code><span>git push -u origin main</span></code>
+                                <p>
+                                    Establece la rama remota main como upstream y envía los cambios.
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git push --force</span></code>
+                                <p>
+                                    Forza la actualización del remoto, sobrescribiendo cambios si es
+                                    necesario. Usar con precaución.
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+                <article class="practice">
+                    <div class="run-block">
+                        <h3>Ejecutar</h3>
+                        <pre><code>$ git push
 $ git push --set-upstream origin main</code></pre>
-                </div>
-                <div class="result-block">
-                    <h3> Resultado</h3>
-                    <pre><code>fatal: La rama actual main no tiene una rama upstream.
+                    </div>
+                    <div class="result-block">
+                        <h3>Resultado</h3>
+                        <pre><code>fatal: La rama actual main no tiene una rama upstream.
 Para empujar la rama actual y configurar el remoto como upstream, usa
 
     git push --set-upstream origin main
@@ -71,14 +84,13 @@ remote: Resolving deltas: 100% (2/2), done.
 To github.com:usuario/mi-proyecto.git
  * [new branch]      main -> main
 rama 'main' configurada para rastrear 'origin/main'.</code></pre>
-                </div>
-
-            </article>
-        </section>
-    </main>
-    <footer>
-        &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
-    </footer>
-    <script src="../js/header.js"></script>
-</body>
+                    </div>
+                </article>
+            </section>
+        </main>
+        <footer>
+            &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
+        </footer>
+        <script src="../js/header.js"></script>
+    </body>
 </html>

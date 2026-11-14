@@ -1,9 +1,9 @@
-import { ACESFilmicToneMapping, SRGBColorSpace, WebGPURenderer } from "three/webgpu";
+import {
+    ACESFilmicToneMapping,
+    SRGBColorSpace,
+    WebGPURenderer,
+} from "../../vendor/three/three.webgpu.js";
 
-/**
- * Inicializa el renderizador. `WebGPURenderer` intenta WebGPU y cae a WebGL 2
- * por su cuenta; aquí solo se ajusta el pipeline y se informa del backend real.
- */
 export async function crearRenderizador(contenedor) {
     const ancho = contenedor.clientWidth || globalThis.innerWidth || 1280;
     const alto = contenedor.clientHeight || globalThis.innerHeight || 720;

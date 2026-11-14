@@ -1,0 +1,866 @@
+<!doctype html> <!doctype html>
+<html lang="es" class="light" data-app="dashboard-operativo-analitico">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Dashboard Operativo · Pulso</title>
+
+        <link rel="stylesheet" href="./css/styles.css" />
+        <link rel="stylesheet" href="./css/app.css" />
+    </head>
+    <body data-page="perfil" data-route="perfil">
+        <div id="root">
+            <div class="flex min-h-svh">
+                <aside
+                    class="sticky top-0 hidden h-svh w-64 shrink-0 flex-col border-r border-sidebar-border bg-sidebar px-4 py-6 lg:flex"
+                >
+                    <a
+                        class="flex items-center gap-3 rounded-full px-2"
+                        aria-label="Ir al resumen"
+                        href="index.html"
+                        ><img
+                            alt="Pulso"
+                            width="34"
+                            height="34"
+                            draggable="false"
+                            class="shrink-0 select-none"
+                            src="./favicon.svg"
+                        /><span class="flex flex-col"
+                            ><span class="text-lg leading-tight font-semibold tracking-tight"
+                                >Pulso</span
+                            ><span class="mono-label">Dashboard operativo</span></span
+                        ></a
+                    >
+                    <nav aria-label="Navegación principal" class="mt-8 flex flex-col gap-1">
+                        <a
+                            class="flex items-center gap-3 rounded-full px-3 py-2 text-sm font-medium transition-colors text-sidebar-foreground/75 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+                            href="index.html#resumen"
+                            ><svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="lucide lucide-layout-dashboard size-4 shrink-0"
+                                aria-hidden="true"
+                            >
+                                <rect width="7" height="9" x="3" y="3" rx="1"></rect>
+                                <rect width="7" height="5" x="14" y="3" rx="1"></rect>
+                                <rect width="7" height="9" x="14" y="12" rx="1"></rect>
+                                <rect width="7" height="5" x="3" y="16" rx="1"></rect></svg
+                            >Resumen</a
+                        ><a
+                            class="flex items-center gap-3 rounded-full px-3 py-2 text-sm font-medium transition-colors text-sidebar-foreground/75 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+                            href="index.html#tendencias"
+                            ><svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="lucide lucide-trending-up size-4 shrink-0"
+                                aria-hidden="true"
+                            >
+                                <path d="M16 7h6v6"></path>
+                                <path d="m22 7-8.5 8.5-5-5L2 17"></path></svg
+                            >Tendencias</a
+                        ><a
+                            class="flex items-center gap-3 rounded-full px-3 py-2 text-sm font-medium transition-colors text-sidebar-foreground/75 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+                            href="index.html#detalle"
+                            ><svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="lucide lucide-shopping-cart size-4 shrink-0"
+                                aria-hidden="true"
+                            >
+                                <circle cx="8" cy="21" r="1"></circle>
+                                <circle cx="19" cy="21" r="1"></circle>
+                                <path
+                                    d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"
+                                ></path></svg
+                            >Detalle de pedidos</a
+                        ><a
+                            class="flex items-center gap-3 rounded-full px-3 py-2 text-sm font-medium transition-colors text-sidebar-foreground/75 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+                            href="index.html#reportes"
+                            ><svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="lucide lucide-file-text size-4 shrink-0"
+                                aria-hidden="true"
+                            >
+                                <path
+                                    d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"
+                                ></path>
+                                <path d="M14 2v5a1 1 0 0 0 1 1h5"></path>
+                                <path d="M10 9H8"></path>
+                                <path d="M16 13H8"></path>
+                                <path d="M16 17H8"></path></svg
+                            >Reportes</a
+                        ><a
+                            aria-current="true"
+                            class="flex items-center gap-3 rounded-full px-3 py-2 text-sm font-medium transition-colors bg-primary text-primary-foreground"
+                            href="perfil.html"
+                            ><svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="lucide lucide-user-round size-4 shrink-0"
+                                aria-hidden="true"
+                            >
+                                <circle cx="12" cy="8" r="5"></circle>
+                                <path d="M20 21a8 8 0 0 0-16 0"></path></svg
+                            >Perfil</a
+                        >
+                    </nav>
+                    <div class="mt-auto flex flex-col items-center gap-3 px-2">
+                        <p class="mono-label opacity-50">Nébula · 2026</p>
+                    </div>
+                </aside>
+                <div class="flex min-w-0 flex-1 flex-col">
+                    <header
+                        class="sticky top-0 z-30 border-b border-border/70 bg-background/85 backdrop-blur-sm"
+                    >
+                        <div class="flex items-center justify-between gap-3 px-4 py-3 sm:px-6">
+                            <div class="flex min-w-0 items-center gap-3">
+                                <button
+                                    data-slot="sheet-trigger"
+                                    data-variant="ghost"
+                                    data-size="icon"
+                                    class="group/button inline-flex shrink-0 items-center justify-center rounded-full border border-transparent bg-clip-padding text-sm font-semibold whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&amp;_svg]:pointer-events-none [&amp;_svg]:shrink-0 [&amp;_svg:not([class*='size-'])]:size-4 hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50 size-8 lg:hidden"
+                                    aria-label="Abrir menú"
+                                    type="button"
+                                    aria-haspopup="dialog"
+                                    aria-expanded="false"
+                                    data-state="closed"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="24"
+                                        height="24"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        class="lucide lucide-menu"
+                                        aria-hidden="true"
+                                    >
+                                        <path d="M4 5h16"></path>
+                                        <path d="M4 12h16"></path>
+                                        <path d="M4 19h16"></path>
+                                    </svg></button
+                                ><img
+                                    alt="Pulso"
+                                    width="28"
+                                    height="28"
+                                    draggable="false"
+                                    class="shrink-0 select-none lg:hidden"
+                                    src="./favicon.svg"
+                                />
+                                <div class="min-w-0">
+                                    <p
+                                        class="truncate text-base font-semibold tracking-tight sm:text-lg"
+                                    >
+                                        Buenas tardes, equipo
+                                    </p>
+                                    <p class="truncate text-sm text-muted-foreground">
+                                        14 nov 2026 · Nébula
+                                    </p>
+                                </div>
+                            </div>
+                            <a
+                                aria-label="Abrir perfil"
+                                title="Ver perfil"
+                                class="flex size-8 shrink-0 items-center justify-center rounded-full bg-cyan text-sm font-semibold text-background transition-transform hover:scale-110 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+                                href="perfil.html"
+                                ><svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="lucide lucide-user-round size-4"
+                                    aria-hidden="true"
+                                >
+                                    <circle cx="12" cy="8" r="5"></circle>
+                                    <path d="M20 21a8 8 0 0 0-16 0"></path></svg
+                            ></a>
+                        </div>
+                    </header>
+                    <main class="flex-1">
+                        <div class="mx-auto w-full max-w-(--shell) px-4 py-10 sm:px-6 lg:px-8">
+                            <section aria-label="Perfil" class="reveal is-visible">
+                                <div class="flex flex-col gap-6 sm:flex-row sm:items-start">
+                                    <span
+                                        data-slot="avatar"
+                                        data-size="lg"
+                                        class="group/avatar relative flex shrink-0 rounded-full select-none after:absolute after:inset-0 after:rounded-full after:border after:border-border after:mix-blend-darken data-[size=lg]:size-10 data-[size=sm]:size-6 dark:after:mix-blend-lighten size-20 sm:size-24"
+                                        ><span
+                                            data-slot="avatar-fallback"
+                                            class="flex size-full items-center justify-center rounded-full group-data-[size=sm]/avatar:text-xs bg-cyan text-xl font-semibold text-background sm:text-2xl"
+                                            >NH</span
+                                        ></span
+                                    >
+                                    <div class="min-w-0 flex-1">
+                                        <div class="flex flex-wrap items-center gap-2">
+                                            <h1
+                                                class="text-2xl font-semibold tracking-tight sm:text-3xl"
+                                            >
+                                                Nadia <span class="hl">Herrera</span>
+                                            </h1>
+                                        </div>
+                                        <p class="mt-1 text-base font-medium text-muted-foreground">
+                                            Analista de Operaciones · Nébula
+                                        </p>
+                                        <p
+                                            class="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground"
+                                        >
+                                            Analizo las operaciones diarias de Nébula: KPIs,
+                                            tendencias y reportes para el equipo comercial. Fan de
+                                            los datos claros y del café con leche.
+                                        </p>
+                                        <div class="mt-4 flex flex-wrap gap-2">
+                                            <span
+                                                data-slot="badge"
+                                                data-variant="outline"
+                                                class="group/badge inline-flex h-5 w-fit shrink-0 items-center justify-center overflow-hidden border px-2 text-xs font-medium whitespace-nowrap transition-all focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&amp;&gt;svg]:pointer-events-none [&amp;&gt;svg]:size-3! border-border text-foreground [a]:hover:bg-muted [a]:hover:text-muted-foreground gap-1.5 rounded-full py-1"
+                                                ><svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    width="24"
+                                                    height="24"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    stroke-width="2"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    class="lucide lucide-mail size-3.5"
+                                                    aria-hidden="true"
+                                                >
+                                                    <path
+                                                        d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"
+                                                    ></path>
+                                                    <rect
+                                                        x="2"
+                                                        y="4"
+                                                        width="20"
+                                                        height="16"
+                                                        rx="2"
+                                                    ></rect></svg
+                                                >nadia@nebula.mx</span
+                                            ><span
+                                                data-slot="badge"
+                                                data-variant="outline"
+                                                class="group/badge inline-flex h-5 w-fit shrink-0 items-center justify-center overflow-hidden border px-2 text-xs font-medium whitespace-nowrap transition-all focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&amp;&gt;svg]:pointer-events-none [&amp;&gt;svg]:size-3! border-border text-foreground [a]:hover:bg-muted [a]:hover:text-muted-foreground gap-1.5 rounded-full py-1"
+                                                ><svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    width="24"
+                                                    height="24"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    stroke-width="2"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    class="lucide lucide-phone size-3.5"
+                                                    aria-hidden="true"
+                                                >
+                                                    <path
+                                                        d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"
+                                                    ></path></svg
+                                                >+52 55 1234 5678</span
+                                            ><span
+                                                data-slot="badge"
+                                                data-variant="outline"
+                                                class="group/badge inline-flex h-5 w-fit shrink-0 items-center justify-center overflow-hidden border px-2 text-xs font-medium whitespace-nowrap transition-all focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&amp;&gt;svg]:pointer-events-none [&amp;&gt;svg]:size-3! border-border text-foreground [a]:hover:bg-muted [a]:hover:text-muted-foreground gap-1.5 rounded-full py-1"
+                                                ><svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    width="24"
+                                                    height="24"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    stroke-width="2"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    class="lucide lucide-map-pin size-3.5"
+                                                    aria-hidden="true"
+                                                >
+                                                    <path
+                                                        d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"
+                                                    ></path>
+                                                    <circle cx="12" cy="10" r="3"></circle></svg
+                                                >Ciudad de México, MX</span
+                                            >
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <section
+                                aria-label="Estadísticas del perfil"
+                                class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
+                            >
+                                <div
+                                    data-slot="card"
+                                    data-size="default"
+                                    class="group/card flex flex-col gap-(--card-spacing) overflow-hidden rounded-[var(--radius-card)] bg-card py-(--card-spacing) text-sm text-card-foreground shadow-[var(--shadow-card)] [--card-spacing:--spacing(4)] has-data-[slot=card-footer]:pb-0 has-[&gt;img:first-child]:pt-0 data-[size=sm]:[--card-spacing:--spacing(3)] data-[size=sm]:has-data-[slot=card-footer]:pb-0 kpi-card reveal border-0 is-visible"
+                                >
+                                    <div
+                                        data-slot="card-content"
+                                        class="flex h-full flex-col justify-center gap-1 p-5"
+                                    >
+                                        <p class="kpi-card__value text-2xl sm:text-3xl">4,820</p>
+                                        <p class="text-sm font-medium">Pedidos procesados</p>
+                                    </div>
+                                </div>
+                                <div
+                                    data-slot="card"
+                                    data-size="default"
+                                    class="group/card flex flex-col gap-(--card-spacing) overflow-hidden rounded-[var(--radius-card)] bg-card py-(--card-spacing) text-sm text-card-foreground shadow-[var(--shadow-card)] [--card-spacing:--spacing(4)] has-data-[slot=card-footer]:pb-0 has-[&gt;img:first-child]:pt-0 data-[size=sm]:[--card-spacing:--spacing(3)] data-[size=sm]:has-data-[slot=card-footer]:pb-0 kpi-card reveal border-0 is-visible"
+                                >
+                                    <div
+                                        data-slot="card-content"
+                                        class="flex h-full flex-col justify-center gap-1 p-5"
+                                    >
+                                        <p class="kpi-card__value text-2xl sm:text-3xl">326</p>
+                                        <p class="text-sm font-medium">Reportes exportados</p>
+                                    </div>
+                                </div>
+                                <div
+                                    data-slot="card"
+                                    data-size="default"
+                                    class="group/card flex flex-col gap-(--card-spacing) overflow-hidden rounded-[var(--radius-card)] bg-card py-(--card-spacing) text-sm text-card-foreground shadow-[var(--shadow-card)] [--card-spacing:--spacing(4)] has-data-[slot=card-footer]:pb-0 has-[&gt;img:first-child]:pt-0 data-[size=sm]:[--card-spacing:--spacing(3)] data-[size=sm]:has-data-[slot=card-footer]:pb-0 kpi-card reveal border-0 is-visible"
+                                >
+                                    <div
+                                        data-slot="card-content"
+                                        class="flex h-full flex-col justify-center gap-1 p-5"
+                                    >
+                                        <p class="kpi-card__value text-2xl sm:text-3xl">1,240</p>
+                                        <p class="text-sm font-medium">Horas de análisis</p>
+                                    </div>
+                                </div>
+                                <div
+                                    data-slot="card"
+                                    data-size="default"
+                                    class="group/card flex flex-col gap-(--card-spacing) overflow-hidden rounded-[var(--radius-card)] bg-card py-(--card-spacing) text-sm text-card-foreground shadow-[var(--shadow-card)] [--card-spacing:--spacing(4)] has-data-[slot=card-footer]:pb-0 has-[&gt;img:first-child]:pt-0 data-[size=sm]:[--card-spacing:--spacing(3)] data-[size=sm]:has-data-[slot=card-footer]:pb-0 kpi-card reveal border-0 is-visible"
+                                >
+                                    <div
+                                        data-slot="card-content"
+                                        class="flex h-full flex-col justify-center gap-1 p-5"
+                                    >
+                                        <p class="kpi-card__value text-2xl sm:text-3xl">92 %</p>
+                                        <p class="text-sm font-medium">Satisfacción interna</p>
+                                    </div>
+                                </div>
+                            </section>
+                            <div class="mt-8 grid gap-4 lg:grid-cols-2">
+                                <div
+                                    data-slot="card"
+                                    data-size="default"
+                                    class="group/card flex flex-col gap-(--card-spacing) overflow-hidden rounded-[var(--radius-card)] bg-card py-(--card-spacing) text-sm text-card-foreground shadow-[var(--shadow-card)] [--card-spacing:--spacing(4)] has-data-[slot=card-footer]:pb-0 has-[&gt;img:first-child]:pt-0 data-[size=sm]:[--card-spacing:--spacing(3)] data-[size=sm]:has-data-[slot=card-footer]:pb-0 reveal border-0"
+                                >
+                                    <div data-slot="card-content" class="p-5">
+                                        <h2
+                                            class="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground"
+                                        >
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="24"
+                                                height="24"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                class="lucide lucide-sparkles size-4"
+                                                aria-hidden="true"
+                                            >
+                                                <path
+                                                    d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"
+                                                ></path>
+                                                <path d="M20 2v4"></path>
+                                                <path d="M22 4h-4"></path>
+                                                <circle cx="4" cy="20" r="2"></circle></svg
+                                            >En la empresa
+                                        </h2>
+                                        <div
+                                            data-orientation="horizontal"
+                                            role="none"
+                                            data-slot="separator"
+                                            class="shrink-0 bg-border data-horizontal:h-px data-horizontal:w-full data-vertical:w-px data-vertical:self-stretch my-4"
+                                        ></div>
+                                        <dl class="space-y-3 text-sm">
+                                            <div class="flex items-center justify-between gap-4">
+                                                <dt
+                                                    class="flex items-center gap-2 text-muted-foreground"
+                                                >
+                                                    <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        width="24"
+                                                        height="24"
+                                                        viewBox="0 0 24 24"
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        stroke-width="2"
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        class="lucide lucide-calendar-days size-4"
+                                                        aria-hidden="true"
+                                                    >
+                                                        <path d="M8 2v3"></path>
+                                                        <path d="M16 2v3"></path>
+                                                        <rect
+                                                            x="3"
+                                                            y="3"
+                                                            width="18"
+                                                            height="18"
+                                                            rx="2"
+                                                        ></rect>
+                                                        <path d="M3 9h18"></path>
+                                                        <path d="M8 13h.01"></path>
+                                                        <path d="M12 13h.01"></path>
+                                                        <path d="M16 13h.01"></path>
+                                                        <path d="M8 17h.01"></path>
+                                                        <path d="M12 17h.01"></path>
+                                                        <path d="M16 17h.01"></path></svg
+                                                    >Ingreso
+                                                </dt>
+                                                <dd class="font-medium tabular">04 mar 2024</dd>
+                                            </div>
+                                            <div class="flex items-center justify-between gap-4">
+                                                <dt
+                                                    class="flex items-center gap-2 text-muted-foreground"
+                                                >
+                                                    <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        width="24"
+                                                        height="24"
+                                                        viewBox="0 0 24 24"
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        stroke-width="2"
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        class="lucide lucide-sparkles size-4"
+                                                        aria-hidden="true"
+                                                    >
+                                                        <path
+                                                            d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"
+                                                        ></path>
+                                                        <path d="M20 2v4"></path>
+                                                        <path d="M22 4h-4"></path>
+                                                        <circle cx="4" cy="20" r="2"></circle></svg
+                                                    >Equipo
+                                                </dt>
+                                                <dd class="font-medium">Comercial · Operaciones</dd>
+                                            </div>
+                                            <div class="flex items-center justify-between gap-4">
+                                                <dt
+                                                    class="flex items-center gap-2 text-muted-foreground"
+                                                >
+                                                    <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        width="24"
+                                                        height="24"
+                                                        viewBox="0 0 24 24"
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        stroke-width="2"
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        class="lucide lucide-clock size-4"
+                                                        aria-hidden="true"
+                                                    >
+                                                        <circle cx="12" cy="12" r="10"></circle>
+                                                        <path d="M12 6v6l4 2"></path></svg
+                                                    >Zona horaria
+                                                </dt>
+                                                <dd class="font-medium tabular">
+                                                    America/Mexico_City (UTC−6)
+                                                </dd>
+                                            </div>
+                                            <div class="flex items-center justify-between gap-4">
+                                                <dt
+                                                    class="flex items-center gap-2 text-muted-foreground"
+                                                >
+                                                    <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        width="24"
+                                                        height="24"
+                                                        viewBox="0 0 24 24"
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        stroke-width="2"
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        class="lucide lucide-languages size-4"
+                                                        aria-hidden="true"
+                                                    >
+                                                        <path d="m5 8 6 6"></path>
+                                                        <path d="m4 14 6-6 2-3"></path>
+                                                        <path d="M2 5h12"></path>
+                                                        <path d="M7 2h1"></path>
+                                                        <path d="m22 22-5-10-5 10"></path>
+                                                        <path d="M14 18h6"></path></svg
+                                                    >Idiomas
+                                                </dt>
+                                                <dd class="font-medium">
+                                                    Español (nativo) · Inglés (avanzado)
+                                                </dd>
+                                            </div>
+                                        </dl>
+                                    </div>
+                                </div>
+                                <div
+                                    data-slot="card"
+                                    data-size="default"
+                                    class="group/card flex flex-col gap-(--card-spacing) overflow-hidden rounded-[var(--radius-card)] bg-card py-(--card-spacing) text-sm text-card-foreground shadow-[var(--shadow-card)] [--card-spacing:--spacing(4)] has-data-[slot=card-footer]:pb-0 has-[&gt;img:first-child]:pt-0 data-[size=sm]:[--card-spacing:--spacing(3)] data-[size=sm]:has-data-[slot=card-footer]:pb-0 reveal border-0"
+                                >
+                                    <div data-slot="card-content" class="p-5">
+                                        <h2
+                                            class="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground"
+                                        >
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="24"
+                                                height="24"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                class="lucide lucide-trending-up size-4"
+                                                aria-hidden="true"
+                                            >
+                                                <path d="M16 7h6v6"></path>
+                                                <path d="m22 7-8.5 8.5-5-5L2 17"></path></svg
+                                            >Habilidades
+                                        </h2>
+                                        <div
+                                            data-orientation="horizontal"
+                                            role="none"
+                                            data-slot="separator"
+                                            class="shrink-0 bg-border data-horizontal:h-px data-horizontal:w-full data-vertical:w-px data-vertical:self-stretch my-4"
+                                        ></div>
+                                        <div class="flex flex-wrap gap-2">
+                                            <span
+                                                data-slot="badge"
+                                                data-variant="default"
+                                                class="group/badge inline-flex h-5 w-fit shrink-0 items-center justify-center gap-1 overflow-hidden border border-transparent text-xs font-medium whitespace-nowrap transition-all focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&amp;&gt;svg]:pointer-events-none [&amp;&gt;svg]:size-3! [a]:hover:bg-primary/80 rounded-full bg-mint/30 px-3 py-1 text-foreground"
+                                                >Análisis de datos</span
+                                            ><span
+                                                data-slot="badge"
+                                                data-variant="default"
+                                                class="group/badge inline-flex h-5 w-fit shrink-0 items-center justify-center gap-1 overflow-hidden border border-transparent text-xs font-medium whitespace-nowrap transition-all focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&amp;&gt;svg]:pointer-events-none [&amp;&gt;svg]:size-3! [a]:hover:bg-primary/80 rounded-full bg-mint/30 px-3 py-1 text-foreground"
+                                                >E-commerce</span
+                                            ><span
+                                                data-slot="badge"
+                                                data-variant="default"
+                                                class="group/badge inline-flex h-5 w-fit shrink-0 items-center justify-center gap-1 overflow-hidden border border-transparent text-xs font-medium whitespace-nowrap transition-all focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&amp;&gt;svg]:pointer-events-none [&amp;&gt;svg]:size-3! [a]:hover:bg-primary/80 rounded-full bg-mint/30 px-3 py-1 text-foreground"
+                                                >Reporting</span
+                                            ><span
+                                                data-slot="badge"
+                                                data-variant="default"
+                                                class="group/badge inline-flex h-5 w-fit shrink-0 items-center justify-center gap-1 overflow-hidden border border-transparent text-xs font-medium whitespace-nowrap transition-all focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&amp;&gt;svg]:pointer-events-none [&amp;&gt;svg]:size-3! [a]:hover:bg-primary/80 rounded-full bg-mint/30 px-3 py-1 text-foreground"
+                                                >Excel avanzado</span
+                                            ><span
+                                                data-slot="badge"
+                                                data-variant="default"
+                                                class="group/badge inline-flex h-5 w-fit shrink-0 items-center justify-center gap-1 overflow-hidden border border-transparent text-xs font-medium whitespace-nowrap transition-all focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&amp;&gt;svg]:pointer-events-none [&amp;&gt;svg]:size-3! [a]:hover:bg-primary/80 rounded-full bg-mint/30 px-3 py-1 text-foreground"
+                                                >SQL</span
+                                            ><span
+                                                data-slot="badge"
+                                                data-variant="default"
+                                                class="group/badge inline-flex h-5 w-fit shrink-0 items-center justify-center gap-1 overflow-hidden border border-transparent text-xs font-medium whitespace-nowrap transition-all focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&amp;&gt;svg]:pointer-events-none [&amp;&gt;svg]:size-3! [a]:hover:bg-primary/80 rounded-full bg-mint/30 px-3 py-1 text-foreground"
+                                                >Power BI</span
+                                            >
+                                        </div>
+                                        <p class="mt-5 text-xs text-muted-foreground">
+                                            Herramientas y metodologías que uso a diario para
+                                            mantener el dashboard al día.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                data-slot="card"
+                                data-size="default"
+                                class="group/card flex flex-col gap-(--card-spacing) overflow-hidden rounded-[var(--radius-card)] bg-card py-(--card-spacing) text-sm text-card-foreground shadow-[var(--shadow-card)] [--card-spacing:--spacing(4)] has-data-[slot=card-footer]:pb-0 has-[&gt;img:first-child]:pt-0 data-[size=sm]:[--card-spacing:--spacing(3)] data-[size=sm]:has-data-[slot=card-footer]:pb-0 reveal mt-4 border-0"
+                            >
+                                <div data-slot="card-content" class="p-5">
+                                    <h2
+                                        class="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground"
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="24"
+                                            height="24"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            class="lucide lucide-clock size-4"
+                                            aria-hidden="true"
+                                        >
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <path d="M12 6v6l4 2"></path></svg
+                                        >Actividad reciente
+                                    </h2>
+                                    <div
+                                        data-orientation="horizontal"
+                                        role="none"
+                                        data-slot="separator"
+                                        class="shrink-0 bg-border data-horizontal:h-px data-horizontal:w-full data-vertical:w-px data-vertical:self-stretch my-4"
+                                    ></div>
+                                    <ul class="space-y-1">
+                                        <li
+                                            class="flex items-center gap-3 rounded-2xl px-2 py-2.5 transition-colors hover:bg-muted/60"
+                                        >
+                                            <span
+                                                class="flex size-9 shrink-0 items-center justify-center rounded-full bg-cyan/15 text-foreground"
+                                                ><svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    width="24"
+                                                    height="24"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    stroke-width="2"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    class="lucide lucide-file-down size-4"
+                                                    aria-hidden="true"
+                                                >
+                                                    <path
+                                                        d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"
+                                                    ></path>
+                                                    <path d="M14 2v5a1 1 0 0 0 1 1h5"></path>
+                                                    <path d="M12 18v-6"></path>
+                                                    <path d="m9 15 3 3 3-3"></path></svg
+                                            ></span>
+                                            <p class="min-w-0 flex-1 truncate text-sm font-medium">
+                                                Exportó el reporte de ventas por categoría
+                                            </p>
+                                            <p
+                                                class="shrink-0 text-xs text-muted-foreground tabular"
+                                            >
+                                                hace 87 días
+                                            </p>
+                                        </li>
+                                        <li
+                                            class="flex items-center gap-3 rounded-2xl px-2 py-2.5 transition-colors hover:bg-muted/60"
+                                        >
+                                            <span
+                                                class="flex size-9 shrink-0 items-center justify-center rounded-full bg-cyan/15 text-foreground"
+                                                ><svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    width="24"
+                                                    height="24"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    stroke-width="2"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    class="lucide lucide-funnel size-4"
+                                                    aria-hidden="true"
+                                                >
+                                                    <path
+                                                        d="M10 20a1 1 0 0 0 .553.895l2 1A1 1 0 0 0 14 21v-7a2 2 0 0 1 .517-1.341L21.74 4.67A1 1 0 0 0 21 3H3a1 1 0 0 0-.742 1.67l7.225 7.989A2 2 0 0 1 10 14z"
+                                                    ></path></svg
+                                            ></span>
+                                            <p class="min-w-0 flex-1 truncate text-sm font-medium">
+                                                Ajustó el rango de fechas a los últimos 30 días
+                                            </p>
+                                            <p
+                                                class="shrink-0 text-xs text-muted-foreground tabular"
+                                            >
+                                                hace 87 días
+                                            </p>
+                                        </li>
+                                        <li
+                                            class="flex items-center gap-3 rounded-2xl px-2 py-2.5 transition-colors hover:bg-muted/60"
+                                        >
+                                            <span
+                                                class="flex size-9 shrink-0 items-center justify-center rounded-full bg-cyan/15 text-foreground"
+                                                ><svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    width="24"
+                                                    height="24"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    stroke-width="2"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    class="lucide lucide-shopping-cart size-4"
+                                                    aria-hidden="true"
+                                                >
+                                                    <circle cx="8" cy="21" r="1"></circle>
+                                                    <circle cx="19" cy="21" r="1"></circle>
+                                                    <path
+                                                        d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"
+                                                    ></path></svg
+                                            ></span>
+                                            <p class="min-w-0 flex-1 truncate text-sm font-medium">
+                                                Revisó 24 pedidos pendientes de envío
+                                            </p>
+                                            <p
+                                                class="shrink-0 text-xs text-muted-foreground tabular"
+                                            >
+                                                hace 88 días
+                                            </p>
+                                        </li>
+                                        <li
+                                            class="flex items-center gap-3 rounded-2xl px-2 py-2.5 transition-colors hover:bg-muted/60"
+                                        >
+                                            <span
+                                                class="flex size-9 shrink-0 items-center justify-center rounded-full bg-cyan/15 text-foreground"
+                                                ><svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    width="24"
+                                                    height="24"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    stroke-width="2"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    class="lucide lucide-trending-up size-4"
+                                                    aria-hidden="true"
+                                                >
+                                                    <path d="M16 7h6v6"></path>
+                                                    <path d="m22 7-8.5 8.5-5-5L2 17"></path></svg
+                                            ></span>
+                                            <p class="min-w-0 flex-1 truncate text-sm font-medium">
+                                                Compartió el KPI de retención con el equipo
+                                            </p>
+                                            <p
+                                                class="shrink-0 text-xs text-muted-foreground tabular"
+                                            >
+                                                hace 89 días
+                                            </p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                    <footer class="mt-auto border-t border-border/70">
+                        <div
+                            class="overflow-hidden border-b border-border/50 py-3"
+                            aria-hidden="true"
+                        >
+                            <div class="marquee-track">
+                                <div class="flex gap-8 pr-8">
+                                    <span class="mono-label whitespace-nowrap"
+                                        >Dashboard operativo<span
+                                            class="ml-8 inline-block size-1.5 rounded-full bg-coral"
+                                        ></span></span
+                                    ><span class="mono-label whitespace-nowrap"
+                                        >Nébula<span
+                                            class="ml-8 inline-block size-1.5 rounded-full bg-coral"
+                                        ></span></span
+                                    ><span class="mono-label whitespace-nowrap"
+                                        >Datos de demostración<span
+                                            class="ml-8 inline-block size-1.5 rounded-full bg-coral"
+                                        ></span></span
+                                    ><span class="mono-label whitespace-nowrap"
+                                        >KPIs · tendencias · reportes<span
+                                            class="ml-8 inline-block size-1.5 rounded-full bg-coral"
+                                        ></span></span
+                                    ><span class="mono-label whitespace-nowrap"
+                                        >2026<span
+                                            class="ml-8 inline-block size-1.5 rounded-full bg-coral"
+                                        ></span
+                                    ></span>
+                                </div>
+                                <div class="flex gap-8 pr-8">
+                                    <span class="mono-label whitespace-nowrap"
+                                        >Dashboard operativo<span
+                                            class="ml-8 inline-block size-1.5 rounded-full bg-coral"
+                                        ></span></span
+                                    ><span class="mono-label whitespace-nowrap"
+                                        >Nébula<span
+                                            class="ml-8 inline-block size-1.5 rounded-full bg-coral"
+                                        ></span></span
+                                    ><span class="mono-label whitespace-nowrap"
+                                        >Datos de demostración<span
+                                            class="ml-8 inline-block size-1.5 rounded-full bg-coral"
+                                        ></span></span
+                                    ><span class="mono-label whitespace-nowrap"
+                                        >KPIs · tendencias · reportes<span
+                                            class="ml-8 inline-block size-1.5 rounded-full bg-coral"
+                                        ></span></span
+                                    ><span class="mono-label whitespace-nowrap"
+                                        >2026<span
+                                            class="ml-8 inline-block size-1.5 rounded-full bg-coral"
+                                        ></span
+                                    ></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="flex flex-col items-center justify-between gap-1 px-4 py-4 sm:flex-row sm:px-6"
+                        >
+                            <p class="text-xs text-muted-foreground">
+                                © 2026 Nébula · Dashboard operativo analítico
+                            </p>
+                            <p class="text-xs text-muted-foreground">
+                                Hecho con React, Vite y shadcn/ui · datos de demostración
+                            </p>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+            <section
+                aria-label="Notifications alt+T"
+                tabindex="-1"
+                aria-live="polite"
+                aria-relevant="additions text"
+                aria-atomic="false"
+                data-react-aria-top-layer="true"
+            ></section>
+        </div>
+
+        <script type="module" src="./js/app.js"></script>
+    </body>
+</html>

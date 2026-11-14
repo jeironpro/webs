@@ -1,0 +1,222 @@
+[
+  {
+    "question": "¿Qué es un bucle 'while'?",
+    "options": [
+      "No repite",
+      "Ejecuta una vez",
+      "Repite un bloque de código mientras una condición sea verdadera",
+      "Repite un número fijo de veces"
+    ],
+    "answer": 2,
+    "explanation": "Evaluación previa."
+  },
+  {
+    "question": "¿Qué es un bucle 'do-while'?",
+    "options": [
+      "Similar al while, pero garantiza que el bloque se ejecute al menos una vez",
+      "Igual que while",
+      "No repite",
+      "Es un error"
+    ],
+    "answer": 0,
+    "explanation": "Evaluación posterior."
+  },
+  {
+    "question": "¿Qué es un bucle infinito?",
+    "options": [
+      "Un bucle rápido",
+      "Un bucle largo",
+      "Un bucle corto",
+      "Un bucle cuya condición de salida nunca se cumple"
+    ],
+    "answer": 3,
+    "explanation": "Puede colgar el programa."
+  },
+  {
+    "question": "¿Cuándo usar 'while' en lugar de 'for'?",
+    "options": [
+      "Siempre",
+      "Cuando no sabes de antemano cuántas veces se debe repetir el bucle",
+      "Cuando sabes el número exacto",
+      "Nunca"
+    ],
+    "answer": 1,
+    "explanation": "Ej. leer hasta fin de archivo."
+  },
+  {
+    "question": "¿Qué pasa si la condición del while es falsa al principio?",
+    "options": [
+      "Se ejecuta infinitamente",
+      "El cuerpo del bucle no se ejecuta nunca",
+      "Se ejecuta una vez",
+      "Da error"
+    ],
+    "answer": 1,
+    "explanation": "Diferencia clave con do-while."
+  },
+  {
+    "question": "¿Cómo se evita un bucle infinito?",
+    "options": [
+      "Usando break siempre",
+      "Asegurando que la condición de salida se cumpla eventualmente (actualizando variables de control)",
+      "No usando bucles",
+      "Rezando"
+    ],
+    "answer": 1,
+    "explanation": "i++."
+  },
+  {
+    "question": "¿Qué es una variable centinela?",
+    "options": [
+      "Un error",
+      "Un valor especial usado para terminar un bucle (ej. -1 para terminar input)",
+      "Una constante",
+      "Un guardia"
+    ],
+    "answer": 1,
+    "explanation": "Controla el flujo."
+  },
+  {
+    "question": "¿Qué es un bucle anidado?",
+    "options": [
+      "Un bucle dentro de otro bucle",
+      "Un bucle rápido",
+      "Un bucle fuera",
+      "Un bucle roto"
+    ],
+    "answer": 0,
+    "explanation": "Ojo con la complejidad O(n^2)."
+  },
+  {
+    "question": "¿Qué hace 'while(true)'?",
+    "options": [
+      "Ejecuta una vez",
+      "Da error",
+      "No hace nada",
+      "Crea un bucle infinito intencional (requiere break interno para salir)"
+    ],
+    "answer": 3,
+    "explanation": "Patrón común en servidores o juegos."
+  },
+  {
+    "question": "¿Qué es la condición de parada?",
+    "options": [
+      "La expresión lógica que determina cuándo termina el bucle",
+      "El inicio",
+      "El paso",
+      "El cuerpo"
+    ],
+    "answer": 0,
+    "explanation": "Crucial para la terminación."
+  },
+  {
+    "question": "¿Se puede usar un while para recorrer un array?",
+    "options": [
+      "No, solo foreach",
+      "Sí, usando un índice manual",
+      "Sí, pero es lento",
+      "No, solo for"
+    ],
+    "answer": 1,
+    "explanation": "int i=0; while(i < len) { ... i++; }"
+  },
+  {
+    "question": "¿Qué es un bucle controlado por contador?",
+    "options": [
+      "Un cronómetro",
+      "Un error",
+      "Un bucle que se repite un número específico de veces (suele implementarse con for, pero posible con while)",
+      "Un reloj"
+    ],
+    "answer": 2,
+    "explanation": "Requiere inicialización, condición y actualización."
+  },
+  {
+    "question": "¿Qué es un bucle controlado por evento?",
+    "options": [
+      "Un bucle que se repite hasta que ocurre algo externo (ej. usuario pulsa tecla)",
+      "Un bucle de tiempo",
+      "Un bucle infinito",
+      "Un bucle for"
+    ],
+    "answer": 0,
+    "explanation": "Típico en interfaces o juegos."
+  },
+  {
+    "question": "¿Qué riesgo tiene un do-while mal diseñado?",
+    "options": [
+      "No compilar",
+      "Ninguno",
+      "Ser muy lento",
+      "Ejecutar código no deseado al menos una vez incluso si la condición es falsa"
+    ],
+    "answer": 3,
+    "explanation": "Validar antes de entrar si es crítico."
+  },
+  {
+    "question": "¿Qué es la complejidad algorítmica de un bucle simple de 0 a N?",
+    "options": [
+      "O(N^2) - Cuadrática",
+      "O(1) - Constante",
+      "O(log N) - Logarítmica",
+      "O(N) - Lineal"
+    ],
+    "answer": 3,
+    "explanation": "El tiempo crece con N."
+  },
+  {
+    "question": "¿Qué es un 'off-by-one error' (error por uno)?",
+    "options": [
+      "Un error de hardware",
+      "Un error de compilación",
+      "Un error de sintaxis",
+      "Error lógico donde el bucle itera una vez más o una vez menos de lo deseado (ej. < vs <=)"
+    ],
+    "answer": 3,
+    "explanation": "Muy común."
+  },
+  {
+    "question": "¿Se pueden declarar variables dentro de un while?",
+    "options": [
+      "Sí, pero su ámbito será local a esa iteración del bucle",
+      "No, nunca",
+      "No, da error",
+      "Sí, son globales"
+    ],
+    "answer": 0,
+    "explanation": "Se crean y destruyen en cada vuelta."
+  },
+  {
+    "question": "¿Qué es un iterador?",
+    "options": [
+      "Un índice",
+      "Un objeto que permite recorrer una colección elemento a elemento",
+      "Un contador",
+      "Un bucle"
+    ],
+    "answer": 1,
+    "explanation": "while(it.hasNext()) { ... }"
+  },
+  {
+    "question": "¿Qué diferencia hay entre pre-incremento (++i) y post-incremento (i++) en un bucle?",
+    "options": [
+      "Uno es más rápido",
+      "Uno es error",
+      "Ninguna",
+      "Puede afectar a la condición si se usa dentro de la expresión de evaluación"
+    ],
+    "answer": 3,
+    "explanation": "Sutil pero importante."
+  },
+  {
+    "question": "¿Qué es un bucle vacío?",
+    "options": [
+      "Un bucle sin cuerpo (while(cond);), usado a veces para esperar (busy wait)",
+      "Un bucle rápido",
+      "Un bucle lento",
+      "Un error"
+    ],
+    "answer": 0,
+    "explanation": "Consume CPU inútilmente si no se controla."
+  }
+]

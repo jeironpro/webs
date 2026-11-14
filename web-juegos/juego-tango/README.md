@@ -4,7 +4,7 @@ Puzle binario de 6×6: cada fila y cada columna llevan exactamente tres soles y 
 
 ## Características
 
-- 20 tableros de 6×6 en `json/tableros.json`, cada uno con **solución única** y resoluble solo con deducciones.
+- 20 tableros de 6×6 en `data/tableros.json`, cada uno con **solución única** y resoluble solo con deducciones.
 - Casillas dadas bloqueadas y pistas de relación: `=` une símbolos iguales y `×` separa contrarios.
 - Conflictos al momento: tres iguales seguidos, líneas con más de tres símbolos o relaciones incumplidas.
 - Toca una casilla para poner sol, otra vez para luna y otra para dejarla vacía.
@@ -28,8 +28,8 @@ Puzle binario de 6×6: cada fila y cada columna llevan exactamente tres soles y 
 Para regenerar los tableros:
 
 ```sh
-node scripts/generar-tableros.mjs        # 20 tableros de 6×6
-node scripts/generar-tableros.mjs 10     # otra cantidad
+node tools/generar-tableros.mjs        # 20 tableros de 6×6
+node tools/generar-tableros.mjs 10     # otra cantidad
 ```
 
 ## Uso
@@ -39,15 +39,13 @@ Abre `index.html` con un servidor estático (por ejemplo `python3 -m http.server
 ## Estructura del proyecto
 
 ```
-juego-tango/
-├── index.html
-├── css/                   # estilos del cuaderno cuadriculado
-├── js/
-│   ├── tango-core.js      # generación, solver y validación (sin DOM)
-│   └── tango.js           # interfaz y controles
-├── json/tableros.json     # tableros con pistas y solución única
-├── icon/                  # favicon
-└── scripts/               # generador reproducible
+index.html
+css/tango.css          — Estilos del cuaderno cuadriculado
+js/tango-core.js       — Generación, solver y validación
+js/tango.js            — Interfaz y controles
+data/tableros.json     — Tableros con pistas y solución única
+assets/icons/tango.svg
+tools/                 — Generador reproducible
 ```
 
 ## Licencia

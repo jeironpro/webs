@@ -253,10 +253,7 @@ export function crearPartida(jugadores, config, rng = Math.random) {
     const disponibles = [...jugadores];
     const farsanteIds = [];
     for (let indice = 0; indice < cantidadFarsantes; indice += 1) {
-        const posicion = Math.min(
-            disponibles.length - 1,
-            Math.floor(rng() * disponibles.length)
-        );
+        const posicion = Math.min(disponibles.length - 1, Math.floor(rng() * disponibles.length));
         farsanteIds.push(disponibles[posicion].id);
         disponibles.splice(posicion, 1);
     }

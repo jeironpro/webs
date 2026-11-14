@@ -94,8 +94,7 @@ function pintarTablero() {
             const casilla = casillas[fila][columna];
             const valor = tableroActual[fila][columna];
             const dada = tableroVisible[fila][columna] !== "";
-            const activa =
-                casillaActiva?.fila === fila && casillaActiva?.columna === columna;
+            const activa = casillaActiva?.fila === fila && casillaActiva?.columna === columna;
             const relacionada =
                 casillaActiva &&
                 !activa &&
@@ -113,7 +112,7 @@ function pintarTablero() {
             casilla.disabled = resuelto;
             casilla.setAttribute(
                 "aria-label",
-                `Fila ${fila + 1}, columna ${columna + 1}, ${valor || "vacía"}${dada ? ", fija" : ""}`,
+                `Fila ${fila + 1}, columna ${columna + 1}, ${valor || "vacía"}${dada ? ", fija" : ""}`
             );
         }
     }
@@ -285,7 +284,7 @@ function anunciar(texto) {
 
 async function cargarSudoku() {
     try {
-        const respuesta = await fetch("json/sudokus.json");
+        const respuesta = await fetch("data/sudokus.json");
 
         if (!respuesta.ok) {
             throw new Error("No se pudo cargar el archivo de sudokus.");
@@ -306,8 +305,7 @@ async function cargarSudoku() {
         iniciarReloj();
         pintarTablero();
         anunciar("Elige una casilla vacía para empezar.");
-    } catch (error) {
-        console.error(error);
+    } catch {
         anunciar("No se pudieron cargar los tableros. Recarga la página.");
     }
 }

@@ -1,18 +1,38 @@
 @layer base {
-    /* ============================================================
-       Hallmark · macrostructure: Portfolio Grid · tone: technical
-       theme: Cobalt (modern-minimal) · nav: N13 inline-⌘K pill
-       footer: Ft2 inline-rule · enrichment: none (code-as-hero)
-       knobs: F6 card ratio=square-content, density=3-up→2-up→1-up,
-       micro-action=View→ · N13 pill=right-of-brand, grouped=flat,
-       footer hints=shown · T4 stats: 5-up, qualifier-under
-       override: el usuario eligió el tema Cobalt del catálogo
-       Hallmark · pre-emit critique: P5 H4 E5 S5 R5 V5
-       slop test: 58/58 ✓ · contrast: pass (40–41) · chrome: pass (47)
-       tokens: pass (48) · responsive: pass (34, 49, 50–57)
-       ============================================================ */
-
-    /* ---------- Base ---------- */
+    html,
+    body,
+    [class],
+    [id],
+    header,
+    main,
+    footer,
+    section,
+    article,
+    nav,
+    div,
+    span,
+    h1,
+    h2,
+    h3,
+    h4,
+    p,
+    ul,
+    ol,
+    li,
+    figure,
+    blockquote,
+    pre,
+    a,
+    button,
+    input,
+    select,
+    textarea,
+    img,
+    svg,
+    video,
+    code {
+        box-sizing: border-box;
+    }
 
     html {
         overflow-x: clip;
@@ -20,13 +40,6 @@
 
     body {
         overflow-x: clip;
-    }
-
-    * {
-        box-sizing: border-box;
-    }
-
-    body {
         margin: 0;
         background: var(--color-paper);
         color: var(--color-ink-2);
@@ -45,18 +58,17 @@
         text-decoration: none;
     }
 
-    kbd {
+    .kbd {
         font-family: var(--font-mono);
         font-size: 0.6875rem;
         line-height: 1;
         padding: var(--space-3xs) var(--space-xs);
         border: var(--rule-hair) solid var(--color-rule-2);
-        border-radius: 4px;
+        border-radius: 0.25rem;
         background: var(--color-paper-2);
         color: var(--color-muted);
     }
 
-    button:disabled,
     .btn:disabled,
     .chip:disabled,
     .copy:disabled,
@@ -72,20 +84,19 @@
     }
 
     :focus-visible {
-        outline: 2px solid var(--color-focus);
-        outline-offset: 2px;
+        outline: 0.125rem solid var(--color-focus);
+        outline-offset: 0.125rem;
     }
 
     .tnum {
         font-variant-numeric: tabular-nums;
     }
 
-    /* ---------- Reveal (el motor de motion) ---------- */
-
     .reveal {
         opacity: 0;
-        transform: translateY(10px);
-        transition: opacity var(--dur-long) var(--ease-out),
+        transform: translateY(0.625rem);
+        transition:
+            opacity var(--dur-long) var(--ease-out),
             transform var(--dur-long) var(--ease-out);
     }
 
@@ -94,16 +105,14 @@
         transform: none;
     }
 
-    /* ---------- Nav · N13 bordered, con pill ⌘K ---------- */
-
     .nav {
         position: sticky;
         top: 0;
         z-index: var(--z-sticky);
         border-bottom: var(--rule-hair) solid var(--color-rule);
         background: var(--nav-bg);
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(0.5rem);
+        -webkit-backdrop-filter: blur(0.5rem);
     }
 
     .nav__inner {
@@ -161,7 +170,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        height: 2px;
+        height: 0.125rem;
         background: var(--color-accent);
         transform: scaleX(0);
         transform-origin: left;
@@ -176,7 +185,7 @@
         display: flex;
         align-items: center;
         gap: var(--space-sm);
-        height: 40px;
+        height: 2.5rem;
         margin-left: auto;
         padding: 0 var(--space-xs) 0 var(--space-md);
         background: var(--color-paper-2);
@@ -208,7 +217,7 @@
 
     .searchpill__kbd {
         display: flex;
-        gap: 2px;
+        gap: 0.125rem;
     }
 
     .btn {
@@ -222,8 +231,9 @@
         padding: var(--space-xs) var(--space-md);
         cursor: pointer;
         white-space: nowrap;
-        min-height: 40px;
-        transition: background-color var(--dur-short) var(--ease-out),
+        min-height: 2.5rem;
+        transition:
+            background-color var(--dur-short) var(--ease-out),
             border-color var(--dur-short) var(--ease-out);
     }
 
@@ -259,15 +269,14 @@
         background: var(--color-paper-3);
     }
 
-    /* ---------- Paleta de comandos ⌘K ---------- */
-
     .cmdk {
         position: fixed;
         inset: 0;
         z-index: var(--z-cmdk);
         opacity: 0;
         visibility: hidden;
-        transition: opacity var(--dur-med) var(--ease-out),
+        transition:
+            opacity var(--dur-med) var(--ease-out),
             visibility var(--dur-med) var(--ease-out);
     }
 
@@ -286,8 +295,8 @@
         position: absolute;
         top: 14vh;
         left: 50%;
-        transform: translateX(-50%) translateY(-8px) scale(0.98);
-        width: min(560px, calc(100vw - 2rem));
+        transform: translateX(-50%) translateY(-0.5rem) scale(0.98);
+        width: min(35rem, calc(100vw - 2rem));
         background: var(--color-paper);
         border: var(--rule-hair) solid var(--color-rule-2);
         border-radius: var(--radius-md);
@@ -309,7 +318,7 @@
     }
 
     .cmdk__field:focus-within {
-        box-shadow: inset 0 -2px 0 var(--color-accent);
+        box-shadow: inset 0 -0.125rem 0 var(--color-accent);
     }
 
     .cmdk__ico {
@@ -409,8 +418,6 @@
         color: var(--color-muted);
     }
 
-    /* ---------- Hero · H2 split diptych, código a la derecha ---------- */
-
     .hero {
         display: grid;
         grid-template-columns: 7fr 5fr;
@@ -482,8 +489,8 @@
         position: absolute;
         left: 0;
         right: 0;
-        bottom: -2px;
-        height: 1px;
+        bottom: -0.125rem;
+        height: 0.0625rem;
         background: var(--color-accent);
         transform: scaleX(0);
         transform-origin: left;
@@ -493,8 +500,6 @@
     .link-arrow:hover::after {
         transform: scaleX(1);
     }
-
-    /* Code-card grafito — el código es el héroe */
 
     .code-card {
         background: var(--color-graphite);
@@ -562,7 +567,6 @@
         transition: opacity var(--dur-long) var(--ease-out);
     }
 
-    /* Resaltado de sintaxis · grafito */
     .hero-code .tok {
         color: var(--tokd-punct);
     }
@@ -586,8 +590,6 @@
     .hero-code .tok.c {
         color: var(--tokd-comment);
     }
-
-    /* ---------- Banda de stats · T4 sobre grafito (el único latido oscuro) ---------- */
 
     .stats-band {
         background: var(--color-graphite);
@@ -633,13 +635,11 @@
         color: var(--color-muted-dark);
     }
 
-    /* ---------- Catálogo (Portfolio Grid) ---------- */
-
     .catalog {
         max-width: 76rem;
         margin: 0 auto;
         padding: var(--space-3xl) clamp(1rem, 4vw, 1.75rem) var(--space-2xl);
-        scroll-margin-top: 88px;
+        scroll-margin-top: 5.5rem;
     }
 
     .catalog__head {
@@ -677,8 +677,6 @@
         white-space: nowrap;
     }
 
-    /* ---------- Toolbar ---------- */
-
     .toolbar {
         margin-bottom: var(--space-xl);
     }
@@ -687,7 +685,7 @@
         display: flex;
         align-items: center;
         gap: var(--space-sm);
-        height: 44px;
+        height: 2.75rem;
         padding: 0 var(--space-md);
         background: var(--color-paper-2);
         border: var(--rule-hair) solid var(--color-rule-2);
@@ -697,8 +695,8 @@
 
     .search-field:focus-within {
         border-color: var(--color-accent);
-        outline: 2px solid var(--color-focus);
-        outline-offset: 2px;
+        outline: 0.125rem solid var(--color-focus);
+        outline-offset: 0.125rem;
     }
 
     .search-field__ico {
@@ -725,7 +723,7 @@
 
     .search-field__kbd {
         display: flex;
-        gap: 2px;
+        gap: 0.125rem;
     }
 
     .filters {
@@ -766,8 +764,9 @@
         padding: var(--space-2xs) var(--space-sm);
         cursor: pointer;
         white-space: nowrap;
-        min-height: 32px;
-        transition: border-color var(--dur-short) var(--ease-out),
+        min-height: 2rem;
+        transition:
+            border-color var(--dur-short) var(--ease-out),
             color var(--dur-short) var(--ease-out);
     }
 
@@ -787,8 +786,6 @@
         font-weight: 500;
     }
 
-    /* ---------- Paginación ---------- */
-
     .pagination {
         display: flex;
         align-items: center;
@@ -798,11 +795,11 @@
         padding-block: var(--space-sm) 0;
     }
 
-    .pagination+.grid {
+    .pagination + .grid {
         padding-top: var(--space-lg);
     }
 
-    .grid+.pagination {
+    .grid + .pagination {
         padding-top: var(--space-lg);
     }
 
@@ -816,8 +813,9 @@
         padding: var(--space-2xs) var(--space-sm);
         cursor: pointer;
         white-space: nowrap;
-        min-height: 32px;
-        transition: border-color var(--dur-short) var(--ease-out),
+        min-height: 2rem;
+        transition:
+            border-color var(--dur-short) var(--ease-out),
             color var(--dur-short) var(--ease-out);
     }
 
@@ -843,13 +841,11 @@
         white-space: nowrap;
     }
 
-    /* ---------- Rejilla de tarjetas · F6 ---------- */
-
     .grid {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: var(--space-md);
-        scroll-margin-top: 88px;
+        scroll-margin-top: 5.5rem;
     }
 
     .card {
@@ -944,7 +940,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        height: 1px;
+        height: 0.0625rem;
         background: var(--color-accent);
         transform: scaleX(0);
         transform-origin: left;
@@ -959,15 +955,14 @@
         color: var(--color-accent);
     }
 
-    /* ---------- Modal de solución ---------- */
-
     .modal {
         position: fixed;
         inset: 0;
         z-index: var(--z-cmdk);
         opacity: 0;
         visibility: hidden;
-        transition: opacity var(--dur-med) var(--ease-out),
+        transition:
+            opacity var(--dur-med) var(--ease-out),
             visibility var(--dur-med) var(--ease-out);
     }
 
@@ -986,8 +981,8 @@
         position: absolute;
         top: 8vh;
         left: 50%;
-        transform: translateX(-50%) translateY(-8px) scale(0.98);
-        width: min(720px, calc(100vw - 2rem));
+        transform: translateX(-50%) translateY(-0.5rem) scale(0.98);
+        width: min(45rem, calc(100vw - 2rem));
         max-height: 84vh;
         display: flex;
         flex-direction: column;
@@ -1046,8 +1041,8 @@
 
     .modal__close {
         flex: none;
-        width: 40px;
-        height: 40px;
+        width: 2.5rem;
+        height: 2.5rem;
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -1058,7 +1053,8 @@
         border: var(--rule-hair) solid var(--color-rule-2);
         border-radius: var(--radius-sm);
         cursor: pointer;
-        transition: border-color var(--dur-short) var(--ease-out),
+        transition:
+            border-color var(--dur-short) var(--ease-out),
             color var(--dur-short) var(--ease-out),
             background-color var(--dur-short) var(--ease-out);
     }
@@ -1108,7 +1104,7 @@
         margin: 0 0 var(--space-md);
         padding: var(--space-xs) var(--space-md);
         background: var(--color-paper-3);
-        border-left: 2px solid var(--color-accent);
+        border-left: 0.125rem solid var(--color-accent);
     }
 
     .solution__examples h4 {
@@ -1182,8 +1178,9 @@
         padding: var(--space-2xs) var(--space-sm);
         cursor: pointer;
         white-space: nowrap;
-        min-height: 28px;
-        transition: border-color var(--dur-short) var(--ease-out),
+        min-height: 1.75rem;
+        transition:
+            border-color var(--dur-short) var(--ease-out),
             color var(--dur-short) var(--ease-out);
     }
 
@@ -1214,7 +1211,6 @@
         font-family: inherit;
     }
 
-    /* Resaltado de sintaxis · claro */
     .tok.c {
         color: var(--tok-comment);
     }
@@ -1236,8 +1232,6 @@
         color: var(--tok-function);
     }
 
-    /* ---------- Estado vacío ---------- */
-
     .empty {
         padding-block: var(--space-2xl);
     }
@@ -1256,8 +1250,6 @@
         max-width: 48ch;
     }
 
-    /* ---------- Footer · Ft2 inline rule ---------- */
-
     .foot-line {
         border-top: var(--rule-hair) solid var(--color-rule);
     }
@@ -1273,27 +1265,26 @@
     }
 
     @media (pointer: coarse) {
-
         .chip,
         .copy,
         .page-btn,
         .nav__link,
         .searchpill,
         .card__view {
-            min-height: 44px;
+            min-height: 2.75rem;
         }
     }
 }
 
 @layer responsive {
     .btn {
-        min-height: 44px;
+        min-height: 2.75rem;
     }
 
     .card__view {
         align-items: center;
         display: inline-flex;
-        min-height: 40px;
+        min-height: 2.5rem;
     }
 
     .catalog {
@@ -1301,7 +1292,7 @@
     }
 
     .chip {
-        min-height: 40px;
+        min-height: 2.5rem;
     }
 
     .cmdk.is-open .cmdk__panel {
@@ -1332,7 +1323,7 @@
     }
 
     .copy {
-        min-height: 40px;
+        min-height: 2.5rem;
     }
 
     .filters {
@@ -1394,7 +1385,7 @@
     }
 
     .page-btn {
-        min-height: 40px;
+        min-height: 2.5rem;
     }
 
     .search-field__kbd {
@@ -1432,9 +1423,9 @@
         padding-left: 0;
     }
 
-    @media (min-width: 641px) {
+    @media (min-width: 40.0625rem) {
         .btn {
-            min-height: 40px;
+            min-height: 2.5rem;
         }
 
         .card__view {
@@ -1448,7 +1439,7 @@
         }
 
         .chip {
-            min-height: 32px;
+            min-height: 2rem;
         }
 
         .cmdk.is-open .cmdk__panel {
@@ -1469,8 +1460,8 @@
             left: 50%;
             max-height: revert-layer;
             top: 14vh;
-            transform: translateX(-50%) translateY(-8px) scale(0.98);
-            width: min(560px, calc(100vw - 2rem));
+            transform: translateX(-50%) translateY(-0.5rem) scale(0.98);
+            width: min(35rem, calc(100vw - 2rem));
         }
 
         .cmdk__results {
@@ -1479,7 +1470,7 @@
         }
 
         .copy {
-            min-height: 28px;
+            min-height: 1.75rem;
         }
 
         .filters {
@@ -1521,8 +1512,8 @@
             left: 50%;
             max-height: 84vh;
             top: 8vh;
-            transform: translateX(-50%) translateY(-8px) scale(0.98);
-            width: min(720px, calc(100vw - 2rem));
+            transform: translateX(-50%) translateY(-0.5rem) scale(0.98);
+            width: min(45rem, calc(100vw - 2rem));
         }
 
         .nav__inner {
@@ -1535,7 +1526,7 @@
         }
 
         .page-btn {
-            min-height: 32px;
+            min-height: 2rem;
         }
 
         .search-field__kbd {
@@ -1567,7 +1558,7 @@
             padding-left: revert-layer;
         }
     }
-    @media (min-width: 961px) {
+    @media (min-width: 60.0625rem) {
         .grid {
             grid-template-columns: repeat(3, minmax(0, 1fr));
         }
@@ -1595,30 +1586,33 @@
 
 @layer accesibilidad {
     @media (prefers-reduced-motion: reduce) {
-            .reveal {
-                opacity: 1;
-                transform: none;
-                transition: none;
-            }
+        .reveal {
+            opacity: 1;
+            transform: none;
+            transition: none;
+        }
 
-            .hero-caret {
-                animation: none;
-                opacity: 1;
-            }
+        .hero-caret {
+            animation: none;
+            opacity: 1;
+        }
 
-            .nav__link::after,
-            .link-arrow::after,
-            .card__view::after {
-                transition: none;
-            }
+        .nav__link::after,
+        .link-arrow::after,
+        .card__view::after {
+            transition: none;
+        }
 
-            .cmdk,
-            .modal {
-                transition: opacity var(--dur-short) var(--ease-out), visibility var(--dur-short) var(--ease-out);
-            }
+        .cmdk,
+        .modal {
+            transition:
+                opacity var(--dur-short) var(--ease-out),
+                visibility var(--dur-short) var(--ease-out);
+        }
 
-            .cmdk__panel,
-            .modal__panel {
-                transition: none;
-            }    }
+        .cmdk__panel,
+        .modal__panel {
+            transition: none;
+        }
+    }
 }

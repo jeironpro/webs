@@ -33,14 +33,6 @@ jobs:
       - name: Enable corepack
         run: corepack enable
 
-      # La mayoría de proyectos son HTML/CSS/JS estático y se publican tal cual.
-      # programmer-day importa Three.js desde node_modules, así que necesita build.
-      - name: Build web-programmer-day
-        working-directory: web-programmer-day
-        run: |
-          yarn install --immutable
-          yarn build --base=./
-
       - name: Ensamblar sitio
         run: |
           mkdir -p site
@@ -57,10 +49,6 @@ jobs:
             --exclude '*/.pnp.loader.mjs' \
             --exclude tests \
             ./ site/
-
-          # programmer-day: build de Vite (index.html y assets compilados)
-          rm -rf site/web-programmer-day/assets
-          cp -r web-programmer-day/dist/. site/web-programmer-day/
 
           touch site/.nojekyll
 

@@ -1,82 +1,95 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../icon/curso_git.png" type="image/x-icon">
-    <title>Git log</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/git.css">
-</head>
-<body>
-    <header>
-        <h1>Git log</h1>
-    </header>
-    <main class="course-content">
-        <section class="course-section">
-            <article class="command-definition">
-                <div class="definition">
-                    <h2>Definición</h2>
-                    <p>
-                        El comando <code>git log</code> se utiliza para mostrar el historial de commits de un repositorio.
-                        Permite ver información detallada de cada commit, como el identificador único (hash), autor, fecha y mensaje.
-                        Es útil para revisar cambios pasados y entender la evolución del proyecto.
-                    </p>
-                </div>
-                <div class="commands">
-                    <h2>Comandos</h2>
-                    <ul>
-                        <li>
-                            <code><span>git log</span></code>
-                            <p>Muestra el historial completo de commits en la rama actual.</p>
-                        </li>
-                        <li>
-                            <code><span>git log --oneline</span></code>
-                            <p>Muestra cada commit en una sola línea, mostrando solo el hash abreviado y el mensaje.</p>
-                        </li>
-                        <li>
-                            <code><span>git log -p</span></code>
-                            <p>Muestra los cambios de cada commit (diferencias) además del historial.</p>
-                        </li>
-                        <li>
-                            <code><span>git log --stat</span></code>
-                            <p>Muestra un resumen de archivos modificados y cantidad de líneas añadidas o eliminadas por commit.</p>
-                        </li>
-                    </ul>
-                </div>
-            </article>
-            <article class="practice">
-                <div class="run-block">
-                    <h3> Ejecutar</h3>
-                    <pre><code>$ git log</code></pre>
-                </div>
-                <div class="result-block">
-                    <h3> Resultado</h3>
-                    <pre><code>commit 2eb568fb597a0da612df5575adb5604a4130caa7 (HEAD -> main)
-Author: jeironprogrammer <jeironprogrammer@gmail.com>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg" />
+        <link rel="shortcut icon" href="../assets/icons/curso_git.png" type="image/x-icon" />
+        <title>Git log</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="../css/git.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Git log</h1>
+        </header>
+        <main class="course-content">
+            <section class="course-section">
+                <article class="command-definition">
+                    <div class="definition">
+                        <h2>Definición</h2>
+                        <p>
+                            El comando <code>git log</code> se utiliza para mostrar el historial de
+                            commits de un repositorio. Permite ver información detallada de cada
+                            commit, como el identificador único (hash), autor, fecha y mensaje. Es
+                            útil para revisar cambios pasados y entender la evolución del proyecto.
+                        </p>
+                    </div>
+                    <div class="commands">
+                        <h2>Comandos</h2>
+                        <ul>
+                            <li>
+                                <code><span>git log</span></code>
+                                <p>Muestra el historial completo de commits en la rama actual.</p>
+                            </li>
+                            <li>
+                                <code><span>git log --oneline</span></code>
+                                <p>
+                                    Muestra cada commit en una sola línea, mostrando solo el hash
+                                    abreviado y el mensaje.
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git log -p</span></code>
+                                <p>
+                                    Muestra los cambios de cada commit (diferencias) además del
+                                    historial.
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git log --stat</span></code>
+                                <p>
+                                    Muestra un resumen de archivos modificados y cantidad de líneas
+                                    añadidas o eliminadas por commit.
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+                <article class="practice">
+                    <div class="run-block">
+                        <h3>Ejecutar</h3>
+                        <pre><code>$ git log</code></pre>
+                    </div>
+                    <div class="result-block">
+                        <h3>Resultado</h3>
+                        <pre><code>commit 2eb568fb597a0da612df5575adb5604a4130caa7 (HEAD -> main)
+Author: jeironprogrammer &lt;jeironprogrammer@gmail.com&gt;
 Date:   Sun Oct 19 21:19:04 2025 +0200
 
     Modificando una nueva vez main.js
 
 commit b572aa5b1959526fe7d8f0361a81e97e90d53082
-Author: jeironprogrammer <jeironprogrammer@gmail.com>
+Author: jeironprogrammer &lt;jeironprogrammer@gmail.com&gt;
 Date:   Sun Oct 19 21:12:25 2025 +0200
 
     Modificando main.js
 
 commit 507479aeaada94cbab522cdfcccd3f02cc809aaf
-Author: jeironprogrammer <jeironprogrammer@gmail.com>
+Author: jeironprogrammer &lt;jeironprogrammer@gmail.com&gt;
 Date:   Sun Oct 19 20:51:33 2025 +0200
 
     Mi primer commit</code></pre>
-                </div>
-
-            </article>
-        </section>
-    </main>
-    <footer>
-        &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
-    </footer>
-    <script src="../js/header.js"></script>
-</body>
+                    </div>
+                </article>
+            </section>
+        </main>
+        <footer>
+            &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
+        </footer>
+        <script src="../js/header.js"></script>
+    </body>
 </html>

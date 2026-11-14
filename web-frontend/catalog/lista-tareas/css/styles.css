@@ -1,217 +1,220 @@
 @layer base {
-:root {
-    --borde: #000;
-    --fondo: #0e9b38;
-    --fondo-2: #f5f5f5;
-    --fondo-3: #0cda49;
-    --texto: #587ef4;
-    --texto-2: #ff0000;
-    --texto-3: #fff;
-}
+    :root {
+        --borde: #000;
+        --fondo: #0e9b38;
+        --fondo-2: #f5f5f5;
+        --fondo-3: #0cda49;
+        --texto: #587ef4;
+        --texto-2: #ff0000;
+        --texto-3: #fff;
+    }
 
-body {
-    box-sizing: border-box;
-    font-family: 'Fredoka', Arial, Helvetica, sans-serif;
-    margin: 0;
-}
+    body {
+        box-sizing: border-box;
+        font-family: "Fredoka", Arial, Helvetica, sans-serif;
+        margin: 0;
+    }
 
-.contenedor {
-    margin: 20px auto;
-    width: 600px;
-}
+    .task-container {
+        margin: 1.25rem auto;
+        width: 37.5rem;
+    }
 
-.contenedor-tarea {
-    align-items: center;
-    background-color: var(--fondo-2);
-    border-radius: 10px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 20px;
-}
+    .task-form {
+        align-items: center;
+        background-color: var(--fondo-2);
+        border-radius: 0.625rem;
+        box-shadow: 0 0 0.3125rem rgba(0, 0, 0, 0.5);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 1.25rem;
+    }
 
-.contenedor-tarea h1 {
-    text-align: center;
-}
+    .task-form h1 {
+        text-align: center;
+    }
 
-.contenedor-tarea input {
-    border: 1px solid var(--borde);
-    border-radius: 5px;
-    height: 30px;
-    outline: none;
-    text-align: center;
-    width: 450px;
-}
+    .task-form input {
+        border: 0.0625rem solid var(--borde);
+        border-radius: 0.3125rem;
+        height: 1.875rem;
+        outline: none;
+        text-align: center;
+        width: 28.125rem;
+    }
 
-.contenedor-tarea input:focus {
-    border: none;
-    outline: 2px solid var(--borde);
-}
+    .task-form input.is-invalid {
+        color: var(--texto-2);
+    }
 
-.contenedor-tarea .boton {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
+    .task-form input:focus {
+        border: none;
+        outline: 0.125rem solid var(--borde);
+    }
 
-.contenedor-tarea button {
-    background-color: var(--fondo);
-    border: none;
-    border-radius: 5px;
-    color: var(--texto-3);
-    cursor: pointer;
-    font-weight: 600;
-    height: 36px;
-    width: 200px;
-}
+    .task-form .form-actions {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        margin-top: 1.25rem;
+    }
 
-.contenedor-tarea button:hover {
-    background-color: var(--fondo-3);
-    color: var(--borde);
-}
+    .task-form button {
+        background-color: var(--fondo);
+        border: none;
+        border-radius: 0.3125rem;
+        color: var(--texto-3);
+        cursor: pointer;
+        font-weight: 600;
+        height: 2.25rem;
+        width: 12.5rem;
+    }
 
-.contenedor-listado-tareas {
-    background-color: var(--fondo-2);
-    border-radius: 10px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-    margin-top: 40px;
-    padding: 10px 0;
-}
+    .task-form button:hover {
+        background-color: var(--fondo-3);
+        color: var(--borde);
+    }
 
-.titulo-lista,
-.listado {
-    margin-left: 10px;
-}
+    .task-list-container {
+        background-color: var(--fondo-2);
+        border-radius: 0.625rem;
+        box-shadow: 0 0 0.3125rem rgba(0, 0, 0, 0.5);
+        margin-top: 2.5rem;
+        padding: 0.625rem 0;
+    }
 
-.listado ul {
-    list-style-type: none;
-    padding: 0 5px;
-}
+    .list-title,
+    .task-list {
+        margin-left: 0.625rem;
+    }
 
-.listado li {
-    border-left: 3px solid var(--fondo);
-    display: flex;
-    font-size: 18px;
-    justify-content: space-between;
-    margin-top: 10px;
-    padding: 0 5px;
-}
+    .task-list ul {
+        list-style-type: none;
+        padding: 0 0.3125rem;
+    }
 
-.editar {
-    color: var(--texto);
-    cursor: pointer;
-    margin-left: auto;
-    margin-right: 50px;
-}
+    .task-list li {
+        border-left: 0.1875rem solid var(--fondo);
+        display: flex;
+        font-size: 1.125rem;
+        justify-content: space-between;
+        margin-top: 0.625rem;
+        padding: 0 0.3125rem;
+    }
 
-.eliminar {
-    color: var(--texto-2);
-    cursor: pointer;
-    margin-right: 10px;
-}
+    .edit-task {
+        color: var(--texto);
+        cursor: pointer;
+        margin-left: auto;
+        margin-right: 3.125rem;
+    }
+
+    .delete-task {
+        color: var(--texto-2);
+        cursor: pointer;
+        margin-right: 0.625rem;
+    }
 }
 
 @layer responsive {
-    /* Base móvil: hasta 500 px */
-    .contenedor {
-        width: 450px;
+    .task-container {
+        width: 28.125rem;
     }
 
-    .contenedor-listado-tareas {
-        margin: 50px 10px;
-        width: 390px;
+    .task-list-container {
+        margin: 3.125rem 0.625rem;
+        width: 24.375rem;
     }
 
-    .contenedor-tarea {
-        margin: 10px;
-        width: 350px;
+    .task-form {
+        margin: 0.625rem;
+        width: 21.875rem;
     }
 
-    .contenedor-tarea button {
-        height: 30px;
-        width: 160px;
+    .task-form button {
+        height: 1.875rem;
+        width: 10rem;
     }
 
-    .contenedor-tarea h1 {
-        font-size: 26px;
+    .task-form h1 {
+        font-size: 1.625rem;
     }
 
-    .contenedor-tarea input {
-        height: 24px;
-        width: 280px;
+    .task-form input {
+        height: 1.5rem;
+        width: 17.5rem;
     }
 
-    .listado li {
-        font-size: 16px;
+    .task-list li {
+        font-size: 1rem;
     }
 
-    .titulo-lista h2 {
-        font-size: 20px;
+    .list-title h2 {
+        font-size: 1.25rem;
     }
 
-    @media (min-width: 501px) {
-        .contenedor {
-            width: 500px;
+    @media (min-width: 31.3125rem) {
+        .task-container {
+            width: 31.25rem;
         }
 
-        .contenedor-listado-tareas {
+        .task-list-container {
             margin: revert-layer;
             width: revert-layer;
         }
 
-        .contenedor-tarea {
+        .task-form {
             margin: revert-layer;
             width: revert-layer;
         }
 
-        .contenedor-tarea button {
-            height: 32px;
-            width: 180px;
+        .task-form button {
+            height: 2rem;
+            width: 11.25rem;
         }
 
-        .contenedor-tarea h1 {
-            font-size: 27px;
+        .task-form h1 {
+            font-size: 1.6875rem;
         }
 
-        .contenedor-tarea input {
-            height: 26px;
-            width: 300px;
+        .task-form input {
+            height: 1.625rem;
+            width: 18.75rem;
         }
 
-        .listado li {
-            font-size: 17px;
+        .task-list li {
+            font-size: 1.0625rem;
         }
 
-        .titulo-lista h2 {
-            font-size: 22px;
+        .list-title h2 {
+            font-size: 1.375rem;
         }
     }
-    @media (min-width: 626px) {
-        .contenedor {
-            width: 600px;
+    @media (min-width: 39.125rem) {
+        .task-container {
+            width: 37.5rem;
         }
 
-        .contenedor-tarea button {
-            height: 36px;
-            width: 200px;
+        .task-form button {
+            height: 2.25rem;
+            width: 12.5rem;
         }
 
-        .contenedor-tarea h1 {
+        .task-form h1 {
             font-size: revert-layer;
         }
 
-        .contenedor-tarea input {
-            height: 30px;
-            width: 450px;
+        .task-form input {
+            height: 1.875rem;
+            width: 28.125rem;
         }
 
-        .listado li {
-            font-size: 18px;
+        .task-list li {
+            font-size: 1.125rem;
         }
 
-        .titulo-lista h2 {
+        .list-title h2 {
             font-size: revert-layer;
         }
     }

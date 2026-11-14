@@ -1,69 +1,84 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../icon/curso_git.png" type="image/x-icon">
-    <title>Git reflog</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/git.css">
-</head>
-<body>
-    <header>
-        <h1>Git reflog</h1>
-    </header>
-    <main class="course-content">
-        <section class="course-section">
-            <article class="command-definition">
-                <div class="definition">
-                    <h2>Definición</h2>
-                    <p>
-                        El comando <code>git reflog</code> se utiliza para ver el historial de referencias de las ramas y HEAD en el repositorio.
-                        Permite rastrear todos los movimientos de HEAD, incluyendo commits, resets, checkouts y merges, aunque no estén en el historial normal.
-                        Es útil para recuperar commits perdidos o revertir cambios recientes.
-                    </p>
-                </div>
-                <div class="commands">
-                    <h2>Comandos</h2>
-                    <ul>
-                        <li>
-                            <code><span>git reflog</span></code>
-                            <p>Muestra un registro de todos los movimientos de HEAD en tu repositorio, incluyendo commits, resets, merges y cambios de rama.</p>
-                        </li>
-                        <li>
-                            <code><span>git reflog show &lt;rama&gt;</span></code>
-                            <p>Muestra el historial de una rama específica.</p>
-                        </li>
-                        <li>
-                            <code><span>git reset --hard &lt;hash&gt;</span></code>
-                            <p>Permite regresar a un estado previo usando un hash obtenido de reflog.</p>
-                        </li>
-                        <li>
-                            <code><span>git reflog expire --expire=now --all</span></code>
-                            <p>Limpia los registros antiguos del reflog según la política indicada.</p>
-                        </li>
-                    </ul>
-                </div>
-            </article>
-            <article class="practice">
-                <div class="run-block">
-                    <h3> Ejecutar</h3>
-                    <pre><code>$ git reflog</code></pre>
-                </div>
-                <div class="result-block">
-                    <h3> Resultado</h3>
-                    <pre><code>2eb568f (HEAD -> main) HEAD@{0}: commit: Modificando una nueva vez main.js
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg" />
+        <link rel="shortcut icon" href="../assets/icons/curso_git.png" type="image/x-icon" />
+        <title>Git reflog</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="../css/git.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Git reflog</h1>
+        </header>
+        <main class="course-content">
+            <section class="course-section">
+                <article class="command-definition">
+                    <div class="definition">
+                        <h2>Definición</h2>
+                        <p>
+                            El comando <code>git reflog</code> se utiliza para ver el historial de
+                            referencias de las ramas y HEAD en el repositorio. Permite rastrear
+                            todos los movimientos de HEAD, incluyendo commits, resets, checkouts y
+                            merges, aunque no estén en el historial normal. Es útil para recuperar
+                            commits perdidos o revertir cambios recientes.
+                        </p>
+                    </div>
+                    <div class="commands">
+                        <h2>Comandos</h2>
+                        <ul>
+                            <li>
+                                <code><span>git reflog</span></code>
+                                <p>
+                                    Muestra un registro de todos los movimientos de HEAD en tu
+                                    repositorio, incluyendo commits, resets, merges y cambios de
+                                    rama.
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git reflog show &lt;rama&gt;</span></code>
+                                <p>Muestra el historial de una rama específica.</p>
+                            </li>
+                            <li>
+                                <code><span>git reset --hard &lt;hash&gt;</span></code>
+                                <p>
+                                    Permite regresar a un estado previo usando un hash obtenido de
+                                    reflog.
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git reflog expire --expire=now --all</span></code>
+                                <p>
+                                    Limpia los registros antiguos del reflog según la política
+                                    indicada.
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+                <article class="practice">
+                    <div class="run-block">
+                        <h3>Ejecutar</h3>
+                        <pre><code>$ git reflog</code></pre>
+                    </div>
+                    <div class="result-block">
+                        <h3>Resultado</h3>
+                        <pre><code>2eb568f (HEAD -> main) HEAD@{0}: commit: Modificando una nueva vez main.js
 b572aa5 HEAD@{1}: commit: Modificando main.js
 507479a HEAD@{2}: reset: moving to HEAD
 507479a HEAD@{3}: commit (initial): Mi primer commit</code></pre>
-                </div>
-
-            </article>
-        </section>
-    </main>
-    <footer>
-        &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
-    </footer>
-    <script src="../js/header.js"></script>
-</body>
+                    </div>
+                </article>
+            </section>
+        </main>
+        <footer>
+            &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
+        </footer>
+        <script src="../js/header.js"></script>
+    </body>
 </html>

@@ -1,12 +1,3 @@
-/**
- * Tango · núcleo sin DOM.
- *
- * Un tablero 6×6 se llena con soles (1) y lunas (2). Reglas:
- *   - cada fila y cada columna tiene exactamente 3 soles y 3 lunas;
- *   - nunca hay tres símbolos iguales seguidos en fila ni en columna;
- *   - las parejas con "=" comparten símbolo y las parejas con "×" son distintas.
- */
-
 export const SOL = 1;
 export const LUNA = 2;
 
@@ -32,7 +23,6 @@ export function mezclar(lista, rng) {
     return copia;
 }
 
-/** Filas posibles: n/2 soles y ninguna racha de tres. */
 export function patronesFila(n) {
     const mitad = mitadDe(n);
     const salida = [];
@@ -54,7 +44,6 @@ export function patronesFila(n) {
     return salida;
 }
 
-/** Una cuadrícula completa y válida, elegida al azar. */
 export function generarSolucion(n, rng) {
     const patrones = patronesFila(n);
     const mitad = mitadDe(n);
@@ -135,7 +124,6 @@ function crearMotor(n, dados, relaciones) {
 
     const mitad = mitadDe(n);
 
-    /** Aplica deducciones forzadas hasta el punto fijo. false si hay contradicción. */
     const propagar = () => {
         let cambia = true;
         while (cambia) {
@@ -210,7 +198,6 @@ function crearMotor(n, dados, relaciones) {
     return { grid, propagar };
 }
 
-/** Cuenta soluciones (hasta `limite`) con propagación; un tope de nodos evita bloqueos. */
 export function contarSoluciones(n, dados, relaciones, limite = 2) {
     const total = n * n;
     const { grid, propagar } = crearMotor(n, dados, relaciones);
@@ -255,7 +242,6 @@ export function contarSoluciones(n, dados, relaciones, limite = 2) {
     return soluciones;
 }
 
-/** La cuadrícula completa si todas las deducciones la cierran sin adivinar; null si no. */
 export function resolverPorLogica(n, dados, relaciones) {
     const { grid, propagar } = crearMotor(n, dados, relaciones);
     if (!propagar()) return null;
@@ -275,13 +261,9 @@ const paresAdyacentes = (n) => {
 };
 
 const esUnicaYLogica = (n, dados, relaciones) =>
-    contarSoluciones(n, dados, relaciones) === 1 && resolverPorLogica(n, dados, relaciones) !== null;
+    contarSoluciones(n, dados, relaciones) === 1 &&
+    resolverPorLogica(n, dados, relaciones) !== null;
 
-/**
- * Genera un tablero con pistas y relaciones recortadas hasta que la solución sea
- * única y se pueda alcanzar solo con deducciones. Se conservan al menos 4 casillas
- * dadas y 3 relaciones, para que el puzle no empiece vacío.
- */
 export function generarPuzzle(rng, n = 6) {
     const solucion = generarSolucion(n, rng);
     if (!solucion) throw new Error("no se pudo generar una solución");

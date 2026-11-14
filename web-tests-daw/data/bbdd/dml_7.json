@@ -1,0 +1,207 @@
+[
+  {
+    "question": "¿Qué es una transacción?",
+    "options": [
+      "Una unidad lógica de trabajo compuesta por una o más sentencias SQL",
+      "Un error",
+      "Un pago",
+      "Una conexión"
+    ],
+    "answer": 0,
+    "explanation": "Garantiza la consistencia de los datos."
+  },
+  {
+    "question": "¿Qué significan las siglas ACID?",
+    "options": [
+      "Atomicidad, Consistencia, Aislamiento, Durabilidad",
+      "Alta, Calidad, Inteligencia, Diseño",
+      "Acceso, Control, Identidad, Datos",
+      "Asociación, Clase, Interfaz, Dependencia"
+    ],
+    "answer": 0,
+    "explanation": "Son las 4 propiedades fundamentales de las transacciones fiables."
+  },
+  {
+    "question": "¿Qué es la Atomicidad?",
+    "options": [
+      "La base de datos es pequeña",
+      "La velocidad es rápida",
+      "Todo o nada: todas las operaciones de la transacción se realizan o ninguna se realiza",
+      "Los datos son atómicos"
+    ],
+    "answer": 2,
+    "explanation": "Si falla una parte, se deshace todo (Rollback)."
+  },
+  {
+    "question": "¿Qué es la Consistencia?",
+    "options": [
+      "La transacción lleva la base de datos de un estado válido a otro válido",
+      "Los datos son consistentes con la realidad",
+      "Los datos no cambian",
+      "La base de datos no se cae"
+    ],
+    "answer": 0,
+    "explanation": "Respeta todas las reglas de integridad (constraints, triggers, etc.)."
+  },
+  {
+    "question": "¿Qué es el Aislamiento (Isolation)?",
+    "options": [
+      "La base de datos está desconectada",
+      "Las transacciones concurrentes no interfieren entre sí",
+      "El usuario está solo",
+      "Los datos están encriptados"
+    ],
+    "answer": 1,
+    "explanation": "Determina la visibilidad de los cambios hechos por otras transacciones."
+  },
+  {
+    "question": "¿Qué es la Durabilidad?",
+    "options": [
+      "La base de datos dura mucho tiempo",
+      "Las consultas son rápidas",
+      "Una vez confirmada (committed), la transacción es permanente incluso ante fallos del sistema",
+      "El hardware es resistente"
+    ],
+    "answer": 2,
+    "explanation": "Los cambios se escriben en disco de forma segura."
+  },
+  {
+    "question": "¿Qué comando confirma una transacción?",
+    "options": ["CONFIRM", "DONE", "COMMIT", "SAVE"],
+    "answer": 2,
+    "explanation": "Hace permanentes los cambios de la transacción actual."
+  },
+  {
+    "question": "¿Qué comando deshace una transacción?",
+    "options": ["ROLLBACK", "UNDO", "BACK", "CANCEL"],
+    "answer": 0,
+    "explanation": "Revierte todos los cambios hechos desde el inicio de la transacción."
+  },
+  {
+    "question": "¿Qué es el Auto-Commit?",
+    "options": [
+      "Un comando automático",
+      "Un error",
+      "Una copia de seguridad",
+      "Un modo donde cada sentencia SQL individual se trata como una transacción y se confirma automáticamente"
+    ],
+    "answer": 3,
+    "explanation": "Es el comportamiento por defecto en muchos SGBD. Para transacciones multi-sentencia, hay que desactivarlo o usar START TRANSACTION."
+  },
+  {
+    "question": "¿Qué es un Savepoint?",
+    "options": [
+      "Una copia de seguridad",
+      "Un punto intermedio dentro de una transacción al que se puede volver (hacer rollback parcial)",
+      "Un punto de guardado del juego",
+      "Un índice"
+    ],
+    "answer": 1,
+    "explanation": "ROLLBACK TO SAVEPOINT nombre;"
+  },
+  {
+    "question": "¿Qué es una Lectura Sucia (Dirty Read)?",
+    "options": [
+      "Leer datos antiguos",
+      "Leer datos que han sido modificados por otra transacción pero aún no confirmados (uncommitted)",
+      "Leer datos borrados",
+      "Leer datos corruptos"
+    ],
+    "answer": 1,
+    "explanation": "Ocurre en el nivel de aislamiento READ UNCOMMITTED."
+  },
+  {
+    "question": "¿Qué es una Lectura No Repetible?",
+    "options": [
+      "Cuando se lee basura",
+      "Cuando da error al leer",
+      "Cuando no se puede leer",
+      "Cuando una transacción lee la misma fila dos veces y obtiene datos diferentes porque otra transacción la modificó"
+    ],
+    "answer": 3,
+    "explanation": "Se evita con el nivel REPEATABLE READ."
+  },
+  {
+    "question": "¿Qué es una Lectura Fantasma (Phantom Read)?",
+    "options": [
+      "Leer datos que no existen",
+      "Una lectura mágica",
+      "Cuando una transacción ejecuta la misma consulta dos veces y aparecen filas nuevas insertadas por otra transacción",
+      "Un error del sistema"
+    ],
+    "answer": 2,
+    "explanation": "Se evita con el nivel SERIALIZABLE."
+  },
+  {
+    "question": "¿Cuál es el nivel de aislamiento más alto y estricto?",
+    "options": ["REPEATABLE READ", "SERIALIZABLE", "READ COMMITTED", "READ UNCOMMITTED"],
+    "answer": 1,
+    "explanation": "Evita todos los fenómenos de concurrencia pero reduce el rendimiento."
+  },
+  {
+    "question": "¿Qué es un Deadlock (Interbloqueo)?",
+    "options": [
+      "Un cierre de sesión",
+      "Situación donde dos transacciones se bloquean mutuamente esperando recursos que la otra tiene",
+      "Un fallo de disco",
+      "Un bloqueo de usuario"
+    ],
+    "answer": 1,
+    "explanation": "El SGBD suele detectar uno y matar una de las transacciones para liberar el bloqueo."
+  },
+  {
+    "question": "¿Qué es el bloqueo optimista?",
+    "options": [
+      "Bloquear todo al principio",
+      "Asumir que no habrá conflictos y verificar al momento de actualizar (usando versiones o timestamps)",
+      "Ser positivo",
+      "No bloquear nada nunca"
+    ],
+    "answer": 1,
+    "explanation": "Mejora la concurrencia en sistemas con pocos conflictos."
+  },
+  {
+    "question": "¿Qué es el bloqueo pesimista?",
+    "options": [
+      "Usar solo un usuario",
+      "Bloquear los recursos antes de usarlos para evitar que otros los modifiquen",
+      "Bloquear la base de datos",
+      "Pensar que todo va a fallar"
+    ],
+    "answer": 1,
+    "explanation": "SELECT ... FOR UPDATE es un ejemplo."
+  },
+  {
+    "question": "¿Qué es el WAL (Write-Ahead Logging)?",
+    "options": [
+      "Técnica donde los cambios se escriben primero en un log antes de aplicarse a los datos físicos",
+      "Escribir rápido",
+      "Una caminata",
+      "Un log de errores"
+    ],
+    "answer": 0,
+    "explanation": "Fundamental para la Durabilidad y recuperación ante fallos."
+  },
+  {
+    "question": "¿Qué sentencia inicia una transacción explícita?",
+    "options": [
+      "CREATE TRANSACTION",
+      "START TRANSACTION o BEGIN",
+      "NEW TRANSACTION",
+      "OPEN TRANSACTION"
+    ],
+    "answer": 1,
+    "explanation": "Marca el punto donde comienza la unidad de trabajo."
+  },
+  {
+    "question": "¿Qué sucede con una transacción abierta si se pierde la conexión?",
+    "options": [
+      "Se hace COMMIT automático",
+      "Se hace ROLLBACK automático",
+      "Queda pendiente para siempre",
+      "Se guarda en un archivo"
+    ],
+    "answer": 1,
+    "explanation": "El sistema protege la integridad deshaciendo lo incompleto."
+  }
+]

@@ -1,0 +1,207 @@
+[
+  {
+    "question": "¿Qué es un archivo (fichero)?",
+    "options": [
+      "Una variable",
+      "Un programa",
+      "Una carpeta",
+      "Una secuencia de bytes almacenada en un dispositivo de almacenamiento persistente"
+    ],
+    "answer": 3,
+    "explanation": "Persistencia de datos."
+  },
+  {
+    "question": "¿Qué es abrir un archivo?",
+    "options": [
+      "Crearlo",
+      "Borrarlo",
+      "Preparar el archivo para leer o escribir, estableciendo un canal de comunicación con el programa",
+      "Hacer doble clic"
+    ],
+    "answer": 2,
+    "explanation": "fopen(), new File()."
+  },
+  {
+    "question": "¿Qué es cerrar un archivo?",
+    "options": [
+      "Ocultarlo",
+      "Apagar el PC",
+      "Liberar los recursos del sistema asociados al archivo y asegurar que los datos se guarden",
+      "Borrar el archivo"
+    ],
+    "answer": 2,
+    "explanation": "fclose(), close(). Importante para evitar fugas."
+  },
+  {
+    "question": "¿Qué es un archivo de texto?",
+    "options": [
+      "Un ejecutable",
+      "Un archivo binario",
+      "Una imagen",
+      "Un archivo que contiene caracteres legibles por humanos (ASCII/Unicode)"
+    ],
+    "answer": 3,
+    "explanation": ".txt, .csv, .json."
+  },
+  {
+    "question": "¿Qué es un archivo binario?",
+    "options": [
+      "Un texto",
+      "Un archivo que contiene datos en formato máquina, no legible directamente (imágenes, ejecutables)",
+      "Una carpeta",
+      "Un correo"
+    ],
+    "answer": 1,
+    "explanation": ".exe, .jpg, .dat."
+  },
+  {
+    "question": "¿Qué modo de apertura borra el contenido previo del archivo?",
+    "options": [
+      "Añadir ('a' - append)",
+      "Lectura ('r' - read)",
+      "Actualizar ('r+')",
+      "Escritura ('w' - write)"
+    ],
+    "answer": 3,
+    "explanation": "Cuidado al usar 'w'."
+  },
+  {
+    "question": "¿Qué modo de apertura añade contenido al final sin borrar lo anterior?",
+    "options": ["Append ('a')", "Read ('r')", "Write ('w')", "New ('n')"],
+    "answer": 0,
+    "explanation": "Útil para logs."
+  },
+  {
+    "question": "¿Qué es un Stream (Flujo)?",
+    "options": [
+      "Un video",
+      "Un archivo",
+      "Un error",
+      "Una abstracción para leer o escribir datos secuencialmente (como un río de datos)"
+    ],
+    "answer": 3,
+    "explanation": "InputStream, OutputStream."
+  },
+  {
+    "question": "¿Qué es el EOF (End Of File)?",
+    "options": [
+      "Un error",
+      "El principio",
+      "Un virus",
+      "Un marcador o señal que indica que no hay más datos que leer en el archivo"
+    ],
+    "answer": 3,
+    "explanation": "Devuelve -1 o null."
+  },
+  {
+    "question": "¿Qué es el buffer de archivo?",
+    "options": [
+      "Un virus",
+      "Un error",
+      "Un disco",
+      "Memoria temporal para reducir el número de accesos físicos al disco (mejora rendimiento)"
+    ],
+    "answer": 3,
+    "explanation": "flush() fuerza la escritura."
+  },
+  {
+    "question": "¿Qué es la serialización de objetos a archivo?",
+    "options": [
+      "Imprimir el objeto",
+      "Borrar el objeto",
+      "Crear el objeto",
+      "Guardar el estado de un objeto en un archivo para recuperarlo después"
+    ],
+    "answer": 3,
+    "explanation": "ObjectOutputStream."
+  },
+  {
+    "question": "¿Qué es una ruta absoluta?",
+    "options": [
+      "La ubicación completa del archivo desde la raíz del sistema (ej. C:\\Users\\Docs\\file.txt)",
+      "La ruta corta",
+      "El nombre",
+      "La extensión"
+    ],
+    "answer": 0,
+    "explanation": "No depende del directorio actual."
+  },
+  {
+    "question": "¿Qué es una ruta relativa?",
+    "options": [
+      "La ruta completa",
+      "La extensión",
+      "La ubicación del archivo respecto al directorio actual de trabajo (ej. ./datos/file.txt)",
+      "El nombre"
+    ],
+    "answer": 2,
+    "explanation": "Más portable."
+  },
+  {
+    "question": "¿Qué es CSV?",
+    "options": [
+      "Comma Separated Values, formato simple para datos tabulares",
+      "Un programa",
+      "Un video",
+      "Un virus"
+    ],
+    "answer": 0,
+    "explanation": "Muy común en intercambio de datos."
+  },
+  {
+    "question": "¿Qué es JSON?",
+    "options": [
+      "Un ejecutable",
+      "Un nombre",
+      "Un archivo binario",
+      "JavaScript Object Notation, formato ligero de intercambio de datos"
+    ],
+    "answer": 3,
+    "explanation": "Estándar web actual."
+  },
+  {
+    "question": "¿Qué permiso se necesita para modificar un archivo?",
+    "options": ["Ninguno", "Escritura (Write)", "Ejecución (Execute)", "Lectura (Read)"],
+    "answer": 1,
+    "explanation": "rwx en Linux."
+  },
+  {
+    "question": "¿Qué pasa si intentas abrir un archivo que no existe en modo lectura?",
+    "options": ["Error (FileNotFoundException o null)", "Nada", "Se abre vacío", "Se crea"],
+    "answer": 0,
+    "explanation": "Manejar la excepción."
+  },
+  {
+    "question": "¿Qué pasa si intentas abrir un archivo que no existe en modo escritura?",
+    "options": [
+      "Pide permiso",
+      "No hace nada",
+      "Generalmente se crea un archivo nuevo vacío",
+      "Da error"
+    ],
+    "answer": 2,
+    "explanation": "Comportamiento estándar."
+  },
+  {
+    "question": "¿Qué es el puntero de archivo (file pointer)?",
+    "options": [
+      "Un error",
+      "Indica la posición actual de lectura/escritura dentro del archivo",
+      "El ratón",
+      "El nombre"
+    ],
+    "answer": 1,
+    "explanation": "seek() mueve el puntero."
+  },
+  {
+    "question": "¿Qué es XML?",
+    "options": [
+      "Un ejecutable",
+      "Un archivo binario",
+      "Un video",
+      "Extensible Markup Language, formato de texto para estructurar datos"
+    ],
+    "answer": 3,
+    "explanation": "Verborrágico pero robusto."
+  }
+]

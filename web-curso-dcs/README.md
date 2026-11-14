@@ -11,21 +11,21 @@ Sitio web estático que recopila todo el contenido del curso **Diseño y Creaci�
 
 ## Arquitectura
 
-| Archivo | Descripción |
-|---|---|
-| `index.html` | Hub de navegación |
-| `primer_cuatrimestre.html` | Contenido del I cuatrimestre |
-| `segundo_cuatrimestre.html` | Contenido del II cuatrimestre |
-| `tercer_cuatrimestre.html` | Contenido del III cuatrimestre |
-| `css/styles.css` | Estilos personalizados |
-| `js/app.js` | Interactividad (acordeones, scroll, menú móvil) |
-| `assets/` | PDFs e imágenes referenciados |
+| Archivo                          | Descripción                                     |
+| -------------------------------- | ----------------------------------------------- |
+| `index.html`                     | Hub de navegación                               |
+| `html/primer_cuatrimestre.html`  | Contenido del I cuatrimestre                    |
+| `html/segundo_cuatrimestre.html` | Contenido del II cuatrimestre                   |
+| `html/tercer_cuatrimestre.html`  | Contenido del III cuatrimestre                  |
+| `css/styles.css`                 | Estilos personalizados                          |
+| `js/app.js`                      | Interactividad (acordeones, scroll, menú móvil) |
+| `assets/`                        | PDFs, imágenes e iconos referenciados           |
 
 Built with HTML + Tailwind CSS (CDN) + JavaScript vanilla. Sin frameworks ni build steps.
 
 ## Uso
 
-Abrir `index.html` en cualquier navegador moderno. No requiere servidor.
+Abrir `index.html` en cualquier navegador moderno. No requiere servidor; las páginas de cuatrimestre están en `html/`.
 
 ## Licencia
 

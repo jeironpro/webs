@@ -1,0 +1,157 @@
+[
+  {
+    "question": "¿Qué archivo almacena la información de los usuarios en Linux?",
+    "options": ["/etc/group", "/etc/passwd", "/etc/users", "/etc/shadow"],
+    "answer": 1,
+    "explanation": "Contiene nombre, UID, GID, home, shell, etc."
+  },
+  {
+    "question": "¿Qué archivo almacena las contraseñas encriptadas?",
+    "options": ["/etc/security", "/etc/passwd", "/etc/keys", "/etc/shadow"],
+    "answer": 3,
+    "explanation": "Solo legible por root por seguridad."
+  },
+  {
+    "question": "¿Qué archivo almacena la información de los grupos?",
+    "options": ["/etc/passwd", "/etc/users", "/etc/group", "/etc/gshadow"],
+    "answer": 2,
+    "explanation": "Define qué usuarios pertenecen a qué grupos."
+  },
+  {
+    "question": "¿Qué es el UID?",
+    "options": [
+      "Universal ID",
+      "Unidad de Identificación",
+      "User ID, un número único que identifica al usuario",
+      "User Interface Design"
+    ],
+    "answer": 2,
+    "explanation": "Root siempre tiene UID 0."
+  },
+  {
+    "question": "¿Qué es el GID?",
+    "options": [
+      "Graphic ID",
+      "Group ID, identificador numérico del grupo",
+      "General ID",
+      "Global ID"
+    ],
+    "answer": 1,
+    "explanation": "Identifica al grupo principal del usuario."
+  },
+  {
+    "question": "¿Qué comando crea un nuevo usuario?",
+    "options": ["newuser", "mkuser", "createuser", "useradd"],
+    "answer": 3,
+    "explanation": "adduser es un script más amigable sobre useradd."
+  },
+  {
+    "question": "¿Qué comando elimina un usuario?",
+    "options": ["userdel", "rmuser", "deluser", "removeuser"],
+    "answer": 0,
+    "explanation": "userdel nombre_usuario."
+  },
+  {
+    "question": "¿Qué comando modifica un usuario existente?",
+    "options": ["usermod", "edituser", "moduser", "changeuser"],
+    "answer": 0,
+    "explanation": "Permite cambiar grupos, home, shell, etc."
+  },
+  {
+    "question": "¿Qué comando cambia la contraseña de un usuario?",
+    "options": ["password", "passwd", "chpass", "setpass"],
+    "answer": 1,
+    "explanation": "passwd nombre_usuario."
+  },
+  {
+    "question": "¿Qué es el directorio Home?",
+    "options": [
+      "El directorio personal del usuario donde guarda sus archivos (/home/usuario)",
+      "El escritorio",
+      "La papelera",
+      "El directorio raíz"
+    ],
+    "answer": 0,
+    "explanation": "Es propiedad del usuario."
+  },
+  {
+    "question": "¿Qué es el usuario root?",
+    "options": [
+      "Un virus",
+      "Un invitado",
+      "El superusuario o administrador del sistema con privilegios ilimitados",
+      "Un usuario normal"
+    ],
+    "answer": 2,
+    "explanation": "UID 0."
+  },
+  {
+    "question": "¿Qué comando muestra el usuario actual?",
+    "options": ["me", "who", "id", "whoami"],
+    "answer": 3,
+    "explanation": "Devuelve el nombre del usuario logueado."
+  },
+  {
+    "question": "¿Qué comando muestra información detallada del usuario (UID, GID, grupos)?",
+    "options": ["id", "finger", "whoami", "info"],
+    "answer": 0,
+    "explanation": "id nombre_usuario."
+  },
+  {
+    "question": "¿Qué es un grupo primario?",
+    "options": [
+      "Un grupo vacío",
+      "El grupo principal asignado al usuario al crearlo (generalmente tiene el mismo nombre)",
+      "El primer grupo del sistema",
+      "Un grupo de administradores"
+    ],
+    "answer": 1,
+    "explanation": "Los archivos creados por el usuario pertenecen a este grupo por defecto."
+  },
+  {
+    "question": "¿Qué es un grupo secundario?",
+    "options": [
+      "Grupos de invitados",
+      "Grupos menos importantes",
+      "Grupos temporales",
+      "Grupos adicionales a los que pertenece el usuario para obtener permisos extra"
+    ],
+    "answer": 3,
+    "explanation": "Se añaden con usermod -aG."
+  },
+  {
+    "question": "¿Qué comando añade un grupo?",
+    "options": ["mkgroup", "groupadd", "newgroup", "addgroup"],
+    "answer": 1,
+    "explanation": "groupadd nombre_grupo."
+  },
+  {
+    "question": "¿Qué comando elimina un grupo?",
+    "options": ["rmgroup", "delgroup", "removegroup", "groupdel"],
+    "answer": 3,
+    "explanation": "groupdel nombre_grupo."
+  },
+  {
+    "question": "¿Qué significa la 'x' en el campo de contraseña de /etc/passwd?",
+    "options": [
+      "Que no tiene contraseña",
+      "Que la contraseña está almacenada en /etc/shadow",
+      "Que es un usuario x",
+      "Que está bloqueado"
+    ],
+    "answer": 1,
+    "explanation": "Mecanismo de seguridad shadow passwords."
+  },
+  {
+    "question": "¿Qué shell se asigna por defecto habitualmente?",
+    "options": ["/bin/false", "/bin/sh", "/bin/bash", "/bin/zsh"],
+    "answer": 2,
+    "explanation": "Bourne Again Shell."
+  },
+  {
+    "question": "¿Cómo bloquear una cuenta de usuario?",
+    "options": ["block user", "usermod -L o passwd -l", "stop user", "userdel"],
+    "answer": 1,
+    "explanation": "Lock. Pone un ! en el hash de la contraseña."
+  }
+]

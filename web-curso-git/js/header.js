@@ -34,25 +34,25 @@ document.addEventListener("DOMContentLoaded", () => {
         "gitclone",
         "gitpull",
         "gitfetch",
-        "final-test"
+        "final-test",
     ];
 
     const title = document.querySelector("h1");
     if (!title) return;
 
     const headerNav = document.createElement("div");
-    headerNav.className = "header-nav";
+    headerNav.className = "nav-controls";
 
     const homeLink = document.createElement("a");
     homeLink.href = "../index.html";
-    homeLink.className = "header-home";
+    homeLink.className = "nav-home";
     homeLink.title = "Volver a la página principal";
     homeLink.textContent = "índice";
     headerNav.appendChild(homeLink);
 
     const previousLink = document.createElement("a");
     previousLink.id = "previous-link";
-    previousLink.className = "header-arrow";
+    previousLink.className = "nav-arrow";
     previousLink.title = "Página anterior";
     previousLink.setAttribute("aria-label", "Página anterior");
     previousLink.textContent = "←";
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const nextLink = document.createElement("a");
     nextLink.id = "next-link";
-    nextLink.className = "header-arrow";
+    nextLink.className = "nav-arrow";
     nextLink.title = "Página siguiente";
     nextLink.setAttribute("aria-label", "Página siguiente");
     nextLink.textContent = "→";

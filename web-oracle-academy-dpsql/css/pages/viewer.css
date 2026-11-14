@@ -1,5 +1,4 @@
 @layer base {
-    /* Barra superior del visor: volver + migas a la izquierda, descarga a la derecha. */
     .viewer-bar {
         display: flex;
         flex-wrap: wrap;
@@ -57,7 +56,6 @@
         flex-shrink: 0;
     }
 
-    /* Encabezado del documento. */
     .viewer {
         max-width: var(--measure);
         margin-inline: auto;
@@ -86,13 +84,12 @@
         overflow-wrap: anywhere;
     }
 
-    /* Marco del PDF: ocupa el resto de la altura de la ventana. */
     .viewer__frame {
         position: relative;
         margin-top: var(--space-lg);
-        height: calc(100vh - 300px);
-        min-height: 320px;
-        border: 1.5px solid var(--color-ink-soft);
+        height: calc(100vh - 18.75rem);
+        min-height: 20rem;
+        border: 0.0938rem solid var(--color-ink-soft);
         border-radius: var(--radius-card);
         background: var(--color-paper-2);
         overflow: hidden;
@@ -140,7 +137,6 @@
         font-size: var(--text-sm);
     }
 
-    /* Pie: navegación anterior/siguiente dentro del tema. */
     .viewer-footer {
         display: flex;
         align-items: center;
@@ -187,16 +183,16 @@
     }
 
     .viewer__frame {
-        height: calc(100vh - 340px);
+        height: calc(100vh - 21.25rem);
     }
 
-    @media (min-width: 481px) {
+    @media (min-width: 30.0625rem) {
         .viewer-bar {
             padding-inline: revert-layer;
         }
 
         .viewer__frame {
-            height: calc(100vh - 300px);
+            height: calc(100vh - 18.75rem);
         }
     }
 }

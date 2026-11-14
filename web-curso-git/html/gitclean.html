@@ -1,61 +1,70 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../icon/curso_git.png" type="image/x-icon">
-    <title>Git clean</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/git.css">
-</head>
-<body>
-    <header>
-        <h1>Git clean</h1>
-    </header>
-    <main class="course-content">
-        <section class="course-section">
-            <article class="command-definition">
-                <div class="definition">
-                    <h2>Definición</h2>
-                    <p>
-                        El comando <code>git clean</code> se utiliza para eliminar archivos y directorios no rastreados del área de trabajo.
-                        Es especialmente útil cuando has creado archivos temporales, binarios o pruebas que no deseas agregar al repositorio.
-                        Advertencia: este comando borra archivos del disco, por lo que debe usarse con precaución.
-                    </p>
-                </div>
-                <div class="commands">
-                    <h2>Comandos</h2>
-                    <ul>
-                        <li>
-                            <code><span>git clean -n</span></code>
-                            <p>Muestra una vista previa de los archivos que serían eliminados sin borrarlos realmente.</p>
-                        </li>
-                        <li>
-                            <code><span>git clean -f</span></code>
-                            <p>Elimina definitivamente los archivos no rastreados.</p>
-                        </li>
-                        <li>
-                            <code><span>git clean -df</span></code>
-                            <p>Elimina archivos y también carpetas no rastreadas.</p>
-                        </li>
-                        <li>
-                            <code><span>git clean -x</span></code>
-                            <p>Elimina también los archivos ignorados por .gitignore.</p>
-                        </li>
-                    </ul>
-                </div>
-            </article>
-            <article class="practice">
-                <div class="run-block">
-                    <h3> Ejecutar</h3>
-                    <pre><code>$ echo "Git es impresionante" > hola_git.txt
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg" />
+        <link rel="shortcut icon" href="../assets/icons/curso_git.png" type="image/x-icon" />
+        <title>Git clean</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="../css/git.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Git clean</h1>
+        </header>
+        <main class="course-content">
+            <section class="course-section">
+                <article class="command-definition">
+                    <div class="definition">
+                        <h2>Definición</h2>
+                        <p>
+                            El comando <code>git clean</code> se utiliza para eliminar archivos y
+                            directorios no rastreados del área de trabajo. Es especialmente útil
+                            cuando has creado archivos temporales, binarios o pruebas que no deseas
+                            agregar al repositorio. Advertencia: este comando borra archivos del
+                            disco, por lo que debe usarse con precaución.
+                        </p>
+                    </div>
+                    <div class="commands">
+                        <h2>Comandos</h2>
+                        <ul>
+                            <li>
+                                <code><span>git clean -n</span></code>
+                                <p>
+                                    Muestra una vista previa de los archivos que serían eliminados
+                                    sin borrarlos realmente.
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git clean -f</span></code>
+                                <p>Elimina definitivamente los archivos no rastreados.</p>
+                            </li>
+                            <li>
+                                <code><span>git clean -df</span></code>
+                                <p>Elimina archivos y también carpetas no rastreadas.</p>
+                            </li>
+                            <li>
+                                <code><span>git clean -x</span></code>
+                                <p>Elimina también los archivos ignorados por .gitignore.</p>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+                <article class="practice">
+                    <div class="run-block">
+                        <h3>Ejecutar</h3>
+                        <pre><code>$ echo "Git es impresionante" > hola_git.txt
 $ git status
 $ git clean -f hola_git.txt
 $ git status</code></pre>
-                </div>
-                <div class="result-block">
-                    <h3> Resultado</h3>
-                    <pre><code>En la rama main
+                    </div>
+                    <div class="result-block">
+                        <h3>Resultado</h3>
+                        <pre><code>En la rama main
 
 No hay commits todavía
 
@@ -76,14 +85,13 @@ No hay commits todavía
 Cambios a ser confirmados:
   (usa "git rm --cached &lt;archivo&gt;..." para sacar del área de stage)
 	nuevos archivos: main.js</code></pre>
-                </div>
-
-            </article>
-        </section>
-    </main>
-    <footer>
-        &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
-    </footer>
-    <script src="../js/header.js"></script>
-</body>
+                    </div>
+                </article>
+            </section>
+        </main>
+        <footer>
+            &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
+        </footer>
+        <script src="../js/header.js"></script>
+    </body>
 </html>

@@ -107,7 +107,6 @@ async function arrancar() {
         ultimoTiempo = performance.now();
         renderizador.setAnimationLoop(bucle);
     } catch (error) {
-        console.error("No se pudo iniciar el juego:", error);
         mostrarAviso(error);
     }
 }
@@ -249,18 +248,17 @@ function colocarCoche(cocheEstado) {
     const muestra = circuito.muestras[Math.round(cocheEstado.indice) % circuito.muestras.length];
     if (muestra) {
         coche.grupo.rotation.x = -Math.asin(limitar(muestra.tangente.y, -1, 1));
-        // El coche se apoya en el peralte: si no rueda con la curva, las ruedas
-        // del lado alto quedan enterradas en el asfalto.
+
         coche.grupo.rotation.z = muestra.peralte;
     }
 }
 
 function calcularPosicion(cocheEstado, rivalesEstado) {
-    const miDistancia = (cocheEstado.vuelta - 1) + cocheEstado.progreso;
+    const miDistancia = cocheEstado.vuelta - 1 + cocheEstado.progreso;
     let delante = 0;
 
     for (const rival of rivalesEstado) {
-        const suDistancia = (rival.vuelta - 1) + rival.progreso;
+        const suDistancia = rival.vuelta - 1 + rival.progreso;
         if (suDistancia > miDistancia) delante += 1;
     }
 
@@ -276,7 +274,7 @@ function guardarRecord(cocheEstado) {
             return true;
         }
     } catch {
-        // Almacenamiento no disponible (modo privado): se juega sin récord.
+        void 0;
     }
     return false;
 }
@@ -358,7 +356,6 @@ function bucle(tiempoMs) {
     renderizador.render(escena, camara);
 }
 
-/** Los botones táctiles solo acompañan a la partida en marcha. */
 function sincronizarTactil() {
     const enCarrera = estado.modo === "carrera" || estado.modo === "cuenta";
     tactil.mostrar(enCarrera);

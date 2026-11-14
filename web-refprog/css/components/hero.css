@@ -1,48 +1,57 @@
-/* Hero de portada */
-
 .hero {
-  padding: var(--space-12) 0 var(--space-10);
-  text-align: center;
-  position: relative;
+    padding: var(--space-12) 0 var(--space-10);
+    text-align: center;
+    position: relative;
 }
 
-/* Linea decorativa bajo el hero */
 .hero::after {
-  content: '';
-  display: block;
-  width: 60px;
-  height: 3px;
-  background-color: var(--color-accent);
-  margin: var(--space-8) auto 0;
+    content: "";
+    display: block;
+    width: 3.75rem;
+    height: 0.1875rem;
+    background-color: var(--color-accent);
+    margin: var(--space-8) auto 0;
 }
 
 .hero-title {
-  font-family: var(--font-heading);
-  font-size: var(--text-3xl);
-  color: var(--color-heading);
-  margin-bottom: var(--space-4);
-  letter-spacing: -0.03em;
+    font-family: var(--font-heading);
+    font-size: var(--text-3xl);
+    color: var(--color-heading);
+    margin-bottom: var(--space-4);
+    letter-spacing: -0.03em;
 }
 
 .hero-subtitle {
-  font-size: var(--text-lg);
-  color: var(--color-text-soft);
-  max-width: 640px;
-  margin: 0 auto var(--space-8);
-  line-height: 1.5;
+    font-size: var(--text-lg);
+    color: var(--color-text-soft);
+    max-width: 40rem;
+    margin: 0 auto var(--space-8);
+    line-height: 1.5;
 }
 
 .hero-actions {
-  display: flex;
-  justify-content: center;
-  gap: var(--space-4);
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    gap: var(--space-4);
+    flex-direction: column;
+    align-items: center;
 }
 
-@media (min-width: 769px) {
-  .hero { padding: var(--space-20) 0 var(--space-16); }
-  .hero-title { font-size: var(--text-5xl); }
-  .hero-subtitle { font-size: var(--text-xl); }
-  .hero-actions { flex-direction: row; align-items: stretch; }
+@media (min-width: 48rem) {
+    .hero {
+        padding: var(--space-20) 0 var(--space-16);
+    }
+
+    .hero-title {
+        font-size: var(--text-5xl);
+    }
+
+    .hero-subtitle {
+        font-size: var(--text-xl);
+    }
+
+    .hero-actions {
+        flex-direction: row;
+        align-items: stretch;
+    }
 }

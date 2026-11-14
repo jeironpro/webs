@@ -1,97 +1,43 @@
 # Web Generador CV
 
-Generador de currículum vitae en PDF con dos interfaces:
+Generador de currículum vitae en PDF con un formulario de cuatro pasos que se
+ejecuta por completo en el navegador. Aplicación estática de HTML, CSS y
+JavaScript, sin framework ni proceso de compilación.
 
-- **App web**: formulario en 4 pasos que genera el PDF en el navegador.
-- **CLI**: generación por línea de comandos desde un archivo de datos.
+## Características
 
-Ambas comparten el mismo **tema visual** y las mismas **etiquetas i18n** (español, catalán e inglés), definidas una única vez en la carpeta `shared/`.
-
-## Stack
-
-| Capa      | Tecnología                    |
-| --------- | ---------------------------- |
-| Framework | HTML / CSS / JavaScript vanilla |
-| PDF web   | jsPDF (generación en el cliente) |
-| CLI       | Node.js + PDFKit + Lucide Static |
-| Iconos    | Material Symbols (Google Fonts) |
-| Canvas    | Partículas animadas vanilla JS |
-
-## Requisitos
-
-- Node.js >= 18
-
-## Ver la app web
-
-La app es estática: no necesita instalación ni build. jsPDF va vendorizado en `vendor/jspdf.umd.min.js`.
-
-```bash
-python3 -m http.server 5173 --directory web-generador-cv
-```
-
-Abre http://localhost:5173.
-
-## Generador CLI
-
-```bash
-cd cli
-npm install
-```
-
-Crea el archivo `cli/data/cv-data.js` exportando el objeto `cv` (mismo modelo de datos que la web) y, opcionalmente, una foto en `cli/data/`.
-
-```bash
-# Español (por defecto)
-npm run build
-
-# Idioma específico
-npm run build:es
-npm run build:ca
-npm run build:en
-
-# Todos los idiomas
-npm run build:all
-```
-
-Los PDFs se generan en `cli/output/cv-{lang}.pdf`.
-
-## Modelo de datos
-
-La web y la CLI comparten el mismo modelo de datos:
-
-- Personales: `name`, `email`, `telephone`, `address`, `nationality`, `dateOfBirth`, `socialLinks`.
-- Foto: en la web es un archivo subido; en la CLI es una ruta a una imagen (`photo`).
-- Perfiles por idioma (`profiles.es`, `profiles.ca`, `profiles.en`), cada uno con:
-  - `title`, `shortDescription`
-  - `workExperience`, `education`
-  - `languageSkills`, `digitalSkills`
-  - `communicationSkills`, `organisationalSkills`, `jobRelatedSkills`
-  - `additionalInfo`
+- Asistente de cuatro pasos: datos personales, perfiles, revisión y descarga.
+- Perfiles en español, catalán e inglés.
+- Foto, redes sociales, experiencia, formación, idiomas y competencias.
+- Revisión de toda la información antes de exportar.
+- PDF de dos columnas generado con jsPDF, sin enviar datos a ningún servidor.
+- Diseño responsive con partículas de fondo y navegación por pasos.
 
 ## Estructura
 
 ```
-web-generador-cv/
-├── index.html              # Wizard de 4 pasos + canvas de partículas
-├── app.js                  # Estado, vistas y generación del PDF
-├── styles.css              # Estilos de la app
-├── vendor/
-│   └── jspdf.umd.min.js    # jsPDF vendorizado (script global)
-├── shared/                 # Código compartido web + CLI
-│   ├── theme.js            # Tema (colores, dimensiones, fuentes)
-│   ├── i18n.js             # Etiquetas de sección por idioma
-│   └── constants.js        # Idiomas soportados
-└── cli/                    # Generador CLI (PDFKit)
-    ├── index.js
-    ├── src/
-    │   ├── renderer.js
-    │   └── components.js
-    ├── data/               # cv-data.js (no versionado)
-    └── output/             # PDFs generados (no versionado)
+index.html        Estructura del asistente
+app.js            Estado, vistas y generación del PDF
+styles.css        Estilos propios de la aplicación
+css/react.css     Hoja compilada del diseño original
+shared/           Tema, etiquetas i18n e idiomas
+vendor/           jsPDF vendorizado
 ```
 
-## Personalización
+## Uso local
 
-- **Tema**: `shared/theme.js` — colores del panel izquierdo/derecho, dimensiones y fuentes.
-- **Etiquetas**: `shared/i18n.js` — encabezados de sección por idioma.
-- **Idiomas**: `shared/constants.js` — lista de idiomas soportados.
+```bash
+python3 -m http.server 8080 --directory web-generador-cv
+```
+
+Abre <http://localhost:8080>.
+
+## Generación del PDF
+
+El botón «Descargar CV en PDF» genera el documento en el navegador con jsPDF.
+El archivo se descarga como `curriculum-es.pdf`, `curriculum-ca.pdf` o
+`curriculum-en.pdf` según el perfil activo.
+
+## Licencia
+
+MIT. Consulta [LICENSE](../LICENSE).

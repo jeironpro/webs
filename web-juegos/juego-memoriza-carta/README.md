@@ -25,14 +25,13 @@ No requiere instalación ni compilación.
 ## Estructura del proyecto
 
 ```
-juego-memoriza-carta/
-├── index.html
-├── css/                   # estilos del tablero y las cartas
-├── js/                    # lógica del juego
-├── img/                   # imagenes de las cartas
-└── LICENSE
+index.html
+css/styles.css        — Estilos del tablero y las cartas
+js/app.js             — Lógica del juego
+assets/images/        — Cartas y favicon
 ```
 
 ## Licencia
+
 Este proyecto está bajo la licencia **MIT**.  
-Consulta el archivo [LICENSE](LICENSE) para más detalles.
+Consulta el archivo [LICENSE](../../LICENSE) para más detalles.

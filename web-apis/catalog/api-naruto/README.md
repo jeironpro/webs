@@ -12,14 +12,14 @@ API REST para gestionar personajes de Naruto con habilidades, debilidades, forta
 
 ## Endpoints
 
-| Método | Ruta | Descripción |
-|--------|------|-------------|
-| `POST` | `/personajes` | Crear un personaje |
-| `GET` | `/personajes` | Listar todos los personajes |
-| `GET` | `/personajes/{id}` | Obtener personaje por ID |
-| `GET` | `/personajes/aldea/{aldea}` | Filtrar por aldea |
-| `GET` | `/personajes/rango/{rango}` | Filtrar por rango |
-| `GET` | `/personajes/equipo/{equipo}` | Filtrar por equipo |
+| Método | Ruta                          | Descripción                 |
+| ------ | ----------------------------- | --------------------------- |
+| `POST` | `/personajes`                 | Crear un personaje          |
+| `GET`  | `/personajes`                 | Listar todos los personajes |
+| `GET`  | `/personajes/{id}`            | Obtener personaje por ID    |
+| `GET`  | `/personajes/aldea/{aldea}`   | Filtrar por aldea           |
+| `GET`  | `/personajes/rango/{rango}`   | Filtrar por rango           |
+| `GET`  | `/personajes/equipo/{equipo}` | Filtrar por equipo          |
 
 ### Crear Personaje
 
@@ -54,25 +54,26 @@ X-API-Key: tu-clave
 ```
 
 Respuesta:
+
 ```json
 [
-    {
-        "id": 1,
-        "nombre": "Naruto Uzumaki",
-        "aldea": "Konoha",
-        "equipo": "Equipo 7",
-        "rango": "Genin",
-        "imagen_url": null,
-        "habilidades": ["Rasengan", "Multiclones de Sombras"],
-        "debilidades": ["Impaciencia"],
-        "fortalezas": ["Voluntad inquebrantable"],
-        "estadisticas": {
-            "fuerza": 7,
-            "habilidad": 6,
-            "resistencia": 9,
-            "estrategia": 5
-        }
+  {
+    "id": 1,
+    "nombre": "Naruto Uzumaki",
+    "aldea": "Konoha",
+    "equipo": "Equipo 7",
+    "rango": "Genin",
+    "imagen_url": null,
+    "habilidades": ["Rasengan", "Multiclones de Sombras"],
+    "debilidades": ["Impaciencia"],
+    "fortalezas": ["Voluntad inquebrantable"],
+    "estadisticas": {
+      "fuerza": 7,
+      "habilidad": 6,
+      "resistencia": 9,
+      "estrategia": 5
     }
+  }
 ]
 ```
 
@@ -110,11 +111,11 @@ X-API-Key: tu-clave
 
 Todas las peticiones requieren el header `X-API-Key` con el valor configurado en la variable de entorno `API_KEY`.
 
-| Código | Significado |
-|--------|-------------|
-| `401` | API Key no enviada |
-| `403` | API Key inválida |
-| `500` | API_KEY no configurada en el servidor |
+| Código | Significado                           |
+| ------ | ------------------------------------- |
+| `401`  | API Key no enviada                    |
+| `403`  | API Key inválida                      |
+| `500`  | API_KEY no configurada en el servidor |
 
 ## Variables de Entorno
 
@@ -126,11 +127,11 @@ API_KEY=mi_clave_secreta
 FRONTEND_URL=https://tufrontend.com
 ```
 
-| Variable | Obligatoria | Descripción |
-|----------|-------------|-------------|
-| `DATABASE_URL` | Sí | URL de conexión PostgreSQL (Render) |
-| `API_KEY` | Sí | Clave para autenticar peticiones |
-| `FRONTEND_URL` | No | URL del frontend para CORS |
+| Variable       | Obligatoria | Descripción                         |
+| -------------- | ----------- | ----------------------------------- |
+| `DATABASE_URL` | Sí          | URL de conexión PostgreSQL (Render) |
+| `API_KEY`      | Sí          | Clave para autenticar peticiones    |
+| `FRONTEND_URL` | No          | URL del frontend para CORS          |
 
 ## Instalación Local
 

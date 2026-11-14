@@ -3,7 +3,7 @@ import { renderSidebar, renderView } from "./modules/catalog.js";
 import { clearNode } from "./utils/dom.js";
 
 const ALL_VIEW = "all";
-const SEARCH_DELAY = 150; // ms de debounce al escribir
+const SEARCH_DELAY = 150;
 
 const elements = {
     panelNav: document.querySelector("#panel-nav"),
@@ -37,7 +37,6 @@ async function init() {
         render();
     });
 
-    // Atajo de teclado: Ctrl/⌘ + K enfoca la búsqueda desde cualquier lugar.
     window.addEventListener("keydown", (event) => {
         const isShortcut = (event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k";
         if (isShortcut) {
@@ -51,7 +50,6 @@ async function init() {
         }
     });
 
-    // Escape: limpia la consulta si hay texto; si está vacía, suelta el foco.
     elements.searchInput?.addEventListener("keydown", (event) => {
         if (event.key !== "Escape") {
             return;
@@ -73,7 +71,6 @@ async function init() {
         searchTimer = window.setTimeout(render, SEARCH_DELAY);
     });
 
-    // Menú hamburguesa: abrir/cerrar el cajón de temas en móvil.
     elements.menuButton?.addEventListener("click", togglePanel);
     elements.backdrop?.addEventListener("click", closePanel);
     window.addEventListener("resize", () => {
@@ -83,7 +80,6 @@ async function init() {
     });
 }
 
-/** Lee la vista desde el hash (#all o #topic-<id>). */
 function readViewFromHash() {
     const hash = window.location.hash.replace(/^#/, "");
     if (hash === ALL_VIEW || hash === "") {
@@ -96,7 +92,6 @@ function readViewFromHash() {
     }
 }
 
-/** Selecciona una vista, actualiza el hash (entrada de historial) y renderiza. */
 function selectView(view) {
     state.view = view;
     const hash = view === ALL_VIEW ? ALL_VIEW : `topic-${view}`;
@@ -115,7 +110,6 @@ function render() {
     renderSidebar(elements.panelNav, manifest, state.view, selectView);
     renderView(elements.viewContainer, manifest, state);
 
-    // Conexión de los chips de filtro renderizados en la vista.
     const chips = [...elements.viewContainer.querySelectorAll(".chip")];
     for (const chip of chips) {
         chip.addEventListener("click", () => {
@@ -144,7 +138,6 @@ function showError(message) {
     elements.viewContainer.append(paragraph);
 }
 
-/** true si la pantalla está en el rango móvil (cajón activo). */
 function isMobile() {
     return window.matchMedia("(max-width: 768px)").matches;
 }
@@ -180,7 +173,6 @@ function closePanel() {
     elements.menuButton?.focus();
 }
 
-/** Etiqueta del atajo según plataforma: ⌘ K en macOS, Ctrl K en el resto. */
 function labelShortcut() {
     if (elements.searchKey === null) {
         return;

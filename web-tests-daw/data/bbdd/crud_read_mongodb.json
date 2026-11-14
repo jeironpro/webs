@@ -1,0 +1,157 @@
+[
+  {
+    "question": "¿Qué método recupera documentos de una colección?",
+    "options": ["find()", "search()", "select()", "get()"],
+    "answer": 0,
+    "explanation": "db.coleccion.find(filtro, proyeccion)"
+  },
+  {
+    "question": "¿Qué método recupera un solo documento?",
+    "options": ["findFirst()", "getOne()", "searchOne()", "findOne()"],
+    "answer": 3,
+    "explanation": "Devuelve el documento directamente, no un cursor."
+  },
+  {
+    "question": "¿Qué devuelve find()?",
+    "options": [
+      "Un array de documentos",
+      "Todos los documentos de golpe",
+      "Un archivo JSON",
+      "Un cursor apuntando al conjunto de resultados"
+    ],
+    "answer": 3,
+    "explanation": "El cursor permite iterar sobre los resultados eficientemente."
+  },
+  {
+    "question": "¿Cómo formatear la salida en el shell para que sea legible?",
+    "options": [".clean()", ".nice()", ".format()", ".pretty()"],
+    "answer": 3,
+    "explanation": "db.coleccion.find().pretty()"
+  },
+  {
+    "question": "¿Qué es una proyección?",
+    "options": [
+      "Especificar qué campos incluir o excluir en el resultado",
+      "Un filtro",
+      "Un mapa",
+      "Una predicción"
+    ],
+    "answer": 0,
+    "explanation": "{ nombre: 1, edad: 1, _id: 0 }"
+  },
+  {
+    "question": "¿Cómo excluir el campo _id?",
+    "options": ["{ no_id: true }", "{ _id: false }", "{ _id: 0 }", "{ hide_id: 1 }"],
+    "answer": 2,
+    "explanation": "Es el único campo que se puede excluir explícitamente mientras se incluyen otros."
+  },
+  {
+    "question": "¿Qué operador se usa para igualdad?",
+    "options": ["$equal", "$eq", "Ninguno, se usa { campo: valor }", "="],
+    "answer": 2,
+    "explanation": "La sintaxis implícita es la más común."
+  },
+  {
+    "question": "¿Qué operador significa 'mayor que'?",
+    "options": ["$gte", "$lt", "$more", "$gt"],
+    "answer": 3,
+    "explanation": "Greater Than."
+  },
+  {
+    "question": "¿Qué operador significa 'menor o igual que'?",
+    "options": ["$lte", "$min", "$lt", "$le"],
+    "answer": 0,
+    "explanation": "Less Than or Equal."
+  },
+  {
+    "question": "¿Qué operador significa 'distinto de'?",
+    "options": ["$not", "$diff", "!=", "$ne"],
+    "answer": 3,
+    "explanation": "Not Equal."
+  },
+  {
+    "question": "¿Qué operador busca valores dentro de una lista?",
+    "options": ["$list", "$in", "$include", "$within"],
+    "answer": 1,
+    "explanation": "{ estado: { $in: ['A', 'B'] } }"
+  },
+  {
+    "question": "¿Qué operador busca valores que NO están en una lista?",
+    "options": ["$notin", "$out", "$exclude", "$nin"],
+    "answer": 3,
+    "explanation": "Not In."
+  },
+  {
+    "question": "¿Cómo hacer un AND lógico?",
+    "options": [
+      "Solo con $and",
+      "Con &&",
+      "Implícitamente separando condiciones por comas { a: 1, b: 2 } o con $and",
+      "Con +"
+    ],
+    "answer": 2,
+    "explanation": "La coma actúa como AND por defecto."
+  },
+  {
+    "question": "¿Cómo hacer un OR lógico?",
+    "options": [
+      "Separando por comas",
+      "Usando ||",
+      "Usando el operador $or con un array de condiciones",
+      "Usando $any"
+    ],
+    "answer": 2,
+    "explanation": "{ $or: [ { a: 1 }, { b: 2 } ] }"
+  },
+  {
+    "question": "¿Qué operador invierte una condición?",
+    "options": ["!", "$no", "$inv", "$not"],
+    "answer": 3,
+    "explanation": "{ edad: { $not: { $gt: 18 } } }"
+  },
+  {
+    "question": "¿Cómo comprobar si un campo existe?",
+    "options": [
+      "{ has: 'campo' }",
+      "{ campo: { $ne: null } }",
+      "{ campo: 1 }",
+      "{ campo: { $exists: true } }"
+    ],
+    "answer": 3,
+    "explanation": "Distingue entre campo nulo y campo inexistente."
+  },
+  {
+    "question": "¿Cómo buscar por tipo de dato?",
+    "options": [
+      "{ campo: { $typeof: 'string' } }",
+      "{ campo: { $class: 'string' } }",
+      "{ campo: { $type: 'string' } } (o número de tipo)",
+      "{ campo: { $is: 'string' } }"
+    ],
+    "answer": 2,
+    "explanation": "Útil en esquemas flexibles."
+  },
+  {
+    "question": "¿Cómo limitar el número de resultados?",
+    "options": [".take(n)", ".top(n)", ".max(n)", ".limit(n)"],
+    "answer": 3,
+    "explanation": "db.col.find().limit(5)"
+  },
+  {
+    "question": "¿Cómo saltar resultados (paginación)?",
+    "options": [".next(n)", ".jump(n)", ".skip(n)", ".offset(n)"],
+    "answer": 2,
+    "explanation": "Se usa junto con limit()."
+  },
+  {
+    "question": "¿Cómo ordenar resultados?",
+    "options": [
+      ".order({ campo: 1 })",
+      ".orderBy({ campo: 1 })",
+      ".sort({ campo: 1 }) (asc) o -1 (desc)",
+      ".rank({ campo: 1 })"
+    ],
+    "answer": 2,
+    "explanation": "1 para ascendente, -1 para descendente."
+  }
+]

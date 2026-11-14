@@ -1,52 +1,29 @@
-# Dashboard Financiero «Suma»
+# Suma · Dashboard financiero
 
-Frontend de dashboard financiero para portafolio personal: **ingresos, facturación, suscripciones, estado de pagos y reportes fiscales/contables**.
+Dashboard financiero de portafolio con ingresos, facturación, suscripciones,
+pagos y reportes fiscales y contables. Está implementado como sitio estático en
+HTML, CSS y JavaScript vanilla, sin React ni runtime de framework.
 
-## ✨ Qué incluye
+## Vistas
 
-- **Resumen**: KPIs de ingresos, gastos, utilidad y MRR, más desglose de ingresos y gastos por concepto.
-- **Facturas**: tabla de facturas con estado (pagada / pendiente / vencida) y acciones rápidas.
-- **Suscripciones**: planes y tabla de suscripciones activas.
-- **Pagos**: movimientos recientes con método y estado.
+- **Resumen**: KPIs, ingresos y gastos por concepto, MRR por plan y pagos recientes.
+- **Facturas**: tabla con filtros por estado y actualización de datos.
+- **Suscripciones**: planes y suscripciones activas.
+- **Pagos**: desglose por estado y acción de cobro.
 - **Reportes**: IVA, estado de resultados y balance general.
 - **Perfil**: datos de la cuenta.
 
-## Stack
+El menú de usuario y el drawer de navegación móvil están incluidos en todas las
+vistas. Las pestañas de facturas filtran la tabla por estado.
 
-| Capa      | Tecnología                      |
-| --------- | ------------------------------ |
-| Framework | HTML / CSS / JavaScript vanilla |
-| Build     | Vite                            |
-| Datos     | datos de ejemplo en `app.js`    |
-| Testing   | vitest                          |
+## Archivos
 
-## 🚀 Arranque
+- `index.html`: resumen financiero.
+- `facturacion.html`, `suscripciones.html`, `pagos.html`, `reportes.html`,
+  `perfil.html`: vistas restantes.
+- `css/styles.css`: estilos compilados del diseño original.
+- `css/app.css`: ajustes de overlays, drawer, filtros y avisos.
+- `js/app.js`: navegación, menús, filtros, pestañas, actualización y exportación.
+- `favicon.svg`: icono de la aplicación.
 
-```bash
-yarn install
-yarn dev
-```
-
-## ✅ Scripts
-
-```bash
-yarn dev        # servidor de desarrollo
-yarn build      # build de producción
-yarn preview    # previsualiza el build
-yarn lint       # ESLint
-yarn test       # vitest
-yarn format     # Prettier
-```
-
-## 🧱 Estructura
-
-```
-app.js           # datos de ejemplo, layout y vistas (resumen, facturas, …)
-index.html       # página publicada
-index.src.html   # fuente que compila el hub
-assets/          # CSS compilado y favicon
-```
-
-## Licencia
-
-MIT — ver [LICENSE](LICENSE).
+Los datos son un MOCK estático incluido en el HTML.

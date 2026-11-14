@@ -164,7 +164,7 @@ function vistaInicio() {
         <section class="portada">
             <div class="portada__texto">
                 <p class="kicker"><span class="kicker__punto" aria-hidden="true"></span> ARCHIVO 001 · DEDUCCIÓN SOCIAL</p>
-                <h1 class="portada__titulo" tabindex="-1" data-focus>Farsante<span>.</span></h1>
+                <h2 class="portada__titulo" tabindex="-1" data-focus>Farsante<span>.</span></h2>
                 <p class="portada__lema">Uno no sabe la palabra.<br><em>Los demás tienen que notarlo.</em></p>
                 <p class="portada__intro">Reparte una palabra secreta, da pistas en voz alta y vota al sospechoso. El farsante escucha, improvisa y sonríe.</p>
                 <div class="acciones">
@@ -234,7 +234,7 @@ function vistaConfig() {
                     <button class="btn-volver" id="volver-inicio" type="button">${icono("atras")} Volver</button>
                     <p class="kicker">PASO 01 / 03 · PREPARACIÓN</p>
                 </div>
-                <h1 tabindex="-1" data-focus>Prepara el expediente.</h1>
+                <h2 tabindex="-1" data-focus>Prepara el expediente.</h2>
                 <p class="vista__entrada">Añade a la mesa y decide cuánto va a durar el caso. Puedes repartir en este móvil o enviar un enlace privado a cada jugador.</p>
             </header>
             <div class="config__grid">
@@ -297,7 +297,8 @@ function vistaConfig() {
                         <p class="ajuste__nota">Cuántas rondas de pistas y votos aguanta la mesa.</p>
                         <div class="segmentos" role="group" aria-label="Número de rondas">
                             ${RONDAS.map(
-                                (ronda) => `<button class="segmento" type="button" data-rondas="${ronda}" aria-pressed="${state.config.rondas === ronda}">${ronda} ${ronda === 1 ? "ronda" : "rondas"}</button>`
+                                (ronda) =>
+                                    `<button class="segmento" type="button" data-rondas="${ronda}" aria-pressed="${state.config.rondas === ronda}">${ronda} ${ronda === 1 ? "ronda" : "rondas"}</button>`
                             ).join("")}
                         </div>
                     </fieldset>
@@ -307,7 +308,8 @@ function vistaConfig() {
                         <div class="segmentos segmentos--dos" role="group" aria-label="Número de farsantes">
                             ${[1, 2]
                                 .map(
-                                    (cantidad) => `<button class="segmento" type="button" data-farsantes="${cantidad}" aria-pressed="${state.config.farsantes === cantidad}" ${cantidad === 2 && state.jugadores.length < MIN_JUGADORES_DOS_FARSANTES ? "disabled" : ""}>${cantidad} ${cantidad === 1 ? "farsante" : "farsantes"}</button>`
+                                    (cantidad) =>
+                                        `<button class="segmento" type="button" data-farsantes="${cantidad}" aria-pressed="${state.config.farsantes === cantidad}" ${cantidad === 2 && state.jugadores.length < MIN_JUGADORES_DOS_FARSANTES ? "disabled" : ""}>${cantidad} ${cantidad === 1 ? "farsante" : "farsantes"}</button>`
                                 )
                                 .join("")}
                         </div>
@@ -317,7 +319,9 @@ function vistaConfig() {
                         <p class="ajuste__nota">De dónde saldrá la palabra. Puedes mezclar todas.</p>
                         <div class="temas">
                             ${TEMATICAS.map(
-                                (tematica) => `<button class="tema" type="button" data-tema="${tematica.id}" aria-pressed="${seleccionadas.has(tematica.id)}">
+                                (
+                                    tematica
+                                ) => `<button class="tema" type="button" data-tema="${tematica.id}" aria-pressed="${seleccionadas.has(tematica.id)}">
                                     <span class="tema__marca" aria-hidden="true"></span>
                                     <span><strong>${tematica.nombre}</strong><small>${tematica.descripcion}</small></span>
                                 </button>`
@@ -362,7 +366,7 @@ function vistaBrief() {
                     <button class="btn-volver" id="volver-config" type="button">${icono("atras")} Editar</button>
                     <p class="kicker">PASO 02 / 03 · REPARTO</p>
                 </div>
-                <h1 tabindex="-1" data-focus>El caso está listo.</h1>
+                <h2 tabindex="-1" data-focus>El caso está listo.</h2>
                 <p class="vista__entrada">${
                     state.config.invitacion
                         ? "Cuando pulses el botón, se creará un enlace privado. Cada persona abrirá su carta en su propio móvil."
@@ -379,7 +383,8 @@ function vistaBrief() {
                     <ul class="brief__jugadores">
                         ${state.jugadores
                             .map(
-                                (jugador) => `<li><span>${avatarSvg(jugador.avatar)}</span><strong>${esc(jugador.nombre)}${jugador.bot ? ` <span class="brief__bot">BOT</span>` : ""}</strong></li>`
+                                (jugador) =>
+                                    `<li><span>${avatarSvg(jugador.avatar)}</span><strong>${esc(jugador.nombre)}${jugador.bot ? ` <span class="brief__bot">BOT</span>` : ""}</strong></li>`
                             )
                             .join("")}
                     </ul>
@@ -446,7 +451,7 @@ function vistaInvitacionHost() {
                     <p class="kicker">PASO 03 / 03 · REPARTO POR ENLACE</p>
                     <span class="estado-pill">SIN SERVIDOR</span>
                 </div>
-                <h1 tabindex="-1" data-focus>Comparte el enlace.</h1>
+                <h2 tabindex="-1" data-focus>Comparte el enlace.</h2>
                 <p class="vista__entrada">Cada persona abre su carta en su propio móvil. La ronda y la votación se quedan en este dispositivo.</p>
             </header>
             <div class="invitacion__grid">
@@ -475,7 +480,8 @@ function vistaInvitacionHost() {
                     <ul class="invitacion-lista">
                         ${state.jugadores
                             .map(
-                                (jugador) => `<li>${avatarSvg(jugador.avatar)}<strong>${esc(jugador.nombre)}</strong><span>Por enlace</span></li>`
+                                (jugador) =>
+                                    `<li>${avatarSvg(jugador.avatar)}<strong>${esc(jugador.nombre)}</strong><span>Por enlace</span></li>`
                             )
                             .join("")}
                     </ul>
@@ -489,9 +495,7 @@ function vistaInvitacionHost() {
 function vistaInvitacionJugador() {
     const invitacion = state.invitacion;
     if (!invitacion) return "";
-    const jugador = invitacion.jugadores.find(
-        (item) => item.id === state.jugadorInvitacionId
-    );
+    const jugador = invitacion.jugadores.find((item) => item.id === state.jugadorInvitacionId);
     if (!jugador) {
         return `
             <section class="vista invitacion-jugador">
@@ -500,13 +504,15 @@ function vistaInvitacionJugador() {
                         <p class="kicker">INVITACIÓN PRIVADA</p>
                         <span class="estado-pill estado-pill--rojo">SOLO TU CARTA</span>
                     </div>
-                    <h1 tabindex="-1" data-focus>Elige tu nombre.</h1>
+                    <h2 tabindex="-1" data-focus>Elige tu nombre.</h2>
                     <p class="vista__entrada">Te han invitado a un caso. Selecciona tu nombre para ver tu carta. La mesa se juega en el dispositivo anfitrión.</p>
                 </header>
                 <div class="invitacion-jugadores">
                     ${invitacion.jugadores
                         .map(
-                            (item) => `<button class="jugador-invitado" type="button" data-elegir-invitado="${item.id}">
+                            (
+                                item
+                            ) => `<button class="jugador-invitado" type="button" data-elegir-invitado="${item.id}">
                                 ${avatarSvg(item.avatar)}
                                 <strong>${esc(item.nombre)}</strong>
                                 <span>Ver mi carta ${icono("flecha")}</span>
@@ -524,8 +530,7 @@ function vistaInvitacionJugador() {
         invitacion.partida.farsanteIds.includes(jugador.id)
             ? invitacion.jugadores.find(
                   (item) =>
-                      item.id !== jugador.id &&
-                      invitacion.partida.farsanteIds.includes(item.id)
+                      item.id !== jugador.id && invitacion.partida.farsanteIds.includes(item.id)
               )
             : null;
 
@@ -536,7 +541,7 @@ function vistaInvitacionJugador() {
                     <p class="kicker">INVITACIÓN PRIVADA · CARTA</p>
                     <span class="progreso-texto">${invitacion.jugadores.length} JUGADORES</span>
                 </div>
-                <h1 tabindex="-1" data-focus>Carta de ${esc(jugador.nombre)}.</h1>
+                <h2 tabindex="-1" data-focus>Carta de ${esc(jugador.nombre)}.</h2>
                 <p class="vista__entrada">Que nadie más mire. Cuando termines, oculta la carta y devuelve el móvil a la mesa.</p>
             </header>
             <div class="escena-carta">
@@ -566,8 +571,7 @@ function vistaReparto() {
     const companero =
         partida.farsanteIds.length > 1 && partida.farsanteIds.includes(jugador.id)
             ? state.jugadores.find(
-                  (item) =>
-                      item.id !== jugador.id && partida.farsanteIds.includes(item.id)
+                  (item) => item.id !== jugador.id && partida.farsanteIds.includes(item.id)
               )
             : null;
     const ultima = state.revelacionIndice === humanos.length - 1;
@@ -581,13 +585,14 @@ function vistaReparto() {
                     <p class="kicker">PASO 03 / 03 · CARTAS PRIVADAS</p>
                     <span class="progreso-texto">${state.revelacionIndice + 1} / ${humanos.length}</span>
                 </div>
-                <h1 tabindex="-1" data-focus>${abierta ? `Carta de ${nombre}` : soloConBots ? `Tu carta, ${nombre}.` : `Pasa el móvil a ${nombre}`}</h1>
+                <h2 tabindex="-1" data-focus>${abierta ? `Carta de ${nombre}` : soloConBots ? `Tu carta, ${nombre}.` : `Pasa el móvil a ${nombre}`}</h2>
                 <p class="vista__entrada">${abierta ? "Que nadie más mire la pantalla. Cuando termines, tapa la carta y pasa el móvil." : hayBots() ? "Solo verás tu carta. Los bots ya tienen la suya; no hace falta pasar el móvil." : "Una carta por persona. Sin enseñar, sin comentar, sin mirar de reojo."}</p>
             </header>
             <div class="progreso-cartas" role="progressbar" aria-label="Progreso del reparto" aria-valuemin="1" aria-valuemax="${humanos.length}" aria-valuenow="${state.revelacionIndice + 1}">
                 ${humanos
                     .map(
-                        (_, indice) => `<span class="progreso-cartas__punto ${indice < state.revelacionIndice ? "hecho" : indice === state.revelacionIndice ? "actual" : ""}"></span>`
+                        (_, indice) =>
+                            `<span class="progreso-cartas__punto ${indice < state.revelacionIndice ? "hecho" : indice === state.revelacionIndice ? "actual" : ""}"></span>`
                     )
                     .join("")}
             </div>
@@ -620,7 +625,7 @@ function vistaRonda() {
                     <p class="kicker">RONDA ${partida.rondaActual} DE ${state.config.rondas}</p>
                     <span class="estado-pill"><span aria-hidden="true"></span>${vivos.length} EN JUEGO</span>
                 </div>
-                <h1 tabindex="-1" data-focus>Las pistas empiezan.</h1>
+                <h2 tabindex="-1" data-focus>Las pistas empiezan.</h2>
                 <p class="vista__entrada">${mesaConBots ? "Los bots ya han dejado su pista. Tú das la tuya en voz alta: una idea corta, sin decir la palabra." : "Cada persona dice una pista corta sobre la palabra. Sin decirla, sin deletrearla, sin mirar la carta."}</p>
             </header>
             <div class="ronda__grid">
@@ -635,7 +640,10 @@ function vistaRonda() {
                     <ol class="orden">
                         ${orden
                             .map(
-                                (jugador, indice) => `<li class="${indice === 0 ? "orden__primero" : ""}">
+                                (
+                                    jugador,
+                                    indice
+                                ) => `<li class="${indice === 0 ? "orden__primero" : ""}">
                                     <span class="orden__numero">${String(indice + 1).padStart(2, "0")}</span>
                                     <span>${avatarSvg(jugador.avatar)}</span>
                                     <strong>${esc(jugador.nombre)}</strong>
@@ -679,7 +687,7 @@ function vistaVotacion() {
                         <p class="kicker">VOTACIÓN · ${partida.indiceVotante + 1} DE ${humanos.length}</p>
                         <span class="estado-pill estado-pill--rojo">VOTO SECRETO</span>
                     </div>
-                    <h1 tabindex="-1" data-focus>${soloConBots ? `Te toca votar, ${nombre}.` : `Pasa el móvil a ${nombre}.`}</h1>
+                    <h2 tabindex="-1" data-focus>${soloConBots ? `Te toca votar, ${nombre}.` : `Pasa el móvil a ${nombre}.`}</h2>
                     <p class="vista__entrada">${soloConBots ? "Los bots ya han dejado su voto. Elige al sospechoso sin que nadie más mire la pantalla." : "El resto, mirad hacia otro lado. El voto es secreto: nadie debería verlo antes que la mesa."}</p>
                 </header>
                 <div class="votante">
@@ -702,13 +710,15 @@ function vistaVotacion() {
                     <p class="kicker">VOTO DE ${nombre.toLocaleUpperCase("es")}</p>
                     <span class="estado-pill estado-pill--rojo">${partida.indiceVotante + 1} DE ${humanos.length}</span>
                 </div>
-                <h1 tabindex="-1" data-focus>¿Quién te parece sospechoso?</h1>
+                <h2 tabindex="-1" data-focus>¿Quién te parece sospechoso?</h2>
                 <p class="vista__entrada">Elige una carta. No puedes votarte a ti. No hay vuelta atrás.${soloConBots ? " Los bots ya han dejado su voto." : ""}</p>
             </header>
             <div class="candidatos" role="group" aria-label="Candidatos a la votación">
                 ${candidatos
                     .map(
-                        (jugador) => `<button class="candidato" type="button" data-votar="${jugador.id}" aria-label="Votar a ${esc(jugador.nombre)}">
+                        (
+                            jugador
+                        ) => `<button class="candidato" type="button" data-votar="${jugador.id}" aria-label="Votar a ${esc(jugador.nombre)}">
                             <span class="candidato__avatar">${avatarSvg(jugador.avatar)}</span>
                             <strong>${esc(jugador.nombre)}</strong>
                             <span class="candidato__accion">Seleccionar ${icono("flecha")}</span>
@@ -726,7 +736,9 @@ function vistaResultado() {
     const resultado = partida?.resultado;
     if (!partida || !resultado) return "";
     const eliminado = state.jugadores.find((jugador) => jugador.id === resultado.eliminadoId);
-    const filas = [...resultado.tally].sort((a, b) => b.votos - a.votos || a.nombre.localeCompare(b.nombre, "es"));
+    const filas = [...resultado.tally].sort(
+        (a, b) => b.votos - a.votos || a.nombre.localeCompare(b.nombre, "es")
+    );
     const maximo = resultado.maximo || 1;
     const totalVotos = filas.reduce((total, fila) => total + fila.votos, 0);
     const farsantesTotales = partida.farsanteIds.length;
@@ -739,7 +751,7 @@ function vistaResultado() {
                     <p class="kicker">ACTA DE VOTACIÓN · RONDA ${partida.rondaActual}</p>
                     <span class="estado-pill estado-pill--rojo">${totalVotos} VOTOS</span>
                 </div>
-                <h1 tabindex="-1" data-focus>${resultado.empate ? "La mesa no se pone de acuerdo." : `${esc(eliminado?.nombre || "")} queda fuera.`}</h1>
+                <h2 tabindex="-1" data-focus>${resultado.empate ? "La mesa no se pone de acuerdo." : `${esc(eliminado?.nombre || "")} queda fuera.`}</h2>
                 <p class="vista__entrada">${resultado.empate ? "Nadie abandona el caso esta ronda. La palabra sigue en juego." : "La mesa ha decidido. Ahora se descubre si ha acertado."}</p>
             </header>
             <div class="resultado__grid">
@@ -753,10 +765,12 @@ function vistaResultado() {
                     <ul class="recuento">
                         ${filas
                             .map(
-                                (fila) => `<li class="recuento__fila ${fila.id === resultado.eliminadoId ? "recuento__fila--fuera" : ""}">
+                                (
+                                    fila
+                                ) => `<li class="recuento__fila ${fila.id === resultado.eliminadoId ? "recuento__fila--fuera" : ""}">
                                     <span class="recuento__avatar">${avatarSvg(state.jugadores.find((j) => j.id === fila.id)?.avatar || 0)}</span>
                                     <span class="recuento__nombre">${esc(fila.nombre)}</span>
-                                    <span class="recuento__barra" aria-hidden="true"><span style="width:${Math.round((fila.votos / maximo) * 100)}%"></span></span>
+                                    <span class="recuento__barra recuento__barra--${maximo ? Math.round((fila.votos / maximo) * 10) * 10 : 0}" aria-hidden="true"><span></span></span>
                                     <strong>${fila.votos}</strong>
                                 </li>`
                             )
@@ -795,23 +809,22 @@ function vistaFinal() {
     const partida = state.partida;
     const resultado = partida?.resultado;
     if (!partida || !resultado?.ganador) return "";
-    const farsantes = state.jugadores.filter((jugador) =>
-        partida.farsanteIds.includes(jugador.id)
-    );
+    const farsantes = state.jugadores.filter((jugador) => partida.farsanteIds.includes(jugador.id));
     const totalFarsantes = partida.farsanteIds.length;
     const ganaFarsante = resultado.ganador === "farsante";
     return `
         <section class="vista final ${ganaFarsante ? "final--farsante" : "final--inocentes"}">
             <div class="final__sello">${icono(ganaFarsante ? "ojo" : "check")} CASO CERRADO</div>
             <p class="kicker">VEREDICTO · ${partida.rondaActual} ${partida.rondaActual === 1 ? "RONDA" : "RONDAS"}</p>
-            <h1 tabindex="-1" data-focus>${ganaFarsante ? (totalFarsantes > 1 ? "Los farsantes se escapan." : "El farsante se escapa.") : "Los inocentes cierran el caso."}</h1>
+            <h2 tabindex="-1" data-focus>${ganaFarsante ? (totalFarsantes > 1 ? "Los farsantes se escapan." : "El farsante se escapa.") : "Los inocentes cierran el caso."}</h2>
             <p class="vista__entrada">${ganaFarsante ? (totalFarsantes > 1 ? "La mesa no los vio venir. Al menos un farsante sobrevivió con la palabra en el bolsillo." : "La mesa no lo vio venir. El farsante sobrevivió con la palabra en el bolsillo.") : "La mentira tenía un nombre. La mesa lo encontró a tiempo."}</p>
             <div class="final__revelacion">
                 <section class="panel panel--revelacion" aria-label="Farsantes del caso">
                     <p class="kicker">${totalFarsantes > 1 ? "LOS FARSANTES ERAN" : "EL FARSANTE ERA"}</p>
                     <div class="final__personas">${farsantes
                         .map(
-                            (jugador) => `<div class="final__persona">${avatarSvg(jugador.avatar)}<h2>${esc(jugador.nombre)}</h2></div>`
+                            (jugador) =>
+                                `<div class="final__persona">${avatarSvg(jugador.avatar)}<h2>${esc(jugador.nombre)}</h2></div>`
                         )
                         .join("")}</div>
                 </section>
@@ -846,7 +859,8 @@ const VISTAS = {
 function render(foco = null) {
     const markup = VISTAS[state.vista]();
     if (!markup) return;
-    app.innerHTML = markup;
+    const parsed = new DOMParser().parseFromString(markup, "text/html");
+    app.replaceChildren(...parsed.body.childNodes);
     enlazar();
     if (vistaRenderizada !== state.vista) {
         vistaRenderizada = state.vista;
@@ -906,7 +920,9 @@ function agregarBots() {
         return;
     }
 
-    const usados = new Set(state.jugadores.map((jugador) => jugador.nombre.toLocaleLowerCase("es")));
+    const usados = new Set(
+        state.jugadores.map((jugador) => jugador.nombre.toLocaleLowerCase("es"))
+    );
     const nombres = [];
     for (let numero = 1; nombres.length < 2 && numero < 100; numero += 1) {
         const nombre = `Bot ${numero}`;
@@ -1067,7 +1083,11 @@ function registrarVoto(objetivoId) {
             partida.eliminados = [...partida.eliminados, resultado.eliminadoId];
         }
         state.vista = "resultado";
-        anunciar(resultado.empate ? "Empate. Nadie queda fuera." : `${resultado.eliminadoId ? "Un jugador queda fuera." : "Votación cerrada."}`);
+        anunciar(
+            resultado.empate
+                ? "Empate. Nadie queda fuera."
+                : `${resultado.eliminadoId ? "Un jugador queda fuera." : "Votación cerrada."}`
+        );
     } else {
         anunciar("Voto guardado. Pasa el móvil al siguiente votante.");
     }

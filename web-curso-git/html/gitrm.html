@@ -1,63 +1,81 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../icon/curso_git.png" type="image/x-icon">
-    <title>Git rm</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/git.css">
-</head>
-<body>
-    <header>
-        <h1>Git rm</h1>
-    </header>
-    <main class="course-content">
-        <section class="course-section">
-            <article class="command-definition">
-                <div class="definition">
-                    <h2>Definición</h2>
-                    <p>
-                        El comando <code>git rm</code> se utiliza para eliminar archivos del área de trabajo y del área de preparación (staging area).
-                        Cuando eliminas un archivo con <code>git rm</code>, Git registra su eliminación para que quede reflejada en el próximo commit.
-                        Es una manera segura y controlada de eliminar archivos del proyecto manteniendo la trazabilidad en el historial del repositorio.
-                    </p>
-                </div>
-                <div class="commands">
-                    <h2>Comandos</h2>
-                    <ul>
-                        <li>
-                            <code><span>git rm &lt;archivo&gt;</span></code>
-                            <p>Elimina el archivo del repositorio y del directorio de trabajo.</p>
-                        </li>
-                        <li>
-                            <code><span>git rm --cached &lt;archivo&gt;</span></code>
-                            <p>Elimina el archivo solo del área de preparación, pero lo mantiene en el directorio local.</p>
-                        </li>
-                        <li>
-                            <code><span>git rm -r &lt;directorio&gt;</span></code>
-                            <p>Elimina recursivamente un directorio completo y sus archivos rastreados.</p>
-                        </li>
-                        <li>
-                            <code><span>git rm --f &lt;archivo&gt;</span></code>
-                            <p>Forza la eliminación del archivo incluso si tiene cambios sin confirmar.</p>
-                        </li>
-                    </ul>
-                </div>
-            </article>
-            <article class="practice">
-                <div class="run-block">
-                    <h3> Ejecutar</h3>
-                    <pre><code>$ echo "Git no es GitHub" > git.txt
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg" />
+        <link rel="shortcut icon" href="../assets/icons/curso_git.png" type="image/x-icon" />
+        <title>Git rm</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="../css/git.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Git rm</h1>
+        </header>
+        <main class="course-content">
+            <section class="course-section">
+                <article class="command-definition">
+                    <div class="definition">
+                        <h2>Definición</h2>
+                        <p>
+                            El comando <code>git rm</code> se utiliza para eliminar archivos del
+                            área de trabajo y del área de preparación (staging area). Cuando
+                            eliminas un archivo con <code>git rm</code>, Git registra su eliminación
+                            para que quede reflejada en el próximo commit. Es una manera segura y
+                            controlada de eliminar archivos del proyecto manteniendo la trazabilidad
+                            en el historial del repositorio.
+                        </p>
+                    </div>
+                    <div class="commands">
+                        <h2>Comandos</h2>
+                        <ul>
+                            <li>
+                                <code><span>git rm &lt;archivo&gt;</span></code>
+                                <p>
+                                    Elimina el archivo del repositorio y del directorio de trabajo.
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git rm --cached &lt;archivo&gt;</span></code>
+                                <p>
+                                    Elimina el archivo solo del área de preparación, pero lo
+                                    mantiene en el directorio local.
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git rm -r &lt;directorio&gt;</span></code>
+                                <p>
+                                    Elimina recursivamente un directorio completo y sus archivos
+                                    rastreados.
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git rm --f &lt;archivo&gt;</span></code>
+                                <p>
+                                    Forza la eliminación del archivo incluso si tiene cambios sin
+                                    confirmar.
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+                <article class="practice">
+                    <div class="run-block">
+                        <h3>Ejecutar</h3>
+                        <pre><code>$ echo "Git no es GitHub" > git.txt
 $ git status
 $ git add git.txt
 $ git status
 $ git rm -f git.txt
 $ git status</code></pre>
-                </div>
-                <div class="result-block">
-                    <h3> Resultado</h3>
-                    <pre><code>En la rama main
+                    </div>
+                    <div class="result-block">
+                        <h3>Resultado</h3>
+                        <pre><code>En la rama main
 
 No hay commits todavía
 
@@ -87,14 +105,13 @@ No hay commits todavía
 Cambios a ser confirmados:
   (usa "git rm --cached &lt;archivo&gt;..." para sacar del área de stage)
 	nuevos archivos: main.js</code></pre>
-                </div>
-
-            </article>
-        </section>
-    </main>
-    <footer>
-        &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
-    </footer>
-    <script src="../js/header.js"></script>
-</body>
+                    </div>
+                </article>
+            </section>
+        </main>
+        <footer>
+            &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
+        </footer>
+        <script src="../js/header.js"></script>
+    </body>
 </html>

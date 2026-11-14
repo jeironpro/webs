@@ -1,4 +1,4 @@
-import { PerspectiveCamera, Vector3 } from "three/webgpu";
+import { PerspectiveCamera, Vector3 } from "../../vendor/three/three.webgpu.js";
 
 const ARRIBA = new Vector3(0, 1, 0);
 
@@ -6,10 +6,6 @@ export function crearCamara(relacionAspecto) {
     return new PerspectiveCamera(62, relacionAspecto, 0.4, 1400);
 }
 
-/**
- * Persecución suavizada detrás del coche y órbita lenta para el menú.
- * La distancia crece con la velocidad para dar sensación de aceleración.
- */
 export function crearSeguimiento(camara) {
     const deseada = new Vector3();
     const objetivo = new Vector3();
@@ -21,7 +17,10 @@ export function crearSeguimiento(camara) {
             const distancia = 9 + Math.min(velocidad, 60) * 0.05;
             const altura = 3.6 + Math.min(velocidad, 60) * 0.012;
 
-            deseada.copy(posicion).addScaledVector(adelante, -distancia).addScaledVector(ARRIBA, altura);
+            deseada
+                .copy(posicion)
+                .addScaledVector(adelante, -distancia)
+                .addScaledVector(ARRIBA, altura);
             camara.position.lerp(deseada, 1 - Math.exp(-6 * dt));
 
             objetivo.copy(posicion).addScaledVector(adelante, 9).addScaledVector(ARRIBA, 1.3);

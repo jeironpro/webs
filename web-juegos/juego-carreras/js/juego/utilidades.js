@@ -1,8 +1,3 @@
-/**
- * Utilidades numéricas del motor.
- * El PRNG es determinista: la misma semilla genera siempre el mismo circuito.
- */
-
 export function crearAzar(semilla) {
     let estado = semilla >>> 0;
     return function azar() {
@@ -22,7 +17,6 @@ export function modulo(valor, base) {
     return ((valor % base) + base) % base;
 }
 
-/** Segundos → `m:ss.d`; con horas por delante si la carrera se alarga. */
 export function formatearTiempo(segundos) {
     if (!Number.isFinite(segundos) || segundos < 0) return "—";
 

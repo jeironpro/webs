@@ -1,72 +1,98 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../icon/curso_git.png" type="image/x-icon">
-    <title>Git config</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/git.css">
-</head>
-<body>
-    <header>
-        <h1>Git config</h1>
-    </header>
-    <main class="course-content">
-        <section class="course-section">
-            <article class="command-definition">
-                <div class="definition">
-                    <h2>Definición</h2>
-                    <p>
-                        El comando <code>git config</code> se utiliza para ver y establecer las configuraciones de Git.
-                        Permite definir información del usuario, preferencias de formato, colores, editores predeterminados y opciones globales o locales.
-                        Las configuraciones pueden aplicarse a nivel local (solo el repositorio actual), global (para todos los repositorios del usuario) o de sistema (para todos los usuarios del equipo).
-                    </p>
-                </div>
-                <div class="commands">
-                    <h2>Comandos</h2>
-                    <ul>
-                        <li>
-                            <code><span>git config --global user.name "&lt;nombre&gt;"</span></code>
-                            <p>Establece el nombre del usuario para todos los commits realizados en el sistema.</p>
-                        </li>
-                        <li>
-                            <code><span>git config --global user.email "&lt;correo&gt;"</span></code>
-                            <p>Configura el correo electrónico del usuario globalmente.</p>
-                        </li>
-                        <li>
-                            <code><span>git config --list</span></code>
-                            <p>Muestra todas las configuraciones actuales de Git (locales, globales y de sistema).</p>
-                        </li>
-                        <li>
-                            <code><span>git config --edit --global</span></code>
-                            <p>Abre el archivo global de configuración en el editor por defecto para editarlo manualmente.</p>
-                        </li>
-                        <li>
-                            <code><span>git config core.editor "code --wait"</span></code>
-                            <p>Define Visual Studio Code como editor predeterminado para Git.</p>
-                        </li>
-                    </ul>
-                </div>
-            </article>
-            <article class="practice">
-                <div class="run-block">
-                    <h3> Ejecutar</h3>
-                    <pre><code>$ git config --global user.name "jeironpro"
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg" />
+        <link rel="shortcut icon" href="../assets/icons/curso_git.png" type="image/x-icon" />
+        <title>Git config</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="../css/git.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Git config</h1>
+        </header>
+        <main class="course-content">
+            <section class="course-section">
+                <article class="command-definition">
+                    <div class="definition">
+                        <h2>Definición</h2>
+                        <p>
+                            El comando <code>git config</code> se utiliza para ver y establecer las
+                            configuraciones de Git. Permite definir información del usuario,
+                            preferencias de formato, colores, editores predeterminados y opciones
+                            globales o locales. Las configuraciones pueden aplicarse a nivel local
+                            (solo el repositorio actual), global (para todos los repositorios del
+                            usuario) o de sistema (para todos los usuarios del equipo).
+                        </p>
+                    </div>
+                    <div class="commands">
+                        <h2>Comandos</h2>
+                        <ul>
+                            <li>
+                                <code
+                                    ><span
+                                        >git config --global user.name "&lt;nombre&gt;"</span
+                                    ></code
+                                >
+                                <p>
+                                    Establece el nombre del usuario para todos los commits
+                                    realizados en el sistema.
+                                </p>
+                            </li>
+                            <li>
+                                <code
+                                    ><span
+                                        >git config --global user.email "&lt;correo&gt;"</span
+                                    ></code
+                                >
+                                <p>Configura el correo electrónico del usuario globalmente.</p>
+                            </li>
+                            <li>
+                                <code><span>git config --list</span></code>
+                                <p>
+                                    Muestra todas las configuraciones actuales de Git (locales,
+                                    globales y de sistema).
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git config --edit --global</span></code>
+                                <p>
+                                    Abre el archivo global de configuración en el editor por defecto
+                                    para editarlo manualmente.
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git config core.editor "code --wait"</span></code>
+                                <p>
+                                    Define Visual Studio Code como editor predeterminado para Git.
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+                <article class="practice">
+                    <div class="run-block">
+                        <h3>Ejecutar</h3>
+                        <pre><code>$ git config --global user.name "jeironpro"
 $ git config --global user.email "jeironprogrammer@gmail.com"
 $ git config --list</code></pre>
-                </div>
-                <div class="result-block">
-                    <h3> Resultado</h3>
-                    <pre><code>user.name=jeironpro
+                    </div>
+                    <div class="result-block">
+                        <h3>Resultado</h3>
+                        <pre><code>user.name=jeironpro
 user.email=jeironprogrammer@gmail.com</code></pre>
-                </div>
-            </article>
-        </section>
-    </main>
-    <footer>
-        &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
-    </footer>
-    <script src="../js/header.js"></script>
-</body>
+                    </div>
+                </article>
+            </section>
+        </main>
+        <footer>
+            &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
+        </footer>
+        <script src="../js/header.js"></script>
+    </body>
 </html>

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../../../../assets/icons/favicon.svg" type="image/svg+xml">
     <title>Práctica Final - Reinforcement Learning</title>
     <style>
         :root {
@@ -18,7 +19,30 @@
             --gray-800: #1f2937;
         }
 
-        * {
+        html,
+        body,
+        div,
+        span,
+        header,
+        main,
+        section,
+        h1,
+        h2,
+        h3,
+        h4,
+        p,
+        ul,
+        li,
+        table,
+        thead,
+        tbody,
+        tr,
+        th,
+        td,
+        code,
+        pre,
+        footer,
+        a {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -32,12 +56,12 @@
             padding: 2rem;
         }
 
-        .container {
-            max-width: 900px;
+        .practice-container {
+            max-width: 56.25rem;
             margin: 0 auto;
             background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border-radius: .75rem;
+            box-shadow: 0 .25rem .375rem -0.0625rem rgba(0, 0, 0, 0.1);
             overflow: hidden;
         }
 
@@ -62,7 +86,7 @@
             display: inline-block;
             background: rgba(255,255,255,0.2);
             padding: 0.25rem 0.75rem;
-            border-radius: 20px;
+            border-radius: 1.25rem;
             font-size: 0.85rem;
             margin-top: 1rem;
         }
@@ -77,7 +101,7 @@
 
         h2 {
             color: var(--primary);
-            border-bottom: 3px solid var(--primary);
+            border-bottom: .1875rem solid var(--primary);
             padding-bottom: 0.5rem;
             margin-bottom: 1.25rem;
             font-size: 1.4rem;
@@ -94,15 +118,15 @@
             color: var(--gray-600);
         }
 
-        .objetivo-box {
+        .goal-box {
             background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
-            border-left: 4px solid var(--primary);
+            border-left: .25rem solid var(--primary);
             padding: 1.25rem;
-            border-radius: 0 8px 8px 0;
+            border-radius: 0 .5rem .5rem 0;
             margin: 1.5rem 0;
         }
 
-        .objetivo-box p {
+        .goal-box p {
             color: var(--gray-800);
             font-size: 1.05rem;
             margin: 0;
@@ -110,7 +134,7 @@
 
         .info-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr));
             gap: 1rem;
             margin: 1.5rem 0;
         }
@@ -118,7 +142,7 @@
         .info-card {
             background: var(--gray-100);
             padding: 1rem;
-            border-radius: 8px;
+            border-radius: .5rem;
             text-align: center;
         }
 
@@ -126,7 +150,7 @@
             font-size: 0.85rem;
             color: var(--gray-600);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: .0312rem;
         }
 
         .info-card .value {
@@ -146,7 +170,7 @@
         th, td {
             padding: 0.75rem 1rem;
             text-align: left;
-            border-bottom: 1px solid var(--gray-200);
+            border-bottom: .0625rem solid var(--gray-200);
         }
 
         th {
@@ -169,7 +193,7 @@
             margin-bottom: 1.5rem;
             padding: 1rem;
             background: var(--gray-50);
-            border-radius: 8px;
+            border-radius: .5rem;
         }
 
         .step::before {
@@ -178,8 +202,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 36px;
-            height: 36px;
+            width: 2.25rem;
+            height: 2.25rem;
             background: var(--primary);
             color: white;
             border-radius: 50%;
@@ -200,7 +224,7 @@
         code {
             background: var(--gray-100);
             padding: 0.2rem 0.4rem;
-            border-radius: 4px;
+            border-radius: .25rem;
             font-family: 'Consolas', 'Monaco', monospace;
             font-size: 0.9rem;
             color: var(--primary-dark);
@@ -210,7 +234,7 @@
             background: var(--gray-800);
             color: #e5e7eb;
             padding: 1rem;
-            border-radius: 8px;
+            border-radius: .5rem;
             overflow-x: auto;
             font-size: 0.85rem;
             margin: 1rem 0;
@@ -223,8 +247,8 @@
         }
 
         .option-card {
-            border: 2px solid var(--gray-200);
-            border-radius: 8px;
+            border: .125rem solid var(--gray-200);
+            border-radius: .5rem;
             padding: 1.5rem;
             margin: 1rem 0;
             transition: border-color 0.2s;
@@ -242,62 +266,75 @@
             color: var(--gray-800);
         }
 
-        /* Rúbrica */
-        .rubrica-section {
+
+        .rubric-section {
             background: #fefce8;
-            border: 2px solid #fde047;
-            border-radius: 8px;
+            border: .125rem solid #fde047;
+            border-radius: .5rem;
             padding: 1.5rem;
             margin: 1.5rem 0;
         }
 
-        .rubrica-table th {
+        .rubric-table th {
             background: #fef9c3;
         }
 
-        .rubrica-table .criterio {
+        .rubric-table .rubric-criterion {
+            width: 20%;
+        }
+
+        .rubric-table .rubric-weight {
+            width: 10%;
+        }
+
+        .bonus-note {
+            margin-top: 1rem;
+            color: var(--gray-600);
+        }
+
+        .rubric-table .criterion {
             font-weight: 600;
             color: var(--gray-800);
         }
 
-        .rubrica-table .peso {
+        .rubric-table .weight {
             text-align: center;
             font-weight: 700;
             color: var(--primary);
         }
 
-        .nivel {
+        .level {
             display: inline-block;
             padding: 0.15rem 0.4rem;
-            border-radius: 4px;
+            border-radius: .25rem;
             font-size: 0.75rem;
             font-weight: 500;
             margin-right: 0.25rem;
         }
 
-        .nivel.excelente { background: #d1fae5; color: #065f46; }
-        .nivel.bueno { background: #dbeafe; color: #1e40af; }
-        .nivel.suficiente { background: #fef3c7; color: #92400e; }
-        .nivel.insuficiente { background: #fee2e2; color: #991b1b; }
+        .level.excellent { background: #d1fae5; color: #065f46; }
+        .level.good { background: #dbeafe; color: #1e40af; }
+        .level.sufficient { background: #fef3c7; color: #92400e; }
+        .level.insufficient { background: #fee2e2; color: #991b1b; }
 
-        .puntos-total {
+        .total-score {
             background: var(--primary);
             color: white;
             padding: 1rem;
-            border-radius: 8px;
+            border-radius: .5rem;
             text-align: center;
             margin-top: 1rem;
         }
 
-        .puntos-total .numero {
+        .total-score .number {
             font-size: 2rem;
             font-weight: bold;
         }
 
         .tips-box {
             background: #f0f9ff;
-            border: 1px solid #bae6fd;
-            border-radius: 8px;
+            border: .0625rem solid #bae6fd;
+            border-radius: .5rem;
             padding: 1rem;
             margin: 1rem 0;
         }
@@ -318,8 +355,8 @@
 
         .bonus-section {
             background: #f0fdf4;
-            border: 2px solid #86efac;
-            border-radius: 8px;
+            border: .125rem solid #86efac;
+            border-radius: .5rem;
             padding: 1.5rem;
             margin: 1.5rem 0;
         }
@@ -342,16 +379,16 @@
             text-decoration: none;
         }
 
-        ul.lista-principal {
+        ul.main-list {
             margin-left: 1.5rem;
             color: var(--gray-600);
         }
 
-        ul.lista-principal li {
+        ul.main-list li {
             margin-bottom: 0.5rem;
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 37.5rem) {
             body { padding: 1rem; }
             header { padding: 1.5rem; }
             main { padding: 1rem; }
@@ -360,7 +397,7 @@
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="practice-container">
         <header>
             <h1>Práctica Final</h1>
             <p class="subtitle">Reinforcement Learning - Deep Learning</p>
@@ -368,7 +405,6 @@
         </header>
 
         <main>
-            <!-- Información General -->
             <section>
                 <div class="info-grid">
                     <div class="info-card">
@@ -385,16 +421,14 @@
                     </div>
                 </div>
             </section>
-
-            <!-- Objetivo -->
             <section>
                 <h2>Objetivo</h2>
-                <div class="objetivo-box">
+                <div class="goal-box">
                     <p><strong>Diseñar, implementar y entrenar un agente DQN (Deep Q-Network)</strong> que aprenda a resolver una tarea en un entorno de vuestra elección, aplicando los conocimientos adquiridos en Deep Learning y Reinforcement Learning durante el curso.</p>
                 </div>
 
                 <h3>Objetivos de aprendizaje</h3>
-                <ul class="lista-principal">
+                <ul class="main-list">
                     <li>Comprender el ciclo agente-entorno y el framework MDP</li>
                     <li>Implementar el algoritmo DQN con PyTorch</li>
                     <li>Diseñar experimentos y analizar curvas de aprendizaje</li>
@@ -402,8 +436,6 @@
                     <li>Documentar y comunicar resultados de forma clara</li>
                 </ul>
             </section>
-
-            <!-- Descripción -->
             <section>
                 <h2>Descripción de la Tarea</h2>
                 <p>El alumno/grupo debe entregar un <strong>Jupyter Notebook (.ipynb)</strong> completamente funcional donde:</p>
@@ -441,8 +473,6 @@
                     </div>
                 </div>
             </section>
-
-            <!-- Elección del Entorno -->
             <section>
                 <h2>Elección del Entorno</h2>
                 <p>Tenéis libertad para elegir el entorno donde entrenar vuestro agente DQN. Las opciones son:</p>
@@ -463,8 +493,6 @@
                     <pre><code>pip install gymnasium[atari,accept-rom-license]</code></pre>
                 </div>
             </section>
-
-            <!-- Componentes DQN -->
             <section>
                 <h2>Componentes del Agente DQN</h2>
                 <p>El agente DQN debe incluir los siguientes componentes fundamentales:</p>
@@ -496,8 +524,6 @@
                     </tbody>
                 </table>
             </section>
-
-            <!-- Estructura del Notebook -->
             <section>
                 <h2>Estructura del Entregable</h2>
                 <p>El notebook debe seguir esta estructura mínima. <strong>Podéis incluir archivos <code>.py</code> auxiliares</strong> que encapsulen lógica (agente, entorno, utilidades) y se importen desde el notebook.</p>
@@ -542,88 +568,84 @@
                 </table>
 
                 <h3>Archivos a entregar</h3>
-                <ul class="lista-principal">
+                <ul class="main-list">
                     <li><code>Apellido_Nombre_RL_Practica.ipynb</code> — Notebook principal (ejecutable)</li>
                     <li><code>*.py</code> — Archivos auxiliares opcionales (agente, entorno, utils...)</li>
                     <li><code>*.pth</code> — Modelo entrenado (opcional pero recomendado)</li>
                 </ul>
             </section>
-
-            <!-- Rúbrica de Evaluación -->
             <section>
                 <h2>Rúbrica de Evaluación</h2>
 
-                <div class="rubrica-section">
-                    <table class="rubrica-table">
+                <div class="rubric-section">
+                    <table class="rubric-table">
                         <thead>
                             <tr>
-                                <th style="width: 20%">Criterio</th>
-                                <th style="width: 10%">Peso</th>
+                                <th class="rubric-criterion">Criterio</th>
+                                <th class="rubric-weight">Peso</th>
                                 <th>Descripción de niveles</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="criterio">Código Funcional</td>
-                                <td class="peso">30%</td>
+                                <td class="criterion">Código Funcional</td>
+                                <td class="weight">30%</td>
                                 <td>
-                                    <span class="nivel excelente">Excelente (30)</span> Código limpio, bien estructurado, ejecuta sin errores, DQN implementado correctamente<br>
-                                    <span class="nivel bueno">Bueno (22)</span> Funciona con errores menores, código organizado<br>
-                                    <span class="nivel suficiente">Suficiente (15)</span> Funciona parcialmente, requiere correcciones<br>
-                                    <span class="nivel insuficiente">Insuficiente (0-10)</span> No ejecuta o errores graves en DQN
+                                    <span class="level excellent">Excelente (30)</span> Código limpio, bien estructurado, ejecuta sin errores, DQN implementado correctamente<br>
+                                    <span class="level good">Bueno (22)</span> Funciona con errores menores, código organizado<br>
+                                    <span class="level sufficient">Suficiente (15)</span> Funciona parcialmente, requiere correcciones<br>
+                                    <span class="level insufficient">Insuficiente (0-10)</span> No ejecuta o errores graves en DQN
                                 </td>
                             </tr>
                             <tr>
-                                <td class="criterio">Curvas de Aprendizaje</td>
-                                <td class="peso">20%</td>
+                                <td class="criterion">Curvas de Aprendizaje</td>
+                                <td class="weight">20%</td>
                                 <td>
-                                    <span class="nivel excelente">Excelente (20)</span> Gráficas claras con media móvil, múltiples métricas (reward, loss, epsilon), análisis de tendencias<br>
-                                    <span class="nivel bueno">Bueno (15)</span> Gráfica de recompensa vs episodio correcta<br>
-                                    <span class="nivel suficiente">Suficiente (10)</span> Gráfica básica sin procesamiento<br>
-                                    <span class="nivel insuficiente">Insuficiente (0-5)</span> Sin visualización o incorrecta
+                                    <span class="level excellent">Excelente (20)</span> Gráficas claras con media móvil, múltiples métricas (reward, loss, epsilon), análisis de tendencias<br>
+                                    <span class="level good">Bueno (15)</span> Gráfica de recompensa vs episodio correcta<br>
+                                    <span class="level sufficient">Suficiente (10)</span> Gráfica básica sin procesamiento<br>
+                                    <span class="level insufficient">Insuficiente (0-5)</span> Sin visualización o incorrecta
                                 </td>
                             </tr>
                             <tr>
-                                <td class="criterio">Evaluación del Agente</td>
-                                <td class="peso">20%</td>
+                                <td class="criterion">Evaluación del Agente</td>
+                                <td class="weight">20%</td>
                                 <td>
-                                    <span class="nivel excelente">Excelente (20)</span> Evaluación rigurosa (N episodios), comparación con baseline aleatorio, métricas estadísticas (media, std)<br>
-                                    <span class="nivel bueno">Bueno (15)</span> Evaluación correcta con resultados claros<br>
-                                    <span class="nivel suficiente">Suficiente (10)</span> Evaluación básica sin comparativa<br>
-                                    <span class="nivel insuficiente">Insuficiente (0-5)</span> Sin evaluación o incorrecta
+                                    <span class="level excellent">Excelente (20)</span> Evaluación rigurosa (N episodios), comparación con baseline aleatorio, métricas estadísticas (media, std)<br>
+                                    <span class="level good">Bueno (15)</span> Evaluación correcta con resultados claros<br>
+                                    <span class="level sufficient">Suficiente (10)</span> Evaluación básica sin comparativa<br>
+                                    <span class="level insufficient">Insuficiente (0-5)</span> Sin evaluación o incorrecta
                                 </td>
                             </tr>
                             <tr>
-                                <td class="criterio">Documentación</td>
-                                <td class="peso">20%</td>
+                                <td class="criterion">Documentación</td>
+                                <td class="weight">20%</td>
                                 <td>
-                                    <span class="nivel excelente">Excelente (20)</span> Explicaciones claras, hiperparámetros justificados, análisis profundo de resultados y decisiones de diseño<br>
-                                    <span class="nivel bueno">Bueno (15)</span> Buena documentación, justificaciones presentes<br>
-                                    <span class="nivel suficiente">Suficiente (10)</span> Documentación mínima<br>
-                                    <span class="nivel insuficiente">Insuficiente (0-5)</span> Sin documentación o incomprensible
+                                    <span class="level excellent">Excelente (20)</span> Explicaciones claras, hiperparámetros justificados, análisis profundo de resultados y decisiones de diseño<br>
+                                    <span class="level good">Bueno (15)</span> Buena documentación, justificaciones presentes<br>
+                                    <span class="level sufficient">Suficiente (10)</span> Documentación mínima<br>
+                                    <span class="level insufficient">Insuficiente (0-5)</span> Sin documentación o incomprensible
                                 </td>
                             </tr>
                             <tr>
-                                <td class="criterio">Creatividad y Calidad</td>
-                                <td class="peso">10%</td>
+                                <td class="criterion">Creatividad y Calidad</td>
+                                <td class="weight">10%</td>
                                 <td>
-                                    <span class="nivel excelente">Excelente (10)</span> Entorno original/interesante, análisis de hiperparámetros, experimentación adicional, código bien modularizado<br>
-                                    <span class="nivel bueno">Bueno (7)</span> Algún elemento extra o análisis adicional<br>
-                                    <span class="nivel suficiente">Suficiente (4)</span> Trabajo estándar sin extras<br>
-                                    <span class="nivel insuficiente">Insuficiente (0-2)</span> Trabajo mínimo
+                                    <span class="level excellent">Excelente (10)</span> Entorno original/interesante, análisis de hiperparámetros, experimentación adicional, código bien modularizado<br>
+                                    <span class="level good">Bueno (7)</span> Algún elemento extra o análisis adicional<br>
+                                    <span class="level sufficient">Suficiente (4)</span> Trabajo estándar sin extras<br>
+                                    <span class="level insufficient">Insuficiente (0-2)</span> Trabajo mínimo
                                 </td>
                             </tr>
                         </tbody>
                     </table>
 
-                    <div class="puntos-total">
-                        <div class="numero">100 puntos</div>
+                    <div class="total-score">
+                        <div class="number">100 puntos</div>
                         <div>Total máximo (sin bonificaciones)</div>
                     </div>
                 </div>
             </section>
-
-            <!-- Tips -->
             <section>
                 <h2>Consejos y Recursos</h2>
 
@@ -642,7 +664,7 @@
                 </div>
 
                 <h3>Recursos útiles</h3>
-                <ul class="lista-principal">
+                <ul class="main-list">
                     <li><strong>Documentación Gymnasium:</strong> <a href="https://gymnasium.farama.org/" target="_blank">gymnasium.farama.org</a></li>
                     <li><strong>Documentación PyTorch:</strong> <a href="https://pytorch.org/docs/" target="_blank">pytorch.org/docs</a></li>
                     <li><strong>Hugging Face Deep RL Course:</strong> <a href="https://huggingface.co/learn/deep-rl-course" target="_blank">huggingface.co/learn/deep-rl-course</a></li>
@@ -652,8 +674,6 @@
                     <li><strong>Paper original DQN:</strong> <a href="https://www.nature.com/articles/nature14236" target="_blank">Human-level control through deep reinforcement learning (2015)</a></li>
                 </ul>
             </section>
-
-            <!-- Bonificaciones -->
             <section>
                 <h2>Bonificaciones</h2>
                 <div class="bonus-section">
@@ -689,11 +709,9 @@
                             </tr>
                         </tbody>
                     </table>
-                    <p style="margin-top: 1rem; color: var(--gray-600);"><em>Las bonificaciones son acumulables hasta un máximo de +20% sobre la nota base.</em></p>
+                    <p class="bonus-note"><em>Las bonificaciones son acumulables hasta un máximo de +20% sobre la nota base.</em></p>
                 </div>
             </section>
-
-            <!-- Entrega -->
             <section>
                 <h2>Formato de Entrega</h2>
                 <table>

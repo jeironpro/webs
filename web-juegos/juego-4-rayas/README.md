@@ -27,8 +27,12 @@ Abre `http://localhost:8000/juego-4-rayas/`.
 ## Estructura
 
 ```
-index.html    — Entrada de la aplicación
-styles.css    — Estilos del diseño original
-app.js        — Motor del juego, bot, marcador y pantallas
-favicon.svg   — Icono
+index.html
+css/styles.css        — Estilos del tablero y la interfaz
+js/app.js             — Motor del juego, bot, marcador y pantallas
+assets/icons/favicon.svg
 ```
+
+## Licencia
+
+Este proyecto está bajo la licencia **MIT**. Consulta el archivo [LICENSE](../../LICENSE) para más detalles.

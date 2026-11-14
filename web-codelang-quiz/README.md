@@ -36,9 +36,8 @@ web-codelang-quiz/
 ├── css/            Hoja de estilos
 ├── js/             Lógica de la aplicación
 ├── data/           Catálogo JSON de preguntas
-├── icon/           Favicon
-├── DESIGN.md
-└── robots.txt
+├── assets/icons/   Favicon
+└── README.md
 ```
 
 ## Dataset: cómo añadir preguntas
@@ -63,10 +62,6 @@ Cada lenguaje tiene un fichero en `data/<lenguaje>.json` con un array de pregunt
 - `options` siempre usa claves `A`, `B`, `C`, `D`.
 - `answer` debe existir en `options`.
 
-## Documentación de diseño
-
-El sistema visual completo está documentado en [DESIGN.md](./DESIGN.md).
-
 ## Licencia
 
-MIT
+MIT. Consulta [LICENSE](../LICENSE).

@@ -13,12 +13,12 @@ API REST para gestionar una colección completa de los 1025 Pokémon (9 generaci
 
 ## Endpoints
 
-| Método | Ruta | Descripción |
-|--------|------|-------------|
-| `POST` | `/agregar_pokemon` | Crear un Pokémon |
-| `GET` | `/pokemones` | Listar todos los Pokémon |
-| `GET` | `/pokemones/{id}` | Obtener Pokémon por ID |
-| `GET` | `/pokemones/tipo/{tipo}` | Filtrar por tipo |
+| Método | Ruta                     | Descripción              |
+| ------ | ------------------------ | ------------------------ |
+| `POST` | `/agregar_pokemon`       | Crear un Pokémon         |
+| `GET`  | `/pokemones`             | Listar todos los Pokémon |
+| `GET`  | `/pokemones/{id}`        | Obtener Pokémon por ID   |
+| `GET`  | `/pokemones/tipo/{tipo}` | Filtrar por tipo         |
 | `POST` | `/pokemones/{id}/imagen` | Subir imagen del Pokémon |
 
 ### Crear Pokémon
@@ -55,27 +55,28 @@ X-API-Key: tu-clave
 ```
 
 Respuesta:
+
 ```json
 [
-    {
-        "id": 1,
-        "nombre": "Bulbasaur",
-        "descripcion": "Tras nacer, crece alimentándose...",
-        "generacion": 1,
-        "imagen_url": "https://...",
-        "tipos": [
-            { "nombre": "Planta", "color": "#78C850" },
-            { "nombre": "Veneno", "color": "#A040A0" }
-        ],
-        "estadisticas": {
-            "punto_salud": 3,
-            "ataque": 3,
-            "defensa": 3,
-            "ataque_especial": 4,
-            "defensa_especial": 4,
-            "velocidad": 3
-        }
+  {
+    "id": 1,
+    "nombre": "Bulbasaur",
+    "descripcion": "Tras nacer, crece alimentándose...",
+    "generacion": 1,
+    "imagen_url": "https://...",
+    "tipos": [
+      { "nombre": "Planta", "color": "#78C850" },
+      { "nombre": "Veneno", "color": "#A040A0" }
+    ],
+    "estadisticas": {
+      "punto_salud": 3,
+      "ataque": 3,
+      "defensa": 3,
+      "ataque_especial": 4,
+      "defensa_especial": 4,
+      "velocidad": 3
     }
+  }
 ]
 ```
 
@@ -111,11 +112,11 @@ La imagen se almacena en Supabase Storage y la URL pública se guarda en el regi
 
 Todas las peticiones requieren el header `X-API-Key` con el valor configurado en la variable de entorno `API_KEY`.
 
-| Código | Significado |
-|--------|-------------|
-| `401` | API Key no enviada |
-| `403` | API Key inválida |
-| `500` | API_KEY no configurada en el servidor |
+| Código | Significado                           |
+| ------ | ------------------------------------- |
+| `401`  | API Key no enviada                    |
+| `403`  | API Key inválida                      |
+| `500`  | API_KEY no configurada en el servidor |
 
 ## Variables de Entorno
 
@@ -129,13 +130,13 @@ SUPABASE_SERVICE_KEY=tu_service_role_key
 FRONTEND_URL=https://tufrontend.com
 ```
 
-| Variable | Obligatoria | Descripción |
-|----------|-------------|-------------|
-| `DATABASE_URL` | Sí | URL de conexión PostgreSQL |
-| `API_KEY` | Sí | Clave para autenticar peticiones |
-| `SUPABASE_URL` | No (sin imágenes) | URL del proyecto Supabase |
-| `SUPABASE_SERVICE_KEY` | No (sin imágenes) | Service Role Key de Supabase |
-| `FRONTEND_URL` | No | URL del frontend para CORS |
+| Variable               | Obligatoria       | Descripción                      |
+| ---------------------- | ----------------- | -------------------------------- |
+| `DATABASE_URL`         | Sí                | URL de conexión PostgreSQL       |
+| `API_KEY`              | Sí                | Clave para autenticar peticiones |
+| `SUPABASE_URL`         | No (sin imágenes) | URL del proyecto Supabase        |
+| `SUPABASE_SERVICE_KEY` | No (sin imágenes) | Service Role Key de Supabase     |
+| `FRONTEND_URL`         | No                | URL del frontend para CORS       |
 
 ## Instalación Local
 

@@ -1,3 +1,13 @@
+.visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 0.0625rem;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 0.0625rem;
+}
+
 :root {
     --fondo: #0b4550;
     --fondo-2: #1b454d;
@@ -5,7 +15,7 @@
 }
 
 body {
-    font-family: 'Quicksand', sans-serif;
+    font-family: "Quicksand", sans-serif;
     margin: 0;
     padding: 0;
 }
@@ -18,25 +28,25 @@ main {
 }
 
 .contenedor-principal {
-    border-radius: 10px;
+    border-radius: 0.625rem;
     height: auto;
-    margin: 10px auto;
+    margin: 0.625rem auto;
     width: max-content;
 }
 
 .contenedor-elementos {
     background: linear-gradient(to bottom, var(--fondo), var(--fondo-2));
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(27, 69, 77, 1);
-    padding: 20px;
+    border-radius: 0.625rem;
+    box-shadow: 0 0 1.25rem rgba(27, 69, 77, 1);
+    padding: 1.25rem;
     position: relative;
     width: 100%;
 }
 
 .elemento {
     cursor: pointer;
-    margin-top: 10px;
-    padding: 20px 0 0 0;
+    margin-top: 0.625rem;
+    padding: 1.25rem 0 0 0;
     position: relative;
     width: 100%;
 }
@@ -44,21 +54,21 @@ main {
 .contenedor-elementos span {
     color: var(--texto);
     cursor: pointer;
-    font-size: 20px;
+    font-size: 1.25rem;
     font-weight: 600;
 }
 
 .contenedor-elementos i {
-    left: 45px;
+    left: 2.8125rem;
     position: relative;
 }
 
 .contenedor-elementos img {
-    height: 30px;
-    margin-right: -10px;
+    height: 1.875rem;
+    margin-right: -0.625rem;
     position: absolute;
     right: 0%;
-    width: 30px;
+    width: 1.875rem;
 }
 
 .otros-elementos {

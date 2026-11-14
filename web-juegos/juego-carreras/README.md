@@ -72,15 +72,15 @@ cada frame.
 
 ## Controles
 
-| Acción   | Teclado            |
-| -------- | ------------------ |
-| Acelerar | `W` o `↑`          |
-| Frenar   | `S` o `↓`          |
+| Acción   | Teclado               |
+| -------- | --------------------- |
+| Acelerar | `W` o `↑`             |
+| Frenar   | `S` o `↓`             |
 | Girar    | `A` / `D` o `←` / `→` |
-| Derrape  | `Espacio` o `Shift` |
-| Pausa    | `P` o `Esc`        |
-| Reinicio | `R`                |
-| Pausa    | `P` o `Esc`        |
+| Derrape  | `Espacio` o `Shift`   |
+| Pausa    | `P` o `Esc`           |
+| Reinicio | `R`                   |
+| Pausa    | `P` o `Esc`           |
 
 También funciona un gamepad estándar: gatillo derecho acelera, izquierdo frena, stick o cruceta
 para girar, botón A para derrapar y Start para pausar. En pantallas táctiles aparecen botones
@@ -89,19 +89,13 @@ en pantalla para acelerar, frenar, girar y derrapar.
 ## Estructura del proyecto
 
 ```
-juego-carreras/
-├── index.html            # import map de three.js y estructura de menú/HUD
-├── css/                  # tokens compartidos con el catálogo y estilos del juego
-├── js/
-│   ├── app.js            # arranque y bucle principal
-│   ├── juego/            # renderizador, escena, circuito, coche, cámara, entrada y núcleo wasm
-│   └── interfaz/         # HUD y, más adelante, menú, marcador y audio
-├── wasm/
-│   ├── nucleo.ts         # fuente AssemblyScript
-│   └── nucleo.wasm       # binario compilado y versionado
-├── scripts/              # compilación y validación del núcleo wasm
-├── icon/                 # favicon
-└── vendor/three/         # Three.js 0.187.0 (core, webgpu, tsl) + licencia
+index.html
+css/                  — Tokens y estilos del juego
+js/                   — Arranque, simulación e interfaz
+wasm/                 — Fuente y binario del núcleo
+tools/                — Compilación y validación del núcleo wasm
+assets/icons/bandera.svg
+vendor/three/         — Three.js 0.187.0 y su licencia
 ```
 
 ## Rendimiento
@@ -115,4 +109,4 @@ juego-carreras/
 ## Licencia
 
 Este proyecto está bajo la licencia **MIT**.
-Consulta el archivo [LICENSE](../LICENSE) para más detalles.
+Consulta el archivo [LICENSE](../../LICENSE) para más detalles.

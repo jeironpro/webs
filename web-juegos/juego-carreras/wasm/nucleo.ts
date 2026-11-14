@@ -29,7 +29,7 @@ function azar(): f32 {
     estadoAzar = estadoAzar + 0x6d2b79f5;
     let t: u32 = estadoAzar;
     t = (t ^ (t >>> 15)) * (t | 1);
-    t = t ^ (t + ((t ^ (t >>> 7)) * (t | 61)));
+    t = t ^ (t + (t ^ (t >>> 7)) * (t | 61));
     return f32(t ^ (t >>> 14)) / 4294967296.0;
 }
 
@@ -42,11 +42,13 @@ function limitar(valor: f32, minimo: f32, maximo: f32): f32 {
 function catmull(p0: f32, p1: f32, p2: f32, p3: f32, t: f32): f32 {
     const t2 = t * t;
     const t3 = t2 * t;
-    return 0.5 *
+    return (
+        0.5 *
         (2.0 * p1 +
             (-p0 + p2) * t +
             (2.0 * p0 - 5.0 * p1 + 4.0 * p2 - p3) * t2 +
-            (-p0 + 3.0 * p1 - 3.0 * p2 + p3) * t3);
+            (-p0 + 3.0 * p1 - 3.0 * p2 + p3) * t3)
+    );
 }
 
 function indiceControl(indice: i32): i32 {
@@ -58,15 +60,7 @@ function indiceMuestra(indice: i32): i32 {
 }
 
 /** Rotación de Rodrigues sobre `temporal`; el eje debe llegar normalizado. */
-function rotarAlrededor(
-    vx: f32,
-    vy: f32,
-    vz: f32,
-    kx: f32,
-    ky: f32,
-    kz: f32,
-    angulo: f32
-): void {
+function rotarAlrededor(vx: f32, vy: f32, vz: f32, kx: f32, ky: f32, kz: f32, angulo: f32): void {
     const coseno = Mathf.cos(angulo);
     const seno = Mathf.sin(angulo);
     const proyeccion = vx * kx + vy * ky + vz * kz;

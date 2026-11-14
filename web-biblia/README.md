@@ -5,12 +5,12 @@ Testamento, incluidos los deuterocanónicos). Sitio estático sin servidor:
 los versículos se cargan desde un dataset local y las páginas se generan a
 partir de un catálogo único de libros.
 
-## Caracteristicas
+## Características
 
 - 73 libros y 1189 capítulos con texto completo de la Biblia Latinoamérica
 - Sin servidor: contenido servido como sitio estático desde el dataset `js/data/verses.json`
 - Navegación entre libros y capítulos con recuentos validados contra el catálogo
-- Sistema editorial clásico (papel, tinta, encuadernación y oro) documentado en [design.md](design.md)
+- Sistema editorial clásico (papel, tinta, encuadernación y oro)
 - Diseño responsive verificado en 320, 375, 414 y 768 px
 
 ## Estructura
@@ -19,16 +19,16 @@ partir de un catálogo único de libros.
 - `js/data/verses.json` — texto completo de los versículos
 - `js/generate_chapters.js` — generación de las grillas de capítulos desde el catálogo
 - `js/book_pagination.js` y `js/chapter_pagination.js` — navegación entre libros y capítulos
+- `js/testament_pages.js` — índice de libros del Antiguo y Nuevo Testamento
+- `js/footer.js` — año del pie de página
 - `js/verses.js` — carga y renderizado de los versículos desde el dataset
 - `css/tokens.css` — tokens del sistema editorial; el resto de los CSS lo consumen
 - `scripts/import_bible.mjs` — conversión y validación del dataset contra el catálogo
 
 ## Sistema editorial
 
-La interfaz aplica un sistema editorial clásico identificado con el sello
-`/* Hallmark · designed-as-app */` y registrado en `.hallmark/log.json`.
-El documento de diseño (principios, paleta, tipografía y componentes) está
-en [design.md](design.md).
+La interfaz aplica un sistema editorial clásico: papel, tinta, encuadernación
+y oro, con tipografía serif y filetes finos.
 
 ## Contenido bíblico
 
@@ -42,9 +42,9 @@ que comprueba los recuentos de capítulos contra el catálogo.
 ## Atribuciones
 
 - Tipografía: Cormorant Garamond y EB Garamond, distribuidas por Google Fonts bajo la SIL Open Font License 1.1
-- Iconografía: SVG propia (favorito `icons/biblia.svg` e iconos de navegación)
+- Iconografía: SVG propia (favorito `assets/icons/favicon.svg` e iconos de navegación)
 - Texto bíblico: Biblia Latinoamérica, de Bernardo Hurault
 
 ## Licencia
 
-Este proyecto está bajo la licencia **MIT**. Consulta el archivo [LICENSE](LICENSE) para más detalles.
+Este proyecto está bajo la licencia **MIT**. Consulta el archivo [LICENSE](../LICENSE) para más detalles.

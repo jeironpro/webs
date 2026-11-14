@@ -1,25 +1,20 @@
-/* Hallmark · designed-as-app */
-/* Página de lectura: columna cómoda y capitular — ver design.md */
-
 .verses {
     background-color: var(--paper-raised);
     border: var(--rule);
     box-shadow: var(--shadow);
     margin: 0 auto;
     max-width: var(--reading-width);
-    padding: 20px 16px 26px;
+    padding: 1.25rem 1rem 1.625rem;
 }
 
 .verses pre {
     color: var(--ink);
     font-family: var(--font-body);
-    font-size: 15px;
+    font-size: 0.9375rem;
     line-height: 1.85;
     margin: 0;
     white-space: pre-wrap;
 }
-
-/* Capitular en el primer versículo */
 
 .verses pre::first-letter {
     color: var(--maroon);
@@ -34,20 +29,18 @@
 .chapter-title {
     color: var(--ink);
     font-family: var(--font-title);
-    font-size: 22px;
+    font-size: 1.375rem;
     letter-spacing: 0.04em;
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
     text-align: center;
     text-transform: uppercase;
 }
 
-/* Esqueleto de carga: líneas con brillo que imitan el texto */
-
 .skeleton {
     display: flex;
     flex-direction: column;
-    gap: 17px;
-    padding: 6px 0;
+    gap: 1.0625rem;
+    padding: 0.375rem 0;
 }
 
 .skeleton-line {
@@ -55,7 +48,7 @@
     background: linear-gradient(90deg, var(--line) 20%, var(--line-highlight) 50%, var(--line) 80%);
     background-size: 200% 100%;
     border-radius: var(--radius);
-    height: 15px;
+    height: 0.9375rem;
 }
 
 @keyframes skeleton-shimmer {
@@ -74,47 +67,91 @@
     }
 }
 
-/* Mensajes de estado (en preparación, errores) */
-
 .verses p {
     color: var(--ink-muted);
     font-family: var(--font-title);
-    font-size: 19px;
+    font-size: 1.1875rem;
     font-style: italic;
     letter-spacing: 0.03em;
     margin: 0;
     text-align: center;
 }
 
-/* ---------- Responsive ---------- */
-
-@media (min-width: 321px) {
+@media (min-width: 20.0625rem) {
     .verses pre {
-        font-size: 16px;
+        font-size: 1rem;
     }
 }
 
-@media (min-width: 481px) {
+@media (min-width: 30.0625rem) {
     .verses {
-        padding: 24px 22px 30px;
+        padding: 1.5rem 1.375rem 1.875rem;
     }
 
     .verses pre {
-        font-size: 17px;
+        font-size: 1.0625rem;
         line-height: 1.95;
     }
 }
 
-@media (min-width: 769px) {
+@media (min-width: 48.0625rem) {
     .verses {
-        padding: 36px 40px 44px;
+        padding: 2.25rem 2.5rem 2.75rem;
     }
 
     .verses pre {
-        font-size: 19px;
+        font-size: 1.1875rem;
     }
 
     .chapter-title {
-        font-size: 26px;
+        font-size: 1.625rem;
     }
+}
+
+.skeleton-line:nth-child(1) {
+    width: 38%;
+}
+
+.skeleton-line:nth-child(2) {
+    width: 55%;
+}
+
+.skeleton-line:nth-child(3) {
+    width: 72%;
+}
+
+.skeleton-line:nth-child(4) {
+    width: 89%;
+}
+
+.skeleton-line:nth-child(5) {
+    width: 50%;
+}
+
+.skeleton-line:nth-child(6) {
+    width: 67%;
+}
+
+.skeleton-line:nth-child(7) {
+    width: 84%;
+}
+
+.skeleton-line:nth-child(8) {
+    width: 45%;
+}
+
+.skeleton-line:nth-child(9) {
+    width: 62%;
+}
+
+.skeleton-line:nth-child(10) {
+    width: 79%;
+}
+
+.skeleton-line:nth-child(11) {
+    width: 40%;
+}
+
+.skeleton-line:nth-child(12) {
+    width: 57%;
 }

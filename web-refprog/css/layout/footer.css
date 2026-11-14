@@ -1,59 +1,63 @@
-/* Pie de pagina */
-
 .footer {
-  background-color: var(--color-heading);
-  color: var(--color-bg);
-  padding: var(--space-8) 0 var(--space-6);
-  margin-top: var(--space-10);
+    background-color: var(--color-heading);
+    color: var(--color-bg);
+    padding: var(--space-8) 0 var(--space-6);
+    margin-top: var(--space-10);
 }
 
 .footer-content {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-8);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+}
+
+.footer-brand-name {
+    color: var(--color-footer-text);
 }
 
 .footer-brand p {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: var(--text-sm);
-  margin-top: var(--space-3);
-  max-width: 320px;
+    color: var(--color-footer-muted);
+    font-size: var(--text-sm);
+    margin-top: var(--space-3);
+    max-width: 20rem;
 }
 
 .footer-heading {
-  font-family: var(--font-heading);
-  font-size: var(--text-lg);
-  margin-bottom: var(--space-4);
-  color: var(--color-bg);
+    font-family: var(--font-heading);
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-4);
+    color: var(--color-bg);
 }
 
 .footer-links a {
-  display: block;
-  padding: var(--space-1) 0;
-  font-size: var(--text-sm);
-  color: rgba(255, 255, 255, 0.7);
-  transition: color var(--transition-fast);
+    display: block;
+    padding: var(--space-1) 0;
+    font-size: var(--text-sm);
+    color: var(--color-footer-muted);
+    transition: color var(--transition-fast);
 }
 
-.footer-links a:hover { color: var(--color-bg); }
+.footer-links a:hover {
+    color: var(--color-bg);
+}
 
 .footer-bottom {
-  margin-top: var(--space-10);
-  padding-top: var(--space-6);
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
-  text-align: center;
-  font-size: var(--text-sm);
-  color: rgba(255, 255, 255, 0.5);
+    margin-top: var(--space-10);
+    padding-top: var(--space-6);
+    border-top: 0.0625rem solid var(--color-footer-rule);
+    text-align: center;
+    font-size: var(--text-sm);
+    color: var(--color-footer-subtle);
 }
 
-@media (min-width: 769px) {
-  .footer-content {
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: var(--space-10);
-  }
+@media (min-width: 48rem) {
+    .footer-content {
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: var(--space-10);
+    }
 
-  .footer {
-    margin-top: var(--space-16);
-    padding: var(--space-12) 0 var(--space-8);
-  }
+    .footer {
+        margin-top: var(--space-16);
+        padding: var(--space-12) 0 var(--space-8);
+    }
 }

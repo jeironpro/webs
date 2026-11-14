@@ -84,8 +84,6 @@ function avisarGuardado() {
     }, 1400);
 }
 
-/* Récords ------------------------------------------------------------- */
-
 function leerRecords() {
     return leer(CLAVE_RECORDS) || {};
 }
@@ -105,9 +103,7 @@ function pintarRecords() {
 
     const resueltos = document.createElement("span");
     resueltos.className = "record__resueltos";
-    resueltos.textContent = registro.resueltos
-        ? `${registro.resueltos} resueltos`
-        : "Sin resolver";
+    resueltos.textContent = registro.resueltos ? `${registro.resueltos} resueltos` : "Sin resolver";
 
     fila.append(tamano, tiempo, resueltos);
     elRecords.replaceChildren(fila);
@@ -131,8 +127,6 @@ function guardarRecord(ms) {
     return records[LADO].mejor;
 }
 
-/* Progreso ------------------------------------------------------------ */
-
 function guardarProgreso() {
     if (!estado.tablero || estado.resuelto || !estado.celdas) return;
     const ms = estado.arranque ? Date.now() - estado.arranque : estado.transcurrido;
@@ -149,7 +143,7 @@ function borrarProgreso() {
     try {
         localStorage.removeItem(CLAVE_PROGRESO);
     } catch {
-        /* sin almacenamiento */
+        void 0;
     }
 }
 
@@ -188,8 +182,6 @@ function restaurarProgreso() {
     return true;
 }
 
-/* Reloj --------------------------------------------------------------- */
-
 function pintarReloj() {
     elTiempo.textContent = formatearTiempo(estado.arranque ? Date.now() - estado.arranque : 0);
 }
@@ -216,8 +208,6 @@ function reiniciarReloj() {
     estado.transcurrido = 0;
     elTiempo.textContent = "0:00";
 }
-
-/* Análisis ------------------------------------------------------------ */
 
 function analizar() {
     const n = estado.n;
@@ -293,8 +283,6 @@ function analizar() {
     return { choques, motivos, soles, lunas };
 }
 
-/* Tablero ------------------------------------------------------------- */
-
 function etiquetaCelda(i, valor, conflicto) {
     const n = estado.n;
     const fila = Math.floor(i / n) + 1;
@@ -345,7 +333,10 @@ function construirTablero() {
         celda.className = "celda";
         celda.dataset.i = String(i);
         celda.tabIndex = i === estado.cursor ? 0 : -1;
-        celda.append(crearPieza("simbolo-sol", "pieza--sol"), crearPieza("simbolo-luna", "pieza--luna"));
+        celda.append(
+            crearPieza("simbolo-sol", "pieza--sol"),
+            crearPieza("simbolo-luna", "pieza--luna")
+        );
         fragmento.append(celda);
     }
     elTablero.replaceChildren(fragmento);
@@ -417,8 +408,6 @@ function pintarTablero() {
 
     return { choques, soles, lunas };
 }
-
-/* Partida ------------------------------------------------------------- */
 
 function moverCursor(fila, columna) {
     const n = estado.n;
@@ -523,8 +512,6 @@ function arrancar(n = LADO) {
     avisar(PISTA, 0);
 }
 
-/* Eventos ------------------------------------------------------------- */
-
 elTablero.addEventListener("click", (evento) => {
     const celda = evento.target.closest?.(".celda");
     if (!celda) return;
@@ -569,7 +556,7 @@ $("#olvidar").addEventListener("click", () => {
         localStorage.removeItem(CLAVE_PROGRESO);
         localStorage.removeItem(CLAVE_RECORDS);
     } catch {
-        /* sin almacenamiento */
+        void 0;
     }
     estado.resuelto = false;
     arrancar();
@@ -591,11 +578,9 @@ document.addEventListener("visibilitychange", () => {
     if (document.visibilityState === "hidden") guardarProgreso();
 });
 
-/* Arranque ------------------------------------------------------------ */
-
 async function iniciar() {
     try {
-        const respuesta = await fetch("json/tableros.json");
+        const respuesta = await fetch("data/tableros.json");
         if (!respuesta.ok) throw new Error(`HTTP ${respuesta.status}`);
         const datos = await respuesta.json();
         biblioteca = Array.isArray(datos.tableros) ? datos.tableros : [];
@@ -604,8 +589,7 @@ async function iniciar() {
         if (!restaurarProgreso()) arrancar();
         pintarRecords();
         pintarMejor();
-    } catch (error) {
-        console.error("Tango:", error);
+    } catch {
         elEstado.textContent = "No se pudieron cargar los tableros. Recarga la página.";
     }
 }

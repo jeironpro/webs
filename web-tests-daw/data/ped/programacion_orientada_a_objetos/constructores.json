@@ -1,0 +1,217 @@
+[
+  {
+    "question": "¿Qué es un Constructor?",
+    "options": [
+      "Un obrero",
+      "Una clase",
+      "Un método especial que se ejecuta automáticamente al crear (instanciar) un objeto",
+      "Un destructor"
+    ],
+    "answer": 2,
+    "explanation": "Inicializa el objeto."
+  },
+  {
+    "question": "¿Cómo se llama el constructor?",
+    "options": ["main", "start", "Generalmente tiene el mismo nombre que la clase", "init"],
+    "answer": 2,
+    "explanation": "En Java/C++. En Python es __init__."
+  },
+  {
+    "question": "¿Qué devuelve un constructor?",
+    "options": [
+      "Void",
+      "String",
+      "Int",
+      "No devuelve ningún valor (ni siquiera void), devuelve la referencia al nuevo objeto implícitamente"
+    ],
+    "answer": 3,
+    "explanation": "Su propósito es construir."
+  },
+  {
+    "question": "¿Qué es el constructor por defecto?",
+    "options": [
+      "Un error",
+      "Un constructor sin parámetros que el compilador crea si no defines ninguno",
+      "El último",
+      "El primero"
+    ],
+    "answer": 1,
+    "explanation": "Inicializa a valores nulos/cero."
+  },
+  {
+    "question": "¿Qué es la sobrecarga de constructores?",
+    "options": [
+      "Tener muchos constructores",
+      "Un constructor lento",
+      "Un error",
+      "Tener múltiples constructores con diferentes parámetros"
+    ],
+    "answer": 3,
+    "explanation": "Permite crear objetos de formas distintas."
+  },
+  {
+    "question": "¿Para qué sirve 'this()' dentro de un constructor?",
+    "options": [
+      "Para llamar a otro constructor de la misma clase (reutilización)",
+      "Para llamarse a sí mismo",
+      "Para llamar al padre",
+      "Para salir"
+    ],
+    "answer": 0,
+    "explanation": "Constructor chaining."
+  },
+  {
+    "question": "¿Para qué sirve 'super()' dentro de un constructor?",
+    "options": [
+      "Para llamar al constructor de la clase padre (superclase)",
+      "Para ser super",
+      "Para terminar",
+      "Para llamar al hijo"
+    ],
+    "answer": 0,
+    "explanation": "Debe ser la primera línea."
+  },
+  {
+    "question": "¿Qué es un constructor de copia?",
+    "options": [
+      "Un clon",
+      "Copiar y pegar",
+      "Un error",
+      "Un constructor que crea un objeto copiando los datos de otro objeto de la misma clase"
+    ],
+    "answer": 3,
+    "explanation": "Objeto a = new Objeto(b)."
+  },
+  {
+    "question": "¿Qué es un Destructor?",
+    "options": [
+      "Un virus",
+      "Un constructor malo",
+      "Un método especial que se ejecuta cuando el objeto es destruido/liberado (común en C++)",
+      "Un error"
+    ],
+    "answer": 2,
+    "explanation": "Libera recursos manuales."
+  },
+  {
+    "question": "¿Tiene Java destructores?",
+    "options": [
+      "No sé",
+      "No explícitos, tiene Garbage Collector (finalize() está obsoleto)",
+      "A veces",
+      "Sí"
+    ],
+    "answer": 1,
+    "explanation": "El GC se encarga de la memoria."
+  },
+  {
+    "question": "¿Qué pasa si defines un constructor con parámetros y no el de defecto?",
+    "options": [
+      "Da error",
+      "El compilador YA NO genera el constructor por defecto automáticamente",
+      "Nada",
+      "Se generan ambos"
+    ],
+    "answer": 1,
+    "explanation": "Debes definirlo manualmente si lo necesitas."
+  },
+  {
+    "question": "¿Puede un constructor ser privado?",
+    "options": [
+      "Es ilegal",
+      "Sí, para evitar que se instancie la clase desde fuera (ej. Singleton)",
+      "Solo en C++",
+      "No, nunca"
+    ],
+    "answer": 1,
+    "explanation": "Control de instanciación."
+  },
+  {
+    "question": "¿Qué es la inyección de dependencias en el constructor?",
+    "options": [
+      "Pasar las dependencias necesarias como argumentos al constructor",
+      "Inyectar código",
+      "Un error",
+      "Un virus"
+    ],
+    "answer": 0,
+    "explanation": "Mejor práctica para testabilidad."
+  },
+  {
+    "question": "¿Qué es un bloque de inicialización?",
+    "options": [
+      "Código que se ejecuta antes del constructor (o static para la clase)",
+      "Un error",
+      "Un constructor",
+      "Un método"
+    ],
+    "answer": 0,
+    "explanation": "{ ... } o static { ... }."
+  },
+  {
+    "question": "¿Se puede heredar un constructor?",
+    "options": [
+      "A veces",
+      "Depende",
+      "No, los constructores no se heredan, pero se pueden invocar con super()",
+      "Sí"
+    ],
+    "answer": 2,
+    "explanation": "Cada clase define su propia construcción."
+  },
+  {
+    "question": "¿Qué es un Factory Method (Método Fábrica)?",
+    "options": [
+      "Un método estático que devuelve una instancia de la clase (alternativa al constructor)",
+      "Un error",
+      "Una fábrica",
+      "Un constructor"
+    ],
+    "answer": 0,
+    "explanation": "Clase.crearInstancia()."
+  },
+  {
+    "question": "¿Qué es un constructor vacío?",
+    "options": [
+      "Un constructor que no hace nada o no toma parámetros",
+      "Un error",
+      "Una clase vacía",
+      "Un objeto nulo"
+    ],
+    "answer": 0,
+    "explanation": "Requisito para muchos frameworks (JPA, XML)."
+  },
+  {
+    "question": "¿Cuándo se ejecuta el constructor?",
+    "options": [
+      "Nunca",
+      "Al cerrar el programa",
+      "Al declarar la variable",
+      "Al usar la palabra clave 'new'"
+    ],
+    "answer": 3,
+    "explanation": "Asignación de memoria + Inicialización."
+  },
+  {
+    "question": "¿Qué es un constructor primario (Kotlin/Scala)?",
+    "options": [
+      "El primero",
+      "El único",
+      "Constructor declarado en la cabecera de la clase",
+      "El principal"
+    ],
+    "answer": 2,
+    "explanation": "Sintaxis concisa."
+  },
+  {
+    "question": "¿Qué es la inicialización perezosa (Lazy)?",
+    "options": [
+      "Inicializar tarde",
+      "No inicializar",
+      "Crear el objeto solo cuando se necesita por primera vez, no en el constructor",
+      "Ser vago"
+    ],
+    "answer": 2,
+    "explanation": "Ahorra recursos."
+  }
+]

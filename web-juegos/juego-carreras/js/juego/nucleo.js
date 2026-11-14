@@ -6,11 +6,6 @@ const IMPORTACIONES = {
     },
 };
 
-/**
- * Instancia `wasm/nucleo.wasm` y devuelve una vista de solo lectura sobre el
- * bloque de muestras del circuito. Es el único cruce de frontera por frame:
- * un Float32Array sobre la memoria lineal del módulo.
- */
 export async function cargarNucleo({ semilla = 2026, muestras = 640 } = {}) {
     const url = new URL("../../wasm/nucleo.wasm", import.meta.url);
     const respuesta = await fetch(url);
@@ -47,12 +42,8 @@ export async function cargarNucleo({ semilla = 2026, muestras = 640 } = {}) {
             modulo.paso(dt, acelerar, frenar, giro, derrape),
         totalRivales: () => modulo.totalRivales(),
         estado: () =>
-            new Float32Array(
-                modulo.memory.buffer,
-                modulo.estadoPtr(),
-                modulo.estridasEstado()
-            ),
-        /** Regenera el circuito con otra semilla y refresca las vistas. */
+            new Float32Array(modulo.memory.buffer, modulo.estadoPtr(), modulo.estridasEstado()),
+
         regenerar(nuevaSemilla, cantidadMuestras = nucleo.total || 640) {
             if (modulo.inicializar(nuevaSemilla, cantidadMuestras) !== 1) {
                 throw new Error("El núcleo no pudo generar el circuito");

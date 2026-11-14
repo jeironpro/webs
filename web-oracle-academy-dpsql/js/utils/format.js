@@ -1,10 +1,5 @@
 const UNITS = ["B", "KB", "MB", "GB"];
 
-/**
- * Formatea un tamaño en bytes a una unidad legible, con separador español.
- * @param {number} bytes
- * @returns {string}
- */
 export function formatSize(bytes) {
     if (!Number.isFinite(bytes) || bytes < 0) {
         return "—";
@@ -26,7 +21,6 @@ export function formatSize(bytes) {
 
 const READABLE_TYPES = { pdf: "PDF", docx: "DOCX", zip: "ZIP" };
 
-/** Devuelve la etiqueta legible de un tipo de archivo. */
 export function readableType(type) {
     return READABLE_TYPES[type] ?? type.toUpperCase();
 }

@@ -14,8 +14,10 @@ web-instruccion-login-google/
 ├── index.html          # la guía (7 fases + flujo del protocolo + errores comunes)
 ├── css/styles.css      # estilos (tema Cobalt: tokens OKLCH, hairlines, código como héroe)
 ├── js/main.js          # revelado al hacer scroll (IntersectionObserver)
-├── img/google.png      # icono
+├── assets/icons/       # logo de Google y favicon SVG
 ├── codigo/             # implementación Flask de referencia
+    ├── static/css/styles.css
+    ├── static/assets/icons/  # logo y favicon del ejemplo
     ├── app.py          # rutas y flujo OAuth (/login, /login/callback, /logout)
     ├── config.py       # configuración por variables de entorno
     ├── db.py           # conexión SQLite por contexto de petición

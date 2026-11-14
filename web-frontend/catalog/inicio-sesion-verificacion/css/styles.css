@@ -1,166 +1,175 @@
+.visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 0.0625rem;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 0.0625rem;
+}
+
 @layer base {
-:root {
-    --borde: #f00;
-    --texto: #000;
-    --texto-2: #fff;
-}
+    :root {
+        --borde: #f00;
+        --texto: #000;
+        --texto-2: #fff;
+    }
 
-body {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 0;
-}
+    body {
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+        padding: 0;
+    }
 
-main {
-    align-items: center;
-    display: flex;
-    height: 100vh;
-    justify-content: center;
-}
+    main {
+        align-items: center;
+        display: flex;
+        height: 100vh;
+        justify-content: center;
+    }
 
-.contenedor {
-    border-radius: 3px;
-    box-shadow: 0 0 10px;
-    height: 350px;
-    margin: auto;
-    width: 400px;
-}
+    .login-container {
+        border-radius: 0.1875rem;
+        box-shadow: 0 0 0.625rem;
+        height: 21.875rem;
+        margin: auto;
+        width: 25rem;
+    }
 
-.contenedor form {
-    display: flex;
-    flex-direction: column;
-    padding: 5px 20px 20px 20px;
-}
+    .login-container form {
+        display: flex;
+        flex-direction: column;
+        padding: 0.3125rem 1.25rem 1.25rem 1.25rem;
+    }
 
-.contenedor form .control {
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
-    position: relative;
-    width: 100%;
-}
+    .login-container form .form-field {
+        display: flex;
+        flex-direction: column;
+        margin-top: 1.25rem;
+        position: relative;
+        width: 100%;
+    }
 
-.contenedor form label {
-    font-size: 16px;
-    font-weight: 600;
-}
+    .login-container form label {
+        font-size: 1rem;
+        font-weight: 600;
+    }
 
-.contenedor form input {
-    border: 1px solid var(--borde);
-    border-radius: 3px;
-    height: 26px;
-    outline: none;
-}
+    .login-container form input {
+        border: 0.0625rem solid var(--borde);
+        border-radius: 0.1875rem;
+        height: 1.625rem;
+        outline: none;
+    }
 
-.contenedor form .mostrar-ocultar {
-    background-color: var(--texto);
-    border-radius: 0 2px 2px 0;
-    color: var(--texto-2);
-    cursor: pointer;
-    font-size: 15px;
-    height: 24px;
-    padding: 3px 5px;
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    user-select: none;
-    width: 55px;
-}
+    .login-container form .show-password {
+        background-color: var(--texto);
+        border-radius: 0 0.125rem 0.125rem 0;
+        color: var(--texto-2);
+        cursor: pointer;
+        font-size: 0.9375rem;
+        height: 1.5rem;
+        padding: 0.1875rem 0.3125rem;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        user-select: none;
+        width: 3.4375rem;
+    }
 
-.contenedor form .olv-con {
-    color: var(--texto);
-    cursor: pointer;
-    font-size: 13px;
-    margin: 2px;
-}
+    .login-container form .forgot-password {
+        color: var(--texto);
+        cursor: pointer;
+        font-size: 0.8125rem;
+        margin: 0.125rem;
+    }
 
-.contenedor form .olv-con:hover {
-    text-decoration: underline var(--borde);
-}
+    .login-container form .forgot-password:hover {
+        text-decoration: underline var(--borde);
+    }
 
-.contenedor form .captcha {
-    border: 1px dotted var(--texto);
-    border-radius: 3px;
-    font-size: 15px;
-    padding: 2px;
-    text-align: center;
-}
+    .login-container form .captcha {
+        border: 0.0625rem dotted var(--texto);
+        border-radius: 0.1875rem;
+        font-size: 0.9375rem;
+        padding: 0.125rem;
+        text-align: center;
+    }
 
-.contenedor form .reiniciar-captcha {
-    border-radius: 0 2px 2px 0;
-    color: var(--borde);
-    cursor: pointer;
-    font-size: 16px;
-    height: 22px;
-    padding: 5px;
-    position: absolute;
-    right: 0;
-    text-align: center;
-    top: 20%;
-    transform: translateY(-50%);
-    user-select: none;
-    width: 20px;
-}
+    .login-container form .captcha-refresh {
+        border-radius: 0 0.125rem 0.125rem 0;
+        color: var(--borde);
+        cursor: pointer;
+        font-size: 1rem;
+        height: 1.375rem;
+        padding: 0.3125rem;
+        position: absolute;
+        right: 0;
+        text-align: center;
+        top: 20%;
+        transform: translateY(-50%);
+        user-select: none;
+        width: 1.25rem;
+    }
 
-.contenedor form .captcha-usuario {
-    padding-left: 5px;
-    margin-top: 10px;
-}
+    .login-container form .captcha-input {
+        padding-left: 0.3125rem;
+        margin-top: 0.625rem;
+    }
 
-.contenedor form .captcha-usuario::placeholder {
-    color: var(--texto);
-}
+    .login-container form .captcha-input::placeholder {
+        color: var(--texto);
+    }
 
-.contenedor form button {
-    background-color: rgb(255, 80, 80);
-    border: none;
-    border-radius: 3px;
-    color: var(--texto);
-    font-size: 15px;
-    font-weight: 600;
-    margin-top: 30px;
-    padding: 7px 0;
-}
+    .login-container form button {
+        background-color: rgb(255, 80, 80);
+        border: none;
+        border-radius: 0.1875rem;
+        color: var(--texto);
+        font-size: 0.9375rem;
+        font-weight: 600;
+        margin-top: 1.875rem;
+        padding: 0.4375rem 0;
+    }
 
-.contenedor form button:hover {
-    background-color: var(--borde);
-}
+    .login-container form button:hover {
+        background-color: var(--borde);
+    }
 
-.contenedor .enlace-registro {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
+    .login-container .register-link {
+        display: flex;
+        justify-content: center;
+        margin-top: 1.25rem;
+    }
 
-.contenedor .enlace-registro a {
-    color: var(--texto);
-    font-weight: 500;
-    text-decoration: none;
-}
+    .login-container .register-link a {
+        color: var(--texto);
+        font-weight: 500;
+        text-decoration: none;
+    }
 
-.contenedor .enlace-registro a:hover {
-    text-decoration: underline;
-}
+    .login-container .register-link a:hover {
+        text-decoration: underline;
+    }
 }
 
 @layer responsive {
-    /* Base móvil: hasta 500 px */
-    .contenedor {
-        margin-top: 150px;
+    .login-container {
+        margin-top: 9.375rem;
     }
 
-    .contenedor form .mostrar-ocultar {
-        height: 27px;
+    .login-container form .show-password {
+        height: 1.6875rem;
     }
 
-    @media (min-width: 501px) {
-        .contenedor {
+    @media (min-width: 31.3125rem) {
+        .login-container {
             margin-top: revert-layer;
         }
 
-        .contenedor form .mostrar-ocultar {
-            height: 24px;
+        .login-container form .show-password {
+            height: 1.5rem;
         }
     }
 }

@@ -1,0 +1,157 @@
+[
+  {
+    "question": "¿Qué significa SQL?",
+    "options": [
+      "Structured Query Language",
+      "Standard Query List",
+      "Simple Query Language",
+      "System Query Logic"
+    ],
+    "answer": 0,
+    "explanation": "SQL es el lenguaje estándar para interactuar con bases de datos relacionales."
+  },
+  {
+    "question": "¿Cuáles son los sublenguajes principales de SQL?",
+    "options": [
+      "Select, Insert, Update",
+      "HTML, CSS, JS",
+      "DDL, DML, DCL, TCL",
+      "Java, Python, C++"
+    ],
+    "answer": 2,
+    "explanation": "SQL se divide en Definición (DDL), Manipulación (DML), Control (DCL) y Transacción (TCL)."
+  },
+  {
+    "question": "¿Qué hace el DDL (Data Definition Language)?",
+    "options": [
+      "Gestiona transacciones",
+      "Manipula los datos (insertar, borrar)",
+      "Controla los permisos de usuario",
+      "Define la estructura de la base de datos (tablas, índices, etc.)"
+    ],
+    "answer": 3,
+    "explanation": "Comandos como CREATE, ALTER y DROP pertenecen al DDL."
+  },
+  {
+    "question": "¿Qué hace el DML (Data Manipulation Language)?",
+    "options": [
+      "Permite consultar y modificar los datos",
+      "Hace copias de seguridad",
+      "Otorga permisos",
+      "Crea tablas"
+    ],
+    "answer": 0,
+    "explanation": "Comandos como SELECT, INSERT, UPDATE y DELETE pertenecen al DML."
+  },
+  {
+    "question": "¿Cuál es el comando para crear una nueva base de datos?",
+    "options": ["CREATE DATABASE", "START DATABASE", "NEW DATABASE", "MAKE DATABASE"],
+    "answer": 0,
+    "explanation": "La sintaxis estándar es CREATE DATABASE nombre_bd;"
+  },
+  {
+    "question": "¿Cuál es el comando para seleccionar una base de datos para usar?",
+    "options": ["USING", "SELECT", "GO", "USE"],
+    "answer": 3,
+    "explanation": "USE nombre_bd; selecciona la base de datos activa."
+  },
+  {
+    "question": "¿Cuál es el comando para eliminar una tabla?",
+    "options": ["REMOVE TABLE", "DELETE TABLE", "ERASE TABLE", "DROP TABLE"],
+    "answer": 3,
+    "explanation": "DROP TABLE elimina la tabla y todos sus datos permanentemente."
+  },
+  {
+    "question": "¿Qué comando se usa para recuperar datos de una base de datos?",
+    "options": ["FETCH", "RETRIEVE", "SELECT", "GET"],
+    "answer": 2,
+    "explanation": "SELECT es el comando fundamental para realizar consultas."
+  },
+  {
+    "question": "¿Qué cláusula se usa para filtrar registros en un SELECT?",
+    "options": ["FILTER", "WHERE", "HAVING", "IF"],
+    "answer": 1,
+    "explanation": "WHERE especifica las condiciones que deben cumplir los registros para ser seleccionados."
+  },
+  {
+    "question": "¿Qué operador se usa para buscar un patrón en una columna de texto?",
+    "options": ["LIKE", "MATCH", "FIND", "SEARCH"],
+    "answer": 0,
+    "explanation": "LIKE se usa con comodines (% y _) para búsquedas de patrones."
+  },
+  {
+    "question": "¿Qué comando se usa para agregar nuevos registros a una tabla?",
+    "options": ["INSERT INTO", "UPDATE", "NEW ROW", "ADD RECORD"],
+    "answer": 0,
+    "explanation": "INSERT INTO tabla VALUES (...) es la sintaxis para añadir filas."
+  },
+  {
+    "question": "¿Qué comando se usa para modificar registros existentes?",
+    "options": ["CHANGE", "UPDATE", "MODIFY", "ALTER"],
+    "answer": 1,
+    "explanation": "UPDATE tabla SET campo=valor WHERE condicion; actualiza datos."
+  },
+  {
+    "question": "¿Qué comando se usa para eliminar registros específicos?",
+    "options": ["ERASE", "DROP FROM", "DELETE FROM", "REMOVE FROM"],
+    "answer": 2,
+    "explanation": "DELETE FROM tabla WHERE condicion; borra filas. Sin WHERE borra todo."
+  },
+  {
+    "question": "¿Qué hace la cláusula ORDER BY?",
+    "options": [
+      "Ordena el conjunto de resultados",
+      "Agrupa los resultados",
+      "Filtra los resultados",
+      "Une tablas"
+    ],
+    "answer": 0,
+    "explanation": "ORDER BY columna [ASC|DESC] ordena los resultados."
+  },
+  {
+    "question": "¿Qué hace la cláusula DISTINCT?",
+    "options": [
+      "Suma los valores",
+      "Elimina duplicados del conjunto de resultados",
+      "Cuenta los registros",
+      "Muestra todos los registros"
+    ],
+    "answer": 1,
+    "explanation": "SELECT DISTINCT columna devuelve solo valores únicos."
+  },
+  {
+    "question": "¿Qué es un NULL en SQL?",
+    "options": ["El número 0", "La ausencia de valor", "Una cadena vacía", "Un espacio en blanco"],
+    "answer": 1,
+    "explanation": "NULL representa un valor desconocido o no aplicable, diferente de 0 o vacío."
+  },
+  {
+    "question": "¿Cómo se comprueba si un campo es NULL?",
+    "options": ["IS NULL", "== NULL", "EQUALS NULL", "= NULL"],
+    "answer": 0,
+    "explanation": "Se debe usar IS NULL o IS NOT NULL, ya que las comparaciones con = siempre dan falso."
+  },
+  {
+    "question": "¿Qué es una Primary Key en SQL?",
+    "options": [
+      "Un índice secundario",
+      "Una clave para encriptar",
+      "Una restricción que identifica de forma única cada fila",
+      "Un permiso de usuario"
+    ],
+    "answer": 2,
+    "explanation": "PRIMARY KEY impone NOT NULL y UNIQUE."
+  },
+  {
+    "question": "¿Qué tipo de dato se usa para texto de longitud variable?",
+    "options": ["CHAR", "STRING", "TEXT", "VARCHAR"],
+    "answer": 3,
+    "explanation": "VARCHAR(n) almacena cadenas de hasta n caracteres, usando solo el espacio necesario."
+  },
+  {
+    "question": "¿Qué comando elimina todos los datos de una tabla pero mantiene la estructura?",
+    "options": ["TRUNCATE TABLE", "DROP TABLE", "CLEAR TABLE", "DELETE TABLE"],
+    "answer": 0,
+    "explanation": "TRUNCATE es más rápido que DELETE sin WHERE y resetea contadores autoincrementales."
+  }
+]

@@ -1,60 +1,71 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../icon/curso_git.png" type="image/x-icon">
-    <title>Git switch</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/git.css">
-</head>
-<body>
-    <header>
-        <h1>Git switch</h1>
-    </header>
-    <main class="course-content">
-        <section class="course-section">
-            <article class="command-definition">
-                <div class="definition">
-                    <h2>Definición</h2>
-                    <p>
-                        El comando <code>git switch</code> se utiliza para cambiar de rama dentro de un repositorio de Git.
-                        Es una alternativa moderna a <code>git checkout</code> enfocada únicamente en la gestión de ramas,
-                        haciendo el flujo más claro y seguro al cambiar de contexto de trabajo.
-                    </p>
-                </div>
-                <div class="commands">
-                    <h2>Comandos</h2>
-                    <ul>
-                        <li>
-                            <code><span>git switch &lt;nombre_rama&gt;</span></code>
-                            <p>Cambia a la rama indicada y actualiza el directorio de trabajo con su contenido.</p>
-                        </li>
-                        <li>
-                            <code><span>git switch -c &lt;nueva_rama&gt;</span></code>
-                            <p>Crea una nueva rama y se cambia automáticamente a ella.</p>
-                        </li>
-                        <li>
-                            <code><span>git switch -C &lt;nueva_rama&gt;</span></code>
-                            <p>Fuerza la creación de una rama nueva, sobrescribiendo si ya existía.</p>
-                        </li>
-                        <li>
-                            <code><span>git switch -</span></code>
-                            <p>Cambia a la rama anterior en la que estabas trabajando.</p>
-                        </li>
-                    </ul>
-                </div>
-            </article>
-            <article class="practice">
-                <div class="run-block">
-                    <h3> Ejecutar</h3>
-                    <pre><code>$ git branch
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg" />
+        <link rel="shortcut icon" href="../assets/icons/curso_git.png" type="image/x-icon" />
+        <title>Git switch</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="../css/git.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Git switch</h1>
+        </header>
+        <main class="course-content">
+            <section class="course-section">
+                <article class="command-definition">
+                    <div class="definition">
+                        <h2>Definición</h2>
+                        <p>
+                            El comando <code>git switch</code> se utiliza para cambiar de rama
+                            dentro de un repositorio de Git. Es una alternativa moderna a
+                            <code>git checkout</code> enfocada únicamente en la gestión de ramas,
+                            haciendo el flujo más claro y seguro al cambiar de contexto de trabajo.
+                        </p>
+                    </div>
+                    <div class="commands">
+                        <h2>Comandos</h2>
+                        <ul>
+                            <li>
+                                <code><span>git switch &lt;nombre_rama&gt;</span></code>
+                                <p>
+                                    Cambia a la rama indicada y actualiza el directorio de trabajo
+                                    con su contenido.
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git switch -c &lt;nueva_rama&gt;</span></code>
+                                <p>Crea una nueva rama y se cambia automáticamente a ella.</p>
+                            </li>
+                            <li>
+                                <code><span>git switch -C &lt;nueva_rama&gt;</span></code>
+                                <p>
+                                    Fuerza la creación de una rama nueva, sobrescribiendo si ya
+                                    existía.
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git switch -</span></code>
+                                <p>Cambia a la rama anterior en la que estabas trabajando.</p>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+                <article class="practice">
+                    <div class="run-block">
+                        <h3>Ejecutar</h3>
+                        <pre><code>$ git branch
 $ git switch main
 $ git branch</code></pre>
-                </div>
-                <div class="result-block">
-                    <h3> Resultado</h3>
-                    <pre><code>* backend
+                    </div>
+                    <div class="result-block">
+                        <h3>Resultado</h3>
+                        <pre><code>* backend
 main
 
 Cambiado a rama 'main'
@@ -62,14 +73,13 @@ Tu rama está actualizada con 'origin/main'.
 
 backend
 * main</code></pre>
-                </div>
-
-            </article>
-        </section>
-    </main>
-    <footer>
-        &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
-    </footer>
-    <script src="../js/header.js"></script>
-</body>
+                    </div>
+                </article>
+            </section>
+        </main>
+        <footer>
+            &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
+        </footer>
+        <script src="../js/header.js"></script>
+    </body>
 </html>

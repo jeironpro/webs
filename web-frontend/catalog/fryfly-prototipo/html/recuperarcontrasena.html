@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Recuperar Contraseña</title>
+        <link rel="icon" href="../assets/images/icons/logo.png" />
+        <link rel="stylesheet" href="../css/recuperarcontrasena.css" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <main>
+            <div class="contenedor-login">
+                <div class="logo-titulo">
+                    <h1>Recuperar Contraseña</h1>
+                </div>
+                <form>
+                    <div class="control">
+                        <label for="contrasena">Contraseña</label>
+                        <input type="password" id="contrasena" />
+                        <button
+                            type="button"
+                            class="mostrar-ocultar"
+                            id="toggle-password"
+                            aria-label="Mostrar u ocultar contraseña"
+                        >
+                            <i class="fas fa-eye" id="icono-mostrar-ocultar"></i>
+                        </button>
+                    </div>
+                    <div class="control">
+                        <label for="contrasena_">Confirmar Contraseña</label>
+                        <input type="password" id="contrasena_" />
+                        <button
+                            type="button"
+                            class="mostrar-ocultar"
+                            id="toggle-confirm-password"
+                            aria-label="Mostrar u ocultar la confirmación de contraseña"
+                        >
+                            <i class="fas fa-eye" id="icono-mostrar-ocultar_"></i>
+                        </button>
+                    </div>
+                    <div class="validador">
+                        <span>
+                            <i class="fas fa-check" id="minimo"></i>
+                            <span class="requerimiento"
+                                >La contraseña debe tener un m&iacute;nimo de 8 caracteres</span
+                            >
+                        </span>
+                        <span>
+                            <i class="fas fa-check" id="mayuscula"></i>
+                            <span class="requerimiento"
+                                >La contraseña debe tener una letra may&uacute;scula</span
+                            >
+                        </span>
+                        <span>
+                            <i class="fas fa-check" id="especial"></i>
+                            <span class="requerimiento"
+                                >La contraseña debe tener un car&aacute;cter especial</span
+                            >
+                        </span>
+                        <span>
+                            <i class="fas fa-check" id="numero"></i>
+                            <span class="requerimiento"
+                                >La contraseña debe contener n&uacute;meros</span
+                            >
+                        </span>
+                    </div>
+                    <div class="botones">
+                        <a href="login.html" class="enlace-regresar"><span>Regresar</span></a>
+                        <button type="button" id="change-password">Cambiar</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+        <script src="../js/recover.js"></script>
+        <script src="https://kit.fontawesome.com/25da21ab57.js" crossorigin="anonymous"></script>
+    </body>
+</html>

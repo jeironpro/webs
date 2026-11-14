@@ -1,0 +1,89 @@
+@layer base, responsive, accesibilidad;
+
+:root {
+    --color-paper: oklch(97% 0.012 95);
+    --color-paper-2: oklch(94% 0.016 95);
+    --color-paper-3: oklch(91% 0.02 95);
+    --color-ink: oklch(20% 0.012 250);
+    --color-ink-soft: oklch(20% 0.012 250 / 0.88);
+    --color-neutral: oklch(56% 0.02 250);
+    --color-muted: oklch(44% 0.02 250);
+
+    --color-accent: oklch(86% 0.18 95);
+    --color-accent-deep: oklch(76% 0.17 95);
+    --color-accent-2: oklch(66% 0.18 235);
+    --color-accent-2-deep: oklch(52% 0.16 235);
+    --color-accent-3: oklch(68% 0.24 18);
+    --color-mint: oklch(80% 0.16 150);
+    --color-mint-deep: oklch(58% 0.14 150);
+    --color-lavender: oklch(74% 0.16 305);
+    --color-lavender-deep: oklch(56% 0.15 305);
+
+    --color-focus: oklch(55% 0.17 235);
+    --color-success: oklch(60% 0.14 150);
+    --color-error: oklch(55% 0.18 18);
+    --color-warning: oklch(65% 0.13 75);
+
+    --tint-pdf: oklch(66% 0.18 235 / 0.08);
+    --tint-docx: oklch(86% 0.18 95 / 0.14);
+    --tint-zip: oklch(80% 0.16 150 / 0.18);
+
+    --font-display: "Plus Jakarta Sans", ui-rounded, system-ui, sans-serif;
+    --font-body: "Plus Jakarta Sans", ui-rounded, system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+    --text-xs: 0.75rem;
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-md: 1.25rem;
+    --text-lg: 1.5625rem;
+    --text-xl: 1.9531rem;
+    --text-2xl: 2.4414rem;
+    --text-3xl: 3.0518rem;
+    --text-4xl: 3.8147rem;
+    --text-display: clamp(2rem, 4vw + 1rem, 3.5rem);
+    --text-bignum: clamp(3rem, 5vw + 1rem, 5rem);
+
+    --space-2xs: 0.25rem;
+    --space-xs: 0.5rem;
+    --space-sm: 0.75rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --space-2xl: 3rem;
+    --space-3xl: 4rem;
+    --space-4xl: 6rem;
+
+    --radius-card: 1.25rem;
+    --radius-pill: 62.4375rem;
+    --radius-input: 0.75rem;
+    --radius-sm: 0.5rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1.25rem;
+
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-snap: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-out: cubic-bezier(0.2, 0.7, 0.3, 1);
+    --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+    --ease-in-out: cubic-bezier(0.87, 0, 0.13, 1);
+    --dur-fast: 140ms;
+    --dur-base: 220ms;
+    --dur-slow: 400ms;
+
+    --shadow-card: 0 0.75rem 2rem -1rem oklch(20% 0.012 250 / 0.12);
+    --shadow-card-hover: 0 1.25rem 2.75rem -1.125rem oklch(20% 0.012 250 / 0.2);
+    --shadow-soft: 0 0.25rem 0.75rem -0.25rem oklch(20% 0.012 250 / 0.1);
+
+    --rule-hair: 0.0625rem solid oklch(20% 0.012 250 / 0.08);
+    --rule-accent: 0.0625rem solid var(--color-accent-deep);
+
+    --measure: 65ch;
+
+    --panel-width: 17.5rem;
+    --bar-height: 4rem;
+
+    --bp-sm: 30rem;
+    --bp-md: 48rem;
+    --bp-lg: 64rem;
+    --bp-xl: 80rem;
+}

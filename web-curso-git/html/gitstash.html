@@ -1,62 +1,76 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../icon/curso_git.png" type="image/x-icon">
-    <title>Git stash</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/git.css">
-</head>
-<body>
-    <header>
-        <h1>Git stash</h1>
-    </header>
-    <main class="course-content">
-        <section class="course-section">
-            <article class="command-definition">
-                <div class="definition">
-                    <h2>Definición</h2>
-                    <p>
-                        El comando <code>git stash</code> se utiliza para guardar temporalmente los cambios en el área de trabajo y el área de preparación sin hacer un commit.
-                        Es ideal cuando necesitas cambiar de rama o realizar otra tarea, pero aún no quieres confirmar tus modificaciones actuales.
-                        Los cambios se guardan en una pila llamada stash stack, desde donde puedes recuperarlos más tarde.
-                    </p>
-                </div>
-                <div class="commands">
-                    <h2>Comandos</h2>
-                    <ul>
-                        <li>
-                            <code><span>git stash</span></code>
-                            <p>Guarda temporalmente los cambios que aún no has confirmado (staging area o working directory) y limpia tu directorio de trabajo.</p>
-                        </li>
-                        <li>
-                            <code><span>git stash list</span></code>
-                            <p>Muestra todas las entradas guardadas en la pila de stashes.</p>
-                        </li>
-                        <li>
-                            <code><span>git stash pop</span></code>
-                            <p>Restaura los cambios del stash más reciente y lo elimina de la pila.</p>
-                        </li>
-                        <li>
-                            <code><span>git stash apply stash@{n}</span></code>
-                            <p>Aplica un stash específico sin eliminarlo de la pila.</p>
-                        </li>
-                        <li>
-                            <code><span>git stash drop stash@{n}</span></code>
-                            <p>Elimina una entrada concreta del stash.</p>
-                        </li>
-                        <li>
-                            <code><span>git stash clear</span></code>
-                            <p>Elimina todos los stashes almacenados.</p>
-                        </li>
-                    </ul>
-                </div>
-            </article>
-            <article class="practice">
-                <div class="run-block">
-                    <h3> Ejecutar</h3>
-                    <pre><code>$ echo "console.log('Un stash');" >> main.js
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg" />
+        <link rel="shortcut icon" href="../assets/icons/curso_git.png" type="image/x-icon" />
+        <title>Git stash</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="../css/git.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Git stash</h1>
+        </header>
+        <main class="course-content">
+            <section class="course-section">
+                <article class="command-definition">
+                    <div class="definition">
+                        <h2>Definición</h2>
+                        <p>
+                            El comando <code>git stash</code> se utiliza para guardar temporalmente
+                            los cambios en el área de trabajo y el área de preparación sin hacer un
+                            commit. Es ideal cuando necesitas cambiar de rama o realizar otra tarea,
+                            pero aún no quieres confirmar tus modificaciones actuales. Los cambios
+                            se guardan en una pila llamada stash stack, desde donde puedes
+                            recuperarlos más tarde.
+                        </p>
+                    </div>
+                    <div class="commands">
+                        <h2>Comandos</h2>
+                        <ul>
+                            <li>
+                                <code><span>git stash</span></code>
+                                <p>
+                                    Guarda temporalmente los cambios que aún no has confirmado
+                                    (staging area o working directory) y limpia tu directorio de
+                                    trabajo.
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git stash list</span></code>
+                                <p>Muestra todas las entradas guardadas en la pila de stashes.</p>
+                            </li>
+                            <li>
+                                <code><span>git stash pop</span></code>
+                                <p>
+                                    Restaura los cambios del stash más reciente y lo elimina de la
+                                    pila.
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git stash apply stash@{n}</span></code>
+                                <p>Aplica un stash específico sin eliminarlo de la pila.</p>
+                            </li>
+                            <li>
+                                <code><span>git stash drop stash@{n}</span></code>
+                                <p>Elimina una entrada concreta del stash.</p>
+                            </li>
+                            <li>
+                                <code><span>git stash clear</span></code>
+                                <p>Elimina todos los stashes almacenados.</p>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+                <article class="practice">
+                    <div class="run-block">
+                        <h3>Ejecutar</h3>
+                        <pre><code>$ echo "console.log('Un stash');" >> main.js
 $ git status
 $ git stash
 $ git status
@@ -65,10 +79,10 @@ $ git stash pop
 $ git add main.js
 $ git status
 $ git commit -m "Modificando main.js"</code></pre>
-                </div>
-                <div class="result-block">
-                    <h3> Resultado</h3>
-                    <pre><code>En la rama main
+                    </div>
+                    <div class="result-block">
+                        <h3>Resultado</h3>
+                        <pre><code>En la rama main
 Cambios no rastreados para el commit:
   (usa "git add &lt;archivo&gt;..." para actualizar lo que será confirmado)
   (usa "git restore &lt;archivo&gt;..." para descartar los cambios en el directorio de trabajo)
@@ -99,14 +113,13 @@ Cambios a ser confirmados:
 
 [main b572aa5] Modificando main.js
  1 file changed, 1 insertion(+)</code></pre>
-                </div>
-
-            </article>
-        </section>
-    </main>
-    <footer>
-        &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
-    </footer>
-    <script src="../js/header.js"></script>
-</body>
+                    </div>
+                </article>
+            </section>
+        </main>
+        <footer>
+            &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
+        </footer>
+        <script src="../js/header.js"></script>
+    </body>
 </html>

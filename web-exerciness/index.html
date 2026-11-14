@@ -1,39 +1,432 @@
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>exerciness</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=block"
-      rel="stylesheet"
-    />
-    <meta
-      name="description"
-      content="Catálogo de ejercicios de gimnasio con búsqueda, filtros, favoritos y comparador."
-    />
-    <meta property="og:title" content="exerciness" />
-    <meta
-      property="og:description"
-      content="Catálogo de ejercicios de gimnasio con búsqueda, filtros, favoritos y comparador."
-    />
-    <meta property="og:image" content="assets/og-image.png" />
-    <meta property="og:type" content="website" />
-    <script>
-      // Apply persisted theme before first render
-      var stored = localStorage.getItem('exerciness-theme')
-      var dark = stored
-        ? JSON.parse(stored).state.theme === 'dark'
-        : window.matchMedia('(prefers-color-scheme: dark)').matches
-      if (dark) document.documentElement.classList.add('dark')
-    </script>
-    <link rel="stylesheet" href="assets/index-CUSTOMS.css" />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="app.js"></script>
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block"
+            rel="stylesheet"
+        />
+        <meta
+            name="description"
+            content="Catálogo de ejercicios de gimnasio con búsqueda, filtros, favoritos y comparador."
+        />
+        <title>exerciness</title>
+        <link rel="stylesheet" href="css/styles.css" />
+    </head>
+    <body data-page="exerciness">
+        <div id="root">
+            <div class="flex min-h-screen flex-col">
+                <header class="border-b-2 border-rule bg-paper">
+                    <nav
+                        aria-label="Principal"
+                        class="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8"
+                    >
+                        <a
+                            aria-current="page"
+                            class="flex items-center gap-2 font-display text-lg font-bold uppercase tracking-wider text-ink no-underline active"
+                            href="index.html"
+                            ><span
+                                class="icon-22 material-symbols-rounded select-none text-accent"
+                                aria-hidden="true"
+                                >fitness_center</span
+                            ><span>EXERCINESS</span></a
+                        >
+                        <ul class="hidden items-center gap-6 md:flex">
+                            <li>
+                                <a
+                                    aria-current="page"
+                                    class="text-sm font-medium uppercase tracking-wider no-underline transition-colors text-accent"
+                                    href="index.html"
+                                    >Inicio</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    class="text-sm font-medium uppercase tracking-wider no-underline transition-colors text-ink-2 hover:text-accent"
+                                    href="ejercicios.html"
+                                    >Ejercicios</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    class="text-sm font-medium uppercase tracking-wider no-underline transition-colors text-ink-2 hover:text-accent"
+                                    href="favoritos.html"
+                                    >Favoritos</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    class="text-sm font-medium uppercase tracking-wider no-underline transition-colors text-ink-2 hover:text-accent"
+                                    href="comparar.html"
+                                    >Comparar</a
+                                >
+                            </li>
+                            <li class="ml-2">
+                                <button
+                                    data-theme-toggle
+                                    type="button"
+                                    class="inline-flex h-9 w-9 items-center justify-center rounded-input border border-rule bg-paper text-ink-2 transition-colors hover:border-accent hover:text-accent focus-visible:outline-2 focus-visible:outline-focus"
+                                    aria-label="Activar modo oscuro"
+                                    title="Activar modo oscuro"
+                                >
+                                    <span
+                                        class="icon-20 material-symbols-rounded select-none"
+                                        aria-hidden="true"
+                                        >dark_mode</span
+                                    >
+                                </button>
+                            </li>
+                        </ul>
+                        <div class="flex items-center gap-2 md:hidden">
+                            <button
+                                data-theme-toggle
+                                type="button"
+                                class="inline-flex h-9 w-9 items-center justify-center rounded-input border border-rule bg-paper text-ink-2 transition-colors hover:border-accent hover:text-accent focus-visible:outline-2 focus-visible:outline-focus"
+                                aria-label="Activar modo oscuro"
+                                title="Activar modo oscuro"
+                            >
+                                <span
+                                    class="icon-20 material-symbols-rounded select-none"
+                                    aria-hidden="true"
+                                    >dark_mode</span
+                                ></button
+                            ><button
+                                data-menu-toggle
+                                type="button"
+                                class="inline-flex h-9 w-9 items-center justify-center rounded-input border border-rule bg-paper text-ink-2 transition-colors hover:border-accent hover:text-accent"
+                                aria-expanded="false"
+                                aria-controls="nav-mobile-menu"
+                            >
+                                <span
+                                    class="icon-20 material-symbols-rounded select-none"
+                                    role="img"
+                                    aria-label="Abrir menú"
+                                    >menu</span
+                                >
+                            </button>
+                        </div>
+                    </nav>
+                    <div id="mobile-menu" class="mobile-menu" hidden>
+                        <a href="index.html">Inicio</a>
+                        <a href="ejercicios.html">Ejercicios</a>
+                        <a href="favoritos.html">Favoritos</a>
+                        <a href="comparar.html">Comparar</a>
+                        <button
+                            type="button"
+                            data-theme-toggle
+                            class="btn btn--outline mt-2 w-full"
+                        >
+                            Modo oscuro
+                        </button>
+                    </div>
+                </header>
+                <main class="flex-1">
+                    <section
+                        class="flex min-h-[80vh] flex-col items-center justify-center overflow-hidden px-4 text-center"
+                    >
+                        <div class="relative">
+                            <div
+                                class="absolute -left-4 -top-4 h-14 w-14 rounded-full bg-accent opacity-60 sm:-left-8 sm:-top-8 sm:h-16 sm:w-16"
+                                aria-hidden="true"
+                            ></div>
+                            <h1
+                                class="font-display text-[clamp(2.5rem,6vw+1rem,5.5rem)] font-semibold leading-none tracking-tighter text-ink"
+                            >
+                                Tu catálogo de<br /><span class="relative"
+                                    >ejercicios<span
+                                        class="absolute -bottom-1 left-0 h-3 w-full rounded-pill bg-accent/40"
+                                        aria-hidden="true"
+                                    ></span
+                                ></span>
+                            </h1>
+                        </div>
+                        <p class="mt-6 max-w-lg font-body text-lg text-ink-2">
+                            Más de 1.300 movimientos. Busca, filtra, guarda y compara. El gimnasio
+                            empieza aquí.
+                        </p>
+                        <div
+                            class="mt-8 flex w-full max-w-sm flex-col gap-3 sm:w-auto sm:max-w-none sm:flex-row sm:gap-4"
+                        >
+                            <a class="btn no-underline" href="ejercicios.html">Explorar ahora</a
+                            ><a class="btn btn--outline no-underline" href="favoritos.html"
+                                >Tus favoritos</a
+                            >
+                        </div>
+                    </section>
+                    <section class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+                        <div class="mb-8 flex items-baseline gap-3">
+                            <span
+                                class="font-mono text-xs font-medium uppercase tracking-widest text-ink-2"
+                                >01 · DESTACADOS</span
+                            >
+                            <h2 class="font-display text-2xl font-semibold text-ink">
+                                Seis para empezar
+                            </h2>
+                        </div>
+                        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                            <div
+                                class="rounded-card bg-paper shadow-soft transition-shadow duration-220 group relative overflow-hidden transition-transform duration-220 ease-spring hover:-translate-y-1"
+                            >
+                                <a class="block no-underline" href="ejercicio.html?id=0001"
+                                    ><div class="overflow-hidden">
+                                        <img
+                                            src="images/0001-2gPfomN.jpg"
+                                            alt="3/4 sit-up"
+                                            loading="lazy"
+                                            class="aspect-square w-full object-cover transition-transform duration-220 group-hover:scale-105"
+                                        />
+                                    </div>
+                                    <div class="p-4">
+                                        <h3
+                                            class="font-display text-base font-semibold leading-tight text-ink"
+                                        >
+                                            3/4 sit-up
+                                        </h3>
+                                        <div class="mt-2 flex flex-wrap gap-1.5">
+                                            <span
+                                                class="inline-flex items-center rounded-pill px-2.5 py-0.5 font-mono text-xs font-medium uppercase tracking-wider bg-accent/12 text-accent"
+                                                >Cintura</span
+                                            ><span
+                                                class="inline-flex items-center rounded-pill px-2.5 py-0.5 font-mono text-xs font-medium uppercase tracking-wider border border-rule bg-paper-2 text-ink-2"
+                                                >Peso corporal</span
+                                            >
+                                        </div>
+                                    </div></a
+                                ><button
+                                    type="button"
+                                    aria-pressed="false"
+                                    aria-label="Añadir a la comparación"
+                                    class="inline-flex items-center justify-center gap-2 rounded-pill font-medium transition-colors focus-visible:outline-2 focus-visible:outline-focus bg-paper-2 text-ink-2 hover:bg-accent/8 hover:text-accent h-8 w-8 absolute right-3 top-3"
+                                >
+                                    <span
+                                        class="icon-20 material-symbols-rounded select-none"
+                                        aria-hidden="true"
+                                        >compare_arrows</span
+                                    >
+                                </button>
+                            </div>
+                            <div
+                                class="rounded-card bg-paper shadow-soft transition-shadow duration-220 group relative overflow-hidden transition-transform duration-220 ease-spring hover:-translate-y-1"
+                            >
+                                <a class="block no-underline" href="ejercicio.html?id=0002"
+                                    ><div class="overflow-hidden">
+                                        <img
+                                            src="images/0002-Hy9D21L.jpg"
+                                            alt="45° side bend"
+                                            loading="lazy"
+                                            class="aspect-square w-full object-cover transition-transform duration-220 group-hover:scale-105"
+                                        />
+                                    </div>
+                                    <div class="p-4">
+                                        <h3
+                                            class="font-display text-base font-semibold leading-tight text-ink"
+                                        >
+                                            45° side bend
+                                        </h3>
+                                        <div class="mt-2 flex flex-wrap gap-1.5">
+                                            <span
+                                                class="inline-flex items-center rounded-pill px-2.5 py-0.5 font-mono text-xs font-medium uppercase tracking-wider bg-accent/12 text-accent"
+                                                >Cintura</span
+                                            ><span
+                                                class="inline-flex items-center rounded-pill px-2.5 py-0.5 font-mono text-xs font-medium uppercase tracking-wider border border-rule bg-paper-2 text-ink-2"
+                                                >Peso corporal</span
+                                            >
+                                        </div>
+                                    </div></a
+                                ><button
+                                    type="button"
+                                    aria-pressed="false"
+                                    aria-label="Añadir a la comparación"
+                                    class="inline-flex items-center justify-center gap-2 rounded-pill font-medium transition-colors focus-visible:outline-2 focus-visible:outline-focus bg-paper-2 text-ink-2 hover:bg-accent/8 hover:text-accent h-8 w-8 absolute right-3 top-3"
+                                >
+                                    <span
+                                        class="icon-20 material-symbols-rounded select-none"
+                                        aria-hidden="true"
+                                        >compare_arrows</span
+                                    >
+                                </button>
+                            </div>
+                            <div
+                                class="rounded-card bg-paper shadow-soft transition-shadow duration-220 group relative overflow-hidden transition-transform duration-220 ease-spring hover:-translate-y-1"
+                            >
+                                <a class="block no-underline" href="ejercicio.html?id=0003"
+                                    ><div class="overflow-hidden">
+                                        <img
+                                            src="images/0003-1ZFqTDN.jpg"
+                                            alt="air bike"
+                                            loading="lazy"
+                                            class="aspect-square w-full object-cover transition-transform duration-220 group-hover:scale-105"
+                                        />
+                                    </div>
+                                    <div class="p-4">
+                                        <h3
+                                            class="font-display text-base font-semibold leading-tight text-ink"
+                                        >
+                                            air bike
+                                        </h3>
+                                        <div class="mt-2 flex flex-wrap gap-1.5">
+                                            <span
+                                                class="inline-flex items-center rounded-pill px-2.5 py-0.5 font-mono text-xs font-medium uppercase tracking-wider bg-accent/12 text-accent"
+                                                >Cintura</span
+                                            ><span
+                                                class="inline-flex items-center rounded-pill px-2.5 py-0.5 font-mono text-xs font-medium uppercase tracking-wider border border-rule bg-paper-2 text-ink-2"
+                                                >Peso corporal</span
+                                            >
+                                        </div>
+                                    </div></a
+                                ><button
+                                    type="button"
+                                    aria-pressed="false"
+                                    aria-label="Añadir a la comparación"
+                                    class="inline-flex items-center justify-center gap-2 rounded-pill font-medium transition-colors focus-visible:outline-2 focus-visible:outline-focus bg-paper-2 text-ink-2 hover:bg-accent/8 hover:text-accent h-8 w-8 absolute right-3 top-3"
+                                >
+                                    <span
+                                        class="icon-20 material-symbols-rounded select-none"
+                                        aria-hidden="true"
+                                        >compare_arrows</span
+                                    >
+                                </button>
+                            </div>
+                            <div
+                                class="rounded-card bg-paper shadow-soft transition-shadow duration-220 group relative overflow-hidden transition-transform duration-220 ease-spring hover:-translate-y-1"
+                            >
+                                <a class="block no-underline" href="ejercicio.html?id=1512"
+                                    ><div class="overflow-hidden">
+                                        <img
+                                            src="images/1512-qBcKorM.jpg"
+                                            alt="all fours squad stretch"
+                                            loading="lazy"
+                                            class="aspect-square w-full object-cover transition-transform duration-220 group-hover:scale-105"
+                                        />
+                                    </div>
+                                    <div class="p-4">
+                                        <h3
+                                            class="font-display text-base font-semibold leading-tight text-ink"
+                                        >
+                                            all fours squad stretch
+                                        </h3>
+                                        <div class="mt-2 flex flex-wrap gap-1.5">
+                                            <span
+                                                class="inline-flex items-center rounded-pill px-2.5 py-0.5 font-mono text-xs font-medium uppercase tracking-wider bg-accent/12 text-accent"
+                                                >Piernas superiores</span
+                                            ><span
+                                                class="inline-flex items-center rounded-pill px-2.5 py-0.5 font-mono text-xs font-medium uppercase tracking-wider border border-rule bg-paper-2 text-ink-2"
+                                                >Peso corporal</span
+                                            >
+                                        </div>
+                                    </div></a
+                                ><button
+                                    type="button"
+                                    aria-pressed="false"
+                                    aria-label="Añadir a la comparación"
+                                    class="inline-flex items-center justify-center gap-2 rounded-pill font-medium transition-colors focus-visible:outline-2 focus-visible:outline-focus bg-paper-2 text-ink-2 hover:bg-accent/8 hover:text-accent h-8 w-8 absolute right-3 top-3"
+                                >
+                                    <span
+                                        class="icon-20 material-symbols-rounded select-none"
+                                        aria-hidden="true"
+                                        >compare_arrows</span
+                                    >
+                                </button>
+                            </div>
+                            <div
+                                class="rounded-card bg-paper shadow-soft transition-shadow duration-220 group relative overflow-hidden transition-transform duration-220 ease-spring hover:-translate-y-1"
+                            >
+                                <a class="block no-underline" href="ejercicio.html?id=0006"
+                                    ><div class="overflow-hidden">
+                                        <img
+                                            src="images/0006-qaZVsGk.jpg"
+                                            alt="alternate heel touchers"
+                                            loading="lazy"
+                                            class="aspect-square w-full object-cover transition-transform duration-220 group-hover:scale-105"
+                                        />
+                                    </div>
+                                    <div class="p-4">
+                                        <h3
+                                            class="font-display text-base font-semibold leading-tight text-ink"
+                                        >
+                                            alternate heel touchers
+                                        </h3>
+                                        <div class="mt-2 flex flex-wrap gap-1.5">
+                                            <span
+                                                class="inline-flex items-center rounded-pill px-2.5 py-0.5 font-mono text-xs font-medium uppercase tracking-wider bg-accent/12 text-accent"
+                                                >Cintura</span
+                                            ><span
+                                                class="inline-flex items-center rounded-pill px-2.5 py-0.5 font-mono text-xs font-medium uppercase tracking-wider border border-rule bg-paper-2 text-ink-2"
+                                                >Peso corporal</span
+                                            >
+                                        </div>
+                                    </div></a
+                                ><button
+                                    type="button"
+                                    aria-pressed="false"
+                                    aria-label="Añadir a la comparación"
+                                    class="inline-flex items-center justify-center gap-2 rounded-pill font-medium transition-colors focus-visible:outline-2 focus-visible:outline-focus bg-paper-2 text-ink-2 hover:bg-accent/8 hover:text-accent h-8 w-8 absolute right-3 top-3"
+                                >
+                                    <span
+                                        class="icon-20 material-symbols-rounded select-none"
+                                        aria-hidden="true"
+                                        >compare_arrows</span
+                                    >
+                                </button>
+                            </div>
+                            <div
+                                class="rounded-card bg-paper shadow-soft transition-shadow duration-220 group relative overflow-hidden transition-transform duration-220 ease-spring hover:-translate-y-1"
+                            >
+                                <a class="block no-underline" href="ejercicio.html?id=0007"
+                                    ><div class="overflow-hidden">
+                                        <img
+                                            src="images/0007-4IKbhHV.jpg"
+                                            alt="alternate lateral pulldown"
+                                            loading="lazy"
+                                            class="aspect-square w-full object-cover transition-transform duration-220 group-hover:scale-105"
+                                        />
+                                    </div>
+                                    <div class="p-4">
+                                        <h3
+                                            class="font-display text-base font-semibold leading-tight text-ink"
+                                        >
+                                            alternate lateral pulldown
+                                        </h3>
+                                        <div class="mt-2 flex flex-wrap gap-1.5">
+                                            <span
+                                                class="inline-flex items-center rounded-pill px-2.5 py-0.5 font-mono text-xs font-medium uppercase tracking-wider bg-accent/12 text-accent"
+                                                >Espalda</span
+                                            ><span
+                                                class="inline-flex items-center rounded-pill px-2.5 py-0.5 font-mono text-xs font-medium uppercase tracking-wider border border-rule bg-paper-2 text-ink-2"
+                                                >Poleas</span
+                                            >
+                                        </div>
+                                    </div></a
+                                ><button
+                                    type="button"
+                                    aria-pressed="false"
+                                    aria-label="Añadir a la comparación"
+                                    class="inline-flex items-center justify-center gap-2 rounded-pill font-medium transition-colors focus-visible:outline-2 focus-visible:outline-focus bg-paper-2 text-ink-2 hover:bg-accent/8 hover:text-accent h-8 w-8 absolute right-3 top-3"
+                                >
+                                    <span
+                                        class="icon-20 material-symbols-rounded select-none"
+                                        aria-hidden="true"
+                                        >compare_arrows</span
+                                    >
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+                </main>
+                <footer class="border-t border-rule bg-paper-2">
+                    <div class="mx-auto max-w-7xl px-4 py-6 text-center sm:px-6 lg:px-8">
+                        <p class="font-body text-sm text-ink-2">
+                            © 2026 Exerciness — Todos los derechos reservados
+                        </p>
+                    </div>
+                </footer>
+            </div>
+        </div>
+
+        <script type="module" src="js/app.js"></script>
+    </body>
 </html>

@@ -1,0 +1,207 @@
+[
+  {
+    "question": "¿Qué es JDBC?",
+    "options": [
+      "Java DB",
+      "Java Data",
+      "Java Database Connectivity, API estándar para conectar Java con bases de datos",
+      "Java Connect"
+    ],
+    "answer": 2,
+    "explanation": "java.sql.*"
+  },
+  {
+    "question": "¿Qué es el DriverManager?",
+    "options": [
+      "Un conductor",
+      "Un gerente",
+      "Clase que gestiona una lista de drivers de base de datos y establece la conexión",
+      "Un servidor"
+    ],
+    "answer": 2,
+    "explanation": "getConnection()."
+  },
+  {
+    "question": "¿Qué es un Driver JDBC?",
+    "options": [
+      "Un conductor",
+      "Un hardware",
+      "Un coche",
+      "Componente software específico del proveedor (MySQL, Oracle) que implementa la interfaz JDBC"
+    ],
+    "answer": 3,
+    "explanation": "Traduce llamadas JDBC a protocolo DB."
+  },
+  {
+    "question": "¿Qué es un Connection?",
+    "options": [
+      "Un cable",
+      "Interfaz que representa una sesión/conexión con la base de datos",
+      "Un wifi",
+      "Un usuario"
+    ],
+    "answer": 1,
+    "explanation": "Se debe cerrar al terminar."
+  },
+  {
+    "question": "¿Qué es un Statement?",
+    "options": [
+      "Un error",
+      "Un estado",
+      "Una declaración",
+      "Objeto usado para ejecutar sentencias SQL estáticas"
+    ],
+    "answer": 3,
+    "explanation": "Vulnerable a inyección SQL si se concatenan strings."
+  },
+  {
+    "question": "¿Qué es un PreparedStatement?",
+    "options": [
+      "Un statement lento",
+      "Un statement viejo",
+      "Subinterfaz de Statement para sentencias SQL precompiladas y parametrizadas (seguro y eficiente)",
+      "Un statement malo"
+    ],
+    "answer": 2,
+    "explanation": "Previene inyección SQL."
+  },
+  {
+    "question": "¿Qué es un ResultSet?",
+    "options": [
+      "Un resultado",
+      "Objeto que contiene los resultados de una consulta SQL (tabla de datos)",
+      "Un set",
+      "Una lista"
+    ],
+    "answer": 1,
+    "explanation": "Se recorre con next()."
+  },
+  {
+    "question": "¿Qué método se usa para consultas de lectura (SELECT)?",
+    "options": ["query()", "execute()", "executeUpdate()", "executeQuery()"],
+    "answer": 3,
+    "explanation": "Devuelve un ResultSet."
+  },
+  {
+    "question": "¿Qué método se usa para cambios (INSERT, UPDATE, DELETE)?",
+    "options": ["executeChange()", "executeUpdate()", "update()", "executeQuery()"],
+    "answer": 1,
+    "explanation": "Devuelve int (filas afectadas)."
+  },
+  {
+    "question": "¿Qué es el Connection Pooling?",
+    "options": [
+      "Una piscina",
+      "Un error",
+      "Un juego",
+      "Técnica de mantener un caché de conexiones abiertas para reutilizarlas y mejorar rendimiento"
+    ],
+    "answer": 3,
+    "explanation": "Abrir conexiones es costoso (HikariCP)."
+  },
+  {
+    "question": "¿Qué es una SQLException?",
+    "options": [
+      "Un error grave",
+      "Excepción comprobada que lanza JDBC ante errores de base de datos",
+      "Un error de red",
+      "Un error leve"
+    ],
+    "answer": 1,
+    "explanation": "Obligatorio manejarla."
+  },
+  {
+    "question": "¿Cómo se manejan las transacciones en JDBC?",
+    "options": [
+      "Con un botón",
+      "connection.setAutoCommit(false); ... commit(); / rollback();",
+      "Es automático siempre",
+      "No se puede"
+    ],
+    "answer": 1,
+    "explanation": "Control manual."
+  },
+  {
+    "question": "¿Qué es un DataSource?",
+    "options": [
+      "Una fuente",
+      "Interfaz preferida (sobre DriverManager) para obtener conexiones, soporta pooling",
+      "Un dato",
+      "Un origen"
+    ],
+    "answer": 1,
+    "explanation": "Estándar en Enterprise."
+  },
+  {
+    "question": "¿Qué hace resultSet.next()?",
+    "options": [
+      "Devuelve el dato",
+      "Borra la fila",
+      "Mueve el cursor a la siguiente fila y devuelve true si hay datos",
+      "Cierra el set"
+    ],
+    "answer": 2,
+    "explanation": "while(rs.next()) { ... }"
+  },
+  {
+    "question": "¿Qué es un CallableStatement?",
+    "options": [
+      "Una llamada",
+      "Un error",
+      "Interfaz para ejecutar procedimientos almacenados (Stored Procedures)",
+      "Un statement"
+    ],
+    "answer": 2,
+    "explanation": "{call procedimiento(?, ?)}."
+  },
+  {
+    "question": "¿Qué es el Batch Processing (Procesamiento por lotes)?",
+    "options": [
+      "Enviar múltiples sentencias SQL a la base de datos en una sola llamada (addBatch, executeBatch)",
+      "Procesar uno a uno",
+      "Procesar lento",
+      "Nada"
+    ],
+    "answer": 0,
+    "explanation": "Mejora masiva de rendimiento en inserts masivos."
+  },
+  {
+    "question": "¿Qué tipo de dato Java mapea a VARCHAR de SQL?",
+    "options": ["Date", "Int", "String", "Boolean"],
+    "answer": 2,
+    "explanation": "Mapeo directo."
+  },
+  {
+    "question": "¿Qué es try-with-resources en JDBC?",
+    "options": [
+      "Nada",
+      "Forma segura de cerrar Connection, Statement y ResultSet automáticamente",
+      "Un try normal",
+      "Un error"
+    ],
+    "answer": 1,
+    "explanation": "Evita resource leaks."
+  },
+  {
+    "question": "¿Qué es SQL Injection en JDBC?",
+    "options": [
+      "Concatenar strings de usuario en la query: 'SELECT * FROM users WHERE name = ' + name",
+      "Nada",
+      "Usar parámetros",
+      "Usar PreparedStatement"
+    ],
+    "answer": 0,
+    "explanation": "Nunca hagas esto."
+  },
+  {
+    "question": "¿Qué es el URL de conexión JDBC?",
+    "options": [
+      "Un archivo",
+      "Un nombre",
+      "Una web",
+      "Cadena que identifica la DB (ej. jdbc:mysql://localhost:3306/miDB)"
+    ],
+    "answer": 3,
+    "explanation": "Protocolo:Subprotocolo:Fuente."
+  }
+]

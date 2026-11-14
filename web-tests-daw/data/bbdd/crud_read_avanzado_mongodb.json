@@ -1,0 +1,137 @@
+[
+  {
+    "question": "¿Qué es el Framework de Agregación (Aggregation Framework)?",
+    "options": [
+      "Una herramienta de backup",
+      "Un conjunto de herramientas para procesar datos en etapas (pipeline) y devolver resultados calculados",
+      "Un plugin",
+      "Un tipo de índice"
+    ],
+    "answer": 1,
+    "explanation": "Es la alternativa potente a MapReduce y GROUP BY."
+  },
+  {
+    "question": "¿Qué es un Pipeline (Tubería)?",
+    "options": [
+      "Una serie de etapas donde la salida de una es la entrada de la siguiente",
+      "Una función",
+      "Un cable",
+      "Una conexión de red"
+    ],
+    "answer": 0,
+    "explanation": "Permite transformaciones complejas paso a paso."
+  },
+  {
+    "question": "¿Qué etapa filtra documentos (similar a WHERE)?",
+    "options": ["$match", "$where", "$filter", "$find"],
+    "answer": 0,
+    "explanation": "Debe ir al principio del pipeline para aprovechar índices."
+  },
+  {
+    "question": "¿Qué etapa agrupa documentos (similar a GROUP BY)?",
+    "options": ["$collect", "$group", "$aggregate", "$sum"],
+    "answer": 1,
+    "explanation": "Requiere un campo _id que define la clave de agrupación."
+  },
+  {
+    "question": "¿Qué etapa proyecta campos (similar a SELECT)?",
+    "options": ["$project", "$select", "$pick", "$show"],
+    "answer": 0,
+    "explanation": "Permite renombrar, añadir, quitar o calcular campos."
+  },
+  {
+    "question": "¿Qué etapa ordena documentos?",
+    "options": ["$rank", "$order", "$arrange", "$sort"],
+    "answer": 3,
+    "explanation": "1 para asc, -1 para desc."
+  },
+  {
+    "question": "¿Qué etapa limita el número de documentos?",
+    "options": ["$top", "$cap", "$limit", "$max"],
+    "answer": 2,
+    "explanation": "Igual que .limit() en find."
+  },
+  {
+    "question": "¿Qué etapa salta documentos?",
+    "options": ["$jump", "$pass", "$skip", "$offset"],
+    "answer": 2,
+    "explanation": "Igual que .skip() en find."
+  },
+  {
+    "question": "¿Qué etapa descompone un array en múltiples documentos (uno por elemento)?",
+    "options": ["$break", "$split", "$unwind", "$expand"],
+    "answer": 2,
+    "explanation": "Fundamental para normalizar datos anidados."
+  },
+  {
+    "question": "¿Qué etapa realiza un Left Outer Join con otra colección?",
+    "options": ["$connect", "$join", "$link", "$lookup"],
+    "answer": 3,
+    "explanation": "Permite cruzar datos entre colecciones."
+  },
+  {
+    "question": "¿Qué operador de acumulador calcula la suma?",
+    "options": ["$add", "$sum", "$total", "$count"],
+    "answer": 1,
+    "explanation": "Se usa dentro de $group."
+  },
+  {
+    "question": "¿Qué operador de acumulador calcula el promedio?",
+    "options": ["$average", "$avg", "$median", "$mean"],
+    "answer": 1,
+    "explanation": "Calcula la media aritmética."
+  },
+  {
+    "question": "¿Qué operador de acumulador crea un array con los valores de los documentos agrupados?",
+    "options": ["$push", "$collect", "$list", "$array"],
+    "answer": 0,
+    "explanation": "Agrega valores a una lista."
+  },
+  {
+    "question": "¿Qué operador de acumulador crea un array con valores únicos?",
+    "options": ["$distinct", "$addToSet", "$unique", "$set"],
+    "answer": 1,
+    "explanation": "Evita duplicados en la lista agrupada."
+  },
+  {
+    "question": "¿Qué etapa cuenta documentos?",
+    "options": ["$total", "$number", "$count", "$size"],
+    "answer": 2,
+    "explanation": "Simplifica contar resultados del pipeline."
+  },
+  {
+    "question": "¿Qué etapa escribe el resultado del pipeline en una nueva colección?",
+    "options": ["$out", "$save", "$write", "$export"],
+    "answer": 0,
+    "explanation": "Útil para vistas materializadas o reportes."
+  },
+  {
+    "question": "¿Qué etapa añade nuevos campos calculados?",
+    "options": ["$addFields", "$create", "$set", "$new"],
+    "answer": 0,
+    "explanation": "Similar a $project pero mantiene los campos existentes."
+  },
+  {
+    "question": "¿Qué operador permite lógica condicional (if-then-else)?",
+    "options": ["$cond", "$switch", "$case", "$if"],
+    "answer": 0,
+    "explanation": "{ $cond: { if: ..., then: ..., else: ... } }"
+  },
+  {
+    "question": "¿Qué variable de sistema representa la raíz del documento actual?",
+    "options": ["$$CURRENT", "$$ROOT", "$$DOC", "$$THIS"],
+    "answer": 1,
+    "explanation": "Permite acceder al documento completo."
+  },
+  {
+    "question": "¿Qué es MapReduce en MongoDB?",
+    "options": [
+      "Un paradigma de procesamiento de datos antiguo, ahora mayormente reemplazado por Aggregation Framework",
+      "Un índice",
+      "Lo nuevo",
+      "Un mapa"
+    ],
+    "answer": 0,
+    "explanation": "Es más lento y complejo (usa JS) que el Aggregation Framework (C++)."
+  }
+]

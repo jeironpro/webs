@@ -1,38 +1,35 @@
 # Nexo · Consola de administración
 
-Panel de administración de una plataforma SaaS ficticia, construido como parte
-de un portafolio para demostrar buenas prácticas de organización, diseño y
-documentación.
-
-## Stack
-
-- **HTML / CSS / JavaScript** (vanilla)
-- **Three.js** para visualizaciones 3D
-- **GSAP** para animaciones
-- **yarn** (Berry, linker `node-modules`)
-- Sistema de diseño con tokens OKLCH
+Consola de administración de una plataforma SaaS ficticia, implementada como
+sitio estático en HTML, CSS y JavaScript vanilla. No usa React ni ningún runtime
+de framework: cada vista es un documento HTML propio y la interacción vive en
+`js/app.js`.
 
 ## Secciones
 
-1. Resumen general (métricas, gráfico de actividad, alertas)
-2. Gestión de usuarios (búsqueda, filtro, paginación, CRUD, roles)
-3. Gestión de contenido (productos y artículos, estados de publicación)
-4. Logs y auditoría (acciones, errores, accesos fallidos)
-5. Configuración (variables de entorno, integraciones, feature flags)
-6. Salud del sistema (BD, recursos, servicios, colas)
-7. Reportes y exportación (CSV/Excel, programables)
+- **Resumen**: métricas, actividad, alertas, pedidos y usuarios recientes.
+- **Usuarios**: búsqueda, filtros por rol y estado, paginación de 30 registros y
+  diálogo de alta.
+- **Contenido**: productos y artículos con estados de publicación.
+- **Auditoría**: acciones, errores y accesos fallidos.
+- **Salud**: bases de datos, recursos, servicios y colas.
+- **Reportes**: generación y exportación de datos.
+- **Configuración**: variables, integraciones y feature flags.
+- **Perfil**: datos de la cuenta.
 
-Los datos son un `MOCK` estático.
+La barra superior incluye menú de usuario, notificaciones y paleta de búsqueda
+con `Ctrl+K` o `Cmd+K`. El menú lateral se convierte en drawer en pantallas
+pequeñas.
 
-## Desarrollo
+## Archivos
 
-```bash
-yarn install
-yarn dev        # servidor de desarrollo
-yarn typecheck  # chequeo de tipos
-yarn build      # build de producción
-```
+- `index.html`: resumen general.
+- `usuarios.html`, `contenido.html`, `auditoria.html`, `configuracion.html`,
+  `salud.html`, `reportes.html`, `perfil.html`: vistas restantes.
+- `css/styles.css`: estilos compilados del diseño original.
+- `css/app.css`: ajustes de overlays, drawer y componentes interactivos.
+- `js/app.js`: navegación, pestañas, filtros, búsqueda, paginación, menús,
+  diálogos, notificaciones y exportaciones.
+- `favicon.svg`: icono de la aplicación.
 
-## Licencia
-
-MIT — ver [LICENSE](LICENSE).
+Los datos son un MOCK estático incluido en el HTML.

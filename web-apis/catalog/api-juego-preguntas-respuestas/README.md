@@ -4,17 +4,17 @@ API RESTful para un juego de trivia con 350 preguntas distribuidas en 7 categori
 
 ## Endpoints
 
-| Metodo | Ruta | Descripcion |
-|--------|------|-------------|
-| `GET` | `/api/categorias` | Lista las categorias disponibles |
-| `GET` | `/api/preguntas` | Lista todas las preguntas (admite `?categoria=` y `?page=`) |
-| `POST` | `/api/preguntas` | Crea una nueva pregunta |
-| `GET` | `/api/preguntas/aleatoria` | Obtiene una pregunta al azar (admite `?categoria=` y `?excluir_ids=`) |
-| `GET` | `/api/preguntas/<id>` | Obtiene una pregunta por ID |
-| `PUT` | `/api/preguntas/<id>` | Actualiza una pregunta |
-| `DELETE` | `/api/preguntas/<id>` | Elimina una pregunta |
-| `POST` | `/api/preguntas/<id>/validar` | Valida una respuesta (`{"respuesta": "texto"}`) |
-| `GET` | `/apidocs/` | Swagger UI con documentacion interactiva |
+| Metodo   | Ruta                          | Descripcion                                                           |
+| -------- | ----------------------------- | --------------------------------------------------------------------- |
+| `GET`    | `/api/categorias`             | Lista las categorias disponibles                                      |
+| `GET`    | `/api/preguntas`              | Lista todas las preguntas (admite `?categoria=` y `?page=`)           |
+| `POST`   | `/api/preguntas`              | Crea una nueva pregunta                                               |
+| `GET`    | `/api/preguntas/aleatoria`    | Obtiene una pregunta al azar (admite `?categoria=` y `?excluir_ids=`) |
+| `GET`    | `/api/preguntas/<id>`         | Obtiene una pregunta por ID                                           |
+| `PUT`    | `/api/preguntas/<id>`         | Actualiza una pregunta                                                |
+| `DELETE` | `/api/preguntas/<id>`         | Elimina una pregunta                                                  |
+| `POST`   | `/api/preguntas/<id>/validar` | Valida una respuesta (`{"respuesta": "texto"}`)                       |
+| `GET`    | `/apidocs/`                   | Swagger UI con documentacion interactiva                              |
 
 ## Autenticacion
 

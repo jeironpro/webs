@@ -3,8 +3,12 @@
     --card-bg: #ffffff;
     --primary-color: #2563eb;
     --secondary-color: #ffe15d;
-    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow:
+        0 0.25rem 0.375rem -0.0625rem rgba(0, 0, 0, 0.1),
+        0 0.125rem 0.25rem -0.0625rem rgba(0, 0, 0, 0.06);
+    --shadow-hover:
+        0 0.625rem 0.9375rem -0.1875rem rgba(0, 0, 0, 0.1),
+        0 0.25rem 0.375rem -0.125rem rgba(0, 0, 0, 0.05);
     --text-color: #1f2937;
     --text-light: #6b7280;
     --border-color: #e5e7eb;
@@ -24,7 +28,34 @@
     --print-border: #ddd;
 }
 
-* {
+html,
+body,
+div,
+span,
+header,
+main,
+section,
+footer,
+img,
+h1,
+h2,
+h3,
+p,
+a,
+ul,
+li,
+form,
+label,
+input,
+button,
+pre,
+code,
+table,
+thead,
+tbody,
+tr,
+th,
+td {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -33,39 +64,41 @@
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
-    font-family: 'Outfit', sans-serif;
+    font-family: "Outfit", sans-serif;
     line-height: 1.6;
 }
 
 .warning {
     background: linear-gradient(135deg, var(--warning-start) 0%, var(--warning-end) 100%);
-    border-left: 4px solid var(--warning-border);
-    border-radius: 8px;
+    border-left: 0.25rem solid var(--warning-border);
+    border-radius: 0.5rem;
     color: var(--warning-text);
     font-weight: 500;
-    margin: 20px 0;
-    padding: 15px 20px;
+    margin: 1.25rem 0;
+    padding: 0.9375rem 1.25rem;
 }
 
 .warning strong {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 0.3125rem;
 }
 
 .cta-button {
     background-color: var(--secondary-color);
-    border-radius: 50px;
+    border-radius: 3.125rem;
     color: var(--text-color);
     display: inline-block;
     font-weight: 600;
-    padding: 12px 30px;
+    padding: 0.75rem 1.875rem;
     text-decoration: none;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
 }
 
 .cta-button:hover {
-    box-shadow: 0 4px 12px rgba(255, 225, 93, 0.4);
-    transform: translateY(-2px);
+    box-shadow: 0 0.25rem 0.75rem rgba(255, 225, 93, 0.4);
+    transform: translateY(-0.125rem);
 }
 
 .cta-button.secondary {
@@ -74,15 +107,15 @@ body {
 }
 
 .cta-button.secondary:hover {
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+    box-shadow: 0 0.25rem 0.75rem rgba(37, 99, 235, 0.4);
 }
 
 .info-box {
     background: linear-gradient(135deg, var(--info-start) 0%, var(--info-end) 100%);
-    border-left: 4px solid var(--primary-color);
-    border-radius: 8px;
-    margin: 20px 0;
-    padding: 15px 20px;
+    border-left: 0.25rem solid var(--primary-color);
+    border-radius: 0.5rem;
+    margin: 1.25rem 0;
+    padding: 0.9375rem 1.25rem;
 }
 
 .info-box strong {
@@ -91,22 +124,22 @@ body {
 
 code {
     background-color: var(--code-bg);
-    border-radius: 4px;
+    border-radius: 0.25rem;
     color: var(--code-color);
-    font-family: 'Courier New', Courier, monospace;
+    font-family: "Courier New", Courier, monospace;
     font-size: 0.9em;
-    padding: 3px 8px;
+    padding: 0.1875rem 0.5rem;
 }
 
-.card-grid {
+.topic-grid {
     display: grid;
     gap: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(15.625rem, 1fr));
 }
 
 .hero-content {
     margin: 0 auto;
-    max-width: 800px;
+    max-width: 50rem;
 }
 
 .site-header {
@@ -121,20 +154,20 @@ code {
 .check-button,
 .back-link {
     background-color: var(--secondary-color);
-    border-radius: 50px;
+    border-radius: 3.125rem;
     color: var(--text-color);
     display: inline-block;
     font-weight: 600;
-    margin-top: 30px;
-    padding: 12px 30px;
+    margin-top: 1.875rem;
+    padding: 0.75rem 1.875rem;
     text-decoration: none;
     transition: all 0.2s;
 }
 
 .check-button:hover,
 .back-link:hover {
-    box-shadow: 0 4px 12px rgba(255, 225, 93, 0.4);
-    transform: translateY(-2px);
+    box-shadow: 0 0.25rem 0.75rem rgba(255, 225, 93, 0.4);
+    transform: translateY(-0.125rem);
 }
 
 .hero {
@@ -156,7 +189,7 @@ code {
     opacity: 0.9;
 }
 
-.card-icon {
+.topic-icon {
     font-size: 3rem;
     margin-bottom: 1rem;
 }
@@ -167,11 +200,11 @@ code {
     display: flex;
     font-size: 1.5rem;
     font-weight: 700;
-    gap: 10px;
+    gap: 0.625rem;
 }
 
 .brand img {
-    height: 40px;
+    height: 2.5rem;
 }
 
 .site-footer {
@@ -189,13 +222,13 @@ code {
 
 pre {
     background-color: var(--pre-bg);
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border-radius: 0.5rem;
+    box-shadow: 0 0.25rem 0.375rem rgba(0, 0, 0, 0.1);
     color: var(--pre-color);
-    margin: 20px 0;
+    margin: 1.25rem 0;
     overflow-wrap: anywhere;
     overflow-x: auto;
-    padding: 20px;
+    padding: 1.25rem;
     white-space: pre-wrap;
 }
 
@@ -207,25 +240,25 @@ pre code {
 
 .main-content {
     margin: 0 auto;
-    max-width: 1200px;
+    max-width: 75rem;
     padding: 2rem;
 }
 
 .join-type {
     background: linear-gradient(135deg, var(--bg-color) 0%, var(--border-color) 100%);
-    border-left: 4px solid var(--secondary-color);
-    border-radius: 8px;
-    margin-bottom: 30px;
-    padding: 20px;
+    border-left: 0.25rem solid var(--secondary-color);
+    border-radius: 0.5rem;
+    margin-bottom: 1.875rem;
+    padding: 1.25rem;
 }
 
 .lesson {
     background: var(--card-bg);
-    border-radius: 16px;
+    border-radius: 1rem;
     box-shadow: var(--shadow);
-    margin: 40px auto;
-    max-width: 900px;
-    padding: 50px;
+    margin: 2.5rem auto;
+    max-width: 56.25rem;
+    padding: 3.125rem;
 }
 
 .lesson h1 {
@@ -235,12 +268,12 @@ pre code {
 }
 
 .lesson h2 {
-    border-left: 4px solid var(--secondary-color);
+    border-left: 0.25rem solid var(--secondary-color);
     color: var(--text-color);
     font-size: 1.8rem;
     margin-bottom: 1rem;
     margin-top: 2rem;
-    padding-left: 15px;
+    padding-left: 0.9375rem;
 }
 
 .lesson h3 {
@@ -258,25 +291,25 @@ pre code {
 
 .lesson table {
     border-collapse: collapse;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    margin: 20px 0;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+    margin: 1.25rem 0;
     overflow: hidden;
     width: 100%;
 }
 
 .lesson td {
-    border-bottom: 1px solid var(--border-color);
-    padding: 12px 15px;
+    border-bottom: 0.0625rem solid var(--border-color);
+    padding: 0.75rem 0.9375rem;
     text-align: left;
 }
 
 .lesson th {
     background-color: var(--primary-color);
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 0.0625rem solid var(--border-color);
     color: white;
     font-weight: 600;
-    padding: 12px 15px;
+    padding: 0.75rem 0.9375rem;
     text-align: left;
 }
 
@@ -303,10 +336,10 @@ pre code {
     margin-bottom: 4rem;
 }
 
-.card {
+.topic-card {
     align-items: center;
     background-color: var(--card-bg);
-    border-radius: 12px;
+    border-radius: 0.75rem;
     box-shadow: var(--shadow);
     color: var(--text-color);
     display: flex;
@@ -317,28 +350,28 @@ pre code {
     transition: all 0.3s ease;
 }
 
-.card:hover {
+.topic-card:hover {
     box-shadow: var(--shadow-hover);
-    transform: translateY(-5px);
+    transform: translateY(-0.3125rem);
 }
 
-.card h3 {
+.topic-card h3 {
     color: var(--text-color);
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
 }
 
-.card p {
+.topic-card p {
     color: var(--text-light);
     font-size: 0.95rem;
 }
 
 .cta-card {
     background-color: var(--card-bg);
-    border-radius: 20px;
+    border-radius: 1.25rem;
     box-shadow: var(--shadow);
     display: inline-block;
-    max-width: 800px;
+    max-width: 50rem;
     padding: 3rem;
     width: 100%;
 }
@@ -353,36 +386,34 @@ pre code {
 }
 
 .section-title {
-    border-left: 5px solid var(--secondary-color);
+    border-left: 0.3125rem solid var(--secondary-color);
     color: var(--text-color);
     font-size: 2rem;
     margin-bottom: 2rem;
-    padding-left: 15px;
+    padding-left: 0.9375rem;
 }
 
-/* Diseño Responsive */
-/* Mobile-first: la base es el ancho más pequeño y cada banda amplía. */
 .warning {
     font-size: 0.9rem;
-    padding: 12px 15px;
+    padding: 0.75rem 0.9375rem;
 }
 
 .cta-button {
     font-size: 0.9rem;
-    padding: 10px 20px;
+    padding: 0.625rem 1.25rem;
 }
 
 .check-button {
     font-size: 0.9rem;
-    padding: 10px 20px;
+    padding: 0.625rem 1.25rem;
 }
 
 .info-box {
     font-size: 0.9rem;
-    padding: 12px 15px;
+    padding: 0.75rem 0.9375rem;
 }
 
-.card-grid {
+.topic-grid {
     gap: 0.75rem;
     grid-template-columns: 1fr;
 }
@@ -393,7 +424,7 @@ pre code {
 
 .back-link {
     font-size: 0.9rem;
-    padding: 10px 20px;
+    padding: 0.625rem 1.25rem;
 }
 
 .hero {
@@ -409,7 +440,7 @@ pre code {
     margin-bottom: 1.5rem;
 }
 
-.card-icon {
+.topic-icon {
     font-size: 2rem;
 }
 
@@ -418,7 +449,7 @@ pre code {
 }
 
 .brand img {
-    height: 32px;
+    height: 2rem;
 }
 
 .site-footer {
@@ -436,8 +467,8 @@ pre code {
 }
 
 .lesson {
-    margin: 15px auto;
-    padding: 15px 10px;
+    margin: 0.9375rem auto;
+    padding: 0.9375rem 0.625rem;
 }
 
 .lesson h1 {
@@ -453,22 +484,22 @@ pre code {
 }
 
 .lesson td {
-    padding: 10px 12px;
+    padding: 0.625rem 0.75rem;
 }
 
 .lesson th {
-    padding: 10px 12px;
+    padding: 0.625rem 0.75rem;
 }
 
-.card {
+.topic-card {
     padding: 1.25rem;
 }
 
-.card h3 {
+.topic-card h3 {
     font-size: 1.1rem;
 }
 
-.card p {
+.topic-card p {
     font-size: 0.9rem;
 }
 
@@ -491,255 +522,255 @@ pre code {
 
 code {
     font-size: 0.85em;
-    padding: 2px 6px;
+    padding: 0.125rem 0.375rem;
 }
 
 pre {
     font-size: 0.8rem;
     overflow-x: auto;
-    padding: 12px;
+    padding: 0.75rem;
 }
 
 table {
     font-size: 0.9rem;
 }
 
-@media (min-width: 320px) {
-.card-grid {
-    gap: 1rem;
-}
+@media (min-width: 20rem) {
+    .topic-grid {
+        gap: 1rem;
+    }
 
-.hero h1 {
-    font-size: 1.75rem;
-}
+    .hero h1 {
+        font-size: 1.75rem;
+    }
 
-.lesson {
-    padding: 20px 15px;
+    .lesson {
+        padding: 1.25rem 0.9375rem;
+    }
 }
-}
-@media (min-width: 481px) {
-.warning {
-    font-size: inherit;
-    padding: 15px 20px;
-}
+@media (min-width: 30.0625rem) {
+    .warning {
+        font-size: inherit;
+        padding: 0.9375rem 1.25rem;
+    }
 
-.cta-button {
-    font-size: 0.95rem;
-    padding: 10px 24px;
-}
+    .cta-button {
+        font-size: 0.95rem;
+        padding: 0.625rem 1.5rem;
+    }
 
-.check-button {
-    font-size: inherit;
-    padding: 12px 30px;
-}
+    .check-button {
+        font-size: inherit;
+        padding: 0.75rem 1.875rem;
+    }
 
-.info-box {
-    font-size: inherit;
-    padding: 15px 20px;
-}
+    .info-box {
+        font-size: inherit;
+        padding: 0.9375rem 1.25rem;
+    }
 
-.back-link {
-    font-size: inherit;
-    padding: 12px 30px;
-}
+    .back-link {
+        font-size: inherit;
+        padding: 0.75rem 1.875rem;
+    }
 
-.hero h1 {
-    font-size: 2rem;
-}
+    .hero h1 {
+        font-size: 2rem;
+    }
 
-.hero p {
-    font-size: 1rem;
-    margin-bottom: 2rem;
-}
+    .hero p {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
 
-.card-icon {
-    font-size: 2.5rem;
-}
+    .topic-icon {
+        font-size: 2.5rem;
+    }
 
-.site-footer {
-    font-size: 0.9rem;
-    padding: 1.5rem 1rem;
-}
+    .site-footer {
+        font-size: 0.9rem;
+        padding: 1.5rem 1rem;
+    }
 
-.site-footer p {
-    overflow-wrap: normal;
-}
+    .site-footer p {
+        overflow-wrap: normal;
+    }
 
-.lesson {
-    margin: 20px auto;
-    padding: 30px 20px;
-}
+    .lesson {
+        margin: 1.25rem auto;
+        padding: 1.875rem 1.25rem;
+    }
 
-.lesson h1 {
-    font-size: 2rem;
-}
+    .lesson h1 {
+        font-size: 2rem;
+    }
 
-.lesson h2 {
-    font-size: 1.5rem;
-}
+    .lesson h2 {
+        font-size: 1.5rem;
+    }
 
-.lesson h3 {
-    font-size: 1.2rem;
-}
+    .lesson h3 {
+        font-size: 1.2rem;
+    }
 
-.card {
-    padding: 1.5rem;
-}
+    .topic-card {
+        padding: 1.5rem;
+    }
 
-.card h3 {
-    font-size: 1.25rem;
-}
+    .topic-card h3 {
+        font-size: 1.25rem;
+    }
 
-.card p {
-    font-size: 0.95rem;
-}
+    .topic-card p {
+        font-size: 0.95rem;
+    }
 
-.cta-card h2 {
-    font-size: 1.5em;
-}
+    .cta-card h2 {
+        font-size: 1.5em;
+    }
 
-.cta-card p {
-    font-size: inherit;
-}
+    .cta-card p {
+        font-size: inherit;
+    }
 
-.section-title {
-    font-size: 1.5rem;
-}
+    .section-title {
+        font-size: 1.5rem;
+    }
 
-code {
-    font-size: 0.9em;
-    padding: 3px 8px;
-}
+    code {
+        font-size: 0.9em;
+        padding: 0.1875rem 0.5rem;
+    }
 
-pre {
-    font-size: 0.85rem;
-    padding: 15px;
+    pre {
+        font-size: 0.85rem;
+        padding: 0.9375rem;
+    }
 }
-}
-@media (min-width: 768px) {
-.cta-button {
-    font-size: inherit;
-    padding: 12px 30px;
-}
+@media (min-width: 48rem) {
+    .cta-button {
+        font-size: inherit;
+        padding: 0.75rem 1.875rem;
+    }
 
-.card-grid {
-    gap: 1.5rem;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-}
+    .topic-grid {
+        gap: 1.5rem;
+        grid-template-columns: repeat(auto-fit, minmax(13.75rem, 1fr));
+    }
 
-.site-header {
-    padding: 1rem 2rem;
-}
+    .site-header {
+        padding: 1rem 2rem;
+    }
 
-.hero {
-    padding: 4rem 2rem;
-}
+    .hero {
+        padding: 4rem 2rem;
+    }
 
-.hero h1 {
-    font-size: 2.5rem;
-}
+    .hero h1 {
+        font-size: 2.5rem;
+    }
 
-.hero p {
-    font-size: 1.1rem;
-}
+    .hero p {
+        font-size: 1.1rem;
+    }
 
-.card-icon {
-    font-size: 3rem;
-}
+    .topic-icon {
+        font-size: 3rem;
+    }
 
-.brand {
-    font-size: 1.5rem;
-}
+    .brand {
+        font-size: 1.5rem;
+    }
 
-.brand img {
-    height: 40px;
-}
+    .brand img {
+        height: 2.5rem;
+    }
 
-.site-footer {
-    font-size: inherit;
-    padding: 2rem;
-}
+    .site-footer {
+        font-size: inherit;
+        padding: 2rem;
+    }
 
-.site-footer p {
-    word-wrap: normal;
-}
+    .site-footer p {
+        word-wrap: normal;
+    }
 
-.main-content {
-    padding: 1.5rem;
-}
+    .main-content {
+        padding: 1.5rem;
+    }
 
-.lesson {
-    margin: 40px auto;
-    padding: 40px 30px;
-}
+    .lesson {
+        margin: 2.5rem auto;
+        padding: 2.5rem 1.875rem;
+    }
 
-.lesson h1 {
-    font-size: 2.5rem;
-}
+    .lesson h1 {
+        font-size: 2.5rem;
+    }
 
-.lesson h2 {
-    font-size: 1.8rem;
-}
+    .lesson h2 {
+        font-size: 1.8rem;
+    }
 
-.lesson h3 {
-    font-size: 1.4rem;
-}
+    .lesson h3 {
+        font-size: 1.4rem;
+    }
 
-.lesson td {
-    padding: 12px 15px;
-}
+    .lesson td {
+        padding: 0.75rem 0.9375rem;
+    }
 
-.lesson th {
-    padding: 12px 15px;
-}
+    .lesson th {
+        padding: 0.75rem 0.9375rem;
+    }
 
-.card {
-    padding: 2rem;
-}
+    .topic-card {
+        padding: 2rem;
+    }
 
-.card h3 {
-    font-size: 1.5rem;
-}
+    .topic-card h3 {
+        font-size: 1.5rem;
+    }
 
-.cta-card {
-    padding: 3rem;
-}
+    .cta-card {
+        padding: 3rem;
+    }
 
-.section-title {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-}
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
 
-pre {
-    font-size: medium;
-    padding: 20px;
-}
+    pre {
+        font-size: 1rem;
+        padding: 1.25rem;
+    }
 
-table {
-    font-size: inherit;
+    table {
+        font-size: inherit;
+    }
 }
-}
-@media (min-width: 1025px) {
-.card-grid {
-    gap: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-}
+@media (min-width: 64.0625rem) {
+    .topic-grid {
+        gap: 2rem;
+        grid-template-columns: repeat(auto-fit, minmax(15.625rem, 1fr));
+    }
 
-.hero h1 {
-    font-size: 3rem;
-}
+    .hero h1 {
+        font-size: 3rem;
+    }
 
-.hero p {
-    font-size: 1.25rem;
-}
+    .hero p {
+        font-size: 1.25rem;
+    }
 
-.main-content {
-    padding: 2rem;
-}
+    .main-content {
+        padding: 2rem;
+    }
 
-.lesson {
-    padding: 50px;
-}
+    .lesson {
+        padding: 3.125rem;
+    }
 }
 
 @media print {
@@ -749,26 +780,25 @@ table {
     .cta-button {
         display: none;
     }
-    
+
     .lesson {
         box-shadow: none;
         padding: 0;
     }
-    
+
     pre {
-        border: 1px solid var(--print-border);
+        border: 0.0625rem solid var(--print-border);
         page-break-inside: avoid;
     }
 }
 
-/* ── Iconos Material Symbols ── */
 .material-symbols-outlined {
     font-size: 1.6rem;
     line-height: 1;
     vertical-align: -0.2em;
 }
 
-.card-icon .material-symbols-outlined {
+.topic-icon .material-symbols-outlined {
     color: var(--primary-color);
     font-size: 2rem;
 }

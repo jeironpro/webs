@@ -1,3 +1,13 @@
+.visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 0.0625rem;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 0.0625rem;
+}
+
 :root {
     --fondo: #8881ff;
     --fondo-2: #99c2fe;
@@ -16,16 +26,16 @@ section {
     width: 100%;
 }
 
-.header {
+.page-header {
     background-color: var(--fondo-3);
-    height: 100px;
+    height: 6.25rem;
     width: 100%;
 }
 
 .main {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    height: calc(100vh - 200px);
+    height: calc(100vh - 12.5rem);
     width: 100%;
 }
 
@@ -41,8 +51,8 @@ section {
     width: 100%;
 }
 
-.footer {
+.page-footer {
     background-color: var(--fondo);
-    height: 100px;
+    height: 6.25rem;
     width: 100%;
 }

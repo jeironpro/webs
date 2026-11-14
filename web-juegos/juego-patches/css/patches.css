@@ -1,7 +1,4 @@
 @layer base {
-    /* Hallmark · v2.0.0 · genre: geométrico · theme: Composición (papel blanco, tinta negra y primarios planos) · shape: lámina de galería con tablero enmarcado, ficha de datos y notas de sala · nav: cabecera de cartel con banda de primarios · footer: una línea · signature: los retales planos que colorean el tablero como una composición · waivers: none */
-    /* Hallmark · pre-emit critique: P4 H4 E4 S5 R5 V4 · weakest: V, comparte el catálogo pero cambia su noche por una lámina de papel; el reto es que el tablero sea el único color de la página */
-
     :root {
         color-scheme: light;
 
@@ -78,8 +75,8 @@
     }
 
     :focus-visible {
-        outline: 3px solid var(--foco);
-        outline-offset: 2px;
+        outline: 0.1875rem solid var(--foco);
+        outline-offset: 0.125rem;
     }
 
     .sprite {
@@ -111,15 +108,13 @@
             var(--tinta) 75% 100%
         );
         content: "";
-        height: 8px;
+        height: 0.5rem;
         inset: 0 0 auto;
         position: absolute;
     }
 
-    /* Cabecera ------------------------------------------------------------- */
-
     .cabecera {
-        border-bottom: 3px solid var(--tinta);
+        border-bottom: 0.1875rem solid var(--tinta);
         display: grid;
         gap: var(--esp-2);
         padding-bottom: var(--esp-4);
@@ -174,7 +169,7 @@
         padding: 0.15rem 0.45rem;
     }
 
-    @media (min-width: 760px) {
+    @media (min-width: 47.5rem) {
         .cabecera {
             align-items: end;
             column-gap: var(--esp-6);
@@ -200,23 +195,21 @@
         }
     }
 
-    /* Registro ------------------------------------------------------------- */
-
     .puzzle {
         margin: var(--esp-5) auto 0;
         max-width: 32rem;
     }
 
     .registro {
-        border-bottom: 1px solid var(--tinta);
-        border-top: 2px solid var(--tinta);
+        border-bottom: 0.0625rem solid var(--tinta);
+        border-top: 0.125rem solid var(--tinta);
         display: grid;
         grid-template-columns: repeat(4, minmax(0, 1fr));
         margin: 0 0 var(--esp-4);
     }
 
     .registro > div {
-        border-left: 1px solid var(--linea);
+        border-left: 0.0625rem solid var(--linea);
         display: grid;
         gap: var(--esp-1);
         min-width: 0;
@@ -251,8 +244,6 @@
         letter-spacing: 0;
     }
 
-    /* Tablero -------------------------------------------------------------- */
-
     .marco {
         margin: 0 auto;
         max-width: 100%;
@@ -260,7 +251,7 @@
         width: 100%;
     }
 
-    @media (min-width: 720px) {
+    @media (min-width: 45rem) {
         .marco {
             max-width: min(100%, 32rem, calc(100dvh - 28rem));
         }
@@ -269,9 +260,9 @@
     .tablero {
         aspect-ratio: 1;
         background: var(--tinta);
-        border: 3px solid var(--tinta);
+        border: 0.1875rem solid var(--tinta);
         display: grid;
-        gap: 1px;
+        gap: 0.0625rem;
         grid-template-columns: repeat(var(--n, 6), minmax(0, 1fr));
         grid-template-rows: repeat(var(--n, 6), minmax(0, 1fr));
         position: relative;
@@ -307,9 +298,9 @@
     }
 
     .celda:focus-visible {
-        box-shadow: inset 0 0 0 6px var(--papel);
-        outline: 3px solid var(--tinta);
-        outline-offset: -3px;
+        box-shadow: inset 0 0 0 0.375rem var(--papel);
+        outline: 0.1875rem solid var(--tinta);
+        outline-offset: -0.1875rem;
         z-index: 4;
     }
 
@@ -323,18 +314,18 @@
 
     .celda--preview {
         background: var(--amarillo);
-        box-shadow: inset 0 0 0 2px var(--tinta);
+        box-shadow: inset 0 0 0 0.125rem var(--tinta);
     }
 
     .celda--preview.celda--mal {
         background: color-mix(in oklab, var(--rojo) 18%, var(--papel));
-        box-shadow: inset 0 0 0 2px var(--rojo);
+        box-shadow: inset 0 0 0 0.125rem var(--rojo);
     }
 
     .celda--revelada::after {
         background: var(--amarillo);
-        border-bottom: 1px solid var(--tinta);
-        border-right: 1px solid var(--tinta);
+        border-bottom: 0.0625rem solid var(--tinta);
+        border-right: 0.0625rem solid var(--tinta);
         content: "";
         height: 0.55rem;
         left: 0;
@@ -347,7 +338,7 @@
     .pista {
         align-items: center;
         background: var(--papel);
-        border: 2px solid var(--tinta);
+        border: 0.125rem solid var(--tinta);
         display: grid;
         gap: 0.16rem;
         grid-template-rows: auto auto;
@@ -383,8 +374,6 @@
         background: var(--papel);
     }
 
-    /* Costuras ------------------------------------------------------------- */
-
     .costuras {
         height: 100%;
         inset: 0;
@@ -411,8 +400,6 @@
         stroke: var(--rojo);
     }
 
-    /* Estado y mandos ------------------------------------------------------ */
-
     .estado {
         color: var(--apagado);
         font-size: var(--texto-s);
@@ -431,7 +418,7 @@
     }
 
     .mandos {
-        border-top: 2px solid var(--tinta);
+        border-top: 0.125rem solid var(--tinta);
         display: grid;
         gap: var(--esp-3);
         margin-top: var(--esp-4);
@@ -457,12 +444,10 @@
         color: var(--azul);
     }
 
-    /* Botones -------------------------------------------------------------- */
-
     .btn {
         align-items: center;
         background: var(--papel);
-        border: 2px solid var(--tinta);
+        border: 0.125rem solid var(--tinta);
         border-radius: 0;
         color: var(--tinta);
         cursor: pointer;
@@ -544,17 +529,15 @@
         text-decoration-color: var(--rojo);
     }
 
-    /* Notas ---------------------------------------------------------------- */
-
     .notas {
-        border-top: 3px solid var(--tinta);
+        border-top: 0.1875rem solid var(--tinta);
         display: grid;
         gap: var(--esp-5);
         margin-top: var(--esp-7);
         padding-top: var(--esp-4);
     }
 
-    @media (min-width: 820px) {
+    @media (min-width: 51.25rem) {
         .notas {
             gap: var(--esp-6);
             grid-template-columns: 1.15fr 0.85fr;
@@ -582,7 +565,7 @@
 
     .reglas li {
         align-items: start;
-        border-bottom: 1px solid var(--linea);
+        border-bottom: 0.0625rem solid var(--linea);
         display: grid;
         gap: var(--esp-3);
         grid-template-columns: 1.5rem minmax(0, 1fr);
@@ -607,7 +590,7 @@
     .reglas__num {
         align-items: center;
         background: var(--rojo);
-        border: 2px solid var(--tinta);
+        border: 0.125rem solid var(--tinta);
         color: var(--papel);
         display: flex;
         font-family: var(--display);
@@ -642,7 +625,7 @@
 
     .record {
         align-items: baseline;
-        border-bottom: 1px solid var(--linea);
+        border-bottom: 0.0625rem solid var(--linea);
         display: flex;
         flex-wrap: wrap;
         gap: var(--esp-2) var(--esp-3);
@@ -687,10 +670,8 @@
         margin-top: var(--esp-2);
     }
 
-    /* Pie ------------------------------------------------------------------ */
-
     .pie {
-        border-top: 1px solid var(--tinta);
+        border-top: 0.0625rem solid var(--tinta);
         color: var(--apagado);
         display: flex;
         flex-wrap: wrap;
@@ -704,8 +685,6 @@
     .pie p {
         margin: 0;
     }
-
-    /* Modal ---------------------------------------------------------------- */
 
     .modal {
         align-items: center;
@@ -724,11 +703,11 @@
 
     .modal__caja {
         background: var(--papel);
-        border: 3px solid var(--tinta);
+        border: 0.1875rem solid var(--tinta);
         display: grid;
         gap: var(--esp-3);
         max-width: 23rem;
-        outline: 1px solid var(--tinta);
+        outline: 0.0625rem solid var(--tinta);
         outline-offset: -0.55rem;
         padding: calc(var(--esp-5) + 0.4rem);
         text-align: center;
@@ -753,8 +732,8 @@
     }
 
     .modal__datos {
-        border-bottom: 1px solid var(--linea);
-        border-top: 1px solid var(--linea);
+        border-bottom: 0.0625rem solid var(--linea);
+        border-top: 0.0625rem solid var(--linea);
         display: flex;
         gap: var(--esp-5);
         justify-content: center;
@@ -793,7 +772,6 @@
 }
 
 @layer responsive {
-    /* Base móvil: hasta 520 px */
     .mandos__botones {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -814,10 +792,10 @@
     }
 
     .registro > div:nth-child(n + 3) {
-        border-top: 1px solid var(--linea);
+        border-top: 0.0625rem solid var(--linea);
     }
 
-    @media (min-width: 521px) {
+    @media (min-width: 32.5625rem) {
         .registro {
             grid-template-columns: repeat(4, minmax(0, 1fr));
         }
@@ -830,7 +808,7 @@
             border-top: revert-layer;
         }
     }
-    @media (min-width: 561px) {
+    @media (min-width: 35.0625rem) {
         .mandos__botones {
             display: flex;
             grid-template-columns: revert-layer;
@@ -845,12 +823,12 @@
 }
 
 @layer accesibilidad {
-@media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms;
-                transition-duration: 0.01ms;
-            }
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms;
+            transition-duration: 0.01ms;
+        }
     }
 }

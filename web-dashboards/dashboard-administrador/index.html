@@ -1,25 +1,2650 @@
-<!doctype html>
-<html lang="es">
+<!doctype html> <!doctype html>
+<html lang="es" data-app="dashboard-administrador">
     <head>
         <meta charset="UTF-8" />
-        <link rel="icon" type="image/svg+xml" href="./assets/favicon-s02DhceL.svg" />
+        <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta
-            name="description"
-            content="Nexo — consola de administración de la plataforma."
-        />
+        <meta name="description" content="Nexo — consola de administración de la plataforma." />
         <meta name="theme-color" content="#1c2431" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
         <link
-            href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap"
             rel="stylesheet"
         />
         <title>Nexo · Consola de administración</title>
-        <link rel="stylesheet" href="./assets/index-CUSTOMS.css" />
+
+        <link rel="stylesheet" href="./css/styles.css" />
+        <link rel="stylesheet" href="./css/app.css" />
     </head>
-    <body class="skin-admin">
-        <div id="root"></div>
-        <script type="module" src="./app.js"></script>
+    <body data-page="index" data-route="/">
+        <div id="root">
+            <div class="min-h-dvh">
+                <aside
+                    class="fixed inset-y-0 left-0 z-30 hidden w-60 border-r bg-background lg:block"
+                >
+                    <div class="flex h-full flex-col">
+                        <a
+                            aria-label="Ir al inicio"
+                            class="flex h-16 items-center gap-3 border-b px-5 transition-colors hover:bg-muted/60"
+                            href="index.html"
+                            ><img
+                                alt=""
+                                aria-hidden="true"
+                                class="h-8 w-8 shrink-0"
+                                src="./favicon.svg"
+                            />
+                            <div class="flex flex-col leading-tight">
+                                <span class="font-heading text-sm font-semibold tracking-tight"
+                                    >Nexo</span
+                                ><span class="mono-label text-[10px] text-muted-foreground"
+                                    >producción</span
+                                >
+                            </div></a
+                        >
+                        <nav
+                            class="flex-1 overflow-y-auto px-3 py-4"
+                            aria-label="Navegación principal"
+                        >
+                            <div class="mb-5">
+                                <p class="mono-label mb-2 px-2 text-[10px] text-muted-foreground">
+                                    General
+                                </p>
+                                <ul class="space-y-0.5">
+                                    <li>
+                                        <a
+                                            aria-current="page"
+                                            class="group flex items-center gap-3 rounded-md px-2 py-2 text-sm font-medium transition-colors bg-accent text-accent-foreground"
+                                            href="index.html"
+                                            ><svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="24"
+                                                height="24"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                class="lucide lucide-layout-dashboard h-4 w-4 shrink-0 text-accent-foreground"
+                                                aria-hidden="true"
+                                            >
+                                                <rect
+                                                    width="7"
+                                                    height="9"
+                                                    x="3"
+                                                    y="3"
+                                                    rx="1"
+                                                ></rect>
+                                                <rect
+                                                    width="7"
+                                                    height="5"
+                                                    x="14"
+                                                    y="3"
+                                                    rx="1"
+                                                ></rect>
+                                                <rect
+                                                    width="7"
+                                                    height="9"
+                                                    x="14"
+                                                    y="12"
+                                                    rx="1"
+                                                ></rect>
+                                                <rect
+                                                    width="7"
+                                                    height="5"
+                                                    x="3"
+                                                    y="16"
+                                                    rx="1"
+                                                ></rect></svg
+                                            ><span class="whitespace-nowrap">Resumen</span></a
+                                        >
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="mb-5">
+                                <p class="mono-label mb-2 px-2 text-[10px] text-muted-foreground">
+                                    Gestión
+                                </p>
+                                <ul class="space-y-0.5">
+                                    <li>
+                                        <a
+                                            class="group flex items-center gap-3 rounded-md px-2 py-2 text-sm font-medium transition-colors text-muted-foreground hover:bg-muted hover:text-foreground"
+                                            href="usuarios.html"
+                                            ><svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="24"
+                                                height="24"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                class="lucide lucide-users h-4 w-4 shrink-0 text-muted-foreground"
+                                                aria-hidden="true"
+                                            >
+                                                <path
+                                                    d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"
+                                                ></path>
+                                                <path d="M16 3.128a4 4 0 0 1 0 7.744"></path>
+                                                <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                                                <circle cx="9" cy="7" r="4"></circle></svg
+                                            ><span class="whitespace-nowrap">Usuarios</span></a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                            class="group flex items-center gap-3 rounded-md px-2 py-2 text-sm font-medium transition-colors text-muted-foreground hover:bg-muted hover:text-foreground"
+                                            href="contenido.html"
+                                            ><svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="24"
+                                                height="24"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                class="lucide lucide-file-text h-4 w-4 shrink-0 text-muted-foreground"
+                                                aria-hidden="true"
+                                            >
+                                                <path
+                                                    d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"
+                                                ></path>
+                                                <path d="M14 2v5a1 1 0 0 0 1 1h5"></path>
+                                                <path d="M10 9H8"></path>
+                                                <path d="M16 13H8"></path>
+                                                <path d="M16 17H8"></path></svg
+                                            ><span class="whitespace-nowrap">Contenido</span></a
+                                        >
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="mb-5">
+                                <p class="mono-label mb-2 px-2 text-[10px] text-muted-foreground">
+                                    Sistema
+                                </p>
+                                <ul class="space-y-0.5">
+                                    <li>
+                                        <a
+                                            class="group flex items-center gap-3 rounded-md px-2 py-2 text-sm font-medium transition-colors text-muted-foreground hover:bg-muted hover:text-foreground"
+                                            href="auditoria.html"
+                                            ><svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="24"
+                                                height="24"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                class="lucide lucide-scroll-text h-4 w-4 shrink-0 text-muted-foreground"
+                                                aria-hidden="true"
+                                            >
+                                                <path d="M15 12h-5"></path>
+                                                <path d="M15 8h-5"></path>
+                                                <path d="M19 17V5a2 2 0 0 0-2-2H4"></path>
+                                                <path
+                                                    d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3"
+                                                ></path></svg
+                                            ><span class="whitespace-nowrap">Auditoría</span></a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                            class="group flex items-center gap-3 rounded-md px-2 py-2 text-sm font-medium transition-colors text-muted-foreground hover:bg-muted hover:text-foreground"
+                                            href="configuracion.html"
+                                            ><svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="24"
+                                                height="24"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                class="lucide lucide-settings h-4 w-4 shrink-0 text-muted-foreground"
+                                                aria-hidden="true"
+                                            >
+                                                <path
+                                                    d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"
+                                                ></path>
+                                                <circle cx="12" cy="12" r="3"></circle></svg
+                                            ><span class="whitespace-nowrap">Configuración</span></a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                            class="group flex items-center gap-3 rounded-md px-2 py-2 text-sm font-medium transition-colors text-muted-foreground hover:bg-muted hover:text-foreground"
+                                            href="salud.html"
+                                            ><svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="24"
+                                                height="24"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                class="lucide lucide-activity h-4 w-4 shrink-0 text-muted-foreground"
+                                                aria-hidden="true"
+                                            >
+                                                <path
+                                                    d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"
+                                                ></path></svg
+                                            ><span class="whitespace-nowrap">Salud</span></a
+                                        >
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="mb-5">
+                                <p class="mono-label mb-2 px-2 text-[10px] text-muted-foreground">
+                                    Datos
+                                </p>
+                                <ul class="space-y-0.5">
+                                    <li>
+                                        <a
+                                            class="group flex items-center gap-3 rounded-md px-2 py-2 text-sm font-medium transition-colors text-muted-foreground hover:bg-muted hover:text-foreground"
+                                            href="reportes.html"
+                                            ><svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="24"
+                                                height="24"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                class="lucide lucide-file-spreadsheet h-4 w-4 shrink-0 text-muted-foreground"
+                                                aria-hidden="true"
+                                            >
+                                                <path
+                                                    d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"
+                                                ></path>
+                                                <path d="M14 2v5a1 1 0 0 0 1 1h5"></path>
+                                                <path d="M8 13h2"></path>
+                                                <path d="M14 13h2"></path>
+                                                <path d="M8 17h2"></path>
+                                                <path d="M14 17h2"></path></svg
+                                            ><span class="whitespace-nowrap">Reportes</span></a
+                                        >
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                        <div class="border-t p-3">
+                            <a
+                                class="flex items-center gap-3 rounded-md px-2 py-2 transition-colors hover:bg-muted"
+                                href="perfil.html"
+                                ><span
+                                    class="relative flex shrink-0 overflow-hidden rounded-full h-8 w-8"
+                                    ><span
+                                        class="flex h-full w-full items-center justify-center rounded-full font-medium bg-accent text-xs text-accent-foreground"
+                                        >LF</span
+                                    ></span
+                                >
+                                <div class="min-w-0 flex-1 leading-tight">
+                                    <p class="truncate text-sm font-medium">Lucía Fernández</p>
+                                    <p class="mono-label text-[10px] text-muted-foreground">
+                                        admin
+                                    </p>
+                                </div></a
+                            >
+                        </div>
+                    </div>
+                </aside>
+                <div
+                    class="fixed inset-0 z-50 bg-black/50 transition-opacity lg:hidden pointer-events-none opacity-0"
+                    aria-hidden="true"
+                ></div>
+                <aside
+                    class="fixed inset-y-0 left-0 z-50 w-72 max-w-[85vw] border-r bg-background shadow-xl transition-transform duration-300 lg:hidden -translate-x-full"
+                    aria-label="Navegación principal"
+                    aria-hidden="true"
+                    inert=""
+                >
+                    <button
+                        type="button"
+                        class="absolute right-3 top-4 rounded-md p-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                        aria-label="Cerrar menú"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="lucide lucide-x h-5 w-5"
+                            aria-hidden="true"
+                        >
+                            <path d="M18 6 6 18"></path>
+                            <path d="m6 6 12 12"></path>
+                        </svg>
+                    </button>
+                    <div class="flex h-full flex-col">
+                        <a
+                            aria-label="Ir al inicio"
+                            class="flex h-16 items-center gap-3 border-b px-5 transition-colors hover:bg-muted/60"
+                            href="index.html"
+                            ><img
+                                alt=""
+                                aria-hidden="true"
+                                class="h-8 w-8 shrink-0"
+                                src="./favicon.svg"
+                            />
+                            <div class="flex flex-col leading-tight">
+                                <span class="font-heading text-sm font-semibold tracking-tight"
+                                    >Nexo</span
+                                ><span class="mono-label text-[10px] text-muted-foreground"
+                                    >producción</span
+                                >
+                            </div></a
+                        >
+                        <nav
+                            class="flex-1 overflow-y-auto px-3 py-4"
+                            aria-label="Navegación principal"
+                        >
+                            <div class="mb-5">
+                                <p class="mono-label mb-2 px-2 text-[10px] text-muted-foreground">
+                                    General
+                                </p>
+                                <ul class="space-y-0.5">
+                                    <li>
+                                        <a
+                                            aria-current="page"
+                                            class="group flex items-center gap-3 rounded-md px-2 py-2 text-sm font-medium transition-colors bg-accent text-accent-foreground"
+                                            href="index.html"
+                                            ><svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="24"
+                                                height="24"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                class="lucide lucide-layout-dashboard h-4 w-4 shrink-0 text-accent-foreground"
+                                                aria-hidden="true"
+                                            >
+                                                <rect
+                                                    width="7"
+                                                    height="9"
+                                                    x="3"
+                                                    y="3"
+                                                    rx="1"
+                                                ></rect>
+                                                <rect
+                                                    width="7"
+                                                    height="5"
+                                                    x="14"
+                                                    y="3"
+                                                    rx="1"
+                                                ></rect>
+                                                <rect
+                                                    width="7"
+                                                    height="9"
+                                                    x="14"
+                                                    y="12"
+                                                    rx="1"
+                                                ></rect>
+                                                <rect
+                                                    width="7"
+                                                    height="5"
+                                                    x="3"
+                                                    y="16"
+                                                    rx="1"
+                                                ></rect></svg
+                                            ><span class="whitespace-nowrap">Resumen</span></a
+                                        >
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="mb-5">
+                                <p class="mono-label mb-2 px-2 text-[10px] text-muted-foreground">
+                                    Gestión
+                                </p>
+                                <ul class="space-y-0.5">
+                                    <li>
+                                        <a
+                                            class="group flex items-center gap-3 rounded-md px-2 py-2 text-sm font-medium transition-colors text-muted-foreground hover:bg-muted hover:text-foreground"
+                                            href="usuarios.html"
+                                            ><svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="24"
+                                                height="24"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                class="lucide lucide-users h-4 w-4 shrink-0 text-muted-foreground"
+                                                aria-hidden="true"
+                                            >
+                                                <path
+                                                    d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"
+                                                ></path>
+                                                <path d="M16 3.128a4 4 0 0 1 0 7.744"></path>
+                                                <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                                                <circle cx="9" cy="7" r="4"></circle></svg
+                                            ><span class="whitespace-nowrap">Usuarios</span></a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                            class="group flex items-center gap-3 rounded-md px-2 py-2 text-sm font-medium transition-colors text-muted-foreground hover:bg-muted hover:text-foreground"
+                                            href="contenido.html"
+                                            ><svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="24"
+                                                height="24"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                class="lucide lucide-file-text h-4 w-4 shrink-0 text-muted-foreground"
+                                                aria-hidden="true"
+                                            >
+                                                <path
+                                                    d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"
+                                                ></path>
+                                                <path d="M14 2v5a1 1 0 0 0 1 1h5"></path>
+                                                <path d="M10 9H8"></path>
+                                                <path d="M16 13H8"></path>
+                                                <path d="M16 17H8"></path></svg
+                                            ><span class="whitespace-nowrap">Contenido</span></a
+                                        >
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="mb-5">
+                                <p class="mono-label mb-2 px-2 text-[10px] text-muted-foreground">
+                                    Sistema
+                                </p>
+                                <ul class="space-y-0.5">
+                                    <li>
+                                        <a
+                                            class="group flex items-center gap-3 rounded-md px-2 py-2 text-sm font-medium transition-colors text-muted-foreground hover:bg-muted hover:text-foreground"
+                                            href="auditoria.html"
+                                            ><svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="24"
+                                                height="24"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                class="lucide lucide-scroll-text h-4 w-4 shrink-0 text-muted-foreground"
+                                                aria-hidden="true"
+                                            >
+                                                <path d="M15 12h-5"></path>
+                                                <path d="M15 8h-5"></path>
+                                                <path d="M19 17V5a2 2 0 0 0-2-2H4"></path>
+                                                <path
+                                                    d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3"
+                                                ></path></svg
+                                            ><span class="whitespace-nowrap">Auditoría</span></a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                            class="group flex items-center gap-3 rounded-md px-2 py-2 text-sm font-medium transition-colors text-muted-foreground hover:bg-muted hover:text-foreground"
+                                            href="configuracion.html"
+                                            ><svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="24"
+                                                height="24"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                class="lucide lucide-settings h-4 w-4 shrink-0 text-muted-foreground"
+                                                aria-hidden="true"
+                                            >
+                                                <path
+                                                    d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"
+                                                ></path>
+                                                <circle cx="12" cy="12" r="3"></circle></svg
+                                            ><span class="whitespace-nowrap">Configuración</span></a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                            class="group flex items-center gap-3 rounded-md px-2 py-2 text-sm font-medium transition-colors text-muted-foreground hover:bg-muted hover:text-foreground"
+                                            href="salud.html"
+                                            ><svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="24"
+                                                height="24"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                class="lucide lucide-activity h-4 w-4 shrink-0 text-muted-foreground"
+                                                aria-hidden="true"
+                                            >
+                                                <path
+                                                    d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"
+                                                ></path></svg
+                                            ><span class="whitespace-nowrap">Salud</span></a
+                                        >
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="mb-5">
+                                <p class="mono-label mb-2 px-2 text-[10px] text-muted-foreground">
+                                    Datos
+                                </p>
+                                <ul class="space-y-0.5">
+                                    <li>
+                                        <a
+                                            class="group flex items-center gap-3 rounded-md px-2 py-2 text-sm font-medium transition-colors text-muted-foreground hover:bg-muted hover:text-foreground"
+                                            href="reportes.html"
+                                            ><svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="24"
+                                                height="24"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                class="lucide lucide-file-spreadsheet h-4 w-4 shrink-0 text-muted-foreground"
+                                                aria-hidden="true"
+                                            >
+                                                <path
+                                                    d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"
+                                                ></path>
+                                                <path d="M14 2v5a1 1 0 0 0 1 1h5"></path>
+                                                <path d="M8 13h2"></path>
+                                                <path d="M14 13h2"></path>
+                                                <path d="M8 17h2"></path>
+                                                <path d="M14 17h2"></path></svg
+                                            ><span class="whitespace-nowrap">Reportes</span></a
+                                        >
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                        <div class="border-t p-3">
+                            <a
+                                class="flex items-center gap-3 rounded-md px-2 py-2 transition-colors hover:bg-muted"
+                                href="perfil.html"
+                                ><span
+                                    class="relative flex shrink-0 overflow-hidden rounded-full h-8 w-8"
+                                    ><span
+                                        class="flex h-full w-full items-center justify-center rounded-full font-medium bg-accent text-xs text-accent-foreground"
+                                        >LF</span
+                                    ></span
+                                >
+                                <div class="min-w-0 flex-1 leading-tight">
+                                    <p class="truncate text-sm font-medium">Lucía Fernández</p>
+                                    <p class="mono-label text-[10px] text-muted-foreground">
+                                        admin
+                                    </p>
+                                </div></a
+                            >
+                        </div>
+                    </div>
+                </aside>
+                <div class="lg:pl-60">
+                    <header
+                        class="sticky top-0 z-20 flex h-16 items-center gap-3 border-b bg-background/90 px-4 backdrop-blur md:px-6"
+                    >
+                        <button
+                            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-9 w-9 lg:hidden"
+                            aria-label="Abrir menú"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="lucide lucide-menu h-5 w-5"
+                                aria-hidden="true"
+                            >
+                                <path d="M4 5h16"></path>
+                                <path d="M4 12h16"></path>
+                                <path d="M4 19h16"></path>
+                            </svg>
+                        </button>
+                        <div class="min-w-0 flex-1">
+                            <p class="mono-label text-[10px] text-muted-foreground">
+                                Nexo · consola
+                            </p>
+                            <h1 class="truncate text-base font-semibold leading-tight">Resumen</h1>
+                        </div>
+                        <button
+                            type="button"
+                            class="hidden h-9 w-64 items-center gap-2 rounded-md border bg-muted/60 px-3 text-sm text-muted-foreground transition-colors hover:bg-muted md:flex"
+                            data-overlay-trigger="palette"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="lucide lucide-search h-4 w-4"
+                                aria-hidden="true"
+                            >
+                                <path d="m21 21-4.34-4.34"></path>
+                                <circle cx="11" cy="11" r="8"></circle></svg
+                            ><span class="flex-1 text-left">Buscar…</span
+                            ><kbd
+                                class="mono-label rounded border bg-background px-1.5 py-0.5 text-[10px]"
+                                >⌘K</kbd
+                            ></button
+                        ><button
+                            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-9 w-9 md:hidden"
+                            aria-label="Buscar"
+                            data-overlay-trigger="palette"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="lucide lucide-search h-5 w-5"
+                                aria-hidden="true"
+                            >
+                                <path d="m21 21-4.34-4.34"></path>
+                                <circle cx="11" cy="11" r="8"></circle>
+                            </svg></button
+                        ><button
+                            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-9 w-9 relative"
+                            aria-label="Notificaciones (6 sin leer)"
+                            type="button"
+                            aria-haspopup="dialog"
+                            aria-expanded="false"
+                            data-state="closed"
+                            data-overlay-trigger="notifications"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="lucide lucide-bell h-5 w-5"
+                                aria-hidden="true"
+                            >
+                                <path d="M10.268 21a2 2 0 0 0 3.464 0"></path>
+                                <path
+                                    d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"
+                                ></path></svg
+                            ><span
+                                class="absolute right-1.5 top-1.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-primary px-1 text-[10px] font-semibold leading-none text-primary-foreground tabular"
+                                >6</span
+                            ></button
+                        ><button
+                            type="button"
+                            class="rounded-full outline-none"
+                            aria-label="Perfil"
+                            id="radix-_r_a_"
+                            aria-haspopup="menu"
+                            aria-expanded="false"
+                            data-state="closed"
+                            data-overlay-trigger="user-menu"
+                        >
+                            <span
+                                class="relative flex shrink-0 overflow-hidden rounded-full h-8 w-8"
+                                ><span
+                                    class="flex h-full w-full items-center justify-center rounded-full font-medium bg-accent text-xs text-accent-foreground"
+                                    >LF</span
+                                ></span
+                            >
+                        </button>
+                    </header>
+                    <main class="mx-auto w-full max-w-7xl p-4 md:p-6 lg:p-8">
+                        <div class="space-y-6">
+                            <header
+                                class="flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between"
+                            >
+                                <div>
+                                    <h2 class="text-xl font-semibold">Resumen general</h2>
+                                    <p class="mt-1 text-sm text-muted-foreground">
+                                        Estado de la plataforma a 18/8/2026, 11:00:00.
+                                    </p>
+                                </div>
+                                <p class="mono-label text-muted-foreground">últimos 30 días</p>
+                            </header>
+                            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+                                <div
+                                    class="border bg-card text-card-foreground surface-hairline rounded-lg"
+                                >
+                                    <div class="p-5">
+                                        <div class="flex items-start justify-between">
+                                            <p class="mono-label text-muted-foreground">Usuarios</p>
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="24"
+                                                height="24"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                class="lucide lucide-users h-4 w-4 text-muted-foreground"
+                                                aria-hidden="true"
+                                            >
+                                                <path
+                                                    d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"
+                                                ></path>
+                                                <path d="M16 3.128a4 4 0 0 1 0 7.744"></path>
+                                                <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                                                <circle cx="9" cy="7" r="4"></circle>
+                                            </svg>
+                                        </div>
+                                        <p
+                                            class="tabular mt-2 text-2xl font-semibold tracking-tight"
+                                        >
+                                            18.432
+                                        </p>
+                                        <p class="mt-1 text-xs text-muted-foreground">
+                                            hoy +142 · semana +986
+                                        </p>
+                                        <svg
+                                            viewBox="0 0 120 32"
+                                            class="h-8 w-full mt-3"
+                                            aria-hidden="true"
+                                            preserveAspectRatio="none"
+                                        >
+                                            <polyline
+                                                points="0.0,28.0 4.1,25.7 8.3,23.8 12.4,27.2 16.6,19.2 20.7,22.4 24.8,25.5 29.0,17.3 33.1,15.9 37.2,17.8 41.4,20.9 45.5,16.7 49.7,19.2 53.8,22.6 57.9,14.7 62.1,13.0 66.2,13.9 70.3,16.4 74.5,11.6 78.6,9.9 82.8,12.2 86.9,8.2 91.0,7.4 95.2,8.8 99.3,11.1 103.4,6.5 107.6,5.4 111.7,8.0 115.9,4.0 120.0,21.2"
+                                                fill="none"
+                                                stroke="var(--color-accent)"
+                                                stroke-width="1.5"
+                                                stroke-linejoin="round"
+                                                stroke-linecap="round"
+                                                vector-effect="non-scaling-stroke"
+                                            ></polyline>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div
+                                    class="border bg-card text-card-foreground surface-hairline rounded-lg"
+                                >
+                                    <div class="p-5">
+                                        <div class="flex items-start justify-between">
+                                            <p class="mono-label text-muted-foreground">Pedidos</p>
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="24"
+                                                height="24"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                class="lucide lucide-shopping-cart h-4 w-4 text-muted-foreground"
+                                                aria-hidden="true"
+                                            >
+                                                <circle cx="8" cy="21" r="1"></circle>
+                                                <circle cx="19" cy="21" r="1"></circle>
+                                                <path
+                                                    d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"
+                                                ></path>
+                                            </svg>
+                                        </div>
+                                        <p
+                                            class="tabular mt-2 text-2xl font-semibold tracking-tight"
+                                        >
+                                            89.216
+                                        </p>
+                                        <p class="mt-1 text-xs text-muted-foreground">
+                                            hoy +261 pedidos
+                                        </p>
+                                        <svg
+                                            viewBox="0 0 120 32"
+                                            class="h-8 w-full mt-3"
+                                            aria-hidden="true"
+                                            preserveAspectRatio="none"
+                                        >
+                                            <polyline
+                                                points="0.0,27.3 4.1,24.8 8.3,28.0 12.4,22.5 16.6,20.3 20.7,20.9 24.8,22.9 29.0,19.0 33.1,16.5 37.2,17.8 41.4,19.7 45.5,15.8 49.7,17.5 53.8,20.7 57.9,14.5 62.1,12.4 66.2,13.5 70.3,15.2 74.5,11.3 78.6,10.3 82.8,12.1 86.9,8.7 91.0,6.8 95.2,7.6 99.3,9.4 103.4,5.9 107.6,4.9 111.7,6.6 115.9,4.0 120.0,20.4"
+                                                fill="none"
+                                                stroke="var(--color-accent)"
+                                                stroke-width="1.5"
+                                                stroke-linejoin="round"
+                                                stroke-linecap="round"
+                                                vector-effect="non-scaling-stroke"
+                                            ></polyline>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div
+                                    class="border bg-card text-card-foreground surface-hairline rounded-lg"
+                                >
+                                    <div class="p-5">
+                                        <div class="flex items-start justify-between">
+                                            <p class="mono-label text-muted-foreground">Ingresos</p>
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="24"
+                                                height="24"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                class="lucide lucide-banknote h-4 w-4 text-muted-foreground"
+                                                aria-hidden="true"
+                                            >
+                                                <rect
+                                                    width="20"
+                                                    height="12"
+                                                    x="2"
+                                                    y="6"
+                                                    rx="2"
+                                                ></rect>
+                                                <circle cx="12" cy="12" r="2"></circle>
+                                                <path d="M6 12h.01M18 12h.01"></path>
+                                            </svg>
+                                        </div>
+                                        <p
+                                            class="tabular mt-2 text-2xl font-semibold tracking-tight"
+                                        >
+                                            1.248.390&nbsp;€
+                                        </p>
+                                        <p class="mt-1 text-xs text-muted-foreground">
+                                            acumulado del periodo
+                                        </p>
+                                        <svg
+                                            viewBox="0 0 120 32"
+                                            class="h-8 w-full mt-3"
+                                            aria-hidden="true"
+                                            preserveAspectRatio="none"
+                                        >
+                                            <polyline
+                                                points="0.0,26.9 4.1,24.3 8.3,28.0 12.4,22.6 16.6,20.5 20.7,21.2 24.8,22.9 29.0,18.9 33.1,17.3 37.2,18.2 41.4,19.5 45.5,15.7 49.7,17.5 53.8,20.7 57.9,14.4 62.1,12.6 66.2,13.5 70.3,15.1 74.5,11.4 78.6,10.5 82.8,12.1 86.9,8.8 91.0,7.1 95.2,7.8 99.3,9.5 103.4,6.1 107.6,4.9 111.7,6.9 115.9,4.0 120.0,20.2"
+                                                fill="none"
+                                                stroke="var(--color-accent)"
+                                                stroke-width="1.5"
+                                                stroke-linejoin="round"
+                                                stroke-linecap="round"
+                                                vector-effect="non-scaling-stroke"
+                                            ></polyline>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div
+                                    class="border bg-card text-card-foreground surface-hairline rounded-lg"
+                                >
+                                    <div class="p-5">
+                                        <div class="flex items-start justify-between">
+                                            <p class="mono-label text-muted-foreground">
+                                                Conversión
+                                            </p>
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="24"
+                                                height="24"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                class="lucide lucide-percent h-4 w-4 text-muted-foreground"
+                                                aria-hidden="true"
+                                            >
+                                                <line x1="19" x2="5" y1="5" y2="19"></line>
+                                                <circle cx="6.5" cy="6.5" r="2.5"></circle>
+                                                <circle cx="17.5" cy="17.5" r="2.5"></circle>
+                                            </svg>
+                                        </div>
+                                        <p
+                                            class="tabular mt-2 text-2xl font-semibold tracking-tight"
+                                        >
+                                            4.7 %
+                                        </p>
+                                        <p class="mt-1 text-xs text-muted-foreground">
+                                            6 alertas abiertas
+                                        </p>
+                                        <svg
+                                            viewBox="0 0 120 32"
+                                            class="h-8 w-full mt-3"
+                                            aria-hidden="true"
+                                            preserveAspectRatio="none"
+                                        >
+                                            <polyline
+                                                points="0.0,15.9 4.1,18.9 8.3,4.0 12.4,28.0 16.6,23.7 20.7,17.5 24.8,14.9 29.0,18.2 33.1,21.1 37.2,19.9 41.4,18.4 45.5,20.1 49.7,19.1 53.8,16.7 57.9,20.7 62.1,22.7 66.2,21.6 70.3,20.4 74.5,23.2 78.6,23.2 82.8,22.0 86.9,23.6 91.0,25.3 95.2,24.8 99.3,23.4 103.4,24.7 107.6,24.6 111.7,24.7 115.9,24.3 120.0,25.4"
+                                                fill="none"
+                                                stroke="var(--color-accent)"
+                                                stroke-width="1.5"
+                                                stroke-linejoin="round"
+                                                stroke-linecap="round"
+                                                vector-effect="non-scaling-stroke"
+                                            ></polyline>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 gap-6 xl:grid-cols-3">
+                                <div
+                                    class="border bg-card text-card-foreground surface-hairline rounded-lg xl:col-span-2"
+                                >
+                                    <div class="flex flex-col space-y-1.5 p-6 pb-2">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <div class="font-semibold tracking-tight text-base">
+                                                    Actividad reciente
+                                                </div>
+                                                <div class="text-sm text-muted-foreground">
+                                                    Pedidos por día
+                                                </div>
+                                            </div>
+                                            <span
+                                                class="flex items-center gap-2 text-xs text-muted-foreground"
+                                                ><span
+                                                    class="inline-block h-2 w-2 rounded-sm bg-accent"
+                                                    aria-hidden="true"
+                                                ></span
+                                                >hoy</span
+                                            >
+                                        </div>
+                                    </div>
+                                    <div class="p-6 pt-0">
+                                        <svg
+                                            viewBox="0 0 720 240"
+                                            class="h-auto w-full"
+                                            role="img"
+                                            aria-label="Actividad de pedidos de los últimos 30 días"
+                                        >
+                                            <g>
+                                                <line
+                                                    x1="44"
+                                                    x2="708"
+                                                    y1="160"
+                                                    y2="160"
+                                                    class="stroke-border"
+                                                    stroke-width="1"
+                                                ></line>
+                                                <text
+                                                    x="34"
+                                                    y="163"
+                                                    text-anchor="end"
+                                                    class="mono-label fill-muted-foreground"
+                                                    font-size="10"
+                                                >
+                                                    100
+                                                </text>
+                                            </g>
+                                            <g>
+                                                <line
+                                                    x1="44"
+                                                    x2="708"
+                                                    y1="116"
+                                                    y2="116"
+                                                    class="stroke-border"
+                                                    stroke-width="1"
+                                                ></line>
+                                                <text
+                                                    x="34"
+                                                    y="119"
+                                                    text-anchor="end"
+                                                    class="mono-label fill-muted-foreground"
+                                                    font-size="10"
+                                                >
+                                                    200
+                                                </text>
+                                            </g>
+                                            <g>
+                                                <line
+                                                    x1="44"
+                                                    x2="708"
+                                                    y1="72"
+                                                    y2="72"
+                                                    class="stroke-border"
+                                                    stroke-width="1"
+                                                ></line>
+                                                <text
+                                                    x="34"
+                                                    y="75"
+                                                    text-anchor="end"
+                                                    class="mono-label fill-muted-foreground"
+                                                    font-size="10"
+                                                >
+                                                    300
+                                                </text>
+                                            </g>
+                                            <g>
+                                                <line
+                                                    x1="44"
+                                                    x2="708"
+                                                    y1="28"
+                                                    y2="28"
+                                                    class="stroke-border"
+                                                    stroke-width="1"
+                                                ></line>
+                                                <text
+                                                    x="34"
+                                                    y="31"
+                                                    text-anchor="end"
+                                                    class="mono-label fill-muted-foreground"
+                                                    font-size="10"
+                                                >
+                                                    400
+                                                </text>
+                                            </g>
+                                            <g>
+                                                <rect
+                                                    class="bar"
+                                                    x="48.42666666666667"
+                                                    y="109.83999999999999"
+                                                    width="13.28"
+                                                    height="94.16000000000001"
+                                                    rx="2"
+                                                    fill="var(--color-rule-2)"
+                                                >
+                                                    <title>2026-07-20: 214 pedidos</title>
+                                                </rect>
+                                                <rect
+                                                    class="bar"
+                                                    x="70.55999999999999"
+                                                    y="102.36"
+                                                    width="13.28"
+                                                    height="101.64"
+                                                    rx="2"
+                                                    fill="var(--color-rule-2)"
+                                                >
+                                                    <title>2026-07-21: 231 pedidos</title>
+                                                </rect>
+                                                <rect
+                                                    class="bar"
+                                                    x="92.69333333333333"
+                                                    y="112.04"
+                                                    width="13.28"
+                                                    height="91.96"
+                                                    rx="2"
+                                                    fill="var(--color-rule-2)"
+                                                >
+                                                    <title>2026-07-22: 209 pedidos</title>
+                                                </rect>
+                                                <rect
+                                                    class="bar"
+                                                    x="114.82666666666667"
+                                                    y="95.32"
+                                                    width="13.28"
+                                                    height="108.68"
+                                                    rx="2"
+                                                    fill="var(--color-rule-2)"
+                                                >
+                                                    <title>2026-07-23: 247 pedidos</title>
+                                                </rect>
+                                                <rect
+                                                    class="bar"
+                                                    x="136.96"
+                                                    y="88.72"
+                                                    width="13.28"
+                                                    height="115.28"
+                                                    rx="2"
+                                                    fill="var(--color-rule-2)"
+                                                >
+                                                    <title>2026-07-24: 262 pedidos</title>
+                                                </rect>
+                                                <rect
+                                                    class="bar"
+                                                    x="159.09333333333333"
+                                                    y="90.47999999999999"
+                                                    width="13.28"
+                                                    height="113.52000000000001"
+                                                    rx="2"
+                                                    fill="var(--color-rule-2)"
+                                                >
+                                                    <title>2026-07-25: 258 pedidos</title>
+                                                </rect>
+                                                <rect
+                                                    class="bar"
+                                                    x="181.2266666666667"
+                                                    y="96.64"
+                                                    width="13.28"
+                                                    height="107.36"
+                                                    rx="2"
+                                                    fill="var(--color-rule-2)"
+                                                >
+                                                    <title>2026-07-26: 244 pedidos</title>
+                                                </rect>
+                                                <rect
+                                                    class="bar"
+                                                    x="203.36"
+                                                    y="84.76"
+                                                    width="13.28"
+                                                    height="119.24"
+                                                    rx="2"
+                                                    fill="var(--color-rule-2)"
+                                                >
+                                                    <title>2026-07-27: 271 pedidos</title>
+                                                </rect>
+                                                <rect
+                                                    class="bar"
+                                                    x="225.49333333333334"
+                                                    y="77.28"
+                                                    width="13.28"
+                                                    height="126.72"
+                                                    rx="2"
+                                                    fill="var(--color-rule-2)"
+                                                >
+                                                    <title>2026-07-28: 288 pedidos</title>
+                                                </rect>
+                                                <rect
+                                                    class="bar"
+                                                    x="247.62666666666667"
+                                                    y="81.24"
+                                                    width="13.28"
+                                                    height="122.76"
+                                                    rx="2"
+                                                    fill="var(--color-rule-2)"
+                                                >
+                                                    <title>2026-07-29: 279 pedidos</title>
+                                                </rect>
+                                                <rect
+                                                    class="bar"
+                                                    x="269.76"
+                                                    y="86.96"
+                                                    width="13.28"
+                                                    height="117.04"
+                                                    rx="2"
+                                                    fill="var(--color-rule-2)"
+                                                >
+                                                    <title>2026-07-30: 266 pedidos</title>
+                                                </rect>
+                                                <rect
+                                                    class="bar"
+                                                    x="291.8933333333334"
+                                                    y="75.07999999999998"
+                                                    width="13.28"
+                                                    height="128.92000000000002"
+                                                    rx="2"
+                                                    fill="var(--color-rule-2)"
+                                                >
+                                                    <title>2026-07-31: 293 pedidos</title>
+                                                </rect>
+                                                <rect
+                                                    class="bar"
+                                                    x="314.0266666666667"
+                                                    y="80.36"
+                                                    width="13.28"
+                                                    height="123.64"
+                                                    rx="2"
+                                                    fill="var(--color-rule-2)"
+                                                >
+                                                    <title>2026-08-01: 281 pedidos</title>
+                                                </rect>
+                                                <rect
+                                                    class="bar"
+                                                    x="336.16"
+                                                    y="90.04"
+                                                    width="13.28"
+                                                    height="113.96"
+                                                    rx="2"
+                                                    fill="var(--color-rule-2)"
+                                                >
+                                                    <title>2026-08-02: 259 pedidos</title>
+                                                </rect>
+                                                <rect
+                                                    class="bar"
+                                                    x="358.29333333333335"
+                                                    y="71.12"
+                                                    width="13.28"
+                                                    height="132.88"
+                                                    rx="2"
+                                                    fill="var(--color-rule-2)"
+                                                >
+                                                    <title>2026-08-03: 302 pedidos</title>
+                                                </rect>
+                                                <rect
+                                                    class="bar"
+                                                    x="380.4266666666667"
+                                                    y="64.95999999999998"
+                                                    width="13.28"
+                                                    height="139.04000000000002"
+                                                    rx="2"
+                                                    fill="var(--color-rule-2)"
+                                                >
+                                                    <title>2026-08-04: 316 pedidos</title>
+                                                </rect>
+                                                <rect
+                                                    class="bar"
+                                                    x="402.56"
+                                                    y="68.04000000000002"
+                                                    width="13.28"
+                                                    height="135.95999999999998"
+                                                    rx="2"
+                                                    fill="var(--color-rule-2)"
+                                                >
+                                                    <title>2026-08-05: 309 pedidos</title>
+                                                </rect>
+                                                <rect
+                                                    class="bar"
+                                                    x="424.6933333333333"
+                                                    y="73.32"
+                                                    width="13.28"
+                                                    height="130.68"
+                                                    rx="2"
+                                                    fill="var(--color-rule-2)"
+                                                >
+                                                    <title>2026-08-06: 297 pedidos</title>
+                                                </rect>
+                                                <rect
+                                                    class="bar"
+                                                    x="446.82666666666665"
+                                                    y="61.44"
+                                                    width="13.28"
+                                                    height="142.56"
+                                                    rx="2"
+                                                    fill="var(--color-rule-2)"
+                                                >
+                                                    <title>2026-08-07: 324 pedidos</title>
+                                                </rect>
+                                                <rect
+                                                    class="bar"
+                                                    x="468.96"
+                                                    y="58.359999999999985"
+                                                    width="13.28"
+                                                    height="145.64000000000001"
+                                                    rx="2"
+                                                    fill="var(--color-rule-2)"
+                                                >
+                                                    <title>2026-08-08: 331 pedidos</title>
+                                                </rect>
+                                                <rect
+                                                    class="bar"
+                                                    x="491.0933333333333"
+                                                    y="64.07999999999998"
+                                                    width="13.28"
+                                                    height="139.92000000000002"
+                                                    rx="2"
+                                                    fill="var(--color-rule-2)"
+                                                >
+                                                    <title>2026-08-09: 318 pedidos</title>
+                                                </rect>
+                                                <rect
+                                                    class="bar"
+                                                    x="513.2266666666667"
+                                                    y="53.52000000000001"
+                                                    width="13.28"
+                                                    height="150.48"
+                                                    rx="2"
+                                                    fill="var(--color-rule-2)"
+                                                >
+                                                    <title>2026-08-10: 342 pedidos</title>
+                                                </rect>
+                                                <rect
+                                                    class="bar"
+                                                    x="535.36"
+                                                    y="47.80000000000001"
+                                                    width="13.28"
+                                                    height="156.2"
+                                                    rx="2"
+                                                    fill="var(--color-rule-2)"
+                                                >
+                                                    <title>2026-08-11: 355 pedidos</title>
+                                                </rect>
+                                                <rect
+                                                    class="bar"
+                                                    x="557.4933333333332"
+                                                    y="50.44"
+                                                    width="13.28"
+                                                    height="153.56"
+                                                    rx="2"
+                                                    fill="var(--color-rule-2)"
+                                                >
+                                                    <title>2026-08-12: 349 pedidos</title>
+                                                </rect>
+                                                <rect
+                                                    class="bar"
+                                                    x="579.6266666666667"
+                                                    y="55.72"
+                                                    width="13.28"
+                                                    height="148.28"
+                                                    rx="2"
+                                                    fill="var(--color-rule-2)"
+                                                >
+                                                    <title>2026-08-13: 337 pedidos</title>
+                                                </rect>
+                                                <rect
+                                                    class="bar"
+                                                    x="601.76"
+                                                    y="45.16"
+                                                    width="13.28"
+                                                    height="158.84"
+                                                    rx="2"
+                                                    fill="var(--color-rule-2)"
+                                                >
+                                                    <title>2026-08-14: 361 pedidos</title>
+                                                </rect>
+                                                <rect
+                                                    class="bar"
+                                                    x="623.8933333333333"
+                                                    y="42.079999999999984"
+                                                    width="13.28"
+                                                    height="161.92000000000002"
+                                                    rx="2"
+                                                    fill="var(--color-rule-2)"
+                                                >
+                                                    <title>2026-08-15: 368 pedidos</title>
+                                                </rect>
+                                                <rect
+                                                    class="bar"
+                                                    x="646.0266666666666"
+                                                    y="47.359999999999985"
+                                                    width="13.28"
+                                                    height="156.64000000000001"
+                                                    rx="2"
+                                                    fill="var(--color-rule-2)"
+                                                >
+                                                    <title>2026-08-16: 356 pedidos</title>
+                                                </rect>
+                                                <rect
+                                                    class="bar"
+                                                    x="668.16"
+                                                    y="39.44"
+                                                    width="13.28"
+                                                    height="164.56"
+                                                    rx="2"
+                                                    fill="var(--color-rule-2)"
+                                                >
+                                                    <title>2026-08-17: 374 pedidos</title>
+                                                </rect>
+                                                <rect
+                                                    class="bar"
+                                                    x="690.2933333333333"
+                                                    y="89.16000000000001"
+                                                    width="13.28"
+                                                    height="114.83999999999999"
+                                                    rx="2"
+                                                    fill="var(--color-accent)"
+                                                >
+                                                    <title>2026-08-18: 261 pedidos</title>
+                                                </rect>
+                                            </g>
+                                            <text
+                                                x="55.06666666666666"
+                                                y="230"
+                                                text-anchor="middle"
+                                                class="mono-label fill-muted-foreground"
+                                                font-size="10"
+                                            >
+                                                07/20
+                                            </text>
+                                            <text
+                                                x="165.73333333333332"
+                                                y="230"
+                                                text-anchor="middle"
+                                                class="mono-label fill-muted-foreground"
+                                                font-size="10"
+                                            >
+                                                07/25
+                                            </text>
+                                            <text
+                                                x="276.4"
+                                                y="230"
+                                                text-anchor="middle"
+                                                class="mono-label fill-muted-foreground"
+                                                font-size="10"
+                                            >
+                                                07/30
+                                            </text>
+                                            <text
+                                                x="387.06666666666666"
+                                                y="230"
+                                                text-anchor="middle"
+                                                class="mono-label fill-muted-foreground"
+                                                font-size="10"
+                                            >
+                                                08/04
+                                            </text>
+                                            <text
+                                                x="497.7333333333333"
+                                                y="230"
+                                                text-anchor="middle"
+                                                class="mono-label fill-muted-foreground"
+                                                font-size="10"
+                                            >
+                                                08/09
+                                            </text>
+                                            <text
+                                                x="608.4000000000001"
+                                                y="230"
+                                                text-anchor="middle"
+                                                class="mono-label fill-muted-foreground"
+                                                font-size="10"
+                                            >
+                                                08/14
+                                            </text>
+                                            <text
+                                                x="696.9333333333334"
+                                                y="230"
+                                                text-anchor="middle"
+                                                class="mono-label fill-muted-foreground"
+                                                font-size="10"
+                                            >
+                                                08/18
+                                            </text>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div
+                                    class="border bg-card text-card-foreground surface-hairline rounded-lg"
+                                >
+                                    <div class="flex flex-col space-y-1.5 p-6 pb-3">
+                                        <div class="flex items-center justify-between">
+                                            <div class="font-semibold tracking-tight text-base">
+                                                Alertas pendientes
+                                            </div>
+                                            <div
+                                                class="inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 text-foreground mono-label"
+                                            >
+                                                6
+                                            </div>
+                                        </div>
+                                        <div class="text-sm text-muted-foreground">
+                                            Requieren tu atención
+                                        </div>
+                                    </div>
+                                    <div class="p-6 pt-0 space-y-3">
+                                        <div class="flex gap-3 rounded-md border p-3">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="24"
+                                                height="24"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                class="lucide lucide-triangle-alert mt-0.5 h-4 w-4 shrink-0 text-muted-foreground"
+                                                aria-hidden="true"
+                                            >
+                                                <path
+                                                    d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"
+                                                ></path>
+                                                <path d="M12 9v4"></path>
+                                                <path d="M12 17h.01"></path>
+                                            </svg>
+                                            <div class="min-w-0 flex-1">
+                                                <div
+                                                    class="flex items-center justify-between gap-2"
+                                                >
+                                                    <p class="truncate text-sm font-medium">
+                                                        Pago fallido recurrente
+                                                    </p>
+                                                    <div
+                                                        class="inline-flex items-center rounded-md border px-2.5 py-0.5 font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-destructive text-destructive-foreground mono-label text-[10px] shrink-0"
+                                                    >
+                                                        Alta
+                                                    </div>
+                                                </div>
+                                                <p
+                                                    class="mt-0.5 line-clamp-2 text-xs text-muted-foreground"
+                                                >
+                                                    12 transacciones con tarjeta rechazada en la
+                                                    última hora en el checkout.
+                                                </p>
+                                                <p
+                                                    class="mono-label mt-1 text-[10px] text-muted-foreground"
+                                                >
+                                                    AL-1042 · 18 ago 2026
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="flex gap-3 rounded-md border p-3">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="24"
+                                                height="24"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                class="lucide lucide-triangle-alert mt-0.5 h-4 w-4 shrink-0 text-muted-foreground"
+                                                aria-hidden="true"
+                                            >
+                                                <path
+                                                    d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"
+                                                ></path>
+                                                <path d="M12 9v4"></path>
+                                                <path d="M12 17h.01"></path>
+                                            </svg>
+                                            <div class="min-w-0 flex-1">
+                                                <div
+                                                    class="flex items-center justify-between gap-2"
+                                                >
+                                                    <p class="truncate text-sm font-medium">
+                                                        Cola de correos saturada
+                                                    </p>
+                                                    <div
+                                                        class="inline-flex items-center rounded-md border px-2.5 py-0.5 font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-warning/15 text-warning mono-label text-[10px] shrink-0"
+                                                    >
+                                                        Media
+                                                    </div>
+                                                </div>
+                                                <p
+                                                    class="mt-0.5 line-clamp-2 text-xs text-muted-foreground"
+                                                >
+                                                    La cola de notificaciones supera 800 mensajes
+                                                    pendientes.
+                                                </p>
+                                                <p
+                                                    class="mono-label mt-1 text-[10px] text-muted-foreground"
+                                                >
+                                                    AL-1041 · 18 ago 2026
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="flex gap-3 rounded-md border p-3">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="24"
+                                                height="24"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                class="lucide lucide-triangle-alert mt-0.5 h-4 w-4 shrink-0 text-muted-foreground"
+                                                aria-hidden="true"
+                                            >
+                                                <path
+                                                    d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"
+                                                ></path>
+                                                <path d="M12 9v4"></path>
+                                                <path d="M12 17h.01"></path>
+                                            </svg>
+                                            <div class="min-w-0 flex-1">
+                                                <div
+                                                    class="flex items-center justify-between gap-2"
+                                                >
+                                                    <p class="truncate text-sm font-medium">
+                                                        Uso de CPU elevado
+                                                    </p>
+                                                    <div
+                                                        class="inline-flex items-center rounded-md border px-2.5 py-0.5 font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-warning/15 text-warning mono-label text-[10px] shrink-0"
+                                                    >
+                                                        Media
+                                                    </div>
+                                                </div>
+                                                <p
+                                                    class="mt-0.5 line-clamp-2 text-xs text-muted-foreground"
+                                                >
+                                                    El nodo eu-west-1 mantiene CPU por encima del 85
+                                                    % durante 20 min.
+                                                </p>
+                                                <p
+                                                    class="mono-label mt-1 text-[10px] text-muted-foreground"
+                                                >
+                                                    AL-1040 · 18 ago 2026
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="flex gap-3 rounded-md border p-3">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="24"
+                                                height="24"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                class="lucide lucide-triangle-alert mt-0.5 h-4 w-4 shrink-0 text-muted-foreground"
+                                                aria-hidden="true"
+                                            >
+                                                <path
+                                                    d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"
+                                                ></path>
+                                                <path d="M12 9v4"></path>
+                                                <path d="M12 17h.01"></path>
+                                            </svg>
+                                            <div class="min-w-0 flex-1">
+                                                <div
+                                                    class="flex items-center justify-between gap-2"
+                                                >
+                                                    <p class="truncate text-sm font-medium">
+                                                        Intento de acceso masivo
+                                                    </p>
+                                                    <div
+                                                        class="inline-flex items-center rounded-md border px-2.5 py-0.5 font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-destructive text-destructive-foreground mono-label text-[10px] shrink-0"
+                                                    >
+                                                        Alta
+                                                    </div>
+                                                </div>
+                                                <p
+                                                    class="mt-0.5 line-clamp-2 text-xs text-muted-foreground"
+                                                >
+                                                    87 intentos fallidos desde la IP 203.0.113.42 en
+                                                    5 minutos.
+                                                </p>
+                                                <p
+                                                    class="mono-label mt-1 text-[10px] text-muted-foreground"
+                                                >
+                                                    AL-1039 · 18 ago 2026
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="flex gap-3 rounded-md border p-3">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="24"
+                                                height="24"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                class="lucide lucide-triangle-alert mt-0.5 h-4 w-4 shrink-0 text-muted-foreground"
+                                                aria-hidden="true"
+                                            >
+                                                <path
+                                                    d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"
+                                                ></path>
+                                                <path d="M12 9v4"></path>
+                                                <path d="M12 17h.01"></path>
+                                            </svg>
+                                            <div class="min-w-0 flex-1">
+                                                <div
+                                                    class="flex items-center justify-between gap-2"
+                                                >
+                                                    <p class="truncate text-sm font-medium">
+                                                        Revisión de contenido pendiente
+                                                    </p>
+                                                    <div
+                                                        class="inline-flex items-center rounded-md border px-2.5 py-0.5 font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-info/15 text-info mono-label text-[10px] shrink-0"
+                                                    >
+                                                        Baja
+                                                    </div>
+                                                </div>
+                                                <p
+                                                    class="mt-0.5 line-clamp-2 text-xs text-muted-foreground"
+                                                >
+                                                    9 artículos esperan moderación del equipo
+                                                    editorial.
+                                                </p>
+                                                <p
+                                                    class="mono-label mt-1 text-[10px] text-muted-foreground"
+                                                >
+                                                    AL-1038 · 17 ago 2026
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 gap-6 xl:grid-cols-2">
+                                <div
+                                    class="border bg-card text-card-foreground surface-hairline rounded-lg"
+                                >
+                                    <div class="flex flex-col space-y-1.5 p-6 pb-3">
+                                        <div class="font-semibold tracking-tight text-base">
+                                            Últimos pedidos
+                                        </div>
+                                        <div class="text-sm text-muted-foreground">
+                                            Transacciones recientes
+                                        </div>
+                                    </div>
+                                    <div class="p-6 pt-0 space-y-2">
+                                        <div class="flex items-center gap-3 rounded-md p-2">
+                                            <div class="min-w-0 flex-1 leading-tight">
+                                                <p class="truncate text-sm font-medium">
+                                                    Diego Cárdenas
+                                                </p>
+                                                <p
+                                                    class="mono-label text-[10px] text-muted-foreground"
+                                                >
+                                                    ORD-88412 · 18 ago 2026
+                                                </p>
+                                            </div>
+                                            <span class="tabular shrink-0 text-sm font-medium"
+                                                >129&nbsp;€</span
+                                            >
+                                            <div
+                                                class="inline-flex items-center rounded-md border px-2.5 py-0.5 font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-success/15 text-success mono-label text-[10px] shrink-0"
+                                            >
+                                                Completado
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center gap-3 rounded-md p-2">
+                                            <div class="min-w-0 flex-1 leading-tight">
+                                                <p class="truncate text-sm font-medium">
+                                                    Renata Ferreyra
+                                                </p>
+                                                <p
+                                                    class="mono-label text-[10px] text-muted-foreground"
+                                                >
+                                                    ORD-88411 · 18 ago 2026
+                                                </p>
+                                            </div>
+                                            <span class="tabular shrink-0 text-sm font-medium"
+                                                >199&nbsp;€</span
+                                            >
+                                            <div
+                                                class="inline-flex items-center rounded-md border px-2.5 py-0.5 font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-success/15 text-success mono-label text-[10px] shrink-0"
+                                            >
+                                                Completado
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center gap-3 rounded-md p-2">
+                                            <div class="min-w-0 flex-1 leading-tight">
+                                                <p class="truncate text-sm font-medium">
+                                                    Tomás Almeida
+                                                </p>
+                                                <p
+                                                    class="mono-label text-[10px] text-muted-foreground"
+                                                >
+                                                    ORD-88410 · 18 ago 2026
+                                                </p>
+                                            </div>
+                                            <span class="tabular shrink-0 text-sm font-medium"
+                                                >79&nbsp;€</span
+                                            >
+                                            <div
+                                                class="inline-flex items-center rounded-md border px-2.5 py-0.5 font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-success/15 text-success mono-label text-[10px] shrink-0"
+                                            >
+                                                Completado
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center gap-3 rounded-md p-2">
+                                            <div class="min-w-0 flex-1 leading-tight">
+                                                <p class="truncate text-sm font-medium">
+                                                    Óscar Rincón
+                                                </p>
+                                                <p
+                                                    class="mono-label text-[10px] text-muted-foreground"
+                                                >
+                                                    ORD-88409 · 18 ago 2026
+                                                </p>
+                                            </div>
+                                            <span class="tabular shrink-0 text-sm font-medium"
+                                                >348&nbsp;€</span
+                                            >
+                                            <div
+                                                class="inline-flex items-center rounded-md border px-2.5 py-0.5 font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-warning/15 text-warning mono-label text-[10px] shrink-0"
+                                            >
+                                                Pendiente
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center gap-3 rounded-md p-2">
+                                            <div class="min-w-0 flex-1 leading-tight">
+                                                <p class="truncate text-sm font-medium">
+                                                    Hugo Viana
+                                                </p>
+                                                <p
+                                                    class="mono-label text-[10px] text-muted-foreground"
+                                                >
+                                                    ORD-88408 · 18 ago 2026
+                                                </p>
+                                            </div>
+                                            <span class="tabular shrink-0 text-sm font-medium"
+                                                >199&nbsp;€</span
+                                            >
+                                            <div
+                                                class="inline-flex items-center rounded-md border px-2.5 py-0.5 font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-success/15 text-success mono-label text-[10px] shrink-0"
+                                            >
+                                                Completado
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center gap-3 rounded-md p-2">
+                                            <div class="min-w-0 flex-1 leading-tight">
+                                                <p class="truncate text-sm font-medium">
+                                                    Martina Ferrer
+                                                </p>
+                                                <p
+                                                    class="mono-label text-[10px] text-muted-foreground"
+                                                >
+                                                    ORD-88407 · 18 ago 2026
+                                                </p>
+                                            </div>
+                                            <span class="tabular shrink-0 text-sm font-medium"
+                                                >129&nbsp;€</span
+                                            >
+                                            <div
+                                                class="inline-flex items-center rounded-md border px-2.5 py-0.5 font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-destructive text-destructive-foreground mono-label text-[10px] shrink-0"
+                                            >
+                                                Fallido
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    class="border bg-card text-card-foreground surface-hairline rounded-lg"
+                                >
+                                    <div class="flex flex-col space-y-1.5 p-6 pb-3">
+                                        <div class="font-semibold tracking-tight text-base">
+                                            Usuarios recientes
+                                        </div>
+                                        <div class="text-sm text-muted-foreground">
+                                            Últimos registros
+                                        </div>
+                                    </div>
+                                    <div class="p-6 pt-0 space-y-2">
+                                        <div class="flex items-center gap-3 rounded-md p-2">
+                                            <span
+                                                class="relative flex shrink-0 overflow-hidden rounded-full h-8 w-8"
+                                                ><span
+                                                    class="flex h-full w-full items-center justify-center rounded-full font-medium bg-accent text-xs text-accent-foreground"
+                                                    >EP</span
+                                                ></span
+                                            >
+                                            <div class="min-w-0 flex-1 leading-tight">
+                                                <p class="truncate text-sm font-medium">
+                                                    Elena Petrova
+                                                </p>
+                                                <p class="truncate text-xs text-muted-foreground">
+                                                    elena.petrova@gmail.com
+                                                </p>
+                                            </div>
+                                            <span
+                                                class="mono-label shrink-0 text-[10px] text-muted-foreground"
+                                                >17 ago 2026</span
+                                            >
+                                        </div>
+                                        <div class="flex items-center gap-3 rounded-md p-2">
+                                            <span
+                                                class="relative flex shrink-0 overflow-hidden rounded-full h-8 w-8"
+                                                ><span
+                                                    class="flex h-full w-full items-center justify-center rounded-full font-medium bg-accent text-xs text-accent-foreground"
+                                                    >ML</span
+                                                ></span
+                                            >
+                                            <div class="min-w-0 flex-1 leading-tight">
+                                                <p class="truncate text-sm font-medium">
+                                                    Mateo Lozano
+                                                </p>
+                                                <p class="truncate text-xs text-muted-foreground">
+                                                    mateo.lozano@yahoo.com
+                                                </p>
+                                            </div>
+                                            <span
+                                                class="mono-label shrink-0 text-[10px] text-muted-foreground"
+                                                >16 ago 2026</span
+                                            >
+                                        </div>
+                                        <div class="flex items-center gap-3 rounded-md p-2">
+                                            <span
+                                                class="relative flex shrink-0 overflow-hidden rounded-full h-8 w-8"
+                                                ><span
+                                                    class="flex h-full w-full items-center justify-center rounded-full font-medium bg-accent text-xs text-accent-foreground"
+                                                    >LV</span
+                                                ></span
+                                            >
+                                            <div class="min-w-0 flex-1 leading-tight">
+                                                <p class="truncate text-sm font-medium">
+                                                    Lorena Vega
+                                                </p>
+                                                <p class="truncate text-xs text-muted-foreground">
+                                                    lorena.vega@gmail.com
+                                                </p>
+                                            </div>
+                                            <span
+                                                class="mono-label shrink-0 text-[10px] text-muted-foreground"
+                                                >15 ago 2026</span
+                                            >
+                                        </div>
+                                        <div class="flex items-center gap-3 rounded-md p-2">
+                                            <span
+                                                class="relative flex shrink-0 overflow-hidden rounded-full h-8 w-8"
+                                                ><span
+                                                    class="flex h-full w-full items-center justify-center rounded-full font-medium bg-accent text-xs text-accent-foreground"
+                                                    >RS</span
+                                                ></span
+                                            >
+                                            <div class="min-w-0 flex-1 leading-tight">
+                                                <p class="truncate text-sm font-medium">
+                                                    Rubén Salazar
+                                                </p>
+                                                <p class="truncate text-xs text-muted-foreground">
+                                                    ruben.salazar@gmail.com
+                                                </p>
+                                            </div>
+                                            <span
+                                                class="mono-label shrink-0 text-[10px] text-muted-foreground"
+                                                >24 jun 2026</span
+                                            >
+                                        </div>
+                                        <div class="flex items-center gap-3 rounded-md p-2">
+                                            <span
+                                                class="relative flex shrink-0 overflow-hidden rounded-full h-8 w-8"
+                                                ><span
+                                                    class="flex h-full w-full items-center justify-center rounded-full font-medium bg-accent text-xs text-accent-foreground"
+                                                    >IC</span
+                                                ></span
+                                            >
+                                            <div class="min-w-0 flex-1 leading-tight">
+                                                <p class="truncate text-sm font-medium">
+                                                    Inés Cabrera
+                                                </p>
+                                                <p class="truncate text-xs text-muted-foreground">
+                                                    ines.cabrera@gmail.com
+                                                </p>
+                                            </div>
+                                            <span
+                                                class="mono-label shrink-0 text-[10px] text-muted-foreground"
+                                                >10 jun 2026</span
+                                            >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                class="flex items-center justify-end gap-2 text-xs text-muted-foreground"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="lucide lucide-arrow-up-right h-3.5 w-3.5"
+                                    aria-hidden="true"
+                                >
+                                    <path d="M7 7h10v10"></path>
+                                    <path d="M7 17 17 7"></path></svg
+                                >Datos simulados del entorno producción · v4.8.2
+                            </div>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </div>
+
+        <script type="module" src="./js/app.js"></script>
+        <div
+            data-radix-popper-content-wrapper=""
+            dir="ltr"
+            class="overlay-menu"
+            data-overlay-panel="user-menu"
+            hidden=""
+        >
+            <div
+                data-side="bottom"
+                data-align="end"
+                role="menu"
+                aria-orientation="vertical"
+                data-state="open"
+                data-radix-menu-content=""
+                dir="ltr"
+                class="z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 w-56"
+                tabindex="-1"
+                data-orientation="vertical"
+            >
+                <div class="px-2 py-1.5 text-sm font-semibold">
+                    <span class="block text-sm font-medium">Lucía Fernández</span
+                    ><span class="block text-xs font-normal text-muted-foreground"
+                        >lucia.fernandez@nexo.io</span
+                    >
+                </div>
+                <div
+                    role="separator"
+                    aria-orientation="horizontal"
+                    class="-mx-1 my-1 h-px bg-muted"
+                ></div>
+                <div
+                    role="menuitem"
+                    class="relative flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&amp;_svg]:size-4 [&amp;_svg]:shrink-0"
+                    tabindex="-1"
+                    data-orientation="vertical"
+                    data-radix-collection-item=""
+                    data-href="perfil.html"
+                >
+                    Perfil
+                </div>
+                <div
+                    role="menuitem"
+                    class="relative flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&amp;_svg]:size-4 [&amp;_svg]:shrink-0"
+                    tabindex="-1"
+                    data-orientation="vertical"
+                    data-radix-collection-item=""
+                >
+                    Salir
+                </div>
+            </div>
+        </div>
+        <div
+            class="fixed inset-0 z-[60]"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Búsqueda"
+            data-overlay-panel="palette"
+            hidden=""
+        >
+            <div class="absolute inset-0 bg-black/50"></div>
+            <div
+                class="absolute left-1/2 top-[12vh] w-[92vw] max-w-lg -translate-x-1/2 overflow-hidden rounded-lg border bg-popover shadow-xl"
+            >
+                <div class="flex items-center gap-3 border-b px-4">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="lucide lucide-search h-4 w-4 text-muted-foreground"
+                    >
+                        <path d="m21 21-4.34-4.34"></path>
+                        <circle cx="11" cy="11" r="8"></circle></svg
+                    ><input
+                        placeholder="Buscar una sección…"
+                        class="h-12 w-full bg-transparent text-sm outline-none placeholder:text-muted-foreground"
+                        aria-label="Buscar sección"
+                        value=""
+                    /><kbd
+                        class="mono-label hidden rounded border px-1.5 py-0.5 text-[10px] text-muted-foreground sm:block"
+                        >ESC</kbd
+                    >
+                </div>
+                <ul class="max-h-72 overflow-y-auto p-1.5" role="listbox">
+                    <li role="option" aria-selected="true">
+                        <button
+                            type="button"
+                            class="flex w-full items-center gap-3 rounded-md px-3 py-2.5 text-left text-sm transition-colors bg-accent text-accent-foreground"
+                            data-nav="index.html"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="lucide lucide-layout-dashboard h-4 w-4 shrink-0"
+                            >
+                                <rect width="7" height="9" x="3" y="3" rx="1"></rect>
+                                <rect width="7" height="5" x="14" y="3" rx="1"></rect>
+                                <rect width="7" height="9" x="14" y="12" rx="1"></rect>
+                                <rect width="7" height="5" x="3" y="16" rx="1"></rect></svg
+                            ><span class="flex-1 whitespace-nowrap">Resumen</span
+                            ><svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="lucide lucide-arrow-right h-4 w-4"
+                            >
+                                <path d="M5 12h14"></path>
+                                <path d="m12 5 7 7-7 7"></path>
+                            </svg>
+                        </button>
+                    </li>
+                    <li role="option" aria-selected="false">
+                        <button
+                            type="button"
+                            class="flex w-full items-center gap-3 rounded-md px-3 py-2.5 text-left text-sm transition-colors text-foreground"
+                            data-nav="usuarios.html"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="lucide lucide-users h-4 w-4 shrink-0"
+                            >
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                <path d="M16 3.128a4 4 0 0 1 0 7.744"></path>
+                                <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <circle cx="9" cy="7" r="4"></circle></svg
+                            ><span class="flex-1 whitespace-nowrap">Usuarios</span>
+                        </button>
+                    </li>
+                    <li role="option" aria-selected="false">
+                        <button
+                            type="button"
+                            class="flex w-full items-center gap-3 rounded-md px-3 py-2.5 text-left text-sm transition-colors text-foreground"
+                            data-nav="contenido.html"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="lucide lucide-file-text h-4 w-4 shrink-0"
+                            >
+                                <path
+                                    d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"
+                                ></path>
+                                <path d="M14 2v5a1 1 0 0 0 1 1h5"></path>
+                                <path d="M10 9H8"></path>
+                                <path d="M16 13H8"></path>
+                                <path d="M16 17H8"></path></svg
+                            ><span class="flex-1 whitespace-nowrap">Contenido</span>
+                        </button>
+                    </li>
+                    <li role="option" aria-selected="false">
+                        <button
+                            type="button"
+                            class="flex w-full items-center gap-3 rounded-md px-3 py-2.5 text-left text-sm transition-colors text-foreground"
+                            data-nav="auditoria.html"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="lucide lucide-scroll-text h-4 w-4 shrink-0"
+                            >
+                                <path d="M15 12h-5"></path>
+                                <path d="M15 8h-5"></path>
+                                <path d="M19 17V5a2 2 0 0 0-2-2H4"></path>
+                                <path
+                                    d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3"
+                                ></path></svg
+                            ><span class="flex-1 whitespace-nowrap">Auditoría</span>
+                        </button>
+                    </li>
+                    <li role="option" aria-selected="false">
+                        <button
+                            type="button"
+                            class="flex w-full items-center gap-3 rounded-md px-3 py-2.5 text-left text-sm transition-colors text-foreground"
+                            data-nav="configuracion.html"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="lucide lucide-settings h-4 w-4 shrink-0"
+                            >
+                                <path
+                                    d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"
+                                ></path>
+                                <circle cx="12" cy="12" r="3"></circle></svg
+                            ><span class="flex-1 whitespace-nowrap">Configuración</span>
+                        </button>
+                    </li>
+                    <li role="option" aria-selected="false">
+                        <button
+                            type="button"
+                            class="flex w-full items-center gap-3 rounded-md px-3 py-2.5 text-left text-sm transition-colors text-foreground"
+                            data-nav="salud.html"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="lucide lucide-activity h-4 w-4 shrink-0"
+                            >
+                                <path
+                                    d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"
+                                ></path></svg
+                            ><span class="flex-1 whitespace-nowrap">Salud</span>
+                        </button>
+                    </li>
+                    <li role="option" aria-selected="false">
+                        <button
+                            type="button"
+                            class="flex w-full items-center gap-3 rounded-md px-3 py-2.5 text-left text-sm transition-colors text-foreground"
+                            data-nav="reportes.html"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="lucide lucide-file-spreadsheet h-4 w-4 shrink-0"
+                            >
+                                <path
+                                    d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"
+                                ></path>
+                                <path d="M14 2v5a1 1 0 0 0 1 1h5"></path>
+                                <path d="M8 13h2"></path>
+                                <path d="M14 13h2"></path>
+                                <path d="M8 17h2"></path>
+                                <path d="M14 17h2"></path></svg
+                            ><span class="flex-1 whitespace-nowrap">Reportes</span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div
+            data-radix-popper-content-wrapper=""
+            class="overlay-menu overlay-notifications"
+            data-overlay-panel="notifications"
+            hidden=""
+        >
+            <div
+                data-side="bottom"
+                data-align="end"
+                data-state="open"
+                role="dialog"
+                class="z-50 rounded-md border bg-popover text-popover-foreground shadow-md outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 w-[min(92vw,22rem)] p-0"
+                tabindex="-1"
+            >
+                <div class="flex items-center justify-between px-4 py-3">
+                    <div class="leading-tight">
+                        <p class="text-sm font-semibold">Notificaciones</p>
+                        <p class="mono-label text-[10px] text-muted-foreground">6 sin leer</p>
+                    </div>
+                    <button
+                        class="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground rounded-md text-xs h-8 px-2"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="lucide lucide-check-check h-4 w-4"
+                            aria-hidden="true"
+                        >
+                            <path d="M18 6 7 17l-5-5"></path>
+                            <path d="m22 10-7.5 7.5L13 16"></path></svg
+                        >Leer todas
+                    </button>
+                </div>
+                <div
+                    data-orientation="horizontal"
+                    role="none"
+                    class="shrink-0 bg-border h-[1px] w-full"
+                ></div>
+                <ul class="max-h-80 overflow-y-auto p-2" aria-label="Lista de notificaciones">
+                    <li>
+                        <button
+                            type="button"
+                            class="flex w-full gap-3 rounded-md p-3 text-left transition-colors hover:bg-muted bg-accent/40"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="lucide lucide-triangle-alert mt-0.5 h-4 w-4 shrink-0 text-muted-foreground"
+                                aria-hidden="true"
+                            >
+                                <path
+                                    d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"
+                                ></path>
+                                <path d="M12 9v4"></path>
+                                <path d="M12 17h.01"></path></svg
+                            ><span class="min-w-0 flex-1"
+                                ><span class="flex items-center justify-between gap-2"
+                                    ><span class="truncate text-sm font-medium"
+                                        >Pago fallido recurrente</span
+                                    >
+                                    <div
+                                        class="inline-flex items-center rounded-md border px-2.5 py-0.5 font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-destructive text-destructive-foreground mono-label text-[10px] shrink-0"
+                                    >
+                                        Alta
+                                    </div></span
+                                ><span
+                                    class="mt-0.5 line-clamp-2 block text-xs text-muted-foreground"
+                                    >12 transacciones con tarjeta rechazada en la última hora en el
+                                    checkout.</span
+                                ><span
+                                    class="mono-label mt-1 block text-[10px] text-muted-foreground"
+                                    >18 ago 2026</span
+                                ></span
+                            ><span
+                                class="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-primary"
+                                aria-hidden="true"
+                            ></span>
+                        </button>
+                    </li>
+                    <li>
+                        <button
+                            type="button"
+                            class="flex w-full gap-3 rounded-md p-3 text-left transition-colors hover:bg-muted bg-accent/40"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="lucide lucide-triangle-alert mt-0.5 h-4 w-4 shrink-0 text-muted-foreground"
+                                aria-hidden="true"
+                            >
+                                <path
+                                    d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"
+                                ></path>
+                                <path d="M12 9v4"></path>
+                                <path d="M12 17h.01"></path></svg
+                            ><span class="min-w-0 flex-1"
+                                ><span class="flex items-center justify-between gap-2"
+                                    ><span class="truncate text-sm font-medium"
+                                        >Cola de correos saturada</span
+                                    >
+                                    <div
+                                        class="inline-flex items-center rounded-md border px-2.5 py-0.5 font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-warning/15 text-warning mono-label text-[10px] shrink-0"
+                                    >
+                                        Media
+                                    </div></span
+                                ><span
+                                    class="mt-0.5 line-clamp-2 block text-xs text-muted-foreground"
+                                    >La cola de notificaciones supera 800 mensajes pendientes.</span
+                                ><span
+                                    class="mono-label mt-1 block text-[10px] text-muted-foreground"
+                                    >18 ago 2026</span
+                                ></span
+                            ><span
+                                class="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-primary"
+                                aria-hidden="true"
+                            ></span>
+                        </button>
+                    </li>
+                    <li>
+                        <button
+                            type="button"
+                            class="flex w-full gap-3 rounded-md p-3 text-left transition-colors hover:bg-muted bg-accent/40"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="lucide lucide-triangle-alert mt-0.5 h-4 w-4 shrink-0 text-muted-foreground"
+                                aria-hidden="true"
+                            >
+                                <path
+                                    d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"
+                                ></path>
+                                <path d="M12 9v4"></path>
+                                <path d="M12 17h.01"></path></svg
+                            ><span class="min-w-0 flex-1"
+                                ><span class="flex items-center justify-between gap-2"
+                                    ><span class="truncate text-sm font-medium"
+                                        >Uso de CPU elevado</span
+                                    >
+                                    <div
+                                        class="inline-flex items-center rounded-md border px-2.5 py-0.5 font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-warning/15 text-warning mono-label text-[10px] shrink-0"
+                                    >
+                                        Media
+                                    </div></span
+                                ><span
+                                    class="mt-0.5 line-clamp-2 block text-xs text-muted-foreground"
+                                    >El nodo eu-west-1 mantiene CPU por encima del 85 % durante 20
+                                    min.</span
+                                ><span
+                                    class="mono-label mt-1 block text-[10px] text-muted-foreground"
+                                    >18 ago 2026</span
+                                ></span
+                            ><span
+                                class="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-primary"
+                                aria-hidden="true"
+                            ></span>
+                        </button>
+                    </li>
+                    <li>
+                        <button
+                            type="button"
+                            class="flex w-full gap-3 rounded-md p-3 text-left transition-colors hover:bg-muted bg-accent/40"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="lucide lucide-triangle-alert mt-0.5 h-4 w-4 shrink-0 text-muted-foreground"
+                                aria-hidden="true"
+                            >
+                                <path
+                                    d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"
+                                ></path>
+                                <path d="M12 9v4"></path>
+                                <path d="M12 17h.01"></path></svg
+                            ><span class="min-w-0 flex-1"
+                                ><span class="flex items-center justify-between gap-2"
+                                    ><span class="truncate text-sm font-medium"
+                                        >Intento de acceso masivo</span
+                                    >
+                                    <div
+                                        class="inline-flex items-center rounded-md border px-2.5 py-0.5 font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-destructive text-destructive-foreground mono-label text-[10px] shrink-0"
+                                    >
+                                        Alta
+                                    </div></span
+                                ><span
+                                    class="mt-0.5 line-clamp-2 block text-xs text-muted-foreground"
+                                    >87 intentos fallidos desde la IP 203.0.113.42 en 5
+                                    minutos.</span
+                                ><span
+                                    class="mono-label mt-1 block text-[10px] text-muted-foreground"
+                                    >18 ago 2026</span
+                                ></span
+                            ><span
+                                class="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-primary"
+                                aria-hidden="true"
+                            ></span>
+                        </button>
+                    </li>
+                    <li>
+                        <button
+                            type="button"
+                            class="flex w-full gap-3 rounded-md p-3 text-left transition-colors hover:bg-muted bg-accent/40"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="lucide lucide-triangle-alert mt-0.5 h-4 w-4 shrink-0 text-muted-foreground"
+                                aria-hidden="true"
+                            >
+                                <path
+                                    d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"
+                                ></path>
+                                <path d="M12 9v4"></path>
+                                <path d="M12 17h.01"></path></svg
+                            ><span class="min-w-0 flex-1"
+                                ><span class="flex items-center justify-between gap-2"
+                                    ><span class="truncate text-sm font-medium"
+                                        >Revisión de contenido pendiente</span
+                                    >
+                                    <div
+                                        class="inline-flex items-center rounded-md border px-2.5 py-0.5 font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-info/15 text-info mono-label text-[10px] shrink-0"
+                                    >
+                                        Baja
+                                    </div></span
+                                ><span
+                                    class="mt-0.5 line-clamp-2 block text-xs text-muted-foreground"
+                                    >9 artículos esperan moderación del equipo editorial.</span
+                                ><span
+                                    class="mono-label mt-1 block text-[10px] text-muted-foreground"
+                                    >17 ago 2026</span
+                                ></span
+                            ><span
+                                class="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-primary"
+                                aria-hidden="true"
+                            ></span>
+                        </button>
+                    </li>
+                    <li>
+                        <button
+                            type="button"
+                            class="flex w-full gap-3 rounded-md p-3 text-left transition-colors hover:bg-muted bg-accent/40"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="lucide lucide-triangle-alert mt-0.5 h-4 w-4 shrink-0 text-muted-foreground"
+                                aria-hidden="true"
+                            >
+                                <path
+                                    d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"
+                                ></path>
+                                <path d="M12 9v4"></path>
+                                <path d="M12 17h.01"></path></svg
+                            ><span class="min-w-0 flex-1"
+                                ><span class="flex items-center justify-between gap-2"
+                                    ><span class="truncate text-sm font-medium"
+                                        >Backup sin verificar</span
+                                    >
+                                    <div
+                                        class="inline-flex items-center rounded-md border px-2.5 py-0.5 font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-warning/15 text-warning mono-label text-[10px] shrink-0"
+                                    >
+                                        Media
+                                    </div></span
+                                ><span
+                                    class="mt-0.5 line-clamp-2 block text-xs text-muted-foreground"
+                                    >La última copia de seguridad de la base de datos no pasó la
+                                    verificación de integridad.</span
+                                ><span
+                                    class="mono-label mt-1 block text-[10px] text-muted-foreground"
+                                    >17 ago 2026</span
+                                ></span
+                            ><span
+                                class="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-primary"
+                                aria-hidden="true"
+                            ></span>
+                        </button>
+                    </li>
+                </ul>
+                <div
+                    data-orientation="horizontal"
+                    role="none"
+                    class="shrink-0 bg-border h-[1px] w-full"
+                ></div>
+                <div class="p-2">
+                    <button
+                        class="inline-flex items-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-8 rounded-md px-3 text-xs w-full justify-between"
+                    >
+                        Ver todas las alertas<svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="lucide lucide-chevron-right h-4 w-4"
+                            aria-hidden="true"
+                        >
+                            <path d="m9 18 6-6-6-6"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

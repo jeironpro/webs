@@ -1,11 +1,23 @@
-function abrirModal() {
-    document.getElementById('modal').style.display = 'block';
-    document.getElementById('modalOverlay').style.display = 'block';
-}
+const modal = document.getElementById("modal");
+const overlay = document.getElementById("modal-overlay");
+const openButton = document.getElementById("open-modal");
+const closeButton = document.getElementById("close-modal");
 
-function cerrarModal() {
-    document.getElementById('modal').style.display = 'none';
-    document.getElementById('modalOverlay').style.display = 'none';
-}
+const openModal = () => {
+    modal.classList.add("is-open");
+    overlay.classList.add("is-open");
+};
 
-document.getElementById('modalOverlay').addEventListener('click', cerrarModal);
+const closeModal = () => {
+    modal.classList.remove("is-open");
+    overlay.classList.remove("is-open");
+};
+
+openButton.addEventListener("click", openModal);
+closeButton.addEventListener("click", closeModal);
+overlay.addEventListener("click", closeModal);
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+        closeModal();
+    }
+});

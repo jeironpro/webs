@@ -1,55 +1,71 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../icon/sql.png" type="image/x-icon">
-    <title>Views & Indexes - Curso SQL</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/styles.css">
-</head>
-<body>
-    <header class="site-header">
-        <div class="brand">
-            <img src="../icon/sql.png" alt="SQL Logo">
-            <span>Curso SQL</span>
-        </div>
-    </header>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg" />
+        <link rel="icon" href="../assets/icons/sql.png" type="image/x-icon" />
+        <title>Views & Indexes - Curso SQL</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="../css/styles.css" />
+    </head>
+    <body>
+        <header class="site-header">
+            <div class="brand">
+                <img src="../assets/icons/sql.png" alt="SQL Logo" />
+                <span>Curso SQL</span>
+            </div>
+        </header>
 
-    <main class="main-content">
-        <section class="lesson">
-            <h1>Views & Indexes</h1>
-            
-            <h2>Views (Vistas)</h2>
-            <p>Una vista es una tabla virtual basada en el conjunto de resultados de una consulta SQL. Contiene filas y columnas, igual que una tabla real.</p>
-            
-            <h3>Crear una Vista</h3>
-            <pre>CREATE VIEW usuarios_activos AS
+        <main class="main-content">
+            <section class="lesson">
+                <h1>Views & Indexes</h1>
+
+                <h2>Views (Vistas)</h2>
+                <p>
+                    Una vista es una tabla virtual basada en el conjunto de resultados de una
+                    consulta SQL. Contiene filas y columnas, igual que una tabla real.
+                </p>
+
+                <h3>Crear una Vista</h3>
+                <pre>
+CREATE VIEW usuarios_activos AS
 SELECT id, nombre, email
 FROM usuarios
 WHERE activo = 1;</pre>
 
-            <h3>Usar una Vista</h3>
-            <pre>SELECT * FROM usuarios_activos;</pre>
+                <h3>Usar una Vista</h3>
+                <pre>SELECT * FROM usuarios_activos;</pre>
 
-            <h2>Indexes (Índices)</h2>
-            <p>Los índices se utilizan para recuperar datos de la base de datos de manera más rápida. Los usuarios no pueden ver los índices, solo se usan para acelerar las búsquedas/consultas.</p>
+                <h2>Indexes (Índices)</h2>
+                <p>
+                    Los índices se utilizan para recuperar datos de la base de datos de manera más
+                    rápida. Los usuarios no pueden ver los índices, solo se usan para acelerar las
+                    búsquedas/consultas.
+                </p>
 
-            <h3>Crear un Índice</h3>
-            <pre>CREATE INDEX idx_email
+                <h3>Crear un Índice</h3>
+                <pre>
+CREATE INDEX idx_email
 ON usuarios (email);</pre>
 
-            <div class="info-box">
-                <strong>Nota:</strong> Actualizar una tabla con índices lleva más tiempo que actualizar una tabla sin ellos (porque los índices también deben actualizarse). Por lo tanto, crea índices solo en columnas que se usarán frecuentemente para buscar.
-            </div>
+                <div class="info-box">
+                    <strong>Nota:</strong> Actualizar una tabla con índices lleva más tiempo que
+                    actualizar una tabla sin ellos (porque los índices también deben actualizarse).
+                    Por lo tanto, crea índices solo en columnas que se usarán frecuentemente para
+                    buscar.
+                </div>
 
-            <a href="../index.html" class="back-link">Volver al Inicio</a>
-        </section>
-    </main>
-    
-    <footer class="site-footer">
-        <p>&copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro</p>
-    </footer>
-    <script src="../js/common.js"></script>
-</body>
+                <a href="../index.html" class="back-link">Volver al Inicio</a>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <p>&copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro</p>
+        </footer>
+        <script src="../js/common.js"></script>
+    </body>
 </html>

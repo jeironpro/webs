@@ -39,7 +39,7 @@ function elegirLetraCentral(letrasRaiz) {
         total: palabras.filter(
             (palabra) =>
                 palabra.includes(letra) &&
-                [...palabra].every((caracter) => letrasRaiz.includes(caracter)),
+                [...palabra].every((caracter) => letrasRaiz.includes(caracter))
         ).length,
     }));
     const maximo = Math.max(...candidatos.map((candidato) => candidato.total));
@@ -74,8 +74,8 @@ function nuevaColmena() {
                 (palabra) =>
                     palabra.length >= 3 &&
                     palabra.includes(letraCentro) &&
-                    [...palabra].every((caracter) => letrasDisponibles.includes(caracter)),
-            ),
+                    [...palabra].every((caracter) => letrasDisponibles.includes(caracter))
+            )
         ),
     ];
 
@@ -156,7 +156,10 @@ function probarPalabra() {
     }
 
     if (!palabra.includes(letraCentro)) {
-        mostrarMensaje(`La palabra debe contener la letra central: ${letraCentro.toUpperCase()}.`, "error");
+        mostrarMensaje(
+            `La palabra debe contener la letra central: ${letraCentro.toUpperCase()}.`,
+            "error"
+        );
         return;
     }
 
@@ -185,19 +188,20 @@ function probarPalabra() {
 
 async function cargarJuego() {
     try {
-        const respuesta = await fetch("json/siete_letras.json");
+        const respuesta = await fetch("data/siete_letras.json");
         if (!respuesta.ok) throw new Error("No se pudo cargar el archivo de colmenas.");
         bloques = await respuesta.json();
         elementos.totalPalabras.textContent = `${bloques.flat().length.toLocaleString("es-ES")} palabras`;
         nuevaColmena();
-    } catch (error) {
-        console.error(error);
+    } catch {
         anunciar("No se pudo cargar el juego. Recarga la página.");
     }
 }
 
 elementos.lados.forEach((lado) => {
-    lado.addEventListener("click", () => agregarLetra(lado.querySelector(".letra").textContent.toLowerCase()));
+    lado.addEventListener("click", () =>
+        agregarLetra(lado.querySelector(".letra").textContent.toLowerCase())
+    );
 });
 
 elementos.centro.addEventListener("click", () => agregarLetra(letraCentro));

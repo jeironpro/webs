@@ -1,0 +1,192 @@
+[
+  {
+    "question": "¿Qué es un Diagrama de Secuencia?",
+    "options": [
+      "Un diagrama de flujo",
+      "Un diagrama de estado",
+      "Un diagrama de clases",
+      "Diagrama de interacción que muestra cómo los objetos se comunican entre sí a lo largo del tiempo"
+    ],
+    "answer": 3,
+    "explanation": "Orden temporal de mensajes."
+  },
+  {
+    "question": "¿Qué representa el eje vertical (hacia abajo)?",
+    "options": ["Los objetos", "El tiempo (avanza hacia abajo)", "El espacio", "Nada"],
+    "answer": 1,
+    "explanation": "Cronología."
+  },
+  {
+    "question": "¿Qué representa el eje horizontal?",
+    "options": [
+      "Nada",
+      "Los objetos o actores que participan en la interacción",
+      "El tiempo",
+      "Los mensajes"
+    ],
+    "answer": 1,
+    "explanation": "Participantes."
+  },
+  {
+    "question": "¿Qué es una Línea de Vida (Lifeline)?",
+    "options": [
+      "Línea vertical punteada que representa la existencia del objeto durante la interacción",
+      "Un cable",
+      "Una vida extra",
+      "Nada"
+    ],
+    "answer": 0,
+    "explanation": "Cuelga del objeto."
+  },
+  {
+    "question": "¿Qué es un Foco de Control (Activation Bar)?",
+    "options": [
+      "Rectángulo delgado sobre la línea de vida que indica cuándo el objeto está activo (ejecutando código)",
+      "Nada",
+      "Un foco",
+      "Una barra"
+    ],
+    "answer": 0,
+    "explanation": "Periodo de actividad."
+  },
+  {
+    "question": "¿Cómo se representa un mensaje síncrono?",
+    "options": ["Línea punteada", "Flecha abierta", "Nada", "Flecha con punta llena (sólida)"],
+    "answer": 3,
+    "explanation": "Espera respuesta (bloqueante)."
+  },
+  {
+    "question": "¿Cómo se representa un mensaje asíncrono?",
+    "options": ["Flecha llena", "Flecha con punta abierta (línea)", "Línea punteada", "Nada"],
+    "answer": 1,
+    "explanation": "No espera (fire and forget)."
+  },
+  {
+    "question": "¿Cómo se representa un mensaje de retorno (reply)?",
+    "options": ["Línea punteada con flecha abierta", "Flecha llena", "Línea sólida", "Nada"],
+    "answer": 0,
+    "explanation": "Respuesta opcional (implícita a veces)."
+  },
+  {
+    "question": "¿Qué es un mensaje de creación (<<create>>)?",
+    "options": [
+      "Borrar",
+      "Nada",
+      "Un error",
+      "Mensaje que apunta al rectángulo del objeto (no a su línea de vida) para instanciarlo"
+    ],
+    "answer": 3,
+    "explanation": "new Object()."
+  },
+  {
+    "question": "¿Qué es un mensaje de destrucción (<<destroy>>)?",
+    "options": [
+      "Nada",
+      "Borrar",
+      "Mensaje que termina con una X en la línea de vida del objeto",
+      "Un error"
+    ],
+    "answer": 2,
+    "explanation": "Fin del objeto."
+  },
+  {
+    "question": "¿Qué es un Fragmento Combinado (Combined Fragment)?",
+    "options": [
+      "Un error",
+      "Estructura para representar lógica de control (bucles, condiciones) en el diagrama (alt, opt, loop)",
+      "Un fragmento",
+      "Nada"
+    ],
+    "answer": 1,
+    "explanation": "Cajas alrededor de mensajes."
+  },
+  {
+    "question": "¿Qué significa el fragmento 'alt'?",
+    "options": [
+      "Nada",
+      "Alto",
+      "Alternar",
+      "Alternativa (if-else), solo se ejecuta una de las secciones"
+    ],
+    "answer": 3,
+    "explanation": "Condicional exclusivo."
+  },
+  {
+    "question": "¿Qué significa el fragmento 'opt'?",
+    "options": [
+      "Nada",
+      "Opcional (if sin else), se ejecuta si se cumple la condición",
+      "Optimizar",
+      "Opción"
+    ],
+    "answer": 1,
+    "explanation": "Condicional simple."
+  },
+  {
+    "question": "¿Qué significa el fragmento 'loop'?",
+    "options": [
+      "Nada",
+      "Error",
+      "Lupa",
+      "Bucle (for/while), se repite mientras se cumpla la condición"
+    ],
+    "answer": 3,
+    "explanation": "Iteración."
+  },
+  {
+    "question": "¿Qué es un mensaje reflexivo (Self-Message)?",
+    "options": [
+      "Error",
+      "Un espejo",
+      "Nada",
+      "Un objeto se envía un mensaje a sí mismo (flecha que sale y vuelve a la misma línea de vida)"
+    ],
+    "answer": 3,
+    "explanation": "this.metodo()."
+  },
+  {
+    "question": "¿Qué es una Puerta (Gate)?",
+    "options": [
+      "Error",
+      "Una puerta",
+      "Punto de conexión para enviar/recibir mensajes desde fuera del diagrama (borde del marco)",
+      "Nada"
+    ],
+    "answer": 2,
+    "explanation": "Entrada/Salida."
+  },
+  {
+    "question": "¿Qué es la notación 'sd' en la esquina?",
+    "options": ["Sequence Diagram (etiqueta del diagrama)", "SD card", "Error", "Nada"],
+    "answer": 0,
+    "explanation": "Identificador."
+  },
+  {
+    "question": "¿Para qué sirve el diagrama de secuencia?",
+    "options": [
+      "Detallar la lógica de un caso de uso o escenario específico",
+      "Ver estados",
+      "Ver clases",
+      "Nada"
+    ],
+    "answer": 0,
+    "explanation": "Diseño detallado."
+  },
+  {
+    "question": "¿Qué es el fragmento 'par'?",
+    "options": ["Pareja", "Paralelo, las secciones se ejecutan concurrentemente", "Par", "Nada"],
+    "answer": 1,
+    "explanation": "Multihilo."
+  },
+  {
+    "question": "¿Se pueden mostrar actores en un diagrama de secuencia?",
+    "options": [
+      "A veces",
+      "No",
+      "Nunca",
+      "Sí, para representar al usuario o sistema externo que inicia la interacción"
+    ],
+    "answer": 3,
+    "explanation": "Stickman."
+  }
+]

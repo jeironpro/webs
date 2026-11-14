@@ -1,45 +1,44 @@
-document.getElementById('mostrar-ocultar').addEventListener('click', function() {
-    const input = document.getElementById('contrasena');
+const passwordInput = document.getElementById("password-input");
+const passwordToggle = document.getElementById("show-password");
+const captchaCode = document.getElementById("captcha-code");
+const captchaInput = document.getElementById("captcha-input");
+const captchaRefresh = document.getElementById("captcha-refresh");
+const verifyButton = document.getElementById("verify-captcha");
 
-    if (input.type === 'password') {
-        input.type = 'text';
-        this.textContent = 'Ocultar';
+passwordToggle.addEventListener("click", () => {
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        passwordToggle.textContent = "Ocultar";
     } else {
-        input.type = 'password';
-        this.textContent = 'Mostrar';
+        passwordInput.type = "password";
+        passwordToggle.textContent = "Mostrar";
     }
-})
+});
 
-function generarTexto(longitud) {
-    const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
-    let captcha = '';
-    const longitudCaracteres = caracteres.length;
+function generateText(length) {
+    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    let captcha = "";
+    const characterCount = characters.length;
 
-    for (let i = 0; i < longitud; i++) {
-        captcha += caracteres.charAt(Math.floor(Math.random() * longitudCaracteres));
+    for (let index = 0; index < length; index++) {
+        captcha += characters.charAt(Math.floor(Math.random() * characterCount));
     }
     return captcha;
 }
 
-function generarCaptcha() {
-    const longitudCaptcha = 6;
-    let textoCaptcha = generarTexto(longitudCaptcha);
-    document.getElementById('captcha').textContent = textoCaptcha;
+function generateCaptcha() {
+    const captchaLength = 6;
+    captchaCode.textContent = generateText(captchaLength);
 }
 
-function verificarCaptcha() {
-    const textoCaptcha = document.getElementById('captcha').textContent;
-    const captchaUsuario = document.getElementById('captcha-usuario').value;
-
-    if (captchaUsuario === textoCaptcha) {
-        alert('Captcha Correcto');
+function verifyCaptcha() {
+    if (captchaInput.value === captchaCode.textContent) {
+        alert("Captcha Correcto");
     } else {
-        alert('Captcha Incorrecto');
+        alert("Captcha Incorrecto");
     }
 }
 
-document.getElementById('reiniciar-captcha').addEventListener('click', generarCaptcha);
-
-window.onload = () => {
-    generarCaptcha();
-}
+captchaRefresh.addEventListener("click", generateCaptcha);
+verifyButton.addEventListener("click", verifyCaptcha);
+window.addEventListener("load", generateCaptcha);

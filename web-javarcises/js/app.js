@@ -1,8 +1,3 @@
-// Punto de entrada de la aplicación: estado, filtros, paginación y routing.
-// La vista de listado se compone de una barra de filtros (estable) y un
-// contenedor de resultados que se redibuja al cambiar filtros o página.
-
-import { JAVARCISES } from "../data/exercises.js";
 import { paginate } from "./pagination.js";
 import { createIcon, renderCard, renderPagination, renderDetail, renderEmpty } from "./render.js";
 
@@ -10,8 +5,8 @@ const appElement = document.querySelector("#app");
 const statsElement = document.querySelector("#stats");
 const resultsElement = document.createElement("div");
 resultsElement.id = "results";
+let catalog = null;
 
-// Estado de la aplicación (se conserva entre renders).
 const state = {
     collection: "exercises", // clave de la colección activa
     page: 1,
@@ -19,20 +14,24 @@ const state = {
     query: "",
 };
 
-// --- Utilidades sobre los datos ----------------------------------------------
-
 function getCollections() {
-    return JAVARCISES.collections;
+    return catalog.collections;
 }
 
 function getCollection(key) {
     return (
-        JAVARCISES.collections.find((collection) => collection.key === key) ??
-        JAVARCISES.collections[0]
+        catalog.collections.find((collection) => collection.key === key) ?? catalog.collections[0]
     );
 }
 
-/** Niveles presentes en una colección, ordenados y con su nombre. */
+async function loadCatalog() {
+    const response = await fetch("./data/exercises.json");
+    if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+    }
+    return response.json();
+}
+
 function levelsOfCollection(collection) {
     const levels = [];
     for (const item of collection.items) {
@@ -43,7 +42,6 @@ function levelsOfCollection(collection) {
     return levels.sort((a, b) => a.number - b.number);
 }
 
-/** Aplica el filtro por nivel y la búsqueda por texto a una colección. */
 function filterItems(collection) {
     const query = state.query.trim().toLowerCase();
     return collection.items.filter((item) => {
@@ -58,15 +56,12 @@ function filterItems(collection) {
     });
 }
 
-// --- Barra de filtros (pestañas, nivel y búsqueda) -----------------------------
-
 function renderFilterBar() {
     const collection = getCollection(state.collection);
 
     const bar = document.createElement("div");
     bar.className = "filter-bar";
 
-    // Pestañas de colección (el clic lo gestiona la delegación global).
     const tabs = document.createElement("div");
     tabs.className = "tabs";
     tabs.setAttribute("role", "group");
@@ -89,7 +84,6 @@ function renderFilterBar() {
     }
     bar.append(tabs);
 
-    // Selector de nivel (las opciones dependen de la colección activa).
     const levelField = document.createElement("div");
     levelField.className = "field";
     const levelLabel = document.createElement("label");
@@ -116,7 +110,6 @@ function renderFilterBar() {
     levelField.append(levelLabel, select);
     bar.append(levelField);
 
-    // Búsqueda por texto.
     const searchField = document.createElement("div");
     searchField.className = "field field--search";
     const searchLabel = document.createElement("label");
@@ -142,8 +135,6 @@ function renderFilterBar() {
     return bar;
 }
 
-// --- Vista de listado ----------------------------------------------------------
-
 function renderResults() {
     const collection = getCollection(state.collection);
     const filtered = filterItems(collection);
@@ -152,7 +143,6 @@ function renderResults() {
 
     const container = document.createElement("div");
 
-    // Contador de resultados (anunciado por lectores de pantalla).
     const counter = document.createElement("p");
     counter.className = "counter";
     counter.setAttribute("aria-live", "polite");
@@ -172,7 +162,7 @@ function renderResults() {
         );
     } else {
         const cardGrid = document.createElement("div");
-        cardGrid.className = "card-grid";
+        cardGrid.className = "exercise-grid";
         for (const item of result.items) {
             cardGrid.append(renderCard(item));
         }
@@ -208,8 +198,6 @@ function renderListView() {
     document.title = "Javarcises — Ejercicios de programación en Java";
 }
 
-// --- Vista de detalle -----------------------------------------------------------
-
 function renderDetailView(route) {
     const collection = getCollection(route.collection);
     const index = collection.items.findIndex((item) => item.number === route.number);
@@ -233,16 +221,12 @@ function renderDetailView(route) {
     appElement.replaceChildren(renderDetail(item, collection, previous, next));
     document.title = `${item.title} — Javarcises`;
 
-    // Mueve el foco al título para lectores de pantalla (sin desplazar la página).
-    const cardTitle = document.querySelector("#card-title");
-    if (cardTitle && document.activeElement !== cardTitle) {
-        cardTitle.focus({ preventScroll: true });
+    const detailTitle = document.querySelector("#detail-title");
+    if (detailTitle && document.activeElement !== detailTitle) {
+        detailTitle.focus({ preventScroll: true });
     }
 }
 
-// --- Routing y arranque ----------------------------------------------------------
-
-/** Interpreta el hash: #/card/<coleccion>/<numero> → detalle; lo demás → listado. */
 function parseRoute() {
     const match = location.hash.match(/^#\/card\/(exercises|problems)\/(\d+)$/);
     if (match) {
@@ -253,7 +237,6 @@ function parseRoute() {
 
 function render() {
     const route = parseRoute();
-    // En el detalle se ocultan la navegación y el pie para centrar la ficha.
     document.body.classList.toggle("detail-mode", route.view === "detail");
     if (route.view === "detail") {
         renderDetailView(route);
@@ -262,7 +245,6 @@ function render() {
     }
 }
 
-/** Banda de estadísticas: números reales de cada colección. */
 function renderStats() {
     const grid = document.createElement("div");
     grid.className = "stats__grid";
@@ -298,10 +280,6 @@ function renderStats() {
     statsElement.replaceChildren(grid);
 }
 
-/**
- * Cambia la colección activa y redibuja la vista de listado.
- * Lo usan las pestañas, los enlaces del nav y el botón del hero.
- */
 function selectCollection(key) {
     if (state.collection === key) {
         return;
@@ -313,7 +291,6 @@ function selectCollection(key) {
     syncCollectionControls();
 }
 
-/** Mantiene sincronizados todos los controles que cambian de colección. */
 function syncCollectionControls() {
     for (const button of document.querySelectorAll("[data-collection]")) {
         const active = button.dataset.collection === state.collection;
@@ -323,11 +300,11 @@ function syncCollectionControls() {
     }
 }
 
-function init() {
+async function init() {
+    catalog = await loadCatalog();
     renderStats();
     syncCollectionControls();
 
-    // Delegación: cualquier control [data-collection] cambia la colección.
     document.addEventListener("click", (event) => {
         const button = event.target.closest("[data-collection]");
         if (!button) {
@@ -345,4 +322,14 @@ function init() {
     render();
 }
 
-init();
+init().catch(() => {
+    statsElement.replaceChildren();
+    appElement.replaceChildren(
+        renderEmpty({
+            icon: "error",
+            title: "No se pudo cargar el catálogo",
+            message: "Comprueba la conexión y vuelve a intentarlo.",
+            action: { label: "Reintentar", onClick: () => location.reload() },
+        })
+    );
+});

@@ -27,8 +27,12 @@ Abre `http://localhost:8000/juego-puntos-cajas/`.
 ## Estructura
 
 ```
-index.html    — Entrada de la aplicación
-styles.css    — Estilos del diseño original
-app.js        — Reglas, bot, tablero y pantallas
-favicon.svg   — Icono
+index.html
+css/styles.css        — Estilos del tablero y la interfaz
+js/app.js             — Reglas, bot, tablero y pantallas
+assets/icons/favicon.svg
 ```
+
+## Licencia
+
+Este proyecto está bajo la licencia **MIT**. Consulta el archivo [LICENSE](../../LICENSE) para más detalles.

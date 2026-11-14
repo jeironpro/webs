@@ -1,133 +1,126 @@
-/* Libro de estilo — colores y sombras del perfil */
 :root {
-    --color-fondo: #f5f5f7;
-    --color-texto: #333;
-    --color-superficie: #ffffff;
-    --color-texto-suave: #666;
-    --color-texto-medio: #555;
+    --color-background: #f5f5f7;
+    --color-text: #333;
+    --color-surface: #ffffff;
+    --color-text-muted: #666;
+    --color-text-medium: #555;
     --color-google: #4285f4;
     --color-google-hover: #357ae8;
-    --color-salir: #ff4b5c;
-    --color-salir-hover: #e63950;
-    --color-texto-inverso: #fff;
+    --color-logout: #ff4b5c;
+    --color-logout-hover: #e63950;
+    --color-text-inverse: #fff;
 }
 
-/* Reset y tipografía */
 * {
     box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
     margin: 0;
     padding: 0;
 }
 
 body {
     align-items: center;
-    background: var(--color-fondo);
-    color: var(--color-texto);
+    background: var(--color-background);
+    color: var(--color-text);
     display: flex;
     height: 100vh;
     justify-content: center;
 }
 
-.container {
-    background: var(--color-superficie);
-    border-radius: 20px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+.auth-card {
+    background: var(--color-surface);
+    border-radius: 1.25rem;
+    box-shadow: 0 1.25rem 3.125rem rgba(0, 0, 0, 0.08);
     max-width: 90%;
-    padding: 30px 20px;
+    padding: 1.875rem 1.25rem;
     text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
     width: 100%;
 }
 
-.container:hover {
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12);
-    transform: translateY(-5px);
+.auth-card:hover {
+    box-shadow: 0 1.5625rem 3.75rem rgba(0, 0, 0, 0.12);
+    transform: translateY(-0.3125rem);
 }
 
 .profile-pic {
     border-radius: 50%;
-    height: 70px;
-    margin-bottom: 20px;
+    height: 4.375rem;
+    margin-bottom: 1.25rem;
     object-fit: cover;
     transition: transform 0.3s ease;
-    width: 70px;
+    width: 4.375rem;
 }
 
 .profile-pic:hover {
     transform: scale(1.05);
 }
 
-h1.username {
-    font-size: 1.3rem;
-    font-weight: 700;
-    margin-bottom: 5px;
-}
-
 p.email {
-    color: var(--color-texto-suave);
+    color: var(--color-text-muted);
     font-size: 0.85rem;
-    margin-bottom: 30px;
+    margin-bottom: 1.875rem;
 }
 
 h1.title {
     font-size: 1.3rem;
     font-weight: 700;
-    margin-bottom: 10px;
+    margin-bottom: 0.625rem;
 }
 
 p.subtitle {
-    color: var(--color-texto-medio);
+    color: var(--color-text-medium);
     font-size: 0.85rem;
-    margin-bottom: 30px;
+    margin-bottom: 1.875rem;
 }
 
 .btn {
-    border-radius: 50px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    border-radius: 3.125rem;
+    box-shadow: 0 0.3125rem 0.9375rem rgba(0, 0, 0, 0.08);
     cursor: pointer;
     display: inline-block;
     font-size: 0.9rem;
     font-weight: 600;
-    padding: 10px 20px;
+    padding: 0.625rem 1.25rem;
     text-decoration: none;
     transition: all 0.3s ease;
 }
 
 .login-btn {
     background-color: var(--color-google);
-    color: var(--color-texto-inverso);
+    color: var(--color-text-inverse);
 }
 
 .login-btn:hover {
     background-color: var(--color-google-hover);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-    transform: translateY(-2px);
+    box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.12);
+    transform: translateY(-0.125rem);
 }
 
 .logout-btn {
-    background-color: var(--color-salir);
-    color: var(--color-texto-inverso);
+    background-color: var(--color-logout);
+    color: var(--color-text-inverse);
 }
 
 .logout-btn:hover {
-    background-color: var(--color-salir-hover);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-    transform: translateY(-2px);
+    background-color: var(--color-logout-hover);
+    box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.12);
+    transform: translateY(-0.125rem);
 }
 
-@media (min-width: 351px) {
-    .container {
+@media (min-width: 21.9375rem) {
+    .auth-card {
         max-width: 90%;
-        padding: 40px 25px;
+        padding: 2.5rem 1.5625rem;
     }
 
     .profile-pic {
-        height: 80px;
-        width: 80px;
+        height: 5rem;
+        width: 5rem;
     }
 
-    h1.username,
     h1.title {
         font-size: 1.5rem;
     }
@@ -139,23 +132,19 @@ p.subtitle {
 
     .btn {
         font-size: 0.95rem;
-        padding: 12px 25px;
+        padding: 0.75rem 1.5625rem;
     }
 }
 
-@media (min-width: 501px) {
-    .container {
-        max-width: 400px;
-        padding: 60px 40px;
+@media (min-width: 31.3125rem) {
+    .auth-card {
+        max-width: 25rem;
+        padding: 3.75rem 2.5rem;
     }
 
     .profile-pic {
-        height: 100px;
-        width: 100px;
-    }
-
-    h1.username {
-        font-size: 1.8rem;
+        height: 6.25rem;
+        width: 6.25rem;
     }
 
     h1.title {
@@ -169,6 +158,6 @@ p.subtitle {
 
     .btn {
         font-size: 1rem;
-        padding: 14px 30px;
+        padding: 0.875rem 1.875rem;
     }
 }

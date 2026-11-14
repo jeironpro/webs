@@ -4,7 +4,7 @@ Puzle de camino único al estilo del Zip de LinkedIn: un solo trazo que empieza 
 
 ## Características
 
-- Tableros de 6×6, 7×7 y 8×8 cargados desde `json/tableros.json`, cada uno con **solución única** verificada.
+- Tableros de 6×6, 7×7 y 8×8 cargados desde `data/tableros.json`, cada uno con **solución única** verificada.
 - Dibujo con ratón o dedo (arrastrando) y con el teclado (flechas para avanzar, `U` o Retroceso para deshacer, `R` para borrar).
 - Retroceso arrastrando hacia atrás sobre el propio camino y botones de Deshacer, Borrar y Nuevo tablero.
 - Validación al vuelo: muros, casillas repetidas y números fuera de orden se avisan sin romper el trazo.
@@ -15,7 +15,7 @@ Puzle de camino único al estilo del Zip de LinkedIn: un solo trazo que empieza 
 
 - HTML5, CSS3 y JavaScript (ES modules), sin dependencias externas ni compilación.
 - Tableros y soluciones en JSON.
-- Generador reproducible en `scripts/generar-tableros.mjs` (semillas fijas) que valida la unicidad con el solver de `js/zip-core.js`.
+- Generador reproducible en `tools/generar-tableros.mjs` (semillas fijas) que valida la unicidad con el solver de `js/zip-core.js`.
 
 ## Cómo se genera un tablero
 
@@ -27,8 +27,8 @@ Puzle de camino único al estilo del Zip de LinkedIn: un solo trazo que empieza 
 Para regenerar los tableros:
 
 ```sh
-node scripts/generar-tableros.mjs        # 12 tableros por tamaño
-node scripts/generar-tableros.mjs 20     # otra cantidad
+node tools/generar-tableros.mjs        # 12 tableros por tamaño
+node tools/generar-tableros.mjs 20     # otra cantidad
 ```
 
 ## Uso
@@ -38,15 +38,13 @@ Abre `index.html` con un servidor estático (por ejemplo `python3 -m http.server
 ## Estructura del proyecto
 
 ```
-juego-zip/
-├── index.html
-├── css/                   # estilos del tablero y del HUD
-├── js/
-│   ├── zip-core.js        # generación, solver y validación (sin DOM)
-│   └── zip.js             # interfaz y controles
-├── json/tableros.json     # tableros con su solución única
-├── icon/                  # favicon
-└── scripts/               # generador reproducible
+index.html
+css/zip.css            — Estilos del tablero y del HUD
+js/zip-core.js         — Generación, solver y validación
+js/zip.js              — Interfaz y controles
+data/tableros.json     — Tableros con solución única
+assets/icons/zip.svg
+tools/                 — Generador reproducible
 ```
 
 ## Licencia

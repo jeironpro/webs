@@ -4,9 +4,9 @@ Sitio web estático con un curso de Git: incluye una página por comando con su 
 
 ## Características
 
-- Más de 30 páginas tematicas, una por comando (init, clone, add, commit, branch, checkout, merge, rebase, stash, log, etc.).
-- Sintaxis y opciones principales de cada comando con ejemplos practicos.
-- Navegación sencilla entre páginas con cabecera comun.
+- Más de 30 páginas temáticas, una por comando (init, clone, add, commit, branch, checkout, merge, rebase, stash, log, etc.).
+- Sintaxis y opciones principales de cada comando con ejemplos prácticos.
+- Navegación sencilla entre páginas con cabecera común.
 - Contenido 100 % estático, ideal para consulta offline.
 
 ## Tecnologías
@@ -26,9 +26,10 @@ web-curso-git/
 ├── html/                  # página por comando de Git
 ├── css/                   # estilos del curso
 ├── js/                    # lógica de la interfaz
-└── icon/                  # iconos
+└── assets/icons/         # favicon e iconos
 ```
 
 ## Licencia
-Este proyecto está bajo la licencia **MIT**.  
-Consulta el archivo [LICENSE](LICENSE) para más detalles.
+
+Este proyecto está bajo la licencia **MIT**.
+Consulta el archivo [LICENSE](../LICENSE) para más detalles.

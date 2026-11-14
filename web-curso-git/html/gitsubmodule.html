@@ -1,61 +1,84 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../icon/curso_git.png" type="image/x-icon">
-    <title>Git submodule</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/git.css">
-</head>
-<body>
-    <header>
-        <h1>Git submodule</h1>
-    </header>
-    <main class="course-content">
-        <section class="course-section">
-            <article class="command-definition">
-                <div class="definition">
-                    <h2>Definición</h2>
-                    <p>
-                        El comando <code>git submodule</code> se utiliza para agregar, inicializar y administrar repositorios Git dentro de otro repositorio principal.
-                        Los submódulos permiten incluir proyectos externos como dependencias manteniendo sus propios historiales de commits.
-                        Es útil para organizar dependencias de proyectos o librerías compartidas.
-                    </p>
-                </div>
-                <div class="commands">
-                    <h2>Comandos</h2>
-                    <ul>
-                        <li>
-                            <code><span>git submodule add &lt;repositorio_url&gt; &lt;ruta&gt;</span></code>
-                            <p>Agrega un submódulo en la ruta especificada apuntando al repositorio indicado.</p>
-                        </li>
-                        <li>
-                            <code><span>git submodule init</span></code>
-                            <p>Inicializa la configuración de los submódulos registrados en .gitmodules.</p>
-                        </li>
-                        <li>
-                            <code><span>git submodule update</span></code>
-                            <p>Clona y actualiza los submódulos a la revisión registrada en el repositorio principal.</p>
-                        </li>
-                        <li>
-                            <code><span>git submodule status</span></code>
-                            <p>Muestra el estado de los submódulos, indicando commits y si están actualizados.</p>
-                        </li>
-                    </ul>
-                </div>
-            </article>
-            <article class="practice">
-                <div class="run-block">
-                    <h3> Ejecutar</h3>
-                    <pre><code>$ git submodule add https://github.com/usuario/proyecto-libreria.git libreria
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg" />
+        <link rel="shortcut icon" href="../assets/icons/curso_git.png" type="image/x-icon" />
+        <title>Git submodule</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="../css/git.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Git submodule</h1>
+        </header>
+        <main class="course-content">
+            <section class="course-section">
+                <article class="command-definition">
+                    <div class="definition">
+                        <h2>Definición</h2>
+                        <p>
+                            El comando <code>git submodule</code> se utiliza para agregar,
+                            inicializar y administrar repositorios Git dentro de otro repositorio
+                            principal. Los submódulos permiten incluir proyectos externos como
+                            dependencias manteniendo sus propios historiales de commits. Es útil
+                            para organizar dependencias de proyectos o librerías compartidas.
+                        </p>
+                    </div>
+                    <div class="commands">
+                        <h2>Comandos</h2>
+                        <ul>
+                            <li>
+                                <code
+                                    ><span
+                                        >git submodule add &lt;repositorio_url&gt;
+                                        &lt;ruta&gt;</span
+                                    ></code
+                                >
+                                <p>
+                                    Agrega un submódulo en la ruta especificada apuntando al
+                                    repositorio indicado.
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git submodule init</span></code>
+                                <p>
+                                    Inicializa la configuración de los submódulos registrados en
+                                    .gitmodules.
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git submodule update</span></code>
+                                <p>
+                                    Clona y actualiza los submódulos a la revisión registrada en el
+                                    repositorio principal.
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git submodule status</span></code>
+                                <p>
+                                    Muestra el estado de los submódulos, indicando commits y si
+                                    están actualizados.
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+                <article class="practice">
+                    <div class="run-block">
+                        <h3>Ejecutar</h3>
+                        <pre><code>$ git submodule add https://github.com/usuario/proyecto-libreria.git libreria
 $ git status
 $ git submodule init
 $ git submodule update</code></pre>
-                </div>
-                <div class="result-block">
-                    <h3> Resultado</h3>
-                    <pre><code>Clonando en '/home/jeironpro/mi-proyecto/libreria'...
+                    </div>
+                    <div class="result-block">
+                        <h3>Resultado</h3>
+                        <pre><code>Clonando en '/home/jeironpro/mi-proyecto/libreria'...
 remote: Enumerating objects: 10, done.
 remote: Counting objects: 100% (10/10), done.
 remote: Compressing objects: 100% (8/8), done.
@@ -65,21 +88,20 @@ Resolviendo deltas: 100% (2/2), listo.
 
 En la rama main
 Cambios a ser confirmados:
-  (usa "git restore --staged <archivo>..." para sacar del área de stage)
+  (usa "git restore --staged &lt;archivo&gt;..." para sacar del área de stage)
 	nuevos archivos: .gitmodules
 	nuevos archivos: libreria
 
 Submodule 'libreria' (https://github.com/usuario/proyecto-libreria.git) registered for path 'libreria'
 Clonando en '/home/jeironpro/mi-proyecto/libreria'...
 Submodule path 'libreria': checked out 'a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0'</code></pre>
-                </div>
-
-            </article>
-        </section>
-    </main>
-    <footer>
-        &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
-    </footer>
-    <script src="../js/header.js"></script>
-</body>
+                    </div>
+                </article>
+            </section>
+        </main>
+        <footer>
+            &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
+        </footer>
+        <script src="../js/header.js"></script>
+    </body>
 </html>

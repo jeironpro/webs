@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Registro</title>
+        <link rel="icon" href="../assets/images/icons/logo.png" />
+        <link rel="stylesheet" href="../css/registro.css" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <main>
+            <div class="contenedor-login">
+                <h1>Registro</h1>
+                <form>
+                    <div class="nomape">
+                        <div class="control">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" id="nombre" required autocomplete="off" />
+                        </div>
+                        <div class="control">
+                            <label for="apellido">Apellido</label>
+                            <input type="text" id="apellido" required autocomplete="off" />
+                        </div>
+                    </div>
+                    <div class="control">
+                        <div class="indicaciones-direccion">
+                            <label for="direccion">Direccion</label>
+                            <div
+                                class="indicaciones"
+                                data-tooltip="ADVERTENCIA: Asegurese de escribir bien la direccion."
+                            >
+                                <i class="fa-solid fa-circle-info"></i>
+                            </div>
+                        </div>
+                        <input type="text" id="direccion" required autocomplete="off" />
+                    </div>
+                    <div class="control">
+                        <label for="telefono">Telefono</label>
+                        <input
+                            type="tel"
+                            maxlength="12"
+                            id="telefono"
+                            required
+                            autocomplete="off"
+                        />
+                    </div>
+                    <div class="control">
+                        <label for="correoElectronico">Correo Electronico</label>
+                        <input type="email" id="correoElectronico" required autocomplete="off" />
+                    </div>
+                    <div class="control">
+                        <label for="contrasena">Contraseña</label>
+                        <input type="password" id="contrasena" required />
+                        <button
+                            type="button"
+                            class="mostrar-ocultar"
+                            id="toggle-password"
+                            aria-label="Mostrar u ocultar contraseña"
+                        >
+                            <i class="fas fa-eye" id="icono-mostrar-ocultar"></i>
+                        </button>
+                    </div>
+                    <div class="control">
+                        <label for="contrasena_">Confirmar Contraseña</label>
+                        <input type="password" id="contrasena_" required />
+                        <button
+                            type="button"
+                            class="mostrar-ocultar"
+                            id="toggle-confirm-password"
+                            aria-label="Mostrar u ocultar la confirmación de contraseña"
+                        >
+                            <i class="fas fa-eye" id="icono-mostrar-ocultar_"></i>
+                        </button>
+                    </div>
+                    <div class="botones">
+                        <a href="login.html" class="enlace-regresar"><span>Regresar</span></a>
+                        <button type="button" id="register-button">Registrarme</button>
+                    </div>
+                </form>
+            </div>
+            <div class="contenedor-notificacion correcto" id="contenedorNotificacion">
+                <div class="notificacion" id="notificacion">
+                    <label for="correcto" class="cerrar"></label>
+                    <h3 id="titulo-notificacion">Correcto!</h3>
+                    <p id="contenido-notificacion">Tu cuenta se ha creado correctamente.</p>
+                </div>
+            </div>
+        </main>
+        <script src="../js/register.js"></script>
+        <script src="https://kit.fontawesome.com/25da21ab57.js" crossorigin="anonymous"></script>
+    </body>
+</html>

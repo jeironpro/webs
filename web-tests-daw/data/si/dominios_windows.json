@@ -1,0 +1,222 @@
+[
+  {
+    "question": "¿Qué es un Dominio en Windows?",
+    "options": [
+      "Un grupo de trabajo",
+      "Una red wifi",
+      "Un grupo lógico de ordenadores y usuarios que comparten una base de datos de seguridad centralizada",
+      "Una página web"
+    ],
+    "answer": 2,
+    "explanation": "Permite administración centralizada."
+  },
+  {
+    "question": "¿Qué es Active Directory (Directorio Activo)?",
+    "options": [
+      "Un servidor de correo",
+      "El servicio de directorio de Microsoft que almacena información sobre objetos en la red y facilita su búsqueda y uso",
+      "Un antivirus",
+      "Una carpeta compartida"
+    ],
+    "answer": 1,
+    "explanation": "Es el corazón de un dominio Windows."
+  },
+  {
+    "question": "¿Qué es un Controlador de Dominio (DC)?",
+    "options": [
+      "Un usuario administrador",
+      "Un PC normal",
+      "Un servidor que ejecuta Active Directory y gestiona la autenticación y autorización en el dominio",
+      "Un router"
+    ],
+    "answer": 2,
+    "explanation": "Almacena la base de datos AD DS."
+  },
+  {
+    "question": "¿Qué es un Grupo de Trabajo (Workgroup)?",
+    "options": [
+      "Un dominio pequeño",
+      "Un equipo de personas",
+      "Una oficina",
+      "Una red peer-to-peer donde cada equipo gestiona su propia seguridad localmente (sin servidor central)"
+    ],
+    "answer": 3,
+    "explanation": "Es el modelo por defecto en redes domésticas."
+  },
+  {
+    "question": "¿Qué es DNS en el contexto de Active Directory?",
+    "options": [
+      "No es necesario",
+      "Solo sirve para internet",
+      "Es un virus",
+      "Es esencial para localizar los controladores de dominio y resolver nombres en la red"
+    ],
+    "answer": 3,
+    "explanation": "AD depende totalmente de DNS para funcionar."
+  },
+  {
+    "question": "¿Qué es una Unidad Organizativa (OU)?",
+    "options": [
+      "Un usuario",
+      "Un grupo de seguridad",
+      "Un contenedor dentro de un dominio que permite organizar objetos y aplicar políticas de grupo (GPO)",
+      "Una carpeta de archivos"
+    ],
+    "answer": 2,
+    "explanation": "Permite delegar administración."
+  },
+  {
+    "question": "¿Qué es una GPO (Group Policy Object)?",
+    "options": [
+      "Un conjunto de configuraciones que controlan el entorno de trabajo de usuarios y equipos",
+      "Un grupo de usuarios",
+      "Una contraseña",
+      "Un programa"
+    ],
+    "answer": 0,
+    "explanation": "Permite configurar seguridad, instalar software, mapear unidades, etc. masivamente."
+  },
+  {
+    "question": "¿Qué es el Bosque (Forest) en AD?",
+    "options": [
+      "Un servidor",
+      "El contenedor lógico de nivel más alto que agrupa uno o más dominios que comparten esquema y configuración",
+      "Una red",
+      "Un conjunto de árboles"
+    ],
+    "answer": 1,
+    "explanation": "Define el límite de seguridad."
+  },
+  {
+    "question": "¿Qué es el Árbol (Tree) en AD?",
+    "options": [
+      "Una estructura de datos",
+      "Un diagrama",
+      "Un conjunto de dominios que comparten un espacio de nombres contiguo (ej. empresa.com, ventas.empresa.com)",
+      "Un usuario"
+    ],
+    "answer": 2,
+    "explanation": "Comparten una relación de confianza transitiva."
+  },
+  {
+    "question": "¿Qué es LDAP?",
+    "options": [
+      "Un programa",
+      "Lightweight Directory Access Protocol, el protocolo usado para consultar y modificar el directorio",
+      "Un servidor",
+      "Una base de datos"
+    ],
+    "answer": 1,
+    "explanation": "Es el lenguaje estándar para hablar con AD."
+  },
+  {
+    "question": "¿Qué es SYSVOL?",
+    "options": [
+      "Un usuario",
+      "Una carpeta compartida en los DCs que almacena scripts de inicio y políticas de grupo",
+      "Un volumen de sistema",
+      "Un disco duro"
+    ],
+    "answer": 1,
+    "explanation": "Se replica entre todos los controladores de dominio."
+  },
+  {
+    "question": "¿Qué es un perfil móvil (Roaming Profile)?",
+    "options": [
+      "Un perfil de usuario guardado en el servidor que se descarga en cualquier equipo donde el usuario inicie sesión",
+      "Un perfil en el móvil",
+      "Un perfil temporal",
+      "Un perfil local"
+    ],
+    "answer": 0,
+    "explanation": "Permite tener el mismo escritorio y documentos en cualquier PC."
+  },
+  {
+    "question": "¿Qué es un usuario de dominio?",
+    "options": [
+      "Una cuenta creada en AD que puede iniciar sesión en cualquier equipo unido al dominio",
+      "Un administrador",
+      "Un usuario local",
+      "Un invitado"
+    ],
+    "answer": 0,
+    "explanation": "Se gestiona centralizadamente."
+  },
+  {
+    "question": "¿Cómo se une un equipo a un dominio?",
+    "options": [
+      "Copiando archivos",
+      "Desde Propiedades del Sistema -> Cambiar configuración -> ID de red / Cambiar",
+      "No se puede",
+      "Instalando un programa"
+    ],
+    "answer": 1,
+    "explanation": "Requiere credenciales de un usuario con permiso para unir equipos."
+  },
+  {
+    "question": "¿Qué es dcpromo?",
+    "options": [
+      "El comando (antiguo) para promocionar un servidor a Controlador de Dominio",
+      "Un virus",
+      "Un programa de promoción",
+      "Un descuento"
+    ],
+    "answer": 0,
+    "explanation": "En versiones nuevas se hace desde Server Manager, pero el concepto persiste."
+  },
+  {
+    "question": "¿Qué son los FSMO Roles?",
+    "options": [
+      "Roles de usuario",
+      "Roles especiales que solo puede tener un DC a la vez (ej. Maestro de Esquema)",
+      "Permisos de archivo",
+      "Grupos"
+    ],
+    "answer": 1,
+    "explanation": "Flexible Single Master Operations."
+  },
+  {
+    "question": "¿Qué es el Catálogo Global (Global Catalog)?",
+    "options": [
+      "Un almacén de datos distribuido que contiene una representación parcial de todos los objetos del bosque",
+      "Un catálogo de productos",
+      "Una lista de usuarios",
+      "Un libro"
+    ],
+    "answer": 0,
+    "explanation": "Esencial para búsquedas rápidas y logons universales."
+  },
+  {
+    "question": "¿Qué es Kerberos?",
+    "options": [
+      "Un firewall",
+      "El protocolo de autenticación por defecto en dominios Windows",
+      "Un perro de tres cabezas",
+      "Un virus"
+    ],
+    "answer": 1,
+    "explanation": "Usa tickets para evitar enviar contraseñas por la red."
+  },
+  {
+    "question": "¿Qué es RSAT?",
+    "options": [
+      "Remote Server Administration Tools, permite gestionar AD desde un cliente Windows (ej. Windows 10)",
+      "Un protocolo",
+      "Un comando",
+      "Un satélite"
+    ],
+    "answer": 0,
+    "explanation": "Evita tener que conectarse por RDP al servidor para todo."
+  },
+  {
+    "question": "¿Qué es una relación de confianza (Trust)?",
+    "options": [
+      "Un vínculo que permite a usuarios de un dominio acceder a recursos en otro dominio",
+      "Unir cables",
+      "Ser amigos",
+      "Compartir wifi"
+    ],
+    "answer": 0,
+    "explanation": "Puede ser unidireccional o bidireccional."
+  }
+]

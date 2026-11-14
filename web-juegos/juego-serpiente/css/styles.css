@@ -1,5 +1,4 @@
 @layer base {
-
     :root {
         --color: #16726f;
         --color-10: #f2d7d1;
@@ -17,7 +16,6 @@
         --fondo-2: #f7f1e6;
     }
 
-
     :root {
         --papel: var(--color-11);
         --papel-hondo: var(--color-8);
@@ -34,10 +32,9 @@
         --display: "Fraunces", Georgia, serif;
         --cuerpo: "Archivo", system-ui, sans-serif;
         --mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
-        --radio: 2px;
-        --sombra: 0 18px 50px rgba(60, 45, 25, 0.1);
+        --radio: 0.125rem;
+        --sombra: 0 1.125rem 3.125rem rgba(60, 45, 25, 0.1);
     }
-
 
     *,
     *::before,
@@ -45,25 +42,27 @@
         box-sizing: border-box;
     }
 
-
     html {
-        min-width: 320px;
+        min-width: 20rem;
         background: var(--papel-hondo);
     }
-
 
     body {
         min-height: 100vh;
         margin: 0;
         color: var(--tinta);
         background:
-            linear-gradient(90deg, transparent 0 49.8%, rgba(32, 27, 23, 0.035) 49.8% 50.2%, transparent 50.2%),
+            linear-gradient(
+                90deg,
+                transparent 0 49.8%,
+                rgba(32, 27, 23, 0.035) 49.8% 50.2%,
+                transparent 50.2%
+            ),
             var(--papel);
         background-size: 8.4rem 8.4rem;
         font-family: var(--cuerpo);
         -webkit-font-smoothing: antialiased;
     }
-
 
     body::before {
         position: fixed;
@@ -71,23 +70,25 @@
         top: 0;
         right: 0;
         left: 0;
-        height: 5px;
-        background: linear-gradient(90deg, var(--rojo) 0 33.33%, var(--amarillo) 33.33% 66.66%, var(--verde) 66.66%);
+        height: 0.3125rem;
+        background: linear-gradient(
+            90deg,
+            var(--rojo) 0 33.33%,
+            var(--amarillo) 33.33% 66.66%,
+            var(--verde) 66.66%
+        );
         content: "";
     }
-
 
     button {
         color: inherit;
         font: inherit;
     }
 
-
     button:focus-visible {
-        outline: 2px solid var(--verde);
-        outline-offset: 3px;
+        outline: 0.125rem solid var(--verde);
+        outline-offset: 0.1875rem;
     }
-
 
     .app {
         display: grid;
@@ -96,21 +97,18 @@
         place-items: center;
     }
 
-
     .hoja {
         width: min(100%, 56rem);
         padding: clamp(1.4rem, 4vw, 3rem);
-        border: 1px solid var(--linea);
+        border: 0.0625rem solid var(--linea);
         background: var(--papel-claro);
         box-shadow: var(--sombra);
     }
 
-
     .cabecera {
         padding-bottom: 1.2rem;
-        border-bottom: 1px solid var(--linea);
+        border-bottom: 0.0625rem solid var(--linea);
     }
-
 
     .cabecera__linea {
         display: flex;
@@ -119,7 +117,6 @@
         gap: 1rem;
         margin-bottom: 1rem;
     }
-
 
     .eyebrow {
         margin: 0;
@@ -131,12 +128,11 @@
         line-height: 1.4;
     }
 
-
     .sello {
         display: inline-grid;
         width: 3.3rem;
         height: 1.8rem;
-        border: 1px solid var(--tinta);
+        border: 0.0625rem solid var(--tinta);
         font-family: var(--mono);
         font-size: 0.51rem;
         font-weight: 600;
@@ -145,13 +141,11 @@
         transform: rotate(-4deg);
     }
 
-
     h1,
     h2,
     p {
         margin-top: 0;
     }
-
 
     h1,
     h2 {
@@ -159,14 +153,12 @@
         font-weight: 600;
     }
 
-
     .cabecera h1 {
         margin-bottom: 0.6rem;
         font-size: clamp(3rem, 8vw, 5.8rem);
         letter-spacing: -0.06em;
         line-height: 0.9;
     }
-
 
     .entradilla {
         max-width: 38rem;
@@ -176,15 +168,13 @@
         line-height: 1.65;
     }
 
-
     .marcador {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         margin: 1.2rem 0;
-        border: 1px solid var(--linea);
+        border: 0.0625rem solid var(--linea);
         background: var(--fondo-2);
     }
-
 
     .dato {
         display: grid;
@@ -192,21 +182,17 @@
         padding: 0.65rem 0.85rem;
     }
 
-
     .dato + .dato {
-        border-left: 1px solid var(--linea);
+        border-left: 0.0625rem solid var(--linea);
     }
-
 
     .dato--centro {
         text-align: center;
     }
 
-
     .dato--derecha {
         text-align: right;
     }
-
 
     .dato__etiqueta {
         color: var(--tinta-tenue);
@@ -216,13 +202,11 @@
         text-transform: uppercase;
     }
 
-
     .dato__valor {
         font-family: var(--mono);
         font-size: 1.2rem;
         font-weight: 500;
     }
-
 
     .dato__estado {
         color: var(--verde);
@@ -233,17 +217,15 @@
         text-transform: uppercase;
     }
 
-
     .marco {
         position: relative;
         width: min(100%, 39rem);
         margin: 0 auto;
         padding: 0.45rem;
-        border: 1px solid var(--tinta);
+        border: 0.0625rem solid var(--tinta);
         background: var(--papel-claro);
-        box-shadow: 7px 7px 0 var(--papel-hondo);
+        box-shadow: 0.4375rem 0.4375rem 0 var(--papel-hondo);
     }
-
 
     .tablero {
         display: block;
@@ -252,7 +234,6 @@
         aspect-ratio: 1;
         background: var(--fondo);
     }
-
 
     .capa {
         position: absolute;
@@ -269,11 +250,9 @@
             visibility 180ms ease;
     }
 
-
     .capa[hidden] {
         display: none;
     }
-
 
     .capa h2 {
         margin-bottom: 0.55rem;
@@ -281,7 +260,6 @@
         letter-spacing: -0.04em;
         line-height: 1;
     }
-
 
     .capa > p:not(.eyebrow) {
         max-width: 22rem;
@@ -291,11 +269,9 @@
         line-height: 1.55;
     }
 
-
     .capa .eyebrow {
         margin-bottom: 0.6rem;
     }
-
 
     .btn {
         display: inline-flex;
@@ -304,7 +280,7 @@
         gap: 0.45rem;
         min-height: 2.8rem;
         padding: 0.65rem 1.1rem;
-        border: 1px solid var(--tinta);
+        border: 0.0625rem solid var(--tinta);
         border-radius: var(--radio);
         background: transparent;
         cursor: pointer;
@@ -316,11 +292,9 @@
             transform 150ms ease;
     }
 
-
     .btn:hover {
-        transform: translateY(-1px);
+        transform: translateY(-0.0625rem);
     }
-
 
     .btn--primario {
         min-height: 3rem;
@@ -328,31 +302,26 @@
         color: var(--papel-claro);
     }
 
-
     .btn--primario:hover {
         background: var(--verde);
         border-color: var(--verde);
     }
-
 
     .btn--secundario {
         border-color: var(--linea);
         color: var(--tinta-suave);
     }
 
-
     .btn--secundario:hover {
         border-color: var(--tinta);
         color: var(--tinta);
     }
-
 
     .btn:disabled {
         cursor: not-allowed;
         opacity: 0.4;
         transform: none;
     }
-
 
     .acciones {
         display: flex;
@@ -361,7 +330,6 @@
         margin-top: 1.2rem;
     }
 
-
     .controles-tactiles {
         display: none;
         flex-direction: column;
@@ -369,31 +337,27 @@
         margin-top: 1.2rem;
     }
 
-
     .fila-controles {
         display: flex;
         justify-content: center;
         gap: 0.55rem;
     }
 
-
     .boton-direccion {
         display: grid;
         width: 3.2rem;
         height: 2.8rem;
-        border: 1px solid var(--linea);
+        border: 0.0625rem solid var(--linea);
         border-radius: var(--radio);
         background: var(--papel-claro);
         cursor: pointer;
         place-items: center;
     }
 
-
     .boton-direccion:active {
         background: var(--tinta);
         color: var(--papel-claro);
     }
-
 
     .pie {
         display: flex;
@@ -401,7 +365,7 @@
         gap: 1rem;
         margin-top: 1.6rem;
         padding-top: 0.9rem;
-        border-top: 1px solid var(--linea);
+        border-top: 0.0625rem solid var(--linea);
         color: var(--tinta-tenue);
         font-family: var(--mono);
         font-size: 0.55rem;
@@ -412,7 +376,6 @@
 }
 
 @layer responsive {
-    /* Base móvil: hasta 360 px */
     .app {
         padding: 0.9rem 0.65rem 1.2rem;
     }
@@ -463,7 +426,7 @@
     }
 
     .marco {
-        box-shadow: 4px 4px 0 var(--papel-hondo);
+        box-shadow: 0.25rem 0.25rem 0 var(--papel-hondo);
         padding: 0.3rem;
         width: min(100%, 34rem);
     }
@@ -480,7 +443,7 @@
         width: 2.9rem;
     }
 
-    @media (min-width: 361px) {
+    @media (min-width: 22.5625rem) {
         .dato__estado {
             font-size: 0.55rem;
         }
@@ -493,7 +456,7 @@
             font-size: 1rem;
         }
     }
-    @media (min-width: 561px) {
+    @media (min-width: 35.0625rem) {
         .app {
             padding: clamp(1.5rem, 4vw, 4rem) clamp(0.8rem, 4vw, 3rem);
         }
@@ -540,7 +503,7 @@
         }
 
         .marco {
-            box-shadow: 7px 7px 0 var(--papel-hondo);
+            box-shadow: 0.4375rem 0.4375rem 0 var(--papel-hondo);
             padding: 0.45rem;
         }
 
@@ -556,7 +519,7 @@
             width: 3.3rem;
         }
     }
-    @media (min-width: 861px) {
+    @media (min-width: 53.8125rem) {
         .marco {
             width: min(100%, 39rem);
         }
@@ -564,20 +527,17 @@
 }
 
 @layer accesibilidad {
-@media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-                scroll-behavior: auto;
-                animation-duration: 0.01ms;
-                animation-iteration-count: 1;
-                transition-duration: 0.01ms;
-            }
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            scroll-behavior: auto;
+            animation-duration: 0.01ms;
+            animation-iteration-count: 1;
+            transition-duration: 0.01ms;
+        }
     }
 }
-
-/* La hoja externa de fuentes no usa capas: estas reglas de iconos se
-   quedan fuera para que sus tamaños sigan ganando. */
 
 .btn .material-symbols-rounded {
     font-size: 1.05rem;

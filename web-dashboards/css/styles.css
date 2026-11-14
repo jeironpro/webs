@@ -1,8 +1,6 @@
+:root {
+}
 @layer base {
-    /* ============================================================
-       Base
-       ============================================================ */
-
     * {
         box-sizing: border-box;
     }
@@ -51,7 +49,7 @@
 
     :focus-visible {
         outline: var(--anillo-foco);
-        outline-offset: 2px;
+        outline-offset: 0.125rem;
     }
 
     ::selection {
@@ -74,10 +72,10 @@
 
     .sr-only {
         position: absolute;
-        width: 1px;
-        height: 1px;
+        width: 0.0625rem;
+        height: 0.0625rem;
         padding: 0;
-        margin: -1px;
+        margin: -0.0625rem;
         overflow: hidden;
         clip: rect(0 0 0 0);
         white-space: nowrap;
@@ -100,10 +98,6 @@
     .salto:focus {
         transform: translateY(0);
     }
-
-    /* ============================================================
-       Dominios: color estable por data-dominio
-       ============================================================ */
 
     [data-dominio="administracion"] {
         --dominio: var(--color-primary);
@@ -130,10 +124,6 @@
         --dominio-soft: var(--color-error-soft);
     }
 
-    /* ============================================================
-       Contenedor comun
-       ============================================================ */
-
     .masthead,
     .hero,
     .catalogo,
@@ -141,10 +131,6 @@
         width: min(var(--maxwidth), 100% - 2 * var(--gutter));
         margin-inline: auto;
     }
-
-    /* ============================================================
-       N9 · Masthead edge-aligned minimal
-       ============================================================ */
 
     .masthead {
         display: flex;
@@ -171,10 +157,6 @@
             "GRAD" 0,
             "opsz" 24;
     }
-
-    /* ============================================================
-       Hero
-       ============================================================ */
 
     .hero {
         padding-block: var(--space-12) var(--space-16);
@@ -214,7 +196,7 @@
         gap: var(--space-8);
         margin-top: var(--space-12);
         padding-top: var(--space-6);
-        border-top: 1px solid var(--color-line);
+        border-top: 0.0625rem solid var(--color-line);
     }
 
     .hero__stats li {
@@ -238,10 +220,6 @@
         letter-spacing: 0.06em;
     }
 
-    /* ============================================================
-       Catalogo · filtros
-       ============================================================ */
-
     .catalogo {
         padding-block: 0 var(--space-16);
     }
@@ -250,7 +228,7 @@
         display: grid;
         gap: var(--space-4);
         padding-block: var(--space-4) var(--space-6);
-        border-block: 1px solid var(--color-line);
+        border-block: 0.0625rem solid var(--color-line);
         margin-block-end: var(--space-6);
     }
 
@@ -269,12 +247,12 @@
 
     .cercador input {
         width: 100%;
-        height: 40px;
+        height: 2.5rem;
         padding: 0 var(--space-4) 0 calc(var(--space-3) + 1.25rem + var(--space-2));
         font: inherit;
         color: var(--color-ink);
         background: var(--color-surface);
-        border: 1px solid var(--color-line);
+        border: 0.0625rem solid var(--color-line);
         border-radius: var(--radius-sm);
     }
 
@@ -289,14 +267,14 @@
     }
 
     .chip {
-        height: 32px;
+        height: 2rem;
         padding: 0 var(--space-3);
         font-family: var(--font-mono);
         font-size: var(--text-mono);
         font-weight: 600;
         color: var(--color-ink-soft);
         background: var(--color-surface-soft);
-        border: 1px solid transparent;
+        border: 0.0625rem solid transparent;
         border-radius: var(--radius-full);
         cursor: pointer;
         transition:
@@ -394,7 +372,7 @@
 
     .ordenador__select {
         width: 100%;
-        height: 40px;
+        height: 2.5rem;
         padding: 0 calc(var(--space-3) + 1.125rem + var(--space-2)) 0
             calc(var(--space-3) + 1.25rem + var(--space-2));
         font-family: var(--font-mono);
@@ -402,7 +380,7 @@
         font-weight: 600;
         color: var(--color-ink);
         background: var(--color-surface);
-        border: 1px solid var(--color-line);
+        border: 0.0625rem solid var(--color-line);
         border-radius: var(--radius-sm);
         cursor: pointer;
         appearance: none;
@@ -417,10 +395,6 @@
         font-variant-numeric: tabular-nums;
     }
 
-    /* ============================================================
-       F6 · Grilla de tarjetas (uniforme)
-       ============================================================ */
-
     .graella {
         display: grid;
         grid-template-columns: minmax(0, 1fr);
@@ -433,7 +407,7 @@
         flex-direction: column;
         overflow: hidden;
         background: var(--color-surface);
-        border: 1px solid var(--color-line);
+        border: 0.0625rem solid var(--color-line);
         border-radius: var(--radius-md);
         transition:
             transform var(--dur-m) var(--ease-out-r),
@@ -443,8 +417,8 @@
 
     .tarjeta:hover {
         border-color: color-mix(in oklch, var(--dominio) 60%, var(--color-line));
-        transform: translateY(-2px);
-        box-shadow: 0 8px 24px color-mix(in oklch, var(--dominio) 22%, transparent);
+        transform: translateY(-0.125rem);
+        box-shadow: 0 0.5rem 1.5rem color-mix(in oklch, var(--dominio) 22%, transparent);
     }
 
     .tarjeta__media {
@@ -473,14 +447,14 @@
         display: inline-flex;
         align-items: center;
         gap: var(--space-1);
-        height: 24px;
+        height: 1.5rem;
         padding: 0 var(--space-2);
         font-family: var(--font-mono);
         font-size: 0.6875rem;
         font-weight: 600;
         color: var(--color-ink);
         background: var(--color-surface-soft);
-        border: 1px solid var(--color-line);
+        border: 0.0625rem solid var(--color-line);
         border-radius: var(--radius-full);
     }
 
@@ -500,7 +474,7 @@
         flex-direction: column;
         gap: var(--space-2);
         padding: var(--space-4);
-        border-block-start: 1px solid var(--color-line);
+        border-block-start: 0.0625rem solid var(--color-line);
     }
 
     .tarjeta__cabecera {
@@ -541,7 +515,7 @@
         display: inline-flex;
         align-items: center;
         gap: var(--space-1);
-        height: 24px;
+        height: 1.5rem;
         padding: 0 var(--space-2);
         font-family: var(--font-mono);
         font-size: 0.6875rem;
@@ -563,8 +537,8 @@
     }
 
     .trozo__punto {
-        width: 6px;
-        height: 6px;
+        width: 0.375rem;
+        height: 0.375rem;
         border-radius: var(--radius-full);
     }
 
@@ -598,16 +572,12 @@
         margin-inline-start: auto;
     }
 
-    /* ============================================================
-       Botones
-       ============================================================ */
-
     .btn {
         display: inline-flex;
         align-items: center;
         justify-content: center;
         gap: var(--space-2);
-        height: 40px;
+        height: 2.5rem;
         padding: 0 var(--space-4);
         font: inherit;
         font-size: var(--text-body-sm);
@@ -620,13 +590,13 @@
     }
 
     .btn:active {
-        transform: translateY(1px);
+        transform: translateY(0.0625rem);
     }
 
     .btn--primario {
         color: var(--color-surface);
         background: var(--color-primary);
-        border: 1px solid transparent;
+        border: 0.0625rem solid transparent;
     }
 
     .btn--primario:hover {
@@ -636,7 +606,7 @@
     .btn--secundario {
         color: var(--color-ink);
         background: var(--color-surface);
-        border: 1px solid var(--color-line);
+        border: 0.0625rem solid var(--color-line);
     }
 
     .btn--secundario:hover {
@@ -644,15 +614,11 @@
     }
 
     .btn--compacto {
-        height: 32px;
+        height: 2rem;
         padding: 0 var(--space-3);
         font-family: var(--font-mono);
         font-size: var(--text-mono);
     }
-
-    /* ============================================================
-       Estado vacio
-       ============================================================ */
 
     .vacio {
         display: grid;
@@ -669,10 +635,6 @@
         color: var(--color-ink-soft);
     }
 
-    /* ============================================================
-       Ft2 · Pie inline-rule
-       ============================================================ */
-
     .pie {
         padding-block: var(--space-6) var(--space-8);
     }
@@ -684,7 +646,7 @@
         gap: var(--space-2) var(--space-6);
         margin: 0;
         padding-top: var(--space-4);
-        border-top: 1px solid var(--color-line);
+        border-top: 0.0625rem solid var(--color-line);
         font-family: var(--font-mono);
         font-size: var(--text-mono);
         color: var(--color-ink-soft);
@@ -694,10 +656,6 @@
         color: var(--color-primary-deep);
     }
 
-    /* ============================================================
-       Entrada de tarjetas (reveal en el cambio de filtro)
-       ============================================================ */
-
     .tarjeta {
         animation: entrada var(--dur-m) var(--ease-out-r) both;
     }
@@ -705,7 +663,7 @@
     @keyframes entrada {
         from {
             opacity: 0;
-            transform: translateY(4px);
+            transform: translateY(0.25rem);
         }
         to {
             opacity: 1;
@@ -713,17 +671,13 @@
         }
     }
 
-    /* ============================================================
-       Responsive (min-width)
-       ============================================================ */
-
-    @media (min-width: 640px) {
+    @media (min-width: 40rem) {
         .graella {
             gap: var(--space-6);
         }
     }
 
-    @media (min-width: 768px) {
+    @media (min-width: 48rem) {
         .hero__cuadricula {
             grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
             align-items: end;
@@ -735,7 +689,7 @@
         }
     }
 
-    @media (min-width: 1024px) {
+    @media (min-width: 64rem) {
         .graella {
             grid-template-columns: repeat(3, minmax(0, 1fr));
         }
@@ -744,23 +698,24 @@
 
 @layer accesibilidad {
     @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-                animation-duration: var(--dur-r);
-                animation-iteration-count: 1;
-                transition-duration: var(--dur-r);
-            }
+        *,
+        *::before,
+        *::after {
+            animation-duration: var(--dur-r);
+            animation-iteration-count: 1;
+            transition-duration: var(--dur-r);
+        }
 
-            .tarjeta {
-                animation-name: none;
-            }
+        .tarjeta {
+            animation-name: none;
+        }
 
-            .tarjeta:hover {
-                transform: none;
-            }
+        .tarjeta:hover {
+            transform: none;
+        }
 
-            .tarjeta:hover .tarjeta__media img {
-                transform: none;
-            }    }
+        .tarjeta:hover .tarjeta__media img {
+            transform: none;
+        }
+    }
 }

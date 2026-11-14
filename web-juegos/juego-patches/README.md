@@ -4,7 +4,7 @@ Puzle espacial de 6×6: divide el tablero en retales rectangulares. Cada retal e
 
 ## Características
 
-- 20 tableros de 6×6 en `json/tableros.json`, cada uno con **solución única** verificada.
+- 20 tableros de 6×6 en `data/tableros.json`, cada uno con **solución única** verificada.
 - Pistas con área y forma: cuadrada, ancha, alta o libre.
 - Arrastra de una casilla a otra para dibujar un retal; toca un retal colocado para quitarlo.
 - Validación al soltar: el retal debe encerrar una sola pista y cumplir su área y su forma.
@@ -31,8 +31,8 @@ Puzle espacial de 6×6: divide el tablero en retales rectangulares. Cada retal e
 Para regenerar los tableros:
 
 ```sh
-node scripts/generar-tableros.mjs        # 20 tableros de 6×6
-node scripts/generar-tableros.mjs 10     # otra cantidad
+node tools/generar-tableros.mjs        # 20 tableros de 6×6
+node tools/generar-tableros.mjs 10     # otra cantidad
 ```
 
 ## Uso
@@ -42,15 +42,13 @@ Abre `index.html` con un servidor estático (por ejemplo `python3 -m http.server
 ## Estructura del proyecto
 
 ```
-juego-patches/
-├── index.html
-├── css/                   # estilos de la composición
-├── js/
-│   ├── patches-core.js    # generación, solver y validación (sin DOM)
-│   └── patches.js         # interfaz, arrastre y controles
-├── json/tableros.json     # tableros con su solución única
-├── icon/                  # favicon
-└── scripts/               # generador reproducible
+index.html
+css/patches.css        — Estilos de la composición
+js/patches-core.js     — Generación, solver y validación
+js/patches.js          — Interfaz, arrastre y controles
+data/tableros.json     — Tableros con solución única
+assets/icons/patches.svg
+tools/                 — Generador reproducible
 ```
 
 ## Licencia

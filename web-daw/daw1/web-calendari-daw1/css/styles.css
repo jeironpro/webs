@@ -1,28 +1,35 @@
 :root {
-    --borde: #000;
-    --fondo: #005eff;
-    --fondo-2: #00ff00;
-    --fondo-3: #90fb90;
-    --fondo-4: #e1e1e1;
-    --fondo-5: #f0f0f0;
-    --texto: #fff;
+    --border-color: #000;
+    --background: #005eff;
+    --completed: #00ff00;
+    --week: #90fb90;
+    --surface: #e1e1e1;
+    --surface-alt: #f0f0f0;
+    --holiday: #fe5555;
+    --text-color: #fff;
 }
 
-* {
+html,
+body,
+div,
+span,
+header,
+main,
+i {
     box-sizing: border-box;
-    font-family: 'Fredoka', sans-serif;
+    font-family: "Fredoka", sans-serif;
     margin: 0;
     padding: 0;
 }
 
 body {
-    background-color: var(--fondo-5);
+    background-color: var(--surface-alt);
 }
 
 header {
     align-items: center;
-    background-color: var(--fondo);
-    color: var(--texto);
+    background-color: var(--background);
+    color: var(--text-color);
     display: flex;
     justify-content: center;
     padding: 1rem;
@@ -44,75 +51,83 @@ main {
     width: 100%;
 }
 
-.contenidor-setmanes {
+.weeks-grid {
     display: grid;
-    gap: 10px;
+    gap: 0.625rem;
     grid-template-columns: 1fr;
     margin: auto;
-    max-width: 1200px;
+    max-width: 75rem;
     width: 100%;
 }
 
-.setmana {
+.week {
     align-items: center;
-    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0.125rem 0.125rem 0.125rem 0.125rem rgb(0 0 0 / 20%);
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-height: 200px;
+    min-height: 12.5rem;
     position: relative;
     width: 100%;
 }
 
-.setmana .numero-setmana,
-.setmana .dia {
-    background-color: var(--fondo-4);
-    width: 100%;
+.week .week-number,
+.week .day {
+    background-color: var(--surface);
     display: flex;
     flex-grow: 1;
+    width: 100%;
 }
 
-.setmana .numero-setmana {
+.week .week-number {
     align-items: center;
-    background-color: var(--fondo-3);
+    background-color: var(--week);
     font-weight: 600;
     justify-content: center;
 }
 
-.setmana .dia {
+.week .week-number.is-completed {
+    background-color: var(--completed);
+}
+
+.week .day {
     align-items: center;
-    border-bottom: 1px solid var(--borde);
-    gap: 5px;
+    border-bottom: 0.0625rem solid var(--border-color);
+    gap: 0.3125rem;
     padding: 0.15rem 0.5rem;
     position: relative;
 }
 
-.setmana .dia:last-child {
+.week .day:last-child {
     border-bottom: none;
 }
 
-.setmana .icona {
-    background-color: var(--fondo-2);
-    border-radius: 50%;
-    padding: 3px;
-    position: absolute;
-    right: 5px;
+.week .day.holiday {
+    background-color: var(--holiday);
 }
 
-@media (min-width: 640px) {
-    .contenidor-setmanes {
+.week .check-icon {
+    background-color: var(--completed);
+    border-radius: 50%;
+    padding: 0.1875rem;
+    position: absolute;
+    right: 0.3125rem;
+}
+
+@media (min-width: 40rem) {
+    .weeks-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
-@media (min-width: 1024px) {
-    .contenidor-setmanes {
+@media (min-width: 64rem) {
+    .weeks-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 }
 
-@media (min-width: 1320px) {
-    .contenidor-setmanes {
+@media (min-width: 82.5rem) {
+    .weeks-grid {
         grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 }

@@ -1,0 +1,698 @@
+<!doctype html> <!doctype html>
+<html lang="es" data-app="dashboard-soporte">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Dashboard de soporte</title>
+
+        <link rel="stylesheet" href="./css/styles.css" />
+        <link rel="stylesheet" href="./css/app.css" />
+    </head>
+    <body data-page="ticket-TK-1030" data-route="TK-1030">
+        <button
+            type="button"
+            class="soporte-menu-trigger fixed left-3 top-3 z-50 size-10 items-center justify-center rounded-full border border-border bg-paper-0 text-foreground shadow-sm"
+            aria-label="Abrir menú"
+        >
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+            >
+                <path d="M4 6h16"></path>
+                <path d="M4 12h16"></path>
+                <path d="M4 18h16"></path>
+            </svg>
+        </button>
+        <div id="root">
+            <div class="min-h-svh">
+                <a
+                    href="#contenido-principal"
+                    class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-full focus:bg-background focus:px-3 focus:py-2 focus:text-sm focus:font-medium focus:text-foreground focus:ring-2 focus:ring-ring"
+                    >Saltar al contenido</a
+                >
+                <div class="relative">
+                    <nav
+                        aria-label="Principal"
+                        data-sidebar="true"
+                        class="fixed left-3 top-3 bottom-3 z-40 flex flex-col overflow-hidden rounded-[20px] border border-border bg-paper-0 shadow-[0_8px_40px_-12px_rgba(20,30,80,0.12),0_0_0_1px_rgba(20,30,80,0.04)] backdrop-blur-xl transition-[width,transform] duration-300 translate-x-0 soporte-nav"
+                        data-mobile-nav=""
+                    >
+                        <div class="flex items-center gap-3 px-4 pt-5 pb-4">
+                            <img
+                                alt=""
+                                aria-hidden="true"
+                                class="sidebar-logo size-9 shrink-0"
+                                src="./favicon.svg"
+                            /><span
+                                class="sidebar-entrance text-sm font-semibold tracking-tight text-foreground"
+                                >NubeCart</span
+                            >
+                        </div>
+                        <div class="flex-1 space-y-1 px-3">
+                            <a
+                                class="sidebar-nav-item sidebar-entrance group relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors duration-[var(--dur-fast)] text-ink-2 hover:bg-paper-2 hover:text-foreground"
+                                href="index.html"
+                                ><svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="lucide lucide-layout-dashboard size-[18px] shrink-0"
+                                    aria-hidden="true"
+                                >
+                                    <rect width="7" height="9" x="3" y="3" rx="1"></rect>
+                                    <rect width="7" height="5" x="14" y="3" rx="1"></rect>
+                                    <rect width="7" height="9" x="14" y="12" rx="1"></rect>
+                                    <rect width="7" height="5" x="3" y="16" rx="1"></rect></svg
+                                ><span class="flex-1">Panel</span></a
+                            ><a
+                                aria-current="page"
+                                class="sidebar-nav-item sidebar-entrance group relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors duration-[var(--dur-fast)] bg-brand/10 text-brand"
+                                href="tickets.html"
+                                ><svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="lucide lucide-ticket size-[18px] shrink-0"
+                                    aria-hidden="true"
+                                >
+                                    <path
+                                        d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"
+                                    ></path>
+                                    <path d="M13 5v2"></path>
+                                    <path d="M13 17v2"></path>
+                                    <path d="M13 11v2"></path></svg
+                                ><span class="flex-1">Tickets</span
+                                ><span
+                                    data-slot="badge"
+                                    data-variant="outline"
+                                    class="group/badge inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden border py-0.5 font-medium whitespace-nowrap transition-all focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&amp;&gt;svg]:pointer-events-none [&amp;&gt;svg]:size-3! border-border text-foreground [a]:hover:bg-muted [a]:hover:text-muted-foreground ml-auto h-5 min-w-5 rounded-full px-1.5 text-[10px] tabular-nums"
+                                    >6</span
+                                ></a
+                            >
+                        </div>
+                        <div class="px-3 pb-3">
+                            <button
+                                type="button"
+                                tabindex="0"
+                                data-slot="button"
+                                data-base-ui-click-trigger=""
+                                id="base-ui-_r_1_"
+                                aria-haspopup="dialog"
+                                aria-expanded="false"
+                                class="group/button inline-flex shrink-0 items-center justify-center rounded-full border bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&amp;_svg]:pointer-events-none [&amp;_svg]:shrink-0 [&amp;_svg:not([class*='size-'])]:size-4 border-border bg-background hover:bg-paper-2 hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50 h-8 gap-1.5 px-3 has-data-[icon=inline-end]:pr-2.5 has-data-[icon=inline-start]:pl-2.5 w-full"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="lucide lucide-plus size-4"
+                                    aria-hidden="true"
+                                >
+                                    <path d="M5 12h14"></path>
+                                    <path d="M12 5v14"></path></svg
+                                ><span>Nuevo ticket</span>
+                            </button>
+                        </div>
+                        <div class="border-t border-border px-3 py-3">
+                            <a
+                                class="sidebar-entrance flex items-center gap-3 rounded-xl px-2 py-1.5 transition-colors hover:bg-paper-2"
+                                href="perfil.html"
+                                ><span
+                                    data-slot="avatar"
+                                    data-size="sm"
+                                    class="group/avatar relative flex size-8 shrink-0 rounded-full select-none after:absolute after:inset-0 after:rounded-full after:border after:border-border after:mix-blend-darken data-[size=lg]:size-10 data-[size=sm]:size-6 dark:after:mix-blend-lighten"
+                                    ><span
+                                        data-slot="avatar-fallback"
+                                        class="flex size-full items-center justify-center rounded-full bg-muted text-sm text-muted-foreground group-data-[size=sm]/avatar:text-xs"
+                                        ><svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="24"
+                                            height="24"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            class="lucide lucide-user size-3.5"
+                                            aria-hidden="true"
+                                        >
+                                            <path
+                                                d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"
+                                            ></path>
+                                            <circle cx="12" cy="7" r="4"></circle></svg></span
+                                ></span>
+                                <div class="min-w-0 flex-1">
+                                    <p class="truncate text-xs font-medium text-foreground">
+                                        Lucía Fernández
+                                    </p>
+                                    <p class="truncate text-[10px] text-ink-2">Agente Senior</p>
+                                </div>
+                                <button
+                                    type="button"
+                                    class="rounded-lg p-1.5 text-ink-3 transition-colors hover:bg-paper-2 hover:text-foreground"
+                                    aria-label="Cerrar sesión"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="24"
+                                        height="24"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        class="lucide lucide-log-out size-3.5"
+                                        aria-hidden="true"
+                                    >
+                                        <path d="m16 17 5-5-5-5"></path>
+                                        <path d="M21 12H9"></path>
+                                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                                    </svg></button
+                            ></a>
+                        </div>
+                    </nav>
+                    <button
+                        type="button"
+                        class="fixed z-50 flex size-6 items-center justify-center rounded-full border border-border bg-paper-0 text-ink-3 shadow-sm transition-colors hover:bg-paper-2 hover:text-foreground"
+                        aria-label="Colapsar sidebar"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="lucide lucide-chevron-left size-3"
+                            aria-hidden="true"
+                        >
+                            <path d="m15 18-6-6 6-6"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div class="pl-[276px] soporte-main">
+                    <header class="flex flex-col gap-2 px-4 pt-6 pb-6 sm:px-6 lg:px-8">
+                        <div class="header-entrance flex flex-wrap items-center gap-x-3 gap-y-2">
+                            <p class="eyebrow flex items-center gap-2">
+                                <span
+                                    aria-hidden="true"
+                                    class="size-1.5 rounded-full bg-brand"
+                                ></span
+                                >Historial
+                            </p>
+                            <span
+                                class="flex items-center gap-1.5 rounded-full border border-border bg-background/70 px-2.5 py-0.5 font-mono text-[10px] tracking-[0.12em] text-ink-2 uppercase"
+                                ><span aria-hidden="true" class="live-dot"></span
+                                ><span aria-live="polite">6 abiertos</span></span
+                            >
+                        </div>
+                        <h1
+                            tabindex="-1"
+                            class="header-entrance font-heading text-3xl font-semibold tracking-tight text-foreground outline-none sm:text-4xl"
+                        >
+                            Detalle del ticket
+                        </h1>
+                    </header>
+                    <main id="contenido-principal" class="flex-1 px-4 pb-16 sm:px-6 lg:px-8">
+                        <section class="flex flex-col gap-4">
+                            <a
+                                role="button"
+                                tabindex="0"
+                                data-slot="button"
+                                class="group/button inline-flex shrink-0 items-center justify-center rounded-full border border-transparent bg-clip-padding font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&amp;_svg]:pointer-events-none [&amp;_svg]:shrink-0 hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50 h-7 gap-1 px-2.5 text-[0.8rem] has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2 [&amp;_svg:not([class*='size-'])]:size-3.5 -mx-2 w-fit"
+                                href="tickets.html"
+                                ><svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="lucide lucide-arrow-left size-4"
+                                    aria-hidden="true"
+                                >
+                                    <path d="m12 19-7-7 7-7"></path>
+                                    <path d="M19 12H5"></path></svg
+                                >Volver a Tickets</a
+                            >
+                            <div
+                                data-slot="card"
+                                data-size="default"
+                                class="group/card flex flex-col gap-(--card-spacing) overflow-hidden rounded-[var(--radius-lg)] border border-border bg-card py-(--card-spacing) text-sm text-card-foreground [--card-spacing:--spacing(4)] transition-[box-shadow] duration-[var(--dur-mid)] ease-[var(--ease-out)] has-data-[slot=card-footer]:pb-0 has-[&gt;img:first-child]:pt-0 data-[size=sm]:[--card-spacing:--spacing(3)] data-[size=sm]:has-data-[slot=card-footer]:pb-0 hover:shadow-[0_20px_60px_-30px_rgba(40,30,120,0.28)] *:[img:first-child]:rounded-t-[var(--radius-lg)] *:[img:last-child]:rounded-b-[var(--radius-lg)]"
+                            >
+                                <div
+                                    data-slot="card-header"
+                                    class="group/card-header @container/card-header grid auto-rows-min items-start gap-1 rounded-t-[var(--radius-lg)] px-(--card-spacing) has-data-[slot=card-action]:grid-cols-[1fr_auto] has-data-[slot=card-description]:grid-rows-[auto_auto] [.border-b]:pb-(--card-spacing)"
+                                >
+                                    <div class="flex flex-wrap items-center gap-2">
+                                        <span
+                                            data-slot="badge"
+                                            data-variant="outline"
+                                            class="group/badge inline-flex w-fit shrink-0 items-center justify-center overflow-hidden border py-0.5 font-medium whitespace-nowrap transition-all focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&amp;&gt;svg]:pointer-events-none [&amp;&gt;svg]:size-3! border-border text-foreground [a]:hover:bg-muted [a]:hover:text-muted-foreground h-6 gap-1.5 rounded-full px-2.5 font-mono text-[10px] tracking-[0.12em] uppercase"
+                                            ><span
+                                                aria-hidden="true"
+                                                class="size-1.5 rounded-full bg-brand"
+                                            ></span
+                                            >En progreso</span
+                                        ><span
+                                            data-slot="badge"
+                                            data-variant="outline"
+                                            class="group/badge inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden border py-0.5 font-medium whitespace-nowrap transition-all focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&amp;&gt;svg]:pointer-events-none [&amp;&gt;svg]:size-3! [a]:hover:bg-muted [a]:hover:text-muted-foreground h-6 rounded-full px-2.5 font-mono text-[10px] tracking-[0.12em] uppercase border-border bg-muted text-ink-2"
+                                            >Baja</span
+                                        ><span class="text-sm text-muted-foreground">Mejora</span>
+                                    </div>
+                                    <div
+                                        data-slot="card-title"
+                                        class="font-heading font-semibold tracking-tight group-data-[size=sm]/card:text-sm text-2xl"
+                                    >
+                                        Solicitud: nuevos campos en el formulario de pedido
+                                    </div>
+                                    <div
+                                        data-slot="card-description"
+                                        class="flex flex-wrap gap-x-4 gap-y-1 font-mono text-[11px] tracking-[0.08em] text-ink-2 uppercase"
+                                    >
+                                        <span class="tabular-nums">TK-1030</span><span>Email</span
+                                        ><span
+                                            >Creado
+                                            <time datetime="2026-08-15T12:00:00-03:00"
+                                                >15 ago 2026, 12:00</time
+                                            ></span
+                                        ><span>Respuesta en 6 h 10 min</span>
+                                    </div>
+                                </div>
+                                <div data-slot="card-content" class="px-(--card-spacing)">
+                                    <p class="max-w-prose text-sm text-foreground">
+                                        Necesitamos un campo personalizado de «cuit» para clientes
+                                        mayoristas en la ficha de pedido. ¿Se puede agregar al
+                                        panel?
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="grid items-start gap-4 lg:grid-cols-3">
+                                <div
+                                    data-slot="card"
+                                    data-size="default"
+                                    class="group/card flex flex-col gap-(--card-spacing) overflow-hidden rounded-[var(--radius-lg)] border border-border bg-card py-(--card-spacing) text-sm text-card-foreground [--card-spacing:--spacing(4)] transition-[box-shadow] duration-[var(--dur-mid)] ease-[var(--ease-out)] has-data-[slot=card-footer]:pb-0 has-[&gt;img:first-child]:pt-0 data-[size=sm]:[--card-spacing:--spacing(3)] data-[size=sm]:has-data-[slot=card-footer]:pb-0 hover:shadow-[0_20px_60px_-30px_rgba(40,30,120,0.28)] *:[img:first-child]:rounded-t-[var(--radius-lg)] *:[img:last-child]:rounded-b-[var(--radius-lg)] lg:col-span-2"
+                                >
+                                    <div
+                                        data-slot="card-header"
+                                        class="group/card-header @container/card-header grid auto-rows-min items-start gap-1 rounded-t-[var(--radius-lg)] px-(--card-spacing) has-data-[slot=card-action]:grid-cols-[1fr_auto] has-data-[slot=card-description]:grid-rows-[auto_auto] [.border-b]:pb-(--card-spacing)"
+                                    >
+                                        <p class="eyebrow mb-1">Historial</p>
+                                        <div
+                                            data-slot="card-title"
+                                            class="font-heading font-semibold tracking-tight group-data-[size=sm]/card:text-sm text-xl"
+                                        >
+                                            Conversación
+                                        </div>
+                                        <div
+                                            data-slot="card-description"
+                                            class="text-muted-foreground font-mono text-[11px] tracking-[0.08em] uppercase"
+                                        >
+                                            3 mensajes
+                                        </div>
+                                    </div>
+                                    <div data-slot="card-content" class="px-(--card-spacing)">
+                                        <div class="flex flex-col gap-4">
+                                            <ol class="flex flex-col gap-4">
+                                                <li class="msg-entrance flex items-start gap-3">
+                                                    <span
+                                                        data-slot="avatar"
+                                                        data-size="default"
+                                                        class="group/avatar relative flex rounded-full select-none after:absolute after:inset-0 after:rounded-full after:border after:border-border after:mix-blend-darken data-[size=lg]:size-10 data-[size=sm]:size-6 dark:after:mix-blend-lighten size-8 shrink-0"
+                                                        ><span
+                                                            data-slot="avatar-fallback"
+                                                            class="flex size-full items-center justify-center rounded-full bg-muted text-sm text-muted-foreground group-data-[size=sm]/avatar:text-xs"
+                                                            >VC</span
+                                                        ></span
+                                                    >
+                                                    <div class="flex max-w-[75%] flex-col gap-1">
+                                                        <span
+                                                            class="flex items-baseline gap-2 font-mono text-[11px] tracking-[0.04em] text-ink-2 uppercase"
+                                                            ><span
+                                                                class="font-medium text-foreground"
+                                                                >Valeria Castro</span
+                                                            ><span aria-hidden="true"
+                                                                >· Deco Floral</span
+                                                            ><time
+                                                                datetime="2026-08-15T12:00:00-03:00"
+                                                                >15 ago 2026, 12:00</time
+                                                            ></span
+                                                        >
+                                                        <p
+                                                            class="rounded-xl px-3.5 py-2.5 text-sm whitespace-pre-wrap bg-muted text-foreground"
+                                                        >
+                                                            Necesitamos un campo personalizado de
+                                                            CUIT en la ficha de pedido para clientes
+                                                            mayoristas.
+                                                        </p>
+                                                    </div>
+                                                </li>
+                                                <li
+                                                    class="msg-entrance flex items-start gap-3 flex-row-reverse"
+                                                >
+                                                    <span
+                                                        data-slot="avatar"
+                                                        data-size="default"
+                                                        class="group/avatar relative flex rounded-full select-none after:absolute after:inset-0 after:rounded-full after:border after:border-border after:mix-blend-darken data-[size=lg]:size-10 data-[size=sm]:size-6 dark:after:mix-blend-lighten size-8 shrink-0"
+                                                        ><span
+                                                            data-slot="avatar-fallback"
+                                                            class="flex size-full items-center justify-center rounded-full bg-muted text-sm text-muted-foreground group-data-[size=sm]/avatar:text-xs"
+                                                            >CM</span
+                                                        ></span
+                                                    >
+                                                    <div
+                                                        class="flex max-w-[75%] flex-col gap-1 items-end"
+                                                    >
+                                                        <span
+                                                            class="flex items-baseline gap-2 font-mono text-[11px] tracking-[0.04em] text-ink-2 uppercase"
+                                                            ><span
+                                                                class="font-medium text-foreground"
+                                                                >Carla Mendoza</span
+                                                            ><span aria-hidden="true">· Agente</span
+                                                            ><time
+                                                                datetime="2026-08-15T18:10:00-03:00"
+                                                                >15 ago 2026, 18:10</time
+                                                            ></span
+                                                        >
+                                                        <p
+                                                            class="rounded-xl px-3.5 py-2.5 text-sm whitespace-pre-wrap bg-primary text-primary-foreground"
+                                                        >
+                                                            Hola Valeria, los campos personalizados
+                                                            estarán disponibles en el plan Pro el
+                                                            mes que viene. ¿Lo dejamos anotado en tu
+                                                            cuenta?
+                                                        </p>
+                                                    </div>
+                                                </li>
+                                                <li class="msg-entrance flex items-start gap-3">
+                                                    <span
+                                                        data-slot="avatar"
+                                                        data-size="default"
+                                                        class="group/avatar relative flex rounded-full select-none after:absolute after:inset-0 after:rounded-full after:border after:border-border after:mix-blend-darken data-[size=lg]:size-10 data-[size=sm]:size-6 dark:after:mix-blend-lighten size-8 shrink-0"
+                                                        ><span
+                                                            data-slot="avatar-fallback"
+                                                            class="flex size-full items-center justify-center rounded-full bg-muted text-sm text-muted-foreground group-data-[size=sm]/avatar:text-xs"
+                                                            >VC</span
+                                                        ></span
+                                                    >
+                                                    <div class="flex max-w-[75%] flex-col gap-1">
+                                                        <span
+                                                            class="flex items-baseline gap-2 font-mono text-[11px] tracking-[0.04em] text-ink-2 uppercase"
+                                                            ><span
+                                                                class="font-medium text-foreground"
+                                                                >Valeria Castro</span
+                                                            ><span aria-hidden="true"
+                                                                >· Deco Floral</span
+                                                            ><time
+                                                                datetime="2026-08-16T08:40:00-03:00"
+                                                                >16 ago 2026, 08:40</time
+                                                            ></span
+                                                        >
+                                                        <p
+                                                            class="rounded-xl px-3.5 py-2.5 text-sm whitespace-pre-wrap bg-muted text-foreground"
+                                                        >
+                                                            Sí, por favor.
+                                                        </p>
+                                                    </div>
+                                                </li>
+                                            </ol>
+                                            <form
+                                                class="flex items-center gap-2 rounded-xl border border-border bg-card p-3"
+                                            >
+                                                <input
+                                                    id="base-ui-_r_c_"
+                                                    data-slot="input"
+                                                    placeholder="Escribe un mensaje..."
+                                                    class="h-8 w-full min-w-0 rounded-lg border border-input bg-transparent px-2.5 py-1 text-base transition-colors outline-none file:inline-flex file:h-6 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 md:text-sm dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 flex-1"
+                                                    value=""
+                                                    aria-label="Escribe un mensaje"
+                                                /><button
+                                                    type="submit"
+                                                    data-disabled=""
+                                                    tabindex="0"
+                                                    disabled=""
+                                                    data-slot="button"
+                                                    aria-label="Enviar mensaje"
+                                                    class="group/button inline-flex shrink-0 items-center justify-center rounded-full border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&amp;_svg]:pointer-events-none [&amp;_svg]:shrink-0 [&amp;_svg:not([class*='size-'])]:size-4 bg-primary text-primary-foreground shadow-[inset_0_1px_0_rgba(255,255,255,0.16),0_8px_24px_-10px_rgba(0,10,60,0.4)] transition-[transform,background-color,box-shadow] duration-[var(--dur-fast)] ease-[var(--ease-out)] hover:bg-brand hover:-translate-y-px size-8"
+                                                >
+                                                    <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        width="24"
+                                                        height="24"
+                                                        viewBox="0 0 24 24"
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        stroke-width="2"
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        class="lucide lucide-send size-4"
+                                                        aria-hidden="true"
+                                                    >
+                                                        <path
+                                                            d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"
+                                                        ></path>
+                                                        <path d="m21.854 2.147-10.94 10.939"></path>
+                                                    </svg>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col gap-4">
+                                    <div
+                                        data-slot="card"
+                                        data-size="default"
+                                        class="group/card flex flex-col gap-(--card-spacing) overflow-hidden rounded-[var(--radius-lg)] border border-border bg-card py-(--card-spacing) text-sm text-card-foreground [--card-spacing:--spacing(4)] transition-[box-shadow] duration-[var(--dur-mid)] ease-[var(--ease-out)] has-data-[slot=card-footer]:pb-0 has-[&gt;img:first-child]:pt-0 data-[size=sm]:[--card-spacing:--spacing(3)] data-[size=sm]:has-data-[slot=card-footer]:pb-0 hover:shadow-[0_20px_60px_-30px_rgba(40,30,120,0.28)] *:[img:first-child]:rounded-t-[var(--radius-lg)] *:[img:last-child]:rounded-b-[var(--radius-lg)]"
+                                    >
+                                        <div
+                                            data-slot="card-header"
+                                            class="group/card-header @container/card-header grid auto-rows-min items-start gap-1 rounded-t-[var(--radius-lg)] px-(--card-spacing) has-data-[slot=card-action]:grid-cols-[1fr_auto] has-data-[slot=card-description]:grid-rows-[auto_auto] [.border-b]:pb-(--card-spacing)"
+                                        >
+                                            <p class="eyebrow mb-1">Quién reporta</p>
+                                            <div
+                                                data-slot="card-title"
+                                                class="font-heading font-semibold tracking-tight group-data-[size=sm]/card:text-sm text-xl"
+                                            >
+                                                Cliente
+                                            </div>
+                                        </div>
+                                        <div
+                                            data-slot="card-content"
+                                            class="px-(--card-spacing) space-y-3"
+                                        >
+                                            <div class="flex items-center gap-3">
+                                                <span
+                                                    data-slot="avatar"
+                                                    data-size="lg"
+                                                    class="group/avatar relative flex size-8 shrink-0 rounded-full select-none after:absolute after:inset-0 after:rounded-full after:border after:border-border after:mix-blend-darken data-[size=lg]:size-10 data-[size=sm]:size-6 dark:after:mix-blend-lighten"
+                                                    ><span
+                                                        data-slot="avatar-fallback"
+                                                        class="flex size-full items-center justify-center rounded-full bg-muted text-sm text-muted-foreground group-data-[size=sm]/avatar:text-xs"
+                                                        >VC</span
+                                                    ></span
+                                                >
+                                                <div>
+                                                    <p class="font-medium text-foreground">
+                                                        Valeria Castro
+                                                    </p>
+                                                    <p class="text-sm text-muted-foreground">
+                                                        Deco Floral
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <dl class="grid gap-3">
+                                                <div>
+                                                    <dt class="text-xs text-muted-foreground">
+                                                        Plan
+                                                    </dt>
+                                                    <dd
+                                                        class="truncate text-sm font-medium text-foreground"
+                                                    >
+                                                        Pro
+                                                    </dd>
+                                                </div>
+                                                <div>
+                                                    <dt class="sr-only">Email</dt>
+                                                    <dd
+                                                        class="flex items-center gap-2 text-sm text-muted-foreground"
+                                                    >
+                                                        <svg
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            width="24"
+                                                            height="24"
+                                                            viewBox="0 0 24 24"
+                                                            fill="none"
+                                                            stroke="currentColor"
+                                                            stroke-width="2"
+                                                            stroke-linecap="round"
+                                                            stroke-linejoin="round"
+                                                            class="lucide lucide-mail size-4 shrink-0"
+                                                            aria-hidden="true"
+                                                        >
+                                                            <path
+                                                                d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"
+                                                            ></path>
+                                                            <rect
+                                                                x="2"
+                                                                y="4"
+                                                                width="20"
+                                                                height="16"
+                                                                rx="2"
+                                                            ></rect></svg
+                                                        >valeria@decofloral.com
+                                                    </dd>
+                                                </div>
+                                                <div>
+                                                    <dt class="sr-only">Ciudad</dt>
+                                                    <dd
+                                                        class="flex items-center gap-2 text-sm text-muted-foreground"
+                                                    >
+                                                        <svg
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            width="24"
+                                                            height="24"
+                                                            viewBox="0 0 24 24"
+                                                            fill="none"
+                                                            stroke="currentColor"
+                                                            stroke-width="2"
+                                                            stroke-linecap="round"
+                                                            stroke-linejoin="round"
+                                                            class="lucide lucide-map-pin size-4 shrink-0"
+                                                            aria-hidden="true"
+                                                        >
+                                                            <path
+                                                                d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"
+                                                            ></path>
+                                                            <circle
+                                                                cx="12"
+                                                                cy="10"
+                                                                r="3"
+                                                            ></circle></svg
+                                                        >Tucumán
+                                                    </dd>
+                                                </div>
+                                            </dl>
+                                        </div>
+                                    </div>
+                                    <div
+                                        data-slot="card"
+                                        data-size="default"
+                                        class="group/card flex flex-col gap-(--card-spacing) overflow-hidden rounded-[var(--radius-lg)] border border-border bg-card py-(--card-spacing) text-sm text-card-foreground [--card-spacing:--spacing(4)] transition-[box-shadow] duration-[var(--dur-mid)] ease-[var(--ease-out)] has-data-[slot=card-footer]:pb-0 has-[&gt;img:first-child]:pt-0 data-[size=sm]:[--card-spacing:--spacing(3)] data-[size=sm]:has-data-[slot=card-footer]:pb-0 hover:shadow-[0_20px_60px_-30px_rgba(40,30,120,0.28)] *:[img:first-child]:rounded-t-[var(--radius-lg)] *:[img:last-child]:rounded-b-[var(--radius-lg)]"
+                                    >
+                                        <div
+                                            data-slot="card-header"
+                                            class="group/card-header @container/card-header grid auto-rows-min items-start gap-1 rounded-t-[var(--radius-lg)] px-(--card-spacing) has-data-[slot=card-action]:grid-cols-[1fr_auto] has-data-[slot=card-description]:grid-rows-[auto_auto] [.border-b]:pb-(--card-spacing)"
+                                        >
+                                            <p class="eyebrow mb-1">Equipo</p>
+                                            <div
+                                                data-slot="card-title"
+                                                class="font-heading font-semibold tracking-tight group-data-[size=sm]/card:text-sm text-xl"
+                                            >
+                                                Asignación
+                                            </div>
+                                        </div>
+                                        <div
+                                            data-slot="card-content"
+                                            class="px-(--card-spacing) space-y-3"
+                                        >
+                                            <div class="flex items-center gap-3">
+                                                <span
+                                                    data-slot="avatar"
+                                                    data-size="lg"
+                                                    class="group/avatar relative flex size-8 shrink-0 rounded-full select-none after:absolute after:inset-0 after:rounded-full after:border after:border-border after:mix-blend-darken data-[size=lg]:size-10 data-[size=sm]:size-6 dark:after:mix-blend-lighten"
+                                                    ><span
+                                                        data-slot="avatar-fallback"
+                                                        class="flex size-full items-center justify-center rounded-full bg-muted text-sm text-muted-foreground group-data-[size=sm]/avatar:text-xs"
+                                                        >CM</span
+                                                    ></span
+                                                >
+                                                <div>
+                                                    <p class="font-medium text-foreground">
+                                                        Carla Mendoza
+                                                    </p>
+                                                    <p class="text-sm text-muted-foreground">
+                                                        Agente
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <dl class="grid gap-3">
+                                                <div>
+                                                    <dt class="text-xs text-muted-foreground">
+                                                        Tiempo de respuesta
+                                                    </dt>
+                                                    <dd
+                                                        class="truncate text-sm font-medium text-foreground"
+                                                    >
+                                                        6 h 10 min
+                                                    </dd>
+                                                </div>
+                                                <div>
+                                                    <dt class="text-xs text-muted-foreground">
+                                                        Cerrado
+                                                    </dt>
+                                                    <dd
+                                                        class="truncate text-sm font-medium text-foreground"
+                                                    >
+                                                        —
+                                                    </dd>
+                                                </div>
+                                                <div>
+                                                    <dt class="text-xs text-muted-foreground">
+                                                        Satisfacción
+                                                    </dt>
+                                                    <dd
+                                                        class="truncate text-sm font-medium text-foreground"
+                                                    >
+                                                        Sin calificar
+                                                    </dd>
+                                                </div>
+                                            </dl>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </main>
+                </div>
+            </div>
+        </div>
+
+        <script type="module" src="./js/app.js"></script>
+    </body>
+</html>

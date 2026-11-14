@@ -305,16 +305,9 @@ def main():
     for path in sorted(PYTHON_DIR.glob("*.py")):
         exercises.extend(parse_python(path))
 
-    header = (
-        "/*\n"
-        " * Datos de los ejercicios de CodingBat (Java y Python).\n"
-        " * Generado automáticamente por tools/generate-data.py — no editar a mano.\n"
-        " * Para regenerar: python3 tools/generate-data.py\n"
-        " */\n\n"
-    )
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(
-        header + "window.EXERCISES = " +
+        "window.EXERCISES = " +
         json.dumps(exercises, ensure_ascii=False, indent=2) + ";\n",
         encoding="utf-8",
     )

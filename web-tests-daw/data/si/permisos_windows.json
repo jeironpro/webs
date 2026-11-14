@@ -1,0 +1,222 @@
+[
+  {
+    "question": "¿Qué son los permisos NTFS?",
+    "options": [
+      "Permisos de internet",
+      "Permisos de usuario",
+      "Permisos de seguridad que se aplican a archivos y carpetas en discos formateados con NTFS, tanto localmente como en red",
+      "Permisos de red"
+    ],
+    "answer": 2,
+    "explanation": "Son los más granulares y seguros."
+  },
+  {
+    "question": "¿Qué son los permisos de recurso compartido (Share Permissions)?",
+    "options": [
+      "Permisos de archivo",
+      "Permisos de disco",
+      "Permisos que solo se aplican cuando se accede a la carpeta a través de la red",
+      "Permisos locales"
+    ],
+    "answer": 2,
+    "explanation": "No protegen si el usuario inicia sesión localmente en el equipo."
+  },
+  {
+    "question": "¿Qué pasa cuando se combinan permisos NTFS y de recurso compartido?",
+    "options": [
+      "Se suman los permisos",
+      "Se aplica la restricción MÁS restrictiva de ambas",
+      "Ganan los de red",
+      "Ganan los NTFS"
+    ],
+    "answer": 1,
+    "explanation": "Regla de oro en seguridad Windows."
+  },
+  {
+    "question": "¿Qué es la herencia de permisos?",
+    "options": [
+      "Por defecto, los archivos y subcarpetas heredan los permisos de su carpeta padre",
+      "Heredan del usuario",
+      "No heredan nada",
+      "Heredan del disco"
+    ],
+    "answer": 0,
+    "explanation": "Facilita la administración."
+  },
+  {
+    "question": "¿Qué significa 'Control Total' (Full Control)?",
+    "options": [
+      "Solo borrar",
+      "Permite leer, escribir, modificar, borrar, cambiar permisos y tomar posesión",
+      "Solo leer",
+      "Solo escribir"
+    ],
+    "answer": 1,
+    "explanation": "Es el nivel máximo de acceso."
+  },
+  {
+    "question": "¿Qué significa el permiso 'Modificar' (Modify)?",
+    "options": [
+      "Permite todo",
+      "Solo lectura",
+      "Permite leer, escribir y borrar, pero NO cambiar permisos ni tomar posesión",
+      "Solo escritura"
+    ],
+    "answer": 2,
+    "explanation": "Suficiente para la mayoría de usuarios."
+  },
+  {
+    "question": "¿Qué significa 'Lectura y ejecución'?",
+    "options": [
+      "Permite ver archivos y ejecutar programas, pero no modificarlos",
+      "Permite escribir",
+      "Permite borrar",
+      "Permite cambiar permisos"
+    ],
+    "answer": 0,
+    "explanation": "Típico para archivos de programa."
+  },
+  {
+    "question": "¿Qué es un permiso explícito?",
+    "options": [
+      "Un permiso asignado directamente a un objeto específico",
+      "Un permiso denegado",
+      "Un permiso heredado",
+      "Un permiso de grupo"
+    ],
+    "answer": 0,
+    "explanation": "Tiene prioridad sobre los heredados (generalmente)."
+  },
+  {
+    "question": "¿Qué tiene prioridad: Permitir o Denegar?",
+    "options": [
+      "Son iguales",
+      "Denegar (Deny) siempre tiene prioridad sobre Permitir (Allow)",
+      "Permitir",
+      "Depende del orden"
+    ],
+    "answer": 1,
+    "explanation": "Si un usuario pertenece a un grupo con 'Denegar', no entrará aunque otro grupo diga 'Permitir'."
+  },
+  {
+    "question": "¿Qué es el propietario (Owner) de un archivo?",
+    "options": [
+      "El sistema",
+      "El administrador",
+      "El usuario que creó el archivo (o que tomó posesión), siempre puede cambiar los permisos",
+      "Nadie"
+    ],
+    "answer": 2,
+    "explanation": "Incluso si se quita a sí mismo los permisos, puede volver a dárselos."
+  },
+  {
+    "question": "¿Qué es tomar posesión (Take Ownership)?",
+    "options": [
+      "Robar archivos",
+      "Copiar archivos",
+      "Un administrador puede forzar ser el dueño de un archivo para recuperar el acceso",
+      "Borrar archivos"
+    ],
+    "answer": 2,
+    "explanation": "Necesario si un empleado se va y bloqueó sus archivos."
+  },
+  {
+    "question": "¿Qué son los permisos efectivos?",
+    "options": [
+      "El resultado final de combinar permisos de usuario, grupos, herencia y denegaciones",
+      "Los permisos de disco",
+      "Los permisos de red",
+      "Los permisos teóricos"
+    ],
+    "answer": 0,
+    "explanation": "Windows tiene una herramienta para calcularlos."
+  },
+  {
+    "question": "¿Qué es el recurso compartido administrativo (C$, ADMIN$)?",
+    "options": [
+      "Errores",
+      "Virus",
+      "Carpetas públicas",
+      "Recursos ocultos creados por el sistema para uso de administradores"
+    ],
+    "answer": 3,
+    "explanation": "El signo $ al final los oculta en la red."
+  },
+  {
+    "question": "¿Qué es ICACLS?",
+    "options": [
+      "Un virus",
+      "Un navegador",
+      "Un programa de dibujo",
+      "Comando de línea de comandos para gestionar permisos NTFS (ACLs)"
+    ],
+    "answer": 3,
+    "explanation": "El equivalente potente de chmod en Windows."
+  },
+  {
+    "question": "¿Qué pasa con los permisos si mueves un archivo a otra carpeta en la misma partición NTFS?",
+    "options": [
+      "Se borran los permisos",
+      "Conserva sus permisos originales",
+      "Hereda los de la nueva carpeta",
+      "Se hace público"
+    ],
+    "answer": 1,
+    "explanation": "Al mover en el mismo volumen, solo se actualiza el puntero, no se recrea el archivo."
+  },
+  {
+    "question": "¿Qué pasa con los permisos si copias un archivo a otra carpeta?",
+    "options": [
+      "Hereda los permisos de la carpeta de destino (se considera un archivo nuevo)",
+      "Conserva los originales",
+      "Da error",
+      "Se encripta"
+    ],
+    "answer": 0,
+    "explanation": "Regla importante para migraciones."
+  },
+  {
+    "question": "¿Qué es el grupo 'Todos' (Everyone)?",
+    "options": [
+      "Solo administradores",
+      "Incluye a cualquier usuario, incluso invitados (cuidado con la seguridad)",
+      "Solo usuarios locales",
+      "Nadie"
+    ],
+    "answer": 1,
+    "explanation": "En versiones modernas es menos peligroso, pero sigue siendo riesgo."
+  },
+  {
+    "question": "¿Qué es el UAC (User Account Control)?",
+    "options": [
+      "Un antivirus",
+      "Sistema que pide confirmación cuando un programa intenta hacer cambios que requieren permisos de administrador",
+      "Un usuario",
+      "Un firewall"
+    ],
+    "answer": 1,
+    "explanation": "Evita que el malware se instale silenciosamente."
+  },
+  {
+    "question": "¿Qué es ABE (Access Based Enumeration)?",
+    "options": [
+      "Encripta carpetas",
+      "Muestra todo",
+      "Oculta los archivos y carpetas para los que el usuario no tiene permiso de lectura",
+      "Borra archivos"
+    ],
+    "answer": 2,
+    "explanation": "Mejora la usabilidad y privacidad en servidores de archivos."
+  },
+  {
+    "question": "¿Qué es una ACL (Access Control List)?",
+    "options": [
+      "Una lista de usuarios",
+      "La lista de entradas de control de acceso (ACE) que define quién tiene qué permiso sobre un objeto",
+      "Una lista de compra",
+      "Un grupo"
+    ],
+    "answer": 1,
+    "explanation": "Es la estructura interna de los permisos."
+  }
+]

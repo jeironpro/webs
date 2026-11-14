@@ -1,7 +1,3 @@
-/**
- * Minimapa del circuito: dibuja el trazado una vez configurado y recoloca los
- * puntos de coche y rivales a la frecuencia del HUD. No bloquea el render 3D.
- */
 export function crearMinimapa(lienzo) {
     const contexto = lienzo.getContext("2d");
     let puntos = [];
@@ -42,7 +38,10 @@ export function crearMinimapa(lienzo) {
         const margen = 16;
         const anchoUtil = Math.max(ancho - margen * 2, 1);
         const altoUtil = Math.max(alto - margen * 2, 1);
-        escala = Math.min(anchoUtil / Math.max(maxX - minX, 1), altoUtil / Math.max(maxZ - minZ, 1));
+        escala = Math.min(
+            anchoUtil / Math.max(maxX - minX, 1),
+            altoUtil / Math.max(maxZ - minZ, 1)
+        );
 
         puntos = muestras.map((muestra) => [muestra.posicion.x, muestra.posicion.z]);
     }

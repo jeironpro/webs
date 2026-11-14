@@ -1,61 +1,74 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../icon/curso_git.png" type="image/x-icon">
-    <title>Git add</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/git.css">
-</head>
-<body>
-    <header>
-        <h1>Git add</h1>
-    </header>
-    <main class="course-content">
-        <section class="course-section">
-            <article class="command-definition">
-                <div class="definition">
-                    <h2>Definición</h2>
-                    <p>
-                        El comando <code>git add</code> se utiliza para preparar archivos antes de confirmarlos en un commit.
-                        Mueve los cambios del área de trabajo (working directory) al área de preparación (staging area), donde Git registra qué se incluirá en el siguiente commit.
-                        En otras palabras, <code>git add</code> le dice a Git: “estos cambios están listos para guardarse”.
-                    </p>
-                </div>
-                <div class="commands">
-                    <h2>Comandos</h2>
-                    <ul>
-                        <li>
-                            <code><span>git add &lt;archivo&gt;</span></code>
-                            <p>Agrega el archivos al área de preparación (staging area).</p>
-                        </li>
-                        <li>
-                            <code><span>git add .</span></code>
-                            <p>Agrega todos los archivos nuevos o modificados al área de preparación (staging area).</p>
-                        </li>
-                        <li>
-                            <code><span>git add -A</span></code>
-                            <p>Agrega todos los cambios (incluidos archivos eliminados).</p>
-                        </li>
-                        <li>
-                            <code><span>git add -p</span></code>
-                            <p>Permite agregar solo fragmentos específicos de los cambios en un archivo.</p>
-                        </li>
-                    </ul>
-                </div>
-            </article>
-            <article class="practice">
-                <div class="run-block">
-                    <h3> Ejecutar</h3>
-                    <pre><code>$ echo "console.log('Hola Git');" > app.js
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg" />
+        <link rel="shortcut icon" href="../assets/icons/curso_git.png" type="image/x-icon" />
+        <title>Git add</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="../css/git.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Git add</h1>
+        </header>
+        <main class="course-content">
+            <section class="course-section">
+                <article class="command-definition">
+                    <div class="definition">
+                        <h2>Definición</h2>
+                        <p>
+                            El comando <code>git add</code> se utiliza para preparar archivos antes
+                            de confirmarlos en un commit. Mueve los cambios del área de trabajo
+                            (working directory) al área de preparación (staging area), donde Git
+                            registra qué se incluirá en el siguiente commit. En otras palabras,
+                            <code>git add</code> le dice a Git: “estos cambios están listos para
+                            guardarse”.
+                        </p>
+                    </div>
+                    <div class="commands">
+                        <h2>Comandos</h2>
+                        <ul>
+                            <li>
+                                <code><span>git add &lt;archivo&gt;</span></code>
+                                <p>Agrega el archivos al área de preparación (staging area).</p>
+                            </li>
+                            <li>
+                                <code><span>git add .</span></code>
+                                <p>
+                                    Agrega todos los archivos nuevos o modificados al área de
+                                    preparación (staging area).
+                                </p>
+                            </li>
+                            <li>
+                                <code><span>git add -A</span></code>
+                                <p>Agrega todos los cambios (incluidos archivos eliminados).</p>
+                            </li>
+                            <li>
+                                <code><span>git add -p</span></code>
+                                <p>
+                                    Permite agregar solo fragmentos específicos de los cambios en un
+                                    archivo.
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+                <article class="practice">
+                    <div class="run-block">
+                        <h3>Ejecutar</h3>
+                        <pre><code>$ echo "console.log('Hola Git');" > app.js
 $ git status
 $ git add app.js
 $ git status</code></pre>
-                </div>
-                <div class="result-block">
-                    <h3> Resultado</h3>
-                    <pre><code>En la rama main
+                    </div>
+                    <div class="result-block">
+                        <h3>Resultado</h3>
+                        <pre><code>En la rama main
 
 No hay commits todavía
 
@@ -72,14 +85,13 @@ No hay commits todavía
 Cambios a ser confirmados:
   (usa "git rm --cached &lt;archivo&gt;..." para sacar del área de stage)
 	nuevos archivos: app.js</code></pre>
-                </div>
-
-            </article>
-        </section>
-    </main>
-    <footer>
-        &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
-    </footer>
-    <script src="../js/header.js"></script>
-</body>
+                    </div>
+                </article>
+            </section>
+        </main>
+        <footer>
+            &copy; Todos los derechos reservados <span data-year>2025</span> - JeironPro
+        </footer>
+        <script src="../js/header.js"></script>
+    </body>
 </html>

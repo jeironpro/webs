@@ -1,18 +1,23 @@
 # api-biblia
 
 ## Descripción
+
 Este proyecto forma parte de mi portafolio personal.  
 El objetivo es demostrar buenas prácticas de programación, organización y documentación en GitHub.
 
 ## Requisitos
+
 - Python >= 3.12
 
 ## Configuración
+
 - Crear una base de datos en MySQL
 - Crear un archivo .env con las variables de entorno
 
 ## Estructura del proyecto
+
 la estructura del proyecto es la siguiente:
+
 ```
 api-biblia/
 ├── .env
@@ -46,8 +51,10 @@ api-biblia/
 ```
 
 ## Nota
+
 Esta estructura que utiliza services (post, get, patch, delete) para las operaciones CRUD no lo habia visto en ningun proyecto, por lo que no se si esta bien o no, pero es funcional y modular.
 
 ## Licencia
+
 Este proyecto está bajo la licencia **MIT**.  
 Consulta el archivo [LICENSE](LICENSE) para más detalles.

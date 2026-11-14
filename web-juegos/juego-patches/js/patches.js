@@ -108,8 +108,6 @@ function avisarGuardado() {
     }, 1400);
 }
 
-/* Récords ------------------------------------------------------------- */
-
 function leerRecords() {
     return leer(CLAVE_RECORDS) || {};
 }
@@ -153,8 +151,6 @@ function guardarRecord(ms) {
     return records[LADO].mejor;
 }
 
-/* Progreso ------------------------------------------------------------ */
-
 function guardarProgreso() {
     if (!estado.tablero || estado.resuelto) return;
     const ms = estado.arranque ? Date.now() - estado.arranque : estado.transcurrido;
@@ -173,7 +169,7 @@ function borrarProgreso() {
     try {
         localStorage.removeItem(CLAVE_PROGRESO);
     } catch {
-        /* sin almacenamiento */
+        void 0;
     }
 }
 
@@ -254,8 +250,6 @@ function restaurarProgreso() {
     return true;
 }
 
-/* Reloj --------------------------------------------------------------- */
-
 function pintarReloj() {
     elTiempo.textContent = formatearTiempo(estado.arranque ? Date.now() - estado.arranque : 0);
 }
@@ -283,8 +277,6 @@ function reiniciarReloj() {
     elTiempo.textContent = "0:00";
 }
 
-/* Retales ------------------------------------------------------------- */
-
 function rectEntre(a, b) {
     const n = estado.n;
     const filaA = Math.floor(a / n);
@@ -300,12 +292,7 @@ function rectEntre(a, b) {
 }
 
 function solapan(a, b) {
-    return !(
-        a.r + a.h <= b.r ||
-        b.r + b.h <= a.r ||
-        a.c + a.w <= b.c ||
-        b.c + b.w <= a.c
-    );
+    return !(a.r + a.h <= b.r || b.r + b.h <= a.r || a.c + a.w <= b.c || b.c + b.w <= a.c);
 }
 
 function dentroDe(i, rect) {
@@ -313,10 +300,7 @@ function dentroDe(i, rect) {
     const fila = Math.floor(i / n);
     const columna = i % n;
     return (
-        fila >= rect.r &&
-        fila < rect.r + rect.h &&
-        columna >= rect.c &&
-        columna < rect.c + rect.w
+        fila >= rect.r && fila < rect.r + rect.h && columna >= rect.c && columna < rect.c + rect.w
     );
 }
 
@@ -490,10 +474,7 @@ function revelarPista() {
     }
 
     if (candidatas.length === 0) {
-        avisar(
-            "No hay casillas libres que revelar. Deshaz algún retal o vacía el tablero.",
-            4200
-        );
+        avisar("No hay casillas libres que revelar. Deshaz algún retal o vacía el tablero.", 4200);
         return;
     }
 
@@ -535,8 +516,6 @@ function vaciar() {
     pintar();
     avisar(PISTA, 0);
 }
-
-/* Pintura ------------------------------------------------------------- */
 
 function etiquetaCelda(i, pieza) {
     const n = estado.n;
@@ -623,7 +602,8 @@ function pintarEstado() {
 
     if (estado.resuelto) {
         elEstado.classList.add("estado--exito");
-        elEstado.textContent = "Resuelto: cada pista tiene su retal y no queda ninguna casilla suelta.";
+        elEstado.textContent =
+            "Resuelto: cada pista tiene su retal y no queda ninguna casilla suelta.";
         return;
     }
 
@@ -687,8 +667,6 @@ function construirTablero() {
     pintar();
 }
 
-/* Partida ------------------------------------------------------------- */
-
 function comprobar() {
     if (estado.resuelto) return;
     const cubierta = new Uint8Array(TOTAL);
@@ -748,8 +726,6 @@ function arrancar() {
     avisar(PISTA, 0);
 }
 
-/* Puntero ------------------------------------------------------------- */
-
 function celdaEn(x, y) {
     const objetivo = document.elementFromPoint(x, y);
     const celda = objetivo?.closest?.(".celda");
@@ -771,7 +747,7 @@ elTablero.addEventListener("pointerdown", (evento) => {
     try {
         elTablero.setPointerCapture(evento.pointerId);
     } catch {
-        /* puntero sintético o sin captura disponible */
+        void 0;
     }
     pintar();
 });
@@ -822,8 +798,6 @@ elTablero.addEventListener("pointercancel", () => {
     estado.arrastro = false;
     pintar();
 });
-
-/* Teclado ------------------------------------------------------------- */
 
 function moverCursor(fila, columna) {
     const n = estado.n;
@@ -901,8 +875,6 @@ elTablero.addEventListener("keydown", (evento) => {
     }
 });
 
-/* Mandos y almacenamiento --------------------------------------------- */
-
 $("#deshacer").addEventListener("click", deshacer);
 $("#borrar").addEventListener("click", vaciar);
 $("#pista").addEventListener("click", revelarPista);
@@ -913,7 +885,7 @@ $("#olvidar").addEventListener("click", () => {
         localStorage.removeItem(CLAVE_PROGRESO);
         localStorage.removeItem(CLAVE_RECORDS);
     } catch {
-        /* sin almacenamiento */
+        void 0;
     }
     estado.resuelto = false;
     arrancar();
@@ -935,11 +907,9 @@ document.addEventListener("visibilitychange", () => {
     if (document.visibilityState === "hidden") guardarProgreso();
 });
 
-/* Arranque ------------------------------------------------------------ */
-
 async function iniciar() {
     try {
-        const respuesta = await fetch("json/tableros.json");
+        const respuesta = await fetch("data/tableros.json");
         if (!respuesta.ok) throw new Error(`HTTP ${respuesta.status}`);
         const datos = await respuesta.json();
         biblioteca = Array.isArray(datos.tableros) ? datos.tableros : [];
@@ -948,8 +918,7 @@ async function iniciar() {
         if (!restaurarProgreso()) arrancar();
         pintarRecords();
         pintarMejor();
-    } catch (error) {
-        console.error("Patches:", error);
+    } catch {
         elEstado.textContent = "No se pudieron cargar los tableros. Recarga la página.";
     }
 }

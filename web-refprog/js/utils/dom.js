@@ -1,27 +1,25 @@
-// Utilidades DOM - selectores, eventos, delegacion y clases
-
-export function qs(selector, ctx) {
-  return (ctx || document).querySelector(selector);
+export function qs(selector, context = document) {
+    return context.querySelector(selector);
 }
 
-export function on(el, evt, handler, opts) {
-  if (typeof el === 'string') el = qs(el);
-  if (!el) return;
-  el.addEventListener(evt, handler, opts || {});
+export function on(element, eventName, handler, options = {}) {
+    const target = typeof element === "string" ? qs(element) : element;
+    if (!target) return;
+    target.addEventListener(eventName, handler, options);
 }
 
-// Delega eventos en un contenedor padre
-export function delegate(parent, selector, evt, handler) {
-  if (typeof parent === 'string') parent = qs(parent);
-  if (!parent) return;
-  parent.addEventListener(evt, function (e) {
-    const target = e.target.closest(selector);
-    if (target && parent.contains(target)) handler(e, target);
-  });
+export function delegate(parent, selector, eventName, handler) {
+    const root = typeof parent === "string" ? qs(parent) : parent;
+    if (!root) return;
+
+    root.addEventListener(eventName, (event) => {
+        const target = event.target instanceof Element ? event.target.closest(selector) : null;
+        if (target && root.contains(target)) handler(event, target);
+    });
 }
 
-export function toggleClass(el, className) {
-  if (typeof el === 'string') el = qs(el);
-  if (!el) return;
-  el.classList.toggle(className);
+export function toggleClass(element, className) {
+    const target = typeof element === "string" ? qs(element) : element;
+    if (!target) return;
+    target.classList.toggle(className);
 }

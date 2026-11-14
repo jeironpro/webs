@@ -10,20 +10,23 @@ Enciclopedia estática de personajes de Naruto con fichas, sistema de puntuació
 
 ## Desarrollo
 
-Abre `index.html` desde un servidor estático, por ejemplo:
+Desde la raíz del repositorio, abre la web con un servidor estático:
 
 ```bash
 python3 -m http.server 8000
 ```
 
+Después visita `http://localhost:8000/web-naruto/`.
+
 ## Estructura
 
 ```
-index.html       — Estructura de la interfaz
-styles.css       — Estilos compilados del diseño original
-app.js           — Filtros, orden, paginación y modales
-data/naruto/     — JSON de personajes con stats, habilidades, fortalezas y debilidades
-images/          — Imágenes WebP de los personajes
+index.html              — Estructura de la interfaz
+css/styles.css          — Estilos del diseño temático
+js/app.js               — Filtros, orden, paginación y modales
+data/naruto/            — JSON de personajes con stats, habilidades, fortalezas y debilidades
+assets/images/          — Imágenes WebP de los personajes
+assets/icons/favicon.png — Icono de la web
 ```
 
 ## Funcionalidad
@@ -33,3 +36,7 @@ images/          — Imágenes WebP de los personajes
 - Paginación de 24 personajes por página.
 - Fichas con estadísticas, habilidades, fortalezas y debilidades.
 - Modal con la imagen ampliada y podio de los tres mejores personajes.
+
+## Licencia
+
+MIT. Consulta el archivo [`LICENSE`](../LICENSE) del repositorio.

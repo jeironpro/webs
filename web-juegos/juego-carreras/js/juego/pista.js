@@ -15,17 +15,12 @@ import {
     SphereGeometry,
     SRGBColorSpace,
     Vector3,
-} from "three/webgpu";
+} from "../../vendor/three/three.webgpu.js";
 
 const ARRIBA = new Vector3(0, 1, 0);
 export const ANCHO_PISTA = 14;
 const ANCHO_BORDILLO = 0.9;
 
-/**
- * Circuito cerrado y determinista: la semilla mueve los puntos de control y el
- * peralte. Devuelve la malla lista para la escena y una API de consulta por
- * progreso (0..1) que la física y la cámara usan para colocarse.
- */
 export function crearCircuito({ nucleo }) {
     if (!nucleo) throw new Error("crearCircuito necesita un núcleo WebAssembly cargado");
 
@@ -50,13 +45,9 @@ export function crearCircuito({ nucleo }) {
         polygonOffsetFactor: -3,
         polygonOffsetUnits: -3,
     });
-    // A ras de asfalto: al ir elevada, entre la cinta y el asfalto quedaba un
-    // hueco vertical por el que se veía el fondo y aparecía un filo negro.
+
     grupo.add(new Mesh(construirCinta(muestras, 0, 0.32, 0.012), centro));
 
-    // Los bordillos van por encima del asfalto y con polygonOffset: si no, en
-    // las curvas peraltadas su canto rozaba la cinta y dejaba líneas sueltas
-    // sobre todo en el borde izquierdo.
     const bordilloDerecho = new MeshBasicNodeMaterial({
         color: 0x35c6db,
         polygonOffset: true,
@@ -80,8 +71,6 @@ export function crearCircuito({ nucleo }) {
         )
     );
 
-    // Faldones: dan grosor a la cinta para que la pista se vea maciza desde el
-    // lado y no quede flotando sobre el suelo.
     const faldon = new MeshStandardNodeMaterial({
         color: 0x0b1224,
         roughness: 0.95,
@@ -103,10 +92,6 @@ export function crearCircuito({ nucleo }) {
     };
 }
 
-/**
- * Lee el bloque plano del núcleo wasm y lo convierte en muestras con vectores.
- * El binario ya trae tangente, lateral y peralte resueltos.
- */
 function leerMuestras(nucleo) {
     const { datos, estridas, total } = nucleo;
     const muestras = new Array(total);
@@ -124,7 +109,6 @@ function leerMuestras(nucleo) {
     return muestras;
 }
 
-/** Cinta continua a lo largo de las muestras: asfalto, bordillos y línea central. */
 function construirCinta(muestras, desvio, ancho, elevacion = 0) {
     const posiciones = [];
     const uvs = [];
@@ -158,7 +142,6 @@ function construirCinta(muestras, desvio, ancho, elevacion = 0) {
     return geometria;
 }
 
-/** Banda vertical bajo el borde de la pista: el grosor que la hace maciza. */
 function construirFaldon(muestras, desvio, profundidad = 5.5) {
     const posiciones = [];
     const indices = [];
@@ -166,8 +149,7 @@ function construirFaldon(muestras, desvio, profundidad = 5.5) {
 
     for (let i = 0; i <= total; i += 1) {
         const muestra = muestras[i % total];
-        // Un pelín por debajo del asfalto: así el canto del faldón no asoma
-        // como una línea al otro lado del borde.
+
         const borde = muestra.posicion
             .clone()
             .addScaledVector(muestra.lateral, desvio)
@@ -211,9 +193,6 @@ function crearLineaMeta(muestras) {
     textura.wrapS = RepeatWrapping;
     textura.repeat.set(3, 1);
 
-    // Cinta de la meta pegada a la pista. Un plano rígido de 14 m no sigue el
-    // peralte: en la curva de salida se salía del bordillo y los cuadros negros
-    // quedaban sobre la hierba del lado izquierdo.
     const tramos = 4;
     const medio = ANCHO_PISTA / 2;
     const posiciones = [];
@@ -246,7 +225,6 @@ function crearLineaMeta(muestras) {
     return new Mesh(geometria, new MeshBasicNodeMaterial({ map: textura }));
 }
 
-/** Postes de luz instanciados a ambos lados: cian a la derecha, magenta a la izquierda. */
 function crearPostes(muestras, desvio) {
     const grupo = new Group();
     const geometria = new BoxGeometry(0.16, 4.4, 0.16);

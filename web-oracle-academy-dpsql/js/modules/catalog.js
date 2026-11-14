@@ -9,12 +9,10 @@ const DEFAULT_ICON = "insert_drive_file";
 const CARD_CLASSES = { pdf: "card--pdf", docx: "card--docx", zip: "card--zip" };
 const CHIP_CLASSES = { pdf: "chip--pdf", docx: "chip--docx", zip: "chip--zip" };
 
-/** Rellena un número de tema con ceros: 2 -> "02". */
 function formatNumber(number) {
     return String(number).padStart(2, "0");
 }
 
-/** Renderiza el panel lateral de temas y devuelve el elemento. */
 export function renderSidebar(nav, manifest, activeView, onSelect) {
     clearNode(nav);
 
@@ -24,7 +22,7 @@ export function renderSidebar(nav, manifest, activeView, onSelect) {
             title: "Todos los temas",
             count: manifest.course.totalFiles,
         },
-        activeView,
+        activeView
     );
     allButton.addEventListener("click", () => onSelect(ALL_VIEW));
     nav.append(allButton);
@@ -37,7 +35,7 @@ export function renderSidebar(nav, manifest, activeView, onSelect) {
                 title: topic.title,
                 count: topic.totalFiles,
             },
-            activeView,
+            activeView
         );
         button.addEventListener("click", () => onSelect(topic.id));
         nav.append(button);
@@ -55,17 +53,16 @@ function createPanelItem({ id, number = "", title, count }, activeView) {
     });
     if (number !== "") {
         button.append(
-            createElement("span", { className: "side-panel__item-number", text: number }),
+            createElement("span", { className: "side-panel__item-number", text: number })
         );
     }
     button.append(
         createElement("span", { className: "side-panel__item-title", text: title }),
-        createElement("span", { className: "side-panel__item-count", text: String(count) }),
+        createElement("span", { className: "side-panel__item-count", text: String(count) })
     );
     return button;
 }
 
-/** Renderiza la vista actual (tema individual o todos) dentro del contenedor. */
 export function renderView(container, manifest, state) {
     clearNode(container);
     const topic =
@@ -95,7 +92,7 @@ function renderTopicView(topic, state) {
             text: formatNumber(topic.number),
             aria: { hidden: "true" },
         }),
-        createElement("h1", { className: "topic-view__title", text: topic.title }),
+        createElement("h2", { className: "topic-view__title", text: topic.title })
     );
     const count = createElement("p", {
         className: "topic-view__count",
@@ -105,7 +102,7 @@ function renderTopicView(topic, state) {
 
     const tools = renderFilterBar(
         state.type,
-        `${files.length} ${files.length === 1 ? "archivo" : "archivos"}`,
+        `${files.length} ${files.length === 1 ? "archivo" : "archivos"}`
     );
     const jumpOptionsList = jumpOptions(files);
     if (jumpOptionsList.length > 0) {
@@ -116,7 +113,7 @@ function renderTopicView(topic, state) {
     view.append(
         files.length > 0
             ? renderGrid(files, topic.id)
-            : renderEmpty("Sin resultados", "Ningún archivo coincide con la búsqueda o el filtro."),
+            : renderEmpty("Sin resultados", "Ningún archivo coincide con la búsqueda o el filtro.")
     );
     return view;
 }
@@ -128,26 +125,26 @@ function renderAllTopics(manifest, state) {
     const header = createElement("header", { className: "topic-view__header" });
     header.append(createElement("p", { className: "eyebrow", text: "Todos los temas" }));
     const row = createElement("div", { className: "topic-view__row" });
-    row.append(createElement("h1", { className: "topic-view__title", text: "El curso, completo" }));
+    row.append(createElement("h2", { className: "topic-view__title", text: "El curso, completo" }));
     header.append(row);
     header.append(
         createElement("p", {
             className: "topic-view__count",
             text: `${manifest.course.totalFiles} archivos · ${manifest.course.totalTopics} temas`,
-        }),
+        })
     );
     view.append(header);
 
     view.append(
         renderFilterBar(
             state.type,
-            `${total} ${total === 1 ? "archivo" : "archivos"} · ${topics.length} ${topics.length === 1 ? "tema" : "temas"}`,
-        ),
+            `${total} ${total === 1 ? "archivo" : "archivos"} · ${topics.length} ${topics.length === 1 ? "tema" : "temas"}`
+        )
     );
 
     if (topics.length === 0) {
         view.append(
-            renderEmpty("Sin resultados", "Ningún archivo coincide con la búsqueda o el filtro."),
+            renderEmpty("Sin resultados", "Ningún archivo coincide con la búsqueda o el filtro.")
         );
         return view;
     }
@@ -164,7 +161,7 @@ function renderAllTopics(manifest, state) {
             createElement("span", {
                 className: "all-topics__count",
                 text: `${topic.files.length} ${topic.files.length === 1 ? "archivo" : "archivos"}`,
-            }),
+            })
         );
         section.append(sectionHeader, renderGrid(topic.files, topic.id));
         view.append(section);
@@ -172,7 +169,6 @@ function renderAllTopics(manifest, state) {
     return view;
 }
 
-/** Barra de herramientas de una vista: filtros por tipo + contador de resultados. */
 function renderFilterBar(type, counterText) {
     const tools = createElement("div", { className: "topic-view__tools" });
     tools.append(renderFilters(type));
@@ -181,12 +177,11 @@ function renderFilterBar(type, counterText) {
             className: "topic-view__counter",
             text: counterText,
             attributes: { role: "status", "aria-live": "polite" },
-        }),
+        })
     );
     return tools;
 }
 
-/** Chips de filtro por tipo (pill con punto de color). */
 function renderFilters(activeType) {
     const container = createElement("div", { className: "filters", attributes: { role: "group" } });
     const options = [
@@ -206,14 +201,13 @@ function renderFilters(activeType) {
         });
         chip.append(
             createElement("span", { className: "chip__dot", aria: { hidden: "true" } }),
-            createElement("span", { text: option.label }),
+            createElement("span", { text: option.label })
         );
         container.append(chip);
     }
     return container;
 }
 
-/** Grilla de tarjetas de archivo (con id por índice para el salto). */
 function renderGrid(files, topicId) {
     const grid = createElement("div", { className: "grid" });
     files.forEach((file, index) => {
@@ -252,7 +246,7 @@ function renderCard(file, topicId, index) {
     const metaText = `${file.name} · ${readableType(file.type)} · ${formatSize(file.size)}`;
     body.append(
         createElement("h3", { className: "card__title", text: file.title }),
-        createElement("p", { className: "card__meta", text: metaText }),
+        createElement("p", { className: "card__meta", text: metaText })
     );
     link.append(body);
 
@@ -270,12 +264,6 @@ function renderCard(file, topicId, index) {
     return card;
 }
 
-/**
- * Opciones del menú de salto: lecciones y prácticas (PDF y DOCX, no externos)
- * con su índice en la grilla, para poder desplazarse hasta su tarjeta.
- * @param {object[]} files Archivos ya filtrados de la vista.
- * @returns {{ file: object, index: number }[]}
- */
 export function jumpOptions(files) {
     const options = [];
     files.forEach((file, index) => {
@@ -286,10 +274,6 @@ export function jumpOptions(files) {
     return options;
 }
 
-/**
- * Menú desplegable para saltar a una lección o práctica del tema.
- * Listbox accesible: flechas, Inicio/Fin, Enter, Escape, clic fuera para cerrar.
- */
 function renderJumpMenu(options, topicId) {
     const control = createElement("div", { className: "jump" });
     const button = createElement("button", {
@@ -307,7 +291,7 @@ function renderJumpMenu(options, topicId) {
             className: "material-symbols-outlined jump__chevron",
             text: "expand_more",
             aria: { hidden: "true" },
-        }),
+        })
     );
 
     const menu = createElement("ul", {
@@ -330,7 +314,7 @@ function renderJumpMenu(options, topicId) {
             createElement("span", {
                 className: `jump__option-type jump__option-type--${file.type}`,
                 text: file.type.toUpperCase(),
-            }),
+            })
         );
         optionElements.push(option);
         menu.append(option);
@@ -450,7 +434,7 @@ function renderEmpty(title, text) {
     const empty = createElement("div", { className: "empty" });
     empty.append(
         createElement("h2", { className: "empty__title", text: title }),
-        createElement("p", { className: "empty__text", text }),
+        createElement("p", { className: "empty__text", text })
     );
     return empty;
 }
