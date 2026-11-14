@@ -24,6 +24,7 @@ const WEBS_CANONICAS = [
     "web-curso-sql",
     "web-cursos-cpnl",
     "web-dados",
+    "web-daw",
     "web-generador-clave-secreta",
     "web-generador-codigo-qr",
     "web-generador-contrasena",
@@ -45,7 +46,6 @@ const WEBS_CANONICAS = [
 
 const WEBS_PENDIENTES = [
     "web-dashboards",
-    "web-daw",
     "web-ejercicios-pyja",
     "web-exerciness",
     "web-frontend",

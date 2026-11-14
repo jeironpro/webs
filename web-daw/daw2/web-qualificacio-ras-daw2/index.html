@@ -1,50 +1,54 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ca">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="description" content="Portal de qualificació dels Resultats d'Aprenentatge (RA's) del segon curs de Desenvolupament d'Aplicacions Web (DAW 2)"/>
-    <meta name="keywords" content="DAW, Desenvolupament Web, Qualificació, RA's, Formació Professional"/>
-    <meta name="author" content="JeironPro"/>
-    <meta property="og:type" content="website"/>
-    <meta property="og:title" content="Qualificació RA's DAW 2"/>
-    <meta property="og:description" content="Portal de qualificació dels Resultats d'Aprenentatge del segon curs de DAW"/>
-    <title>Qualificació RA's DAW 2 | Desenvolupament d'Aplicacions Web</title>
-    <link rel="icon" type="image/png" href="icon/moduls.png"/>
-    <link rel="preconnect" href="https://fonts.googleapis.com"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet"/>
-    <link rel="stylesheet" href="css/styles.css"/>
-</head>
-<body>
-    <header class="capçalera">
-        <h1>Qualificació RA's DAW 2</h1>
-    </header>
-    
-    <nav class="navegacio-moduls" id="navegacioModuls">
-        <!-- Tabs generats dinámicamente per JavaScript -->
-    </nav>
-    
-    <main class="principal">
-        <div class="contenidor-principal">
-            <h2 class="titol-modul" id="titolModul"></h2>
-            <div class="contenidor-taula">
-                <table class="taula-ras" id="taulaRas">
-                    <!-- Taula generada dinámicament per JavaScript -->
-                </table>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Portal de qualificació dels Resultats d'Aprenentatge (RA's) del segon curs de Desenvolupament d'Aplicacions Web (DAW 2)"
+        />
+        <meta
+            name="keywords"
+            content="DAW, Desenvolupament Web, Qualificació, RA's, Formació Professional"
+        />
+        <meta name="author" content="JeironPro" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Qualificació RA's DAW 2" />
+        <meta
+            property="og:description"
+            content="Portal de qualificació dels Resultats d'Aprenentatge del segon curs de DAW"
+        />
+        <title>Qualificació RA's DAW 2 | Desenvolupament d'Aplicacions Web</title>
+        <link rel="icon" type="image/svg+xml" href="../../assets/icons/favicon.svg" />
+        <link rel="icon" type="image/png" href="assets/icons/moduls.png" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="css/styles.css" />
+    </head>
+    <body>
+        <header class="page-header">
+            <h1>Qualificació RA's DAW 2</h1>
+        </header>
+
+        <nav class="module-navigation" id="moduleNavigation"></nav>
+
+        <main class="page-content">
+            <div class="main-container">
+                <h2 class="module-title" id="moduleTitle"></h2>
+                <div class="table-container">
+                    <table class="outcomes-table" id="outcomesTable"></table>
+                </div>
             </div>
-        </div>
-    </main>
-    
-    <footer class="peu-pagina">
-        <p>&copy; Tots els drets reservats - <span data-anio>2025</span> JeironPro</p>
-    </footer>
-    
-    <script src="js/ras.js"></script>
-    <script>
-        document.querySelectorAll("[data-anio]").forEach((nodo) => {
-            nodo.textContent = new Date().getFullYear();
-        });
-    </script>
-</body>
+        </main>
+
+        <footer class="page-footer">
+            <p>&copy; Tots els drets reservats - <span data-year>2025</span> JeironPro</p>
+        </footer>
+
+        <script src="js/ras.js"></script>
+    </body>
 </html>

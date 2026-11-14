@@ -1,4 +1,4 @@
-@layer base, responsive, consultas;
+@layer base, responsive, queries;
 
 :root {
     --color: #3a3a3a;
@@ -9,40 +9,58 @@
     --color-6: #e8c4a0;
     --color-7: #faf8f3;
     --color-8: #ffffff;
-    --fondo: #f5f1eb;
-    --fondo-2: #f9f6f2;
-    --fondo-3: #8fa087;
-    --fondo-4: #c49088;
+    --background: #f5f1eb;
+    --background-2: #f9f6f2;
+    --background-3: #8fa087;
+    --background-4: #c49088;
 }
 
 @layer base {
     :root {
         --color-accent: var(--color-6);
-        --color-fons-principal: var(--color-7);
-        --color-fons-secundari: var(--color-8);
-        --color-primari: var(--color-4);
-        --color-secundari: var(--color-3);
+        --color-bg-primary: var(--color-7);
+        --color-bg-secondary: var(--color-8);
+        --color-primary: var(--color-4);
+        --color-secondary: var(--color-3);
         --color-text: var(--color);
-        --color-text-secundari: var(--color-2);
-        --color-vora: var(--color-5);
-        --espai-lg: 2rem;
-        --espai-md: 1.5rem;
-        --espai-sm: 1rem;
-        --espai-xl: 3rem;
-        --espai-xs: 0.5rem;
-        --radi-gran: 12px;
-        --radi-mitja: 8px;
-        --radi-petit: 4px;
+        --color-text-secondary: var(--color-2);
+        --color-border: var(--color-5);
+        --space-lg: 2rem;
+        --space-md: 1.5rem;
+        --space-sm: 1rem;
+        --space-xl: 3rem;
+        --space-xs: 0.5rem;
+        --radius-lg: 0.75rem;
+        --radius-md: 0.5rem;
+        --radius-sm: 0.25rem;
     }
 
-    * {
+    html,
+    body,
+    div,
+    header,
+    nav,
+    main,
+    footer,
+    section,
+    table,
+    thead,
+    tbody,
+    tfoot,
+    tr,
+    th,
+    td,
+    h1,
+    h2,
+    button,
+    span {
         box-sizing: border-box;
         margin: 0;
         padding: 0;
     }
 
     body {
-        background-color: var(--color-fons-principal);
+        background-color: var(--color-bg-primary);
         color: var(--color-text);
         display: flex;
         flex-direction: column;
@@ -51,14 +69,14 @@
         min-height: 100vh;
     }
 
-    .capçalera {
-        background-color: var(--color-fons-secundari);
-        border-bottom: 2px solid var(--color-vora);
-        padding: var(--espai-lg) var(--espai-md);
+    .page-header {
+        background-color: var(--color-bg-secondary);
+        border-bottom: 0.125rem solid var(--color-border);
+        padding: var(--space-lg) var(--space-md);
         text-align: center;
     }
 
-    .capçalera h1 {
+    .page-header h1 {
         color: var(--color-text);
         font-family: "Poppins", sans-serif;
         font-size: clamp(1.5rem, 4vw, 2.5rem);
@@ -66,397 +84,400 @@
         letter-spacing: -0.02em;
     }
 
-    .navegacio-moduls {
-        background-color: var(--color-fons-secundari);
-        border-bottom: 1px solid var(--color-vora);
+    .module-navigation {
+        background-color: var(--color-bg-secondary);
+        border-bottom: 0.0625rem solid var(--color-border);
         display: flex;
         flex-wrap: wrap;
-        gap: var(--espai-xs);
+        gap: var(--space-xs);
         justify-content: center;
-        padding: var(--espai-md);
+        padding: var(--space-md);
     }
 
-    .tab-modul {
+    .module-tab {
         background-color: transparent;
-        border: 1px solid var(--color-vora);
-        border-radius: var(--radi-petit);
-        color: var(--color-text-secundari);
+        border: 0.0625rem solid var(--color-border);
+        border-radius: var(--radius-sm);
+        color: var(--color-text-secondary);
         cursor: pointer;
         font-family: "Poppins", sans-serif;
         font-size: 0.95rem;
         font-weight: 600;
-        padding: var(--espai-xs) var(--espai-md);
+        padding: var(--space-xs) var(--space-md);
         transition: all 0.3s ease;
     }
 
-    .tab-modul:hover {
-        background-color: var(--color-primari);
-        border-color: var(--color-primari);
-        color: var(--color-fons-secundari);
-        transform: translateY(-2px);
+    .module-tab:hover {
+        background-color: var(--color-primary);
+        border-color: var(--color-primary);
+        color: var(--color-bg-secondary);
+        transform: translateY(-0.125rem);
     }
 
-    .tab-modul.actiu {
-        background-color: var(--color-primari);
-        border-color: var(--color-primari);
-        color: var(--color-fons-secundari);
+    .module-tab.active {
+        background-color: var(--color-primary);
+        border-color: var(--color-primary);
+        color: var(--color-bg-secondary);
     }
 
-    .principal {
+    .page-content {
         flex: 1;
-        padding: var(--espai-xl) var(--espai-md);
+        padding: var(--space-xl) var(--space-md);
     }
 
-    .contenidor-principal {
+    .main-container {
         margin: 0 auto;
-        max-width: 1400px;
+        max-width: 87.5rem;
     }
 
-    .titol-modul {
+    .module-title {
         color: var(--color-text);
         font-family: "Poppins", sans-serif;
         font-size: clamp(1.25rem, 3vw, 1.75rem);
         font-weight: 600;
-        margin-bottom: var(--espai-lg);
+        margin-bottom: var(--space-lg);
         text-align: center;
     }
 
-    .contenidor-taula {
-        background-color: var(--color-fons-secundari);
-        border: 1px solid var(--color-vora);
-        border-radius: var(--radi-mitja);
+    .table-container {
+        background-color: var(--color-bg-secondary);
+        border: 0.0625rem solid var(--color-border);
+        border-radius: var(--radius-md);
         overflow-x: auto;
-        padding: var(--espai-md);
+        padding: var(--space-md);
     }
 
-    .taula-ras, .taula-resum {
+    .outcomes-table,
+    .summary-table {
         border-collapse: collapse;
         width: 100%;
     }
 
-    .taula-resum {
-        margin-top: var(--espai-md);
+    .summary-table {
+        margin-top: var(--space-md);
     }
 
-    .taula-ras thead {
-        background-color: var(--color-secundari);
-        color: var(--color-fons-secundari);
+    .outcomes-table thead {
+        background-color: var(--color-secondary);
+        color: var(--color-bg-secondary);
     }
 
-    .taula-ras th {
+    .outcomes-table th {
         font-family: "Poppins", sans-serif;
         font-size: 0.95rem;
         font-weight: 600;
-        padding: var(--espai-md);
+        padding: var(--space-md);
         text-align: center;
     }
 
-    .taula-ras tbody tr {
-        border-bottom: 1px solid var(--color-vora);
+    .outcomes-table tbody tr {
+        border-bottom: 0.0625rem solid var(--color-border);
         transition: background-color 0.2s ease;
     }
 
-    .taula-ras tbody tr:hover {
-        background-color: var(--fondo);
+    .outcomes-table tbody tr:hover {
+        background-color: var(--background);
     }
 
-    .taula-ras tbody tr:last-child {
+    .outcomes-table tbody tr:last-child {
         border-bottom: none;
     }
 
-    .resum-modul {
-        background-color: var(--fondo);
-        border-top: 2px solid var(--color-secundari);
+    .summary-module {
+        background-color: var(--background);
+        border-top: 0.125rem solid var(--color-secondary);
     }
 
-    .resum-modul td {
+    .summary-module td {
         font-family: "Poppins", sans-serif;
         font-size: 1.05rem;
         font-weight: 600;
-        padding: var(--espai-md);
+        padding: var(--space-md);
         text-align: center;
         color: var(--color-text);
     }
 
-    .resum-capçalera th {
-        background-color: var(--color-secundari);
-        color: var(--color-fons-secundari);
+    .summary-header th {
+        background-color: var(--color-secondary);
+        color: var(--color-bg-secondary);
         font-family: "Poppins", sans-serif;
         font-size: 0.95rem;
         font-weight: 600;
-        padding: var(--espai-sm) var(--espai-md);
+        padding: var(--space-sm) var(--space-md);
         text-align: center;
     }
 
-    .taula-ras td {
-        padding: var(--espai-md);
+    .outcomes-table td {
+        padding: var(--space-md);
     }
 
-    .columna-ra {
-        color: var(--color-primari);
+    .column-outcome {
+        color: var(--color-primary);
         font-family: "Poppins", sans-serif;
         font-size: 1rem;
         font-weight: 700;
         text-align: center;
-        width: 80px;
+        width: 5rem;
     }
 
-    .columna-descripcio {
+    .column-description {
         color: var(--color-text);
         font-size: 0.95rem;
         line-height: 1.5;
-        width: 350px;
+        width: 21.875rem;
     }
 
-    .columna-nota, .columna-nota-modul, .columna-nota-empresa, .columna-nota-final {
+    .column-grade,
+    .column-module-grade,
+    .column-company-grade,
+    .column-final-grade {
         color: var(--color-text);
         font-family: "Poppins", sans-serif;
         font-size: 1.1rem;
         font-weight: 600;
         text-align: center;
-        width: 100px;
+        width: 6.25rem;
     }
 
-    .columna-nota.pendent {
-        color: var(--color-text-secundari);
+    .column-grade.pending {
+        color: var(--color-text-secondary);
         font-style: italic;
     }
 
-    .columna-absencies {
-        background-color: var(--fondo-2);
-        border-left: 2px solid var(--color-vora);
+    .column-absences {
+        background-color: var(--background-2);
+        border-left: 0.125rem solid var(--color-border);
         color: var(--color-text);
         font-family: "Poppins", sans-serif;
         font-size: 1rem;
         font-weight: 600;
         text-align: center;
         vertical-align: middle;
-        width: 80px;
+        width: 5rem;
     }
 
-
-    .columna-absencies span {
+    .column-absences span {
         display: inline-block;
         font-size: 1.2rem;
         font-weight: bold;
     }
 
-    .container-absencies {
+    .absences-container {
         align-items: center;
         display: flex;
-        gap: 15px;
+        gap: 0.9375rem;
         justify-content: center;
         width: 100%;
     }
 
-    .columna-absencies-total {
+    .column-absences-total {
         font-size: 1.1rem;
-        width: 150px;
+        width: 9.375rem;
     }
 
-    .columna-absencies-utilitzades {
-        width: 100px;
+    .column-absences-used {
+        width: 6.25rem;
     }
 
-    .btn-absencia {
+    .absence-button {
         align-items: center;
-        background-color: var(--color-primari);
+        background-color: var(--color-primary);
         border: none;
-        border-radius: var(--radi-petit);
-        color: var(--color-fons-secundari);
+        border-radius: var(--radius-sm);
+        color: var(--color-bg-secondary);
         cursor: pointer;
         display: inline-flex;
         font-size: 1.2rem;
         font-weight: 700;
-        height: 32px;
+        height: 2rem;
         justify-content: center;
         line-height: 1;
-        margin: 0 2px;
-        max-width: 32px;
+        margin: 0 0.125rem;
+        max-width: 2rem;
         transition: all 0.2s ease;
         width: 100%;
     }
 
-    .btn-absencia:hover:not(:disabled) {
-        background-color: var(--color-secundari);
+    .absence-button:hover:not(:disabled) {
+        background-color: var(--color-secondary);
         transform: scale(1.1);
     }
 
-    .btn-absencia:active:not(:disabled) {
+    .absence-button:active:not(:disabled) {
         transform: scale(0.95);
     }
 
-    .btn-absencia:disabled {
-        background-color: var(--color-vora);
-        color: var(--color-text-secundari);
+    .absence-button:disabled {
+        background-color: var(--color-border);
+        color: var(--color-text-secondary);
         cursor: not-allowed;
         opacity: 0.5;
     }
 
-    .btn-incrementar {
-        background-color: var(--color-secundari);
+    .increase-button {
+        background-color: var(--color-secondary);
     }
 
-    .btn-incrementar:hover:not(:disabled) {
-        background-color: var(--fondo-3);
+    .increase-button:hover:not(:disabled) {
+        background-color: var(--background-3);
     }
 
-    .btn-decrementar {
-        background-color: var(--color-primari);
+    .decrease-button {
+        background-color: var(--color-primary);
     }
 
-    .btn-decrementar:hover:not(:disabled) {
-        background-color: var(--fondo-4);
+    .decrease-button:hover:not(:disabled) {
+        background-color: var(--background-4);
     }
 
-    .sense-dades {
-        color: var(--color-text-secundari);
+    .no-data {
+        color: var(--color-text-secondary);
         font-style: italic;
-        padding: var(--espai-xl);
+        padding: var(--space-xl);
         text-align: center;
     }
 
-    .peu-pagina {
-        background-color: var(--color-secundari);
-        border-top: 2px solid var(--color-vora);
-        color: var(--color-fons-secundari);
+    .page-footer {
+        background-color: var(--color-secondary);
+        border-top: 0.125rem solid var(--color-border);
+        color: var(--color-bg-secondary);
         font-size: 0.9rem;
-        padding: var(--espai-md);
+        padding: var(--space-md);
         text-align: center;
     }
 }
 
 @layer responsive {
-    .btn-absencia {
-        height: 40px;
-        margin: 0 4px;
-        width: 40px;
+    .absence-button {
+        height: 2.5rem;
+        margin: 0 0.25rem;
+        width: 2.5rem;
     }
 
-    .capçalera {
-        padding: var(--espai-sm);
+    .page-header {
+        padding: var(--space-sm);
     }
 
-    .capçalera h1 {
+    .page-header h1 {
         font-size: clamp(1.25rem, 5vw, 1.75rem);
     }
 
-    .columna-absencies {
+    .column-absences {
         background-color: transparent;
         border-left: none;
         font-size: 0.85rem;
         width: 100%;
     }
 
-    .columna-absencies span {
+    .column-absences span {
         font-size: 1rem;
         margin: 0;
     }
 
-    .columna-absencies-total {
+    .column-absences-total {
         font-size: 0.85rem;
         width: 100%;
     }
 
-    .columna-absencies-utilitzades {
+    .column-absences-used {
         font-size: 0.85rem;
         width: 100%;
     }
 
-    .columna-descripcio {
+    .column-description {
         font-size: 0.85rem;
         text-align: right;
         width: 100%;
     }
 
-    .columna-nota {
+    .column-grade {
         font-size: 0.85rem;
         width: 100%;
     }
 
-    .columna-nota-empresa {
+    .column-company-grade {
         font-size: 0.85rem;
         width: 100%;
     }
 
-    .columna-nota-final {
+    .column-final-grade {
         font-size: 0.85rem;
         width: 100%;
     }
 
-    .columna-nota-modul {
+    .column-module-grade {
         font-size: 0.85rem;
         width: 100%;
     }
 
-    .columna-ra {
+    .column-outcome {
         font-size: 0.85rem;
         width: 100%;
     }
 
-    .container-absencies {
-        gap: 10px;
+    .absences-container {
+        gap: 0.625rem;
         justify-content: flex-end;
         width: auto;
     }
 
-    .contenidor-taula {
+    .table-container {
         background: transparent;
         border: none;
-        padding: var(--espai-xs);
+        padding: var(--space-xs);
     }
 
     .desktop-only {
         display: none;
     }
 
-    .fila-absencies-mobil {
+    .mobile-absences-row {
         display: block;
     }
 
-    .navegacio-moduls {
+    .module-navigation {
         flex-direction: column;
-        padding: var(--espai-xs);
+        padding: var(--space-xs);
     }
 
-    .num-absencies {
+    .absences-count {
         font-size: 1.2rem;
         font-weight: 700;
     }
 
-    .peu-pagina {
+    .page-footer {
         font-size: 0.8rem;
-        padding: var(--espai-sm);
+        padding: var(--space-sm);
     }
 
-    .principal {
-        padding: var(--espai-sm);
+    .page-content {
+        padding: var(--space-sm);
     }
 
-    .resum-modul tr.resum-capçalera {
+    .summary-module tr.summary-header {
         display: none;
     }
 
-    .resum-modul {
+    .summary-module {
         background-color: transparent;
         border-top: none;
-        margin-top: var(--espai-xs);
+        margin-top: var(--space-xs);
     }
 
-    .resum-modul td {
+    .summary-module td {
         align-items: center;
-        border-bottom: 1px solid var(--color-vora);
+        border-bottom: 0.0625rem solid var(--color-border);
         display: flex;
         justify-content: flex-end;
-        min-height: 40px;
-        padding: var(--espai-sm) 0;
+        min-height: 2.5rem;
+        padding: var(--space-sm) 0;
         padding-left: 45%;
         position: relative;
         text-align: right;
     }
 
-    .resum-modul td::before {
-        color: var(--color-text-secundari);
+    .summary-module td::before {
+        color: var(--color-text-secondary);
         content: attr(data-label);
         font-family: "Poppins", sans-serif;
         font-weight: 600;
@@ -466,49 +487,49 @@
         width: 40%;
     }
 
-    .resum-modul td:last-child {
+    .summary-module td:last-child {
         border-bottom: none;
     }
 
-    .resum-modul tr {
-        background-color: var(--color-fons-secundari);
-        border: 1px solid var(--color-secundari);
-        border-radius: var(--radi-mitja);
-        box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-        margin-bottom: var(--espai-sm);
-        padding: var(--espai-sm);
+    .summary-module tr {
+        background-color: var(--color-bg-secondary);
+        border: 0.0625rem solid var(--color-secondary);
+        border-radius: var(--radius-md);
+        box-shadow: 0 0.125rem 0.375rem rgba(0, 0, 0, 0.08);
+        margin-bottom: var(--space-sm);
+        padding: var(--space-sm);
     }
 
-    .tab-modul {
+    .module-tab {
         font-size: 0.85rem;
-        padding: var(--espai-xs) var(--espai-sm);
+        padding: var(--space-xs) var(--space-sm);
         width: 100%;
     }
 
-    .taula-ras {
+    .outcomes-table {
         display: block;
     }
 
-    .taula-ras tbody {
+    .outcomes-table tbody {
         display: block;
         width: 100%;
     }
 
-    .taula-ras td {
+    .outcomes-table td {
         align-items: center;
-        border-bottom: 1px solid var(--color-vora);
+        border-bottom: 0.0625rem solid var(--color-border);
         display: flex;
         justify-content: flex-end;
-        min-height: 36px;
-        padding: var(--espai-sm) 0;
+        min-height: 2.25rem;
+        padding: var(--space-sm) 0;
         padding-left: 40%;
         position: relative;
         text-align: right;
         width: 100%;
     }
 
-    .taula-ras td::before {
-        color: var(--color-text-secundari);
+    .outcomes-table td::before {
+        color: var(--color-text-secondary);
         content: attr(data-label);
         font-family: "Poppins", sans-serif;
         font-size: 0.85rem;
@@ -519,53 +540,53 @@
         width: 35%;
     }
 
-    .taula-ras td:last-child {
+    .outcomes-table td:last-child {
         border-bottom: none;
     }
 
-    .taula-ras tfoot {
+    .outcomes-table tfoot {
         display: block;
         width: 100%;
     }
 
-    .taula-ras th {
-        padding: var(--espai-sm);
+    .outcomes-table th {
+        padding: var(--space-sm);
     }
 
-    .taula-ras thead {
+    .outcomes-table thead {
         display: none;
     }
 
-    .taula-ras tr {
-        background-color: var(--color-fons-secundari);
-        border: 1px solid var(--color-vora);
-        border-radius: var(--radi-mitja);
-        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    .outcomes-table tr {
+        background-color: var(--color-bg-secondary);
+        border: 0.0625rem solid var(--color-border);
+        border-radius: var(--radius-md);
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.05);
         display: block;
-        margin-bottom: var(--espai-md);
-        padding: var(--espai-sm);
+        margin-bottom: var(--space-md);
+        padding: var(--space-sm);
         width: 100%;
     }
 
-    .taula-resum {
+    .summary-table {
         display: block;
     }
 
-    .taula-resum td {
+    .summary-table td {
         align-items: center;
-        border-bottom: 1px solid var(--color-vora);
+        border-bottom: 0.0625rem solid var(--color-border);
         display: flex;
         justify-content: flex-end;
-        min-height: 36px;
-        padding: var(--espai-sm) 0;
+        min-height: 2.25rem;
+        padding: var(--space-sm) 0;
         padding-left: 40%;
         position: relative;
         text-align: right;
         width: 100%;
     }
 
-    .taula-resum td::before {
-        color: var(--color-text-secundari);
+    .summary-table td::before {
+        color: var(--color-text-secondary);
         content: attr(data-label);
         font-family: "Poppins", sans-serif;
         font-size: 0.85rem;
@@ -576,246 +597,246 @@
         width: 35%;
     }
 
-    .taula-resum td:last-child {
+    .summary-table td:last-child {
         border-bottom: none;
     }
 
-    .taula-resum tfoot {
+    .summary-table tfoot {
         display: block;
         width: 100%;
     }
 
-    .taula-resum tr {
-        background-color: var(--color-fons-secundari);
-        border: 1px solid var(--color-vora);
-        border-radius: var(--radi-mitja);
-        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    .summary-table tr {
+        background-color: var(--color-bg-secondary);
+        border: 0.0625rem solid var(--color-border);
+        border-radius: var(--radius-md);
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.05);
         display: block;
-        margin-bottom: var(--espai-md);
-        padding: var(--espai-sm);
+        margin-bottom: var(--space-md);
+        padding: var(--space-sm);
         width: 100%;
     }
 
-    .titol-modul {
+    .module-title {
         font-size: 1rem;
-        margin-bottom: var(--espai-sm);
+        margin-bottom: var(--space-sm);
     }
 
-    @media (min-width: 481px) {
-        .capçalera {
-            padding: var(--espai-md) var(--espai-sm);
+    @media (min-width: 30.0625rem) {
+        .page-header {
+            padding: var(--space-md) var(--space-sm);
         }
 
-        .columna-absencies {
+        .column-absences {
             font-size: 0.95rem;
         }
 
-        .columna-absencies span {
+        .column-absences span {
             font-size: 1.2rem;
             margin: revert-layer;
         }
 
-        .columna-absencies-total {
+        .column-absences-total {
             font-size: 0.95rem;
         }
 
-        .columna-absencies-utilitzades {
+        .column-absences-used {
             font-size: 0.95rem;
         }
 
-        .columna-descripcio {
+        .column-description {
             font-size: 0.9rem;
         }
 
-        .columna-nota {
+        .column-grade {
             font-size: 0.95rem;
         }
 
-        .columna-nota-empresa {
+        .column-company-grade {
             font-size: 0.95rem;
         }
 
-        .columna-nota-final {
+        .column-final-grade {
             font-size: 0.95rem;
         }
 
-        .columna-nota-modul {
+        .column-module-grade {
             font-size: 0.95rem;
         }
 
-        .columna-ra {
+        .column-outcome {
             font-size: 0.95rem;
         }
 
-        .container-absencies {
-            gap: 15px;
+        .absences-container {
+            gap: 0.9375rem;
         }
 
-        .contenidor-taula {
+        .table-container {
             padding: 0;
         }
 
-        .navegacio-moduls {
-            padding: var(--espai-sm);
+        .module-navigation {
+            padding: var(--space-sm);
         }
 
-        .principal {
-            padding: var(--espai-md) var(--espai-sm);
+        .page-content {
+            padding: var(--space-md) var(--space-sm);
         }
 
-        .tab-modul {
+        .module-tab {
             font-size: 0.9rem;
-            padding: var(--espai-sm);
+            padding: var(--space-sm);
         }
 
-        .taula-ras td {
-            min-height: 40px;
+        .outcomes-table td {
+            min-height: 2.5rem;
             padding-left: 45%;
         }
 
-        .taula-ras td::before {
+        .outcomes-table td::before {
             font-size: revert-layer;
             width: 40%;
         }
 
-        .taula-resum td {
-            min-height: 40px;
+        .summary-table td {
+            min-height: 2.5rem;
             padding-left: 45%;
         }
 
-        .taula-resum td::before {
+        .summary-table td::before {
             font-size: revert-layer;
             width: 40%;
         }
 
-        .titol-modul {
+        .module-title {
             font-size: clamp(1.1rem, 4vw, 1.4rem);
-            margin-bottom: var(--espai-md);
+            margin-bottom: var(--space-md);
         }
     }
-    @media (min-width: 769px) {
-        .btn-absencia {
-            height: 32px;
-            margin: 0 2px;
+    @media (min-width: 48.0625rem) {
+        .absence-button {
+            height: 2rem;
+            margin: 0 0.125rem;
             width: 100%;
         }
 
-        .capçalera {
-            padding: var(--espai-lg) var(--espai-md);
+        .page-header {
+            padding: var(--space-lg) var(--space-md);
         }
 
-        .capçalera h1 {
+        .page-header h1 {
             font-size: clamp(1.5rem, 4vw, 2.5rem);
         }
 
-        .columna-absencies {
-            background-color: var(--fondo-2);
-            border-left: 2px solid var(--color-vora);
+        .column-absences {
+            background-color: var(--background-2);
+            border-left: 0.125rem solid var(--color-border);
             font-size: 1rem;
-            width: 80px;
+            width: 5rem;
         }
 
-        .columna-absencies-total {
+        .column-absences-total {
             font-size: 1.1rem;
-            width: 150px;
+            width: 9.375rem;
         }
 
-        .columna-absencies-utilitzades {
+        .column-absences-used {
             font-size: revert-layer;
-            width: 100px;
+            width: 6.25rem;
         }
 
-        .columna-descripcio {
+        .column-description {
             font-size: 0.95rem;
             text-align: revert-layer;
-            width: 350px;
+            width: 21.875rem;
         }
 
-        .columna-nota {
+        .column-grade {
             font-size: 1.1rem;
-            width: 100px;
+            width: 6.25rem;
         }
 
-        .columna-nota-empresa {
+        .column-company-grade {
             font-size: 1.1rem;
-            width: 100px;
+            width: 6.25rem;
         }
 
-        .columna-nota-final {
+        .column-final-grade {
             font-size: 1.1rem;
-            width: 100px;
+            width: 6.25rem;
         }
 
-        .columna-nota-modul {
+        .column-module-grade {
             font-size: 1.1rem;
-            width: 100px;
+            width: 6.25rem;
         }
 
-        .columna-ra {
+        .column-outcome {
             font-size: 1rem;
-            width: 80px;
+            width: 5rem;
         }
 
-        .container-absencies {
+        .absences-container {
             justify-content: center;
             width: 100%;
         }
 
-        .contenidor-taula {
+        .table-container {
             background: revert-layer;
-            border: 1px solid var(--color-vora);
-            padding: var(--espai-md);
+            border: 0.0625rem solid var(--color-border);
+            padding: var(--space-md);
         }
 
         .desktop-only {
             display: revert-layer;
         }
 
-        .fila-absencies-mobil {
+        .mobile-absences-row {
             display: revert-layer;
         }
 
-        .navegacio-moduls {
+        .module-navigation {
             flex-direction: revert-layer;
         }
 
-        .num-absencies {
+        .absences-count {
             font-size: revert-layer;
             font-weight: revert-layer;
         }
 
-        .peu-pagina {
+        .page-footer {
             font-size: 0.9rem;
-            padding: var(--espai-md);
+            padding: var(--space-md);
         }
 
-        .principal {
-            padding: var(--espai-lg) var(--espai-sm);
+        .page-content {
+            padding: var(--space-lg) var(--space-sm);
         }
 
-        .resum-capçalera {
+        .summary-header {
             display: revert-layer;
         }
 
-        .resum-modul {
-            background-color: var(--fondo);
-            border-top: 2px solid var(--color-secundari);
+        .summary-module {
+            background-color: var(--background);
+            border-top: 0.125rem solid var(--color-secondary);
             margin-top: revert-layer;
         }
 
-        .resum-modul td {
+        .summary-module td {
             align-items: revert-layer;
             border-bottom: revert-layer;
             display: revert-layer;
             justify-content: revert-layer;
             min-height: revert-layer;
-            padding: var(--espai-md);
+            padding: var(--space-md);
             padding-left: revert-layer;
             position: revert-layer;
             text-align: center;
         }
 
-        .resum-modul td::before {
+        .summary-module td::before {
             color: revert-layer;
             content: revert-layer;
             font-family: revert-layer;
@@ -826,11 +847,11 @@
             width: revert-layer;
         }
 
-        .resum-modul td:last-child {
+        .summary-module td:last-child {
             border-bottom: revert-layer;
         }
 
-        .resum-modul tr {
+        .summary-module tr {
             background-color: revert-layer;
             border: revert-layer;
             border-radius: revert-layer;
@@ -839,34 +860,34 @@
             padding: revert-layer;
         }
 
-        .tab-modul {
-            padding: var(--espai-xs) var(--espai-sm);
+        .module-tab {
+            padding: var(--space-xs) var(--space-sm);
             width: revert-layer;
         }
 
-        .taula-ras {
+        .outcomes-table {
             display: revert-layer;
         }
 
-        .taula-ras tbody {
+        .outcomes-table tbody {
             display: revert-layer;
             width: revert-layer;
         }
 
-        .taula-ras td {
+        .outcomes-table td {
             align-items: revert-layer;
             border-bottom: revert-layer;
             display: revert-layer;
             justify-content: revert-layer;
             min-height: revert-layer;
-            padding: var(--espai-sm);
+            padding: var(--space-sm);
             padding-left: revert-layer;
             position: revert-layer;
             text-align: revert-layer;
             width: revert-layer;
         }
 
-        .taula-ras td::before {
+        .outcomes-table td::before {
             color: revert-layer;
             content: revert-layer;
             font-family: revert-layer;
@@ -877,20 +898,20 @@
             width: revert-layer;
         }
 
-        .taula-ras td:last-child {
+        .outcomes-table td:last-child {
             border-bottom: revert-layer;
         }
 
-        .taula-ras tfoot {
+        .outcomes-table tfoot {
             display: revert-layer;
             width: revert-layer;
         }
 
-        .taula-ras thead {
+        .outcomes-table thead {
             display: revert-layer;
         }
 
-        .taula-ras tr {
+        .outcomes-table tr {
             background-color: revert-layer;
             border: revert-layer;
             border-radius: revert-layer;
@@ -901,11 +922,11 @@
             width: revert-layer;
         }
 
-        .taula-resum {
+        .summary-table {
             display: revert-layer;
         }
 
-        .taula-resum td {
+        .summary-table td {
             align-items: revert-layer;
             border-bottom: revert-layer;
             display: revert-layer;
@@ -918,7 +939,7 @@
             width: revert-layer;
         }
 
-        .taula-resum td::before {
+        .summary-table td::before {
             color: revert-layer;
             content: revert-layer;
             font-family: revert-layer;
@@ -929,16 +950,16 @@
             width: revert-layer;
         }
 
-        .taula-resum td:last-child {
+        .summary-table td:last-child {
             border-bottom: revert-layer;
         }
 
-        .taula-resum tfoot {
+        .summary-table tfoot {
             display: revert-layer;
             width: revert-layer;
         }
 
-        .taula-resum tr {
+        .summary-table tr {
             background-color: revert-layer;
             border: revert-layer;
             border-radius: revert-layer;
@@ -949,45 +970,45 @@
             width: revert-layer;
         }
 
-        .titol-modul {
+        .module-title {
             font-size: clamp(1.25rem, 3vw, 1.75rem);
-            margin-bottom: var(--espai-lg);
+            margin-bottom: var(--space-lg);
         }
     }
-    @media (min-width: 1025px) {
-        .navegacio-moduls {
-            padding: var(--espai-md);
+    @media (min-width: 64.0625rem) {
+        .module-navigation {
+            padding: var(--space-md);
         }
 
-        .principal {
-            padding: var(--espai-xl) var(--espai-md);
+        .page-content {
+            padding: var(--space-xl) var(--space-md);
         }
 
-        .tab-modul {
+        .module-tab {
             font-size: 0.95rem;
-            padding: var(--espai-xs) var(--espai-md);
+            padding: var(--space-xs) var(--space-md);
         }
 
-        .taula-ras td {
-            padding: var(--espai-md);
+        .outcomes-table td {
+            padding: var(--space-md);
         }
 
-        .taula-ras th {
-            padding: var(--espai-md);
+        .outcomes-table th {
+            padding: var(--space-md);
         }
     }
 }
 
-@layer consultas {
-    @media (min-width: 769px) {
-        .fila-absencies-mobil {
+@layer queries {
+    @media (min-width: 48.0625rem) {
+        .mobile-absences-row {
             display: none;
         }
     }
 }
 
-    @media (min-width: 769px) {
-        .resum-modul tr.resum-capçalera {
-            display: table-row;
-        }
+@media (min-width: 48.0625rem) {
+    .summary-module tr.summary-header {
+        display: table-row;
     }
+}

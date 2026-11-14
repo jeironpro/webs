@@ -1,73 +1,103 @@
 :root {
-    --borde: #000;
-    --fondo: #97ff9e;
-    --fondo-2: #97c1ff;
-    --fondo-3: #d7d7d7;
-    --fondo-4: #f2ff7a;
-    --fondo-5: #ff907a;
-    --fondo-6: #ff9797;
-    --texto: #ff0000;
+    --border-color: #000;
+    --background: #97ff9e;
+    --background-2: #97c1ff;
+    --background-3: #d7d7d7;
+    --background-4: #f2ff7a;
+    --background-5: #ff907a;
+    --background-6: #ff9797;
+    --text-color: #f00;
 }
 
-* {
-    font-family: 'Fredoka', sans-serif;
+body {
+    font-family: "Fredoka", sans-serif;
 }
+
 h1 {
     text-align: center;
 }
-table, th, td {
-    border-collapse: collapse;
-    border: 1px solid var(--borde);
+
+main {
+    max-width: 100%;
+    overflow-x: auto;
 }
+
+table,
+th,
+td {
+    border-collapse: collapse;
+    border: 0.0625rem solid var(--border-color);
+}
+
 th {
     font-weight: 800;
 }
-th, td {
-    padding: 10px;
+
+th,
+td {
+    padding: 0.625rem;
 }
-th:nth-child(1), .modul {
-    background-color: var(--fondo-3);
+
+th:nth-child(1),
+.module {
+    background-color: var(--background-3);
 }
-th:nth-child(2), .ra {
-    background-color: var(--fondo-2);
+
+th:nth-child(2),
+.learning-outcome {
+    background-color: var(--background-2);
 }
-th:nth-child(3), .aprovat {
-    background-color: var(--fondo);
+
+th:nth-child(3),
+.passed {
+    background-color: var(--background);
 }
+
 th:nth-child(4) {
-    background-color: var(--fondo-4);
+    background-color: var(--background-4);
 }
+
 th:nth-child(5) {
-    background-color: var(--fondo-5);
+    background-color: var(--background-5);
 }
-.reprovat {
-    background-color: var(--fondo-6);
+
+.failed {
+    background-color: var(--background-6);
 }
-.absencia {
-    color: var(--texto);
+
+.absence {
+    color: var(--text-color);
 }
+
 tr th:nth-child(1) {
     width: 25%;
 }
+
 tr th:nth-child(2) {
     width: 50%;
 }
+
 tr th:nth-child(3) {
     width: 5%;
 }
+
 tr th:nth-child(4) {
     width: 10%;
 }
+
 tr th:nth-child(5) {
     width: 10%;
 }
+
 tr td:nth-child(4),
 tr td:nth-child(5) {
     text-align: center;
 }
-.qualificacio-final {
-    background-color: var(--fondo);
+
+.final-grade {
+    background-color: var(--background);
 }
-.qualificacio-final span {
-    float: right
+
+.final-grade span {
+    float: right;
 }

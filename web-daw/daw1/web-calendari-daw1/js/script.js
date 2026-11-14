@@ -1,4 +1,4 @@
-let divendres = [
+const fridays = [
     "20/09/2024",
     "27/09/2024",
     "4/10/2024",
@@ -32,33 +32,33 @@ let divendres = [
     "9/5/2025",
     "16/5/2025",
     "23/5/2025",
-]
+];
 
-function Divendres() {
-    let ara = new Date();
+function markCompletedWeeks() {
+    const now = new Date();
 
-    divendres.forEach(fecha => {
-        let [dia, mes, any] = fecha.split('/').map(num => parseInt(num));
-        let fechaDivendres = new Date(any, mes - 1, dia, 13, 30);
+    fridays.forEach((dateText) => {
+        const [day, month, year] = dateText.split("/").map((part) => parseInt(part, 10));
+        const fridayDate = new Date(year, month - 1, day, 13, 30);
 
-        if (ara >= fechaDivendres) {
-            document.querySelectorAll('.setmana').forEach(stmn => {
-                let numeroSetmana = stmn.querySelector(".numero-setmana");
-                if (stmn.querySelector(".divendres").textContent.includes(fecha)) {
-                    numeroSetmana.style.backgroundColor = "#00ff00";
+        if (now < fridayDate) return;
 
-                    stmn.querySelectorAll(".dia").forEach(diaPas => {
-                        let icona = document.createElement("i");
-                        icona.className = "fa-solid fa-check icona";
+        document.querySelectorAll(".week").forEach((week) => {
+            const weekNumber = week.querySelector(".week-number");
+            const friday = week.querySelector(".friday");
 
-                        diaPas.appendChild(icona);
-                    })
-                }
+            if (!weekNumber || !friday?.textContent.includes(dateText)) return;
+
+            weekNumber.classList.add("is-completed");
+
+            week.querySelectorAll(".day").forEach((dayItem) => {
+                const icon = document.createElement("i");
+
+                icon.className = "fa-solid fa-check check-icon";
+                dayItem.appendChild(icon);
             });
-        }
+        });
     });
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-    Divendres();
-});
+document.addEventListener("DOMContentLoaded", markCompletedWeeks);
