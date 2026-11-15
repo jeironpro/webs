@@ -1,5 +1,200 @@
 /* Shell común del arcade: portada, marcador y salida al menú. */
 (() => {
+    const THEMES = {
+        "juego-7-letras": {
+            bg: "#f3eee4",
+            panel: "#fbf8f1",
+            text: "#201b17",
+            muted: "#6b5e4f",
+            line: "#d8cbb8",
+            accent: "#16726f",
+            accentText: "#fbf8f1",
+            card: "#fbf8f1",
+            display: '"Fraunces", Georgia, serif',
+            body: '"Archivo", system-ui, sans-serif',
+            layout: "stack",
+            radius: "0.125rem",
+            titleWeight: "600",
+            tracking: "-0.03em",
+        },
+        "juego-adivina-numero": {
+            bg: "#f7f2e6",
+            panel: "#fffdf7",
+            text: "#202936",
+            muted: "#5f6877",
+            line: "#e5dcc9",
+            accent: "#e0ad00",
+            accentText: "#202936",
+            card: "#fffdf7",
+            display: '"Plus Jakarta Sans", ui-sans-serif, sans-serif',
+            body: '"Plus Jakarta Sans", ui-sans-serif, sans-serif',
+            layout: "row",
+            radius: "1.25rem",
+            titleWeight: "800",
+            tracking: "-0.045em",
+        },
+        "juego-memoriza-carta": {
+            bg: "#f3eee4",
+            panel: "#fbf8f1",
+            text: "#201b17",
+            muted: "#6b5e4f",
+            line: "#d8cbb8",
+            accent: "#b83b2e",
+            accentText: "#fbf8f1",
+            card: "#fbf8f1",
+            display: '"Fraunces", Georgia, serif',
+            body: '"Archivo", system-ui, sans-serif',
+            layout: "stack",
+            radius: "0.125rem",
+            titleWeight: "600",
+            tracking: "-0.03em",
+        },
+        "juego-palabra-oculta": {
+            bg: "#f3eee4",
+            panel: "#fbf8f1",
+            text: "#201b17",
+            muted: "#6b5e4f",
+            line: "#d8cbb8",
+            accent: "#e9b949",
+            accentText: "#201b17",
+            card: "#fbf8f1",
+            display: '"Fraunces", Georgia, serif',
+            body: '"Archivo", system-ui, sans-serif',
+            layout: "row",
+            radius: "0.125rem",
+            titleWeight: "600",
+            tracking: "-0.03em",
+        },
+        "juego-patches": {
+            bg: "#f7f4ec",
+            panel: "#fffdf8",
+            text: "#201d18",
+            muted: "#6f675c",
+            line: "#ded6c7",
+            accent: "#d64426",
+            accentText: "#fffdf8",
+            card: "#fffdf8",
+            display: '"Jost", ui-sans-serif, sans-serif',
+            body: '"Archivo", ui-sans-serif, sans-serif',
+            layout: "stack",
+            radius: "0.5rem",
+            titleWeight: "600",
+            tracking: "-0.035em",
+        },
+        "juego-queens": {
+            bg: "#f4ecd8",
+            panel: "#fbf7ea",
+            text: "#241c16",
+            muted: "#6b5c4c",
+            line: "#dcc9a4",
+            accent: "#a3281a",
+            accentText: "#fbf7ea",
+            card: "#fbf7ea",
+            display: '"Fraunces", Georgia, serif',
+            body: '"Archivo", system-ui, sans-serif',
+            layout: "row",
+            radius: "0.25rem",
+            titleWeight: "600",
+            tracking: "-0.03em",
+        },
+        "juego-serpiente": {
+            bg: "#f3eee4",
+            panel: "#fbf8f1",
+            text: "#201b17",
+            muted: "#6b5e4f",
+            line: "#d8cbb8",
+            accent: "#16726f",
+            accentText: "#fbf8f1",
+            card: "#fbf8f1",
+            display: '"Fraunces", Georgia, serif',
+            body: '"Archivo", system-ui, sans-serif',
+            layout: "stack",
+            radius: "0.125rem",
+            titleWeight: "600",
+            tracking: "-0.03em",
+        },
+        "juego-sopa-letras": {
+            bg: "#f3eee4",
+            panel: "#fbf8f1",
+            text: "#201b17",
+            muted: "#6b5e4f",
+            line: "#d8cbb8",
+            accent: "#16726f",
+            accentText: "#fbf8f1",
+            card: "#fbf8f1",
+            display: '"Fraunces", Georgia, serif',
+            body: '"Archivo", system-ui, sans-serif',
+            layout: "row",
+            radius: "0.125rem",
+            titleWeight: "600",
+            tracking: "-0.03em",
+        },
+        "juego-sudoku": {
+            bg: "#f3eee4",
+            panel: "#fbf8f1",
+            text: "#201b17",
+            muted: "#6b5e4f",
+            line: "#d8cbb8",
+            accent: "#16726f",
+            accentText: "#fbf8f1",
+            card: "#fbf8f1",
+            display: '"Fraunces", Georgia, serif',
+            body: '"Archivo", system-ui, sans-serif',
+            layout: "stack",
+            radius: "0.125rem",
+            titleWeight: "600",
+            tracking: "-0.03em",
+        },
+        "juego-tango": {
+            bg: "#f6f9ff",
+            panel: "#ffffff",
+            text: "#26355c",
+            muted: "#5d6b8c",
+            line: "#dbe4f5",
+            accent: "#4f6bd8",
+            accentText: "#ffffff",
+            card: "#ffffff",
+            display: '"IBM Plex Sans Condensed", sans-serif',
+            body: '"IBM Plex Sans", sans-serif',
+            layout: "row",
+            radius: "0.75rem",
+            titleWeight: "600",
+            tracking: "-0.03em",
+        },
+        "juego-wend": {
+            bg: "#f2f6ff",
+            panel: "#ffffff",
+            text: "#101a3a",
+            muted: "#5c6b8d",
+            line: "#c9d6ee",
+            accent: "#2f5eea",
+            accentText: "#ffffff",
+            card: "#ffffff",
+            display: '"Space Grotesk", ui-sans-serif, sans-serif',
+            body: '"Inter", system-ui, sans-serif',
+            layout: "row",
+            radius: "1rem",
+            titleWeight: "700",
+            tracking: "-0.04em",
+        },
+        "juego-zip": {
+            bg: "#0f1526",
+            panel: "#161d31",
+            text: "#f2f4ff",
+            muted: "#a8b0cb",
+            line: "#2f3a5c",
+            accent: "#7d5cff",
+            accentText: "#ffffff",
+            card: "#1e2740",
+            display: '"Space Grotesk", ui-sans-serif, sans-serif',
+            body: '"Inter", system-ui, sans-serif',
+            layout: "stack",
+            radius: "0.75rem",
+            titleWeight: "700",
+            tracking: "-0.04em",
+        },
+    };
+
     const GAMES = {
         "juego-7-letras": {
             title: "7 Letras",
@@ -130,20 +325,6 @@
         }
     };
 
-    const formatLast = (isoDate) => {
-        if (!isoDate) {
-            return "—";
-        }
-        const date = new Date(isoDate);
-        if (Number.isNaN(date.getTime())) {
-            return "—";
-        }
-        return new Intl.DateTimeFormat("es", {
-            day: "2-digit",
-            month: "short",
-        }).format(date);
-    };
-
     const createNode = (tag, className, text) => {
         const element = document.createElement(tag);
         if (className) {
@@ -180,9 +361,38 @@
         return;
     }
 
-    const stats = readStats();
     const overlay = document.createElement("div");
     overlay.className = "arcade-home";
+    const theme = THEMES[gameId] ?? {
+        bg: "#080b14",
+        panel: "#0d1220",
+        text: "#f4f7ff",
+        muted: "#9daac4",
+        line: "#26314d",
+        accent: "#4f8cff",
+        accentText: "#fff",
+        card: "#111a2c",
+        display: '"Inter", ui-sans-serif, sans-serif',
+        body: '"Inter", ui-sans-serif, sans-serif',
+        layout: "row",
+        radius: "1rem",
+        titleWeight: "800",
+        tracking: "-0.045em",
+    };
+    overlay.classList.add(`arcade-home--${theme.layout}`);
+    overlay.style.setProperty("--arcade-bg", theme.bg);
+    overlay.style.setProperty("--arcade-panel", theme.panel);
+    overlay.style.setProperty("--arcade-text", theme.text);
+    overlay.style.setProperty("--arcade-muted", theme.muted);
+    overlay.style.setProperty("--arcade-line", theme.line);
+    overlay.style.setProperty("--arcade-accent", theme.accent);
+    overlay.style.setProperty("--arcade-accent-text", theme.accentText);
+    overlay.style.setProperty("--arcade-card", theme.card);
+    overlay.style.setProperty("--arcade-display", theme.display);
+    overlay.style.setProperty("--arcade-body", theme.body);
+    overlay.style.setProperty("--arcade-radius", theme.radius);
+    overlay.style.setProperty("--arcade-title-weight", theme.titleWeight);
+    overlay.style.setProperty("--arcade-title-tracking", theme.tracking);
     overlay.setAttribute("role", "dialog");
     overlay.setAttribute("aria-modal", "true");
     overlay.setAttribute("aria-labelledby", "arcade-title");
@@ -198,15 +408,10 @@
             "M16.2 11.7h.1M18.2 13.5h.1",
         ])
     );
-    const eyebrow = createNode("p", "arcade-home__eyebrow", `Arcade · ${game.genre}`);
     const title = createNode("h1", "arcade-home__title", game.title);
     title.id = "arcade-title";
     const subtitle = createNode("p", "arcade-home__subtitle", game.subtitle);
-    const meta = createNode("ul", "arcade-home__meta");
-    ["Partida individual", "Teclado y táctil", "Sin registro"].forEach((label) => {
-        meta.append(createNode("li", "", label));
-    });
-    header.append(iconTile, eyebrow, title, subtitle, meta);
+    header.append(iconTile, title, subtitle);
 
     const modes = createNode("div", "arcade-home__modes");
     modes.setAttribute("role", "group");
@@ -228,15 +433,15 @@
     const playMode = createMode(
         "arcade-mode-play",
         "▶",
-        "Partida rápida",
-        "Abre el tablero con la configuración clásica.",
+        "Jugar",
+        "Empieza una partida con la configuración clásica.",
         true
     );
     const helpMode = createMode(
         "arcade-mode-help",
         "?",
-        "Cómo jugar",
-        "Consulta las reglas antes de empezar.",
+        "Reglas",
+        "Consulta cómo se juega.",
         false
     );
     modes.append(playMode, helpMode);
@@ -249,27 +454,12 @@
         document.createTextNode(game.instructions)
     );
 
-    const scoreboard = createNode("section", "arcade-scoreboard");
-    scoreboard.setAttribute("aria-label", "Estadísticas del juego");
-    const playsItem = createNode("div", "arcade-scoreboard__item");
-    const playsValue = createNode("strong", "", String(stats.plays));
-    playsValue.id = "arcade-plays";
-    playsItem.append(createNode("span", "", "Partidas"), playsValue);
-    const divider = createNode("span", "arcade-scoreboard__divider");
-    divider.setAttribute("aria-hidden", "true");
-    const lastItem = createNode("div", "arcade-scoreboard__item");
-    const lastValue = createNode("strong", "", formatLast(stats.last));
-    lastValue.id = "arcade-last";
-    lastItem.append(createNode("span", "", "Última partida"), lastValue);
-    scoreboard.append(playsItem, divider, lastItem);
-
     const startButton = createNode("button", "arcade-home__start");
     startButton.id = "arcade-start";
     startButton.type = "button";
     startButton.append(createNode("span", "", "Jugar"), createIcon(["m9 6 6 6-6 6"]));
 
-    const foot = createNode("p", "arcade-home__foot", `Arcade · ${game.genre} · 2026`);
-    panel.append(header, modes, instructions, scoreboard, startButton, foot);
+    panel.append(header, modes, instructions, startButton);
     overlay.append(panel);
 
     document.body.append(overlay);

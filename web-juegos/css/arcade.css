@@ -43,10 +43,14 @@ html.arcade-home-open body {
     overflow-y: auto;
     padding: clamp(1rem, 4vw, 2.5rem);
     background:
-        radial-gradient(60% 55% at 50% 0%, rgb(79 140 255 / 0.24), transparent 70%),
+        radial-gradient(
+            60% 55% at 50% 0%,
+            color-mix(in oklab, var(--arcade-accent) 22%, transparent),
+            transparent 70%
+        ),
         var(--arcade-bg);
     color: var(--arcade-text);
-    font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--arcade-body, "Inter", ui-sans-serif, system-ui, sans-serif);
     line-height: 1.5;
     overscroll-behavior: contain;
 }
@@ -66,9 +70,14 @@ html.arcade-home-open body {
     margin-block: auto;
     padding: clamp(1.5rem, 4vw, 3rem);
     border: 0.0625rem solid var(--arcade-line);
-    border-radius: 1.5rem;
+    border-radius: var(--arcade-radius, 1.5rem);
     background:
-        linear-gradient(180deg, rgb(79 140 255 / 0.09), transparent 45%), var(--arcade-panel);
+        linear-gradient(
+            180deg,
+            color-mix(in oklab, var(--arcade-accent) 10%, transparent),
+            transparent 45%
+        ),
+        var(--arcade-panel);
     box-shadow:
         0 2rem 5rem rgb(0 0 0 / 0.55),
         inset 0 1px 0 rgb(255 255 255 / 0.06);
@@ -88,10 +97,14 @@ html.arcade-home-open body {
     width: 4rem;
     height: 4rem;
     margin-bottom: 0.35rem;
-    border: 0.0625rem solid var(--arcade-line-3);
-    border-radius: 1rem;
-    background: linear-gradient(145deg, var(--arcade-tile), var(--arcade-surface-2));
-    color: var(--arcade-accent-light);
+    border: 0.0625rem solid var(--arcade-line);
+    border-radius: calc(var(--arcade-radius, 1rem) * 0.75);
+    background: linear-gradient(
+        145deg,
+        color-mix(in oklab, var(--arcade-accent) 16%, var(--arcade-panel)),
+        var(--arcade-panel)
+    );
+    color: var(--arcade-accent);
     box-shadow: 0 1rem 2rem rgb(0 0 0 / 0.35);
 }
 
@@ -117,18 +130,19 @@ html.arcade-home-open body {
 
 .arcade-home__title {
     margin: 0;
-    color: var(--arcade-text-strong);
-    font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+    color: var(--arcade-text);
+    font-family: var(--arcade-display, "Inter", ui-sans-serif, system-ui, sans-serif);
     font-size: clamp(2.3rem, 6vw, 4rem);
-    font-weight: 800;
-    letter-spacing: -0.045em;
+    font-weight: var(--arcade-title-weight, 800);
+    letter-spacing: var(--arcade-title-tracking, -0.045em);
     line-height: 0.95;
+    text-transform: var(--arcade-title-transform, none);
 }
 
 .arcade-home__subtitle {
     max-width: 40ch;
     margin: 0;
-    color: var(--arcade-text-soft);
+    color: var(--arcade-muted);
     font-size: clamp(0.95rem, 1.6vw, 1.08rem);
 }
 
@@ -167,9 +181,9 @@ html.arcade-home-open body {
     gap: 0.75rem;
     width: 100%;
     padding: 1rem;
-    border: 0.0625rem solid var(--arcade-line-2);
-    border-radius: 0.9rem;
-    background: var(--arcade-surface);
+    border: 0.0625rem solid var(--arcade-line);
+    border-radius: calc(var(--arcade-radius, 1rem) * 0.6);
+    background: var(--arcade-card);
     color: var(--arcade-text);
     font: inherit;
     text-align: left;
@@ -182,14 +196,14 @@ html.arcade-home-open body {
 
 .arcade-home__mode:hover {
     border-color: var(--arcade-accent);
-    background: var(--arcade-surface-3);
+    background: color-mix(in oklab, var(--arcade-accent) 8%, var(--arcade-card));
     transform: translateY(-0.125rem);
 }
 
 .arcade-home__mode[aria-pressed="true"] {
     border-color: var(--arcade-accent);
-    background: linear-gradient(180deg, rgb(79 140 255 / 0.18), var(--arcade-surface));
-    box-shadow: inset 0 0 0 0.0625rem rgb(79 140 255 / 0.35);
+    background: color-mix(in oklab, var(--arcade-accent) 13%, var(--arcade-card));
+    box-shadow: inset 0 0 0 0.0625rem color-mix(in oklab, var(--arcade-accent) 38%, transparent);
 }
 
 .arcade-home__mode-icon {
@@ -198,9 +212,9 @@ html.arcade-home-open body {
     place-items: center;
     width: 2rem;
     height: 2rem;
-    border-radius: 0.55rem;
-    background: var(--arcade-icon-bg);
-    color: var(--arcade-accent-light);
+    border-radius: calc(var(--arcade-radius, 1rem) * 0.4);
+    background: color-mix(in oklab, var(--arcade-accent) 15%, var(--arcade-card));
+    color: var(--arcade-accent);
     font-family: "JetBrains Mono", ui-monospace, monospace;
     font-size: 0.95rem;
     font-weight: 700;
@@ -219,7 +233,7 @@ html.arcade-home-open body {
 }
 
 .arcade-home__mode-text small {
-    color: var(--arcade-text-muted);
+    color: var(--arcade-muted);
     font-size: 0.8rem;
     line-height: 1.45;
 }
@@ -227,10 +241,10 @@ html.arcade-home-open body {
 .arcade-home__instructions {
     margin-top: 0.75rem;
     padding: 1rem;
-    border: 0.0625rem dashed var(--arcade-line-3);
-    border-radius: 0.9rem;
-    background: var(--arcade-field);
-    color: var(--arcade-instructions);
+    border: 0.0625rem dashed var(--arcade-line);
+    border-radius: calc(var(--arcade-radius, 1rem) * 0.6);
+    background: color-mix(in oklab, var(--arcade-text) 4%, var(--arcade-panel));
+    color: var(--arcade-muted);
     font-size: 0.9rem;
 }
 
@@ -297,10 +311,10 @@ html.arcade-home-open body {
     width: 100%;
     margin-top: 1rem;
     padding: 0.95rem 1.25rem;
-    border: 0.0625rem solid var(--arcade-accent-strong);
-    border-radius: 0.9rem;
-    background: linear-gradient(180deg, var(--arcade-button-top), var(--arcade-button-bottom));
-    color: var(--arcade-white);
+    border: 0.0625rem solid var(--arcade-accent);
+    border-radius: calc(var(--arcade-radius, 1rem) * 0.6);
+    background: var(--arcade-accent);
+    color: var(--arcade-accent-text, var(--arcade-white));
     font: inherit;
     font-size: 1rem;
     font-weight: 700;
@@ -374,8 +388,16 @@ html.arcade-home-open body {
 
 .arcade-home button:focus-visible,
 .arcade-return:focus-visible {
-    outline: 0.125rem solid var(--arcade-accent-light);
+    outline: 0.125rem solid var(--arcade-accent);
     outline-offset: 0.2rem;
+}
+
+.arcade-home--stack .arcade-home__panel {
+    width: min(34rem, 100%);
+}
+
+.arcade-home--stack .arcade-home__modes {
+    grid-template-columns: minmax(0, 1fr);
 }
 
 @media (width <= 40rem) {
