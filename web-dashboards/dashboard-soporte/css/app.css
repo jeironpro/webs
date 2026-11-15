@@ -100,8 +100,16 @@
 .soporte-menu-trigger {
     display: inline-flex;
 }
+.soporte-menu-open .soporte-menu-trigger {
+    display: none;
+}
 .mobile-backdrop-soporte {
     z-index: 30;
+}
+@media (width < 64rem) {
+    .soporte-main {
+        padding-top: 3.5rem;
+    }
 }
 @media (min-width: 64rem) {
     .soporte-nav {
