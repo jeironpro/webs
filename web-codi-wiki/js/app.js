@@ -59,6 +59,7 @@ const showContent = (item) => {
     detailView.classList.remove("is-hidden");
     setMenuOpen(false);
     mainContent.scrollTop = 0;
+    window.scrollTo({ top: 0, behavior: "auto" });
     detailView.replaceChildren();
 
     const header = createElement("header", "detail-header");
