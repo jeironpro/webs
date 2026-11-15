@@ -85,12 +85,14 @@
     display: none;
 }
 .soporte-nav {
-    width: 4.5rem;
-    transform: translateX(-4.5rem);
+    width: 18rem;
+    transform: translateX(calc(-100% - 1rem));
+    visibility: hidden;
 }
 .soporte-nav[data-open="true"] {
     width: 18rem;
     transform: translateX(0);
+    visibility: visible;
 }
 .soporte-main {
     padding-left: 0;
@@ -105,6 +107,7 @@
     .soporte-nav {
         width: 13rem;
         transform: none;
+        visibility: visible;
     }
     .soporte-main {
         padding-left: 17.25rem;
