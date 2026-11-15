@@ -795,7 +795,7 @@ function navButtons(step, onPrev, onNext) {
                       type: "button",
                       on: { click: onPrev },
                   },
-                  [icono("arrow_back", "w-4 h-4"), " Atrás"]
+                  ["Atrás"]
               ),
         crear(
             "button",
@@ -804,7 +804,7 @@ function navButtons(step, onPrev, onNext) {
                 type: "button",
                 on: { click: onNext },
             },
-            [" Continuar", icono("arrow_forward", "w-4 h-4")]
+            ["Continuar"]
         ),
     ]);
 }
