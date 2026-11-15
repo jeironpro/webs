@@ -307,31 +307,14 @@ def nav(rel):
 
 
 def pie(compacto=False):
-    if compacto:
-        return f"""  <footer class="footer">
+    return """  <footer class="footer">
     <div class="footer__inner">
-      <div class="footer__meta">
-        <a class="footer__brand" href="../index.html">{marca_snake()} Pythoncises</a>
-        <p class="footer__copy">© Pythoncises - 2026<br><span class="footer__hash">ver · copiar · descargar</span></p>
-      </div>
+      <p class="footer__copy">&copy; Todos los derechos reservados - <span data-year>2026</span> jeironpro</p>
     </div>
   </footer>
 </body>
 </html>
 """
-    return f"""  <footer class="footer">
-    <div class="footer__inner">
-      <p class="footer__statement">Python se aprende haciendo.</p>
-      <div class="footer__meta">
-        <a class="footer__brand" href="index.html">{marca_snake()} Pythoncises</a>
-        <p class="footer__copy">© Pythoncises - 2026<br><span class="footer__hash">ver · copiar · descargar</span></p>
-      </div>
-    </div>
-  </footer>
-</body>
-</html>
-"""
-
 
 def etapa(label, accent, titulo, texto, chips, arte):
     return f"""        <article class="stage stage--{accent}">
@@ -576,18 +559,24 @@ def pagina_ejercicio(ejercicio, anterior, siguiente):
 {pie(compacto=True)}"""
 
 
+def escribe_html(ruta, contenido):
+    limpio = "\n".join(linea.rstrip() for linea in contenido.splitlines()) + "\n"
+    ruta.write_text(limpio, encoding="utf-8")
+
+
 def main():
     categorias, plana = lee_ejercicios()
     primer_slug = plana[0]["slug"] if plana else ""
 
-    (RAIZ / "index.html").write_text(genera_indice(categorias, plana, primer_slug), encoding="utf-8")
+    escribe_html(RAIZ / "index.html", genera_indice(categorias, plana, primer_slug))
 
     SALIDA_HTML.mkdir(exist_ok=True)
     for indice, ejercicio in enumerate(plana):
         anterior = plana[indice - 1] if indice > 0 else None
         siguiente = plana[indice + 1] if indice < len(plana) - 1 else None
-        (SALIDA_HTML / f"{ejercicio['slug']}.html").write_text(
-            pagina_ejercicio(ejercicio, anterior, siguiente), encoding="utf-8"
+        escribe_html(
+            SALIDA_HTML / f"{ejercicio['slug']}.html",
+            pagina_ejercicio(ejercicio, anterior, siguiente),
         )
 
     print(f"index.html + {len(plana)} páginas en html/ generados.")
