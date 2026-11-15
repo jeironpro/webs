@@ -80,10 +80,6 @@ button {
     outline-offset: 2px;
 }
 
-.is-hidden {
-    display: none !important;
-}
-
 /* Barra superior: un solo panel cortado en tres */
 .topbar {
     grid-column: 1 / -1;
@@ -632,7 +628,7 @@ button {
 }
 
 /* Responsive */
-@media (max-width: 56.25rem) {
+@media (width <= 56.25rem) {
     body {
         grid-template-columns: minmax(0, 1fr);
         grid-template-rows: auto minmax(0, 1fr);
@@ -674,7 +670,7 @@ button {
     }
 }
 
-@media (max-width: 34rem) {
+@media (width <= 34rem) {
     body {
         padding: 0.5rem;
     }
@@ -704,7 +700,11 @@ button {
     *,
     *::before,
     *::after {
-        transition-duration: 0.01ms !important;
-        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms;
+        animation-duration: 0.01ms;
     }
+}
+
+.is-hidden {
+    display: none;
 }
