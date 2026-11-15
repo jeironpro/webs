@@ -153,8 +153,8 @@
                             >
                         </nav>
                         <div class="border-t">
-                            <button
-                                type="button"
+                            <a
+                                href="perfil.html"
                                 class="flex w-full items-center gap-2.5 px-4 py-3 text-left transition-colors hover:bg-paper-3"
                             >
                                 <span
@@ -182,7 +182,7 @@
                                 >
                                     <path d="m9 18 6-6-6-6"></path>
                                 </svg>
-                            </button>
+                            </a>
                             <div class="border-t px-4 py-3 text-xs text-muted-foreground">
                                 <p class="flex items-center gap-1.5">
                                     <span
@@ -241,6 +241,7 @@
                                 aria-haspopup="menu"
                                 aria-expanded="false"
                                 data-state="closed"
+                                data-overlay-trigger="time-range"
                             >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -263,8 +264,9 @@
                                     <path d="M3 9h5.859"></path>
                                     <path d="M8 2v3"></path>
                                     <circle cx="16" cy="16" r="6"></circle></svg
-                                ><span class="hidden sm:inline">Últimas 24 horas</span
-                                ><span class="num sm:hidden">24h</span
+                                ><span class="hidden sm:inline" data-range-label="full"
+                                    >Últimas 24 horas</span
+                                ><span class="num sm:hidden" data-range-label="short">24h</span
                                 ><svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -3762,6 +3764,59 @@
                         <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path></svg
                     >Cerrar sesión
                 </div>
+            </div>
+        </div>
+        <div class="overlay-menu" data-overlay-panel="time-range" hidden="">
+            <div
+                role="menu"
+                aria-label="Rango temporal"
+                class="w-56 overflow-hidden rounded-md border bg-card p-1 text-card-foreground shadow-[var(--shadow-whisper)]"
+            >
+                <button
+                    type="button"
+                    role="menuitem"
+                    class="flex w-full items-center rounded-sm px-2 py-1.5 text-left text-sm hover:bg-accent"
+                    data-range="Última hora"
+                    data-range-short="1h"
+                >
+                    Última hora
+                </button>
+                <button
+                    type="button"
+                    role="menuitem"
+                    class="flex w-full items-center rounded-sm px-2 py-1.5 text-left text-sm hover:bg-accent"
+                    data-range="Últimas 6 horas"
+                    data-range-short="6h"
+                >
+                    Últimas 6 horas
+                </button>
+                <button
+                    type="button"
+                    role="menuitem"
+                    class="flex w-full items-center rounded-sm px-2 py-1.5 text-left text-sm hover:bg-accent"
+                    data-range="Últimas 24 horas"
+                    data-range-short="24h"
+                >
+                    Últimas 24 horas
+                </button>
+                <button
+                    type="button"
+                    role="menuitem"
+                    class="flex w-full items-center rounded-sm px-2 py-1.5 text-left text-sm hover:bg-accent"
+                    data-range="Últimos 7 días"
+                    data-range-short="7d"
+                >
+                    Últimos 7 días
+                </button>
+                <button
+                    type="button"
+                    role="menuitem"
+                    class="flex w-full items-center rounded-sm px-2 py-1.5 text-left text-sm hover:bg-accent"
+                    data-range="Últimos 30 días"
+                    data-range-short="30d"
+                >
+                    Últimos 30 días
+                </button>
             </div>
         </div>
     </body>
