@@ -61,10 +61,6 @@ button {
     white-space: nowrap;
 }
 
-.is-hidden {
-    display: none !important;
-}
-
 .app {
     width: min(100% - 2 * clamp(1rem, 4vw, 4rem), 90rem);
     margin-inline: auto;
@@ -804,7 +800,7 @@ button {
     color: var(--color-muted);
 }
 
-@media (max-width: 56rem) {
+@media (width <= 56rem) {
     .pomodoro {
         grid-template-columns: minmax(0, 1fr);
         min-height: 0;
@@ -836,7 +832,7 @@ button {
     }
 }
 
-@media (max-width: 30rem) {
+@media (width <= 30rem) {
     .tray__note,
     .info-button__text {
         display: none;
@@ -863,8 +859,12 @@ button {
     *,
     *::before,
     *::after {
-        transition-duration: 0.01ms !important;
-        animation-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
+        transition-duration: 0.01ms;
+        animation-duration: 0.01ms;
+        scroll-behavior: auto;
     }
+}
+
+.is-hidden {
+    display: none;
 }
