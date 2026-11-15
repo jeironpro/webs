@@ -18,6 +18,7 @@ import {
     leerInvitacionDeHash,
 } from "./farsante-invite.js";
 import { generarPistasBots, votarBots } from "./farsante-bots.js";
+import { crearCodigoSala, enlaceSala, normalizarCodigoSala, SalaRemota } from "./farsante-sala.js";
 
 const app = document.querySelector("#pantalla");
 const anuncio = document.querySelector("#anuncio");
@@ -76,10 +77,57 @@ const state = {
     jugadorInvitacionId: null,
     salaId: "",
     chat: [],
+    sala: {
+        codigo: "",
+        estado: "inactiva",
+        error: "",
+        conectados: 0,
+        nombre: "",
+        intentada: false,
+        detalle: "",
+    },
 };
 
 let vistaRenderizada = null;
 let temporizadorAnuncio = null;
+
+const sala = new SalaRemota({
+    onEstado(estado, mensaje = "") {
+        state.sala.estado = estado;
+        if (estado === "error") {
+            state.sala.error = mensaje;
+            state.sala.detalle = "";
+        } else {
+            state.sala.error = "";
+            state.sala.detalle = mensaje;
+        }
+        actualizarSalaDOM();
+        if (
+            state.vista === "sala-cliente" ||
+            (state.vista === "config" && estado !== "conectando")
+        ) {
+            render(
+                estado === "conectado" && state.vista === "sala-cliente"
+                    ? "#chat-texto-cliente"
+                    : null
+            );
+        }
+    },
+    onMensaje(mensaje) {
+        const nuevo = agregarMensajeChat(mensaje);
+        if (nuevo && sala.modo === "anfitrion") sala.reenviar(mensaje);
+        actualizarChatDOM();
+    },
+    onConexiones(cantidad) {
+        state.sala.conectados = cantidad;
+        actualizarSalaDOM();
+    },
+    onLimpiar() {
+        state.chat = [];
+        actualizarChatDOM();
+    },
+    historial: () => state.chat,
+});
 
 const esc = (valor) =>
     String(valor).replace(
@@ -100,6 +148,184 @@ const icono = (nombre) =>
 function avatarSvg(indice, clase = "avatar") {
     const paleta = PALETAS[indice % PALETAS.length];
     return `<svg class="${clase}" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect width="48" height="48" rx="12" fill="${paleta.fondo}"/>${CARAS[indice % CARAS.length](paleta)}</svg>`;
+}
+
+function nuevoIdMensaje() {
+    return (
+        globalThis.crypto?.randomUUID?.() ??
+        `m-${Date.now()}-${Math.random().toString(36).slice(2)}`
+    );
+}
+
+function agregarMensajeChat(mensaje) {
+    const texto = String(mensaje?.texto ?? "")
+        .trim()
+        .slice(0, 120);
+    if (!texto) return false;
+    const id = mensaje.id || nuevoIdMensaje();
+    if (state.chat.some((item) => item.id === id)) return false;
+    const autor = state.jugadores.find((jugador) => jugador.id === mensaje.jugadorId);
+    state.chat.push({
+        id,
+        texto,
+        jugadorId: mensaje.jugadorId || "",
+        nombre: mensaje.nombre || autor?.nombre || "Jugador",
+        avatar: autor?.avatar ?? null,
+    });
+    if (state.chat.length > 200) state.chat.shift();
+    return true;
+}
+
+function chatListaMarkup() {
+    if (!state.chat.length) {
+        return `<li class="chat__vacio">Aún no hay pistas. Escribe la primera y pásale el móvil a la siguiente persona.</li>`;
+    }
+    return state.chat
+        .map((mensaje) => {
+            const autor = state.jugadores.find((jugador) => jugador.id === mensaje.jugadorId);
+            const avatar =
+                autor || mensaje.avatar !== null
+                    ? avatarSvg(autor?.avatar ?? mensaje.avatar ?? 0)
+                    : `<span class="chat__inicial">${esc(mensaje.nombre.slice(0, 1).toUpperCase())}</span>`;
+            return `<li class="chat__item">
+                <span class="chat__avatar">${avatar}</span>
+                <div><strong>${esc(mensaje.nombre)}</strong><p>${esc(mensaje.texto)}</p></div>
+            </li>`;
+        })
+        .join("");
+}
+
+function actualizarChatDOM() {
+    ["#chat-pistas", "#chat-cliente"].forEach((selector) => {
+        const lista = app.querySelector(selector);
+        if (lista) lista.innerHTML = chatListaMarkup();
+    });
+    document.querySelectorAll("[data-chat-count]").forEach((contador) => {
+        contador.textContent = String(state.chat.length);
+    });
+}
+
+function etiquetaEstadoSala() {
+    if (state.sala.estado === "error" && state.sala.error) return state.sala.error;
+    if (state.sala.detalle) return state.sala.detalle;
+    switch (state.sala.estado) {
+        case "conectando":
+            return "Conectando con la sala…";
+        case "conectado":
+            return "Sala abierta y sincronizada.";
+        case "inactiva":
+            return state.vista === "sala-cliente"
+                ? "Escribe tu nombre y entra en la sala."
+                : "Crea una sala y comparte el enlace con la mesa.";
+        case "desconectado":
+            return "Conexión perdida. Intenta volver a entrar.";
+        default:
+            return "Crea una sala y comparte el enlace con la mesa.";
+    }
+}
+
+function actualizarSalaDOM() {
+    document.querySelectorAll("[data-sala-estado]").forEach((nodo) => {
+        nodo.textContent = etiquetaEstadoSala();
+        nodo.classList.toggle("sala__estado--error", state.sala.estado === "error");
+    });
+    document.querySelectorAll("[data-sala-conectados]").forEach((nodo) => {
+        nodo.textContent = textoConectados(state.sala.conectados);
+    });
+}
+
+function textoConectados(cantidad) {
+    return `${cantidad} ${cantidad === 1 ? "conectado" : "conectados"}`;
+}
+
+function iniciarSalaAnfitrion() {
+    state.sala.intentada = true;
+    if (state.sala.codigo) return;
+    const codigo = crearCodigoSala();
+    state.sala.codigo = codigo;
+    state.sala.estado = "conectando";
+    state.sala.error = "";
+    state.sala.detalle = "";
+    sala.crear(codigo);
+}
+
+function reintentarSalaAnfitrion() {
+    sala.cerrar();
+    state.sala.codigo = "";
+    state.sala.estado = "inactiva";
+    state.sala.error = "";
+    state.sala.detalle = "";
+    state.sala.conectados = 0;
+    iniciarSalaAnfitrion();
+    render();
+}
+
+function unirseSala(codigo) {
+    const normalizado = normalizarCodigoSala(codigo);
+    if (!normalizado) {
+        anunciar("El código de sala no es válido.");
+        return;
+    }
+    state.sala.codigo = normalizado;
+    state.sala.estado = "conectando";
+    state.sala.error = "";
+    state.sala.detalle = "";
+    sala.unirse(normalizado);
+}
+
+function reconectarSalaInvitado() {
+    if (!state.sala.codigo || !state.sala.nombre) {
+        render();
+        return;
+    }
+    unirseSala(state.sala.codigo);
+    render();
+}
+
+function cambiarNombreSala() {
+    sala.cerrar();
+    state.sala.nombre = "";
+    state.sala.estado = "inactiva";
+    state.sala.error = "";
+    state.sala.detalle = "";
+    render("#sala-nombre");
+}
+
+function enviarMensajeChat({ jugadorId = "", nombre, texto }) {
+    const mensaje = {
+        id: nuevoIdMensaje(),
+        jugadorId,
+        nombre,
+        texto: String(texto).trim().slice(0, 120),
+    };
+    if (!mensaje.texto) return false;
+    agregarMensajeChat(mensaje);
+    sala.enviar(mensaje);
+    actualizarChatDOM();
+    return true;
+}
+
+async function copiarEnlaceSala() {
+    const enlace = enlaceSala(state.sala.codigo);
+    try {
+        await navigator.clipboard.writeText(enlace);
+        anunciar("Enlace de la sala copiado.");
+    } catch {
+        anunciar(`Comparte este enlace: ${enlace}`);
+    }
+}
+
+function salirDeSala(destino = "inicio") {
+    sala.cerrar();
+    state.sala.codigo = "";
+    state.sala.estado = "inactiva";
+    state.sala.error = "";
+    state.sala.detalle = "";
+    state.sala.conectados = 0;
+    state.sala.nombre = "";
+    state.sala.intentada = false;
+    state.vista = destino;
+    render();
 }
 
 function anunciar(texto) {
@@ -178,19 +404,19 @@ function vistaInicio() {
                 <dl class="datos-portada">
                     <div><dt>Jugadores</dt><dd>3—12</dd></div>
                     <div><dt>Duración</dt><dd>10—20 min</dd></div>
-                    <div><dt>Formato</dt><dd>Un móvil</dd></div>
+                    <div><dt>Formato</dt><dd>Uno o varios móviles</dd></div>
                 </dl>
             </div>
             <figure class="portada__grafico">
                 <img src="assets/expediente.svg" alt="Expediente confidencial con una carta reservada" width="460" height="360" />
-                <figcaption><span aria-hidden="true"></span> Nada de cuentas. Nada de servidores.</figcaption>
+                <figcaption><span aria-hidden="true"></span> Sin cuentas. La sala une los móviles.</figcaption>
             </figure>
         </section>
         <section class="como-jugar" id="como-jugar" aria-labelledby="titulo-como-jugar">
             <div class="como-jugar__intro">
                 <p class="kicker">CÓMO SE JUEGA</p>
                 <h2 id="titulo-como-jugar">Tres actos. Una palabra. Un farsante.</h2>
-                <p>No hace falta mesa, tablero ni conexión. Solo un móvil que va pasando de mano en mano.</p>
+                <p>No hace falta mesa ni tablero. Juega en un móvil que va pasando de mano en mano o abre una sala para que cada persona escriba su pista desde su dispositivo.</p>
             </div>
             <ol class="pasos">
                 <li>
@@ -209,6 +435,120 @@ function vistaInicio() {
                     <p>La mesa vota en secreto. Si cae el farsante, ganan los inocentes. Si sobrevive, gana el farsante.</p>
                 </li>
             </ol>
+        </section>
+    `;
+}
+
+function salaPanelMarkup() {
+    const { codigo, conectados } = state.sala;
+    if (!codigo) {
+        return `
+            <section class="panel panel--sala" aria-labelledby="titulo-sala">
+                <p class="kicker">SALA REMOTA · OPCIONAL</p>
+                <h2 id="titulo-sala">Jugad cada uno desde su móvil.</h2>
+                <p class="sala__texto">Crea una sala y comparte el enlace. Los invitados escriben sus pistas desde su propio dispositivo; el anfitrión las ve en la mesa.</p>
+                <button class="btn btn--primario btn--ancho" id="crear-sala" type="button">${icono("personas")} Crear sala de pistas</button>
+                <form class="sala__unirse" id="form-unirse-sala">
+                    <label for="codigo-sala">¿Te han pasado un código?</label>
+                    <div>
+                        <input id="codigo-sala" name="codigo" type="text" maxlength="8" placeholder="FAR-ABCD" autocomplete="off" />
+                        <button class="btn btn--secundario" type="submit">Unirme</button>
+                    </div>
+                </form>
+                <p class="sala__estado" data-sala-estado>${esc(etiquetaEstadoSala())}</p>
+            </section>
+        `;
+    }
+    return `
+        <section class="panel panel--sala panel--sala-abierta" aria-labelledby="titulo-sala">
+            <div class="panel__cabecera">
+                <div>
+                    <p class="kicker">SALA REMOTA</p>
+                    <h2 id="titulo-sala">${esc(codigo)}</h2>
+                </div>
+                <span class="contador" data-sala-conectados>${textoConectados(conectados)}</span>
+            </div>
+            <p class="sala__estado" data-sala-estado>${esc(etiquetaEstadoSala())}</p>
+            <div class="sala__enlace">
+                <code>${esc(enlaceSala(codigo))}</code>
+                <button class="btn btn--secundario btn--pequeno" id="copiar-sala" type="button">${icono("copiar")} Copiar enlace</button>
+            </div>
+            <p class="nota-config">Deja esta pestaña abierta: la sala vive en este dispositivo mientras dure la partida.</p>
+            ${state.sala.error ? `<button class="btn btn--secundario" id="reintentar-sala" type="button">Reintentar conexión</button>` : ""}
+            <button class="btn btn--texto" id="cerrar-sala" type="button">Cerrar la sala</button>
+        </section>
+    `;
+}
+
+function vistaSalaCliente() {
+    const { codigo, estado, nombre } = state.sala;
+    const conectado = estado === "conectado";
+    const conectando = estado === "conectando";
+    const desconectado = (estado === "desconectado" || estado === "error") && Boolean(nombre);
+    const titulo = conectado
+        ? "Escribe tu pista."
+        : conectando
+          ? "Conectando con la sala."
+          : desconectado
+            ? "La conexión se ha perdido."
+            : "Entra en la sala.";
+    const entrada = conectado
+        ? "Tu pista aparecerá en el chat del anfitrión y del resto de la mesa."
+        : conectando
+          ? "Estamos abriendo el canal con el anfitrión. En unos segundos podrás escribir."
+          : desconectado
+            ? "Conservamos tu nombre y el código. Puedes intentar volver sin volver a escribir nada."
+            : "Elige tu nombre para que la mesa sepa quién escribe. El anfitrión debe tener la sala abierta.";
+    const estadoPill = conectado ? "EN LÍNEA" : conectando ? "CONECTANDO" : "SIN CONEXIÓN";
+    return `
+        <section class="vista sala-remota">
+            <header class="vista__cabecera">
+                <div class="vista__barra">
+                    <p class="kicker">SALA REMOTA · ${esc(codigo || "SIN CÓDIGO")}</p>
+                    <span class="estado-pill${estado === "error" ? " estado-pill--rojo" : ""}"><span aria-hidden="true"></span>${estadoPill}</span>
+                </div>
+                <h2 tabindex="-1" data-focus>${titulo}</h2>
+                <p class="vista__entrada">${entrada}</p>
+            </header>
+            <p class="sala__estado" data-sala-estado>${esc(etiquetaEstadoSala())}</p>
+            ${
+                conectado
+                    ? `<section class="panel panel--chat" aria-labelledby="titulo-chat-cliente">
+                        <div class="panel__cabecera">
+                            <div>
+                                <p class="kicker">SALA ${esc(codigo)}</p>
+                                <h2 id="titulo-chat-cliente">Chat de pistas</h2>
+                            </div>
+                            <span class="contador" data-chat-count>${state.chat.length}</span>
+                        </div>
+                        <ol class="chat" id="chat-cliente">${chatListaMarkup()}</ol>
+                        <form class="chat__form" id="form-pista-cliente">
+                            <label class="sr-only" for="chat-texto-cliente">Tu pista</label>
+                            <input id="chat-texto-cliente" type="text" maxlength="100" autocomplete="off" placeholder="Escribe una pista corta" required />
+                            <button class="btn btn--primario" type="submit">Enviar</button>
+                        </form>
+                    </section>`
+                    : conectando
+                      ? `<p class="sala__espera">Buscando la sala ${esc(codigo)}…</p>`
+                      : desconectado
+                        ? `<section class="sala-reconexion" aria-labelledby="titulo-reconexion">
+                            <p class="kicker">RECONECTAR</p>
+                            <h3 id="titulo-reconexion">Vuelve a la mesa como ${esc(nombre)}.</h3>
+                            <p>El código <strong>${esc(codigo)}</strong> sigue guardado en este dispositivo.</p>
+                            <div class="sala-reconexion__acciones">
+                                <button class="btn btn--primario" id="reconectar-sala" type="button">Reconectar</button>
+                                <button class="btn btn--texto" id="cambiar-nombre-sala" type="button">Cambiar nombre</button>
+                            </div>
+                        </section>`
+                        : `<form class="sala-entrada" id="form-entrar-sala">
+                            <label for="sala-nombre">Tu nombre en la mesa</label>
+                            <div>
+                                <input id="sala-nombre" name="nombre" type="text" maxlength="20" value="${esc(nombre)}" placeholder="Ej. Ana" autocomplete="nickname" required />
+                                <button class="btn btn--primario" type="submit">Entrar en la sala</button>
+                            </div>
+                        </form>`
+            }
+            <button class="btn btn--texto" id="salir-sala" type="button">Salir de la sala</button>
         </section>
     `;
 }
@@ -237,7 +577,7 @@ function vistaConfig() {
                     <p class="kicker">PASO 01 / 03 · PREPARACIÓN</p>
                 </div>
                 <h2 tabindex="-1" data-focus>Prepara el expediente.</h2>
-                <p class="vista__entrada">Añade a la mesa y decide cuánto va a durar el caso. Puedes repartir en este móvil o enviar un enlace privado a cada jugador.</p>
+                <p class="vista__entrada">Añade a la mesa y decide cuánto va a durar el caso. Puedes repartir en este móvil y abrir una sala para que cada jugador escriba su pista desde su propio dispositivo.</p>
             </header>
             <div class="config__grid">
                 <section class="panel panel--roster" aria-labelledby="titulo-jugadores">
@@ -335,10 +675,7 @@ function vistaConfig() {
                         <span class="interruptor__pista" aria-hidden="true"></span>
                         <span><strong>Pista de letra</strong><small>El farsante verá la primera letra. Más fácil para empezar.</small></span>
                     </label>
-                    <div class="aviso-privado">
-                        ${icono("personas")}
-                        <p><strong>Sala de pistas.</strong> En la ronda tendréis un chat para escribir la pista de cada jugador, sin enviar cartas por enlace.</p>
-                    </div>
+                    ${salaPanelMarkup()}
                     <div class="resumen-config">
                         <p><span>En la mesa</span><strong>${total} ${total === 1 ? "persona" : "personas"}</strong></p>
                         <p><span>Farsantes</span><strong>${state.config.farsantes}</strong></p>
@@ -659,28 +996,23 @@ function vistaRonda() {
                 <section class="panel panel--chat" aria-labelledby="titulo-chat">
                     <div class="panel__cabecera">
                         <div>
-                            <p class="kicker">SALA ${esc(state.salaId)}</p>
+                            <p class="kicker">${state.sala.codigo ? `SALA REMOTA · ${esc(state.sala.codigo)}` : `SALA ${esc(state.salaId)}`}</p>
                             <h2 id="titulo-chat">Chat de pistas</h2>
                         </div>
-                        <span class="contador">${state.chat.length}</span>
+                        <span class="contador" data-chat-count>${state.chat.length}</span>
                     </div>
-                    <ol class="chat" id="chat-pistas">
-                        ${
-                            state.chat.length
-                                ? state.chat
-                                      .map((mensaje) => {
-                                          const autor = state.jugadores.find(
-                                              (jugador) => jugador.id === mensaje.jugadorId
-                                          );
-                                          return `<li class="chat__item">
-                                              <span class="chat__avatar">${avatarSvg(autor?.avatar || 0)}</span>
-                                              <div><strong>${esc(autor?.nombre || "Jugador")}</strong><p>${esc(mensaje.texto)}</p></div>
-                                          </li>`;
-                                      })
-                                      .join("")
-                                : `<li class="chat__vacio">Aún no hay pistas. Escribe la primera y pásale el móvil a la siguiente persona.</li>`
-                        }
-                    </ol>
+                    <p class="sala__estado" data-sala-estado>${esc(etiquetaEstadoSala())}</p>
+                    ${
+                        state.sala.codigo
+                            ? `<div class="sala__enlace sala__enlace--compacto">
+                                <code>${esc(enlaceSala(state.sala.codigo))}</code>
+                                <button class="btn btn--secundario btn--pequeno" id="copiar-sala" type="button">Copiar enlace</button>
+                                ${state.sala.error ? `<button class="btn btn--secundario btn--pequeno" id="reintentar-sala" type="button">Reintentar</button>` : ""}
+                                <span class="sala__conectados" data-sala-conectados>${textoConectados(state.sala.conectados)}</span>
+                            </div>`
+                            : `<button class="btn btn--secundario btn--pequeno" id="crear-sala-ronda" type="button">Abrir sala remota</button>`
+                    }
+                    <ol class="chat" id="chat-pistas">${chatListaMarkup()}</ol>
                     <form class="chat__form" id="form-pista">
                         <label class="sr-only" for="chat-jugador">Jugador que escribe</label>
                         <select id="chat-jugador" aria-label="Jugador que escribe">
@@ -891,6 +1223,7 @@ const VISTAS = {
     invitacion: vistaInvitacionHost,
     reparto: vistaReparto,
     "invitacion-jugador": vistaInvitacionJugador,
+    "sala-cliente": vistaSalaCliente,
     ronda: vistaRonda,
     votacion: vistaVotacion,
     resultado: vistaResultado,
@@ -1000,6 +1333,7 @@ function prepararPartida() {
     state.votoListo = false;
     state.enlaceCopiado = false;
     state.chat = [];
+    sala.limpiar();
     state.salaId = `FAR-${Math.random().toString(36).slice(2, 6).toUpperCase()}`;
     if (state.config.invitacion) {
         state.enlaceInvitacion = crearEnlaceInvitacion(
@@ -1020,6 +1354,7 @@ function prepararPartida() {
 function comenzarPartida() {
     try {
         prepararPartida();
+        if (!state.sala.codigo && !state.sala.intentada) iniciarSalaAnfitrion();
         anunciar(
             state.config.invitacion
                 ? "Enlace creado. Compártelo con la mesa."
@@ -1254,6 +1589,78 @@ function enlazar() {
         );
     });
 
+    $("#crear-sala")?.addEventListener("click", () => {
+        iniciarSalaAnfitrion();
+        render();
+    });
+
+    $("#crear-sala-ronda")?.addEventListener("click", () => {
+        iniciarSalaAnfitrion();
+        render();
+    });
+
+    $("#form-unirse-sala")?.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const codigo = normalizarCodigoSala($("#codigo-sala")?.value);
+        if (!codigo) {
+            anunciar("Escribe un código válido, por ejemplo FAR-ABCD.");
+            return;
+        }
+        state.sala.codigo = codigo;
+        state.vista = "sala-cliente";
+        unirseSala(codigo);
+        render();
+    });
+
+    $("#form-entrar-sala")?.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const nombre = String($("#sala-nombre")?.value ?? "")
+            .trim()
+            .slice(0, 20);
+        if (!nombre) {
+            anunciar("Escribe tu nombre para entrar.");
+            return;
+        }
+        state.sala.nombre = nombre;
+        unirseSala(state.sala.codigo);
+        render();
+    });
+
+    $("#form-pista")?.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const jugador = state.jugadores.find((item) => item.id === $("#chat-jugador")?.value);
+        const entrada = $("#chat-texto");
+        if (!jugador || !entrada) return;
+        if (
+            enviarMensajeChat({
+                jugadorId: jugador.id,
+                nombre: jugador.nombre,
+                texto: entrada.value,
+            })
+        ) {
+            entrada.value = "";
+            entrada.focus();
+            anunciar("Pista enviada a la sala.");
+        }
+    });
+
+    $("#form-pista-cliente")?.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const entrada = $("#chat-texto-cliente");
+        if (!entrada) return;
+        if (enviarMensajeChat({ nombre: state.sala.nombre || "Invitado", texto: entrada.value })) {
+            entrada.value = "";
+            entrada.focus();
+        }
+    });
+
+    $("#copiar-sala")?.addEventListener("click", copiarEnlaceSala);
+    $("#reintentar-sala")?.addEventListener("click", reintentarSalaAnfitrion);
+    $("#reconectar-sala")?.addEventListener("click", reconectarSalaInvitado);
+    $("#cambiar-nombre-sala")?.addEventListener("click", cambiarNombreSala);
+    $("#cerrar-sala")?.addEventListener("click", () => salirDeSala("config"));
+    $("#salir-sala")?.addEventListener("click", () => salirDeSala("inicio"));
+
     $("#preparar-reparto")?.addEventListener("click", () => {
         if (!puedePreparar()) return;
         state.vista = "brief";
@@ -1325,4 +1732,11 @@ window.addEventListener("hashchange", () => {
 if (cargarInvitacionDesdeHash()) {
     anunciar("Invitación cargada. Elige tu nombre para ver tu carta.");
 }
+
+const salaEnUrl = normalizarCodigoSala(new URLSearchParams(window.location.search).get("sala"));
+if (salaEnUrl) {
+    state.sala.codigo = salaEnUrl;
+    state.vista = "sala-cliente";
+}
+
 render();
