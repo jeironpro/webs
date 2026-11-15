@@ -213,16 +213,18 @@ a {
 /* Mesa de trabajo */
 .workspace {
     display: grid;
-    grid-template-columns: minmax(15rem, 4fr) minmax(0, 8fr);
-    gap: 0;
+    grid-template-columns: minmax(16rem, 18rem) minmax(0, 1fr);
+    gap: clamp(1rem, 2vw, 1.5rem);
     padding-bottom: clamp(4rem, 9vw, 8rem);
     align-items: start;
 }
 
 .categories {
-    border-top: 3px solid var(--ink);
-    border-left: 3px solid var(--ink);
-    border-bottom: 3px solid var(--ink);
+    position: sticky;
+    top: 1rem;
+    max-height: calc(100dvh - 2rem);
+    overflow-y: auto;
+    border: 3px solid var(--ink);
     background: var(--paper-2);
 }
 
@@ -512,7 +514,9 @@ a {
     }
 
     .categories {
-        border-right: 3px solid var(--ink);
+        position: static;
+        max-height: none;
+        overflow: visible;
     }
 
     .category-list {
