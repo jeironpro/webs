@@ -136,7 +136,7 @@ table {
 }
 
 /* Responsive DAW: evita el scroll horizontal de la página en móvil. */
-@media (max-width: 56.25rem) {
+@media (width <= 56.25rem) {
     html,
     body {
         max-width: 100%;
@@ -152,10 +152,10 @@ table {
     }
 
     table {
-        display: block !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        min-width: 0 !important;
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
     }
