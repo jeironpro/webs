@@ -350,6 +350,192 @@ html.arcade-home-open body {
     text-transform: uppercase;
 }
 
+html.arcade-playing body {
+    padding-top: 3.25rem;
+}
+
+.arcade-gamebar {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    height: 3.25rem;
+    padding-inline: clamp(0.9rem, 3vw, 2rem);
+    border-bottom: 0.0625rem solid var(--arcade-line);
+    background: color-mix(in oklab, var(--arcade-panel) 93%, transparent);
+    color: var(--arcade-text);
+    font-family: var(--arcade-body, "Inter", ui-sans-serif, system-ui, sans-serif);
+    backdrop-filter: blur(0.75rem);
+}
+
+.arcade-gamebar__back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    min-height: 2.15rem;
+    padding: 0.25rem 0.65rem 0.25rem 0.45rem;
+    border: 0.0625rem solid var(--arcade-line);
+    border-radius: calc(var(--arcade-radius, 0.75rem) * 0.5);
+    color: var(--arcade-muted);
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.arcade-gamebar__back:hover {
+    border-color: var(--arcade-accent);
+    color: var(--arcade-accent);
+}
+
+.arcade-gamebar__back svg {
+    width: 0.95rem;
+    height: 0.95rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2;
+}
+
+.arcade-gamebar__title {
+    overflow: hidden;
+    font-family: var(--arcade-display, "Inter", ui-sans-serif, system-ui, sans-serif);
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.arcade-gamebar :focus-visible {
+    outline: 0.125rem solid var(--arcade-accent);
+    outline-offset: 0.2rem;
+}
+
+/* Modo partida: fuera cabeceras, textos de ayuda y avisos; queda tablero, marcador y acciones. */
+html.arcade-playing .site-header,
+html.arcade-playing .barra-superior,
+html.arcade-playing .pagina > .cabecera,
+html.arcade-playing .hoja > .cabecera,
+html.arcade-playing .hero__copy,
+html.arcade-playing .eyebrow,
+html.arcade-playing .entradilla,
+html.arcade-playing .cabecera__entradilla,
+html.arcade-playing .cabecera__lema,
+html.arcade-playing .cabecera__meta,
+html.arcade-playing .mono-label,
+html.arcade-playing .hero__lede,
+html.arcade-playing .rules,
+html.arcade-playing .aviso,
+html.arcade-playing .guardado,
+html.arcade-playing .nota,
+html.arcade-playing .teclas,
+html.arcade-playing .juego__nota,
+html.arcade-playing .partida__nota,
+html.arcade-playing .acordeon,
+html.arcade-playing .panel--plegable {
+    display: none;
+}
+
+html.arcade-playing footer,
+html.arcade-playing .foot-marquee {
+    display: none;
+}
+
+html.arcade-playing[data-arcade-game="juego-palabra-oculta"] .lateral .tarjeta {
+    display: none;
+}
+
+html.arcade-playing[data-arcade-game="juego-serpiente"] #capa-eyebrow,
+html.arcade-playing[data-arcade-game="juego-serpiente"] #capa-texto {
+    display: none;
+}
+
+html.arcade-playing[data-arcade-game="juego-memoriza-carta"] .marco {
+    width: min(100%, 20rem);
+}
+
+html.arcade-playing[data-arcade-game="juego-serpiente"] .marco {
+    width: min(100%, 30rem);
+    margin-inline: auto;
+}
+
+html.arcade-playing[data-arcade-game="juego-palabra-oculta"] .tablero {
+    max-width: 22rem;
+    margin-inline: auto;
+}
+
+html.arcade-playing[data-arcade-game="juego-palabra-oculta"] .leyenda {
+    display: none;
+}
+
+html.arcade-playing[data-arcade-game="juego-sopa-letras"] .leyenda {
+    display: none;
+}
+
+html.arcade-playing[data-arcade-game="juego-queens"] .puzzle__titulo,
+html.arcade-playing[data-arcade-game="juego-queens"] .banda,
+html.arcade-playing[data-arcade-game="juego-patches"] .banda,
+html.arcade-playing[data-arcade-game="juego-tango"] .banda {
+    display: none;
+}
+
+html.arcade-playing[data-arcade-game="juego-sopa-letras"] .panel-tablero .tablero {
+    max-width: 25rem;
+    margin-inline: auto;
+}
+
+html.arcade-playing[data-arcade-game="juego-sudoku"] .tablero {
+    max-width: 30rem;
+    margin-inline: auto;
+}
+
+html.arcade-playing[data-arcade-game="juego-queens"] .marco {
+    max-width: 27rem;
+}
+
+html.arcade-playing[data-arcade-game="juego-patches"] .tablero {
+    max-width: 28rem;
+    margin-inline: auto;
+}
+
+html.arcade-playing[data-arcade-game="juego-sudoku"] .leyenda {
+    display: none;
+}
+
+html.arcade-playing[data-arcade-game="juego-wend"] .juego__barra > div:first-child {
+    display: none;
+}
+
+html.arcade-playing[data-arcade-game="juego-zip"] .partida__cabecera .etiqueta,
+html.arcade-playing[data-arcade-game="juego-zip"] .partida__cabecera h2 {
+    display: none;
+}
+
+html.arcade-playing .hero {
+    grid-template-columns: minmax(0, 34rem);
+    justify-content: center;
+}
+
+html.arcade-playing .pagina {
+    padding-top: 2rem;
+}
+
+html.arcade-playing[data-arcade-game="juego-zip"] .lateral {
+    display: none;
+}
+
+html.arcade-playing[data-arcade-game="juego-zip"] .disposicion {
+    grid-template-columns: minmax(0, 52rem);
+    justify-content: center;
+}
+
+html.arcade-playing .juego__barra h1 {
+    font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+}
+
 .arcade-return {
     position: fixed;
     bottom: max(1rem, env(safe-area-inset-bottom));
