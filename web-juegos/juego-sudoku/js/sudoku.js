@@ -14,6 +14,7 @@ const elementos = {
     modalTiempo: document.querySelector("#modal-tiempo"),
     modalErrores: document.querySelector("#modal-errores"),
     btnJugarOtra: document.querySelector("#btn-jugar-otra"),
+    entradaMovil: document.querySelector("#entrada-movil"),
 };
 
 const casillas = Array.from({ length: 9 }, () => Array(9));
@@ -83,6 +84,9 @@ function activarCasilla(fila, columna) {
         anunciar("Ese número ya viene fijado. Elige una casilla vacía.");
     } else {
         anunciar("Elige un número del 1 al 9.");
+        if (window.matchMedia("(pointer: coarse)").matches) {
+            elementos.entradaMovil?.focus({ preventScroll: true });
+        }
     }
 
     pintarTablero();
@@ -315,7 +319,24 @@ elementos.btnComprobar.addEventListener("click", comprobarTablero);
 elementos.btnReiniciar.addEventListener("click", cargarSudoku);
 elementos.btnJugarOtra.addEventListener("click", cargarSudoku);
 
+elementos.entradaMovil?.addEventListener("input", (evento) => {
+    const valor = evento.target.value.replace(/\D/g, "").slice(-1);
+    evento.target.value = "";
+    if (valor) escribirNumero(valor);
+});
+
+elementos.entradaMovil?.addEventListener("keydown", (evento) => {
+    if (evento.key === "Backspace" || evento.key === "Delete") {
+        evento.preventDefault();
+        borrarNumero();
+    } else if (evento.key === "Enter") {
+        evento.preventDefault();
+        comprobarTablero();
+    }
+});
+
 document.addEventListener("keydown", (evento) => {
+    if (evento.target === elementos.entradaMovil) return;
     const tecla = evento.key;
 
     if (tecla >= "1" && tecla <= "9") {

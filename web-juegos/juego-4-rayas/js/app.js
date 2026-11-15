@@ -90,12 +90,21 @@ function applyMove(current, column) {
     const board = cloneBoard(current.board);
     board[row][column] = current.turn;
     const winningLine = getWinningLine(board, current.turn);
+    const lastMove = { row, col: column, player: current.turn };
     if (winningLine !== null) {
-        return { ...current, board, status: GAME_STATUS.WON, winner: current.turn, winningLine };
+        return {
+            ...current,
+            board,
+            lastMove,
+            status: GAME_STATUS.WON,
+            winner: current.turn,
+            winningLine,
+        };
     }
     return {
         ...current,
         board,
+        lastMove,
         turn: current.turn === PLAYER_1 ? PLAYER_2 : PLAYER_1,
         status: isBoardFull(board) ? GAME_STATUS.DRAW : GAME_STATUS.PLAYING,
     };
@@ -499,13 +508,17 @@ function boardMarkup() {
         crear(
             "div",
             { clase: "board__balls" },
-            listBalls(game.board).map(({ row, col, player }) =>
-                crear("span", {
-                    clase: `board__ball board__ball--${player}${isWinningCell(row, col) ? " board__ball--winner" : ""}`,
+            listBalls(game.board).map(({ row, col, player }) => {
+                const isLast =
+                    game.lastMove?.row === row &&
+                    game.lastMove?.col === col &&
+                    game.lastMove?.player === player;
+                return crear("span", {
+                    clase: `board__ball board__ball--${player}${isWinningCell(row, col) ? " board__ball--winner" : ""}${isLast ? " board__ball--last" : ""}`,
                     estilo: `grid-column:${col + 1};grid-row:${row + 1};--ball-row:${row}`,
                     "aria-hidden": "true",
-                })
-            )
+                });
+            })
         ),
         crear("div", { clase: "board__front", "aria-hidden": "true" }),
         strike ? marcaGanadora(strike) : null,
@@ -626,14 +639,14 @@ function scheduleBot() {
     botTimer = setTimeout(() => {
         botTimer = null;
         const column = chooseMove(game, difficulty);
-        if (column !== null) playColumn(column);
+        if (column !== null) playColumn(column, true);
         else scheduleBot();
     }, BOT_DELAY_MS);
 }
 
-function playColumn(column) {
+function playColumn(column, fromBot = false) {
     if (game.status !== GAME_STATUS.PLAYING) return;
-    if (mode === "bot" && game.turn === PLAYER_2) return;
+    if (mode === "bot" && game.turn === PLAYER_2 && !fromBot) return;
     const next = applyMove(game, column);
     if (next === game) return;
     game = next;

@@ -14,7 +14,7 @@ export async function crearRenderizador(contenedor) {
         powerPreference: "high-performance",
     });
 
-    renderizador.setPixelRatio(Math.min(globalThis.devicePixelRatio || 1, 2));
+    renderizador.setPixelRatio(Math.min(globalThis.devicePixelRatio || 1, 2.5));
     renderizador.setSize(ancho, alto);
     renderizador.outputColorSpace = SRGBColorSpace;
     renderizador.toneMapping = ACESFilmicToneMapping;
@@ -35,7 +35,7 @@ export function redimensionar(renderizador, camara, contenedor) {
     const alto = contenedor.clientHeight || globalThis.innerHeight;
     if (ancho === 0 || alto === 0) return;
 
-    renderizador.setPixelRatio(Math.min(globalThis.devicePixelRatio || 1, 2));
+    renderizador.setPixelRatio(Math.min(globalThis.devicePixelRatio || 1, 2.5));
     renderizador.setSize(ancho, alto);
     camara.aspect = ancho / alto;
     camara.updateProjectionMatrix();

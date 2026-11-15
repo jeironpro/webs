@@ -1,3 +1,42 @@
+/* La animación de entrada sustituye al estado oculto inicial. */
+@keyframes dashboard-reveal {
+    from {
+        opacity: 0;
+        transform: translateY(1rem);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes dashboard-bar {
+    from {
+        transform: scaleY(0);
+    }
+    to {
+        transform: scaleY(1);
+    }
+}
+
+.js [data-reveal] {
+    animation: dashboard-reveal 0.7s ease both;
+}
+
+.js [data-bar] {
+    transform-origin: bottom;
+    animation: dashboard-bar 0.9s ease both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .js [data-reveal],
+    .js [data-bar] {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+}
+
 @layer properties {
     @supports (((-webkit-hyphens: none)) and (not (margin-trim: inline))) or
         ((-moz-orient: inline) and (not (color: rgb(from red r g b)))) {

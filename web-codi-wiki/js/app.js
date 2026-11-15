@@ -5,10 +5,22 @@ const paradigmList = document.querySelector("#paradigm-list");
 const welcomeScreen = document.querySelector("#welcome-screen");
 const detailView = document.querySelector("#detail-view");
 const mainContent = document.querySelector("#main-content");
+const sidebar = document.querySelector("#sidebar");
+const menuToggle = document.querySelector("#menu-toggle");
+const menuClose = document.querySelector("#menu-close");
+const sidebarBackdrop = document.querySelector("#sidebar-backdrop");
 
 if (!languageList || !paradigmList || !welcomeScreen || !detailView || !mainContent) {
     throw new Error("No se encontraron los elementos de la wiki");
 }
+
+const setMenuOpen = (open) => {
+    if (!sidebar || !menuToggle || !sidebarBackdrop) return;
+    sidebar.classList.toggle("is-open", open);
+    menuToggle.setAttribute("aria-expanded", String(open));
+    sidebarBackdrop.hidden = !open;
+    document.body.classList.toggle("menu-open", open);
+};
 
 const createElement = (tag, className, text) => {
     const element = document.createElement(tag);
@@ -45,6 +57,7 @@ const showContent = (item) => {
 
     welcomeScreen.classList.add("is-hidden");
     detailView.classList.remove("is-hidden");
+    setMenuOpen(false);
     mainContent.scrollTop = 0;
     detailView.replaceChildren();
 
@@ -107,5 +120,12 @@ const showContent = (item) => {
     void detailView.offsetWidth;
     detailView.classList.add("view-active");
 };
+
+menuToggle?.addEventListener("click", () => setMenuOpen(true));
+menuClose?.addEventListener("click", () => setMenuOpen(false));
+sidebarBackdrop?.addEventListener("click", () => setMenuOpen(false));
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") setMenuOpen(false);
+});
 
 renderMenu();

@@ -74,6 +74,8 @@ const state = {
     enlaceCopiado: false,
     invitacion: null,
     jugadorInvitacionId: null,
+    salaId: "",
+    chat: [],
 };
 
 let vistaRenderizada = null;
@@ -333,22 +335,21 @@ function vistaConfig() {
                         <span class="interruptor__pista" aria-hidden="true"></span>
                         <span><strong>Pista de letra</strong><small>El farsante verá la primera letra. Más fácil para empezar.</small></span>
                     </label>
-                    <label class="interruptor ${hayBotsEnMesa ? "interruptor--desactivado" : ""}" for="modo-invitacion">
-                        <input id="modo-invitacion" type="checkbox" ${state.config.invitacion ? "checked" : ""} ${hayBotsEnMesa ? "disabled" : ""} />
-                        <span class="interruptor__pista" aria-hidden="true"></span>
-                        <span><strong>Reparto por enlace</strong><small>${hayBotsEnMesa ? "No disponible con bots en la mesa." : "Cada jugador abre su carta en su móvil. Después, la mesa se juega aquí."}</small></span>
-                    </label>
+                    <div class="aviso-privado">
+                        ${icono("personas")}
+                        <p><strong>Sala de pistas.</strong> En la ronda tendréis un chat para escribir la pista de cada jugador, sin enviar cartas por enlace.</p>
+                    </div>
                     <div class="resumen-config">
                         <p><span>En la mesa</span><strong>${total} ${total === 1 ? "persona" : "personas"}</strong></p>
                         <p><span>Farsantes</span><strong>${state.config.farsantes}</strong></p>
                         <p><span>Rondas</span><strong>${state.config.rondas}</strong></p>
-                        <p><span>Reparto</span><strong>${state.config.invitacion ? "Por enlace" : "En este móvil"}</strong></p>
+                        <p><span>Pistas</span><strong>Sala de chat</strong></p>
                         <p><span>Temáticas</span><strong>${seleccionadas.size} / ${TEMATICAS.length}</strong></p>
                     </div>
                     <button class="btn btn--primario btn--ancho" id="preparar-reparto" type="button" ${listo ? "" : "disabled"}>
                         ${listo ? "Preparar reparto" : "Completa el expediente"} ${listo ? icono("flecha") : ""}
                     </button>
-                    <p class="nota-config">${motivo || (state.config.invitacion ? "El enlace lleva el caso; la mesa sigue en este móvil." : "El reparto se hace en este móvil, sin conexión.")}</p>
+                    <p class="nota-config">${motivo || "El reparto se hace en este móvil y las pistas se escriben en la sala de la ronda."}</p>
                 </aside>
             </div>
         </section>
@@ -368,11 +369,9 @@ function vistaBrief() {
                 </div>
                 <h2 tabindex="-1" data-focus>El caso está listo.</h2>
                 <p class="vista__entrada">${
-                    state.config.invitacion
-                        ? "Cuando pulses el botón, se creará un enlace privado. Cada persona abrirá su carta en su propio móvil."
-                        : hayBots()
-                          ? "Cuando pulses el botón, verás solo tu carta. Los bots ya tienen la suya y no hace falta pasar el móvil."
-                          : "Cuando pulses el botón, el móvil se convierte en una urna. Cada persona mira su carta y la tapa antes de pasarla."
+                    hayBots()
+                        ? "Cuando pulses el botón, verás solo tu carta. Los bots ya tienen la suya y no hace falta pasar el móvil."
+                        : "Cuando pulses el botón, el móvil se convierte en una urna. Cada persona mira su carta y la tapa antes de pasarla."
                 }</p>
             </header>
             <div class="brief__grid">
@@ -399,10 +398,11 @@ function vistaBrief() {
                         <div><dt>Farsantes</dt><dd>${state.config.farsantes}</dd></div>
                         <div><dt>Rondas</dt><dd>${state.config.rondas}</dd></div>
                         <div><dt>Pista de letra</dt><dd>${state.config.pista ? "Sí" : "No"}</dd></div>
-                        <div><dt>Reparto</dt><dd>${state.config.invitacion ? "Por enlace" : "Un móvil"}</dd></div>
+                        <div><dt>Reparto</dt><dd>Un móvil</dd></div>
+                        <div><dt>Pistas</dt><dd>Sala de chat</dd></div>
                     </dl>
                     <div class="aviso-privado">${icono("candado")} <p><strong>Una carta por persona.</strong> ${state.config.invitacion ? "Cada jugador la abre en su propio móvil." : hayBots() ? "Solo verás tu carta; los bots ya tienen la suya." : "Que nadie vea la pantalla de al lado."}</p></div>
-                    <button class="btn btn--primario btn--ancho btn--grande" id="empezar-reparto" type="button">${state.config.invitacion ? "Crear enlace de invitación" : "Repartir cartas"} ${icono("flecha")}</button>
+                    <button class="btn btn--primario btn--ancho btn--grande" id="empezar-reparto" type="button">Repartir cartas ${icono("flecha")}</button>
                     <button class="btn btn--texto" id="editar-config" type="button">Volver a los ajustes</button>
                 </aside>
             </div>
@@ -655,6 +655,47 @@ function vistaRonda() {
                             .join("")}
                     </ol>
                     ${mesaConBots ? `<p class="orden__nota">${icono("personas")} Los bots ya han dejado su pista. Tú das la tuya en voz alta.</p>` : ""}
+                </section>
+                <section class="panel panel--chat" aria-labelledby="titulo-chat">
+                    <div class="panel__cabecera">
+                        <div>
+                            <p class="kicker">SALA ${esc(state.salaId)}</p>
+                            <h2 id="titulo-chat">Chat de pistas</h2>
+                        </div>
+                        <span class="contador">${state.chat.length}</span>
+                    </div>
+                    <ol class="chat" id="chat-pistas">
+                        ${
+                            state.chat.length
+                                ? state.chat
+                                      .map((mensaje) => {
+                                          const autor = state.jugadores.find(
+                                              (jugador) => jugador.id === mensaje.jugadorId
+                                          );
+                                          return `<li class="chat__item">
+                                              <span class="chat__avatar">${avatarSvg(autor?.avatar || 0)}</span>
+                                              <div><strong>${esc(autor?.nombre || "Jugador")}</strong><p>${esc(mensaje.texto)}</p></div>
+                                          </li>`;
+                                      })
+                                      .join("")
+                                : `<li class="chat__vacio">Aún no hay pistas. Escribe la primera y pásale el móvil a la siguiente persona.</li>`
+                        }
+                    </ol>
+                    <form class="chat__form" id="form-pista">
+                        <label class="sr-only" for="chat-jugador">Jugador que escribe</label>
+                        <select id="chat-jugador" aria-label="Jugador que escribe">
+                            ${vivos
+                                .filter((jugador) => !jugador.bot)
+                                .map(
+                                    (jugador) =>
+                                        `<option value="${jugador.id}">${esc(jugador.nombre)}</option>`
+                                )
+                                .join("")}
+                        </select>
+                        <label class="sr-only" for="chat-texto">Tu pista</label>
+                        <input id="chat-texto" type="text" maxlength="100" autocomplete="off" placeholder="Escribe una pista corta, sin decir la palabra" required />
+                        <button class="btn btn--primario" type="submit">Enviar</button>
+                    </form>
                 </section>
                 <aside class="panel panel--recordatorio" aria-labelledby="titulo-recordatorio">
                     <p class="kicker">REGLA DE ORO</p>
@@ -958,6 +999,8 @@ function prepararPartida() {
     state.cartaAbierta = false;
     state.votoListo = false;
     state.enlaceCopiado = false;
+    state.chat = [];
+    state.salaId = `FAR-${Math.random().toString(36).slice(2, 6).toUpperCase()}`;
     if (state.config.invitacion) {
         state.enlaceInvitacion = crearEnlaceInvitacion(
             window.location.href,
