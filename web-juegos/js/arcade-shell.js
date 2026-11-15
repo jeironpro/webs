@@ -34,46 +34,46 @@
             tracking: "-0.045em",
         },
         "juego-memoriza-carta": {
-            bg: "#efe9f7",
-            panel: "#f8f4ff",
-            text: "#2b1d3d",
-            muted: "#6f5c86",
-            line: "#d9ccea",
-            accent: "#6d3fa8",
-            accentText: "#f8f4ff",
-            card: "#f8f4ff",
+            bg: "#f3eee4",
+            panel: "#fbf8f1",
+            text: "#201b17",
+            muted: "#6b5e4f",
+            line: "#d8cbb8",
+            accent: "#b83b2e",
+            accentText: "#fbf8f1",
+            card: "#fbf8f1",
             display: '"Fraunces", Georgia, serif',
             body: '"Archivo", system-ui, sans-serif',
             layout: "stack",
-            radius: "1rem",
+            radius: "0.125rem",
             titleWeight: "600",
             tracking: "-0.03em",
         },
         "juego-palabra-oculta": {
-            bg: "#f1ecf7",
-            panel: "#fbf8ff",
-            text: "#241a33",
-            muted: "#645578",
-            line: "#d9cde9",
-            accent: "#6b4fa0",
-            accentText: "#fbf8ff",
-            card: "#fbf8ff",
+            bg: "#f3eee4",
+            panel: "#fbf8f1",
+            text: "#201b17",
+            muted: "#6b5e4f",
+            line: "#d8cbb8",
+            accent: "#e9b949",
+            accentText: "#201b17",
+            card: "#fbf8f1",
             display: '"Fraunces", Georgia, serif',
             body: '"Archivo", system-ui, sans-serif',
-            layout: "stack",
-            radius: "0.25rem",
+            layout: "row",
+            radius: "0.125rem",
             titleWeight: "600",
             tracking: "-0.03em",
         },
         "juego-patches": {
-            bg: "#171513",
-            panel: "#211e1a",
-            text: "#f7f1e7",
-            muted: "#b4a897",
-            line: "#3a332b",
-            accent: "#ff5a36",
-            accentText: "#171513",
-            card: "#29241f",
+            bg: "#f7f4ec",
+            panel: "#fffdf8",
+            text: "#201d18",
+            muted: "#6f675c",
+            line: "#ded6c7",
+            accent: "#d64426",
+            accentText: "#fffdf8",
+            card: "#fffdf8",
             display: '"Jost", ui-sans-serif, sans-serif',
             body: '"Archivo", ui-sans-serif, sans-serif',
             layout: "stack",
@@ -98,14 +98,14 @@
             tracking: "-0.03em",
         },
         "juego-serpiente": {
-            bg: "#0b1410",
-            panel: "#10201a",
-            text: "#eafff3",
-            muted: "#93b7a5",
-            line: "#244535",
-            accent: "#47e08a",
-            accentText: "#062015",
-            card: "#14271f",
+            bg: "#f3eee4",
+            panel: "#fbf8f1",
+            text: "#201b17",
+            muted: "#6b5e4f",
+            line: "#d8cbb8",
+            accent: "#16726f",
+            accentText: "#fbf8f1",
+            card: "#fbf8f1",
             display: '"Archivo", system-ui, sans-serif',
             body: '"Archivo", system-ui, sans-serif',
             layout: "row",
@@ -114,30 +114,30 @@
             tracking: "-0.04em",
         },
         "juego-sopa-letras": {
-            bg: "#eef6fb",
-            panel: "#ffffff",
-            text: "#122b3b",
-            muted: "#577285",
-            line: "#cfe2ee",
-            accent: "#1d6fa5",
-            accentText: "#ffffff",
-            card: "#ffffff",
+            bg: "#f3eee4",
+            panel: "#fbf8f1",
+            text: "#201b17",
+            muted: "#6b5e4f",
+            line: "#d8cbb8",
+            accent: "#16726f",
+            accentText: "#fbf8f1",
+            card: "#fbf8f1",
             display: '"Fraunces", Georgia, serif',
             body: '"Archivo", system-ui, sans-serif',
             layout: "row",
-            radius: "0.5rem",
+            radius: "0.125rem",
             titleWeight: "600",
             tracking: "-0.03em",
         },
         "juego-sudoku": {
-            bg: "#ececec",
-            panel: "#ffffff",
-            text: "#151515",
-            muted: "#666666",
-            line: "#d2d2d2",
-            accent: "#151515",
-            accentText: "#ffffff",
-            card: "#ffffff",
+            bg: "#f3eee4",
+            panel: "#fbf8f1",
+            text: "#201b17",
+            muted: "#6b5e4f",
+            line: "#d8cbb8",
+            accent: "#16726f",
+            accentText: "#fbf8f1",
+            card: "#fbf8f1",
             display: '"Archivo", system-ui, sans-serif',
             body: '"Archivo", system-ui, sans-serif',
             layout: "stack",
@@ -162,12 +162,12 @@
             tracking: "-0.03em",
         },
         "juego-wend": {
-            bg: "#effaf5",
+            bg: "#f2f6ff",
             panel: "#ffffff",
-            text: "#0d2a22",
-            muted: "#4f7267",
-            line: "#c6e5da",
-            accent: "#0f9d76",
+            text: "#101a3a",
+            muted: "#5c6b8d",
+            line: "#c9d6ee",
+            accent: "#2f5eea",
             accentText: "#ffffff",
             card: "#ffffff",
             display: '"Space Grotesk", ui-sans-serif, sans-serif',
@@ -348,46 +348,18 @@
         return svg;
     };
 
-    const applyTheme = (root, theme) => {
-        const vars = {
-            "--arcade-bg": theme.bg,
-            "--arcade-panel": theme.panel,
-            "--arcade-text": theme.text,
-            "--arcade-muted": theme.muted,
-            "--arcade-line": theme.line,
-            "--arcade-accent": theme.accent,
-            "--arcade-accent-text": theme.accentText,
-            "--arcade-card": theme.card,
-            "--arcade-display": theme.display,
-            "--arcade-body": theme.body,
-            "--arcade-radius": theme.radius,
-            "--arcade-title-weight": theme.titleWeight,
-            "--arcade-title-tracking": theme.tracking,
-        };
-        Object.entries(vars).forEach(([name, value]) => {
-            root.style.setProperty(name, value);
-        });
-    };
-
-    const addGameBar = () => {
-        const theme = THEMES[gameId];
-        if (theme) {
-            applyTheme(document.documentElement, theme);
-        }
-        document.documentElement.classList.add("arcade-playing");
-        document.documentElement.dataset.arcadeGame = gameId;
-        const bar = createNode("div", "arcade-gamebar");
-        bar.setAttribute("role", "navigation");
-        bar.setAttribute("aria-label", "Arcade");
-        const back = createNode("a", "arcade-gamebar__back");
-        back.href = homeUrl;
-        back.append(createIcon(["m15 6-6 6 6 6"]), createNode("span", "", "Arcade"));
-        bar.append(back, createNode("span", "arcade-gamebar__title", game.title));
-        document.body.prepend(bar);
+    const addReturnButton = () => {
+        const link = document.createElement("a");
+        link.className = "arcade-return";
+        link.href = homeUrl;
+        link.append(createIcon(["m15 6-6 6 6 6"]), createNode("span", "", "Arcade"));
+        document.body.append(link);
     };
 
     if (playing) {
-        addGameBar();
+        document.documentElement.classList.add("arcade-playing");
+        document.documentElement.dataset.arcadeGame = gameId;
+        addReturnButton();
         return;
     }
 
@@ -410,7 +382,19 @@
         tracking: "-0.045em",
     };
     overlay.classList.add(`arcade-home--${theme.layout}`);
-    applyTheme(overlay, theme);
+    overlay.style.setProperty("--arcade-bg", theme.bg);
+    overlay.style.setProperty("--arcade-panel", theme.panel);
+    overlay.style.setProperty("--arcade-text", theme.text);
+    overlay.style.setProperty("--arcade-muted", theme.muted);
+    overlay.style.setProperty("--arcade-line", theme.line);
+    overlay.style.setProperty("--arcade-accent", theme.accent);
+    overlay.style.setProperty("--arcade-accent-text", theme.accentText);
+    overlay.style.setProperty("--arcade-card", theme.card);
+    overlay.style.setProperty("--arcade-display", theme.display);
+    overlay.style.setProperty("--arcade-body", theme.body);
+    overlay.style.setProperty("--arcade-radius", theme.radius);
+    overlay.style.setProperty("--arcade-title-weight", theme.titleWeight);
+    overlay.style.setProperty("--arcade-title-tracking", theme.tracking);
     overlay.setAttribute("role", "dialog");
     overlay.setAttribute("aria-modal", "true");
     overlay.setAttribute("aria-labelledby", "arcade-title");
