@@ -656,13 +656,9 @@ function darPista() {
             pista: estado.pistas.get(k) || 0,
         }))
         .filter(({ k, palabra, pista }) => !estado.encontradas.has(k) && pista < palabra.length)
-        .sort((a, b) => a.palabra.length - b.palabra.length || a.pista - b.pista || a.k - b.k);
+        .sort((a, b) => a.k - b.k);
 
-    const palabraActual = palabraEn(estado.cursor);
-    const actuales = todas.filter(({ k }) => k === palabraActual);
-    const opciones = actuales.length ? actuales : todas;
-
-    if (!opciones.length) {
+    if (!todas.length) {
         avisar(
             estado.encontradas.size === estado.tablero.solucion.length
                 ? "No queda ninguna palabra por encontrar."
@@ -672,7 +668,7 @@ function darPista() {
         return;
     }
 
-    const elegida = opciones[0];
+    const elegida = todas[0];
     estado.pistas.set(elegida.k, elegida.pista + 1);
     estado.pistaInicio = elegida.celdas[0];
     guardarProgreso();
