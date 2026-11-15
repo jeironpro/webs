@@ -113,16 +113,25 @@ export function crearCoche({ color = 0x35c6db, colorPinza = 0xff7a1a } = {}) {
     const piloto = new MeshBasicNodeMaterial({ color: 0xff2d55 });
 
     const sombra = (() => {
+        const lado = 256;
         const lienzo = document.createElement("canvas");
-        lienzo.width = 64;
-        lienzo.height = 64;
+        lienzo.width = lado;
+        lienzo.height = lado;
         const contexto = lienzo.getContext("2d");
-        const degradado = contexto.createRadialGradient(32, 32, 2, 32, 32, 31);
+        const centro = lado / 2;
+        const degradado = contexto.createRadialGradient(
+            centro,
+            centro,
+            8,
+            centro,
+            centro,
+            centro - 2
+        );
         degradado.addColorStop(0, "rgba(0, 0, 0, 0.6)");
         degradado.addColorStop(0.55, "rgba(0, 0, 0, 0.35)");
         degradado.addColorStop(1, "rgba(0, 0, 0, 0)");
         contexto.fillStyle = degradado;
-        contexto.fillRect(0, 0, 64, 64);
+        contexto.fillRect(0, 0, lado, lado);
         const textura = new CanvasTexture(lienzo);
         textura.colorSpace = SRGBColorSpace;
         return textura;

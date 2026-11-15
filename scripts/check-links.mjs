@@ -114,6 +114,8 @@ const raizSpa = (f) => f.slice(0, f.indexOf("/src/"));
 
 const resolver = (src, raw) => {
     let u = raw.trim();
+    // `url(%23g)` dentro de un SVG en data URI es un filtro interno, no una ruta.
+    if (/^%23/i.test(u)) return null;
     if (!u || u.startsWith("#") || /^(mailto:|tel:|javascript:|data:|blob:|about:)/i.test(u))
         return null;
     if (u.includes("{{") || u.includes("${") || u.startsWith("//") || u.includes("%7B"))

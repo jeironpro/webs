@@ -7,40 +7,71 @@
             name="description"
             content="Conversor universal de unidades: longitud, masa, temperatura, energía, datos y muchas categorías más."
         />
-        <meta name="theme-color" content="#fafafa" />
+        <meta name="theme-color" content="#b9b6ae" />
         <title>Conversor Universal</title>
         <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@500;600&family=Archivo:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap"
             rel="stylesheet"
         />
         <link rel="stylesheet" href="css/styles.css" />
     </head>
     <body>
-        <main class="app-layout">
-            <aside class="sidebar" id="sidebar">
-                <header class="brand">
-                    <a class="brand__link" href="index.html">
-                        <img
-                            class="brand__logo"
-                            src="assets/icons/conversion.png"
-                            alt=""
-                            width="50"
-                            height="50"
-                        />
-                        <h1 class="brand__title">Conversor Universal</h1>
-                    </a>
-                </header>
+        <header class="slab">
+            <div class="slab__in shell">
+                <a class="slab__mark" href="index.html"> Conversor<span>Universal</span> </a>
+                <p class="slab__note">Una herramienta · cualquier unidad</p>
+            </div>
+        </header>
 
-                <nav class="category-nav" aria-label="Categorías de conversión">
-                    <ul class="category-list" id="category-list"></ul>
-                </nav>
-            </aside>
+        <main>
+            <section class="hero shell" aria-labelledby="hero-title">
+                <div class="hero__grid">
+                    <div class="hero__text">
+                        <p class="kicker">Conversión · precisión · oficio</p>
+                        <h1 id="hero-title">Todo se puede convertir.</h1>
+                        <p class="lead">
+                            Elige una categoría, escribe un valor y obtén el resultado al instante.
+                            Sin pasos intermedios, sin ruido.
+                        </p>
+                    </div>
+                    <div class="hero__count" aria-label="Categorías disponibles">
+                        <span class="fig-num" id="category-count">0</span>
+                        <span class="hero__count-label">categorías<br />en la mesa</span>
+                    </div>
+                </div>
+            </section>
 
-            <section class="converter" id="converter" aria-label="Conversor de unidades">
-                <p class="converter__hint">Selecciona una categoría</p>
+            <section class="workspace shell" aria-label="Conversor de unidades">
+                <aside class="categories">
+                    <div class="rule-head">
+                        <p class="kicker">01 · Qué mides</p>
+                        <h2>Categorías</h2>
+                    </div>
+                    <nav aria-label="Categorías de conversión">
+                        <ul class="category-list" id="category-list"></ul>
+                    </nav>
+                </aside>
+
+                <section
+                    class="converter"
+                    id="converter"
+                    aria-label="Conversor de unidades"
+                    aria-live="polite"
+                >
+                    <p class="converter__hint">Selecciona una categoría</p>
+                </section>
             </section>
         </main>
+
+        <footer class="foot">
+            <div class="shell foot__in">
+                <p class="foot__mark">Conversor Universal</p>
+                <p class="foot__note">Todas las magnitudes · cálculo local · 2026</p>
+            </div>
+        </footer>
 
         <script type="module" src="js/app.js"></script>
     </body>

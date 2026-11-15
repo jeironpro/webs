@@ -126,6 +126,18 @@ function setupOverlays() {
         });
     });
     panels.forEach((panel) => {
+        panel.querySelectorAll("[data-range]").forEach((item) => {
+            item.addEventListener("click", () => {
+                document.querySelectorAll('[data-range-label="full"]').forEach((label) => {
+                    label.textContent = item.dataset.range;
+                });
+                document.querySelectorAll('[data-range-label="short"]').forEach((label) => {
+                    label.textContent = item.dataset.rangeShort;
+                });
+                closeOverlays();
+                showToast(`Rango actualizado: ${item.dataset.range}`);
+            });
+        });
         panel.querySelectorAll("[data-href]").forEach((item) => {
             item.addEventListener("click", () => {
                 window.location.href = item.dataset.href;

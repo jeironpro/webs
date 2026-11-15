@@ -693,8 +693,13 @@ button:disabled {
         overflow-x: hidden;
     }
 
+    :root {
+        --cell-size: 2.5rem;
+        --badge-size: 2.75rem;
+    }
+
     .game-screen {
-        gap: 0.9rem;
+        gap: 0.75rem;
         padding: 0.75rem 0.5rem 1.5rem;
     }
 
@@ -703,51 +708,48 @@ button:disabled {
         max-width: 100%;
     }
 
-    .scoreboard {
-        padding: 0.65rem 0.75rem;
-    }
-
     .scorecard {
-        padding: 0.4rem;
+        padding: 0.35rem;
     }
 
     .scorecard__row {
-        flex-direction: column;
-        gap: 0.4rem;
-        padding: 0.5rem 0.35rem;
-    }
-
-    .scorecard__row-divider {
-        display: none;
+        gap: 0.3rem;
+        padding: 0.45rem 0.3rem;
     }
 
     .scorecard__half {
-        width: 100%;
-        grid-template-columns: 3.25rem minmax(0, 1fr) minmax(0, 1fr);
-        gap: 0.3rem;
+        gap: 0.25rem;
     }
 
     .scorecard-cell {
-        width: 100%;
-        height: 2.6rem;
+        height: 2.5rem;
     }
 
     .scorecard__badge {
         min-height: 2.5rem;
-        padding: 0.15rem;
+        padding: 0.1rem;
+    }
+
+    .scorecard__badge .material-symbols-rounded {
+        font-size: 1rem;
+    }
+
+    .scorecard__badge-text {
+        font-size: 0.8rem;
+    }
+
+    .scorecard__badge-caption,
+    .scorecard__bonus-value {
+        font-size: 0.58rem;
+    }
+
+    .scorecard__badge--yatzy .scorecard__badge-text {
+        font-size: 0.8rem;
     }
 
     .hold-row {
         max-width: 100%;
         gap: 0.25rem;
-    }
-
-    .star-die .material-symbols-rounded {
-        font-size: 1.15rem;
-    }
-
-    .star-die__value {
-        font-size: 1rem;
     }
 
     .roll-bar {

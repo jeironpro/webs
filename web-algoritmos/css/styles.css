@@ -147,11 +147,6 @@ body {
     width: 100%;
 }
 
-.algorithm-card:not(.algorithm-card--flipped):hover {
-    filter: var(--shadow-hover-filter);
-    transform: translateY(calc(var(--hover-lift) * -1));
-}
-
 .algorithm-card:focus-visible {
     border-radius: var(--radius);
     outline: var(--focus-outline);
@@ -168,9 +163,19 @@ body {
     width: 100%;
 }
 
-.algorithm-card:not(.algorithm-card--flipped):hover .algorithm-card__inner,
 .algorithm-card--flipped .algorithm-card__inner {
     transform: rotateY(180deg);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .algorithm-card:not(.algorithm-card--flipped):hover {
+        filter: var(--shadow-hover-filter);
+        transform: translateY(calc(var(--hover-lift) * -1));
+    }
+
+    .algorithm-card:not(.algorithm-card--flipped):hover .algorithm-card__inner {
+        transform: rotateY(180deg);
+    }
 }
 
 .algorithm-card__face {
@@ -250,8 +255,10 @@ body {
         width: var(--card-width-md);
     }
 
-    .algorithm-card:hover {
-        transform: translateY(calc(var(--hover-lift-lg) * -1));
+    @media (hover: hover) and (pointer: fine) {
+        .algorithm-card:hover {
+            transform: translateY(calc(var(--hover-lift-lg) * -1));
+        }
     }
 
     .algorithm-card__description {

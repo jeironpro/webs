@@ -194,21 +194,69 @@ function borrarNumero() {
     anunciar("Casilla borrada. Elige otro número.");
 }
 
+function estaVacia(fila, columna) {
+    return !tableroActual[fila][columna] && tableroVisible[fila][columna] === "";
+}
+
+function buscarVaciaEnBloque(inicioFila, inicioColumna, fila, columna) {
+    let elegida = null;
+    let mejorDistancia = Number.POSITIVE_INFINITY;
+
+    for (let f = inicioFila; f < inicioFila + 3; f += 1) {
+        for (let c = inicioColumna; c < inicioColumna + 3; c += 1) {
+            if (!estaVacia(f, c)) continue;
+            const distancia = Math.abs(f - fila) + Math.abs(c - columna);
+            if (
+                distancia < mejorDistancia ||
+                (distancia === mejorDistancia && f * 9 + c < elegida.fila * 9 + elegida.columna)
+            ) {
+                mejorDistancia = distancia;
+                elegida = { fila: f, columna: c };
+            }
+        }
+    }
+
+    return elegida;
+}
+
 function moverFocoSiguiente() {
     if (!casillaActiva) return;
-    const inicio = casillaActiva.fila * 9 + casillaActiva.columna;
 
-    for (let paso = 1; paso <= 81; paso += 1) {
-        const indice = (inicio + paso) % 81;
-        const fila = Math.floor(indice / 9);
-        const columna = indice % 9;
+    const { fila, columna } = casillaActiva;
+    const inicioFila = Math.floor(fila / 3) * 3;
+    const inicioColumna = Math.floor(columna / 3) * 3;
+    let siguiente = buscarVaciaEnBloque(inicioFila, inicioColumna, fila, columna);
 
-        if (!tableroActual[fila][columna] && tableroVisible[fila][columna] === "") {
-            casillaActiva = { fila, columna };
-            pintarTablero();
-            casillas[fila][columna].focus({ preventScroll: true });
-            return;
+    if (!siguiente) {
+        let mejorBloque = null;
+        let mejorDistancia = Number.POSITIVE_INFINITY;
+
+        for (let bf = 0; bf < 9; bf += 3) {
+            for (let bc = 0; bc < 9; bc += 3) {
+                if (bf === inicioFila && bc === inicioColumna) continue;
+                if (!buscarVaciaEnBloque(bf, bc, fila, columna)) continue;
+                const distancia = Math.abs(bf + 1 - fila) + Math.abs(bc + 1 - columna);
+                if (distancia < mejorDistancia) {
+                    mejorDistancia = distancia;
+                    mejorBloque = { fila: bf, columna: bc };
+                }
+            }
         }
+
+        if (mejorBloque) {
+            siguiente = buscarVaciaEnBloque(mejorBloque.fila, mejorBloque.columna, fila, columna);
+        }
+    }
+
+    if (!siguiente) return;
+
+    casillaActiva = siguiente;
+    pintarTablero();
+
+    if (window.matchMedia("(pointer: coarse)").matches) {
+        elementos.entradaMovil?.focus({ preventScroll: true });
+    } else {
+        casillas[siguiente.fila][siguiente.columna].focus({ preventScroll: true });
     }
 }
 

@@ -126,7 +126,11 @@ const estrellas = (value) => "\u2605".repeat(Math.max(0, Number(value) || 0));
 
 const typeSlug = (name) => TYPE_SLUGS[name] || "normal";
 
-const generationUrl = (id) => new URL(`generation/${id}`, BASE);
+const generationUrl = (id) => {
+    const url = new URL(BASE);
+    url.search = `?/generation/${id}`;
+    return url;
+};
 
 const updateNav = (generationId) => {
     let activeLink = null;
@@ -228,7 +232,7 @@ const show404 = () => {
 
 const navigate = (path) => {
     const url = path ? generationUrl(path.split("/").pop()) : new URL(BASE);
-    window.history.pushState(null, "", url.pathname);
+    window.history.pushState(null, "", `${url.pathname}${url.search}`);
     if (!path) {
         showSplash();
     } else {
@@ -241,7 +245,6 @@ const currentRoute = () => {
     const query = window.location.search.match(/^\?\/(generation\/(\d+))(?:&|\/|$)/);
 
     if (query) {
-        window.history.replaceState(null, "", `${base}${query[1]}`);
         return { view: "generation", id: Number(query[2]) };
     }
 
@@ -660,7 +663,7 @@ const setupLinks = () => {
         image.src = LOGO_URL;
     });
     document.querySelectorAll("[data-generation]").forEach((link) => {
-        link.href = generationUrl(link.dataset.generation).pathname;
+        link.href = `${generationUrl(link.dataset.generation).pathname}${generationUrl(link.dataset.generation).search}`;
         link.addEventListener("click", (event) => {
             event.preventDefault();
             navigate(`generation/${link.dataset.generation}`);

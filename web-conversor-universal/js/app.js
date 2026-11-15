@@ -2,35 +2,47 @@ import { conversionData } from "./data.js";
 
 const categoryList = document.querySelector("#category-list");
 const converter = document.querySelector("#converter");
+const categoryCount = document.querySelector("#category-count");
+
+const categories = Object.entries(conversionData);
+
+const formatNumber = (value) =>
+    value.toLocaleString("es-ES", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 4,
+    });
 
 const convertValue = (categoryId, fromId, toId, rawValue) => {
     const result = converter.querySelector(".converter__result");
+    const unit = converter.querySelector(".converter__unit");
     if (!result) return;
 
     const value = rawValue === "" ? Number.NaN : Number(rawValue);
     if (!Number.isFinite(value)) {
-        result.textContent = "";
+        result.textContent = "—";
         result.classList.remove("is-visible");
+        if (unit) unit.textContent = "Introduce un valor para convertir";
         return;
     }
 
     const units = conversionData[categoryId].units;
-    const fromUnit = units.find((unit) => unit.id === fromId);
-    const toUnit = units.find((unit) => unit.id === toId);
+    const fromUnit = units.find((item) => item.id === fromId);
+    const toUnit = units.find((item) => item.id === toId);
     if (!fromUnit || !toUnit) return;
 
     const converted = toUnit.fromBase(fromUnit.toBase(value));
     if (!Number.isFinite(converted)) {
-        result.textContent = "";
+        result.textContent = "—";
         result.classList.remove("is-visible");
+        if (unit) unit.textContent = "Este valor no se puede convertir";
         return;
     }
 
-    result.textContent = converted.toLocaleString("en-US", {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-    });
+    result.textContent = formatNumber(converted);
     result.classList.add("is-visible");
+    if (unit) {
+        unit.textContent = `${formatNumber(value)} ${fromUnit.name} = ${toUnit.name}`;
+    }
 };
 
 const setActiveCategory = (categoryId) => {
@@ -41,57 +53,112 @@ const setActiveCategory = (categoryId) => {
     });
 };
 
-const renderCategory = (categoryId) => {
-    converter.replaceChildren();
-    setActiveCategory(categoryId);
+const createSelectField = (labelText, units, ariaLabel) => {
+    const field = document.createElement("div");
+    field.className = "select-field";
 
-    const valueInput = document.createElement("input");
-    valueInput.type = "number";
-    valueInput.inputMode = "decimal";
-    valueInput.id = "conversion-value";
-    valueInput.className = "converter__value";
-    valueInput.setAttribute("aria-label", "Valor a convertir");
+    const label = document.createElement("label");
+    label.textContent = labelText;
 
-    const selects = document.createElement("div");
-    selects.className = "converter__selects";
-
-    const units = conversionData[categoryId].units;
-    const fromSelect = document.createElement("select");
-    fromSelect.className = "converter__select";
-    fromSelect.setAttribute("aria-label", "Unidad de origen");
+    const select = document.createElement("select");
+    select.className = "converter__select";
+    select.setAttribute("aria-label", ariaLabel);
 
     units.forEach((unit) => {
         const option = document.createElement("option");
         option.value = unit.id;
         option.textContent = unit.name;
-        fromSelect.append(option);
+        select.append(option);
     });
 
-    const toSelect = fromSelect.cloneNode(true);
-    toSelect.setAttribute("aria-label", "Unidad de destino");
-    if (toSelect.options.length > 1) {
-        toSelect.selectedIndex = 1;
+    field.append(label, select);
+    return { field, select };
+};
+
+const renderCategory = (categoryId) => {
+    const category = conversionData[categoryId];
+    if (!category) return;
+
+    converter.replaceChildren();
+    setActiveCategory(categoryId);
+
+    const head = document.createElement("header");
+    head.className = "converter__head";
+
+    const headingGroup = document.createElement("div");
+    const kicker = document.createElement("p");
+    kicker.className = "kicker";
+    kicker.textContent = "02 · La conversión";
+    const title = document.createElement("h2");
+    title.className = "converter__title";
+    title.textContent = category.name;
+    headingGroup.append(kicker, title);
+
+    const unitCount = document.createElement("p");
+    unitCount.className = "kicker";
+    unitCount.textContent = `${category.units.length} unidades`;
+
+    head.append(headingGroup, unitCount);
+
+    const form = document.createElement("div");
+    form.className = "converter__form";
+
+    const valueField = document.createElement("div");
+    valueField.className = "field";
+    const valueLabel = document.createElement("label");
+    valueLabel.htmlFor = "conversion-value";
+    valueLabel.textContent = "Valor de origen";
+    const valueInput = document.createElement("input");
+    valueInput.type = "number";
+    valueInput.inputMode = "decimal";
+    valueInput.step = "any";
+    valueInput.id = "conversion-value";
+    valueInput.className = "converter__value";
+    valueInput.placeholder = "0";
+    valueInput.value = "1";
+    valueInput.setAttribute("aria-label", "Valor a convertir");
+    valueField.append(valueLabel, valueInput);
+
+    const selects = document.createElement("div");
+    selects.className = "converter__selects";
+    const from = createSelectField("Desde", category.units, "Unidad de origen");
+    const swap = document.createElement("span");
+    swap.className = "swap-mark";
+    swap.setAttribute("aria-hidden", "true");
+    swap.textContent = "→";
+    const to = createSelectField("Hasta", category.units, "Unidad de destino");
+    if (to.select.options.length > 1) {
+        to.select.selectedIndex = 1;
     }
+    selects.append(from.field, swap, to.field);
 
-    selects.append(fromSelect, toSelect);
-
-    const result = document.createElement("span");
+    const resultPanel = document.createElement("div");
+    resultPanel.className = "result-panel";
+    const resultLabel = document.createElement("p");
+    resultLabel.className = "result-panel__label";
+    resultLabel.textContent = "Resultado";
+    const result = document.createElement("output");
     result.className = "converter__result";
     result.setAttribute("role", "status");
     result.setAttribute("aria-live", "polite");
+    const resultUnit = document.createElement("p");
+    resultUnit.className = "converter__unit";
+    resultPanel.append(resultLabel, result, resultUnit);
 
     const recalculate = () => {
-        convertValue(categoryId, fromSelect.value, toSelect.value, valueInput.value);
+        convertValue(categoryId, from.select.value, to.select.value, valueInput.value);
     };
 
     valueInput.addEventListener("input", recalculate);
-    fromSelect.addEventListener("change", recalculate);
-    toSelect.addEventListener("change", recalculate);
+    from.select.addEventListener("change", recalculate);
+    to.select.addEventListener("change", recalculate);
 
-    converter.append(valueInput, selects, result);
+    form.append(valueField, selects, resultPanel);
+    converter.append(head, form);
+    recalculate();
 };
 
-Object.entries(conversionData).forEach(([categoryId, category]) => {
+categories.forEach(([categoryId, category]) => {
     const item = document.createElement("li");
     item.className = "category-list__item";
 
@@ -106,3 +173,12 @@ Object.entries(conversionData).forEach(([categoryId, category]) => {
     item.append(button);
     categoryList.append(item);
 });
+
+if (categoryCount) {
+    categoryCount.textContent = String(categories.length).padStart(2, "0");
+}
+
+const initialCategory = categories[0]?.[0];
+if (initialCategory) {
+    renderCategory(initialCategory);
+}
