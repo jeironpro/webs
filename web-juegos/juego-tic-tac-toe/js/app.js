@@ -97,10 +97,21 @@ function iniciarPartida() {
     nuevaRonda();
 }
 
+function elegirQuienEmpieza() {
+    const valores = new Uint32Array(1);
+
+    if (globalThis.crypto?.getRandomValues) {
+        globalThis.crypto.getRandomValues(valores);
+        return valores[0] % 2 === 0 ? "X" : "O";
+    }
+
+    return Math.random() < 0.5 ? "X" : "O";
+}
+
 function nuevaRonda() {
     cancelarTurnoDelBot();
     estado.tablero = Array(9).fill("");
-    estado.turno = Math.random() < 0.5 ? "X" : "O";
+    estado.turno = elegirQuienEmpieza();
     estado.terminada = false;
     estado.ocupado = false;
     elementos.modal.hidden = true;
