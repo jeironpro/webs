@@ -3,9 +3,9 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="color-scheme" content="dark" />
+        <meta name="color-scheme" content="light" />
         <link rel="icon" type="image/svg+xml" href="./assets/icons/favicon.svg" />
-        <title>Pomodoro · enfoque y descanso</title>
+        <title>Dose · un pomodoro a la vez</title>
         <meta
             name="description"
             content="Temporizador Pomodoro con ciclos de enfoque y descanso, duración configurable y sonido al terminar."
@@ -13,7 +13,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Nunito:wght@400;600;700;800&display=swap"
+            href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&family=Schibsted+Grotesk:wght@500;600;700&display=swap"
             rel="stylesheet"
         />
         <link
@@ -26,174 +26,177 @@
     </head>
     <body class="page">
         <div class="app">
-            <div id="stars" class="stars" aria-hidden="true">
-                <span class="stars__meteor"></span>
-                <span class="stars__meteor"></span>
-                <span class="stars__meteor"></span>
-            </div>
-
-            <button
-                id="info-open"
-                class="info-button"
-                type="button"
-                aria-label="Cómo funciona Pomodoro"
-                aria-haspopup="dialog"
-            >
-                <span class="material-symbols-rounded" aria-hidden="true">info</span>
-            </button>
+            <header class="site-head">
+                <div class="tray">
+                    <a class="wordmark" href="./">dose<span>.</span></a>
+                    <p class="tray__note">Un pomodoro a la vez</p>
+                    <button
+                        id="info-open"
+                        class="info-button"
+                        type="button"
+                        aria-label="Cómo funciona Pomodoro"
+                        aria-haspopup="dialog"
+                    >
+                        <span class="material-symbols-rounded" aria-hidden="true">info</span>
+                        <span class="info-button__text">Cómo funciona</span>
+                    </button>
+                </div>
+            </header>
 
             <main class="pomodoro">
-                <h1 class="sr-only">Pomodoro</h1>
+                <section class="pomodoro__intro" aria-labelledby="page-title">
+                    <p class="kicker">Enfoque por dosis · 01</p>
+                    <h1 id="page-title">Una dosis de enfoque.</h1>
+                    <p class="lead">
+                        Elige cuánto tiempo vas a trabajar, empieza y deja que el resto espere.
+                        Cuando suene, la pausa también cuenta.
+                    </p>
+                    <ul class="dose-list" aria-hidden="true">
+                        <li><span>01</span> Enfocar</li>
+                        <li><span>02</span> Soltar</li>
+                        <li><span>03</span> Volver</li>
+                    </ul>
+                </section>
 
-                <div class="mode">
-                    <div
-                        id="mode-selector"
-                        class="mode__selector"
-                        role="group"
-                        aria-label="Modo del temporizador"
-                    >
-                        <button
-                            id="focus-mode"
-                            class="mode__button"
-                            type="button"
-                            aria-pressed="true"
+                <section class="pomodoro__card" aria-label="Temporizador Pomodoro">
+                    <div class="mode">
+                        <div
+                            id="mode-selector"
+                            class="mode__selector"
+                            role="group"
+                            aria-label="Modo del temporizador"
                         >
-                            Focus
-                        </button>
-                        <button
-                            id="break-mode"
-                            class="mode__button"
-                            type="button"
-                            aria-pressed="false"
-                        >
-                            Break
-                        </button>
-                    </div>
-                </div>
-
-                <div id="duration-selector" class="duration">
-                    <button
-                        id="minus-minutes"
-                        class="duration__step"
-                        type="button"
-                        aria-label="Disminuir minutos"
-                    >
-                        <svg
-                            width="18"
-                            height="18"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2.5"
-                            stroke-linecap="round"
-                            aria-hidden="true"
-                        >
-                            <path d="M5 12h14" />
-                        </svg>
-                    </button>
-
-                    <div class="duration__field">
-                        <input
-                            id="minutes"
-                            class="duration__input"
-                            type="number"
-                            min="1"
-                            max="99"
-                            value="25"
-                            inputmode="numeric"
-                            aria-label="Minutos del temporizador"
-                        />
-                        <span class="duration__label">minutos</span>
+                            <button
+                                id="focus-mode"
+                                class="mode__button"
+                                type="button"
+                                aria-pressed="true"
+                            >
+                                Enfoque
+                            </button>
+                            <button
+                                id="break-mode"
+                                class="mode__button"
+                                type="button"
+                                aria-pressed="false"
+                            >
+                                Descanso
+                            </button>
+                        </div>
                     </div>
 
-                    <button
-                        id="plus-minutes"
-                        class="duration__step"
-                        type="button"
-                        aria-label="Aumentar minutos"
-                    >
-                        <svg
-                            width="18"
-                            height="18"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2.5"
-                            stroke-linecap="round"
-                            aria-hidden="true"
+                    <div id="duration-selector" class="duration">
+                        <button
+                            id="minus-minutes"
+                            class="duration__step"
+                            type="button"
+                            aria-label="Disminuir minutos"
                         >
-                            <path d="M12 5v14M5 12h14" />
-                        </svg>
-                    </button>
+                            <svg
+                                width="18"
+                                height="18"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2.5"
+                                stroke-linecap="round"
+                                aria-hidden="true"
+                            >
+                                <path d="M5 12h14" />
+                            </svg>
+                        </button>
 
-                    <div
-                        id="presets"
-                        class="duration__presets is-hidden"
-                        role="group"
-                        aria-label="Duraciones predefinidas"
-                    >
+                        <div class="duration__field">
+                            <input
+                                id="minutes"
+                                class="duration__input"
+                                type="number"
+                                min="1"
+                                max="99"
+                                value="25"
+                                inputmode="numeric"
+                                aria-label="Minutos del temporizador"
+                            />
+                            <span class="duration__label">minutos</span>
+                        </div>
+
                         <button
-                            class="duration__preset"
+                            id="plus-minutes"
+                            class="duration__step"
                             type="button"
-                            data-minutes="5"
-                            aria-pressed="false"
+                            aria-label="Aumentar minutos"
                         >
-                            5
+                            <svg
+                                width="18"
+                                height="18"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2.5"
+                                stroke-linecap="round"
+                                aria-hidden="true"
+                            >
+                                <path d="M12 5v14M5 12h14" />
+                            </svg>
                         </button>
-                        <button
-                            class="duration__preset"
-                            type="button"
-                            data-minutes="15"
-                            aria-pressed="false"
+
+                        <div
+                            id="presets"
+                            class="duration__presets is-hidden"
+                            role="group"
+                            aria-label="Duraciones predefinidas"
                         >
-                            15
-                        </button>
-                        <button
-                            class="duration__preset"
-                            type="button"
-                            data-minutes="25"
-                            aria-pressed="true"
-                        >
-                            25
-                        </button>
-                        <button
-                            class="duration__preset"
-                            type="button"
-                            data-minutes="30"
-                            aria-pressed="false"
-                        >
-                            30
-                        </button>
-                        <button
-                            class="duration__preset"
-                            type="button"
-                            data-minutes="60"
-                            aria-pressed="false"
-                        >
-                            60
-                        </button>
+                            <button
+                                class="duration__preset"
+                                type="button"
+                                data-minutes="5"
+                                aria-pressed="false"
+                            >
+                                5
+                            </button>
+                            <button
+                                class="duration__preset"
+                                type="button"
+                                data-minutes="15"
+                                aria-pressed="false"
+                            >
+                                15
+                            </button>
+                            <button
+                                class="duration__preset"
+                                type="button"
+                                data-minutes="25"
+                                aria-pressed="true"
+                            >
+                                25
+                            </button>
+                            <button
+                                class="duration__preset"
+                                type="button"
+                                data-minutes="30"
+                                aria-pressed="false"
+                            >
+                                30
+                            </button>
+                            <button
+                                class="duration__preset"
+                                type="button"
+                                data-minutes="60"
+                                aria-pressed="false"
+                            >
+                                60
+                            </button>
+                        </div>
                     </div>
-                </div>
 
-                <div class="timer-area">
-                    <div class="timer">
-                        <svg
-                            class="timer__ring"
-                            viewBox="0 0 300 300"
-                            role="img"
-                            aria-label="Progreso del temporizador"
-                        >
-                            <defs>
-                                <filter id="ringGlow">
-                                    <feDropShadow
-                                        class="timer__glow"
-                                        dx="0"
-                                        dy="0"
-                                        stdDeviation="6"
-                                    />
-                                </filter>
-                            </defs>
-                            <g transform="translate(300, 0) scale(-1, 1)">
+                    <div class="timer-area">
+                        <div class="timer">
+                            <svg
+                                class="timer__ring"
+                                viewBox="0 0 300 300"
+                                role="img"
+                                aria-label="Progreso del temporizador"
+                            >
                                 <g transform="rotate(-90, 150, 150)">
                                     <circle
                                         class="timer__track"
@@ -211,122 +214,128 @@
                                         stroke-width="8"
                                         stroke-linecap="round"
                                         stroke-dasharray="753.98 753.98"
-                                        filter="url(#ringGlow)"
                                     />
                                 </g>
-                            </g>
-                        </svg>
+                            </svg>
 
-                        <div class="timer__content">
-                            <span id="time" class="timer__time" aria-live="polite">25:00</span>
-                            <span id="time-label" class="timer__label is-hidden">Tiempo</span>
+                            <div class="timer__content">
+                                <span id="time" class="timer__time" aria-live="polite">25:00</span>
+                                <span id="time-label" class="timer__label is-hidden">Tiempo</span>
+                            </div>
                         </div>
-                    </div>
 
-                    <div id="title-area" class="task">
-                        <input
-                            id="title"
-                            class="task__input"
-                            type="text"
-                            aria-label="¿En qué vas a trabajar?"
-                            placeholder="¿En qué vas a trabajar?"
-                            autocomplete="off"
-                        />
-                        <div id="title-active" class="task__display is-hidden">
-                            <span id="title-text" class="task__text">Sin título</span>
-                            <button
-                                id="edit-title"
-                                class="task__edit"
-                                type="button"
-                                aria-label="Editar título"
-                            >
-                                <svg
-                                    width="16"
-                                    height="16"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    aria-hidden="true"
+                        <div id="title-area" class="task">
+                            <input
+                                id="title"
+                                class="task__input"
+                                type="text"
+                                aria-label="¿En qué vas a trabajar?"
+                                placeholder="¿En qué vas a trabajar?"
+                                autocomplete="off"
+                            />
+                            <div id="title-active" class="task__display is-hidden">
+                                <span id="title-text" class="task__text">Sin título</span>
+                                <button
+                                    id="edit-title"
+                                    class="task__edit"
+                                    type="button"
+                                    aria-label="Editar título"
                                 >
-                                    <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
-                                </svg>
-                            </button>
+                                    <svg
+                                        width="16"
+                                        height="16"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        aria-hidden="true"
+                                    >
+                                        <path
+                                            d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"
+                                        />
+                                    </svg>
+                                </button>
+                            </div>
+                            <input
+                                id="title-edit"
+                                class="task__input task__input--edit is-hidden"
+                                type="text"
+                                aria-label="Editar título de la tarea"
+                            />
                         </div>
-                        <input
-                            id="title-edit"
-                            class="task__input task__input--edit is-hidden"
-                            type="text"
-                            aria-label="Editar título de la tarea"
-                        />
                     </div>
-                </div>
 
-                <div class="controls">
-                    <button
-                        id="primary"
-                        class="controls__primary"
-                        type="button"
-                        aria-label="Iniciar"
-                    >
-                        <svg
-                            id="play-icon"
-                            class="controls__icon"
-                            width="22"
-                            height="22"
-                            viewBox="0 0 24 24"
-                            fill="currentColor"
-                            aria-hidden="true"
+                    <div class="controls">
+                        <button
+                            id="primary"
+                            class="controls__primary"
+                            type="button"
+                            aria-label="Iniciar"
                         >
-                            <polygon points="6 3 20 12 6 21 6 3" />
-                        </svg>
-                        <svg
-                            id="pause-icon"
-                            class="controls__icon is-hidden"
-                            width="22"
-                            height="22"
-                            viewBox="0 0 24 24"
-                            fill="currentColor"
-                            aria-hidden="true"
-                        >
-                            <rect x="6" y="4" width="4" height="16" rx="1" />
-                            <rect x="14" y="4" width="4" height="16" rx="1" />
-                        </svg>
-                    </button>
+                            <svg
+                                id="play-icon"
+                                class="controls__icon"
+                                width="22"
+                                height="22"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                                aria-hidden="true"
+                            >
+                                <polygon points="6 3 20 12 6 21 6 3" />
+                            </svg>
+                            <svg
+                                id="pause-icon"
+                                class="controls__icon is-hidden"
+                                width="22"
+                                height="22"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                                aria-hidden="true"
+                            >
+                                <rect x="6" y="4" width="4" height="16" rx="1" />
+                                <rect x="14" y="4" width="4" height="16" rx="1" />
+                            </svg>
+                        </button>
 
-                    <button
-                        id="restart"
-                        class="controls__stop is-hidden"
-                        type="button"
-                        aria-label="Detener"
-                    >
-                        <svg
-                            width="16"
-                            height="16"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            aria-hidden="true"
+                        <button
+                            id="restart"
+                            class="controls__stop is-hidden"
+                            type="button"
+                            aria-label="Detener"
                         >
-                            <rect x="3" y="3" width="18" height="18" rx="2" />
-                        </svg>
-                    </button>
-                </div>
+                            <svg
+                                width="16"
+                                height="16"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                aria-hidden="true"
+                            >
+                                <rect x="3" y="3" width="18" height="18" rx="2" />
+                            </svg>
+                        </button>
+                    </div>
 
-                <div id="counter" class="counter is-hidden" aria-label="Pomodoros completados">
-                    <span class="counter__dot"></span>
-                    <span class="counter__dot"></span>
-                    <span class="counter__dot"></span>
-                    <span class="counter__dot"></span>
-                    <span id="counter-complete" class="counter__complete is-hidden">
-                        ★ Completo
-                    </span>
-                </div>
+                    <div id="counter" class="counter is-hidden" aria-label="Pomodoros completados">
+                        <span class="counter__dot"></span>
+                        <span class="counter__dot"></span>
+                        <span class="counter__dot"></span>
+                        <span class="counter__dot"></span>
+                        <span id="counter-complete" class="counter__complete is-hidden">
+                            Completo
+                        </span>
+                    </div>
+                </section>
             </main>
+
+            <footer class="site-foot">
+                <p>Dose · Pomodoro</p>
+                <p>La pausa también es parte del trabajo.</p>
+            </footer>
 
             <div
                 id="dialog"
@@ -350,7 +359,7 @@
                             />
                         </svg>
                     </div>
-                    <h2 id="dialog-title" class="modal__title">¡Pomodoro completado!</h2>
+                    <h2 id="dialog-title" class="modal__title">Pomodoro completado</h2>
                     <p id="dialog-text" class="modal__text">
                         ¿Quieres tomar un descanso de 5 minutos?
                     </p>
@@ -384,7 +393,7 @@
                     <div class="info__header">
                         <h3 id="info-title" class="info__title">
                             <span class="material-symbols-rounded" aria-hidden="true">timer</span>
-                            ¿Cómo funciona?
+                            Cómo funciona
                         </h3>
                         <button
                             id="info-close"
