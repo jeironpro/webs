@@ -542,7 +542,7 @@ function showSummary() {
 
 function launchConfetti(isLarge) {
     const amount = isLarge ? 60 : 30;
-    const colors = ["#00ff99", "#ffdd00", "#ff4d4d", "#00dfff"];
+    const colors = ["var(--ok)", "var(--accent)", "var(--bad)", "var(--cool)"];
     for (let index = 0; index < amount; index += 1) {
         const piece = document.createElement("span");
         const size = (6 + Math.random() * 10) / 16;
@@ -572,7 +572,11 @@ function drawChart() {
     const centerX = resultsChart.width / 2;
     const centerY = resultsChart.height / 2;
     const radius = 100;
-    const colors = ["#00ff99", "#ff4d4d"];
+    const styles = getComputedStyle(document.documentElement);
+    const colors = [
+        styles.getPropertyValue("--ok").trim(),
+        styles.getPropertyValue("--bad").trim(),
+    ];
     let startAngle = -0.5 * Math.PI;
     context.clearRect(0, 0, resultsChart.width, resultsChart.height);
     [correct, incorrect].forEach((value, index) => {
@@ -589,6 +593,36 @@ function drawChart() {
         startAngle += slice;
     });
 }
+
+const themeToggle = document.getElementById("theme-toggle");
+const themeMeta = document.querySelector('meta[name="theme-color"]');
+
+function applyTheme(theme, persist = true) {
+    const isLight = theme === "light";
+    document.documentElement.dataset.theme = isLight ? "light" : "dark";
+    themeToggle.setAttribute("aria-pressed", String(isLight));
+    themeToggle.setAttribute("aria-label", isLight ? "Activar modo oscuro" : "Activar modo claro");
+    themeToggle.title = isLight ? "Activar modo oscuro" : "Activar modo claro";
+    if (themeMeta) {
+        themeMeta.content = isLight ? "#f4f5f7" : "#16181c";
+    }
+    if (persist) {
+        try {
+            localStorage.setItem("testsDawTheme", isLight ? "light" : "dark");
+        } catch {
+            /* Almacenamiento no disponible: el tema sigue activo en esta sesión. */
+        }
+    }
+    if (!summary.classList.contains("is-hidden")) {
+        drawChart();
+    }
+}
+
+themeToggle.addEventListener("click", () => {
+    applyTheme(document.documentElement.dataset.theme === "light" ? "dark" : "light");
+});
+
+applyTheme(document.documentElement.dataset.theme === "light" ? "light" : "dark", false);
 
 menuToggle.addEventListener("click", () => {
     const isOpen = menu.classList.toggle("is-open");
