@@ -648,7 +648,7 @@ function darPista() {
     if (!estado.tablero || estado.resuelto) return;
     asegurarReloj();
 
-    const opciones = estado.tablero.solucion
+    const todas = estado.tablero.solucion
         .map((entrada, k) => ({
             k,
             palabra: entrada.palabra,
@@ -657,6 +657,10 @@ function darPista() {
         }))
         .filter(({ k, palabra, pista }) => !estado.encontradas.has(k) && pista < palabra.length)
         .sort((a, b) => a.palabra.length - b.palabra.length || a.pista - b.pista || a.k - b.k);
+
+    const palabraActual = palabraEn(estado.cursor);
+    const actuales = todas.filter(({ k }) => k === palabraActual);
+    const opciones = actuales.length ? actuales : todas;
 
     if (!opciones.length) {
         avisar(

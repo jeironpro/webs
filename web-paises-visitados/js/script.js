@@ -275,6 +275,14 @@ const createCountryCard = (country) => {
         check.textContent = "✓";
         check.setAttribute("aria-hidden", "true");
         card.appendChild(check);
+
+        const remove = document.createElement("button");
+        remove.type = "button";
+        remove.className = "country__remove";
+        remove.dataset.iso = country.iso.toLowerCase();
+        remove.setAttribute("aria-label", `Quitar ${country.name} de visitados`);
+        remove.textContent = "×";
+        card.appendChild(remove);
     } else {
         const button = document.createElement("button");
         button.type = "button";
@@ -322,6 +330,18 @@ const showCountries = (data) => {
     });
 };
 
+const unmarkVisited = (iso) => {
+    Object.values(catalog)
+        .flat()
+        .forEach((country) => {
+            if (country.iso.toLowerCase() === iso) {
+                country.visited = false;
+            }
+        });
+    saveVisited(getVisited().filter((code) => code !== iso));
+    showCountries(catalog);
+};
+
 const markVisited = (iso) => {
     Object.values(catalog)
         .flat()
@@ -366,6 +386,13 @@ searchInput.addEventListener("input", () => {
 });
 
 countriesContainer.addEventListener("click", (event) => {
+    const remove = event.target.closest(".country__remove");
+    if (remove) {
+        unmarkVisited(remove.dataset.iso);
+        searchInput.value = "";
+        return;
+    }
+
     const button = event.target.closest(".country__button");
     if (!button) {
         return;

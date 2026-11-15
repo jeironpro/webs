@@ -384,10 +384,17 @@ class KanbanBoard {
             columnContent.addEventListener("drop", (e) => {
                 e.preventDefault();
                 column.classList.remove("is-drag-over");
+                const dragged = this.draggedElement;
+                const id = e.dataTransfer.getData("text/plain");
+                if (!dragged && id) {
+                    this.draggedElement = document.querySelector(`.task[data-id="${id}"]`);
+                }
 
                 if (this.draggedElement) {
                     const newStatus = column.dataset.status;
                     this.moveTask(this.draggedElement, newStatus);
+                    this.draggedElement.classList.remove("is-dragging");
+                    this.draggedElement = null;
                 }
             });
         });
@@ -729,6 +736,7 @@ class KanbanBoard {
             this.draggedElement = taskCard;
             taskCard.classList.add("is-dragging");
             e.dataTransfer.effectAllowed = "move";
+            e.dataTransfer.setData("text/plain", taskCard.dataset.id);
         });
 
         taskCard.addEventListener("dragend", () => {

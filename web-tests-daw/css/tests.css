@@ -1332,3 +1332,176 @@ button.option:focus-visible {
     width: var(--size);
     z-index: 9999;
 }
+
+/* Rediseño 2026: consola de estudio */
+:root {
+    --bg-body: rgb(242 246 244);
+    --bg-gradient-start: rgb(236 253 245);
+    --bg-gradient-end: rgb(238 242 255);
+    --primary: rgb(15 118 110);
+    --primary-dark: rgb(17 94 89);
+    --secondary: rgb(79 70 229);
+    --text-main: rgb(15 23 42);
+    --text-muted: rgb(82 99 122);
+    --glass-panel: rgb(255 255 255 / 0.86);
+    --glass-border: rgb(255 255 255 / 0.9);
+    --radius-lg: 1.35rem;
+    --radius-md: 1rem;
+    --shadow-lg: 0 1.75rem 4rem -1.5rem rgb(15 23 42 / 0.28);
+    --shadow-md: 0 1rem 2.5rem -1rem rgb(15 23 42 / 0.2);
+}
+
+body {
+    background:
+        radial-gradient(circle at 8% 4%, rgb(16 185 129 / 0.18), transparent 30rem),
+        radial-gradient(circle at 96% 96%, rgb(79 70 229 / 0.16), transparent 32rem),
+        linear-gradient(135deg, rgb(246 251 249), rgb(238 242 255));
+    padding: clamp(0.75rem, 2vw, 1.75rem);
+    gap: 1.25rem;
+    grid-template-columns: 18rem minmax(0, 1fr);
+}
+
+.topbar {
+    padding: 0.65rem 1rem;
+    border-color: rgb(255 255 255 / 0.16);
+    border-radius: 1rem;
+    background: linear-gradient(120deg, rgb(15 23 42), rgb(19 78 74));
+    box-shadow: 0 1rem 2rem -1rem rgb(15 23 42 / 0.5);
+    color: rgb(248 250 252);
+}
+
+.brand h1 {
+    color: rgb(248 250 252);
+    letter-spacing: -0.03em;
+}
+
+.brand-icon {
+    border-radius: 0.55rem;
+    background: rgb(255 255 255);
+    padding: 0.18rem;
+}
+
+.quick-action {
+    border: 0.0625rem solid rgb(255 255 255 / 0.25);
+    border-radius: 0.7rem;
+    background: rgb(255 255 255 / 0.1);
+    color: rgb(248 250 252);
+}
+
+.quick-action:hover {
+    background: rgb(255 255 255 / 0.2);
+}
+
+.side-menu {
+    border: 0.0625rem solid rgb(255 255 255 / 0.8);
+    border-radius: var(--radius-lg);
+    background: var(--glass-panel);
+    box-shadow: var(--shadow-md);
+}
+
+.menu-heading h2 {
+    color: rgb(15 23 42);
+    letter-spacing: -0.03em;
+}
+
+.exam-list {
+    gap: 0.35rem;
+}
+
+.card {
+    border: 0.0625rem solid rgb(255 255 255 / 0.9);
+    border-radius: var(--radius-lg);
+    background: var(--glass-panel);
+    box-shadow: var(--shadow-lg);
+    backdrop-filter: blur(1.25rem);
+}
+
+#intro-title,
+#summary-title {
+    color: rgb(15 23 42);
+    letter-spacing: -0.04em;
+}
+
+.intro-left p {
+    color: var(--text-muted);
+}
+
+.stats > div {
+    border: 0.0625rem solid rgb(219 231 226);
+    border-radius: 1rem;
+    background: rgb(255 255 255);
+}
+
+.stats dt {
+    color: rgb(15 118 110);
+    letter-spacing: 0.1em;
+}
+
+.stats dd {
+    color: rgb(15 23 42);
+}
+
+.progress {
+    border-radius: 999px;
+    background: rgb(255 255 255 / 0.9);
+    box-shadow: var(--shadow-md);
+}
+
+.progress-track {
+    background: rgb(219 231 226);
+}
+
+.progress-fill {
+    background: linear-gradient(90deg, rgb(15 118 110), rgb(79 70 229));
+}
+
+.option {
+    border: 0.0625rem solid rgb(219 231 226);
+    border-radius: 0.9rem;
+    background: rgb(255 255 255);
+    transition:
+        transform 160ms ease,
+        border-color 160ms ease,
+        box-shadow 160ms ease;
+}
+
+.option:hover:not(:disabled) {
+    border-color: rgb(94 234 212);
+    box-shadow: 0 0.75rem 1.5rem -0.75rem rgb(15 118 110 / 0.45);
+    transform: translateY(-0.125rem);
+}
+
+.option.selected,
+.option.is-selected {
+    border-color: rgb(15 118 110);
+    background: rgb(236 253 245);
+}
+
+.notification {
+    border-radius: 0.9rem;
+    background: rgb(15 23 42);
+}
+
+@media (width <= 48rem) {
+    body {
+        display: block;
+        height: auto;
+        min-height: 100dvh;
+        overflow: auto;
+    }
+
+    .topbar {
+        position: sticky;
+        top: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .side-menu {
+        margin-bottom: 1rem;
+    }
+
+    main {
+        display: grid;
+        gap: 1rem;
+    }
+}

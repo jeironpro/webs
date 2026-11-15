@@ -156,9 +156,19 @@ function mover() {
     const vector = direcciones[direccion];
     const cabeza = cuerpo[0];
     const nuevaCabeza = {
-        x: (cabeza.x + vector.x + COLUMNAS) % COLUMNAS,
-        y: (cabeza.y + vector.y + FILAS) % FILAS,
+        x: cabeza.x + vector.x,
+        y: cabeza.y + vector.y,
     };
+
+    if (
+        nuevaCabeza.x < 0 ||
+        nuevaCabeza.x >= COLUMNAS ||
+        nuevaCabeza.y < 0 ||
+        nuevaCabeza.y >= FILAS
+    ) {
+        terminarJuego(false);
+        return;
+    }
     const comera = nuevaCabeza.x === comida.x && nuevaCabeza.y === comida.y;
     const cuerpoAComprobar = comera ? cuerpo : cuerpo.slice(0, -1);
     const choca = cuerpoAComprobar.some(

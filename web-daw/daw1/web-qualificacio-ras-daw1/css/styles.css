@@ -101,3 +101,36 @@ tr td:nth-child(5) {
 .final-grade span {
     float: right;
 }
+
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+main {
+    width: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+h1 {
+    font-size: clamp(1.35rem, 4vw, 2.25rem);
+    padding: 0 0.5rem;
+}
+
+table {
+    min-width: 44rem;
+}
+
+@media (width <= 48rem) {
+    main {
+        padding: 0.75rem;
+    }
+
+    th,
+    td {
+        padding: 0.45rem;
+        font-size: 0.82rem;
+    }
+}

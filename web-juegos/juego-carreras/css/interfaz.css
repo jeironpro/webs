@@ -297,7 +297,7 @@
         justify-content: center;
         touch-action: none;
         user-select: none;
-        width: clamp(2.5rem, calc((100% - 2 * var(--space-2)) / 3), 4.5rem);
+        width: clamp(3.25rem, calc((100% - 2 * var(--space-2)) / 3), 5.5rem);
     }
 
     .tactil__boton--grande {
@@ -316,7 +316,7 @@
     }
 
     @media (pointer: coarse) {
-        .tactil {
+        .tactil:not([hidden]) {
             display: flex;
         }
 
@@ -367,7 +367,7 @@
         width: 6rem;
     }
 
-    .tactil {
+    .tactil:not([hidden]) {
         display: flex;
     }
 

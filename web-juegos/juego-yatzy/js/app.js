@@ -80,6 +80,7 @@ let mode = "local";
 let difficulty = DEFAULT_DIFFICULTY;
 let game = createGame();
 let botTimer = null;
+let lastRollAnimated = 0;
 
 function crear(etiqueta, propiedades = {}, hijos = []) {
     const nodo = document.createElement(etiqueta);
@@ -679,7 +680,7 @@ function holdRow(humanPlaying) {
                 "button",
                 {
                     type: "button",
-                    clase: `star-die${game.held[index] ? " star-die--held" : ""}`,
+                    clase: `star-die${game.held[index] ? " star-die--held" : ""}${game.rollNumber > 0 && game.rollNumber !== lastRollAnimated ? " star-die--rolling" : ""}`,
                     "data-hold": String(index),
                     "aria-label": `Dado ${value}${game.held[index] ? ", marcado para conservar" : ""}`,
                     "aria-pressed": String(game.held[index]),
@@ -773,6 +774,8 @@ function renderGame() {
             ]),
         ])
     );
+
+    lastRollAnimated = game.rollNumber;
 
     app.querySelectorAll("[data-hold]").forEach((element) =>
         element.addEventListener("click", () => toggleHoldDie(Number(element.dataset.hold)))

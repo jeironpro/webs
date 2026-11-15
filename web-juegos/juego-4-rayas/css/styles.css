@@ -270,10 +270,12 @@
     width: var(--ball-size);
     height: var(--ball-size);
     border: 0.625rem solid var(--color-ball-border);
-    animation-name: board-ball-drop;
-    animation-duration: calc(0.4s + var(--ball-row) * 0.12s);
     border-radius: 50%;
     place-self: center;
+}
+.board__ball--last {
+    animation-name: board-ball-drop;
+    animation-duration: calc(0.4s + var(--ball-row) * 0.12s);
     animation-timing-function: cubic-bezier(0.5, 0, 0.8, 0.35);
     animation-fill-mode: forwards;
 }
@@ -305,7 +307,7 @@
     }
 }
 @media (prefers-reduced-motion: reduce) {
-    .board__ball {
+    .board__ball--last {
         animation-duration: 10ms;
     }
 }

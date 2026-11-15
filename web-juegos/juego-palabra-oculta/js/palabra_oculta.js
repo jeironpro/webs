@@ -9,6 +9,7 @@ const elementos = {
     mensaje: document.querySelector("#mensaje"),
     total: document.querySelector("#total-palabras"),
     btnNueva: document.querySelector("#btn-nueva"),
+    entradaMovil: document.querySelector("#entrada-movil"),
 };
 
 const teclas = [
@@ -74,7 +75,8 @@ function crearTeclado() {
                 boton.setAttribute("aria-label", "Borrar letra");
             } else if (tecla === "enviar") {
                 boton.classList.add("tecla--accion");
-                boton.textContent = "Enviar";
+                boton.append(crearIcono("keyboard_return"));
+                boton.setAttribute("aria-label", "Enviar palabra");
             } else {
                 boton.textContent = tecla;
                 boton.setAttribute("aria-label", `Letra ${tecla}`);
@@ -301,7 +303,30 @@ async function cargarDiccionario() {
     }
 }
 
+elementos.tablero.addEventListener("click", () => {
+    if (window.matchMedia("(pointer: coarse)").matches) {
+        elementos.entradaMovil?.focus({ preventScroll: true });
+    }
+});
+
+elementos.entradaMovil?.addEventListener("input", (evento) => {
+    const texto = evento.target.value.toLowerCase().replace(/[^a-zñ]/g, "");
+    evento.target.value = "";
+    if (texto) manejarEntrada(texto.slice(-1));
+});
+
+elementos.entradaMovil?.addEventListener("keydown", (evento) => {
+    if (evento.key === "Backspace") {
+        evento.preventDefault();
+        manejarEntrada("eliminar");
+    } else if (evento.key === "Enter") {
+        evento.preventDefault();
+        manejarEntrada("enviar");
+    }
+});
+
 document.addEventListener("keydown", (evento) => {
+    if (evento.target === elementos.entradaMovil) return;
     if (evento.ctrlKey || evento.metaKey || evento.altKey) return;
 
     const tecla = evento.key.toLowerCase();

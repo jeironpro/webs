@@ -35,6 +35,10 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    document.querySelectorAll("[data-year]").forEach((node) => {
+        node.textContent = String(new Date().getFullYear());
+    });
+
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         anchor.addEventListener("click", function (e) {
             e.preventDefault();

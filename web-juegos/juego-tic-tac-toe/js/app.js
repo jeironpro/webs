@@ -100,13 +100,14 @@ function iniciarPartida() {
 function nuevaRonda() {
     cancelarTurnoDelBot();
     estado.tablero = Array(9).fill("");
-    estado.turno = "X";
+    estado.turno = Math.random() < 0.5 ? "X" : "O";
     estado.terminada = false;
     estado.ocupado = false;
     elementos.modal.hidden = true;
     pintarTablero();
     actualizarMarcador();
-    anunciar("Turno de X. Elige una casilla para empezar.");
+    anunciar(`Turno de ${estado.turno}. Elige una casilla para empezar.`);
+    if (esTurnoDelBot()) programarTurnoDelBot();
 }
 
 function pintarTablero() {

@@ -1701,3 +1701,25 @@ html [hidden] {
     opacity: 0;
     pointer-events: none;
 }
+
+@media (min-width: 47.5rem) {
+    .footer__inner {
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 2rem;
+        padding-block: clamp(2.5rem, 5vh, 4rem);
+    }
+
+    .footer__statement {
+        font-size: clamp(2rem, 3.5vw, 3.5rem);
+    }
+
+    .footer__meta {
+        flex: 0 1 auto;
+        flex-wrap: nowrap;
+        gap: 1.5rem;
+        padding-top: 0;
+        border-top: 0;
+    }
+}

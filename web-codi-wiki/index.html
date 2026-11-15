@@ -18,9 +18,30 @@
     </head>
     <body>
         <div class="app-container">
-            <aside class="sidebar">
+            <header class="mobile-bar">
+                <button
+                    class="mobile-bar__toggle"
+                    id="menu-toggle"
+                    type="button"
+                    aria-label="Abrir el menú"
+                    aria-controls="sidebar"
+                    aria-expanded="false"
+                >
+                    <span aria-hidden="true">☰</span>
+                </button>
+                <p class="mobile-bar__name">Codi<span>.</span>Wiki</p>
+            </header>
+            <aside class="sidebar" id="sidebar">
                 <div class="brand">
                     <p class="brand__name">Codi<span class="brand__dot">.</span>Wiki</p>
+                    <button
+                        class="brand__close"
+                        id="menu-close"
+                        type="button"
+                        aria-label="Cerrar el menú"
+                    >
+                        ×
+                    </button>
                 </div>
                 <nav class="navigation" aria-label="Temas de la wiki">
                     <div class="nav-section">
@@ -36,6 +57,7 @@
                     <p>Versión 1.0.0</p>
                 </div>
             </aside>
+            <div class="sidebar-backdrop" id="sidebar-backdrop" hidden></div>
 
             <main class="main-content" id="main-content">
                 <div class="wiki-content">

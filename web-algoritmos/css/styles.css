@@ -147,7 +147,7 @@ body {
     width: 100%;
 }
 
-.algorithm-card:hover {
+.algorithm-card:not(.algorithm-card--flipped):hover {
     filter: var(--shadow-hover-filter);
     transform: translateY(calc(var(--hover-lift) * -1));
 }
@@ -168,7 +168,7 @@ body {
     width: 100%;
 }
 
-.algorithm-card:hover .algorithm-card__inner,
+.algorithm-card:not(.algorithm-card--flipped):hover .algorithm-card__inner,
 .algorithm-card--flipped .algorithm-card__inner {
     transform: rotateY(180deg);
 }
