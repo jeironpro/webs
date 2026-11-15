@@ -498,7 +498,7 @@ a {
     color: color-mix(in oklab, var(--plate) 60%, transparent);
 }
 
-@media (max-width: 64rem) {
+@media (width <= 64rem) {
     .hero__grid {
         grid-template-columns: minmax(0, 1fr);
     }
@@ -533,7 +533,7 @@ a {
     }
 }
 
-@media (max-width: 42rem) {
+@media (width <= 42rem) {
     .slab__note {
         max-width: 11rem;
         font-size: 0.7rem;
@@ -575,8 +575,8 @@ a {
     *,
     *::before,
     *::after {
-        scroll-behavior: auto !important;
-        transition-duration: 0.01ms !important;
-        animation-duration: 0.01ms !important;
+        scroll-behavior: auto;
+        transition-duration: 0.01ms;
+        animation-duration: 0.01ms;
     }
 }
