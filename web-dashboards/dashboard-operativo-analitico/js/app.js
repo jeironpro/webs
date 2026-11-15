@@ -269,6 +269,8 @@ function setupMobileMenu() {
         drawer.className = "mobile-drawer";
         drawer.dataset.open = "false";
         const clone = content.cloneNode(true);
+        clone.classList.remove("hidden", "sticky", "top-0", "lg:flex");
+        clone.classList.add("flex", "h-full", "w-full");
         clone.querySelectorAll("[id]").forEach((item) => item.removeAttribute("id"));
         clone.querySelectorAll("[inert]").forEach((item) => item.removeAttribute("inert"));
         drawer.append(clone);
@@ -560,9 +562,16 @@ function setupExports() {
     });
 }
 
+function setupReveals() {
+    document.querySelectorAll(".reveal:not(.is-visible)").forEach((item, index) => {
+        window.setTimeout(() => item.classList.add("is-visible"), Math.min(index * 40, 240));
+    });
+}
+
 setupOverlays();
 setupPalette();
 setupMobileMenu();
+setupReveals();
 setupTabs();
 setupSearch();
 setupFilters();
