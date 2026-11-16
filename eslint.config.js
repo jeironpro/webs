@@ -15,6 +15,7 @@ const WEBS_CANONICAS = [
     "web-continguts-daw",
     "web-codi-wiki",
     "web-codigos-http",
+    "web-codecs",
     "web-color-picker",
     "web-contador-palabras",
     "web-conversor-universal",
