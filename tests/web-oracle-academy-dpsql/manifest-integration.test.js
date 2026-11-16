@@ -19,13 +19,13 @@ describe("manifiesto de contenido (integración)", () => {
         expect(selectTopic.files[0].isPractice).toBe(false);
     });
 
-    it("marca el instalador de Data Modeler como descarga externa vía GitHub raw", async () => {
+    it("marca el instalador de Data Modeler como descarga externa vía Git LFS", async () => {
         const manifest = await generateManifest();
         const resourcesTopic = manifest.topics.find((topic) => topic.id === "0_recursos");
         const installer = resourcesTopic.files.find((file) => file.name.startsWith("datamodeler_"));
         expect(installer.external).toBe(true);
-        expect(installer.externalUrl).toContain("github.com");
-        expect(installer.externalUrl).toContain("/raw/main/");
+        expect(installer.externalUrl).toContain("media.githubusercontent.com/media/");
+        expect(installer.externalUrl).toContain("/main/");
         expect(installer.note).toBeTruthy();
     });
 

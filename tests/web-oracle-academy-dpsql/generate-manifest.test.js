@@ -95,10 +95,10 @@ describe("sizeFromPointer", () => {
 });
 
 describe("githubRawUrl", () => {
-    it("construye la URL raw del archivo desde el remoto", () => {
+    it("construye la URL de descarga LFS del archivo desde el remoto", () => {
         const url = githubRawUrl("oracle_academy/curso/0_recursos/archivo.zip");
         expect(url).toBe(
-            "https://github.com/jeironpro/webs/raw/main/web-oracle-academy-dpsql/oracle_academy/curso/0_recursos/archivo.zip"
+            "https://media.githubusercontent.com/media/jeironpro/webs/main/web-oracle-academy-dpsql/oracle_academy/curso/0_recursos/archivo.zip"
         );
     });
 });

@@ -1,9 +1,9 @@
 import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
-import { createHash } from "node:crypto";
 import { join } from "node:path";
 import { execFile, execFileSync, spawn } from "node:child_process";
 import { leerProjects } from "./lib/data.mjs";
+import { huellaDe } from "./lib/huella.mjs";
 
 const RAIZ = fileURLToPath(new URL("..", import.meta.url));
 const DIR_SCREENSHOTS = join(RAIZ, "assets", "screenshots");
@@ -13,22 +13,6 @@ const SOLO = process.argv.slice(2).filter((arg) => !arg.startsWith("--"));
 const FUERZA = process.argv.includes("--force") || SOLO.length > 0;
 const CONCURRENCIA = 4;
 const CHROME = "/usr/bin/google-chrome";
-
-/** Huella del HTML de entrada: delata cambios aunque el commit sea posterior. */
-function huellaDe(url) {
-    const relativa = url.replace(/^\.\//, "");
-    const entrada = /\.html?$/.test(relativa)
-        ? relativa
-        : `${relativa}${relativa.endsWith("/") ? "" : "/"}index.html`;
-    try {
-        return createHash("sha256")
-            .update(readFileSync(join(RAIZ, entrada)))
-            .digest("hex")
-            .slice(0, 16);
-    } catch {
-        return "";
-    }
-}
 
 async function servir() {
     const server = spawn(

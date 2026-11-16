@@ -229,7 +229,9 @@ export function githubRawUrl(path) {
     const match = remote.match(/(?:github\.com[:/])([^/]+)\/([^/]+?)(?:\.git)?$/);
     const owner = match?.[1] ?? "jeironpro";
     const repository = match?.[2] ?? "webs";
-    return `https://github.com/${owner}/${repository}/raw/${BASE_BRANCH}/${REPO_SUBPATH}/${path}`;
+    // media.githubusercontent.com sirve el contenido real de Git LFS;
+    // /raw/ devuelve el puntero de texto y rompe la descarga.
+    return `https://media.githubusercontent.com/media/${owner}/${repository}/${BASE_BRANCH}/${REPO_SUBPATH}/${path}`;
 }
 
 export async function writeManifest(manifest, path = MANIFEST_PATH) {

@@ -33,8 +33,24 @@ function publicar(sub) {
         execSync("yarn install --immutable", { cwd: base, stdio: "inherit" });
     }
 
-    copyFileSync(plantilla, join(base, "index.html"));
-    execSync("yarn build --base=./", { cwd: base, stdio: "inherit" });
+    // Vite necesita index.html en la raíz: se guarda el publicado para
+    // restaurarlo si el build falla y no dejar la web sin sus assets.
+    const publicado = join(base, "index.html");
+    const respaldo = join(base, ".index.html.previo");
+    const teniaPublicado = existsSync(publicado);
+    if (teniaPublicado) copyFileSync(publicado, respaldo);
+
+    try {
+        copyFileSync(plantilla, publicado);
+        execSync("yarn build --base=./", { cwd: base, stdio: "inherit" });
+    } catch {
+        if (teniaPublicado) copyFileSync(respaldo, publicado);
+        else rmSync(publicado, { force: true });
+        rmSync(respaldo, { force: true });
+        console.error(`  x ${sub}: falló el build; se conservó el index.html anterior`);
+        process.exitCode = 1;
+        return;
+    }
 
     const dist = join(base, "dist");
     rmSync(join(base, "assets"), { recursive: true, force: true });
@@ -46,6 +62,7 @@ function publicar(sub) {
         }
     }
     rmSync(dist, { recursive: true, force: true });
+    rmSync(respaldo, { force: true });
     console.log(`  o ${sub}`);
 }
 
