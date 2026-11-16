@@ -31,6 +31,7 @@ const WEBS_CANONICAS = [
     "web-frontend",
     "web-instruccion-login-google",
     "web-javarcises",
+    "web-hashes-contrasenas",
     "web-json-yaml",
     "web-juegos",
     "web-generador-clave-secreta",
