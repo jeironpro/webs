@@ -67,6 +67,38 @@ export function pointOnCircle(degrees) {
     return { x: cos, y: sin };
 }
 
+const EXACT_ANGLES = new Map([
+    [0, { sin: "0", cos: "1", tan: "0", coords: "(1, 0)", radians: "0" }],
+    [30, { sin: "1/2", cos: "√3/2", tan: "√3/3", coords: "(√3/2, 1/2)", radians: "π/6" }],
+    [45, { sin: "√2/2", cos: "√2/2", tan: "1", coords: "(√2/2, √2/2)", radians: "π/4" }],
+    [60, { sin: "√3/2", cos: "1/2", tan: "√3", coords: "(1/2, √3/2)", radians: "π/3" }],
+    [90, { sin: "1", cos: "0", tan: null, coords: "(0, 1)", radians: "π/2" }],
+    [120, { sin: "√3/2", cos: "−1/2", tan: "−√3", coords: "(−1/2, √3/2)", radians: "2π/3" }],
+    [135, { sin: "√2/2", cos: "−√2/2", tan: "−1", coords: "(−√2/2, √2/2)", radians: "3π/4" }],
+    [150, { sin: "1/2", cos: "−√3/2", tan: "−√3/3", coords: "(−√3/2, 1/2)", radians: "5π/6" }],
+    [180, { sin: "0", cos: "−1", tan: "0", coords: "(−1, 0)", radians: "π" }],
+    [210, { sin: "−1/2", cos: "−√3/2", tan: "√3/3", coords: "(−√3/2, −1/2)", radians: "7π/6" }],
+    [225, { sin: "−√2/2", cos: "−√2/2", tan: "1", coords: "(−√2/2, −√2/2)", radians: "5π/4" }],
+    [240, { sin: "−√3/2", cos: "−1/2", tan: "√3", coords: "(−1/2, −√3/2)", radians: "4π/3" }],
+    [270, { sin: "−1", cos: "0", tan: null, coords: "(0, −1)", radians: "3π/2" }],
+    [300, { sin: "−√3/2", cos: "1/2", tan: "−√3", coords: "(1/2, −√3/2)", radians: "5π/3" }],
+    [315, { sin: "−√2/2", cos: "√2/2", tan: "−1", coords: "(√2/2, −√2/2)", radians: "7π/4" }],
+    [330, { sin: "−1/2", cos: "√3/2", tan: "−√3/3", coords: "(√3/2, −1/2)", radians: "11π/6" }],
+]);
+
+/**
+ * Devuelve los valores exactos de un ángulo frecuente, o `null` si no lo es.
+ * Se admite una décima de tolerancia para absorber el redondeo del arrastre.
+ * @param {number} degrees
+ * @returns {{sin: string, cos: string, tan: string|null, coords: string, radians: string} | null}
+ */
+export function exactValues(degrees) {
+    const key = Number(normalizeAngle(degrees).toFixed(1));
+    const entry = EXACT_ANGLES.get(key);
+
+    return entry ? { ...entry } : null;
+}
+
 /**
  * Formatea un número con decimales fijos, sin `-0`.
  * @param {number} value

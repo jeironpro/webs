@@ -1,5 +1,6 @@
 import { describe, expect, test } from "vitest";
 import {
+    exactValues,
     formatAngle,
     formatNumber,
     formatRadians,
@@ -76,6 +77,33 @@ describe("pointOnCircle", () => {
         const left = pointOnCircle(180);
         expect(left.x).toBeCloseTo(-1, 12);
         expect(left.y).toBeCloseTo(0, 12);
+    });
+});
+
+describe("exactValues", () => {
+    test("devuelve los valores exactos de 30°", () => {
+        expect(exactValues(30)).toEqual({
+            sin: "1/2",
+            cos: "√3/2",
+            tan: "√3/3",
+            coords: "(√3/2, 1/2)",
+            radians: "π/6",
+        });
+    });
+
+    test("la tangente exacta no existe en 90° y 270°", () => {
+        expect(exactValues(90)).toMatchObject({ cos: "0", tan: null, radians: "π/2" });
+        expect(exactValues(270).tan).toBeNull();
+    });
+
+    test("normaliza 360° y absorbe el redondeo del arrastre", () => {
+        expect(exactValues(360)).toMatchObject({ sin: "0", cos: "1", radians: "0" });
+        expect(exactValues(30.04)).not.toBeNull();
+        expect(exactValues(30.2)).toBeNull();
+    });
+
+    test("devuelve null para ángulos no frecuentes", () => {
+        expect(exactValues(37)).toBeNull();
     });
 });
 
