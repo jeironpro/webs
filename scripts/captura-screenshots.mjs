@@ -12,7 +12,15 @@ const PUERTO = 8941;
 const SOLO = process.argv.slice(2).filter((arg) => !arg.startsWith("--"));
 const FUERZA = process.argv.includes("--force") || SOLO.length > 0;
 const CONCURRENCIA = 4;
-const CHROME = "/usr/bin/google-chrome";
+const CHROME =
+    process.env.CHROME_PATH ??
+    [
+        "/usr/bin/google-chrome",
+        "/usr/bin/google-chrome-stable",
+        "/usr/bin/chromium",
+        "/usr/bin/chromium-browser",
+    ].find((ruta) => existsSync(ruta)) ??
+    "google-chrome";
 
 async function servir() {
     const server = spawn(

@@ -49,6 +49,7 @@ const WEBS_CANONICAS = [
     "web-porcentaje-anual",
     "web-redimensiona-imagen",
     "web-refprog",
+    "web-regex-tester",
     "web-reproductor-musica",
     "web-ruleta",
     "web-votacion",
