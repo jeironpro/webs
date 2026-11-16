@@ -1,6 +1,11 @@
 (() => {
     const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     const revealItems = [...document.querySelectorAll("[data-reveal]")];
+    const captureMode = new URLSearchParams(window.location.search).has("captura");
+
+    if (captureMode) {
+        revealItems.forEach((item) => item.classList.add("is-visible"));
+    }
     const counters = [...document.querySelectorAll("[data-count]")];
 
     if ("IntersectionObserver" in window) {
@@ -34,6 +39,10 @@
     counters.forEach((counter) => {
         const target = parseInt(counter.dataset.count, 10);
         if (!Number.isFinite(target) || motionQuery.matches) return;
+        if (captureMode) {
+            counter.textContent = target;
+            return;
+        }
 
         const duration = 1200;
         let start = null;

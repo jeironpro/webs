@@ -8,6 +8,15 @@
             content="Pon a prueba tus conocimientos con Tests DAW: ejercicios interactivos y resultados visuales."
         />
         <meta name="theme-color" content="#16181c" />
+        <script>
+            try {
+                if (localStorage.getItem("testsDawTheme") === "light") {
+                    document.documentElement.dataset.theme = "light";
+                }
+            } catch {
+                /* Almacenamiento no disponible: se mantiene el tema oscuro. */
+            }
+        </script>
         <meta property="og:title" content="Tests DAW" />
         <meta
             property="og:description"
@@ -16,7 +25,8 @@
         <meta property="og:type" content="website" />
         <meta property="og:image" content="assets/icons/tests.png" />
         <title>Tests DAW</title>
-        <link rel="icon" href="assets/icons/tests.png" type="image/png" />
+        <link rel="icon" href="assets/icons/tests.svg" type="image/svg+xml" />
+        <link rel="alternate icon" href="assets/icons/tests.png" type="image/png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -44,7 +54,7 @@
                 </button>
                 <div class="brand">
                     <img
-                        src="assets/icons/tests.png"
+                        src="assets/icons/tests.svg"
                         alt=""
                         aria-hidden="true"
                         class="brand-icon"
@@ -55,6 +65,24 @@
                 </div>
             </div>
             <div class="topbar-right">
+                <button
+                    id="theme-toggle"
+                    class="theme-toggle"
+                    type="button"
+                    aria-label="Activar modo claro"
+                    aria-pressed="false"
+                    title="Activar modo claro"
+                >
+                    <svg class="theme-icon theme-icon--sun" viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="12" r="4.2" />
+                        <path
+                            d="M12 2v2.4M12 19.6V22M2 12h2.4M19.6 12H22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"
+                        />
+                    </svg>
+                    <svg class="theme-icon theme-icon--moon" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M20 14.4A8.4 8.4 0 0 1 9.6 4a8.4 8.4 0 1 0 10.4 10.4Z" />
+                    </svg>
+                </button>
                 <nav aria-label="Acciones rápidas" class="quick-actions">
                     <button class="quick-action" id="start-button" type="button">Iniciar</button>
                     <button class="quick-action" id="restart-button" type="button">

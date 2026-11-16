@@ -1,0 +1,815 @@
+/* Estructura común del arcade: portada, modos, marcador y salida al menú. */
+:root {
+    --arcade-bg: #080b14;
+    --arcade-panel: #0d1220;
+    --arcade-surface: #111a2c;
+    --arcade-surface-2: #111a2e;
+    --arcade-surface-3: #14203a;
+    --arcade-field: #0b1322;
+    --arcade-tile: #1b2742;
+    --arcade-icon-bg: #1a2740;
+    --arcade-line: #26314d;
+    --arcade-line-2: #2b3752;
+    --arcade-line-3: #33405f;
+    --arcade-text: #f4f7ff;
+    --arcade-text-strong: #f8faff;
+    --arcade-text-soft: #a6b2cc;
+    --arcade-text-muted: #9daac4;
+    --arcade-text-dim: #8f9cb7;
+    --arcade-text-faint: #76839e;
+    --arcade-meta: #b9c5de;
+    --arcade-instructions: #c3cee3;
+    --arcade-accent: #4f8cff;
+    --arcade-accent-light: #8fb4ff;
+    --arcade-accent-strong: #6c9cff;
+    --arcade-button-top: #5f97ff;
+    --arcade-button-bottom: #3f78e8;
+    --arcade-white: #fff;
+}
+
+html.arcade-home-open,
+html.arcade-home-open body {
+    overflow: hidden;
+}
+
+.arcade-home {
+    position: fixed;
+    inset: 0;
+    z-index: 2147483000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+    padding: clamp(1rem, 4vw, 2.5rem);
+    background:
+        radial-gradient(
+            60% 55% at 50% 0%,
+            color-mix(in oklab, var(--arcade-accent) 22%, transparent),
+            transparent 70%
+        ),
+        var(--arcade-bg);
+    color: var(--arcade-text);
+    font-family: var(--arcade-body, "Inter", ui-sans-serif, system-ui, sans-serif);
+    line-height: 1.5;
+    overscroll-behavior: contain;
+}
+
+.arcade-home *,
+.arcade-home *::before,
+.arcade-home *::after {
+    box-sizing: border-box;
+}
+
+.arcade-home[hidden] {
+    display: none;
+}
+
+.arcade-home__panel {
+    width: min(54rem, 100%);
+    margin-block: auto;
+    padding: clamp(1.5rem, 4vw, 3rem);
+    border: 0.0625rem solid var(--arcade-line);
+    border-radius: var(--arcade-radius, 1.5rem);
+    background:
+        linear-gradient(
+            180deg,
+            color-mix(in oklab, var(--arcade-accent) 10%, transparent),
+            transparent 45%
+        ),
+        var(--arcade-panel);
+    box-shadow:
+        0 2rem 5rem rgb(0 0 0 / 0.55),
+        inset 0 1px 0 rgb(255 255 255 / 0.06);
+}
+
+.arcade-home__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.55rem;
+    text-align: center;
+}
+
+.arcade-home__icon {
+    display: grid;
+    place-items: center;
+    width: 4rem;
+    height: 4rem;
+    margin-bottom: 0.35rem;
+    border: 0.0625rem solid var(--arcade-line);
+    border-radius: calc(var(--arcade-radius, 1rem) * 0.75);
+    background: linear-gradient(
+        145deg,
+        color-mix(in oklab, var(--arcade-accent) 16%, var(--arcade-panel)),
+        var(--arcade-panel)
+    );
+    color: var(--arcade-accent);
+    box-shadow: 0 1rem 2rem rgb(0 0 0 / 0.35);
+}
+
+.arcade-home__icon svg {
+    width: 2.1rem;
+    height: 2.1rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.7;
+}
+
+.arcade-home__eyebrow {
+    margin: 0;
+    color: var(--arcade-accent-light);
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.arcade-home__title {
+    margin: 0;
+    color: var(--arcade-text);
+    font-family: var(--arcade-display, "Inter", ui-sans-serif, system-ui, sans-serif);
+    font-size: clamp(2.3rem, 6vw, 4rem);
+    font-weight: var(--arcade-title-weight, 800);
+    letter-spacing: var(--arcade-title-tracking, -0.045em);
+    line-height: 0.95;
+    text-transform: var(--arcade-title-transform, none);
+}
+
+.arcade-home__subtitle {
+    max-width: 40ch;
+    margin: 0;
+    color: var(--arcade-muted);
+    font-size: clamp(0.95rem, 1.6vw, 1.08rem);
+}
+
+.arcade-home__meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.45rem;
+    margin: 1rem 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.arcade-home__meta li {
+    padding: 0.35rem 0.7rem;
+    border: 0.0625rem solid var(--arcade-line-2);
+    border-radius: 62.4375rem;
+    background: var(--arcade-surface);
+    color: var(--arcade-meta);
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.66rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.arcade-home__modes {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin-top: 1.75rem;
+}
+
+.arcade-home__mode {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 1rem;
+    border: 0.0625rem solid var(--arcade-line);
+    border-radius: calc(var(--arcade-radius, 1rem) * 0.6);
+    background: var(--arcade-card);
+    color: var(--arcade-text);
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition:
+        border-color 150ms ease,
+        background-color 150ms ease,
+        transform 150ms ease;
+}
+
+.arcade-home__mode:hover {
+    border-color: var(--arcade-accent);
+    background: color-mix(in oklab, var(--arcade-accent) 8%, var(--arcade-card));
+    transform: translateY(-0.125rem);
+}
+
+.arcade-home__mode[aria-pressed="true"] {
+    border-color: var(--arcade-accent);
+    background: color-mix(in oklab, var(--arcade-accent) 13%, var(--arcade-card));
+    box-shadow: inset 0 0 0 0.0625rem color-mix(in oklab, var(--arcade-accent) 38%, transparent);
+}
+
+.arcade-home__mode-icon {
+    display: grid;
+    flex: 0 0 auto;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: calc(var(--arcade-radius, 1rem) * 0.4);
+    background: color-mix(in oklab, var(--arcade-accent) 15%, var(--arcade-card));
+    color: var(--arcade-accent);
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+.arcade-home__mode-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    min-width: 0;
+}
+
+.arcade-home__mode-text strong {
+    font-size: 0.95rem;
+    font-weight: 650;
+}
+
+.arcade-home__mode-text small {
+    color: var(--arcade-muted);
+    font-size: 0.8rem;
+    line-height: 1.45;
+}
+
+.arcade-home__instructions {
+    margin-top: 0.75rem;
+    padding: 1rem;
+    border: 0.0625rem dashed var(--arcade-line);
+    border-radius: calc(var(--arcade-radius, 1rem) * 0.6);
+    background: color-mix(in oklab, var(--arcade-text) 4%, var(--arcade-panel));
+    color: var(--arcade-muted);
+    font-size: 0.9rem;
+}
+
+.arcade-home__instructions[hidden] {
+    display: none;
+}
+
+.arcade-home__instructions strong {
+    display: block;
+    margin-bottom: 0.25rem;
+    color: var(--arcade-text);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.arcade-scoreboard {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.25rem;
+    padding: 1rem;
+    border: 0.0625rem solid var(--arcade-line-2);
+    border-radius: 0.9rem;
+    background: var(--arcade-field);
+}
+
+.arcade-scoreboard__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    min-width: 0;
+    text-align: center;
+}
+
+.arcade-scoreboard__item span {
+    color: var(--arcade-text-dim);
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.arcade-scoreboard__item strong {
+    color: var(--arcade-text);
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    font-variant-numeric: tabular-nums;
+    line-height: 1.1;
+}
+
+.arcade-scoreboard__divider {
+    width: 0.0625rem;
+    height: 2.2rem;
+    background: var(--arcade-line-2);
+}
+
+.arcade-home__start {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.95rem 1.25rem;
+    border: 0.0625rem solid var(--arcade-accent);
+    border-radius: calc(var(--arcade-radius, 1rem) * 0.6);
+    background: var(--arcade-accent);
+    color: var(--arcade-accent-text, var(--arcade-white));
+    font: inherit;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 1rem 2rem rgb(39 91 201 / 0.35);
+    transition:
+        filter 150ms ease,
+        transform 150ms ease;
+}
+
+.arcade-home__start:hover {
+    filter: brightness(1.08);
+    transform: translateY(-0.0625rem);
+}
+
+.arcade-home__start:active {
+    transform: translateY(0);
+}
+
+.arcade-home__start svg {
+    width: 1.1rem;
+    height: 1.1rem;
+    fill: currentColor;
+}
+
+.arcade-home__foot {
+    margin: 1rem 0 0;
+    color: var(--arcade-text-faint);
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.05em;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+/* En partida solo queda el juego: fuera la cabecera y los textos de presentación. */
+html.arcade-playing .site-header,
+html.arcade-playing .barra-superior,
+html.arcade-playing .pagina > .cabecera,
+html.arcade-playing .hoja > .cabecera,
+html.arcade-playing .hero__copy,
+html.arcade-playing .eyebrow,
+html.arcade-playing .sello,
+html.arcade-playing .meta,
+html.arcade-playing .entradilla,
+html.arcade-playing .cabecera__entradilla,
+html.arcade-playing .cabecera__lema,
+html.arcade-playing .cabecera__meta,
+html.arcade-playing .mono-label,
+html.arcade-playing .hero__lede,
+html.arcade-playing footer {
+    display: none;
+}
+
+html.arcade-playing body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-items: safe center;
+    justify-content: center;
+    justify-content: safe center;
+    min-height: 100dvh;
+    padding-block: 1.5rem;
+}
+
+html.arcade-playing .pagina,
+html.arcade-playing .hoja,
+html.arcade-playing .app,
+html.arcade-playing body > main,
+html.arcade-playing .disposicion {
+    width: 100%;
+    min-height: 0;
+    margin-inline: auto;
+}
+
+html.arcade-playing .hero {
+    grid-template-columns: minmax(0, 34rem);
+    justify-content: center;
+}
+
+html.arcade-playing[data-arcade-game="juego-7-letras"] body,
+html.arcade-playing[data-arcade-game="juego-memoriza-carta"] body,
+html.arcade-playing[data-arcade-game="juego-palabra-oculta"] body,
+html.arcade-playing[data-arcade-game="juego-serpiente"] body,
+html.arcade-playing[data-arcade-game="juego-sopa-letras"] body,
+html.arcade-playing[data-arcade-game="juego-sudoku"] body {
+    background: var(--arcade-bg);
+    color: var(--arcade-text);
+}
+
+html.arcade-playing[data-arcade-game="juego-7-letras"] .pagina,
+html.arcade-playing[data-arcade-game="juego-memoriza-carta"] .hoja,
+html.arcade-playing[data-arcade-game="juego-palabra-oculta"] .pagina,
+html.arcade-playing[data-arcade-game="juego-serpiente"] .hoja,
+html.arcade-playing[data-arcade-game="juego-sopa-letras"] .pagina,
+html.arcade-playing[data-arcade-game="juego-sudoku"] .pagina {
+    background: transparent;
+    color: var(--arcade-text);
+}
+
+html.arcade-playing[data-arcade-game="juego-7-letras"] .juego,
+html.arcade-playing[data-arcade-game="juego-palabra-oculta"] .juego,
+html.arcade-playing[data-arcade-game="juego-sopa-letras"] .juego,
+html.arcade-playing[data-arcade-game="juego-sudoku"] .juego {
+    grid-template-columns: minmax(0, 1fr);
+    width: 100%;
+    max-width: 46rem;
+    margin-inline: auto;
+    gap: 1rem;
+}
+
+html.arcade-playing[data-arcade-game="juego-7-letras"] .lateral,
+html.arcade-playing[data-arcade-game="juego-sopa-letras"] .lateral,
+html.arcade-playing[data-arcade-game="juego-sudoku"] .lateral {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.85rem;
+    width: 100%;
+}
+
+html.arcade-playing[data-arcade-game="juego-7-letras"] .lateral {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+html.arcade-playing[data-arcade-game="juego-7-letras"] .tarjeta--datos {
+    display: none;
+}
+
+html.arcade-playing[data-arcade-game="juego-7-letras"] .lateral > .btn,
+html.arcade-playing[data-arcade-game="juego-sopa-letras"] .lateral > .btn,
+html.arcade-playing[data-arcade-game="juego-sudoku"] .lateral > .btn,
+html.arcade-playing[data-arcade-game="juego-sudoku"] .teclado {
+    grid-column: 1 / -1;
+}
+
+html.arcade-playing[data-arcade-game="juego-palabra-oculta"] .lateral {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    width: 100%;
+}
+
+html.arcade-playing[data-arcade-game="juego-palabra-oculta"] .lateral .tarjeta {
+    display: none;
+}
+
+html.arcade-playing[data-arcade-game="juego-memoriza-carta"] .hoja,
+html.arcade-playing[data-arcade-game="juego-serpiente"] .hoja {
+    width: 100%;
+    max-width: 48rem;
+}
+
+html.arcade-playing[data-arcade-game="juego-wend"] .disposicion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 46rem;
+    gap: 1rem;
+}
+
+html.arcade-playing[data-arcade-game="juego-wend"] .lateral {
+    display: contents;
+}
+
+html.arcade-playing[data-arcade-game="juego-wend"] .panel--palabras {
+    order: -1;
+    width: 100%;
+}
+
+html.arcade-playing[data-arcade-game="juego-wend"] .juego {
+    order: 0;
+    width: 100%;
+}
+
+html.arcade-playing[data-arcade-game="juego-wend"] .acciones {
+    order: 2;
+    width: 100%;
+}
+
+html.arcade-playing[data-arcade-game="juego-adivina-numero"] .rules,
+html.arcade-playing .nota,
+html.arcade-playing .leyenda,
+html.arcade-playing .teclas,
+html.arcade-playing .juego__nota,
+html.arcade-playing .panel--plegable,
+html.arcade-playing .etiqueta,
+html.arcade-playing .guardado,
+html.arcade-playing .aviso,
+html.arcade-playing .partida__nota,
+html.arcade-playing .nota__datos,
+html.arcade-playing #capa-texto,
+html.arcade-playing #capa-eyebrow {
+    display: none;
+}
+
+html.arcade-playing[data-arcade-game="juego-wend"] {
+    --color-10: oklch(89% 0.06 125);
+    --lima: oklch(89% 0.06 125);
+    --lima-oscura: oklch(82% 0.07 125);
+    --fondo-4: oklch(94% 0.03 125);
+}
+
+html.arcade-playing[data-arcade-game="juego-zip"] .lateral {
+    display: none;
+}
+
+html.arcade-playing[data-arcade-game="juego-zip"] .disposicion {
+    grid-template-columns: minmax(0, min(38rem, 68vh));
+    justify-content: center;
+}
+
+html.arcade-playing[data-arcade-game="juego-memoriza-carta"] .marco {
+    width: min(100%, 32rem, 64vh);
+}
+
+html.arcade-playing[data-arcade-game="juego-7-letras"] .marco {
+    max-width: min(34rem, 68vh);
+    margin-inline: auto;
+}
+
+html.arcade-playing[data-arcade-game="juego-7-letras"] .hexagono {
+    width: clamp(4.6rem, 12vw, 7rem);
+    height: clamp(5.2rem, 13.5vw, 8rem);
+}
+
+html.arcade-playing[data-arcade-game="juego-adivina-numero"] .game-card {
+    width: min(100%, 40rem);
+}
+
+html.arcade-playing[data-arcade-game="juego-zip"] .marco {
+    max-width: min(40rem, 80vh);
+    margin-inline: auto;
+}
+
+html.arcade-playing[data-arcade-game="juego-palabra-oculta"] .tablero {
+    max-width: min(30rem, 60vh);
+    margin-inline: auto;
+}
+
+html.arcade-playing[data-arcade-game="juego-sopa-letras"] .tablero {
+    max-width: min(30rem, 60vh);
+    margin-inline: auto;
+}
+
+html.arcade-playing[data-arcade-game="juego-sudoku"] .tablero {
+    max-width: min(28rem, 56vh);
+    margin-inline: auto;
+}
+
+html.arcade-playing[data-arcade-game="juego-wend"] .marco {
+    max-width: min(34rem, 50vh);
+    margin-inline: auto;
+}
+
+html.arcade-playing[data-arcade-game="juego-wend"] .panel--palabras {
+    max-height: 13vh;
+    overflow-y: auto;
+}
+
+html.arcade-playing.arcade-rethemed .tarjeta,
+html.arcade-playing.arcade-rethemed .panel-juego,
+html.arcade-playing.arcade-rethemed .panel-tablero,
+html.arcade-playing.arcade-rethemed .marcador,
+html.arcade-playing.arcade-rethemed .niveles,
+html.arcade-playing.arcade-rethemed .teclado,
+html.arcade-playing.arcade-rethemed .marco {
+    border-color: var(--arcade-line);
+    background: var(--arcade-panel);
+    color: var(--arcade-text);
+}
+
+html.arcade-playing[data-arcade-game="juego-sudoku"] .teclado button {
+    border-color: var(--arcade-line);
+    background: var(--arcade-card);
+    color: var(--arcade-text);
+}
+
+html.arcade-playing[data-arcade-game="juego-patches"] .tablero,
+html.arcade-playing[data-arcade-game="juego-tango"] .tablero,
+html.arcade-playing[data-arcade-game="juego-queens"] .marco {
+    max-width: min(40rem, 80vh);
+    margin-inline: auto;
+}
+
+html.arcade-playing[data-arcade-game="juego-serpiente"] .marco {
+    max-width: min(36rem, 72vh);
+    margin-inline: auto;
+}
+
+html.arcade-playing[data-arcade-game="juego-wend"] .juego__barra > div:first-child,
+html.arcade-playing[data-arcade-game="juego-zip"] .partida__cabecera .etiqueta,
+html.arcade-playing[data-arcade-game="juego-zip"] .partida__cabecera h2,
+html.arcade-playing[data-arcade-game="juego-queens"] .puzzle__titulo {
+    display: none;
+}
+
+.arcade-home button:focus-visible {
+    outline: 0.125rem solid var(--arcade-accent);
+    outline-offset: 0.2rem;
+}
+
+.arcade-home--stack .arcade-home__panel {
+    width: min(34rem, 100%);
+}
+
+.arcade-home--stack .arcade-home__modes {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.arcade-home--poster .arcade-home__panel {
+    width: min(46rem, 100%);
+    align-items: flex-start;
+    text-align: left;
+}
+
+.arcade-home--poster .arcade-home__icon {
+    display: none;
+}
+
+.arcade-home--poster .arcade-home__title {
+    font-size: clamp(3.6rem, 9vw, 7rem);
+    line-height: 0.85;
+}
+
+.arcade-home--poster .arcade-home__modes {
+    width: 100%;
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.arcade-home--poster .arcade-home__start {
+    width: 100%;
+}
+
+.arcade-home--split .arcade-home__panel {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    width: min(64rem, 100%);
+    align-items: center;
+    column-gap: 2.5rem;
+}
+
+.arcade-home--split .arcade-home__header {
+    grid-row: 1 / span 3;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.arcade-home--split .arcade-home__modes {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.arcade-home--split .arcade-home__start {
+    width: 100%;
+}
+
+.arcade-home--billboard .arcade-home__panel {
+    width: min(70rem, 100%);
+}
+
+.arcade-home--billboard .arcade-home__header {
+    align-items: flex-start;
+    text-align: left;
+}
+
+.arcade-home--billboard .arcade-home__title {
+    font-size: clamp(3rem, 8vw, 6rem);
+}
+
+.arcade-home--billboard .arcade-home__modes {
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.arcade-home--billboard .arcade-home__start {
+    width: 100%;
+}
+
+.arcade-home--corner .arcade-home__panel {
+    width: min(60rem, 100%);
+    align-items: flex-start;
+    text-align: left;
+}
+
+.arcade-home--corner .arcade-home__header {
+    align-items: flex-start;
+}
+
+.arcade-home--corner .arcade-home__modes {
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.arcade-home--corner .arcade-home__start {
+    align-self: flex-end;
+}
+
+.arcade-home--compact .arcade-home__panel {
+    width: min(36rem, 100%);
+}
+
+.arcade-home--compact .arcade-home__icon {
+    width: 3rem;
+    height: 3rem;
+}
+
+.arcade-home--compact .arcade-home__title {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+}
+
+.arcade-home--compact .arcade-home__modes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.6rem;
+}
+
+.arcade-home--compact .arcade-home__mode {
+    padding: 0.85rem;
+}
+
+.arcade-home--rail .arcade-home__panel {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.4fr);
+    width: min(58rem, 100%);
+    align-items: center;
+    column-gap: 2.5rem;
+}
+
+.arcade-home--rail .arcade-home__header {
+    grid-row: 1 / span 3;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.arcade-home--rail .arcade-home__modes {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.arcade-home--rail .arcade-home__start {
+    width: 100%;
+}
+
+@media (width <= 48rem) {
+    .arcade-home--split .arcade-home__panel,
+    .arcade-home--rail .arcade-home__panel {
+        display: flex;
+    }
+
+    .arcade-home--split .arcade-home__header,
+    .arcade-home--rail .arcade-home__header {
+        grid-row: auto;
+        align-items: center;
+        text-align: center;
+    }
+
+    .arcade-home--billboard .arcade-home__header,
+    .arcade-home--corner .arcade-home__header,
+    .arcade-home--poster .arcade-home__panel {
+        align-items: center;
+        text-align: center;
+    }
+
+    .arcade-home--billboard .arcade-home__modes,
+    .arcade-home--corner .arcade-home__modes,
+    .arcade-home--compact .arcade-home__modes {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (width <= 40rem) {
+    .arcade-home {
+        padding: 0.75rem;
+    }
+
+    .arcade-home__panel {
+        padding: 1.25rem;
+        border-radius: 1.1rem;
+    }
+
+    .arcade-home__modes {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .arcade-home__icon {
+        width: 3.4rem;
+        height: 3.4rem;
+    }
+
+    .arcade-scoreboard {
+        gap: 0.6rem;
+        padding: 0.8rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .arcade-home * {
+        animation-duration: 0.01ms;
+        transition-duration: 0.01ms;
+    }
+}

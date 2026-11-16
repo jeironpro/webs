@@ -2,7 +2,7 @@ import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node
 import { fileURLToPath } from "node:url";
 import { createHash } from "node:crypto";
 import { join } from "node:path";
-import { execFile, spawn } from "node:child_process";
+import { execFile, execFileSync, spawn } from "node:child_process";
 import { leerProjects } from "./lib/data.mjs";
 
 const RAIZ = fileURLToPath(new URL("..", import.meta.url));
@@ -50,7 +50,26 @@ async function servir() {
     throw new Error("no se pudo arrancar el servidor estatico");
 }
 
-function capturar(id) {
+function varianza(png) {
+    try {
+        return Number(
+            execFileSync("magick", [
+                png,
+                "-colorspace",
+                "gray",
+                "-format",
+                "%[fx:standard_deviation]",
+                "info:",
+            ])
+                .toString()
+                .trim()
+        );
+    } catch {
+        return 0;
+    }
+}
+
+function capturar(id, intento = 0) {
     return new Promise((resolve) => {
         const png = join("/tmp", `wb-${id}.png`);
         const webp = join(DIR_SCREENSHOTS, `${id}.webp`);
@@ -60,6 +79,8 @@ function capturar(id) {
         }
         rmSync(png, { force: true });
         const perfil = join("/tmp", `wb-profile-${id}`);
+        const presupuesto = id === "web-daw" ? 60000 : intento === 0 ? 25000 : 45000;
+        const limite = id === "web-daw" ? 120000 : 90000;
         const chrome = spawn(
             CHROME,
             [
@@ -68,20 +89,28 @@ function capturar(id) {
                 "--no-first-run",
                 "--no-default-browser-check",
                 "--hide-scrollbars",
+                "--run-all-compositor-stages-before-draw",
+                "--disable-background-timer-throttling",
+                "--disable-renderer-backgrounding",
                 `--user-data-dir=${perfil}`,
                 "--window-size=1280,800",
-                "--virtual-time-budget=15000",
+                `--virtual-time-budget=${presupuesto}`,
                 `--screenshot=${png}`,
-                `http://127.0.0.1:${PUERTO}/${id}/`,
+                `http://127.0.0.1:${PUERTO}/${id}/${id === "web-daw" ? "?captura=1" : ""}`,
             ],
             { stdio: ["ignore", "ignore", "ignore"] }
         );
-        const temporizador = setTimeout(() => chrome.kill("SIGKILL"), 60000);
+        const temporizador = setTimeout(() => chrome.kill("SIGKILL"), limite);
         chrome.on("close", (code) => {
             clearTimeout(temporizador);
             if (!existsSync(png)) {
                 console.log(`  x ${id} sin captura (exit ${code})`);
                 return resolve(false);
+            }
+            if (varianza(png) < 0.03 && intento < 1) {
+                console.log(`  ! ${id} sin contenido suficiente, reintentando`);
+                rmSync(perfil, { recursive: true, force: true });
+                return resolve(capturar(id, intento + 1));
             }
             execFile("magick", ["-quiet", png, "-quality", "82", webp], () => {
                 rmSync(png, { force: true });

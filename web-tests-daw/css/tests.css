@@ -18,12 +18,37 @@
     --ok-soft: oklch(24.5% 0.03 150);
     --bad: oklch(70% 0.17 25);
     --bad-soft: oklch(24.5% 0.035 25);
+    --glow: oklch(29% 0.05 80 / 0.18);
+    --drawer-shadow: oklch(0% 0 0 / 0.45);
     --font-display: "Host Grotesk", ui-sans-serif, system-ui, sans-serif;
     --font-mono: "Atkinson Hyperlegible Mono", ui-monospace, monospace;
     --radius: 0.625rem;
     --hair: 1px;
     --ease: cubic-bezier(0.16, 1, 0.3, 1);
     --dur: 180ms;
+}
+
+:root[data-theme="light"] {
+    color-scheme: light;
+    --paper: oklch(97.5% 0.004 250);
+    --paper-2: oklch(94% 0.005 250);
+    --paper-3: oklch(89% 0.006 250);
+    --ink: oklch(21% 0.012 250);
+    --ink-2: oklch(36% 0.012 250);
+    --muted: oklch(47% 0.012 250);
+    --rule: oklch(80% 0.008 250);
+    --rule-2: oklch(66% 0.01 250);
+    --accent: oklch(70% 0.15 78);
+    --accent-ink: oklch(19% 0.04 75);
+    --accent-soft: oklch(92% 0.06 80);
+    --cool: oklch(52% 0.13 245);
+    --cool-soft: oklch(91% 0.035 245);
+    --ok: oklch(50% 0.13 150);
+    --ok-soft: oklch(92% 0.055 150);
+    --bad: oklch(54% 0.17 25);
+    --bad-soft: oklch(93% 0.045 25);
+    --glow: oklch(84% 0.09 80 / 0.32);
+    --drawer-shadow: oklch(20% 0.01 250 / 0.28);
 }
 
 *,
@@ -40,9 +65,7 @@ body {
     margin: 0;
     min-height: 100svh;
     padding: clamp(0.75rem, 2vw, 1.75rem);
-    background:
-        radial-gradient(90% 60% at 100% 0%, oklch(29% 0.05 80 / 0.18), transparent 60%),
-        var(--paper);
+    background: radial-gradient(90% 60% at 100% 0%, var(--glow), transparent 60%), var(--paper);
     color: var(--ink-2);
     font-family: var(--font-display);
     font-size: 1rem;
@@ -153,6 +176,48 @@ button {
 
 .hamburger svg {
     fill: currentColor;
+}
+
+.theme-toggle {
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+    border: var(--hair) solid var(--rule-2);
+    border-radius: 0.45rem;
+    background: var(--paper-2);
+    color: var(--ink-2);
+    transition:
+        background-color var(--dur) var(--ease),
+        color var(--dur) var(--ease);
+}
+
+.theme-toggle:hover {
+    background: var(--paper-3);
+    color: var(--ink);
+}
+
+.theme-icon {
+    width: 1.15rem;
+    height: 1.15rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.theme-icon--moon {
+    display: none;
+}
+
+:root[data-theme="light"] .theme-icon--sun {
+    display: none;
+}
+
+:root[data-theme="light"] .theme-icon--moon {
+    display: block;
 }
 
 .quick-actions {
@@ -653,7 +718,7 @@ button {
         border-block: 0;
         transform: translateX(-100%);
         transition: transform 220ms var(--ease);
-        box-shadow: 1.5rem 0 3rem oklch(0% 0 0 / 0.45);
+        box-shadow: 1.5rem 0 3rem var(--drawer-shadow);
     }
 
     .side-menu.is-open {

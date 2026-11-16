@@ -81,8 +81,8 @@ const createCard = (item, clickHandler, isOrganization = false) => {
 
     content.appendChild(name);
     content.appendChild(subinfo);
-    content.appendChild(description);
 
+    imageContainer.appendChild(description);
     card.appendChild(imageContainer);
     card.appendChild(content);
     card.addEventListener("click", clickHandler);

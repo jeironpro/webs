@@ -252,11 +252,13 @@ function setupMobileMenu() {
         drawer = nativeNav;
         open = () => {
             drawer.dataset.open = "true";
+            document.body.classList.add("soporte-menu-open");
             backdrop.hidden = false;
             finishMotion(drawer);
         };
         close = () => {
             drawer.dataset.open = "false";
+            document.body.classList.remove("soporte-menu-open");
             backdrop.hidden = true;
             finishMotion(drawer);
         };
@@ -275,11 +277,13 @@ function setupMobileMenu() {
         document.body.append(drawer);
         open = () => {
             drawer.dataset.open = "true";
+            document.body.classList.add("soporte-menu-open");
             backdrop.hidden = false;
             finishMotion(drawer);
         };
         close = () => {
             drawer.dataset.open = "false";
+            document.body.classList.remove("soporte-menu-open");
             backdrop.hidden = true;
             finishMotion(drawer);
         };

@@ -85,12 +85,14 @@
     display: none;
 }
 .soporte-nav {
-    width: 4.5rem;
-    transform: translateX(-4.5rem);
+    width: 18rem;
+    transform: translateX(calc(-100% - 1rem));
+    visibility: hidden;
 }
 .soporte-nav[data-open="true"] {
     width: 18rem;
     transform: translateX(0);
+    visibility: visible;
 }
 .soporte-main {
     padding-left: 0;
@@ -98,13 +100,22 @@
 .soporte-menu-trigger {
     display: inline-flex;
 }
+.soporte-menu-open .soporte-menu-trigger {
+    display: none;
+}
 .mobile-backdrop-soporte {
     z-index: 30;
+}
+@media (width < 64rem) {
+    .soporte-main {
+        padding-top: 3.5rem;
+    }
 }
 @media (min-width: 64rem) {
     .soporte-nav {
         width: 13rem;
         transform: none;
+        visibility: visible;
     }
     .soporte-main {
         padding-left: 17.25rem;

@@ -94,9 +94,11 @@ body {
 
 .navigation {
     flex: 1;
-    max-height: var(--nav-max-height);
+    min-height: 0;
+    max-height: none;
     overflow-y: auto;
     padding: 1rem;
+    overscroll-behavior: contain;
 }
 
 .nav-section {
@@ -384,6 +386,10 @@ body {
     display: none;
     opacity: 0;
 }
+
+#welcome-screen.is-hidden {
+    display: none;
+}
 .view-active {
     animation: fadeIn var(--duration-view) var(--easing-standard) forwards;
 }
@@ -513,7 +519,7 @@ body {
     border-bottom: none;
     transform: translateX(-105%);
     transition: transform 240ms ease;
-    overflow-y: auto;
+    overflow: hidden;
 }
 
 .sidebar.is-open {
