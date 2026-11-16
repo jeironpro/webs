@@ -372,6 +372,11 @@ html.arcade-playing body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    align-items: safe center;
+    justify-content: center;
+    justify-content: safe center;
+    min-height: 100dvh;
+    padding-block: 1.5rem;
 }
 
 html.arcade-playing .pagina,
@@ -380,12 +385,50 @@ html.arcade-playing .app,
 html.arcade-playing body > main,
 html.arcade-playing .disposicion {
     width: 100%;
+    min-height: 0;
     margin-inline: auto;
 }
 
 html.arcade-playing .hero {
     grid-template-columns: minmax(0, 34rem);
     justify-content: center;
+}
+
+html.arcade-playing[data-arcade-game="juego-adivina-numero"] .rules,
+html.arcade-playing .nota,
+html.arcade-playing .leyenda,
+html.arcade-playing .teclas,
+html.arcade-playing .juego__nota,
+html.arcade-playing .panel--plegable {
+    display: none;
+}
+
+html.arcade-playing[data-arcade-game="juego-zip"] .lateral {
+    display: none;
+}
+
+html.arcade-playing[data-arcade-game="juego-zip"] .disposicion {
+    grid-template-columns: minmax(0, min(38rem, 68vh));
+    justify-content: center;
+}
+
+html.arcade-playing[data-arcade-game="juego-memoriza-carta"] .marco {
+    width: min(100%, 24rem, 48vh);
+}
+
+html.arcade-playing[data-arcade-game="juego-palabra-oculta"] .tablero,
+html.arcade-playing[data-arcade-game="juego-sopa-letras"] .tablero,
+html.arcade-playing[data-arcade-game="juego-sudoku"] .tablero,
+html.arcade-playing[data-arcade-game="juego-patches"] .tablero,
+html.arcade-playing[data-arcade-game="juego-tango"] .tablero {
+    max-width: min(28rem, 55vh);
+    margin-inline: auto;
+}
+
+html.arcade-playing[data-arcade-game="juego-queens"] .marco,
+html.arcade-playing[data-arcade-game="juego-serpiente"] .marco {
+    max-width: min(28rem, 55vh);
+    margin-inline: auto;
 }
 
 html.arcade-playing[data-arcade-game="juego-wend"] .juego__barra > div:first-child,

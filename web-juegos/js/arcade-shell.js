@@ -429,11 +429,12 @@
         "Empieza una partida con la configuración clásica.",
         true
     );
+    const isGuessingGame = gameId === "juego-adivina-numero";
     const helpMode = createMode(
         "arcade-mode-help",
         "?",
-        "Reglas",
-        "Consulta cómo se juega.",
+        isGuessingGame ? "Cómo se juega" : "Reglas",
+        isGuessingGame ? "Abre las reglas antes de empezar." : "Consulta cómo se juega.",
         false
     );
     modes.append(playMode, helpMode);
