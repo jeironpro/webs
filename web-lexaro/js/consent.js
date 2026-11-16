@@ -19,12 +19,6 @@ export function initStorageConsent() {
         return;
     }
 
-    if (new URLSearchParams(window.location.search).has("captura")) {
-        banner.hidden = true;
-        reopen.hidden = true;
-        return;
-    }
-
     const initial = banner.querySelector("[data-consent-initial]");
     const declined = banner.querySelector("[data-consent-declined]");
     const active = banner.querySelector("[data-consent-active]");
@@ -112,6 +106,17 @@ export function initStorageConsent() {
             accept.focus();
         }
     });
+
+    // Screenshot mode only applies to local previews and keeps the privacy control available.
+    const isLocalPreview = ["127.0.0.1", "localhost"].includes(window.location.hostname);
+    const isCaptureMode =
+        isLocalPreview && new URLSearchParams(window.location.search).has("captura");
+
+    if (isCaptureMode) {
+        banner.hidden = true;
+        reopen.hidden = false;
+        return;
+    }
 
     if (hasStorageConsent()) {
         banner.hidden = true;
