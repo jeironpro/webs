@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Tarjetas de repaso · Fichero</title>
+        <meta
+            name="description"
+            content="Crea mazos de tarjetas en el navegador y estudia con repetición espaciada: califica cada repaso y deja que la agenda programe el siguiente."
+        />
+        <meta name="theme-color" content="#33263d" />
+        <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700&family=Red+Hat+Mono:wght@400;500;600&display=swap"
+            rel="stylesheet"
+        />
+
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
+        <a class="skip-link" href="#deck-title">Saltar al mazo activo</a>
+
+        <div class="shell">
+            <header class="topbar">
+                <a class="brand" href="../">
+                    <svg
+                        class="brand__icon"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                        focusable="false"
+                    >
+                        <rect
+                            x="7"
+                            y="3"
+                            width="13"
+                            height="16"
+                            rx="1"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.4"
+                        />
+                        <path d="M4 6v15h12" fill="none" stroke="currentColor" stroke-width="1.4" />
+                        <path
+                            d="M10 8h7M10 11h7M10 14h4"
+                            stroke="currentColor"
+                            stroke-width="1.2"
+                        />
+                    </svg>
+                    <span class="brand__name">fichero</span>
+                    <span class="brand__sep" aria-hidden="true">/</span>
+                    <span class="brand__area">tarjetas de repaso</span>
+                </a>
+
+                <p class="topbar__state">
+                    <span class="topbar__dot" aria-hidden="true"></span>
+                    guardado local
+                </p>
+
+                <nav class="topbar__nav" aria-label="Principal">
+                    <a class="topbar__link" href="../">catálogo</a>
+                    <a
+                        class="topbar__link"
+                        href="https://github.com/jeironpro/webs/tree/main/web-flashcards"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >github ↗</a
+                    >
+                </nav>
+            </header>
+
+            <main class="workspace">
+                <aside class="library" aria-labelledby="library-title">
+                    <div class="library__head">
+                        <p class="eyebrow">Biblioteca</p>
+                        <h2 id="library-title">Mazos</h2>
+                    </div>
+
+                    <div
+                        class="deck-list"
+                        id="deck-list"
+                        role="group"
+                        aria-label="Mazos guardados"
+                    ></div>
+
+                    <button class="new-deck" type="button" id="new-deck-toggle">
+                        <span aria-hidden="true">+</span> Nuevo mazo
+                    </button>
+
+                    <form class="deck-form" id="new-deck-form" hidden>
+                        <label class="visually-hidden" for="new-deck-name">Nombre del mazo</label>
+                        <input
+                            class="deck-form__input"
+                            id="new-deck-name"
+                            name="new-deck-name"
+                            type="text"
+                            maxlength="60"
+                            required
+                            placeholder="Ej. Historia del arte"
+                        />
+                        <div class="deck-form__actions">
+                            <button class="btn btn--light" type="submit">Crear</button>
+                            <button class="btn btn--light" type="button" id="new-deck-cancel">
+                                Cancelar
+                            </button>
+                        </div>
+                    </form>
+
+                    <p class="library__foot" id="storage-status">Guardado en este navegador</p>
+                </aside>
+
+                <section class="study" aria-labelledby="deck-title">
+                    <header class="study__head">
+                        <div class="study__identity">
+                            <p class="eyebrow">Mazo activo</p>
+                            <h1 id="deck-title">JavaScript esencial</h1>
+                            <p class="study__meta" id="deck-meta">0 pendientes · 0 tarjetas</p>
+                        </div>
+
+                        <div class="study__tools">
+                            <button class="btn btn--quiet" type="button" id="delete-deck">
+                                Eliminar mazo
+                            </button>
+                            <div class="view-tabs" role="tablist" aria-label="Vista del mazo">
+                                <button
+                                    class="view-tab"
+                                    type="button"
+                                    role="tab"
+                                    id="tab-study"
+                                    aria-selected="true"
+                                    aria-controls="study-view"
+                                    data-view="study"
+                                >
+                                    Estudiar
+                                </button>
+                                <button
+                                    class="view-tab"
+                                    type="button"
+                                    role="tab"
+                                    id="tab-cards"
+                                    aria-selected="false"
+                                    aria-controls="cards-view"
+                                    data-view="cards"
+                                >
+                                    Tarjetas
+                                </button>
+                            </div>
+                        </div>
+                    </header>
+
+                    <div
+                        class="study-view"
+                        id="study-view"
+                        role="tabpanel"
+                        aria-labelledby="tab-study"
+                    >
+                        <div class="session-bar" id="session-bar">
+                            <span class="session-bar__count" id="session-count">0 de 0</span>
+                            <progress
+                                class="session-bar__progress"
+                                id="session-progress"
+                                max="1"
+                                value="0"
+                                aria-label="Progreso de la sesión"
+                            ></progress>
+                        </div>
+
+                        <div class="review-area" id="review-area">
+                            <article class="review-card" id="review-card" tabindex="-1">
+                                <span class="review-card__tab" id="card-side">Frente</span>
+                                <div class="review-card__body">
+                                    <p class="review-card__kicker">Pregunta</p>
+                                    <p
+                                        class="review-card__front"
+                                        id="card-front"
+                                        aria-live="polite"
+                                    >
+                                        ¿Qué devuelve typeof null?
+                                    </p>
+                                    <div class="review-card__answer" id="card-answer" hidden>
+                                        <p class="review-card__kicker">Respuesta</p>
+                                        <p class="review-card__back" id="card-back"></p>
+                                    </div>
+                                </div>
+                                <span class="review-card__fold" aria-hidden="true"></span>
+                            </article>
+
+                            <div class="study-actions" id="study-actions">
+                                <button class="reveal" type="button" id="reveal">
+                                    Mostrar respuesta
+                                </button>
+
+                                <div
+                                    class="grades"
+                                    id="grade-group"
+                                    role="group"
+                                    aria-label="Calificar el repaso"
+                                    hidden
+                                >
+                                    <button
+                                        class="grade grade--again"
+                                        type="button"
+                                        data-grade="again"
+                                    >
+                                        <span>Otra vez</span>
+                                        <small id="preview-again">10 min</small>
+                                    </button>
+                                    <button
+                                        class="grade grade--hard"
+                                        type="button"
+                                        data-grade="hard"
+                                    >
+                                        <span>Difícil</span>
+                                        <small id="preview-hard">6 h</small>
+                                    </button>
+                                    <button
+                                        class="grade grade--good"
+                                        type="button"
+                                        data-grade="good"
+                                    >
+                                        <span>Bien</span>
+                                        <small id="preview-good">1 día</small>
+                                    </button>
+                                    <button
+                                        class="grade grade--easy"
+                                        type="button"
+                                        data-grade="easy"
+                                    >
+                                        <span>Fácil</span>
+                                        <small id="preview-easy">4 días</small>
+                                    </button>
+                                </div>
+
+                                <p class="key-hint" id="key-hint">Espacio para girar</p>
+                            </div>
+                        </div>
+
+                        <div class="stage-state" id="stage-state" hidden>
+                            <p class="eyebrow" id="state-kicker">Sesión</p>
+                            <h2 id="state-title">Sesión completada</h2>
+                            <p id="state-text"></p>
+                            <button class="btn btn--primary" type="button" id="state-action">
+                                Ver tarjetas
+                            </button>
+                        </div>
+                    </div>
+
+                    <div
+                        class="cards-view"
+                        id="cards-view"
+                        role="tabpanel"
+                        aria-labelledby="tab-cards"
+                        hidden
+                    >
+                        <form class="card-form" id="card-form">
+                            <div class="card-form__head">
+                                <h2 id="card-form-title">Añadir tarjeta</h2>
+                                <p>La tarjeta nueva entra en el repaso de hoy.</p>
+                            </div>
+
+                            <div class="card-form__fields">
+                                <label class="field">
+                                    <span class="field__label">Frente</span>
+                                    <textarea
+                                        class="field__input"
+                                        id="card-front-input"
+                                        name="card-front"
+                                        rows="3"
+                                        maxlength="500"
+                                        required
+                                        placeholder="La pregunta o el concepto…"
+                                    ></textarea>
+                                </label>
+                                <label class="field">
+                                    <span class="field__label">Reverso</span>
+                                    <textarea
+                                        class="field__input"
+                                        id="card-back-input"
+                                        name="card-back"
+                                        rows="3"
+                                        maxlength="1000"
+                                        required
+                                        placeholder="La respuesta que quieres recordar…"
+                                    ></textarea>
+                                </label>
+                            </div>
+
+                            <div class="card-form__actions">
+                                <button class="btn btn--primary" type="submit" id="card-submit">
+                                    Añadir tarjeta
+                                </button>
+                                <button class="btn" type="button" id="card-cancel" hidden>
+                                    Cancelar
+                                </button>
+                                <span class="form-status" id="card-status" role="status"></span>
+                            </div>
+                        </form>
+
+                        <div class="cards-head">
+                            <h2>Tarjetas del mazo</h2>
+                            <span class="cards-count" id="cards-count">0 tarjetas</span>
+                        </div>
+
+                        <ul class="card-list" id="card-list"></ul>
+                        <p class="empty-note" id="cards-empty" hidden>
+                            Este mazo todavía no tiene tarjetas. Añade la primera arriba.
+                        </p>
+                    </div>
+                </section>
+
+                <aside class="agenda" aria-label="Estado y agenda del mazo">
+                    <section class="rail-block">
+                        <p class="eyebrow">Sesión</p>
+                        <p class="due-total">
+                            <span class="due-total__number" id="due-count">0</span>
+                            <span class="due-total__label">pendientes</span>
+                        </p>
+                        <dl class="deck-stats">
+                            <div>
+                                <dt>Nuevas</dt>
+                                <dd id="new-count">0</dd>
+                            </div>
+                            <div>
+                                <dt>Aprendiendo</dt>
+                                <dd id="learning-count">0</dd>
+                            </div>
+                            <div>
+                                <dt>Maduras</dt>
+                                <dd id="mature-count">0</dd>
+                            </div>
+                        </dl>
+                    </section>
+
+                    <section class="rail-block">
+                        <h2 class="rail-title">Agenda</h2>
+                        <ul class="agenda-list" id="agenda-list"></ul>
+                    </section>
+
+                    <section class="rail-block">
+                        <h2 class="rail-title">Cómo funciona</h2>
+                        <p class="rail-note">
+                            Cada calificación reprograma la tarjeta. «Otra vez» vuelve a la cola de
+                            esta sesión; «Bien» y «Fácil» espacian el próximo repaso.
+                        </p>
+                        <p class="rail-note rail-note--quiet">
+                            Los mazos viven solo en este navegador: no hay cuenta ni servidor.
+                        </p>
+                    </section>
+                </aside>
+            </main>
+
+            <footer class="footer">
+                <p>Todos los derechos reservados - <span data-year>2026</span> jeironpro</p>
+                <p class="footer__meta">fichero · repetición espaciada local</p>
+            </footer>
+        </div>
+
+        <dialog class="dialog" id="confirm-dialog" aria-labelledby="confirm-title">
+            <form class="dialog__form" method="dialog">
+                <p class="eyebrow">Confirmar</p>
+                <h2 id="confirm-title">Eliminar</h2>
+                <p class="dialog__text" id="confirm-text"></p>
+                <div class="dialog__actions">
+                    <button class="btn" type="submit" value="cancel" autofocus>Cancelar</button>
+                    <button
+                        class="btn btn--danger"
+                        type="submit"
+                        value="confirm"
+                        id="confirm-accept"
+                    >
+                        Eliminar
+                    </button>
+                </div>
+            </form>
+        </dialog>
+
+        <script type="module" src="js/app.js"></script>
+    </body>
+</html>
