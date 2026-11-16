@@ -1,13 +1,13 @@
 # webs
 
-Monorepo que agrupa las webs estáticas de jeironpro. En la raíz vive un **catálogo** que indexa los 55 proyectos; cada proyecto ocupa su propio subdirectorio (`web-*`) y se sirve de forma independiente como página estática. Cinco de ellas son además **sub-catálogos**: hubs con su propio índice de subproyectos (el catálogo raíz las distingue con el filtro y la insignia "Sub-catálogo").
+Monorepo que agrupa las webs estáticas de jeironpro. En la raíz vive un **catálogo** que indexa los 58 proyectos; cada proyecto ocupa su propio subdirectorio (`web-*`) y se sirve de forma independiente como página estática. Cinco de ellas son además **sub-catálogos**: hubs con su propio índice de subproyectos (el catálogo raíz las distingue con el filtro y la insignia "Sub-catálogo").
 
 ## Estado actual
 
-- **57 webs** y **5 sub-catálogos** publicados como sitios estáticos, sin paso de build por web.
-- **82 capturas** mantenidas en el repositorio: 57 del catálogo raíz, 5 de dashboards y 20 de juegos.
+- **58 webs** y **5 sub-catálogos** publicados como sitios estáticos, sin paso de build por web.
+- **83 capturas** mantenidas en el repositorio: 58 del catálogo raíz, 5 de dashboards y 20 de juegos.
 - **25 webs adicionales** con auditoría técnica cerrada: HTML, CSS, JS, navegador, limpieza, favicon y README al 100 %.
-- **202 pruebas** automatizadas y comprobaciones de formato, lint, enlaces internos, datos y capturas.
+- **220 pruebas** automatizadas y comprobaciones de formato, lint, enlaces internos, datos y capturas.
 - Cuatro workflows: `ci`, `enlaces`, `capturas` y `deploy`; este último publica el sitio en GitHub Pages excluyendo dependencias, perfiles de navegador y el ZIP grande de Git LFS.
 
 ## Catálogo
@@ -36,6 +36,7 @@ Abre `index.html` de la raíz (o despliega el repositorio en GitHub Pages: el ca
 | [web-codingbat-solutions](./web-codingbat-solutions/)           | CodingBat solutions         | Educación       | html, css, javascript        |
 | [web-color-picker](./web-color-picker/)                         | Color Picker                | Utilidades      | html, css, javascript, svg   |
 | [web-contador-palabras](./web-contador-palabras/)               | Contador de palabras        | Utilidades      | html, css, javascript        |
+| [web-diff](./web-diff/)                                         | Comparador de texto         | Utilidades      | html, css, javascript        |
 | [web-continguts-daw](./web-continguts-daw/)                     | Continguts DAW              | Curricular      | html, css, javascript        |
 | [web-conversor-universal](./web-conversor-universal/)           | Conversor universal         | Utilidades      | html, css, javascript        |
 | [web-convertidor-moneda](./web-convertidor-moneda/)             | Convertidor de moneda       | Utilidades      | html, css, javascript        |
@@ -87,7 +88,7 @@ Las 5 webs marcadas _(sub-catálogo)_ son hubs con catálogo propio: `web-apis` 
 La fuente de verdad es `projects.yml` en la raíz. Los artefactos se regeneran con comandos npm:
 
 - `npm run data:build` valida el esquema y genera `assets/projects.json` (datos ordenados que consume el catálogo).
-- `npm run data:screenshots` captura las 57 webs en `assets/screenshots/*.webp` (Chrome headless sobre un servidor local); con ids detrás (`npm run data:screenshots -- web-apis`) regenera solo esas.
+- `npm run data:screenshots` captura las 58 webs en `assets/screenshots/*.webp` (Chrome headless sobre un servidor local); con ids detrás (`npm run data:screenshots -- web-apis`) regenera solo esas.
 - `npm run capturas:check` falla si una captura está desfasada (incluidos cambios en sus CSS/JS locales), falta o está vacía, usando el manifiesto y las fechas de git; el workflow `capturas` lo trata como bloqueante.
 - `npm test` valida integridad de datos, esquema y generador.
 
@@ -123,7 +124,7 @@ La fuente de verdad es `projects.yml` en la raíz. Los artefactos se regeneran c
 4. **Regenera datos y capturas**, y verifica que todo cuadra:
 
    ```sh
-   npm run data:screenshots -- --force  # regenera las 57 capturas del catálogo
+   npm run data:screenshots -- --force  # regenera las 58 capturas del catálogo
    npm run data:screenshots -- web-apis # regenera solo una
    npm run capturas:check               # falla si hay capturas desfasadas o ausentes
    npm run data:build

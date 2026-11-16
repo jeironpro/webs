@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Comparador de texto · Dos versiones, una cinta</title>
+        <meta
+            name="description"
+            content="Compara dos textos línea a línea: la cinta marca lo añadido, lo eliminado y lo modificado, con diff unificado para copiar."
+        />
+        <meta name="theme-color" content="#152a26" />
+        <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
+            rel="stylesheet"
+        />
+
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
+        <a class="skip-link" href="#text-a">Saltar al comparador</a>
+
+        <header class="topbar">
+            <div class="topbar__inner">
+                <a class="brand" href="../">
+                    <span class="brand__bars" aria-hidden="true">
+                        <span></span><span></span><span></span>
+                    </span>
+                    Cinta <span class="brand__slash">/</span> comparador de texto
+                </a>
+                <nav class="topbar__nav" aria-label="Principal">
+                    <a class="topbar__link" href="../">catálogo</a>
+                    <a
+                        class="topbar__link"
+                        href="https://github.com/jeironpro/webs/tree/main/web-diff"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >github ↗</a
+                    >
+                </nav>
+            </div>
+        </header>
+
+        <main class="main">
+            <section class="intro" aria-labelledby="title">
+                <h1 class="intro__title" id="title">Dos versiones,<br />una sola cinta</h1>
+                <div class="intro__body">
+                    <p class="intro__kicker">Comparador · línea a línea</p>
+                    <p class="intro__text">
+                        Pega el texto original y la versión nueva. La cinta marca lo que se fue, lo
+                        que llegó y lo que cambió de forma; el diff se calcula en tu navegador.
+                    </p>
+                </div>
+            </section>
+
+            <section class="workbench" aria-labelledby="workbench-title">
+                <h2 class="visually-hidden" id="workbench-title">Textos a comparar</h2>
+
+                <div class="toolbar">
+                    <div class="toolbar__options">
+                        <label class="switch">
+                            <input class="switch__input" type="checkbox" id="ignore-case" />
+                            <span class="switch__box" aria-hidden="true"></span>
+                            Ignorar mayúsculas
+                        </label>
+                        <label class="switch">
+                            <input class="switch__input" type="checkbox" id="ignore-space" />
+                            <span class="switch__box" aria-hidden="true"></span>
+                            Ignorar espacios
+                        </label>
+                    </div>
+
+                    <div class="toolbar__actions">
+                        <button type="button" class="btn btn--ghost" id="example">
+                            Cargar ejemplo
+                        </button>
+                        <button type="button" class="btn btn--ghost" id="swap">Intercambiar</button>
+                        <button type="button" class="btn btn--ghost" id="clear">Limpiar</button>
+                    </div>
+                </div>
+
+                <div class="sources">
+                    <div class="source source--a">
+                        <div class="source__head">
+                            <span class="source__tag" aria-hidden="true">A</span>
+                            <label class="source__label" for="text-a">Original</label>
+                            <span class="source__count" id="count-a">0 líneas</span>
+                        </div>
+                        <textarea
+                            class="source__input"
+                            id="text-a"
+                            name="text-a"
+                            rows="7"
+                            spellcheck="false"
+                            autocomplete="off"
+                            placeholder="Pega aquí la versión de partida…"
+                        ></textarea>
+                    </div>
+
+                    <div class="source source--b">
+                        <div class="source__head">
+                            <span class="source__tag" aria-hidden="true">B</span>
+                            <label class="source__label" for="text-b">Versión nueva</label>
+                            <span class="source__count" id="count-b">0 líneas</span>
+                        </div>
+                        <textarea
+                            class="source__input"
+                            id="text-b"
+                            name="text-b"
+                            rows="7"
+                            spellcheck="false"
+                            autocomplete="off"
+                            placeholder="Pega aquí la versión revisada…"
+                        ></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <section class="summary" aria-labelledby="summary-title">
+                <div class="summary__head">
+                    <h2 class="summary__title" id="summary-title">Resumen de la cinta</h2>
+                    <p class="summary__similarity" id="similarity" aria-live="polite">
+                        100 % igual
+                    </p>
+                </div>
+
+                <div class="ribbon" id="ribbon" aria-hidden="true"></div>
+
+                <ul class="stats">
+                    <li class="stat stat--equal">
+                        <span class="stat__value" id="stat-equal">0</span>
+                        <span class="stat__label">iguales</span>
+                    </li>
+                    <li class="stat stat--add">
+                        <span class="stat__value" id="stat-add">0</span>
+                        <span class="stat__label">añadidas</span>
+                    </li>
+                    <li class="stat stat--remove">
+                        <span class="stat__value" id="stat-remove">0</span>
+                        <span class="stat__label">eliminadas</span>
+                    </li>
+                    <li class="stat stat--change">
+                        <span class="stat__value" id="stat-change">0</span>
+                        <span class="stat__label">modificadas</span>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="result" aria-labelledby="diff-title">
+                <header class="result__head">
+                    <div>
+                        <h2 class="result__title" id="diff-title">Cinta de cambios</h2>
+                        <p class="result__meta" id="truncated" hidden>
+                            Textos largos: se comparan las primeras 2000 líneas de cada lado.
+                        </p>
+                    </div>
+                    <div class="result__tools">
+                        <p
+                            class="result__status"
+                            id="copy-status"
+                            role="status"
+                            aria-live="polite"
+                        ></p>
+                        <button type="button" class="btn btn--solid" id="copy" disabled>
+                            Copiar diff unificado
+                        </button>
+                    </div>
+                </header>
+
+                <div class="diff__head" aria-hidden="true">
+                    <span>A · original</span>
+                    <span>B · versión nueva</span>
+                </div>
+
+                <p class="diff__empty" id="diff-empty">
+                    Pega texto en cualquiera de las dos columnas para empezar a comparar.
+                </p>
+                <ol class="diff" id="diff"></ol>
+            </section>
+
+            <footer class="footer">
+                <p class="footer__text">
+                    Todos los derechos reservados - <span id="year">2026</span> jeironpro
+                </p>
+            </footer>
+        </main>
+
+        <script type="module" src="js/app.js"></script>
+    </body>
+</html>
