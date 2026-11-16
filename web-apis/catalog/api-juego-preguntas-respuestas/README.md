@@ -18,7 +18,7 @@ API RESTful para un juego de trivia con 350 preguntas distribuidas en 7 categori
 
 ## Autenticacion
 
-Via header `X-API-Key` o query param `api_key`. Si la variable `API_KEYS` esta vacia, la autenticacion se deshabilita (dev local).
+Via header `X-API-Key` (nunca por query param, para no filtrar la clave en logs e historiales). `API_KEYS` admite varias claves separadas por comas. Si la variable falta o esta vacia, la API responde `503` (falla cerrado): configurala siempre, tambien en desarrollo.
 
 ## Stack
 

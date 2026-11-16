@@ -7,8 +7,8 @@ Monorepo que agrupa las webs estáticas de jeironpro. En la raíz vive un **cat�
 - **55 webs** y **5 sub-catálogos** publicados como sitios estáticos, sin paso de build por web.
 - **80 capturas** mantenidas en el repositorio: 55 del catálogo raíz, 5 de dashboards y 20 de juegos.
 - **25 webs adicionales** con auditoría técnica cerrada: HTML, CSS, JS, navegador, limpieza, favicon y README al 100 %.
-- **162 pruebas** automatizadas y comprobaciones de formato, lint, enlaces internos, datos y capturas.
-- Cuatro workflows: `ci`, `enlaces`, `capturas` y `deploy`; este último publica el repositorio tal cual en GitHub Pages.
+- **170 pruebas** automatizadas y comprobaciones de formato, lint, enlaces internos, datos y capturas.
+- Cuatro workflows: `ci`, `enlaces`, `capturas` y `deploy`; este último publica el sitio en GitHub Pages excluyendo dependencias, perfiles de navegador y el ZIP grande de Git LFS.
 
 ## Catálogo
 
@@ -86,7 +86,7 @@ La fuente de verdad es `projects.yml` en la raíz. Los artefactos se regeneran c
 
 - `npm run data:build` valida el esquema y genera `assets/projects.json` (datos ordenados que consume el catálogo).
 - `npm run data:screenshots` captura las 55 webs en `assets/screenshots/*.webp` (Chrome headless sobre un servidor local); con ids detrás (`npm run data:screenshots -- web-apis`) regenera solo esas.
-- `npm run capturas:check` falla si una captura está desfasada o falta, usando el manifiesto y las fechas de git; el workflow `capturas` lo trata como bloqueante.
+- `npm run capturas:check` falla si una captura está desfasada (incluidos cambios en sus CSS/JS locales), falta o está vacía, usando el manifiesto y las fechas de git; el workflow `capturas` lo trata como bloqueante.
 - `npm test` valida integridad de datos, esquema y generador.
 
 ## Añadir una nueva web
@@ -149,7 +149,7 @@ npm run capturas:check
 
 `pre-commit` se instala con `pre-commit install`; todas las webs `web-*` se lintan y formatean. Solo quedan fuera las dependencias de terceros en `vendor/` y los binarios de `assets/`.
 
-Todas las webs son estáticas: no hay `yarn dev` ni build por app. Para probar una web, sirve la raíz con `python3 -m http.server` y abre `http://127.0.0.1:8000/<id>/`; el despliegue copia el árbol a GitHub Pages en cada push a `main` (`.github/workflows/deploy.yml`).
+Todas las webs son estáticas: no hay `yarn dev` ni build por app. Para probar una web, sirve la raíz con `python3 -m http.server` y abre `http://127.0.0.1:8000/<id>/`; el despliegue copia el árbol a GitHub Pages en cada push a `main` (`.github/workflows/deploy.yml`), excluyendo `node_modules`/`dist`, perfiles `.rea` y el instalador `datamodeler_*.zip`. Ese ZIP pesa más de 300 MB y se sirve con Git LFS: el deploy solo publica un puntero, así que el catálogo enlaza la descarga real mediante `media.githubusercontent.com`.
 
 ## Licencia
 

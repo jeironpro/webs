@@ -1,5 +1,9 @@
 # Importaciones
-from fastapi import FastAPI, Depends, HTTPException
+import os
+import secrets
+
+from fastapi import FastAPI, Depends, HTTPException, Request
+from fastapi.responses import JSONResponse
 from sqlmodel import SQLModel, Session
 from database.config import engine, obtener_db
 from models.Biblia import Biblia
@@ -25,14 +29,39 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# CORS (Cross-Origin Resource Sharing) permite que las peticiones se hagan desde diferentes orígenes
+# Orígenes permitidos: FRONTEND_URL admite una lista separada por comas.
+origins = [o.strip() for o in os.getenv("FRONTEND_URL", "").split(",") if o.strip()]
+if not origins:
+    origins = [
+        "http://127.0.0.1:5500",
+        "http://localhost:5500",
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+    ]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["GET", "POST", "PATCH", "DELETE"],
+    allow_headers=["Content-Type", "X-API-Key"],
 )
+
+
+@app.middleware("http")
+async def exigir_api_key(request: Request, call_next):
+    """Protege las escrituras con una clave de entorno; nunca falla abierto."""
+    if request.method in {"POST", "PUT", "PATCH", "DELETE"}:
+        esperada = os.getenv("API_KEY")
+        if not esperada:
+            return JSONResponse(
+                status_code=503, content={"detail": "API_KEY no configurada en el servidor"}
+            )
+        recibida = request.headers.get("x-api-key", "")
+        if not secrets.compare_digest(recibida, esperada):
+            return JSONResponse(status_code=401, content={"detail": "API Key inválida"})
+    return await call_next(request)
+
 
 # Crear todas las tablas en la base de datos
 SQLModel.metadata.create_all(engine)
@@ -101,7 +130,7 @@ def obtener_versiculo_id(versiculo_id: int, db: Session = Depends(obtener_db)):
     return obtener_por_id(versiculo_id, Versiculo, db)
 
 # Obtenciones por rango (GET)
-@app.get("/versiculos/{capitulo_id}", response_model=List[VersiculoTextoResponse], tags=["Obtener un rango de versiculos por el id del capitulo"])
+@app.get("/capitulos/{capitulo_id}/versiculos", response_model=List[VersiculoTextoResponse], tags=["Obtener un rango de versiculos por el id del capitulo"])
 def obtener_rango_versiculos(capitulo_id: int, inicio: int, fin: int, db: Session = Depends(obtener_db)):
     return obtener_rango(capitulo_id, inicio, fin, Capitulo, Versiculo, db)
 

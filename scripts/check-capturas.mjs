@@ -1,11 +1,10 @@
 import { execFileSync } from "node:child_process";
-import { createHash } from "node:crypto";
 import { existsSync, readFileSync, statSync } from "node:fs";
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
+import { RAIZ, huellaDe, paginaDe } from "./lib/huella.mjs";
 
-const RAIZ = join(dirname(fileURLToPath(import.meta.url)), "..");
 const MANIFIESTO = join(RAIZ, "assets", "screenshots", "capturas.json");
+const TAMANO_MINIMO = 1024;
 
 /** Fecha ISO del último commit que tocó una ruta; si no hay git, la del archivo. */
 function fechaDeCommit(ruta) {
@@ -24,20 +23,6 @@ function fechaDeCommit(ruta) {
     return existsSync(absoluta) ? statSync(absoluta).mtime.toISOString() : "";
 }
 
-/** Huella del HTML que muestra la tarjeta. */
-function huellaDe(ruta) {
-    const absoluta = join(RAIZ, ruta);
-    if (!existsSync(absoluta)) return "";
-    return createHash("sha256").update(readFileSync(absoluta)).digest("hex").slice(0, 16);
-}
-
-/** Página que captura la tarjeta: la url del catálogo, con su index.html. */
-function paginaDe(web) {
-    const relativa = web.url.replace(/^\.\//, "");
-    if (/\.html?$/.test(relativa)) return relativa;
-    return `${relativa}${relativa.endsWith("/") ? "" : "/"}index.html`;
-}
-
 const fecha = (valor) => {
     const t = Date.parse(valor);
     return Number.isNaN(t) ? 0 : t;
@@ -48,21 +33,27 @@ const manifestadas = existsSync(MANIFIESTO) ? JSON.parse(readFileSync(MANIFIESTO
 
 const desfasadas = [];
 const sinCaptura = [];
+const vacias = [];
 
 for (const web of webs) {
     const captura = `assets/screenshots/${web.id}.webp`;
-    if (!existsSync(join(RAIZ, captura))) {
+    const rutaCaptura = join(RAIZ, captura);
+    if (!existsSync(rutaCaptura)) {
         sinCaptura.push(web.id);
         continue;
     }
+    if (statSync(rutaCaptura).size < TAMANO_MINIMO) {
+        vacias.push(web.id);
+        continue;
+    }
 
-    const pagina = paginaDe(web);
+    const pagina = paginaDe(web.url);
     const registro = manifestadas[web.id];
     const fCaptura =
         (typeof registro === "string" ? registro : registro?.fecha) || fechaDeCommit(captura);
     const fPagina = fechaDeCommit(pagina);
     const huellaGuardada = registro && typeof registro === "object" ? registro.huella : "";
-    const huellaActual = huellaDe(pagina);
+    const huellaActual = huellaDe(web.url);
 
     if (huellaGuardada && huellaActual) {
         if (huellaGuardada === huellaActual) continue;
@@ -91,14 +82,18 @@ for (const id of sinCaptura) {
     console.log(`  ! ${detalle}`);
     if (enCI) console.log(`::error file=projects.yml::${detalle}`);
 }
-
-console.log(
-    `capturas: ${webs.length} revisadas, ${desfasadas.length} desfasadas, ${sinCaptura.length} sin captura.`
-);
-if (desfasadas.length > 0) {
-    console.log(
-        `Regenera con: npm run data:screenshots -- ${desfasadas.map((d) => d.id).join(" ")}`
-    );
+for (const id of vacias) {
+    const detalle = `assets/screenshots/${id}.webp existe pero está vacía o corrupta`;
+    console.log(`  ! ${detalle}`);
+    if (enCI) console.log(`::error file=assets/screenshots/${id}.webp::${detalle}`);
 }
 
-process.exitCode = desfasadas.length + sinCaptura.length > 0 ? 1 : 0;
+console.log(
+    `capturas: ${webs.length} revisadas, ${desfasadas.length} desfasadas, ${sinCaptura.length} sin captura, ${vacias.length} vacías.`
+);
+const pendientes = [...new Set([...desfasadas.map((d) => d.id), ...vacias])];
+if (pendientes.length > 0) {
+    console.log(`Regenera con: npm run data:screenshots -- --force ${pendientes.join(" ")}`);
+}
+
+process.exitCode = desfasadas.length + sinCaptura.length + vacias.length > 0 ? 1 : 0;

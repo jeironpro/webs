@@ -40,6 +40,10 @@ MAIL_USERNAME=tu_email@gmail.com
 MAIL_PASSWORD=tu_app_password
 MAIL_USE_TLS=True
 MAIL_USE_SSL=False
+# Obligatoria: sin ella los envios responden 503 (falla cerrado)
+API_KEY=una_clave_larga_y_aleatoria
+# Opcional: orígenes permitidos para CORS, separados por comas
+FRONTEND_URL=http://localhost:5173
 ```
 
 Iniciar el servidor de desarrollo de Flask:
@@ -51,11 +55,11 @@ python app.py
 Usar curl para probar la API:
 
 ```bash
-curl -X POST http://localhost:5000/enviar_correo -H "Content-Type: application/json" -d '{"subject": "Asunto del correo", "to": "destinatario@gmail.com", "message": "Cuerpo del correo"}'
+curl -X POST http://localhost:5000/enviar_correo -H "Content-Type: application/json" -H "X-API-Key: $API_KEY" -d '{"subject": "Asunto del correo", "to": "destinatario@gmail.com", "message": "Cuerpo del correo"}'
 ```
 
 ```bash
-curl -X POST http://localhost:5000/enviar_correo_html -H "Content-Type: application/json" -d '{"subject": "Asunto del correo", "to": "destinatario@gmail.com"}'
+curl -X POST http://localhost:5000/enviar_correo_html -H "Content-Type: application/json" -H "X-API-Key: $API_KEY" -d '{"subject": "Asunto del correo", "to": "destinatario@gmail.com"}'
 ```
 
 ## Licencia

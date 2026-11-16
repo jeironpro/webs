@@ -1,3 +1,4 @@
+import hmac
 import json
 import os
 from functools import wraps
@@ -20,8 +21,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv(
 )
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-# API_KEYS: lista separada por comas. Si esta vacia, la autenticacion
-# se deshabilita (util en desarrollo local).
+# API_KEYS: lista separada por comas. Si esta vacia la API falla cerrada
+# (503): nunca se deja sin autenticacion por una variable ausente.
 API_KEYS = [k.strip() for k in os.getenv('API_KEYS', '').split(',') if k.strip()]
 
 app.config['SWAGGER'] = {
@@ -34,13 +35,21 @@ app.config['SWAGGER'] = {
             'type': 'apiKey',
             'in': 'header',
             'name': 'X-API-Key',
-            'description': 'API key de acceso. Enviar en header X-API-Key o query param api_key.'
+            'description': 'API key de acceso. Enviar en el header X-API-Key.'
         }
     },
     'security': [{'ApiKeyAuth': []}],
 }
 
-CORS(app)
+origins = [o.strip() for o in os.getenv('FRONTEND_URL', '').split(',') if o.strip()]
+if not origins:
+    origins = [
+        'http://127.0.0.1:5500',
+        'http://localhost:5500',
+        'http://localhost:5173',
+        'http://127.0.0.1:5173',
+    ]
+CORS(app, origins=origins, allow_headers=['Content-Type', 'X-API-Key'])
 db.init_app(app)
 swagger = Swagger(app)
 
@@ -52,15 +61,15 @@ CATEGORIAS_VALIDAS = [
 
 def requiere_api_key(f):
     # Decorador que protege los endpoints de la API.
-    # Si API_KEYS esta vacio, permite el paso sin clave.
-    # Acepta la clave via header X-API-Key o query param api_key.
+    # Si API_KEYS esta vacio, responde 503 (fail-closed).
+    # Solo acepta la clave via header X-API-Key (no en la URL).
     @wraps(f)
     def decorada(*args, **kwargs):
         if not API_KEYS:
-            return f(*args, **kwargs)
+            return jsonify({'error': 'API_KEYS no configurada en el servidor'}), 503
 
-        api_key = request.headers.get('X-API-Key') or request.args.get('api_key')
-        if not api_key or api_key not in API_KEYS:
+        api_key = request.headers.get('X-API-Key', '')
+        if not any(hmac.compare_digest(api_key, valida) for valida in API_KEYS):
             return jsonify({'error': 'API key inválida o no proporcionada'}), 401
         return f(*args, **kwargs)
     return decorada
@@ -445,4 +454,4 @@ def validar_pregunta(data):
 init_db()
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=int(os.getenv('PORT', 5000)), debug=True)
+    app.run(host='0.0.0.0', port=int(os.getenv('PORT', 5000)), debug=False)

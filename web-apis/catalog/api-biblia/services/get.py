@@ -21,10 +21,10 @@ def obtener_registros(modelo, db: Session) -> List:
         registros = db.exec(consulta).all()
         return registros
 
-    except SQLAlchemyError as e:
+    except SQLAlchemyError:
         raise HTTPException(
             status_code=500,
-            detail=f"Error interno en la base de datos: {str(e)}"
+            detail="Error interno en la base de datos"
         )
 
 
@@ -44,16 +44,19 @@ def obtener_por_id(id: int, modelo, db: Session):
         registro = db.get(modelo, id)
         return registro
 
-    except SQLAlchemyError as e:
+    except HTTPException:
+        raise
+
+    except SQLAlchemyError:
         raise HTTPException(
             status_code=500,
-            detail=f"Error interno en la base de datos: {str(e)}"
+            detail="Error interno en la base de datos"
         )
 
-    except Exception as e:
+    except Exception:
         raise HTTPException(
             status_code=500,
-            detail=f"Ocurrió un error inesperado al realizar la operación: {str(e)}"
+            detail="Ocurrió un error inesperado al realizar la operación"
         )
 
 
@@ -102,16 +105,19 @@ def obtener_rango(capitulo_id: int, inicio: int, fin: int, modelo_capitulo, mode
 
         return versiculos
 
-    except SQLAlchemyError as e:
+    except HTTPException:
+        raise
+
+    except SQLAlchemyError:
         raise HTTPException(
             status_code=500,
-            detail=f"Error interno en la base de datos: {str(e)}"
+            detail="Error interno en la base de datos"
         )
 
-    except Exception as e:
+    except Exception:
         raise HTTPException(
             status_code=500,
-            detail=f"Error inesperado: {str(e)}"
+            detail="Error inesperado"
         )
 
 
@@ -179,14 +185,17 @@ def obtener_versiculos_por_libro_capitulo(
 
         return versiculos
 
-    except SQLAlchemyError as e:
+    except HTTPException:
+        raise
+
+    except SQLAlchemyError:
         raise HTTPException(
             status_code=500,
-            detail=f"Error interno en la base de datos: {str(e)}"
+            detail="Error interno en la base de datos"
         )
 
-    except Exception as e:
+    except Exception:
         raise HTTPException(
             status_code=500,
-            detail=f"Error inesperado: {str(e)}"
+            detail="Error inesperado"
         )

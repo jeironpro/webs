@@ -24,16 +24,20 @@ def crear_registro(esquema, modelo, db: Session):
 
         return nuevo_registro
 
-    except SQLAlchemyError as e:
+    except HTTPException:
+        db.rollback()
+        raise
+
+    except SQLAlchemyError:
         db.rollback()
         raise HTTPException(
             status_code=500,
             detail="Error interno en la base de datos"
         )
 
-    except Exception as e:
+    except Exception:
         db.rollback()
         raise HTTPException(
             status_code=500,
-            detail="Ocurrió un error inesperado al realizar la operación" + str(e)
+            detail="Ocurrió un error inesperado al realizar la operación"
         )

@@ -1,5 +1,6 @@
 # Importa el módulo os para acceder a variables de entorno del sistema
 import os
+import secrets
 
 # Importa FastAPI para crear la aplicación web, Depends para inyección de dependencias,
 # HTTPException para manejar errores HTTP, Header para capturar headers de la petición,
@@ -48,14 +49,14 @@ app = FastAPI(
 )
 
 # Define los orígenes permitidos para las peticiones CORS
-origins = [
-    os.getenv("FRONTEND_URL"),
-    "http://127.0.0.1:5500",
-    "http://localhost:5500",
-    "http://localhost:5173",
-    "http://127.0.0.1:5173"
-
-]
+origins = [o.strip() for o in os.getenv("FRONTEND_URL", "").split(",") if o.strip()]
+if not origins:
+    origins = [
+        "http://127.0.0.1:5500",
+        "http://localhost:5500",
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+    ]
 
 # Agrega el middleware CORS a la aplicación para permitir peticiones desde el frontend
 app.add_middleware(
@@ -86,7 +87,7 @@ def verificar_api_key(x_api_key: str = Header(default=None)):
         # Responde con error 500 indicando que falta la configuración del servidor
         raise HTTPException(status_code=500, detail="API_KEY no configurada en el servidor")
     # Compara la API Key recibida con la configurada en el servidor
-    if x_api_key != api_key_valida:
+    if not secrets.compare_digest(x_api_key, api_key_valida):
         # Responde con error 403 si las claves no coinciden
         raise HTTPException(status_code=403, detail="API Key inválida")
     # Devuelve la API Key si la validación fue exitosa
