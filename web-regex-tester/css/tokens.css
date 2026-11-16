@@ -1,48 +1,51 @@
 @layer base {
     :root {
-        --color-bg: oklch(16% 0.012 265);
-        --color-panel: oklch(20% 0.014 265);
-        --color-panel-2: oklch(23% 0.016 265);
-        --color-ink: oklch(94% 0.006 250);
-        --color-ink-soft: oklch(72% 0.012 250);
-        --color-muted: oklch(58% 0.014 255);
-        --color-line: oklch(33% 0.016 265);
-        --color-line-soft: oklch(27% 0.014 265);
+        --color-paper: oklch(99% 0.003 230);
+        --color-surface: oklch(100% 0 0);
+        --color-soft: oklch(96.5% 0.012 225);
+        --color-ink: oklch(22% 0.025 245);
+        --color-ink-soft: oklch(44% 0.025 240);
+        --color-muted: oklch(55% 0.02 235);
+        --color-line: oklch(87% 0.022 230);
+        --color-grid: oklch(90% 0.03 225 / 0.55);
 
-        --color-accent: oklch(87% 0.19 122);
-        --color-accent-deep: oklch(78% 0.18 122);
-        --color-accent-ink: oklch(22% 0.05 130);
-        --color-error: oklch(72% 0.18 25);
-        --color-mark-bg: oklch(87% 0.19 122 / 0.16);
-        --color-mark-line: oklch(87% 0.19 122 / 0.55);
-        --color-focus: oklch(87% 0.19 122);
+        --color-primary: oklch(50% 0.14 235);
+        --color-primary-deep: oklch(42% 0.13 235);
+        --color-primary-soft: oklch(94% 0.035 230);
+        --color-mark: oklch(88% 0.09 220 / 0.55);
+        --color-mark-line: oklch(60% 0.13 230);
+        --color-error: oklch(50% 0.18 25);
+        --color-ok: oklch(45% 0.11 155);
+        --color-focus: oklch(50% 0.14 235);
 
-        --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", monospace;
+        --font-ui: "Archivo", ui-sans-serif, system-ui, sans-serif;
+        --font-data: "JetBrains Mono", ui-monospace, "SF Mono", monospace;
 
-        --text-xs: 0.72rem;
-        --text-sm: 0.8rem;
-        --text-base: 0.9rem;
-        --text-md: 1rem;
-        --text-lg: 1.25rem;
-        --text-display: clamp(1.5rem, 2vw + 0.9rem, 2.4rem);
+        --text-2xs: 0.68rem;
+        --text-xs: 0.78rem;
+        --text-sm: 0.9rem;
+        --text-base: 1rem;
+        --text-md: 1.2rem;
+        --text-lg: 1.55rem;
+        --text-display: clamp(2rem, 3vw + 0.9rem, 3.1rem);
 
         --space-2xs: 0.25rem;
         --space-xs: 0.5rem;
         --space-sm: 0.75rem;
         --space-md: 1rem;
         --space-lg: 1.5rem;
-        --space-xl: 2rem;
+        --space-xl: 2.5rem;
 
         --border-width: 0.0625rem;
-        --focus-width: 0.125rem;
-        --focus-offset: 0.125rem;
-        --radius: 0.125rem;
+        --focus-width: 0.1875rem;
+        --focus-offset: 0.1875rem;
+        --radius: 0.25rem;
 
         --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-        --dur-micro: 100ms;
         --dur-short: 180ms;
 
-        --page-max: 96rem;
-        --page-gutter: clamp(0.75rem, 2vw, 1.25rem);
+        --page-max: 80rem;
+        --page-gutter: clamp(1rem, 3vw, 2rem);
+        --grid-size: 2rem;
     }
 }
