@@ -19,6 +19,7 @@ const WEBS_CANONICAS = [
     "web-color-picker",
     "web-contador-palabras",
     "web-contraste-wcag",
+    "web-csv",
     "web-conversor-universal",
     "web-convertidor-moneda",
     "web-curso-dcs",

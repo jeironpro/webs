@@ -1,13 +1,13 @@
 # webs
 
-Monorepo que agrupa las webs estáticas de jeironpro. En la raíz vive un **catálogo** que indexa los 67 proyectos; cada proyecto ocupa su propio subdirectorio (`web-*`) y se sirve de forma independiente como página estática. Cinco de ellas son además **sub-catálogos**: hubs con su propio índice de subproyectos (el catálogo raíz las distingue con el filtro y la insignia "Sub-catálogo").
+Monorepo que agrupa las webs estáticas de jeironpro. En la raíz vive un **catálogo** que indexa los 68 proyectos; cada proyecto ocupa su propio subdirectorio (`web-*`) y se sirve de forma independiente como página estática. Cinco de ellas son además **sub-catálogos**: hubs con su propio índice de subproyectos (el catálogo raíz las distingue con el filtro y la insignia "Sub-catálogo").
 
 ## Estado actual
 
-- **67 webs** y **5 sub-catálogos** publicados como sitios estáticos, sin paso de build por web.
-- **92 capturas** mantenidas en el repositorio: 67 del catálogo raíz, 5 de dashboards y 20 de juegos.
+- **68 webs** y **5 sub-catálogos** publicados como sitios estáticos, sin paso de build por web.
+- **93 capturas** mantenidas en el repositorio: 68 del catálogo raíz, 5 de dashboards y 20 de juegos.
 - **25 webs adicionales** con auditoría técnica cerrada: HTML, CSS, JS, navegador, limpieza, favicon y README al 100 %.
-- **375 pruebas** automatizadas y comprobaciones de formato, lint, enlaces internos, datos y capturas.
+- **395 pruebas** automatizadas y comprobaciones de formato, lint, enlaces internos, datos y capturas.
 - Cuatro workflows: `ci`, `enlaces`, `capturas` y `deploy`; este último publica el sitio en GitHub Pages excluyendo dependencias, perfiles de navegador y el ZIP grande de Git LFS.
 
 ## Catálogo
@@ -66,6 +66,7 @@ Abre `index.html` de la raíz (o despliega el repositorio en GitHub Pages: el ca
 | [web-juegos](./web-juegos/)                                     | Juegos _(sub-catálogo)_        | Entretenimiento | html, css, javascript, three |
 | [web-votacion](./web-votacion/)                                 | La Papeleta                    | Entretenimiento | html, css, javascript        |
 | [web-lector-archivo](./web-lector-archivo/)                     | Lector de archivos             | Utilidades      | html, css, javascript        |
+| [web-csv](./web-csv/)                                           | Visor CSV                      | Utilidades      | html, css, javascript        |
 | [web-lexaro](./web-lexaro/)                                     | Lexaro                         | Productividad   | html, css, javascript, svg   |
 | [web-mandala](./web-mandala/)                                   | Mandala                        | Entretenimiento | html, css, javascript, svg   |
 | [web-markdown](./web-markdown/)                                 | Editor de Markdown             | Utilidades      | html, css, javascript        |
@@ -97,7 +98,7 @@ Las 5 webs marcadas _(sub-catálogo)_ son hubs con catálogo propio: `web-apis` 
 La fuente de verdad es `projects.yml` en la raíz. Los artefactos se regeneran con comandos npm:
 
 - `npm run data:build` valida el esquema y genera `assets/projects.json` (datos ordenados que consume el catálogo).
-- `npm run data:screenshots` captura las 67 webs en `assets/screenshots/*.webp` (Chrome headless sobre un servidor local); con ids detrás (`npm run data:screenshots -- web-apis`) regenera solo esas.
+- `npm run data:screenshots` captura las 68 webs en `assets/screenshots/*.webp` (Chrome headless sobre un servidor local); con ids detrás (`npm run data:screenshots -- web-apis`) regenera solo esas.
 - `npm run capturas:check` falla si una captura está desfasada (incluidos cambios en sus CSS/JS locales), falta o está vacía, usando el manifiesto y las fechas de git; el workflow `capturas` lo trata como bloqueante.
 - `npm test` valida integridad de datos, esquema y generador.
 
