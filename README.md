@@ -1,13 +1,13 @@
 # webs
 
-Monorepo que agrupa las webs estáticas de jeironpro. En la raíz vive un **catálogo** que indexa los 66 proyectos; cada proyecto ocupa su propio subdirectorio (`web-*`) y se sirve de forma independiente como página estática. Cinco de ellas son además **sub-catálogos**: hubs con su propio índice de subproyectos (el catálogo raíz las distingue con el filtro y la insignia "Sub-catálogo").
+Monorepo que agrupa las webs estáticas de jeironpro. En la raíz vive un **catálogo** que indexa los 67 proyectos; cada proyecto ocupa su propio subdirectorio (`web-*`) y se sirve de forma independiente como página estática. Cinco de ellas son además **sub-catálogos**: hubs con su propio índice de subproyectos (el catálogo raíz las distingue con el filtro y la insignia "Sub-catálogo").
 
 ## Estado actual
 
-- **66 webs** y **5 sub-catálogos** publicados como sitios estáticos, sin paso de build por web.
-- **91 capturas** mantenidas en el repositorio: 66 del catálogo raíz, 5 de dashboards y 20 de juegos.
+- **67 webs** y **5 sub-catálogos** publicados como sitios estáticos, sin paso de build por web.
+- **92 capturas** mantenidas en el repositorio: 67 del catálogo raíz, 5 de dashboards y 20 de juegos.
 - **25 webs adicionales** con auditoría técnica cerrada: HTML, CSS, JS, navegador, limpieza, favicon y README al 100 %.
-- **357 pruebas** automatizadas y comprobaciones de formato, lint, enlaces internos, datos y capturas.
+- **375 pruebas** automatizadas y comprobaciones de formato, lint, enlaces internos, datos y capturas.
 - Cuatro workflows: `ci`, `enlaces`, `capturas` y `deploy`; este último publica el sitio en GitHub Pages excluyendo dependencias, perfiles de navegador y el ZIP grande de Git LFS.
 
 ## Catálogo
@@ -45,6 +45,7 @@ Abre `index.html` de la raíz (o despliega el repositorio en GitHub Pages: el ca
 | [web-curso-dcs](./web-curso-dcs/)                               | Curso DCS                      | Curricular      | html, css, javascript        |
 | [web-curso-git](./web-curso-git/)                               | Curso de Git                   | Educación       | html, css, javascript        |
 | [web-curso-sql](./web-curso-sql/)                               | Curso de SQL                   | Educación       | html, css, javascript        |
+| [web-sql](./web-sql/)                                           | Taller SQL                     | Utilidades      | html, css, javascript        |
 | [web-cursos-cpnl](./web-cursos-cpnl/)                           | Cursos CPNL                    | Curricular      | html, css, javascript        |
 | [web-dashboards](./web-dashboards/)                             | Dashboards _(sub-catálogo)_    | Productividad   | html, css, javascript        |
 | [web-dados](./web-dados/)                                       | Dados                          | Entretenimiento | html, css, javascript        |
@@ -96,7 +97,7 @@ Las 5 webs marcadas _(sub-catálogo)_ son hubs con catálogo propio: `web-apis` 
 La fuente de verdad es `projects.yml` en la raíz. Los artefactos se regeneran con comandos npm:
 
 - `npm run data:build` valida el esquema y genera `assets/projects.json` (datos ordenados que consume el catálogo).
-- `npm run data:screenshots` captura las 66 webs en `assets/screenshots/*.webp` (Chrome headless sobre un servidor local); con ids detrás (`npm run data:screenshots -- web-apis`) regenera solo esas.
+- `npm run data:screenshots` captura las 67 webs en `assets/screenshots/*.webp` (Chrome headless sobre un servidor local); con ids detrás (`npm run data:screenshots -- web-apis`) regenera solo esas.
 - `npm run capturas:check` falla si una captura está desfasada (incluidos cambios en sus CSS/JS locales), falta o está vacía, usando el manifiesto y las fechas de git; el workflow `capturas` lo trata como bloqueante.
 - `npm test` valida integridad de datos, esquema y generador.
 

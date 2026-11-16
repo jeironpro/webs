@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Taller SQL · Formateador y mapa ER</title>
+        <meta
+            name="description"
+            content="Formatea consultas SQL y convierte tus CREATE TABLE en un mapa entidad-relación con claves primarias y foráneas. Todo en el navegador."
+        />
+        <meta name="theme-color" content="#0b141b" />
+        <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;500;600;700&amp;family=Fragment+Mono:wght@400&amp;display=swap"
+            rel="stylesheet"
+        />
+
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
+        <a class="skip-link" href="#sql-input">Saltar al editor SQL</a>
+
+        <div class="shell">
+            <header class="topbar">
+                <a class="brand" href="../">
+                    <svg
+                        class="brand__icon"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                        focusable="false"
+                    >
+                        <path
+                            d="M3 4h18v16H3zM3 9h18M3 14.5h18M7.5 4v16M14 4v16"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.2"
+                        />
+                        <circle cx="7.5" cy="9" r="2.1" fill="currentColor" />
+                        <circle cx="14" cy="14.5" r="2.1" fill="currentColor" />
+                    </svg>
+                    <span class="brand__name">atlas</span>
+                    <span class="brand__sep" aria-hidden="true">/</span>
+                    <span class="brand__area">sql</span>
+                </a>
+
+                <p class="topbar__mode">formateador · mapa er</p>
+
+                <nav class="topbar__nav" aria-label="Principal">
+                    <a class="topbar__link" href="../">catálogo</a>
+                    <a
+                        class="topbar__link"
+                        href="https://github.com/jeironpro/webs/tree/main/web-sql"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >github ↗</a
+                    >
+                </nav>
+            </header>
+
+            <main class="workbench">
+                <header class="workbench__head">
+                    <div>
+                        <p class="kicker">Herramienta · bases de datos</p>
+                        <h1>Taller SQL</h1>
+                    </div>
+                    <p class="workbench__lede">
+                        Da forma a una consulta y lee el esquema como un mapa. El formateo y el
+                        diagrama se generan en tu navegador.
+                    </p>
+                </header>
+
+                <div class="layout">
+                    <section class="sql-side" aria-labelledby="sql-title">
+                        <header class="panel-head">
+                            <div>
+                                <p class="panel-kicker">entrada</p>
+                                <h2 id="sql-title">Consulta SQL</h2>
+                            </div>
+                            <div class="panel-actions">
+                                <button class="text-button" type="button" id="sample">
+                                    Ejemplo
+                                </button>
+                                <button class="text-button" type="button" id="clear">
+                                    Limpiar
+                                </button>
+                            </div>
+                        </header>
+
+                        <div class="editor">
+                            <div class="editor__bar">
+                                <label for="sql-input">SQL de entrada</label>
+                                <span id="input-stats">0 líneas · 0 caracteres</span>
+                            </div>
+                            <textarea
+                                id="sql-input"
+                                spellcheck="false"
+                                autocomplete="off"
+                                autocapitalize="off"
+                                aria-describedby="sql-hint"
+                                placeholder="CREATE TABLE ..."
+                            ></textarea>
+                            <p class="hint" id="sql-hint">
+                                <kbd>Ctrl</kbd> + <kbd>Enter</kbd> para formatear. El mapa se
+                                actualiza mientras escribes.
+                            </p>
+                        </div>
+
+                        <div class="actions">
+                            <button class="button button--primary" type="button" id="format">
+                                Formatear SQL
+                            </button>
+                            <button class="button button--quiet" type="button" id="copy" disabled>
+                                Copiar salida
+                            </button>
+                            <p
+                                class="status"
+                                id="format-status"
+                                role="status"
+                                aria-live="polite"
+                            ></p>
+                        </div>
+
+                        <section class="output-pane" aria-labelledby="output-title">
+                            <header class="output-pane__head">
+                                <h2 id="output-title">Salida formateada</h2>
+                                <span id="output-meta">0 líneas</span>
+                            </header>
+                            <pre
+                                class="output"
+                                id="output"
+                                tabindex="0"
+                                aria-label="SQL formateado"
+                            ><code id="output-code"></code></pre>
+                        </section>
+                    </section>
+
+                    <section class="map-side" aria-labelledby="map-title">
+                        <header class="map-head">
+                            <div>
+                                <p class="panel-kicker">esquema / público</p>
+                                <h2 id="map-title">Mapa entidad-relación</h2>
+                            </div>
+                            <dl class="map-stats">
+                                <div>
+                                    <dt>tablas</dt>
+                                    <dd id="table-count">0</dd>
+                                </div>
+                                <div>
+                                    <dt>columnas</dt>
+                                    <dd id="column-count">0</dd>
+                                </div>
+                                <div>
+                                    <dt>relaciones</dt>
+                                    <dd id="relation-count">0</dd>
+                                </div>
+                            </dl>
+                        </header>
+
+                        <div class="map-body">
+                            <div class="er-canvas" id="er-canvas">
+                                <p class="er-empty" id="er-empty">
+                                    Añade un <code>CREATE TABLE</code> para dibujar el mapa.
+                                </p>
+                                <div class="er-grid" id="er-grid"></div>
+                                <svg
+                                    class="er-links"
+                                    id="er-links"
+                                    aria-hidden="true"
+                                    focusable="false"
+                                ></svg>
+                            </div>
+                        </div>
+
+                        <div class="relations">
+                            <div class="relations__head">
+                                <h3>Relaciones</h3>
+                                <p><b>PK</b> primaria · <b>FK</b> foránea</p>
+                            </div>
+                            <ul id="relations-list"></ul>
+                        </div>
+                    </section>
+                </div>
+            </main>
+
+            <footer class="footer">
+                <p>Todos los derechos reservados - <span data-year>2026</span> jeironpro</p>
+                <p class="footer__meta">atlas · sql y esquemas</p>
+            </footer>
+        </div>
+
+        <script type="module" src="js/app.js"></script>
+    </body>
+</html>

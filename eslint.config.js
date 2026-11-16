@@ -63,6 +63,7 @@ const WEBS_CANONICAS = [
     "web-regex-tester",
     "web-reproductor-musica",
     "web-ruleta",
+    "web-sql",
     "web-votacion",
     "web-dashboards",
     "web-generador-cv",
