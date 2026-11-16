@@ -15,7 +15,7 @@ const els = {
     body: document.querySelector("#body"),
     bodyHint: document.querySelector("#body-hint"),
     formatBody: document.querySelector("#format-body"),
-    addHeader: document.querySelector("#add-header"),
+    addHeader: document.querySelector(".add-header"),
     headerRows: document.querySelector("#header-rows"),
     headerCount: document.querySelector("#header-count"),
     presetList: document.querySelector("#preset-list"),
