@@ -156,6 +156,8 @@
         overflow: visible;
         cursor: grab;
         touch-action: none;
+        user-select: none;
+        -webkit-user-select: none;
     }
 
     .orbit__svg:active {
@@ -284,6 +286,16 @@
         color: var(--color-cobalt);
         font-family: var(--font-data);
         font-size: var(--text-xs);
+    }
+
+    .readout__exact {
+        color: var(--color-ink-soft);
+        font-family: var(--font-data);
+        font-size: var(--text-2xs);
+    }
+
+    .readout__exact:empty {
+        display: none;
     }
 
     .badge {

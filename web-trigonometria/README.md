@@ -8,6 +8,7 @@ Instrumento web para **explorar el círculo unitario** en el navegador. Arrastra
 - Arrastre del punto sobre la circunferencia, deslizador de 0° a 360° y entrada numérica de −360° a 720°.
 - Ángulos frecuentes con un clic: 0°, 30°, 45°, 60°, 90°, 180° y 270°.
 - Lecturas de seno, coseno y tangente con tres decimales; la tangente indica «no definida» en 90° y 270°.
+- Valores exactos junto a las lecturas decimales en los ángulos frecuentes: `1/2`, `√3/2`, `π/6`, etc.
 - Normalización del ángulo, radianes, coordenadas del punto y cuadrante o eje.
 - Todo se calcula en el navegador, sin dependencias de ejecución.
 
@@ -46,7 +47,7 @@ web-trigonometria/
 └── README.md
 ```
 
-La lógica pura (`normalizeAngle`, `toRadians`, `trigValues`, `quadrantOf`, `pointOnCircle` y los formateadores) vive en `js/modules/trig.js`; sus pruebas están en `tests/web-trigonometria/trig.test.js`.
+La lógica pura (`normalizeAngle`, `toRadians`, `trigValues`, `quadrantOf`, `pointOnCircle`, `exactValues` y los formateadores) vive en `js/modules/trig.js`; sus pruebas están en `tests/web-trigonometria/trig.test.js`.
 
 ## Accesibilidad
 

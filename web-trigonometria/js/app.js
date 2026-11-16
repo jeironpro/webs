@@ -1,4 +1,5 @@
 import {
+    exactValues,
     formatAngle,
     formatNumber,
     formatRadians,
@@ -16,6 +17,11 @@ const elements = {
     cosValue: $("cos-value"),
     tanValue: $("tan-value"),
     coordsValue: $("coords-value"),
+    angleExact: $("angle-exact"),
+    sinExact: $("sin-exact"),
+    cosExact: $("cos-exact"),
+    tanExact: $("tan-exact"),
+    coordsExact: $("coords-exact"),
     quadrant: $("quadrant"),
     range: $("angle-range"),
     number: $("angle-number"),
@@ -47,6 +53,7 @@ function arcPath(angle) {
 function render(degrees, options = {}) {
     const angle = normalizeAngle(degrees);
     const { sin, cos, tan } = trigValues(angle);
+    const exact = exactValues(angle);
     const x = cos;
     const y = -sin;
 
@@ -59,6 +66,12 @@ function render(degrees, options = {}) {
     elements.tanValue.textContent = tan === null ? "no definida" : formatNumber(tan, 3);
     elements.coordsValue.textContent = `(${formatNumber(cos, 3)}, ${formatNumber(sin, 3)})`;
     elements.quadrant.textContent = quadrantOf(angle);
+
+    elements.angleExact.textContent = exact ? `${exact.radians} rad` : "";
+    elements.sinExact.textContent = exact ? `= ${exact.sin}` : "";
+    elements.cosExact.textContent = exact ? `= ${exact.cos}` : "";
+    elements.tanExact.textContent = exact && exact.tan ? `= ${exact.tan}` : "";
+    elements.coordsExact.textContent = exact ? `= ${exact.coords}` : "";
 
     elements.arc.setAttribute("d", arcPath(angle));
     elements.cosLine.setAttribute("x2", String(x));
@@ -82,13 +95,15 @@ function render(degrees, options = {}) {
 }
 
 function angleFromPointer(event) {
-    const rect = elements.svg.getBoundingClientRect();
-    const scaleX = 2.6 / rect.width;
-    const scaleY = 2.6 / rect.height;
-    const x = (event.clientX - rect.left) * scaleX - 1.3;
-    const y = (event.clientY - rect.top) * scaleY - 1.3;
+    const matrix = elements.svg.getScreenCTM();
+    if (!matrix) return currentAngle;
 
-    return normalizeAngle((Math.atan2(-y, x) * 180) / Math.PI);
+    const point = elements.svg.createSVGPoint();
+    point.x = event.clientX;
+    point.y = event.clientY;
+    const local = point.matrixTransform(matrix.inverse());
+
+    return normalizeAngle((Math.atan2(-local.y, local.x) * 180) / Math.PI);
 }
 
 elements.range.addEventListener("input", () => {
@@ -108,19 +123,34 @@ presets.forEach((button) => {
 });
 
 elements.svg.addEventListener("pointerdown", (event) => {
+    if (event.button !== 0) return;
+
+    event.preventDefault();
     dragging = true;
-    elements.svg.setPointerCapture(event.pointerId);
+
+    try {
+        elements.svg.setPointerCapture(event.pointerId);
+    } catch {
+        /* el puntero ya no está activo: el arrastre sigue sin captura */
+    }
+
     render(angleFromPointer(event));
 });
 
 elements.svg.addEventListener("pointermove", (event) => {
-    if (dragging) render(angleFromPointer(event));
+    if (!dragging) return;
+    event.preventDefault();
+    render(angleFromPointer(event));
 });
 
-["pointerup", "pointercancel"].forEach((type) => {
+["pointerup", "pointercancel", "lostpointercapture"].forEach((type) => {
     elements.svg.addEventListener(type, () => {
         dragging = false;
     });
+});
+
+elements.svg.addEventListener("contextmenu", (event) => {
+    event.preventDefault();
 });
 
 render(currentAngle);
