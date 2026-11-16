@@ -1,12 +1,18 @@
 import { describe, expect, test } from "vitest";
 import {
     MAX_LINES,
+    MAX_WORDS,
     computeStats,
+    computeWordStats,
     diffInline,
     diffLines,
+    diffWords,
     isTruncated,
+    isWordTruncated,
     splitLines,
+    tokenizeWords,
     toUnified,
+    toWordDiff,
 } from "../../web-diff/js/modules/diff.js";
 
 describe("splitLines", () => {
@@ -89,6 +95,77 @@ describe("diffLines", () => {
         const long = Array.from({ length: MAX_LINES + 1 }, () => "x").join("\n");
         expect(isTruncated("a", long)).toBe(true);
         expect(isTruncated("a", "b")).toBe(false);
+    });
+});
+
+describe("tokenizeWords", () => {
+    test("separa palabras con su espacio final y conserva el texto", () => {
+        const tokens = tokenizeWords("hola mundo\nfinal");
+        expect(tokens).toEqual(["hola ", "mundo\n", "final"]);
+        expect(tokens.join("")).toBe("hola mundo\nfinal");
+        expect(tokenizeWords("")).toEqual([]);
+    });
+});
+
+describe("diffWords", () => {
+    test("marca la palabra cambiada y conserva el contexto", () => {
+        const segments = diffWords("hola mundo", "hola planeta");
+        expect(segments).toEqual([
+            { type: "equal", text: "hola " },
+            { type: "remove", text: "mundo" },
+            { type: "add", text: "planeta" },
+        ]);
+    });
+
+    test("sin cambios devuelve un único segmento igual", () => {
+        expect(diffWords("uno dos", "uno dos")).toEqual([{ type: "equal", text: "uno dos" }]);
+    });
+
+    test("ignora mayúsculas cuando se pide", () => {
+        const cases = diffWords("Hola Mundo", "hola mundo").map((s) => s.type);
+        expect(cases).toContain("remove");
+        expect(cases).toContain("add");
+        expect(
+            diffWords("Hola Mundo", "hola mundo", { ignoreCase: true }).map((s) => s.type)
+        ).toEqual(["equal"]);
+    });
+
+    test("detecta palabras añadidas al final", () => {
+        const segments = diffWords("uno dos", "uno dos tres");
+        expect(segments.at(-1)).toEqual({ type: "add", text: "tres" });
+    });
+});
+
+describe("computeWordStats", () => {
+    test("cuenta palabras y calcula la similitud", () => {
+        const segments = diffWords("uno dos tres", "uno dos cuatro");
+        const stats = computeWordStats(segments);
+        expect(stats).toMatchObject({ equal: 2, add: 1, remove: 1, total: 4 });
+        expect(stats.similarity).toBe(50);
+    });
+
+    test("un texto vacío se considera idéntico", () => {
+        expect(computeWordStats([]).similarity).toBe(100);
+    });
+});
+
+describe("toWordDiff", () => {
+    test("serializa eliminaciones y adiciones con marcas", () => {
+        const segments = diffWords("hola mundo", "hola planeta");
+        expect(toWordDiff(segments)).toBe("hola [-mundo-]{+planeta+}");
+    });
+
+    test("conserva los espacios fuera de las marcas", () => {
+        const segments = diffWords("uno dos", "uno tres");
+        expect(toWordDiff(segments)).toBe("uno [-dos-]{+tres+}");
+    });
+});
+
+describe("isWordTruncated", () => {
+    test("detecta textos por encima del límite de palabras", () => {
+        const long = "x ".repeat(MAX_WORDS + 1);
+        expect(isWordTruncated("a", long)).toBe(true);
+        expect(isWordTruncated("a", "b c")).toBe(false);
     });
 });
 

@@ -10,6 +10,9 @@
 /** Límite de líneas por lado para mantener el coste de la matriz acotado. */
 export const MAX_LINES = 2000;
 
+/** Límite de palabras por lado para el modo de comparación por palabras. */
+export const MAX_WORDS = 3000;
+
 /**
  * Divide un texto en líneas normalizando CRLF y descartando el salto final.
  * @param {string} text
@@ -47,6 +50,28 @@ function normalizeLine(line, options) {
 }
 
 /**
+ * Construye la matriz de subsecuencia común más larga entre dos listas de claves.
+ * @param {string[]} leftKeys
+ * @param {string[]} rightKeys
+ * @returns {Int32Array}
+ */
+function buildMatrix(leftKeys, rightKeys) {
+    const width = rightKeys.length + 1;
+    const matrix = new Int32Array((leftKeys.length + 1) * width);
+
+    for (let i = leftKeys.length - 1; i >= 0; i--) {
+        for (let j = rightKeys.length - 1; j >= 0; j--) {
+            matrix[i * width + j] =
+                leftKeys[i] === rightKeys[j]
+                    ? matrix[(i + 1) * width + j + 1] + 1
+                    : Math.max(matrix[(i + 1) * width + j], matrix[i * width + j + 1]);
+        }
+    }
+
+    return matrix;
+}
+
+/**
  * Compara dos textos y devuelve filas alineadas.
  * @param {string} leftText
  * @param {string} rightText
@@ -60,16 +85,7 @@ export function diffLines(leftText, rightText, options = {}) {
     const rightKeys = right.map((line) => normalizeLine(line, options));
 
     const width = right.length + 1;
-    const matrix = new Int32Array((left.length + 1) * width);
-
-    for (let i = left.length - 1; i >= 0; i--) {
-        for (let j = right.length - 1; j >= 0; j--) {
-            matrix[i * width + j] =
-                leftKeys[i] === rightKeys[j]
-                    ? matrix[(i + 1) * width + j + 1] + 1
-                    : Math.max(matrix[(i + 1) * width + j], matrix[i * width + j + 1]);
-        }
-    }
+    const matrix = buildMatrix(leftKeys, rightKeys);
 
     const rows = [];
     let i = 0;
@@ -106,6 +122,141 @@ export function diffLines(leftText, rightText, options = {}) {
     }
 
     return pairChanges(rows);
+}
+
+/**
+ * Divide un texto en bloques de palabra y espacio para el modo por palabras.
+ * Cada token conserva su espacio final, de modo que al unirlos se reconstruye
+ * el texto original.
+ * @param {string} text
+ * @returns {string[]}
+ */
+export function tokenizeWords(text) {
+    if (typeof text !== "string" || text === "") return [];
+    return text.match(/\s+|\S+\s*/g) ?? [];
+}
+
+/**
+ * Indica si alguno de los textos supera el límite de palabras comparables.
+ * @param {string} leftText
+ * @param {string} rightText
+ * @returns {boolean}
+ */
+export function isWordTruncated(leftText, rightText) {
+    return (
+        tokenizeWords(leftText).length > MAX_WORDS || tokenizeWords(rightText).length > MAX_WORDS
+    );
+}
+
+/**
+ * Clave de comparación de un token: normaliza los espacios internos y, si se
+ * pide, recorta los extremos e ignora las mayúsculas.
+ * @param {string} token
+ * @param {{ ignoreCase?: boolean, ignoreWhitespace?: boolean }} options
+ * @returns {string}
+ */
+function wordKey(token, options) {
+    let value = token.trim();
+    if (options.ignoreWhitespace) value = value.replace(/\s+/g, " ");
+    if (options.ignoreCase) value = value.toLowerCase();
+    return value;
+}
+
+/**
+ * Compara dos textos por palabras y devuelve segmentos consecutivos del mismo tipo.
+ * @param {string} leftText
+ * @param {string} rightText
+ * @param {{ ignoreCase?: boolean, ignoreWhitespace?: boolean }} [options]
+ * @returns {Array<{type: "equal"|"add"|"remove", text: string}>}
+ */
+export function diffWords(leftText, rightText, options = {}) {
+    const left = tokenizeWords(leftText).slice(0, MAX_WORDS);
+    const right = tokenizeWords(rightText).slice(0, MAX_WORDS);
+    const width = right.length + 1;
+    const matrix = buildMatrix(
+        left.map((token) => wordKey(token, options)),
+        right.map((token) => wordKey(token, options))
+    );
+
+    const segments = [];
+    const push = (type, text) => {
+        const last = segments.at(-1);
+        if (last && last.type === type) last.text += text;
+        else segments.push({ type, text });
+    };
+
+    let i = 0;
+    let j = 0;
+
+    while (i < left.length && j < right.length) {
+        if (wordKey(left[i], options) === wordKey(right[j], options)) {
+            push("equal", right[j]);
+            i++;
+            j++;
+        } else if (matrix[(i + 1) * width + j] >= matrix[i * width + j + 1]) {
+            push("remove", left[i]);
+            i++;
+        } else {
+            push("add", right[j]);
+            j++;
+        }
+    }
+
+    while (i < left.length) push("remove", left[i++]);
+    while (j < right.length) push("add", right[j++]);
+
+    return segments;
+}
+
+/**
+ * Cuenta las palabras de cada tipo de segmento.
+ * @param {Array<{type: string, text: string}>} segments
+ * @returns {{equal: number, add: number, remove: number, total: number, similarity: number}}
+ */
+export function computeWordStats(segments) {
+    const stats = { equal: 0, add: 0, remove: 0 };
+
+    segments.forEach((segment) => {
+        const trimmed = segment.text.trim();
+        if (trimmed === "") return;
+        const words = trimmed.split(/\s+/).length;
+        if (segment.type in stats) stats[segment.type] += words;
+    });
+
+    const total = stats.equal + stats.add + stats.remove;
+    return {
+        ...stats,
+        total,
+        similarity: total === 0 ? 100 : Math.round((stats.equal / total) * 100),
+    };
+}
+
+/**
+ * Marca un texto conservando los espacios de los extremos fuera de las marcas.
+ * @param {string} text
+ * @param {string} open
+ * @param {string} close
+ * @returns {string}
+ */
+function markText(text, open, close) {
+    const match = text.match(/^(\s*)([\s\S]*?)(\s*)$/);
+    if (!match || match[2] === "") return text;
+    return `${match[1]}${open}${match[2]}${close}${match[3]}`;
+}
+
+/**
+ * Serializa un diff por palabras con marcas estilo diff.
+ * @param {Array<{type: string, text: string}>} segments
+ * @returns {string}
+ */
+export function toWordDiff(segments) {
+    return segments
+        .map((segment) => {
+            if (segment.type === "remove") return markText(segment.text, "[-", "-]");
+            if (segment.type === "add") return markText(segment.text, "{+", "+}");
+            return segment.text;
+        })
+        .join("");
 }
 
 /**

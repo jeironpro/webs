@@ -4,13 +4,14 @@ Herramienta web para **comparar dos textos línea a línea** en el navegador. La
 
 ## Características
 
-- Diff por líneas con algoritmo de subsecuencia común más larga (LCS).
+- Dos modos: diff por líneas y diff por palabras, ambos con algoritmo de subsecuencia común más larga (LCS).
 - Filas alineadas lado a lado; las eliminaciones y adiciones contiguas se emparejan como líneas modificadas.
 - Resaltado del fragmento exacto que cambia dentro de cada línea modificada.
-- Cinta proporcional al número de líneas de cada tipo y contadores de iguales, añadidas, eliminadas y modificadas.
+- En modo palabras, el texto se muestra como prosa con eliminaciones e inserciones resaltadas y contadores por palabra.
+- Cinta proporcional al número de líneas o palabras de cada tipo y contadores de iguales, añadidas, eliminadas y modificadas.
 - Opciones para ignorar mayúsculas y espacios (se colapsan y se recortan).
-- Ejemplo, intercambio de versiones, limpieza y copia del diff unificado.
-- Límite de 2000 líneas por lado para acotar el coste de la matriz.
+- Ejemplo, intercambio de versiones, limpieza y copia del diff en formato unificado (líneas) o con marcas `[-...-]` / `{+...+}` (palabras).
+- Límite de 2000 líneas o 3000 palabras por lado para acotar el coste de la matriz.
 - Todo se procesa en el navegador: ningún texto se envía a un servidor.
 
 ## Stack
@@ -48,7 +49,7 @@ web-diff/
 └── README.md
 ```
 
-La lógica pura (`splitLines`, `diffLines`, `computeStats`, `toUnified` y `diffInline`) vive en `js/modules/diff.js`; sus pruebas están en `tests/web-diff/diff.test.js`.
+La lógica pura (`splitLines`, `diffLines`, `diffWords`, `computeStats`, `computeWordStats`, `toUnified`, `toWordDiff` y `diffInline`) vive en `js/modules/diff.js`; sus pruebas están en `tests/web-diff/diff.test.js`.
 
 ## Accesibilidad
 

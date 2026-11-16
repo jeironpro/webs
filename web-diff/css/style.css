@@ -258,6 +258,48 @@
         gap: var(--space-xs);
     }
 
+    .mode {
+        display: inline-flex;
+        padding: 2px;
+        border-radius: var(--radius-pill);
+        background: var(--color-line);
+    }
+
+    .mode__option {
+        position: relative;
+        cursor: pointer;
+    }
+
+    .mode__input {
+        position: absolute;
+        inline-size: 1px;
+        block-size: 1px;
+        opacity: 0;
+    }
+
+    .mode__label {
+        display: inline-block;
+        padding: 0.28rem 0.7rem;
+        border-radius: var(--radius-pill);
+        color: var(--color-ink-soft);
+        font-size: var(--text-xs);
+        font-weight: 700;
+        transition:
+            background-color var(--dur-short) var(--ease-out),
+            color var(--dur-short) var(--ease-out);
+    }
+
+    .mode__input:checked + .mode__label {
+        background: var(--color-surface);
+        color: var(--color-ink);
+        box-shadow: 0 1px 3px oklch(23% 0.03 175 / 0.18);
+    }
+
+    .mode__input:focus-visible + .mode__label {
+        outline: var(--focus-width) solid var(--color-accent-bright);
+        outline-offset: var(--focus-offset);
+    }
+
     .switch {
         display: inline-flex;
         align-items: center;
@@ -562,7 +604,10 @@
         overflow-x: auto;
     }
 
-    .diff[hidden] {
+    .diff[hidden],
+    .diff__head[hidden],
+    .word-diff[hidden],
+    .stat[hidden] {
         display: none;
     }
 
@@ -656,6 +701,35 @@
 
     .row--equal:hover .row__code {
         background: var(--color-paper);
+    }
+
+    .word-diff {
+        padding: var(--space-md);
+        background: var(--color-surface);
+    }
+
+    .word-diff__text {
+        font-family: var(--font-data);
+        font-size: var(--text-sm);
+        line-height: 1.95;
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+    }
+
+    .word-diff del {
+        padding: 0.05em 0.1em;
+        border-radius: 0.15rem;
+        background: var(--color-remove-bg);
+        color: var(--color-remove-ink);
+        text-decoration-thickness: 1px;
+    }
+
+    .word-diff ins {
+        padding: 0.05em 0.1em;
+        border-radius: 0.15rem;
+        background: var(--color-add-bg);
+        color: var(--color-add-ink);
+        text-decoration: none;
     }
 }
 
