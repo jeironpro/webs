@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Test de mecanografía · Teletipo</title>
+        <meta
+            name="description"
+            content="Mide tu velocidad y precisión al teclear con métricas en vivo, una traza de velocidad y récord guardado solo en este navegador."
+        />
+        <meta name="theme-color" content="#0b0e0c" />
+        <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap"
+            rel="stylesheet"
+        />
+
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
+        <a class="skip-link" href="#stage">Saltar a la prueba</a>
+
+        <div class="shell">
+            <header class="topbar">
+                <a class="brand" href="../">
+                    <svg
+                        class="brand__icon"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                        focusable="false"
+                    >
+                        <rect
+                            x="3"
+                            y="7"
+                            width="18"
+                            height="11"
+                            rx="1.5"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.4"
+                        />
+                        <path
+                            d="M7 11h1M10 11h1M13 11h1M16 11h1M7 14h1M16 14h1M10 14h4"
+                            stroke="currentColor"
+                            stroke-width="1.4"
+                        />
+                    </svg>
+                    <span class="brand__name">teletipo</span>
+                    <span class="brand__sep" aria-hidden="true">/</span>
+                    <span class="brand__area">test de mecanografía</span>
+                </a>
+
+                <p class="topbar__state">
+                    <span class="topbar__dot" aria-hidden="true"></span>
+                    modo local
+                </p>
+
+                <nav class="topbar__nav" aria-label="Principal">
+                    <a class="topbar__link" href="../">catálogo</a>
+                    <a
+                        class="topbar__link"
+                        href="https://github.com/jeironpro/webs/tree/main/web-mecanografia"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >github ↗</a
+                    >
+                </nav>
+            </header>
+
+            <main class="console">
+                <h1 class="visually-hidden">Test de mecanografía</h1>
+
+                <section class="machine" aria-labelledby="machine-title">
+                    <header class="machine__bar">
+                        <div class="machine__identity">
+                            <p class="machine__kicker">prueba de velocidad</p>
+                            <h2 id="machine-title">Teletipo <span>01</span></h2>
+                        </div>
+
+                        <div class="durations" role="group" aria-label="Duración de la prueba">
+                            <button class="duration" type="button" data-duration="15">15 s</button>
+                            <button
+                                class="duration is-active"
+                                type="button"
+                                data-duration="30"
+                                aria-pressed="true"
+                            >
+                                30 s
+                            </button>
+                            <button class="duration" type="button" data-duration="60">60 s</button>
+                        </div>
+
+                        <p class="record">
+                            <span>récord</span>
+                            <b id="record-value">—</b>
+                        </p>
+                    </header>
+
+                    <div class="readouts" aria-label="Métricas de la prueba">
+                        <div class="readout readout--main">
+                            <span class="readout__label">ppm</span>
+                            <strong id="wpm">0</strong>
+                            <span class="readout__hint">palabras por minuto</span>
+                        </div>
+                        <div class="readout">
+                            <span class="readout__label">precisión</span>
+                            <strong id="accuracy">100%</strong>
+                        </div>
+                        <div class="readout">
+                            <span class="readout__label">errores</span>
+                            <strong id="errors">0</strong>
+                        </div>
+                        <div class="readout">
+                            <span class="readout__label">tiempo</span>
+                            <strong id="clock">0:30</strong>
+                        </div>
+                    </div>
+
+                    <div class="stage" id="stage">
+                        <p class="typing-help visually-hidden" id="typing-help">
+                            Escribe el texto de la cinta. Usa Retroceso para corregir.
+                        </p>
+
+                        <div class="typing-viewport" id="typing-viewport">
+                            <p class="typing-text" id="typing-text"></p>
+                        </div>
+
+                        <div class="overlay" id="start-overlay">
+                            <p class="overlay__kicker">máquina en espera</p>
+                            <h2 class="overlay__title" id="start-title">Escribe para empezar</h2>
+                            <p class="overlay__note" id="start-note">
+                                30 segundos · sin pausas · récord local
+                            </p>
+                            <button class="button button--primary" type="button" id="start-button">
+                                Empezar
+                            </button>
+                        </div>
+
+                        <div
+                            class="overlay overlay--result"
+                            id="result-overlay"
+                            role="group"
+                            aria-labelledby="result-title"
+                            hidden
+                        >
+                            <p class="overlay__kicker">fin de la cinta</p>
+                            <h2 class="visually-hidden" id="result-title">
+                                Resultado de la prueba
+                            </h2>
+                            <p class="result-wpm">
+                                <strong id="result-wpm">0</strong>
+                                <span>ppm</span>
+                            </p>
+                            <dl class="result-grid">
+                                <div>
+                                    <dt>Precisión</dt>
+                                    <dd id="result-accuracy">100%</dd>
+                                </div>
+                                <div>
+                                    <dt>Errores</dt>
+                                    <dd id="result-errors">0</dd>
+                                </div>
+                                <div>
+                                    <dt>Tiempo</dt>
+                                    <dd id="result-time">0:30</dd>
+                                </div>
+                            </dl>
+                            <p class="result-note" id="result-note"></p>
+                            <button
+                                class="button button--primary"
+                                type="button"
+                                id="restart-result"
+                            >
+                                Otra vez
+                            </button>
+                        </div>
+
+                        <textarea
+                            class="type-capture"
+                            id="type-input"
+                            aria-label="Campo de escritura de la prueba"
+                            aria-describedby="typing-help"
+                            autocomplete="off"
+                            autocapitalize="off"
+                            spellcheck="false"
+                            tabindex="-1"
+                        ></textarea>
+
+                        <p
+                            class="visually-hidden"
+                            id="test-status"
+                            role="status"
+                            aria-live="polite"
+                        ></p>
+                    </div>
+
+                    <section class="trace" aria-label="Traza de velocidad">
+                        <div class="trace__head">
+                            <span>traza de velocidad</span>
+                            <span id="trace-peak">pico 0 ppm</span>
+                        </div>
+                        <div class="trace__plot">
+                            <svg
+                                viewBox="0 0 300 80"
+                                preserveAspectRatio="none"
+                                aria-hidden="true"
+                                focusable="false"
+                            >
+                                <path class="trace__area" id="trace-area" d=""></path>
+                                <path class="trace__line" id="trace-line" d=""></path>
+                            </svg>
+                        </div>
+                        <div class="trace__axis">
+                            <span>inicio</span>
+                            <span id="trace-end">0:30</span>
+                        </div>
+                    </section>
+
+                    <footer class="machine__foot">
+                        <button class="button button--ghost" type="button" id="restart">
+                            Reiniciar
+                        </button>
+                        <p>Sin conexión · el récord se queda en este navegador</p>
+                        <p class="machine__keys">Retroceso para corregir</p>
+                    </footer>
+                </section>
+            </main>
+
+            <footer class="footer">
+                <p>Todos los derechos reservados - <span data-year>2026</span> jeironpro</p>
+                <p class="footer__meta">teletipo · ppm, precisión y traza en vivo</p>
+            </footer>
+        </div>
+
+        <script type="module" src="js/app.js"></script>
+    </body>
+</html>
