@@ -2,18 +2,18 @@
 (() => {
     const THEMES = {
         "juego-7-letras": {
-            bg: "#f3eee4",
-            panel: "#fbf8f1",
-            text: "#201b17",
-            muted: "#6b5e4f",
-            line: "#d8cbb8",
-            accent: "#16726f",
-            accentText: "#fbf8f1",
-            card: "#fbf8f1",
+            bg: "#1b1226",
+            panel: "#261a36",
+            text: "#f7efdf",
+            muted: "#b9a6cf",
+            line: "#3d2a52",
+            accent: "#f0b429",
+            accentText: "#1b1226",
+            card: "#2e2040",
             display: '"Fraunces", Georgia, serif',
             body: '"Archivo", system-ui, sans-serif',
-            layout: "stack",
-            radius: "0.125rem",
+            layout: "poster",
+            radius: "1.25rem",
             titleWeight: "600",
             tracking: "-0.03em",
         },
@@ -34,34 +34,34 @@
             tracking: "-0.045em",
         },
         "juego-memoriza-carta": {
-            bg: "#f3eee4",
-            panel: "#fbf8f1",
-            text: "#201b17",
-            muted: "#6b5e4f",
-            line: "#d8cbb8",
-            accent: "#b83b2e",
-            accentText: "#fbf8f1",
-            card: "#fbf8f1",
-            display: '"Fraunces", Georgia, serif',
+            bg: "#e6f0ff",
+            panel: "#f7fbff",
+            text: "#122a4a",
+            muted: "#5a6d88",
+            line: "#c3d6ef",
+            accent: "#ff7a3d",
+            accentText: "#231407",
+            card: "#ffffff",
+            display: '"Archivo", system-ui, sans-serif',
             body: '"Archivo", system-ui, sans-serif',
-            layout: "stack",
-            radius: "0.125rem",
-            titleWeight: "600",
-            tracking: "-0.03em",
+            layout: "rail",
+            radius: "1rem",
+            titleWeight: "700",
+            tracking: "-0.04em",
         },
         "juego-palabra-oculta": {
-            bg: "#f3eee4",
-            panel: "#fbf8f1",
-            text: "#201b17",
-            muted: "#6b5e4f",
-            line: "#d8cbb8",
-            accent: "#e9b949",
-            accentText: "#201b17",
-            card: "#fbf8f1",
+            bg: "#e8f5ec",
+            panel: "#f7fff9",
+            text: "#10291d",
+            muted: "#557064",
+            line: "#bcdcc8",
+            accent: "#0b6b43",
+            accentText: "#ffffff",
+            card: "#ffffff",
             display: '"Fraunces", Georgia, serif',
             body: '"Archivo", system-ui, sans-serif',
-            layout: "row",
-            radius: "0.125rem",
+            layout: "compact",
+            radius: "1rem",
             titleWeight: "600",
             tracking: "-0.03em",
         },
@@ -98,49 +98,49 @@
             tracking: "-0.03em",
         },
         "juego-serpiente": {
-            bg: "#f3eee4",
-            panel: "#fbf8f1",
-            text: "#201b17",
-            muted: "#6b5e4f",
-            line: "#d8cbb8",
-            accent: "#16726f",
-            accentText: "#fbf8f1",
-            card: "#fbf8f1",
+            bg: "#fff1e8",
+            panel: "#ffe3d3",
+            text: "#3b1320",
+            muted: "#8a5a63",
+            line: "#e8bfae",
+            accent: "#c81d4e",
+            accentText: "#ffffff",
+            card: "#fff7f2",
             display: '"Archivo", system-ui, sans-serif',
             body: '"Archivo", system-ui, sans-serif',
-            layout: "row",
+            layout: "corner",
             radius: "0.75rem",
             titleWeight: "700",
             tracking: "-0.04em",
         },
         "juego-sopa-letras": {
-            bg: "#f3eee4",
-            panel: "#fbf8f1",
-            text: "#201b17",
-            muted: "#6b5e4f",
-            line: "#d8cbb8",
-            accent: "#201b17",
-            accentText: "#f3eee4",
-            card: "#fbf8f1",
-            display: '"Fraunces", Georgia, serif',
+            bg: "#f4ead5",
+            panel: "#fffaf0",
+            text: "#1b2a4a",
+            muted: "#6b6a5f",
+            line: "#dccdad",
+            accent: "#1f4fbf",
+            accentText: "#ffffff",
+            card: "#fffaf0",
+            display: '"IBM Plex Mono", ui-monospace, monospace',
             body: '"Archivo", system-ui, sans-serif',
-            layout: "row",
-            radius: "0.125rem",
-            titleWeight: "600",
-            tracking: "-0.03em",
+            layout: "billboard",
+            radius: "0.5rem",
+            titleWeight: "500",
+            tracking: "-0.05em",
         },
         "juego-sudoku": {
-            bg: "#f3eee4",
-            panel: "#fbf8f1",
-            text: "#201b17",
-            muted: "#6b5e4f",
-            line: "#d8cbb8",
-            accent: "#201b17",
-            accentText: "#f3eee4",
-            card: "#fbf8f1",
+            bg: "#0d100e",
+            panel: "#151a16",
+            text: "#e8f5e9",
+            muted: "#9db3a1",
+            line: "#2a352d",
+            accent: "#b6f24a",
+            accentText: "#0d100e",
+            card: "#1b211c",
             display: '"Archivo", system-ui, sans-serif',
             body: '"Archivo", system-ui, sans-serif',
-            layout: "stack",
+            layout: "split",
             radius: "0.25rem",
             titleWeight: "700",
             tracking: "-0.04em",
@@ -335,6 +335,52 @@
         return element;
     };
 
+    const RETHEMED_GAMES = new Set([
+        "juego-7-letras",
+        "juego-memoriza-carta",
+        "juego-palabra-oculta",
+        "juego-serpiente",
+        "juego-sopa-letras",
+        "juego-sudoku",
+    ]);
+
+    const applyVars = (root, theme) => {
+        const vars = {
+            "--arcade-bg": theme.bg,
+            "--arcade-panel": theme.panel,
+            "--arcade-text": theme.text,
+            "--arcade-muted": theme.muted,
+            "--arcade-line": theme.line,
+            "--arcade-accent": theme.accent,
+            "--arcade-accent-text": theme.accentText,
+            "--arcade-card": theme.card,
+            "--arcade-display": theme.display,
+            "--arcade-body": theme.body,
+            "--arcade-radius": theme.radius,
+            "--arcade-title-weight": theme.titleWeight,
+            "--arcade-title-tracking": theme.tracking,
+        };
+        Object.entries(vars).forEach(([name, value]) => root.style.setProperty(name, value));
+    };
+
+    const applyGameTheme = (root, theme) => {
+        const tokens = {
+            "--color": theme.accent,
+            "--color-2": theme.text,
+            "--color-3": theme.muted,
+            "--color-4": theme.muted,
+            "--color-5": theme.accent,
+            "--color-6": theme.card,
+            "--color-7": theme.line,
+            "--color-8": theme.line,
+            "--color-9": theme.accent,
+            "--color-10": theme.card,
+            "--color-11": theme.bg,
+            "--color-12": theme.panel,
+        };
+        Object.entries(tokens).forEach(([name, value]) => root.style.setProperty(name, value));
+    };
+
     const createIcon = (paths) => {
         const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         svg.setAttribute("viewBox", "0 0 24 24");
@@ -348,7 +394,17 @@
     };
 
     if (playing) {
+        const theme = THEMES[gameId];
+        if (theme) {
+            applyVars(document.documentElement, theme);
+            if (RETHEMED_GAMES.has(gameId)) {
+                applyGameTheme(document.documentElement, theme);
+            }
+        }
         document.documentElement.classList.add("arcade-playing");
+        if (RETHEMED_GAMES.has(gameId)) {
+            document.documentElement.classList.add("arcade-rethemed");
+        }
         document.documentElement.dataset.arcadeGame = gameId;
         return;
     }
@@ -372,19 +428,7 @@
         tracking: "-0.045em",
     };
     overlay.classList.add(`arcade-home--${theme.layout}`);
-    overlay.style.setProperty("--arcade-bg", theme.bg);
-    overlay.style.setProperty("--arcade-panel", theme.panel);
-    overlay.style.setProperty("--arcade-text", theme.text);
-    overlay.style.setProperty("--arcade-muted", theme.muted);
-    overlay.style.setProperty("--arcade-line", theme.line);
-    overlay.style.setProperty("--arcade-accent", theme.accent);
-    overlay.style.setProperty("--arcade-accent-text", theme.accentText);
-    overlay.style.setProperty("--arcade-card", theme.card);
-    overlay.style.setProperty("--arcade-display", theme.display);
-    overlay.style.setProperty("--arcade-body", theme.body);
-    overlay.style.setProperty("--arcade-radius", theme.radius);
-    overlay.style.setProperty("--arcade-title-weight", theme.titleWeight);
-    overlay.style.setProperty("--arcade-title-tracking", theme.tracking);
+    applyVars(overlay, theme);
     overlay.setAttribute("role", "dialog");
     overlay.setAttribute("aria-modal", "true");
     overlay.setAttribute("aria-labelledby", "arcade-title");

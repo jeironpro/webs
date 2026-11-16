@@ -394,6 +394,98 @@ html.arcade-playing .hero {
     justify-content: center;
 }
 
+html.arcade-playing[data-arcade-game="juego-7-letras"] body,
+html.arcade-playing[data-arcade-game="juego-memoriza-carta"] body,
+html.arcade-playing[data-arcade-game="juego-palabra-oculta"] body,
+html.arcade-playing[data-arcade-game="juego-serpiente"] body,
+html.arcade-playing[data-arcade-game="juego-sopa-letras"] body,
+html.arcade-playing[data-arcade-game="juego-sudoku"] body {
+    background: var(--arcade-bg);
+    color: var(--arcade-text);
+}
+
+html.arcade-playing[data-arcade-game="juego-7-letras"] .pagina,
+html.arcade-playing[data-arcade-game="juego-memoriza-carta"] .hoja,
+html.arcade-playing[data-arcade-game="juego-palabra-oculta"] .pagina,
+html.arcade-playing[data-arcade-game="juego-serpiente"] .hoja,
+html.arcade-playing[data-arcade-game="juego-sopa-letras"] .pagina,
+html.arcade-playing[data-arcade-game="juego-sudoku"] .pagina {
+    background: transparent;
+    color: var(--arcade-text);
+}
+
+html.arcade-playing[data-arcade-game="juego-7-letras"] .juego,
+html.arcade-playing[data-arcade-game="juego-palabra-oculta"] .juego,
+html.arcade-playing[data-arcade-game="juego-sopa-letras"] .juego,
+html.arcade-playing[data-arcade-game="juego-sudoku"] .juego {
+    grid-template-columns: minmax(0, 1fr);
+    width: 100%;
+    max-width: 46rem;
+    margin-inline: auto;
+    gap: 1rem;
+}
+
+html.arcade-playing[data-arcade-game="juego-7-letras"] .lateral,
+html.arcade-playing[data-arcade-game="juego-sopa-letras"] .lateral,
+html.arcade-playing[data-arcade-game="juego-sudoku"] .lateral {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.85rem;
+    width: 100%;
+}
+
+html.arcade-playing[data-arcade-game="juego-7-letras"] .lateral > .btn,
+html.arcade-playing[data-arcade-game="juego-sopa-letras"] .lateral > .btn,
+html.arcade-playing[data-arcade-game="juego-sudoku"] .lateral > .btn,
+html.arcade-playing[data-arcade-game="juego-sudoku"] .teclado {
+    grid-column: 1 / -1;
+}
+
+html.arcade-playing[data-arcade-game="juego-palabra-oculta"] .lateral {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    width: 100%;
+}
+
+html.arcade-playing[data-arcade-game="juego-palabra-oculta"] .lateral .tarjeta {
+    display: none;
+}
+
+html.arcade-playing[data-arcade-game="juego-memoriza-carta"] .hoja,
+html.arcade-playing[data-arcade-game="juego-serpiente"] .hoja {
+    width: 100%;
+    max-width: 48rem;
+}
+
+html.arcade-playing[data-arcade-game="juego-wend"] .disposicion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 46rem;
+    gap: 1rem;
+}
+
+html.arcade-playing[data-arcade-game="juego-wend"] .lateral {
+    display: contents;
+}
+
+html.arcade-playing[data-arcade-game="juego-wend"] .panel--palabras {
+    order: -1;
+    width: 100%;
+}
+
+html.arcade-playing[data-arcade-game="juego-wend"] .juego {
+    order: 0;
+    width: 100%;
+}
+
+html.arcade-playing[data-arcade-game="juego-wend"] .acciones {
+    order: 2;
+    width: 100%;
+}
+
 html.arcade-playing[data-arcade-game="juego-adivina-numero"] .rules,
 html.arcade-playing .nota,
 html.arcade-playing .leyenda,
@@ -416,18 +508,62 @@ html.arcade-playing[data-arcade-game="juego-memoriza-carta"] .marco {
     width: min(100%, 24rem, 48vh);
 }
 
-html.arcade-playing[data-arcade-game="juego-palabra-oculta"] .tablero,
-html.arcade-playing[data-arcade-game="juego-sopa-letras"] .tablero,
-html.arcade-playing[data-arcade-game="juego-sudoku"] .tablero,
-html.arcade-playing[data-arcade-game="juego-patches"] .tablero,
-html.arcade-playing[data-arcade-game="juego-tango"] .tablero {
-    max-width: min(28rem, 55vh);
+html.arcade-playing[data-arcade-game="juego-palabra-oculta"] .tablero {
+    max-width: min(22rem, 42vh);
     margin-inline: auto;
 }
 
-html.arcade-playing[data-arcade-game="juego-queens"] .marco,
+html.arcade-playing[data-arcade-game="juego-sopa-letras"] .tablero {
+    max-width: min(24rem, 48vh);
+    margin-inline: auto;
+}
+
+html.arcade-playing[data-arcade-game="juego-sudoku"] .tablero {
+    max-width: min(22rem, 44vh);
+    margin-inline: auto;
+}
+
+html.arcade-playing[data-arcade-game="juego-wend"] .marco {
+    max-width: min(28rem, 45vh);
+    margin-inline: auto;
+}
+
+html.arcade-playing[data-arcade-game="juego-wend"] .panel--palabras {
+    max-height: 13vh;
+    overflow-y: auto;
+}
+
+html.arcade-playing[data-arcade-game="juego-wend"] .marco {
+    max-width: min(28rem, 32vh);
+}
+
+html.arcade-playing.arcade-rethemed .tarjeta,
+html.arcade-playing.arcade-rethemed .panel-juego,
+html.arcade-playing.arcade-rethemed .panel-tablero,
+html.arcade-playing.arcade-rethemed .marcador,
+html.arcade-playing.arcade-rethemed .niveles,
+html.arcade-playing.arcade-rethemed .teclado,
+html.arcade-playing.arcade-rethemed .marco {
+    border-color: var(--arcade-line);
+    background: var(--arcade-panel);
+    color: var(--arcade-text);
+}
+
+html.arcade-playing[data-arcade-game="juego-sudoku"] .teclado button {
+    border-color: var(--arcade-line);
+    background: var(--arcade-card);
+    color: var(--arcade-text);
+}
+
+html.arcade-playing[data-arcade-game="juego-patches"] .tablero,
+html.arcade-playing[data-arcade-game="juego-tango"] .tablero,
+html.arcade-playing[data-arcade-game="juego-queens"] .marco {
+    max-width: min(36rem, 72vh);
+    margin-inline: auto;
+}
+
 html.arcade-playing[data-arcade-game="juego-serpiente"] .marco {
-    max-width: min(28rem, 55vh);
+    max-width: min(30rem, 60vh);
     margin-inline: auto;
 }
 
@@ -449,6 +585,164 @@ html.arcade-playing[data-arcade-game="juego-queens"] .puzzle__titulo {
 
 .arcade-home--stack .arcade-home__modes {
     grid-template-columns: minmax(0, 1fr);
+}
+
+.arcade-home--poster .arcade-home__panel {
+    width: min(46rem, 100%);
+    align-items: flex-start;
+    text-align: left;
+}
+
+.arcade-home--poster .arcade-home__icon {
+    display: none;
+}
+
+.arcade-home--poster .arcade-home__title {
+    font-size: clamp(3.6rem, 9vw, 7rem);
+    line-height: 0.85;
+}
+
+.arcade-home--poster .arcade-home__modes {
+    width: 100%;
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.arcade-home--poster .arcade-home__start {
+    width: 100%;
+}
+
+.arcade-home--split .arcade-home__panel {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    width: min(64rem, 100%);
+    align-items: center;
+    column-gap: 2.5rem;
+}
+
+.arcade-home--split .arcade-home__header {
+    grid-row: 1 / span 3;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.arcade-home--split .arcade-home__modes {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.arcade-home--split .arcade-home__start {
+    width: 100%;
+}
+
+.arcade-home--billboard .arcade-home__panel {
+    width: min(70rem, 100%);
+}
+
+.arcade-home--billboard .arcade-home__header {
+    align-items: flex-start;
+    text-align: left;
+}
+
+.arcade-home--billboard .arcade-home__title {
+    font-size: clamp(3rem, 8vw, 6rem);
+}
+
+.arcade-home--billboard .arcade-home__modes {
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.arcade-home--billboard .arcade-home__start {
+    width: 100%;
+}
+
+.arcade-home--corner .arcade-home__panel {
+    width: min(60rem, 100%);
+    align-items: flex-start;
+    text-align: left;
+}
+
+.arcade-home--corner .arcade-home__header {
+    align-items: flex-start;
+}
+
+.arcade-home--corner .arcade-home__modes {
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.arcade-home--corner .arcade-home__start {
+    align-self: flex-end;
+}
+
+.arcade-home--compact .arcade-home__panel {
+    width: min(36rem, 100%);
+}
+
+.arcade-home--compact .arcade-home__icon {
+    width: 3rem;
+    height: 3rem;
+}
+
+.arcade-home--compact .arcade-home__title {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+}
+
+.arcade-home--compact .arcade-home__modes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.6rem;
+}
+
+.arcade-home--compact .arcade-home__mode {
+    padding: 0.85rem;
+}
+
+.arcade-home--rail .arcade-home__panel {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.4fr);
+    width: min(58rem, 100%);
+    align-items: center;
+    column-gap: 2.5rem;
+}
+
+.arcade-home--rail .arcade-home__header {
+    grid-row: 1 / span 3;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.arcade-home--rail .arcade-home__modes {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.arcade-home--rail .arcade-home__start {
+    width: 100%;
+}
+
+@media (width <= 48rem) {
+    .arcade-home--split .arcade-home__panel,
+    .arcade-home--rail .arcade-home__panel {
+        display: flex;
+    }
+
+    .arcade-home--split .arcade-home__header,
+    .arcade-home--rail .arcade-home__header {
+        grid-row: auto;
+        align-items: center;
+        text-align: center;
+    }
+
+    .arcade-home--billboard .arcade-home__header,
+    .arcade-home--corner .arcade-home__header,
+    .arcade-home--poster .arcade-home__panel {
+        align-items: center;
+        text-align: center;
+    }
+
+    .arcade-home--billboard .arcade-home__modes,
+    .arcade-home--corner .arcade-home__modes,
+    .arcade-home--compact .arcade-home__modes {
+        grid-template-columns: minmax(0, 1fr);
+    }
 }
 
 @media (width <= 40rem) {
