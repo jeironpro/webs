@@ -25,6 +25,7 @@ const WEBS_CANONICAS = [
     "web-cursos-cpnl",
     "web-dados",
     "web-daw",
+    "web-diff",
     "web-ejercicios-pyja",
     "web-frontend",
     "web-instruccion-login-google",
