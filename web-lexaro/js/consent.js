@@ -19,6 +19,12 @@ export function initStorageConsent() {
         return;
     }
 
+    if (new URLSearchParams(window.location.search).has("captura")) {
+        banner.hidden = true;
+        reopen.hidden = true;
+        return;
+    }
+
     const initial = banner.querySelector("[data-consent-initial]");
     const declined = banner.querySelector("[data-consent-declined]");
     const active = banner.querySelector("[data-consent-active]");
