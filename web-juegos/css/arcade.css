@@ -24,7 +24,6 @@
     --arcade-accent-strong: #6c9cff;
     --arcade-button-top: #5f97ff;
     --arcade-button-bottom: #3f78e8;
-    --arcade-return-text: #e8edfa;
     --arcade-white: #fff;
 }
 
@@ -369,6 +368,21 @@ html.arcade-playing footer {
     display: none;
 }
 
+html.arcade-playing body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+html.arcade-playing .pagina,
+html.arcade-playing .hoja,
+html.arcade-playing .app,
+html.arcade-playing body > main,
+html.arcade-playing .disposicion {
+    width: 100%;
+    margin-inline: auto;
+}
+
 html.arcade-playing .hero {
     grid-template-columns: minmax(0, 34rem);
     justify-content: center;
@@ -381,44 +395,7 @@ html.arcade-playing[data-arcade-game="juego-queens"] .puzzle__titulo {
     display: none;
 }
 
-.arcade-return {
-    position: fixed;
-    bottom: max(1rem, env(safe-area-inset-bottom));
-    left: max(1rem, env(safe-area-inset-left));
-    z-index: 2147482000;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    padding: 0.6rem 0.9rem;
-    border: 0.0625rem solid var(--arcade-line-3);
-    border-radius: 62.4375rem;
-    background: rgb(13 18 32 / 0.94);
-    color: var(--arcade-return-text);
-    font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
-    font-size: 0.78rem;
-    font-weight: 600;
-    text-decoration: none;
-    box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 0.35);
-    backdrop-filter: blur(0.5rem);
-}
-
-.arcade-return:hover {
-    border-color: var(--arcade-accent);
-    color: var(--arcade-white);
-}
-
-.arcade-return svg {
-    width: 0.9rem;
-    height: 0.9rem;
-    fill: none;
-    stroke: currentColor;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-width: 2;
-}
-
-.arcade-home button:focus-visible,
-.arcade-return:focus-visible {
+.arcade-home button:focus-visible {
     outline: 0.125rem solid var(--arcade-accent);
     outline-offset: 0.2rem;
 }
@@ -457,8 +434,7 @@ html.arcade-playing[data-arcade-game="juego-queens"] .puzzle__titulo {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .arcade-home *,
-    .arcade-return {
+    .arcade-home * {
         animation-duration: 0.01ms;
         transition-duration: 0.01ms;
     }

@@ -18,13 +18,13 @@
             tracking: "-0.03em",
         },
         "juego-adivina-numero": {
-            bg: "#f7f2e6",
-            panel: "#fffdf7",
-            text: "#202936",
-            muted: "#5f6877",
-            line: "#e5dcc9",
-            accent: "#e0ad00",
-            accentText: "#202936",
+            bg: "oklch(97% 0.012 95)",
+            panel: "oklch(94% 0.016 95)",
+            text: "oklch(20% 0.012 250)",
+            muted: "oklch(42% 0.012 250)",
+            line: "oklch(86% 0.015 95)",
+            accent: "oklch(86% 0.18 95)",
+            accentText: "oklch(20% 0.012 250)",
             card: "#fffdf7",
             display: '"Plus Jakarta Sans", ui-sans-serif, sans-serif',
             body: '"Plus Jakarta Sans", ui-sans-serif, sans-serif',
@@ -66,14 +66,14 @@
             tracking: "-0.03em",
         },
         "juego-patches": {
-            bg: "#f7f4ec",
-            panel: "#fffdf8",
-            text: "#201d18",
-            muted: "#6f675c",
-            line: "#ded6c7",
-            accent: "#d64426",
-            accentText: "#fffdf8",
-            card: "#fffdf8",
+            bg: "oklch(97% 0.006 90)",
+            panel: "oklch(93% 0.007 88)",
+            text: "oklch(19% 0.008 70)",
+            muted: "oklch(48% 0.008 70)",
+            line: "oklch(82% 0.006 80)",
+            accent: "oklch(51% 0.2 27)",
+            accentText: "oklch(97% 0.006 90)",
+            card: "oklch(93% 0.007 88)",
             display: '"Jost", ui-sans-serif, sans-serif',
             body: '"Archivo", ui-sans-serif, sans-serif',
             layout: "stack",
@@ -83,13 +83,13 @@
         },
         "juego-queens": {
             bg: "#f4ecd8",
-            panel: "#fbf7ea",
+            panel: "#e9dec4",
             text: "#241c16",
             muted: "#6b5c4c",
-            line: "#dcc9a4",
-            accent: "#a3281a",
-            accentText: "#fbf7ea",
-            card: "#fbf7ea",
+            line: "#c9b998",
+            accent: "#b8371c",
+            accentText: "#f4ecd8",
+            card: "#e9dec4",
             display: '"Fraunces", Georgia, serif',
             body: '"Archivo", system-ui, sans-serif',
             layout: "row",
@@ -119,8 +119,8 @@
             text: "#201b17",
             muted: "#6b5e4f",
             line: "#d8cbb8",
-            accent: "#16726f",
-            accentText: "#fbf8f1",
+            accent: "#201b17",
+            accentText: "#f3eee4",
             card: "#fbf8f1",
             display: '"Fraunces", Georgia, serif',
             body: '"Archivo", system-ui, sans-serif',
@@ -135,8 +135,8 @@
             text: "#201b17",
             muted: "#6b5e4f",
             line: "#d8cbb8",
-            accent: "#16726f",
-            accentText: "#fbf8f1",
+            accent: "#201b17",
+            accentText: "#f3eee4",
             card: "#fbf8f1",
             display: '"Archivo", system-ui, sans-serif',
             body: '"Archivo", system-ui, sans-serif',
@@ -146,14 +146,14 @@
             tracking: "-0.04em",
         },
         "juego-tango": {
-            bg: "#f6f9ff",
-            panel: "#ffffff",
-            text: "#26355c",
-            muted: "#5d6b8c",
-            line: "#dbe4f5",
-            accent: "#4f6bd8",
-            accentText: "#ffffff",
-            card: "#ffffff",
+            bg: "oklch(98.4% 0.006 245)",
+            panel: "oklch(95.8% 0.014 245)",
+            text: "oklch(31% 0.085 264)",
+            muted: "oklch(56% 0.04 258)",
+            line: "oklch(88% 0.025 248)",
+            accent: "oklch(87% 0.11 84)",
+            accentText: "oklch(31% 0.085 264)",
+            card: "oklch(95.8% 0.014 245)",
             display: '"IBM Plex Sans Condensed", sans-serif',
             body: '"IBM Plex Sans", sans-serif',
             layout: "row",
@@ -162,10 +162,10 @@
             tracking: "-0.03em",
         },
         "juego-wend": {
-            bg: "#f2f6ff",
+            bg: "#e7efff",
             panel: "#ffffff",
             text: "#101a3a",
-            muted: "#5c6b8d",
+            muted: "#68789b",
             line: "#c9d6ee",
             accent: "#2f5eea",
             accentText: "#ffffff",
@@ -292,7 +292,6 @@
 
     const params = new URLSearchParams(window.location.search);
     const playing = params.get("play") === "1";
-    const homeUrl = `${window.location.pathname}`;
     const playUrl = `${window.location.pathname}?play=1`;
     const storageKey = `arcade:${gameId}`;
 
@@ -348,18 +347,9 @@
         return svg;
     };
 
-    const addReturnButton = () => {
-        const link = document.createElement("a");
-        link.className = "arcade-return";
-        link.href = homeUrl;
-        link.append(createIcon(["m15 6-6 6 6 6"]), createNode("span", "", "Arcade"));
-        document.body.append(link);
-    };
-
     if (playing) {
         document.documentElement.classList.add("arcade-playing");
         document.documentElement.dataset.arcadeGame = gameId;
-        addReturnButton();
         return;
     }
 
