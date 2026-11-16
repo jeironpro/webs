@@ -3,75 +3,56 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Formateador JSON y YAML · Valida y ordena tus datos</title>
+        <title>Formateador JSON y YAML · Dos hojas para tus datos</title>
         <meta
             name="description"
-            content="Formatea, minifica y valida JSON y YAML en el navegador, con errores por línea y columna, orden de claves y copia del resultado."
+            content="Formatea, minifica y valida JSON y YAML en dos hojas enfrentadas, con errores señalados en el margen por línea y columna."
         />
-        <meta name="theme-color" content="#f7f8fb" />
+        <meta name="theme-color" content="#f6f1e6" />
         <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600;6..72,700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;500&display=swap"
             rel="stylesheet"
         />
 
         <link rel="stylesheet" href="css/style.css" />
     </head>
     <body>
-        <a class="skip-link" href="#source">Saltar al formateador</a>
+        <a class="skip-link" href="#source">Saltar al documento</a>
 
-        <div class="site">
-            <header class="site-header">
-                <nav class="nav" aria-label="Principal">
-                    <a class="nav__brand" href="../">Formateador JSON y YAML</a>
-                    <div class="nav__links">
-                        <a class="nav__link" href="../">Catálogo</a>
-                        <a
-                            class="nav__link nav__link--icon"
-                            href="https://github.com/jeironpro/webs/tree/main/web-json-yaml"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label="Repositorio en GitHub"
-                        >
-                            <svg
-                                class="nav__icon"
-                                viewBox="0 0 24 24"
-                                width="22"
-                                height="22"
-                                fill="currentColor"
-                                aria-hidden="true"
-                            >
-                                <path
-                                    d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.7-1.4-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1.1 1.9 2.9 1.4 3.6 1 .1-.8.4-1.4.8-1.7-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.4-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.7.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3Z"
-                                />
-                            </svg>
-                        </a>
-                    </div>
+        <div class="page">
+            <header class="masthead">
+                <a class="masthead__brand" href="../">
+                    Formateador <span class="masthead__slash">/</span> JSON y YAML
+                </a>
+                <nav class="masthead__nav" aria-label="Principal">
+                    <a class="masthead__link" href="../">catálogo</a>
+                    <a
+                        class="masthead__link"
+                        href="https://github.com/jeironpro/webs/tree/main/web-json-yaml"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >github ↗</a
+                    >
                 </nav>
             </header>
 
-            <main class="site-main" id="content">
-                <section class="page-head" aria-labelledby="title">
-                    <p class="mono-label">HERRAMIENTA · DATOS ESTRUCTURADOS</p>
-                    <h1 class="page-head__title" id="title">Formatea y valida JSON y YAML</h1>
-                    <p class="page-head__lede">
-                        Pega un documento, elige el formato y obtén una versión ordenada y legible.
-                        Si algo falla, verás el mensaje, la línea y la columna exactos. Todo se
-                        procesa en tu navegador.
+            <main class="workspace" id="content">
+                <div class="lede">
+                    <p class="lede__kicker">Herramienta de datos · sin servidor</p>
+                    <h1 class="lede__title" id="title">Dos hojas para tus datos</h1>
+                    <p class="lede__text">
+                        Pega el documento a la izquierda y trabaja la versión limpia a la derecha.
+                        Si hay un error, aparecerá anotado en el margen con su línea y columna.
                     </p>
-                </section>
+                </div>
 
-                <section class="panel" aria-labelledby="input-title">
-                    <div class="panel__head">
-                        <h2 class="panel__title" id="input-title">Entrada</h2>
-                        <p class="summary" id="status" aria-live="polite">Esperando datos</p>
-                    </div>
-
+                <div class="toolbar">
                     <fieldset class="formats">
-                        <legend class="mono-label">Formato</legend>
+                        <legend class="toolbar__label">Formato</legend>
                         <label class="format">
                             <input
                                 class="format__input"
@@ -80,98 +61,104 @@
                                 value="json"
                                 checked
                             />
-                            <span class="format__code">{ }</span>
-                            <span class="format__label">JSON</span>
+                            <span class="format__name">JSON</span>
                         </label>
                         <label class="format">
                             <input class="format__input" type="radio" name="format" value="yaml" />
-                            <span class="format__code">YAML</span>
-                            <span class="format__label">YAML</span>
+                            <span class="format__name">YAML</span>
                         </label>
                     </fieldset>
 
-                    <div class="field">
-                        <label class="mono-label" for="source">Documento</label>
+                    <div class="toolbar__group">
+                        <label class="toolbar__label" for="indent">Sangría</label>
+                        <select class="select" id="indent" name="indent">
+                            <option value="2" selected>2 espacios</option>
+                            <option value="4">4 espacios</option>
+                        </select>
+                    </div>
+
+                    <label class="check">
+                        <input class="check__input" type="checkbox" id="sort-keys" />
+                        <span>Ordenar claves</span>
+                    </label>
+
+                    <div class="toolbar__actions">
+                        <button type="button" class="action action--primary" id="format">
+                            Formatear
+                        </button>
+                        <button type="button" class="action" id="minify">Minificar</button>
+                        <button type="button" class="action" id="example">Ejemplo</button>
+                        <button type="button" class="action" id="clear">Limpiar</button>
+                    </div>
+                </div>
+
+                <div class="sheets">
+                    <section class="sheet" aria-labelledby="input-title">
+                        <header class="sheet__head">
+                            <span class="sheet__folio" aria-hidden="true">01</span>
+                            <h2 class="sheet__title" id="input-title">Documento</h2>
+                            <p class="sheet__state" id="status" aria-live="polite">
+                                Esperando datos
+                            </p>
+                        </header>
+
+                        <label class="sheet__label" for="source">Entrada</label>
                         <textarea
-                            class="editor__field"
+                            class="paper"
                             id="source"
                             name="source"
-                            rows="14"
+                            rows="18"
                             spellcheck="false"
                             placeholder="Pega aquí tu JSON o YAML…"
                             aria-describedby="source-help"
                         ></textarea>
-                        <p class="field__hint" id="source-help">
+                        <p class="sheet__help" id="source-help">
                             La validación se actualiza mientras escribes. Los datos no salen del
                             navegador.
                         </p>
-                    </div>
 
-                    <div class="options">
-                        <div class="field field--inline">
-                            <label class="mono-label" for="indent">Sangría</label>
-                            <select class="select" id="indent" name="indent">
-                                <option value="2" selected>2 espacios</option>
-                                <option value="4">4 espacios</option>
-                            </select>
+                        <div class="err" id="error" role="alert" hidden>
+                            <p class="err__note" id="error-message"></p>
+                            <pre class="err__context" id="error-context"></pre>
                         </div>
-                        <label class="check">
-                            <input class="check__input" type="checkbox" id="sort-keys" />
-                            <span class="check__label">Ordenar claves alfabéticamente</span>
-                        </label>
-                    </div>
+                    </section>
 
-                    <div class="actions">
-                        <button type="button" class="btn btn--accent" id="format">Formatear</button>
-                        <button type="button" class="btn" id="minify">Minificar</button>
-                        <button type="button" class="btn" id="example">Cargar ejemplo</button>
-                        <button type="button" class="btn" id="clear">Limpiar</button>
-                    </div>
+                    <section class="sheet sheet--out" aria-labelledby="output-title">
+                        <header class="sheet__head">
+                            <span class="sheet__folio" aria-hidden="true">02</span>
+                            <h2 class="sheet__title" id="output-title">Resultado</h2>
+                            <p class="sheet__state" id="output-summary"></p>
+                        </header>
 
-                    <div class="error" id="error" role="alert" hidden>
-                        <p class="error__title" id="error-message"></p>
-                        <pre class="error__context" id="error-context"></pre>
-                    </div>
-                </section>
-
-                <section class="panel" aria-labelledby="output-title">
-                    <div class="panel__head">
-                        <h2 class="panel__title" id="output-title">Resultado</h2>
-                        <p class="summary" id="output-summary"></p>
-                    </div>
-
-                    <div class="field">
-                        <label class="mono-label" for="output">Documento formateado</label>
+                        <label class="sheet__label" for="output">Copia limpia</label>
                         <textarea
-                            class="editor__field editor__field--output"
+                            class="paper paper--out"
                             id="output"
                             name="output"
-                            rows="14"
+                            rows="18"
                             readonly
                             placeholder="El resultado aparecerá aquí…"
                         ></textarea>
-                    </div>
 
-                    <div class="actions">
-                        <button type="button" class="btn" id="copy" disabled>
-                            Copiar resultado
-                        </button>
-                        <p
-                            class="copy-status"
-                            id="copy-status"
-                            role="status"
-                            aria-live="polite"
-                        ></p>
-                    </div>
-                </section>
+                        <div class="sheet__foot">
+                            <button type="button" class="action" id="copy" disabled>
+                                Copiar resultado
+                            </button>
+                            <p
+                                class="copy-status"
+                                id="copy-status"
+                                role="status"
+                                aria-live="polite"
+                            ></p>
+                        </div>
+                    </section>
+                </div>
             </main>
 
-            <footer class="site-footer">
-                <div class="foot">
-                    <p class="foot__colophon">
-                        Todos los derechos reservados - <span id="year">2026</span> jeironpro
-                    </p>
-                </div>
+            <footer class="footer">
+                <p class="footer__text">
+                    Todos los derechos reservados - <span id="year">2026</span> jeironpro
+                </p>
             </footer>
         </div>
 

@@ -56,18 +56,18 @@ function renderPreview(text, matches) {
 
 function renderMatch(match, position) {
     const item = document.createElement("li");
-    item.className = "match";
+    item.className = "log__row";
 
     const index = document.createElement("span");
-    index.className = "match__index";
-    index.textContent = `#${position + 1}`;
+    index.className = "log__idx";
+    index.textContent = String(position + 1).padStart(2, "0");
 
     const value = document.createElement("code");
-    value.className = "match__value";
+    value.className = "log__match";
     value.textContent = match.value === "" ? "«coincidencia vacía»" : match.value;
 
     const meta = document.createElement("div");
-    meta.className = "match__meta";
+    meta.className = "log__groups";
     meta.append(`índice ${match.index}`);
 
     const groups = match.groups
@@ -84,9 +84,8 @@ function renderMatch(match, position) {
 
     if (groups !== "") {
         const detail = document.createElement("span");
-        detail.className = "match__groups";
         detail.textContent = groups;
-        meta.append(detail);
+        meta.append(" · ", detail);
     }
 
     item.append(index, value, meta);
