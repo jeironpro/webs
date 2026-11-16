@@ -1,13 +1,20 @@
 import {
+    MAX_LINES,
+    MAX_WORDS,
     computeStats,
+    computeWordStats,
     diffInline,
     diffLines,
+    diffWords,
     isTruncated,
+    isWordTruncated,
     splitLines,
     toUnified,
+    toWordDiff,
 } from "./modules/diff.js";
 
 const $ = (id) => document.getElementById(id);
+const qsa = (selector) => Array.from(document.querySelectorAll(selector));
 
 const elements = {
     textA: $("text-a"),
@@ -16,19 +23,29 @@ const elements = {
     countB: $("count-b"),
     ignoreCase: $("ignore-case"),
     ignoreSpace: $("ignore-space"),
+    modes: qsa('input[name="mode"]'),
     example: $("example"),
     swap: $("swap"),
     clear: $("clear"),
     copy: $("copy"),
     copyStatus: $("copy-status"),
     diff: $("diff"),
+    diffHead: $("diff-head"),
     empty: $("diff-empty"),
+    wordDiff: $("word-diff"),
+    wordDiffText: $("word-diff-text"),
     ribbon: $("ribbon"),
+    summaryTitle: $("summary-title"),
     similarity: $("similarity"),
     statEqual: $("stat-equal"),
     statAdd: $("stat-add"),
     statRemove: $("stat-remove"),
     statChange: $("stat-change"),
+    statChangeItem: $("stat-change-item"),
+    labelEqual: $("label-equal"),
+    labelAdd: $("label-add"),
+    labelRemove: $("label-remove"),
+    diffTitle: $("diff-title"),
     truncated: $("truncated"),
     year: $("year"),
 };
@@ -85,6 +102,11 @@ function currentOptions() {
         ignoreCase: elements.ignoreCase.checked,
         ignoreWhitespace: elements.ignoreSpace.checked,
     };
+}
+
+function currentMode() {
+    const checked = elements.modes.find((radio) => radio.checked);
+    return checked ? checked.value : "lines";
 }
 
 function textNode(value) {
@@ -158,28 +180,54 @@ function renderRows(rows) {
     const fragment = document.createDocumentFragment();
     rows.forEach((row) => fragment.append(buildRow(row)));
     elements.diff.replaceChildren(fragment);
-
-    elements.diff.hidden = rows.length === 0;
-    elements.empty.hidden = rows.length > 0;
 }
 
-function dominantType(rows) {
+function renderWords(segments) {
+    const fragment = document.createDocumentFragment();
+
+    const appendText = (value) => {
+        if (value) fragment.append(textNode(value));
+    };
+
+    segments.forEach((segment) => {
+        if (segment.type === "equal") {
+            appendText(segment.text);
+            return;
+        }
+
+        const match = segment.text.match(/^(\s*)([\s\S]*?)(\s*)$/);
+        if (!match || match[2] === "") {
+            appendText(segment.text);
+            return;
+        }
+
+        appendText(match[1]);
+        const element = document.createElement(segment.type === "remove" ? "del" : "ins");
+        element.textContent = match[2];
+        fragment.append(element);
+        appendText(match[3]);
+    });
+
+    elements.wordDiffText.replaceChildren(fragment);
+}
+
+function dominantType(items) {
     const counts = { equal: 0, add: 0, remove: 0, change: 0 };
-    rows.forEach((row) => counts[row.type]++);
+    items.forEach((item) => counts[item.type]++);
 
     return ["change", "remove", "add", "equal"].reduce((best, type) =>
         counts[type] > counts[best] ? type : best
     );
 }
 
-function renderRibbon(rows) {
+function renderRibbon(items) {
     elements.ribbon.replaceChildren();
-    if (rows.length === 0) return;
+    if (items.length === 0) return;
 
-    const bucket = Math.ceil(rows.length / SEGMENT_LIMIT);
+    const bucket = Math.ceil(items.length / SEGMENT_LIMIT);
 
-    for (let start = 0; start < rows.length; start += bucket) {
-        const slice = rows.slice(start, start + bucket);
+    for (let start = 0; start < items.length; start += bucket) {
+        const slice = items.slice(start, start + bucket);
         const segment = document.createElement("span");
         segment.className = `ribbon__seg ribbon__seg--${dominantType(slice)}`;
         segment.style.flexGrow = String(slice.length);
@@ -187,26 +235,60 @@ function renderRibbon(rows) {
     }
 }
 
-function renderStats(rows) {
-    const stats = computeStats(rows);
-
+function renderStats(stats, isWords) {
     elements.statEqual.textContent = String(stats.equal);
     elements.statAdd.textContent = String(stats.add);
     elements.statRemove.textContent = String(stats.remove);
-    elements.statChange.textContent = String(stats.change);
-    elements.similarity.textContent = `${stats.similarity} % igual`;
+    elements.statChange.textContent = String(stats.change ?? 0);
+    elements.statChangeItem.hidden = isWords;
+
+    elements.labelEqual.textContent = isWords ? "palabras iguales" : "iguales";
+    elements.labelAdd.textContent = isWords ? "palabras añadidas" : "añadidas";
+    elements.labelRemove.textContent = isWords ? "palabras eliminadas" : "eliminadas";
+
+    elements.summaryTitle.textContent = isWords ? "Resumen de palabras" : "Resumen de la cinta";
+    elements.similarity.textContent = isWords
+        ? `${stats.similarity} % de palabras iguales`
+        : `${stats.similarity} % igual`;
 }
 
 function render() {
-    const rows = diffLines(elements.textA.value, elements.textB.value, currentOptions());
+    const isWords = currentMode() === "words";
+    const options = currentOptions();
 
     updateCounts();
-    renderStats(rows);
-    renderRibbon(rows);
-    renderRows(rows);
 
-    elements.truncated.hidden = !isTruncated(elements.textA.value, elements.textB.value);
-    elements.copy.disabled = rows.length === 0;
+    let items;
+
+    if (isWords) {
+        const segments = diffWords(elements.textA.value, elements.textB.value, options);
+        items = segments;
+        renderWords(segments);
+        renderStats(computeWordStats(segments), true);
+        elements.wordDiff.hidden = segments.length === 0;
+        elements.diff.hidden = true;
+        elements.diffHead.hidden = true;
+        elements.truncated.hidden = !isWordTruncated(elements.textA.value, elements.textB.value);
+        elements.truncated.textContent = `Textos largos: se comparan las primeras ${MAX_WORDS} palabras de cada lado.`;
+        elements.diffTitle.textContent = "Palabra a palabra";
+        elements.copy.textContent = "Copiar diff de palabras";
+    } else {
+        const rows = diffLines(elements.textA.value, elements.textB.value, options);
+        items = rows;
+        renderRows(rows);
+        renderStats(computeStats(rows), false);
+        elements.wordDiff.hidden = true;
+        elements.diff.hidden = rows.length === 0;
+        elements.diffHead.hidden = false;
+        elements.truncated.hidden = !isTruncated(elements.textA.value, elements.textB.value);
+        elements.truncated.textContent = `Textos largos: se comparan las primeras ${MAX_LINES} líneas de cada lado.`;
+        elements.diffTitle.textContent = "Cinta de cambios";
+        elements.copy.textContent = "Copiar diff unificado";
+    }
+
+    renderRibbon(items);
+    elements.empty.hidden = items.length > 0;
+    elements.copy.disabled = items.length === 0;
 }
 
 function scheduleRender() {
@@ -224,13 +306,20 @@ function setStatus(message) {
     }
 }
 
-async function copyUnified() {
-    const rows = diffLines(elements.textA.value, elements.textB.value, currentOptions());
-    const unified = toUnified(rows, { leftLabel: "original", rightLabel: "versión nueva" });
+async function copyDiff() {
+    const mode = currentMode();
+    const options = currentOptions();
+    const unified =
+        mode === "words"
+            ? toWordDiff(diffWords(elements.textA.value, elements.textB.value, options))
+            : toUnified(diffLines(elements.textA.value, elements.textB.value, options), {
+                  leftLabel: "original",
+                  rightLabel: "versión nueva",
+              });
 
     try {
         await navigator.clipboard.writeText(unified);
-        setStatus("Diff copiado al portapapeles");
+        setStatus(mode === "words" ? "Diff de palabras copiado" : "Diff copiado al portapapeles");
     } catch {
         setStatus("No se pudo copiar el diff");
     }
@@ -263,10 +352,11 @@ elements.textA.addEventListener("input", scheduleRender);
 elements.textB.addEventListener("input", scheduleRender);
 elements.ignoreCase.addEventListener("change", render);
 elements.ignoreSpace.addEventListener("change", render);
+elements.modes.forEach((radio) => radio.addEventListener("change", render));
 elements.example.addEventListener("click", loadExample);
 elements.swap.addEventListener("click", swapTexts);
 elements.clear.addEventListener("click", clearTexts);
-elements.copy.addEventListener("click", copyUnified);
+elements.copy.addEventListener("click", copyDiff);
 
 elements.year.textContent = String(new Date().getFullYear());
 

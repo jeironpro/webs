@@ -61,6 +61,24 @@
 
                 <div class="toolbar">
                     <div class="toolbar__options">
+                        <fieldset class="mode">
+                            <legend class="visually-hidden">Modo de comparación</legend>
+                            <label class="mode__option">
+                                <input
+                                    class="mode__input"
+                                    type="radio"
+                                    name="mode"
+                                    value="lines"
+                                    checked
+                                />
+                                <span class="mode__label">Por líneas</span>
+                            </label>
+                            <label class="mode__option">
+                                <input class="mode__input" type="radio" name="mode" value="words" />
+                                <span class="mode__label">Por palabras</span>
+                            </label>
+                        </fieldset>
+
                         <label class="switch">
                             <input class="switch__input" type="checkbox" id="ignore-case" />
                             <span class="switch__box" aria-hidden="true"></span>
@@ -132,19 +150,19 @@
                 <ul class="stats">
                     <li class="stat stat--equal">
                         <span class="stat__value" id="stat-equal">0</span>
-                        <span class="stat__label">iguales</span>
+                        <span class="stat__label" id="label-equal">iguales</span>
                     </li>
                     <li class="stat stat--add">
                         <span class="stat__value" id="stat-add">0</span>
-                        <span class="stat__label">añadidas</span>
+                        <span class="stat__label" id="label-add">añadidas</span>
                     </li>
                     <li class="stat stat--remove">
                         <span class="stat__value" id="stat-remove">0</span>
-                        <span class="stat__label">eliminadas</span>
+                        <span class="stat__label" id="label-remove">eliminadas</span>
                     </li>
-                    <li class="stat stat--change">
+                    <li class="stat stat--change" id="stat-change-item">
                         <span class="stat__value" id="stat-change">0</span>
-                        <span class="stat__label">modificadas</span>
+                        <span class="stat__label" id="label-change">modificadas</span>
                     </li>
                 </ul>
             </section>
@@ -170,7 +188,7 @@
                     </div>
                 </header>
 
-                <div class="diff__head" aria-hidden="true">
+                <div class="diff__head" id="diff-head" aria-hidden="true">
                     <span>A · original</span>
                     <span>B · versión nueva</span>
                 </div>
@@ -179,6 +197,9 @@
                     Pega texto en cualquiera de las dos columnas para empezar a comparar.
                 </p>
                 <ol class="diff" id="diff"></ol>
+                <div class="word-diff" id="word-diff" hidden>
+                    <p class="word-diff__text" id="word-diff-text"></p>
+                </div>
             </section>
 
             <footer class="footer">
