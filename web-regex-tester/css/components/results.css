@@ -1,0 +1,89 @@
+@layer base {
+    .summary {
+        font-family: var(--font-outlier);
+        font-size: var(--text-xs);
+        color: var(--color-muted);
+        font-variant-numeric: tabular-nums;
+    }
+
+    .preview {
+        min-height: 8rem;
+        max-height: 26rem;
+        overflow: auto;
+        padding: var(--space-md);
+        background: var(--color-surface-soft);
+        border: var(--border-width) solid var(--color-line);
+        border-radius: var(--radius-field);
+        font-family: var(--font-outlier);
+        font-size: var(--text-xs);
+        line-height: 1.8;
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+    }
+
+    .preview mark {
+        background: var(--color-mark);
+        color: var(--color-ink);
+        border-bottom: 2px solid var(--color-mark-rule);
+        border-radius: 0.15rem;
+        padding: 0.05em 0;
+    }
+
+    .matches {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-xs);
+        margin-top: var(--space-md);
+    }
+
+    .matches:empty {
+        display: none;
+    }
+
+    .match {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: var(--space-2xs) var(--space-sm);
+        padding: var(--space-sm) var(--space-md);
+        background: var(--color-surface);
+        border: var(--border-width) solid var(--color-line);
+        border-radius: var(--radius-input);
+    }
+
+    .match__index {
+        font-family: var(--font-outlier);
+        font-size: var(--text-xs);
+        color: var(--color-muted);
+        font-variant-numeric: tabular-nums;
+        grid-row: span 2;
+    }
+
+    .match__value {
+        font-family: var(--font-outlier);
+        font-size: var(--text-xs);
+        color: var(--color-ink);
+        overflow-wrap: anywhere;
+    }
+
+    .match__meta {
+        font-family: var(--font-outlier);
+        font-size: var(--text-xs);
+        color: var(--color-ink-soft);
+        line-height: 1.6;
+        overflow-wrap: anywhere;
+    }
+
+    .match__groups {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-2xs) var(--space-sm);
+    }
+
+    .match__group {
+        color: var(--color-ink-soft);
+    }
+
+    .match__group-code {
+        color: var(--color-primary);
+    }
+}
