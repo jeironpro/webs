@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Comprobador de contraste WCAG · Lumen</title>
+        <meta
+            name="description"
+            content="Compara dos colores y comprueba su relación de contraste según WCAG 2.2, con muestra tipográfica y criterios AA y AAA en vivo."
+        />
+        <meta name="theme-color" content="#111113" />
+        <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Anybody:wght@400;500;600;700&amp;family=DM+Mono:wght@400;500&amp;display=swap"
+            rel="stylesheet"
+        />
+
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
+        <a class="skip-link" href="#pair">Saltar a los colores</a>
+
+        <div class="shell">
+            <header class="topbar">
+                <a class="brand" href="../">
+                    <svg
+                        class="brand__icon"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                        focusable="false"
+                    >
+                        <circle
+                            cx="12"
+                            cy="12"
+                            r="8"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                        />
+                        <path d="M4 12h16M12 4v16" stroke="currentColor" stroke-width="1.2" />
+                        <circle cx="12" cy="12" r="3.2" fill="currentColor" />
+                    </svg>
+                    <span class="brand__name">lumen</span>
+                    <span class="brand__sep" aria-hidden="true">/</span>
+                    <span class="brand__area">contraste wcag</span>
+                </a>
+
+                <p class="topbar__state">
+                    <span class="topbar__dot" aria-hidden="true"></span>
+                    WCAG 2.2
+                </p>
+
+                <nav class="topbar__nav" aria-label="Principal">
+                    <a class="topbar__link" href="../">catálogo</a>
+                    <a
+                        class="topbar__link"
+                        href="https://github.com/jeironpro/webs/tree/main/web-contraste-wcag"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >github ↗</a
+                    >
+                </nav>
+            </header>
+
+            <main class="lab">
+                <div class="lab__head">
+                    <div>
+                        <p class="eyebrow">Accesibilidad visual · 1.4.3 / 1.4.6 / 1.4.11</p>
+                        <h1>Comprobador de contraste</h1>
+                    </div>
+                    <p class="lab__blurb">
+                        Elige una tinta y un papel. La relación se recalcula en vivo con la
+                        luminancia relativa de WCAG.
+                    </p>
+                </div>
+
+                <div class="bench">
+                    <div class="pair" id="pair">
+                        <article class="color-card color-card--fg">
+                            <header class="color-card__head">
+                                <p class="eyebrow">01 · Tinta</p>
+                                <span>texto</span>
+                            </header>
+
+                            <label class="color-well" id="fg-well">
+                                <span class="color-well__sample" aria-hidden="true">Aa</span>
+                                <span class="visually-hidden">Elegir color de tinta</span>
+                                <input
+                                    class="color-well__input"
+                                    type="color"
+                                    id="fg-picker"
+                                    value="#2563eb"
+                                />
+                            </label>
+
+                            <div class="color-card__foot">
+                                <label class="hex-field">
+                                    <span aria-hidden="true">#</span>
+                                    <input
+                                        class="hex-field__input"
+                                        id="fg-hex"
+                                        type="text"
+                                        value="2563EB"
+                                        maxlength="7"
+                                        autocomplete="off"
+                                        spellcheck="false"
+                                        aria-label="Código hexadecimal de la tinta"
+                                    />
+                                </label>
+                                <p class="lum">L <b id="fg-lum">0.000</b></p>
+                            </div>
+                        </article>
+
+                        <button
+                            class="swap"
+                            type="button"
+                            id="swap"
+                            title="Intercambiar tinta y papel"
+                        >
+                            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                <path
+                                    d="M4 8h14m-3-3 3 3-3 3M20 16H6m3-3-3 3 3 3"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.6"
+                                />
+                            </svg>
+                            <span class="visually-hidden">Intercambiar tinta y papel</span>
+                        </button>
+
+                        <article class="color-card color-card--bg">
+                            <header class="color-card__head">
+                                <p class="eyebrow">02 · Papel</p>
+                                <span>fondo</span>
+                            </header>
+
+                            <label class="color-well" id="bg-well">
+                                <span class="color-well__sample" aria-hidden="true">Aa</span>
+                                <span class="visually-hidden">Elegir color de fondo</span>
+                                <input
+                                    class="color-well__input"
+                                    type="color"
+                                    id="bg-picker"
+                                    value="#ffffff"
+                                />
+                            </label>
+
+                            <div class="color-card__foot">
+                                <label class="hex-field">
+                                    <span aria-hidden="true">#</span>
+                                    <input
+                                        class="hex-field__input"
+                                        id="bg-hex"
+                                        type="text"
+                                        value="FFFFFF"
+                                        maxlength="7"
+                                        autocomplete="off"
+                                        spellcheck="false"
+                                        aria-label="Código hexadecimal del fondo"
+                                    />
+                                </label>
+                                <p class="lum">L <b id="bg-lum">0.000</b></p>
+                            </div>
+                        </article>
+                    </div>
+
+                    <aside class="score" aria-labelledby="score-title">
+                        <p class="score__label" id="score-title">Relación</p>
+                        <p class="score__ratio"><span id="ratio">5.17</span><span>:1</span></p>
+                        <p class="score__verdict" id="verdict">Nivel AA</p>
+
+                        <div class="scale" aria-hidden="true">
+                            <span class="scale__marker" id="scale-marker"></span>
+                        </div>
+                        <div class="scale__labels" aria-hidden="true">
+                            <span>1:1</span><span>21:1</span>
+                        </div>
+
+                        <p class="score__hint">AA normal ≥ 4.5:1</p>
+                    </aside>
+                </div>
+
+                <section class="preview-card" aria-labelledby="preview-title">
+                    <header class="preview-card__bar">
+                        <h2 id="preview-title">Muestra compuesta</h2>
+                        <p>Grande 32 px · Normal 16 px · Componente</p>
+                    </header>
+
+                    <div class="preview" id="preview">
+                        <div class="preview__copy">
+                            <p class="preview__eyebrow">ACCESIBILIDAD VISUAL</p>
+                            <p class="preview__large">El contraste no es un detalle.</p>
+                            <p class="preview__normal">
+                                Una interfaz puede ser clara sin ser frágil. Este texto usa el par
+                                que estás probando; si cuesta leerlo, los números de arriba lo
+                                confirman.
+                            </p>
+                        </div>
+                        <div class="preview__ui">
+                            <span class="preview__button">Acción</span>
+                            <span class="preview__badge">AA</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="criteria" aria-labelledby="criteria-title">
+                    <header class="criteria__head">
+                        <h2 id="criteria-title">Criterios WCAG</h2>
+                        <p>Texto grande: ≥24 px o ≥18.66 px en negrita.</p>
+                    </header>
+
+                    <ul class="criteria__grid">
+                        <li class="criterion" data-criterion="normalAA">
+                            <span class="criterion__name">Texto normal</span>
+                            <span class="criterion__threshold">AA · 4.5:1</span>
+                            <strong class="criterion__status">—</strong>
+                        </li>
+                        <li class="criterion" data-criterion="largeAA">
+                            <span class="criterion__name">Texto grande</span>
+                            <span class="criterion__threshold">AA · 3:1</span>
+                            <strong class="criterion__status">—</strong>
+                        </li>
+                        <li class="criterion" data-criterion="normalAAA">
+                            <span class="criterion__name">Texto normal</span>
+                            <span class="criterion__threshold">AAA · 7:1</span>
+                            <strong class="criterion__status">—</strong>
+                        </li>
+                        <li class="criterion" data-criterion="largeAAA">
+                            <span class="criterion__name">Texto grande</span>
+                            <span class="criterion__threshold">AAA · 4.5:1</span>
+                            <strong class="criterion__status">—</strong>
+                        </li>
+                        <li class="criterion" data-criterion="uiAA">
+                            <span class="criterion__name">Componentes</span>
+                            <span class="criterion__threshold">AA · 3:1</span>
+                            <strong class="criterion__status">—</strong>
+                        </li>
+                    </ul>
+                </section>
+
+                <div class="lab__foot">
+                    <p>Fórmula WCAG: (L1 + 0.05) / (L2 + 0.05)</p>
+                    <p>Luminancia relativa calculada en sRGB</p>
+                </div>
+
+                <p class="visually-hidden" id="announce" role="status" aria-live="polite"></p>
+            </main>
+
+            <footer class="footer">
+                <p>Todos los derechos reservados - <span data-year>2026</span> jeironpro</p>
+                <p class="footer__meta">lumen · contraste y accesibilidad</p>
+            </footer>
+        </div>
+
+        <script type="module" src="js/app.js"></script>
+    </body>
+</html>
