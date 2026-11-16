@@ -49,6 +49,7 @@ const WEBS_CANONICAS = [
     "web-pythoncises",
     "web-tests-daw",
     "web-timestamp",
+    "web-trigonometria",
     "web-porcentaje-anual",
     "web-redimensiona-imagen",
     "web-refprog",
