@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Conversor de marcas de tiempo · Señal de tiempo</title>
+        <meta
+            name="description"
+            content="Convierte marcas de tiempo Unix en segundos o milisegundos a ISO 8601, UTC, hora local y tiempo relativo, con reloj en vivo."
+        />
+        <meta name="theme-color" content="#101a2e" />
+        <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
+        <a class="skip-link" href="#timestamp-input">Saltar al conversor</a>
+
+        <div class="shell">
+            <header class="masthead">
+                <a class="brand" href="../">
+                    <span class="brand__signal" aria-hidden="true"></span>
+                    Señal <span class="brand__slash">/</span> tiempo
+                </a>
+                <nav class="masthead__nav" aria-label="Principal">
+                    <a class="masthead__link" href="../">catálogo</a>
+                    <a
+                        class="masthead__link"
+                        href="https://github.com/jeironpro/webs/tree/main/web-timestamp"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >github ↗</a
+                    >
+                </nav>
+            </header>
+
+            <main class="main">
+                <section class="hero" aria-labelledby="hero-title">
+                    <div class="hero__head">
+                        <p class="eyebrow">
+                            <span class="pulse" aria-hidden="true"></span>
+                            Ahora · señal en vivo
+                        </p>
+                        <p class="hero__zone" id="zone-label">UTC</p>
+                    </div>
+
+                    <h1 class="visually-hidden" id="hero-title">Conversor de marcas de tiempo</h1>
+                    <p class="hero__epoch" id="live-epoch" aria-hidden="true">0000000000</p>
+
+                    <div class="clocks">
+                        <div class="clock">
+                            <span class="clock__label">UTC</span>
+                            <time class="clock__value" id="live-utc">--:--:--</time>
+                        </div>
+                        <div class="clock">
+                            <span class="clock__label">Hora local</span>
+                            <time class="clock__value" id="live-local">--:--:--</time>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="converter" aria-labelledby="converter-title">
+                    <header class="section-head">
+                        <h2 class="section-head__title" id="converter-title">
+                            Convierte una marca
+                        </h2>
+                        <p class="section-head__text">
+                            Pega un epoch o elige una fecha; las lecturas se actualizan a la vez.
+                        </p>
+                    </header>
+
+                    <div class="fields">
+                        <div class="field">
+                            <label class="field__label" for="timestamp-input"
+                                >Marca de tiempo</label
+                            >
+                            <input
+                                class="field__input"
+                                id="timestamp-input"
+                                name="timestamp-input"
+                                type="text"
+                                inputmode="numeric"
+                                autocomplete="off"
+                                spellcheck="false"
+                                aria-describedby="timestamp-hint error"
+                            />
+                            <p class="field__hint" id="timestamp-hint">
+                                Segundos o milisegundos: se detecta por el tamaño.
+                            </p>
+                        </div>
+
+                        <div class="field">
+                            <label class="field__label" for="datetime-input"
+                                >Fecha y hora local</label
+                            >
+                            <input
+                                class="field__input"
+                                id="datetime-input"
+                                name="datetime-input"
+                                type="datetime-local"
+                                step="1"
+                                aria-describedby="datetime-hint error"
+                            />
+                            <p class="field__hint" id="datetime-hint">
+                                Se interpreta en <span id="local-zone">tu zona</span>.
+                            </p>
+                        </div>
+
+                        <div class="converter__actions">
+                            <button class="btn btn--primary" id="now" type="button">Ahora</button>
+                            <span class="unit" id="unit-label">segundos</span>
+                        </div>
+                    </div>
+
+                    <p class="error" id="error" role="alert"></p>
+                </section>
+
+                <section class="readouts" aria-labelledby="readouts-title">
+                    <header class="section-head section-head--split">
+                        <h2 class="section-head__title" id="readouts-title">Lecturas</h2>
+                        <p
+                            class="copy-status"
+                            id="copy-status"
+                            role="status"
+                            aria-live="polite"
+                        ></p>
+                    </header>
+
+                    <dl class="readout__list">
+                        <div class="readout">
+                            <dt class="readout__label">ISO 8601</dt>
+                            <dd class="readout__value" id="out-iso">—</dd>
+                            <button
+                                class="copy"
+                                type="button"
+                                data-copy="iso"
+                                aria-label="Copiar ISO 8601"
+                                disabled
+                            >
+                                Copiar
+                            </button>
+                        </div>
+
+                        <div class="readout">
+                            <dt class="readout__label">UTC</dt>
+                            <dd class="readout__value" id="out-utc">—</dd>
+                            <button
+                                class="copy"
+                                type="button"
+                                data-copy="utc"
+                                aria-label="Copiar fecha UTC"
+                                disabled
+                            >
+                                Copiar
+                            </button>
+                        </div>
+
+                        <div class="readout">
+                            <dt class="readout__label">Hora local</dt>
+                            <dd class="readout__value" id="out-local">—</dd>
+                            <button
+                                class="copy"
+                                type="button"
+                                data-copy="local"
+                                aria-label="Copiar fecha local"
+                                disabled
+                            >
+                                Copiar
+                            </button>
+                        </div>
+
+                        <div class="readout">
+                            <dt class="readout__label">Relativo</dt>
+                            <dd class="readout__value" id="out-relative">—</dd>
+                        </div>
+
+                        <div class="readout">
+                            <dt class="readout__label">Epoch · segundos</dt>
+                            <dd class="readout__value" id="out-seconds">—</dd>
+                            <button
+                                class="copy"
+                                type="button"
+                                data-copy="seconds"
+                                aria-label="Copiar segundos"
+                                disabled
+                            >
+                                Copiar
+                            </button>
+                        </div>
+
+                        <div class="readout">
+                            <dt class="readout__label">Epoch · milisegundos</dt>
+                            <dd class="readout__value" id="out-ms">—</dd>
+                            <button
+                                class="copy"
+                                type="button"
+                                data-copy="milliseconds"
+                                aria-label="Copiar milisegundos"
+                                disabled
+                            >
+                                Copiar
+                            </button>
+                        </div>
+                    </dl>
+                </section>
+
+                <footer class="footer">
+                    <p class="footer__text">
+                        Todos los derechos reservados - <span id="year">2026</span> jeironpro
+                    </p>
+                </footer>
+            </main>
+        </div>
+
+        <script type="module" src="js/app.js"></script>
+    </body>
+</html>
