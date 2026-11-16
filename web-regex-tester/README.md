@@ -36,12 +36,7 @@ web-regex-tester/
 ├── css/
 │   ├── style.css
 │   ├── reset.css
-│   ├── tokens.css
-│   ├── components/
-│   │   ├── controls.css
-│   │   └── results.css
-│   └── pages/
-│       └── home.css
+│   └── tokens.css
 ├── js/
 │   ├── app.js
 │   ├── modules/

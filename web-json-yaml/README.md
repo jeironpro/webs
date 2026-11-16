@@ -36,12 +36,7 @@ web-json-yaml/
 ├── css/
 │   ├── style.css
 │   ├── reset.css
-│   ├── tokens.css
-│   ├── components/
-│   │   ├── controls.css
-│   │   └── feedback.css
-│   └── pages/
-│       └── home.css
+│   └── tokens.css
 ├── js/
 │   ├── app.js
 │   ├── modules/
