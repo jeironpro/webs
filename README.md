@@ -1,13 +1,13 @@
 # webs
 
-Monorepo que agrupa las webs estáticas de jeironpro. En la raíz vive un **catálogo** que indexa los 58 proyectos; cada proyecto ocupa su propio subdirectorio (`web-*`) y se sirve de forma independiente como página estática. Cinco de ellas son además **sub-catálogos**: hubs con su propio índice de subproyectos (el catálogo raíz las distingue con el filtro y la insignia "Sub-catálogo").
+Monorepo que agrupa las webs estáticas de jeironpro. En la raíz vive un **catálogo** que indexa los 59 proyectos; cada proyecto ocupa su propio subdirectorio (`web-*`) y se sirve de forma independiente como página estática. Cinco de ellas son además **sub-catálogos**: hubs con su propio índice de subproyectos (el catálogo raíz las distingue con el filtro y la insignia "Sub-catálogo").
 
 ## Estado actual
 
-- **58 webs** y **5 sub-catálogos** publicados como sitios estáticos, sin paso de build por web.
-- **83 capturas** mantenidas en el repositorio: 58 del catálogo raíz, 5 de dashboards y 20 de juegos.
+- **59 webs** y **5 sub-catálogos** publicados como sitios estáticos, sin paso de build por web.
+- **84 capturas** mantenidas en el repositorio: 59 del catálogo raíz, 5 de dashboards y 20 de juegos.
 - **25 webs adicionales** con auditoría técnica cerrada: HTML, CSS, JS, navegador, limpieza, favicon y README al 100 %.
-- **230 pruebas** automatizadas y comprobaciones de formato, lint, enlaces internos, datos y capturas.
+- **244 pruebas** automatizadas y comprobaciones de formato, lint, enlaces internos, datos y capturas.
 - Cuatro workflows: `ci`, `enlaces`, `capturas` y `deploy`; este último publica el sitio en GitHub Pages excluyendo dependencias, perfiles de navegador y el ZIP grande de Git LFS.
 
 ## Catálogo
@@ -20,66 +20,67 @@ El catálogo es vanilla HTML, CSS y JavaScript (sin frameworks), con diseño def
 
 Abre `index.html` de la raíz (o despliega el repositorio en GitHub Pages: el catálogo queda en `https://jeironpro.github.io/webs/` y cada web en su subruta `./<id>/`).
 
-| Proyecto                                                        | Título                      | Categoría       | Stack                        |
-| --------------------------------------------------------------- | --------------------------- | --------------- | ---------------------------- |
-| [web-algoritmos](./web-algoritmos/)                             | Algoritmos de repaso        | Educación       | html, css, javascript        |
-| [web-apis](./web-apis/)                                         | Apis _(sub-catálogo)_       | Referencia      | html, css, javascript        |
-| [web-biblia](./web-biblia/)                                     | Biblia                      | Educación       | html, css, javascript        |
-| [web-calculadora](./web-calculadora/)                           | Calculadora                 | Utilidades      | html, css, javascript        |
-| [web-calculadora-edad](./web-calculadora-edad/)                 | Calculadora de edad         | Utilidades      | html, css, javascript        |
-| [web-calendario](./web-calendario/)                             | Calendario                  | Utilidades      | html, css, javascript        |
-| [web-calificaciones-escolares](./web-calificaciones-escolares/) | Calificaciones escolares    | Educación       | html, css, javascript        |
-| [web-clima](./web-clima/)                                       | Clima                       | Utilidades      | html, css, javascript        |
-| [web-codelang-quiz](./web-codelang-quiz/)                       | Codelang Quiz               | Educación       | html, css, javascript        |
-| [web-codi-wiki](./web-codi-wiki/)                               | Codi Wiki                   | Referencia      | html, css, javascript        |
-| [web-codigos-http](./web-codigos-http/)                         | Codigos HTTP                | Referencia      | html, css, javascript        |
-| [web-codingbat-solutions](./web-codingbat-solutions/)           | CodingBat solutions         | Educación       | html, css, javascript        |
-| [web-color-picker](./web-color-picker/)                         | Color Picker                | Utilidades      | html, css, javascript, svg   |
-| [web-contador-palabras](./web-contador-palabras/)               | Contador de palabras        | Utilidades      | html, css, javascript        |
-| [web-diff](./web-diff/)                                         | Comparador de texto         | Utilidades      | html, css, javascript        |
-| [web-continguts-daw](./web-continguts-daw/)                     | Continguts DAW              | Curricular      | html, css, javascript        |
-| [web-conversor-universal](./web-conversor-universal/)           | Conversor universal         | Utilidades      | html, css, javascript        |
-| [web-convertidor-moneda](./web-convertidor-moneda/)             | Convertidor de moneda       | Utilidades      | html, css, javascript        |
-| [web-curso-dcs](./web-curso-dcs/)                               | Curso DCS                   | Curricular      | html, css, javascript        |
-| [web-curso-git](./web-curso-git/)                               | Curso de Git                | Educación       | html, css, javascript        |
-| [web-curso-sql](./web-curso-sql/)                               | Curso de SQL                | Educación       | html, css, javascript        |
-| [web-cursos-cpnl](./web-cursos-cpnl/)                           | Cursos CPNL                 | Curricular      | html, css, javascript        |
-| [web-dashboards](./web-dashboards/)                             | Dashboards _(sub-catálogo)_ | Productividad   | html, css, javascript        |
-| [web-dados](./web-dados/)                                       | Dados                       | Entretenimiento | html, css, javascript        |
-| [web-ejercicios-pyja](./web-ejercicios-pyja/)                   | Ejercicios PyJa             | Educación       | html, css, javascript        |
-| [web-exerciness](./web-exerciness/)                             | Exerciness                  | Productividad   | html, css, javascript        |
-| [web-frontend](./web-frontend/)                                 | Frontend _(sub-catálogo)_   | Referencia      | html, css, javascript        |
-| [web-generador-cv](./web-generador-cv/)                         | Generador CV                | Productividad   | html, css, javascript        |
-| [web-generador-clave-secreta](./web-generador-clave-secreta/)   | Generador de clave secreta  | Generadores     | html, css, javascript        |
-| [web-generador-contrasena](./web-generador-contrasena/)         | Generador de contrasenas    | Generadores     | html, css, javascript        |
-| [web-generador-crucigramas](./web-generador-crucigramas/)       | Generador de crucigramas    | Generadores     | html, css, javascript        |
-| [web-generador-codigo-qr](./web-generador-codigo-qr/)           | Generador de QR             | Generadores     | html, css, javascript        |
-| [web-gestiona-presupuesto](./web-gestiona-presupuesto/)         | Gestiona presupuesto        | Productividad   | html, css, javascript        |
-| [web-instruccion-login-google](./web-instruccion-login-google/) | Login con Google            | Educación       | html, css, javascript        |
-| [web-javarcises](./web-javarcises/)                             | Javarcises                  | Educación       | html, css, javascript        |
-| [web-json-yaml](./web-json-yaml/)                               | Formateador JSON y YAML     | Utilidades      | html, css, javascript        |
-| [web-juegos](./web-juegos/)                                     | Juegos _(sub-catálogo)_     | Entretenimiento | html, css, javascript, three |
-| [web-votacion](./web-votacion/)                                 | La Papeleta                 | Entretenimiento | html, css, javascript        |
-| [web-lector-archivo](./web-lector-archivo/)                     | Lector de archivos          | Utilidades      | html, css, javascript        |
-| [web-lexaro](./web-lexaro/)                                     | Lexaro                      | Productividad   | html, css, javascript, svg   |
-| [web-mandala](./web-mandala/)                                   | Mandala                     | Entretenimiento | html, css, javascript, svg   |
-| [web-narcopedia](./web-narcopedia/)                             | Narcopedia                  | Entretenimiento | html, css, javascript        |
-| [web-naruto](./web-naruto/)                                     | Naruto                      | Entretenimiento | html, css, javascript        |
-| [web-oracle-academy-dpsql](./web-oracle-academy-dpsql/)         | Oracle Academy DPSQL        | Curricular      | html, css, javascript        |
-| [web-paises-visitados](./web-paises-visitados/)                 | Paises visitados            | Entretenimiento | html, css, javascript, svg   |
-| [web-pokemon](./web-pokemon/)                                   | Pokemon                     | Entretenimiento | html, css, javascript        |
-| [web-pomodoro](./web-pomodoro/)                                 | Pomodoro                    | Productividad   | html, css, javascript        |
-| [web-porcentaje-anual](./web-porcentaje-anual/)                 | Porcentaje anual            | Utilidades      | html, css, javascript        |
-| [web-daw](./web-daw/)                                           | Portal DAW _(sub-catálogo)_ | Curricular      | html, css, javascript        |
-| [web-programmer-day](./web-programmer-day/)                     | Programmer Day              | Entretenimiento | html, css, javascript, three |
-| [web-pythoncises](./web-pythoncises/)                           | Pythoncises                 | Educación       | html, css, javascript        |
-| [web-redimensiona-imagen](./web-redimensiona-imagen/)           | Redimensiona imagen         | Utilidades      | html, css, javascript        |
-| [web-refprog](./web-refprog/)                                   | RefProg                     | Referencia      | html, css, javascript, svg   |
-| [web-regex-tester](./web-regex-tester/)                         | Probador de regex           | Utilidades      | html, css, javascript        |
-| [web-reloj](./web-reloj/)                                       | Reloj                       | Entretenimiento | html, css, javascript, three |
-| [web-reproductor-musica](./web-reproductor-musica/)             | Reproductor de musica       | Entretenimiento | html, css, javascript        |
-| [web-ruleta](./web-ruleta/)                                     | Ruleta                      | Entretenimiento | html, css, javascript, svg   |
-| [web-tests-daw](./web-tests-daw/)                               | Tests DAW                   | Curricular      | html, css, javascript        |
+| Proyecto                                                        | Título                        | Categoría       | Stack                        |
+| --------------------------------------------------------------- | ----------------------------- | --------------- | ---------------------------- |
+| [web-algoritmos](./web-algoritmos/)                             | Algoritmos de repaso          | Educación       | html, css, javascript        |
+| [web-apis](./web-apis/)                                         | Apis _(sub-catálogo)_         | Referencia      | html, css, javascript        |
+| [web-biblia](./web-biblia/)                                     | Biblia                        | Educación       | html, css, javascript        |
+| [web-calculadora](./web-calculadora/)                           | Calculadora                   | Utilidades      | html, css, javascript        |
+| [web-calculadora-edad](./web-calculadora-edad/)                 | Calculadora de edad           | Utilidades      | html, css, javascript        |
+| [web-calendario](./web-calendario/)                             | Calendario                    | Utilidades      | html, css, javascript        |
+| [web-calificaciones-escolares](./web-calificaciones-escolares/) | Calificaciones escolares      | Educación       | html, css, javascript        |
+| [web-clima](./web-clima/)                                       | Clima                         | Utilidades      | html, css, javascript        |
+| [web-codelang-quiz](./web-codelang-quiz/)                       | Codelang Quiz                 | Educación       | html, css, javascript        |
+| [web-codi-wiki](./web-codi-wiki/)                               | Codi Wiki                     | Referencia      | html, css, javascript        |
+| [web-codigos-http](./web-codigos-http/)                         | Codigos HTTP                  | Referencia      | html, css, javascript        |
+| [web-codingbat-solutions](./web-codingbat-solutions/)           | CodingBat solutions           | Educación       | html, css, javascript        |
+| [web-color-picker](./web-color-picker/)                         | Color Picker                  | Utilidades      | html, css, javascript, svg   |
+| [web-contador-palabras](./web-contador-palabras/)               | Contador de palabras          | Utilidades      | html, css, javascript        |
+| [web-diff](./web-diff/)                                         | Comparador de texto           | Utilidades      | html, css, javascript        |
+| [web-continguts-daw](./web-continguts-daw/)                     | Continguts DAW                | Curricular      | html, css, javascript        |
+| [web-conversor-universal](./web-conversor-universal/)           | Conversor universal           | Utilidades      | html, css, javascript        |
+| [web-convertidor-moneda](./web-convertidor-moneda/)             | Convertidor de moneda         | Utilidades      | html, css, javascript        |
+| [web-curso-dcs](./web-curso-dcs/)                               | Curso DCS                     | Curricular      | html, css, javascript        |
+| [web-curso-git](./web-curso-git/)                               | Curso de Git                  | Educación       | html, css, javascript        |
+| [web-curso-sql](./web-curso-sql/)                               | Curso de SQL                  | Educación       | html, css, javascript        |
+| [web-cursos-cpnl](./web-cursos-cpnl/)                           | Cursos CPNL                   | Curricular      | html, css, javascript        |
+| [web-dashboards](./web-dashboards/)                             | Dashboards _(sub-catálogo)_   | Productividad   | html, css, javascript        |
+| [web-dados](./web-dados/)                                       | Dados                         | Entretenimiento | html, css, javascript        |
+| [web-ejercicios-pyja](./web-ejercicios-pyja/)                   | Ejercicios PyJa               | Educación       | html, css, javascript        |
+| [web-exerciness](./web-exerciness/)                             | Exerciness                    | Productividad   | html, css, javascript        |
+| [web-frontend](./web-frontend/)                                 | Frontend _(sub-catálogo)_     | Referencia      | html, css, javascript        |
+| [web-generador-cv](./web-generador-cv/)                         | Generador CV                  | Productividad   | html, css, javascript        |
+| [web-generador-clave-secreta](./web-generador-clave-secreta/)   | Generador de clave secreta    | Generadores     | html, css, javascript        |
+| [web-generador-contrasena](./web-generador-contrasena/)         | Generador de contrasenas      | Generadores     | html, css, javascript        |
+| [web-generador-crucigramas](./web-generador-crucigramas/)       | Generador de crucigramas      | Generadores     | html, css, javascript        |
+| [web-generador-codigo-qr](./web-generador-codigo-qr/)           | Generador de QR               | Generadores     | html, css, javascript        |
+| [web-gestiona-presupuesto](./web-gestiona-presupuesto/)         | Gestiona presupuesto          | Productividad   | html, css, javascript        |
+| [web-instruccion-login-google](./web-instruccion-login-google/) | Login con Google              | Educación       | html, css, javascript        |
+| [web-javarcises](./web-javarcises/)                             | Javarcises                    | Educación       | html, css, javascript        |
+| [web-json-yaml](./web-json-yaml/)                               | Formateador JSON y YAML       | Utilidades      | html, css, javascript        |
+| [web-juegos](./web-juegos/)                                     | Juegos _(sub-catálogo)_       | Entretenimiento | html, css, javascript, three |
+| [web-votacion](./web-votacion/)                                 | La Papeleta                   | Entretenimiento | html, css, javascript        |
+| [web-lector-archivo](./web-lector-archivo/)                     | Lector de archivos            | Utilidades      | html, css, javascript        |
+| [web-lexaro](./web-lexaro/)                                     | Lexaro                        | Productividad   | html, css, javascript, svg   |
+| [web-mandala](./web-mandala/)                                   | Mandala                       | Entretenimiento | html, css, javascript, svg   |
+| [web-narcopedia](./web-narcopedia/)                             | Narcopedia                    | Entretenimiento | html, css, javascript        |
+| [web-naruto](./web-naruto/)                                     | Naruto                        | Entretenimiento | html, css, javascript        |
+| [web-oracle-academy-dpsql](./web-oracle-academy-dpsql/)         | Oracle Academy DPSQL          | Curricular      | html, css, javascript        |
+| [web-paises-visitados](./web-paises-visitados/)                 | Paises visitados              | Entretenimiento | html, css, javascript, svg   |
+| [web-pokemon](./web-pokemon/)                                   | Pokemon                       | Entretenimiento | html, css, javascript        |
+| [web-pomodoro](./web-pomodoro/)                                 | Pomodoro                      | Productividad   | html, css, javascript        |
+| [web-porcentaje-anual](./web-porcentaje-anual/)                 | Porcentaje anual              | Utilidades      | html, css, javascript        |
+| [web-daw](./web-daw/)                                           | Portal DAW _(sub-catálogo)_   | Curricular      | html, css, javascript        |
+| [web-programmer-day](./web-programmer-day/)                     | Programmer Day                | Entretenimiento | html, css, javascript, three |
+| [web-pythoncises](./web-pythoncises/)                           | Pythoncises                   | Educación       | html, css, javascript        |
+| [web-redimensiona-imagen](./web-redimensiona-imagen/)           | Redimensiona imagen           | Utilidades      | html, css, javascript        |
+| [web-refprog](./web-refprog/)                                   | RefProg                       | Referencia      | html, css, javascript, svg   |
+| [web-regex-tester](./web-regex-tester/)                         | Probador de regex             | Utilidades      | html, css, javascript        |
+| [web-reloj](./web-reloj/)                                       | Reloj                         | Entretenimiento | html, css, javascript, three |
+| [web-reproductor-musica](./web-reproductor-musica/)             | Reproductor de musica         | Entretenimiento | html, css, javascript        |
+| [web-ruleta](./web-ruleta/)                                     | Ruleta                        | Entretenimiento | html, css, javascript, svg   |
+| [web-tests-daw](./web-tests-daw/)                               | Tests DAW                     | Curricular      | html, css, javascript        |
+| [web-timestamp](./web-timestamp/)                               | Conversor de marcas de tiempo | Utilidades      | html, css, javascript        |
 
 Las 5 webs marcadas _(sub-catálogo)_ son hubs con catálogo propio: `web-apis` (5 APIs Python descargables), `web-dashboards` (5 dashboards), `web-daw` (7 sub-webs de DAW1 y DAW2), `web-frontend` (componentes) y `web-juegos` (20 juegos). Se filtran con el botón "Sub-catálogo" del catálogo raíz.
 
@@ -88,7 +89,7 @@ Las 5 webs marcadas _(sub-catálogo)_ son hubs con catálogo propio: `web-apis` 
 La fuente de verdad es `projects.yml` en la raíz. Los artefactos se regeneran con comandos npm:
 
 - `npm run data:build` valida el esquema y genera `assets/projects.json` (datos ordenados que consume el catálogo).
-- `npm run data:screenshots` captura las 58 webs en `assets/screenshots/*.webp` (Chrome headless sobre un servidor local); con ids detrás (`npm run data:screenshots -- web-apis`) regenera solo esas.
+- `npm run data:screenshots` captura las 59 webs en `assets/screenshots/*.webp` (Chrome headless sobre un servidor local); con ids detrás (`npm run data:screenshots -- web-apis`) regenera solo esas.
 - `npm run capturas:check` falla si una captura está desfasada (incluidos cambios en sus CSS/JS locales), falta o está vacía, usando el manifiesto y las fechas de git; el workflow `capturas` lo trata como bloqueante.
 - `npm test` valida integridad de datos, esquema y generador.
 
@@ -124,7 +125,7 @@ La fuente de verdad es `projects.yml` en la raíz. Los artefactos se regeneran c
 4. **Regenera datos y capturas**, y verifica que todo cuadra:
 
    ```sh
-   npm run data:screenshots -- --force  # regenera las 58 capturas del catálogo
+   npm run data:screenshots -- --force  # regenera las 59 capturas del catálogo
    npm run data:screenshots -- web-apis # regenera solo una
    npm run capturas:check               # falla si hay capturas desfasadas o ausentes
    npm run data:build
