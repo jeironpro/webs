@@ -4,10 +4,10 @@ Monorepo que agrupa las webs estáticas de jeironpro. En la raíz vive un **cat�
 
 ## Estado actual
 
-- **56 webs** y **5 sub-catálogos** publicados como sitios estáticos, sin paso de build por web.
-- **81 capturas** mantenidas en el repositorio: 56 del catálogo raíz, 5 de dashboards y 20 de juegos.
+- **57 webs** y **5 sub-catálogos** publicados como sitios estáticos, sin paso de build por web.
+- **82 capturas** mantenidas en el repositorio: 57 del catálogo raíz, 5 de dashboards y 20 de juegos.
 - **25 webs adicionales** con auditoría técnica cerrada: HTML, CSS, JS, navegador, limpieza, favicon y README al 100 %.
-- **185 pruebas** automatizadas y comprobaciones de formato, lint, enlaces internos, datos y capturas.
+- **202 pruebas** automatizadas y comprobaciones de formato, lint, enlaces internos, datos y capturas.
 - Cuatro workflows: `ci`, `enlaces`, `capturas` y `deploy`; este último publica el sitio en GitHub Pages excluyendo dependencias, perfiles de navegador y el ZIP grande de Git LFS.
 
 ## Catálogo
@@ -56,6 +56,7 @@ Abre `index.html` de la raíz (o despliega el repositorio en GitHub Pages: el ca
 | [web-gestiona-presupuesto](./web-gestiona-presupuesto/)         | Gestiona presupuesto        | Productividad   | html, css, javascript        |
 | [web-instruccion-login-google](./web-instruccion-login-google/) | Login con Google            | Educación       | html, css, javascript        |
 | [web-javarcises](./web-javarcises/)                             | Javarcises                  | Educación       | html, css, javascript        |
+| [web-json-yaml](./web-json-yaml/)                               | Formateador JSON y YAML     | Utilidades      | html, css, javascript        |
 | [web-juegos](./web-juegos/)                                     | Juegos _(sub-catálogo)_     | Entretenimiento | html, css, javascript, three |
 | [web-votacion](./web-votacion/)                                 | La Papeleta                 | Entretenimiento | html, css, javascript        |
 | [web-lector-archivo](./web-lector-archivo/)                     | Lector de archivos          | Utilidades      | html, css, javascript        |
@@ -86,7 +87,7 @@ Las 5 webs marcadas _(sub-catálogo)_ son hubs con catálogo propio: `web-apis` 
 La fuente de verdad es `projects.yml` en la raíz. Los artefactos se regeneran con comandos npm:
 
 - `npm run data:build` valida el esquema y genera `assets/projects.json` (datos ordenados que consume el catálogo).
-- `npm run data:screenshots` captura las 56 webs en `assets/screenshots/*.webp` (Chrome headless sobre un servidor local); con ids detrás (`npm run data:screenshots -- web-apis`) regenera solo esas.
+- `npm run data:screenshots` captura las 57 webs en `assets/screenshots/*.webp` (Chrome headless sobre un servidor local); con ids detrás (`npm run data:screenshots -- web-apis`) regenera solo esas.
 - `npm run capturas:check` falla si una captura está desfasada (incluidos cambios en sus CSS/JS locales), falta o está vacía, usando el manifiesto y las fechas de git; el workflow `capturas` lo trata como bloqueante.
 - `npm test` valida integridad de datos, esquema y generador.
 
@@ -122,7 +123,7 @@ La fuente de verdad es `projects.yml` en la raíz. Los artefactos se regeneran c
 4. **Regenera datos y capturas**, y verifica que todo cuadra:
 
    ```sh
-   npm run data:screenshots -- --force  # regenera las 56 capturas del catálogo
+   npm run data:screenshots -- --force  # regenera las 57 capturas del catálogo
    npm run data:screenshots -- web-apis # regenera solo una
    npm run capturas:check               # falla si hay capturas desfasadas o ausentes
    npm run data:build
