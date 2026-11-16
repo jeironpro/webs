@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Codecs de texto · Base64, URL y HTML</title>
+        <meta
+            name="description"
+            content="Codifica y decodifica Base64, URL y entidades HTML en el navegador, con resultado inmediato y sin enviar datos a ningún servidor."
+        />
+        <meta name="theme-color" content="#f2eee4" />
+        <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+            rel="stylesheet"
+        />
+
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
+        <a class="skip-link" href="#codec-input">Saltar al codificador</a>
+
+        <div class="shell">
+            <header class="masthead">
+                <a class="brand" href="../">
+                    <span class="brand__mark" aria-hidden="true">
+                        <span></span><span></span><span></span>
+                    </span>
+                    <span class="brand__name">relay</span>
+                    <span class="brand__sep" aria-hidden="true">/</span>
+                    <span class="brand__tool">codecs de texto</span>
+                </a>
+
+                <p class="masthead__note">
+                    <span class="masthead__dot" aria-hidden="true"></span>
+                    3 canales · 0 peticiones
+                </p>
+
+                <nav class="masthead__nav" aria-label="Principal">
+                    <a class="masthead__link" href="../">catálogo</a>
+                    <a
+                        class="masthead__link"
+                        href="https://github.com/jeironpro/webs/tree/main/web-codecs"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >github ↗</a
+                    >
+                </nav>
+            </header>
+
+            <main class="board">
+                <aside class="channels" aria-labelledby="channels-title">
+                    <h2 class="channels__title" id="channels-title">Canales</h2>
+                    <div class="channels__list" role="group" aria-label="Códec activo">
+                        <button
+                            class="channel"
+                            type="button"
+                            data-codec="base64"
+                            aria-label="Base64"
+                            aria-pressed="true"
+                        >
+                            <span class="channel__index" aria-hidden="true">01</span>
+                            <span class="channel__body">
+                                <span class="channel__name">Base64</span>
+                                <span class="channel__meta">texto ↔ bytes</span>
+                            </span>
+                            <span class="channel__arrow" aria-hidden="true">→</span>
+                        </button>
+                        <button
+                            class="channel"
+                            type="button"
+                            data-codec="url"
+                            aria-label="URL"
+                            aria-pressed="false"
+                        >
+                            <span class="channel__index" aria-hidden="true">02</span>
+                            <span class="channel__body">
+                                <span class="channel__name">URL</span>
+                                <span class="channel__meta">escapes y rutas</span>
+                            </span>
+                            <span class="channel__arrow" aria-hidden="true">→</span>
+                        </button>
+                        <button
+                            class="channel"
+                            type="button"
+                            data-codec="html"
+                            aria-label="HTML"
+                            aria-pressed="false"
+                        >
+                            <span class="channel__index" aria-hidden="true">03</span>
+                            <span class="channel__body">
+                                <span class="channel__name">HTML</span>
+                                <span class="channel__meta">entidades y marcado</span>
+                            </span>
+                            <span class="channel__arrow" aria-hidden="true">→</span>
+                        </button>
+                    </div>
+                    <p class="channels__note">
+                        El texto se transforma en tu navegador. Ningún carácter sale de esta página.
+                    </p>
+                </aside>
+
+                <section class="workbench" aria-labelledby="workspace-title">
+                    <header class="workbench__head">
+                        <div class="workbench__title">
+                            <p class="eyebrow" id="workspace-kicker">canal 01 / base64</p>
+                            <h1 id="workspace-title">Base64, ida y vuelta</h1>
+                        </div>
+
+                        <div class="direction" role="group" aria-label="Sentido de la conversión">
+                            <button
+                                class="direction__btn"
+                                type="button"
+                                data-direction="encode"
+                                aria-pressed="true"
+                            >
+                                Codificar <span aria-hidden="true">→</span>
+                            </button>
+                            <button
+                                class="direction__btn"
+                                type="button"
+                                data-direction="decode"
+                                aria-pressed="false"
+                            >
+                                <span aria-hidden="true">←</span> Decodificar
+                            </button>
+                        </div>
+                    </header>
+
+                    <noscript>
+                        <p class="notice">
+                            Este codificador necesita JavaScript para transformar el texto.
+                        </p>
+                    </noscript>
+
+                    <div class="panes">
+                        <section class="pane pane--source" aria-labelledby="input-label">
+                            <header class="pane__head">
+                                <label class="pane__label" id="input-label" for="codec-input"
+                                    >Texto original</label
+                                >
+                                <span class="pane__stats" id="input-stats">0 caracteres · 0 B</span>
+                            </header>
+                            <textarea
+                                class="pane__text"
+                                id="codec-input"
+                                name="codec-input"
+                                rows="8"
+                                spellcheck="false"
+                                autocapitalize="off"
+                                autocomplete="off"
+                                aria-describedby="input-stats error"
+                                placeholder="Escribe o pega el texto que quieres transformar…"
+                            ></textarea>
+                            <footer class="pane__foot">
+                                <div class="pane__actions">
+                                    <button class="btn" type="button" id="clear">Limpiar</button>
+                                    <button class="btn" type="button" id="example">
+                                        Cargar ejemplo
+                                    </button>
+                                </div>
+                                <span class="pane__hint">Se recalcula al escribir</span>
+                            </footer>
+                        </section>
+
+                        <div class="transfer">
+                            <button
+                                class="transfer__btn"
+                                type="button"
+                                id="reuse"
+                                aria-label="Convertir la salida en entrada y cambiar el sentido"
+                                title="Convertir la salida en entrada"
+                                disabled
+                            >
+                                ↔
+                            </button>
+                        </div>
+
+                        <section class="pane pane--result" aria-labelledby="output-label">
+                            <header class="pane__head">
+                                <label class="pane__label" id="output-label" for="codec-output"
+                                    >Base64</label
+                                >
+                                <span class="pane__stats" id="output-stats"
+                                    >0 caracteres · 0 B</span
+                                >
+                            </header>
+                            <textarea
+                                class="pane__text"
+                                id="codec-output"
+                                name="codec-output"
+                                rows="8"
+                                readonly
+                                spellcheck="false"
+                                aria-describedby="output-stats"
+                                placeholder="El resultado aparecerá aquí…"
+                            ></textarea>
+                            <footer class="pane__foot">
+                                <p class="pane__error" id="error" role="alert" hidden></p>
+                                <div class="pane__copy">
+                                    <span class="copy-status" id="copy-status" role="status"></span>
+                                    <button class="btn btn--solid" type="button" id="copy" disabled>
+                                        Copiar
+                                    </button>
+                                </div>
+                            </footer>
+                        </section>
+                    </div>
+                </section>
+
+                <aside class="side" aria-label="Información del canal">
+                    <section class="side__block">
+                        <h2 class="side__title">El canal</h2>
+                        <p class="side__text" id="codec-description">
+                            Convierte texto UTF-8 en Base64 y recupera el original sin perder
+                            acentos ni emojis.
+                        </p>
+                        <dl class="facts">
+                            <div>
+                                <dt>entrada</dt>
+                                <dd id="fact-input">texto UTF-8</dd>
+                            </div>
+                            <div>
+                                <dt>salida</dt>
+                                <dd id="fact-output">ASCII</dd>
+                            </div>
+                            <div>
+                                <dt>norma</dt>
+                                <dd id="fact-ref">RFC 4648</dd>
+                            </div>
+                        </dl>
+                    </section>
+
+                    <section class="side__block">
+                        <h2 class="side__title">Ajustes</h2>
+
+                        <div class="options" data-options="base64">
+                            <p class="side__text">
+                                Base64 estándar. El texto se interpreta siempre como UTF-8.
+                            </p>
+                        </div>
+
+                        <fieldset class="options" data-options="url" hidden>
+                            <legend class="options__legend">Alcance</legend>
+                            <label class="opt">
+                                <input
+                                    class="opt__input"
+                                    type="radio"
+                                    name="url-scope"
+                                    value="component"
+                                    checked
+                                />
+                                <span class="opt__body">
+                                    <span class="opt__name">Componente</span>
+                                    <span class="opt__meta">encodeURIComponent</span>
+                                </span>
+                            </label>
+                            <label class="opt">
+                                <input
+                                    class="opt__input"
+                                    type="radio"
+                                    name="url-scope"
+                                    value="full"
+                                />
+                                <span class="opt__body">
+                                    <span class="opt__name">URI completa</span>
+                                    <span class="opt__meta">encodeURI</span>
+                                </span>
+                            </label>
+                        </fieldset>
+
+                        <fieldset class="options" data-options="html" hidden>
+                            <legend class="options__legend">Al codificar</legend>
+                            <label class="opt">
+                                <input
+                                    class="opt__input"
+                                    type="radio"
+                                    name="html-scope"
+                                    value="essential"
+                                    checked
+                                />
+                                <span class="opt__body">
+                                    <span class="opt__name">Solo esenciales</span>
+                                    <span class="opt__meta">&amp; &lt; &gt; &quot; &#39;</span>
+                                </span>
+                            </label>
+                            <label class="opt">
+                                <input
+                                    class="opt__input"
+                                    type="radio"
+                                    name="html-scope"
+                                    value="all"
+                                />
+                                <span class="opt__body">
+                                    <span class="opt__name">Todo lo no ASCII</span>
+                                    <span class="opt__meta">acentos y símbolos</span>
+                                </span>
+                            </label>
+                        </fieldset>
+                    </section>
+
+                    <section class="side__block">
+                        <h2 class="side__title">Privacidad</h2>
+                        <p class="side__text side__text--small">
+                            Sin cuentas, sin registro y sin peticiones: puedes trabajar con datos
+                            internos sin que salgan del equipo.
+                        </p>
+                    </section>
+                </aside>
+            </main>
+
+            <footer class="footer">
+                <p class="footer__text">
+                    &copy; Todos los derechos reservados <span data-year>2026</span> - JeironPro
+                </p>
+                <p class="footer__meta">relay · tres canales locales</p>
+            </footer>
+        </div>
+
+        <script type="module" src="js/app.js"></script>
+    </body>
+</html>
