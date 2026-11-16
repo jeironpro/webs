@@ -7,7 +7,7 @@ Monorepo que agrupa las webs estáticas de jeironpro. En la raíz vive un **cat�
 - **69 webs** y **5 sub-catálogos** publicados como sitios estáticos, sin paso de build por web.
 - **94 capturas** mantenidas en el repositorio: 69 del catálogo raíz, 5 de dashboards y 20 de juegos.
 - **26 webs adicionales** con auditoría técnica cerrada: HTML, CSS, JS, navegador, limpieza, favicon y README al 100 %.
-- **413 pruebas** automatizadas y comprobaciones de formato, lint, enlaces internos, datos y capturas.
+- **430 pruebas** automatizadas y comprobaciones de formato, lint, enlaces internos, datos y capturas.
 - Cuatro workflows: `ci`, `enlaces`, `capturas` y `deploy`; este último publica el sitio en GitHub Pages excluyendo dependencias, perfiles de navegador y el ZIP grande de Git LFS.
 
 ## Catálogo

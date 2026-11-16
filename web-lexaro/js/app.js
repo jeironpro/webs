@@ -1,4 +1,12 @@
 import { hasStorageConsent, initStorageConsent } from "./consent.js";
+import {
+    STATUS_LABELS,
+    adjacentStatus,
+    buildDemoTasks,
+    matchesTask,
+    normalizeTags,
+    sanitizeImportedTasks,
+} from "./modules/board.js";
 
 class NotificationManager {
     constructor(board) {
@@ -10,25 +18,8 @@ class NotificationManager {
         this.init();
     }
 
-    async init() {
-        if ("Notification" in window) {
-            await this.requestPermission();
-            this.startPeriodicVerification();
-        }
-    }
-
-    async requestPermission() {
-        if (Notification.permission === "default") {
-            const permiso = await Notification.requestPermission();
-            this.notificationPermission = permiso;
-
-            if (permiso === "granted") {
-                this.createNotification(
-                    "Sistema de notificaciones activado",
-                    "Recibirás alertas un día antes de que venzan tus tareas."
-                );
-            }
-        } else if (Notification.permission === "granted") {
+    init() {
+        if ("Notification" in window && Notification.permission === "granted") {
             this.notificationPermission = "granted";
             this.startPeriodicVerification();
         }
@@ -205,6 +196,7 @@ class KanbanBoard {
     constructor() {
         this.tasks = [];
         this.currentFilter = "all";
+        this.searchQuery = "";
         this.draggedElement = null;
         this.taskIdCounter = 1;
         this.confirmationCallback = null;
@@ -218,12 +210,13 @@ class KanbanBoard {
         this.renderAllTasks();
         this.setupEventListeners();
         this.updateTaskCounters();
+        this.applyFilters();
     }
 
     loadTasksFromStorage() {
         if (!hasStorageConsent()) {
-            this.tasks = [];
-            this.taskIdCounter = 1;
+            this.tasks = this.getDefaultTasks();
+            this.taskIdCounter = this.tasks.length + 1;
             return;
         }
 
@@ -242,8 +235,9 @@ class KanbanBoard {
             this.saveTasksToStorage();
         }
 
-        if (storedCounter) {
-            this.taskIdCounter = parseInt(storedCounter, 10);
+        const parsedCounter = Number.parseInt(storedCounter ?? "", 10);
+        if (Number.isInteger(parsedCounter) && parsedCounter > 0) {
+            this.taskIdCounter = parsedCounter;
         } else {
             this.taskIdCounter =
                 this.tasks.length > 0
@@ -265,7 +259,7 @@ class KanbanBoard {
     }
 
     getDefaultTasks() {
-        return [];
+        return buildDemoTasks();
     }
 
     renderAllTasks() {
@@ -274,6 +268,7 @@ class KanbanBoard {
         this.tasks.forEach((task) => {
             this.renderTask(task);
         });
+        this.applyFilters();
     }
 
     setupEventListeners() {
@@ -333,8 +328,25 @@ class KanbanBoard {
                     item.setAttribute("aria-pressed", String(item === filterButton));
                 });
                 this.currentFilter = filterButton.dataset.filter;
-                this.applyFilter();
+                this.applyFilters();
             });
+        });
+
+        const searchInput = document.getElementById("task-search");
+        searchInput.addEventListener("input", (event) => {
+            this.searchQuery = event.target.value;
+            this.applyFilters();
+        });
+
+        document.getElementById("export-tasks").addEventListener("click", () => {
+            this.exportTasks();
+        });
+
+        const importInput = document.getElementById("import-tasks");
+        importInput.addEventListener("change", () => {
+            const [file] = importInput.files;
+            if (file) this.importTasks(file);
+            importInput.value = "";
         });
 
         this.setupDragAndDrop();
@@ -354,7 +366,8 @@ class KanbanBoard {
                 if (
                     !e.target.closest(".task__assignee") &&
                     !e.target.closest(".task__tags") &&
-                    !e.target.closest(".task__delete")
+                    !e.target.closest(".task__delete") &&
+                    !e.target.closest(".task__move")
                 ) {
                     this.editTask(taskCard);
                 }
@@ -401,21 +414,21 @@ class KanbanBoard {
     }
 
     moveTask(taskCard, newStatus) {
-        const newColumn = document.querySelector(`[data-status="${newStatus}"] .column__content`);
+        const taskId = taskCard?.dataset.id;
+        if (taskId) this.moveTaskToStatus(taskId, newStatus);
+    }
 
-        if (newColumn && !newColumn.contains(taskCard)) {
-            newColumn.appendChild(taskCard);
+    moveTaskToStatus(taskId, newStatus) {
+        const task = this.tasks.find((item) => item.id === taskId);
+        if (!task || !newStatus || task.status === newStatus) return false;
 
-            const taskId = taskCard.dataset.id;
-            const task = this.tasks.find((t) => t.id === taskId);
-            if (task) {
-                task.status = newStatus;
-                this.saveTasksToStorage();
-            }
-
-            this.updateTaskCounters();
-            this.showNotification("Tarea movida exitosamente");
-        }
+        task.status = newStatus;
+        this.saveTasksToStorage();
+        this.renderAllTasks();
+        this.updateTaskCounters();
+        this.applyFilters();
+        this.showNotification(`Tarea movida a ${STATUS_LABELS[newStatus]}`);
+        return true;
     }
 
     openModal(taskData = null) {
@@ -458,11 +471,7 @@ class KanbanBoard {
         const description = document.getElementById("task-description").value;
         const priority = document.getElementById("task-priority").value;
         const status = document.getElementById("task-status").value;
-        const tags = document
-            .getElementById("task-tags")
-            .value.split(",")
-            .map((tag) => tag.trim())
-            .filter((tag) => tag);
+        const tags = normalizeTags(document.getElementById("task-tags").value);
         const startDate = document.getElementById("task-start-date").value;
         const endDate = document.getElementById("task-end-date").value;
 
@@ -479,8 +488,10 @@ class KanbanBoard {
         };
 
         this.tasks.push(taskData);
+        this.taskIdCounter += 1;
         this.renderTask(taskData);
         this.updateTaskCounters();
+        this.applyFilters();
         this.saveTasksToStorage();
         this.closeModal();
         this.showNotification("Tarea creada exitosamente");
@@ -488,8 +499,6 @@ class KanbanBoard {
         if (this.notificationManager && taskData.endDate) {
             this.notificationManager.checkUpcomingTasks();
         }
-
-        this.taskIdCounter++;
     }
 
     updateTask(taskId) {
@@ -500,11 +509,7 @@ class KanbanBoard {
         const description = document.getElementById("task-description").value;
         const priority = document.getElementById("task-priority").value;
         const status = document.getElementById("task-status").value;
-        const tags = document
-            .getElementById("task-tags")
-            .value.split(",")
-            .map((tag) => tag.trim())
-            .filter((tag) => tag);
+        const tags = normalizeTags(document.getElementById("task-tags").value);
         const startDate = document.getElementById("task-start-date").value;
         const endDate = document.getElementById("task-end-date").value;
 
@@ -615,14 +620,15 @@ class KanbanBoard {
 
         if (!columnContent) return;
 
-        const taskCard = document.createElement("div");
+        const taskCard = document.createElement("article");
         taskCard.className = "task";
         taskCard.draggable = true;
         taskCard.dataset.id = taskData.id;
         taskCard.dataset.priority = taskData.priority;
+        taskCard.setAttribute("aria-label", `${taskData.taskId}: ${taskData.title}`);
 
         const priorityClass = `task__priority--${taskData.priority}`;
-        const tagElements = taskData.tags.map((tag) => {
+        const tagElements = normalizeTags(taskData.tags).map((tag) => {
             const tagClass = this.getTagClass(tag);
             const tagElement = document.createElement("span");
             tagElement.className = `tag tag--${tagClass}`;
@@ -653,6 +659,7 @@ class KanbanBoard {
 
         const formattedStartDate = taskData.startDate ? this.formatDate(taskData.startDate) : "";
         const formattedEndDate = taskData.endDate ? this.formatDate(taskData.endDate) : "";
+        let taskDatesElement = null;
 
         if (formattedStartDate || formattedEndDate) {
             const dueStatus = this.getDueStatus(taskData.endDate);
@@ -686,12 +693,13 @@ class KanbanBoard {
                 taskDates.appendChild(endDateItem);
             }
 
-            taskCard.appendChild(taskDates);
+            taskDatesElement = taskDates;
         }
 
         taskCard.appendChild(taskHeader);
         taskCard.appendChild(taskTitle);
         taskCard.appendChild(taskDescription);
+        if (taskDatesElement) taskCard.appendChild(taskDatesElement);
 
         const taskFooter = document.createElement("div");
         taskFooter.className = "task__footer";
@@ -708,20 +716,50 @@ class KanbanBoard {
 
         const taskAssignee = document.createElement("div");
         taskAssignee.className = "task__assignee";
+        taskAssignee.setAttribute("aria-hidden", "true");
 
         const userIcon = document.createElement("i");
         userIcon.className = "fas fa-user";
         taskAssignee.appendChild(userIcon);
 
+        const previousStatus = adjacentStatus(taskData.status, -1);
+        const nextStatus = adjacentStatus(taskData.status, 1);
+
+        const moveButton = (status, direction, symbol) => {
+            const button = document.createElement("button");
+            button.className = "task__move";
+            button.type = "button";
+            button.textContent = symbol;
+            button.disabled = status === null;
+            button.setAttribute(
+                "aria-label",
+                status === null
+                    ? `No hay columna ${direction < 0 ? "anterior" : "siguiente"}`
+                    : `Mover "${taskData.title}" a ${STATUS_LABELS[status]}`
+            );
+            button.addEventListener("click", (event) => {
+                event.stopPropagation();
+                if (status !== null) this.moveTaskToStatus(taskData.id, status);
+            });
+            return button;
+        };
+
         const deleteButton = document.createElement("button");
         deleteButton.className = "task__delete";
-        deleteButton.onclick = () => this.deleteTask(taskData.id);
+        deleteButton.type = "button";
+        deleteButton.setAttribute("aria-label", `Eliminar la tarea "${taskData.title}"`);
+        deleteButton.addEventListener("click", (event) => {
+            event.stopPropagation();
+            this.deleteTask(taskData.id);
+        });
 
         const deleteIcon = document.createElement("i");
         deleteIcon.className = "fas fa-trash";
 
         deleteButton.appendChild(deleteIcon);
 
+        taskActions.appendChild(moveButton(previousStatus, -1, "←"));
+        taskActions.appendChild(moveButton(nextStatus, 1, "→"));
         taskActions.appendChild(taskAssignee);
         taskActions.appendChild(deleteButton);
 
@@ -814,24 +852,35 @@ class KanbanBoard {
         const columns = document.querySelectorAll(".column");
 
         columns.forEach((column) => {
-            const taskCount = column.querySelectorAll(".task").length;
+            const taskCount = this.tasks.filter(
+                (task) => task.status === column.dataset.status
+            ).length;
             const counterElement = column.querySelector(".column__counter");
             counterElement.textContent = taskCount;
         });
 
-        const totalTasks = document.querySelectorAll(".task").length;
+        const totalTasks = this.tasks.length;
         const boardStats = document.querySelector(".board__stats");
-        boardStats.textContent = `${totalTasks} tareas`;
+        boardStats.textContent = `${totalTasks} ${totalTasks === 1 ? "tarea" : "tareas"}`;
     }
 
-    applyFilter() {
-        const taskCards = document.querySelectorAll(".task");
+    applyFilters() {
+        this.tasks.forEach((task) => {
+            const card = document.querySelector(`.task[data-id="${task.id}"]`);
+            if (!card) return;
+            card.hidden = !matchesTask(task, {
+                priority: this.currentFilter,
+                query: this.searchQuery,
+            });
+        });
 
-        taskCards.forEach((card) => {
-            const priority = card.dataset.priority;
-
-            const matchesPriority = this.currentFilter === "all" || priority === this.currentFilter;
-            card.hidden = !matchesPriority;
+        document.querySelectorAll(".column").forEach((column) => {
+            const total = this.tasks.filter((task) => task.status === column.dataset.status).length;
+            const hasVisible = [...column.querySelectorAll(".task")].some((card) => !card.hidden);
+            const emptyState = column.querySelector(".column__empty");
+            if (!emptyState) return;
+            emptyState.hidden = hasVisible;
+            emptyState.textContent = total === 0 ? "Sin tareas" : "Sin coincidencias";
         });
     }
 
@@ -1031,37 +1080,30 @@ class KanbanBoard {
 
     importTasks(file) {
         const reader = new FileReader();
-        reader.onload = (e) => {
+        reader.onload = (event) => {
             try {
-                const importedTasks = JSON.parse(e.target.result);
+                const importedTasks = sanitizeImportedTasks(
+                    JSON.parse(event.target.result),
+                    this.taskIdCounter
+                );
+                if (importedTasks.length === 0) throw new Error("sin tareas válidas");
+
                 this.tasks = [...this.tasks, ...importedTasks];
+                this.taskIdCounter += importedTasks.length;
                 this.saveTasksToStorage();
                 this.renderAllTasks();
                 this.updateTaskCounters();
 
-                this.showNotification("Tareas importadas exitosamente");
+                this.showNotification(
+                    `${importedTasks.length} ${
+                        importedTasks.length === 1 ? "tarea importada" : "tareas importadas"
+                    }`
+                );
             } catch {
                 this.showNotification("Error al importar tareas");
             }
         };
         reader.readAsText(file);
-    }
-
-    searchTasks(query) {
-        const taskCards = document.querySelectorAll(".task");
-
-        taskCards.forEach((card) => {
-            const title = card.querySelector(".task__title").textContent.toLowerCase();
-            const description = card.querySelector(".task__description").textContent.toLowerCase();
-            const taskId = card.querySelector(".task__id").textContent.toLowerCase();
-
-            const matchesSearch =
-                title.includes(query.toLowerCase()) ||
-                description.includes(query.toLowerCase()) ||
-                taskId.includes(query.toLowerCase());
-
-            card.hidden = !matchesSearch;
-        });
     }
 
     clearAllData() {

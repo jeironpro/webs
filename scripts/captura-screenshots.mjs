@@ -88,7 +88,9 @@ function capturar(id, intento = 0) {
                 "--window-size=1280,800",
                 `--virtual-time-budget=${presupuesto}`,
                 `--screenshot=${png}`,
-                `http://127.0.0.1:${PUERTO}/${id}/${id === "web-daw" ? "?captura=1" : ""}`,
+                `http://127.0.0.1:${PUERTO}/${id}/${
+                    id === "web-daw" || id === "web-lexaro" ? "?captura=1" : ""
+                }`,
             ],
             { stdio: ["ignore", "ignore", "ignore"] }
         );
