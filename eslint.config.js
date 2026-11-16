@@ -45,6 +45,7 @@ const WEBS_CANONICAS = [
     "web-lexaro",
     "web-mandala",
     "web-markdown",
+    "web-mecanografia",
     "web-narcopedia",
     "web-naruto",
     "web-oracle-academy-dpsql",
