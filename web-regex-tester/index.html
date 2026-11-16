@@ -3,36 +3,36 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Probador de regex · Consola de expresiones regulares</title>
+        <title>Probador de regex · Plano de prueba</title>
         <meta
             name="description"
-            content="Consola para probar expresiones regulares: patrón, banderas, coincidencias y grupos en una vista de trabajo, sin enviar nada a ningún servidor."
+            content="Prueba expresiones regulares sobre un plano de trabajo: patrón anotado, coincidencias en tabla, grupos capturados y reemplazo, todo en el navegador."
         />
-        <meta name="theme-color" content="#111318" />
+        <meta name="theme-color" content="#fbfcfd" />
         <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
             rel="stylesheet"
         />
 
         <link rel="stylesheet" href="css/style.css" />
     </head>
     <body>
-        <a class="skip-link" href="#pattern">Saltar a la consola</a>
+        <a class="skip-link" href="#pattern">Saltar al patrón</a>
 
-        <div class="shell">
-            <header class="topbar">
-                <a class="topbar__brand" href="../">
-                    <span class="topbar__mark" aria-hidden="true">/</span>
-                    regex<span class="topbar__dim">.workbench</span>
+        <div class="page">
+            <header class="masthead">
+                <a class="masthead__brand" href="../">
+                    <span class="masthead__mark" aria-hidden="true"></span>
+                    Regex <span class="masthead__sub">/ plano de prueba</span>
                 </a>
-                <nav class="topbar__links" aria-label="Principal">
-                    <a class="topbar__link" href="../">catálogo</a>
+                <nav class="masthead__nav" aria-label="Principal">
+                    <a class="masthead__link" href="../">catálogo</a>
                     <a
-                        class="topbar__link"
+                        class="masthead__link"
                         href="https://github.com/jeironpro/webs/tree/main/web-regex-tester"
                         target="_blank"
                         rel="noopener noreferrer"
@@ -41,22 +41,30 @@
                 </nav>
             </header>
 
-            <main class="workspace" id="content">
-                <div class="intro">
-                    <h1 class="intro__title" id="title">Probador de expresiones regulares</h1>
-                    <p class="intro__text">
-                        Escribe el patrón, ajusta banderas y revisa coincidencias y grupos. Todo se
-                        ejecuta en tu navegador.
+            <main class="board" id="content">
+                <div class="heading">
+                    <p class="eyebrow">Plano 01 · Expresiones regulares</p>
+                    <h1 class="heading__title" id="title">
+                        Prueba el patrón, lee las coincidencias
+                    </h1>
+                    <p class="heading__text">
+                        Ajusta el patrón y las banderas, pega el texto y revisa cada coincidencia
+                        con sus grupos. Todo se ejecuta en tu navegador.
                     </p>
                 </div>
 
-                <section class="cmd" aria-labelledby="pattern-title">
-                    <h2 class="visually-hidden" id="pattern-title">Patrón</h2>
-                    <div class="cmd__row">
-                        <span class="cmd__prompt" aria-hidden="true">/</span>
+                <section class="plate plate--pattern" aria-labelledby="pattern-title">
+                    <header class="plate__head">
+                        <span class="plate__id">01</span>
+                        <h2 class="plate__title" id="pattern-title">Patrón</h2>
+                        <span class="plate__note">búsqueda global</span>
+                    </header>
+
+                    <div class="pattern">
+                        <span class="pattern__delim" aria-hidden="true">/</span>
                         <label class="visually-hidden" for="pattern">Expresión regular</label>
                         <input
-                            class="cmd__input"
+                            class="pattern__field"
                             id="pattern"
                             name="pattern"
                             type="text"
@@ -66,57 +74,120 @@
                             spellcheck="false"
                             aria-describedby="pattern-help pattern-error"
                         />
-                        <span class="cmd__prompt" aria-hidden="true">/</span>
-                        <div class="cmd__flags" role="group" aria-label="Banderas">
+                        <span class="pattern__delim" aria-hidden="true">/</span>
+                    </div>
+
+                    <div class="pattern__row">
+                        <fieldset class="flags">
+                            <legend class="visually-hidden">Banderas</legend>
                             <label class="flag">
                                 <input class="flag__input" type="checkbox" data-flag="i" checked />
-                                <span class="flag__code">i</span>
+                                <span class="flag__box">i</span>
+                                <span class="flag__label">ignorar mayúsculas</span>
                             </label>
                             <label class="flag">
                                 <input class="flag__input" type="checkbox" data-flag="m" />
-                                <span class="flag__code">m</span>
+                                <span class="flag__box">m</span>
+                                <span class="flag__label">multilínea</span>
                             </label>
                             <label class="flag">
                                 <input class="flag__input" type="checkbox" data-flag="s" />
-                                <span class="flag__code">s</span>
+                                <span class="flag__box">s</span>
+                                <span class="flag__label">punto incluye saltos</span>
                             </label>
                             <label class="flag">
                                 <input class="flag__input" type="checkbox" data-flag="u" />
-                                <span class="flag__code">u</span>
+                                <span class="flag__box">u</span>
+                                <span class="flag__label">unicode</span>
                             </label>
+                        </fieldset>
+
+                        <div class="pattern__actions">
+                            <button type="button" class="btn btn--primary" id="example">
+                                Cargar ejemplo
+                            </button>
+                            <button type="button" class="btn" id="clear">Limpiar</button>
                         </div>
-                        <button type="button" class="btn btn--solid" id="example">ejemplo</button>
-                        <button type="button" class="btn" id="clear">limpiar</button>
                     </div>
-                    <div class="cmd__meta">
-                        <p class="hint" id="pattern-help">
-                            búsqueda global · referencias <code>$1</code> <code>$&amp;</code>
-                            <code>$&lt;nombre&gt;</code>
-                        </p>
-                        <p class="error-line" id="pattern-error" role="alert"></p>
-                    </div>
+
+                    <p class="hint" id="pattern-help">
+                        Referencias de reemplazo: <code>$1</code>, <code>$&amp;</code>,
+                        <code>$&lt;nombre&gt;</code>.
+                    </p>
+                    <p class="error" id="pattern-error" role="alert"></p>
                 </section>
 
-                <div class="split">
-                    <section class="pane pane--input" aria-labelledby="text-title">
-                        <header class="pane__head">
-                            <h2 class="pane__title" id="text-title">entrada.txt</h2>
-                            <p class="hint" id="text-help">texto de prueba</p>
+                <div class="columns">
+                    <section class="plate plate--document" aria-labelledby="text-title">
+                        <header class="plate__head">
+                            <span class="plate__id">02</span>
+                            <h2 class="plate__title" id="text-title">Texto de prueba</h2>
                         </header>
                         <label class="visually-hidden" for="test-text">Texto de prueba</label>
                         <textarea
                             class="editor"
                             id="test-text"
                             name="test-text"
-                            rows="16"
+                            rows="14"
                             spellcheck="false"
                             aria-describedby="text-help"
                         ></textarea>
+                        <p class="hint" id="text-help">
+                            Se analiza tal cual, incluidos los saltos de línea.
+                        </p>
+                    </section>
 
-                        <div class="replace">
-                            <label class="pane__label" for="replacement">reemplazo</label>
+                    <section class="plate plate--preview" aria-labelledby="preview-title">
+                        <header class="plate__head">
+                            <span class="plate__id">03</span>
+                            <h2 class="plate__title" id="preview-title">Coincidencias</h2>
+                            <p class="plate__note" id="summary" aria-live="polite">
+                                0 coincidencias
+                            </p>
+                        </header>
+                        <p
+                            class="preview"
+                            id="preview"
+                            aria-label="Texto con coincidencias resaltadas"
+                        ></p>
+                    </section>
+                </div>
+
+                <section class="plate plate--table" aria-labelledby="table-title">
+                    <header class="plate__head">
+                        <span class="plate__id">04</span>
+                        <h2 class="plate__title" id="table-title">Grupos capturados</h2>
+                    </header>
+
+                    <div class="table__head" aria-hidden="true">
+                        <span>#</span>
+                        <span>coincidencia</span>
+                        <span>posición</span>
+                        <span>grupos</span>
+                    </div>
+                    <ol class="table" id="match-list"></ol>
+                    <p class="hint" id="match-limit" hidden>
+                        Se muestran solo las primeras 200 coincidencias.
+                    </p>
+                </section>
+
+                <section class="plate plate--replace" aria-labelledby="replace-title">
+                    <header class="plate__head">
+                        <span class="plate__id">05</span>
+                        <h2 class="plate__title" id="replace-title">Reemplazo</h2>
+                        <p
+                            class="plate__note"
+                            id="copy-status"
+                            role="status"
+                            aria-live="polite"
+                        ></p>
+                    </header>
+
+                    <div class="replace">
+                        <div class="field">
+                            <label class="field__label" for="replacement">Texto de reemplazo</label>
                             <input
-                                class="replace__field"
+                                class="input"
                                 id="replacement"
                                 name="replacement"
                                 type="text"
@@ -126,34 +197,13 @@
                                 aria-describedby="replace-help"
                             />
                             <p class="hint" id="replace-help">
-                                admite <code>$&amp;</code>, <code>$1</code> y
-                                <code>$&lt;nombre&gt;</code>
+                                Admite referencias a grupos como <code>$&amp;</code> o
+                                <code>$1</code>.
                             </p>
                         </div>
-                    </section>
 
-                    <section class="pane pane--output" aria-labelledby="results-title">
-                        <header class="pane__head">
-                            <h2 class="pane__title" id="results-title">salida</h2>
-                            <p class="status" id="summary" aria-live="polite">0 coincidencias</p>
-                        </header>
-
-                        <p
-                            class="preview"
-                            id="preview"
-                            aria-label="Texto con coincidencias resaltadas"
-                        ></p>
-
-                        <ol class="log" id="match-list"></ol>
-                        <p class="hint" id="match-limit" hidden>
-                            se muestran solo las primeras 200 coincidencias
-                        </p>
-
-                        <div class="result">
-                            <div class="result__head">
-                                <label class="pane__label" for="replace-output">resultado</label>
-                                <button type="button" class="btn" id="copy" disabled>copiar</button>
-                            </div>
+                        <div class="field">
+                            <label class="field__label" for="replace-output">Resultado</label>
                             <textarea
                                 class="editor editor--out"
                                 id="replace-output"
@@ -161,10 +211,15 @@
                                 rows="7"
                                 readonly
                             ></textarea>
-                            <p class="status" id="copy-status" role="status" aria-live="polite"></p>
                         </div>
-                    </section>
-                </div>
+                    </div>
+
+                    <div class="actions">
+                        <button type="button" class="btn" id="copy" disabled>
+                            Copiar resultado
+                        </button>
+                    </div>
+                </section>
             </main>
 
             <footer class="footer">

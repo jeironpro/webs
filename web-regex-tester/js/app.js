@@ -56,19 +56,19 @@ function renderPreview(text, matches) {
 
 function renderMatch(match, position) {
     const item = document.createElement("li");
-    item.className = "log__row";
+    item.className = "table__row";
 
     const index = document.createElement("span");
-    index.className = "log__idx";
+    index.className = "table__idx";
     index.textContent = String(position + 1).padStart(2, "0");
 
     const value = document.createElement("code");
-    value.className = "log__match";
+    value.className = "table__value";
     value.textContent = match.value === "" ? "«coincidencia vacía»" : match.value;
 
-    const meta = document.createElement("div");
-    meta.className = "log__groups";
-    meta.append(`índice ${match.index}`);
+    const positionLabel = document.createElement("span");
+    positionLabel.className = "table__pos";
+    positionLabel.textContent = String(match.index);
 
     const groups = match.groups
         .map((group, positionGroup) => {
@@ -82,13 +82,11 @@ function renderMatch(match, position) {
         })
         .join(" · ");
 
-    if (groups !== "") {
-        const detail = document.createElement("span");
-        detail.textContent = groups;
-        meta.append(" · ", detail);
-    }
+    const detail = document.createElement("span");
+    detail.className = "table__groups";
+    detail.textContent = groups === "" ? "—" : groups;
 
-    item.append(index, value, meta);
+    item.append(index, value, positionLabel, detail);
     return item;
 }
 
