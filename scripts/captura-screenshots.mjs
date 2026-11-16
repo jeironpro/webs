@@ -79,7 +79,8 @@ function capturar(id, intento = 0) {
         }
         rmSync(png, { force: true });
         const perfil = join("/tmp", `wb-profile-${id}`);
-        const presupuesto = intento === 0 ? 25000 : 45000;
+        const presupuesto = id === "web-daw" ? 60000 : intento === 0 ? 25000 : 45000;
+        const limite = id === "web-daw" ? 120000 : 90000;
         const chrome = spawn(
             CHROME,
             [
@@ -95,11 +96,11 @@ function capturar(id, intento = 0) {
                 "--window-size=1280,800",
                 `--virtual-time-budget=${presupuesto}`,
                 `--screenshot=${png}`,
-                `http://127.0.0.1:${PUERTO}/${id}/`,
+                `http://127.0.0.1:${PUERTO}/${id}/${id === "web-daw" ? "?captura=1" : ""}`,
             ],
             { stdio: ["ignore", "ignore", "ignore"] }
         );
-        const temporizador = setTimeout(() => chrome.kill("SIGKILL"), 90000);
+        const temporizador = setTimeout(() => chrome.kill("SIGKILL"), limite);
         chrome.on("close", (code) => {
             clearTimeout(temporizador);
             if (!existsSync(png)) {
