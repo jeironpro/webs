@@ -434,6 +434,14 @@ html.arcade-playing[data-arcade-game="juego-sudoku"] .lateral {
     width: 100%;
 }
 
+html.arcade-playing[data-arcade-game="juego-7-letras"] .lateral {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+html.arcade-playing[data-arcade-game="juego-7-letras"] .tarjeta--datos {
+    display: none;
+}
+
 html.arcade-playing[data-arcade-game="juego-7-letras"] .lateral > .btn,
 html.arcade-playing[data-arcade-game="juego-sopa-letras"] .lateral > .btn,
 html.arcade-playing[data-arcade-game="juego-sudoku"] .lateral > .btn,
@@ -491,8 +499,22 @@ html.arcade-playing .nota,
 html.arcade-playing .leyenda,
 html.arcade-playing .teclas,
 html.arcade-playing .juego__nota,
-html.arcade-playing .panel--plegable {
+html.arcade-playing .panel--plegable,
+html.arcade-playing .etiqueta,
+html.arcade-playing .guardado,
+html.arcade-playing .aviso,
+html.arcade-playing .partida__nota,
+html.arcade-playing .nota__datos,
+html.arcade-playing #capa-texto,
+html.arcade-playing #capa-eyebrow {
     display: none;
+}
+
+html.arcade-playing[data-arcade-game="juego-wend"] {
+    --color-10: oklch(89% 0.06 125);
+    --lima: oklch(89% 0.06 125);
+    --lima-oscura: oklch(82% 0.07 125);
+    --fondo-4: oklch(94% 0.03 125);
 }
 
 html.arcade-playing[data-arcade-game="juego-zip"] .lateral {
@@ -505,36 +527,51 @@ html.arcade-playing[data-arcade-game="juego-zip"] .disposicion {
 }
 
 html.arcade-playing[data-arcade-game="juego-memoriza-carta"] .marco {
-    width: min(100%, 24rem, 48vh);
+    width: min(100%, 32rem, 64vh);
+}
+
+html.arcade-playing[data-arcade-game="juego-7-letras"] .marco {
+    max-width: min(34rem, 68vh);
+    margin-inline: auto;
+}
+
+html.arcade-playing[data-arcade-game="juego-7-letras"] .hexagono {
+    width: clamp(4.6rem, 12vw, 7rem);
+    height: clamp(5.2rem, 13.5vw, 8rem);
+}
+
+html.arcade-playing[data-arcade-game="juego-adivina-numero"] .game-card {
+    width: min(100%, 40rem);
+}
+
+html.arcade-playing[data-arcade-game="juego-zip"] .marco {
+    max-width: min(40rem, 80vh);
+    margin-inline: auto;
 }
 
 html.arcade-playing[data-arcade-game="juego-palabra-oculta"] .tablero {
-    max-width: min(22rem, 42vh);
+    max-width: min(30rem, 60vh);
     margin-inline: auto;
 }
 
 html.arcade-playing[data-arcade-game="juego-sopa-letras"] .tablero {
-    max-width: min(24rem, 48vh);
+    max-width: min(30rem, 60vh);
     margin-inline: auto;
 }
 
 html.arcade-playing[data-arcade-game="juego-sudoku"] .tablero {
-    max-width: min(22rem, 44vh);
+    max-width: min(28rem, 56vh);
     margin-inline: auto;
 }
 
 html.arcade-playing[data-arcade-game="juego-wend"] .marco {
-    max-width: min(28rem, 45vh);
+    max-width: min(34rem, 50vh);
     margin-inline: auto;
 }
 
 html.arcade-playing[data-arcade-game="juego-wend"] .panel--palabras {
     max-height: 13vh;
     overflow-y: auto;
-}
-
-html.arcade-playing[data-arcade-game="juego-wend"] .marco {
-    max-width: min(28rem, 32vh);
 }
 
 html.arcade-playing.arcade-rethemed .tarjeta,
@@ -558,12 +595,12 @@ html.arcade-playing[data-arcade-game="juego-sudoku"] .teclado button {
 html.arcade-playing[data-arcade-game="juego-patches"] .tablero,
 html.arcade-playing[data-arcade-game="juego-tango"] .tablero,
 html.arcade-playing[data-arcade-game="juego-queens"] .marco {
-    max-width: min(36rem, 72vh);
+    max-width: min(40rem, 80vh);
     margin-inline: auto;
 }
 
 html.arcade-playing[data-arcade-game="juego-serpiente"] .marco {
-    max-width: min(30rem, 60vh);
+    max-width: min(36rem, 72vh);
     margin-inline: auto;
 }
 
