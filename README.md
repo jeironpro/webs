@@ -1,13 +1,13 @@
 # webs
 
-Monorepo que agrupa las webs estáticas de jeironpro. En la raíz vive un **catálogo** que indexa los 59 proyectos; cada proyecto ocupa su propio subdirectorio (`web-*`) y se sirve de forma independiente como página estática. Cinco de ellas son además **sub-catálogos**: hubs con su propio índice de subproyectos (el catálogo raíz las distingue con el filtro y la insignia "Sub-catálogo").
+Monorepo que agrupa las webs estáticas de jeironpro. En la raíz vive un **catálogo** que indexa los 60 proyectos; cada proyecto ocupa su propio subdirectorio (`web-*`) y se sirve de forma independiente como página estática. Cinco de ellas son además **sub-catálogos**: hubs con su propio índice de subproyectos (el catálogo raíz las distingue con el filtro y la insignia "Sub-catálogo").
 
 ## Estado actual
 
-- **59 webs** y **5 sub-catálogos** publicados como sitios estáticos, sin paso de build por web.
-- **84 capturas** mantenidas en el repositorio: 59 del catálogo raíz, 5 de dashboards y 20 de juegos.
+- **60 webs** y **5 sub-catálogos** publicados como sitios estáticos, sin paso de build por web.
+- **85 capturas** mantenidas en el repositorio: 60 del catálogo raíz, 5 de dashboards y 20 de juegos.
 - **25 webs adicionales** con auditoría técnica cerrada: HTML, CSS, JS, navegador, limpieza, favicon y README al 100 %.
-- **244 pruebas** automatizadas y comprobaciones de formato, lint, enlaces internos, datos y capturas.
+- **256 pruebas** automatizadas y comprobaciones de formato, lint, enlaces internos, datos y capturas.
 - Cuatro workflows: `ci`, `enlaces`, `capturas` y `deploy`; este último publica el sitio en GitHub Pages excluyendo dependencias, perfiles de navegador y el ZIP grande de Git LFS.
 
 ## Catálogo
@@ -81,6 +81,7 @@ Abre `index.html` de la raíz (o despliega el repositorio en GitHub Pages: el ca
 | [web-ruleta](./web-ruleta/)                                     | Ruleta                        | Entretenimiento | html, css, javascript, svg   |
 | [web-tests-daw](./web-tests-daw/)                               | Tests DAW                     | Curricular      | html, css, javascript        |
 | [web-timestamp](./web-timestamp/)                               | Conversor de marcas de tiempo | Utilidades      | html, css, javascript        |
+| [web-trigonometria](./web-trigonometria/)                       | Círculo trigonométrico        | Educación       | html, css, javascript, svg   |
 
 Las 5 webs marcadas _(sub-catálogo)_ son hubs con catálogo propio: `web-apis` (5 APIs Python descargables), `web-dashboards` (5 dashboards), `web-daw` (7 sub-webs de DAW1 y DAW2), `web-frontend` (componentes) y `web-juegos` (20 juegos). Se filtran con el botón "Sub-catálogo" del catálogo raíz.
 
@@ -89,7 +90,7 @@ Las 5 webs marcadas _(sub-catálogo)_ son hubs con catálogo propio: `web-apis` 
 La fuente de verdad es `projects.yml` en la raíz. Los artefactos se regeneran con comandos npm:
 
 - `npm run data:build` valida el esquema y genera `assets/projects.json` (datos ordenados que consume el catálogo).
-- `npm run data:screenshots` captura las 59 webs en `assets/screenshots/*.webp` (Chrome headless sobre un servidor local); con ids detrás (`npm run data:screenshots -- web-apis`) regenera solo esas.
+- `npm run data:screenshots` captura las 60 webs en `assets/screenshots/*.webp` (Chrome headless sobre un servidor local); con ids detrás (`npm run data:screenshots -- web-apis`) regenera solo esas.
 - `npm run capturas:check` falla si una captura está desfasada (incluidos cambios en sus CSS/JS locales), falta o está vacía, usando el manifiesto y las fechas de git; el workflow `capturas` lo trata como bloqueante.
 - `npm test` valida integridad de datos, esquema y generador.
 
@@ -125,7 +126,7 @@ La fuente de verdad es `projects.yml` en la raíz. Los artefactos se regeneran c
 4. **Regenera datos y capturas**, y verifica que todo cuadra:
 
    ```sh
-   npm run data:screenshots -- --force  # regenera las 59 capturas del catálogo
+   npm run data:screenshots -- --force  # regenera las 60 capturas del catálogo
    npm run data:screenshots -- web-apis # regenera solo una
    npm run capturas:check               # falla si hay capturas desfasadas o ausentes
    npm run data:build
