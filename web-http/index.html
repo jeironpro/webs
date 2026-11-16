@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Cliente HTTP · Playground de APIs</title>
+        <meta
+            name="description"
+            content="Lanza peticiones HTTP desde el navegador contra las APIs del catálogo o cualquier endpoint. Método, cabeceras, cuerpo, estado, tiempos y respuesta formateada."
+        />
+        <meta name="theme-color" content="#101315" />
+        <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap"
+            rel="stylesheet"
+        />
+
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
+        <a class="skip-link" href="#console">Saltar a la consola</a>
+
+        <div class="shell">
+            <header class="topbar">
+                <a class="brand" href="../">
+                    <svg
+                        class="brand__icon"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                        focusable="false"
+                    >
+                        <path
+                            d="M3 12h4l3-7 4 14 3-7h4"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.6"
+                            stroke-linejoin="round"
+                        />
+                    </svg>
+                    <span class="brand__name">relay</span>
+                    <span class="brand__sep" aria-hidden="true">/</span>
+                    <span class="brand__area">http</span>
+                </a>
+
+                <p class="topbar__note">cliente local · sin cuentas</p>
+
+                <nav class="topbar__nav" aria-label="Principal">
+                    <a class="topbar__link" href="../">catálogo</a>
+                    <a
+                        class="topbar__link"
+                        href="https://github.com/jeironpro/webs/tree/main/web-http"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >github ↗</a
+                    >
+                </nav>
+            </header>
+
+            <main class="relay">
+                <header class="relay__head">
+                    <div class="relay__title">
+                        <p class="kicker">Consola · APIs del catálogo</p>
+                        <h1>Cliente HTTP</h1>
+                    </div>
+                    <p class="relay__lede">
+                        Lanza peticiones contra la Biblia, Pokémon o cualquier endpoint. Método,
+                        cabeceras, cuerpo y respuesta sobre la misma mesa.
+                    </p>
+                    <p class="origin">
+                        <span class="origin__lamp" aria-hidden="true"></span>
+                        <span><strong>local</strong> · no guarda nada</span>
+                    </p>
+                </header>
+
+                <div class="console" id="console">
+                    <section class="pane pane--request" aria-labelledby="request-title">
+                        <header class="pane__head">
+                            <div>
+                                <p class="kicker">request</p>
+                                <h2 id="request-title">Solicitud</h2>
+                            </div>
+                            <span class="pane__tag">HTTP/1.1</span>
+                        </header>
+
+                        <div class="presets">
+                            <div class="presets__bar">
+                                <h3>APIs del catálogo</h3>
+                                <span>local · :8000</span>
+                            </div>
+                            <div
+                                class="preset-list"
+                                id="preset-list"
+                                role="list"
+                                aria-label="Presets de peticiones"
+                            ></div>
+                            <p class="presets__note" id="preset-note">
+                                Biblia y Pokémon se ejecutan en local. Para pasar CORS, sirve esta
+                                web en <code>127.0.0.1:5500</code>.
+                            </p>
+                        </div>
+
+                        <div class="request-line">
+                            <label class="visually-hidden" for="method">Método HTTP</label>
+                            <select id="method" name="method">
+                                <option value="GET">GET</option>
+                                <option value="POST">POST</option>
+                                <option value="PUT">PUT</option>
+                                <option value="PATCH">PATCH</option>
+                                <option value="DELETE">DELETE</option>
+                                <option value="HEAD">HEAD</option>
+                            </select>
+                            <label class="visually-hidden" for="url">URL de la petición</label>
+                            <input
+                                id="url"
+                                name="url"
+                                type="text"
+                                inputmode="url"
+                                autocomplete="off"
+                                spellcheck="false"
+                                placeholder="https://api.ejemplo.com/recurso"
+                            />
+                            <button class="send" type="button" id="send">Enviar</button>
+                        </div>
+
+                        <div class="tabs" role="tablist" aria-label="Configuración de la petición">
+                            <button
+                                class="tab"
+                                type="button"
+                                id="request-tab-headers"
+                                role="tab"
+                                aria-selected="true"
+                                aria-controls="request-panel-headers"
+                            >
+                                Cabeceras <span class="count" id="header-count">0</span>
+                            </button>
+                            <button
+                                class="tab"
+                                type="button"
+                                id="request-tab-body"
+                                role="tab"
+                                aria-selected="false"
+                                aria-controls="request-panel-body"
+                                tabindex="-1"
+                            >
+                                Cuerpo
+                            </button>
+                        </div>
+
+                        <div
+                            class="tab-panel request-panel"
+                            id="request-panel-headers"
+                            role="tabpanel"
+                            aria-labelledby="request-tab-headers"
+                        >
+                            <div class="header-editor">
+                                <div class="header-editor__labels" aria-hidden="true">
+                                    <span>nombre</span><span>valor</span><span></span>
+                                </div>
+                                <div class="header-rows" id="header-rows"></div>
+                            </div>
+                            <button class="text-button" type="button" id="add-header">
+                                + Añadir cabecera
+                            </button>
+                        </div>
+
+                        <div
+                            class="tab-panel request-panel"
+                            id="request-panel-body"
+                            role="tabpanel"
+                            aria-labelledby="request-tab-body"
+                            hidden
+                        >
+                            <div class="body-tools">
+                                <span>cuerpo en bruto</span>
+                                <button class="text-button" type="button" id="format-body">
+                                    Formatear JSON
+                                </button>
+                            </div>
+                            <label class="visually-hidden" for="body">Cuerpo de la petición</label>
+                            <textarea
+                                id="body"
+                                spellcheck="false"
+                                placeholder='{ "clave": "valor" }'
+                            ></textarea>
+                            <p class="field-hint" id="body-hint">
+                                Se envía tal cual. Añade <code>Content-Type</code> si tu API lo
+                                necesita.
+                            </p>
+                        </div>
+
+                        <footer class="pane__foot">
+                            <p
+                                class="request-status"
+                                id="request-status"
+                                role="status"
+                                aria-live="polite"
+                            >
+                                Listo para enviar.
+                            </p>
+                            <p class="shortcut"><kbd>Ctrl</kbd> + <kbd>Enter</kbd></p>
+                        </footer>
+                    </section>
+
+                    <section class="pane pane--response" aria-labelledby="response-title">
+                        <header class="pane__head">
+                            <div>
+                                <p class="kicker">response</p>
+                                <h2 id="response-title">Respuesta</h2>
+                            </div>
+                            <button class="text-button copy" type="button" id="copy" disabled>
+                                Copiar
+                            </button>
+                        </header>
+
+                        <div class="response-meta" id="response-meta" hidden>
+                            <span class="status-pill" id="response-status">—</span>
+                            <span class="metric"><b id="response-time">—</b> tiempo</span>
+                            <span class="metric"><b id="response-size">—</b> tamaño</span>
+                        </div>
+                        <p class="response-url" id="response-url" hidden></p>
+
+                        <div class="tabs" role="tablist" aria-label="Contenido de la respuesta">
+                            <button
+                                class="tab"
+                                type="button"
+                                id="response-tab-body"
+                                role="tab"
+                                aria-selected="true"
+                                aria-controls="response-panel-body"
+                                disabled
+                            >
+                                Cuerpo
+                            </button>
+                            <button
+                                class="tab"
+                                type="button"
+                                id="response-tab-headers"
+                                role="tab"
+                                aria-selected="false"
+                                aria-controls="response-panel-headers"
+                                tabindex="-1"
+                                disabled
+                            >
+                                Cabeceras <span class="count" id="response-header-count">0</span>
+                            </button>
+                        </div>
+
+                        <div
+                            class="tab-panel response-panel"
+                            id="response-panel-body"
+                            role="tabpanel"
+                            aria-labelledby="response-tab-body"
+                        >
+                            <div class="response-empty" id="response-empty">
+                                <p class="empty__label">sin respuesta</p>
+                                <h3>Prepara el primer envío</h3>
+                                <ol class="empty__steps">
+                                    <li>
+                                        <span>01</span>
+                                        <p>
+                                            Arranca una API del catálogo en
+                                            <code>127.0.0.1:8000</code>.
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <span>02</span>
+                                        <p>
+                                            Sirve esta web en <code>127.0.0.1:5500</code> para
+                                            evitar CORS.
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <span>03</span>
+                                        <p>
+                                            Elige un preset, revisa la URL y pulsa
+                                            <strong>Enviar</strong>.
+                                        </p>
+                                    </li>
+                                </ol>
+                                <p class="empty__hint">
+                                    Pokémon pide <code>X-API-Key</code>; Biblia no.
+                                </p>
+                            </div>
+
+                            <div class="response-loading" id="response-loading" hidden>
+                                <p class="loading__label">esperando respuesta</p>
+                                <span class="loading__bar" aria-hidden="true"></span>
+                            </div>
+
+                            <div class="response-error" id="response-error" role="alert" hidden>
+                                <p class="error__title" id="error-title">No se pudo completar.</p>
+                                <p class="error__detail" id="error-detail"></p>
+                                <p class="error__hint">
+                                    Revisa la URL, la red y las cabeceras CORS del servidor.
+                                </p>
+                            </div>
+
+                            <pre class="response-body" id="response-body" tabindex="0" hidden></pre>
+                        </div>
+
+                        <div
+                            class="tab-panel response-panel"
+                            id="response-panel-headers"
+                            role="tabpanel"
+                            aria-labelledby="response-tab-headers"
+                            hidden
+                        >
+                            <table class="response-headers">
+                                <caption class="visually-hidden">
+                                    Cabeceras devueltas por el servidor
+                                </caption>
+                                <thead>
+                                    <tr>
+                                        <th scope="col">nombre</th>
+                                        <th scope="col">valor</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="response-header-rows"></tbody>
+                            </table>
+                        </div>
+
+                        <footer class="pane__foot">
+                            <p class="response-note" id="response-note" aria-live="polite">
+                                Sin peticiones todavía.
+                            </p>
+                            <p class="privacy">Cabeceras y cuerpos no se guardan.</p>
+                        </footer>
+                    </section>
+                </div>
+            </main>
+
+            <footer class="footer">
+                <p>Todos los derechos reservados - <span data-year>2026</span> jeironpro</p>
+                <p class="footer__meta">relay · http local</p>
+            </footer>
+        </div>
+
+        <script type="module" src="js/app.js"></script>
+    </body>
+</html>

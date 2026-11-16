@@ -1,13 +1,13 @@
 # webs
 
-Monorepo que agrupa las webs estáticas de jeironpro. En la raíz vive un **catálogo** que indexa los 68 proyectos; cada proyecto ocupa su propio subdirectorio (`web-*`) y se sirve de forma independiente como página estática. Cinco de ellas son además **sub-catálogos**: hubs con su propio índice de subproyectos (el catálogo raíz las distingue con el filtro y la insignia "Sub-catálogo").
+Monorepo que agrupa las webs estáticas de jeironpro. En la raíz vive un **catálogo** que indexa los 69 proyectos; cada proyecto ocupa su propio subdirectorio (`web-*`) y se sirve de forma independiente como página estática. Cinco de ellas son además **sub-catálogos**: hubs con su propio índice de subproyectos (el catálogo raíz las distingue con el filtro y la insignia "Sub-catálogo").
 
 ## Estado actual
 
-- **68 webs** y **5 sub-catálogos** publicados como sitios estáticos, sin paso de build por web.
-- **93 capturas** mantenidas en el repositorio: 68 del catálogo raíz, 5 de dashboards y 20 de juegos.
-- **25 webs adicionales** con auditoría técnica cerrada: HTML, CSS, JS, navegador, limpieza, favicon y README al 100 %.
-- **395 pruebas** automatizadas y comprobaciones de formato, lint, enlaces internos, datos y capturas.
+- **69 webs** y **5 sub-catálogos** publicados como sitios estáticos, sin paso de build por web.
+- **94 capturas** mantenidas en el repositorio: 69 del catálogo raíz, 5 de dashboards y 20 de juegos.
+- **26 webs adicionales** con auditoría técnica cerrada: HTML, CSS, JS, navegador, limpieza, favicon y README al 100 %.
+- **413 pruebas** automatizadas y comprobaciones de formato, lint, enlaces internos, datos y capturas.
 - Cuatro workflows: `ci`, `enlaces`, `capturas` y `deploy`; este último publica el sitio en GitHub Pages excluyendo dependencias, perfiles de navegador y el ZIP grande de Git LFS.
 
 ## Catálogo
@@ -60,6 +60,7 @@ Abre `index.html` de la raíz (o despliega el repositorio en GitHub Pages: el ca
 | [web-generador-codigo-qr](./web-generador-codigo-qr/)           | Generador de QR                | Generadores     | html, css, javascript        |
 | [web-gestiona-presupuesto](./web-gestiona-presupuesto/)         | Gestiona presupuesto           | Productividad   | html, css, javascript        |
 | [web-hashes-contrasenas](./web-hashes-contrasenas/)             | Hashes y contraseñas           | Utilidades      | html, css, javascript        |
+| [web-http](./web-http/)                                         | Cliente HTTP                   | Utilidades      | html, css, javascript        |
 | [web-instruccion-login-google](./web-instruccion-login-google/) | Login con Google               | Educación       | html, css, javascript        |
 | [web-javarcises](./web-javarcises/)                             | Javarcises                     | Educación       | html, css, javascript        |
 | [web-json-yaml](./web-json-yaml/)                               | Formateador JSON y YAML        | Utilidades      | html, css, javascript        |
@@ -98,7 +99,7 @@ Las 5 webs marcadas _(sub-catálogo)_ son hubs con catálogo propio: `web-apis` 
 La fuente de verdad es `projects.yml` en la raíz. Los artefactos se regeneran con comandos npm:
 
 - `npm run data:build` valida el esquema y genera `assets/projects.json` (datos ordenados que consume el catálogo).
-- `npm run data:screenshots` captura las 68 webs en `assets/screenshots/*.webp` (Chrome headless sobre un servidor local); con ids detrás (`npm run data:screenshots -- web-apis`) regenera solo esas.
+- `npm run data:screenshots` captura las 69 webs en `assets/screenshots/*.webp` (Chrome headless sobre un servidor local); con ids detrás (`npm run data:screenshots -- web-apis`) regenera solo esas.
 - `npm run capturas:check` falla si una captura está desfasada (incluidos cambios en sus CSS/JS locales), falta o está vacía, usando el manifiesto y las fechas de git; el workflow `capturas` lo trata como bloqueante.
 - `npm test` valida integridad de datos, esquema y generador.
 
