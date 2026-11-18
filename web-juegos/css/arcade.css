@@ -121,7 +121,7 @@ html.arcade-home-open body {
     margin: 0;
     color: var(--arcade-accent-light);
     font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     font-weight: 600;
     letter-spacing: 0.16em;
     text-transform: uppercase;
@@ -162,7 +162,7 @@ html.arcade-home-open body {
     background: var(--arcade-surface);
     color: var(--arcade-meta);
     font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 0.66rem;
+    font-size: 0.75rem;
     letter-spacing: 0.06em;
     text-transform: uppercase;
 }
@@ -284,7 +284,7 @@ html.arcade-home-open body {
 .arcade-scoreboard__item span {
     color: var(--arcade-text-dim);
     font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 0.62rem;
+    font-size: 0.75rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
 }
@@ -343,7 +343,7 @@ html.arcade-home-open body {
     margin: 1rem 0 0;
     color: var(--arcade-text-faint);
     font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 0.62rem;
+    font-size: 0.75rem;
     letter-spacing: 0.05em;
     text-align: center;
     text-transform: uppercase;
@@ -434,8 +434,21 @@ html.arcade-playing[data-arcade-game="juego-sudoku"] .lateral {
     width: 100%;
 }
 
-html.arcade-playing[data-arcade-game="juego-7-letras"] .lateral {
+html.arcade-playing[data-arcade-game="juego-7-letras"] .lateral,
+html.arcade-playing[data-arcade-game="juego-sopa-letras"] .lateral {
     grid-template-columns: minmax(0, 1fr);
+}
+
+html.arcade-playing[data-arcade-game="juego-7-letras"] .panel-juego {
+    order: 1;
+}
+
+html.arcade-playing[data-arcade-game="juego-7-letras"] .lateral {
+    order: 2;
+}
+
+html.arcade-playing[data-arcade-game="juego-7-letras"] #nueva {
+    order: 3;
 }
 
 html.arcade-playing[data-arcade-game="juego-7-letras"] .tarjeta--datos {
@@ -447,6 +460,22 @@ html.arcade-playing[data-arcade-game="juego-sopa-letras"] .lateral > .btn,
 html.arcade-playing[data-arcade-game="juego-sudoku"] .lateral > .btn,
 html.arcade-playing[data-arcade-game="juego-sudoku"] .teclado {
     grid-column: 1 / -1;
+}
+
+@media (width >= 53.8125rem) {
+    html.arcade-playing[data-arcade-game="juego-palabra-oculta"] .juego,
+    html.arcade-playing[data-arcade-game="juego-sudoku"] .juego {
+        grid-template-columns: minmax(0, 1fr) 18rem;
+        align-items: center;
+    }
+
+    html.arcade-playing[data-arcade-game="juego-sudoku"] .juego {
+        grid-template-columns: minmax(0, 1fr) 20rem;
+    }
+
+    html.arcade-playing[data-arcade-game="juego-sudoku"] .lateral {
+        grid-template-columns: minmax(0, 1fr);
+    }
 }
 
 html.arcade-playing[data-arcade-game="juego-palabra-oculta"] .lateral {
@@ -527,7 +556,7 @@ html.arcade-playing[data-arcade-game="juego-zip"] .disposicion {
 }
 
 html.arcade-playing[data-arcade-game="juego-memoriza-carta"] .marco {
-    width: min(100%, 32rem, 64vh);
+    width: min(100%, 32rem, 64vh, var(--ancho-tablero, 43rem));
 }
 
 html.arcade-playing[data-arcade-game="juego-7-letras"] .marco {
@@ -552,6 +581,30 @@ html.arcade-playing[data-arcade-game="juego-zip"] .marco {
 html.arcade-playing[data-arcade-game="juego-palabra-oculta"] .tablero {
     max-width: min(30rem, 60vh);
     margin-inline: auto;
+}
+
+html.arcade-playing[data-arcade-game="juego-sopa-letras"] .panel-tablero {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+
+html.arcade-playing[data-arcade-game="juego-sopa-letras"] .panel-tablero__cabecera {
+    order: 0;
+    margin-bottom: 0;
+}
+
+html.arcade-playing[data-arcade-game="juego-sopa-letras"] .panel-tablero > .marco {
+    order: 1;
+}
+
+html.arcade-playing[data-arcade-game="juego-sopa-letras"] .panel-tablero > .tarjeta--lista {
+    order: 2;
+    margin-bottom: 0;
+}
+
+html.arcade-playing[data-arcade-game="juego-sopa-letras"] .panel-tablero > .leyenda {
+    order: 3;
 }
 
 html.arcade-playing[data-arcade-game="juego-sopa-letras"] .tablero {
@@ -759,6 +812,7 @@ html.arcade-playing[data-arcade-game="juego-queens"] .puzzle__titulo {
     .arcade-home--split .arcade-home__panel,
     .arcade-home--rail .arcade-home__panel {
         display: flex;
+        flex-direction: column;
     }
 
     .arcade-home--split .arcade-home__header,

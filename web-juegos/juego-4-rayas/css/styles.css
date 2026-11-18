@@ -213,6 +213,13 @@
     inset: var(--frame);
     z-index: 1;
     background-color: var(--color-board-hole);
+    background-image: radial-gradient(
+        circle at center,
+        transparent 0 40%,
+        var(--color-board-hole-ring) 42% 46%,
+        transparent 48%
+    );
+    background-size: var(--cell) var(--cell);
     position: absolute;
 }
 .board__balls {
@@ -386,8 +393,9 @@ body {
     --color-primary-hover: #6ea0ff;
     --color-primary-active: #3d74d9;
     --color-primary-subtle: #4f8cff1f;
-    --color-board-frame: #1a1d24;
-    --color-board-hole: #0a0a0b;
+    --color-board-frame: #2a3140;
+    --color-board-hole: #0d1119;
+    --color-board-hole-ring: #3a4354;
     --color-ball-player-1: #ef4444;
     --color-ball-player-2: #3b82f6;
     --color-ball-border: black;
