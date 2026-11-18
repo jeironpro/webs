@@ -1,0 +1,181 @@
+/*
+ * Shared legibility, touch and safety layer for the game pages.
+ * It loads after each game stylesheet so microcopy stays readable without
+ * changing the visual identity or the game logic.
+ */
+
+:root {
+    --ui-disabled-border: #c8c2b7;
+    --ui-disabled-bg: #e2ded6;
+    --ui-disabled-text: #5a554e;
+}
+
+:where(html) {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+:where(body) {
+    overflow-wrap: break-word;
+}
+
+:where(img, svg, canvas) {
+    max-width: 100%;
+}
+
+:where(button, [role="button"], a, input, select) {
+    touch-action: manipulation;
+}
+
+:where(button, [role="button"], a, input, select):focus-visible {
+    outline: 0.1875rem solid currentColor;
+    outline-offset: 0.1875rem;
+}
+
+body .btn,
+body .button {
+    font-size: 0.8125rem;
+}
+
+body .btn:disabled,
+body .button:disabled,
+body button:disabled {
+    cursor: not-allowed;
+    opacity: 0.72;
+}
+
+body .btn--primario:disabled,
+body .button--primary:disabled {
+    border-color: var(--ui-disabled-border);
+    background: var(--ui-disabled-bg);
+    color: var(--ui-disabled-text);
+    opacity: 1;
+}
+
+body .registro dt {
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+}
+
+body .registro dd {
+    font-size: 0.8rem;
+}
+
+@media (width <= 22.5rem) {
+    body .registro {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Labels and metadata: never below 12px. */
+.dato__etiqueta,
+.dato__estado,
+.campo__etiqueta,
+.mono-label,
+.game-form__label,
+.game-stats__label,
+.hud__etiqueta,
+.hud__unidad,
+.progreso-texto,
+.panel-tablero__cabecera p,
+.lista__cabecera p,
+.dificultad__titulo,
+.marca__lema,
+.pildora,
+.juego__nota,
+.etiqueta,
+.teclas,
+.tarjeta__detalle,
+.tarjeta__titulo p,
+.reglas__num,
+.record__resueltos,
+.home__mode-description,
+.nivel strong,
+.marcador__turno,
+.scorecard__bonus-value,
+.celda__numero,
+.menu__teclas span,
+.interruptor span,
+.tarjeta__etiqueta,
+.scorecard__badge-caption,
+.scoreboard__badge,
+.scoreboard__vs,
+.scoreboard__name,
+.meta,
+.contador,
+.intento,
+.palabra-chip,
+.leyenda,
+.pie,
+.guardado,
+.nota,
+.estado,
+.vacio,
+.kicker,
+.cabecera__sello,
+.pasos__numero,
+.relacion,
+.hueco__largo,
+.tecla--accion,
+.sello,
+.eyebrow,
+.nivel span,
+.marcador__modo,
+.marcador__tablas,
+.bonus-circle {
+    font-size: 0.75rem;
+}
+
+body dl dt,
+body footer,
+body footer p,
+body figcaption,
+body small {
+    font-size: 0.75rem;
+}
+
+body .chip {
+    font-size: 0.75rem;
+}
+
+body kbd,
+body code {
+    font-size: 0.75rem;
+}
+
+body .pasos span {
+    font-size: 0.75rem;
+}
+
+body .datos-portada dt,
+body .brief__datos dt,
+body .registro dt,
+body .dato dt,
+body .modal__datos dt,
+body .resultado dt {
+    font-size: 0.75rem;
+}
+
+body .marca__texto small,
+body .jugador__datos small,
+body .tema small,
+body .interruptor small,
+body .portada__grafico figcaption {
+    font-size: 0.75rem;
+}
+
+body .pie p {
+    font-size: inherit;
+}
+
+/* Compact size pickers still need a comfortable touch target. */
+body .tamanos .chip {
+    min-height: 2.25rem;
+}
+
+@media (width <= 26rem) {
+    body .btn,
+    body .button {
+        white-space: normal;
+    }
+}

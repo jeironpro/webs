@@ -138,9 +138,13 @@ function nuevaPartida() {
     const figuras = mezclar(FIGURAS).slice(0, nivel.parejas);
     const mazo = mezclar(figuras.flatMap((figura) => [figura, figura]));
     const columnas = window.innerWidth < 560 ? 4 : nivel.columnas;
+    const filas = Math.ceil((nivel.parejas * 2) / columnas);
+    const altoDisponible = Math.max(320, window.innerHeight - 304);
+    const anchoTablero = Math.min(688, Math.max(320, (altoDisponible * 0.82 * columnas) / filas));
 
     elementos.tablero.textContent = "";
     elementos.tablero.style.setProperty("--columnas", String(columnas));
+    document.body.style.setProperty("--ancho-tablero", `${Math.round(anchoTablero)}px`);
     elementos.tablero.setAttribute(
         "aria-label",
         `Tablero de parejas, nivel ${nivel.etiqueta.toLowerCase()}`
