@@ -239,6 +239,11 @@ function rellenarStats() {
     document.querySelectorAll("[data-stats]").forEach((nodo) => {
         nodo.textContent = stats[nodo.dataset.stats];
     });
+
+    const titulo = document.getElementById("hero-titulo");
+    if (titulo) {
+        titulo.textContent = `${stats.total} webs, una raíz.`;
+    }
 }
 
 async function iniciar() {
