@@ -1636,8 +1636,13 @@ if (hiddenQuestsBody) {
         const name = document.createElement("th");
         name.scope = "row";
         name.textContent = quest.name;
-        [quest.start, quest.steps, quest.reward].forEach((value) => {
+        [
+            ["Cómo empieza", quest.start],
+            ["Qué hay que hacer", quest.steps],
+            ["Recompensa", quest.reward],
+        ].forEach(([label, value]) => {
             const cell = document.createElement("td");
+            cell.dataset.label = label;
             cell.textContent = value;
             row.append(cell);
         });
