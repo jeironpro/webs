@@ -29,6 +29,7 @@ const WEBS_CANONICAS = [
     "web-dados",
     "web-daw",
     "web-diff",
+    "web-diseno-sistemas",
     "web-ejercicios-pyja",
     "web-exerciness",
     "web-flashcards",
