@@ -1,5 +1,7 @@
 /* Guía GTA VI · interacciones y checklist persistente */
 
+import { HIDDEN_QUESTS, SIDE_QUESTS } from "./side-missions.js";
+
 document.documentElement.classList.add("js");
 
 const STORAGE_KEY = "gta6-leonida-checklist-v1";
@@ -1564,6 +1566,84 @@ if (chapterNavEl && "IntersectionObserver" in window) {
         { rootMargin: "-25% 0px -65% 0px", threshold: 0 }
     );
     $$(".chapter", campaignEl).forEach((chapter) => chapterSpy.observe(chapter));
+}
+
+/* ---------- Misiones secundarias ---------- */
+
+const sideQuestsEl = $("#side-quests");
+const sideIndexEl = $("#side-index");
+const hiddenQuestsBody = $("#hidden-quests-body");
+
+if (sideQuestsEl) {
+    SIDE_QUESTS.forEach((quest) => {
+        const article = makeEl("article", "chapter side-quest");
+        article.id = `sec-${quest.id}`;
+
+        const header = makeEl("header", "chapter__head");
+        header.append(
+            makeEl("p", "chapter__kicker", `Capítulo ${quest.chapter} · ${quest.giver}`),
+            makeEl("h3", "chapter__title", quest.title),
+            makeEl("p", "chapter__place", quest.place),
+            makeEl("p", "chapter__summary", quest.summary)
+        );
+
+        const facts = makeEl("ul", "side-quest__facts");
+        [
+            ["Quién", quest.who],
+            ["Misiones", String(quest.missions.length)],
+            ["Recompensa", quest.reward],
+            ["Perdible", quest.missable],
+        ].forEach(([label, value]) => {
+            const fact = makeEl("li");
+            fact.append(makeEl("span", null, label), makeEl("strong", null, value));
+            facts.append(fact);
+        });
+        header.append(facts);
+        article.append(header);
+
+        const track = makeEl("ol", "mission-track");
+        quest.missions.forEach((mission, index) => {
+            const item = makeEl("li", "mission");
+            const num = makeEl("span", "mission__num", String(index + 1).padStart(2, "0"));
+            num.setAttribute("aria-hidden", "true");
+
+            const body = makeEl("div", "mission__body");
+            const heading = document.createElement("h4");
+            heading.append(makeEl("span", "mission__name", mission.name));
+            body.append(heading, makeEl("p", null, mission.desc));
+            item.append(num, body);
+            track.append(item);
+        });
+        article.append(track);
+
+        const tip = makeEl("p", "side-quest__tip");
+        tip.append(makeEl("strong", null, "Aviso. "), document.createTextNode(quest.tip));
+        article.append(tip);
+        sideQuestsEl.append(article);
+
+        if (sideIndexEl) {
+            const link = document.createElement("a");
+            link.href = `#sec-${quest.id}`;
+            link.textContent = quest.title;
+            sideIndexEl.append(link);
+        }
+    });
+}
+
+if (hiddenQuestsBody) {
+    HIDDEN_QUESTS.forEach((quest) => {
+        const row = document.createElement("tr");
+        const name = document.createElement("th");
+        name.scope = "row";
+        name.textContent = quest.name;
+        [quest.start, quest.steps, quest.reward].forEach((value) => {
+            const cell = document.createElement("td");
+            cell.textContent = value;
+            row.append(cell);
+        });
+        row.prepend(name);
+        hiddenQuestsBody.append(row);
+    });
 }
 
 /* ---------- Checklist 100% ---------- */
