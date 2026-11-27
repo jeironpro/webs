@@ -3575,6 +3575,77 @@ ol {
         grid-template-columns: 1fr;
     }
 
+    .table-wrap {
+        overflow: visible;
+        border: 0;
+        border-radius: 0;
+    }
+
+    .money-table {
+        min-width: 0;
+        font-size: 0.84rem;
+    }
+
+    .money-table thead {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip-path: inset(50%);
+        white-space: nowrap;
+    }
+
+    .money-table,
+    .money-table tbody,
+    .money-table tr,
+    .money-table th,
+    .money-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .money-table tbody {
+        display: grid;
+        gap: 0.9rem;
+    }
+
+    .money-table tbody tr {
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: rgba(255, 255, 255, 0.022);
+    }
+
+    .money-table tbody th {
+        padding: 0.8rem 1rem;
+        border-bottom: 1px solid var(--line-strong);
+        background: rgba(255, 255, 255, 0.035);
+        font-size: 0.92rem;
+        white-space: normal;
+    }
+
+    .money-table td {
+        padding: 0.62rem 1rem;
+        border-bottom: 1px solid var(--line);
+    }
+
+    .money-table tbody tr td:last-child {
+        border-bottom: 0;
+    }
+
+    .money-table td::before {
+        display: block;
+        margin-bottom: 0.18rem;
+        content: attr(data-label);
+        font-family: var(--font-mono);
+        font-size: 0.5rem;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+        color: var(--faint);
+    }
+
     .site-footer__inner {
         grid-template-columns: 1fr;
     }
