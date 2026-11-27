@@ -295,6 +295,25 @@ export const SIDE_QUESTS = [
         tip: "Los 14 laboratorios cuentan como tareas opcionales. Si buscas el 100%, no dejes ninguno para después de la historia.",
     },
     {
+        id: "dunk",
+        title: "Los consejos de Dunk",
+        giver: "Dunk",
+        chapter: "3",
+        place: "Port Gellhorn y Vice City",
+        who: "Cualquiera",
+        reward: "Sin pago directo; objetivos rentables",
+        missable: "No",
+        summary:
+            "Dunk, el camello de Vicki en Port Gellhorn, señala qué comercios merecen la pena. Una sola misión que ordena la ruta de atracos del capítulo 3.",
+        missions: [
+            {
+                name: "Dunk's Robbery Tips",
+                desc: "Tras Slam Dunk, Dunk se pone en contacto en el capítulo 3 y marca una lista de tiendas, licorerías y joyerías con buena caja. Visítalo, escucha sus precios de perista y usa el mapa para elegir el próximo golpe; no hay tiroteo obligatorio ni pago al cerrar, pero desbloquea objetivos rentables para los 91 atracos.",
+            },
+        ],
+        tip: "No cuenta para el trofeo Extraños y Locos, pero sí como tarea opcional. Pásate antes de vaciar tiendas para priorizar las de mayor botín.",
+    },
+    {
         id: "yago",
         title: "Las carreras de Yago",
         giver: "Yago",

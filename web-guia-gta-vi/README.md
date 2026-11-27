@@ -1,12 +1,12 @@
 # Guía GTA VI · Leónida al 100%
 
-Guía no oficial de Grand Theft Auto VI en español. Reúne la historia de Jason y Lucía sin spoilers, los personajes confirmados, las seis regiones de Leónida sobre el mapa oficial, los sistemas de juego, las 15 cadenas de misiones secundarias, una checklist de 100% y las ediciones anunciadas.
+Guía no oficial de Grand Theft Auto VI en español. Reúne la historia de Jason y Lucía sin spoilers, los personajes confirmados, las seis regiones de Leónida sobre el mapa oficial, los sistemas de juego, las 16 cadenas de misiones secundarias, una checklist de 100% y las ediciones anunciadas.
 
 ## Qué incluye
 
 - **Mapa interactivo de Leónida:** 12 puntos sobre el mapa oficial de Rockstar, con zoom, arrastre y filtros por ciudad, costa, naturaleza e historia.
 - **Campaña completa:** 94 misiones (91 principales y 3 opcionales) repartidas en capítulos, con 29 misiones que muestran sus decisiones desplegables y el resto marcadas como lineales.
-- **Misiones secundarias:** las 15 cadenas de Extraños y Locos con sus 50 misiones explicadas en orden, más 15 encargos ocultos con inicio, pasos y recompensa.
+- **Misiones secundarias:** las 16 cadenas de Extraños y Locos con sus 51 misiones explicadas en orden, más 15 encargos ocultos con inicio, pasos y recompensa.
 - **Fichas de personajes:** Jason, Lucía y el resto del reparto confirmado, con su papel en la historia y sus relaciones.
 - **Las seis regiones:** Vice City, los Keys, Grassrivers, Port Gellhorn, Ambrosia y Kalaga, con su ambientación y actividad.
 - **Sistemas y mundo:** actividades, economías, personalización, fauna y detalles confirmados.
