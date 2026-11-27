@@ -45,6 +45,7 @@ const WEBS_CANONICAS = [
     "web-generador-contrasena",
     "web-generador-crucigramas",
     "web-gestiona-presupuesto",
+    "web-guia-gta-vi",
     "web-lector-archivo",
     "web-lexaro",
     "web-mandala",
