@@ -1,0 +1,834 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>A Escala · Cómo viaja una petición</title>
+        <meta
+            name="description"
+            content="Curso interactivo de diseño de sistemas: sigue una petición paso a paso, simula latencia y practica decisiones de escala."
+        />
+        <meta name="theme-color" content="#f4ebe0" />
+        <meta name="color-scheme" content="light" />
+        <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="css/styles.css" />
+        <script type="module" src="js/app.js"></script>
+    </head>
+    <body>
+        <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+        <header class="topbar">
+            <button
+                class="menu-btn"
+                type="button"
+                id="menu-toggle"
+                aria-label="Abrir el índice del curso"
+                aria-expanded="false"
+                aria-controls="course-sidebar"
+            >
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+
+            <a class="topbar__brand" href="../" aria-label="A Escala, volver al catálogo">
+                <span class="brand-mark" aria-hidden="true"> <i></i><i></i><i></i> </span>
+                <span class="brand-copy">
+                    <strong>a escala</strong>
+                    <small>diseño de sistemas</small>
+                </span>
+            </a>
+
+            <nav class="topnav" aria-label="Vistas del curso">
+                <button
+                    class="topnav__item is-active"
+                    type="button"
+                    data-view="learn"
+                    aria-current="page"
+                >
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5z" />
+                        <path d="M4 18.5A2.5 2.5 0 0 1 6.5 16H20" />
+                    </svg>
+                    Aprender
+                </button>
+                <button class="topnav__item" type="button" data-view="lab">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path
+                            d="M9 3h6M10 3v6l-5.5 9.2A2.2 2.2 0 0 0 6.4 22h11.2a2.2 2.2 0 0 0 1.9-3.8L14 9V3"
+                        />
+                        <path d="M7.5 16h9" />
+                    </svg>
+                    Laboratorio
+                </button>
+                <button class="topnav__item" type="button" data-view="practice">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path d="M5 12.5 9.2 17 19 7" />
+                    </svg>
+                    Práctica
+                </button>
+                <button class="topnav__item" type="button" data-view="reference">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path d="m12 3 9 5-9 5-9-5z" />
+                        <path d="m3 12 9 5 9-5M3 16l9 5 9-5" />
+                    </svg>
+                    Referencia
+                </button>
+            </nav>
+
+            <div class="topbar__actions">
+                <span class="lang-chip" aria-label="Idioma: español">ES</span>
+                <a class="topbar__link" href="../">Catálogo</a>
+                <a
+                    class="icon-link"
+                    href="https://github.com/jeironpro/webs/tree/main/web-diseno-sistemas"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Ver el código en GitHub"
+                >
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path
+                            d="M12 2.5a9.5 9.5 0 0 0-3 18.5c.5.1.7-.2.7-.5v-1.9c-2.8.6-3.4-1.2-3.4-1.2-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.6 1.1 1.6 1.1.9 1.6 2.4 1.1 3 .9.1-.7.4-1.1.7-1.4-2.2-.3-4.6-1.1-4.6-5a3.9 3.9 0 0 1 1-2.7 3.6 3.6 0 0 1 .1-2.6s.9-.3 2.8 1a9.5 9.5 0 0 1 5 0c1.9-1.3 2.8-1 2.8-1a3.6 3.6 0 0 1 .1 2.6 3.9 3.9 0 0 1 1 2.7c0 3.9-2.4 4.7-4.6 5 .4.3.7.9.7 1.8v2.7c0 .3.2.6.7.5A9.5 9.5 0 0 0 12 2.5z"
+                        />
+                    </svg>
+                </a>
+            </div>
+        </header>
+
+        <div class="app" id="app" data-view="learn">
+            <aside class="course-sidebar" id="course-sidebar">
+                <div class="sidebar__head">
+                    <span>Curso</span>
+                    <span id="course-count">40 lecciones</span>
+                </div>
+
+                <nav class="course-nav" id="course-nav" aria-label="Ruta del curso"></nav>
+
+                <div class="sidebar__progress" aria-label="Progreso del curso">
+                    <div class="sidebar__progress-copy">
+                        <span>Lecciones</span>
+                        <output id="progress-value">0/40</output>
+                    </div>
+                    <div
+                        class="progressbar"
+                        id="progressbar"
+                        role="progressbar"
+                        aria-valuemin="0"
+                        aria-valuemax="40"
+                        aria-valuenow="0"
+                        aria-valuetext="0 de 40 lecciones completadas"
+                    >
+                        <span id="progress-fill"></span>
+                    </div>
+                    <div class="sidebar__progress-sub">
+                        <div class="sidebar__progress-copy">
+                            <span>Checkpoint</span>
+                            <output id="quiz-progress-value">0/6</output>
+                        </div>
+                        <div
+                            class="progressbar progressbar--quiz"
+                            id="quiz-progressbar"
+                            role="progressbar"
+                            aria-valuemin="0"
+                            aria-valuemax="6"
+                            aria-valuenow="0"
+                            aria-valuetext="0 de 6 respuestas correctas"
+                        >
+                            <span id="quiz-progress-fill"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar__foot">
+                    <a href="../">← Catálogo</a>
+                    <span>MIT · 2026</span>
+                </div>
+            </aside>
+
+            <div class="sidebar-backdrop" id="sidebar-backdrop" hidden></div>
+
+            <main class="sheet" id="contenido">
+                <section class="view" id="view-learn" data-view-panel="learn">
+                    <header class="view-head">
+                        <p class="crumb" id="lesson-crumb">
+                            01. Fundamentos <span>/</span> Lección 1 de 3
+                        </p>
+                        <h1 id="lesson-title">Cómo viaja una petición</h1>
+                        <p class="view-head__lede" id="lesson-lede">
+                            Sigue una carga de página salto a salto y descubre adónde se va de
+                            verdad el tiempo. Al final, sabrás qué mirar antes de optimizar.
+                        </p>
+                        <div
+                            class="badges"
+                            id="lesson-badges"
+                            aria-label="Detalles de la lección"
+                        ></div>
+                    </header>
+
+                    <div class="metrics" id="lesson-metrics"></div>
+
+                    <div class="canvas">
+                        <div class="canvas__bar">
+                            <span class="canvas__status"
+                                ><i aria-hidden="true"></i>
+                                <span id="canvas-status-text">una petición en curso</span></span
+                            >
+                            <div class="canvas__tools">
+                                <button
+                                    class="icon-button icon-button--play"
+                                    type="button"
+                                    id="lesson-play"
+                                    aria-label="Reproducir la lección"
+                                    title="Reproducir o pausar"
+                                >
+                                    <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                                        <path d="M4 2.5v11l9-5.5z" />
+                                    </svg>
+                                </button>
+                                <button
+                                    class="icon-button"
+                                    type="button"
+                                    id="lesson-reset"
+                                    aria-label="Volver al primer paso"
+                                    title="Reiniciar"
+                                >
+                                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                        <path d="M4 10a8 8 0 1 1 2 6" />
+                                        <path d="M4 4v6h6" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="scene" id="scene" data-step="0" data-kind="request">
+                            <svg
+                                class="scene__links"
+                                viewBox="0 0 800 440"
+                                aria-hidden="true"
+                                focusable="false"
+                            >
+                                <path d="M86 112C170 92 238 112 305 160" />
+                                <path d="M714 104C630 84 562 112 495 160" />
+                                <path d="M92 330C176 350 236 330 296 286" />
+                                <path d="M708 326C622 354 558 330 502 286" />
+                                <path
+                                    d="M170 122C250 210 286 250 350 266"
+                                    class="scene__link--faint"
+                                />
+                                <path
+                                    d="M630 116C550 210 514 250 450 266"
+                                    class="scene__link--faint"
+                                />
+                            </svg>
+
+                            <div class="scene__url">
+                                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                    <rect x="5" y="10" width="14" height="10" rx="2" />
+                                    <path d="M8 10V7a4 4 0 0 1 8 0v3" />
+                                </svg>
+                                <span id="scene-url-text">https://shop.example</span>
+                            </div>
+
+                            <div class="scene__browser">
+                                <div class="scene__browser-bar">
+                                    <i></i><i></i><i></i>
+                                    <span id="scene-browser-host">shop.example</span>
+                                </div>
+                                <div class="scene__page">
+                                    <div class="scene__page-nav"></div>
+                                    <div class="scene__page-hero"><span></span><span></span></div>
+                                    <div class="scene__page-grid"><i></i><i></i><i></i></div>
+                                    <div class="scene__page-lines">
+                                        <span></span><span></span><span></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="scene-node scene-node--dns" data-node="1">
+                                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                    <circle cx="12" cy="12" r="8" />
+                                    <path
+                                        d="M4 12h16M12 4c2.5 2.4 2.5 13.6 0 16M12 4c-2.5 2.4-2.5 13.6 0 16"
+                                    />
+                                </svg>
+                                <span id="scene-label-dns">DNS</span>
+                            </div>
+
+                            <div class="scene-node scene-node--edge" data-node="2">
+                                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                    <path d="M13 2 4 14h7l-1 8 9-12h-7z" />
+                                </svg>
+                                <span id="scene-label-edge">Edge</span>
+                            </div>
+
+                            <div class="scene-node scene-node--api" data-node="3">
+                                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                    <path d="m8 7-5 5 5 5M16 7l5 5-5 5M14 4l-4 16" />
+                                </svg>
+                                <span id="scene-label-api">API</span>
+                            </div>
+
+                            <div class="scene-node scene-node--db" data-node="4">
+                                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                    <ellipse cx="12" cy="5" rx="7" ry="3" />
+                                    <path
+                                        d="M5 5v6c0 1.7 3.1 3 7 3s7-1.3 7-3V5M5 11v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"
+                                    />
+                                </svg>
+                                <span id="scene-label-db">Base de datos</span>
+                            </div>
+
+                            <div class="scene__stage" id="scene-stage"></div>
+
+                            <div class="scene__core" id="scene-core">
+                                <span class="scene__core-kicker" id="scene-core-kicker"
+                                    >Fundamentos</span
+                                >
+                                <strong id="scene-core-title">Cómo viaja una petición</strong>
+                                <span class="scene__core-note" id="scene-core-note">Paso 1</span>
+                            </div>
+
+                            <div class="scene-node scene-node--you" data-node="0">
+                                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                    <circle cx="12" cy="8" r="3.2" />
+                                    <path d="M5.5 21a6.5 6.5 0 0 1 13 0" />
+                                </svg>
+                                <span>Tú</span>
+                            </div>
+                        </div>
+
+                        <div class="canvas__legend" aria-hidden="true">
+                            <span><i class="legend-dot legend-dot--request"></i> flujo</span>
+                            <span><i class="legend-dot legend-dot--response"></i> datos</span>
+                            <span><i class="legend-dot legend-dot--handshake"></i> control</span>
+                        </div>
+                    </div>
+
+                    <div class="timeline">
+                        <div class="timeline__head">
+                            <span>En esta lección</span>
+                            <span
+                                >Paso <span data-step-current>01</span> de
+                                <span id="lesson-step-total">06</span></span
+                            >
+                        </div>
+                        <ol class="timeline__list" id="step-list"></ol>
+                    </div>
+                </section>
+
+                <section class="view" id="view-lab" data-view-panel="lab" hidden>
+                    <header class="view-head">
+                        <p class="crumb">Laboratorio <span>/</span> Capacidad y cola</p>
+                        <h1>Capacidad, caché y cola</h1>
+                        <p class="view-head__lede">
+                            Mueve las palancas y observa qué cambia primero. El modelo es una
+                            simplificación honesta: sirve para pensar, no para dimensionar
+                            producción.
+                        </p>
+                        <div class="badges">
+                            <span class="badge badge--green">Interactivo</span>
+                            <span class="badge badge--yellow">p95</span>
+                            <span class="badge badge--blue">4 palancas</span>
+                        </div>
+                    </header>
+
+                    <div class="lab-layout">
+                        <div class="panel lab-controls">
+                            <div class="panel__head">
+                                <div>
+                                    <span class="panel__kicker">Parámetros</span>
+                                    <h2>El sistema</h2>
+                                </div>
+                                <button class="text-button" type="button" id="lab-reset">
+                                    Volver al inicio
+                                </button>
+                            </div>
+
+                            <div class="control">
+                                <div class="control__label">
+                                    <label for="traffic">Tráfico</label>
+                                    <output id="traffic-value" for="traffic">36k req/min</output>
+                                </div>
+                                <input
+                                    class="range"
+                                    type="range"
+                                    id="traffic"
+                                    min="2"
+                                    max="120"
+                                    step="2"
+                                    value="36"
+                                />
+                                <div class="range__scale"><span>2k</span><span>120k</span></div>
+                            </div>
+
+                            <div class="control">
+                                <div class="control__label">
+                                    <label for="cache">Acierto de caché</label>
+                                    <output id="cache-value" for="cache">60 %</output>
+                                </div>
+                                <input
+                                    class="range"
+                                    type="range"
+                                    id="cache"
+                                    min="0"
+                                    max="95"
+                                    step="5"
+                                    value="60"
+                                />
+                                <div class="range__scale"><span>0 %</span><span>95 %</span></div>
+                            </div>
+
+                            <fieldset class="control control--choice">
+                                <legend>Regiones</legend>
+                                <div class="segmented" role="group" aria-label="Número de regiones">
+                                    <button
+                                        class="segmented__option"
+                                        type="button"
+                                        data-control="regions"
+                                        data-value="1"
+                                        aria-pressed="false"
+                                    >
+                                        01
+                                    </button>
+                                    <button
+                                        class="segmented__option is-active"
+                                        type="button"
+                                        data-control="regions"
+                                        data-value="2"
+                                        aria-pressed="true"
+                                    >
+                                        02
+                                    </button>
+                                    <button
+                                        class="segmented__option"
+                                        type="button"
+                                        data-control="regions"
+                                        data-value="3"
+                                        aria-pressed="false"
+                                    >
+                                        03
+                                    </button>
+                                </div>
+                            </fieldset>
+
+                            <fieldset class="control control--choice">
+                                <legend>Base de datos</legend>
+                                <div
+                                    class="segmented"
+                                    role="group"
+                                    aria-label="Configuración de base de datos"
+                                >
+                                    <button
+                                        class="segmented__option"
+                                        type="button"
+                                        data-control="db"
+                                        data-value="1"
+                                        aria-pressed="false"
+                                    >
+                                        Nodo
+                                    </button>
+                                    <button
+                                        class="segmented__option is-active"
+                                        type="button"
+                                        data-control="db"
+                                        data-value="2"
+                                        aria-pressed="true"
+                                    >
+                                        Réplica
+                                    </button>
+                                    <button
+                                        class="segmented__option"
+                                        type="button"
+                                        data-control="db"
+                                        data-value="3"
+                                        aria-pressed="false"
+                                    >
+                                        Shards
+                                    </button>
+                                </div>
+                            </fieldset>
+
+                            <p class="panel__note">
+                                La caché quita lecturas a la base de datos. Las regiones reparten la
+                                red, pero no crean una fuente de verdad.
+                            </p>
+                        </div>
+
+                        <div class="panel lab-readout">
+                            <div class="readout-top">
+                                <div>
+                                    <span class="panel__kicker">p95 estimado</span>
+                                    <p class="latency" id="latency">
+                                        <strong>96</strong><span>ms</span>
+                                    </p>
+                                </div>
+                                <span class="status status--ok" id="status">Holgado</span>
+                            </div>
+
+                            <div class="capacity">
+                                <div class="capacity__head">
+                                    <span>Capacidad usada</span>
+                                    <output id="capacity-value">45 %</output>
+                                </div>
+                                <div
+                                    class="meter"
+                                    id="capacity-meter"
+                                    role="progressbar"
+                                    aria-label="Capacidad usada"
+                                    aria-valuemin="0"
+                                    aria-valuemax="100"
+                                    aria-valuenow="45"
+                                >
+                                    <span id="capacity-fill"></span>
+                                </div>
+                            </div>
+
+                            <div class="breakdown">
+                                <div class="breakdown__head">
+                                    <span class="panel__kicker">Desglose</span>
+                                    <span class="panel__kicker">ms</span>
+                                </div>
+                                <div class="stack" aria-hidden="true">
+                                    <span class="stack__network" id="seg-network"></span>
+                                    <span class="stack__app" id="seg-app"></span>
+                                    <span class="stack__db" id="seg-db"></span>
+                                    <span class="stack__queue" id="seg-queue"></span>
+                                </div>
+                                <ul class="stack-legend" aria-label="Desglose de latencia">
+                                    <li>
+                                        <i class="key key--network" aria-hidden="true"></i>Red
+                                        <output id="val-network">45</output>
+                                    </li>
+                                    <li>
+                                        <i class="key key--app" aria-hidden="true"></i>API
+                                        <output id="val-app">29</output>
+                                    </li>
+                                    <li>
+                                        <i class="key key--db" aria-hidden="true"></i>Datos
+                                        <output id="val-db">22</output>
+                                    </li>
+                                    <li>
+                                        <i class="key key--queue" aria-hidden="true"></i>Cola
+                                        <output id="val-queue">0</output>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="diagnosis">
+                                <span class="panel__kicker">Diagnóstico</span>
+                                <p id="diagnosis">
+                                    La red pesa más que el servidor. Acercar la aplicación a los
+                                    usuarios suele dar más margen que optimizar código.
+                                </p>
+                            </div>
+
+                            <div class="curve">
+                                <div class="curve__head">
+                                    <span class="panel__kicker">p95 / tráfico</span>
+                                    <span class="panel__kicker" id="curve-note">ahora: 36k</span>
+                                </div>
+                                <svg
+                                    id="curve-svg"
+                                    viewBox="0 0 420 150"
+                                    role="img"
+                                    aria-label="Curva estimada de latencia según el tráfico"
+                                    focusable="false"
+                                >
+                                    <g class="curve__grid" aria-hidden="true">
+                                        <path d="M8 118H412M8 82H412M8 46H412" />
+                                        <path d="M8 10V142M210 10V142M412 10V142" />
+                                    </g>
+                                    <path d="M8 118H412" class="curve__target" aria-hidden="true" />
+                                    <path id="curve-area" class="curve__area" d="" />
+                                    <polyline id="curve-line" class="curve__line" points="" />
+                                    <circle id="curve-dot" class="curve__dot" cx="0" cy="0" r="4" />
+                                </svg>
+                                <div class="curve__scale">
+                                    <span>2k</span><span>120k req/min</span>
+                                </div>
+                            </div>
+
+                            <p class="panel__note">
+                                Modelo educativo: no incluye coste, caché distribuida ni fallos
+                                parciales. Úsalo para hacer mejores preguntas.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="view" id="view-reference" data-view-panel="reference" hidden>
+                    <header class="view-head">
+                        <p class="crumb">Referencia <span>/</span> Chuleta del curso</p>
+                        <h1>La chuleta del curso</h1>
+                        <p class="view-head__lede">
+                            Las tres palancas que más se repiten y una idea de bolsillo por cada
+                            módulo. Úsala para repasar antes de diseñar o de explicar una decisión.
+                        </p>
+                    </header>
+
+                    <h2 class="reference-subhead">Tres palancas, tres costes</h2>
+                    <div class="decision-grid">
+                        <article class="decision decision--cache">
+                            <div class="decision__top">
+                                <span class="decision__index">01</span>
+                                <span class="decision__tag">más cerca</span>
+                            </div>
+                            <h2>Cachear</h2>
+                            <p class="decision__idea">Responder antes de volver a preguntar.</p>
+                            <dl>
+                                <div>
+                                    <dt>Señal</dt>
+                                    <dd>
+                                        Las mismas lecturas se repiten y toleras datos de hace
+                                        segundos.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Coste</dt>
+                                    <dd>
+                                        Invalidar a tiempo. Una caché sin política es una mentira
+                                        rápida.
+                                    </dd>
+                                </div>
+                            </dl>
+                            <p class="decision__step">
+                                <span>Primer paso</span> Mide el hit ratio y el coste de un fallo.
+                            </p>
+                        </article>
+
+                        <article class="decision decision--replica">
+                            <div class="decision__top">
+                                <span class="decision__index">02</span>
+                                <span class="decision__tag">más lectura</span>
+                            </div>
+                            <h2>Replicar</h2>
+                            <p class="decision__idea">Dar réplicas a lo que solo necesita leer.</p>
+                            <dl>
+                                <div>
+                                    <dt>Señal</dt>
+                                    <dd>Las lecturas dominan y la base de datos ya tiene cola.</dd>
+                                </div>
+                                <div>
+                                    <dt>Coste</dt>
+                                    <dd>
+                                        Lag de replicación. Tu usuario puede leer algo que aún no
+                                        pasó.
+                                    </dd>
+                                </div>
+                            </dl>
+                            <p class="decision__step">
+                                <span>Primer paso</span> Separa el camino de lectura del de
+                                escritura.
+                            </p>
+                        </article>
+
+                        <article class="decision decision--shard">
+                            <div class="decision__top">
+                                <span class="decision__index">03</span>
+                                <span class="decision__tag">más lejos</span>
+                            </div>
+                            <h2>Partir</h2>
+                            <p class="decision__idea">
+                                Cambiar un límite por muchos límites pequeños.
+                            </p>
+                            <dl>
+                                <div>
+                                    <dt>Señal</dt>
+                                    <dd>
+                                        Un tenant, una tabla o una región concentra casi toda la
+                                        carga.
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Coste</dt>
+                                    <dd>
+                                        Operación, transacciones y consultas que cruzan particiones.
+                                    </dd>
+                                </div>
+                            </dl>
+                            <p class="decision__step">
+                                <span>Primer paso</span> Elige la clave de partición antes de tocar
+                                el esquema.
+                            </p>
+                        </article>
+                    </div>
+
+                    <div class="cheatsheet">
+                        <div class="cheatsheet__head">
+                            <span class="panel__kicker">Repaso rápido</span>
+                            <h2>Nueve módulos, veintisiete ideas</h2>
+                        </div>
+                        <div class="cheatsheet-grid" id="cheatsheet-grid"></div>
+                    </div>
+                </section>
+
+                <section class="view" id="view-practice" data-view-panel="practice" hidden>
+                    <header class="view-head">
+                        <p class="crumb">Práctica <span>/</span> Checkpoint</p>
+                        <h1>Ahora decide tú</h1>
+                        <p class="view-head__lede">
+                            Seis situaciones, una decisión cada una. No hay premio por acertar
+                            rápido; hay premio por mirar la señal correcta.
+                        </p>
+                    </header>
+
+                    <div class="practice-grid">
+                        <div class="practice-intro">
+                            <span class="panel__kicker">Esta ronda</span>
+                            <div class="checkpoint-score">
+                                <strong id="quiz-score">0</strong
+                                ><span>/ <span id="quiz-total">6</span></span>
+                            </div>
+                            <p>
+                                Cada respuesta se explica. Puedes repetir el checkpoint sin perder
+                                las respuestas que ya acertaste.
+                            </p>
+                            <p class="practice-intro__saved">
+                                Acumuladas: <strong id="quiz-saved">0</strong>/<span
+                                    id="quiz-saved-total"
+                                    >6</span
+                                >
+                            </p>
+                            <div class="practice-intro__note">
+                                <span class="badge badge--yellow">6 preguntas</span>
+                                <span class="badge badge--blue">feedback inmediato</span>
+                            </div>
+                        </div>
+
+                        <div class="quiz-card">
+                            <div class="quiz-card__top">
+                                <span id="quiz-counter">Pregunta 01 / 06</span>
+                                <button class="text-button" type="button" id="quiz-reset">
+                                    Reiniciar
+                                </button>
+                            </div>
+
+                            <div id="quiz-content">
+                                <h2 id="quiz-question">
+                                    Tu p95 sube de 180 a 900 ms justo después de un pico. La API
+                                    está al 38 % de CPU, la caché acierta el 84 % y la base de datos
+                                    acumula 40 consultas en cola. ¿Qué mirarías primero?
+                                </h2>
+                                <div
+                                    class="quiz-options"
+                                    id="quiz-options"
+                                    role="group"
+                                    aria-labelledby="quiz-question"
+                                >
+                                    <button class="quiz-option" type="button" data-index="0">
+                                        <span class="quiz-option__letter">A</span>
+                                        <span>Añadir otra región para repartir el tráfico.</span>
+                                    </button>
+                                    <button class="quiz-option" type="button" data-index="1">
+                                        <span class="quiz-option__letter">B</span>
+                                        <span
+                                            >La consulta y el tiempo de espera de la base de
+                                            datos.</span
+                                        >
+                                    </button>
+                                    <button class="quiz-option" type="button" data-index="2">
+                                        <span class="quiz-option__letter">C</span>
+                                        <span>Comprimir mejor las respuestas.</span>
+                                    </button>
+                                    <button class="quiz-option" type="button" data-index="3">
+                                        <span class="quiz-option__letter">D</span>
+                                        <span>Subir la caché al 90 %.</span>
+                                    </button>
+                                </div>
+                                <div
+                                    class="quiz-feedback"
+                                    id="quiz-feedback"
+                                    hidden
+                                    aria-live="polite"
+                                >
+                                    <strong id="feedback-title"></strong>
+                                    <p id="feedback-text"></p>
+                                </div>
+                            </div>
+
+                            <div class="quiz-summary" id="quiz-summary" hidden>
+                                <span class="panel__kicker">Resultado</span>
+                                <p class="quiz-summary__score">
+                                    <strong id="quiz-final">0</strong><span>/ 3</span>
+                                </p>
+                                <p id="quiz-verdict"></p>
+                                <button class="button button--small" type="button" id="quiz-again">
+                                    Repetir checkpoint
+                                </button>
+                            </div>
+
+                            <div class="quiz-card__bottom">
+                                <span id="quiz-hint">Una respuesta. Sin trampa.</span>
+                                <button
+                                    class="button button--small"
+                                    type="button"
+                                    id="quiz-next"
+                                    hidden
+                                >
+                                    Siguiente
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <aside class="inspector" aria-label="Detalle del paso">
+                <div class="inspector__top">
+                    <span
+                        >Paso <span data-step-current>01</span> /
+                        <span id="step-total">06</span></span
+                    >
+                    <span class="tag tag--problem" id="step-tag">Problema</span>
+                </div>
+
+                <div class="inspector__content" aria-live="polite">
+                    <h2 id="step-title">Pulsas Enter</h2>
+                    <p id="step-body">
+                        El navegador deja de esperar y empieza a trabajar. Todavía no hay red:
+                        primero tiene que saber a quién preguntar.
+                    </p>
+                    <div class="idea-card">
+                        <span class="idea-card__icon" aria-hidden="true">✦</span>
+                        <div>
+                            <span class="idea-card__label">Idea clave</span>
+                            <p id="step-insight">
+                                La latencia no empieza en el servidor. Empieza en la decisión de
+                                pedir algo.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="learn-list">
+                    <h3>Aprenderás</h3>
+                    <ul id="learn-list"></ul>
+                </div>
+
+                <div class="inspector__actions">
+                    <button class="button button--quiet" type="button" id="lesson-prev" disabled>
+                        ← Anterior
+                    </button>
+                    <button class="button button--next" type="button" id="lesson-next">
+                        Siguiente <span aria-hidden="true">→</span>
+                    </button>
+                </div>
+                <p class="shortcuts">← → paso · R reiniciar · Espacio pausar</p>
+            </aside>
+        </div>
+
+        <noscript>
+            <p class="noscript">
+                Activa JavaScript para recorrer la lección y usar el laboratorio. El contenido sigue
+                disponible, pero las piezas interactivas no responderán.
+            </p>
+        </noscript>
+    </body>
+</html>
