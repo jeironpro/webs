@@ -51,7 +51,7 @@ web-diseno-sistemas/
 └── README.md
 ```
 
-`js/course/` contiene las lecciones por módulo; `js/course/index.js` las ensambla y añade la chuleta. `js/app.js` conecta el curso con la interfaz, el progreso y la navegación. `js/scenes.js` dibuja una topología distinta para colas, clústeres, despliegues, seguridad, feeds, chat y latencia, y la reconstruye en cada paso. `js/simulator.js` concentra el modelo determinista del laboratorio.
+`js/course/` contiene las lecciones por módulo; `js/course/index.js` las ensambla y añade la chuleta. `js/app.js` conecta el curso con la interfaz, el progreso y la navegación. `js/scenes.js` dibuja una topología distinta para peticiones, colas, clústeres, comparaciones, CAP, transacciones, archivos, seguridad, feeds, chat, latencia y descubrimiento, y la reconstruye en cada paso. Los diagramas se centran por etapa, caben en el lienzo a 320 px y no dependen de una barra de scroll interna. `js/simulator.js` concentra el modelo determinista del laboratorio.
 
 ## Comprobaciones
 
