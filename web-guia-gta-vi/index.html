@@ -6,7 +6,7 @@
         <title>Guía GTA VI · Leónida al 100%</title>
         <meta
             name="description"
-            content="Guía de Grand Theft Auto VI: historia sin spoilers, personajes, las seis regiones de Leónida, sistemas de juego, checklist de 100% y ediciones."
+            content="Guía de Grand Theft Auto VI: historia sin spoilers, personajes, las seis regiones de Leónida, los finales documentados, el panel de progreso completo, checklist de 100% y ediciones."
         />
         <meta name="color-scheme" content="dark" />
         <meta name="theme-color" content="#050206" />
@@ -22,6 +22,7 @@
         />
         <link rel="stylesheet" href="./css/styles.css" />
         <script type="module" src="./js/main.js"></script>
+        <script type="module" src="./js/progress.js"></script>
     </head>
     <body>
         <a class="skip" href="#contenido">Saltar al contenido</a>
@@ -44,6 +45,8 @@
                     <a href="#sistemas">Sistemas</a>
                     <a href="#campana">Campaña</a>
                     <a href="#secundarias">Secundarias</a>
+                    <a href="#finales">Finales</a>
+                    <a href="#progreso">Progreso</a>
                     <a href="#checklist">100%</a>
                     <a href="#ediciones">Ediciones</a>
                 </nav>
@@ -121,7 +124,7 @@
                     <h2 class="sr-only" id="facts-title">El juego en cifras</h2>
                     <ul class="facts__grid">
                         <li class="fact">
-                            <span class="fact__num">91</span>
+                            <span class="fact__num">97</span>
                             <span class="fact__label">misiones de historia</span>
                             <span class="fact__note">Prólogo + 5 capítulos</span>
                         </li>
@@ -195,7 +198,7 @@
                             <p>
                                 La campaña se organiza en un
                                 <strong>prólogo y cinco capítulos</strong>, con
-                                <strong>91 misiones</strong> repartidas en 22, 11, 26, 25 y 7
+                                <strong>97 misiones</strong> repartidas en 22, 13, 28, 27 y 7
                                 encargos. Puedes cambiar entre Jason y Lucía casi en cualquier
                                 momento, pero algunas misiones son exclusivas de uno de los dos, y
                                 hacer trabajos juntos alimenta su relación.
@@ -215,31 +218,31 @@
                             <ul class="chapter-bars">
                                 <li>
                                     <span class="chapter-bars__name">Prólogo + Cap. 1</span>
-                                    <span class="chapter-bars__bar"><i style="--w: 88%"></i></span>
+                                    <span class="chapter-bars__bar"><i style="--w: 79%"></i></span>
                                     <span class="chapter-bars__count">22</span>
                                 </li>
                                 <li>
                                     <span class="chapter-bars__name">Cap. 2</span>
-                                    <span class="chapter-bars__bar"><i style="--w: 44%"></i></span>
-                                    <span class="chapter-bars__count">11</span>
+                                    <span class="chapter-bars__bar"><i style="--w: 46%"></i></span>
+                                    <span class="chapter-bars__count">13</span>
                                 </li>
                                 <li>
                                     <span class="chapter-bars__name">Cap. 3</span>
                                     <span class="chapter-bars__bar"><i style="--w: 100%"></i></span>
-                                    <span class="chapter-bars__count">26</span>
+                                    <span class="chapter-bars__count">28</span>
                                 </li>
                                 <li>
                                     <span class="chapter-bars__name">Cap. 4</span>
                                     <span class="chapter-bars__bar"><i style="--w: 96%"></i></span>
-                                    <span class="chapter-bars__count">25</span>
+                                    <span class="chapter-bars__count">27</span>
                                 </li>
                                 <li>
                                     <span class="chapter-bars__name">Cap. 5</span>
-                                    <span class="chapter-bars__bar"><i style="--w: 28%"></i></span>
+                                    <span class="chapter-bars__bar"><i style="--w: 25%"></i></span>
                                     <span class="chapter-bars__count">7</span>
                                 </li>
                             </ul>
-                            <p class="panel__foot"><strong>91 misiones</strong> · 5 capítulos</p>
+                            <p class="panel__foot"><strong>97 misiones</strong> · 5 capítulos</p>
                         </aside>
                     </div>
 
@@ -1292,7 +1295,7 @@
                             >
                         </h2>
                         <p class="section__lede">
-                            Las 91 misiones principales en orden, más los tres encargos que no todas
+                            Las 95 misiones principales en orden, más los dos encargos que no todas
                             las guías cuentan. Qué se hace en cada una, qué decisiones admite y qué
                             consecuencias tienen, sin huecos ni ramas inventadas.
                         </p>
@@ -1300,10 +1303,10 @@
 
                     <div class="campaign__meta reveal">
                         <ul>
-                            <li><strong>94</strong><span>entradas listadas</span></li>
-                            <li><strong>91</strong><span>misiones principales</span></li>
+                            <li><strong>97</strong><span>entradas listadas</span></li>
+                            <li><strong>95</strong><span>misiones principales</span></li>
                             <li><strong>29</strong><span>con decisiones</span></li>
-                            <li><strong>3</strong><span>encargos opcionales</span></li>
+                            <li><strong>2</strong><span>encargos opcionales</span></li>
                             <li><strong>5</strong><span>capítulos</span></li>
                         </ul>
                         <button class="btn btn--outline btn--sm" type="button" id="spoiler-final">
@@ -1318,11 +1321,48 @@
                         consecuencias; las marcadas como lineales no cambian el resultado.
                     </p>
 
+                    <div class="campaign-progress reveal" id="campaign-progress">
+                        <div class="campaign-progress__head">
+                            <p class="campaign-progress__label">
+                                <strong id="campaign-progress-now">0</strong> de 97 misiones y
+                                encargos completados
+                            </p>
+                            <button
+                                class="btn btn--outline btn--sm"
+                                type="button"
+                                id="campaign-reset"
+                            >
+                                Reiniciar progreso
+                            </button>
+                        </div>
+                        <div
+                            class="campaign-progress__bar"
+                            id="campaign-progress-bar"
+                            role="progressbar"
+                            aria-label="Progreso de la campaña"
+                            aria-valuemin="0"
+                            aria-valuemax="97"
+                            aria-valuenow="0"
+                        >
+                            <span id="campaign-progress-fill"></span>
+                        </div>
+                    </div>
+
                     <nav class="chapter-nav" aria-label="Ir a un capítulo">
                         <div class="chapter-nav__track" id="chapter-nav"></div>
                     </nav>
 
                     <div class="campaign" id="campaign"></div>
+
+                    <p class="note reveal">
+                        <strong>Cómo se cuentan.</strong> La lista sigue el Story Recap del juego:
+                        97 entradas, 95 misiones principales y dos encargos opcionales. Las guías
+                        que publican 91 dejan fuera Thrillbillies, Twist Wrist, Smash, Grab,
+                        Yasmani's Jewelry Jobs, Heist Planning, Pool Day y Tie Up Loose Ends; GTA
+                        Base llega a 107 porque además separa pasos cortos —comprar ropa, ingresar
+                        dinero, preparar el viaje a Vice City— que aquí van dentro de su misión. Las
+                        seis misiones con reloj están en Extraños y locos.
+                    </p>
 
                     <noscript>
                         <p class="note">Activa JavaScript para ver la guía vertical de misiones.</p>
@@ -1336,10 +1376,10 @@
                     <header class="section__head reveal">
                         <p class="eyebrow"><span>08</span> Extraños y locos</p>
                         <h2 class="section__title" id="secundarias-title">
-                            Las 51 secundarias,<br /><span class="text-gradient">una por una</span>
+                            Las 48 secundarias,<br /><span class="text-gradient">una por una</span>
                         </h2>
                         <p class="section__lede">
-                            Las 16 cadenas que viven fuera de la historia principal, con sus 51
+                            Las 16 cadenas que viven fuera de la historia principal, con sus 48
                             misiones en orden: dónde empieza cada una, qué hay que hacer, quién
                             puede jugarla y qué se pierde para siempre. Las actividades, carreras y
                             coleccionables siguen en la checklist del 100%.
@@ -1349,7 +1389,7 @@
                     <div class="campaign__meta reveal">
                         <ul>
                             <li><strong>16</strong><span>cadenas</span></li>
-                            <li><strong>51</strong><span>misiones</span></li>
+                            <li><strong>48</strong><span>misiones</span></li>
                             <li><strong>3</strong><span>con reloj</span></li>
                             <li><strong>33</strong><span>extras ocultos</span></li>
                             <li><strong>4</strong><span>capítulos</span></li>
@@ -1401,11 +1441,584 @@
                 </div>
             </section>
 
-            <!-- 09 DINERO -->
+            <!-- 09 FINALES -->
+            <section class="section section--alt" id="finales" aria-labelledby="finales-title">
+                <div class="wrap">
+                    <header class="section__head reveal">
+                        <p class="eyebrow"><span>09</span> Finales</p>
+                        <p class="wip"><span aria-hidden="true"></span>Sección en construcción</p>
+                        <h2 class="section__title" id="finales-title">
+                            Los finales,<br /><span class="text-gradient">un solo puente</span>
+                        </h2>
+                        <p class="section__lede">
+                            Rockstar no ha publicado cuántos finales tiene el juego: solo dijo que
+                            hay «bastantes más de dos». Esta guía reúne las cinco ramas que puede
+                            sostener con material publicado —acceso, escena completa y
+                            consecuencias— y explica aparte por qué los recuentos de la comunidad
+                            bailan entre cuatro y dieciséis.
+                        </p>
+                        <p class="section__status">
+                            Pendiente: cerrar el censo de finales (los recuentos publicados van de
+                            cuatro a nueve y en foros se citan dieciséis), las variantes del epílogo
+                            y las condiciones que las activan.
+                        </p>
+                    </header>
+
+                    <p class="campaign__warning reveal">
+                        <strong>Aviso de spoilers.</strong> Esta sección cuenta el desenlace de la
+                        historia de Jason y Lucía, incluidos el nombre de la última misión, las
+                        decisiones del puente y el epílogo de cada rama.
+                    </p>
+
+                    <div class="finals">
+                        <a class="pcard" href="#final-neon">
+                            <img
+                                class="pcard__bg"
+                                src="./assets/finales/luz-de-neon.jpg"
+                                alt=""
+                                width="1248"
+                                height="832"
+                                loading="lazy"
+                            />
+                            <span class="pcard__body">
+                                <span class="pcard__kicker">Final bueno</span>
+                                <span class="pcard__title">Luz de neón</span>
+                                <span class="pcard__meta">Exit · confianza alta</span>
+                            </span>
+                        </a>
+                        <a class="pcard" href="#final-pasajes">
+                            <img
+                                class="pcard__bg"
+                                src="./assets/finales/dos-pasajes.jpg"
+                                alt=""
+                                width="1248"
+                                height="832"
+                                loading="lazy"
+                            />
+                            <span class="pcard__body">
+                                <span class="pcard__kicker">Agridulce</span>
+                                <span class="pcard__title">Dos pasajes</span>
+                                <span class="pcard__meta">Exit · ahorros cortos</span>
+                            </span>
+                        </a>
+                        <a class="pcard" href="#final-coche">
+                            <img
+                                class="pcard__bg"
+                                src="./assets/finales/coche-en-el-agua.jpg"
+                                alt=""
+                                width="1248"
+                                height="832"
+                                loading="lazy"
+                            />
+                            <span class="pcard__body">
+                                <span class="pcard__kicker">Final malo</span>
+                                <span class="pcard__title">El coche en el agua</span>
+                                <span class="pcard__meta">Nadar sin Exit</span>
+                            </span>
+                        </a>
+                        <a class="pcard" href="#final-trato">
+                            <img
+                                class="pcard__bg"
+                                src="./assets/finales/trato-de-mendez.jpg"
+                                alt=""
+                                width="1248"
+                                height="832"
+                                loading="lazy"
+                            />
+                            <span class="pcard__body">
+                                <span class="pcard__kicker">Secreto</span>
+                                <span class="pcard__title">El trato de Méndez</span>
+                                <span class="pcard__meta">Take Deal en el puente</span>
+                            </span>
+                        </a>
+                        <a class="pcard" href="#final-cartucho">
+                            <img
+                                class="pcard__bg"
+                                src="./assets/finales/ultimo-cartucho.jpg"
+                                alt=""
+                                width="1248"
+                                height="832"
+                                loading="lazy"
+                            />
+                            <span class="pcard__body">
+                                <span class="pcard__kicker">Trágico</span>
+                                <span class="pcard__title">Hasta el último cartucho</span>
+                                <span class="pcard__meta">No rendirse</span>
+                            </span>
+                        </a>
+                    </div>
+
+                    <div class="final-flow reveal">
+                        <h3>Cómo se decide</h3>
+                        <ol class="final-flow__steps">
+                            <li class="final-flow__step">
+                                <strong>Puente de Sinfrontera</strong>
+                                <p>
+                                    Antes del asalto final, Méndez ofrece comprar el silencio de la
+                                    pareja. Aceptar cierra la historia por la vía secreta; rechazar
+                                    mantiene el plan y lleva al capítulo 5 completo.
+                                </p>
+                            </li>
+                            <li class="final-flow__step">
+                                <strong>«The End of the Road»</strong>
+                                <p>
+                                    En el muelle, Lucía conduce y Jason nada. La pantalla ofrece
+                                    pulsar <kbd>Exit</kbd>, nadar sin pulsarlo o plantarse y no
+                                    rendirse: tres ramas, tres resultados distintos.
+                                </p>
+                            </li>
+                            <li class="final-flow__step">
+                                <strong>Los tres controles de Exit</strong>
+                                <p>
+                                    Si pulsas Exit, el juego comprueba la confianza de la pareja, el
+                                    perfil criminal y el dinero de la cuenta conjunta. Los umbrales
+                                    son 7/10 de confianza, dos estrellas de media y 2.000.000 $
+                                    frente a 500.000 $.
+                                </p>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <article class="final" id="final-neon">
+                        <div class="final__media">
+                            <img
+                                src="./assets/finales/luz-de-neon.jpg"
+                                alt="Dos figuras en la barandilla de un ferry al amanecer"
+                                width="1248"
+                                height="832"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div class="final__body">
+                            <p class="final__tag">Final bueno · rama 1</p>
+                            <h3>Luz de neón</h3>
+                            <p class="final__lede">
+                                Jason y Lucía salen del país con lo puesto y con la ciudad entera
+                                hablando de ellos. Es el único desenlace en el que la pareja llega
+                                entera al epílogo y el único que deja el mundo abierto sin recortes.
+                            </p>
+                            <div class="final__cols">
+                                <div>
+                                    <h4>Requisitos</h4>
+                                    <ul>
+                                        <li>Elegir «Nadar y pulsar Exit».</li>
+                                        <li>Confianza de la pareja alta: 7/10 o más.</li>
+                                        <li>Perfil criminal bajo: 2 estrellas de media o menos.</li>
+                                        <li>2.000.000 $ en la cuenta conjunta, no en efectivo.</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4>Qué ocurre</h4>
+                                    <p>
+                                        Exit recoge a Jason y Lucía antes de que la Guardia Costera
+                                        cierre la bahía. En el muelle de los Cayos queman el dinero
+                                        que no pueden justificar, dejan las armas en el fondo de una
+                                        nevera y suben a un ferry rumbo a ninguna parte. Cal cierra
+                                        la trama de las escuchas entregando las grabaciones de
+                                        Méndez a la prensa, y los créditos pasan sobre la foto de la
+                                        pareja en la cubierta.
+                                    </p>
+                                </div>
+                                <div>
+                                    <h4>Consecuencias</h4>
+                                    <ul>
+                                        <li>Post-juego con Jason y Lucía, todo el mapa abierto.</li>
+                                        <li>
+                                            Trofeo «Leónida para siempre» y traje «Domingo por la
+                                            mañana».
+                                        </li>
+                                        <li>
+                                            Único final que permite el 100 % sin reiniciar partida.
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="final" id="final-pasajes">
+                        <div class="final__media">
+                            <img
+                                src="./assets/finales/dos-pasajes.jpg"
+                                alt="Una figura sola en una lancha mira la costa entre la niebla"
+                                width="1248"
+                                height="832"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div class="final__body">
+                            <p class="final__tag">Final agridulce · rama 2</p>
+                            <h3>Dos pasajes</h3>
+                            <p class="final__lede">
+                                Exit llega, pero no hay sitio para dos. Lucía se queda a cubrir la
+                                retirada y Jason cruza solo: la pareja sobrevive, pero deja de ser
+                                una pareja.
+                            </p>
+                            <div class="final__cols">
+                                <div>
+                                    <h4>Requisitos</h4>
+                                    <ul>
+                                        <li>Pulsar Exit, como en el final bueno.</li>
+                                        <li>Confianza media (3 a 6/10) o menos de 2.000.000 $.</li>
+                                        <li>
+                                            Ahorros por encima de 500.000 $ en la cuenta conjunta.
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4>Qué ocurre</h4>
+                                    <p>
+                                        La lancha de Exit no puede esperar a los dos. Lucía se queda
+                                        en el coche para tapar la salida, se entrega a la Guardia
+                                        Costera y negocia con la fiscalía. Jason cruza el estrecho
+                                        con una bolsa y una llamada perdida de Lucía en el móvil.
+                                        Cal aparece solo para Jason, y el epílogo deja la puerta
+                                        abierta a una visita a la cárcel que nunca se llega a jugar.
+                                    </p>
+                                </div>
+                                <div>
+                                    <h4>Consecuencias</h4>
+                                    <ul>
+                                        <li>Post-juego solo con Jason; el ático queda cerrado.</li>
+                                        <li>Se pierden las actividades y los encargos de Lucía.</li>
+                                        <li>Trofeo «Un billete de ida».</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="final" id="final-coche">
+                        <div class="final__media">
+                            <img
+                                src="./assets/finales/coche-en-el-agua.jpg"
+                                alt="Un coche se hunde bajo el agua con las sirenas en la superficie"
+                                width="1248"
+                                height="832"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div class="final__body">
+                            <p class="final__tag">Final malo · rama 3</p>
+                            <h3>El coche en el agua</h3>
+                            <p class="final__lede">
+                                Jason nada, Lucía no abandona el coche y la bahía se llena de
+                                sirenas. Es el final que castiga dudar en el último segundo.
+                            </p>
+                            <div class="final__cols">
+                                <div>
+                                    <h4>Requisitos</h4>
+                                    <ul>
+                                        <li>Llegar al muelle y nadar sin pulsar Exit.</li>
+                                        <li>
+                                            Ninguno más: no depende de la confianza ni del dinero.
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4>Qué ocurre</h4>
+                                    <p>
+                                        Lucía se queda en el coche para que Jason gane metros. Jason
+                                        llega a la orilla, la Guardia Costera abre fuego y cae antes
+                                        de salir del agua. La cámara corta a la radio policial: «dos
+                                        sospechosos, ninguno responde». No hay fotografía, ni ferry,
+                                        ni epílogo: solo los créditos sobre la bahía vacía.
+                                    </p>
+                                </div>
+                                <div>
+                                    <h4>Consecuencias</h4>
+                                    <ul>
+                                        <li>
+                                            El juego devuelve al último guardado, no hay post-juego.
+                                        </li>
+                                        <li>Trofeo «Sin salida».</li>
+                                        <li>
+                                            Puedes reintentar la misión sin repetir el capítulo.
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="final" id="final-trato">
+                        <div class="final__media">
+                            <img
+                                src="./assets/finales/trato-de-mendez.jpg"
+                                alt="Dos siluetas se dan la mano en un aparcamiento iluminado por neón"
+                                width="1248"
+                                height="832"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div class="final__body">
+                            <p class="final__tag">Final secreto · rama 4</p>
+                            <h3>El trato de Méndez</h3>
+                            <p class="final__lede">
+                                Aceptar el dinero de Méndez en el puente cierra la historia antes de
+                                tiempo. No es un final alternativo: es el final que Rockstar esconde
+                                detrás de una decisión que parece razonable.
+                            </p>
+                            <div class="final__cols">
+                                <div>
+                                    <h4>Requisitos</h4>
+                                    <ul>
+                                        <li>En el puente de Sinfrontera, elegir «Take Deal».</li>
+                                        <li>Guardado anterior al inicio del asalto final.</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4>Qué ocurre</h4>
+                                    <p>
+                                        Méndez paga, sonríe y entrega la ubicación de la pareja a la
+                                        Guardia Costera. El asalto al VCIA se cancela y Jason y
+                                        Lucía acaban en un furgón sin ventanillas. La escena de Cal
+                                        nunca llega: sus grabaciones se quedan en un cajón. Los
+                                        créditos recorren una Vice City donde Méndez manda y nadie
+                                        recuerda a los dos fugitivos.
+                                    </p>
+                                </div>
+                                <div>
+                                    <h4>Consecuencias</h4>
+                                    <ul>
+                                        <li>Se saltan el resto del capítulo 5 y su gran golpe.</li>
+                                        <li>
+                                            Se pierden «Operation Savage Glory» y «Protective
+                                            Custody».
+                                        </li>
+                                        <li>
+                                            Trofeo «El trato»; la partida no se puede continuar.
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="final" id="final-cartucho">
+                        <div class="final__media">
+                            <img
+                                src="./assets/finales/ultimo-cartucho.jpg"
+                                alt="Dos siluetas en una playa de noche con bengalas"
+                                width="1248"
+                                height="832"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div class="final__body">
+                            <p class="final__tag">Final trágico · rama 5</p>
+                            <h3>Hasta el último cartucho</h3>
+                            <p class="final__lede">
+                                La pareja decide no huir y plantar cara en la playa. Es el desenlace
+                                más corto y el único que explica qué pasa con Tomás.
+                            </p>
+                            <div class="final__cols">
+                                <div>
+                                    <h4>Requisitos</h4>
+                                    <ul>
+                                        <li>En la última misión, elegir «No rendirse».</li>
+                                        <li>Haber sobrevivido a la oleada anterior del muelle.</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4>Qué ocurre</h4>
+                                    <p>
+                                        Jason y Lucía vacían los cargadores contra la primera oleada
+                                        y caen juntos en la arena. El epílogo es una carta leída por
+                                        Tomás desde la casa de la familia de Lucía: nadie reclama
+                                        los cuerpos y la ciudad olvida el nombre de los dos. Es la
+                                        única rama que cierra la subtrama del sobrino.
+                                    </p>
+                                </div>
+                                <div>
+                                    <h4>Consecuencias</h4>
+                                    <ul>
+                                        <li>Sin post-juego: se vuelve al guardado anterior.</li>
+                                        <li>Trofeo «Nadie se rinde».</li>
+                                        <li>
+                                            Desbloquea la carta de Tomás en la galería del menú.
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <div class="final-variants reveal">
+                        <h3>Cuántos finales hay: recuentos en circulación</h3>
+                        <p>
+                            Rockstar solo ha dicho que hay «bastantes más de dos», sin dar cifra.
+                            Desde el lanzamiento, cada medio cuenta lo suyo y el número no deja de
+                            moverse: GameSpot documentó <strong>al menos cuatro</strong>; Game8 y
+                            ComicBook llegan a <strong>siete</strong>; GTA Base, que empezó listando
+                            cinco, y Rock Paper Shotgun publican <strong>ocho</strong>; y PC Gamer
+                            cuenta <strong>nueve</strong> porque separa el epílogo de los dos
+                            millones del final al que pertenece. En foros y vídeos se han llegado a
+                            citar <strong>dieciséis</strong>, pero ninguno de esos recuentos extra
+                            está verificado ni explicado paso a paso.
+                        </p>
+                        <p>
+                            La diferencia casi nunca está en el puente, sino en dónde se corta la
+                            cuenta: hay quien solo suma la decisión final, quien separa cada epílogo
+                            y quien incluye ramas que se abandonan antes de la última misión. Por
+                            eso esta guía no adopta ninguna cifra: documenta las cinco ramas cuyo
+                            flujo de misión y requisitos puede comprobar y deja el resto en
+                            revisión. Tampoco da por buenas las variantes de epílogo que corren por
+                            foros sin confirmación.
+                        </p>
+                        <p class="final-variants__note">
+                            <strong>Pendiente de confirmar.</strong> Si aparece documentación
+                            oficial o se verifican las rutas que faltan, esta sección se ampliará
+                            con sus condiciones y escenas. Hasta entonces, cualquier total —cinco,
+                            ocho o dieciséis— es un recuento de la comunidad, no un dato de
+                            Rockstar.
+                        </p>
+                    </div>
+
+                    <div class="final-table reveal">
+                        <h3>Qué deja cada final</h3>
+                        <div class="table-wrap">
+                            <table class="money-table">
+                                <caption class="sr-only">
+                                    Comparación de las cinco ramas documentadas y su post-juego
+                                </caption>
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Final</th>
+                                        <th scope="col">Quién queda</th>
+                                        <th scope="col">Qué se pierde</th>
+                                        <th scope="col">Post-juego</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Luz de neón</th>
+                                        <td>Jason y Lucía</td>
+                                        <td>Nada</td>
+                                        <td>Sí, mundo abierto completo</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Dos pasajes</th>
+                                        <td>Jason</td>
+                                        <td>Encargos de Lucía y el ático</td>
+                                        <td>Sí, solo con Jason</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">El coche en el agua</th>
+                                        <td>Nadie</td>
+                                        <td>Toda la partida</td>
+                                        <td>No: vuelve al guardado</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">El trato de Méndez</th>
+                                        <td>Nadie (detenidos)</td>
+                                        <td>El último acto del capítulo 5</td>
+                                        <td>No: vuelve al guardado</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Hasta el último cartucho</th>
+                                        <td>Nadie</td>
+                                        <td>Toda la partida</td>
+                                        <td>No: vuelve al guardado</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="final-tips reveal">
+                        <h3>Cómo verlos todos</h3>
+                        <ol>
+                            <li>
+                                Guarda a mano antes de «Power Play», el punto donde se abre la
+                                elección del puente.
+                            </li>
+                            <li>
+                                Los finales 3 y 5 se encadenan sin salir de la misión: al morir, el
+                                juego devuelve al checkpoint del muelle.
+                            </li>
+                            <li>
+                                El trato exige un guardado anterior al asalto; si ya estás en la
+                                última misión, no hay forma de volver atrás.
+                            </li>
+                            <li>
+                                Los trofeos se acumulan entre partidas, pero el 100 % solo cuenta en
+                                la partida que termina con «Luz de neón» o «Dos pasajes».
+                            </li>
+                        </ol>
+                        <p class="note">
+                            Rockstar no ha declarado un final canónico. Esta guía toma «Luz de neón»
+                            como referencia para el post-juego y la checklist de 100 %.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 10 PROGRESO -->
+            <section class="section" id="progreso" aria-labelledby="progreso-title">
+                <div class="wrap">
+                    <header class="section__head reveal">
+                        <p class="eyebrow"><span>10</span> Progreso</p>
+                        <p class="wip"><span aria-hidden="true"></span>Sección en construcción</p>
+                        <h2 class="section__title" id="progreso-title">
+                            Doce categorías,<br /><span class="text-gradient">una partida</span>
+                        </h2>
+                        <p class="section__lede">
+                            El panel Progreso del juego, replicado ficha a ficha: vehículos, armas,
+                            fauna, equipo, colecciones, actividades, contactos, bandas, robos,
+                            desafíos, resumen de la historia y trucos. Entra en una categoría para
+                            ver sus apartados y cada uno de sus registros.
+                        </p>
+                        <p class="section__status">
+                            Pendiente: revisar los recuentos de varias categorías y el texto de las
+                            fichas; los datos pueden cambiar mientras se contrastan.
+                        </p>
+                    </header>
+
+                    <div class="progreso__meta reveal">
+                        <ul>
+                            <li><strong>12</strong><span>categorías</span></li>
+                            <li><strong id="progreso-total">0</strong><span>fichas</span></li>
+                            <li><strong>3</strong><span>niveles</span></li>
+                            <li><strong>61</strong><span>trucos</span></li>
+                        </ul>
+                        <p class="progreso__summary" id="progreso-summary">
+                            Cargando el catálogo de Leónida…
+                        </p>
+                    </div>
+
+                    <div class="progreso" id="progreso-app">
+                        <div class="progreso__bar">
+                            <button class="progreso__back" type="button" id="progreso-back" hidden>
+                                ← Volver
+                            </button>
+                            <nav
+                                class="progreso__crumbs"
+                                id="progreso-crumbs"
+                                aria-label="Ruta dentro de Progreso"
+                            ></nav>
+                        </div>
+                        <div class="progreso__view" id="progreso-view" aria-live="polite"></div>
+                        <noscript>
+                            <p class="note">
+                                Activa JavaScript para navegar por las tarjetas de progreso.
+                            </p>
+                        </noscript>
+                    </div>
+
+                    <p class="note reveal">
+                        Las tarjetas sin nombre confirmado muestran «Sin título». Pulsa
+                        <kbd>Esc</kbd> o «Volver» para subir un nivel; el recorrido se puede hacer
+                        entero con el teclado.
+                    </p>
+                </div>
+            </section>
+
+            <!-- 11 DINERO -->
             <section class="section section--alt" id="dinero" aria-labelledby="dinero-title">
                 <div class="wrap">
                     <header class="section__head reveal">
-                        <p class="eyebrow"><span>09</span> Economía</p>
+                        <p class="eyebrow"><span>11</span> Economía</p>
                         <h2 class="section__title" id="dinero-title">
                             De dónde sale<br /><span class="text-gradient">el dinero</span>
                         </h2>
@@ -1507,7 +2120,7 @@
             <section class="section" id="checklist" aria-labelledby="checklist-title">
                 <div class="wrap">
                     <header class="section__head reveal">
-                        <p class="eyebrow"><span>10</span> 100%</p>
+                        <p class="eyebrow"><span>12</span> 100%</p>
                         <h2 class="section__title" id="checklist-title">
                             La lista<br /><span class="text-gradient">de los 35</span>
                         </h2>
@@ -1572,7 +2185,7 @@
             <section class="section section--alt" id="ediciones" aria-labelledby="ediciones-title">
                 <div class="wrap">
                     <header class="section__head reveal">
-                        <p class="eyebrow"><span>11</span> Comprar</p>
+                        <p class="eyebrow"><span>13</span> Comprar</p>
                         <h2 class="section__title" id="ediciones-title">
                             Dos ediciones,<br /><span class="text-gradient">un solo juego</span>
                         </h2>
@@ -1695,7 +2308,7 @@
             <section class="section" id="cronologia" aria-labelledby="crono-title">
                 <div class="wrap">
                     <header class="section__head reveal">
-                        <p class="eyebrow"><span>12</span> Desarrollo</p>
+                        <p class="eyebrow"><span>14</span> Desarrollo</p>
                         <h2 class="section__title" id="crono-title">
                             Trece años<br /><span class="text-gradient">hasta el neón</span>
                         </h2>
@@ -1807,7 +2420,7 @@
             <section class="section section--alt" id="recepcion" aria-labelledby="recepcion-title">
                 <div class="wrap">
                     <header class="section__head reveal">
-                        <p class="eyebrow"><span>13</span> Recepción</p>
+                        <p class="eyebrow"><span>15</span> Recepción</p>
                         <h2 class="section__title" id="recepcion-title">
                             Nota perfecta,<br /><span class="text-gradient">público dividido</span>
                         </h2>
@@ -1868,7 +2481,7 @@
             <section class="section" id="faq" aria-labelledby="faq-title">
                 <div class="wrap wrap--narrow">
                     <header class="section__head reveal">
-                        <p class="eyebrow"><span>14</span> Dudas</p>
+                        <p class="eyebrow"><span>16</span> Dudas</p>
                         <h2 class="section__title" id="faq-title">
                             Preguntas <span class="text-gradient">frecuentes</span>
                         </h2>
