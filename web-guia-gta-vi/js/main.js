@@ -5,6 +5,7 @@ import { HIDDEN_QUESTS, SIDE_QUESTS } from "./side-missions.js";
 document.documentElement.classList.add("js");
 
 const STORAGE_KEY = "gta6-leonida-checklist-v1";
+const CAMPAIGN_STORAGE_KEY = "gta6-leonida-campaign-v1";
 
 const CHECKLIST = [
     // Historia y trabajos
@@ -12,7 +13,7 @@ const CHECKLIST = [
         id: "c01",
         group: "historia",
         title: "Terminar la historia",
-        detail: "91 misiones · prólogo y 5 capítulos",
+        detail: "97 misiones · prólogo y 5 capítulos",
     },
     {
         id: "c02",
@@ -189,9 +190,9 @@ const CHECKLIST = [
 const $ = (selector, scope = document) => scope.querySelector(selector);
 const $$ = (selector, scope = document) => [...scope.querySelectorAll(selector)];
 
-function loadState() {
+function loadState(key = STORAGE_KEY) {
     try {
-        const raw = localStorage.getItem(STORAGE_KEY);
+        const raw = localStorage.getItem(key);
         if (!raw) return new Set();
         const parsed = JSON.parse(raw);
         return new Set(Array.isArray(parsed) ? parsed : []);
@@ -200,9 +201,9 @@ function loadState() {
     }
 }
 
-function saveState(state) {
+function saveState(state, key = STORAGE_KEY) {
     try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify([...state]));
+        localStorage.setItem(key, JSON.stringify([...state]));
     } catch {
         /* almacenamiento no disponible: la checklist sigue funcionando en memoria */
     }
@@ -616,7 +617,7 @@ if (mapViewport && mapStage && mapDetail) {
     });
 }
 
-/* ---------- Campaña: 94 entradas en 5 capítulos ---------- */
+/* ---------- Campaña: 97 entradas en 5 capítulos ---------- */
 
 /* ---------- Decisiones documentadas por misión ---------- */
 
@@ -1219,6 +1220,11 @@ const CHAPTERS = [
                 desc: "Jason lleva a Boobie por Vice City y persigue una bolsa robada río abajo en una Seashark.",
             },
             {
+                name: "Yasmani's Jewelry Jobs",
+                desc: "Yasmani encarga su primera lista de joyerías y abre la cadena de trabajos: atraca los escaparates, reúne el botín y se lo vende.",
+                pending: true,
+            },
+            {
                 name: "First Impressions",
                 desc: "Huida para Raul: Lucía conduce de Ocean Beach a Bayside mientras Jason frena a la policía.",
             },
@@ -1245,6 +1251,11 @@ const CHAPTERS = [
             {
                 name: "Security Expert",
                 desc: "Sigilo en una casa vigilada de Waning Sands: entra detrás de Jason y saca a Nicole.",
+            },
+            {
+                name: "Heist Planning",
+                desc: "Raul reúne al equipo del Sinfrontera y reparte las tareas de preparación antes del asalto.",
+                pending: true,
             },
             {
                 name: "Ride or Die",
@@ -1294,6 +1305,11 @@ const CHAPTERS = [
             {
                 name: "Another Life",
                 desc: "Flashback jugable como Lucía en su antigua casa, con cinco interacciones.",
+            },
+            {
+                name: "Pool Day",
+                desc: "Día de piscina en el Y Hotel: la pareja desconecta antes de que el capítulo se complique.",
+                pending: true,
             },
             {
                 name: "Company Cars",
@@ -1380,6 +1396,11 @@ const CHAPTERS = [
                 desc: "El golpe al aeropuerto hacia el que apunta todo el capítulo.",
             },
             {
+                name: "Tie Up Loose Ends",
+                desc: "Después del golpe al aeropuerto, la pareja espera noticias de Raul sobre el disco duro.",
+                pending: true,
+            },
+            {
                 name: "Sunset",
                 desc: "Sin marcador: recoge una nota en la recepción del Y Hotel y síguela.",
             },
@@ -1417,11 +1438,6 @@ const CHAPTERS = [
                 desc: "La misión más larga del capítulo, en dos equipos: Lucía con Alpha y Jason con Bravo. Paga 50.000 $.",
             },
             {
-                name: "Honest Abe",
-                desc: "Sin pelea ni persecución: la pareja deja el ático y visita a Abe en su despacho de Downtown.",
-                opt: true,
-            },
-            {
                 name: "Protective Custody",
                 desc: "Jason y Lucía trabajan juntos en plena recta final.",
             },
@@ -1441,10 +1457,14 @@ const makeEl = (tag, className, text) => {
     return node;
 };
 
-const buildChoices = (name) => {
-    const choices = MISSION_CHOICES[name];
+const buildChoices = (mission) => {
+    const choices = MISSION_CHOICES[mission.name];
     if (!choices) {
-        return makeEl("p", "mission__linear", "Sin decisiones · misión lineal");
+        return makeEl(
+            "p",
+            "mission__linear",
+            mission.pending ? "Decisiones sin confirmar" : "Sin decisiones · misión lineal"
+        );
     }
 
     const details = makeEl("details", "mission__choices");
@@ -1474,52 +1494,107 @@ const buildChoices = (name) => {
 const campaignEl = document.getElementById("campaign");
 const chapterNavEl = document.getElementById("chapter-nav");
 const campaignSection = document.getElementById("campana");
+const campaignProgressEl = document.getElementById("campaign-progress");
 
 if (campaignEl) {
+    const doneMissions = loadState(CAMPAIGN_STORAGE_KEY);
+    const chapterCounters = [];
+    const totalEntries = CHAPTERS.reduce((sum, chapter) => sum + chapter.missions.length, 0);
+    const progressNowEl = document.getElementById("campaign-progress-now");
+    const progressFillEl = document.getElementById("campaign-progress-fill");
+    const progressBarEl = document.getElementById("campaign-progress-bar");
     let counter = 0;
 
+    const updateCampaignProgress = () => {
+        let complete = 0;
+
+        chapterCounters.forEach(({ chapter, el }) => {
+            const chapterDone = chapter.missions.filter((mission) =>
+                doneMissions.has(mission.id)
+            ).length;
+            complete += chapterDone;
+            el.textContent = `${chapterDone} de ${chapter.missions.length} completadas`;
+            el.classList.toggle("is-complete", chapterDone === chapter.missions.length);
+        });
+
+        if (progressNowEl) progressNowEl.textContent = String(complete);
+        if (progressFillEl) {
+            const ratio = totalEntries ? (complete / totalEntries) * 100 : 0;
+            progressFillEl.style.width = `${ratio}%`;
+        }
+        if (progressBarEl) {
+            progressBarEl.setAttribute("aria-valuenow", String(complete));
+            progressBarEl.setAttribute("aria-valuemax", String(totalEntries));
+        }
+        campaignProgressEl?.classList.toggle("is-complete", complete === totalEntries);
+    };
+
     CHAPTERS.forEach((chapter) => {
-        const mains = chapter.missions.filter((mission) => !mission.opt).length;
-        const optionals = chapter.missions.length - mains;
+        const optionals = chapter.missions.filter((mission) => mission.opt).length;
 
         const article = document.createElement("article");
         article.className = "chapter";
         article.id = `cap-${chapter.n}`;
 
-        const rows = chapter.missions.map((mission) => {
+        const rows = chapter.missions.map((mission, index) => {
             counter += 1;
+            const id = `m${chapter.n}-${index + 1}`;
             const number = String(counter).padStart(2, "0");
             const nameClass = mission.spoil
                 ? "mission__name mission__name--spoil"
                 : "mission__name";
 
+            mission.id = id;
+
             const item = makeEl("li", "mission");
+            item.dataset.mission = id;
+            if (doneMissions.has(id)) item.classList.add("is-done");
+
             const num = makeEl("span", "mission__num", number);
             num.setAttribute("aria-hidden", "true");
 
             const body = makeEl("div", "mission__body");
             const heading = document.createElement("h3");
-            heading.append(makeEl("span", nameClass, mission.name));
+            const label = makeEl("label", "mission__label");
+            const check = document.createElement("input");
+            check.type = "checkbox";
+            check.className = "mission__check";
+            check.value = id;
+            check.checked = doneMissions.has(id);
+            check.addEventListener("change", () => {
+                if (check.checked) doneMissions.add(id);
+                else doneMissions.delete(id);
+                item.classList.toggle("is-done", check.checked);
+                saveState(doneMissions, CAMPAIGN_STORAGE_KEY);
+                updateCampaignProgress();
+            });
+
+            label.append(check, makeEl("span", nameClass, mission.name));
+            heading.append(label);
             if (mission.opt) heading.append(makeEl("span", "mission__opt", "Opcional"));
 
-            body.append(heading, makeEl("p", null, mission.desc), buildChoices(mission.name));
+            body.append(heading, makeEl("p", null, mission.desc), buildChoices(mission));
             item.append(num, body);
             return item;
         });
 
         const header = makeEl("header", "chapter__head");
         const optionalText = optionals
-            ? ` + ${optionals} opcional${optionals > 1 ? "es" : ""}`
+            ? ` (${optionals} opcional${optionals > 1 ? "es" : ""})`
             : "";
+        const countEl = makeEl("p", "chapter__count");
+        chapterCounters.push({ chapter, el: countEl });
+
         header.append(
             makeEl(
                 "p",
                 "chapter__kicker",
-                `Capítulo ${String(chapter.n).padStart(2, "0")} · ${mains} misiones${optionalText}`
+                `Capítulo ${String(chapter.n).padStart(2, "0")} · ${chapter.missions.length} misiones${optionalText}`
             ),
             makeEl("h3", "chapter__title", chapter.title),
             makeEl("p", "chapter__place", chapter.place),
-            makeEl("p", "chapter__summary", chapter.summary)
+            makeEl("p", "chapter__summary", chapter.summary),
+            countEl
         );
 
         const track = makeEl("ol", "mission-track");
@@ -1533,6 +1608,19 @@ if (campaignEl) {
             link.textContent = `Cap. ${chapter.n} · ${chapter.missions.length}`;
             chapterNavEl.append(link);
         }
+    });
+
+    updateCampaignProgress();
+
+    const campaignReset = document.getElementById("campaign-reset");
+    campaignReset?.addEventListener("click", () => {
+        doneMissions.clear();
+        $$(".mission__check", campaignEl).forEach((input) => {
+            input.checked = false;
+            input.closest(".mission")?.classList.remove("is-done");
+        });
+        saveState(doneMissions, CAMPAIGN_STORAGE_KEY);
+        updateCampaignProgress();
     });
 }
 

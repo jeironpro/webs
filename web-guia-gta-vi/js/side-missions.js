@@ -62,19 +62,11 @@ export const SIDE_QUESTS = [
         chapter: "2–3",
         place: "Thrillbilly Mud Club, Kelly County",
         who: "Cualquiera; Mall Rats es en solitario",
-        reward: "2.500 $ a 12.000 $ + trofeo",
+        reward: "10.000 $ a 12.000 $ + trofeo",
         missable: "No",
         summary:
-            "Billy recluta a la pareja para su equipo de motocross y robos. Son cinco pruebas que suben de nivel: barro, un camión blindado, un centro comercial, un coche de policía y una carrera final.",
+            "Billy recluta a la pareja para su equipo de motocross y robos. Sus dos primeras pruebas son opcionales de la historia y están en Campaña; aquí siguen las tres que desbloquea, del centro comercial a la carrera final.",
         missions: [
-            {
-                name: "Thrillbillies",
-                desc: "Tras Coffee Break, elige el mud club como salida o visítalo por tu cuenta en Kelly County. Compite en la carrera de barro y termina en cualquier puesto menos último; Billy te ficha y paga 2.500 $.",
-            },
-            {
-                name: "Twist Wrist, Smash, Grab",
-                desc: "El equipo persigue un camión blindado por la autopista. En moto, dispara a las bisagras de las puertas traseras, agárrate al botín y escapa por rutas secundarias antes de que llegue la policía. Paga 2.000 $.",
-            },
             {
                 name: "Mall Rats",
                 desc: "Misión en solitario: entra al centro comercial en moto, revienta las vitrinas de la joyería, recoge las bolsas y sal por el pasillo que el resto del equipo ha despejado. El golpe paga 12.000 $.",
@@ -169,12 +161,8 @@ export const SIDE_QUESTS = [
         reward: "205.000 $ + 80.000 $",
         missable: "No",
         summary:
-            "La cadena de atracos que sostiene la economía de medio capítulo: joyerías, cajeros, préstamos con usura y un furgón blindado. También abre el Snap Gun y el perista de joyas.",
+            "La cadena de atracos que sostiene la economía de medio capítulo: cajeros, préstamos con usura y un furgón blindado. La primera lista de joyerías es misión de historia y está en Campaña; aquí siguen los trabajos que desbloquea.",
         missions: [
-            {
-                name: "Yasmani's Jewelry Jobs",
-                desc: "Tras mudarte a Vice City, Yasmani llama y ofrece la primera lista de joyerías. Marca el local, entra con el Snap Gun, vacía las vitrinas y sal antes de que cierre el perímetro; al terminar desbloquea el resto de trabajos.",
-            },
             {
                 name: "Yasmani's ATM Jobs",
                 desc: "Los cajeros se abren con el cabrestante del vehículo y dejan fajos de billetes marcados. Arranca el cajero, carga el dinero y véndelo al perista; cada golpe sube el contador de 250.000 $.",
