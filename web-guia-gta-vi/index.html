@@ -20,6 +20,10 @@
             href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap"
             rel="stylesheet"
         />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20,400,0,0&icon_names=lock&display=swap"
+            rel="stylesheet"
+        />
         <link rel="stylesheet" href="./css/styles.css" />
         <script type="module" src="./js/main.js"></script>
         <script type="module" src="./js/progress.js"></script>
@@ -42,6 +46,7 @@
                     <a href="#historia">Historia</a>
                     <a href="#protagonistas">Jason y Lucía</a>
                     <a href="#leonida">Leónida</a>
+                    <a href="#ubicaciones">Ubicaciones</a>
                     <a href="#sistemas">Sistemas</a>
                     <a href="#campana">Campaña</a>
                     <a href="#secundarias">Secundarias</a>
@@ -67,6 +72,18 @@
             </div>
             <div class="scroll-progress" aria-hidden="true"><span id="scroll-progress"></span></div>
         </header>
+
+        <button
+            class="storage-fab"
+            id="storage-open"
+            type="button"
+            aria-expanded="false"
+            aria-controls="storage-banner"
+            aria-label="Datos y privacidad"
+        >
+            <span class="material-symbols-rounded" aria-hidden="true">lock</span>
+            <span>Datos y privacidad</span>
+        </button>
 
         <main id="contenido">
             <!-- HERO -->
@@ -1076,6 +1093,18 @@
                             </div>
                         </article>
                     </div>
+                </div>
+            </section>
+
+            <!-- 04B UBICACIONES -->
+            <section
+                class="section section--alt"
+                id="ubicaciones"
+                aria-labelledby="ubicaciones-title"
+            >
+                <div class="wrap">
+                    <h2 class="sr-only" id="ubicaciones-title">Ubicaciones</h2>
+                    <p class="soon">PRÓXIMAMENTE</p>
                 </div>
             </section>
 
@@ -2713,6 +2742,13 @@
                     </ul>
                 </div>
             </section>
+
+            <nav
+                class="view-pager"
+                id="view-pager"
+                aria-label="Navegación entre secciones"
+                hidden
+            ></nav>
         </main>
 
         <footer class="site-footer">
@@ -2736,6 +2772,64 @@
                 </p>
             </div>
         </footer>
+
+        <aside
+            class="storage"
+            id="storage-banner"
+            role="dialog"
+            aria-modal="false"
+            aria-labelledby="storage-title"
+            hidden
+        >
+            <div class="storage__panel">
+                <p class="storage__eyebrow">Almacenamiento local</p>
+                <h2 class="storage__title" id="storage-title">
+                    Tu progreso se queda en este navegador
+                </h2>
+                <p class="storage__text">
+                    Esta guía usa <strong>localStorage</strong> para guardar dos cosas: las casillas
+                    de la <a href="#checklist">checklist del 100%</a> y las misiones marcadas en
+                    <a href="#campana">Campaña</a>. Sirve para que no pierdas el progreso al cerrar
+                    la pestaña. No se envía nada a ningún servidor ni se comparte con terceros.
+                </p>
+                <p class="storage__text">
+                    Puedes borrarlo cuando quieras con el botón de abajo.
+                    <strong
+                        >Si eliminas los datos, se pierden todas las marcas guardadas y no se puede
+                        deshacer</strong
+                    >; la guía sigue funcionando, pero deja de recordar tu progreso.
+                </p>
+                <p class="storage__status" id="storage-status" role="status" aria-live="polite"></p>
+                <div class="storage__actions" id="storage-actions">
+                    <button class="btn btn--gradient btn--sm" type="button" id="storage-accept">
+                        Aceptar y guardar
+                    </button>
+                    <button class="btn btn--outline btn--sm" type="button" id="storage-delete">
+                        Eliminar datos guardados
+                    </button>
+                    <button class="btn btn--outline btn--sm" type="button" id="storage-close">
+                        Cerrar
+                    </button>
+                </div>
+                <div class="storage__confirm" id="storage-confirm" hidden>
+                    <p class="storage__text" id="storage-confirm-text">
+                        Se borrarán todas las marcas guardadas. No se puede deshacer.
+                    </p>
+                    <div class="storage__actions">
+                        <button
+                            class="btn btn--gradient btn--sm"
+                            type="button"
+                            id="storage-confirm-delete"
+                        >
+                            Sí, borrar todo
+                        </button>
+                        <button class="btn btn--outline btn--sm" type="button" id="storage-cancel">
+                            Cancelar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </aside>
 
         <noscript>
             <p class="noscript">

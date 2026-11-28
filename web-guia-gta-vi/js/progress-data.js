@@ -1,31 +1,10 @@
-/* Guía GTA VI · Progreso: índice de las doce categorías */
+/* Guía GTA VI · Progreso: doce categorías y contador de fichas */
 
-import { ARMAS, EQUIPO } from "./progress-arsenal.js";
-import {
-    ANIMALES,
-    ACTIVIDADES,
-    BANDAS,
-    COLECCIONES,
-    CONTACTOS,
-    ROBOS,
-} from "./progress-leonida.js";
-import { DESAFIOS, HISTORIA, TRUCOS } from "./progress-meta.js";
-import { VEHICULOS } from "./progress-vehicles.js";
+import { loadJSON } from "./data.js";
 
-export const PROGRESS = [
-    VEHICULOS,
-    ARMAS,
-    ANIMALES,
-    EQUIPO,
-    COLECCIONES,
-    ACTIVIDADES,
-    CONTACTOS,
-    BANDAS,
-    ROBOS,
-    DESAFIOS,
-    HISTORIA,
-    TRUCOS,
-];
+const catalog = await loadJSON("progreso.json", []);
+
+export const PROGRESS = Array.isArray(catalog) ? catalog : [];
 
 export function countEntries(node) {
     if (Array.isArray(node.items)) return node.items.length;
